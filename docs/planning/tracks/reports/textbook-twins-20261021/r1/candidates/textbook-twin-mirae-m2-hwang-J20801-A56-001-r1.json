@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 339,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A56-001-r1",
+ "authorId": "claude-fable-5-1:2d32f50e-2f3f-4dd3-8158-ff0ecdd32c72",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림] 한 변의 길이가 $17\\,\\mathrm{cm}$인 정사각형 모양의 색종이 $ABCD$의 네 변 위에 네 점 $E$, $F$, $G$, $H$를 $\\overline{BE}=\\overline{CF}=\\overline{DG}=\\overline{AH}=12\\,\\mathrm{cm}$가 되도록 잡고 선으로 이었다. 이때 $\\square EFGH$의 둘레의 길이는?",
+ "choices": [
+  "$44\\,\\mathrm{cm}$",
+  "$48\\,\\mathrm{cm}$",
+  "$52\\,\\mathrm{cm}$",
+  "$56\\,\\mathrm{cm}$",
+  "$60\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{AE}=17-12=5\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{BF}=\\overline{CG}=\\overline{DH}=5\\,\\mathrm{cm}$이다. $\\triangle AEH\\equiv\\triangle BFE\\equiv\\triangle CGF\\equiv\\triangle DHG$ ($\\mathrm{SAS}$ 합동)이므로 $\\square EFGH$는 네 변의 길이가 모두 같다. $\\triangle AEH$에서 피타고라스 정리에 의하여 $\\overline{EH}^{2}=5^{2}+12^{2}=169$, $\\overline{EH}>0$이므로 $\\overline{EH}=13\\,\\mathrm{cm}$ 따라서 둘레의 길이는 $4\\times 13=52\\,(\\mathrm{cm})$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A56-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A56-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-13",
+  "problemCode": "J20801-A56-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "ad0134dba78b661b9664089736b4a48d4f320e1ee82721511509d23b5c643e0d",
+  "dbContentSha256": "4925b1bb3ffbad83668c176c8b5979c2e1ffd015008668db5ffb62cd1cfda155",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "469da4b35c33331a07d45cabc493d89642646a9d96725a46e79586e0ec644f6a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "정사각형의 한 변과 각 꼭짓점에서 변 위의 점까지의 짧은 쪽 길이를 주고, 네 점을 이은 안쪽 정사각형의 둘레를 고르게 한다.",
+  "after": "색종이 장면으로 바꾸고, 꼭짓점에서 변 위의 점까지의 긴 쪽 길이를 주어 빼서 짧은 변을 구한 뒤 안쪽 정사각형의 둘레를 고르게 한다.",
+  "sharedConcept": "네 귀퉁이의 합동인 직각삼각형과 피타고라스 정리",
+  "sharedProcedure": "변 길이 빼서 다른 직각변 구하기 → 합동으로 안쪽 사각형이 정사각형(네 변 같음)임을 알기 → 피타고라스 정리로 한 변 구하기 → 4배"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리"
+  },
+  "prerequisites": [
+   "삼각형의 합동 조건",
+   "피타고라스 정리",
+   "정사각형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20801-A56-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정사각형 안의 합동 직각삼각형 넷으로 만든 정사각형의 둘레",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'bc' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))",
+     "session": "40331d78-1adb-4f39-a594-dc674eb5a6ea",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.266,
+   "longestRun": 12,
+   "residualChars": 98,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

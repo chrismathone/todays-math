@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A55-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-7688-7df0-8b64-2e75dbc6c01e",
+ "startedAt": "2026-10-21T18:44:55+0900",
+ "elapsedSec": 8.9,
+ "studentSha256": {
+  "student.json": "6143f864ec89d6a90af2f457c5dcdb576c59a43e4bcca79ced14d152f64c1cef"
+ },
+ "promptSha256": "37e2be8960950b816413ffe0b319b1cbd4f753a716e9b454730405481cdf06fc",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"해가 (9, -6)이므로 x=9, y=-6을 대입하여 두 식이 모두 성립하는지 확인한다.\\n②에서 2x+3y=18-18=0, x-2y=9+12=21로 두 식이 모두 성립한다.\\n①, ③, ④, ⑤는 각각 두 번째 식이 성립하지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "해가 (9, -6)이므로 x=9, y=-6을 대입하여 두 식이 모두 성립하는지 확인한다.\n②에서 2x+3y=18-18=0, x-2y=9+12=21로 두 식이 모두 성립한다.\n①, ③, ④, ⑤는 각각 두 번째 식이 성립하지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fae036f834a4de7a2b88081d80488442228325c064272e8242f77b96cedc1125"
+}

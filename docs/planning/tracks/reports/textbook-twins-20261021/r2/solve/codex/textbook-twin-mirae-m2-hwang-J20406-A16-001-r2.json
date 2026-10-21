@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-dca9-7242-9795-acbec47250cd",
+ "startedAt": "2026-10-21T19:09:23+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "d17d2f43925bec4d6d52c9d8e661e306ed13215b114001e5e794c25134d86ccb"
+ },
+ "promptSha256": "68f098be903fa58db62a302d16cb786bf4f582d110c8ca25123aa0dc96c5e56b",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$y=-4x+22$ ($0\\\\le x\\\\le 3$), 1 km\",\"work\":\"1 km는 100 m의 10배이므로 깊이가 1 km 늘 때마다 수온은 4°C씩 낮아진다. 수면의 수온이 22°C이므로 y=-4x+22이다. y=18을 대입하면 18=-4x+22에서 x=1이므로 깊이는 1 km이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$y=-4x+22$ ($0\\le x\\le 3$), 1 km",
+  "work": "1 km는 100 m의 10배이므로 깊이가 1 km 늘 때마다 수온은 4°C씩 낮아진다. 수면의 수온이 22°C이므로 y=-4x+22이다. y=18을 대입하면 18=-4x+22에서 x=1이므로 깊이는 1 km이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0373f4ab51b61edbf20a6e9f4db503324df8356a69f14af964f9503d1ecef246"
+}

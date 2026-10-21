@@ -1,0 +1,102 @@
+{
+ "version": 2,
+ "points": {
+  "D": [
+   30,
+   30
+  ],
+  "E": [
+   30,
+   230
+  ],
+  "C": [
+   330,
+   230
+  ],
+  "B": [
+   378,
+   230
+  ],
+  "A": [
+   378,
+   198
+  ]
+ },
+ "segments": {
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EC": [
+   "E",
+   "C"
+  ],
+  "CB": [
+   "C",
+   "B"
+  ],
+  "BA": [
+   "B",
+   "A"
+  ],
+  "DC": [
+   "D",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ]
+ },
+ "angles": {
+  "rightE": {
+   "vertex": "E",
+   "points": [
+    "D",
+    "C"
+   ],
+   "right": true
+  },
+  "rightB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "d_AB": {
+   "points": [
+    "B",
+    "A"
+   ],
+   "label": "1.6 m",
+   "side": "auto"
+  },
+  "d_BC": {
+   "points": [
+    "C",
+    "B"
+   ],
+   "label": "2.4 m",
+   "side": "auto"
+  },
+  "d_CE": {
+   "points": [
+    "E",
+    "C"
+   ],
+   "label": "15 m",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E"
+ }
+}

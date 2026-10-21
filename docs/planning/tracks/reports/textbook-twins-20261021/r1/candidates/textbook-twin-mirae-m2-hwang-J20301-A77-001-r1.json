@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 167,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "일차방정식 $3(x+1)-x=19-y$ 의 해 가운데 $y$의 값이 $x$의 값의 $2$배인 해를 구하시오.",
+ "choices": [],
+ "answer": "$x=4$, $y=8$",
+ "solution": "$3(x+1)-x=19-y$ 를 정리하면 $2x+3=19-y$, 즉 $2x+y=16$ 이다.\n$y$의 값이 $x$의 값의 $2$배이므로 $y=2x$ 이다.\n$y=2x$ 를 $2x+y=16$ 에 대입하면 $4x=16$ 이므로 $x=4$ 이다.\n$y=2\\times 4=8$ 이므로 구하는 해는 $x=4$, $y=8$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-10",
+  "problemCode": "J20301-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "3580b08ddf7f85f0aa2c00b86cc9cfb532c7b8aa3a3b287218deddf179dfde77",
+  "dbContentSha256": "935efa39f6071243b6d757ecbb5e4558df6d0c3fb6c2efc34c036dec8bc81f1d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "괄호가 있는 일차방정식을 정리한 뒤, x 가 y 의 몇 배라는 조건을 대입해 해 하나를 구한다.",
+  "after": "문자가 양변에 나뉘어 있는 식을 정리한 뒤, 거꾸로 y 가 x 의 몇 배라는 조건을 대입해 해 하나를 구한다.",
+  "sharedConcept": "일차방정식의 해 가운데 추가 조건을 만족시키는 해",
+  "sharedProcedure": "식 정리 → 배수 조건을 식으로 → 대입하여 한 문자 값 구하기 → 나머지 문자 값 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "분배법칙과 식의 정리",
+   "일차방정식 풀기(1학년)",
+   "대입"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A77-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 문자 사이 배수 조건이 있는 일차방정식의 해 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 35자",
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.062,
+   "longestRun": 5,
+   "residualChars": 35,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

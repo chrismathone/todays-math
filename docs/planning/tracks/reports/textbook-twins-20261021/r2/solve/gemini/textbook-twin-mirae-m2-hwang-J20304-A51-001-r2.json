@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "844883d0-5951-49e8-81b9-5e9c4950987d",
+ "startedAt": "2026-10-21T18:13:00+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "student.json": "8cae8a6cbd70e5983c0ae9002d70ddf2ad4c00f5d3c3463d87873bcb415d9845"
+ },
+ "promptSha256": "791737508c774b5960940c390e62d97c9957be5747a1e8bd9c47b90c8e98a087",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"연립방정식 8x+5y=10, 3x-2y=27을 풀면 x=5, y=-6이므로 a=5, b=-6이다. 이를 두 번째 연립방정식에 대입하면 5x-6y=-28, -6x-5y=-3이다. 두 식을 연립하여 풀면 x=-2, y=3을 얻는다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "연립방정식 8x+5y=10, 3x-2y=27을 풀면 x=5, y=-6이므로 a=5, b=-6이다. 이를 두 번째 연립방정식에 대입하면 5x-6y=-28, -6x-5y=-3이다. 두 식을 연립하여 풀면 x=-2, y=3을 얻는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d6c45114953d88e887adf8e3ac402ffa06de0503a546f5b401cfcdd959557b0d"
+}

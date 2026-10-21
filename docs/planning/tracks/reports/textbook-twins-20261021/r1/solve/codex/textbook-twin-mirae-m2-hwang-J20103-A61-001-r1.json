@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d60-f9b6-7132-af6d-cab6e02c52d4",
+ "startedAt": "2026-10-21T16:33:18+0900",
+ "elapsedSec": 19.9,
+ "studentSha256": {
+  "student.json": "bd1c543ea7ffd6d669e1336cae766673e5ae34d06853c46e216708a968f337c6"
+ },
+ "promptSha256": "9431a277f382cf02240353ae0610666907719e4a4e10d7ce96e8158ad532280e",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"83\",\"work\":\"x=0.2454545…라 하면 1000x−10x=245.4545…−2.4545…=243이다.\\n따라서 x=243/990=27/110이므로, 분모에서 분자를 뺀 값은 110−27=83이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "83",
+  "work": "x=0.2454545…라 하면 1000x−10x=245.4545…−2.4545…=243이다.\n따라서 x=243/990=27/110이므로, 분모에서 분자를 뺀 값은 110−27=83이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "22b5433076d9ed507b3779fd6227c5e0e02a6412152513823ddd22be87d4eb6c"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "11d5e3db-f369-415e-be4a-c25bb7b0ac0b",
+ "startedAt": "2026-10-21T18:01:35+0900",
+ "elapsedSec": 13.2,
+ "studentSha256": {
+  "student.json": "602219bc0b8e45cb5003f9ccd27563a569d7ac4687ac337e72a399589306ec08"
+ },
+ "promptSha256": "7a2af267e9e658aa90f185f6ee51c3cc5e667911e3e82f09a423777052bc0fa2",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"첫 번째 식에서 $y=7x-40$을 정리하여 두 번째 식에 대입하면 $8(7x-40)=11x-5$이다. $56x-320=11x-5$에서 $45x=315$, 즉 $x=7$이다. 이를 $y=7x-40$에 대입하면 $y=9$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "첫 번째 식에서 $y=7x-40$을 정리하여 두 번째 식에 대입하면 $8(7x-40)=11x-5$이다. $56x-320=11x-5$에서 $45x=315$, 즉 $x=7$이다. 이를 $y=7x-40$에 대입하면 $y=9$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3266ff39884122243a6020498925bb3ca8fc0a0a692b5aa55b8615e9ce90958f"
+}

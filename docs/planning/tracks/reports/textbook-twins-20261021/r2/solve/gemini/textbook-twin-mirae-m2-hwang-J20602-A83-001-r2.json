@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A83-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "5c84aa27-a3af-4236-836c-ebfa83ad8cbb",
+ "startedAt": "2026-10-21T18:38:06+0900",
+ "elapsedSec": 31.9,
+ "studentSha256": {
+  "fig-1.png": "e9f64a6ec4d379eef705413606b0f37a55673f4a398565f6ec85aa208ee4b80c",
+  "student.json": "3b5037d3bf7fd2153a7fc60b75f2cc2e042e86378e51d1add01357da1611c850"
+ },
+ "promptSha256": "90ee9f01aa59ced130d54bb6e64def7fb0a1cc50315d9f9f52adca53ccaee719",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②, ⑤\",\n  \"work\": \"$\\\\triangle DEF$에서 $\\\\angle D = 90^\\\\circ$, $\\\\angle E = 60^\\\\circ$이므로 $\\\\angle F = 30^\\\\circ$이다. $\\\\triangle ABC \\\\backsim \\\\triangle DEF$가 되기 위한 조건은 다음과 같다.\\n1) SAS 닮음: $\\\\angle B = \\\\angle E = 60^\\\\circ$이고 $\\\\overline{BC} : \\\\overline{EF} = 12 : 8 = 3 : 2$이므로, $\\\\overline{AB} : \\\\overline{DE} = 3 : 2$가 되어야 한다. $\\\\overline{DE} = 4\\\\,\\\\mathrm{cm}$이므로 $\\\\overline{AB} = 6\\\\,\\\\mathrm{cm}$이다. (②)\\n2) AA 닮음: 이미 $\\\\angle B = \\\\angle E = 60^\\\\circ$이므로, $\\\\angle C = \\\\angle F = 30^\\\\circ$가 추가되면 두 쌍의 대응각의 크기가 같아져 닮음이 성립한다. (⑤)\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "$\\triangle DEF$에서 $\\angle D = 90^\\circ$, $\\angle E = 60^\\circ$이므로 $\\angle F = 30^\\circ$이다. $\\triangle ABC \\backsim \\triangle DEF$가 되기 위한 조건은 다음과 같다.\n1) SAS 닮음: $\\angle B = \\angle E = 60^\\circ$이고 $\\overline{BC} : \\overline{EF} = 12 : 8 = 3 : 2$이므로, $\\overline{AB} : \\overline{DE} = 3 : 2$가 되어야 한다. $\\overline{DE} = 4\\,\\mathrm{cm}$이므로 $\\overline{AB} = 6\\,\\mathrm{cm}$이다. (②)\n2) AA 닮음: 이미 $\\angle B = \\angle E = 60^\\circ$이므로, $\\angle C = \\angle F = 30^\\circ$가 추가되면 두 쌍의 대응각의 크기가 같아져 닮음이 성립한다. (⑤)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ad5d2d421c61933cf27c9947d1b8dc9555a743fc43e4124abf27bde4eb33455a"
+}

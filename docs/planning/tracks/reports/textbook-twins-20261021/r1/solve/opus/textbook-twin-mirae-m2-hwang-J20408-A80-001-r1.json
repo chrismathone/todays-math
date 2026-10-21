@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c594b40d-f6fe-4c76-81bd-68339afb054f",
+ "startedAt": "2026-10-21T17:02:42+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "fig-1.png": "1ed35fea91913ac766888135cbc97cd9a8059c4b8f8092c34ed8e71fd76f2477",
+  "student.json": "602047f7134a59ba74afc95084741ed2408f1fba9729da795e85c393c3c6abfe"
+ },
+ "promptSha256": "46745320c37bf8b116d4b154f59ce6b66649f40eebd5459a6da882043749cfa2",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"그래프의 x절편은 3, y절편은 2이다. 따라서 식은 x/3 + y/2 = 1이고, 양변에 6을 곱하면 2x + 3y = 6, 즉 $2x+3y-6=0$이다. 확인: (3,0)을 넣으면 6-6=0, (0,2)를 넣으면 6-6=0이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그래프의 x절편은 3, y절편은 2이다. 따라서 식은 x/3 + y/2 = 1이고, 양변에 6을 곱하면 2x + 3y = 6, 즉 $2x+3y-6=0$이다. 확인: (3,0)을 넣으면 6-6=0, (0,2)를 넣으면 6-6=0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3cf4c2d0806c1de7d310b084e0af1d910898b655ddfd29de03c96da3d2dba725"
+}

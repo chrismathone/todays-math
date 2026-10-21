@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 169,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+ "authorId": "claude-fable-5-1:0ce14b53-39cf-4fd8-a8fa-8caa9819a93e",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 식 가운데 미지수가 $2$개인 일차방정식이라고 할 수 없는 것은?",
+ "choices": [
+  "$y=-5x$",
+  "$xy+4x-y=xy+6$",
+  "$\\frac{x}{4}-\\frac{y}{5}=8$",
+  "$4x+5y=4x-5$",
+  "$6x-(x+4y)+9=0$"
+ ],
+ "answer": "④",
+ "solution": "각 식을 정리하여 (일차식)$=0$ 꼴로 만든다.\n① $5x+y=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n② 양변의 $xy$ 가 지워져 $4x-y-6=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n③ 이미 $\\frac{x}{4}-\\frac{y}{5}-8=0$ 꼴이므로 미지수가 $2$개인 일차방정식이다.\n④ 양변의 $4x$ 가 지워져 $5y+5=0$ 이 되므로 미지수가 $y$ 하나뿐인 일차방정식이다.\n⑤ 괄호를 풀면 $5x-4y+9=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n따라서 미지수가 $2$개인 일차방정식이라고 할 수 없는 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ffc616326d5bfbaa-0-1",
+  "problemCode": "J20301-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "59b0f33fea1645c5aac37f132fab984f630dbda10801d259ac6453b7b911eaf4",
+  "dbContentSha256": "395eb7fb2c8d2e903b5dee430886e1c29026f33b24127d0dea7df23121f20849",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-1_연립일차방정식과그해.hwp",
+    "sha256": "291f6116cc7eea5c0ab4f3470f4fed09c4e895acecfd0e51f276f4b73841c261",
+    "bytes": 47104
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "다섯 식을 정리해 미지수가 둘인 일차방정식이 아닌 하나를 고른다. 걸러지는 식은 양변의 $y$항이 지워져 미지수가 $x$ 하나만 남는 꼴이고, 나머지 넷에는 이차항이 양변에서 지워지는 식과 괄호를 푸는 식이 있다.",
+  "after": "같은 물음이지만 걸러지는 식은 양변의 $x$항이 지워져 $y$ 하나만 남는 꼴로 바꾸었다. 이차항 대신 $xy$ 항이 양변에서 지워지는 식을 두었고, 분수 계수 식은 두 미지수 모두 분모가 다르게 두었다. 수는 $4,5,6,8,9$ 로 원본 수를 쓰지 않았다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 뜻 — 정리했을 때 $ax+by+c=0$ ($a\\ne0$, $b\\ne0$) 꼴",
+  "sharedProcedure": "각 식을 이항·전개하여 정리 → 지워지는 항 확인 → 남은 미지수의 개수와 차수 판단 → 조건에 맞지 않는 보기 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 뜻과 정리(이항·동류항 계산)",
+   "다항식의 전개와 괄호 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A79-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지수가 2개인 일차방정식 판별(정리 후 항이 지워지는 식 가려내기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.162,
+   "longestRun": 13,
+   "residualChars": 77,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

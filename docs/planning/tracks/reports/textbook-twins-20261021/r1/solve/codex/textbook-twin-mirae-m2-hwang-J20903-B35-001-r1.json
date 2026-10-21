@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B35-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcd-0394-7413-9419-39087caa4ce7",
+ "startedAt": "2026-10-21T18:31:19+0900",
+ "elapsedSec": 9.6,
+ "studentSha256": {
+  "student.json": "7c57c3b528950e26965236c1327313efcc6e0af1ab16ac5e3a90dbda907fe52c"
+ },
+ "promptSha256": "10548ffa024d75b12a59cc1f63bd0b3cf99070a90a25740d1538186edfa65ec5",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{1}{4}$\",\"work\":\"자전거를 탈 줄 모르는 학생은 28-21=7명이다. 따라서 구하는 확률은 7/28=1/4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{4}$",
+  "work": "자전거를 탈 줄 모르는 학생은 28-21=7명이다. 따라서 구하는 확률은 7/28=1/4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b45c52b8445152d4fb32864e03cb4fe29db2e3af61ced6ffe6d5d3a3778b77fe"
+}

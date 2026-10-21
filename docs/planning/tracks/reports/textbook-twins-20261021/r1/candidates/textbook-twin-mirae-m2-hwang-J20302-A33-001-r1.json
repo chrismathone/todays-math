@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 178,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A33-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 2x+5y=16 & \\cdots\\cdots\\,㉠ \\\\ 7x+3y=27 & \\cdots\\cdots\\,㉡ \\end{cases}$을 가감법으로 풀려고 한다. $y$를 소거하려면 다음 중 어느 식을 계산해야 하는가?",
+ "choices": [
+  "$㉠\\times 5+㉡\\times 3$",
+  "$㉠\\times 5-㉡\\times 3$",
+  "$㉠\\times 3+㉡\\times 5$",
+  "$㉠\\times 3-㉡\\times 5$",
+  "$㉠\\times 7-㉡\\times 2$"
+ ],
+ "answer": "④",
+ "solution": "$㉠\\times 3$을 하면 $6x+15y=48$, $㉡\\times 5$를 하면 $35x+15y=135$이다. 두 식의 $y$의 계수가 $15$로 같으므로 변끼리 빼면 $y$가 소거되어 $-29x=-87$이 된다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6ea3b647eb09cfbf-0-1",
+  "problemCode": "J20302-A33-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "7529eff74ea5f084d1a57b5c6c1170055309c903fa75cc6d0c4ea8495cceee5b",
+  "dbContentSha256": "2a53a8114514222414ec5c7376971084aaa44290b8446e3980b92cc2f6becd11",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-2_연립일차방정식의풀이.hwp",
+    "sha256": "47b3efc7157bd685a4e894725f185c7ddfa0f6db9f3685031943737031d79d76",
+    "bytes": 52736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "y의 계수가 부호가 다른(+3, −4) 두 식에서 y를 없애기 위해 두 식에 곱할 수와 더할지 뺄지를 고른다. 답은 더하는 식이다.",
+  "after": "y의 계수가 둘 다 양수(+5, +3)인 두 식으로 바꾸어, y를 없애려면 곱한 뒤 빼야 하는 식을 고르게 한다. x 소거 식을 오답 보기로 넣었다.",
+  "sharedConcept": "가감법에서 소거할 문자의 계수 맞추기",
+  "sharedProcedure": "소거할 문자의 계수 확인 → 최소공배수가 되도록 각 식에 곱할 수 정하기 → 계수의 부호에 따라 더할지 뺄지 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "등식의 성질",
+   "최소공배수",
+   "가감법의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A33-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "가감법에서 한 문자를 소거하는 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.233,
+   "longestRun": 8,
+   "residualChars": 93,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

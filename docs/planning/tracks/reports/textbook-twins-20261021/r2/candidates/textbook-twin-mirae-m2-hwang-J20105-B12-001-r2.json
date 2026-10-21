@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 102,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+ "authorId": "claude-fable-5-1:f5651ab6-982e-4b68-b533-83c9f4eb1324",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$\\left(\\frac{2x^{5}}{y}\\right)^{a}\\div\\left(\\frac{14x^{2}}{y^{5}}\\right)^{2}$을 간단히 하였더니 $\\frac{8}{49}x^{b}y^{c}$이 되었다. 세 자연수 $a$, $b$, $c$에 대하여 $a+b+c$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$31$",
+ "solution": "$\\left(\\frac{2x^{5}}{y}\\right)^{a}=\\frac{2^{a}x^{5a}}{y^{a}}$, $\\left(\\frac{14x^{2}}{y^{5}}\\right)^{2}=\\frac{14^{2}x^{4}}{y^{10}}=\\frac{2^{2}\\times 7^{2}x^{4}}{y^{10}}$이다.\n나누면 $\\frac{2^{a}x^{5a}}{y^{a}}\\times\\frac{y^{10}}{2^{2}\\times 7^{2}x^{4}}=\\frac{2^{a-2}}{49}x^{5a-4}y^{10-a}$이다.\n$\\frac{2^{a-2}}{49}=\\frac{8}{49}$에서 $2^{a-2}=2^{3}$이므로 $a=5$이다.\n$b=5a-4=21$, $c=10-a=5$이다.\n따라서 $a+b+c=5+21+5=31$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-17",
+  "problemCode": "J20105-B12-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "d4084a69ac25eb96b403c67a373a9078d4accc4fd2e0677927d60ed8337f0370",
+  "dbContentSha256": "a743accb27c07d69fdc77fb9b01cd975f21beeb30aa9d035840277216ada6386",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "context"
+  ],
+  "before": "미지수 지수 $a$가 붙은 몫의 거듭제곱과 지수 4가 붙은 몫의 거듭제곱의 곱이 주어지고, 계수 $\\frac{2}{81}$ 과 맞추어 $a$를 정한 뒤 $x$, $y$의 지수 $b$, $c$를 구해 세 수의 합을 묻는다. 계수 6을 $2\\times 3$으로 분해해야 한다.",
+  "after": "미지수 지수 $a$가 붙은 몫의 거듭제곱을 지수 2가 붙은 몫의 거듭제곱으로 나눈 결과가 $\\frac{8}{49}x^{b}y^{c}$ 꼴로 주어진다. 계수 14를 $2\\times 7$로 분해해 $2^{a-2}=2^{3}$에서 $a$를 정하고, 지수 비교로 $b$, $c$를 구해 합을 묻는다. 곱이 나눗셈으로 바뀌고 수가 모두 새롭다.",
+  "sharedConcept": "몫의 거듭제곱과 지수법칙(곱·나눗셈)에서 계수와 지수를 비교해 미지수 결정",
+  "sharedProcedure": "각 몫의 거듭제곱을 전개 → 계수를 소인수로 분해 → 같은 밑끼리 지수법칙으로 정리 → 계수 비교로 a 결정 → 지수 비교로 b, c 결정 → 합 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑴ 거듭제곱의 곱",
+   "지수법칙 ⑶ 거듭제곱의 나눗셈",
+   "지수법칙 ⑷ 곱·몫의 거듭제곱",
+   "소인수분해"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B12-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "몫의 거듭제곱의 나눗셈에서 계수·지수 비교로 미지수 지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.241,
+   "longestRun": 12,
+   "residualChars": 57,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

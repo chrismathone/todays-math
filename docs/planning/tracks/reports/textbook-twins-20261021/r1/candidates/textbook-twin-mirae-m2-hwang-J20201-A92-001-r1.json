@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 130,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$4-3a\\le 4-3b$일 때, 다음 중에서 옳은 것은?",
+ "choices": [
+  "$a\\le b$",
+  "$\\frac{3a}{4}\\ge \\frac{3b}{4}$",
+  "$a-5\\le b-5$",
+  "$2-a\\ge 2-b$",
+  "$1+\\frac{a}{6}\\le 1+\\frac{b}{6}$"
+ ],
+ "answer": "②",
+ "solution": "$4-3a\\le 4-3b$의 양변에서 $4$를 빼면 $-3a\\le -3b$이고, 양변을 음수 $-3$으로 나누면 부등호의 방향이 바뀌어 $a\\ge b$이다.\n① $a\\le b$는 옳지 않다.\n③ $a\\ge b$의 양변에서 $5$를 빼면 $a-5\\ge b-5$이므로 옳지 않다.\n④ 양변에 $-1$을 곱하면 $-a\\le -b$, $2$를 더하면 $2-a\\le 2-b$이므로 옳지 않다.\n⑤ 양변을 $6$으로 나누고 $1$을 더하면 $1+\\frac{a}{6}\\ge 1+\\frac{b}{6}$이므로 옳지 않다.\n② 양변에 양수 $\\frac{3}{4}$을 곱하면 $\\frac{3a}{4}\\ge\\frac{3b}{4}$이므로 옳다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-3eec77215718b71c-0-3",
+  "problemCode": "J20201-A92-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "8bea6947da70ab27ac34267aef294468d39b5a63cd6248a7eea07ae80295e21c",
+  "dbContentSha256": "1bd97e44336da031e2309e75a00b4f9c33698496a0d18c763a57cfb7a7135aac",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-2_부등식의성질.hwp",
+    "sha256": "05f46293115e94424e585738427655594804b5eb7b00c3af4455036ec3f07da0",
+    "bytes": 38912
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "상수에서 음의 계수 항을 뺀 등호 포함 부등식(≥)에서 $a\\le b$를 끌어내고, 다섯 변형식 중 옳은 것 하나(양수 분수 곱)를 고른다.",
+  "after": "같은 꼴이지만 부등호가 ≤여서 $a\\ge b$가 나오고, 보기 다섯을 새 수로 짜 옳은 것(양수 분수 곱)을 두 번째에 두었다. 나머지는 모두 방향이 반대인 함정.",
+  "sharedConcept": "부등식의 성질 — 음수 나눗셈으로 대소를 구한 뒤 변형 판단",
+  "sharedProcedure": "상수 제거 → 음의 계수로 나누며 반전 → 각 보기 변형 확인 → 옳은 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "분수의 곱셈과 나눗셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A92-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부등식에서 대소를 도출한 뒤 옳은 변형 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 6개 가운데 83% 그대로"
+   ],
+   "overlap4": 0.113,
+   "longestRun": 7,
+   "residualChars": 56,
+   "params": 6,
+   "numberRetention": 0.833,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

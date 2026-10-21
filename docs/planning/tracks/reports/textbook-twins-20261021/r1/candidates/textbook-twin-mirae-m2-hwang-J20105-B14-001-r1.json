@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 104,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B14-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$4\\times 9\\times 10\\times 11=2^{m}\\times 3^{n}\\times 5\\times 11$일 때, 두 자연수 $m$, $n$의 값을 각각 구하시오.",
+ "choices": [],
+ "answer": "$m=3$, $n=2$",
+ "solution": "$4=2^{2}$, $9=3^{2}$, $10=2\\times 5$이다.\n$4\\times 9\\times 10\\times 11=2^{2}\\times 3^{2}\\times 2\\times 5\\times 11=2^{3}\\times 3^{2}\\times 5\\times 11$이다.\n따라서 $m=3$, $n=2$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f3d0bfc4a549536b-1-2",
+  "problemCode": "J20105-B14-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "cd84de5d73a34bf2a2d57d5b4bed80b5417a9a740897d774bc5f18122440dbf6",
+  "dbContentSha256": "96704ab9e18ce55282a82314551ce8d8cd00d69ff879c112a33764760d002da5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-1_지수법칙1.hwp",
+    "sha256": "9f3a1cbafe9c8ca2b17c43e38d80cd0f34c18055f48c3e602d82f86013cbfcd7",
+    "bytes": 261120
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "연속한 네 자연수의 곱을 소인수 거듭제곱의 곱으로 쓰되, 소수 하나는 그대로 남기고 두 지수를 묻는다.",
+  "after": "네 수를 새로 고르고, 지수 없이 남는 소수를 둘($5$, $11$)로 두어 $2$와 $3$의 지수만 모으게 했다.",
+  "sharedConcept": "소인수분해와 밑이 같은 거듭제곱의 곱",
+  "sharedProcedure": "각 수 소인수분해 → 같은 밑끼리 지수 합 → 지수 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "지수법칙 ⑴ 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B14-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "자연수의 곱을 소인수의 거듭제곱으로 — 지수 둘",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 33자"
+   ],
+   "overlap4": 0.367,
+   "longestRun": 9,
+   "residualChars": 33,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

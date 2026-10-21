@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "afe928de-920e-4a03-8f4d-b8b357259e28",
+ "startedAt": "2026-10-21T17:01:59+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "bbb1f9f016c861d0771994b51f7343f31796bea1a2a8a232cd426f8214821ade"
+ },
+ "promptSha256": "e6f0e841be0c51b49580ca088d8147efb74ecc46c710f03c4bbb3aa086b2c97d",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"첫 번째 연립방정식에서 x=9+4y를 3x+2y=-1에 대입하면 27+14y=-1이므로 y=-2, x=1이다. 따라서 a=1, b=-2이다. 이를 대입하면 두 번째 연립방정식은 x+2y=7, -2x+y=-4가 된다. 두 번째 식에서 y=2x-4를 얻고, 이를 첫 번째 식에 대입하면 5x-8=7이므로 x=3, y=2이다. 검산: 3+4=7, -6+2=-4\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "첫 번째 연립방정식에서 x=9+4y를 3x+2y=-1에 대입하면 27+14y=-1이므로 y=-2, x=1이다. 따라서 a=1, b=-2이다. 이를 대입하면 두 번째 연립방정식은 x+2y=7, -2x+y=-4가 된다. 두 번째 식에서 y=2x-4를 얻고, 이를 첫 번째 식에 대입하면 5x-8=7이므로 x=3, y=2이다. 검산: 3+4=7, -6+2=-4",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "73442420f0a3966215ee7bd2eba2b9d903c793bbd440f484c4e99839c938b769"
+}

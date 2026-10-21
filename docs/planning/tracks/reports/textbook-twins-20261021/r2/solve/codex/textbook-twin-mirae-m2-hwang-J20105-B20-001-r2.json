@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B20-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd3-9df6-7b02-8f2c-f83c200e3278",
+ "startedAt": "2026-10-21T18:38:32+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "71503a31334e5e2dd90fe816c863e8735c35f59f6831c4c4f94b85508fd1ff8f"
+ },
+ "promptSha256": "51df457349d81cec55e9d018a0ad42d2c44eaf87093f4e4eb730fa607be3064c",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $64a^{18}$ ⑵ $-1000x^{24}y^{27}$ ⑶ $\\\\frac{b^{20}}{81}$ ⑷ $\\\\frac{a^{30}}{27b^{27}}$\",\"work\":\"곱과 몫의 거듭제곱은 각 인수에 적용하고, 거듭제곱의 거듭제곱은 지수끼리 곱한다.\\n⑴ 계수는 8²=64, 지수는 9×2=18이다.\\n⑵ 계수는 (-10)³=-1000, 지수는 각각 8×3=24, 9×3=27이다.\\n⑶ 제곱하면 양수가 되며, 분자는 b의 20제곱, 분모는 81이다.\\n⑷ 분자는 a의 30제곱, 분모는 27과 b의 27제곱의 곱이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $64a^{18}$ ⑵ $-1000x^{24}y^{27}$ ⑶ $\\frac{b^{20}}{81}$ ⑷ $\\frac{a^{30}}{27b^{27}}$",
+  "work": "곱과 몫의 거듭제곱은 각 인수에 적용하고, 거듭제곱의 거듭제곱은 지수끼리 곱한다.\n⑴ 계수는 8²=64, 지수는 9×2=18이다.\n⑵ 계수는 (-10)³=-1000, 지수는 각각 8×3=24, 9×3=27이다.\n⑶ 제곱하면 양수가 되며, 분자는 b의 20제곱, 분모는 81이다.\n⑷ 분자는 a의 30제곱, 분모는 27과 b의 27제곱의 곱이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a3ae433253c4dcc1d3ad3bce9aebcf0170ab080ce2c18e5c2d682c0056b3cb96"
+}

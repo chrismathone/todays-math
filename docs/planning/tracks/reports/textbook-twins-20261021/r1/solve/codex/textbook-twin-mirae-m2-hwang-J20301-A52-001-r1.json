@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-0fa9-7623-8f01-b67203d6c63f",
+ "startedAt": "2026-10-21T16:54:09+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "student.json": "0b40dd10a3d284d4391f482c940ea84a457b4d8d863c09302cf4d80bd0a73757"
+ },
+ "promptSha256": "2eb01134a57f8a17e0d3c9236dd50228f2a878c72a4163c661de56402bcdcea9",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"ㄱ은 정리하면 $y=-6$이므로 미지수가 1개인 일차방정식이다.\\nㄴ은 $-3x+y=-3$, ㄹ은 $x-2y=1$이므로 미지수가 2개인 일차방정식이다.\\nㄷ은 $x^2$항이 있으므로 일차방정식이 아니다.\\n따라서 해당하는 것은 ㄱ, ㄷ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ은 정리하면 $y=-6$이므로 미지수가 1개인 일차방정식이다.\nㄴ은 $-3x+y=-3$, ㄹ은 $x-2y=1$이므로 미지수가 2개인 일차방정식이다.\nㄷ은 $x^2$항이 있으므로 일차방정식이 아니다.\n따라서 해당하는 것은 ㄱ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "24f766c8f67a3c316e67b30c654ff62a3a551799e4f0361f27e0b3fc3c8ded45"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-C09-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b6318b09-3b82-4ada-a198-8f129d7daa37",
+ "startedAt": "2026-10-21T17:13:20+0900",
+ "elapsedSec": 7.3,
+ "studentSha256": {
+  "fig-1.png": "8de08eceeab55a93eb71f2b02481d062dda2e562f11796b359c0ee6942e1f711",
+  "student.json": "d31086ac19480a34169868da12c6b8812d28d092aee4b5ce8dd598510449bb99"
+ },
+ "promptSha256": "4a5a23f915d7dee8d714c277aac7e0244cdad7e9edac6a030d49e643f9c4c7e4",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{3}{10}$\", \"work\": \"표에 나온 학생 수를 모두 더하면 18+15+24+9+14=80(명)이다. 이 가운데 치킨을 고른 학생은 24명이므로, 구하는 확률은 24/80=3/10이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{3}{10}$",
+  "work": "표에 나온 학생 수를 모두 더하면 18+15+24+9+14=80(명)이다. 이 가운데 치킨을 고른 학생은 24명이므로, 구하는 확률은 24/80=3/10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e4fe47fd2963aa99d87e7ffd8a94c3d5d2581285f409536b803afea25ac57821"
+}

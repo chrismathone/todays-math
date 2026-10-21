@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B34-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d8e0c62a-e201-4c2d-8ef9-2059164ecb73",
+ "startedAt": "2026-10-21T17:13:10+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "435e310b7cef79fd6d836bd86bd42f2184c0a84c06e5f7ace361a479c6008365"
+ },
+ "promptSha256": "421d7a75104526770286344225ec8cba32f47be461284717f1d7e522c1f7d1a2",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"전체 경우의 수는 20이다. ① 20이 적힌 공이 나올 확률은 1/20이다. ② 7이 적힌 공이 나올 확률은 1/20이다. ③ 21 이상의 수가 적힌 공은 없으므로 확률은 0이다. ④ 모든 공에 1 이상의 수가 적혀 있으므로 반드시 일어나는 사건이고 확률은 1이다. ⑤ 0이 적힌 공은 없으므로 확률은 0이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "전체 경우의 수는 20이다. ① 20이 적힌 공이 나올 확률은 1/20이다. ② 7이 적힌 공이 나올 확률은 1/20이다. ③ 21 이상의 수가 적힌 공은 없으므로 확률은 0이다. ④ 모든 공에 1 이상의 수가 적혀 있으므로 반드시 일어나는 사건이고 확률은 1이다. ⑤ 0이 적힌 공은 없으므로 확률은 0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dcb5ee8a99436d3de3540d502430632788cd23bd589772a72c65ae930514e6a2"
+}

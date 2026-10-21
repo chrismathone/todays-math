@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d57-fead-7be0-a01b-4672d3d22d1a",
+ "startedAt": "2026-10-21T16:23:30+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "164227039bbcc2ac9d1e2b228a968d29ea4c82278bc12426089fc74043ea2cdd"
+ },
+ "promptSha256": "a96090c7e0fead826f0562888da626874a913801b7c08c996c2337c0a27d7615",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$-3a-6b+2$\",\"work\":\"양변에 $2a-7b+3$을 더하면 □ $=(-5a+b-1)+(2a-7b+3)$이다.\\n동류항끼리 계산하면 $-3a-6b+2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$-3a-6b+2$",
+  "work": "양변에 $2a-7b+3$을 더하면 □ $=(-5a+b-1)+(2a-7b+3)$이다.\n동류항끼리 계산하면 $-3a-6b+2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "571c25035830f8bcc14c01ca85c80bd565ee045658461f8fd7f4d73fad847107"
+}

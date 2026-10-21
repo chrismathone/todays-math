@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A81-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c63477e2-3504-4158-a1d5-8af04ee8c606",
+ "startedAt": "2026-10-21T16:19:39+0900",
+ "elapsedSec": 5.7,
+ "studentSha256": {
+  "student.json": "e0cdb4a60811f92b66750ab56c9fff0b4fd2896646ec8058e790fe5979d7323e"
+ },
+ "promptSha256": "99bebc66eda86fd95aca18a0f11f5af02a8e1ed4c7d92668c6e527b7b97dfdde",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"3\", \"work\": \"629/990 = 0.6353535… = 0.6\\\\dot{3}\\\\dot{5}. 검산: 0.6 + 35/990 = 594/990 + 35/990 = 629/990. 소수점 아래 첫째 자리는 6이고, 둘째 자리부터 3, 5가 반복된다. 짝수 번째 자리는 3, 홀수 번째 자리(3번째 이후)는 5이다. 20은 짝수이므로 20번째 자리 숫자는 3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "629/990 = 0.6353535… = 0.6\\dot{3}\\dot{5}. 검산: 0.6 + 35/990 = 594/990 + 35/990 = 629/990. 소수점 아래 첫째 자리는 6이고, 둘째 자리부터 3, 5가 반복된다. 짝수 번째 자리는 3, 홀수 번째 자리(3번째 이후)는 5이다. 20은 짝수이므로 20번째 자리 숫자는 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3c28c446a76deee4d9fec8c349a99df08e3ead8b50bc00356a4717a890c7b66e"
+}

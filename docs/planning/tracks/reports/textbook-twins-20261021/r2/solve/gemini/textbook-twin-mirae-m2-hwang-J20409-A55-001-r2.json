@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "800cd7da-114a-404e-82ce-2095f6b766ee",
+ "startedAt": "2026-10-21T18:15:24+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "student.json": "9ac01c30a991d871f258e27f2abcb259a21b5264cdd6d91fdfaff847f671e277"
+ },
+ "promptSha256": "07b1053a3feb8a87dd0cca9c80009c60232b301c1a29151b5361a89dbc1234fa",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"연립방정식 x - y = 7, 5x + 2y = 0을 풀면 x = 2, y = -5이므로 점 P의 좌표는 (2, -5)이다. 직선 8x - 2y + 5 = 0을 정리하면 y = 4x + 5/2이므로, 이 직선과 평행한 직선 l의 기울기는 4이다. 따라서 점 P(2, -5)를 지나고 기울기가 4인 직선의 방정식은 y - (-5) = 4(x - 2), 즉 y = 4x - 13이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "연립방정식 x - y = 7, 5x + 2y = 0을 풀면 x = 2, y = -5이므로 점 P의 좌표는 (2, -5)이다. 직선 8x - 2y + 5 = 0을 정리하면 y = 4x + 5/2이므로, 이 직선과 평행한 직선 l의 기울기는 4이다. 따라서 점 P(2, -5)를 지나고 기울기가 4인 직선의 방정식은 y - (-5) = 4(x - 2), 즉 y = 4x - 13이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bd2b9de97a9e47556c31a470e2d9a661d87ac03f875ee873ed5acd3815bc11d0"
+}

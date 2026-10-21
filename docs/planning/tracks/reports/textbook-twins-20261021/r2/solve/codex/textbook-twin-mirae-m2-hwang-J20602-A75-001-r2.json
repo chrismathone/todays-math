@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A75-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df7-4203-7be1-9fd9-33114e05d446",
+ "startedAt": "2026-10-21T19:17:27+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "fig-1.png": "4c8dff0893aedec07aa486582d5d0af053345d90a82012412da89b303bf7505a",
+  "student.json": "9428bfdd125bdf3ad9109053f30889726f1384a1dde0661f140689e4efd4f4bd"
+ },
+ "promptSha256": "4cd7eccdb570f2b081a2d96c2a96b664d58a24fb7a84c80173e6da47a976284a",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"M은 AC의 중점이므로 $CM=14\\\\,\\\\mathrm{cm}$이다.\\n$\\\\angle CMD=\\\\angle CBA=90^\\\\circ$이고 C의 각이 공통이므로 $\\\\triangle CMD\\\\sim\\\\triangle CBA$이다.\\n따라서 $\\\\frac{CD}{28}=\\\\frac{14}{21}$이므로 $CD=\\\\frac{56}{3}\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "M은 AC의 중점이므로 $CM=14\\,\\mathrm{cm}$이다.\n$\\angle CMD=\\angle CBA=90^\\circ$이고 C의 각이 공통이므로 $\\triangle CMD\\sim\\triangle CBA$이다.\n따라서 $\\frac{CD}{28}=\\frac{14}{21}$이므로 $CD=\\frac{56}{3}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9a3443b43aed0e3f2f516d3aaeb410049d363959049b5c9c23ba3237f8186c3a"
+}

@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 38,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A63-001-r2",
+ "authorId": "claude-fable-5-1:ae503f43-04c4-43a7-8bed-55ae7c35ee62",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A63-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 계산하시오.\n⑴ $7p^{6}\\times 8q^{9}$\n⑵ $-6m^{8}n^{7}\\times m^{6}n^{9}$\n⑶ $9x^{6}y^{7}\\times\\left(\\frac{y^{6}}{x^{3}}\\right)^{2}$\n⑷ $\\left(-7a^{9}b^{6}\\right)^{2}\\times\\left(\\frac{b^{7}}{a^{8}}\\right)^{2}$",
+ "choices": [],
+ "answer": "⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+ "solution": "⑴ $7\\times 8\\times p^{6}\\times q^{9}=56p^{6}q^{9}$\n⑵ $(-6)\\times m^{8}\\times m^{6}\\times n^{7}\\times n^{9}=-6m^{14}n^{16}$\n⑶ $9x^{6}y^{7}\\times\\frac{y^{12}}{x^{6}}=9\\times x^{6}\\times\\frac{1}{x^{6}}\\times y^{7}\\times y^{12}=9y^{19}$\n⑷ $49a^{18}b^{12}\\times\\frac{b^{14}}{a^{16}}=49\\times a^{18}\\times\\frac{1}{a^{16}}\\times b^{12}\\times b^{14}=49a^{2}b^{26}$\n따라서 ⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce14b504524bdd49-1-1",
+  "problemCode": "J20106-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "45e3915877081549035f8d76a8ecfae7520c9ccf64314adca5728bb293d02092",
+  "dbContentSha256": "2a7f45430b9c368fd17ee31f043fc041ba424d9dcc6868b31ba56af4bf06919f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "149462077a4603f021e5440bc1688a0f9c1b559711a7b009a0d8ac75d0402509",
+    "bytes": 335872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷 — 서로 다른 문자 단항식끼리의 곱, 음수 계수와 같은 문자가 섞인 곱(한 문자는 지수 없이), 단항식과 분수꼴 거듭제곱의 곱에서 한 문자가 전부 약분되는 경우, 거듭제곱된 단항식과 계수 있는 분수꼴 거듭제곱의 곱.",
+  "after": "같은 네 갈래를 지키되 계수는 7·8·9·-6·-7 로, 지수는 6 이상으로 새로 잡고 문자도 p·q, m·n 으로 바꿈. ⑵는 두 문자 모두 지수를 가지도록, ⑶은 분자 문자에도 지수를 두고 ⑷는 계수를 바깥 거듭제곱 쪽에만 두어 짜임을 바꿈. 원본 수(5·4·3·2·-2·-3·1)는 거듭제곱 지수 2와 분모 지수 3만 남김.",
+  "sharedConcept": "지수법칙을 이용한 단항식의 곱셈(계수끼리 · 같은 문자끼리 곱하기, 분수꼴 거듭제곱 처리)",
+  "sharedProcedure": "거듭제곱 풀기(분수꼴은 분자·분모 각각) → 계수끼리 곱하기 → 같은 문자끼리 지수법칙으로 모으기(약분 포함) → 단항식으로 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(곱 · 거듭제곱의 거듭제곱 · 분수의 거듭제곱)",
+   "단항식의 계수와 차수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A63-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 곱셈(분수꼴 거듭제곱 포함) 소문항 넷",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.132,
+   "longestRun": 8,
+   "residualChars": 79,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

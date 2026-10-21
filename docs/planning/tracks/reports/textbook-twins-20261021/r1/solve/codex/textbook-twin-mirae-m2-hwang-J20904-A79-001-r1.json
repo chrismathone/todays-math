@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A79-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc9-b36a-7871-b7f6-03312f954e02",
+ "startedAt": "2026-10-21T18:27:42+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "a6ce71f1d36df4d60b2be4ca8130b86b44ea756ef1e7e2b4448eb84cb97f60f3"
+ },
+ "promptSha256": "fa866158b7e0a4a2748dcbc25fbb038ae0ec7d09e08398398480f80ac249e9b8",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{1}{6}$\",\"work\":\"4의 약수인 눈은 1, 2, 4이므로 확률은 3/6이다. 5 이상의 눈은 5, 6이므로 확률은 2/6이다. 두 주사위의 결과는 서로 독립이므로 구하는 확률은 (3/6)×(2/6)=1/6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "4의 약수인 눈은 1, 2, 4이므로 확률은 3/6이다. 5 이상의 눈은 5, 6이므로 확률은 2/6이다. 두 주사위의 결과는 서로 독립이므로 구하는 확률은 (3/6)×(2/6)=1/6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "181fc8a79bee027541a1866a5e4f1e76332dee755067359cdb08b7a7ff5f5781"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B33-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcc-b2ec-7880-a85f-150f09c7208d",
+ "startedAt": "2026-10-21T18:30:58+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "student.json": "55bd57ba980a50a9261037c012bfb134f93ecafc5c7446f28acacde4a6f8e057"
+ },
+ "promptSha256": "14b00a1fdc92f0069959812c932427612408ea587951d78ba9880c325a44bac4",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 1 ⑵ 0\",\"work\":\"전체 공 5개 중 노란 공은 5개이므로 노란 공이 나올 확률은 5/5=1이다. 흰 공은 0개이므로 흰 공이 나올 확률은 0/5=0이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 1 ⑵ 0",
+  "work": "전체 공 5개 중 노란 공은 5개이므로 노란 공이 나올 확률은 5/5=1이다. 흰 공은 0개이므로 흰 공이 나올 확률은 0/5=0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1cc1c245a1e6cc536fc05212d161902fb68e4826b599f167a30f51cb83c065fd"
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 77,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A71-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "보기 ㄱ~ㄹ의 분수 가운데 소수로 나타내었을 때 유한소수인 것만을 있는 대로 고른 것은?\nㄱ. $\\frac{5}{12}$ ㄴ. $\\frac{9}{40}$\nㄷ. $-\\frac{14}{35}$ ㄹ. $\\frac{10}{21}$",
+ "choices": [
+  "ㄱ, ㄷ",
+  "ㄴ, ㄷ",
+  "ㄴ, ㄹ",
+  "ㄷ, ㄹ",
+  "ㄱ, ㄴ, ㄷ"
+ ],
+ "answer": "②",
+ "solution": "ㄱ. $\\frac{5}{12}=\\frac{5}{2^{2}\\times 3}$ 은 분모에 $3$이 있어 유한소수가 아니다. ㄴ. $\\frac{9}{40}=\\frac{9}{2^{3}\\times 5}$ 은 유한소수이다. ㄷ. $-\\frac{14}{35}=-\\frac{2}{5}$ 는 유한소수이다. ㄹ. $\\frac{10}{21}=\\frac{10}{3\\times 7}$ 은 유한소수가 아니다. 따라서 유한소수인 것은 ㄴ, ㄷ이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-5",
+  "problemCode": "J20101-A71-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "deba325f6397dc7597a63fd88180cd1c19c5e77f1e553ce0a41c52675697032f",
+  "dbContentSha256": "24be4a5314a50e5a21f97407508da2921c1f529ff5f9e49a7abd92ed4dba84e6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "ㄱ~ㄹ 네 분수(음수 하나 포함) 가운데 유한소수가 되는 것의 조합을 다섯 보기에서 고른다. 정답 조합은 첫째와 넷째.",
+  "after": "같은 ㄱ~ㄹ·조합 보기 꼴이지만, 약분해야 드러나는 음수 분수와 소인수 7이 든 분수를 배치하고 정답 조합을 가운데 둘(ㄴ, ㄷ)로 바꾸었다.",
+  "sharedConcept": "유한소수가 되는 분수의 조건(기약분수 분모의 소인수가 2, 5뿐)",
+  "sharedProcedure": "각 분수를 기약분수로 → 분모 소인수분해 → 2, 5뿐인 것 표시 → 조합 보기 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "유한소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A71-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "보기 ㄱ~ㄹ에서 유한소수가 되는 분수의 조합 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.103,
+   "longestRun": 6,
+   "residualChars": 71,
+   "params": 8,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

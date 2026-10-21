@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "98f50e57-9939-41d2-9ca4-3d7b5d1cf764",
+ "startedAt": "2026-10-21T17:07:53+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "fig-1.png": "4ff4482fa7ed6482ff4a5746d26ee954463ce90d8f8c45e0c6a203b699b58840",
+  "student.json": "743cbb358a7687cc328810fd700fb074f3f1160a7a31367835acca77375d2e2f"
+ },
+ "promptSha256": "50612629d48c208dc5b063333dd9dd56cd928cf87a1d35dbe0cdb74cb66a0e6d",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"AB∥CD이므로 △ABE∽△DCE(AA 닮음)이고, AB와 대응하는 변은 DC, BE와 대응하는 변은 CE이다. AB = 10+5 = 15 cm이므로 AB:DC = 15:20 = 3:4이다. 따라서 BE = 12×3/4 = 9 cm. △ABE에서 GH∥EB이므로 GH:EB = AH:AB = 10:15 = 2:3이다. 따라서 GH = 9×2/3 = 6 cm.\", \"confidence\": \"high\", \"issues\": [\"그림에서 글자 H가 선분 AB 위가 아니라 선분 EB 옆에 찍혀 있다. 그래서 H가 GH와 AB가 만나는 점이라는 것이 그림만으로는 분명하지 않다. 다만 길이 표시(10 cm, 5 cm)와 본문 내용은 H가 AB 위의 점이라는 것과 맞으므로 풀이에는 지장이 없다.\"]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AB∥CD이므로 △ABE∽△DCE(AA 닮음)이고, AB와 대응하는 변은 DC, BE와 대응하는 변은 CE이다. AB = 10+5 = 15 cm이므로 AB:DC = 15:20 = 3:4이다. 따라서 BE = 12×3/4 = 9 cm. △ABE에서 GH∥EB이므로 GH:EB = AH:AB = 10:15 = 2:3이다. 따라서 GH = 9×2/3 = 6 cm.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 글자 H가 선분 AB 위가 아니라 선분 EB 옆에 찍혀 있다. 그래서 H가 GH와 AB가 만나는 점이라는 것이 그림만으로는 분명하지 않다. 다만 길이 표시(10 cm, 5 cm)와 본문 내용은 H가 AB 위의 점이라는 것과 맞으므로 풀이에는 지장이 없다."
+  ]
+ },
+ "eventsSha256": "6043c61d89948166087c3c95ebf71ba141bf70ff2a975e430d11a1db3343238e"
+}

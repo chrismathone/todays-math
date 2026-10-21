@@ -1,0 +1,152 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 206,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A80-001-r1",
+ "authorId": "claude-fable-5-1:1bb1f7cd-9929-4673-b930-dc6798c3e99b",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n오른쪽 그림은 어떤 일차방정식의 그래프이다. 다음 중 이 그래프를 나타내는 일차방정식은?",
+ "choices": [
+  "$2x+3y+6=0$",
+  "$3x+2y-6=0$",
+  "$2x-3y-6=0$",
+  "$2x+3y-6=0$",
+  "$3x-2y+6=0$"
+ ],
+ "answer": "④",
+ "solution": "그림의 그래프는 $x$절편이 $3$, $y$절편이 $2$이다.\n④ $2x+3y-6=0$에서 $y=-\\frac{2}{3}x+2$이므로 $y$절편은 $2$이고, $y=0$을 대입하면 $x=3$이므로 $x$절편은 $3$이다.\n① 은 $x$절편 $-3$, $y$절편 $-2$, ② 는 $x$절편 $2$, $y$절편 $3$, ③ 은 $x$절편 $3$, $y$절편 $-2$, ⑤ 는 $x$절편 $-2$, $y$절편 $3$이므로 맞지 않는다.\n따라서 그래프를 나타내는 일차방정식은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20408-A80-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20408-A80-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9631d96ae64e7d9b-0-1",
+  "problemCode": "J20408-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "48ff74f470b0b5b78a70e1e2e7ec4a4b6038867d3844215589f2c5538590b044",
+  "dbContentSha256": "2819d70c37d2786aee9fa1168c3c5bf2c3680966c3d825a4600e617a94f40ed0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-6_일차함수와일차방정식.hwp",
+    "sha256": "b1f96c73d3c880011abf4f6322c46b25fc44d4f91e20dd4f0893daaa1f26f13c",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [
+   "65647d3c0f569b94bc76a1c3fe5c18ac3dcd30a2090af90f484ad3ce2ce60da8",
+   "d351e00f0ed07a2d02ab07361127bdc64cb29a9ae310cda8792571b04f395e07",
+   "224336adfc5476fe18e3f00b190f0355f357200117972de534a667a971c466ab",
+   "ba0543b9233c0d142e6d971d308af40de8265747097b8ed6ec33514a3712bbb2",
+   "3c0b77e1bac752d977eddf2c668103c4984834f60618c57463c09c0a83244e1d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "different",
+   "answer": "same"
+  },
+  "authorSawDbText": false,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "representation",
+   "numbers"
+  ],
+  "before": "일차방정식 하나가 주어지고, 절편을 구해 다섯 개의 그래프 그림 가운데 맞는 것을 고른다",
+  "after": "그래프 그림 하나가 주어지고, 그림에서 두 절편을 읽어 다섯 개의 일차방정식 가운데 맞는 것을 고른다 — 주어진 것과 구하는 것을 뒤집고 그림을 하나로 모았다",
+  "sharedConcept": "일차방정식 ax+by+c=0의 그래프와 x절편·y절편",
+  "sharedProcedure": "일차방정식을 y=mx+n 꼴로 정리 → x절편·y절편 구하기 → 그래프의 절편과 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수와 일차방정식"
+  },
+  "prerequisites": [
+   "일차함수의 그래프의 절편",
+   "일차방정식 ax+by+c=0의 그래프"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20408-A80-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "절편을 읽어 그래프에 맞는 일차방정식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.065,
+   "longestRun": 5,
+   "residualChars": 80,
+   "params": 3,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 204,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r2",
+ "authorId": "claude-opus-5-5:3e18e6da-3483-47d2-9823-5863f3fb7bfa",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "점 $(-8,~11)$이 일차방정식 $ax+8y=40$의 그래프 위에 있다. 다음 중 이 그래프가 지나지 않는 점은? (단, $a$는 수이다.)",
+ "choices": [
+  "$\\left(20,~-10\\right)$",
+  "$\\left(-16,~17\\right)$",
+  "$\\left(24,~-12\\right)$",
+  "$\\left(-\\frac{2}{3},~\\frac{11}{2}\\right)$",
+  "$\\left(16,~-7\\right)$"
+ ],
+ "answer": "③",
+ "solution": "점 $(-8,~11)$을 대입하면 $-8a+88=40$, $-8a=-48$이므로 $a=6$이다. 따라서 일차방정식은 $6x+8y=40$이다.\n① $x=20$, $y=-10$을 대입하면 $120-80=40$\n② $x=-16$, $y=17$을 대입하면 $-96+136=40$\n③ $x=24$, $y=-12$를 대입하면 $144-96=48\\neq 40$\n④ $x=-\\frac{2}{3}$, $y=\\frac{11}{2}$을 대입하면 $-4+44=40$\n⑤ $x=16$, $y=-7$을 대입하면 $96-56=40$\n따라서 그래프가 지나지 않는 점은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-9",
+  "problemCode": "J20408-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "d69dfb7f63a853db6be96009ea9f6259f3bd7575896b78c2fe8d67c0eb8fbf37",
+  "dbContentSha256": "91872c3401876a4e36549b738ba89497bc82d8db3447aae46ac795b16933896e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "x의 계수가 미지수이고 상수항이 좌변에 있는 꼴(…=0)의 일차방정식이 주어진 한 점을 지난다는 조건으로 계수를 구한 뒤, 작은 정수와 분수 좌표 다섯 개 가운데 그래프 위에 없는 점을 고른다(정답 ④).",
+  "after": "상수항을 우변에 둔 꼴(ax+8y=40)로 식을 나타내고, 주어진 점을 '그래프 위에 있는 점'으로 먼저 제시한다. 두 자리 정수와 분수 좌표 다섯 개 가운데 그래프가 지나지 않는 점을 고른다(정답 ③).",
+  "sharedConcept": "일차방정식의 그래프 위의 점은 그 방정식의 해이다",
+  "sharedProcedure": "지나는 점의 좌표를 대입 → 미지 계수 구하기 → 완성한 식에 보기 다섯 점을 차례로 대입 → 등식이 성립하지 않는 점 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수와 일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 해와 그래프",
+   "좌표의 대입",
+   "일차방정식 풀이",
+   "분수의 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20408-A51-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "그래프가 지나는 점으로 계수를 구한 뒤 그래프 위에 있지 않은 점 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.179,
+   "longestRun": 8,
+   "residualChars": 87,
+   "params": 10,
+   "numberRetention": 0.3,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

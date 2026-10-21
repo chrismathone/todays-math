@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 166,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r2",
+ "authorId": "claude-fable-5-1:8c7376ca-8132-428a-ab3f-13fc2c2fb726",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 ㄱ~ㅁ 가운데 미지수가 $2$개인 일차방정식인 것만을 있는 대로 고른 것은?\nㄱ. $y=8x-7$ ㄴ. $x^{2}-y=6$\nㄷ. $\\frac{x}{6}-\\frac{y}{9}=6$ ㄹ. $7x-y=7(x-y)$\nㅁ. $x(y+6)=xy-8$",
+ "choices": [
+  "ㄱ, ㄴ",
+  "ㄱ, ㄷ",
+  "ㄴ, ㄹ",
+  "ㄱ, ㄷ, ㅁ",
+  "ㄷ, ㄹ, ㅁ"
+ ],
+ "answer": "②",
+ "solution": "각 식의 모든 항을 좌변으로 옮겨 정리한다.\nㄱ. $8x-y-7=0$ → 미지수가 $2$개인 일차방정식이다.\nㄴ. $x^{2}-y-6=0$ → $x^{2}$ 항이 있어 일차방정식이 아니다.\nㄷ. $\\frac{x}{6}-\\frac{y}{9}-6=0$ → 미지수가 $2$개인 일차방정식이다.\nㄹ. $7x-y-7x+7y=0$, 즉 $6y=0$ → 미지수가 $1$개뿐이다.\nㅁ. $xy+6x-xy+8=0$, 즉 $6x+8=0$ → 미지수가 $1$개뿐이다.\n따라서 미지수가 $2$개인 일차방정식은 ㄱ, ㄷ이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-447e2b2adaabb5e5-1-2",
+  "problemCode": "J20301-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "f443bc0dc43272cd912abf3de9c662a748eb9057515abc9774179fd935d819ea",
+  "dbContentSha256": "297a96d0692e7c274f17213c7b373ff2f27e811ca38c93230776088369f9600e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_4-1_연립일차방정식과그해.hwp",
+    "sha256": "7ddade8c6a99c39aa30dad5aa6276c913d32876abfa5ca35f2f942c439f75201",
+    "bytes": 276480
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "representation"
+  ],
+  "before": "다섯 식을 각각 정리해 미지수 2개짜리 일차방정식이 몇 개인지 세고, 그 개수를 1~5 가운데 고른다. 제곱항이 남는 식 둘과 정리하면 미지수가 하나만 남는 식 하나가 섞여 있다.",
+  "after": "다섯 식을 각각 정리해 미지수 2개짜리 일차방정식을 가려낸 뒤, 그 식들의 기호 묶음을 보기에서 고른다. 제곱항이 남는 식 하나, 전개하면 $xy$ 항이 사라져 미지수가 하나만 남는 식 하나, 괄호를 풀면 한 미지수가 소거되는 식 하나를 섞었다. 보기는 개수 대신 기호 묶음이라 원본의 수 1~5를 쓰지 않는다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 뜻(정리했을 때 $ax+by+c=0$, $a\\ne0$, $b\\ne0$ 꼴)",
+  "sharedProcedure": "우변 항을 좌변으로 이항 → 동류항 정리 → 차수와 남은 미지수 개수 확인 → 조건에 맞는 식 판별"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 뜻",
+   "이항과 동류항 정리",
+   "단항식과 다항식의 곱셈(분배법칙)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A58-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정리하여 미지수가 2개인 일차방정식 판별하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.154,
+   "longestRun": 12,
+   "residualChars": 94,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

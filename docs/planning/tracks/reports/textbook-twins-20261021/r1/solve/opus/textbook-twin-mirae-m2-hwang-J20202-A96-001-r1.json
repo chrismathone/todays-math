@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3b705589-66f4-4d67-83bb-b6026497211f",
+ "startedAt": "2026-10-21T16:28:30+0900",
+ "elapsedSec": 8.2,
+ "studentSha256": {
+  "fig-1.png": "505edc3ce578d9cf3bace96dc44e87b90a9c450eece63feb9331e5e9977651f1",
+  "student.json": "7cf1e821adafd66dbd7d63a1a2fec5b81f858f075652bc5e5ca399f4b20a0eab"
+ },
+ "promptSha256": "b2e888539625af04513ff50cff4f37ae52b4e902f80ab29d470af3ddfc1d19b3",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"그림은 5에서 빈 동그라미이고 왼쪽으로 뻗어 있으므로 해는 x<5이다. ① 2x>10이므로 x>5. ② -2x>8이므로 x<-4. ③ 5(x+1)≤3(x+5)에서 2x≤10이므로 x≤5. ④ 2x<10이므로 x<5. ⑤ 3x+6<x+4에서 2x<-2이므로 x<-1. 따라서 그림의 해 x<5와 같은 것은 ④이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그림은 5에서 빈 동그라미이고 왼쪽으로 뻗어 있으므로 해는 x<5이다. ① 2x>10이므로 x>5. ② -2x>8이므로 x<-4. ③ 5(x+1)≤3(x+5)에서 2x≤10이므로 x≤5. ④ 2x<10이므로 x<5. ⑤ 3x+6<x+4에서 2x<-2이므로 x<-1. 따라서 그림의 해 x<5와 같은 것은 ④이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6a591b2b7c896acf89d399ec8227329fa2fb9d6378ff37dae26884a7fa66e1f5"
+}

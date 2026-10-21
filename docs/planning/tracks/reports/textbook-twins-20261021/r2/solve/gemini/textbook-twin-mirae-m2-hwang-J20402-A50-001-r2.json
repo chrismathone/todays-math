@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A50-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "3799a04f-864f-454e-9fce-529328bef033",
+ "startedAt": "2026-10-21T18:17:01+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "eba6bbd0fd3534fb6f68962ff022ad8ae9a3bb0aa259841d682a9f0acfaec62e"
+ },
+ "promptSha256": "9e39c7d81f93502b67c945c90f66131a93f8b43221ea1c8e3c15e9bb7e6732a0",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"일차함수 $y=\\\\frac{3}{4}x-2$에서 $y=0$일 때 $x=\\\\frac{8}{3}$이므로 두 그래프의 교점인 $x$축 위의 점은 $(\\\\frac{8}{3}, 0)$이다. $y=ax+4$에 $(\\\\frac{8}{3}, 0)$을 대입하면 $0=\\\\frac{8}{3}a+4$이므로 $a=-\\\\frac{3}{2}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "일차함수 $y=\\frac{3}{4}x-2$에서 $y=0$일 때 $x=\\frac{8}{3}$이므로 두 그래프의 교점인 $x$축 위의 점은 $(\\frac{8}{3}, 0)$이다. $y=ax+4$에 $(\\frac{8}{3}, 0)$을 대입하면 $0=\\frac{8}{3}a+4$이므로 $a=-\\frac{3}{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ec146afbba4140d74bc018e07c264cc06899d6cbb65ffb56df6e2ee266b301cf"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A69-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daf-5130-79f3-bcff-ec8e7ce1e47f",
+ "startedAt": "2026-10-21T17:58:53+0900",
+ "elapsedSec": 21.9,
+ "studentSha256": {
+  "fig-1.png": "0677bf20ee6202e7fa594092eb84fbcb81ae7a00337ae889e331ba3cb42803fb",
+  "student.json": "aec8e8e0c3a1bec38935eabcd291e1c7b9bbb674fce6b466d6f78ae78bc91083"
+ },
+ "promptSha256": "5eb26ec7af63b2c0827cb9b0e984c0fca2b3cb328bbfa44c288dc6e5b2fd938b",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $x=6$ ⑵ $x=8$\",\"work\":\"⑴ ∠A=∠C이므로 마주 보는 변의 길이가 같다. 따라서 BC=AB=6 cm이므로 x=6이다.\\n⑵ ∠A=180°−40°−100°=40°이므로 ∠A=∠B이다. 따라서 AC=BC=8 cm이므로 x=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $x=6$ ⑵ $x=8$",
+  "work": "⑴ ∠A=∠C이므로 마주 보는 변의 길이가 같다. 따라서 BC=AB=6 cm이므로 x=6이다.\n⑵ ∠A=180°−40°−100°=40°이므로 ∠A=∠B이다. 따라서 AC=BC=8 cm이므로 x=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9477a7e775bd2ec171d32c312a48e23c692bfdc44b762f12ee08adc36264707a"
+}

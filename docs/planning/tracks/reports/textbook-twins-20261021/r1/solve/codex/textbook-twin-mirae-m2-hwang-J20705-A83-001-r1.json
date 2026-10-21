@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A83-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc2-0069-7761-a916-47e01c9dd6e8",
+ "startedAt": "2026-10-21T18:19:17+0900",
+ "elapsedSec": 14.7,
+ "studentSha256": {
+  "fig-1.png": "14dae94cdee3fccba967baef8d4e00bb73dd1715474339e337cacc0bf2922f71",
+  "student.json": "fea0d4cfda52cd26cb5605f64ccd0a6f823e031884c2791fba437022ce416983"
+ },
+ "promptSha256": "3dc4b96c847f779c6d5e53b1339afd32aa2b66fe9381332dca51a7a126503118",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5 cm²\",\"work\":\"D는 BC의 중점이므로 △ABD의 넓이는 90÷2=45 cm²이다. G는 무게중심이므로 AG:GD=2:1이고, △GBD의 넓이는 45÷3=15 cm²이다. GM:MB=1:2이므로 GM:GB=1:3이다. △GDM과 △GDB는 직선 BG에 대한 높이가 같으므로 △GDM의 넓이는 15÷3=5 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5 cm²",
+  "work": "D는 BC의 중점이므로 △ABD의 넓이는 90÷2=45 cm²이다. G는 무게중심이므로 AG:GD=2:1이고, △GBD의 넓이는 45÷3=15 cm²이다. GM:MB=1:2이므로 GM:GB=1:3이다. △GDM과 △GDB는 직선 BG에 대한 높이가 같으므로 △GDM의 넓이는 15÷3=5 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fd1c193279397d0d22c7e2266a6f34f356034fceda92c0d7f817d90c16e6d6b9"
+}

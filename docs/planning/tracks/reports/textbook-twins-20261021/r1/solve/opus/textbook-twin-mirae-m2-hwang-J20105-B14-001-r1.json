@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B14-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d26359e1-ca55-45df-b41a-0494b5563b83",
+ "startedAt": "2026-10-21T16:24:07+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "68c38d8a6c2440fd565a3dd3208055add4b6b1c0aad5241be91b84b0edd363ef"
+ },
+ "promptSha256": "5c23a80936ff32907dde27097d1502501b33231c0fa6b87f435c36138e03727a",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "4·9·10·11 = 2^2·3^2·2·5·11 = 2^3·3^2·5·11.\n\n```json\n{\"answer\": \"m=3, n=2\", \"work\": \"4=2^2, 9=3^2, 10=2×5 이므로 4×9×10×11=2^2×3^2×2×5×11=2^3×3^2×5×11. 따라서 m=3, n=2\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "m=3, n=2",
+  "work": "4=2^2, 9=3^2, 10=2×5 이므로 4×9×10×11=2^2×3^2×2×5×11=2^3×3^2×5×11. 따라서 m=3, n=2",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b541a5e5a2eb582f80b442b57dea59fd532a62534836e8e41c094bac047f8dab"
+}

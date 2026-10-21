@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A36-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1338f260-140a-4dc5-97fa-53e96c11e428",
+ "startedAt": "2026-10-21T17:01:35+0900",
+ "elapsedSec": 6.2,
+ "studentSha256": {
+  "student.json": "ede6ca0931bea5500730316c15a7f242b45863b1776660038710d2230c7d046b"
+ },
+ "promptSha256": "c8688c01886711fdfe740bf586d4a749581768ad371ec83c590d4146437a198c",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"a=2, b=5\", \"work\": \"x=2, y=-3을 대입하면 2a+3b=19, 2b-3a=4이다. 첫째 식에 2를 곱하면 4a+6b=38, 둘째 식에 3을 곱하면 -9a+6b=12이다. 두 식을 빼면 13a=26이므로 a=2이고, 이를 첫째 식에 넣으면 3b=15이므로 b=5이다. 검산: 2·5-3·2=4\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "a=2, b=5",
+  "work": "x=2, y=-3을 대입하면 2a+3b=19, 2b-3a=4이다. 첫째 식에 2를 곱하면 4a+6b=38, 둘째 식에 3을 곱하면 -9a+6b=12이다. 두 식을 빼면 13a=26이므로 a=2이고, 이를 첫째 식에 넣으면 3b=15이므로 b=5이다. 검산: 2·5-3·2=4",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "90134a80931e7fffd73394d5bf4c28bf90c2fb1f620633f2036186286dc03324"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "70eeddbd-eb88-4647-86f4-e17b283d25c3",
+ "startedAt": "2026-10-21T16:24:16+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "76a0d6188431672af93da15e7b569348fa0b1005af0e67bab39e8e76ae670b94"
+ },
+ "promptSha256": "fa7c7ccdcb4ccdab2f57b2ecbf4501772a2c277ca5a87a16d7ef1f12ebcf8025",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "a=12, b=5, ab=60.\n\n```json\n{\"answer\": \"60\", \"work\": \"7^4×7^4×7^4 = 7^(4+4+4) = 7^12 이므로 a=12\\n3^4+3^4+3^4 = 3×3^4 = 3^5 이므로 b=5\\nab = 12×5 = 60\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "60",
+  "work": "7^4×7^4×7^4 = 7^(4+4+4) = 7^12 이므로 a=12\n3^4+3^4+3^4 = 3×3^4 = 3^5 이므로 b=5\nab = 12×5 = 60",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5b7d86a7722f3d8687f169fb983c6fd4a1de46b2d885dcf94dd6bd13a139d725"
+}

@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 250,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A80-001-r2",
+ "authorId": "claude-fable-5-1:b183f36c-8b67-4538-962b-82a0bb8462d6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림과 같이 점 $I$는 $\\triangle ABC$의 내심이고, 내접원이 $\\overline{AB}$와 접하는 점을 $D$라 하자. $\\overline{AB}=13\\,\\mathrm{cm}$, $\\overline{CA}=15\\,\\mathrm{cm}$, $\\overline{ID}=4\\,\\mathrm{cm}$이고 $\\triangle ABC$의 넓이가 $84\\,\\mathrm{cm}^{2}$일 때, $\\overline{BC}$의 길이는?",
+ "choices": [
+  "$13\\,\\mathrm{cm}$",
+  "$13.5\\,\\mathrm{cm}$",
+  "$14\\,\\mathrm{cm}$",
+  "$14.5\\,\\mathrm{cm}$",
+  "$15\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "점 $I$가 내심이므로 내접원의 반지름의 길이는 $\\overline{ID}=4\\,\\mathrm{cm}$이고, 점 $I$에서 세 변까지의 거리가 모두 $4\\,\\mathrm{cm}$이다.\n$\\triangle ABC=\\triangle IAB+\\triangle IBC+\\triangle ICA$이므로\n$84=\\frac{1}{2}\\times 13\\times 4+\\frac{1}{2}\\times \\overline{BC}\\times 4+\\frac{1}{2}\\times 15\\times 4$\n$84=26+2\\overline{BC}+30$, $2\\overline{BC}=28$\n따라서 $\\overline{BC}=14\\,\\mathrm{cm}$이므로 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A80-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A80-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-7",
+  "problemCode": "J20504-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "639f797ce1fd69f90bb6255a71be84c5b5e450dd1f19651a8169ba4a843be409",
+  "dbContentSha256": "e24c9f5ea1ff6f086c771888226a161a247c286d34f6c8e9987a1b68e20378a0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "10f56bac90e3e1ef9dd664d4a94b2470004ff80e5b3154e9f7d8b3ae2c7dd6b6"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "내심에서 밑변에 내린 수선의 길이와 두 변(한 변은 밑변)의 길이, 삼각형 전체 넓이를 주고 남은 한 빗변의 길이를 고르게 한다. 그림에는 내심과 수선만 있고 내접원은 그리지 않는다.",
+  "after": "내접원을 실제로 그려 접점과 반지름을 보이고, 두 빗변의 길이와 반지름, 전체 넓이를 주어 밑변의 길이를 고르게 한다. 구하는 변이 밑변으로 옮겨졌고 반지름은 빗변 쪽 접점에서 나타낸다.",
+  "sharedConcept": "내심에서 세 변까지의 거리가 모두 내접원의 반지름과 같으므로 삼각형의 넓이는 세 작은 삼각형 넓이의 합",
+  "sharedProcedure": "내심의 성질로 세 변까지의 거리가 모두 r임을 확인 → 전체 넓이 = ½r×(세 변의 합)으로 식 세우기 → 모르는 변에 대해 풀기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "삼각형의 내심과 내접원의 성질",
+   "삼각형의 넓이",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A80-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "삼각형의 넓이와 내접원의 반지름으로 한 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.116,
+   "longestRun": 10,
+   "residualChars": 95,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

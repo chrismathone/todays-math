@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 97,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B07-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$125^{2}=25\\times 5^{a-1}$을 만족시키는 자연수 $a$의 값은?",
+ "choices": [
+  "$3$",
+  "$4$",
+  "$5$",
+  "$6$",
+  "$7$"
+ ],
+ "answer": "③",
+ "solution": "$125=5^{3}$이므로 $125^{2}=(5^{3})^{2}=5^{6}$이다.\n$25=5^{2}$이므로 $25\\times 5^{a-1}=5^{2+(a-1)}=5^{a+1}$이다.\n$5^{a+1}=5^{6}$에서 $a+1=6$이므로 $a=5$이다.\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-2",
+  "problemCode": "J20105-B07-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "2d062cb0e50195e88739895819bc8abee34e9184c4040ce7893fb6d34e8f5dcc",
+  "dbContentSha256": "a294422b2234ef3529f79a983f2925c83fcfb6c589410c801c4f8794cf74fe10",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "밑이 같은 수의 거듭제곱 둘을 곱한 것이 다른 거듭제곱과 같다는 등식에서 지수 속 미지수를 구한다. 미지수가 왼쪽에 있고 지수는 덧셈 꼴이다.",
+  "after": "미지수가 있는 곱을 오른쪽으로 옮기고 지수를 뺄셈 꼴로 바꾸었다. 밑을 $5$로 통일한다.",
+  "sharedConcept": "밑 통일 후 지수 비교",
+  "sharedProcedure": "각 수를 같은 밑의 거듭제곱으로 → 곱은 지수 합, 거듭제곱의 거듭제곱은 지수 곱 → 지수끼리 등식 → 일차방정식"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴·⑵",
+   "일차방정식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B07-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "밑 통일 — 지수의 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 30자",
+    "원본 수 7개 가운데 71% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.296,
+   "longestRun": 11,
+   "residualChars": 30,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

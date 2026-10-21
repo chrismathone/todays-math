@@ -1,0 +1,153 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 274,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A60-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림]\n그림의 직각삼각형 $ABC$는 $\\angle B=90^{\\circ}$, $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{BC}=5\\,\\mathrm{cm}$, $\\overline{CA}=13\\,\\mathrm{cm}$이다. $\\overline{AB}$ 위의 점 $D$에서 $\\overline{AC}$에 내린 수선의 발을 $E$라 하면 $\\overline{BD}=\\overline{DE}$이다. $\\overline{BD}$의 길이를 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$\\frac{10}{3}\\,\\mathrm{cm}$",
+ "solution": "[1단계] 직각삼각형 $CBD$와 $CED$에서 빗변 $CD$는 공통이고 $\\overline{BD}=\\overline{DE}$이므로 $\\triangle CBD\\equiv\\triangle CED$($\\mathrm{RHS}$ 합동)이다.\n[2단계] $\\overline{BD}=\\overline{DE}=x\\,\\mathrm{cm}$라 하면 $\\triangle ABC=\\triangle CBD+\\triangle CDA$이므로 $\\frac{1}{2}\\times12\\times5=\\frac{1}{2}\\times5\\times x+\\frac{1}{2}\\times13\\times x$이다.\n[3단계] $30=9x$이므로 $x=\\frac{10}{3}$이다.\n따라서 $\\overline{BD}$의 길이는 $\\frac{10}{3}\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A60-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A60-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-19",
+  "problemCode": "J20502-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 19,
+  "sourceContentSha256": "12108d59d094e17274089dca3343435a57d4cf1f6c4fa0b4082419dc7109bc14",
+  "dbContentSha256": "658efd68a5e359a4b46dcd0a7678bc64651321d01e6b74a0ad7b124842a60919",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "faede6b67da1d7b433ebb22412cc0b171f0de5c419ae0c35e96d2106efca9ad2"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "세 변이 6, 8, 10인 직각삼각형에서 직각 꼭짓점의 이웃 변 위의 점 $D$가 빗변에 내린 수선 $\\overline{DE}$와 $\\overline{CD}$가 같을 때, 넓이 분할로 수선의 길이를 구한다.",
+  "after": "세 변이 5, 12, 13인 직각삼각형으로 바꾸고 점 $D$를 긴 변 $AB$ 위에, 수선의 발을 빗변 $AC$ 위에 두었다. 묻는 것은 수선이 아니라 그와 같은 $\\overline{BD}$이다.",
+  "sharedConcept": "RHS 합동으로 두 선분이 같음을 보이고 넓이의 합으로 미지의 길이를 구하기",
+  "sharedProcedure": "빗변 공통·한 변 같음 → RHS 합동 → 같은 길이를 $x$로 두기 → 큰 삼각형 넓이 = 두 삼각형 넓이의 합 → 일차방정식 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHS)",
+   "삼각형의 넓이",
+   "일차방정식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A60-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "RHS 합동과 넓이 분할로 수선의 길이 구하기(서술형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rB' ray to 'A' is not covered by a rendered segment",
+     "session": "be222d93-ef76-4e6a-bb00-dfd762c6d2b6",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))",
+     "session": "b3a70df0-34e2-4bc7-8f46-3172e8a4d486",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.241,
+   "longestRun": 8,
+   "residualChars": 82,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

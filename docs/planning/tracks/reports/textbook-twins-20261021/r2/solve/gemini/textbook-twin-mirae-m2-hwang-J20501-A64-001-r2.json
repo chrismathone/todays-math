@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "4a01c3a6-d89b-4b51-92fe-785d7f2adc41",
+ "startedAt": "2026-10-21T18:27:46+0900",
+ "elapsedSec": 21.7,
+ "studentSha256": {
+  "fig-1.png": "18593c86ded25ae3021d55d100f002f066c9693f112614f865cb4dfd34280916",
+  "student.json": "a95163eb998b630c0cbe01c13b4c812e763deb84459eb9035909ca6af476c388"
+ },
+ "promptSha256": "7449df931002bdbee4094f8b55fa6f3a041bebd3147f13a278d14c86555fac60",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"△BCD에서 BD=CD이므로 ∠DCB = ∠B = 28°이다.\\n△BCD의 외각에서 ∠ADC = ∠B + ∠DCB = 28° + 28° = 56°이다.\\n△CDA에서 CD=CA이므로 ∠A = ∠ADC = 56°이다.\\n△ABC에서 외각 ∠ACE = ∠A + ∠B = 56° + 28° = 84°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "△BCD에서 BD=CD이므로 ∠DCB = ∠B = 28°이다.\n△BCD의 외각에서 ∠ADC = ∠B + ∠DCB = 28° + 28° = 56°이다.\n△CDA에서 CD=CA이므로 ∠A = ∠ADC = 56°이다.\n△ABC에서 외각 ∠ACE = ∠A + ∠B = 56° + 28° = 84°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3307c102b425158ca4c7d3bca78dee55fe20bcd4c9a7450a0f59dfd227288dfc"
+}

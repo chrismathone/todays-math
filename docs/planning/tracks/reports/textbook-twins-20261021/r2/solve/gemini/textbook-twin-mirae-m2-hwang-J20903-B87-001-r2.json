@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "1c71ab96-444d-46e7-a0e6-2c4193311071",
+ "startedAt": "2026-10-21T18:50:01+0900",
+ "elapsedSec": 25.6,
+ "studentSha256": {
+  "fig-1.png": "799c8f103a4562f4671f000f1db3d3ce79b232d8bb3a6f0e0ab8a87b50281732",
+  "student.json": "bf50f65210ba5d72e2d6f84d58501260a109f7a63ac815e04a138c02a8e6c901"
+ },
+ "promptSha256": "b4a6a4c16424fda57b15e70950fda2f0bdb2c4d50d21c5f7cfe02c5b41463c4c",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{5}{36}$\",\n  \"work\": \"서로 다른 두 개의 주사위를 던질 때 일어날 수 있는 모든 경우의 수는 $6 \\\\times 6 = 36$이다.\\n꼭짓점 $\\\\mathrm{A}$에서 출발하여 시계 방향으로 이동할 때 꼭짓점 $\\\\mathrm{D}$에 멈추려면 두 눈의 수의 합이 3 또는 10이어야 한다.\\n1) 두 눈의 수의 합이 3인 경우: $(1, 2), (2, 1)$의 2가지\\n2) 두 눈의 수의 합이 10인 경우: $(4, 6), (5, 5), (6, 4)$의 3가지\\n따라서 꼭짓점 $\\\\mathrm{D}$에 멈추는 경우의 수는 $2 + 3 = 5$가지이므로 구하는 확률은 $\\\\frac{5}{36}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$\\frac{5}{36}$",
+  "work": "서로 다른 두 개의 주사위를 던질 때 일어날 수 있는 모든 경우의 수는 $6 \\times 6 = 36$이다.\n꼭짓점 $\\mathrm{A}$에서 출발하여 시계 방향으로 이동할 때 꼭짓점 $\\mathrm{D}$에 멈추려면 두 눈의 수의 합이 3 또는 10이어야 한다.\n1) 두 눈의 수의 합이 3인 경우: $(1, 2), (2, 1)$의 2가지\n2) 두 눈의 수의 합이 10인 경우: $(4, 6), (5, 5), (6, 4)$의 3가지\n따라서 꼭짓점 $\\mathrm{D}$에 멈추는 경우의 수는 $2 + 3 = 5$가지이므로 구하는 확률은 $\\frac{5}{36}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dcb6ee8b54c31f50a4519130ac300d1848bf041ef4db0e95cd7d5c6287f24b02"
+}

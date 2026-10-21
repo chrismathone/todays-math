@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 14,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "직사각형 모양의 잔디밭에 폭이 $a$인 길을 다음 그림과 같이 세로로 두 개, 가로로 한 개 만들었다. 길을 뺀 잔디밭의 넓이는?\n[그림]",
+ "choices": [
+  "$30a^{2}+16a$",
+  "$30a^{2}+20a$",
+  "$35a^{2}+20a$",
+  "$36a^{2}+24a$",
+  "$48a^{2}+24a$"
+ ],
+ "answer": "②",
+ "solution": "길을 뺀 잔디밭을 한곳에 모으면 가로의 길이가 $8a+4-2a=6a+4$, 세로의 길이가 $6a-a=5a$인 직사각형이 된다.\n따라서 넓이는 $(6a+4)\\times 5a=30a^{2}+20a$이다.\n정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A99-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A99-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-12",
+  "problemCode": "J20108-A99-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "11cca9510313aea5c7254c5a6b83c90b4fbb73090782d7724653f19cfe4f1b9d",
+  "dbContentSha256": "f659ab0a62274c6f475c0dd9e0a6c651fd6bf401d55da103eb36587445a762c2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [
+   "2d8136c9ea68ac675a86933571a327eeed46805e58ca3c045d4179bbf042ffd2"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "context"
+  ],
+  "before": "직사각형 화단에 가로·세로 길이 하나씩 십자로 나 있고, 남은 부분의 넓이를 보기에서 고른다.",
+  "after": "잔디밭에 세로 길 둘과 가로 길 하나가 나 있어 가로에서 폭을 두 번 빼야 한다. 남은 넓이를 보기에서 고른다.",
+  "sharedConcept": "길을 뺀 직사각형 넓이와 단항식×다항식",
+  "sharedProcedure": "남은 부분을 한 직사각형으로 모으기 → 가로·세로 길이를 식으로 → 곱셈 전개"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "직사각형의 넓이",
+   "다항식과 단항식의 곱셈",
+   "다항식의 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A99-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "길을 뺀 직사각형 넓이를 다항식 곱으로 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.076,
+   "longestRun": 7,
+   "residualChars": 83,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

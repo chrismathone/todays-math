@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 334,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r2",
+ "authorId": "claude-fable-5-1:94458b71-7d9d-4af6-92fe-37abea440c14",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n삼각형 $ABC$의 무게중심 $G$는 꼭짓점 $A$와 $\\overline{BC}$의 중점 $D$를 이은 선분 위에 있다. 점 $G$를 지나면서 $\\overline{BC}$와 평행한 직선이 $\\overline{AB}$, $\\overline{AC}$와 만나는 점을 각각 $P$, $Q$라 하자. $\\overline{GD}=3\\,\\mathrm{cm}$, $\\overline{DC}=12\\,\\mathrm{cm}$일 때, 그림에 표시된 두 길이 $x$, $y$의 합 $x+y$를 구하시오.",
+ "choices": [],
+ "answer": "$14$",
+ "solution": "무게중심 $G$는 중선 $\\overline{AD}$를 $2:1$로 나누므로 $\\overline{AG}=2\\times\\overline{GD}=2\\times3=6\\,(\\mathrm{cm})$, 즉 $x=6$이다. $\\triangle ADC$에서 $\\overline{GQ}\\parallel\\overline{DC}$이므로 $\\overline{GQ}:\\overline{DC}=\\overline{AG}:\\overline{AD}=2:3$이다. $y:12=2:3$에서 $3y=24$, $y=8$이다. 따라서 $x+y=6+8=14$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A79-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A79-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9f59e35640dafd86-0-3",
+  "problemCode": "J20705-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "42673a98de2e4520ea40641d2401bed78be26566598ebb3ecfdf0c5722e473ef",
+  "dbContentSha256": "c47d0e53b0e0e9d637d5cadd41f49295975f153dc98ec256e9ed59cb8cbd19e3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-4_삼각형의무게중심.hwp",
+    "sha256": "8d155fc6bc36207a3640e3dbfba689008469a20d2b35a9bdaa4dbcea03ff054b",
+    "bytes": 234496
+   }
+  ],
+  "originalFigureSha256": [
+   "f6de17c580f1621554b323186189614312bda48e84cf6d1cd4f14d7464c40f7d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "structure",
+   "numbers"
+  ],
+  "before": "중선 위의 무게중심에서 꼭짓점까지의 길이와, 무게중심을 지나는 평행선 조각의 한쪽 길이가 주어지고, 무게중심에서 중점까지의 길이와 밑변의 절반 길이를 각각 구해 더한다.",
+  "after": "무게중심에서 중점까지의 길이와 밑변의 절반 길이가 주어지고, 꼭짓점에서 무게중심까지의 길이와 평행선 조각의 한쪽 길이를 각각 구해 더한다. 주어진 것과 구하는 것이 서로 바뀌었고 평행선의 오른쪽 조각을 쓴다.",
+  "sharedConcept": "삼각형의 무게중심은 중선을 꼭짓점 쪽부터 2:1로 나눈다 · 삼각형에서 한 변에 평행한 직선이 만드는 닮은 삼각형의 길이비",
+  "sharedProcedure": "무게중심 2:1 로 중선 위의 한 조각 구하기 → 평행선으로 생긴 작은 삼각형과 큰 삼각형의 길이비 2:3 세우기 → 비례식으로 나머지 조각 구하기 → 두 값을 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질",
+   "삼각형에서 평행선과 선분의 길이의 비",
+   "닮은 도형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A79-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "무게중심의 2:1 비와 무게중심을 지나는 평행선의 닮음비를 함께 써서 두 길이의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'lx' has no line/circle/label-free position",
+     "session": "d083ce9f-4e00-4145-9fc8-06cf98c0da08",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.061,
+   "longestRun": 8,
+   "residualChars": 101,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

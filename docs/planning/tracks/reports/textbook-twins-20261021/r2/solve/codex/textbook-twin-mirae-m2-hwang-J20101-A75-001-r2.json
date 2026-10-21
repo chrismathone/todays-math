@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd2-fba4-7ca2-8083-6ca068c1fe57",
+ "startedAt": "2026-10-21T18:37:50+0900",
+ "elapsedSec": 14.0,
+ "studentSha256": {
+  "student.json": "4da534282b20894fac70dbe6a54dabcb4c47a656f0c116f366f85b5df3aa0085"
+ },
+ "promptSha256": "4274ad47f421039b00cc6b5f773e56ec48ff1fbed6c4366e08538736e72b4901",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$0.4\\\\dot{2}\\\\dot{7}=\\\\frac{427-4}{990}=\\\\frac{47}{110}$이다. 유한소수가 되려면 기약분수의 분모에 소인수 2, 5만 있어야 하므로, $110=2\\\\times5\\\\times11$에서 11이 약분되도록 $a$는 11의 배수여야 한다. 두 자리 자연수 중 11의 배수는 $11,22,\\\\ldots,99$로 모두 9개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$0.4\\dot{2}\\dot{7}=\\frac{427-4}{990}=\\frac{47}{110}$이다. 유한소수가 되려면 기약분수의 분모에 소인수 2, 5만 있어야 하므로, $110=2\\times5\\times11$에서 11이 약분되도록 $a$는 11의 배수여야 한다. 두 자리 자연수 중 11의 배수는 $11,22,\\ldots,99$로 모두 9개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "64aa3605115cc87e144e0e2ba0f7a64a652afdbb17ce5b869a4963222009f89e"
+}

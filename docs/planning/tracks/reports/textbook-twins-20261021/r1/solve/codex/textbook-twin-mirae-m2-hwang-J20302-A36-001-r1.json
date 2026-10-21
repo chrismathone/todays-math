@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A36-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-90a8-7511-8f35-282d5380d304",
+ "startedAt": "2026-10-21T17:14:22+0900",
+ "elapsedSec": 15.1,
+ "studentSha256": {
+  "student.json": "ede6ca0931bea5500730316c15a7f242b45863b1776660038710d2230c7d046b"
+ },
+ "promptSha256": "c8688c01886711fdfe740bf586d4a749581768ad371ec83c590d4146437a198c",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$a=2$, $b=5$\",\"work\":\"$x=2$, $y=-3$을 대입하면 $2a+3b=19$, $-3a+2b=4$이다.\\n첫째 식에 2를 곱한 식에서 둘째 식에 3을 곱한 식을 빼면 $13a=26$이므로 $a=2$이다.\\n이를 첫째 식에 대입하면 $4+3b=19$이므로 $b=5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$a=2$, $b=5$",
+  "work": "$x=2$, $y=-3$을 대입하면 $2a+3b=19$, $-3a+2b=4$이다.\n첫째 식에 2를 곱한 식에서 둘째 식에 3을 곱한 식을 빼면 $13a=26$이므로 $a=2$이다.\n이를 첫째 식에 대입하면 $4+3b=19$이므로 $b=5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "74eca25cf1e01b1ad49971e37e50117ab730d27cc5ce114d5b0070f99b4efd19"
+}

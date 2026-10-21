@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd7-6214-7971-8844-219b69949c8d",
+ "startedAt": "2026-10-21T18:42:38+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "student.json": "81f904a6ee22960f988349df207588baddd00859a3c01716b3f08a4bc2ab95ab"
+ },
+ "promptSha256": "93d6af88363e9417f415eb5ae777625be50f0fa985794961ab23a956ba383524",
+ "freezeCommit": "20ab188f613e7381c3d2af047383be4e041c300c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"지수법칙에 따라 $21-3\\\\square-5=7$이다. 따라서 $3\\\\square=9$이므로 $\\\\square=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "지수법칙에 따라 $21-3\\square-5=7$이다. 따라서 $3\\square=9$이므로 $\\square=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "793a7a39cac0e5fa569ceeb830d4560af47116567d7ef028d9faba8445182170"
+}

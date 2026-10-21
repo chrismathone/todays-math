@@ -1,0 +1,94 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   220,
+   120
+  ],
+  "B": [
+   40,
+   320
+  ],
+  "C": [
+   400,
+   320
+  ],
+  "I": [
+   220,
+   239.9
+  ],
+  "Ip": [
+   220,
+   281.7
+  ]
+ },
+ "segments": {
+  "AB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "ticks": 1
+  },
+  "AC": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "ticks": 1
+  },
+  "BC": [
+   "B",
+   "C"
+  ],
+  "BI": [
+   "B",
+   "I"
+  ],
+  "CI": [
+   "C",
+   "I"
+  ],
+  "BIp": [
+   "B",
+   "Ip"
+  ],
+  "CIp": [
+   "C",
+   "Ip"
+  ]
+ },
+ "angles": {
+  "angA": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "x"
+  },
+  "angIpBC": {
+   "vertex": "B",
+   "points": [
+    "Ip",
+    "C"
+   ],
+   "label": "12°",
+   "radius": 34
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "I": {
+   "text": "I",
+   "position": "N"
+  },
+  "Ip": {
+   "text": "I′",
+   "dx": -20,
+   "dy": -12
+  }
+ }
+}

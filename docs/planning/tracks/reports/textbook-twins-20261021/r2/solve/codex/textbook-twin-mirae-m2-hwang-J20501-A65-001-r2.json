@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dec-9e4a-76a2-aefa-f45954fa7473",
+ "startedAt": "2026-10-21T19:05:50+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "fig-1.png": "d60359b6ebe969d18b230b150673ba92eb603e6aa52012e230e35fd6d3fd477a",
+  "student.json": "0e5f6558db4f27824a9b49c65209ed99866aee66eb5741df336b29a005323445"
+ },
+ "promptSha256": "bf7abd698407927f566926ce77cab666f46c880c4166aa2c05805bb0c9a7ee5b",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"DE=DF인 이등변삼각형이므로 두 밑각의 크기는 ∠E=∠F=72°이다. 삼각형의 내각의 합은 180°이므로 ∠D=180°-72°-72°=36°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "DE=DF인 이등변삼각형이므로 두 밑각의 크기는 ∠E=∠F=72°이다. 삼각형의 내각의 합은 180°이므로 ∠D=180°-72°-72°=36°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a367f6c1daa366470192fc877a8dbb5e37eaf0abfbb9bd891499a2d890a63424"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5ba415dc-ce7b-421b-856e-95536d1e1698",
+ "startedAt": "2026-10-21T17:08:28+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "82ba65697472035fd4dace3bfa1fd9412f700ec5acd50d789572e949fef4a261"
+ },
+ "promptSha256": "623a5b5ae80b9a1cfb6098b9f706f80934276dbe5942a38ff3d09d9c4363045c",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"x=-4 대입: ① -13<-12 참 ② 9+28=37≥36 참 ③ -1/2>-7 참 ④ 좌변 -32+9=-23, 우변 -28-10=-38 → -23<-38 거짓 ⑤ 4+11=15 ≥ -8+20=12 참. 따라서 해가 아닌 것은 ④\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=-4 대입: ① -13<-12 참 ② 9+28=37≥36 참 ③ -1/2>-7 참 ④ 좌변 -32+9=-23, 우변 -28-10=-38 → -23<-38 거짓 ⑤ 4+11=15 ≥ -8+20=12 참. 따라서 해가 아닌 것은 ④",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cdac628c12fdd81189bfa63b6c6740736f4b263bb2443d31ca5bf2dd149c3d85"
+}

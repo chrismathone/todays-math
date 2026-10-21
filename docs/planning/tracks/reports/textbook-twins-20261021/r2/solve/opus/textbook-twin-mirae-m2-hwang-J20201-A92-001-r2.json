@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a1e18e07-31b1-4193-9534-86ea77041df3",
+ "startedAt": "2026-10-21T17:08:34+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "student.json": "355f0be0b8585c7fdf7e548f2b97ddf492dfd7ba4d2637ba61c98f527362f79a"
+ },
+ "promptSha256": "f1652e6687a7e04361ceb46a2a17ae52714f75e434bf5cbe5b2cdd02ecd3bbfe",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"$9-\\\\frac{a}{6}\\\\le 9-\\\\frac{b}{6}$에서 양변에서 9를 빼면 $-\\\\frac{a}{6}\\\\le -\\\\frac{b}{6}$이고, 양변에 $-6$을 곱하면 부등호 방향이 바뀌어 $a\\\\ge b$이다. 이때 ① $a\\\\le b$와 ② $a-8\\\\le b-8$은 틀리다. ③ 양변에 $\\\\frac{8}{11}>0$을 곱하면 $\\\\frac{8a}{11}\\\\ge\\\\frac{8b}{11}$이므로 옳다. ④ $-a\\\\le -b$이므로 $10-a\\\\le 10-b$가 되어 틀리다. ⑤ $\\\\frac{a}{9}\\\\ge\\\\frac{b}{9}$이므로 $12+\\\\frac{a}{9}\\\\ge 12+\\\\frac{b}{9}$가 되어 틀리다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$9-\\frac{a}{6}\\le 9-\\frac{b}{6}$에서 양변에서 9를 빼면 $-\\frac{a}{6}\\le -\\frac{b}{6}$이고, 양변에 $-6$을 곱하면 부등호 방향이 바뀌어 $a\\ge b$이다. 이때 ① $a\\le b$와 ② $a-8\\le b-8$은 틀리다. ③ 양변에 $\\frac{8}{11}>0$을 곱하면 $\\frac{8a}{11}\\ge\\frac{8b}{11}$이므로 옳다. ④ $-a\\le -b$이므로 $10-a\\le 10-b$가 되어 틀리다. ⑤ $\\frac{a}{9}\\ge\\frac{b}{9}$이므로 $12+\\frac{a}{9}\\ge 12+\\frac{b}{9}$가 되어 틀리다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "43384204789417382bdf68729f2eee9d70c620fa2b4d60db0d3c82e90d4ea36f"
+}

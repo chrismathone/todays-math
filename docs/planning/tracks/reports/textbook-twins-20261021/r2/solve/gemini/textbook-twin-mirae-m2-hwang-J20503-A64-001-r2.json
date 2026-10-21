@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "91be68fc-05fc-40ba-832c-fdbc28e62694",
+ "startedAt": "2026-10-21T18:26:21+0900",
+ "elapsedSec": 24.5,
+ "studentSha256": {
+  "fig-1.png": "2b82b1e3db29ca9682017184a3cf527cfb7d8b03a4837120f80f0cebb7335b7f",
+  "student.json": "c859a6ae5ed0d14288ab6307a429d2ed462ed4e98d9cd69232a07e64821ddd18"
+ },
+ "promptSha256": "51bc07d45bd78cd762af79780c5fc6f0e46f5d950c2d81aa33ede7062ec6f01f",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"점 O가 외심이므로 \\\\angle B = \\\\frac{1}{2}\\\\angle AOC = \\\\frac{1}{2} \\\\times 104^\\\\circ = 52^\\\\circ이다. 따라서 \\\\angle ABO = \\\\angle B - \\\\angle OBC = 52^\\\\circ - 19^\\\\circ = 33^\\\\circ이다. 또한 OA = OB이므로 이등변삼각형 \\\\triangle OAB에서 \\\\angle x = \\\\angle ABO = 33^\\\\circ이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "점 O가 외심이므로 \\angle B = \\frac{1}{2}\\angle AOC = \\frac{1}{2} \\times 104^\\circ = 52^\\circ이다. 따라서 \\angle ABO = \\angle B - \\angle OBC = 52^\\circ - 19^\\circ = 33^\\circ이다. 또한 OA = OB이므로 이등변삼각형 \\triangle OAB에서 \\angle x = \\angle ABO = 33^\\circ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1e4f062a0c2b4eee172710f32cd1641eb9059540d06200334822fdeb7026da45"
+}

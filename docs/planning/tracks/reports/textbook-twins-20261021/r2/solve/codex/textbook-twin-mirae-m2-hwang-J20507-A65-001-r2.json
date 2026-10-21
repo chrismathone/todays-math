@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ded-510e-78a0-85dc-c9caa8dd08a1",
+ "startedAt": "2026-10-21T19:06:36+0900",
+ "elapsedSec": 30.3,
+ "studentSha256": {
+  "fig-1.png": "dcbb4f13f16c027e38a36f120f232b03882e07f8f5d3ded3214512c4a344a9ee",
+  "student.json": "94ce95a40dcb4a9372991c047f23a7ba0f2c5dcfad0a2db2ccd2b4ce54c98fc2"
+ },
+ "promptSha256": "23dd19b2767be714c8ac6a9e30007e30312ada7c6dec87d9ec93be20087619b6",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"마름모, 44 cm\",\n  \"work\": \"P, Q는 BD의 수직이등분선 위에 있으므로 PB=PD, QB=QD이다. AD∥BC이므로 ∠PDM=∠QBM이고, DM=BM, ∠PMD=∠QMB=90°이므로 △PMD≡△QMB이다. 따라서 PD=BQ=11 cm이고 네 변의 길이가 모두 같으므로 □PBQD는 마름모이다. 둘레는 4×11=44 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "마름모, 44 cm",
+  "work": "P, Q는 BD의 수직이등분선 위에 있으므로 PB=PD, QB=QD이다. AD∥BC이므로 ∠PDM=∠QBM이고, DM=BM, ∠PMD=∠QMB=90°이므로 △PMD≡△QMB이다. 따라서 PD=BQ=11 cm이고 네 변의 길이가 모두 같으므로 □PBQD는 마름모이다. 둘레는 4×11=44 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "61e8440295b72f69c97d1a8b91ee950cf9f05e2def91f38be17bae202833f76d"
+}

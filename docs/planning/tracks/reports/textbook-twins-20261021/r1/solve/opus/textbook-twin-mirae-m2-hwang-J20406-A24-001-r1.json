@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "732831c7-6490-421d-85d9-084eeb739da0",
+ "startedAt": "2026-10-21T17:04:16+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "3e762d253f951c87cf7cb83d99bf5d4ed1f9ee3949307156f7618be40d0392c6"
+ },
+ "promptSha256": "fbc4a77d4d287745614add3960d353c053e9b006caaff115930412fcb44810d9",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"물의 높이는 4분마다 3 cm씩 낮아지므로 1분마다 3/4 cm씩 낮아진다. 따라서 y = 30 - (3/4)x 이다. y = 12를 넣으면 30 - (3/4)x = 12, (3/4)x = 18, x = 24 이므로 24분 후이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "물의 높이는 4분마다 3 cm씩 낮아지므로 1분마다 3/4 cm씩 낮아진다. 따라서 y = 30 - (3/4)x 이다. y = 12를 넣으면 30 - (3/4)x = 12, (3/4)x = 18, x = 24 이므로 24분 후이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "444ed67f5df959b98c287312b44598caa6d61988baeaa0416d36433334abd791"
+}

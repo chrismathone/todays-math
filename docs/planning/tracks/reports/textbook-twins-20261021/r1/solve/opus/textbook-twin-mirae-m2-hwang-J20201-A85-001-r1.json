@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A85-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "18a0e11e-6dec-466f-9949-de68d7515082",
+ "startedAt": "2026-10-21T16:25:58+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "40eaae2a41ecccce9eabb78635d84790c91a26eee87734dcc6edc971136544b7"
+ },
+ "promptSha256": "f0384d9e03fa8e23797c80ef68b53bf3439038a047132123a115625ccbcd6722",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①, ③\", \"work\": \"부등식은 부등호(<, >, ≤, ≥)를 써서 두 수나 식의 대소 관계를 나타낸 식이다. ① 10-8<5와 ③ 3x≥2(x-3)에는 부등호가 있으므로 부등식이다. ② x-2y는 부등호도 등호도 없는 식일 뿐이다. ④ 5x=10은 등호가 있는 방정식이다. ⑤ 8+7=15는 등호가 있는 등식이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①, ③",
+  "work": "부등식은 부등호(<, >, ≤, ≥)를 써서 두 수나 식의 대소 관계를 나타낸 식이다. ① 10-8<5와 ③ 3x≥2(x-3)에는 부등호가 있으므로 부등식이다. ② x-2y는 부등호도 등호도 없는 식일 뿐이다. ④ 5x=10은 등호가 있는 방정식이다. ⑤ 8+7=15는 등호가 있는 등식이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4a39d4185fb1362fec40fd47a7dd06ab5d4d2dde0ec05d1d9a365eb504b064e2"
+}

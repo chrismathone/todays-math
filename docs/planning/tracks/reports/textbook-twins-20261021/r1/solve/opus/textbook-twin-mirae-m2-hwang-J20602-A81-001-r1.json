@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A81-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "31754cc3-f973-439d-80ba-c7db38063996",
+ "startedAt": "2026-10-21T17:09:56+0900",
+ "elapsedSec": 8.6,
+ "studentSha256": {
+  "fig-1.png": "48effc728f2614f1f988020890154d3d40e1a9b5a6a15f34a0c69b4e449d7f14",
+  "student.json": "a478932f855bd7d8e87f606008d548b5963ec865efd781e1b0b65b14c62f31ec"
+ },
+ "promptSha256": "d6037af2462f6ada4fc51e1340d8405fa69fcb57449257357c4ed83db0be08a5",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $\\\\triangle OAB \\\\backsim \\\\triangle ODC$ (AA 닮음) ⑵ $\\\\triangle ADE \\\\backsim \\\\triangle ACB$ (SAS 닮음)\", \"work\": \"⑴ $\\\\angle OAB=\\\\angle ODC=40^{\\\\circ}$이고, $\\\\angle AOB=\\\\angle DOC$(맞꼭지각)이다. 따라서 두 쌍의 각이 같으므로 $\\\\triangle OAB \\\\backsim \\\\triangle ODC$ (AA 닮음).\\n⑵ $\\\\overline{AB}=4+8=12$, $\\\\overline{AC}=6+2=8$이다. $\\\\overline{AD}:\\\\overline{AC}=4:8=1:2$, $\\\\overline{AE}:\\\\overline{AB}=6:12=1:2$이고, $\\\\angle A$는 두 삼각형의 공통인 각이다. 따라서 $\\\\triangle ADE \\\\backsim \\\\triangle ACB$ (SAS 닮음).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle OAB \\backsim \\triangle ODC$ (AA 닮음) ⑵ $\\triangle ADE \\backsim \\triangle ACB$ (SAS 닮음)",
+  "work": "⑴ $\\angle OAB=\\angle ODC=40^{\\circ}$이고, $\\angle AOB=\\angle DOC$(맞꼭지각)이다. 따라서 두 쌍의 각이 같으므로 $\\triangle OAB \\backsim \\triangle ODC$ (AA 닮음).\n⑵ $\\overline{AB}=4+8=12$, $\\overline{AC}=6+2=8$이다. $\\overline{AD}:\\overline{AC}=4:8=1:2$, $\\overline{AE}:\\overline{AB}=6:12=1:2$이고, $\\angle A$는 두 삼각형의 공통인 각이다. 따라서 $\\triangle ADE \\backsim \\triangle ACB$ (SAS 닮음).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "69726615a6cfc38bf8fb8284c85747f4bd0a6855bdae659cf34f6b0b33fdb2bd"
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 76,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A70-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 분수를 소수로 나타낼 때, 소수점 아래의 숫자가 끝없이 이어지는 것은?",
+ "choices": [
+  "$\\frac{7}{16}$",
+  "$\\frac{10}{75}$",
+  "$\\frac{39}{156}$",
+  "$\\frac{9}{40}$",
+  "$\\frac{24}{150}$"
+ ],
+ "answer": "②",
+ "solution": "먼저 기약분수로 나타내고 분모의 소인수를 살핀다. ① $\\frac{7}{16}=\\frac{7}{2^{4}}$ ③ $\\frac{39}{156}=\\frac{1}{4}=\\frac{1}{2^{2}}$ ④ $\\frac{9}{40}=\\frac{9}{2^{3}\\times 5}$ ⑤ $\\frac{24}{150}=\\frac{4}{25}=\\frac{4}{5^{2}}$ 은 분모의 소인수가 $2$ 또는 $5$뿐이므로 유한소수이다. ② $\\frac{10}{75}=\\frac{2}{15}=\\frac{2}{3\\times 5}$ 는 분모에 소인수 $3$이 남으므로 $0.1333\\cdots$ 과 같이 끝없이 이어지는 무한소수이다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-1",
+  "problemCode": "J20101-A70-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "95cb3dad3859a7e8fd67f9fa91ed79ef5767f451afbe6789c6f2618c2044219d",
+  "dbContentSha256": "ed7cfb16b07f3e2b98ee86096be7cb12aa9f9cbe084605f4a637232931f8813c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "다섯 분수 가운데 소수로 나타내면 무한소수가 되는 것 하나를 고른다. 약분이 필요한 분수가 섞여 있다.",
+  "after": "«무한소수»라는 용어 대신 «소수점 아래 숫자가 끝없이 이어진다»는 말로 물어, 용어의 뜻을 떠올리며 다섯 분수를 기약분수로 고쳐 분모의 소인수를 살핀다.",
+  "sharedConcept": "유한소수와 무한소수 · 기약분수 분모의 소인수 판별",
+  "sharedProcedure": "약분해 기약분수로 → 분모를 소인수분해 → 2, 5 이외의 소인수가 남는 것 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "분수를 소수로 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A70-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 분수 중 무한소수가 되는 것 하나 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.094,
+   "longestRun": 6,
+   "residualChars": 56,
+   "params": 10,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

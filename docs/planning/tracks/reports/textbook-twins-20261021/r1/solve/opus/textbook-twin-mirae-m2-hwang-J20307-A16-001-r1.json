@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3e9a17e6-3c37-41b2-982f-b0d3686ef0ca",
+ "startedAt": "2026-10-21T16:30:53+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "d4a5f9c64e227df0463d0d1e86c47d794499f5c449c222bee1bc55e34010e323"
+ },
+ "promptSha256": "08f59c55a4cd0a2c3cd088f526f5ee04cadc05c4198438f53b0098f84b41c77f",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"소프라노 단원 수를 x명이라 하면 알토 단원 수는 (x+6)명이다. 전체가 40명이므로 x + (x+6) = 40이고, 2x = 34에서 x = 17이다. 따라서 소프라노는 17명, 알토는 23명이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "소프라노 단원 수를 x명이라 하면 알토 단원 수는 (x+6)명이다. 전체가 40명이므로 x + (x+6) = 40이고, 2x = 34에서 x = 17이다. 따라서 소프라노는 17명, 알토는 23명이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ff4423f48a9b47fb802c9e83aaae8345499ac744847219f91819662d4de05f74"
+}

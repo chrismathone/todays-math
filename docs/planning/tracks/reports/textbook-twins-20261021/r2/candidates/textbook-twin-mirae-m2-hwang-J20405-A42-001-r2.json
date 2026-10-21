@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 235,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r2",
+ "authorId": "claude-opus-5-5:36467370-a77b-4d89-8735-ccca63690016",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "어떤 일차함수의 그래프는 기울기가 $-\\frac{5}{7}$이고, $y$축과 점 $(0,~6)$에서 만난다. 이 일차함수의 식은?",
+ "choices": [
+  "$y=-\\frac{5}{7}x+6$",
+  "$y=-\\frac{5}{7}x-6$",
+  "$y=\\frac{5}{7}x+6$",
+  "$y=6x-\\frac{5}{7}$",
+  "$y=-\\frac{7}{5}x+6$"
+ ],
+ "answer": "①",
+ "solution": "그래프가 $y$축과 점 $(0,~6)$에서 만나므로 $y$절편은 $6$이다. 기울기가 $-\\frac{5}{7}$, $y$절편이 $6$이므로 일차함수의 식은 $y=-\\frac{5}{7}x+6$이다. 따라서 답은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-9",
+  "problemCode": "J20405-A42-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "d4a28a0eb1cefef2a098d7eaaf8483e32ef6ad59049b2d0ed1781ed7399bdc1e",
+  "dbContentSha256": "ab1a9105a9c3e1e56891e415edf6e912de3cc22251f7cdd482e35c7d86decde6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "양의 분수 기울기와 음의 y절편을 수로 직접 주고, 그 직선을 그래프로 하는 일차함수의 식을 다섯 보기 가운데서 고른다.",
+  "after": "음의 분수 기울기를 주고 y절편은 그래프가 y축과 만나는 점의 좌표로 나타낸 뒤, 그 일차함수의 식을 다섯 보기 가운데서 고른다.",
+  "sharedConcept": "기울기가 a이고 y절편이 b인 일차함수의 식은 y=ax+b이다",
+  "sharedProcedure": "기울기 확인 → y절편 확인 → y=ax+b에 넣기 → 같은 식인 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 식 구하기"
+  },
+  "prerequisites": [
+   "일차함수의 기울기",
+   "일차함수의 그래프의 y절편",
+   "일차함수 y=ax+b의 꼴"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20405-A42-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "기울기와 y절편이 주어질 때 일차함수의 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.09,
+   "longestRun": 8,
+   "residualChars": 84,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

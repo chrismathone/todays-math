@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "8d747856-2416-42f8-809e-553750d5d36b",
+ "startedAt": "2026-10-21T18:12:47+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "b18885374eec1f40e01808f0561a0975637fc6875723a4e31f92422d401be4e5"
+ },
+ "promptSha256": "c2a8b638e38ea63c3fab4df86cc6392766a21abfdfe112dd38b3bc2e7cef301a",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"식 ㉡에 $x=3$을 대입하면 $3+4y=1$에서 $y=-\\\\frac{1}{2}$이다. 하루가 $-2$ 대신 적은 수를 $k$라 하면 $5x-6y=k$에 $x=3$, $y=-\\\\frac{1}{2}$을 대입했을 때 성립하므로 $k=5\\\\times 3 - 6\\\\times\\\\left(-\\\\frac{1}{2}\\\\right)=15+3=18$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "식 ㉡에 $x=3$을 대입하면 $3+4y=1$에서 $y=-\\frac{1}{2}$이다. 하루가 $-2$ 대신 적은 수를 $k$라 하면 $5x-6y=k$에 $x=3$, $y=-\\frac{1}{2}$을 대입했을 때 성립하므로 $k=5\\times 3 - 6\\times\\left(-\\frac{1}{2}\\right)=15+3=18$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d4f94734eb6c4167ca23ab8445e4601316ea6073d51f8ee38a844f9f54692c9a"
+}

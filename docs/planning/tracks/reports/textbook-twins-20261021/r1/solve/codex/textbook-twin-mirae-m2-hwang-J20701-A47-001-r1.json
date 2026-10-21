@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbb-bb48-7ac0-8700-1a06fa77f8f5",
+ "startedAt": "2026-10-21T18:12:26+0900",
+ "elapsedSec": 15.2,
+ "studentSha256": {
+  "fig-1.png": "4ff4482fa7ed6482ff4a5746d26ee954463ce90d8f8c45e0c6a203b699b58840",
+  "student.json": "743cbb358a7687cc328810fd700fb074f3f1160a7a31367835acca77375d2e2f"
+ },
+ "promptSha256": "b44d997a3335937267697eebeea3b6ee002c1d3a4006527a822df476d426cf33",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"AB=10+5=15 cm이다.\\nAB∥CD이므로 △ABE∽△DCE에서 BE=12×15/20=9 cm이다.\\nGH∥EB이므로 △AGH∽△AEB에서 GH=9×10/15=6 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AB=10+5=15 cm이다.\nAB∥CD이므로 △ABE∽△DCE에서 BE=12×15/20=9 cm이다.\nGH∥EB이므로 △AGH∽△AEB에서 GH=9×10/15=6 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "78879eefa099b37d455afa706688b669365f1934fa9871107fbf8447e56d7630"
+}

@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 278,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A64-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 $\\overline{AB}=\\overline{AC}$, $\\angle BAC=90^{\\circ}$인 직각이등변삼각형 $ABC$가 있다. 꼭짓점 $A$를 지나는 직선 $l$에 두 꼭짓점 $B$, $C$에서 내린 수선의 발을 각각 $D$, $E$라 하자. $\\overline{BD}=7\\,\\mathrm{cm}$, $\\overline{CE}=2\\,\\mathrm{cm}$일 때, 색칠한 사각형 $DBCE$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$\\frac{81}{2}\\,\\mathrm{cm}^{2}$",
+ "solution": "직각삼각형 $DBA$와 $EAC$에서 $\\angle DBA=90^{\\circ}-\\angle DAB=\\angle EAC$이고 빗변 $\\overline{AB}=\\overline{AC}$이므로 $\\triangle DBA\\equiv\\triangle EAC$($\\mathrm{RHA}$ 합동)이다. 따라서 $\\overline{DA}=\\overline{EC}=2\\,\\mathrm{cm}$, $\\overline{AE}=\\overline{BD}=7\\,\\mathrm{cm}$이고 $\\overline{DE}=2+7=9\\,\\mathrm{cm}$이다. 사각형 $DBCE$는 $\\overline{BD}\\parallel\\overline{CE}$인 사다리꼴이므로 넓이는 $\\frac{1}{2}\\times(7+2)\\times9=\\frac{81}{2}\\,(\\mathrm{cm}^{2})$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A64-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A64-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-1-2",
+  "problemCode": "J20502-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "575efd1094ec3910fcace4dad7a287f0ab843c17f0403fa04ea715a3ad1a00fb",
+  "dbContentSha256": "d2f2b0c70514118eda6b67895b4fa2496fccf2dc5c16878fbee9133031395236",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "7cbf6ca747adaeabe021276798767ab626360ab8b17b312cb664c1a3dacc5267"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "직선이 위에 있고 삼각형이 아래로 매달린 그림에서 두 수선의 길이 4, 3을 주고 사다리꼴의 넓이를 구한다.",
+  "after": "직선을 아래에 두고 삼각형을 그 위에 세웠으며 두 수선의 길이를 7, 2로 바꾸었다. 사다리꼴 넓이를 묻는 짜임은 같다.",
+  "sharedConcept": "직각이등변삼각형에서 RHA 합동으로 수선의 발 사이 거리를 구해 사다리꼴 넓이 계산",
+  "sharedProcedure": "남은 각이 같음 보이기 → RHA 합동 → 대응변으로 $\\overline{DA}$, $\\overline{AE}$ 얻기 → $\\overline{DE}$ 구하기 → 사다리꼴 넓이 공식"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHA)",
+   "삼각형의 내각의 크기의 합",
+   "사다리꼴의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A64-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각이등변삼각형의 수선과 RHA 합동으로 사다리꼴 넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.40"
+   ],
+   "overlap4": 0.4,
+   "longestRun": 10,
+   "residualChars": 93,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

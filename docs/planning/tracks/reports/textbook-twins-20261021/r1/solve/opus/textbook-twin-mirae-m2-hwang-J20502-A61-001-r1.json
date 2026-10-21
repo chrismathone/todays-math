@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A61-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "55b63573-8f7b-4802-b4c5-567e16633428",
+ "startedAt": "2026-10-21T17:05:29+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "fig-1.png": "c79721b3c3d4f2b271af4d35d5950cc5a0084a7fc61ce4f80956213a8b76c235",
+  "student.json": "0a54546403445c3b706905e61772080b990e096f1c0a7d84473f41afed4fc308"
+ },
+ "promptSha256": "675f185547be9735ff5bdff5fdddf8c5025054872ebc49bf8d5110bc67fdf883",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"그림에서 꼭짓점은 A↔D, B↔E, C↔F로 대응한다. 직각삼각형 ABC에서 빗변 AC=9이고 ∠C=41°이므로 ∠A=49°이다. ④처럼 빗변 DF=9이고 ∠F=41°이면 빗변의 길이와 한 예각의 크기가 각각 같다. 따라서 RHA 합동에 의해 △ABC≡△DEF이다. ①은 세 각만 같으므로 크기가 정해지지 않는다. ②와 ③은 빗변이 아닌 변 DE, EF를 9로 잡았으므로 대응하는 변 AB, CB의 길이와 맞지 않는다. ⑤는 DE=5인데, 이에 대응하는 AB는 9·sin41°≈5.9이므로 5가 아니다. 따라서 RHS 합동이 성립하지 않는다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그림에서 꼭짓점은 A↔D, B↔E, C↔F로 대응한다. 직각삼각형 ABC에서 빗변 AC=9이고 ∠C=41°이므로 ∠A=49°이다. ④처럼 빗변 DF=9이고 ∠F=41°이면 빗변의 길이와 한 예각의 크기가 각각 같다. 따라서 RHA 합동에 의해 △ABC≡△DEF이다. ①은 세 각만 같으므로 크기가 정해지지 않는다. ②와 ③은 빗변이 아닌 변 DE, EF를 9로 잡았으므로 대응하는 변 AB, CB의 길이와 맞지 않는다. ⑤는 DE=5인데, 이에 대응하는 AB는 9·sin41°≈5.9이므로 5가 아니다. 따라서 RHS 합동이 성립하지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "50625ed5c6f6becfd0f08f967f8f575b734a3aca5c9dac75f02303159e9026b6"
+}

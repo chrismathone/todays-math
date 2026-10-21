@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "83751778-3382-4e86-adbe-f348d7a3a52d",
+ "startedAt": "2026-10-21T16:18:21+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "fig-1.png": "0b735abf9dd26a9588f6d468a5ed8ef1a04023399783c5859e20b5705ebd4f16",
+  "student.json": "d589bd5c02be8e77f2bf214661de1dc6c587d9084043dd596a1b35e37ba1d6af"
+ },
+ "promptSha256": "06d31fe64ff7756913d73e44eb9a0803e823353c987ad36fdc5ca0a66fc240cc",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$7a^{2}b$\", \"work\": \"밑넓이 = $6ab^{2}\\\\times 2a^{3}b = 12a^{4}b^{3}$. 부피 = $\\\\frac{1}{3}\\\\times 12a^{4}b^{3}\\\\times h = 4a^{4}b^{3}h = 28a^{6}b^{4}$이다. 따라서 $h = 28a^{6}b^{4} \\\\div 4a^{4}b^{3} = 7a^{2}b$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$7a^{2}b$",
+  "work": "밑넓이 = $6ab^{2}\\times 2a^{3}b = 12a^{4}b^{3}$. 부피 = $\\frac{1}{3}\\times 12a^{4}b^{3}\\times h = 4a^{4}b^{3}h = 28a^{6}b^{4}$이다. 따라서 $h = 28a^{6}b^{4} \\div 4a^{4}b^{3} = 7a^{2}b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f2195495660b20db4fcc8ab3eb8065fd2312bb140de705617b56c2efd8d83b8a"
+}

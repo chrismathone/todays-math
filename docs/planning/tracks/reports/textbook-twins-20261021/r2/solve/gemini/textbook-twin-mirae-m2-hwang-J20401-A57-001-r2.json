@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "184d10ec-1681-41a8-81bc-5358179fd958",
+ "startedAt": "2026-10-21T18:18:54+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "047fa6c5522976393c738a28eb84298204d7145bbc7c4cb22371e2c61fdaa9dc"
+ },
+ "promptSha256": "fe139b53e5863b45b501f4c38cd649adb9926da714401166b3d53f4be6760535",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"① f(-6) = -12/(-6) = 2\\n② f(2/3) = -12/(2/3) = -18, g(10) = 8 - 20 = -12 이므로 2g(10) = -24 ≠ -18\\n③ g(-2) = 8 - 2(-2) = 12\\n④ f(4) = -3, g(11/2) = 8 - 11 = -3\\n⑤ f(-3) - g(6) = 4 - (-4) = 8\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "① f(-6) = -12/(-6) = 2\n② f(2/3) = -12/(2/3) = -18, g(10) = 8 - 20 = -12 이므로 2g(10) = -24 ≠ -18\n③ g(-2) = 8 - 2(-2) = 12\n④ f(4) = -3, g(11/2) = 8 - 11 = -3\n⑤ f(-3) - g(6) = 4 - (-4) = 8",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "26c96e256a25c620562724d901488695bf444e8b1d14f68ee6223444d2efcabd"
+}

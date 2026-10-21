@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dba-9b19-7bf1-94cb-0b737956410f",
+ "startedAt": "2026-10-21T18:11:12+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "fig-1.png": "29a460f6347ce62fdb236c61ca85856f0326f377ecbc96fae17e7caa65ce781b",
+  "student.json": "62e645cbe7714935730b3b714c04f744cca018932ac13f279c4aa673b257ecc9"
+ },
+ "promptSha256": "c5042efde6dce688f0db54479cdaedbc488ee4ee43d11084b8971be72aa1517d",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"39 cm²\",\"work\":\"△ABH와 △BCH는 닮음이므로 AH × HC = BH²이다.\\n따라서 HC = 6² ÷ 4 = 9 cm이고, AC = 4 + 9 = 13 cm이다.\\n△ABC의 넓이는 ½ × 13 × 6 = 39 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "39 cm²",
+  "work": "△ABH와 △BCH는 닮음이므로 AH × HC = BH²이다.\n따라서 HC = 6² ÷ 4 = 9 cm이고, AC = 4 + 9 = 13 cm이다.\n△ABC의 넓이는 ½ × 13 × 6 = 39 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8fdaed3cc59e50a4606b824e489ac26365710361b21746e48adee247aaccebf8"
+}

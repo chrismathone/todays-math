@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "20425dab-7a85-404e-9588-ac8de7e83a4b",
+ "startedAt": "2026-10-21T17:07:46+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "ec4ca3694c34d0df07d50bc35630e843af3b4db69e232d3e035bc404ccbdd750"
+ },
+ "promptSha256": "217a68e05a01ceafe810928f58e4ffb2c7fd8abddddaaee6c3db2bbbd87a15b1",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"첫 분수는 분모 2^2×5^2×11에서 11을 없애야 하므로 n은 11의 배수이다. 78=2×3×13에서 3과 13을 없애야 하므로 n은 39의 배수이다. 따라서 n은 11과 39의 공배수이고, 최소는 11×39=429이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "첫 분수는 분모 2^2×5^2×11에서 11을 없애야 하므로 n은 11의 배수이다. 78=2×3×13에서 3과 13을 없애야 하므로 n은 39의 배수이다. 따라서 n은 11과 39의 공배수이고, 최소는 11×39=429이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "68b60e31f4493d7358573259e94ff4bf97718ddbb3b7d1a7a1fb59b2a355c429"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A73-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "8b2fe0a8-6023-4807-a425-a30fc1f772e5",
+ "startedAt": "2026-10-21T18:48:37+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "486c9f0aae6016078ac4a63d174f86892689f69c01c43cbd2a25388e0d1613df"
+ },
+ "promptSha256": "5a3ab05da803650d75b4c40bb0df6942188fb6e8dd526ee0fa6c0b2425247925",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{2}{3}$\",\n  \"work\": \"지우가 등산에 나올 확률은 $1 - \\\\frac{1}{4} = \\\\frac{3}{4}$이고, 서아가 등산에 나올 확률은 $1 - \\\\frac{1}{9} = \\\\frac{8}{9}$이다. 두 사람이 함께 등산하려면 둘 다 나와야 하므로 구하는 확률은 $\\\\frac{3}{4} \\\\times \\\\frac{8}{9} = \\\\frac{2}{3}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$\\frac{2}{3}$",
+  "work": "지우가 등산에 나올 확률은 $1 - \\frac{1}{4} = \\frac{3}{4}$이고, 서아가 등산에 나올 확률은 $1 - \\frac{1}{9} = \\frac{8}{9}$이다. 두 사람이 함께 등산하려면 둘 다 나와야 하므로 구하는 확률은 $\\frac{3}{4} \\times \\frac{8}{9} = \\frac{2}{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "48e16e938c30fd50db38783e021589694d0d7d43f34663d278c0ed1e5b984060"
+}

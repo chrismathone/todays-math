@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A46-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-a0c9-71b3-bada-18c883372350",
+ "startedAt": "2026-10-21T18:25:26+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "fec26f6ff43b83bc46a1bab08ce664e2f390266d187f86cc2f0544e6b713d471"
+ },
+ "promptSha256": "4ae72e810c2fdecc8ae8b7da1558ad8939b080498e8bc20125c8762e574b3ac4",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"16개\",\"work\":\"십의 자리에는 0을 제외한 4가지 숫자가 올 수 있다. 일의 자리에는 남은 카드의 숫자 4가지가 올 수 있으므로 4×4=16개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "16개",
+  "work": "십의 자리에는 0을 제외한 4가지 숫자가 올 수 있다. 일의 자리에는 남은 카드의 숫자 4가지가 올 수 있으므로 4×4=16개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4522f1ebddd0fa99a5ad9253ac6a8fb638244bbc2d26f10d82c8977098a18175"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9b2e63c4-fc3a-4b37-ab31-6ca0639f937d",
+ "startedAt": "2026-10-21T17:11:38+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "7bfc2c8a89efe298ba65b28d7394152e03ad6b137a93f459a18bfeb902fe34bf"
+ },
+ "promptSha256": "1015e10749b0a0744768e34ea03647c16158656e925cc8060abaf381ffb67f5f",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"곱이 6인 경우: (1,6),(6,1),(2,3),(3,2) → 4가지\\n곱이 15인 경우: (3,5),(5,3) → 2가지\\n두 사건은 동시에 일어나지 않으므로 4+2=6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "곱이 6인 경우: (1,6),(6,1),(2,3),(3,2) → 4가지\n곱이 15인 경우: (3,5),(5,3) → 2가지\n두 사건은 동시에 일어나지 않으므로 4+2=6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "71b1dda1ff1ac05d459b063148223a821679e6ed46c156551eaab530700201c2"
+}

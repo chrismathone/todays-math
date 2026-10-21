@@ -1,0 +1,143 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 345,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A35-001-r1",
+ "authorId": "claude-fable-5-1:b2d1e78a-9f70-4924-8672-3d56d5f0ab0f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 다음 그림에서 $\\angle A=90^{\\circ}$인 직각삼각형 $ABC$의 변 $BC$를 한 변으로 하는 정사각형 $BDEC$를 그렸다. 점 $A$에서 $\\overline{BC}$에 내린 수선의 발을 $F$, $\\overline{AF}$의 연장선이 $\\overline{DE}$와 만나는 점을 $G$라 하자. $\\overline{AB}=9\\,\\mathrm{cm}$, $\\overline{AC}=12\\,\\mathrm{cm}$일 때, 색칠한 $\\triangle FEG$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$72\\,\\mathrm{cm}^{2}$",
+ "solution": "$\\triangle ABC$에서 $\\overline{BC}^{2}=9^{2}+12^{2}=225$이므로 $\\overline{BC}=15\\,\\mathrm{cm}$이다.\n$\\triangle ABC\\backsim\\triangle FAC$(AA 닮음)이므로 $\\overline{AC}^{2}=\\overline{CF}\\times\\overline{CB}$에서 $\\overline{CF}=\\dfrac{144}{15}=\\dfrac{48}{5}\\,\\mathrm{cm}$이다.\n사각형 $FGEC$는 직사각형이므로 $\\overline{GE}=\\overline{CF}=\\dfrac{48}{5}\\,\\mathrm{cm}$, $\\overline{FG}=\\overline{CE}=15\\,\\mathrm{cm}$이다.\n따라서 $\\triangle FEG=\\dfrac{1}{2}\\times\\dfrac{48}{5}\\times15=72\\,\\mathrm{cm}^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A35-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A35-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-18",
+  "problemCode": "J20802-A35-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "c482930c3e54d89cc1b1e98d038ce78ec1144ef3eaa0aa67c332463a9a2961a5",
+  "dbContentSha256": "36807fe93275b74fce1a4db1d9afe6d4a4b558b26a48d0170cd63bbce499b69e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "4c8f6d3068fdf008ed410baa9645de87d7a699dea51ff7e5532961944375ae42"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "inverse-target"
+  ],
+  "before": "빗변과 한 변의 길이가 그림에 주어진 직각삼각형 위에 빗변을 한 변으로 하는 정사각형을 붙이고, 수선의 발을 지나는 선이 정사각형을 나눈 한쪽 삼각형의 넓이를 구한다",
+  "after": "두 직각변의 길이를 주고 빗변을 먼저 구하게 하며, 정사각형이 나뉜 반대쪽 조각의 넓이를 묻는다",
+  "sharedConcept": "피타고라스 정리와 직각삼각형의 닮음(직각변의 제곱 = 빗변 위 사영 × 빗변)",
+  "sharedProcedure": "피타고라스 정리로 모르는 변 구하기 → 닮음으로 빗변 위 사영 길이 구하기 → 정사각형 안의 직사각형에서 변 옮기기 → 삼각형 넓이"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리의 활용"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "직각삼각형의 닮음",
+   "정사각형·직사각형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20802-A35-001",
+  "difficultyProposal": "심화하",
+  "sourceDifficulty": "심화하",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "빗변 위 정사각형을 수선이 나눈 조각의 넓이(유클리드 증명 도형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.319,
+   "longestRun": 19,
+   "residualChars": 97,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

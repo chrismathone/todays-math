@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A28-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7b0ad616-47fd-442f-b100-aaafb4ed3ba3",
+ "startedAt": "2026-10-21T16:29:25+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "82c513d2bea12da92aa792f71e60bd9856283aa9577b291cc8ce3a3443f30dd6"
+ },
+ "promptSha256": "0e4a226a066d90fdf16cdd0e0368b14f1edb6189726d88f8ff4c27fe82a7fa4e",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"96점\", \"work\": \"네 번째 점수를 x점이라 하면 (94+79+67+x)/4 ≥ 84\\n240 + x ≥ 336\\nx ≥ 96 → 최소 96점\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "96점",
+  "work": "네 번째 점수를 x점이라 하면 (94+79+67+x)/4 ≥ 84\n240 + x ≥ 336\nx ≥ 96 → 최소 96점",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bdc7b1574fcd9eafba93f44cd5da7b2367b74c2847578c054ab02eb8bc389f78"
+}

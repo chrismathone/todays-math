@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4867221f-0b66-4aa1-89ba-94994d94b68b",
+ "startedAt": "2026-10-21T16:20:17+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "296fa580bc41d53a3e50fb868e6d19e02b778750705d32806edf9c92326536e9"
+ },
+ "promptSha256": "209d1b32cf16ff3fdc604b25221f1155425752b777b6754b14c4a7888f827249",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"0.8\\\\dot{3} = (83-8)/90 = 75/90 = 5/6이므로 p = 6/5. 3.\\\\dot{6} = (36-3)/9 = 33/9 = 11/3이므로 q = 3/11. 따라서 pq = (6/5)×(3/11) = 18/55.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "0.8\\dot{3} = (83-8)/90 = 75/90 = 5/6이므로 p = 6/5. 3.\\dot{6} = (36-3)/9 = 33/9 = 11/3이므로 q = 3/11. 따라서 pq = (6/5)×(3/11) = 18/55.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "773ecef91b8d802c28cf9c963bf67b90117aa5ff92c4798da1b7ae6f25ad581a"
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 171,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r2",
+ "authorId": "claude-opus-5-5:8e79cc99-829f-4ab6-8b3d-811f57e197fe",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 0.2x+0.5y=-0.4 \\\\ \\dfrac{x}{3}-\\dfrac{y}{2}=2 \\end{cases}$의 해는?",
+ "choices": [
+  "$x=-2$, $y=0$",
+  "$x=2$, $y=-3$",
+  "$x=3$, $y=-2$",
+  "$x=8$, $y=-4$",
+  "$x=-3$, $y=2$"
+ ],
+ "answer": "③",
+ "solution": "첫째 식의 양변에 $10$을 곱하면 $2x+5y=-4$ …㉠, 둘째 식의 양변에 분모 $3$과 $2$의 최소공배수 $6$을 곱하면 $2x-3y=12$ …㉡이다. ㉠에서 ㉡을 변끼리 빼면 $8y=-16$, $y=-2$이다. $y=-2$를 ㉠에 대입하면 $2x-10=-4$, $2x=6$, $x=3$이다. 따라서 해는 $x=3$, $y=-2$이므로 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-7",
+  "problemCode": "J20303-A28-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "03ec6b959aa869f963a96c8f63beffef59461fa27afd21dca6729f10c6bc00a9",
+  "dbContentSha256": "7e41c0ede4bf41dac0e92d414ede1a40076429675b98d052dd064f3a259e0282",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분수 계수 식이 먼저, 소수 계수 식이 나중에 놓인 연립방정식. 분수 식에는 분모의 최소공배수를, 소수 식에는 10을 곱하면 y의 계수가 같아지고, 두 식을 빼서 x를 먼저 구한 뒤 해를 보기에서 고른다.",
+  "after": "소수 계수 식이 먼저, 분수 계수 식이 나중에 놓인 연립방정식. 소수 식에는 10을, 분수 식에는 분모의 최소공배수 6을 곱하면 x의 계수가 같아지고, 두 식을 빼서 y를 먼저 구한 뒤 해를 보기에서 고른다. 보기에는 한 식만 만족하는 순서쌍도 섞었다.",
+  "sharedConcept": "계수가 분수·소수인 연립방정식을 정수 계수로 고쳐 가감법으로 풀기",
+  "sharedProcedure": "소수 식 ×10 → 분수 식 × 분모의 최소공배수(10이 아닌 수) → 같아진 계수를 빼서 소거 → 한 문자 값 구하기 → 대입해 다른 문자 값 구하기 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "등식의 성질(양변에 같은 수 곱하기)",
+   "최소공배수",
+   "가감법과 대입법으로 연립일차방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A28-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 분수와 소수인 연립방정식을 정수 계수로 고쳐 해 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.19,
+   "longestRun": 6,
+   "residualChars": 61,
+   "params": 11,
+   "numberRetention": 0.455,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

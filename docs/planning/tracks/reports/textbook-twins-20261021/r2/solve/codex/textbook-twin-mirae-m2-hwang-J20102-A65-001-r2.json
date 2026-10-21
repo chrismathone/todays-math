@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd0-aba4-7752-be00-09f7cc361d20",
+ "startedAt": "2026-10-21T18:35:18+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "e97e3e83ff2150c0275e5335de79a6253e0a879f4cba9faac460db1042d5f6c0"
+ },
+ "promptSha256": "58e1f1338cad9f6e61208bc6d6e166a3eb16408ca6ad63c8bdaeda5e8bd5dc40",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"27\",\"work\":\"전기차가 있는 가구 수의 비율은 $\\\\frac{23}{440}=0.052272727\\\\cdots=0.052\\\\overline{27}$이다.\\n따라서 순환마디는 27이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "27",
+  "work": "전기차가 있는 가구 수의 비율은 $\\frac{23}{440}=0.052272727\\cdots=0.052\\overline{27}$이다.\n따라서 순환마디는 27이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fddb39ce2aadd8e764e09a0759eb7c718ae681fb11638e0e9f4ed56a4af86651"
+}

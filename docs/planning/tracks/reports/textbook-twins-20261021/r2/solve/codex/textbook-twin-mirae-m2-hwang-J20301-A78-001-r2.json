@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-d585-7000-84d1-24e9ff6fb52e",
+ "startedAt": "2026-10-21T18:45:19+0900",
+ "elapsedSec": 7.9,
+ "studentSha256": {
+  "student.json": "a8c06dcfad3b26e189f5c9250e1f3ce93eea67fd104228b2b699d995b134471f"
+ },
+ "promptSha256": "2b0e463ad33f068962c20933eca47f90df0619ed62324ee7d74bd15eeaca3a34",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"①을 대입하면 4×(-2)-(-17)=9이므로 4x-y=10의 해가 아니다. ②~⑤는 모두 대입하면 좌변이 10이므로 해이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "①을 대입하면 4×(-2)-(-17)=9이므로 4x-y=10의 해가 아니다. ②~⑤는 모두 대입하면 좌변이 10이므로 해이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0b13f938f59aa3c37bb6062b0da700930651cbeffd5170026bc415c76009a8d1"
+}

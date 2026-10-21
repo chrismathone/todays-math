@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "562a5702-b72c-4ee3-9186-f99ae81d2e4f",
+ "startedAt": "2026-10-21T17:07:13+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "fig-1.png": "8bf00203feafe234e4d284deb0e34c6421a80012a65d3d147ff803691c34e963",
+  "student.json": "b7be8c029f8193cde8c9a0d24f347396e550dd29a09595d57dd65a98b6aeeacc"
+ },
+ "promptSha256": "f979355433b7fbcc816e4401bd300be5303ddfe936d44f3a7de7e8844ae860ac",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"닮음비 = AB:EF = 4:10 = 2:5. CD:GH = 2:5이므로 x:9 = 2:5 → x = 18/5. BC:FG = 2:5이므로 6:y = 2:5 → y = 15. 따라서 5x+y = 18+15 = 33\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "닮음비 = AB:EF = 4:10 = 2:5. CD:GH = 2:5이므로 x:9 = 2:5 → x = 18/5. BC:FG = 2:5이므로 6:y = 2:5 → y = 15. 따라서 5x+y = 18+15 = 33",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9f975be36c927cd46a942447b41589ebcabacaa5e89e51a47501559a4d58fc25"
+}

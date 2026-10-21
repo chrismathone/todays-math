@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5a-2253-7213-bb44-63dfdffb1803",
+ "startedAt": "2026-10-21T16:25:50+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "bbe8a018cd95c022cf24a9956d0da86930bcee14b7b04e79b20f5c5db0d181bb"
+ },
+ "promptSha256": "18c6ca0d27a08d07840d04d29d1286f4bebc83229a0598f2514ed928cea5ef75",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"어떤 단항식은 $10x^{2}y^{3}$을 $2x$로 나눈 것이다. 계수는 $10÷2=5$, 문자는 $x^{2}÷x=x$이므로 $5xy^{3}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "어떤 단항식은 $10x^{2}y^{3}$을 $2x$로 나눈 것이다. 계수는 $10÷2=5$, 문자는 $x^{2}÷x=x$이므로 $5xy^{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d492dd80c77661eb771df53c684a2169310150df08e5dab83fad1262bf137322"
+}

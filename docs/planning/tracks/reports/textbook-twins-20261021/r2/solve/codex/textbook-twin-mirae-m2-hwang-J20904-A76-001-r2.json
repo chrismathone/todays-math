@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A76-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-419d-7642-a549-bef38c149244",
+ "startedAt": "2026-10-21T19:24:00+0900",
+ "elapsedSec": 8.9,
+ "studentSha256": {
+  "student.json": "3a2949f08ba08941abf789bdd514f16ffba8815f40a51ea00a61f242b4bde8c5"
+ },
+ "promptSha256": "45c2629b9bf84314c78535f91e9872d78baeb8f13d2d4ef2c8b10001c14e35bd",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"첫 번째 상자에서 딸기 맛을 뽑을 확률은 $\\\\frac{6}{10}$, 두 번째 상자에서는 $\\\\frac{5}{15}$이다.\\n따라서 둘 다 딸기 맛일 확률은 $\\\\frac{6}{10}\\\\times\\\\frac{5}{15}=\\\\frac{1}{5}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫 번째 상자에서 딸기 맛을 뽑을 확률은 $\\frac{6}{10}$, 두 번째 상자에서는 $\\frac{5}{15}$이다.\n따라서 둘 다 딸기 맛일 확률은 $\\frac{6}{10}\\times\\frac{5}{15}=\\frac{1}{5}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c1ebdca38150e381cf25267dc6d715936a523d0b5953ea04a4cb89acb82f5841"
+}

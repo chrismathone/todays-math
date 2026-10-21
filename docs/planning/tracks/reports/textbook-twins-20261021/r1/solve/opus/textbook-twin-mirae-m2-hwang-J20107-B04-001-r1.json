@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B04-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f13c4445-dbb7-4d1f-b561-094c01d2b7b7",
+ "startedAt": "2026-10-21T16:16:31+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "52855f0e000f10d83cd8fc04fa813717f332b1b5f7344d984c4df1bc58b10fe3"
+ },
+ "promptSha256": "6b2ed5e224606f329b60c5302f828efea7a65b6c18544b6f4c709750e23d02d7",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$10x^{2}-9x+1$\", \"work\": \"어떤 식을 $A$라 하면 $A+(-2x^{2}+5x-4)=6x^{2}+x-7$\\n$A=(6x^{2}+x-7)-(-2x^{2}+5x-4)=8x^{2}-4x-3$\\n바르게 계산한 식: $A-(-2x^{2}+5x-4)=(8x^{2}-4x-3)+2x^{2}-5x+4=10x^{2}-9x+1$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$10x^{2}-9x+1$",
+  "work": "어떤 식을 $A$라 하면 $A+(-2x^{2}+5x-4)=6x^{2}+x-7$\n$A=(6x^{2}+x-7)-(-2x^{2}+5x-4)=8x^{2}-4x-3$\n바르게 계산한 식: $A-(-2x^{2}+5x-4)=(8x^{2}-4x-3)+2x^{2}-5x+4=10x^{2}-9x+1$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d487001d6fc20697c5641b594511292e49d7b9d77ad6dfc1f9612a800a6040ac"
+}

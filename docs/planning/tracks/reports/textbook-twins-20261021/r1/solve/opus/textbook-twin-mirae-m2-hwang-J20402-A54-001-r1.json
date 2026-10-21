@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7918379d-0f81-424e-a3ee-58e7534471af",
+ "startedAt": "2026-10-21T17:03:34+0900",
+ "elapsedSec": 3.4,
+ "studentSha256": {
+  "student.json": "63e9c8bab841c777ed33d4280802c02a7e460427187bf3269c0f747f3f186b1c"
+ },
+ "promptSha256": "4cd3c51a38700ae0770e37426b9915421b835ea5e00c0a18d5dff98cf5d79a04",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "x-intercept of y=-4x+12: x=3. y-intercept of second is b=3.\n\n```json\n{\"answer\": \"3\", \"work\": \"y=-4x+12에서 y=0이면 x=3 (x절편 3). y=2/3x+b의 y절편은 b이므로 b=3.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "y=-4x+12에서 y=0이면 x=3 (x절편 3). y=2/3x+b의 y절편은 b이므로 b=3.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "62893e44ab34f0d3c31ced7f0c880e5b9577506f22591d7058b578683c048343"
+}

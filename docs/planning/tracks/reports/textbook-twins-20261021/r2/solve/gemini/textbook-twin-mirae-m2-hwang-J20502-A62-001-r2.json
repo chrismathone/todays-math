@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A62-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "dfa4b4f0-e87a-4a02-8d45-dc455acd0baa",
+ "startedAt": "2026-10-21T18:29:35+0900",
+ "elapsedSec": 36.8,
+ "studentSha256": {
+  "fig-1.png": "4bc189876cb4ed831a8f811b930f898b2151a66a211158d0797131f0dd6b3624",
+  "student.json": "f20c292e6eb328c14e0feafeacb4917c71adf8aa8884ae3562c0f45e2dbd80e7"
+ },
+ "promptSha256": "eab7b9d2928373554f0dda2f58895fa40a6de5fbe5db4b5b80333e66eb5a4f0f",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\triangle \\\\mathrm{ABC} \\\\equiv \\\\triangle \\\\mathrm{FDE}$ (RHA 합동) ⑵ 5 cm\",\n  \"work\": \"△ABC에서 $\\\\angle\\\\mathrm{A} = 90^\\\\circ - 60^\\\\circ = 30^\\\\circ$이므로 $\\\\angle\\\\mathrm{A} = \\\\angle\\\\mathrm{F} = 30^\\\\circ$이다. 직각삼각형 ABC와 FDE에서 빗변의 길이가 $\\\\overline{\\\\mathrm{AB}} = \\\\overline{\\\\mathrm{FD}} = 10\\\\text{ cm}$로 같고 한 예각의 크기가 같으므로 $\\\\triangle\\\\mathrm{ABC} \\\\equiv \\\\triangle\\\\mathrm{FDE}$ (RHA 합동)이다. 따라서 대응변의 길이가 같으므로 $\\\\overline{\\\\mathrm{DE}} = \\\\overline{\\\\mathrm{BC}} = 5\\\\text{ cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ $\\triangle \\mathrm{ABC} \\equiv \\triangle \\mathrm{FDE}$ (RHA 합동) ⑵ 5 cm",
+  "work": "△ABC에서 $\\angle\\mathrm{A} = 90^\\circ - 60^\\circ = 30^\\circ$이므로 $\\angle\\mathrm{A} = \\angle\\mathrm{F} = 30^\\circ$이다. 직각삼각형 ABC와 FDE에서 빗변의 길이가 $\\overline{\\mathrm{AB}} = \\overline{\\mathrm{FD}} = 10\\text{ cm}$로 같고 한 예각의 크기가 같으므로 $\\triangle\\mathrm{ABC} \\equiv \\triangle\\mathrm{FDE}$ (RHA 합동)이다. 따라서 대응변의 길이가 같으므로 $\\overline{\\mathrm{DE}} = \\overline{\\mathrm{BC}} = 5\\text{ cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9c4cf8ac5c968ec7590cf78c6f050c7ad40984fbf1b4e5d7e9241ba8135cdab8"
+}

@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 108,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B18-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하시오.\n⑴ $3^{8}\\div 3^{3}$\n⑵ $b^{4}\\div b^{11}$\n⑶ $y^{9}\\div y^{5}\\div y^{4}$\n⑷ $(a^{2})^{5}\\div(a^{4})^{3}$",
+ "choices": [],
+ "answer": "⑴ $3^{5}$ ⑵ $\\frac{1}{b^{7}}$ ⑶ $1$ ⑷ $\\frac{1}{a^{2}}$",
+ "solution": "⑴ $3^{8-3}=3^{5}$이다.\n⑵ 지수가 나누는 쪽이 크므로 $\\frac{1}{b^{11-4}}=\\frac{1}{b^{7}}$이다.\n⑶ $y^{9-5}\\div y^{4}=y^{4}\\div y^{4}=1$이다.\n⑷ $a^{10}\\div a^{12}=\\frac{1}{a^{2}}$이다.\n따라서 답은 ⑴ $3^{5}$ ⑵ $\\frac{1}{b^{7}}$ ⑶ $1$ ⑷ $\\frac{1}{a^{2}}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-462f92d07b044ff5-1-1",
+  "problemCode": "J20105-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "995dbdfb0818042bbbb7a89b12df1297df4d630ec8cbfbc7dc2cc1582f24bf99",
+  "dbContentSha256": "6c5244d4643307e3e721c85263ec06f95e4c94caae4b0d80edc34bd78f2e07ee",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-2_지수법칙2.hwp",
+    "sha256": "dd8ffba18592998c314e12893178cbff4628c16beec3433c2cc175b5f16ef38b",
+    "bytes": 260608
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "거듭제곱의 나눗셈 네 소문항. 지수 큰 쪽 나누기, 작은 쪽 나누기, 연속 나눗셈(결과 일차), 거듭제곱의 거듭제곱끼리 나누기(결과 분수).",
+  "after": "같은 네 갈래를 지키되 연속 나눗셈의 결과를 $1$이 되는 경우로 바꾸어 세 경우($m>n$, $m=n$, $m<n$)가 모두 드러나게 했다.",
+  "sharedConcept": "지수법칙 ⑶ a^m÷a^n 의 세 경우",
+  "sharedProcedure": "지수 크기 비교 → 차를 지수로 (또는 1, 또는 분수) → 연속이면 차례로"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑵"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B18-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "거듭제곱의 나눗셈 — 네 소문항",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 86% 그대로"
+   ],
+   "overlap4": 0.06,
+   "longestRun": 5,
+   "residualChars": 53,
+   "params": 7,
+   "numberRetention": 0.857,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

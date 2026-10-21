@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A57-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5f-e45a-7982-a698-12a5bcae57e5",
+ "startedAt": "2026-10-21T16:32:07+0900",
+ "elapsedSec": 19.1,
+ "studentSha256": {
+  "student.json": "33352d0c61cb44deb2be7a826a50b6f254532fdf494d7098ac69945c47d798f0"
+ },
+ "promptSha256": "9365579c89a063aa2160fa50c9324d59bd6a541bd83a9dd9041cf3dc750ef7bc",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"$x=1.07333\\\\cdots$이므로 $100x=107.333\\\\cdots$, $1000x=1073.333\\\\cdots$이다. 두 식의 소수점 아래 부분이 같으므로 $1000x-100x$를 이용한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "$x=1.07333\\cdots$이므로 $100x=107.333\\cdots$, $1000x=1073.333\\cdots$이다. 두 식의 소수점 아래 부분이 같으므로 $1000x-100x$를 이용한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f34e8c466f505bf00e4d38a96a2b5ba3707c11cd311585e7e9342eaa97ca23ea"
+}

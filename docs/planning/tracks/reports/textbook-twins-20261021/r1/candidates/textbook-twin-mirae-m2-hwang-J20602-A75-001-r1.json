@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 305,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A75-001-r1",
+ "authorId": "claude-fable-5-1:2931dc34-4e49-41fe-ac80-64130cb78fe8",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n직각삼각형 $ABC$는 $\\angle C=90^{\\circ}$이고, 빗변 $AB$의 중점 $M$에서 $\\overline{AB}$에 수직인 직선을 그어 $\\overline{AC}$와 만나는 점을 $D$라 하였다. $\\overline{AB}=30\\,\\mathrm{cm}$, $\\overline{BC}=18\\,\\mathrm{cm}$, $\\overline{AC}=24\\,\\mathrm{cm}$일 때, $\\overline{DM}$의 길이는?",
+ "choices": [
+  "$\\frac{21}{2}\\,\\mathrm{cm}$",
+  "$11\\,\\mathrm{cm}$",
+  "$\\frac{45}{4}\\,\\mathrm{cm}$",
+  "$\\frac{23}{2}\\,\\mathrm{cm}$",
+  "$\\frac{47}{4}\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "$\\triangle ABC$와 $\\triangle ADM$에서 $\\angle A$는 공통, $\\angle ACB=\\angle AMD=90^{\\circ}$이므로 $\\triangle ABC \\backsim \\triangle ADM$($\\mathrm{AA}$ 닮음)이다. 점 $M$은 $\\overline{AB}$의 중점이므로 $\\overline{AM}=15\\,\\mathrm{cm}$이다. 대응변의 비에서 $\\overline{BC}:\\overline{MD}=\\overline{AC}:\\overline{AM}$, 즉 $18:\\overline{DM}=24:15$이므로 $24\\overline{DM}=270$이다. 따라서 $\\overline{DM}=\\frac{45}{4}\\,\\mathrm{cm}$이고 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A75-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A75-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-6",
+  "problemCode": "J20602-A75-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "94551aee19d2d140a0465aa89b153b0e8d120e201733f80ebdccce513f319980",
+  "dbContentSha256": "18658da050bc138824645312c51019345f4215b7de6627397d491ad1b086aa0b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "1c01c67d9a703d9e52faf1d148dc96bcf17ffd0ed75032bf3b33e2833f5bdafc"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "직각의 꼭짓점이 A인 직각삼각형에서 빗변의 중점을 지나는 수선이 한 변과 만나는 점까지의, 빗변 쪽 꼭짓점에서 잰 선분 길이를 묻는다. 주어진 것은 한 변의 길이와 빗변의 절반.",
+  "after": "직각의 꼭짓점을 C로 옮기고 세 변의 길이를 모두 준 뒤, 빗변의 중점에서 세운 수선 자체(DM)의 길이를 묻는다. 닮음 쌍은 같고 쓰는 대응변의 비만 다르다.",
+  "sharedConcept": "공통각과 직각으로 AA 닮음인 두 직각삼각형",
+  "sharedProcedure": "공통각 · 직각 확인 → AA 닮음 → 대응변의 비례식 → 미지 길이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 닮음 조건(AA)",
+   "닮은 도형의 대응변의 비",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A75-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "빗변의 중점에서 세운 수선으로 생기는 닮은 직각삼각형에서 선분의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))",
+     "session": "b912d5ee-2495-4ba3-a598-ee221a530fb8",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.098,
+   "longestRun": 8,
+   "residualChars": 107,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

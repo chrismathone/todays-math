@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B11-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8ba15053-09cf-46e3-b838-8d1cf278bcfb",
+ "startedAt": "2026-10-21T16:56:15+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "127d7d64c1eff3f09fa19d8475697f70b8604bd9f638c20b4771fdd819c84efc"
+ },
+ "promptSha256": "a518ea69796090862bd76186c68e919dd62834d8e200d436facb55427eb9f8e0",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"p=5, q=4, r=3\", \"work\": \"12=2^2×3, 18=2×3^2, 20=2^2×5, 75=3×5^2. 2의 지수: 2+1+2=5, 3의 지수: 1+2+1=4, 5의 지수: 1+2=3. 따라서 12×18×20×75=2^5×3^4×5^3\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "p=5, q=4, r=3",
+  "work": "12=2^2×3, 18=2×3^2, 20=2^2×5, 75=3×5^2. 2의 지수: 2+1+2=5, 3의 지수: 1+2+1=4, 5의 지수: 1+2=3. 따라서 12×18×20×75=2^5×3^4×5^3",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "028531785ba5ed6e3754ef35e0777f8c1b6dc6ea637ffb1bd764aac595e30d4e"
+}

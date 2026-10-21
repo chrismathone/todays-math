@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A89-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da6-9565-7423-b81c-1551e9d28f85",
+ "startedAt": "2026-10-21T17:49:20+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "fig-1.png": "8b27870f2d050926d48237b5c0adcc15e4f552081239e48b6775b9de9e881123",
+  "student.json": "92e0bc436a160ad3cc19617363b8de3b23b832d9909c852a86784711493421a1"
+ },
+ "promptSha256": "059c4f933579a0613637796a2dfb3edcce79d7578d05cca6f573ee2f01d9731b",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4\",\"work\":\"그래프가 (-2, 0)을 지나므로 -2a+12=0에서 a=6이다. 또 (0, 6)을 지나므로 6b+12=0에서 b=-2이다. 따라서 a+b=6-2=4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "그래프가 (-2, 0)을 지나므로 -2a+12=0에서 a=6이다. 또 (0, 6)을 지나므로 6b+12=0에서 b=-2이다. 따라서 a+b=6-2=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "24d23321f8945e55831dcc27032febebd6eacb8c215909b87e218ef006d22b36"
+}

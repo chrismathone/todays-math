@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A37-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc5-09c9-73d2-ae2e-81708db3a961",
+ "startedAt": "2026-10-21T18:22:36+0900",
+ "elapsedSec": 15.9,
+ "studentSha256": {
+  "fig-1.png": "efbe9c7d63007a99194c815f83193f2aed7d633e85ad3a11b82edc1611982ae4",
+  "student.json": "bb42eb52bbde7afc890b63e08f9ef0256706baae0f669e9535c4b6540f21de54"
+ },
+ "promptSha256": "3fc7025ad81a2847f50020ac152ac7c747f251c51df3dcca989bfc00c35976d4",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"15 cm\",\"work\":\"모서리 AE, DH를 지나도록 세 옆면을 펼치면 가로가 5+2+5=12 cm, 세로가 9 cm인 직사각형이 된다. 가장 짧은 길은 이 직사각형의 대각선이므로 피타고라스 정리에 따라 √(12²+9²)=15 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "15 cm",
+  "work": "모서리 AE, DH를 지나도록 세 옆면을 펼치면 가로가 5+2+5=12 cm, 세로가 9 cm인 직사각형이 된다. 가장 짧은 길은 이 직사각형의 대각선이므로 피타고라스 정리에 따라 √(12²+9²)=15 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ff0cfd0172456dd669f0ce934af594f57810e009b8a76ae44810750b072af145"
+}

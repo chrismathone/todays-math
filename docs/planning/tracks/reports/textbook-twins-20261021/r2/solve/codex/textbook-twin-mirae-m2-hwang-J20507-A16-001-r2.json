@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A16-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df4-8f0c-7e31-8a21-12a43548e4ea",
+ "startedAt": "2026-10-21T19:14:30+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "fig-1.png": "ccb04897cd030fbaa6953240d890d21632836b8f70d38db6ae4f22a6636be46a",
+  "student.json": "a06a9f8690386ff8a56f94fa3a2b170669820b1ca13632b17d1a8d922ff4fe3b"
+ },
+ "promptSha256": "c96d266dfd1e08b1e908bd3b51fbf0d121afa663860b2fff6562cf14703928ae",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"72 cm²\",\"work\":\"정사각형의 두 대각선은 길이가 같고 서로 수직이므로 BD=12 cm이다. 넓이는 두 대각선 길이의 곱의 절반이므로 12×12÷2=72 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "72 cm²",
+  "work": "정사각형의 두 대각선은 길이가 같고 서로 수직이므로 BD=12 cm이다. 넓이는 두 대각선 길이의 곱의 절반이므로 12×12÷2=72 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "737c889d9f2ccb6122564a831cf21b1bbbb668abfa56b0709cce8d92b88b1ad4"
+}

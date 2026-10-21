@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-2a49-78d1-b4c0-7ba0f80db3b8",
+ "startedAt": "2026-10-21T18:57:42+0900",
+ "elapsedSec": 13.7,
+ "studentSha256": {
+  "student.json": "8cae8a6cbd70e5983c0ae9002d70ddf2ad4c00f5d3c3463d87873bcb415d9845"
+ },
+ "promptSha256": "53c28c883884a1ef10e8f8dd23e321b75b180773eacd65407799c0af638aa86b",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"첫 연립방정식을 정리하면 $8a+5b=10$, $3a-2b=27$이다. 두 식에 각각 2, 5를 곱하여 더하면 $31a=155$이므로 $a=5$, $b=-6$이다.\\n따라서 두 번째 연립방정식은 $5x-6y=-28$, $-6x-5y=-3$이다. 두 식에 각각 5, -6을 곱하여 더하면 $61x=-122$이므로 $x=-2$, 이를 대입하면 $y=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫 연립방정식을 정리하면 $8a+5b=10$, $3a-2b=27$이다. 두 식에 각각 2, 5를 곱하여 더하면 $31a=155$이므로 $a=5$, $b=-6$이다.\n따라서 두 번째 연립방정식은 $5x-6y=-28$, $-6x-5y=-3$이다. 두 식에 각각 5, -6을 곱하여 더하면 $61x=-122$이므로 $x=-2$, 이를 대입하면 $y=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fc06a708ac760b67874c3f771f8ba14d0e917d84d39c34f24ac6642064b69856"
+}

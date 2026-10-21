@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dda-d441-7f03-8ee8-3517ccf96cbb",
+ "startedAt": "2026-10-21T18:46:24+0900",
+ "elapsedSec": 16.5,
+ "studentSha256": {
+  "fig-1.png": "a04676b718967bd07f209646bbf1c14cbf4a427fd1f09c0df131ae66f3324ce0",
+  "student.json": "f58792e93f41bb7e05e1e5c88802be0dab838296001b8bd1a46fd2ac5ca6f5ce"
+ },
+ "promptSha256": "fe81ad13678e4a70aaa89bc420ae9da4c445fe881f3676c54bbd23bf2a4ea2bf",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"무게중심의 성질에 의해 $GM=\\\\frac13 AM$, $HM=\\\\frac13 GM=\\\\frac19 AM$이다.\\n따라서 $\\\\triangle AMC$의 넓이는 $\\\\triangle HMC$의 9배이다. 또 $M$은 $BC$의 중점이므로 $\\\\triangle ABC$의 넓이는 $\\\\triangle AMC$의 2배이다.\\n그러므로 구하는 넓이는 $7\\\\times9\\\\times2=126\\\\,\\\\mathrm{cm}^2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "무게중심의 성질에 의해 $GM=\\frac13 AM$, $HM=\\frac13 GM=\\frac19 AM$이다.\n따라서 $\\triangle AMC$의 넓이는 $\\triangle HMC$의 9배이다. 또 $M$은 $BC$의 중점이므로 $\\triangle ABC$의 넓이는 $\\triangle AMC$의 2배이다.\n그러므로 구하는 넓이는 $7\\times9\\times2=126\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "434968c45dd133b8d866d7014ce8cd10ddb5ebc6447f98b52c5ab2fae9edf44d"
+}

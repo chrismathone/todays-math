@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A75-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "58af6920-306f-476b-ae50-41577257784b",
+ "startedAt": "2026-10-21T18:36:18+0900",
+ "elapsedSec": 22.4,
+ "studentSha256": {
+  "fig-1.png": "4c8dff0893aedec07aa486582d5d0af053345d90a82012412da89b303bf7505a",
+  "student.json": "9428bfdd125bdf3ad9109053f30889726f1384a1dde0661f140689e4efd4f4bd"
+ },
+ "promptSha256": "c9ff490e94b6393daa8f6dbf0d8f3f03f62e9613810d24fc1428a5577f0144b6",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"$M$이 $\\\\overline{AC}$의 중점이므로 $\\\\overline{MC} = \\\\frac{1}{2}\\\\overline{AC} = 14\\\\,\\\\mathrm{cm}$이다. $\\\\angle B = \\\\angle DMC = 90^\\\\circ$이고 $\\\\angle C$는 공통이므로 $\\\\triangle ABC \\\\sim \\\\triangle MDC$ (AA 닮음)이다. 닮음비에 의해 $\\\\overline{AC} : \\\\overline{CD} = \\\\overline{BC} : \\\\overline{MC}$, 즉 $28 : \\\\overline{CD} = 21 : 14$가 성립하므로 $\\\\overline{CD} = \\\\frac{28 \\\\times 14}{21} = \\\\frac{56}{3}\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "$M$이 $\\overline{AC}$의 중점이므로 $\\overline{MC} = \\frac{1}{2}\\overline{AC} = 14\\,\\mathrm{cm}$이다. $\\angle B = \\angle DMC = 90^\\circ$이고 $\\angle C$는 공통이므로 $\\triangle ABC \\sim \\triangle MDC$ (AA 닮음)이다. 닮음비에 의해 $\\overline{AC} : \\overline{CD} = \\overline{BC} : \\overline{MC}$, 즉 $28 : \\overline{CD} = 21 : 14$가 성립하므로 $\\overline{CD} = \\frac{28 \\times 14}{21} = \\frac{56}{3}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0eec2d9b520552b81e6c0c59aa8ac144664bf279524fec60dc30da6cd3c2607e"
+}

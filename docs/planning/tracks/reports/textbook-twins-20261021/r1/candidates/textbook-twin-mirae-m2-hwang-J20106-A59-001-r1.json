@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 34,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 계산 결과가 옳지 않은 것은?",
+ "choices": [
+  "$(-3a^{2}b)^{2}\\times(2ab^{3})^{2}=36a^{6}b^{8}$",
+  "$(-2a^{3})^{3}\\div 4a^{5}=-2a^{4}$",
+  "$(a^{3}b^{2})^{2}\\div\\left(\\frac{1}{2}ab\\right)^{3}=8a^{3}b$",
+  "$12a^{4}b^{3}\\div(-3a^{2}b)\\times 2ab^{2}=-8a^{2}b^{4}$",
+  "$(-6a^{3}b^{2})\\times 5ab\\div 10a^{2}b^{3}=-3a^{2}$"
+ ],
+ "answer": "④",
+ "solution": "① $9a^{4}b^{2}\\times 4a^{2}b^{6}=36a^{6}b^{8}$ ② $-8a^{9}\\div 4a^{5}=-2a^{4}$ ③ $a^{6}b^{4}\\times\\frac{8}{a^{3}b^{3}}=8a^{3}b$ ④ $12a^{4}b^{3}\\div(-3a^{2}b)=-4a^{2}b^{2}$이고 여기에 $2ab^{2}$를 곱하면 $-8a^{3}b^{4}$이다. ⑤ $-30a^{4}b^{3}\\div 10a^{2}b^{3}=-3a^{2}$ 따라서 옳지 않은 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-3",
+  "problemCode": "J20106-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "71ae3de3b2ac6b62294b1d16f863c1444947e9a0ae458fbdf86eff14938ac2d6",
+  "dbContentSha256": "2d2a23a627ab63f9ff2c3c72a8aa4e505af0d0083278f96f88a800acc1c6636b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "단항식의 거듭제곱·곱셈·나눗셈·혼합 계산 다섯 개의 등식 가운데 틀린 하나(나눗셈 결과의 부호·계수 오류)를 고른다.",
+  "after": "문자 $a$, $b$로 된 다섯 등식 가운데 틀린 하나를 고른다. 오류는 혼합 계산의 문자 지수에 두었고 보기 구성(거듭제곱 곱, 음수 세제곱 나눗셈, 분수 세제곱 나눗셈, 두 가지 혼합)을 새로 짰다.",
+  "sharedConcept": "단항식의 곱셈과 나눗셈(지수법칙 적용)",
+  "sharedProcedure": "거듭제곱 전개 → 나눗셈을 역수 곱으로 → 계수끼리·문자끼리 정리 → 주어진 결과와 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈",
+   "단항식의 나눗셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A59-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 곱셈·나눗셈 결과 중 옳지 않은 것 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 10개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.124,
+   "longestRun": 7,
+   "residualChars": 151,
+   "params": 10,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

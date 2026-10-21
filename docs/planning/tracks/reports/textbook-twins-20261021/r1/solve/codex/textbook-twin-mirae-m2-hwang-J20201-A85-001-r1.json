@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A85-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6d-79bd-7de2-9371-673e3d90c29e",
+ "startedAt": "2026-10-21T16:46:58+0900",
+ "elapsedSec": 8.8,
+ "studentSha256": {
+  "student.json": "40eaae2a41ecccce9eabb78635d84790c91a26eee87734dcc6edc971136544b7"
+ },
+ "promptSha256": "f0384d9e03fa8e23797c80ef68b53bf3439038a047132123a115625ccbcd6722",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ③\",\"work\":\"부등식은 부등호로 두 수 또는 식의 대소 관계를 나타낸 식이다. ①은 <, ③은 ≥를 사용하므로 부등식이다. ②는 부등호가 없는 식이고, ④와 ⑤는 등식이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ③",
+  "work": "부등식은 부등호로 두 수 또는 식의 대소 관계를 나타낸 식이다. ①은 <, ③은 ≥를 사용하므로 부등식이다. ②는 부등호가 없는 식이고, ④와 ⑤는 등식이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6f82f6c737193659f50f6a832ae9403d3da98e19909c332688a0444c366d988c"
+}

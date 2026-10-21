@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-59da-7110-938a-f4eb8ed19ce4",
+ "startedAt": "2026-10-21T18:52:26+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "9cead57e9b7a3f3f5b403b7c8f0abd422025851ad95996ac01d1eeaf7b5e2f44"
+ },
+ "promptSha256": "cdb3e73367643d58d8137b09f76cdd32bc820a0041e9e5598d72fe74deafebe4",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"초보자는 경험자보다 5명 많다. 초보자를 x명이라 하면 경험자는 (x-5)명이므로 x+(x-5)=37이다. 따라서 2x=42, x=21이므로 초보자는 21명이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "초보자는 경험자보다 5명 많다. 초보자를 x명이라 하면 경험자는 (x-5)명이므로 x+(x-5)=37이다. 따라서 2x=42, x=21이므로 초보자는 21명이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2c092b41b8eeb043e75a5a1b676747532a1e7166154b5971b5567266670c87aa"
+}

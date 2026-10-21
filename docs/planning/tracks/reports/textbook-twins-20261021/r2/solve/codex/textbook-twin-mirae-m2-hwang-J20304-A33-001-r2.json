@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de4-8f98-7002-ba07-c871be940eb3",
+ "startedAt": "2026-10-21T18:57:02+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "792cacd95dd496af884346f075e920ff6395d8349cd76fa6f3292fc171044e85"
+ },
+ "promptSha256": "3448547255440f1b37f573803be41a331f9fa4a3cd852a28bc9cd01480d0320d",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"두 점을 대입하면 $-9a-6b=6$, $6a+6b=6$이다.\\n두 식을 더하면 $-3a=12$이므로 $a=-4$, 이를 대입하면 $b=5$이다.\\n따라서 $-4x+5y=6$에 $x=16$을 대입하면 $5y=70$, 즉 $y=14$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 점을 대입하면 $-9a-6b=6$, $6a+6b=6$이다.\n두 식을 더하면 $-3a=12$이므로 $a=-4$, 이를 대입하면 $b=5$이다.\n따라서 $-4x+5y=6$에 $x=16$을 대입하면 $5y=70$, 즉 $y=14$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0e56661df5878a6a3a8bdfba310143f523bbb7805df96cbf306705efffca5d41"
+}

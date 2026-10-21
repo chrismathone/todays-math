@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d84-9841-79e2-b141-f2cd5fb847d6",
+ "startedAt": "2026-10-21T17:12:13+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "9273de2f66d345db677bd6bb31f7dad85ae03ff8f66c96ec11fe2d84fe1d144e"
+ },
+ "promptSha256": "dfb5346edbb46fafb44fa200127f4f792d6771bf6ef73524b0ea87768ae0b497",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$5^{11}$개\",\"work\":\"큰 상자 하나에 든 나사는 $5^3 \\\\times 5^4=5^7$개이다.\\n$625=5^4$이므로 전체 나사는 $5^7 \\\\times 5^4=5^{11}$개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$5^{11}$개",
+  "work": "큰 상자 하나에 든 나사는 $5^3 \\times 5^4=5^7$개이다.\n$625=5^4$이므로 전체 나사는 $5^7 \\times 5^4=5^{11}$개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1bfa84ed4f67df167d3a547602c2067b8d8dd9444f5ec999782a67f1b5bc9685"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcd-2939-7051-ae25-acec9d457318",
+ "startedAt": "2026-10-21T18:31:28+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "fig-1.png": "5532550816a484364daf3b3d29356457d9e911683a4e435e2566d91c1443cdda",
+  "student.json": "8d9b58bbfe7c4d3148637de89b51c4d68af22503e735e194f8314235780e564f"
+ },
+ "promptSha256": "f6d88c9a75aecebc3bfa3ffdf2e8b2ca98a3ac88e51b9cf719f8980455dd00d3",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{1}{6}$\",\"work\":\"서로 다른 두 주사위를 던질 때 가능한 경우는 모두 6×6=36가지이고, 각 경우가 나올 가능성은 같다. 정육각형에서 점 P가 다시 A에 놓이려면 두 눈의 수의 합이 6의 배수여야 하므로 합이 6 또는 12이어야 한다. 합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)의 5가지이고, 합이 12인 경우는 (6,6)의 1가지이다. 따라서 구하는 확률은 $\\\\frac{5+1}{36}=\\\\frac{1}{6}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "서로 다른 두 주사위를 던질 때 가능한 경우는 모두 6×6=36가지이고, 각 경우가 나올 가능성은 같다. 정육각형에서 점 P가 다시 A에 놓이려면 두 눈의 수의 합이 6의 배수여야 하므로 합이 6 또는 12이어야 한다. 합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)의 5가지이고, 합이 12인 경우는 (6,6)의 1가지이다. 따라서 구하는 확률은 $\\frac{5+1}{36}=\\frac{1}{6}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "09a998b3ce91e3a622d6ff2d229977e36c59fb67474023c7bd56d0af657b0ba0"
+}

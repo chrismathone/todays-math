@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 68,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A77-001-r2",
+ "authorId": "claude-fable-5-1:c4d05255-ef76-4060-b596-39f7313b0ee7",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A77-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "소수점 아래에서 세 숫자 $a$, $4$, $8$ 이 이 순서로 한없이 되풀이되는 순환소수가 있다. 하루가 이 수를 기약분수로 고쳤더니 분모가 $27$ 이었다. $a$ 가 한 자리 자연수일 때, $a$ 를 구하는 풀이 과정을 쓰고 답을 구하시오.",
+ "choices": [],
+ "answer": "$1$",
+ "solution": "[1단계] 주어진 수는 $0.\\dot{a}4\\dot{8}$ 이다. $x=0.\\dot{a}4\\dot{8}$ 이라 하면 $1000x-x=100a+48$ 이므로 $x=\\dfrac{100a+48}{999}$ 이다.\n[2단계] $999=27\\times 37$ 이므로 기약분수의 분모가 $27$ 이 되려면 분자 $100a+48$ 이 $37$ 의 배수이고 $3$ 의 배수는 아니어야 한다.\n[3단계] $a=1, 2, \\cdots, 9$ 일 때 $100a+48$ 은 $148, 248, \\cdots, 948$ 이고, 이 가운데 $37$ 의 배수는 $148=37\\times 4$ 뿐이다. $148$ 은 $3$ 의 배수가 아니므로 $x=\\dfrac{148}{999}=\\dfrac{4}{27}$ 이 되어 조건에 맞는다.\n따라서 $a=1$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-20",
+  "problemCode": "J20103-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "3e2f18af05f273fc4f80713c72559be37499f99cabb25e40dacdbb110424559b",
+  "dbContentSha256": "75c904ed189fc38d391e9a164fe2db95463eb8618b6653deb91f987122677018",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "context"
+  ],
+  "before": "순환마디 세 자리의 가운데 숫자가 미지수인 순환소수를 점 표기로 주고, 기약분수의 분모가 37(=999의 약수 가운데 큰 소인수)이 되도록 하는 한 자리 자연수를 구하게 한다. 분자가 27의 배수가 되는 조건으로 푼다.",
+  "after": "순환마디 세 자리의 첫 숫자가 미지수인 순환소수를 「세 숫자가 되풀이된다」는 말로 서술하고(점 표기는 풀이에서 세움), 기약분수의 분모가 27이 되도록 하는 한 자리 자연수를 구하게 한다. 분자가 37의 배수이면서 3의 배수가 아니어야 하는 조건으로 푼다.",
+  "sharedConcept": "순환소수를 분수로 나타내기(999로 나눈 꼴)와 기약분수의 분모 조건",
+  "sharedProcedure": "순환소수를 x로 놓고 1000x−x 로 분수 꼴 세우기 → 999를 소인수분해 → 분모가 주어진 수가 되려면 분자가 약분되어야 할 인수의 배수임을 알기 → 한 자리 자연수를 대입해 유일한 값 찾기 → 실제로 약분해 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내는 방법(10의 거듭제곱 이용)",
+   "기약분수와 약분",
+   "소인수분해와 배수 판정"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A77-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지의 숫자를 포함한 순환소수를 분수로 고친 뒤 분모 조건으로 숫자 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.121,
+   "longestRun": 8,
+   "residualChars": 69,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

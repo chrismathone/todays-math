@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "1c50295d-c0da-4991-968a-fb6318529333",
+ "startedAt": "2026-10-21T18:38:19+0900",
+ "elapsedSec": 38.1,
+ "studentSha256": {
+  "fig-1.png": "5ab8e578bd0884ac72d449d9b7df5ba1c4f996d28016deba28cef9745dce1012",
+  "student.json": "df7d87665f8cc19a7c54c41df1c688ef9bf30b9cf43338391e8da489ee4b8fec"
+ },
+ "promptSha256": "60e1f9695cbaa125a354ac85cba37e73883a1a9d0534c787375c4d04b9c84d74",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"27 cm²\",\n  \"work\": \"직각삼각형 $ABC$에서 $\\\\overline{CH} \\\\perp \\\\overline{AB}$이므로 $\\\\triangle ACH \\\\sim \\\\triangle CBH$이다. 따라서 $\\\\overline{CH}^2 = \\\\overline{AH} \\\\times \\\\overline{BH}$가 성립하여 $6^2 = \\\\overline{AH} \\\\times 4$, 즉 $\\\\overline{AH} = 9\\\\,\\\\mathrm{cm}$이다. 그러므로 색칠한 $\\\\triangle ACH$의 넓이는 $\\\\frac{1}{2} \\\\times \\\\overline{AH} \\\\times \\\\overline{CH} = \\\\frac{1}{2} \\\\times 9 \\\\times 6 = 27\\\\,\\\\mathrm{cm}^2$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "27 cm²",
+  "work": "직각삼각형 $ABC$에서 $\\overline{CH} \\perp \\overline{AB}$이므로 $\\triangle ACH \\sim \\triangle CBH$이다. 따라서 $\\overline{CH}^2 = \\overline{AH} \\times \\overline{BH}$가 성립하여 $6^2 = \\overline{AH} \\times 4$, 즉 $\\overline{AH} = 9\\,\\mathrm{cm}$이다. 그러므로 색칠한 $\\triangle ACH$의 넓이는 $\\frac{1}{2} \\times \\overline{AH} \\times \\overline{CH} = \\frac{1}{2} \\times 9 \\times 6 = 27\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5b4fc0979924c21d914b82f7d2aef74c3ed431a27f3a5ac42b48c5da1eac02b1"
+}

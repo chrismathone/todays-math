@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc5-7249-7362-b2dc-ff4ea92c1252",
+ "startedAt": "2026-10-21T18:23:03+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "5507ae813802a950387e533e3dd9d07ba42b540f0540aeea0a91e142092cbfc5"
+ },
+ "promptSha256": "d7e0e9166d38b93661a502bd60b635b4d83e8243099339fe686595e1be999823",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"주사위의 눈은 1부터 6까지이므로 $3a+b=14$를 만족하는 순서쌍은 $(a,b)=(3,5),(4,2)$이다. 따라서 경우의 수는 2이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "주사위의 눈은 1부터 6까지이므로 $3a+b=14$를 만족하는 순서쌍은 $(a,b)=(3,5),(4,2)$이다. 따라서 경우의 수는 2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b3fedac6ec74cf462756d637ad7bab66d6127f54db9b0634c11d9332c0d5a266"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B10-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7e-b2f7-70f1-b67f-f8265016c283",
+ "startedAt": "2026-10-21T17:05:46+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "d4ea3985925c2a0dff2c6fcacebaba7334056fa017a13f29244b0367fb35ffff"
+ },
+ "promptSha256": "e5fe21f31f4f5f96e8f987aeee7b4b3b0e81fa983758597b0b2e82100a8824d6",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $4x^{2}-4x-1$ ⑵ $-x^{2}+6x-21$\",\"work\":\"⑴ 동류항끼리 더하면 $(-6+10)x^{2}+(8-12)x+(-7+6)=4x^{2}-4x-1$이다.\\n⑵ 빼는 식의 각 항의 부호를 바꾸면 $7x^{2}-11-8x^{2}+6x-10=-x^{2}+6x-21$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $4x^{2}-4x-1$ ⑵ $-x^{2}+6x-21$",
+  "work": "⑴ 동류항끼리 더하면 $(-6+10)x^{2}+(8-12)x+(-7+6)=4x^{2}-4x-1$이다.\n⑵ 빼는 식의 각 항의 부호를 바꾸면 $7x^{2}-11-8x^{2}+6x-10=-x^{2}+6x-21$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9089ca16612da62a43a10b74b73099ae728548b4fc5b6b57f1526928638d33dd"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db4-a9ec-7412-9819-2abe7bc29af4",
+ "startedAt": "2026-10-21T18:04:43+0900",
+ "elapsedSec": 65.6,
+ "studentSha256": {
+  "fig-1.png": "99802be2a19468298fb459a913db22eb792bc32e2cb05f6942995e3710db7893",
+  "student.json": "2fadf6dfcd430f073bb4a673cbc3f807b9d98db2b3beb7fe4759b96e93be480b"
+ },
+ "promptSha256": "0c2e6cde9dd6c4becac5fb084a5d370c3e378da7ba0dfa1d651c6c4fd19bb7da",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"7 cm\",\n  \"work\": \"∠BAF=∠FAD=θ라 하자. AD∥BC이므로 ∠AFB=θ이고, BF=AB=10 cm이다.\\nDE⊥AF와 평행 관계에서 ∠CDE=∠DEC=90°−θ이므로 CE=CD=10 cm이다.\\n따라서 BE=BC−CE=13−10=3 cm이고, EF=BF−BE=10−3=7 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "7 cm",
+  "work": "∠BAF=∠FAD=θ라 하자. AD∥BC이므로 ∠AFB=θ이고, BF=AB=10 cm이다.\nDE⊥AF와 평행 관계에서 ∠CDE=∠DEC=90°−θ이므로 CE=CD=10 cm이다.\n따라서 BE=BC−CE=13−10=3 cm이고, EF=BF−BE=10−3=7 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4644bfa1504d60530ecc555994335268ab37b0790f27297fe77252215a1c3a5a"
+}

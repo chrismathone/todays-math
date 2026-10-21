@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d79-8d00-73d1-9d92-d41c5b2677c9",
+ "startedAt": "2026-10-21T17:00:09+0900",
+ "elapsedSec": 19.4,
+ "studentSha256": {
+  "student.json": "37650a10f148143ac5881a854ada6e10f12b89104cb115cf6e0a1dcf8f94de6b"
+ },
+ "promptSha256": "c024bfd40a10296613aac13d2c6663aa0c125079a8a4c627fac95db3322c2e49",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4\",\"work\":\"각 항을 나누면 $(2a+2b)+(-3a+4b)=-a+6b$이다.\\n$a=-2$, $b=\\\\frac13$을 대입하면 $-(-2)+6\\\\times\\\\frac13=2+2=4$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "각 항을 나누면 $(2a+2b)+(-3a+4b)=-a+6b$이다.\n$a=-2$, $b=\\frac13$을 대입하면 $-(-2)+6\\times\\frac13=2+2=4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5473df57d5d16d6b62fce4fb864a6c61dc45dad22a3ef4ceafc68d8295e2cacf"
+}

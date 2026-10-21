@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B31-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcc-5c67-7172-9c29-6b88c3ee8bbe",
+ "startedAt": "2026-10-21T18:30:36+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "student.json": "96b9adea511cd706188dace0205d3812be739d04864a65596eeb1204d0fa4a7a"
+ },
+ "promptSha256": "1eb7ed8ad5d26a7d9f50f780278d9754704d4b7f146ec0bcf04dc1fd1375e873",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{4}{7}$\",\"work\":\"전체 카드는 7장이고, 자음 P, C, T, R이 적힌 카드는 4장이다. 따라서 구하는 확률은 4/7이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{4}{7}$",
+  "work": "전체 카드는 7장이고, 자음 P, C, T, R이 적힌 카드는 4장이다. 따라서 구하는 확률은 4/7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "207e1f47cbcd8b238580d1695fe3f0d63f954d7c96902791bb9cb3467f398015"
+}

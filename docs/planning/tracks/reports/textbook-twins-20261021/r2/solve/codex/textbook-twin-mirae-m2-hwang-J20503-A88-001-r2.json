@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df0-c3fb-71a1-90ba-14aa722351b8",
+ "startedAt": "2026-10-21T19:10:22+0900",
+ "elapsedSec": 42.3,
+ "studentSha256": {
+  "fig-1.png": "a97bec033ebce08e02345f43f3bd946aa1350493658b7cc12e7f072612a1b166",
+  "student.json": "2267e1c62b1e9c8a51638193f85ce660d08a703d79a8e14924cbfd624e9f6f5d"
+ },
+ "promptSha256": "80c65bf60686c50bf0c41591a0c613db1edb3d94ba78287c72459425e787befc",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"D, O, C가 일직선 위에 있으므로 ∠AOC=180°−76°=104°이다. OA=OC이므로 ∠OAC=∠ACO=38°이고, ∠BAC=28°+38°=66°이다.\\nOA=OB이므로 ∠ABO=28°이다. OB=OC이므로 ∠OBC=∠BCO=x라 하면, 삼각형 ABC에서 66°+(28°+x)+(38°+x)=180°이다.\\n따라서 x=24°이므로 ∠ABC=28°+24°=52°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "D, O, C가 일직선 위에 있으므로 ∠AOC=180°−76°=104°이다. OA=OC이므로 ∠OAC=∠ACO=38°이고, ∠BAC=28°+38°=66°이다.\nOA=OB이므로 ∠ABO=28°이다. OB=OC이므로 ∠OBC=∠BCO=x라 하면, 삼각형 ABC에서 66°+(28°+x)+(38°+x)=180°이다.\n따라서 x=24°이므로 ∠ABC=28°+24°=52°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0b810ae7336ea71d3ab750c3724b7e5a26e6e23ad2b59f80919d91785c5b68d1"
+}

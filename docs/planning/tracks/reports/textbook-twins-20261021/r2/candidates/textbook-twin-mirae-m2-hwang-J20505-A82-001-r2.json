@@ -1,0 +1,155 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 291,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r2",
+ "authorId": "claude-opus-5-5:7fe24f97-0f1d-47dd-b0f4-1c2eaafb4c96",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$에서 변 $AB$ 위의 점 $E$와 꼭짓점 $D$를 선분으로 이었다. $\\angle ADE=40^{\\circ}$, $\\angle ABC=115^{\\circ}$일 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$60^{\\circ}$",
+  "$65^{\\circ}$",
+  "$70^{\\circ}$",
+  "$75^{\\circ}$",
+  "$80^{\\circ}$"
+ ],
+ "answer": "④",
+ "solution": "평행사변형에서 이웃한 두 내각의 크기의 합은 $180^{\\circ}$이므로 $\\angle A=180^{\\circ}-115^{\\circ}=65^{\\circ}$이다.\n$\\triangle AED$에서 세 내각의 크기의 합은 $180^{\\circ}$이므로 $\\angle x=\\angle AED=180^{\\circ}-65^{\\circ}-40^{\\circ}=75^{\\circ}$이다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A82-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A82-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-10",
+  "problemCode": "J20505-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "979b3782bc7d3608ecef72f95585b51712ff786dd62c3c2ce2eb41037efbcbfc",
+  "dbContentSha256": "94b2d77ff4474bb5edc1b34a6fdb3bb3e29dc518d45a1862c1624a2d87470ee4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "94803a374f275c05fb046543feb1b8848a098f0beda5904fa46182ab0e8d5ffe"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "평행사변형의 한 변 위의 점과 반대쪽 꼭짓점을 이어 생긴 삼각형에서, 그 삼각형에 들어 있는 꼭짓점 각을 직접 주지 않고 이웃한 내각의 크기로 주어, 삼각형의 남은 한 각을 구하는 객관식",
+  "after": "점을 다른 변(AB) 위에 두고 다른 꼭짓점(D)과 이어 삼각형 AED를 만들고, 필요한 각 A 대신 이웃한 각 B를 주어 삼각형의 남은 각 ∠AED를 구하는 객관식",
+  "sharedConcept": "평행사변형의 이웃한 두 내각의 크기의 합은 180°, 삼각형의 세 내각의 크기의 합은 180°",
+  "sharedProcedure": "주어진 내각과 이웃한 내각을 180°에서 빼서 구함 → 삼각형의 내각의 합에서 아는 두 각을 뺌 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행사변형의 대각의 크기는 같고 이웃한 두 내각의 크기의 합은 180°이다",
+   "삼각형의 세 내각의 크기의 합은 180°이다"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형의 이웃한 내각과 삼각형의 내각의 합으로 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'angX' ray to 'A' is not covered by a rendered segment",
+     "session": "7f8271a8-9bed-4189-b0c4-cc3af0e713bd",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.143,
+   "longestRun": 11,
+   "residualChars": 66,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

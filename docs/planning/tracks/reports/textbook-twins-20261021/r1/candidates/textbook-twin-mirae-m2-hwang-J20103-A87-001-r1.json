@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 72,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A87-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$0.\\dot{2}$ 와 $0.7\\dot{2}$ 사이에 있는 분수 중에서 분모가 $36$ 이고 유한소수로 나타낼 수 있는 분수는 모두 몇 개인지 구하시오.",
+ "choices": [],
+ "answer": "$2$",
+ "solution": "$0.\\dot{2}=\\dfrac{2}{9}=\\dfrac{8}{36}$, $0.7\\dot{2}=\\dfrac{72-7}{90}=\\dfrac{65}{90}=\\dfrac{13}{18}=\\dfrac{26}{36}$ 이다. $36=2^{2}\\times 3^{2}$ 이므로 유한소수가 되려면 분자가 $9$ 의 배수여야 한다. $8$ 보다 크고 $26$ 보다 작은 $9$ 의 배수는 $9, 18$ 이므로 조건에 맞는 분수는 $\\dfrac{9}{36}, \\dfrac{18}{36}$ 의 $2$ 개이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-9",
+  "problemCode": "J20103-A87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "5982fe62147283d704c8c13009534080fab2da52fabe5552481e6890011fc958",
+  "dbContentSha256": "dd4d270dacfcfc7507c1babfc271ad47a861589d6a4a8d60dc5782b1dfd676c2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "두 순환소수를 같은 분모의 분수로 고친 뒤 그 사이에서 분모의 소인수 3 의 거듭제곱을 약분해 유한소수가 되는 분자를 센다. 분모는 3²×5 꼴이다.",
+  "after": "분모를 2²×3² 꼴로 바꾸어 약분해야 하는 소인수가 3² 하나뿐인 상황으로 하고, 양 끝 순환소수의 자리 구조도 바꾼다.",
+  "sharedConcept": "순환소수의 분수 표현과 유한소수가 되는 분모의 조건",
+  "sharedProcedure": "두 순환소수를 분수로 → 공통 분모로 통분 → 유한소수 조건에서 분자의 배수 조건 → 범위 안의 개수 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "유한소수로 나타낼 수 있는 분수의 조건",
+   "소인수분해"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A87-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 순환소수 사이의 유한소수가 되는 분수의 개수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.38"
+   ],
+   "overlap4": 0.378,
+   "longestRun": 13,
+   "residualChars": 41,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

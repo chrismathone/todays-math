@@ -1,0 +1,156 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 280,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r2",
+ "authorId": "claude-opus-5-5:4c1d62cc-76bd-4038-9143-d543a62d7028",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n삼각형 $ABC$에서 점 $M$은 변 $BC$의 중점이다. 점 $M$에서 두 변 $AB$, $AC$에 내린 수선의 발을 각각 $D$, $E$라 할 때 $\\overline{MD}=\\overline{ME}$이었다. 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$\\angle B=\\angle C$",
+  "$\\overline{BD}=\\overline{DM}$",
+  "$\\overline{BD}=\\overline{CE}$",
+  "$\\angle BMD=\\angle CME$",
+  "$\\triangle DBM\\equiv\\triangle ECM$"
+ ],
+ "answer": "②",
+ "solution": "$\\triangle DBM$과 $\\triangle ECM$은 각각 $\\angle BDM$, $\\angle CEM$이 직각인 직각삼각형이다. 점 $M$이 $\\overline{BC}$의 중점이라 빗변끼리 $\\overline{BM}=\\overline{CM}$이고, 주어진 조건에서 $\\overline{MD}=\\overline{ME}$이므로 $\\triangle DBM\\equiv\\triangle ECM$($\\mathrm{RHS}$ 합동)이다(⑤).\n합동인 두 삼각형의 대응하는 각과 변은 같으므로 $\\angle B=\\angle C$(①), $\\overline{BD}=\\overline{CE}$(③), $\\angle BMD=\\angle CME$(④)가 성립한다.\n②의 $\\overline{BD}$와 $\\overline{DM}$은 한 직각삼각형 $DBM$의 빗변이 아닌 두 변으로, 그 길이가 항상 같다고 할 수 없다.\n따라서 옳지 않은 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A66-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A66-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-1-4",
+  "problemCode": "J20502-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "3e33090c8feed2094bbf7f0511d9da515dd3f632c7a988fb95c09d4cd24e8fe5",
+  "dbContentSha256": "b129eb97a797ee37bd2c4c83f7637d20722f2e20488cee2416ad11eabe2ae797",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "97740275b0ea97d57bcba7aadbb9f779e0e02b667e35387fea053dbad14d9ab9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "representation"
+  ],
+  "before": "한 각의 두 변 위에 각각 직각인 꼭짓점을 둔 두 직각삼각형이 빗변을 함께 쓰는 연 모양 그림에서, 직각 두 개와 빗변이 아닌 한 쌍의 변이 같다는 조건으로 RHS 합동을 찾고 옳지 않은 성질 하나를 고른다(정답은 두 각의 크기를 견준 보기).",
+  "after": "삼각형의 밑변 중점에서 두 변에 내린 수선으로 생기는, 서로 떨어져 있는 두 직각삼각형에서 빗변(중점으로 나뉜 두 선분)과 수선의 길이가 같다는 조건으로 RHS 합동을 찾고 옳지 않은 것 하나를 고른다. 공통변 없이 중점 조건으로 빗변이 같아지고, 정답은 한 삼각형 안의 두 변을 견준 보기다. 조건은 '수선의 발'이라는 말로 주고 각도 수는 쓰지 않는다.",
+  "sharedConcept": "직각삼각형의 RHS 합동과 합동인 도형에서 대응하는 변 · 각의 성질",
+  "sharedProcedure": "두 직각삼각형 찾기 → 빗변이 같은 까닭과 다른 한 변이 같음 확인 → RHS 합동 → 대응변 · 대응각으로 보기 하나씩 판정 → 항상 성립하지는 않는 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "삼각형의 합동 조건",
+   "직각삼각형의 빗변과 RHS · RHA 합동 조건",
+   "합동인 도형의 대응변 · 대응각",
+   "선분의 중점"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A66-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "RHS 합동으로 얻는 성질 가운데 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rD' ray to 'A' is not covered by a rendered segment",
+     "session": "95be1101-1174-49a7-9668-ee97091665f1",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 90,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

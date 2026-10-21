@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1fb4e973-6e4a-40fe-a579-4c208eb844a3",
+ "startedAt": "2026-10-21T17:11:25+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "5507ae813802a950387e533e3dd9d07ba42b540f0540aeea0a91e142092cbfc5"
+ },
+ "promptSha256": "d7e0e9166d38b93661a502bd60b635b4d83e8243099339fe686595e1be999823",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"3a + b = 14이고 b = 14 − 3a, 1 ≤ b ≤ 6이므로 8/3 ≤ a ≤ 13/3, 즉 a = 3 또는 4이다. a = 3이면 b = 5, a = 4이면 b = 2이므로 순서쌍은 (3, 5), (4, 2)로 2가지이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "3a + b = 14이고 b = 14 − 3a, 1 ≤ b ≤ 6이므로 8/3 ≤ a ≤ 13/3, 즉 a = 3 또는 4이다. a = 3이면 b = 5, a = 4이면 b = 2이므로 순서쌍은 (3, 5), (4, 2)로 2가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "027700f09216a98d33dd79eea03817e026f5d23dc6ca2f7a16e7d4477e281b28"
+}

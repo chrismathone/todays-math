@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B38-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-0f0e-73c0-a7f9-8fab0d4f8a99",
+ "startedAt": "2026-10-21T18:28:05+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "fig-1.png": "0ea0093edaa239c6483315b216b1d934cddeb0bb87fbb03d95a555f61db3ee87",
+  "student.json": "bba6eea13e581dec3c0d710e7fe55a73c1bd44467239a3e39abea43eef31e674"
+ },
+ "promptSha256": "6acf7ddc05fe1657be60cf38579a1c1b72e94b8faaf67536e5536e7da30dd68e",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"4의 약수는 1, 2, 4이다.\\n원판 A와 B에서 4의 약수가 나올 확률은 각각 3/6, 3/8이다.\\n따라서 구하는 확률은 (3/6)×(3/8)=3/16이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "4의 약수는 1, 2, 4이다.\n원판 A와 B에서 4의 약수가 나올 확률은 각각 3/6, 3/8이다.\n따라서 구하는 확률은 (3/6)×(3/8)=3/16이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4ddeef7787830bcf2e0056620f431df4da55c09131754b9d6bce0a2b39ae5e28"
+}

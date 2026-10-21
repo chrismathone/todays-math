@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dad-a842-74e2-be43-2baf0afd35a2",
+ "startedAt": "2026-10-21T17:57:04+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "fig-1.png": "6530b483d23ce189dc9718dbc3d9d1afeee5e7cd29446852c4e9d30662a226cf",
+  "student.json": "258d9a049e03e63f9ab7084b940c81ecb05b69e03e93dc5b63c9abe6d63f916d"
+ },
+ "promptSha256": "6b62cbe3bb92307a4300878c0f21d9ab044bfd994a1e21af7e98f40c595a1e23",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"41\",\"work\":\"O가 외심이므로 OA=OB=OC=7 cm이다. 따라서 x=7이다. 삼각형 AOB는 OA=OB인 이등변삼각형이므로 y=∠OAB=∠OBA=34이다. 따라서 x+y=7+34=41이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "41",
+  "work": "O가 외심이므로 OA=OB=OC=7 cm이다. 따라서 x=7이다. 삼각형 AOB는 OA=OB인 이등변삼각형이므로 y=∠OAB=∠OBA=34이다. 따라서 x+y=7+34=41이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ba0b8311f98ac3a628d1a770ea2cc106d36e4cda1798493f10e3865a06f5dfcf"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-faf6-7630-86c5-592d5b7cc9b0",
+ "startedAt": "2026-10-21T17:14:49+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "e24dfdaae80f8922aaaaf79e379d460bc2b27741ac8d69bb6d90e1f66f3efc47"
+ },
+ "promptSha256": "7687a2ce86edf255678c0fd827c68244bbed4e17d49dba5a949c4eecd1023c72",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"두 식을 더하면 4x=-8이므로 x=-2이고, x+y=1에서 y=3이다.\\n3x-ky=9에 대입하면 -6-3k=9이므로 k=-5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "두 식을 더하면 4x=-8이므로 x=-2이고, x+y=1에서 y=3이다.\n3x-ky=9에 대입하면 -6-3k=9이므로 k=-5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "15ba58b40fefcca141feac4609a1834f4928ca3b267626dea2816aaa01685035"
+}

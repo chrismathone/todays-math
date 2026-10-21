@@ -1,0 +1,137 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 383,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r2",
+ "authorId": "claude-opus-5-5:231d6294-64ea-4ada-9d2c-c13bb9da7219",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 ㄱ~ㄹ 가운데 확률을 옳게 나타낸 것만을 있는 대로 고른 것은?\nㄱ. 동전 세 개를 한꺼번에 던질 때, 세 개 모두 뒷면이 나올 확률은 $\\frac{1}{6}$이다.\nㄴ. 주사위 두 개를 함께 던질 때, 두 주사위의 눈이 서로 같을 확률은 $\\frac{1}{6}$이다.\nㄷ. 어떤 사건이 일어나지 않을 확률이 $\\frac{2}{7}$이면 그 사건이 일어날 확률은 $\\frac{2}{5}$이다.\nㄹ. 주사위 두 개를 함께 던질 때, 두 눈을 더한 값이 $1$일 확률은 $0$이다.",
+ "choices": [
+  "ㄱ, ㄴ",
+  "ㄴ, ㄹ",
+  "ㄷ, ㄹ",
+  "ㄱ, ㄴ, ㄹ",
+  "ㄴ, ㄷ, ㄹ"
+ ],
+ "answer": "②",
+ "solution": "ㄱ. 동전 세 개를 던질 때 모든 경우는 $2\\times2\\times2=8$가지이고, 모두 뒷면인 경우는 $1$가지이므로 확률은 $\\frac{1}{8}$이다. (틀림)\nㄴ. 모든 경우는 $6\\times6=36$가지이고, 두 눈이 같은 경우는 $(1,1), (2,2), \\cdots, (6,6)$의 $6$가지이므로 확률은 $\\frac{6}{36}=\\frac{1}{6}$이다. (옳음)\nㄷ. 그 사건이 일어날 확률은 $1-\\frac{2}{7}=\\frac{5}{7}$이다. (틀림)\nㄹ. 두 눈의 합은 가장 작아도 $2$이므로 합이 $1$인 경우는 없다. 절대로 일어나지 않는 사건이므로 확률은 $0$이다. (옳음)\n따라서 옳게 나타낸 것은 ㄴ, ㄹ이고 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-10",
+  "problemCode": "J20903-B27-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "d8c6fdf86829b85028f85663fb214c994cad508a923f78154d81f555f736a099",
+  "dbContentSha256": "7e57aba60f1712be1f35074cd188a3f3a70ad00495ba52df56ac1b355aac9868",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "네 진술(주사위 한 개에서 약수의 눈, 동전 두 개가 모두 앞면, 두 주사위 눈의 합에 대한 반드시 일어나는 사건, 사건이 일어날 확률에서 일어나지 않을 확률 구하기) 가운데 확률이 바른 것의 묶음을 고른다. 바른 것은 둘이다.",
+  "after": "네 진술(동전 세 개가 모두 뒷면, 두 주사위의 눈이 같은 경우, 일어나지 않을 확률에서 일어날 확률을 거꾸로 구하기, 두 눈의 합에 대한 절대로 일어나지 않는 사건) 가운데 확률이 옳은 것의 묶음을 고른다. 원본처럼 동전 여러 개와 주사위 두 개를 던지는 시행을 넣었고, 옳은 것은 둘이다.",
+  "sharedConcept": "확률의 뜻(경우의 수의 비)과 성질(반드시 일어나는 사건 1 · 절대로 일어나지 않는 사건 0 · 일어나지 않을 확률 $1-p$)",
+  "sharedProcedure": "진술마다 모든 경우의 수와 사건의 경우의 수 세기(여러 개를 던지는 시행 포함) → 확률 계산 또는 확률의 성질 적용 → 참·거짓 판정 → 옳은 진술의 묶음 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "경우의 수(곱의 법칙)",
+   "확률의 뜻",
+   "확률의 성질(0과 1)",
+   "어떤 사건이 일어나지 않을 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B27-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "확률의 뜻과 성질 — 여러 진술의 확률이 옳은지 판정하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.145,
+   "longestRun": 9,
+   "residualChars": 155,
+   "params": 5,
+   "numberRetention": 0.6,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

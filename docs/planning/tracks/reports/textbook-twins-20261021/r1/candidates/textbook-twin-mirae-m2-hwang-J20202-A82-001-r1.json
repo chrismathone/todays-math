@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 148,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 일차부등식은?",
+ "choices": [
+  "$6x-3>6x+8$",
+  "$x(x+7)>x^{2}-9$",
+  "$12-9<7$",
+  "$x^{2}+6x\\le 6x+9$",
+  "$x+7=3x$"
+ ],
+ "answer": "②",
+ "solution": "① $6x-3>6x+8$에서 $-11>0$이 되어 $x$가 사라지므로 일차부등식이 아니다.\n② $x(x+7)>x^{2}-9$에서 $x^{2}+7x>x^{2}-9$, $7x+9>0$이므로 일차부등식이다.\n③ $12-9<7$은 $x$가 없는 수의 대소 비교이므로 일차부등식이 아니다.\n④ $x^{2}+6x\\le 6x+9$에서 $x^{2}-9\\le 0$이 되어 이차항이 남으므로 일차부등식이 아니다.\n⑤ $x+7=3x$는 부등식이 아니라 방정식이다.\n따라서 일차부등식은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-9aa6b0628f6acf9f-0-1",
+  "problemCode": "J20202-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "283d62bd61d0ab1e070bc9f0d1e7f5b7e7893cf743924294e7f9129fef58eae6",
+  "dbContentSha256": "ed812642a44cd21bb6d0656f99e16e1d42680f83d6d260e2f4b1f60c9ac1105a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-3_일차부등식의풀이.hwp",
+    "sha256": "b20aa6950689545c26230390b59141bae84024cfca2171f4412498d31439a6c2",
+    "bytes": 110080
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "수만 있는 식·x가 사라지는 식·이차항이 남는 식·0≤0 이 되는 식·곱을 전개하면 일차가 되는 식(마지막)에서 일차부등식 하나를 고름",
+  "after": "x가 사라지는 식·곱을 전개하면 일차가 되는 식(둘째)·수만 있는 식·이차항이 남는 식·등식을 섞고 정답 자리를 옮김",
+  "sharedConcept": "일차부등식의 뜻",
+  "sharedProcedure": "각 보기를 이항·전개해 정리 → x의 차수와 부등호 유무 확인 → 일차부등식 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식과 방정식의 구분",
+   "단항식과 다항식의 곱셈",
+   "이항과 동류항 정리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차부등식 판별(하나 고르기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.059,
+   "longestRun": 5,
+   "residualChars": 54,
+   "params": 6,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

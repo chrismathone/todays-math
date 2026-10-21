@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dac-9f50-75c2-b4d3-5721a6886014",
+ "startedAt": "2026-10-21T17:55:56+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "3bcb11d39461ce0bbde8c70474bdf9536ea80051a70db70661c36ddfa59d2d0b"
+ },
+ "promptSha256": "b9666f003ad4270500b0538a4b62a1d0ce78aca59625abbe8e9505d200fec37e",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"x=2를 대입하면 y=-3×2+2=-4이므로 점 (2, -4)를 지난다. 나머지 점들은 주어진 식을 만족하지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=2를 대입하면 y=-3×2+2=-4이므로 점 (2, -4)를 지난다. 나머지 점들은 주어진 식을 만족하지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f61516a279c00a7ba8e08dfbbae984e9659185900f0c28ce6596fc0bf9293c1f"
+}

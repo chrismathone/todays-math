@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d64-c616-7362-9745-e8473dc5dc8e",
+ "startedAt": "2026-10-21T16:37:27+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "3b38598d81cfc753c75febc169181dc2c9e19e9fd65212c836e1799426f51b88"
+ },
+ "promptSha256": "99a517e63b79ab50913bcc413d537d12a7ef4b430446db4664fcfc0bc44fbfd0",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"77\",\"work\":\"350=2×5²×7이므로 n/350이 유한소수가 되려면 n은 7의 배수여야 한다.\\nn은 11의 배수이기도 하므로 77의 배수이다. 두 자리인 77의 배수는 77뿐이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "77",
+  "work": "350=2×5²×7이므로 n/350이 유한소수가 되려면 n은 7의 배수여야 한다.\nn은 11의 배수이기도 하므로 77의 배수이다. 두 자리인 77의 배수는 77뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "54ce053db35bf27a511e5976d604d4cd34c058b3b1f27297cc54aadbac4aa7fe"
+}

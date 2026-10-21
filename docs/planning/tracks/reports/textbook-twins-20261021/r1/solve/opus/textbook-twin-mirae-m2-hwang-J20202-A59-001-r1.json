@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "69bbb346-58f8-4af1-b224-a82bc88679cc",
+ "startedAt": "2026-10-21T16:27:29+0900",
+ "elapsedSec": 8.7,
+ "studentSha256": {
+  "student.json": "ce63d37b95bbcd66f454359b280729948af0c84154c238144c415aa299badaf4"
+ },
+ "promptSha256": "280d6f3972c69824eb3fb1814079bb47e8d105dd41c455451fc85ba45718c189",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"양변에 10을 곱하면 5(x+3) ≥ 7x − 2\\n5x + 15 ≥ 7x − 2 → 17 ≥ 2x → x ≤ 8.5\\n자연수 x = 1, 2, …, 8 → 합 = 36\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "양변에 10을 곱하면 5(x+3) ≥ 7x − 2\n5x + 15 ≥ 7x − 2 → 17 ≥ 2x → x ≤ 8.5\n자연수 x = 1, 2, …, 8 → 합 = 36",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a84661b0da62836e82f5dccf323edc9f44663395c4db6b984489b4428d71f9ff"
+}

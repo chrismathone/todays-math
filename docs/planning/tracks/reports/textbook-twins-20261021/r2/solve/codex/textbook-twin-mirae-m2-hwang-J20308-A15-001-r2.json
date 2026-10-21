@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-e129-7e00-b263-9b3bc6c74d9c",
+ "startedAt": "2026-10-21T18:58:28+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "1c4a4d0592b83505697dc97f4e10bbb3403119d443675261f1006ea63c2cb7c6"
+ },
+ "promptSha256": "b74dce5d600688ca404c569e5cd3656a06b97bb91137ed3a6e1dd0b93028a372",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"갈 때 걸은 거리를 $x\\\\,\\\\mathrm{km}$라 하면 돌아온 거리는 $(x-2)\\\\,\\\\mathrm{km}$이다.\\n전체 시간은 $\\\\frac{x}{2}+\\\\frac{x-2}{6}=4$이므로 $3x+x-2=24$이다.\\n따라서 $x=\\\\frac{13}{2}$이므로 갈 때 걸은 거리는 $\\\\frac{13}{2}\\\\,\\\\mathrm{km}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "갈 때 걸은 거리를 $x\\,\\mathrm{km}$라 하면 돌아온 거리는 $(x-2)\\,\\mathrm{km}$이다.\n전체 시간은 $\\frac{x}{2}+\\frac{x-2}{6}=4$이므로 $3x+x-2=24$이다.\n따라서 $x=\\frac{13}{2}$이므로 갈 때 걸은 거리는 $\\frac{13}{2}\\,\\mathrm{km}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "272d27afed5d9edf580562fa11ddd59c7fe08965f4f68e9910ba4b6cecba758f"
+}

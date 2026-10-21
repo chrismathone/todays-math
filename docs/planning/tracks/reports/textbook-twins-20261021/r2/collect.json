@@ -1,0 +1,8921 @@
+{
+ "tally": {
+  "통과": 112,
+  "보류 — 너무 닮음": 42,
+  "보류 — 검수": 107,
+  "보류 — 수학": 27,
+  "보류 — 답 표기(값은 같음)": 5,
+  "보류 — 형식": 2,
+  "보류 — 그림": 3
+ },
+ "candidates": 293,
+ "earlierHolds": 5,
+ "loadable": 0,
+ "rows": [
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r2",
+   "problemCode": "J20108-A52-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "4",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "4",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r2",
+   "problemCode": "J20108-A53-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r2",
+   "problemCode": "J20108-A54-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A55-001-r2",
+   "problemCode": "J20108-A55-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "상투 말을 걷은 글이 30자",
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$15a^{2}+10ab$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$15a^{2}+10ab$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A56-001-r2",
+   "problemCode": "J20108-A56-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r2",
+   "problemCode": "J20108-A57-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "harder",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A58-001-r2",
+   "problemCode": "J20108-A58-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 10개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $3b-5$ ⑵ $\\frac{20a}{b}-28+\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\frac{5}{2}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $3b-5$ ⑵ $\\frac{20a}{b}-28+\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\frac{5}{2}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": [
+      "⑵: $5a^2$, $10b^2$ 항이 $ab$로 나누어떨어지지 않아 결과에 분수식($\\frac{20a}{b}$, $\\frac{40b}{a}$)이 남는다. 중2 다항식 범위로는 어색하므로 원문의 오식(예: $5a^2b$, $10ab^2$ 등)일 가능성이 있다."
+     ]
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "harder",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A59-001-r2",
+   "problemCode": "J20108-A59-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $9y^2-29y+27$ ⑵ $-4a^2+11ab$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $9y^{2}-29y+27$ ⑵ $-4a^{2}+11ab$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A60-001-r2",
+   "problemCode": "J20108-A60-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "4",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "4",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A61-001-r2",
+   "problemCode": "J20108-A61-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $19b^2-38b$ ⑵ $6p^2-51pq$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $19b^2-38b$ ⑵ $6p^2-51pq$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r2",
+   "problemCode": "J20108-A93-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "상투 말을 걷은 글이 38자",
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$A=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r2",
+   "problemCode": "J20108-A98-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$4ab+6$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$4ab+6$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r2",
+   "problemCode": "J20108-A99-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r2",
+   "problemCode": "J20107-A66-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A68-001-r2",
+   "problemCode": "J20107-A68-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r2",
+   "problemCode": "J20107-A69-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A70-001-r2",
+   "problemCode": "J20107-A70-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r2",
+   "problemCode": "J20107-A71-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A72-001-r2",
+   "problemCode": "J20107-A72-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $-2x+14y$ ⑵ $-2a-2b$ ⑶ $x-2y-5$ ⑷ $5a+b-30$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $-2x+14y$ ⑵ $-2a-2b$ ⑶ $x-2y-5$ ⑷ $5a+b-30$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A73-001-r2",
+   "problemCode": "J20107-A73-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $8y^{2}+y+3$ ⑵ $7b^{2}+14b-17$ ⑶ $20y^{2}-3y+6$ ⑷ $5b^{2}+8b-14$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $8y^{2}+y+3$ ⑵ $7b^{2}+14b-17$ ⑶ $20y^{2}-3y+6$ ⑷ $5b^{2}+8b-14$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r2",
+   "problemCode": "J20107-A74-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$6x^{2}+2x-1$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$6x^{2}+2x-1$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r2",
+   "problemCode": "J20107-A75-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$10x-4y-1$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$10x-4y-1$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+   "problemCode": "J20107-A76-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$16x^{2}-21x+32$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$16x^{2}-21x+32$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+   "problemCode": "J20107-B09-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B10-001-r2",
+   "problemCode": "J20107-B10-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $4x^{2}-4x-1$ ⑵ $-x^{2}+6x-21$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $4x^{2}-4x-1$ ⑵ $-x^{2}+6x-21$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r2",
+   "problemCode": "J20106-A59-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r2",
+   "problemCode": "J20106-A61-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A63-001-r2",
+   "problemCode": "J20106-A63-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A65-001-r2",
+   "problemCode": "J20106-A65-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $3b^{5}$ ⑵ $56x$ ⑶ $-\\frac{a^{6}}{9b^{6}}$ ⑷ $-\\frac{a^{9}}{8b^{3}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $3b^{5}$ ⑵ $56x$ ⑶ $-\\frac{a^{6}}{9b^{6}}$ ⑷ $-\\frac{a^{9}}{8b^{3}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A98-001-r2",
+   "problemCode": "J20106-A98-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 6개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $3a^{6}b^{4}$ ⑵ $28x^{9}y^{8}$ ⑶ $112a^{7}b^{6}$ ⑷ $-16x^{9}y^{14}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $3a^{6}b^{4}$ ⑵ $28x^{9}y^{8}$ ⑶ $112a^{7}b^{6}$ ⑷ $-16x^{9}y^{14}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r2",
+   "problemCode": "J20106-B18-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$9x^{2}y$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$9x^{2}y$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A64-001-r2",
+   "problemCode": "J20102-A64-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A66-001-r2",
+   "problemCode": "J20102-A66-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "4장",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "4장",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A87-001-r2",
+   "problemCode": "J20102-A87-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "12",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "12",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A88-001-r2",
+   "problemCode": "J20102-A88-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 보기 ③ ≠ ③⑤(③, ⑤)",
+    "codex 문항 지적: ['단일 정답형이지만 ⑤도 같은 수를 나타낸다. 의도한 정답을 ③만으로 만들려면 ⑤를 수정하거나, 반복이 처음 시작되는 자리부터 표기한다는 조건이 필요하다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③, ⑤",
+     "verdict": "different",
+     "why": "보기 ③ ≠ ③⑤",
+     "issues": [
+      "단일 정답형이지만 ⑤도 같은 수를 나타낸다. 의도한 정답을 ③만으로 만들려면 ⑤를 수정하거나, 반복이 처음 시작되는 자리부터 표기한다는 조건이 필요하다."
+     ]
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A57-001-r2",
+   "problemCode": "J20103-A57-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 보기 ② ≠ ②⑤(②, ⑤)",
+    "codex 문항 지적: ['단일 정답을 요구하지만 ②와 ⑤가 모두 조건을 만족한다.', '순환마디가 138이라면 통상 1과 8 위에만 점을 찍는데, 문제에는 1, 3, 8 모두에 점이 있다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②, ⑤",
+     "verdict": "different",
+     "why": "보기 ② ≠ ②⑤",
+     "issues": [
+      "단일 정답을 요구하지만 ②와 ⑤가 모두 조건을 만족한다.",
+      "순환마디가 138이라면 통상 1과 8 위에만 점을 찍는데, 문제에는 1, 3, 8 모두에 점이 있다."
+     ]
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A77-001-r2",
+   "problemCode": "J20103-A77-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "1",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "1",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A89-001-r2",
+   "problemCode": "J20103-A89-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B03-001-r2",
+   "problemCode": "J20105-B03-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B07-001-r2",
+   "problemCode": "J20105-B07-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B11-001-r2",
+   "problemCode": "J20105-B11-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$p=5$, $q=4$, $r=3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "p=5, q=4, r=3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+   "problemCode": "J20105-B12-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "31",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "31",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B13-001-r2",
+   "problemCode": "J20105-B13-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $3^{14}$ ⑵ $c^{25}$ ⑶ $a^{18}$ ⑷ $x^{9}y^{18}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $3^{14}$ ⑵ $c^{25}$ ⑶ $a^{18}$ ⑷ $x^{9}y^{18}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r2",
+   "problemCode": "J20105-B15-001",
+   "route": "author",
+   "status": "보류 — 답 표기(값은 같음)",
+   "reasons": [
+    "opus: 단위가 한쪽에만 — 값은 같다($5^{11}$)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$5^{11}$개",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$5^{11}$",
+     "verdict": "hold",
+     "why": "단위가 한쪽에만 — 값은 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B17-001-r2",
+   "problemCode": "J20105-B17-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $10^{108}$ ⑵ $m^{110}$ ⑶ $p^{116}$ ⑷ $m^{130}n^{126}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $10^{108}$ ⑵ $m^{110}$ ⑶ $p^{116}$ ⑷ $m^{130}n^{126}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B18-001-r2",
+   "problemCode": "J20105-B18-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\frac{1}{7^{7}}$ ⑵ $m^{9}$ ⑶ $t$ ⑷ $\\frac{1}{k^{5}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $\\frac{1}{7^{7}}$ ⑵ $m^{9}$ ⑶ $t$ ⑷ $\\frac{1}{k^{5}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-B01-001-r2",
+   "problemCode": "J20108-B01-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{5}{2}a+b$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$\\frac{5}{2}a+b$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A77-001-r2",
+   "problemCode": "J20107-A77-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$9x^{2}-22x-3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$9x^{2}-22x-3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+   "problemCode": "J20107-B18-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$9x-y+19$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$9x-y+19$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A60-001-r2",
+   "problemCode": "J20106-A60-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r2",
+   "problemCode": "J20106-A62-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A64-001-r2",
+   "problemCode": "J20106-A64-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "상투 말을 걷은 글이 29자",
+    "원본 수 3개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$18x^{6}y^{7}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$18x^{6}y^{7}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r2",
+   "problemCode": "J20106-A66-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$-30a^{3}b^{5}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$-30a^{3}b^{5}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A93-001-r2",
+   "problemCode": "J20106-A93-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r2",
+   "problemCode": "J20106-A99-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\frac{4b}{a^{4}}$ ⑷ $\\frac{y^{2}}{36x^{2}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\frac{4b}{a^{4}}$ ⑷ $\\frac{y^{2}}{36x^{2}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r2",
+   "problemCode": "J20106-B19-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B21-001-r2",
+   "problemCode": "J20106-B21-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{25}{2}\\pi x^{5}y^{4}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$\\frac{25}{2}\\pi x^{5}y^{4}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r2",
+   "problemCode": "J20102-A59-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A61-001-r2",
+   "problemCode": "J20102-A61-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A62-001-r2",
+   "problemCode": "J20102-A62-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A63-001-r2",
+   "problemCode": "J20102-A63-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r2",
+   "problemCode": "J20102-A65-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "27",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "27",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A81-001-r2",
+   "problemCode": "J20102-A81-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A86-001-r2",
+   "problemCode": "J20102-A86-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r2",
+   "problemCode": "J20103-A58-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 8개 가운데 75% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r2",
+   "problemCode": "J20103-A59-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r2",
+   "problemCode": "J20103-A60-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A82-001-r2",
+   "problemCode": "J20103-A82-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A83-001-r2",
+   "problemCode": "J20103-A83-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "9",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "9",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A88-001-r2",
+   "problemCode": "J20103-A88-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$1.08\\dot{3}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$1.08\\dot{3}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r2",
+   "problemCode": "J20103-A90-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r2",
+   "problemCode": "J20101-A73-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A74-001-r2",
+   "problemCode": "J20101-A74-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r2",
+   "problemCode": "J20101-A75-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A76-001-r2",
+   "problemCode": "J20101-A76-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "37",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "37",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r2",
+   "problemCode": "J20101-A77-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "66",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "66",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B20-001-r2",
+   "problemCode": "J20105-B20-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $64a^{18}$ ⑵ $-1000x^{24}y^{27}$ ⑶ $\\frac{b^{20}}{81}$ ⑷ $\\frac{a^{30}}{27b^{27}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $64a^{18}$ ⑵ $-1000x^{24}y^{27}$ ⑶ $\\frac{b^{20}}{81}$ ⑷ $\\frac{a^{30}}{27b^{27}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B66-001-r2",
+   "problemCode": "J20105-B66-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $10^{22}$ ⑵ $m^{26}$ ⑶ $k^{35}$ ⑷ $p^{25}q^{24}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $10^{22}$ ⑵ $m^{26}$ ⑶ $k^{35}$ ⑷ $p^{25}q^{24}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "different",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B67-001-r2",
+   "problemCode": "J20105-B67-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\frac{1}{6^{6}}$ ⑵ $b^{3}$ ⑶ $m^{6}$ ⑷ $\\frac{1}{y^{3}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $\\frac{1}{6^{6}}$ ⑵ $b^{3}$ ⑶ $m^{6}$ ⑷ $\\frac{1}{y^{3}}$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r2",
+   "problemCode": "J20105-B69-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A48-001-r2",
+   "problemCode": "J20201-A48-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": false,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A52-001-r2",
+   "problemCode": "J20201-A52-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\frac{x}{6}+9\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\le 18000$ ⑷ $x+(x+18)<50$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $\\frac{x}{6}+9\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\le 18000$ ⑷ $x+(x+18)<50$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A53-001-r2",
+   "problemCode": "J20201-A53-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 9개 가운데 89% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ✕ ⑻ ◯",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ✕ ⑻ ◯",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r2",
+   "problemCode": "J20201-A54-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 4, 5 (2개) ⑵ 4, 5, 6 (3개) ⑶ 7 (1개) ⑷ 6, 7 (2개)",
+     "verdict": "different",
+     "why": "소문항 ⑴⑵⑶⑷ 다르다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ 4, 5 ⑵ 4, 5, 6 ⑶ 7 ⑷ 6, 7",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r2",
+   "problemCode": "J20201-A87-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "①, ④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①, ④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r2",
+   "problemCode": "J20201-A89-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": false,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+   "problemCode": "J20201-A90-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A91-001-r2",
+   "problemCode": "J20201-A91-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $a\\ge b$ ⑵ $a>b$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ $a \\ge b$ ⑵ $a > b$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+   "problemCode": "J20201-A92-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A40-001-r2",
+   "problemCode": "J20203-A40-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "-3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "-3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r2",
+   "problemCode": "J20202-A58-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2",
+   "problemCode": "J20106-B20-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$5x^3y^3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$5x^3y^3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A78-001-r2",
+   "problemCode": "J20101-A78-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "33",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "33",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r2",
+   "problemCode": "J20101-B18-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "33",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "33",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r2",
+   "problemCode": "J20105-B09-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "상투 말을 걷은 글이 34자",
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "harder",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r2",
+   "problemCode": "J20105-B16-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$2^{10}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$2^{10}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B62-001-r2",
+   "problemCode": "J20105-B62-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(64 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "64 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "64 cm^2",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B68-001-r2",
+   "problemCode": "J20105-B68-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B70-001-r2",
+   "problemCode": "J20105-B70-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$m=3$, $n=6$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "m=3, n=6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A49-001-r2",
+   "problemCode": "J20201-A49-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "①, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A88-001-r2",
+   "problemCode": "J20201-A88-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+   "problemCode": "J20202-A64-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A95-001-r2",
+   "problemCode": "J20202-A95-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "different",
+    "difficulty": "harder",
+    "questionTypeSame": false,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r2",
+   "problemCode": "J20202-A96-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "opus 문항 지적: ['수직선의 왼쪽 화살표는 해를 나타내는 것이 아니라 수직선 자체의 방향 표시로 보았다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": [
+      "수직선의 왼쪽 화살표는 해를 나타내는 것이 아니라 수직선 자체의 방향 표시로 보았다."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A53-001-r2",
+   "problemCode": "J20301-A53-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "①, ③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①, ③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r2",
+   "problemCode": "J20301-A54-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A55-001-r2",
+   "problemCode": "J20301-A55-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r2",
+   "problemCode": "J20301-A58-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "different",
+    "difficulty": "harder",
+    "questionTypeSame": false,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+   "problemCode": "J20301-A78-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+   "problemCode": "J20301-A79-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+   "problemCode": "J20301-A80-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r2",
+   "problemCode": "J20303-A34-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2",
+   "problemCode": "J20504-A81-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "16°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "16°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-B23-001-r2",
+   "problemCode": "J20504-B23-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "30 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "30 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r2",
+   "problemCode": "J20705-A51-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r2",
+   "problemCode": "J20705-A53-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "4 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "4 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r2",
+   "problemCode": "J20705-A56-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(63 cm²)",
+    "opus: 다르다(63 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "63 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "63 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r2",
+   "problemCode": "J20705-A79-001",
+   "route": "author",
+   "status": "보류 — 답 표기(값은 같음)",
+   "reasons": [
+    "codex: 단위가 한쪽에만 — 값은 같다(14 cm)",
+    "opus 문항 지적: ['그림에서 x, y 라벨이 어느 선분을 가리키는지 분명하지 않다. x는 AG 근처에 있지만 선분 AG 위가 아니라 삼각형 AGQ 안쪽에 있고, y는 GQ 아래 사다리꼴 안에 있다. 그래서 x = AG, y = GQ로 보고 풀었다.', 'x + y의 단위가 cm이므로 답을 14 cm로 쓸 수도 있다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "14 cm",
+     "verdict": "hold",
+     "why": "단위가 한쪽에만 — 값은 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "14",
+     "verdict": "match",
+     "why": "같다",
+     "issues": [
+      "그림에서 x, y 라벨이 어느 선분을 가리키는지 분명하지 않다. x는 AG 근처에 있지만 선분 AG 위가 아니라 삼각형 AGQ 안쪽에 있고, y는 GQ 아래 사다리꼴 안에 있다. 그래서 x = AG, y = GQ로 보고 풀었다.",
+      "x + y의 단위가 cm이므로 답을 14 cm로 쓸 수도 있다."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r2",
+   "problemCode": "J20801-A57-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r2",
+   "problemCode": "J20802-A36-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "opus 문항 지적: ['점 H는 QT의 길이를 구하는 데 필요하지 않은 정보이다(이등변삼각형이므로 H는 QS의 중점일 뿐이다).']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{289}{30}\\,\\mathrm{cm}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "$\\frac{289}{30}$ cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": [
+      "점 H는 QT의 길이를 구하는 데 필요하지 않은 정보이다(이등변삼각형이므로 H는 QS의 중점일 뿐이다)."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r2",
+   "problemCode": "J20901-A47-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A51-001-r2",
+   "problemCode": "J20901-A51-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r2",
+   "problemCode": "J20901-A55-001",
+   "route": "author",
+   "status": "보류 — 답 표기(값은 같음)",
+   "reasons": [
+    "codex: 단위가 한쪽에만 — 값은 같다(7가지)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "7가지",
+     "verdict": "hold",
+     "why": "단위가 한쪽에만 — 값은 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "7",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A31-001-r2",
+   "problemCode": "J20203-A31-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A32-001-r2",
+   "problemCode": "J20203-A32-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A41-001-r2",
+   "problemCode": "J20203-A41-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 4개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "7",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "7",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A43-001-r2",
+   "problemCode": "J20203-A43-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 3개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$a=-5$",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "-5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+   "problemCode": "J20202-A57-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r2",
+   "problemCode": "J20202-A59-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A60-001-r2",
+   "problemCode": "J20202-A60-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "상투 말을 걷은 글이 33자",
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "11",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "11",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A61-001-r2",
+   "problemCode": "J20202-A61-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r2",
+   "problemCode": "J20202-A62-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r2",
+   "problemCode": "J20202-A81-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 9개 가운데 67% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r2",
+   "problemCode": "J20202-A82-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r2",
+   "problemCode": "J20202-A97-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A20-001-r2",
+   "problemCode": "J20205-A20-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "23명",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "23명",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r2",
+   "problemCode": "J20204-A19-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "6년 후",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "6년 후",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A57-001-r2",
+   "problemCode": "J20301-A57-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $3x+4y=31$ ⑵ $2x+3y=23$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ $3x + 4y = 31$, ⑵ $2x + 3y = 23$",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r2",
+   "problemCode": "J20301-A77-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$(-8, -4)$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "(-8, -4)",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r2",
+   "problemCode": "J20303-A28-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r2",
+   "problemCode": "J20303-A29-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$x=8, y=-3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$x=8, y=-3$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r2",
+   "problemCode": "J20302-A25-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A26-001-r2",
+   "problemCode": "J20302-A26-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "10",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "10",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r2",
+   "problemCode": "J20302-A28-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리",
+     "verdict": "different",
+     "why": "소문항 ⑵ 다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리",
+     "verdict": "different",
+     "why": "소문항 ⑵ 다르다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r2",
+   "problemCode": "J20302-A37-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r2",
+   "problemCode": "J20307-A16-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A80-001-r2",
+   "problemCode": "J20504-A80-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r2",
+   "problemCode": "J20504-A82-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A83-001-r2",
+   "problemCode": "J20504-A83-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A85-001-r2",
+   "problemCode": "J20504-A85-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "30 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "30 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A86-001-r2",
+   "problemCode": "J20504-A86-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 소문항 ⑴⑵ 다르다(⑴ x=28, y=37 (각도: 28°, 37°) ⑵ x=4, y=27 (길이: 4 cm, 각도: 27°))"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ x=28, y=37 (각도: 28°, 37°) ⑵ x=4, y=27 (길이: 4 cm, 각도: 27°)",
+     "verdict": "different",
+     "why": "소문항 ⑴⑵ 다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ x = 28, y = 37 ⑵ x = 4, y = 27",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A82-001-r2",
+   "problemCode": "J20602-A82-001",
+   "route": "author",
+   "status": "보류 — 답 표기(값은 같음)",
+   "reasons": [
+    "codex: 단위가 한쪽에만 — 값은 같다(⑴ 4 cm ⑵ 5 cm)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 4 cm ⑵ 5 cm",
+     "verdict": "hold",
+     "why": "단위가 한쪽에만 — 값은 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 4, ⑵ 5",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A39-001-r2",
+   "problemCode": "J20703-A39-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "4.8 cm",
+     "verdict": "match",
+     "why": "같은 값",
+     "issues": []
+    },
+    "opus": {
+     "answer": "24/5 cm",
+     "verdict": "match",
+     "why": "같은 값",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A44-001-r2",
+   "problemCode": "J20802-A44-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "17 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "17 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r2",
+   "problemCode": "J20902-A44-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "opus 문항 지적: [\"첫 번째 공을 다시 넣는지가 명시되어 있지 않다. '이어서 하나 더 꺼내'는 꺼낸 공을 다시 넣지 않는다는 뜻으로 보았다. 다시 넣는다면 5 + 5 = 10가지가 되어 답이 ⑤가 된다.\"]"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": [
+      "첫 번째 공을 다시 넣는지가 명시되어 있지 않다. '이어서 하나 더 꺼내'는 꺼낸 공을 다시 넣지 않는다는 뜻으로 보았다. 다시 넣는다면 5 + 5 = 10가지가 되어 답이 ⑤가 된다."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B22-001-r2",
+   "problemCode": "J20903-B22-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r2",
+   "problemCode": "J20903-B24-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r2",
+   "problemCode": "J20903-B25-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B26-001-r2",
+   "problemCode": "J20903-B26-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 7개 가운데 86% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B28-001-r2",
+   "problemCode": "J20903-B28-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "opus": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B33-001-r2",
+   "problemCode": "J20903-B33-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 3개 가운데 67% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 0 ⑵ 1",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "opus": {
+     "answer": "⑴ 0 ⑵ 1",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A34-001-r2",
+   "problemCode": "J20302-A34-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r2",
+   "problemCode": "J20302-A35-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r2",
+   "problemCode": "J20304-A31-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A32-001-r2",
+   "problemCode": "J20304-A32-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r2",
+   "problemCode": "J20304-A33-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A35-001-r2",
+   "problemCode": "J20304-A35-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다($a=\\frac{5}{3},\\quad b=\\frac{2}{3}$)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$a=\\frac{5}{3},\\quad b=\\frac{2}{3}$",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$a = \\frac{5}{3}$, $b = \\frac{2}{3}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r2",
+   "problemCode": "J20304-A48-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r2",
+   "problemCode": "J20304-A51-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r2",
+   "problemCode": "J20306-A17-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 8개 가운데 62% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r2",
+   "problemCode": "J20306-A18-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "19",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "19",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r2",
+   "problemCode": "J20306-A27-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r2",
+   "problemCode": "J20308-A15-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r2",
+   "problemCode": "J20308-A22-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(8 km/h)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "8 km/h",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "시속 8 km",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A18-001-r2",
+   "problemCode": "J20305-A18-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "-10",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "-10",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r2",
+   "problemCode": "J20305-A27-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "-9",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "-9",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r2",
+   "problemCode": "J20408-A21-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A22-001-r2",
+   "problemCode": "J20408-A22-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "54",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "54",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r2",
+   "problemCode": "J20408-A51-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r2",
+   "problemCode": "J20408-A52-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A80-001-r2",
+   "problemCode": "J20408-A80-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 3개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A89-001-r2",
+   "problemCode": "J20408-A89-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A13-001-r2",
+   "problemCode": "J20403-A13-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "harder",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A14-001-r2",
+   "problemCode": "J20403-A14-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r2",
+   "problemCode": "J20403-A29-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A19-001-r2",
+   "problemCode": "J20409-A19-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "-3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "-3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A54-001-r2",
+   "problemCode": "J20409-A54-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다($k=6$)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$k=6$",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r2",
+   "problemCode": "J20409-A55-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A56-001-r2",
+   "problemCode": "J20409-A56-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "3",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A64-001-r2",
+   "problemCode": "J20409-A64-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r2",
+   "problemCode": "J20409-A76-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "gemini 문항 지적: [\"문제 본문에서는 '두 직선과 y축이 만들어 내는 삼각형'이라고 하였으나, 그림의 색칠된 영역은 제3사분면의 교점(-4, -2)까지 칠해지지 않고 x축 위쪽만 채색되어 꼭짓점이 (0, 6), (-3, 0), (-2, 0), (0, 2)인 사각형(넓이 7)으로 표시되어 있는 그림과 글의 불일치가 있습니다.\"]"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "8",
+     "verdict": "match",
+     "why": "같다",
+     "issues": [
+      "문제 본문에서는 '두 직선과 y축이 만들어 내는 삼각형'이라고 하였으나, 그림의 색칠된 영역은 제3사분면의 교점(-4, -2)까지 칠해지지 않고 x축 위쪽만 채색되어 꼭짓점이 (0, 6), (-3, 0), (-2, 0), (0, 2)인 사각형(넓이 7)으로 표시되어 있는 그림과 글의 불일치가 있습니다."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r2",
+   "problemCode": "J20409-A77-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "20",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "20",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r2",
+   "problemCode": "J20409-A88-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "6",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r2",
+   "problemCode": "J20402-A12-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A49-001-r2",
+   "problemCode": "J20402-A49-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "12",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "12",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A50-001-r2",
+   "problemCode": "J20402-A50-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A51-001-r2",
+   "problemCode": "J20402-A51-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 6개 가운데 83% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r2",
+   "problemCode": "J20402-A52-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A53-001-r2",
+   "problemCode": "J20402-A53-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r2",
+   "problemCode": "J20402-A77-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A78-001-r2",
+   "problemCode": "J20402-A78-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r2",
+   "problemCode": "J20402-A80-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A88-001-r2",
+   "problemCode": "J20402-A88-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A74-001-r2",
+   "problemCode": "J20404-A74-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "글 겹침 0.50",
+    "원본 수 4개 가운데 100% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r2",
+   "problemCode": "J20405-A42-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "①",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r2",
+   "problemCode": "J20405-A43-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A27-001-r2",
+   "problemCode": "J20407-A27-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "24 kg",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "24 kg",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": false,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r2",
+   "problemCode": "J20406-A17-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r2",
+   "problemCode": "J20401-A57-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r2",
+   "problemCode": "J20401-A78-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r2",
+   "problemCode": "J20401-A84-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "harder",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r2",
+   "problemCode": "J20503-A63-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r2",
+   "problemCode": "J20501-A65-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r2",
+   "problemCode": "J20501-A66-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A91-001-r2",
+   "problemCode": "J20501-A91-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r2",
+   "problemCode": "J20507-A65-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "마름모, 44 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "마름모, 44 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r2",
+   "problemCode": "J20505-B17-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B12-001-r2",
+   "problemCode": "J20602-B12-001",
+   "route": "author",
+   "status": "보류 — 답 표기(값은 같음)",
+   "reasons": [
+    "codex: 단위가 한쪽에만 — 값은 같다(⑴ 25 cm ⑵ 12 cm)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 25 cm ⑵ 12 cm",
+     "verdict": "hold",
+     "why": "단위가 한쪽에만 — 값은 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 25 ⑵ 12",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r2",
+   "problemCode": "J20701-A47-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A19-001-r2",
+   "problemCode": "J20205-A19-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r2",
+   "problemCode": "J20304-A30-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A81-001-r2",
+   "problemCode": "J20402-A81-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "30",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "30",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r2",
+   "problemCode": "J20404-A73-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r2",
+   "problemCode": "J20405-A13-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A45-001-r2",
+   "problemCode": "J20405-A45-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "-5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "-5",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r2",
+   "problemCode": "J20407-A36-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "7 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "7 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r2",
+   "problemCode": "J20406-A16-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다($y=-4x+22$ ($0\\le x\\le 3$), 1 km)",
+    "gemini: 다르다($y = -4x + 22$, $1\\,\\mathrm{km}$)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$y=-4x+22$ ($0\\le x\\le 3$), 1 km",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$y = -4x + 22$, $1\\,\\mathrm{km}$",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r2",
+   "problemCode": "J20406-A24-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r2",
+   "problemCode": "J20503-A15-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r2",
+   "problemCode": "J20503-A64-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r2",
+   "problemCode": "J20503-A65-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "41",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "41",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r2",
+   "problemCode": "J20503-A88-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r2",
+   "problemCode": "J20501-A64-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A67-001-r2",
+   "problemCode": "J20501-A67-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "32°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "32°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r2",
+   "problemCode": "J20501-A68-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "7 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "7 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A69-001-r2",
+   "problemCode": "J20501-A69-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "gemini 문항 지적: ['그림에 $x\\\\text{ cm}$로 단위가 이미 표기되어 있어 $x$의 값 자체는 단위 없는 수(7, 5)입니다. 단위를 포함하는 형식을 요구하는 경우에는 ⑴ 7 cm ⑵ 5 cm입니다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 7 ⑵ 5",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 7 ⑵ 5",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": [
+      "그림에 $x\\text{ cm}$로 단위가 이미 표기되어 있어 $x$의 값 자체는 단위 없는 수(7, 5)입니다. 단위를 포함하는 형식을 요구하는 경우에는 ⑴ 7 cm ⑵ 5 cm입니다."
+     ]
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r2",
+   "problemCode": "J20502-A58-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "30°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "30°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r2",
+   "problemCode": "J20502-A59-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A62-001-r2",
+   "problemCode": "J20502-A62-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 소문항 ⑴ 다르다(⑴ $\\triangle ABC\\equiv\\triangle FDE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같음) ⑵ 5 cm)",
+    "gemini: 소문항 ⑴ 다르다(⑴ $\\triangle \\mathrm{ABC} \\equiv \\triangle \\mathrm{FDE}$ (RHA 합동) ⑵ 5 cm)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\triangle ABC\\equiv\\triangle FDE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같음) ⑵ 5 cm",
+     "verdict": "different",
+     "why": "소문항 ⑴ 다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ $\\triangle \\mathrm{ABC} \\equiv \\triangle \\mathrm{FDE}$ (RHA 합동) ⑵ 5 cm",
+     "verdict": "different",
+     "why": "소문항 ⑴ 다르다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r2",
+   "problemCode": "J20502-A63-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 소문항 ⑴ 다르다(⑴ 꼭 포개어진다. $\\triangle ABC\\equiv\\triangle FED$ (RHS 합동) ⑵ 16 cm)",
+    "gemini: 소문항 ⑴ 다르다(⑴ 포개어진다, $\\triangle ABC \\equiv \\triangle FED$, RHS 합동 ⑵ 16 cm)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 꼭 포개어진다. $\\triangle ABC\\equiv\\triangle FED$ (RHS 합동) ⑵ 16 cm",
+     "verdict": "different",
+     "why": "소문항 ⑴ 다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 포개어진다, $\\triangle ABC \\equiv \\triangle FED$, RHS 합동 ⑵ 16 cm",
+     "verdict": "different",
+     "why": "소문항 ⑴ 다르다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A64-001-r2",
+   "problemCode": "J20502-A64-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(32 cm²)",
+    "gemini: 다르다(32 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "32 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "32 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r2",
+   "problemCode": "J20502-A66-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r2",
+   "problemCode": "J20502-A67-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "52°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "52°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A68-001-r2",
+   "problemCode": "J20502-A68-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(10 cm²)",
+    "gemini: 다르다(10 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "10 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "10 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A15-001-r2",
+   "problemCode": "J20507-A15-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A16-001-r2",
+   "problemCode": "J20507-A16-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(72 cm²)",
+    "gemini: 다르다(72 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "72 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "72 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A64-001-r2",
+   "problemCode": "J20507-A64-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r2",
+   "problemCode": "J20505-A81-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r2",
+   "problemCode": "J20505-A82-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A83-001-r2",
+   "problemCode": "J20505-A83-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(36 cm²)",
+    "gemini: 다르다(36 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "36 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "36 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r2",
+   "problemCode": "J20505-A84-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "18°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "18°",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r2",
+   "problemCode": "J20601-A19-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r2",
+   "problemCode": "J20601-A50-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r2",
+   "problemCode": "J20601-A51-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r2",
+   "problemCode": "J20602-A72-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "③, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A73-001-r2",
+   "problemCode": "J20602-A73-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A75-001-r2",
+   "problemCode": "J20602-A75-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A76-001-r2",
+   "problemCode": "J20602-A76-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A79-001-r2",
+   "problemCode": "J20602-A79-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ 14 ⑵ 21",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ 14 ⑵ 21",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r2",
+   "problemCode": "J20602-A80-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "ㄱ과 ㅁ: SAS 닮음, ㄴ과 ㅂ: SSS 닮음, ㄷ과 ㄹ: AA 닮음",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "ㄱ과 ㅁ: SAS 닮음, ㄴ과 ㅂ: SSS 닮음, ㄷ과 ㄹ: AA 닮음",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A81-001-r2",
+   "problemCode": "J20602-A81-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "gemini: 소문항 ⑴⑵ 다르다(⑴ $\\triangle OAB \\backsim \\triangle ODC$ ($AA$ 닮음), ⑵ $\\triangle PST \\backsim \\triangle PRQ$ ($SAS$ 닮음))"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑴ $\\triangle OAB\\backsim\\triangle ODC$, AA 닮음 ⑵ $\\triangle PST\\backsim\\triangle PRQ$, SAS 닮음",
+     "verdict": "match",
+     "why": "소문항마다 같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑴ $\\triangle OAB \\backsim \\triangle ODC$ ($AA$ 닮음), ⑵ $\\triangle PST \\backsim \\triangle PRQ$ ($SAS$ 닮음)",
+     "verdict": "different",
+     "why": "소문항 ⑴⑵ 다르다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A83-001-r2",
+   "problemCode": "J20602-A83-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "②, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②, ⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r2",
+   "problemCode": "J20602-A85-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(27 cm²)",
+    "gemini: 다르다(27 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "27 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "27 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A86-001-r2",
+   "problemCode": "J20602-A86-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "10 m",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "10 m",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A49-001-r2",
+   "problemCode": "J20706-A49-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{50}{9}\\,\\mathrm{cm}^{2}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{50}{9}\\,\\mathrm{cm}^2$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A46-001-r2",
+   "problemCode": "J20701-A46-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A12-001-r2",
+   "problemCode": "J20704-A12-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r2",
+   "problemCode": "J20704-A30-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "gemini 문항 지적: ['그림에서 점 P, Q의 라벨이 선분 MN과 대각선들의 교점 바로 옆이 아닌 대각선의 교점 부근에 다소 높게 표시되어 있으나, 문제 본문에서 P와 Q를 선분 MN과 대각선들의 교점으로 명확히 정의하고 있고 3 cm 표시가 선분 PQ에 대응하므로 문제 해결에는 지장이 없습니다.']"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "16 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "16 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": [
+      "그림에서 점 P, Q의 라벨이 선분 MN과 대각선들의 교점 바로 옆이 아닌 대각선의 교점 부근에 다소 높게 표시되어 있으나, 문제 본문에서 P와 Q를 선분 MN과 대각선들의 교점으로 명확히 정의하고 있고 3 cm 표시가 선분 PQ에 대응하므로 문제 해결에는 지장이 없습니다."
+     ]
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r2",
+   "problemCode": "J20705-A50-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A52-001-r2",
+   "problemCode": "J20705-A52-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "9 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "9 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A83-001-r2",
+   "problemCode": "J20705-A83-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(5 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "5 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$5\\,\\mathrm{cm}^2$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A38-001-r2",
+   "problemCode": "J20703-A38-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "manual",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A56-001-r2",
+   "problemCode": "J20801-A56-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A58-001-r2",
+   "problemCode": "J20801-A58-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(53 cm²)",
+    "gemini: 다르다(53 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "53 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "53 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r2",
+   "problemCode": "J20801-A60-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(168 m²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "168 m²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$168\\,\\mathrm{m}^2$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A35-001-r2",
+   "problemCode": "J20802-A35-001",
+   "route": "author",
+   "status": "보류 — 수학",
+   "reasons": [
+    "codex: 다르다(288 cm²)"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "288 cm²",
+     "verdict": "different",
+     "why": "다르다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$288\\,\\mathrm{cm}^2$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A37-001-r2",
+   "problemCode": "J20802-A37-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "25 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "25 cm",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A48-001-r2",
+   "problemCode": "J20901-A48-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A50-001-r2",
+   "problemCode": "J20901-A50-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 8개 가운데 75% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r2",
+   "problemCode": "J20901-A86-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "hold",
+    "engineTypeFit": "n/a",
+    "difficulty": "easier",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A45-001-r2",
+   "problemCode": "J20902-A45-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "④",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A72-001-r2",
+   "problemCode": "J20904-A72-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A73-001-r2",
+   "problemCode": "J20904-A73-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{2}{3}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{2}{3}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r2",
+   "problemCode": "J20904-A74-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{8}{27}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{8}{27}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A75-001-r2",
+   "problemCode": "J20904-A75-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "⑤",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A76-001-r2",
+   "problemCode": "J20904-A76-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r2",
+   "problemCode": "J20904-A77-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{8}{25}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{8}{25}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B38-001-r2",
+   "problemCode": "J20904-B38-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "warn",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B45-001-r2",
+   "problemCode": "J20904-B45-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{7}{15}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{7}{15}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "same",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r2",
+   "problemCode": "J20903-B23-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{4}{5}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{4}{5}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r2",
+   "problemCode": "J20903-B27-001",
+   "route": "author",
+   "status": "보류 — 너무 닮음",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "②",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "hold",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r2",
+   "problemCode": "J20903-B29-001",
+   "route": "author",
+   "status": "보류 — 검수",
+   "reasons": [
+    "독립 검수 기준 미충족 — 상세 근거는 외부 검수 원장"
+   ],
+   "solves": {
+    "codex": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "③",
+     "verdict": "match",
+     "why": "보기 기호",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "hold"
+   }
+  },
+  {
+   "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r2",
+   "problemCode": "J20903-B87-001",
+   "route": "author",
+   "status": "통과",
+   "reasons": [],
+   "solves": {
+    "codex": {
+     "answer": "$\\frac{5}{36}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    },
+    "gemini": {
+     "answer": "$\\frac{5}{36}$",
+     "verdict": "match",
+     "why": "같다",
+     "issues": []
+    }
+   },
+   "similarity": "pass",
+   "review": {
+    "verdict": "pass",
+    "engineTypeFit": "n/a",
+    "difficulty": "same",
+    "questionTypeSame": true,
+    "derived": "pass"
+   }
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df3-45bf-7383-ad3f-f97cd2968cac",
+ "startedAt": "2026-10-21T19:13:06+0900",
+ "elapsedSec": 21.6,
+ "studentSha256": {
+  "fig-1.png": "a1d3f0584f952f9b0e98193496b683ae4546ae077648da8dcb92e45481706cbf",
+  "student.json": "b5cae5eee2268b7d647b065f1e4023329623701c27dd4d5f49e82fb76dcaa3c6"
+ },
+ "promptSha256": "dd8d56bd950abcb3816b14ab5b53da8843f0b4c06674473a2579436b54e46089",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"32 cm²\",\"work\":\"직각삼각형 ABD와 CAE는 빗변 AB=CA이고 ∠BAD=∠ACE이므로 합동이다.\\n따라서 AD=CE=2 cm, AE=BD=6 cm이므로 DE=8 cm이다.\\n사다리꼴 DBCE의 넓이는 (6+2)×8÷2=32 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "32 cm²",
+  "work": "직각삼각형 ABD와 CAE는 빗변 AB=CA이고 ∠BAD=∠ACE이므로 합동이다.\n따라서 AD=CE=2 cm, AE=BD=6 cm이므로 DE=8 cm이다.\n사다리꼴 DBCE의 넓이는 (6+2)×8÷2=32 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "20eeb11eafd495ee685694f5e4f2c15880bcbb3b78f02cd6771ed12dc14da325"
+}

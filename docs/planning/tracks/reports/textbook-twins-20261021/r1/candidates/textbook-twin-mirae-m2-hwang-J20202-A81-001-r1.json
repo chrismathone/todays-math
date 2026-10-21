@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 147,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차부등식 $\\frac{2x+1}{3}-\\frac{x}{2}<\\frac{3}{4}$의 해가 $x<a$이고, 일차부등식 $0.4(2x-3)\\ge 0.1x+1.6$의 해가 $x\\ge b$일 때, $ab$의 값은?",
+ "choices": [
+  "$-10$",
+  "$-5$",
+  "$5$",
+  "$10$",
+  "$20$"
+ ],
+ "answer": "④",
+ "solution": "첫째 부등식의 양변에 $12$를 곱하면 $4(2x+1)-6x<9$, $8x+4-6x<9$, $2x<5$이므로 $x<\\frac{5}{2}$, 즉 $a=\\frac{5}{2}$이다.\n둘째 부등식의 양변에 $10$을 곱하면 $4(2x-3)\\ge x+16$, $8x-12\\ge x+16$, $7x\\ge 28$이므로 $x\\ge 4$, 즉 $b=4$이다.\n따라서 $ab=\\frac{5}{2}\\times 4=10$이고 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-5",
+  "problemCode": "J20202-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "fbfcd9a2fb4455c980cd51b745891c0bc70538f12dcfbc2c6f12e836405faa71",
+  "dbContentSha256": "0e3752525108c0197c45cde0370d10001076030ef10c932d6811b8ce9233ed92",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소수 부등식에서 정수 a(해 x>a), 분수 부등식에서 분수 b(해 x≤b)를 얻어 곱함",
+  "after": "역할을 바꾸어 분수 부등식에서 분수 a(해 x<a), 소수 부등식에서 정수 b(해 x≥b)를 얻어 곱함",
+  "sharedConcept": "소수·분수 계수 일차부등식의 풀이와 해의 경계값 활용",
+  "sharedProcedure": "각 부등식을 정수 계수로 고치기 → 풀어 경계값 읽기 → a, b 대입해 곱 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "소수·분수 계수를 정수로 고치기",
+   "일차부등식의 풀이",
+   "유리수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 일차부등식의 해의 경계값으로 식의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.121,
+   "longestRun": 6,
+   "residualChars": 64,
+   "params": 9,
+   "numberRetention": 0.556,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

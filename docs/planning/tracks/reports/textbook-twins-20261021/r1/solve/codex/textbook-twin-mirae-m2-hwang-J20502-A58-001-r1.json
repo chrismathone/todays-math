@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daf-a6db-7520-8eda-3e06852d2544",
+ "startedAt": "2026-10-21T17:59:14+0900",
+ "elapsedSec": 34.4,
+ "studentSha256": {
+  "fig-1.png": "9b71be93a5a2dd91cb4aa616f7e7157286c68b6acfeaaf0b67cc8c1343813769",
+  "student.json": "29eade58d0d0c3dc0f4616cbe8506b87b62e8188c1d3b47f94f94ee7aa450996"
+ },
+ "promptSha256": "218bf432de190e9d612636b22b0f601ac4c90845557f8568437d7e2edb2d20d4",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"60°\",\n  \"work\": \"두 직각삼각형 ABN과 AMN은 빗변 AN이 공통이고 BN=MN이므로 합동이다. 따라서 AB=AM이고 ∠BAN=∠NAM이다.\\n직각삼각형 ABC의 빗변의 중점 M에 대하여 MA=MB이므로 삼각형 ABM은 정삼각형이다. 따라서 ∠BAN=60°÷2=30°이고, x=90°−30°=60°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "60°",
+  "work": "두 직각삼각형 ABN과 AMN은 빗변 AN이 공통이고 BN=MN이므로 합동이다. 따라서 AB=AM이고 ∠BAN=∠NAM이다.\n직각삼각형 ABC의 빗변의 중점 M에 대하여 MA=MB이므로 삼각형 ABM은 정삼각형이다. 따라서 ∠BAN=60°÷2=30°이고, x=90°−30°=60°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6178500020fc9373871ce8143e0ae08103f38bda946cf94476622f3991944741"
+}

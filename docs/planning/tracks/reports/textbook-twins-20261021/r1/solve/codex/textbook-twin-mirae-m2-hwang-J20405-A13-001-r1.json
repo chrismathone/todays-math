@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-90ec-74a1-be87-d47aac036d0a",
+ "startedAt": "2026-10-21T17:53:41+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "d55cc06888a5ecab708c01d85d10ed9b7368b867898d5642e1381c028b71ea3c"
+ },
+ "promptSha256": "3b90951de130d4227759725131351ae4fc851019cb6f74a1720ca891bcf2510c",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행이동한 직선은 기울기가 같으므로 $2x+y+c=0$으로 놓는다. 점 $(-3,4)$를 대입하면 $-6+4+c=0$이므로 $c=2$이다. 따라서 $2x+y+2=0$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행이동한 직선은 기울기가 같으므로 $2x+y+c=0$으로 놓는다. 점 $(-3,4)$를 대입하면 $-6+4+c=0$이므로 $c=2$이다. 따라서 $2x+y+2=0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5286a38640d83b852b49ba2dd445f316c56090f5ffa71f2036e98d736650a64b"
+}

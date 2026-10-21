@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 19,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r2",
+ "authorId": "claude-fable-5-1:a9ede76f-2a0c-491c-832c-d2c5ba4f2f22",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우가 $\\frac{ax+7y}{10}-\\frac{8x+9y}{15}$를 계산하여 가장 간단한 꼴로 정리하였다. 정리한 식에서 $x$의 계수에 $y$의 계수를 곱한 값이 $-\\frac{1}{60}$일 때, 수 $a$의 값은?",
+ "choices": [
+  "$3$",
+  "$\\frac{10}{3}$",
+  "$\\frac{11}{3}$",
+  "$4$",
+  "$\\frac{13}{3}$"
+ ],
+ "answer": "③",
+ "solution": "분모를 $30$으로 통분하면 $\\frac{ax+7y}{10}-\\frac{8x+9y}{15}=\\frac{3(ax+7y)-2(8x+9y)}{30}=\\frac{3ax+21y-16x-18y}{30}=\\frac{(3a-16)x+3y}{30}$이다. 따라서 $x$의 계수는 $\\frac{3a-16}{30}$, $y$의 계수는 $\\frac{3}{30}=\\frac{1}{10}$이다. 두 계수의 곱이 $-\\frac{1}{60}$이므로 $\\frac{3a-16}{30}\\times\\frac{1}{10}=-\\frac{1}{60}$, 즉 $\\frac{3a-16}{300}=-\\frac{1}{60}$에서 $3a-16=-5$, $3a=11$이다. 따라서 $a=\\frac{11}{3}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-8",
+  "problemCode": "J20107-A69-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "356044fc564ce112bb2151c29efc24e6dbb295da22c5dd2b7297a775ce763f82",
+  "dbContentSha256": "4513f51076409dbfa532b2241ebecd8bd9729720c885286665fa4cb5d4aa008b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "context"
+  ],
+  "before": "분모가 6과 4인 두 다항식 분수의 차에서 미지수 a가 뒤 분수의 y항에 있고, 정리한 식의 x 계수와 y 계수의 곱이 양수 1/12로 주어져 a를 고르는 객관식.",
+  "after": "분모가 10과 15인 두 다항식 분수의 차에서 미지수 a가 앞 분수의 x항에 있고, y 계수는 상수로 정해지며 두 계수의 곱이 음수 -1/60으로 주어져 a를 고르는 객관식. 인물(지우)이 식을 정리하는 장면으로 제시.",
+  "sharedConcept": "분수 꼴 다항식의 뺄셈(통분 후 동류항 정리)과 계수의 뜻",
+  "sharedProcedure": "분모의 최소공배수로 통분 → 분자 전개 후 동류항 정리 → x·y의 계수를 읽어 곱을 세움 → 일차방정식을 풀어 a 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항의 정리와 다항식의 덧셈·뺄셈",
+   "분수 꼴 일차식의 통분",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A69-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수 꼴 다항식의 뺄셈에서 계수의 곱 조건으로 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.08,
+   "longestRun": 8,
+   "residualChars": 78,
+   "params": 8,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

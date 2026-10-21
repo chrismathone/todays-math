@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "edc87731-f1cf-44b2-8c75-db27b0361018",
+ "startedAt": "2026-10-21T17:06:50+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "5f97c35945def63e0368dce9fec5e95338905bda7bdcd229b2ac356d75392294"
+ },
+ "promptSha256": "eed848e197661d391061b43c0f89eff6318f9b4e999e7a825c9390f55798eeb4",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$-30a^{3}b^{5}$\", \"work\": \"(3ab^3)^2 = 9a^2b^6 이므로 -4a^2b × 9a^2b^6 ÷ □ = (6/5)ab^2, 즉 -36a^4b^7 ÷ □ = (6/5)ab^2. 따라서 □ = -36a^4b^7 × 5/(6ab^2) = -30a^3b^5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$-30a^{3}b^{5}$",
+  "work": "(3ab^3)^2 = 9a^2b^6 이므로 -4a^2b × 9a^2b^6 ÷ □ = (6/5)ab^2, 즉 -36a^4b^7 ÷ □ = (6/5)ab^2. 따라서 □ = -36a^4b^7 × 5/(6ab^2) = -30a^3b^5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1fcc3988096a5c45d78609134749dcf4052ee44b3d063a6a8ed40a7482b12095"
+}

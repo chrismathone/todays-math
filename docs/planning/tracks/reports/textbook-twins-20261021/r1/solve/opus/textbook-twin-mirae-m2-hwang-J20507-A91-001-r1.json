@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A91-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "356df5b6-9c03-4125-aea5-0170c3406062",
+ "startedAt": "2026-10-21T17:06:24+0900",
+ "elapsedSec": 8.6,
+ "studentSha256": {
+  "fig-1.png": "985f1261485b439df5d699fef76f9af4301a399cbd84c5253271be6a52a0aa34",
+  "student.json": "df1231224d1a7b2bfd8431598472dde2d30c6cdb67f92e508b08811a8eafb611"
+ },
+ "promptSha256": "a1384d14512b0fa7f4f2bdb3bd9c0a274f65addd51dda875450d8a3678132d1b",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"59°\", \"work\": \"△EBC에서 ∠ECB=45°이므로 ∠EBC=180°−104°−45°=31°. CB=CD, ∠BCE=∠DCE=45°, CE는 공통이므로 △BCE≡△DCE(SAS)이고, 따라서 ∠EDC=∠EBC=31°. 그러므로 ∠ADE=90°−31°=59°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "59°",
+  "work": "△EBC에서 ∠ECB=45°이므로 ∠EBC=180°−104°−45°=31°. CB=CD, ∠BCE=∠DCE=45°, CE는 공통이므로 △BCE≡△DCE(SAS)이고, 따라서 ∠EDC=∠EBC=31°. 그러므로 ∠ADE=90°−31°=59°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "33547d3ee967a381ad3960234a06bbdc0fd31a216e262fa01fa1109333428d04"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-ba2d-7721-96c9-342c75f3f474",
+ "startedAt": "2026-10-21T18:58:18+0900",
+ "elapsedSec": 9.9,
+ "studentSha256": {
+  "student.json": "bfc48874c9764480bf4ebc283bbef15dc94f28be553a69c08e55160d17568255"
+ },
+ "promptSha256": "8617efba36853aac1ccfc1b8cf0722adbc2ec8922f9f8b981d3cb4891083fab6",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"십의 자리 숫자를 a, 일의 자리 숫자를 b라 하면 3a=b-2이다.\\n자리 숫자를 맞바꾼 수와의 차에서 (10b+a)-(10a+b)=54이므로 b-a=6이다.\\nb=a+6을 대입하면 3a=a+4이므로 a=2, b=8이다. 따라서 처음 수는 28이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "십의 자리 숫자를 a, 일의 자리 숫자를 b라 하면 3a=b-2이다.\n자리 숫자를 맞바꾼 수와의 차에서 (10b+a)-(10a+b)=54이므로 b-a=6이다.\nb=a+6을 대입하면 3a=a+4이므로 a=2, b=8이다. 따라서 처음 수는 28이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e8163a7683b7df5cbaba072834681766c33ec39d94777e75eee913a237efc386"
+}

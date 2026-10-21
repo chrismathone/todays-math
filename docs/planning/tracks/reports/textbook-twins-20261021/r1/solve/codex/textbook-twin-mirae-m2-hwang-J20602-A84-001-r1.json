@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A84-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dba-6577-77f0-b17d-4cf8958d18db",
+ "startedAt": "2026-10-21T18:10:59+0900",
+ "elapsedSec": 13.7,
+ "studentSha256": {
+  "fig-1.png": "21b1cba81f8449447329b9eb859c51bb41df388d1a177353f4c8c7b14d22209c",
+  "student.json": "f2ab6cf4e3262af580fe1e5fda1dab394b1db6c0d6d1557483f772ed403099c8"
+ },
+ "promptSha256": "fa2050ac44aafc1de2fab56773d063012285c6f26dfa73fee620c2774831fc2a",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"10 cm\",\"work\":\"△ABC와 △DEC는 ∠B=∠E=90°이고 ∠C가 공통이므로 닮음이다.\\n따라서 CD/AC=DE/AB이므로 CD=25×6/15=10 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "10 cm",
+  "work": "△ABC와 △DEC는 ∠B=∠E=90°이고 ∠C가 공통이므로 닮음이다.\n따라서 CD/AC=DE/AB이므로 CD=25×6/15=10 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6a2720290b045d12e2bc858b6a259ead71e3f48871d0d84aa1fbb0738c6ed656"
+}

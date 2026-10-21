@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A41-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "ee44e96f-06ec-47ce-9a94-5f7a31250b6c",
+ "startedAt": "2026-10-21T17:59:25+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "student.json": "5cddb21f2e4c3049da7a3901ee1e0d424884171be3e4e4250def146033b91aa9"
+ },
+ "promptSha256": "07fb5c70555374d2a5c984992cd841e4d55decfec7566fa6e757eca358a89027",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"7\",\n  \"work\": \"부등식 7x+2a<x-4를 풀면 6x<-2a-4에서 x<(-a-2)/3이다. 부등식 x+1>(5x+9)/3의 양변에 3을 곱하면 3x+3>5x+9이고, -2x>6에서 x<-3이다. 두 부등식의 해가 같으므로 (-a-2)/3 = -3에서 -a-2 = -9, 즉 a = 7이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "7",
+  "work": "부등식 7x+2a<x-4를 풀면 6x<-2a-4에서 x<(-a-2)/3이다. 부등식 x+1>(5x+9)/3의 양변에 3을 곱하면 3x+3>5x+9이고, -2x>6에서 x<-3이다. 두 부등식의 해가 같으므로 (-a-2)/3 = -3에서 -a-2 = -9, 즉 a = 7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "460b4fb275e5c8b7a2e3a61f7a7f8ac97ac4dd60bb55a23443a03461c69754e9"
+}

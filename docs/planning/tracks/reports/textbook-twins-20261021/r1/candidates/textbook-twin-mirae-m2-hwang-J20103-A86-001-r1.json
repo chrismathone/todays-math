@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 71,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A86-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 순환소수를 $x$ 로 놓고 분수로 고칠 때, $1000x-10x$ 를 이용하는 것이 가장 알맞은 것은?",
+ "choices": [
+  "$2.\\dot{5}\\dot{8}$",
+  "$0.3\\dot{6}$",
+  "$1.2\\dot{4}\\dot{9}$",
+  "$3.\\dot{0}1\\dot{7}$",
+  "$0.14\\dot{3}$"
+ ],
+ "answer": "③",
+ "solution": "각 순환소수에서 소수 부분이 같아지는 두 식은 다음과 같다. ① $100x-x=256$ ② $100x-10x=33$ ③ $1000x-10x=1237$ ④ $1000x-x=3014$ ⑤ $1000x-100x=129$. 따라서 $1000x-10x$ 를 이용하는 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-8",
+  "problemCode": "J20103-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "d10c26ae60ab5a009c7b3d824eff52209c0504dc1edbcaeb6da2b01aaddac6ee",
+  "dbContentSha256": "6cafd69ccd80d28491406a950035765d09786fb50fc81388ad99e049cbd7bba3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "다섯 순환소수 중 100x−10x 를 이용해 분수로 고치는 것이 알맞은 것을 고른다.",
+  "after": "기준이 되는 식을 1000x−10x 로 바꾸고, 다섯 보기의 순환소수를 서로 다른 자리 구조로 새로 구성한다.",
+  "sharedConcept": "순환하지 않는 자리 수와 순환마디 길이에 따른 10 의 거듭제곱 선택",
+  "sharedProcedure": "각 보기의 순환하지 않는 자리 수·순환마디 길이 확인 → 알맞은 두 거듭제곱 결정 → 기준 식과 일치하는 보기 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수의 표현",
+   "순환소수를 분수로 고치는 원리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A86-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 식으로 분수화하기 알맞은 순환소수 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.321,
+   "longestRun": 16,
+   "residualChars": 59,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 80,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A74-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "분수 $\\frac{n}{420}$은 순환소수로, 분수 $\\frac{n-4}{420}$는 유한소수로 나타낼 수 있다. 이를 만족시키는 두 자리 자연수 $n$을 모두 더한 값은?",
+ "choices": [
+  "$184$",
+  "$205$",
+  "$226$",
+  "$247$",
+  "$268$"
+ ],
+ "answer": "③",
+ "solution": "$420=2^{2}\\times 3\\times 5\\times 7$이므로 $\\frac{n-4}{420}$가 유한소수가 되려면 $n-4$는 $3\\times 7=21$의 배수이어야 한다. $n$이 두 자리 자연수이므로 $n-4$는 $6$ 이상 $95$ 이하이고, 가능한 값은 $21,~42,~63,~84$이다. 즉 $n=25,~46,~67,~88$이다. 이 네 수는 어느 것도 $3$의 배수이면서 $7$의 배수가 아니므로 $\\frac{n}{420}$을 약분해도 분모에 $3$ 또는 $7$이 남아 순환소수가 된다. 따라서 $n$을 모두 더한 값은 $25+46+67+88=226$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-8",
+  "problemCode": "J20101-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "2d20531cb9f36f9bbf8a5387e28635f493564344420be6f3847c51ccd4e3f34e",
+  "dbContentSha256": "ca9332bc0db841ae691a21130b072c274e24245958e46ec8e12d78f31b723b8d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "분모가 같은 두 분수에서 분자 n은 순환소수, 분자 n+5는 유한소수가 되게 하는 두 자리 n의 합을 고른다. 분모의 2·5 이외 소인수는 3, 11.",
+  "after": "둘째 분자를 n에서 4를 뺀 수로 바꾸어 두 자리 범위를 아래쪽에서 따지게 하고, 분모의 2·5 이외 소인수를 3, 7로 바꾸었다.",
+  "sharedConcept": "분자에 따라 유한소수·순환소수가 갈리는 조건과 자연수 범위 세기",
+  "sharedProcedure": "분모 소인수분해 → 유한소수 조건에서 분자가 어떤 수의 배수인지 결정 → 두 자리 범위에서 후보 나열 → 다른 분수가 순환소수인지 확인 → 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "배수와 약수",
+   "유한소수와 순환소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A74-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수·유한소수 조건을 함께 만족하는 두 자리 자연수의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.279,
+   "longestRun": 12,
+   "residualChars": 65,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

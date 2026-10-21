@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-e3ac-7d13-9c3c-7aeb5a71a29c",
+ "startedAt": "2026-10-21T16:56:09+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "f371b28d8e41f6f365da1b572c4e7053b031f4ace7f8ad0b5c462bec03cb3630"
+ },
+ "promptSha256": "9475acb83ee24e89d5cfc458b18fa767d7893849f26290950c4882a1e1dd76d1",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"두 식에 각각 10을 곱하면 2x-5y=20, 4x+5y=10이다.\\n두 식을 더하면 6x=30이므로 x=5이다.\\n2x-5y=20에 대입하면 10-5y=20이므로 y=-2이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "두 식에 각각 10을 곱하면 2x-5y=20, 4x+5y=10이다.\n두 식을 더하면 6x=30이므로 x=5이다.\n2x-5y=20에 대입하면 10-5y=20이므로 y=-2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d8364dd5d1e36d026ada5e828dc8829cad92e4988861d37e415eaec842630bbf"
+}

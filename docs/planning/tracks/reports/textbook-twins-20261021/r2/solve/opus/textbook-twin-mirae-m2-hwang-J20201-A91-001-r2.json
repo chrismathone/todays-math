@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A91-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f5a43272-8638-4760-8b3e-fe641b561af8",
+ "startedAt": "2026-10-21T17:08:33+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "feb493b970c88990e241881fbc2853394745179c1477eaf34c55373ee9bbe336"
+ },
+ "promptSha256": "c8863b060250977ce16f414654272ac417fda785e3d4a33a353600870bd55abc",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $a \\\\ge b$ ⑵ $a > b$\", \"work\": \"⑴ 양변에서 9를 빼면 $-\\\\frac{a}{7} \\\\le -\\\\frac{b}{7}$이고, 양변에 $-7$을 곱하면 부등호 방향이 바뀌어 $a \\\\ge b$이다. ⑵ 양변에 10을 더하면 $8a > 8b$이고, 양변을 8로 나누면 $a > b$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $a \\ge b$ ⑵ $a > b$",
+  "work": "⑴ 양변에서 9를 빼면 $-\\frac{a}{7} \\le -\\frac{b}{7}$이고, 양변에 $-7$을 곱하면 부등호 방향이 바뀌어 $a \\ge b$이다. ⑵ 양변에 10을 더하면 $8a > 8b$이고, 양변을 8로 나누면 $a > b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "13d4e4b6fe6001062f8dcf378a9586d70c3acf1890180bbd6bb27a80db00bb9a"
+}

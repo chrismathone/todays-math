@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 211,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r2",
+ "authorId": "claude-opus-5-5:d5bbd35b-04f7-4039-b095-cfcf5a3a6760",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n좌표평면에서 두 점 $\\mathrm{P}(8,\\,-10)$, $\\mathrm{Q}(9,\\,0)$을 양 끝으로 하는 선분 $\\mathrm{PQ}$가 있다. 일차함수 $y=ax+6$의 그래프가 선분 $\\mathrm{PQ}$와 만나도록 하는 수 $a$의 값의 범위는?",
+ "choices": [
+  "$-\\frac{3}{2}\\le a\\le -\\frac{2}{3}$",
+  "$-2\\le a\\le -\\frac{3}{2}$",
+  "$-3\\le a\\le -\\frac{2}{3}$",
+  "$-2\\le a\\le -\\frac{2}{3}$",
+  "$\\frac{2}{3}\\le a\\le 2$"
+ ],
+ "answer": "④",
+ "solution": "일차함수 $y=ax+6$의 그래프는 $y$절편이 $6$이므로 $a$의 값과 상관없이 점 $(0,\\,6)$을 지난다.\n(ⅰ) 그래프가 점 $\\mathrm{P}(8,\\,-10)$을 지날 때 기울기는 $\\frac{-10-6}{8-0}=\\frac{-16}{8}=-2$\n(ⅱ) 그래프가 점 $\\mathrm{Q}(9,\\,0)$을 지날 때 기울기는 $\\frac{0-6}{9-0}=-\\frac{2}{3}$\n그래프가 선분 $\\mathrm{PQ}$와 만나려면 기울기가 (ⅰ)과 (ⅱ) 사이에 있어야 하므로 $-2\\le a\\le -\\frac{2}{3}$\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20403-A29-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20403-A29-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-14",
+  "problemCode": "J20403-A29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "6d6b6dec43cee72c1c9d46bc73ea1afba1cd643fb1b96e9b19770d857d691203",
+  "dbContentSha256": "b8d3218161f72afd5f5b93bae76751e09cd9418918523df271027fe4349a22f4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [
+   "24de21d56121e0021ab4106af1a0fb3432b9e2f590d54413f57bf64e7a0d5c70"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "y절편이 음수인 일차함수가 제1사분면에 있는 선분과 만나는 조건을 묻고, 양의 기울기 두 값 사이의 범위를 고른다.",
+  "after": "y절편이 양수인 일차함수가 제4사분면에서 x축까지 뻗은 가파른 선분과 만나는 조건을 묻고, 음의 기울기(정수와 분수) 두 값 사이의 범위를 고른다.",
+  "sharedConcept": "y절편이 정해진 일차함수의 그래프는 한 점을 지나고, 기울기에 따라 선분과의 교차 여부가 정해진다",
+  "sharedProcedure": "y절편에서 고정점 찾기 → 선분 양 끝점을 지날 때의 기울기 각각 구하기 → 두 기울기 사이를 범위로 정하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "58a0e885-68c4-43a0-983b-ce18a8c4579e",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 기울기"
+  },
+  "prerequisites": [
+   "일차함수의 y절편",
+   "두 점을 지나는 직선의 기울기",
+   "부등호로 범위 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20403-A29-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수의 그래프가 선분과 만나도록 하는 기울기의 범위 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "58a0e885-68c4-43a0-983b-ce18a8c4579e",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.237,
+   "longestRun": 15,
+   "residualChars": 114,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

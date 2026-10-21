@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B10-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2810a9ca-6bf5-42ac-8d16-a4b031f703c7",
+ "startedAt": "2026-10-21T16:23:36+0900",
+ "elapsedSec": 16.8,
+ "studentSha256": {
+  "student.json": "b42fc8699952c553c41a99465969e649f06d8ee7388d58703ae73f7726ebf358"
+ },
+ "promptSha256": "0642a67338d3d3a7f18ab422f99b44b92d6d7bc23925b668e13188cf5a714004",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "금화 128개 = 2^7. 동화 = 2^7·2^4·2^5 = 2^16.\n\n```json\n{\"answer\": \"$2^{16}$개\", \"work\": \"금화 128개는 $2^7$개이다. 금화를 은화로 바꾸면 $2^7\\\\times2^4=2^{11}$개이다. 은화를 동화로 바꾸면 $2^{11}\\\\times2^5=2^{16}$개이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$2^{16}$개",
+  "work": "금화 128개는 $2^7$개이다. 금화를 은화로 바꾸면 $2^7\\times2^4=2^{11}$개이다. 은화를 동화로 바꾸면 $2^{11}\\times2^5=2^{16}$개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7c63edc317780043717d494e6bf9095e6f8b9f5f3e5e6cfe33c9fe83972c0ace"
+}

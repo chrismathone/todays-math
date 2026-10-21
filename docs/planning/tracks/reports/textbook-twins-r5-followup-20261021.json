@@ -1,0 +1,259 @@
+{
+ "baseline": "6b0053beaaeab981967e8c74b8038042e387f799",
+ "historicalBaseline": "662b7c10c2d7e9168b0ede49050e262ec99439ac",
+ "scope": "R5 success-result/session + pre-execution input seal; separate author identity/proposal-content audit",
+ "newModelCalls": 0,
+ "historicalSealChanges": 0,
+ "productionWrites": false,
+ "loadable": false,
+ "syntheticTests": {
+  "greenPassed": 163,
+  "redFailed": 63,
+  "redPassed": 12,
+  "redDeselected": 7,
+  "redR5Failed": 53,
+  "redAuthorFailed": 10,
+  "redAuthorFailureMeaning": "6 content/repair rejection failures; 4 missing separate evidence fields, not 10 distinct content bypasses",
+  "newInputContractPreflightGreen": 7,
+  "method": "real temporary Git + fake Claude subprocess; no model calls"
+ },
+ "executionReplay": {
+  "candidateCount": 672,
+  "statusChanges": [],
+  "finalTally": {
+   "통과": 200,
+   "보류 — 답 표기(값은 같음)": 14,
+   "보류 — 너무 닮음": 42,
+   "보류 — 검수": 107,
+   "보류 — 수학": 27,
+   "보류 — 형식": 2,
+   "보류 — 그림": 3
+  },
+  "solverEvidence": {
+   "verified-retained-evidence": 1344
+  },
+  "reviewStates": {
+   "legacy-unverified-paths": 672
+  },
+  "legacyAccessVerified": 0,
+  "opusRuns": 516,
+  "opusSuccessfulReadResults": 137,
+  "declaredFigureReviews": 217
+ },
+ "authorAudit": {
+  "authorRecords": 351,
+  "authorIdentityVerified": 280,
+  "authorProposalContentVerified": 280,
+  "authorProposalContentStates": {
+   "direct-match": 277,
+   "missing-envelope": 71,
+   "exact-format-repair-match": 3
+  },
+  "historicalBodyRecords": 71,
+  "bodyCandidates": 71,
+  "bodyFinalPass": 29,
+  "figureRepairEvents": 69,
+  "figureRepairEnvelopesVerified": 19,
+  "figureMissingEnvelopeEvents": 50,
+  "figureMissingEnvelopeCandidates": 42,
+  "figureMissingModelFieldEvents": 45,
+  "figureRecordedOpusMissingEnvelopeEvents": 5,
+  "figureFinalPass": 8,
+  "finalPassIntersection": 1,
+  "finalPassUnion": 36,
+  "finalPassTotal": 200,
+  "finalPassWithoutTheseTwoMissingEnvelopeCategories": 164
+ },
+ "finalPassSets": {
+  "bodyOnly": [
+   "textbook-twin-mirae-m2-hwang-J20102-A64-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20102-A66-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20102-A87-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20103-A77-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20103-A89-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B03-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B07-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B11-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B13-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B69-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20106-A59-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20106-B18-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-A75-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A87-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A91-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A53-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A55-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2"
+  ],
+  "figureOnly": [
+   "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20502-A60-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20502-A65-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20505-A86-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20703-A40-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20705-A55-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20903-C09-001-r1"
+  ],
+  "intersection": [
+   "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2"
+  ],
+  "union": [
+   "textbook-twin-mirae-m2-hwang-J20102-A64-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20102-A66-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20102-A87-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20103-A77-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20103-A89-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B03-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B07-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B11-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B13-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20105-B69-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20106-A59-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20106-B18-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-A75-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A87-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A91-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A53-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A55-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20502-A60-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20502-A65-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2",
+   "textbook-twin-mirae-m2-hwang-J20505-A86-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20703-A40-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20705-A55-001-r1",
+   "textbook-twin-mirae-m2-hwang-J20903-C09-001-r1"
+  ]
+ },
+ "preservation": {
+  "baseline": "662b7c10c2d7e9168b0ede49050e262ec99439ac",
+  "externalFiles": 6613,
+  "externalChanged": [],
+  "pilotFiles": 4009,
+  "pilotChanged": [],
+  "history75Count": 75,
+  "historicalBaseIsAncestor": true,
+  "beforeManifestSha256": "f54d5857865d77eac0872c00e9bd9adbbd3c5a2370996848dfed03f39a0a1a38"
+ },
+ "historicalExternalPreservation": {
+  "cutoffLocal": "2026-10-21 19:34:34 Asia/Seoul",
+  "files": 7436,
+  "aggregateSha256": "844d5461edbf5e2ed82922025db11886cb32bb1d8c163d56eacc16193dea5687",
+  "matchesIndependent": true
+ },
+ "independentCounterexampleMapping": {
+  "successful-read": "test_review_stream_full_path[adapter-None/collector-None]",
+  "missing-result": "missing-result",
+  "error-result": "error-result",
+  "wrong-result-id": "wrong-id",
+  "foreign-event-session": "foreign-request-and-result",
+  "empty-input-manifest": "empty-declaration",
+  "replacement-input-bytes": "changed-bytes"
+ },
+ "limitations": [
+  "672 legacy review paths remain unverified",
+  "36 historical missing-envelope passes are comparison-only; 164 also not fully approved",
+  "raw→proposal correspondence is not proposal→final-candidate equality",
+  "source answer/SSD identity/2022 standards/rights remain unverified",
+  "Read success verifies retained CLI image payload and sealed bytes, not model comprehension or cryptographic execution attestation",
+  "unsupported events/blocks, resized images and text/partial image reads fail closed until explicitly supported"
+ ],
+ "evidence": [
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-root-cause-addendum-20261021.md",
+   "sha256": "2f2f50d0718dd4c23875156d2da03f06704466b6dab32b51a01b00788febccdf"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-final-red-20261021.log",
+   "sha256": "9dfe05c0f6b892922d283befd765904c580e95ea27c2debbb18f61c39a8fa38e"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-final-green-20261021.log",
+   "sha256": "6fe9fc610969ed06ce857e263dd99ab9f659e0a526e0be9701cc76c824c32c11"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-author-audit-20261021.json",
+   "sha256": "f7284bca2a7c3eb9681284fa6602d84252a9003accc4e489e049464346c45fb8"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-execution-audit-20261021.json",
+   "sha256": "4070d128fea4441f6d416b4e6dba5a72492e0d9ca1a7be02e4a2b449424d2136"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-answer-impact-20261021.json",
+   "sha256": "c7925cd40c552898f6f7017c9b6cc262f2d9dd2f421b70202b41d251b5224d23"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-preservation-20261021.json",
+   "sha256": "dabb4b99ce4ad2988f7e12d41e5217aa087c0becacf04c0147f639bbe60212a2"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/r5-followup-historical-external-preservation-20261021.json",
+   "sha256": "a9b8eb63be6a631798999a66fc660015546a4727811eede33308c5071bf6daf4"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/followup-gate-review-codex.md",
+   "sha256": "acbec546df9734580d5c8f253bdebb8147b0b6820c4cbbf3e0c3e22edc39cd44"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/followup-gate-review-codex.json",
+   "sha256": "42a0b00c9d959f680aa4e1c54a1c3d1c3d4ddd7ee8eb9317c3001e8459b2c3ae"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/final-gate-provenance-impact-codex.json",
+   "sha256": "ae3aa850077db2614a1ef2f61c45675a95258db441760367dfc7f85b5c5d5703"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-cause-plan-20261021.md",
+   "sha256": "df8bc645db4bdc5ae42321a0e4a9ee94279270e50e8711591fdf406ca5e66f29"
+  }
+ ],
+ "implementationHashes": {
+  "build_sources.py": "e93739d29a2040582d36e3f05d794ba96dea3dc1c1e39b0e67a1c3dcb91b2995",
+  "answers.py": "0e8f1d696bf1fbf542e70386e21833e6105cfdcc4d6a50f8a53b593685c994b5",
+  "author.py": "e8f011495c8fdf2a4a892209dcba9b25a892d5710fc0bb872404abe647685022",
+  "similarity.py": "6be41fed5484f9848c3bd5f8fe1bbda73a3ebb38caf39e0ee83f2aed9466d03a",
+  "review.py": "ca08425921061c7d090c887028f0c59cd0c96ebab1ec530a56643e4e223f29f1",
+  "materialize.py": "79f8184bafbd5aac35bf75492d5383fb79f0a59be56ba8474e25b0319d2c2b97",
+  "solve.py": "e8feb651993e493022cf1d64eb705e011c1a95669402b04b72929705b52cfd57",
+  "collect.py": "cb0c8017ec01a1ecbbfaa5ee8d732a2c053fe1ab165659c4a85527307b7fcbf0",
+  "test_twin.py": "de5ea02b4f423ee0000d38dd47c297ff06d9e6b5a3222a9cc5188b21ca28109e",
+  "fix_figures.py": "390bba8e1138634a644a9788254deeb83b223bec6af8590ea64fbe8f8bc42b08",
+  "integrity.py": "88e1ae6977c902e4f38b3519486559041d395652d807074bd0f4fdf753b697ef",
+  "revise.py": "5a8fc905e0607d100655145ec6810ed83752c4d03188d5992e4aafd5ed192e0e",
+  "subscription_cli.py": "3e616ff42a1f664a057e372e63b376aa4b19a6637ffbb71eccf59d731aa3f1e7",
+  "export_guard.py": "5c9570130fecb108e15b802d969b87346ae728cc629054a5546b3f268b3806fe",
+  "review_ready.py": "8ce92f9b65ef69ffa85ce51633275888d9c4e571ce1936fbe6e633d62d715efd",
+  "recheck_answers.py": "03a9feb2a4e71eb83fdf1b2c1657f9a03b4a2fd1da41abd68d52dbfe4e95d3dc",
+  "audit.py": "3a2b59aa81b68ad119bed6cd5bdc65a35b4abd908b8985f980cc3cafd4b2f818",
+  "complete_missing.py": "ae5321a9581b03a4fd324696e50f0e0226935349ae43a760776e88c01d75a7d5",
+  "select_preview.py": "06a41b672c28be4451227876f1134fc15a6bf0140c3c275bd9272d14179e9f6c",
+  "audit_author_provenance.py": "cece1a7d9f681d88fccd3d91b3b4f92d273eae77c2b169453ba06a110434c4c7",
+  "execution_evidence.py": "c2482ae311509b988074f1b6a05fee12983f4e59977782f41dea536334cad41d",
+  "test_evidence.py": "01a3c18d0a26bdf43a08cf0d730da2217c81e990824c4216bcb9400fefdcff74",
+  "test_review_execution.py": "ec3d5dd6f712b903ac51f8f1827638235318c2e79e0a751bf37a1fe9462e117b",
+  "review_inputs.py": "bd5c808062599ace8ca49cb5ddd52318da7154d0ec6f6f18785fef9a0d83254c",
+  "test_author_evidence.py": "80bf2bf532c9e6e99cefcd72bd32530b597d1ae602eebd6fb67b8374c9097713"
+ }
+}

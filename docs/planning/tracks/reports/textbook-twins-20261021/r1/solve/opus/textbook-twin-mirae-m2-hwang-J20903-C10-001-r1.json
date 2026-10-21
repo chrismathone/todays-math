@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-C10-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8409ef3a-1b26-4ad8-b330-72bba3fe68cf",
+ "startedAt": "2026-10-21T17:13:21+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "0e69a3925a037b0cd0acc7fd699124d5dc6432e7805397996a89d024cb0c04dc",
+  "student.json": "6ad521be075336e51eadc979ccaa8bebee71ea0c5273b874cf07889da7e31928"
+ },
+ "promptSha256": "411e33c0b6fc9eb1c45dcac8bd32147e213db548ed2225831aa548a5f92186be",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{2}{5}$\", \"work\": \"표에서 20분 이상 30분 미만은 9명, 30분 이상 40분 미만은 7명이다. 따라서 20분 이상 40분 미만은 9+7=16명이다. 확률은 16/40=2/5이다. (표의 합계 확인: 6+12+9+7+6=40)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{2}{5}$",
+  "work": "표에서 20분 이상 30분 미만은 9명, 30분 이상 40분 미만은 7명이다. 따라서 20분 이상 40분 미만은 9+7=16명이다. 확률은 16/40=2/5이다. (표의 합계 확인: 6+12+9+7+6=40)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "502f35fa8bcad1a9d84b2c6fb5afeb519eaae729af6fe2f8a412e019fdc78af4"
+}

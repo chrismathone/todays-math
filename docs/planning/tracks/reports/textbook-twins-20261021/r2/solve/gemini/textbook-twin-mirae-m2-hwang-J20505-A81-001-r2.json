@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "83264f92-6687-41a6-b1a8-dda2f7d24b79",
+ "startedAt": "2026-10-21T18:43:09+0900",
+ "elapsedSec": 24.9,
+ "studentSha256": {
+  "fig-1.png": "aadb77cabe674e98f1e683bb2d30ca3eb294d19a60d19916eaa29d3b685759f6",
+  "student.json": "312d363130853602db97e3ad5f210387c8db9e2bded33e38e9392950a9956bd7"
+ },
+ "promptSha256": "4a704791aacae5f73f53dc77acd66cb2d773c016baa441cde0af65df5e67a694",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"$\\\\overline{AD} \\\\parallel \\\\overline{BC}$이므로 엇각의 성질에 의해 $\\\\angle AEB = \\\\angle EBC = \\\\angle ABE$, $\\\\angle DFC = \\\\angle FCB = \\\\angle DCF$이다.\\n따라서 $\\\\triangle ABE$와 $\\\\triangle DCF$는 이등변삼각형이 되어 $\\\\overline{AE} = \\\\overline{AB} = 8\\\\,\\\\mathrm{cm}$, $\\\\overline{DF} = \\\\overline{CD} = \\\\overline{AB} = 8\\\\,\\\\mathrm{cm}$이다.\\n$\\\\overline{AD} = \\\\overline{BC} = 13\\\\,\\\\mathrm{cm}$이므로 $\\\\overline{AF} = \\\\overline{AD} - \\\\overline{DF} = 13 - 8 = 5\\\\,\\\\mathrm{cm}$이다.\\n따라서 $\\\\overline{FE} = \\\\overline{AE} - \\\\overline{AF} = 8 - 5 = 3\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "$\\overline{AD} \\parallel \\overline{BC}$이므로 엇각의 성질에 의해 $\\angle AEB = \\angle EBC = \\angle ABE$, $\\angle DFC = \\angle FCB = \\angle DCF$이다.\n따라서 $\\triangle ABE$와 $\\triangle DCF$는 이등변삼각형이 되어 $\\overline{AE} = \\overline{AB} = 8\\,\\mathrm{cm}$, $\\overline{DF} = \\overline{CD} = \\overline{AB} = 8\\,\\mathrm{cm}$이다.\n$\\overline{AD} = \\overline{BC} = 13\\,\\mathrm{cm}$이므로 $\\overline{AF} = \\overline{AD} - \\overline{DF} = 13 - 8 = 5\\,\\mathrm{cm}$이다.\n따라서 $\\overline{FE} = \\overline{AE} - \\overline{AF} = 8 - 5 = 3\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c3bd31842f9b5666cb1fba8ed391d0851cebf37d4bcd10696aba6f857a37d9c7"
+}

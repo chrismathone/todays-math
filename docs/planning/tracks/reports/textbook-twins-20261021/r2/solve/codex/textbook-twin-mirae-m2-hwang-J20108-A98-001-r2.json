@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7c-2446-7233-905a-6571fbb16254",
+ "startedAt": "2026-10-21T17:02:59+0900",
+ "elapsedSec": 15.6,
+ "studentSha256": {
+  "fig-1.png": "694620b970edb35adac8fa7b3a5736b915f6fdb9c9b441255b758919a7340605",
+  "student.json": "ea017aa1d06efe9d9749caaf5b0364d749a240081ee5dada08dadd0c0e63b3b1"
+ },
+ "promptSha256": "6e34c58ef7b041d4fc164e32bfdeb92d8bfff6b82723b80fd6f811d6ab5f1086",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$4ab+6$\",\"work\":\"삼각형의 밑변은 넓이의 2배를 높이로 나눈 값이다.\\n$BC=\\\\frac{2(10a^{2}b^{2}+15ab)}{5ab}=4ab+6$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$4ab+6$",
+  "work": "삼각형의 밑변은 넓이의 2배를 높이로 나눈 값이다.\n$BC=\\frac{2(10a^{2}b^{2}+15ab)}{5ab}=4ab+6$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e6a53a34d50563e584d4806c20e6e05c4b0fb797dfc01fc8d40eed1a5517090d"
+}

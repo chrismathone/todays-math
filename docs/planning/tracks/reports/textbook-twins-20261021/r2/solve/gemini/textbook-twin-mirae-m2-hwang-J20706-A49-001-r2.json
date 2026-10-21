@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A49-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "9ea22a94-e17a-4ca7-bf81-b64c57e99d28",
+ "startedAt": "2026-10-21T18:43:09+0900",
+ "elapsedSec": 47.8,
+ "studentSha256": {
+  "fig-1.png": "8ca00c52c1f12cabd4fd1c76549c8c0645238843fb97df5fa71cd7396efa54b0",
+  "student.json": "e5dd89f155edac411cea19d6f6fa633a93bb9915b9da3a4c0121d8e00f108360"
+ },
+ "promptSha256": "aa914be6260ae53452847a2a8853c605c9a19c2002b2c9e49b089e4229d615f3",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{50}{9}\\\\,\\\\mathrm{cm}^2$\",\n  \"work\": \"$\\\\triangle ADE$와 $\\\\triangle ACB$에서 $\\\\angle A$는 공통이고 $\\\\angle AED=\\\\angle B$이므로 $\\\\triangle ADE \\\\sim \\\\triangle ACB$ (AA 닮음)이다.\\n$\\\\overline{AC}=\\\\overline{AE}+\\\\overline{EC}=4+5=9\\\\,\\\\mathrm{cm}$이므로 닮음비는 $\\\\overline{AD}:\\\\overline{AC}=3:9=1:3$이다.\\n닮은 두 도형의 넓이의 비는 닮음비의 제곱인 $1^2:3^2=1:9$이므로, $\\\\triangle ADE$의 넓이는 $\\\\triangle ABC$의 넓이의 $\\\\frac{1}{9}$이다.\\n따라서 $\\\\triangle ADE = 50 \\\\times \\\\frac{1}{9} = \\\\frac{50}{9}\\\\,\\\\mathrm{cm}^2$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$\\frac{50}{9}\\,\\mathrm{cm}^2$",
+  "work": "$\\triangle ADE$와 $\\triangle ACB$에서 $\\angle A$는 공통이고 $\\angle AED=\\angle B$이므로 $\\triangle ADE \\sim \\triangle ACB$ (AA 닮음)이다.\n$\\overline{AC}=\\overline{AE}+\\overline{EC}=4+5=9\\,\\mathrm{cm}$이므로 닮음비는 $\\overline{AD}:\\overline{AC}=3:9=1:3$이다.\n닮은 두 도형의 넓이의 비는 닮음비의 제곱인 $1^2:3^2=1:9$이므로, $\\triangle ADE$의 넓이는 $\\triangle ABC$의 넓이의 $\\frac{1}{9}$이다.\n따라서 $\\triangle ADE = 50 \\times \\frac{1}{9} = \\frac{50}{9}\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fffaa6d5b404e15206876a5548f9136c473fc006fc61d09d754cf0804d2ad4cb"
+}

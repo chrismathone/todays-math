@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A88-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3f013ceb-923d-466f-89bf-d9e88f6f9557",
+ "startedAt": "2026-10-21T16:31:51+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "9e5be1dd9dd7ac8b19bb899b950c463159b495bc83a5b36b9139d99e11159282",
+  "student.json": "b4cd008780711105871c47d058dd0769c193eea77ab55c0cfa3017d5ac1806b9"
+ },
+ "promptSha256": "744426722f1d6d787312ef64264c1fa112d8a7e4c909ce82ae7ae58a8d39aa9d",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"119°\", \"work\": \"I가 내심이므로 CI는 ∠C의 이등분선이다. 따라서 ∠C = 2×29° = 58°이다. 그림에서 x는 ∠AIB이다. 내심의 성질 ∠AIB = 90° + ½∠C에 넣으면 x = 90° + 29° = 119°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "119°",
+  "work": "I가 내심이므로 CI는 ∠C의 이등분선이다. 따라서 ∠C = 2×29° = 58°이다. 그림에서 x는 ∠AIB이다. 내심의 성질 ∠AIB = 90° + ½∠C에 넣으면 x = 90° + 29° = 119°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "349da17dcc20f803cd8a6a1014ae05afb11e2d34715260d9b62bb186be7b29fc"
+}

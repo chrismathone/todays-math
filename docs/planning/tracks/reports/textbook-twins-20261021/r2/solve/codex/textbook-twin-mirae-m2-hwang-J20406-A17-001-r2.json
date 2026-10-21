@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-c3f3-7d22-af48-b794039f332b",
+ "startedAt": "2026-10-21T19:04:54+0900",
+ "elapsedSec": 10.2,
+ "studentSha256": {
+  "student.json": "32ac3a000a2838b8ba6720da6eb9d6492ba42a8ec63b710f50c9623157159c15"
+ },
+ "promptSha256": "db28a9f1e87f92bb7d559a26b157161a10471b63f041d1ae1d73167b5e9db52f",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"20 g인 물체를 걸었을 때 늘어난 길이는 3 × (20 ÷ 8) = 7.5 cm이다.\\n따라서 용수철의 전체 길이는 15 + 7.5 = 22.5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "20 g인 물체를 걸었을 때 늘어난 길이는 3 × (20 ÷ 8) = 7.5 cm이다.\n따라서 용수철의 전체 길이는 15 + 7.5 = 22.5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "aab19a3f6de3e5115b68463cae5c780b0631838414d36ddb5602ac9bdb5444da"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A63-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b7b1d227-5675-413a-9a73-5994185835ca",
+ "startedAt": "2026-10-21T17:07:14+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "ee4f7761a0bdec7ddef6c6327be54f9641829426e3c514b1a5c522c4c303bf82"
+ },
+ "promptSha256": "5dd5d00bb79638fc52ed5bce878b9164664265d1cf48fa98e5796fa0e5ff91d2",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"5\", \"work\": \"7/27 = 259/999 = 0.259259… → 순환마디 259, m=3. 12/44 = 3/11 = 0.272727… → 순환마디 27, n=2. 따라서 m+n=3+2=5.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "7/27 = 259/999 = 0.259259… → 순환마디 259, m=3. 12/44 = 3/11 = 0.272727… → 순환마디 27, n=2. 따라서 m+n=3+2=5.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "48b2e875d1fc8b2ad8ff8f011059583db89762064ed7a0b254ca8c8141b2676f"
+}

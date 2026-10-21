@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7ea1c759-a15a-4764-a799-3e95b91ef602",
+ "startedAt": "2026-10-21T17:04:21+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "8a63d8a9d6795862d30cfe1f2b9551ddd6fa039491d29956f4cbb68f750ebc0f"
+ },
+ "promptSha256": "4172fc4d42d87d2cdf600d0a3cead108dd2bb63ef3ddcd8088f448a474f7a18e",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"f(-3)=12/(-3)=-4 (참). g(4)=8-5=3 (참). f(12)=1이고 g(3)=6-5=1이므로 참. f(1/4)=12÷(1/4)=48이지만 g(4)=3이므로 거짓. f(-4)=-3, g(6)=7이고 -3+7=4이므로 참. 따라서 옳지 않은 것은 ④.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "f(-3)=12/(-3)=-4 (참). g(4)=8-5=3 (참). f(12)=1이고 g(3)=6-5=1이므로 참. f(1/4)=12÷(1/4)=48이지만 g(4)=3이므로 거짓. f(-4)=-3, g(6)=7이고 -3+7=4이므로 참. 따라서 옳지 않은 것은 ④.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bff70d2ec053ff5133c0250f9e449e68e3012636edc6e01eb0dde22172077949"
+}

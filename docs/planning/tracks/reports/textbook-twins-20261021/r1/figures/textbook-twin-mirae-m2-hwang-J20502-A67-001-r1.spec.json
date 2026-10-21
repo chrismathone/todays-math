@@ -1,0 +1,121 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   150,
+   41.6
+  ],
+  "B": [
+   62,
+   200
+  ],
+  "C": [
+   227.55,
+   181.19
+  ],
+  "D": [
+   150,
+   190
+  ],
+  "E": [
+   87,
+   155
+  ],
+  "F": [
+   213,
+   155
+  ]
+ },
+ "segments": {
+  "AE": [
+   "A",
+   "E"
+  ],
+  "EB": [
+   "E",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CF": [
+   "C",
+   "F"
+  ],
+  "FA": [
+   "F",
+   "A"
+  ],
+  "AD": [
+   "A",
+   "D"
+  ],
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "ticks": 1
+  },
+  "DF": {
+   "points": [
+    "D",
+    "F"
+   ],
+   "ticks": 1
+  }
+ },
+ "angles": {
+  "rE": {
+   "vertex": "E",
+   "points": [
+    "A",
+    "D"
+   ],
+   "right": true
+  },
+  "rF": {
+   "vertex": "F",
+   "points": [
+    "A",
+    "D"
+   ],
+   "right": true
+  },
+  "angD": {
+   "vertex": "D",
+   "points": [
+    "A",
+    "E"
+   ],
+   "label": "61°"
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "E": {
+   "text": "E",
+   "position": "W"
+  },
+  "F": {
+   "text": "F",
+   "position": "E"
+  }
+ }
+}

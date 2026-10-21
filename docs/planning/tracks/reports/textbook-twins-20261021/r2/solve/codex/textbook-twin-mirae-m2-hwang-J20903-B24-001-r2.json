@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-2272-71f2-9735-3c9066c3e3e6",
+ "startedAt": "2026-10-21T18:55:28+0900",
+ "elapsedSec": 7.3,
+ "studentSha256": {
+  "student.json": "ba9eadcb5ce7e916bfce45af92ebfd0d560960b17bd1f8c1c78faf7c65885f63"
+ },
+ "promptSha256": "3a3cd4fff793c26333dddf1c37bc7e5ccb05754f09f54fae8413c74885f5cfa3",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"파란색 색연필은 33-9=24자루이다.\\n따라서 파란색 색연필이 나올 확률은 $\\\\frac{24}{33}=\\\\frac{8}{11}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "파란색 색연필은 33-9=24자루이다.\n따라서 파란색 색연필이 나올 확률은 $\\frac{24}{33}=\\frac{8}{11}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4ece70d1ce238e066fc1e8a8fc1197a202932c16eb4c6c210793baaca2b31e7d"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A60-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "de0080aa-a711-4801-ab2b-e2a9f436a3c6",
+ "startedAt": "2026-10-21T16:27:38+0900",
+ "elapsedSec": 4.8,
+ "studentSha256": {
+  "student.json": "eb93b9b0a2dd4f3d115eb71f818bd10404fed6a1f90ddb42aefdca7d165d3a5a"
+ },
+ "promptSha256": "7c15dd4ab7a74bb9c72aa69bc0bd745fcadd04c02b03c03727f102ec7785974e",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"1\", \"work\": \"2x+7 ≥ 4x-1 → 8 ≥ 2x → x ≤ 4. 양변에 -2를 곱하면 -2x ≥ -8이고, 9를 더하면 9-2x ≥ 1. x=4일 때 등호가 성립하므로 가장 작은 값은 1이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "1",
+  "work": "2x+7 ≥ 4x-1 → 8 ≥ 2x → x ≤ 4. 양변에 -2를 곱하면 -2x ≥ -8이고, 9를 더하면 9-2x ≥ 1. x=4일 때 등호가 성립하므로 가장 작은 값은 1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2d46d7d579a24fa714b4b94291ff791c5fd01169be6c2f05cef4aae4debfd15d"
+}

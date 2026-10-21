@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8059b2ae-fe81-4a39-97bd-fb72ab8226df",
+ "startedAt": "2026-10-21T16:13:56+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "20db8cab8875791ccbf9ecdfe01c1011ba8f101a72bc481031a4129050e79106"
+ },
+ "promptSha256": "bc9c114925cb7f8441524c1077e4fcb8f0fb02eeca58c43c5e88166c67a672b4",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"9\", \"work\": \"첫째 항: (-6a^2b+2ab^2+8ab)/(2ab) = -3a+b+4\\n둘째 항: (-20ab-25b^2+25b)/(5b) = -4a-5b+5\\n차: (-3a+b+4)-(-4a-5b+5) = a+6b-1\\na=-2, b=2 대입: -2+12-1 = 9\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "첫째 항: (-6a^2b+2ab^2+8ab)/(2ab) = -3a+b+4\n둘째 항: (-20ab-25b^2+25b)/(5b) = -4a-5b+5\n차: (-3a+b+4)-(-4a-5b+5) = a+6b-1\na=-2, b=2 대입: -2+12-1 = 9",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "47cdd9cbf2dc1e385ad00d136c2fa9946e3df03fe71a65fec0af951a54b06255"
+}

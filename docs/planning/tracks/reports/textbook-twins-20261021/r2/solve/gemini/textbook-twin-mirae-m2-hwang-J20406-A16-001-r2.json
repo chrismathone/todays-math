@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "9b325575-2dcd-486c-b267-0eafb65356be",
+ "startedAt": "2026-10-21T18:25:37+0900",
+ "elapsedSec": 17.8,
+ "studentSha256": {
+  "student.json": "d17d2f43925bec4d6d52c9d8e661e306ed13215b114001e5e794c25134d86ccb"
+ },
+ "promptSha256": "68f098be903fa58db62a302d16cb786bf4f582d110c8ca25123aa0dc96c5e56b",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$y = -4x + 22$, $1\\\\,\\\\mathrm{km}$\",\n  \"work\": \"$100\\\\,\\\\mathrm{m} = 0.1\\\\,\\\\mathrm{km}$ 깊어질 때마다 수온이 $0.4\\\\,^{\\\\circ}\\\\mathrm{C}$씩 낮아지므로, $1\\\\,\\\\mathrm{km}$ 깊어질 때마다 $4\\\\,^{\\\\circ}\\\\mathrm{C}$씩 낮아진다. 수면의 수온이 $22\\\\,^{\\\\circ}\\\\mathrm{C}$이므로 $x\\\\,\\\\mathrm{km}$인 곳의 수온은 $y = -4x + 22$ (또는 $y = 22 - 4x$)이다. 수온이 $18\\\\,^{\\\\circ}\\\\mathrm{C}$인 곳의 깊이는 $18 = -4x + 22$에서 $4x = 4$, 즉 $x = 1$이므로 $1\\\\,\\\\mathrm{km}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$y = -4x + 22$, $1\\,\\mathrm{km}$",
+  "work": "$100\\,\\mathrm{m} = 0.1\\,\\mathrm{km}$ 깊어질 때마다 수온이 $0.4\\,^{\\circ}\\mathrm{C}$씩 낮아지므로, $1\\,\\mathrm{km}$ 깊어질 때마다 $4\\,^{\\circ}\\mathrm{C}$씩 낮아진다. 수면의 수온이 $22\\,^{\\circ}\\mathrm{C}$이므로 $x\\,\\mathrm{km}$인 곳의 수온은 $y = -4x + 22$ (또는 $y = 22 - 4x$)이다. 수온이 $18\\,^{\\circ}\\mathrm{C}$인 곳의 깊이는 $18 = -4x + 22$에서 $4x = 4$, 즉 $x = 1$이므로 $1\\,\\mathrm{km}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e694fcbe9a4eda000e02600711b0dba5110064605a934a1d234896028eb90c3d"
+}

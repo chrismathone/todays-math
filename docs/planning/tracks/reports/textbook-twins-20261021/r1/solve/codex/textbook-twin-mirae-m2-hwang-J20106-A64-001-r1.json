@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A64-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5a-b4b7-7243-8751-4f4444870abb",
+ "startedAt": "2026-10-21T16:26:27+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "student.json": "35c853f1942efba737b7bf561914861853cfdbbc7afa8187dd9296962aa0d0fb"
+ },
+ "promptSha256": "1a35b73621a2704a00bd15f75a5d5740b82a04d0eccd83640388429f0f7bab54",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$2a^{2}b^{2}$\",\"work\":\"각기둥의 높이는 부피를 밑넓이로 나눈 값이다.\\n$8a^{4}b^{4} \\\\div 4a^{2}b^{2}=2a^{2}b^{2}$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$2a^{2}b^{2}$",
+  "work": "각기둥의 높이는 부피를 밑넓이로 나눈 값이다.\n$8a^{4}b^{4} \\div 4a^{2}b^{2}=2a^{2}b^{2}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3f581e2d08eb179b1fb6661ca98e21906b67883b4cf322c587f885b77915a75f"
+}

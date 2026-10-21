@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 380,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r2",
+ "authorId": "claude-fable-5-1:55bc390a-554b-4a68-a896-b3da42010766",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아의 필통에는 색연필 $33$자루가 들어 있고, 그중 $9$자루만 빨간색이며 나머지는 모두 파란색이다. 이 필통에서 색연필 한 자루를 임의로 꺼낼 때, 파란색 색연필이 나올 확률은?",
+ "choices": [
+  "$\\frac{3}{11}$",
+  "$\\frac{6}{11}$",
+  "$\\frac{7}{11}$",
+  "$\\frac{8}{11}$",
+  "$\\frac{9}{11}$"
+ ],
+ "answer": "④",
+ "solution": "파란색 색연필은 $33-9=24$(자루)이다.\n모든 경우의 수는 $33$, 파란색이 나오는 경우의 수는 $24$이므로 구하는 확률은 $\\frac{24}{33}=\\frac{8}{11}$이다. 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-7",
+  "problemCode": "J20903-B24-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "1cf6d565dfb8cc02f0b91f3c3b020f8a7d02df2b1aee1b9046235c87a11aa886",
+  "dbContentSha256": "62be16b9aa9cfa3ba1f46bc38ca04ea900262c2c07974ee6eea1fb592876ae01",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "통 속 바둑돌의 전체 개수와 한 색의 개수를 주고, 하나를 꺼낼 때 다른 색이 나올 확률을 다섯 보기에서 고른다.",
+  "after": "필통 속 색연필의 전체 자루 수와 한 색의 자루 수를 주고, 한 자루를 꺼낼 때 다른 색이 나올 확률을 다섯 보기에서 고른다. 수를 모두 새로 하고(분모 11 계열) 정답 위치도 ④로 바꿨다.",
+  "sharedConcept": "확률 = (사건이 일어나는 경우의 수) ÷ (모든 경우의 수)",
+  "sharedProcedure": "전체에서 주어진 색의 개수를 빼 다른 색의 개수를 구함 → 전체 개수로 나눔 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "확률의 뜻",
+   "경우의 수",
+   "분수의 약분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B24-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "나머지 색을 뽑을 확률(전체 − 주어진 개수)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.103,
+   "longestRun": 7,
+   "residualChars": 90,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

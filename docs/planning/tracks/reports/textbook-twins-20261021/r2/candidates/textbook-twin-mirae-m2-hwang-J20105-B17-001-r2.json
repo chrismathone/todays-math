@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 107,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B17-001-r2",
+ "authorId": "claude-fable-5-1:b8980a90-3042-4901-a289-d43f4620efd2",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B17-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하시오.\n⑴ $(10^{12})^{9}$\n⑵ $(m^{11})^{10}$\n⑶ $(p^{10})^{9}\\times(p^{13})^{2}$\n⑷ $(n^{9})^{2}\\times(m^{10})^{13}\\times(n^{12})^{9}$",
+ "choices": [],
+ "answer": "⑴ $10^{108}$ ⑵ $m^{110}$ ⑶ $p^{116}$ ⑷ $m^{130}n^{126}$",
+ "solution": "거듭제곱의 거듭제곱은 지수끼리 곱하고, 밑이 같은 거듭제곱의 곱은 지수끼리 더한다.\n⑴ $(10^{12})^{9}=10^{12\\times 9}=10^{108}$\n⑵ $(m^{11})^{10}=m^{11\\times 10}=m^{110}$\n⑶ $(p^{10})^{9}\\times(p^{13})^{2}=p^{90}\\times p^{26}=p^{90+26}=p^{116}$\n⑷ $(n^{9})^{2}\\times(m^{10})^{13}\\times(n^{12})^{9}=n^{18}\\times m^{130}\\times n^{108}=m^{130}\\times n^{18+108}=m^{130}n^{126}$\n따라서 답은 ⑴ $10^{108}$ ⑵ $m^{110}$ ⑶ $p^{116}$ ⑷ $m^{130}n^{126}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f3d0bfc4a549536b-1-5",
+  "problemCode": "J20105-B17-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "c69c56f60bf5042548bf23e7ea4b9e916c99345b1e6dda273356d3a0ef3b41f9",
+  "dbContentSha256": "9fb306e734861dfa20140d422c9166e634fdb0fb092aedfd841f5e5d920151e1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-1_지수법칙1.hwp",
+    "sha256": "9f3a1cbafe9c8ca2b17c43e38d80cd0f34c18055f48c3e602d82f86013cbfcd7",
+    "bytes": 261120
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷 — 수의 거듭제곱의 거듭제곱, 문자의 거듭제곱의 거듭제곱, 같은 문자 두 거듭제곱의 곱, 두 문자가 섞인 세 거듭제곱의 곱(같은 문자가 1·3번째에 놓임). 지수는 모두 한 자리 수.",
+  "after": "소문항 넷 — 같은 네 갈래를 지키되 지수를 두 자리 수 위주(9~13)로 바꾸고, ⑷에서 같은 문자를 1·3번째에 두되 알파벳 순이 뒤인 문자를 먼저 놓아 정리할 때 문자 순서를 바꿔 써야 하도록 짜임을 바꿈.",
+  "sharedConcept": "지수법칙 ⑵ $(a^{m})^{n}=a^{mn}$ 과 지수법칙 ⑴ $a^{m}\\times a^{n}=a^{m+n}$",
+  "sharedProcedure": "거듭제곱의 거듭제곱에서 지수를 곱한다 → 밑이 같은 것끼리 모은다 → 지수를 더한다 → 문자 순으로 정리한다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ 밑이 같은 거듭제곱의 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B17-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "거듭제곱의 거듭제곱과 밑이 같은 거듭제곱의 곱 간단히 하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.079,
+   "longestRun": 4,
+   "residualChars": 73,
+   "params": 8,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

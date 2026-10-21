@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd8-a451-7f33-8fe6-31a8071a74bc",
+ "startedAt": "2026-10-21T18:44:01+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "student.json": "e1f9f7641bac8b9f897124bb4e43d861df6bca8738d99a9cf097ab3ceb379b18"
+ },
+ "promptSha256": "feff7ea3dc4d467bfe9beaf8858c08f0e7534f5de6343183cc0076f118b9ad61",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"양변에 24를 곱하면 $4(x+7)-3(5x-9)<0$이다.\\n정리하면 $55-11x<0$, 즉 $x>5$이다.\\n따라서 부등식을 만족시키지 않는 값은 $5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "양변에 24를 곱하면 $4(x+7)-3(5x-9)<0$이다.\n정리하면 $55-11x<0$, 즉 $x>5$이다.\n따라서 부등식을 만족시키지 않는 값은 $5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "80cc90473e5c2d7e246311345ee50a3f79ac79fa0a5fa101309a2e7d59493964"
+}

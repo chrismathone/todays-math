@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 132,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A32-001-r1",
+ "authorId": "claude-fable-5-1:5472cdb4-9a9c-4728-9d30-f8eff3dc949f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "두 일차부등식 $\\frac{x+5}{3}\\ge\\frac{3x-5}{5}$ 와 $5x-8\\le3x+a$ 의 해가 서로 같다. 이때 상수 $a$의 값은?",
+ "choices": [
+  "$-12$",
+  "$-2$",
+  "$2$",
+  "$12$",
+  "$28$"
+ ],
+ "answer": "④",
+ "solution": "$\\frac{x+5}{3}\\ge\\frac{3x-5}{5}$ 의 양변에 $15$를 곱하면 $5(x+5)\\ge3(3x-5)$, $5x+25\\ge9x-15$, $-4x\\ge-40$ 이므로 $x\\le10$ 이다. $5x-8\\le3x+a$ 에서 $2x\\le a+8$, $x\\le\\frac{a+8}{2}$ 이다. 두 해가 같으므로 $\\frac{a+8}{2}=10$, $a+8=20$, $a=12$ 이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-11",
+  "problemCode": "J20203-A32-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "fbf5649bef6659f2dfc266c00bd8d97fa1c9cc067aa6b5687d3e0beea52a11dd",
+  "dbContentSha256": "0055db7b65afb4c4247027b53588399af156e796f1bcc6c83cc9a7ca82e6d6bf",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "문자 a가 든 부등식을 먼저 제시하고 분수꼴 부등식의 해와 같다고 하여 a를 고름(해는 x가 어떤 수 이상)",
+  "after": "분수꼴 부등식을 먼저 두고 a가 든 부등식과 해가 같다고 하여 a를 고름(해는 x가 어떤 수 이하, 통분 수 15)",
+  "sharedConcept": "두 일차부등식의 해가 서로 같을 조건",
+  "sharedProcedure": "분모 없애고 수 부등식 풀기 → a 포함 부등식을 x에 대해 정리 → 두 경계값을 같다고 놓고 a 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 응용"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "분수 계수 일차부등식",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20203-A32-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 서로 같은 두 일차부등식에서 상수 구하기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.043,
+   "longestRun": 5,
+   "residualChars": 49,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

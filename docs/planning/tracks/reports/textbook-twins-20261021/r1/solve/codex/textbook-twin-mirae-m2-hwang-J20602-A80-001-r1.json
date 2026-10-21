@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbf-8f88-76d0-8bb1-bca4d638ce0d",
+ "startedAt": "2026-10-21T18:16:37+0900",
+ "elapsedSec": 23.7,
+ "studentSha256": {
+  "fig-1.png": "f7f26402e765120cc0af71c2a3d0c950e9f2d30f8f9e28330c0582622737f45f",
+  "student.json": "513658dce707223f72490cfac22a04cbec383148c7e9e785f078b37416ab2de9"
+ },
+ "promptSha256": "fe7cb5dfbf70dc7e8cdbbff5c6f427b407a7f6a899e4798e6d7aa224da5d2e1a",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"ㄱ과 ㅂ: SAS 닮음, ㄴ과 ㅁ: AA 닮음, ㄷ과 ㄹ: SSS 닮음\",\n  \"work\": \"ㄱ과 ㅂ: AB:PQ=BC:QR=1:3이고, 그 끼인각 ∠B=∠Q=50°이다.\\nㄴ과 ㅁ: ∠D=180°−45°−70°=65°이므로 ∠D=∠O, ∠F=∠N이다.\\nㄷ과 ㄹ: GH:JK=GI:JL=HI:KL=10:5=14:7=18:9=2:1이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "ㄱ과 ㅂ: SAS 닮음, ㄴ과 ㅁ: AA 닮음, ㄷ과 ㄹ: SSS 닮음",
+  "work": "ㄱ과 ㅂ: AB:PQ=BC:QR=1:3이고, 그 끼인각 ∠B=∠Q=50°이다.\nㄴ과 ㅁ: ∠D=180°−45°−70°=65°이므로 ∠D=∠O, ∠F=∠N이다.\nㄷ과 ㄹ: GH:JK=GI:JL=HI:KL=10:5=14:7=18:9=2:1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5dd546b634c246a2f5136329a7cdbdf743d81019c991a40dda32adf05831e446"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B31-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e492adb5-3000-4895-8770-1ed32244a550",
+ "startedAt": "2026-10-21T17:13:03+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "96b9adea511cd706188dace0205d3812be739d04864a65596eeb1204d0fa4a7a"
+ },
+ "promptSha256": "1eb7ed8ad5d26a7d9f50f780278d9754704d4b7f146ec0bcf04dc1fd1375e873",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{4}{7}$\", \"work\": \"PICTURE의 7개 알파벳 중 모음은 I, U, E의 3개, 자음은 P, C, T, R의 4개이다. 7장 중 한 장을 뽑으므로 모든 경우의 수는 7, 자음이 나오는 경우의 수는 4이다. 따라서 구하는 확률은 4/7이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{4}{7}$",
+  "work": "PICTURE의 7개 알파벳 중 모음은 I, U, E의 3개, 자음은 P, C, T, R의 4개이다. 7장 중 한 장을 뽑으므로 모든 경우의 수는 7, 자음이 나오는 경우의 수는 4이다. 따라서 구하는 확률은 4/7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c7f8ae423686ea7a747b5474b32ad0c51f40316411d8a40cb205d3821333b05d"
+}

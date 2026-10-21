@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 36,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r1",
+ "authorId": "middle-engine:2-1|단항식의 계산|52",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "어떤 단항식에 $2x$를 곱했더니 $10x^{2}y^{3}$이 되었다. 어떤 단항식을 구하시오.",
+ "choices": [
+  "$5xy^{3}$",
+  "$5xy^{2}$",
+  "$7xy^{3}$",
+  "$6xy^{3}$",
+  "$5xy^{4}$"
+ ],
+ "answer": "①",
+ "solution": "(어떤 단항식)$=10x^{2}y^{3}\\div2x$이다.\n계수끼리 나누고 지수끼리 빼면 $5xy^{3}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-6",
+  "problemCode": "J20106-A61-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "23df0ad8b150f14c3394ac7f6af644740d54e4a5d5daa86e1adbda2c5a815a64",
+  "dbContentSha256": "4cd5d9e9ea4114b3b4e828d55539bbe0fd74b785a3e5af8245101079431fa221",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "미지의 단항식에 분수 계수 단항식을 곱한 결과가 주어지고 미지의 단항식을 보기에서 고른다.",
+  "after": "어떤 단항식에 단항식을 곱한 결과에서 어떤 단항식을 구하는 유형으로, 수·식은 엔진이 새로 정하고 객관식 보기 다섯으로 파생한다.",
+  "sharedConcept": "곱셈과 나눗셈의 관계로 단항식 구하기",
+  "sharedProcedure": "결과를 곱한 식으로 나눔 → 역수 곱 → 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 나눗셈",
+   "지수법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A61-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱해서 주어진 단항식이 되는 단항식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|단항식의 계산|52",
+   "seed": 898300715,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+   "authorRationale": "곱해서 주어진 결과가 되는 어떤 단항식을 나눗셈 한 단계로 구하는 같은 개념·절차·값 묻기 꼴이며, 객관식은 파생기로 만든다.",
+   "facts": {
+    "mode": 2,
+    "c": 5,
+    "d": 2,
+    "ex": 1,
+    "ey": 3,
+    "ep": 1
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.071,
+   "longestRun": 6,
+   "residualChars": 53,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

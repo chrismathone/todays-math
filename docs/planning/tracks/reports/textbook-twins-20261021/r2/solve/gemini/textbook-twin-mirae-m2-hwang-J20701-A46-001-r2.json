@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A46-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "e0ff35a7-6893-442d-aa3a-d379cd2edf74",
+ "startedAt": "2026-10-21T18:39:07+0900",
+ "elapsedSec": 31.2,
+ "studentSha256": {
+  "fig-1.png": "64f4595226ecf6058e4a7a57e1bbf125124191a132af65ddfcce978b241efbbd",
+  "student.json": "66b81540c06dfc5fe04b5d814e04422f6a32997b34d779775acbabc0b2baecea"
+ },
+ "promptSha256": "86c243f03e1674e84fe73b559365fe26c702d7a27cd8db28c6789eec8a9e14ab",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"두 선분 $BE$와 $CD$의 교점이 $A$이고 $\\\\overline{BC} \\\\parallel \\\\overline{DE}$이므로, $\\\\triangle ADE \\\\sim \\\\triangle ACB$ (AA 닮음)이다.\\n따라서 닮음비에 의해 $\\\\overline{AD} : \\\\overline{AC} = \\\\overline{DE} : \\\\overline{BC}$가 성립한다.\\n$x : 21 = 12 : 18 = 2 : 3$\\n$3x = 42$\\n$x = 14$\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "두 선분 $BE$와 $CD$의 교점이 $A$이고 $\\overline{BC} \\parallel \\overline{DE}$이므로, $\\triangle ADE \\sim \\triangle ACB$ (AA 닮음)이다.\n따라서 닮음비에 의해 $\\overline{AD} : \\overline{AC} = \\overline{DE} : \\overline{BC}$가 성립한다.\n$x : 21 = 12 : 18 = 2 : 3$\n$3x = 42$\n$x = 14$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d7883e76a24cd0ad1f960ecab99abf1d4d995d5e61c9e38899159edd0eccc1c0"
+}

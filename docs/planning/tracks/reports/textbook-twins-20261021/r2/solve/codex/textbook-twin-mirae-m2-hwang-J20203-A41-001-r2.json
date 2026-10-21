@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A41-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddc-f449-7a23-b9ba-f83b098719b2",
+ "startedAt": "2026-10-21T18:48:43+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "5cddb21f2e4c3049da7a3901ee1e0d424884171be3e4e4250def146033b91aa9"
+ },
+ "promptSha256": "92f5f2e151ec31fa954779d200ea8c4cd794aded703a40c53b3073a00e83ad25",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7\",\"work\":\"첫째 부등식을 정리하면 $x<-\\\\frac{a+2}{3}$이다.\\n둘째 부등식은 $3x+3>5x+9$이므로 $x<-3$이다.\\n두 해가 같으므로 $-\\\\frac{a+2}{3}=-3$에서 $a=7$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "첫째 부등식을 정리하면 $x<-\\frac{a+2}{3}$이다.\n둘째 부등식은 $3x+3>5x+9$이므로 $x<-3$이다.\n두 해가 같으므로 $-\\frac{a+2}{3}=-3$에서 $a=7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9467c6869e0c54bfc4b9e7bb93dba8f15981ebbfeaba312abe58835dbf250abf"
+}

@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 258,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A88-001-r1",
+ "authorId": "claude-fable-5-1:d385ff22-b0d3-4a53-b290-3956d5f2c402",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 그림에서 점 $I$는 $\\triangle ABC$의 내심이다. $\\angle ICA=29^{\\circ}$일 때, $\\angle x$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$119^{\\circ}$",
+ "solution": "점 $I$가 내심이므로 $\\angle C=2\\angle ICA=58^{\\circ}$이고, $\\angle A+\\angle B=180^{\\circ}-58^{\\circ}=122^{\\circ}$이다. $\\overline{IA}$, $\\overline{IB}$가 각각 $\\angle A$, $\\angle B$의 이등분선이므로 $\\angle IAB+\\angle IBA=\\frac{1}{2}\\times 122^{\\circ}=61^{\\circ}$이다. 따라서 $\\triangle IAB$에서 $\\angle x=180^{\\circ}-61^{\\circ}=119^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A88-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A88-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03d665583002de54-0-3",
+  "problemCode": "J20504-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "d6672654de9cebb180305ed5902051029e0c2a31c39101b1ee62166dca4f541c",
+  "dbContentSha256": "87c5a183dc4a7db31327278f663e9dd58cab98d9b3b32fbf61d6db693ed141e0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-4_삼각형의내심.hwp",
+    "sha256": "177cdc1d2d6f4e35bdd651defe29e1687f81d37b59a68412e88ca8ca7c822db0",
+    "bytes": 216576
+   }
+  ],
+  "originalFigureSha256": [
+   "f9cc396f6cddb75924b098bccf30f482719cebe4bdda49969f67222917f5b9fc"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "내심에서 밑변 양 끝을 보는 각이 주어지고, 꼭대기 각의 절반을 구한다.",
+  "after": "한 꼭짓점의 반각이 주어지고, 내심에서 나머지 두 꼭짓점을 보는 각을 구한다.",
+  "sharedConcept": "내심은 각의 이등분선의 교점 · 삼각형 내각의 합",
+  "sharedProcedure": "반각↔전체각 변환 → 나머지 두 각의 합 → 그 절반 → 180°에서 빼기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 크기의 합",
+   "삼각형의 내심의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A88-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "한 반각으로 내심에서 두 꼭짓점을 보는 각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 24자"
+   ],
+   "overlap4": 0.238,
+   "longestRun": 8,
+   "residualChars": 24,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

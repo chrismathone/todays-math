@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "81e0a22b-1112-4c98-8c40-e5d6daeb129d",
+ "startedAt": "2026-10-21T17:55:52+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "7144d953a8e74fd1de0090a434c6890d409a188060bb9413dcbf220ce71449fe"
+ },
+ "promptSha256": "47bfdc64343848cfacbb4220525e080f1b12e2cadb4de6c9120cc5a973978a1c",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"① 5x+y=0 → 미지수 2개인 일차방정식. ② 양변의 xy가 소거되어 4x-y-6=0 → 미지수 2개인 일차방정식. ③ 미지수 2개인 일차방정식. ④ 4x가 소거되어 5y+5=0 → 미지수가 1개. ⑤ 5x-4y+9=0 → 미지수 2개인 일차방정식. 따라서 답은 ④.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "① 5x+y=0 → 미지수 2개인 일차방정식. ② 양변의 xy가 소거되어 4x-y-6=0 → 미지수 2개인 일차방정식. ③ 미지수 2개인 일차방정식. ④ 4x가 소거되어 5y+5=0 → 미지수가 1개. ⑤ 5x-4y+9=0 → 미지수 2개인 일차방정식. 따라서 답은 ④.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "18daa87f6155d7ec3a7997db9109e05422b38cd4f246049400af9a61cc524054"
+}

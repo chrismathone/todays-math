@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de4-200b-76c3-afc6-85c327c41a4b",
+ "startedAt": "2026-10-21T18:56:33+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "student.json": "628e09087dce74a7e5795482b8c789a70d46e912465ad1444be338c65d617da1"
+ },
+ "promptSha256": "9ac6d5cc1602bbea8d5c6ff1fa4935dc2499879be9bed13f4c6d202d548ca0e9",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$2x+3y=-5$에 $x=b$, $y=-3$을 대입하면 $2b-9=-5$이므로 $b=2$이다.\\n$3x-y=a$에 대입하면 $a=3\\\\times2-(-3)=9$이다.\\n따라서 $a-b=9-2=7$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$2x+3y=-5$에 $x=b$, $y=-3$을 대입하면 $2b-9=-5$이므로 $b=2$이다.\n$3x-y=a$에 대입하면 $a=3\\times2-(-3)=9$이다.\n따라서 $a-b=9-2=7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b5ae68c3f5009355b287b8b17281fe57adbe6b62583294d32bf1cd91361fc1aa"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A32-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddc-cff1-7921-8948-fbc6338cb1fd",
+ "startedAt": "2026-10-21T18:48:34+0900",
+ "elapsedSec": 9.2,
+ "studentSha256": {
+  "student.json": "b1d2ebe37d749cd7c14c3d6c6da533e92bd050d56339187cfd9fb6c9075b1946"
+ },
+ "promptSha256": "5ea5b7ac998b471f5bb3ea4464536945094f72fd67a0d8015e4b8bbe8054ba6e",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"첫 번째 부등식은 $2x>10$, 즉 $x>5$이다.\\n두 번째 부등식의 양변에 15를 곱하면 $6x-3a>5x-25$, 즉 $x>3a-25$이다.\\n두 해가 같으므로 $3a-25=5$에서 $a=10$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "첫 번째 부등식은 $2x>10$, 즉 $x>5$이다.\n두 번째 부등식의 양변에 15를 곱하면 $6x-3a>5x-25$, 즉 $x>3a-25$이다.\n두 해가 같으므로 $3a-25=5$에서 $a=10$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f8a022518e614072ea1fd5c68883873f5b18f38b5dce5928108f11efc44c60c2"
+}

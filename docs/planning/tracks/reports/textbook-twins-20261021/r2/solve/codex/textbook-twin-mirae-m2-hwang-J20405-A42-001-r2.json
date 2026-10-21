@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-479a-7852-990c-8fac14944c25",
+ "startedAt": "2026-10-21T19:04:22+0900",
+ "elapsedSec": 9.2,
+ "studentSha256": {
+  "student.json": "f528d29bd4e12760c33c5254ec042a613bcba8dae3dbf6751e177c3f505273a8"
+ },
+ "promptSha256": "7c1ab5cdc69520c660f30c5fe391ba91b8c26c91b25e91f2ed77eb236fd706a3",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"일차함수 $y=ax+b$에서 $a$는 기울기, $b$는 $y$절편이다.\\n기울기가 $-\\\\frac{5}{7}$이고 $(0,6)$을 지나므로 $b=6$이다.\\n따라서 $y=-\\\\frac{5}{7}x+6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "일차함수 $y=ax+b$에서 $a$는 기울기, $b$는 $y$절편이다.\n기울기가 $-\\frac{5}{7}$이고 $(0,6)$을 지나므로 $b=6$이다.\n따라서 $y=-\\frac{5}{7}x+6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "802af127124a00a6bcfec4b96173b9df65a82391c9a3694548b530590a370efa"
+}

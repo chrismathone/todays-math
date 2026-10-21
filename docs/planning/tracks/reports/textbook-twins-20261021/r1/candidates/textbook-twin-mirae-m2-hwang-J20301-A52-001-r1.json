@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 160,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A52-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 ㄱ~ㄹ 가운데 미지수가 $2$개인 일차방정식이 아닌 것만을 있는 대로 고른 것은?\nㄱ. $3x+y=3(x-2)$ ㄴ. $\\frac{y}{3}=x-1$\nㄷ. $x+2y=x^{2}$ ㄹ. $2(x-y)=x+1$",
+ "choices": [
+  "ㄱ, ㄴ",
+  "ㄱ, ㄷ",
+  "ㄴ, ㄷ",
+  "ㄴ, ㄹ",
+  "ㄱ, ㄷ, ㄹ"
+ ],
+ "answer": "②",
+ "solution": "각 식의 모든 항을 좌변으로 옮겨 정리한다.\nㄱ. $3x+y-3x+6=0$, 즉 $y+6=0$ → 미지수가 $1$개\nㄴ. $-x+\\frac{y}{3}+1=0$ → 미지수가 $2$개인 일차방정식\nㄷ. $-x^{2}+x+2y=0$ → $x^{2}$ 항이 있어 일차방정식이 아님\nㄹ. $x-2y-1=0$ → 미지수가 $2$개인 일차방정식\n따라서 미지수가 $2$개인 일차방정식이 아닌 것은 ㄱ, ㄷ이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-1",
+  "problemCode": "J20301-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "5f7844a6ebb7508f581a365a7b1846ef17e0eb35df7cbbf1e0053ad14c592480",
+  "dbContentSha256": "c934bea85f8b2a43545eab28f77cfe94c0a1443bf759828fea83b2324b03a564",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "식 넷을 주고, 정리하면 미지수가 둘인 일차방정식이 되지 않는 것(한쪽 문자가 사라지는 식과 이차항이 남는 식)의 조합을 고른다.",
+  "after": "식 넷을 주되 사라지는 문자를 $x$로 바꾸고 이차항은 우변에 홀로 두어, 정리 뒤 아닌 것 둘의 조합을 고른다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 뜻(ax+by+c=0, a≠0, b≠0)",
+  "sharedProcedure": "우변 항을 좌변으로 이항 → 동류항 정리 → 남은 문자의 개수와 차수 확인 → 조건에 맞지 않는 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 뜻(1학년)",
+   "이항과 동류항 정리",
+   "다항식의 차수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지수가 2개인 일차방정식 판별(아닌 것 조합 고르기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.205,
+   "longestRun": 16,
+   "residualChars": 86,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db5-f93f-7c43-8b0c-a5323cb44b8e",
+ "startedAt": "2026-10-21T18:06:09+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "fig-1.png": "99360cf615c9cd5529c991f5a8b959006b7d050e1a9a76971c5f3d92d5a6edd6",
+  "student.json": "1f6b2f64ae7ba57b12ea0c792cb436eba8c30606844f83199e22c6384b1ba875"
+ },
+ "promptSha256": "f2a8f09de63fe5c657468d992f4f093ccbbef4c5b5b2067c700d673158eab646",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행사변형의 이웃한 두 내각의 합은 180°이므로 ∠ABE=180°−112°=68°이다.\\n삼각형 ABE에서 ∠x=180°−28°−68°=84°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행사변형의 이웃한 두 내각의 합은 180°이므로 ∠ABE=180°−112°=68°이다.\n삼각형 ABE에서 ∠x=180°−28°−68°=84°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a82dee706032e0d07982ec62b07926653f3b1a34f8cc6de82fc6294afa1eaedd"
+}

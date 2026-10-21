@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A31-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddc-ad67-7c41-a05c-b61d15667a8c",
+ "startedAt": "2026-10-21T18:48:25+0900",
+ "elapsedSec": 8.8,
+ "studentSha256": {
+  "student.json": "47891e746008d8dd01429b2a5a981d153f50d2bb1f0abfd7e59810a30dba846e"
+ },
+ "promptSha256": "ba121ea06a3f937fc06bb22ce44a2094832481ee2d984c5cc096e3d34e830d57",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$5-3ax<ax+13$을 정리하면 $-4ax<8$, 즉 $ax>-2$이다.\\n$a<0$이므로 양변을 $a$로 나누면 부등호 방향이 바뀌어 $x<-\\\\frac{2}{a}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$5-3ax<ax+13$을 정리하면 $-4ax<8$, 즉 $ax>-2$이다.\n$a<0$이므로 양변을 $a$로 나누면 부등호 방향이 바뀌어 $x<-\\frac{2}{a}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "51e8a0ceee5e0a52268e99ba3977500081f131fb517a9658c8f166e117e67c38"
+}

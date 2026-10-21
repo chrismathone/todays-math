@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B26-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "aa0cc864-8b75-4f0a-9da4-cfcf1df83198",
+ "startedAt": "2026-10-21T17:12:47+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "b084d5357209c76bbf1bbcbedd6b758522c2de1b2d75768460ee226c147b9648"
+ },
+ "promptSha256": "399c0f06e6f8e5cc6cb4d69b183d9a82f16ca24dd3984e29aabe3ece905ec0ad",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"만들 수 있는 두 자리 수는 모두 5×4=20가지이다. 3의 배수가 되려면 두 숫자의 합이 3의 배수여야 한다. 그런 두 숫자의 쌍은 {2,7}, {5,7}, {7,8}의 3쌍이다. 각 쌍은 순서를 바꿔 수를 2개 만들 수 있으므로 27, 72, 57, 75, 78, 87의 6가지이다. 따라서 확률은 6/20=3/10이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "만들 수 있는 두 자리 수는 모두 5×4=20가지이다. 3의 배수가 되려면 두 숫자의 합이 3의 배수여야 한다. 그런 두 숫자의 쌍은 {2,7}, {5,7}, {7,8}의 3쌍이다. 각 쌍은 순서를 바꿔 수를 2개 만들 수 있으므로 27, 72, 57, 75, 78, 87의 6가지이다. 따라서 확률은 6/20=3/10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d7790b80126558e675111e4603c5243a33b53660deef3f2b953fd59beb735662"
+}

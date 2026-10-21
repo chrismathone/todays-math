@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 5,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A56-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 전개하시오.\n⑴ $6b(2b-5)$ ⑵ $-4x(5x+7y)$\n⑶ $5a(a-2b+6)$ ⑷ $(7x-6y+1)\\times(-3x)$",
+ "choices": [],
+ "answer": "⑴ $12b^{2}-30b$ ⑵ $-20x^{2}-28xy$ ⑶ $5a^{2}-10ab+30a$ ⑷ $-21x^{2}+18xy-3x$",
+ "solution": "⑴ $6b\\times 2b-6b\\times 5=12b^{2}-30b$이다.\n⑵ $-4x\\times 5x+(-4x)\\times 7y=-20x^{2}-28xy$이다.\n⑶ $5a\\times a-5a\\times 2b+5a\\times 6=5a^{2}-10ab+30a$이다.\n⑷ $7x\\times(-3x)-6y\\times(-3x)+1\\times(-3x)=-21x^{2}+18xy-3x$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-e693179aa51c3231-0-1",
+  "problemCode": "J20108-A56-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "81755bfd40ee954892fa3cdd0a1ecc2e61335d6e99253fc49da41bb0e0ed144b",
+  "dbContentSha256": "81755bfd40ee954892fa3cdd0a1ecc2e61335d6e99253fc49da41bb0e0ed144b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-5_단항식과다항식의곱셈과나눗셈.hwp",
+    "sha256": "cd5fdece8c2aaf7375b2b11cf26628221cb7985b0db94a0dd51eaf97bac2f67f",
+    "bytes": 296960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "단항식과 이항식·삼항식의 곱 네 개를 전개한다. 앞에 단항식이 오는 것 셋, 뒤에 오는 것 하나.",
+  "after": "같은 배치의 네 소문항이지만 문자와 계수를 새로 두고, 상수항이 양수·음수로 섞이게 했다.",
+  "sharedConcept": "단항식과 다항식의 곱셈(분배법칙)",
+  "sharedProcedure": "단항식을 각 항에 곱하기 → 지수법칙 적용 → 부호 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈",
+   "분배법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A56-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식×다항식 전개 연습(소문항 넷)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.3,
+   "longestRun": 9,
+   "residualChars": 63,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

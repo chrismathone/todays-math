@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A49-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da8-c74a-7a73-ad3a-caf0b7e8551a",
+ "startedAt": "2026-10-21T17:51:44+0900",
+ "elapsedSec": 27.0,
+ "studentSha256": {
+  "student.json": "ce5be2ff31158ddb66338a7a4bc1f7d5de8b06ae0caac8f7ff05c86238237b0f"
+ },
+ "promptSha256": "96b9101b09edaf8972bc2f1675c6e947f76e80b490af1170ae82a1af7966565e",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-11\",\"work\":\"점 (-2, 6)을 대입하면 6=-a/2+2이므로 a=-8이다.\\n평행이동한 그래프는 y=-2x+2+b이고, 점 (4, -3)을 대입하면 -3=-8+2+b이므로 b=3이다.\\n따라서 a-b=-8-3=-11이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-11",
+  "work": "점 (-2, 6)을 대입하면 6=-a/2+2이므로 a=-8이다.\n평행이동한 그래프는 y=-2x+2+b이고, 점 (4, -3)을 대입하면 -3=-8+2+b이므로 b=3이다.\n따라서 a-b=-8-3=-11이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cfbf6ba2a4516d6b3aaa61be5ed9242926b334464bf81a6786d1f6cab05f8590"
+}

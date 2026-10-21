@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "70005c11-c202-4717-a824-21c7eb6e0dfa",
+ "startedAt": "2026-10-21T17:12:44+0900",
+ "elapsedSec": 3.1,
+ "studentSha256": {
+  "student.json": "34fb89bdc8554f102462652ed0a762d77895b822dcd3ad9f3892e057f86a384e"
+ },
+ "promptSha256": "ee4bde3ad4796ffd4fe65b879419bcc3d293ce800aeb445f4362a883c3ea511a",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"초록색 연필 수 = 24 - 15 = 9자루. 초록색이 나올 확률 = 9/24 = 3/8\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "초록색 연필 수 = 24 - 15 = 9자루. 초록색이 나올 확률 = 9/24 = 3/8",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "158e5d444a1283d46eeb0e85eca88291ca200f976bd816ac4b1790578c5b6587"
+}

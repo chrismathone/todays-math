@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A79-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d65-29c2-7c10-a450-211f5f497e27",
+ "startedAt": "2026-10-21T16:37:53+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "eecdcb2ccd386344bb4ac357a002a2c984ffdb0a2f9ab8b9d406fd66e48beb3e"
+ },
+ "promptSha256": "af3e7d76748af0a642087301c1fda3ca57f56ecf4c75d77652bcdc568b980624",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\\n②는 -15/36 = -5/12이고, 분모 12에 소인수 3이 있으므로 나눗셈이 끝나지 않는다.\\n나머지는 기약분수의 분모가 각각 20, 8, 5, 20이므로 모두 유한소수이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\n②는 -15/36 = -5/12이고, 분모 12에 소인수 3이 있으므로 나눗셈이 끝나지 않는다.\n나머지는 기약분수의 분모가 각각 20, 8, 5, 20이므로 모두 유한소수이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5c501e78f134b16890367ed6c6ffd217a65610f9352d3e510a734db70794a220"
+}

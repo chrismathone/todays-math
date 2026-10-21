@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 295,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A86-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 변 $BC$의 연장선과 만나는 점을 $E$라 하자. $\\angle AEB=39^{\\circ}$일 때, $\\angle BCD$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$78^{\\circ}$",
+ "solution": "$\\overline{AD}\\parallel\\overline{BE}$이므로 $\\angle DAE=\\angle AEB=39^{\\circ}$(엇각)이다.\n$\\angle BAE=\\angle DAE$이므로 $\\angle BAD=2\\times 39^{\\circ}=78^{\\circ}$이다.\n평행사변형의 대각의 크기는 같으므로 $\\angle BCD=\\angle BAD=78^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A86-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A86-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-aa6d7134992fa333-0-3",
+  "problemCode": "J20505-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "ca3474260eb2cf9da791ebf5d1fe82a4f0d97a6df7a20936f4dd9d3b4ed92dc1",
+  "dbContentSha256": "856cd8d9717361c1b70e715f6c106352926f4fccd83ee0cd6d3316cbc175d807",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-5_평행사변형의성질.hwp",
+    "sha256": "5d2a12537ffa93a0c9eb29bd27b5ccd7b0c3d64f5a86b26430268aff7129331c",
+    "bytes": 170496
+   }
+  ],
+  "originalFigureSha256": [
+   "9e7ea03f342b0715cada42c457090844edd284f63ce3492f41196e0aa5abc15b"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "아래 꼭짓점의 각 이등분선이 옆변의 연장선과 위쪽에서 만나고, 그 교점의 각으로 맞은편 꼭짓점의 각을 구한다.",
+  "after": "위 꼭짓점의 각 이등분선이 아랫변의 연장선과 바깥에서 만나게 두고, 교점의 각으로 대각의 크기를 구한다.",
+  "sharedConcept": "평행선의 엇각 · 각의 이등분선 · 평행사변형의 대각",
+  "sharedProcedure": "엇각으로 이등분된 반쪽 각 구하기 → 2배 → 대각의 크기 같음"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행선의 엇각",
+   "평행사변형의 대각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A86-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "각의 이등분선과 변의 연장선이 만나는 점의 각으로 내각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'e' ray to 'B' is not covered by a rendered segment",
+     "session": "11a48438-bf36-4d32-b3ca-10ed1388975b",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.36"
+   ],
+   "overlap4": 0.356,
+   "longestRun": 12,
+   "residualChars": 48,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

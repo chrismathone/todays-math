@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 218,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r2",
+ "authorId": "claude-opus-5-5:f0d6ab27-b88a-4d62-bb64-57abf6b967f4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n미나는 좌표평면 위에 일차방정식 $x-2y+4=0$의 그래프와 일차방정식 $2x+y-12=0$의 그래프를 그렸다. 이 두 직선이 $y$축과 함께 만드는 삼각형의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$20$",
+ "solution": "$x-2y+4=0$에 $x=0$을 대입하면 $-2y+4=0$, $y=2$이므로 이 직선은 $y$축과 점 $(0,\\,2)$에서 만난다.\n$2x+y-12=0$에 $x=0$을 대입하면 $y-12=0$, $y=12$이므로 이 직선은 $y$축과 점 $(0,\\,12)$에서 만난다.\n두 직선의 교점은 연립방정식 $\\begin{cases} x-2y+4=0 \\\\ 2x+y-12=0 \\end{cases}$의 해이다.\n첫째 식에서 $x=2y-4$이고, 이것을 둘째 식에 대입하면 $2(2y-4)+y-12=0$, $5y=20$, $y=4$이다. 그러므로 $x=2\\times 4-4=4$이고 교점은 $(4,\\,4)$이다.\n삼각형의 밑변을 $y$축 위의 선분으로 잡으면 밑변의 길이는 $12-2=10$이고, 높이는 교점의 $x$좌표인 $4$이다.\n따라서 삼각형의 넓이는 $\\frac{1}{2}\\times 10\\times 4=20$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A77-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A77-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-d482099c84619fd0-1-3",
+  "problemCode": "J20409-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "e421ecc88f5eefe85ddfaf2d26fc7a7159cc23444815ca18844ff491243b8b85",
+  "dbContentSha256": "f34709ac3d312b0e5f00d9a6dd00dd345f7d35b761ef8b14bbd9103e4c0c9f1e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_5-7_일차함수의그래프와연립일차방정식.hwp",
+    "sha256": "06af84af2515478aea7078e3a9544eebc52ad04e6c0d56fa6e764af5c544130e",
+    "bytes": 405504
+   }
+  ],
+  "originalFigureSha256": [
+   "ce98d37c45afe54a1599133e6d263f9d8ee4302bcf6a456cd61aabafcc1d05e2"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "일반형으로 주어진 두 직선의 y절편이 하나는 음수, 하나는 양수라서 삼각형이 x축 위아래에 걸쳐 있다. 두 직선과 y축으로 이루어진 삼각형의 넓이를 묻는다.",
+  "after": "인물이 그래프를 그리는 장면이다. 일반형 두 직선의 y절편이 둘 다 양수(2, 12)라서 삼각형이 x축 위쪽에만 있다. 대칭이 아닌 두 직선을 대입법으로 연립해야 교점 (4, 4)가 나오고, y절편의 차 10을 밑변, 교점의 x좌표 4를 높이로 삼아 넓이를 구한다.",
+  "sharedConcept": "두 일차방정식 그래프의 교점은 연립방정식의 해이고, y축과 만나는 점은 y절편으로 구한다. 이를 써서 좌표평면 위 삼각형의 넓이를 구한다.",
+  "sharedProcedure": "각 직선에 x=0 대입해 y절편 구하기 → 연립방정식을 풀어 교점 구하기 → y절편의 차를 밑변, 교점의 x좌표를 높이로 잡기 → ½×밑변×높이"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "일차방정식의 그래프와 y절편",
+   "연립일차방정식의 풀이(대입법·가감법)",
+   "연립방정식의 해와 두 그래프의 교점의 관계",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A77-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 일차방정식의 그래프와 y축으로 둘러싸인 삼각형의 넓이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: yRange 폭은 4~12칸이어야 합니다",
+     "session": "83ed8e61-30f9-4150-a68c-839880a3bc4f",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.14,
+   "longestRun": 7,
+   "residualChars": 65,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

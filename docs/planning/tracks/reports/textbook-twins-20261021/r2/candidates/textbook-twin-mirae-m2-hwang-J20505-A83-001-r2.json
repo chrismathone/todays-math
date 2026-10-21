@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 292,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A83-001-r2",
+ "authorId": "claude-opus-5-5:af177126-015c-4503-924e-a50a74478a26",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20505-A83-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 평행사변형 $ABCD$에서 대각선 $AC$와 $BD$가 만나는 점이 $O$이다. 점 $O$를 지나는 한 직선이 $\\overline{AD}$와 점 $E$에서, $\\overline{BC}$와 점 $F$에서 만난다. $\\overline{BC}=16\\,\\mathrm{cm}$이고 꼭짓점 $D$에서 직선 $BC$까지의 거리가 $9\\,\\mathrm{cm}$일 때, 색칠한 두 삼각형 $\\triangle ODE$와 $\\triangle OCF$의 넓이의 합을 구하시오.",
+ "choices": [],
+ "answer": "$36\\,\\mathrm{cm}^{2}$",
+ "solution": "$\\triangle ODE$와 $\\triangle OBF$에서 평행사변형의 두 대각선은 서로를 이등분하므로 $\\overline{OD}=\\overline{OB}$이다.\n$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle ODE=\\angle OBF$(엇각)이고, $\\angle DOE=\\angle BOF$(맞꼭지각)이다.\n따라서 $\\triangle ODE\\equiv\\triangle OBF$($\\mathrm{ASA}$ 합동)이다.\n그러므로 $\\triangle ODE+\\triangle OCF=\\triangle OBF+\\triangle OCF=\\triangle OBC$이다.\n$\\triangle OBC=\\frac{1}{2}\\triangle DBC=\\frac{1}{4}\\square ABCD=\\frac{1}{4}\\times 16\\times 9=36\\,(\\mathrm{cm}^{2})$\n따라서 넓이의 합은 $36\\,\\mathrm{cm}^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A83-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A83-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-17",
+  "problemCode": "J20505-A83-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "e2bb01c33c6c7dd53a35b9c25b3d0678f4923e8591774ce9a04163cea988dc08",
+  "dbContentSha256": "3ffaee4876d691b4af419c3ff6129035bafa249cf14227e8453a5443d76b2da3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "d0e42247d50f492705bcc52baa4a3a15c1ace58af6f675e917797f1b57431066"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "representation"
+  ],
+  "before": "평행사변형의 대각선 교점을 지나는 직선이 한 쌍의 대변(왼쪽 · 오른쪽 변)과 만날 때, 그 직선으로 생긴 두 삼각형(한 꼭짓점 쪽 하나와 맞은편 하나)의 넓이 합을 밑변 10 · 높이 8에서 구한다.",
+  "after": "직선이 위 · 아래 변(AD · BC)과 만나고, 색칠한 삼각형은 꼭짓점 D 쪽의 ODE와 C 쪽의 OCF이다. 합동으로 ODE를 OBF로 옮겨 OBC로 모으고, 밑변 16 · 높이 9에서 넓이를 구한다.",
+  "sharedConcept": "평행사변형의 대각선은 서로를 이등분한다 · 엇각과 맞꼭지각을 써서 ASA 합동 · 대각선으로 나뉜 네 삼각형의 넓이는 각각 전체의 1/4",
+  "sharedProcedure": "두 삼각형의 합동 찾기(대각선 이등분 · 엇각 · 맞꼭지각) → 한 삼각형을 합동인 삼각형으로 바꾸기 → 대각선이 만든 삼각형 하나로 모으기 → 평행사변형 넓이의 1/4 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행선의 엇각과 맞꼭지각",
+   "삼각형의 합동 조건(ASA)",
+   "평행사변형의 대각선의 성질",
+   "평행사변형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A83-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "대각선의 교점을 지나는 직선으로 나뉜 평행사변형에서 두 삼각형 넓이의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.204,
+   "longestRun": 11,
+   "residualChars": 106,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

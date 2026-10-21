@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "11809cad-6f6f-46ac-9343-b1c8baa1174f",
+ "startedAt": "2026-10-21T18:12:20+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "40edfb117a3e37c4bf36a6889b4b48500e5f30d4c4d5ce5c8338f92a1673b192"
+ },
+ "promptSha256": "25f4d80ccb47336010c65d2e58cc98529d56c1a1b90e14d8dbba14cf63290381",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"연립방정식의 해 x = -1, y = 4를 대입하면:\\n1) 2(-1) + 4a = 10에서 4a = 12이므로 a = 3\\n2) -b - 4 = 1에서 -b = 5이므로 b = -5\\n따라서 ab = 3 × (-5) = -15이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "연립방정식의 해 x = -1, y = 4를 대입하면:\n1) 2(-1) + 4a = 10에서 4a = 12이므로 a = 3\n2) -b - 4 = 1에서 -b = 5이므로 b = -5\n따라서 ab = 3 × (-5) = -15이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d5f1c36d654c03cdde21c6868ba8edb654b1f771cd6ac1ad2e0eb3e4b2cd7988"
+}

@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2423f4a5-7bf2-4126-8ca4-27b33a04e06e",
+ "startedAt": "2026-10-21T17:10:27+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "fig-1.png": "19a07606628513229dcb1a8dbfb8e96522642da3e988c1deed38a48c5560eaf7",
+  "student.json": "8894d4ae34baba237c0a23ee521de170dd6e790e592a14480d23eae738fe4004"
+ },
+ "promptSha256": "efbb5aece0214025ab8141e0394c995ef10edfc773231836610b6ac3abb03626",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"19\", \"work\": \"G는 무게중심이므로 AG:GD = 2:1이고, x = AG = 2×5 = 10이다. PQ ∥ BC이므로 △AGQ ∽ △ADC이고, 닮음비는 AG:AD = 2:3이다. 따라서 GQ:DC = 2:3, 6:y = 2:3이므로 y = 9이다. 그러므로 x + y = 10 + 9 = 19이다.\", \"confidence\": \"high\", \"issues\": [\"그림의 '6 cm' 라벨이 수평선분 GQ가 아니라 변 AC의 위쪽 부분 AQ 옆에 있는 것처럼 보인다. 글에 적힌 대로 GQ = 6 cm로 풀었다. AQ = 6이라고 하면 y를 정할 수 없다.\"]}\n```",
+ "parsed": {
+  "answer": "19",
+  "work": "G는 무게중심이므로 AG:GD = 2:1이고, x = AG = 2×5 = 10이다. PQ ∥ BC이므로 △AGQ ∽ △ADC이고, 닮음비는 AG:AD = 2:3이다. 따라서 GQ:DC = 2:3, 6:y = 2:3이므로 y = 9이다. 그러므로 x + y = 10 + 9 = 19이다.",
+  "confidence": "high",
+  "issues": [
+   "그림의 '6 cm' 라벨이 수평선분 GQ가 아니라 변 AC의 위쪽 부분 AQ 옆에 있는 것처럼 보인다. 글에 적힌 대로 GQ = 6 cm로 풀었다. AQ = 6이라고 하면 y를 정할 수 없다."
+  ]
+ },
+ "eventsSha256": "54fb1a1c92933419826faad655f5a78101aec4f5be1472827224d5c2fa0932b6"
+}

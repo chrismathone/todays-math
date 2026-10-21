@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7c-ef64-7e11-9cd0-1f7f88d12d4c",
+ "startedAt": "2026-10-21T17:03:51+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "e86366ae1a43ca22a180ffd348ea4ce74ce03090cd24b900e7502bef0a44e7fe"
+ },
+ "promptSha256": "f7e6abdd3b6724511a347445447fd28180acf0f801ccc46c80c63cd43d253070",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"주어진 식을 정리하면 $\\\\frac{3a-16}{30}x+\\\\frac{1}{10}y$이다.\\n두 계수의 곱이 $\\\\frac{3a-16}{300}=-\\\\frac{1}{60}$이므로 $3a-16=-5$이다.\\n따라서 $a=\\\\frac{11}{3}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "주어진 식을 정리하면 $\\frac{3a-16}{30}x+\\frac{1}{10}y$이다.\n두 계수의 곱이 $\\frac{3a-16}{300}=-\\frac{1}{60}$이므로 $3a-16=-5$이다.\n따라서 $a=\\frac{11}{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7ccb58ec5ae682fb320ed3cb30a09269de5b355df2d47ffbf46ac22a059b3de1"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dac-78a5-79e2-8dc2-841940fca0df",
+ "startedAt": "2026-10-21T17:55:46+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "987b8d3334dbb8689edc2011e412f25e20f26a67556c387f0edbf48b06fd611b"
+ },
+ "promptSha256": "e9a718f125b70af4829d04110b16b8a7ad17965c749f4a2fb5c07c2e6809d86e",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$f(3)=3a-4$, $f(-3)=-3a-4$이므로 $f(3)+f(-3)=(3a-4)+(-3a-4)=-8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$f(3)=3a-4$, $f(-3)=-3a-4$이므로 $f(3)+f(-3)=(3a-4)+(-3a-4)=-8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "29b0df5c93d5a20977fb3a22bad45d77b453a0ce733d12f1a87fc09500877cfd"
+}

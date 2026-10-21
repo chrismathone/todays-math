@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "eeaab86b-2864-4f1b-80af-70df5c05d306",
+ "startedAt": "2026-10-21T18:49:37+0900",
+ "elapsedSec": 15.9,
+ "studentSha256": {
+  "student.json": "95a500a95ec7fabf86dce7f98b1275dbe132a04d7d47b72d670ed53c73ee9c30"
+ },
+ "promptSha256": "120b7f4e7f34f8b9dd77cfac302d77b0583b1e9d39505fbcc34f342cf921739f",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{4}{5}$\",\n  \"work\": \"모든 경우의 수는 $5 \\\\times 5 = 25$이다. 두 사람이 뽑은 카드에 적힌 수가 같은 경우는 $(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)$의 $5$가지이므로 그 확률은 $\\\\frac{5}{25} = \\\\frac{1}{5}$이다. 따라서 구하는 확률은 여사건에 의해 $1 - \\\\frac{1}{5} = \\\\frac{4}{5}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$\\frac{4}{5}$",
+  "work": "모든 경우의 수는 $5 \\times 5 = 25$이다. 두 사람이 뽑은 카드에 적힌 수가 같은 경우는 $(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)$의 $5$가지이므로 그 확률은 $\\frac{5}{25} = \\frac{1}{5}$이다. 따라서 구하는 확률은 여사건에 의해 $1 - \\frac{1}{5} = \\frac{4}{5}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "478b19f90f7476d459b08a4e359de4f2421abdb2d8f0cbb82b502e938273f0fe"
+}

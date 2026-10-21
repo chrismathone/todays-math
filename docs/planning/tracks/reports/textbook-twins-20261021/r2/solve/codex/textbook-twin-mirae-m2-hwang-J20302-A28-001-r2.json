@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-11a7-7680-bade-5460551351fc",
+ "startedAt": "2026-10-21T18:52:08+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "student.json": "48dbcd3aa3b96e4e1e5fa825e2a68aae6a816fca77763825678c0c73aabc1fd1"
+ },
+ "promptSha256": "9d7f22253a6eb1bb9bddefb19c562f63682fe20314357c5e3ef1efa14b7e222e",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리\",\"work\":\"조건에 따라 연립방정식은 $x+y=28$, $3x-y=32$이다. 두 식을 더하면 $4x=60$이므로 $x=15$이다. 이를 첫째 식에 대입하면 $y=28-15=13$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리",
+  "work": "조건에 따라 연립방정식은 $x+y=28$, $3x-y=32$이다. 두 식을 더하면 $4x=60$이므로 $x=15$이다. 이를 첫째 식에 대입하면 $y=28-15=13$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7ff3117be6b63fccde3d73ab5ef484ece665efebadf08af9b6783cea0975f017"
+}

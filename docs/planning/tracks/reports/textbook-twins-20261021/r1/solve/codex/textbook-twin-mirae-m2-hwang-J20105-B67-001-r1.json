@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B67-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6b-0d45-71f3-b6fe-f2cb6009be63",
+ "startedAt": "2026-10-21T16:44:19+0900",
+ "elapsedSec": 18.2,
+ "studentSha256": {
+  "student.json": "abbb6a228af5559cecf9ee9d250233c8f6098b3442a3d9a9d0230e746f2e762c"
+ },
+ "promptSha256": "3f8a30cbfbeb0198db9c91a818cc569c3eafdda5eb78963f49499a5d78f17263",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $5^5=3125$ ⑵ $\\\\frac{1}{a^5}$ ⑶ $y^5$ ⑷ $\\\\frac{1}{b^3}$\",\n  \"work\": \"밑이 같은 거듭제곱을 나누면 지수를 뺀다.\\n⑴ $5^{9-4}=5^5=3125$ ⑵ $a^2\\\\div a^7=\\\\frac{1}{a^{7-2}}=\\\\frac{1}{a^5}$\\n⑶ $y^{12-1-6}=y^5$ ⑷ $b^{3\\\\times3}\\\\div b^{2\\\\times6}=b^9\\\\div b^{12}=\\\\frac{1}{b^3}$\\n단, $a,y,b\\\\ne0$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $5^5=3125$ ⑵ $\\frac{1}{a^5}$ ⑶ $y^5$ ⑷ $\\frac{1}{b^3}$",
+  "work": "밑이 같은 거듭제곱을 나누면 지수를 뺀다.\n⑴ $5^{9-4}=5^5=3125$ ⑵ $a^2\\div a^7=\\frac{1}{a^{7-2}}=\\frac{1}{a^5}$\n⑶ $y^{12-1-6}=y^5$ ⑷ $b^{3\\times3}\\div b^{2\\times6}=b^9\\div b^{12}=\\frac{1}{b^3}$\n단, $a,y,b\\ne0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "58d32cc449877f8562a51550b6734d7ea32a0538fb632a3752b4636f3f63d7fb"
+}

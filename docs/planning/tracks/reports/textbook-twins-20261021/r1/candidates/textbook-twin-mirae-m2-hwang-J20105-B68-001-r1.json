@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 114,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B68-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$(a^{3})^{4}\\div a^{\\square}\\div a^{5}=1$일 때, $\\square$ 안에 알맞은 수를 구하시오.",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "$(a^{3})^{4}=a^{12}$이므로 좌변은 $a^{12}\\div a^{\\square}\\div a^{5}$이다.\n결과가 $1$이려면 나뉘는 지수와 나누는 지수의 합이 같아야 하므로 $12=\\square+5$이다.\n따라서 $\\square=7$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-27e81b57b3302127-0-2",
+  "problemCode": "J20105-B68-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "a2b7808e1b2b524ebc016bbbd03fea52c74890247efe46a30ca658e6364cb81c",
+  "dbContentSha256": "d8cfefff4c021a2cc1e4069fbf35674235d251af23ce8c42012a4aa8086e0b02",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-2_지수법칙2.hwp",
+    "sha256": "dcf5b1bb29c0cbdadf4de1aacfab4483ca6979b10c143bf554eb044154b17ddc",
+    "bytes": 38400
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "거듭제곱의 거듭제곱을 가운데 둔 연속 나눗셈의 결과가 $1$일 때 마지막 나누는 식의 빈 지수를 묻는다.",
+  "after": "거듭제곱의 거듭제곱을 나뉘는 식 자리로 옮기고 빈칸을 가운데 나누는 식에 두었다. 수는 새로 정했다.",
+  "sharedConcept": "지수법칙 ⑶에서 a^m÷a^m=1 인 경우",
+  "sharedProcedure": "거듭제곱의 거듭제곱 정리 → 나눗셈 지수 차 → 결과가 1이므로 지수 같음 → 빈칸"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑵",
+   "지수법칙 ⑶"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B68-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "결과가 1인 연속 나눗셈 — 빈칸 지수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 24자"
+   ],
+   "overlap4": 0.333,
+   "longestRun": 9,
+   "residualChars": 24,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

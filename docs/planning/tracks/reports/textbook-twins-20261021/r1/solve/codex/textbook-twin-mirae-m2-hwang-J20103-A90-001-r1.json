@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d63-3134-7173-99c3-5299fc6ec3c3",
+ "startedAt": "2026-10-21T16:35:44+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "4998828c50a50375b13b58a3769e7fa7a8a32d15cd74f95e98782c9421ab5bb7"
+ },
+ "promptSha256": "b6bd65f0e592b0fde3d4a901991b5de3fc2ecd63d18dc21debc04c159f51a18c",
+ "freezeCommit": "1f022fa5fa99b8553458e0290369a75de543769a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"③의 2.4111…을 분수로 나타내면 (241−24)/90=217/90이므로 237/90과 다르다.\\n①, ②, ④, ⑤는 모두 바르게 나타냈다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "③의 2.4111…을 분수로 나타내면 (241−24)/90=217/90이므로 237/90과 다르다.\n①, ②, ④, ⑤는 모두 바르게 나타냈다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea26c28d40f86d6eb9a43ae1de62b1433ed8e6be935eb95b9ba3f0d714550cd5"
+}

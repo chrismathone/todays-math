@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 111,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B62-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "세 자연수 $x,~y,~z$에 대하여 $x+y+z=5$이고 $a=2^{x}$, $b=2^{y}$, $c=2^{z}$일 때, $abc$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$32$",
+ "solution": "$abc=2^{x}\\times 2^{y}\\times 2^{z}=2^{x+y+z}$이다.\n$x+y+z=5$이므로 $abc=2^{5}=32$이다.\n따라서 답은 $32$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-80d549db6b2908b5-0-2",
+  "problemCode": "J20105-B62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "061c5d8238d05a84230021b113c9d79e7d9280a5ee699f52bab5ab144958f6a4",
+  "dbContentSha256": "324f044b37fb745ec8dcc4854a8886c6e4f99702ae2fc9e945b8beb080e87972",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-1_지수법칙1.hwp",
+    "sha256": "ccc884e82fad659309a15cd514795c2a957c8797b5c114bbf4eb50026b8285fc",
+    "bytes": 37888
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "지수의 합이 주어진 두 거듭제곱을 문자로 두고 그 곱의 값을 묻는다.",
+  "after": "거듭제곱을 세 개로 늘려 세 지수의 합이 주어지고, 세 문자의 곱을 묻는다. 밑도 새로 두었다.",
+  "sharedConcept": "지수법칙 ⑴ 밑이 같은 거듭제곱의 곱",
+  "sharedProcedure": "문자를 거듭제곱으로 바꿔 곱 → 지수 합으로 정리 → 주어진 합 대입"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B62-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수의 합 조건 — 거듭제곱의 곱의 값",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 32자"
+   ],
+   "overlap4": 0.069,
+   "longestRun": 4,
+   "residualChars": 32,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B45-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "592007e5-93b6-4942-991f-bc59baad04be",
+ "startedAt": "2026-10-21T17:12:33+0900",
+ "elapsedSec": 5.6,
+ "studentSha256": {
+  "fig-1.png": "a761ed72b61e767774d1f74d18f9a3f30be2bd07a780111761da5d06528afa8e",
+  "student.json": "8ef7f059be28cd6d262b84cf4a6e83fd7b757b7106e6b9d779e8ffa509e2e50d"
+ },
+ "promptSha256": "d91fe07f1fc6cbacfe7d119813ead130c39e24c95dddc4e50d2bf7f4dbc34568",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "Total 25, 김밥+과일 = 9 → 9/25.\n\n```json\n{\"answer\": \"$\\\\frac{9}{25}$\", \"work\": \"전체 학생 수 = 11+7+5+2 = 25명\\n김밥을 고른 학생 7명, 과일을 고른 학생 2명이고 두 사건은 동시에 일어나지 않는다\\n구하는 확률 = 7/25 + 2/25 = 9/25\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{9}{25}$",
+  "work": "전체 학생 수 = 11+7+5+2 = 25명\n김밥을 고른 학생 7명, 과일을 고른 학생 2명이고 두 사건은 동시에 일어나지 않는다\n구하는 확률 = 7/25 + 2/25 = 9/25",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7c6e65d83d3f9e30cdc25d21fc48f47ad488cf7a5f2872c480f8a269c4c44d4e"
+}

@@ -1,0 +1,159 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 321,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A46-001-r1",
+ "authorId": "middle-engine:2-2|평행선 사이의 선분의 길이의 비|02",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "그림과 같이 두 선분 $BE$, $CD$의 교점을 $A$라 하자. $\\overline{BC}\\parallel\\overline{DE}$이고 $\\overline{AB}=5\\,\\mathrm{cm}$, $\\overline{AE}=2\\,\\mathrm{cm}$, $\\overline{BC}=10\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.",
+ "choices": [
+  "$3\\,\\mathrm{cm}$",
+  "$6\\,\\mathrm{cm}$",
+  "$5\\,\\mathrm{cm}$",
+  "$4\\,\\mathrm{cm}$",
+  "$2\\,\\mathrm{cm}$"
+ ],
+ "answer": "④",
+ "solution": "$\\overline{BC}\\parallel\\overline{DE}$이므로 $\\overline{AB}:\\overline{AE}=\\overline{BC}:\\overline{DE}$이다.\n$\\overline{DE}=10\\times\\dfrac{2}{5}=4\\,(\\mathrm{cm})$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A46-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A46-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-7",
+  "problemCode": "J20701-A46-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "416836e976227d501811d85fe88ca6a67444563a8b1e0bfc4d3bb5b6bb372d84",
+  "dbContentSha256": "67893ba8f66fee5d3131333197ea067796d24d17d4ebfb6645672d024da4dba8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "926d11ccb27fd035512cea6c0fc839d079d98b01690aea0ad8a2863f2d2fc94c"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "inverse-target"
+  ],
+  "before": "교점을 사이에 두고 마주 보는 두 삼각형에서 위쪽 평행 변과 아래쪽 평행 변의 길이, 교점에서 위 꼭짓점까지의 길이를 주고 교점에서 아래 꼭짓점까지의 길이를 묻는 객관식",
+  "after": "같은 모래시계 배치에서 교점을 낀 두 선분의 길이와 아래쪽 평행 변을 주고 위쪽 평행 변의 길이를 묻는 값 객관식(수 · 길이 배치는 엔진이 새로 정함)",
+  "sharedConcept": "평행선이 만드는 두 닮은 삼각형에서 대응변의 길이의 비",
+  "sharedProcedure": "엇각으로 닮음 확인 → 대응변 비례식 세우기 → 비례식 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형에서 평행선 사이의 선분의 길이의 비"
+  },
+  "prerequisites": [
+   "평행선과 엇각",
+   "삼각형의 닮음 조건(AA)",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20701-A46-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "교차하는 두 선분과 평행선이 만든 모래시계 꼴에서 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|평행선 사이의 선분의 길이의 비|02",
+   "seed": 1617984626,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:8a900d5d-5808-4cf0-96fc-16fbb6cff9b6",
+   "authorRationale": "두 선분이 교차해 생긴 모래시계 꼴에서 평행한 두 변의 비로 비례식 하나를 세워 남은 변을 구하는 한 단계 풀이 · 그림 역할 같음 · 값을 묻는 객관식으로 파생된다.",
+   "facts": {
+    "ab": 5,
+    "ae": 2,
+    "bc": 10,
+    "x": 4
+   }
+  },
+  "figureAuthoring": {
+   "method": "middle-engine-figureSpec",
+   "newFigures": 1,
+   "originalCropEmbedded": false
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 67,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

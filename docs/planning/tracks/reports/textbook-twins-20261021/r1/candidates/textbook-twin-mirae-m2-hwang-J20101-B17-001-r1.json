@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 88,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B17-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "분수 $\\frac{63}{2\\times 3^{2}\\times a}$을 소수로 나타내면 순환소수가 된다. 이를 만족시키는 $12$ 이하의 자연수 $a$를 모두 구하여 그 합을 구하시오.",
+ "choices": [],
+ "answer": "$41$",
+ "solution": "$\\frac{63}{2\\times 3^{2}\\times a}=\\frac{7}{2\\times a}$이다. $a=1,~2,~4,~5,~8,~10$이면 분모의 소인수가 $2$, $5$뿐이고, $a=7$이면 $\\frac{1}{2}$이 되어 모두 유한소수이다. $a=3,~6,~9$이면 분모에 $3$이, $a=11$이면 $11$이, $a=12$이면 $3$이 남아 순환소수가 된다. 따라서 구하는 합은 $3+6+9+11+12=41$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-7",
+  "problemCode": "J20101-B17-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "c9b50c0479bfe1fd46ca517479d64af6a8970894f8d1d461f0674476ab68d9ef",
+  "dbContentSha256": "61cec6965cd81dc54602456944267506d682f880466681e9a21dc41486fe54ad",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분자와 분모의 3의 거듭제곱이 약분되어 남은 분수에서, 분모의 미지수가 10 미만일 때 순환소수가 되는 값의 합을 구한다. 분자 3이 미지수와 더 약분될 수 있다.",
+  "after": "약분 뒤 분자에 7이 남게 하여 미지수 7과의 약분으로 유한소수가 되는 함정을 두고, 범위를 12 이하로 넓혀 두 자리 후보도 살피게 했다.",
+  "sharedConcept": "분모의 미지수와 분자의 약분을 고려한 순환소수 판별",
+  "sharedProcedure": "분수를 먼저 약분 → 미지수 값을 차례로 대입 → 기약분수 분모의 소인수 확인 → 순환소수가 되는 값의 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "순환소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B17-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분모의 미지수에 따라 순환소수가 되는 값의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.119,
+   "longestRun": 5,
+   "residualChars": 45,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

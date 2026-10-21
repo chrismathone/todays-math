@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "eef4e81d-4cfc-424d-918c-69053afac5c9",
+ "startedAt": "2026-10-21T17:07:16+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "student.json": "e97e3e83ff2150c0275e5335de79a6253e0a879f4cba9faac460db1042d5f6c0"
+ },
+ "promptSha256": "bb94942cc90ab30e3691cf1ca08e02720b828b2177dd8b87e4f43877e1b3e581",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"27\", \"work\": \"23/440 = (23×25)/(440×25) = 575/11000 이고, 575/11 = 52.2727…이다. 따라서 23/440 = 0.0522727… = 0.052\\\\dot{2}\\\\dot{7}이다. 소수점 아래 넷째 자리부터 27이 되풀이되므로 순환마디는 27이다. (검산: 0.052 + 27/99000 = 5175/99000 = 23/440)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "27",
+  "work": "23/440 = (23×25)/(440×25) = 575/11000 이고, 575/11 = 52.2727…이다. 따라서 23/440 = 0.0522727… = 0.052\\dot{2}\\dot{7}이다. 소수점 아래 넷째 자리부터 27이 되풀이되므로 순환마디는 27이다. (검산: 0.052 + 27/99000 = 5175/99000 = 23/440)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "76e22844279a4f391413bd64ac88c7c4b796104a4a5d944016eb98afa2147479"
+}

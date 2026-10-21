@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-b360-7bd2-aa0b-1ae7933f1718",
+ "startedAt": "2026-10-21T18:52:49+0900",
+ "elapsedSec": 9.2,
+ "studentSha256": {
+  "fig-1.png": "40fa66ecd618799500ae90d4e09175cfeb912f07b41b5f22a59dfd2e890336b4",
+  "student.json": "96e399f34adf82d8cf18b74332a98cfacc40f97b0eb232758cff991d00463b56"
+ },
+ "promptSha256": "b0fa1bc0b50550420e476835ec62101721190450f74b2392659fcbc89fae81d0",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"내심은 세 내각의 이등분선이 만나는 점이므로 ∠A=2×26°=52°, ∠B=2×34°=68°이다.\\n삼각형의 내각의 합은 180°이므로 ∠x=180°−52°−68°=60°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "내심은 세 내각의 이등분선이 만나는 점이므로 ∠A=2×26°=52°, ∠B=2×34°=68°이다.\n삼각형의 내각의 합은 180°이므로 ∠x=180°−52°−68°=60°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "77090a1110f46dce711295eedd76d23298d3b2564c43592c0af36f15c722f0e7"
+}

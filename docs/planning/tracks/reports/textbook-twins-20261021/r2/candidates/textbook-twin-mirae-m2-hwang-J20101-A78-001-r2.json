@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 84,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A78-001-r2",
+ "authorId": "claude-fable-5-1:2003483e-43a6-4f3a-b30c-17afc15b540a",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-A78-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "지우는 두 분수 $\\frac{14}{105}$, $\\frac{9}{110}$ 의 분자에 똑같은 자연수 $k$ 를 곱했더니 두 수 모두 유한소수로 나타낼 수 있게 되었다. 이러한 $k$ 가운데 가장 작은 것은 무엇인지 그 까닭과 함께 쓰시오.",
+ "choices": [],
+ "answer": "$33$",
+ "solution": "① 먼저 기약분수로 고친다. $\\frac{14}{105}=\\frac{2}{15}=\\frac{2}{3\\times5}$ 이고, $\\frac{9}{110}$ 은 분모 $110=2\\times5\\times11$ 과 분자 $9$ 의 공약수가 $1$ 뿐이므로 이미 기약분수이다.\n② $\\frac{2}{3\\times5}\\times k$ 가 유한소수가 되려면 분모의 소인수 $3$ 이 지워져야 하므로 $k$ 는 $3$ 의 배수이다.\n③ $\\frac{9}{2\\times5\\times11}\\times k$ 가 유한소수가 되려면 소인수 $11$ 이 지워져야 하므로 $k$ 는 $11$ 의 배수이다.\n④ 따라서 $k$ 는 $3$ 과 $11$ 의 공배수이고, 가장 작은 것은 최소공배수인 $33$ 이다. (확인: $\\frac{2}{15}\\times33=4.4$, $\\frac{9}{110}\\times33=2.7$)\n정답은 $33$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-19",
+  "problemCode": "J20101-A78-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 19,
+  "sourceContentSha256": "45881f2d3c8faf9e57dc35379bf86e06c872a79edf47566a85d6494854878a43",
+  "dbContentSha256": "0a8c5e430f2cbcc54ec0957acb1d355c63e028e73bfc6d8e03eade3562d54ee3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "두 분수 가운데 하나는 약분해야 분모의 소인수가 드러나는 꼴이고, 둘 다 유한소수가 되게 하는 공통 자연수의 최솟값을 풀이와 함께 쓴다.",
+  "after": "인물이 두 분수의 분자에 같은 자연수를 곱하는 장면으로 바꾸고, 첫 분수는 약분하면 분모가 $3\\times5$ 로 줄어드는 꼴(약분 전엔 $7$ 도 있어 보임), 둘째는 기약분수로 두어 약분 확인 단계를 살렸다. 정답 · 분모 · 분자 모두 원본과 다르다.",
+  "sharedConcept": "기약분수의 분모의 소인수가 2, 5 뿐이면 유한소수 — 분모의 다른 소인수를 곱셈으로 지우기",
+  "sharedProcedure": "각 분수를 기약분수로 고침 → 분모 소인수분해 → 2, 5 외의 소인수 각각 찾기 → 두 조건의 최소공배수"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "최소공배수",
+   "기약분수",
+   "유한소수가 되는 분수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A78-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수가 모두 유한소수가 되도록 하는 자연수의 최솟값(약분 포함) 서술형",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.135,
+   "longestRun": 12,
+   "residualChars": 77,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

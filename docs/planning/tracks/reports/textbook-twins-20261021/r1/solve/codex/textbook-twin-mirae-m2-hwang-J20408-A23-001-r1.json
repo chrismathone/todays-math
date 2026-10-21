@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A23-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-df98-7800-a104-4cb6968ae7b1",
+ "startedAt": "2026-10-21T17:48:34+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "5a40eb23e95bdecacae1ce5111506f300e1f2721d3c039c60a10c846a36bc975"
+ },
+ "promptSha256": "e8d0287e150c5ba2840d37a2c1c7ddc77556f6ee289c63bdc8c5cb527b7700f3",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ④\",\"work\":\"$y$축에 평행한 직선은 $x=a$ 꼴이다.\\n②는 $x=-7$, ④는 $x=9/2$이므로 $y$축에 평행하다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ④",
+  "work": "$y$축에 평행한 직선은 $x=a$ 꼴이다.\n②는 $x=-7$, ④는 $x=9/2$이므로 $y$축에 평행하다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ae821076d7d16dcc8589e3f3b1a48f8017f7c681f98a70b41f95bb716be21c64"
+}

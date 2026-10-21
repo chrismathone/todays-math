@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A15-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c740e7c6-9bf5-4e97-9cf0-9c724582073e",
+ "startedAt": "2026-10-21T18:32:03+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "student.json": "2ae04e310f5fa25e613fb8226a065788b04f42ca422b8d918dae261f3064aaa2"
+ },
+ "promptSha256": "2f04ce856223b45e2bff6b9c4ea799f38afa045475bc402fecd4957e7950351b",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"평행사변형이 직사각형이 되려면 한 내각이 직각이 되거나(①, ③, ⑤) 두 대각선의 길이가 같아야(②) 한다. ④의 이웃하는 두 변의 길이가 같은 조건(\\\\overline{AB}=\\\\overline{AD})은 평행사변형이 마름모가 되기 위한 조건이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "평행사변형이 직사각형이 되려면 한 내각이 직각이 되거나(①, ③, ⑤) 두 대각선의 길이가 같아야(②) 한다. ④의 이웃하는 두 변의 길이가 같은 조건(\\overline{AB}=\\overline{AD})은 평행사변형이 마름모가 되기 위한 조건이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "12dac741d9144b066452feeed484dd3094df5f75b65c808c56c1afcd94f57fbe"
+}

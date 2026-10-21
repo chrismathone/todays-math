@@ -1,0 +1,139 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 395,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-C10-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n다음 도수분포표는 도하네 반 학생 $40$명의 등교에 걸리는 시간을 조사하여 나타낸 것이다. 이 반 학생 가운데 한 명을 임의로 뽑을 때, 그 학생의 등교 시간이 $20$분 이상 $40$분 미만일 확률을 구하시오.",
+ "choices": [],
+ "answer": "$\\frac{2}{5}$",
+ "solution": "전체 학생은 $40$명이다.\n등교 시간이 $20$분 이상 $30$분 미만인 학생은 $9$명, $30$분 이상 $40$분 미만인 학생은 $7$명이므로 $20$분 이상 $40$분 미만인 학생은 $9+7=16$(명)이다.\n따라서 구하는 확률은 $\\frac{16}{40}=\\frac{2}{5}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20903-C10-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20903-C10-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-7c3af0b41d0649aa-0-3",
+  "problemCode": "J20903-C10-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "4e28de70e76d79e622e61ba60609a6e7d0f818e5316c8a39c2eb3385dc550c37",
+  "dbContentSha256": "79233590909500e1d1426967b28a6e1e507c1ac255e87abb92bef5e6e7474c08",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-2_확률의뜻.hwp",
+    "sha256": "1203bcbd9f1cffd8dfd8957747834ddd4b36e18b9a6edb183a5435b01e9d3134",
+    "bytes": 88576
+   }
+  ],
+  "originalFigureSha256": [
+   "a6a8b060927cfb615e04dab51c52325966ad7b28b39baa7bdb4d4974966a9bad"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "읽은 책 수 도수분포표(계급 6개 · 합계 35)에서 이어진 두 계급의 도수를 더해 전체에 대한 비율을 확률로 구한다",
+  "after": "등교 시간 도수분포표(계급 5개 · 합계 40)에서 이어진 두 계급의 도수를 더해 전체에 대한 비율을 확률로 구한다",
+  "sharedConcept": "도수분포표에서 읽은 자료로 확률 구하기",
+  "sharedProcedure": "전체 도수 확인 → 조건 범위에 드는 계급의 도수 합 → 도수 합/전체 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "도수분포표 읽기",
+   "확률의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-C10-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "도수분포표를 읽어 확률 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.171,
+   "longestRun": 8,
+   "residualChars": 73,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "version": 2,
+ "style": {
+  "show_points": false
+ },
+ "points": {
+  "P": [
+   60,
+   40
+  ],
+  "Q": [
+   100,
+   240
+  ],
+  "R": [
+   180,
+   90
+  ],
+  "S": [
+   204,
+   210
+  ]
+ },
+ "segments": {
+  "PQ": [
+   "P",
+   "Q"
+  ],
+  "RS": [
+   "R",
+   "S"
+  ]
+ },
+ "dimensions": {
+  "pq": {
+   "points": [
+    "P",
+    "Q"
+   ],
+   "label": "20 cm",
+   "side": "auto"
+  },
+  "rs": {
+   "points": [
+    "R",
+    "S"
+   ],
+   "label": "12 cm",
+   "side": "auto"
+  }
+ }
+}

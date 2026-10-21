@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfe-597c-75e2-9860-8aeb6b9f2c21",
+ "startedAt": "2026-10-21T19:25:12+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "fig-1.png": "799c8f103a4562f4671f000f1db3d3ce79b232d8bb3a6f0e0ab8a87b50281732",
+  "student.json": "bf50f65210ba5d72e2d6f84d58501260a109f7a63ac815e04a138c02a8e6c901"
+ },
+ "promptSha256": "fba23b12e9cd76ce6a20279dd5d3da4f6da81da80c431d12c93356ce5e8940d9",
+ "freezeCommit": "de40914d9974004bfc395043cf9e1e24c24de4d4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{5}{36}$\",\"work\":\"크기가 다른 두 주사위를 던져 나오는 모든 경우의 수는 6×6=36이고, 각 경우가 나올 가능성은 같다.\\nA에서 D까지는 3칸이고, 7칸마다 제자리로 돌아오므로 두 눈의 합이 3 또는 10일 때 D에 멈춘다.\\n합이 3인 경우는 (1,2), (2,1)의 2가지이고, 합이 10인 경우는 (4,6), (5,5), (6,4)의 3가지이다.\\n따라서 구하는 확률은 $\\\\frac{2+3}{36}=\\\\frac{5}{36}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{5}{36}$",
+  "work": "크기가 다른 두 주사위를 던져 나오는 모든 경우의 수는 6×6=36이고, 각 경우가 나올 가능성은 같다.\nA에서 D까지는 3칸이고, 7칸마다 제자리로 돌아오므로 두 눈의 합이 3 또는 10일 때 D에 멈춘다.\n합이 3인 경우는 (1,2), (2,1)의 2가지이고, 합이 10인 경우는 (4,6), (5,5), (6,4)의 3가지이다.\n따라서 구하는 확률은 $\\frac{2+3}{36}=\\frac{5}{36}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "90f0169f3dbe995f972239406191bcb21a1db7da9f7cf2feeb3f44b7053dcbbe"
+}

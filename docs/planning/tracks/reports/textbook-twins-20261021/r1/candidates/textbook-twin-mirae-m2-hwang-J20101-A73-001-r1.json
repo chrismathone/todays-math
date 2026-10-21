@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 79,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r1",
+ "authorId": "middle-engine:2-1|유리수와 순환소수|08",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "두 분수 $\\dfrac{8}{6}$ 과 $\\dfrac{2}{14}$ 에 각각 자연수 $A$ 를 곱하면 두 분수를 모두 유한소수로 나타낼 수 있다고 한다. $A$ 의 값이 될 수 있는 가장 작은 자연수를 구하시오.",
+ "choices": [
+  "$22$",
+  "$42$",
+  "$21$",
+  "$19$",
+  "$23$"
+ ],
+ "answer": "③",
+ "solution": "$6=2\\times3$, $14=2\\times7$ 이므로 $A$ 는 $3$ 의 배수이면서 $7$ 의 배수이어야 한다.\n따라서 $A$ 의 값이 될 수 있는 가장 작은 자연수는 $3$ 과 $7$ 의 최소공배수인 $21$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-7",
+  "problemCode": "J20101-A73-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "25970894d1de0b05628c270d515d19c1981fc15fbd6d79f30ce1e8de09f01415",
+  "dbContentSha256": "790e701e2a5b232c58777035ff00e34062402b5d55aaa01b1c947ab19a391ccf",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분자가 n인 두 분수(한 분모는 자연수, 한 분모는 소인수 곱)가 모두 유한소수가 되는 가장 작은 n을 객관식으로 고른다.",
+  "after": "엔진이 새 두 분수를 정하고 각각에 자연수를 곱해 모두 유한소수가 되게 하는 가장 작은 값을 묻는 객관식으로 낸다.",
+  "sharedConcept": "두 분수를 동시에 유한소수로 만드는 자연수(지워야 할 소인수의 최소공배수)",
+  "sharedProcedure": "각 분수를 기약분수로 → 분모 소인수분해 → 2, 5 이외의 소인수 모으기 → 그 최소공배수"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "최소공배수",
+   "유한소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A73-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수를 모두 유한소수로 만드는 가장 작은 자연수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|유리수와 순환소수|08",
+   "seed": 2384801631,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+   "authorRationale": "두 분수의 분모에서 2, 5 이외의 소인수를 모두 지우는 가장 작은 자연수를 구하는 같은 절차이며, 값 하나를 묻는 꼴이라 파생기로 값을 묻는 객관식이 된다.",
+   "facts": {
+    "n1": 8,
+    "d1": 6,
+    "n2": 2,
+    "d2": 14,
+    "L": 21
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.29,
+   "longestRun": 12,
+   "residualChars": 65,
+   "params": 9,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

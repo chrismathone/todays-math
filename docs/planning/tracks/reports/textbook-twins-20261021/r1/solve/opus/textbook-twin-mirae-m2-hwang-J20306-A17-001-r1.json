@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "52f54ebc-4cc4-4e7b-8f19-7f2f08fe68d5",
+ "startedAt": "2026-10-21T17:02:05+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "1b86b2465f3e16dca3ad7ebc0276cddf23368be87eba3fca3ec83481a0db744c"
+ },
+ "promptSha256": "5966f9b9822e2b472b1015117cb346c7051e4dadc7b5a5699d6ec1257cf7cbf2",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"작은 수를 x라 하면 큰 수는 4x+3이다. 두 수의 차는 (4x+3)−x=3x+3=39이므로 x=12이고, 큰 수는 4·12+3=51이다. 검산: 51−12=39이고, 51÷12는 몫 4, 나머지 3이다(나머지 3<12).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "작은 수를 x라 하면 큰 수는 4x+3이다. 두 수의 차는 (4x+3)−x=3x+3=39이므로 x=12이고, 큰 수는 4·12+3=51이다. 검산: 51−12=39이고, 51÷12는 몫 4, 나머지 3이다(나머지 3<12).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "82a7a947dcbe8c4a71b9b6a37f58bd84c3ea0e61c26615686578fd27bd69ba22"
+}

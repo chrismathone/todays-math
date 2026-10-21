@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A85-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d78-363e-72e1-9eb9-73b7b2771ce9",
+ "startedAt": "2026-10-21T16:58:41+0900",
+ "elapsedSec": 38.1,
+ "studentSha256": {
+  "fig-1.png": "e926388afd64a40fce2fe4caac7067ad5d301494f5bfa269f8699e817fdc2fd9",
+  "student.json": "8ede7168e1ef260a9dcb2ea4e974a80ecccc120462e46b193ed1e03a37db6cb7"
+ },
+ "promptSha256": "57444d89001c73041a21ab2fea3a27edd44a683b42edbf903e6fbe559f157cf2",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"18 cm\",\n  \"work\": \"I는 내심이므로 BI와 CI는 각각 ∠ABC와 ∠ACB의 이등분선이다.\\nDE∥BC이므로 ∠DBI=∠BID, ∠ECI=∠CIE이다. 따라서 △BDI와 △CEI는 이등변삼각형이므로 DI=DB=5 cm, IE=EC=7 cm이다.\\n따라서 DE=5+7=12 cm이다. △ADE∽△ABC이므로 DE:BC=AD:AB=10:15=2:3이다.\\n그러므로 BC=12×3/2=18 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "18 cm",
+  "work": "I는 내심이므로 BI와 CI는 각각 ∠ABC와 ∠ACB의 이등분선이다.\nDE∥BC이므로 ∠DBI=∠BID, ∠ECI=∠CIE이다. 따라서 △BDI와 △CEI는 이등변삼각형이므로 DI=DB=5 cm, IE=EC=7 cm이다.\n따라서 DE=5+7=12 cm이다. △ADE∽△ABC이므로 DE:BC=AD:AB=10:15=2:3이다.\n그러므로 BC=12×3/2=18 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2a9bf08771fcb2369467e80c4667268ad76453e46385249d0302e1e77488d5ef"
+}

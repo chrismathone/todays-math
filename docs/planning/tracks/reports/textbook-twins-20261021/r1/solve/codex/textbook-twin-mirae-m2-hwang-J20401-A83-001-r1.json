@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A83-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dac-cdbe-7773-ba14-d1675f6bb345",
+ "startedAt": "2026-10-21T17:56:08+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "507efe3d99655d49d7edaa82266259795cb3169437d1c89ace8dea2f1bb6b45c"
+ },
+ "promptSha256": "7c711a63d4f223fe9e6f51a95cca0017910d76c0833f4e5e158aa23489bfd488",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ④\",\"work\":\"일차함수는 y=ax+b (a≠0) 꼴이다.\\n① y=2x-7, ④ y=-(2/3)x+5/3이므로 일차함수이다.\\n②는 반비례 관계, ③은 상수함수, ⑤는 이차함수이므로 제외한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ④",
+  "work": "일차함수는 y=ax+b (a≠0) 꼴이다.\n① y=2x-7, ④ y=-(2/3)x+5/3이므로 일차함수이다.\n②는 반비례 관계, ③은 상수함수, ⑤는 이차함수이므로 제외한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "edc9b685808e0e83b508cec6b3d159e4ed9b11339a5b03714ec86f3a297bb380"
+}

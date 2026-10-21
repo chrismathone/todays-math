@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-5a98-7850-86d4-7be1031ba51e",
+ "startedAt": "2026-10-21T19:08:49+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "student.json": "164af6f00aefd567ee677d9379a59db79851eaddc82ef9c4876c79516024a52f"
+ },
+ "promptSha256": "710bf2769d3b5cbfe3fd37e61abd8cf80a3b8a40570d7f18f41d446a219d8054",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"주어진 직선과 만나지 않으려면 평행해야 하므로 구하는 직선을 $2x+y+c=0$으로 놓는다.\\n점 $(-4,3)$을 대입하면 $-8+3+c=0$이므로 $c=5$이다.\\n따라서 $2x+y+5=0$이며, 주어진 직선과 서로 다른 평행선이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "주어진 직선과 만나지 않으려면 평행해야 하므로 구하는 직선을 $2x+y+c=0$으로 놓는다.\n점 $(-4,3)$을 대입하면 $-8+3+c=0$이므로 $c=5$이다.\n따라서 $2x+y+5=0$이며, 주어진 직선과 서로 다른 평행선이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cfe4d6d7523b73e3d06efb150a516ab41ddea303348b5f5793d2f3f0f87e5298"
+}

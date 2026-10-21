@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-c193-7300-9ab7-6b29cc952f2c",
+ "startedAt": "2026-10-21T17:52:48+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "b3cb64b238f955c6fb3ea8bae981bcc026c364739c1993725c680ec99b6d7253"
+ },
+ "promptSha256": "b0caceeb3f2505f30dc459d17482bec2d16e451197541fc651dd5aa840dd1d98",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"x축과 만나는 점에서는 y=0이다. 각 식에 y=0을 대입하면 ①, ③, ④, ⑤는 x=-3이고, ②는 x=3이다. 따라서 나머지 넷과 다른 것은 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "x축과 만나는 점에서는 y=0이다. 각 식에 y=0을 대입하면 ①, ③, ④, ⑤는 x=-3이고, ②는 x=3이다. 따라서 나머지 넷과 다른 것은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8d60dc741107c6ee2cca6feae35d34036a3a9f47d81427c45e4a917a89bade8e"
+}

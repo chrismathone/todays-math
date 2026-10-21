@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7d938228-995d-4760-b272-cdab09b8e90b",
+ "startedAt": "2026-10-21T17:01:42+0900",
+ "elapsedSec": 4.8,
+ "studentSha256": {
+  "student.json": "e24dfdaae80f8922aaaaf79e379d460bc2b27741ac8d69bb6d90e1f66f3efc47"
+ },
+ "promptSha256": "7687a2ce86edf255678c0fd827c68244bbed4e17d49dba5a949c4eecd1023c72",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"두 식을 더하면 4x = -8 이므로 x = -2이고, y = 1 - x = 3이다. 3x - ky = 9에 대입하면 -6 - 3k = 9, 즉 -3k = 15이므로 k = -5이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "두 식을 더하면 4x = -8 이므로 x = -2이고, y = 1 - x = 3이다. 3x - ky = 9에 대입하면 -6 - 3k = 9, 즉 -3k = 15이므로 k = -5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f95d8973b8b50d9a713956b37b565366c152f0a0349b75b9d4022283577653f6"
+}

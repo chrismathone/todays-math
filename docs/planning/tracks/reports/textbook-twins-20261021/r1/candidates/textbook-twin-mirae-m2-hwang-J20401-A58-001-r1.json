@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 245,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A58-001-r1",
+ "authorId": "claude-fable-5-1:644746bd-9f1a-4988-abe3-ade6f81db79a",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 상황 가운데 $y$가 $x$에 대한 일차함수가 아닌 것은?",
+ "choices": [
+  "매달 $12000$원씩 $x$개월 동안 모은 저금액의 합계는 $y$원이다.",
+  "길이가 $120\\,\\mathrm{cm}$인 끈에서 $x\\,\\mathrm{cm}$씩 네 번 잘라 내고 남은 끈의 길이는 $y\\,\\mathrm{cm}$이다.",
+  "$240\\,\\mathrm{km}$ 떨어진 도시까지 시속 $x\\,\\mathrm{km}$로 쉬지 않고 갈 때 걸리는 시간은 $y$시간이다.",
+  "한 개에 $800$원인 빵 $x$개와 한 개에 $1200$원인 음료수 $y$개를 샀더니 모두 $24000$원이었다.",
+  "윗변의 길이가 $x\\,\\mathrm{cm}$, 아랫변의 길이가 $8\\,\\mathrm{cm}$, 높이가 $5\\,\\mathrm{cm}$인 사다리꼴의 넓이는 $y\\,\\mathrm{cm}^{2}$이다."
+ ],
+ "answer": "③",
+ "solution": "각 상황을 $x$, $y$ 사이의 식으로 나타낸다.\n① $y=12000x$ (일차함수)\n② $y=120-4x$ (일차함수)\n③ (시간)$=$(거리)$\\div$(속력)이므로 $y=\\frac{240}{x}$ — $x$가 분모에 있어 일차함수가 아니다.\n④ $800x+1200y=24000$에서 $y=20-\\frac{2}{3}x$ (일차함수)\n⑤ $y=\\frac{1}{2}\\times (x+8)\\times 5=\\frac{5}{2}x+20$ (일차함수)\n따라서 일차함수가 아닌 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-1",
+  "problemCode": "J20401-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "d11cf0a5aaf07b86e6e18c0d46e702a049f0f0d61350325050adbc57446bce3c",
+  "dbContentSha256": "0d894778768eada3154749ad809740f5e4e1cf904c37bf98a273c703aaaa5948",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "먹고 남은 사탕 · 두 물건 값의 합 · 삼각형 넓이 · 가고 남은 거리 · 넓이가 정해진 직사각형의 세로 길이 다섯 상황에서 일차함수가 아닌 것(반비례, 마지막 보기)을 고른다.",
+  "after": "저금액 · 잘라 내고 남은 끈 · 거리와 속력에서 걸리는 시간 · 두 물건 값의 합 · 사다리꼴 넓이 다섯 상황에서 일차함수가 아닌 것(반비례, 세 번째 보기)을 고른다. 넓이 공식은 삼각형 대신 사다리꼴, 반비례 소재는 넓이 대신 속력 · 시간 관계로 바꿨다.",
+  "sharedConcept": "실생활 상황을 y=ax+b 꼴로 나타낼 수 있는지 판별(일차함수의 뜻)",
+  "sharedProcedure": "상황을 x, y의 식으로 세우기 → y에 대하여 정리 → 일차식인지(분모에 x가 없는지) 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "일차함수의 뜻",
+   "반비례 관계",
+   "거리 · 속력 · 시간 관계",
+   "사다리꼴의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A58-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "실생활 상황에서 일차함수가 아닌 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.13,
+   "longestRun": 16,
+   "residualChars": 185,
+   "params": 9,
+   "numberRetention": 0.111,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

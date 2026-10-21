@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c074c166-4b83-4a94-9d32-c76b8b14048a",
+ "startedAt": "2026-10-21T16:17:11+0900",
+ "elapsedSec": 5.6,
+ "studentSha256": {
+  "student.json": "4a5ab5c3a9ba8061bc1d76e3dd8dcd12f81fc77aff2fea82440c0394c600b7f0"
+ },
+ "promptSha256": "9600307fe796a88c5af0b1582a6c7a5f109d061212c591a95ef77f6f9b324520",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"① $9a^4b^2\\\\times4a^2b^6=36a^6b^8$ (옳음)\\n② $-8a^9\\\\div4a^5=-2a^4$ (옳음)\\n③ $a^6b^4\\\\div\\\\frac{1}{8}a^3b^3=8a^3b$ (옳음)\\n④ $12a^4b^3\\\\div(-3a^2b)=-4a^2b^2$, $-4a^2b^2\\\\times2ab^2=-8a^3b^4\\\\neq-8a^2b^4$ (틀림)\\n⑤ $-30a^4b^3\\\\div10a^2b^3=-3a^2$ (옳음)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "① $9a^4b^2\\times4a^2b^6=36a^6b^8$ (옳음)\n② $-8a^9\\div4a^5=-2a^4$ (옳음)\n③ $a^6b^4\\div\\frac{1}{8}a^3b^3=8a^3b$ (옳음)\n④ $12a^4b^3\\div(-3a^2b)=-4a^2b^2$, $-4a^2b^2\\times2ab^2=-8a^3b^4\\neq-8a^2b^4$ (틀림)\n⑤ $-30a^4b^3\\div10a^2b^3=-3a^2$ (옳음)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a93791549a19da19eb30294af8d92bf47d712194b33538104447efb4a9c2dcf1"
+}

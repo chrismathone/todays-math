@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B03-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d66-d8d0-7df3-82fa-a23de217ea62",
+ "startedAt": "2026-10-21T16:39:43+0900",
+ "elapsedSec": 17.4,
+ "studentSha256": {
+  "student.json": "ea2518dea5a6925bd2ae595d3b189c5d21245bed928006d01451f7595d71e6c7"
+ },
+ "promptSha256": "30a5d9ad2b76bd6919d74a0789eaf804e40dbee8df3b30cad8a7435cd40455e2",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"① $3^{3+2+5}=3^{10}$이므로 틀리다.\\n② $a^{6-2+5}=a^9$이므로 옳다.\\n③ $5^{3×2×2}=5^{12}$, ④ $b^{9-3-3}=b^3$이므로 틀리다.\\n⑤ 홀수 제곱이므로 $-\\\\frac{a^{15}}{b^{10}}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① $3^{3+2+5}=3^{10}$이므로 틀리다.\n② $a^{6-2+5}=a^9$이므로 옳다.\n③ $5^{3×2×2}=5^{12}$, ④ $b^{9-3-3}=b^3$이므로 틀리다.\n⑤ 홀수 제곱이므로 $-\\frac{a^{15}}{b^{10}}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c36326489184143da41ce9318e3dd0499a7d9bc06bb793ac1293e2ff605eeefb"
+}

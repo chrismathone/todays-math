@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-4fd9-7663-a6df-e4998d405773",
+ "startedAt": "2026-10-21T17:52:19+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "30f55581055d0d67f4da99c093f53cd004825aa4c8ed7fe8fe1068e08c80f352"
+ },
+ "promptSha256": "d6ab4aa0f44641ed7cd7090856b707ebf9e5ab1684ee548af1e91ae2cb7e9fc9",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"점 $(5,0)$을 지나므로 $0=-3(5)+a$에서 $a=15$이다. 일차함수 $y=-3x+a$의 $y$절편은 $a$이므로 $15$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "점 $(5,0)$을 지나므로 $0=-3(5)+a$에서 $a=15$이다. 일차함수 $y=-3x+a$의 $y$절편은 $a$이므로 $15$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e2e4390efe3fe9ca4a46fadbc2c93c1d274ca3acfd62bdeb086c7baae72730a0"
+}

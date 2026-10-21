@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 219,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r2",
+ "authorId": "claude-opus-5-5:f77dea93-e245-42dc-802a-8c4d2a91f5f8",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 직선 $\\ell$은 일차방정식 $ax+2y=5$의 그래프이고, 직선 $m$은 일차방정식 $3x-by=11$의 그래프이다. 두 직선 $\\ell$, $m$이 점 P에서 만날 때, 상수 $a$, $b$의 곱 $ab$를 구하시오.",
+ "choices": [],
+ "answer": "$6$",
+ "solution": "그림에서 두 직선이 만나는 점 P의 좌표는 $(1,\\,4)$이다. 점 P는 직선 $\\ell$ 위에 있으므로 $ax+2y=5$에 $x=1$, $y=4$를 대입하면 $a+8=5$, $a=-3$이다. 점 P는 직선 $m$ 위에도 있으므로 $3x-by=11$에 $x=1$, $y=4$를 대입하면 $3-4b=11$, $b=-2$이다. 따라서 $ab=(-3)\\times(-2)=6$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A88-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A88-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-07ecf6280c42ef91-0-2",
+  "problemCode": "J20409-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "375b345af8c713f10fc1b3cdb13aca3892abcc6bf0e3998e45d508a7f064811d",
+  "dbContentSha256": "47993e52b399bbf9cb56556622da8748087cef44f17f433699830aafd26919f9",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-7_일차함수의그래프와연립일차방정식.hwp",
+    "sha256": "893c512788f8720916d44122281f5985e6e965e88beb4cfeae4f6e902f96fb39",
+    "bytes": 122368
+   }
+  ],
+  "originalFigureSha256": [
+   "3cf910f91b113f5492ca5ab5b8e16ce5c199757e9f06cc096f4f9d0bf8b49529"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "structure",
+   "numbers"
+  ],
+  "before": "그림 속 두 직선에 일차방정식을 바로 적어 두고, 교점 좌표를 읽어 두 계수를 구한 뒤 그 차를 묻는다.",
+  "after": "그림의 두 직선은 이름(ℓ, m)만 달고 각 직선이 어떤 일차방정식의 그래프인지는 발문에서 짝지어 준다. 만나는 점 P의 좌표를 읽고 두 계수를 구한 뒤 그 곱을 묻는다.",
+  "sharedConcept": "두 일차방정식의 그래프의 교점의 좌표는 두 방정식을 모두 만족한다",
+  "sharedProcedure": "그림에서 교점 좌표 읽기 → 첫째 방정식에 대입해 한 계수 구하기 → 둘째 방정식에 대입해 다른 계수 구하기 → 두 계수로 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "일차방정식의 해와 그 그래프 위의 점",
+   "좌표평면에서 점의 좌표 읽기",
+   "일차방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A88-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "그래프의 교점 좌표를 읽어 두 일차방정식의 미지의 계수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.119,
+   "longestRun": 8,
+   "residualChars": 66,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

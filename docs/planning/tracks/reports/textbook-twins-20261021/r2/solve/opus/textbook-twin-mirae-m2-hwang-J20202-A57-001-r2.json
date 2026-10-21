@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e752d7d5-22c5-4cc2-8927-3bfcb85581be",
+ "startedAt": "2026-10-21T17:59:29+0900",
+ "elapsedSec": 6.2,
+ "studentSha256": {
+  "student.json": "f52bf8a9bf289fff60cb479622942fa3fc226346e2f434d6a1b06d04bd2ff35b"
+ },
+ "promptSha256": "79b0dfbbc5372b22f7242cc796462db924aecef1ee652685288b35ce38b36873",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"모든 항을 좌변으로 옮겨 정리한다.\\nㄱ: $7x-1-9-7x\\\\ge 0 \\\\Rightarrow -10\\\\ge 0$ 이므로 $x$가 없어 일차부등식이 아니다.\\nㄴ: $x^2+8x-x^2+x-10>0 \\\\Rightarrow 9x-10>0$ 이므로 일차부등식이다.\\nㄷ: $x^2-x-9<0$ 은 이차식이므로 일차부등식이 아니다.\\nㄹ: $9x-11-12+x\\\\le 0 \\\\Rightarrow 10x-23\\\\le 0$ 이므로 일차부등식이다.\\n따라서 일차부등식은 ㄴ, ㄹ 이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "모든 항을 좌변으로 옮겨 정리한다.\nㄱ: $7x-1-9-7x\\ge 0 \\Rightarrow -10\\ge 0$ 이므로 $x$가 없어 일차부등식이 아니다.\nㄴ: $x^2+8x-x^2+x-10>0 \\Rightarrow 9x-10>0$ 이므로 일차부등식이다.\nㄷ: $x^2-x-9<0$ 은 이차식이므로 일차부등식이 아니다.\nㄹ: $9x-11-12+x\\le 0 \\Rightarrow 10x-23\\le 0$ 이므로 일차부등식이다.\n따라서 일차부등식은 ㄴ, ㄹ 이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1888057fd2611d393fb7e28309e180e7164ebfd97999a17e9aa03f046153cb28"
+}

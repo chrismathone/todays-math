@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7e-7e2b-7c71-bc28-e51a96e407d3",
+ "startedAt": "2026-10-21T17:05:33+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "student.json": "9313ce48701880e04cb3d3a2e32557c871daa9f136f34c3726132b3f85f4626a"
+ },
+ "promptSha256": "c5261f6f79f9692e0c0ceadccec3b31bb8d8c44d15e4d24bd190a5837013a177",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"②를 정리하면 $(a^2+5a)-a(a-9)=a^2+5a-a^2+9a=14a$이므로 일차식이다.\\n나머지는 정리한 뒤에도 $a^2$의 계수가 0이 아니므로 이차식이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "②를 정리하면 $(a^2+5a)-a(a-9)=a^2+5a-a^2+9a=14a$이므로 일차식이다.\n나머지는 정리한 뒤에도 $a^2$의 계수가 0이 아니므로 이차식이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fa4c3f7932afb5f0fdd9ee54b18f9f6d2feee4f65cef099bcfb234fcaaf16321"
+}

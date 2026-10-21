@@ -1,0 +1,130 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 98,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B08-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 보기 가운데 옳은 것만을 있는 대로 고른 것은?\nㄱ. $x^{5}\\times x^{2}=x^{10}$\nㄴ. $(x^{5})^{2}\\div(x^{3})^{2}=x^{4}$\nㄷ. $(2x^{3})^{3}\\times(5x^{2})^{2}=200x^{13}$",
+ "choices": [
+  "ㄱ",
+  "ㄴ",
+  "ㄱ, ㄷ",
+  "ㄴ, ㄷ",
+  "ㄱ, ㄴ, ㄷ"
+ ],
+ "answer": "④",
+ "solution": "ㄱ. $x^{5}\\times x^{2}=x^{7}$이므로 옳지 않다.\nㄴ. $x^{10}\\div x^{6}=x^{4}$이므로 옳다.\nㄷ. $8x^{9}\\times 25x^{4}=200x^{13}$이므로 옳다.\n따라서 옳은 것은 ㄴ, ㄷ이고 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-3",
+  "problemCode": "J20105-B08-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "12c297412040aef75957c0653b5db3bdb9926547d98b327fb3100a0ed6571d45",
+  "dbContentSha256": "0b707b5e807bba8a4d329b096e972e97a5a9f7f3cd6f51fc0381ff38c5638d90",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "곱·거듭제곱의 나눗셈·계수 있는 곱의 거듭제곱 세 명제 가운데 참인 것만 묶은 보기를 고른다. 참은 하나뿐이다.",
+  "after": "같은 세 갈래의 명제를 새 수로 두되 참인 명제를 둘로 늘리고, 보기 묶음도 새로 짰다.",
+  "sharedConcept": "지수법칙 ⑴·⑵·⑶·⑷",
+  "sharedProcedure": "명제마다 지수법칙으로 계산 → 참·거짓 판정 → 참인 것의 조합 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑴~⑷"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B08-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수법칙 참 거짓 판정 — 보기 조합 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.099,
+   "longestRun": 6,
+   "residualChars": 89,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

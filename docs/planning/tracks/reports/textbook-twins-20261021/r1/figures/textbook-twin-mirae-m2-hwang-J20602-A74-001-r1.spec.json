@@ -1,0 +1,90 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   134.1,
+   56.7
+  ],
+  "B": [
+   20,
+   180
+  ],
+  "C": [
+   160,
+   180
+  ],
+  "D": [
+   69.92,
+   126.06
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ]
+ },
+ "angles": {
+  "angB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "arcs": 1
+  },
+  "angC": {
+   "vertex": "C",
+   "points": [
+    "A",
+    "D"
+   ],
+   "arcs": 1
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D"
+ },
+ "dimensions": {
+  "d_AD": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "x cm",
+   "side": "auto"
+  },
+  "d_AB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "12 cm",
+   "side": "auto",
+   "offset": 34
+  },
+  "d_AC": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  }
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B22-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5dc71816-819d-4e08-a4b9-0c9428726a79",
+ "startedAt": "2026-10-21T17:12:39+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "ad49298db6ddc8a51d26abd8667dfe50dfcb752ace32c024adb29bfb6067fac0"
+ },
+ "promptSha256": "c3df3d5958ae3d4a5716aee323979d0fddb1c7f317d892a423e5b033509f07e4",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"전체 경우의 수: 5! = 120. 맨 뒤에 P 또는 E가 오는 경우: 2 × 4! = 48. 확률 = 48/120 = 2/5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "전체 경우의 수: 5! = 120. 맨 뒤에 P 또는 E가 오는 경우: 2 × 4! = 48. 확률 = 48/120 = 2/5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "17955f09b8b288e897488c0afca04ea3e3790e48e103926cb40c5b9da9ad8d3f"
+}

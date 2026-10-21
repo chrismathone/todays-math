@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B08-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d67-e6fd-72d3-a578-7a07564ce146",
+ "startedAt": "2026-10-21T16:40:52+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "a43a32622b66b566aa8c4c9467fceb9491e86128caed7e82155c86093e878dae"
+ },
+ "promptSha256": "b3f6364b1a1146e5961eb710b46042044fb533f94e7473eef2ffb45b06afcefc",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"ㄱ. $x^5\\\\times x^2=x^{5+2}=x^7$이므로 옳지 않다.\\nㄴ. $(x^5)^2\\\\div(x^3)^2=x^{10-6}=x^4$이므로 옳다.\\nㄷ. $(2x^3)^3\\\\times(5x^2)^2=8x^9\\\\times25x^4=200x^{13}$이므로 옳다.\\n따라서 옳은 것은 ㄴ, ㄷ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "ㄱ. $x^5\\times x^2=x^{5+2}=x^7$이므로 옳지 않다.\nㄴ. $(x^5)^2\\div(x^3)^2=x^{10-6}=x^4$이므로 옳다.\nㄷ. $(2x^3)^3\\times(5x^2)^2=8x^9\\times25x^4=200x^{13}$이므로 옳다.\n따라서 옳은 것은 ㄴ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5919df663cbfb31234f6a9d38958106667c989338907f1071015ac14f12c425e"
+}

@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 41,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r1",
+ "authorId": "middle-engine:2-1|단항식의 계산|13",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "다음 등식이 성립할 때, $\\square$ 안에 알맞은 식을 구하시오.\n$2x^{2}y^{2}\\div 2x^{2}y^{2}\\times \\square=-2x^{2}y^{2}$",
+ "choices": [],
+ "answer": "$-2x^{2}y^{2}$",
+ "solution": "$\\square=-2x^{2}y^{2}\\div \\left(2x^{2}y^{2}\\div 2x^{2}y^{2}\\right)$ 이므로 $\\square=-2x^{2}y^{2}$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce14b504524bdd49-1-6",
+  "problemCode": "J20106-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "9da60ca2542ca32b20201b9b95d0871e0529ed3773a533d28da144488ab37a8f",
+  "dbContentSha256": "82196d351de59918bf8eb468191a258f907eba2fd18bae3e107878eff8bca616",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "149462077a4603f021e5440bc1688a0f9c1b559711a7b009a0d8ac75d0402509",
+    "bytes": 335872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "거듭제곱한 식을 빈칸으로 나눈 뒤 단항식을 곱한 결과가 분수 계수 단항식일 때 빈칸의 식을 구한다.",
+  "after": "혼합 계산 등식의 빈칸 단항식을 구하는 유형으로 빈칸 위치·수·식은 엔진이 새로 정한다.",
+  "sharedConcept": "곱셈·나눗셈의 역관계로 단항식 구하기",
+  "sharedProcedure": "알려진 부분 정리 → 빈칸을 미지수로 두고 식 세움 → 나눗셈(역수 곱)으로 미지수 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈의 혼합 계산",
+   "역수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A66-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "혼합 계산 등식의 빈칸에 알맞은 단항식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|단항식의 계산|13",
+   "seed": 2308355108,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+   "authorRationale": "곱셈·나눗셈 혼합 등식에서 빈칸의 단항식을 거꾸로 구하는 같은 개념·절차·단답 꼴이다.",
+   "facts": {
+    "kind": 0,
+    "boxNum": -2,
+    "boxDen": 1,
+    "box_x": 2,
+    "box_y": 2,
+    "aNum": 2,
+    "aDen": 1,
+    "a_x": 2,
+    "a_y": 2,
+    "ka": 1,
+    "bNum": 2,
+    "bDen": 1,
+    "b_x": 2,
+    "b_y": 2
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.129,
+   "longestRun": 7,
+   "residualChars": 42,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f302fe80-273e-42ed-9b17-c3a4b39ee7c4",
+ "startedAt": "2026-10-21T17:02:08+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "fb4af9c0788f654d56076805a717b679cefaae40e9f995fca9b474eaa20da0ab"
+ },
+ "promptSha256": "926d6199fbf87164a4e82f0d24d914378ad27246ef0c9d2345ee9eec1bf44a13",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"71\", \"work\": \"처음 수를 10x+y라 하면 x+y=8, 10y+x=4(10x+y)+3 → 39x-6y=-3 → 13x-2y=-1. 연립하면 x=1, y=7. 처음 수 17, 자리를 바꾼 수 71 (검산: 4×17+3=71).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "71",
+  "work": "처음 수를 10x+y라 하면 x+y=8, 10y+x=4(10x+y)+3 → 39x-6y=-3 → 13x-2y=-1. 연립하면 x=1, y=7. 처음 수 17, 자리를 바꾼 수 71 (검산: 4×17+3=71).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e02a2cc8e6e1a0be4491ba802d60973e1ce8795ebb51f3a8891a760f6041e804"
+}

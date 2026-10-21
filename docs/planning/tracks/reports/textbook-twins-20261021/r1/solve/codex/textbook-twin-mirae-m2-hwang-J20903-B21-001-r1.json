@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B21-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-68c4-7f70-bef8-5ba8569330e4",
+ "startedAt": "2026-10-21T18:28:28+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "e5c97c3e04a0e715fc94d0973353dd394b5bbdf95988613d96834e23301ebc79"
+ },
+ "promptSha256": "0612ecc1e875e97436538f404b0fa0e9692a05e084881413ef0a73aa0b4578b2",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ④\",\"work\":\"② 상자 속 구슬이 모두 빨간색이므로 확률은 1이다.\\n④ 두 주사위 눈의 수의 곱은 최대 6×6=36이므로 항상 40 이하이다. 따라서 확률은 1이다.\\n①, ③, ⑤의 확률은 각각 0, 3/4, 5/9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ④",
+  "work": "② 상자 속 구슬이 모두 빨간색이므로 확률은 1이다.\n④ 두 주사위 눈의 수의 곱은 최대 6×6=36이므로 항상 40 이하이다. 따라서 확률은 1이다.\n①, ③, ⑤의 확률은 각각 0, 3/4, 5/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6f04bdd6b47b2512ff8cc33d70a894ad01e7ad68adec60dfce89faddce8d99fd"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B30-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcc-21a7-7271-9353-8bcb8f61cedb",
+ "startedAt": "2026-10-21T18:30:21+0900",
+ "elapsedSec": 15.0,
+ "studentSha256": {
+  "student.json": "6b5529bf27f12334c7d562b1be7ef7890d01b87f6f0b4f5cf8c4f17948d8b865"
+ },
+ "promptSha256": "65a7e628a3fc118c9913cb0e07553bca78eb65486d462b9d7ca7fd2db9fe3207",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{5}{12}$\",\n  \"work\": \"두 주사위를 던질 때 가능한 경우는 총 6×6=36가지이고, 각 경우가 일어날 가능성은 같다.\\n2x<y+3을 정리하면 y>2x−3이다. x가 1, 2, 3, 4, 5, 6일 때 이를 만족하는 y의 개수는 각각 6, 5, 3, 1, 0, 0개이다.\\n따라서 조건을 만족하는 경우는 6+5+3+1=15가지이므로, 구하는 확률은 $\\\\frac{15}{36}=\\\\frac{5}{12}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$\\frac{5}{12}$",
+  "work": "두 주사위를 던질 때 가능한 경우는 총 6×6=36가지이고, 각 경우가 일어날 가능성은 같다.\n2x<y+3을 정리하면 y>2x−3이다. x가 1, 2, 3, 4, 5, 6일 때 이를 만족하는 y의 개수는 각각 6, 5, 3, 1, 0, 0개이다.\n따라서 조건을 만족하는 경우는 6+5+3+1=15가지이므로, 구하는 확률은 $\\frac{15}{36}=\\frac{5}{12}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0a94f170d66d8ff9a68d42d969e49599b89a3073003d54c04687fdfefa66ff0e"
+}

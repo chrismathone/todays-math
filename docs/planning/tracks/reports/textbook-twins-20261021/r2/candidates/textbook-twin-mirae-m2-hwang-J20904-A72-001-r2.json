@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 366,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A72-001-r2",
+ "authorId": "claude-opus-5-5:1e163e6a-e4d4-4fa3-8d81-4e4e1d29f0cd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20904-A72-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "어느 퀴즈 쇼에서 «예» 또는 «아니요» 가운데 하나로만 답하는 질문 $4$개가 나왔다. 도하는 질문마다 동전을 던져 앞면이 나오면 «예», 뒷면이 나오면 «아니요»로 답하기로 하였다. 도하가 $4$개의 질문 중에서 적어도 하나의 질문에 바르게 답할 확률은?",
+ "choices": [
+  "$\\frac{1}{16}$",
+  "$\\frac{1}{4}$",
+  "$\\frac{11}{16}$",
+  "$\\frac{7}{8}$",
+  "$\\frac{15}{16}$"
+ ],
+ "answer": "⑤",
+ "solution": "질문 하나에 답하는 방법은 $2$가지이므로 모든 경우의 수는 $2\\times 2\\times 2\\times 2=16$이다. $4$개의 질문에 모두 틀리게 답하는 경우는 $1$가지뿐이므로 그 확률은 $\\frac{1}{16}$이다. 따라서 적어도 하나의 질문에 바르게 답할 확률은 $1-\\frac{1}{16}=\\frac{15}{16}$이므로 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-7",
+  "problemCode": "J20904-A72-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "005d174f1ffb67105da1cefc11cff7e8ec627cf1d533406a395447bd19c283a2",
+  "dbContentSha256": "6443206be08751ac0344739242a4d20e518b14245066b4d594a582a5e01fcd35",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "참·거짓 두 가지 가운데 하나로 답하는 시험 문제 다섯 개에 아무렇게나 답을 쓸 때, 하나 이상 맞힐 확률을 고르는 객관식",
+  "after": "퀴즈 쇼에서 예·아니요로 답하는 질문 네 개에 동전을 던져 답을 정할 때, 하나 이상 바르게 답할 확률을 고르는 객관식",
+  "sharedConcept": "어떤 사건이 일어나지 않을 확률(여사건)로 «적어도 하나»의 확률 구하기",
+  "sharedProcedure": "모든 경우의 수 구하기(곱의 법칙) → 모두 틀리는 경우가 1가지임을 알고 그 확률 구하기 → 1에서 빼기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "경우의 수와 곱의 법칙",
+   "확률의 뜻",
+   "어떤 사건이 일어나지 않을 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-A72-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 가지로 답하는 문제 여러 개에서 적어도 하나를 맞힐 확률(여사건)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.037,
+   "longestRun": 6,
+   "residualChars": 116,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

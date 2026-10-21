@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db1-5446-77d0-b82a-b7f5ef51f00f",
+ "startedAt": "2026-10-21T18:01:04+0900",
+ "elapsedSec": 17.8,
+ "studentSha256": {
+  "fig-1.png": "bf6223832624658fec10b1770a979b00faedbe9eefb4c9a65aaa7e18a002fda0",
+  "student.json": "30cb45487b6bed619f2a427303abab72d65c238e52a5581ad445a3d24cf09509"
+ },
+ "promptSha256": "4d943f61785276f550246df5ddab1c385457624c0f1620a2576e006f3a46e8da",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\triangle ABC \\\\equiv \\\\triangle EDF$, RHS 합동 ⑵ 12 cm\",\n  \"work\": \"두 직각삼각형에서 빗변 AC와 EF의 길이가 13 cm로 같고, 한 변 AB와 ED의 길이가 5 cm로 같으므로 RHS 합동이다.\\n대응변 BC와 DF의 길이가 같으므로 BC의 길이는 12 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle ABC \\equiv \\triangle EDF$, RHS 합동 ⑵ 12 cm",
+  "work": "두 직각삼각형에서 빗변 AC와 EF의 길이가 13 cm로 같고, 한 변 AB와 ED의 길이가 5 cm로 같으므로 RHS 합동이다.\n대응변 BC와 DF의 길이가 같으므로 BC의 길이는 12 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1483db3b522d89f3ace3d987eb2994c7de44fd1f0b0caa9d6f8fe1ccaa690e78"
+}

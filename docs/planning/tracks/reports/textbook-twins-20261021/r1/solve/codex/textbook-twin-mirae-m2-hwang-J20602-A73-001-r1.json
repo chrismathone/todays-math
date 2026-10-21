@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A73-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbd-1990-7d81-9591-893b35529672",
+ "startedAt": "2026-10-21T18:13:56+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "fig-1.png": "36789a015d7eb042c188b2d35c0247cc0ddb1fe9e20212e58f58b87e3561741f",
+  "student.json": "d187cb1fa578998d71d0dc7e687160ea931e68e05d3445552727cf0a5451bc1d"
+ },
+ "promptSha256": "a4d1a5ee783835dcf9854e199963f20d9ae638c567187a10f25e3f80e3aec36a",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$AB=AD+DB=4+6=10\\\\,\\\\mathrm{cm}$이다. $\\\\triangle ABC\\\\sim\\\\triangle AED$에서 대응변은 $AB\\\\leftrightarrow AE$, $BC\\\\leftrightarrow ED$이므로 닮음비는 $10:5=2:1$이다. 따라서 $DE=\\\\frac{11}{2}\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$AB=AD+DB=4+6=10\\,\\mathrm{cm}$이다. $\\triangle ABC\\sim\\triangle AED$에서 대응변은 $AB\\leftrightarrow AE$, $BC\\leftrightarrow ED$이므로 닮음비는 $10:5=2:1$이다. 따라서 $DE=\\frac{11}{2}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "281d8d2d8fa323581c42d9777ada2e6c98c58a3eb28c3cea784d191b00734d49"
+}

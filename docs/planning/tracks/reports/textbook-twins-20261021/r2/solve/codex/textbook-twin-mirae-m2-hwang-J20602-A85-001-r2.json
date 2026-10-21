@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df8-d828-7f62-b18a-3f563cb8a984",
+ "startedAt": "2026-10-21T19:19:11+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "fig-1.png": "5ab8e578bd0884ac72d449d9b7df5ba1c4f996d28016deba28cef9745dce1012",
+  "student.json": "df7d87665f8cc19a7c54c41df1c688ef9bf30b9cf43338391e8da489ee4b8fec"
+ },
+ "promptSha256": "84b7b894cb3927f92e3fd6731ed255595d3f57048334455f5159d72881f1e2ec",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"27 cm²\",\"work\":\"삼각형 ACH와 삼각형 CBH는 닮음이므로 $CH^2=AH\\\\cdot BH$이다.\\n따라서 $AH=6^2\\\\div4=9\\\\,\\\\mathrm{cm}$이고, 색칠한 삼각형의 넓이는 $\\\\frac12\\\\times9\\\\times6=27\\\\,\\\\mathrm{cm}^2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "27 cm²",
+  "work": "삼각형 ACH와 삼각형 CBH는 닮음이므로 $CH^2=AH\\cdot BH$이다.\n따라서 $AH=6^2\\div4=9\\,\\mathrm{cm}$이고, 색칠한 삼각형의 넓이는 $\\frac12\\times9\\times6=27\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "81cd078182f31e9560cc46a168cb9268e93cf9c2afa73413151ce36c9cac62ef"
+}

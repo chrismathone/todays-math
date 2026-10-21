@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A38-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c0916e1a-c027-448e-ab33-5ab50e0d4ea6",
+ "startedAt": "2026-10-21T18:44:25+0900",
+ "elapsedSec": 27.4,
+ "studentSha256": {
+  "fig-1.png": "4c43a1fa5ad95120ee2ddf45435eb294b3026fc351c2ed3c3fc52a4819ef8618",
+  "student.json": "e7dab3ff63ebac665637f4fd1016687286d9f876dda51cf99fcd560ef3f6cb9f"
+ },
+ "promptSha256": "dcea946aabafe952fb02b889880dbd65b61cbc5d24034423edf8d6152b85bd85",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"네 직선 $l, m, n, p$가 서로 평행하므로 평행선 사이의 선분의 길이의 비에 의해\\n$9 : 3 : y = x : 5 : 25$가 성립한다.\\n$9 : 3 = x : 5$에서 $3 : 1 = x : 5 \\\\implies x = 15$\\n$3 : y = 5 : 25$에서 $3 : y = 1 : 5 \\\\implies y = 15$\\n따라서 $x + y = 15 + 15 = 30$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "네 직선 $l, m, n, p$가 서로 평행하므로 평행선 사이의 선분의 길이의 비에 의해\n$9 : 3 : y = x : 5 : 25$가 성립한다.\n$9 : 3 = x : 5$에서 $3 : 1 = x : 5 \\implies x = 15$\n$3 : y = 5 : 25$에서 $3 : y = 1 : 5 \\implies y = 15$\n따라서 $x + y = 15 + 15 = 30$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5ecb870e042d52239e484c26625ca3f1a366d31dfd9ce8678cdf9c1d8f82ad29"
+}

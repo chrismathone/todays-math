@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 105,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "컴퓨터 저장 용량 단위 가운데 $1\\,\\mathrm{MiB}$는 $2^{20}\\,\\mathrm{B}$이고, $1\\,\\mathrm{GiB}$는 $2^{10}\\,\\mathrm{MiB}$이다. 하루가 새로 산 저장 장치의 용량이 $16\\,\\mathrm{GiB}$일 때, 이 용량은 몇 $\\mathrm{B}$인지 $2$의 거듭제곱으로 나타내시오.",
+ "choices": [],
+ "answer": "$2^{34}\\,\\mathrm{B}$",
+ "solution": "$16=2^{4}$이므로 $16\\,\\mathrm{GiB}=2^{4}\\times 2^{10}\\,\\mathrm{MiB}=2^{14}\\,\\mathrm{MiB}$이다.\n$1\\,\\mathrm{MiB}=2^{20}\\,\\mathrm{B}$이므로 $2^{14}\\,\\mathrm{MiB}=2^{14}\\times 2^{20}\\,\\mathrm{B}=2^{34}\\,\\mathrm{B}$이다.\n따라서 답은 $2^{34}\\,\\mathrm{B}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f3d0bfc4a549536b-1-3",
+  "problemCode": "J20105-B15-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "19617fffca30efd3d724db204f741af4ec9587a4544a81aafff3103ce89d912a",
+  "dbContentSha256": "861327ab473cc4293b424cf799f473eba76b1b7affe056a9103244485fd8f1c5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-1_지수법칙1.hwp",
+    "sha256": "9f3a1cbafe9c8ca2b17c43e38d80cd0f34c18055f48c3e602d82f86013cbfcd7",
+    "bytes": 261120
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "두 단위 환산율이 같은 거듭제곱으로 주어지고, 중간 크기 단위의 양을 기본 단위로 바꾼다.",
+  "after": "더 큰 단위 쌍으로 옮기고 두 환산율의 지수를 서로 다르게 두었다. 처음 양도 새로 정했다.",
+  "sharedConcept": "밑이 같은 거듭제곱의 곱",
+  "sharedProcedure": "주어진 양을 2의 거듭제곱으로 → 환산율 두 개 차례로 곱(지수 합)"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B15-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수법칙 활용 — 저장 용량 단위 환산",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "overlap4": 0.127,
+   "longestRun": 7,
+   "residualChars": 68,
+   "params": 4,
+   "numberRetention": 0.75,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

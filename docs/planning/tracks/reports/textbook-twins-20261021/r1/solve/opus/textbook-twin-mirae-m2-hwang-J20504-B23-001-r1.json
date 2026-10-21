@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-B23-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b6363d6a-97a7-4493-83f0-ce2b33c1dbb6",
+ "startedAt": "2026-10-21T16:32:00+0900",
+ "elapsedSec": 7.6,
+ "studentSha256": {
+  "fig-1.png": "aae80abce23fb18266586134b78c762e5db3540f6959f5c6563e2555d27d1067",
+  "student.json": "10ff7cab52be382839e63827c21e172af3bac3b3fe674fbeebde481438f76033"
+ },
+ "promptSha256": "ebf0a3b2a0e12a567d113347c918f710cf45b90fb67032cbbf70a1771ea07c61",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"32 cm\", \"work\": \"원 밖의 한 점에서 그은 두 접선의 길이는 같으므로 BD=BE=7, CE=CF=4이다. 따라서 AD=AB−BD=12−7=5이고 AF=AD=5이다. 그러면 BC=7+4=11, CA=5+4=9이므로 둘레는 12+11+9=32 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "32 cm",
+  "work": "원 밖의 한 점에서 그은 두 접선의 길이는 같으므로 BD=BE=7, CE=CF=4이다. 따라서 AD=AB−BD=12−7=5이고 AF=AD=5이다. 그러면 BC=7+4=11, CA=5+4=9이므로 둘레는 12+11+9=32 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "31c03e914a4a26793f7d47426141ce1d19a5133f8c5db486be0550e226a94497"
+}

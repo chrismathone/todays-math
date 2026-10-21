@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A77-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5e2d1e84-9e4f-4488-84ef-47bce017d093",
+ "startedAt": "2026-10-21T16:16:27+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "25fe6a2e80a094516e9926110821794aeb99d6e5ad32e0630f67ad04475ed336"
+ },
+ "promptSha256": "480a8f2f4342aa53f32cee69616e8a7c353f0082a17eb0495a77e303947ccfda",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$3x^{2}+5x+3$\", \"work\": \"$A-2(2x^{2}-x+6)=-x^{2}+7x-9$이므로 $A=(-x^{2}+7x-9)+(4x^{2}-2x+12)=3x^{2}+5x+3$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$3x^{2}+5x+3$",
+  "work": "$A-2(2x^{2}-x+6)=-x^{2}+7x-9$이므로 $A=(-x^{2}+7x-9)+(4x^{2}-2x+12)=3x^{2}+5x+3$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1462945689c325f5900a3d59d615b7cb0ead475a21d998d82f43fc0b1ad03019"
+}

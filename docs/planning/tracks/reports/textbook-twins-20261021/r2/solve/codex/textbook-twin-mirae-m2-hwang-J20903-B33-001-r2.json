@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B33-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-b4a0-7662-8741-8e1ad0386414",
+ "startedAt": "2026-10-21T18:56:06+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "5e4fc1f166c6d00933e5e86d4e03a438d7d94aa33bfd781ceb00fc5989d48132"
+ },
+ "promptSha256": "ce85be6d1ebf0dc646b40eaa667ce91df187e8bfc7500d7d7f3d5608e9a85c9c",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 0 ⑵ 1\",\"work\":\"동전이 세 개이므로 앞면은 최대 3개까지 나온다.\\n⑴ 앞면이 4개 나오는 것은 불가능하므로 확률은 0이다.\\n⑵ 앞면은 항상 3개 이하로 나오므로 확률은 1이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 0 ⑵ 1",
+  "work": "동전이 세 개이므로 앞면은 최대 3개까지 나온다.\n⑴ 앞면이 4개 나오는 것은 불가능하므로 확률은 0이다.\n⑵ 앞면은 항상 3개 이하로 나오므로 확률은 1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d2361e6080e6f2337492b8733ebd1150b86034a8a7942fe299143595100e043a"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A60-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "e5c7a850-e1b1-474b-b264-8e95061d09df",
+ "startedAt": "2026-10-21T17:59:54+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "4ad22af01e09da955cc0f0be039307c2e26563604a8717d8297b21e1a0732cc5"
+ },
+ "promptSha256": "36a0ba22658e53117cbdbc6eb7ee186b8f4a1fb960b8c6e94c329c3b118a563c",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"11\",\n  \"work\": \"부등식 $4x+5 \\\\ge x+11$을 정리하면 $3x \\\\ge 6$, 즉 $x \\\\ge 2$이다. $x \\\\ge 2$에서 양변에 7을 곱하고 3을 빼면 $7x-3 \\\\ge 7 \\\\times 2 - 3 = 11$이므로 가장 작은 값은 11이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "11",
+  "work": "부등식 $4x+5 \\ge x+11$을 정리하면 $3x \\ge 6$, 즉 $x \\ge 2$이다. $x \\ge 2$에서 양변에 7을 곱하고 3을 빼면 $7x-3 \\ge 7 \\times 2 - 3 = 11$이므로 가장 작은 값은 11이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "52a1d032f327d7869845b9241517cb7ee58f75466cbfa832e0dd0cd50768923c"
+}

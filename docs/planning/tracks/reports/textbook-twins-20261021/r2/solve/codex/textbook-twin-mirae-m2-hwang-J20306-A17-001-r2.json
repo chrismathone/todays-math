@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-5fe1-7010-8243-deb5c2fe4059",
+ "startedAt": "2026-10-21T18:57:55+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "8d1154c7ebc26c4bfb28b0f1bc1e5b185d0b7560aea95244e9267c4e8f91723a"
+ },
+ "promptSha256": "3e53f490977a70f7e883fe2615b69a5a8240b3c4ce657d01d2d400234a51f938",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"작은 수를 $x$라 하면 큰 수는 $7x+3$이다.\\n$x+(7x+3)=67$이므로 $8x=64$, $x=8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "작은 수를 $x$라 하면 큰 수는 $7x+3$이다.\n$x+(7x+3)=67$이므로 $8x=64$, $x=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "20910594f5e9f89526a4d34e5635393be79ccd7ce89c0e4f5f686473de5ca036"
+}

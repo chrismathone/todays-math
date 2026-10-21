@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc1-26ce-7471-945d-7f20c329d42b",
+ "startedAt": "2026-10-21T18:18:21+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "fig-1.png": "c9be0465b0720695d504d9f6c99714cd967dd6617e334a413703dff867ba12a2",
+  "student.json": "a75745648e6daec4cf9e1cffaee6dacd85e0a77a987564327e0b88776002b7d1"
+ },
+ "promptSha256": "090abf87a055f2bd837a933ac0dce8437a47b070a6439631aaf1e126fbdb557f",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8 cm\",\"work\":\"CE가 중선이므로 E는 AB의 중점이다. △ABD에서 EF∥AD이므로 AD=2EF=24 cm이다. 두 중선의 교점 G는 무게중심이므로 GD=AD÷3=8 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8 cm",
+  "work": "CE가 중선이므로 E는 AB의 중점이다. △ABD에서 EF∥AD이므로 AD=2EF=24 cm이다. 두 중선의 교점 G는 무게중심이므로 GD=AD÷3=8 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "68a7f17212c053ae3952fc04d94ddf7335d53823f541c534de716c7fd64bab48"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A83-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "45aa2f0d-9f46-4afe-ac3b-fd0473bcf067",
+ "startedAt": "2026-10-21T17:10:36+0900",
+ "elapsedSec": 6.2,
+ "studentSha256": {
+  "fig-1.png": "14dae94cdee3fccba967baef8d4e00bb73dd1715474339e337cacc0bf2922f71",
+  "student.json": "fea0d4cfda52cd26cb5605f64ccd0a6f823e031884c2791fba437022ce416983"
+ },
+ "promptSha256": "35355c326bd76c82362c98275dcd48b94e677d89e9ff2aa495bc4523a1fb6fb5",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"5 cm²\", \"work\": \"G가 무게중심이므로 △GBD = △ABC × 1/6 = 90/6 = 15 cm². △GDM과 △GBD는 꼭짓점 D에서 직선 BG까지의 높이가 같으므로, 넓이의 비는 밑변의 비 GM:GB = 1:3과 같다. 따라서 △GDM = 15 × 1/3 = 5 cm².\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "5 cm²",
+  "work": "G가 무게중심이므로 △GBD = △ABC × 1/6 = 90/6 = 15 cm². △GDM과 △GBD는 꼭짓점 D에서 직선 BG까지의 높이가 같으므로, 넓이의 비는 밑변의 비 GM:GB = 1:3과 같다. 따라서 △GDM = 15 × 1/3 = 5 cm².",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fd397b356fe0bae4a5dc81d36f67f6f26481c010d46b67c24fe4e0aa6e31e0c8"
+}

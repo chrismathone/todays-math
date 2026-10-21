@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 360,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A87-001-r1",
+ "authorId": "middle-engine:2-2|경우의 수|06",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "나연이는 티셔츠 $3$종류와 바지 $4$종류를 가지고 있다. 티셔츠와 바지를 각각 하나씩 짝 지어 입는 경우의 수를 구하시오.",
+ "choices": [],
+ "answer": "$12$",
+ "solution": "티셔츠를 고르는 각각의 경우에 대하여 바지를 고르는 경우가 $4$가지씩 있다.\n따라서 구하는 경우의 수는 $3\\times4=12$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4b711e3205872379-0-4",
+  "problemCode": "J20901-A87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "599754036571f220f49227aab2db39a19e52e22e021a230bd1aabf5aa00f474d",
+  "dbContentSha256": "0728e5bc1c75abc8d4472055bd2b1b7230ed24e8ab85a6d44d4591bdbb435768",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-1_사건과경우의수.hwp",
+    "sha256": "a3939f7fc42141fa86d0ef7bf2edb1ffdaee2f28bb3fec21b62e74857092dc5d",
+    "bytes": 79872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "서로 다른 소설책 6권과 만화책 5권에서 각각 한 권씩 고르는 경우의 수를 곱으로 구한다.",
+  "after": "엔진이 새로 정한 두 종류의 물건 수를 곱해 하나씩 짝 짓는 경우의 수를 구한다.",
+  "sharedConcept": "두 사건이 잇달아 일어날 때 경우의 수의 곱",
+  "sharedProcedure": "각 종류의 가짓수 확인 → 곱하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "경우의 수의 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A87-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "물건을 하나씩 짝 지어 고르는 경우의 수의 곱",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|경우의 수|06",
+   "seed": 2964090787,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+   "authorRationale": "두 종류의 물건을 각각 하나씩 골라 짝 짓는 경우의 수를 두 수의 곱으로 구하는 절차와 단답형 물음 꼴이 그대로 같다.",
+   "facts": {
+    "kind": 0,
+    "m": 3,
+    "n": 4,
+    "ans": 12
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 39자"
+   ],
+   "overlap4": 0.0,
+   "longestRun": 2,
+   "residualChars": 39,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

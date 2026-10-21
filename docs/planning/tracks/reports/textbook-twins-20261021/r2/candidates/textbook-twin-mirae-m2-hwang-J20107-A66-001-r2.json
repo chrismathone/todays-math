@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 16,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r2",
+ "authorId": "claude-fable-5-1:c22fa57f-f47b-4b98-b1b4-0e431f6345f4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$7(5x^{2}+ax+5)-6(bx^{2}-6x+8)$을 전개하여 정리하였더니 $kx^{2}+kx+k$ ($k$는 상수) 꼴이 되었다. 두 상수 $a$, $b$에 대하여 $a-b$의 값은?",
+ "choices": [
+  "$-15$",
+  "$-11$",
+  "$-1$",
+  "$1$",
+  "$15$"
+ ],
+ "answer": "①",
+ "solution": "$7(5x^{2}+ax+5)-6(bx^{2}-6x+8)=35x^{2}+7ax+35-6bx^{2}+36x-48=(35-6b)x^{2}+(7a+36)x-13$이다. 이 식이 $kx^{2}+kx+k$ 꼴이므로 $k=-13$이고, $35-6b=-13$, $7a+36=-13$에서 $b=8$, $a=-7$이다. 따라서 $a-b=-7-8=-15$이므로 답은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-6",
+  "problemCode": "J20107-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "b5e1c0011b120a2a7c728b5723604253c126cef35b0700dea714d92e10947dd6",
+  "dbContentSha256": "6bdeba9a45e73987a7b2af6d910439980900195e84accbd5f149a80f2e97d4b7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "두 다항식에 각각 상수를 곱해 합한 식을 정리했을 때, 첫째 식의 이차항 계수와 둘째 식의 일차항 계수에 든 미지수 둘을 «이차항 계수와 일차항 계수가 상수항과 같다»는 조건으로 구하고 그 차를 묻는다.",
+  "after": "미지수를 첫째 식의 일차항과 둘째 식의 이차항에 두고, 정리한 결과가 «세 계수가 모두 같은 $kx^{2}+kx+k$ 꼴»이라는 표현으로 조건을 주어 두 미지수를 구하고 그 차를 묻는다. 곱하는 상수와 안쪽 계수는 모두 새 수.",
+  "sharedConcept": "다항식의 덧셈과 뺄셈(분배법칙·동류항 정리)과 계수 비교",
+  "sharedProcedure": "분배법칙으로 전개 → 동류항끼리 묶어 각 항의 계수를 미지수 식으로 정리 → 상수항을 기준으로 두 계수의 등식 세우기 → 일차방정식 둘을 풀어 두 미지수 구하기 → 요구한 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "단항식과 다항식의 계수 · 상수항",
+   "분배법칙과 동류항 정리",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A66-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "다항식을 정리한 뒤 계수 조건으로 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.056,
+   "longestRun": 5,
+   "residualChars": 76,
+   "params": 5,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

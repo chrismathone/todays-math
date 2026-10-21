@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "a6c16d31-c46a-4324-9a70-f70b033591c2",
+ "startedAt": "2026-10-21T18:17:56+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "74ca20c629904324e8fcf0d3b7c4a7e13f31dba81b256a725a9df160405629b8"
+ },
+ "promptSha256": "1bf3d28e552fa119f354cce5a85ed8ad5e31eafb9fefdcd00b0756345d08e1a3",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"5\",\n  \"work\": \"뒤의 함수 $y=mx-5$를 $y$축 방향으로 $8$만큼 평행이동한 식은 $y=mx-5+8=mx+3$이다. 이 그래프가 앞의 함수 $y=-2x+n$과 겹치므로 기울기와 $y$절편이 각각 같아야 한다. 따라서 $m=-2$, $n=3$이다. 구하는 값은 $n-m = 3 - (-2) = 5$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "5",
+  "work": "뒤의 함수 $y=mx-5$를 $y$축 방향으로 $8$만큼 평행이동한 식은 $y=mx-5+8=mx+3$이다. 이 그래프가 앞의 함수 $y=-2x+n$과 겹치므로 기울기와 $y$절편이 각각 같아야 한다. 따라서 $m=-2$, $n=3$이다. 구하는 값은 $n-m = 3 - (-2) = 5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "61a2c13b9758342d5fb179dea312086370c1ae90ee0242636866d713557f4fdc"
+}

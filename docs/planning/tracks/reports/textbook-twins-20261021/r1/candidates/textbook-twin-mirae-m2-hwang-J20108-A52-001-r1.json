@@ -1,0 +1,139 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 1,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r1",
+ "authorId": "middle-engine:2-1|다항식의 계산|10",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "$a=-2$, $b=2$ 일 때, 다음 식의 값을 구하시오.\n$\\dfrac{-6a^{2}b+2ab^{2}+8ab}{2ab}-\\dfrac{-20ab-25b^{2}+25b}{5b}$",
+ "choices": [],
+ "answer": "$9$",
+ "solution": "먼저 식을 간단히 하면 $\\dfrac{-6a^{2}b+2ab^{2}+8ab}{2ab}-\\dfrac{-20ab-25b^{2}+25b}{5b}=\\left(-3a+b+4\\right)-\\left(-4a-5b+5\\right)=a+6b-1$ 이다.\n$a=-2$, $b=2$ 를 대입하면 값은 $9$ 이다. 음수를 대입할 때는 반드시 괄호를 사용한다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-12",
+  "problemCode": "J20108-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "c727d551908831de766d8acba909b4c7cdbbefa4a34389533292da78d31930d7",
+  "dbContentSha256": "e8eed79f4f7cc1cb14e9f237e4e3ff9a9728b871b6bbedeeb0c11e5f8cd7a220",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "두 문자의 값이 주어지고, 나눗셈 두 개가 덧셈으로 이어진 식을 간단히 한 뒤 값을 구한다.",
+  "after": "엔진이 새 계수와 새 문자 값으로 같은 꼴(나눗셈 둘을 합쳐 대입)의 식을 낸다.",
+  "sharedConcept": "다항식을 단항식으로 나누기와 식의 값",
+  "sharedProcedure": "각 나눗셈을 분배 → 동류항 정리 → 문자 값 대입 → 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "다항식의 덧셈과 뺄셈",
+   "식의 값"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "다항식÷단항식을 정리한 뒤 대입해 식의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|다항식의 계산|10",
+   "seed": 3069731789,
+   "variant": 1,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+   "authorRationale": "다항식÷단항식 두 개를 각각 계산해 합친 뒤 주어진 문자 값을 대입하는 절차와 단답형 물음이 그대로 같다.",
+   "facts": {
+    "xv": -2,
+    "yv": 2,
+    "value": 9
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.044,
+   "longestRun": 5,
+   "residualChars": 49,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

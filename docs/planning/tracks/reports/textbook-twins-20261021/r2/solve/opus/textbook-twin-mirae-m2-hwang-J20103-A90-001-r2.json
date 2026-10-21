@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9d3e79e9-fca4-4cc2-b074-d5c15bfb7c33",
+ "startedAt": "2026-10-21T17:07:42+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "4e964a4dce83ca4ee2877c7d0c3d8f036d3b08fa1d9d72a314188820cc5f560b"
+ },
+ "promptSha256": "1c76a54bdc6d1ca5061ec1513b76ae7f8d4e7e3b680077286e5b3f42306bc2ac",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"① $0.\\\\dot{4}=\\\\frac{4}{9}$ (옳음)\\n② $3.1\\\\dot{6}=\\\\frac{316-31}{90}=\\\\frac{285}{90}$ 이므로 $\\\\frac{305}{90}$은 틀림\\n③ $0.\\\\dot{2}\\\\dot{7}=\\\\frac{27}{99}$ (옳음)\\n④ $0.\\\\dot{3}5\\\\dot{8}=\\\\frac{358}{999}$ (옳음)\\n⑤ $0.5\\\\dot{2}=\\\\frac{52-5}{90}=\\\\frac{47}{90}$ (옳음)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① $0.\\dot{4}=\\frac{4}{9}$ (옳음)\n② $3.1\\dot{6}=\\frac{316-31}{90}=\\frac{285}{90}$ 이므로 $\\frac{305}{90}$은 틀림\n③ $0.\\dot{2}\\dot{7}=\\frac{27}{99}$ (옳음)\n④ $0.\\dot{3}5\\dot{8}=\\frac{358}{999}$ (옳음)\n⑤ $0.5\\dot{2}=\\frac{52-5}{90}=\\frac{47}{90}$ (옳음)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "803e525653a7d2cdc6d137f062ba51113b698d206b413df730f63846c8be59db"
+}

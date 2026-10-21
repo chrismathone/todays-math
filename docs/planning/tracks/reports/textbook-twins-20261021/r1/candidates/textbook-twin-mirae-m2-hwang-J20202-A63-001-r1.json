@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 144,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A63-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 다섯 일차부등식 가운데 넷은 해가 서로 같다. 해가 다른 하나는?",
+ "choices": [
+  "$x+9\\le 12$",
+  "$20-6x\\le 2$",
+  "$8x-9\\le 15$",
+  "$20-4x\\ge 8$",
+  "$8x+15\\ge 11x+6$"
+ ],
+ "answer": "②",
+ "solution": "① $x+9\\le 12$에서 $x\\le 3$\n② $20-6x\\le 2$에서 $-6x\\le -18$, $x\\ge 3$\n③ $8x-9\\le 15$에서 $8x\\le 24$, $x\\le 3$\n④ $20-4x\\ge 8$에서 $-4x\\ge -12$, $x\\le 3$\n⑤ $8x+15\\ge 11x+6$에서 $-3x\\ge -9$, $x\\le 3$\n따라서 해가 다른 하나는 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-51f4c1431376eff4-1-2",
+  "problemCode": "J20202-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "66d7282e5ecaafbf335f12bf546ecaadfda851ecd7c931c275d1c5d921a5b84f",
+  "dbContentSha256": "390a07fc6da601f2a69d654d600e2115af07a92b1286e4d4a301eb488100891f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-3_일차부등식의풀이.hwp",
+    "sha256": "a374a285941d2fa27cc2228a9abef548e08ea23bbddde87c8c6d5b1b038b8194",
+    "bytes": 416768
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "다섯 부등식 중 넷의 해가 x>−2, 첫 보기만 x<−2 (경계 같고 방향만 다름)",
+  "after": "넷의 해가 x≤3, 둘째 보기만 x≥3 — 상수항이 앞에 오는 식·양변에 x가 있는 식 등 배치를 바꾸고 모두 등호 포함",
+  "sharedConcept": "여러 일차부등식의 해 비교",
+  "sharedProcedure": "보기마다 이항·정리 → 해 구하기(음수 계수면 방향 뒤집기) → 해가 다른 것 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "부등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A63-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 다른 일차부등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.079,
+   "longestRun": 6,
+   "residualChars": 66,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

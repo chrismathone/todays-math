@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 14,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r2",
+ "authorId": "claude-fable-5-1:2aa10b0e-885f-48b5-9f80-3a80f6655d05",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림과 같이 직사각형 모양의 텃밭 안에 폭이 $a$인 길을 가로로 둘, 세로로 하나 냈다. 길을 제외한 텃밭의 넓이는?\n[그림]",
+ "choices": [
+  "$21a^{2}+6a$",
+  "$24a^{2}+4a$",
+  "$27a^{2}+6a$",
+  "$24a^{2}+6a$",
+  "$45a^{2}+10a$"
+ ],
+ "answer": "④",
+ "solution": "길을 제외한 텃밭 조각을 한곳으로 밀어 모으면 하나의 직사각형이 된다.\n가로의 길이는 세로 길 하나를 빼서 $9a+2-a=8a+2$, 세로의 길이는 가로 길 둘을 빼서 $5a-2a=3a$이다.\n따라서 넓이는 $(8a+2)\\times 3a=24a^{2}+6a$이다.\n정답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A99-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A99-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-12",
+  "problemCode": "J20108-A99-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "11cca9510313aea5c7254c5a6b83c90b4fbb73090782d7724653f19cfe4f1b9d",
+  "dbContentSha256": "f659ab0a62274c6f475c0dd9e0a6c651fd6bf401d55da103eb36587445a762c2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [
+   "2d8136c9ea68ac675a86933571a327eeed46805e58ca3c045d4179bbf042ffd2"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "직사각형 화단에 세로 길 하나·가로 길 하나(폭 x)를 냈을 때, 길을 뺀 나머지 넓이를 다섯 보기 가운데 고른다. 가로·세로에서 길 폭을 한 번씩 빼고 곱한다.",
+  "after": "직사각형 텃밭에 가로 길 둘·세로 길 하나(폭 a)를 냈을 때, 길을 뺀 나머지 넓이를 고른다. 가로에서 a 한 번, 세로에서 a 두 번을 빼고 곱한다. 정답 위치를 ②에서 ④로 옮겼다.",
+  "sharedConcept": "단항식과 다항식의 곱셈(넓이 활용) — 길을 밀어 모아 직사각형 하나로 보기",
+  "sharedProcedure": "남는 가로 길이를 일차식으로 쓰기 → 남는 세로 길이를 단항식으로 쓰기 → 두 식을 곱해 전개하기 → 보기에서 같은 식 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "직사각형의 넓이",
+   "다항식의 덧셈과 뺄셈(동류항 정리)",
+   "단항식과 다항식의 곱셈(분배법칙)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A99-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "길을 낸 직사각형의 남은 넓이 — 단항식×다항식 전개",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.076,
+   "longestRun": 7,
+   "residualChars": 82,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

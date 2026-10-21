@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "4d8e2da8-f27c-43d4-a772-2ea1c9b1d897",
+ "startedAt": "2026-10-21T18:01:49+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "48dbcd3aa3b96e4e1e5fa825e2a68aae6a816fca77763825678c0c73aabc1fd1"
+ },
+ "promptSha256": "2c6501888067b9e9a9042c41c72ad4493d9153ece0004fcd27a228a7ddc7a382",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리\",\n  \"work\": \"⑴ 두 사람이 접은 종이학의 합이 28마리이므로 x+y=28, 미나가 접은 수의 3배에서 하루가 접은 수를 뺀 값이 32이므로 3x-y=32이다. 따라서 □ 안의 수는 순서대로 28, 32이다.\\n⑵ 두 식을 변끼리 더하면 4x=60이므로 x=15이다. 이를 첫 번째 식에 대입하면 15+y=28에서 y=13이다. 따라서 미나는 15마리, 하루는 13마리이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ 28, 32 ⑵ 미나: 15마리, 하루: 13마리",
+  "work": "⑴ 두 사람이 접은 종이학의 합이 28마리이므로 x+y=28, 미나가 접은 수의 3배에서 하루가 접은 수를 뺀 값이 32이므로 3x-y=32이다. 따라서 □ 안의 수는 순서대로 28, 32이다.\n⑵ 두 식을 변끼리 더하면 4x=60이므로 x=15이다. 이를 첫 번째 식에 대입하면 15+y=28에서 y=13이다. 따라서 미나는 15마리, 하루는 13마리이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8fc179d289b289cafa5ce2b6f24453695fdb0adf6e24d0e5c1d5045fe5ab934f"
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 205,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r1",
+ "authorId": "claude-fable-5-1:1bb1f7cd-9929-4673-b930-dc6798c3e99b",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 직선 가운데 일차함수 $y=-\\frac{2}{3}x+4$의 그래프와 만나지 않는 것은?",
+ "choices": [
+  "$2x-3y+6=0$",
+  "$2x+3y-9=0$",
+  "$3x+2y+1=0$",
+  "$3x-2y-5=0$",
+  "$2x+5y+4=0$"
+ ],
+ "answer": "②",
+ "solution": "두 직선이 만나지 않으려면 기울기는 같고 $y$절편은 달라야 한다.\n① $2x-3y+6=0$에서 $y=\\frac{2}{3}x+2$이므로 기울기는 $\\frac{2}{3}$\n② $2x+3y-9=0$에서 $y=-\\frac{2}{3}x+3$이므로 기울기는 $-\\frac{2}{3}$, $y$절편은 $3$\n③ $3x+2y+1=0$에서 $y=-\\frac{3}{2}x-\\frac{1}{2}$이므로 기울기는 $-\\frac{3}{2}$\n④ $3x-2y-5=0$에서 $y=\\frac{3}{2}x-\\frac{5}{2}$이므로 기울기는 $\\frac{3}{2}$\n⑤ $2x+5y+4=0$에서 $y=-\\frac{2}{5}x-\\frac{4}{5}$이므로 기울기는 $-\\frac{2}{5}$\n기울기가 $-\\frac{2}{3}$으로 같고 $y$절편이 $4$와 다른 것은 ②이므로, 만나지 않는 직선은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-13",
+  "problemCode": "J20408-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "8267af25bff77398312e9b998883c3501c1d3f688f806cffd65d363e4e1b4003",
+  "dbContentSha256": "af7c47a8e1a640392a446b46e9cc843e3fb0cd42f3825350d3ff12edee2887b3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "주어진 일차함수의 그래프와 평행한 직선을 일반형으로 적힌 다섯 보기에서 고른다",
+  "after": "주어진 일차함수의 그래프와 만나지 않는 직선을 일반형으로 적힌 다섯 보기에서 고른다 — «평행»을 «만나지 않음»으로 바꾸어 기울기가 같고 y절편이 다른 조건을 확인하게 한다",
+  "sharedConcept": "일차방정식 ax+by+c=0을 y=mx+n 꼴로 고쳐 기울기 비교(평행 조건)",
+  "sharedProcedure": "각 보기를 y에 대하여 정리 → 기울기 읽기 → 주어진 기울기와 같은 것 찾기 → y절편이 다른지 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수와 일차방정식"
+  },
+  "prerequisites": [
+   "일차함수와 일차방정식의 관계",
+   "두 직선의 평행 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20408-A52-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차방정식의 그래프와 평행한(만나지 않는) 직선 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.222,
+   "longestRun": 6,
+   "residualChars": 78,
+   "params": 7,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

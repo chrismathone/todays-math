@@ -1,0 +1,89 @@
+{
+ "version": 2,
+ "points": {
+  "T": [
+   155,
+   30
+  ],
+  "A": [
+   40,
+   200
+  ],
+  "B": [
+   200,
+   230
+  ],
+  "C": [
+   270,
+   170
+  ],
+  "D": [
+   110,
+   140
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": {
+   "points": [
+    "C",
+    "D"
+   ],
+   "dashed": "5 3"
+  },
+  "DA": {
+   "points": [
+    "D",
+    "A"
+   ],
+   "dashed": "5 3"
+  },
+  "TA": [
+   "T",
+   "A"
+  ],
+  "TB": [
+   "T",
+   "B"
+  ],
+  "TC": [
+   "T",
+   "C"
+  ],
+  "TD": {
+   "points": [
+    "T",
+    "D"
+   ],
+   "dashed": "5 3"
+  }
+ },
+ "dimensions": {
+  "AB_len": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "$6ab^{2}$",
+   "side": "auto"
+  },
+  "BC_len": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "$2a^{3}b$",
+   "side": "auto"
+  }
+ },
+ "style": {
+  "show_points": false
+ }
+}

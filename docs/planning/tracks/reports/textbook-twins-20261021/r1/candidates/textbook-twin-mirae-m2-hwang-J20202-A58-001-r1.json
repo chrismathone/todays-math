@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 139,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차부등식 $4x-9\\le 7x+6$의 해는?",
+ "choices": [
+  "$x\\le -5$",
+  "$x\\ge -5$",
+  "$x\\le 5$",
+  "$x\\ge 5$",
+  "$x\\le -1$"
+ ],
+ "answer": "②",
+ "solution": "$4x-9\\le 7x+6$에서 $x$항은 좌변으로, 상수항은 우변으로 이항하면 $4x-7x\\le 6+9$, $-3x\\le 15$이다. 양변을 $-3$으로 나누면 부등호의 방향이 바뀌어 $x\\ge -5$이다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-8",
+  "problemCode": "J20202-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "f8919608f285f4f71fd53d1b38915e00ad00044890d993982c7b965fec1c9955",
+  "dbContentSha256": "c9b52b3ab580839c6f4004b5a32039d94e8544775d31dca623034ea3f18bddda",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "좌변이 (상수)−(x항), 우변이 (x항)−(상수)인 < 부등식을 풀어 해를 고름",
+  "after": "양변 모두 (x항)±(상수) 꼴인 ≤ 부등식으로, x항을 모으면 음수 계수가 나와 방향을 바꿔야 함",
+  "sharedConcept": "일차부등식의 풀이, 음수로 나눌 때 부등호 방향 바뀜",
+  "sharedProcedure": "x항·상수항 이항 → 동류항 정리 → 음수 계수로 나누며 부등호 뒤집기 → 보기 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "이항",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A58-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "양변에 x가 있는 일차부등식 풀기(계수 음수)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 33자",
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.067,
+   "longestRun": 5,
+   "residualChars": 33,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

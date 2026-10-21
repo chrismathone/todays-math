@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "52fb388f-b335-48f5-b393-414559b43384",
+ "startedAt": "2026-10-21T16:16:14+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "c251658c4e5aa05e36516e5927b4ab7ad14609caadaf9b80004ae418777bb223"
+ },
+ "promptSha256": "96655cac30dd9ca59b65c83ecba4b1ed422f3a8943155d8a4f1c3e1b99d07f88",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "A = 4x²-x+6 - (-x²+3x+2) = 5x²-4x+4\n\n```json\n{\"answer\": \"$5x^{2}-4x+4$\", \"work\": \"$(4x^{2}-x+6)-A=-x^{2}+3x+2$ 이므로 $A=(4x^{2}-x+6)-(-x^{2}+3x+2)=4x^{2}-x+6+x^{2}-3x-2=5x^{2}-4x+4$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$5x^{2}-4x+4$",
+  "work": "$(4x^{2}-x+6)-A=-x^{2}+3x+2$ 이므로 $A=(4x^{2}-x+6)-(-x^{2}+3x+2)=4x^{2}-x+6+x^{2}-3x-2=5x^{2}-4x+4$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b17d28765f75b089b16d042090b82504da6f0b99f350ced316eb6f67807afe4b"
+}

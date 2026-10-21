@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5116c591-29ed-4fd3-8783-68d8e7e64323",
+ "startedAt": "2026-10-21T17:55:55+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "a7beae2059e569a192379a210932cf0e42338a6c0c8405e501a3df3f9abf3d54"
+ },
+ "promptSha256": "e6fc8e8edb3c200fff41ff02d8c50eabcce944b77a9a00f9679cd44fe96cf941",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"4x+7y=84에서 4x=84-7y이므로 7y는 4의 배수이고, 따라서 y는 4의 배수이다. y=0,4,8,12일 때 x=21,14,7,0이다. 순서쌍은 (21,0),(14,4),(7,8),(0,12)로 4개이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "4x+7y=84에서 4x=84-7y이므로 7y는 4의 배수이고, 따라서 y는 4의 배수이다. y=0,4,8,12일 때 x=21,14,7,0이다. 순서쌍은 (21,0),(14,4),(7,8),(0,12)로 4개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0016255f18a3b511aab654b35b4f05b527dbb2951772ad23eaa6cd043b523f0d"
+}

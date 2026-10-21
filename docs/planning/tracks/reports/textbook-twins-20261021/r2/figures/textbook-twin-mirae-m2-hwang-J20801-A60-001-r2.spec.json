@@ -1,0 +1,143 @@
+{
+ "version": 2,
+ "points": {
+  "O": [
+   40,
+   240
+  ],
+  "A": [
+   240,
+   240
+  ],
+  "B": [
+   40,
+   40
+  ],
+  "P": [
+   232,
+   240
+  ],
+  "Q": [
+   232,
+   184
+  ],
+  "R": [
+   40,
+   184
+  ]
+ },
+ "circles": {
+  "c": {
+   "center": "O",
+   "radius": 200,
+   "draw": false
+  }
+ },
+ "arcs": {
+  "arcAB": {
+   "circle": "c",
+   "from": "A",
+   "to": "B",
+   "dir": "ccw"
+  }
+ },
+ "regions": {
+  "bed": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "P"
+     ]
+    },
+    {
+     "seg": [
+      "P",
+      "Q"
+     ]
+    },
+    {
+     "seg": [
+      "Q",
+      "R"
+     ]
+    },
+    {
+     "seg": [
+      "R",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#eeeeee"
+  }
+ },
+ "segments": {
+  "OA": [
+   "O",
+   "A"
+  ],
+  "OB": [
+   "O",
+   "B"
+  ],
+  "PQ": [
+   "P",
+   "Q"
+  ],
+  "QR": [
+   "Q",
+   "R"
+  ]
+ },
+ "angles": {
+  "rO": {
+   "vertex": "O",
+   "points": [
+    "P",
+    "R"
+   ],
+   "right": true
+  },
+  "rP": {
+   "vertex": "P",
+   "points": [
+    "Q",
+    "O"
+   ],
+   "right": true
+  },
+  "rQ": {
+   "vertex": "Q",
+   "points": [
+    "R",
+    "P"
+   ],
+   "right": true
+  },
+  "rR": {
+   "vertex": "R",
+   "points": [
+    "O",
+    "Q"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "or": {
+   "points": [
+    "O",
+    "R"
+   ],
+   "label": "7 m",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "O": "O",
+  "P": "P",
+  "Q": "Q",
+  "R": "R"
+ }
+}

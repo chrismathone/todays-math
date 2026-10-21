@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A37-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "377a37b3-0b92-4900-b0d7-f942a5ea7c69",
+ "startedAt": "2026-10-21T18:46:45+0900",
+ "elapsedSec": 37.2,
+ "studentSha256": {
+  "fig-1.png": "eb6e9bf56d13ab53b60f8d6aeced41f49e1b316660b71164d8795f40abec12f7",
+  "student.json": "3e820792a4b2c812b6dafab10fd923a89b723ffa380e200e4d5ff53c41802753"
+ },
+ "promptSha256": "25a1744d07f74b52185042ffb4ddf850d2a8702bb64d24aa43fa1fc5758e7e0f",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"25 cm\",\n  \"work\": \"실이 지나는 세 옆면(면 $DHEA$, 면 $ABFE$, 면 $BFGC$)을 한 평면 위에 펼치면 점 $H$에서 점 $C$까지 잇는 선분의 길이가 실의 최단 길이가 된다.\\n펼친 직사각형에서 밑변의 길이는 $\\\\overline{HE} + \\\\overline{EF} + \\\\overline{FG} = 4 + 12 + 4 = 20\\\\,\\\\mathrm{cm}$이고, 높이는 $\\\\overline{CG} = 15\\\\,\\\\mathrm{cm}$이다.\\n따라서 피타고라스 정리에 의해 실의 최단 길이는 $\\\\sqrt{20^2 + 15^2} = \\\\sqrt{400 + 225} = \\\\sqrt{625} = 25\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "25 cm",
+  "work": "실이 지나는 세 옆면(면 $DHEA$, 면 $ABFE$, 면 $BFGC$)을 한 평면 위에 펼치면 점 $H$에서 점 $C$까지 잇는 선분의 길이가 실의 최단 길이가 된다.\n펼친 직사각형에서 밑변의 길이는 $\\overline{HE} + \\overline{EF} + \\overline{FG} = 4 + 12 + 4 = 20\\,\\mathrm{cm}$이고, 높이는 $\\overline{CG} = 15\\,\\mathrm{cm}$이다.\n따라서 피타고라스 정리에 의해 실의 최단 길이는 $\\sqrt{20^2 + 15^2} = \\sqrt{400 + 225} = \\sqrt{625} = 25\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "de873183cde791f5f7b77b496fc1f31c8622baf3c06612afaf26439700364288"
+}

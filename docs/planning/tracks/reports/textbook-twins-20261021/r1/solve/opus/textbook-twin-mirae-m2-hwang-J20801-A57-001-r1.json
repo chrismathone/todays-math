@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5cd09e31-7441-4a30-8f8c-e36a3d020949",
+ "startedAt": "2026-10-21T17:10:50+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "fig-1.png": "78ad0bc3e93f244fe233e59baca7dcd359febf09e0ad7216ea3a32638828c8fb",
+  "student.json": "61d31b407bcdb888f457ad3fce8087a80d29f1f4d91c92b0d745f02f8864bdd6"
+ },
+ "promptSha256": "3790bf3e1acd2be5141a3a7f1dff72a8df6ddb7cfcb2d5e61a1cdee46f7e7000",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"S1 = (π/8)·AB², S2 = (π/8)·BC². 피타고라스 정리에 의해 AB² + BC² = AC² = 144이다. 따라서 S1 + S2 = (π/8)·144 = 18π cm²이고, 이는 지름이 AC인 반원의 넓이 (1/2)·π·6²와 같다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "S1 = (π/8)·AB², S2 = (π/8)·BC². 피타고라스 정리에 의해 AB² + BC² = AC² = 144이다. 따라서 S1 + S2 = (π/8)·144 = 18π cm²이고, 이는 지름이 AC인 반원의 넓이 (1/2)·π·6²와 같다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f96192ae133b1a1809cca8f8d03cc983de77cdfebd38f8df5371ce609ed9ea67"
+}

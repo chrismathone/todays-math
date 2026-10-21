@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db6-68ac-74c0-832a-b3153cb4bf36",
+ "startedAt": "2026-10-21T18:06:37+0900",
+ "elapsedSec": 56.6,
+ "studentSha256": {
+  "fig-1.png": "0780d6381fca315cc42a2f8db45d948e87fb596a3ebfd730b94c9e8018296741",
+  "student.json": "762925125a4b97d61dada51ad35663f20b9bae15a01273a2338aea9444eae6ea"
+ },
+ "promptSha256": "45d7c9044b735841a9bbc252e743ed65380096fc9f7c268e0573492134d23634",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"18°\",\n  \"work\": \"정오각형의 한 내각은 108°이고 AB=AE이므로 ∠AEB=(180°−108°)÷2=36°이다.\\nA, E, D는 한 직선 위에 있으므로 ∠BED=180°−36°=144°이다.\\n접을 때 E는 그대로이고 D가 B에 겹치므로 ED=EB이다. 따라서 이등변삼각형 EBD에서 ∠BDE=∠EBD=(180°−144°)÷2=18°이다.\\nAD∥BC이므로 엇각의 크기가 같아 ∠x=∠BDE=18°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "18°",
+  "work": "정오각형의 한 내각은 108°이고 AB=AE이므로 ∠AEB=(180°−108°)÷2=36°이다.\nA, E, D는 한 직선 위에 있으므로 ∠BED=180°−36°=144°이다.\n접을 때 E는 그대로이고 D가 B에 겹치므로 ED=EB이다. 따라서 이등변삼각형 EBD에서 ∠BDE=∠EBD=(180°−144°)÷2=18°이다.\nAD∥BC이므로 엇각의 크기가 같아 ∠x=∠BDE=18°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "119cdb2aba498c6e9398b32c482a5bf2419a6dd7e974c0675b84abc1552f0f80"
+}

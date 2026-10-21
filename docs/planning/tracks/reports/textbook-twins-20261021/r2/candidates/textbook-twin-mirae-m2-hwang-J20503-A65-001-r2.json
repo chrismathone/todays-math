@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 263,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r2",
+ "authorId": "claude-opus-5-5:e855aaec-5979-4913-a93e-955e19f3e1dd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n점 $O$는 $\\triangle ABC$의 외심이다. 그림에서 $\\angle OBA=34^{\\circ}$, $\\overline{OA}=7\\,\\mathrm{cm}$이고, $\\overline{OC}=x\\,\\mathrm{cm}$, $\\angle OAB=y^{\\circ}$이다. 이때 $x+y$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$41$",
+ "solution": "점 $O$가 $\\triangle ABC$의 외심이므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이다. 따라서 $\\overline{OC}=7\\,\\mathrm{cm}$이므로 $x=7$이다. $\\triangle OAB$에서 $\\overline{OA}=\\overline{OB}$이므로 이등변삼각형이고, 두 밑각의 크기가 같아 $\\angle OAB=\\angle OBA=34^{\\circ}$이다. 즉 $y=34$이다. 따라서 $x+y=7+34=41$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A65-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A65-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-480ba5be3b0d3488-0-1",
+  "problemCode": "J20503-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "8bcb42110c6fcfb3fbfc5efebd6ae7d7afad78fbe05eb4209ce58149d70b619f",
+  "dbContentSha256": "c3a368b9dfdfc0bb13357749da87d34a8d828bc5ab6f966c03ed5e75cf2f2f38",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-3_삼각형의외심.hwp",
+    "sha256": "91119bc39ce15fb919f93ea07a50549609a147c6f0df43ee79579a53eb00a85e",
+    "bytes": 187392
+   }
+  ],
+  "originalFigureSha256": [
+   "92603b3ee26ce952663c664d70688a81d3d0c729db29c7c34dace6d2f46813a4"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "외심 O에서 한 꼭짓점까지의 거리와 한 꼭짓점에서 O와 이루는 각이 주어진다. 다른 꼭짓점까지의 거리 x와, 같은 이등변삼각형의 맞은편 밑각 y를 구해 더한다. y는 그림에 호로만 표시되어 있다.",
+  "after": "주어진 각을 다른 이등변삼각형(OAB)의 B 쪽 밑각으로 옮겼다. 길이는 OA가 주어지고 OC를 x로 구한다. 이때 y는 A 쪽 밑각이다. x와 y를 그림의 호·표시와 발문 두 곳에서 모두 밝혀 모호함을 없앴다.",
+  "sharedConcept": "외심에서 세 꼭짓점까지의 거리는 같다. 외심과 두 꼭짓점이 이루는 삼각형은 이등변삼각형이다.",
+  "sharedProcedure": "외심 성질로 같은 길이 찾기(x) → 외심과 두 꼭짓점이 이루는 이등변삼각형에서 밑각이 같음을 이용(y) → x+y 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 뜻과 성질",
+   "이등변삼각형의 두 밑각의 크기는 같다"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A65-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심의 성질로 선분의 길이와 이등변삼각형의 밑각을 구해 더하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'lenOA' has no line/circle/label-free position",
+     "session": "fe62e51e-792f-429b-bc8a-8fceb8a53b3c",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.116,
+   "longestRun": 7,
+   "residualChars": 46,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

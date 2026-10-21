@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd7-352b-7c52-814d-d94b037a4ed2",
+ "startedAt": "2026-10-21T18:42:27+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "08864b34264101fd2208e406b1a05b15958d87edd24ce9bbbea31827060922bf"
+ },
+ "promptSha256": "02d44df0c03d7723fa37a12f142fd7ac8c117aeb97121537bf7f14470b7c81c0",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"33\",\"work\":\"기약분수의 분모에 2와 5 이외의 소인수가 없어야 유한소수가 된다. 22=2×11이므로 A는 11의 배수이고, 30=2×3×5이므로 A는 3의 배수여야 한다. 따라서 가장 작은 A는 11과 3의 최소공배수인 33이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "33",
+  "work": "기약분수의 분모에 2와 5 이외의 소인수가 없어야 유한소수가 된다. 22=2×11이므로 A는 11의 배수이고, 30=2×3×5이므로 A는 3의 배수여야 한다. 따라서 가장 작은 A는 11과 3의 최소공배수인 33이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dd873a2d674634cc02371d23f3c83acb4d90b68813f293b584e5abffafe903d2"
+}

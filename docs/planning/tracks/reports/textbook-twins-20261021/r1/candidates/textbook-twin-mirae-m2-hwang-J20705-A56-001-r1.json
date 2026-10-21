@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 333,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 점 $G$는 $\\triangle ABC$의 무게중심이고 점 $G'$은 $\\triangle GBC$의 무게중심이다. $\\triangle ABC$의 넓이가 $108\\,\\mathrm{cm}^2$일 때, 색칠한 $\\triangle GG'C$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$12\\,\\mathrm{cm}^2$",
+ "solution": "점 $G$는 $\\triangle ABC$의 무게중심이므로 $\\triangle GAB=\\triangle GBC=\\triangle GCA$이고, $\\triangle GBC=\\frac{1}{3}\\times108=36\\,(\\mathrm{cm}^2)$이다. 점 $G'$은 $\\triangle GBC$의 무게중심이므로 $\\triangle G'GB=\\triangle G'BC=\\triangle G'CG$이고, $\\triangle GG'C=\\frac{1}{3}\\times36=12\\,(\\mathrm{cm}^2)$이다. 따라서 답은 $12\\,\\mathrm{cm}^2$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A56-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A56-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-720824b629c397d4-1-4",
+  "problemCode": "J20705-A56-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "64a55b0cdcf79d0a19287caf71b7a13922d8ff68214f61cb12799f10cd47882f",
+  "dbContentSha256": "e3f4f0cd4ea66188a594831f4b1855e80a9fb600217e5f062c9f5568be4d53e1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-4_삼각형의무게중심.hwp",
+    "sha256": "ea1d380a785b7ae83830781675c22e3de06f2abb11f9591e2dfca8143694288c",
+    "bytes": 792064
+   }
+  ],
+  "originalFigureSha256": [
+   "761e60a94fe364ba8e04af5c2dad5aeb2fa67de8048b3dc642b3bd175872a2ad"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "전체 삼각형의 넓이를 주고, 두 겹 무게중심이 만든 왼쪽 조각 삼각형 BG'G의 넓이를 묻는다.",
+  "after": "전체 삼각형의 넓이를 주고, 두 겹 무게중심이 만든 오른쪽 조각 삼각형 GG'C의 넓이를 묻는다.",
+  "sharedConcept": "무게중심은 삼각형의 넓이를 셋으로 똑같이 나눈다(두 번 적용)",
+  "sharedProcedure": "△GBC = 전체의 1/3 → 구하는 조각 = △GBC의 1/3"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "무게중심과 세 삼각형의 넓이가 같음",
+   "삼각형의 무게중심의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A56-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 겹 무게중심이 만든 조각 삼각형의 넓이(1/3의 1/3)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.58",
+    "이어진 같은 글 33자"
+   ],
+   "overlap4": 0.581,
+   "longestRun": 33,
+   "residualChars": 52,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

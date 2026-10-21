@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A67-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "dd986a07-3e97-4dd0-ab45-7c31510c501f",
+ "startedAt": "2026-10-21T18:28:00+0900",
+ "elapsedSec": 32.3,
+ "studentSha256": {
+  "fig-1.png": "7bfda8ebe83ea4e865277a721599040a825b5290e4380b4b270b0718c38ecbcc",
+  "student.json": "d03963934ec016f91353d7ad6ab78a46a0ab379af1c07cb6a58eead23b7efcdc"
+ },
+ "promptSha256": "ef4c14485cbd93a40b0661fbca5e3be005dcbcbbebf00fd93ddf4ce2f4277c9f",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"32°\",\n  \"work\": \"직사각형의 마주 보는 두 변은 평행하므로 엇각의 크기가 같아서 $\\\\angle PQR = \\\\angle QPP'$이다.\\n종이를 접었으므로 접은 각의 크기가 같아서 $\\\\angle RPQ = \\\\angle QPP'$이다.\\n따라서 $\\\\angle RPQ = \\\\angle PQR = \\\\angle x$이므로 $\\\\triangle PQR$는 $PR = QR$인 이등변삼각형이다.\\n$\\\\triangle PQR$에서 세 내각의 크기의 합은 $180^{\\\\circ}$이므로 $116^{\\\\circ} + 2\\\\angle x = 180^{\\\\circ}$, $2\\\\angle x = 64^{\\\\circ}$, $\\\\angle x = 32^{\\\\circ}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "32°",
+  "work": "직사각형의 마주 보는 두 변은 평행하므로 엇각의 크기가 같아서 $\\angle PQR = \\angle QPP'$이다.\n종이를 접었으므로 접은 각의 크기가 같아서 $\\angle RPQ = \\angle QPP'$이다.\n따라서 $\\angle RPQ = \\angle PQR = \\angle x$이므로 $\\triangle PQR$는 $PR = QR$인 이등변삼각형이다.\n$\\triangle PQR$에서 세 내각의 크기의 합은 $180^{\\circ}$이므로 $116^{\\circ} + 2\\angle x = 180^{\\circ}$, $2\\angle x = 64^{\\circ}$, $\\angle x = 32^{\\circ}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "59ae0790f6c2e1323959e56d4d9d705cd301eb35b6df80b5910f4288b6c0b9d9"
+}

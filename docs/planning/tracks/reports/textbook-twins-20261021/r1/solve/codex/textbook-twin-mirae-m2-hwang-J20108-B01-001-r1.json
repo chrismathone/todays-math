@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-B01-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d56-3fcb-7af3-b6bc-1f449e5bcda1",
+ "startedAt": "2026-10-21T16:21:35+0900",
+ "elapsedSec": 14.9,
+ "studentSha256": {
+  "fig-1.png": "d761f332c1935b04e9127f4c75d3bec04273e33646b749fa3015c7f4023a1892",
+  "student.json": "e5df1961a2b6ad837bd3df5a32b80a4b3d4badb1d4e7bd474da904f2d5244bde"
+ },
+ "promptSha256": "e654153c449602d4e3f13e17c4b18435c20308e71126e7d9441bb82438f426e6",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$x+4y$\",\"work\":\"아랫변의 길이를 $a$라 하면 $3xy(2x+a)=9x^{2}y+12xy^{2}$이다. 양변을 $3xy$로 나누면 $2x+a=3x+4y$이므로 $a=x+4y$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$x+4y$",
+  "work": "아랫변의 길이를 $a$라 하면 $3xy(2x+a)=9x^{2}y+12xy^{2}$이다. 양변을 $3xy$로 나누면 $2x+a=3x+4y$이므로 $a=x+4y$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "aa8ccdf41ff110399bb1019eff6aa2306df58000672ad5650e53e0f6bae0ff38"
+}

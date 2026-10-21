@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A48-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "0882c13b-8239-4a84-9476-7037114cfe0a",
+ "startedAt": "2026-10-21T17:11:31+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "010610b364c961cb84f4216d2bb84606f5c86004fd5dd2c48b74e1b9c32c625a"
+ },
+ "promptSha256": "952949400f71a55de0504d5911e8ecf3fdba2411138b7f428ac59852b87bd771",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"1~19 중 8의 배수: 8, 16 → 2가지\\n6의 배수: 6, 12, 18 → 3가지\\n두 수의 최소공배수는 24이고, 24는 19보다 크므로 겹치는 수가 없다\\n따라서 경우의 수는 2 + 3 = 5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "1~19 중 8의 배수: 8, 16 → 2가지\n6의 배수: 6, 12, 18 → 3가지\n두 수의 최소공배수는 24이고, 24는 19보다 크므로 겹치는 수가 없다\n따라서 경우의 수는 2 + 3 = 5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a1b0fc2d30060791b60c98af36c5cc2195a9038635c536303117927d57dcf415"
+}

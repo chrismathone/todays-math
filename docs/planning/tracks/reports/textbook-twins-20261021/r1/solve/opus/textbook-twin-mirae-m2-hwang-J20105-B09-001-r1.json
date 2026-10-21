@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6143d3ba-78a6-4018-b98b-29e4d632c14b",
+ "startedAt": "2026-10-21T16:23:32+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "c517e25bd9e544a27a2c344a22587ac8aa7d7198a93cd8c6533555a72eb07df8"
+ },
+ "promptSha256": "059319851fb38f18373e9f700a22db05e947bd942635fd66b24885f072011245",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "20 - x - 9 = 4 → x = 7.\n\n```json\n{\"answer\": \"③\", \"work\": \"(a^3)^3 = a^9 이므로 a^{20} ÷ a^□ ÷ a^9 = a^{20-□-9} = a^4\\n20 - □ - 9 = 4 → □ = 7\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "(a^3)^3 = a^9 이므로 a^{20} ÷ a^□ ÷ a^9 = a^{20-□-9} = a^4\n20 - □ - 9 = 4 → □ = 7",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "79e31979cf121eaa03de98e7240eb1468816e013eab1a4e67e51f6170fcc8d45"
+}

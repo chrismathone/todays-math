@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B10-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d68-3fec-7f53-b739-b525ed5a8f74",
+ "startedAt": "2026-10-21T16:41:15+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "b42fc8699952c553c41a99465969e649f06d8ee7388d58703ae73f7726ebf358"
+ },
+ "promptSha256": "0642a67338d3d3a7f18ab422f99b44b92d6d7bc23925b668e13188cf5a714004",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$2^{16}$개\",\"work\":\"금화 1개는 동화 $2^4 \\\\times 2^5=2^9$개이다.\\n$128=2^7$이므로 금화 128개는 동화 $2^7 \\\\times 2^9=2^{16}$개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$2^{16}$개",
+  "work": "금화 1개는 동화 $2^4 \\times 2^5=2^9$개이다.\n$128=2^7$이므로 금화 128개는 동화 $2^7 \\times 2^9=2^{16}$개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7f7728faba8a690e3829f73378c2997444c7d45e9397d188ca2153be0ccdc931"
+}

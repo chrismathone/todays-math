@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A34-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da3-55b2-72a2-b963-0eaa3792e6ad",
+ "startedAt": "2026-10-21T17:45:47+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "786552facd40a075e62de71dce6764c8963fec9c5621f1c2798b7397bed201e1"
+ },
+ "promptSha256": "2d1f02f6aa292d82b3890dd9bc98df30370eb77ff012f7628724aaa845798ff7",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7\",\"work\":\"a와 b를 바꾼 식은 bx+ay=13, ax-by=-11이다. x=-1, y=3을 대입하면 3a-b=13, a+3b=11이다. 이를 풀면 a=5, b=2이므로 a+b=7이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "a와 b를 바꾼 식은 bx+ay=13, ax-by=-11이다. x=-1, y=3을 대입하면 3a-b=13, a+3b=11이다. 이를 풀면 a=5, b=2이므로 a+b=7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "caab07fbae58b7009d238af407dcf0f8991a7bf3fa0ae32082f4891687d1b19b"
+}

@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 179,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A34-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 3x-y=7 & \\,\\cdots\\cdots\\,㉠ \\\\ 4x+5y=3 & \\,\\cdots\\cdots\\,㉡ \\end{cases}$을 푸는 방법으로 다음 중 알맞지 않은 것은?",
+ "choices": [
+  "$㉠\\times 5+㉡$를 한다.",
+  "$㉠\\times 4+㉡\\times 3$을 한다.",
+  "$㉠\\times 4-㉡\\times 3$을 한다.",
+  "$㉠$의 $y=3x-7$을 $㉡$에 대입한다.",
+  "$㉡$의 $x=-\\frac{5}{4}y+\\frac{3}{4}$을 $㉠$에 대입한다."
+ ],
+ "answer": "②",
+ "solution": "① $㉠\\times 5+㉡$는 $19x=38$이 되어 $y$가 소거되므로 쓸 수 있다. ③ $㉠\\times 4-㉡\\times 3$은 $-19y=19$가 되어 $x$가 소거되므로 쓸 수 있다. ④, ⑤는 한 식을 한 문자에 대하여 푼 뒤 다른 식에 대입하는 대입법이므로 쓸 수 있다. ② $㉠\\times 4+㉡\\times 3$은 $24x+11y=37$이 되어 어느 문자도 소거되지 않는다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-3",
+  "problemCode": "J20302-A34-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "45097353b9957da6157f6b79969b5995311fed7ba3f38bc0d23de1ac37bb1797",
+  "dbContentSha256": "fbde98a3982818e52196ca28b756c0725010a6d9d89908e2a5192a7c469fc667",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "x의 계수 1, y의 계수 −1이 하나씩 있는 연립방정식에 대해 가감법 식 둘과 대입법 식 셋을 보기로 주고, 소거되지 않는 가감법 식 하나를 고르게 한다.",
+  "after": "y의 계수 −1만 있는(x의 계수는 3, 4) 연립방정식으로 바꾸고 가감법 식 셋과 대입법 식 둘을 보기로 주어, 소거되지 않는 가감법 식 하나를 고르게 한다. 정답 위치도 바꾸었다.",
+  "sharedConcept": "연립방정식을 푸는 방법(가감법·대입법)의 타당성 판단",
+  "sharedProcedure": "각 가감법 식을 실제로 계산해 소거 여부 확인 → 대입법 보기는 식을 바르게 정리했는지 확인 → 옳지 않은 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "가감법",
+   "대입법",
+   "등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A34-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "연립방정식 풀이 방법 가운데 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.138,
+   "longestRun": 7,
+   "residualChars": 105,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

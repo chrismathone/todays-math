@@ -1,0 +1,151 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   104.8,
+   83.6
+  ],
+  "B": [
+   40,
+   170
+  ],
+  "C": [
+   220,
+   170
+  ],
+  "F": [
+   104.8,
+   170
+  ],
+  "D": [
+   40,
+   350
+  ],
+  "E": [
+   220,
+   350
+  ],
+  "G": [
+   104.8,
+   350
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "AC": [
+   "A",
+   "C"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "BD": [
+   "B",
+   "D"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EC": [
+   "E",
+   "C"
+  ],
+  "AF": [
+   "A",
+   "F"
+  ],
+  "FG": [
+   "F",
+   "G"
+  ]
+ },
+ "angles": {
+  "a": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "right": true
+  },
+  "f": {
+   "vertex": "F",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  },
+  "g": {
+   "vertex": "G",
+   "points": [
+    "F",
+    "E"
+   ],
+   "right": true
+  }
+ },
+ "regions": {
+  "shade": {
+   "boundary": [
+    {
+     "seg": [
+      "F",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "G"
+     ]
+    },
+    {
+     "seg": [
+      "G",
+      "F"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "dimensions": {
+  "ab": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  },
+  "ac": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "12 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "F": {
+   "text": "F",
+   "position": "SW"
+  },
+  "G": {
+   "text": "G",
+   "position": "S"
+  }
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d08feee8-00a7-4ae2-a4a6-965bfc93286e",
+ "startedAt": "2026-10-21T16:14:06+0900",
+ "elapsedSec": 5.6,
+ "studentSha256": {
+  "student.json": "406d7b83dbe09b5490c596cb481d13feaa75d4961de4b2958ce2d5b2918edb8d"
+ },
+ "promptSha256": "672dcf8d7b09abdf5ecaf4bcd19daf0731a1c152c64495fb80f1ff4f92c982d7",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"$(15x^2y-21xy-9x^2)\\\\div 3x = 5xy-7y-3x$이다. 따라서 주어진 식은 $2axy+14x-5xy+7y+3x = (2a-5)xy+17x+7y$로 정리된다. 조건에서 $(2a-5)+17=0$이므로 $2a=-12$, $a=-6$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "$(15x^2y-21xy-9x^2)\\div 3x = 5xy-7y-3x$이다. 따라서 주어진 식은 $2axy+14x-5xy+7y+3x = (2a-5)xy+17x+7y$로 정리된다. 조건에서 $(2a-5)+17=0$이므로 $2a=-12$, $a=-6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a7e735e230663e0a821c759cbdc227e15d7fa396382a207e11e015eaa288f9a3"
+}

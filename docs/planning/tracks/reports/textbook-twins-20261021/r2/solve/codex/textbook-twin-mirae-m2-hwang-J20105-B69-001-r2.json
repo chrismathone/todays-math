@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd4-5d3c-7991-b986-822e1b95d1f5",
+ "startedAt": "2026-10-21T18:39:20+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "90d80e8a63a9590cf30a3df44ff8a59b4ca0ab09ef99b697b695e02577bb45ea"
+ },
+ "promptSha256": "06d198efe782b4ed01a2e4cdd05520be86483856fa9fe6d5641e802bc8a2346b",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"곱의 거듭제곱은 각 인수를 각각 거듭제곱한다. 따라서 $(7xy^{10})^{2}=7^{2}x^{2}y^{20}=49x^{2}y^{20}$이므로 ②가 옳지 않다. 나머지 계산은 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "곱의 거듭제곱은 각 인수를 각각 거듭제곱한다. 따라서 $(7xy^{10})^{2}=7^{2}x^{2}y^{20}=49x^{2}y^{20}$이므로 ②가 옳지 않다. 나머지 계산은 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "539e5d9a44ba0982a739f1aefba9a404c109b08404a3ea89b2c45b4b97da7172"
+}

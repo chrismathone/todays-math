@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 126,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A88-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$a<0<b<c<d$일 때, 다음 중에서 옳지 않은 것은?",
+ "choices": [
+  "$a+d<b+d$",
+  "$c-a<d-a$",
+  "$ab>ac$",
+  "$bd<cd$",
+  "$\\frac{b}{a}<\\frac{c}{a}$"
+ ],
+ "answer": "⑤",
+ "solution": "① $a<b$의 양변에 $d$를 더하면 $a+d<b+d$ (옳다)\n② $c<d$의 양변에서 $a$를 빼면 $c-a<d-a$ (옳다)\n③ $b<c$의 양변에 음수 $a$를 곱하면 부등호가 바뀌어 $ab>ac$ (옳다)\n④ $b<c$의 양변에 양수 $d$를 곱하면 $bd<cd$ (옳다)\n⑤ $b<c$의 양변을 음수 $a$로 나누면 부등호가 바뀌어 $\\frac{b}{a}>\\frac{c}{a}$이다.\n따라서 옳지 않은 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-3",
+  "problemCode": "J20201-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "b3c2dd5dbf0c1b15dd33a62cc635b3e08e98cb9fa8c79068a87e82120da5765f",
+  "dbContentSha256": "cb41cc8e67564638c5eb3a6c204bb007517244c870585519eeff3d6ce938728c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "네 수가 음수 둘 · 양수 둘로 배열된 조건에서, 더하기 · 빼기 · 음수 곱 · 양수 곱 · 음수 나눗셈을 쓴 다섯 보기 중 틀린 것 하나를 고른다. 틀린 보기는 음수 곱.",
+  "after": "네 수가 음수 하나 · 양수 셋으로 배열된 조건에서, 같은 다섯 종류의 연산 보기 중 틀린 것 하나를 고른다. 틀린 보기를 음수 나눗셈으로 바꾸고 음수 곱 보기는 옳은 것으로 두었다.",
+  "sharedConcept": "부등식의 성질 — 부호가 정해진 문자를 곱하거나 나눌 때의 방향",
+  "sharedProcedure": "각 보기에서 비교된 두 문자 찾기 → 적용된 연산과 그 부호 판단 → 방향 확인 → 어긋나는 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "수의 부호와 곱셈 · 나눗셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A88-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "문자의 부호 조건에서 부등식 변형의 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.02,
+   "longestRun": 4,
+   "residualChars": 52,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

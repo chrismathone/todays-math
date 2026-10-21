@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc1-c9a1-7a82-88d4-204c37e07b28",
+ "startedAt": "2026-10-21T18:19:03+0900",
+ "elapsedSec": 14.0,
+ "studentSha256": {
+  "fig-1.png": "19a07606628513229dcb1a8dbfb8e96522642da3e988c1deed38a48c5560eaf7",
+  "student.json": "8894d4ae34baba237c0a23ee521de170dd6e790e592a14480d23eae738fe4004"
+ },
+ "promptSha256": "8209a5a7f1d3317b61b05c317dfbfddddf2ce21598c0770f2b0adbcf6fcf6655",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"19 cm\",\n  \"work\": \"무게중심은 중선을 2:1로 나누므로 x=AG=2×5=10 cm이다.\\nGQ∥DC이므로 △AGQ∽△ADC이고, GQ:DC=AG:AD=2:3이다. 따라서 y=DC=6×3/2=9 cm이다.\\n그러므로 x+y=10+9=19 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "19 cm",
+  "work": "무게중심은 중선을 2:1로 나누므로 x=AG=2×5=10 cm이다.\nGQ∥DC이므로 △AGQ∽△ADC이고, GQ:DC=AG:AD=2:3이다. 따라서 y=DC=6×3/2=9 cm이다.\n그러므로 x+y=10+9=19 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5d2cc3be546b794df412ca6de8cd61ecc60fa5a6dd09e311c39ceb9b0c41622d"
+}

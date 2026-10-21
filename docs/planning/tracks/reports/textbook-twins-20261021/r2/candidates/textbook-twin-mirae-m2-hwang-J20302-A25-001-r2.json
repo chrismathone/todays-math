@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 174,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r2",
+ "authorId": "claude-opus-5-5:94652d69-503f-48e1-9ffe-73f8f855f459",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "두 일차방정식 $7x=y+40$, $8y=11x-5$를 동시에 만족하는 $x$, $y$의 값을 바르게 짝지은 것은?",
+ "choices": [
+  "$x=-7$, $y=-9$",
+  "$x=7$, $y=9$",
+  "$x=8$, $y=16$",
+  "$x=9$, $y=7$",
+  "$x=11$, $y=37$"
+ ],
+ "answer": "②",
+ "solution": "$7x=y+40$을 $y$에 대한 식으로 나타내면 $y=7x-40$이다. 이를 $8y=11x-5$에 대입하면 $8(7x-40)=11x-5$, $56x-320=11x-5$, $45x=315$, $x=7$이다. $x=7$을 $y=7x-40$에 대입하면 $y=9$이다. 따라서 $x=7$, $y=9$이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-6",
+  "problemCode": "J20302-A25-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "614780e28cafda1c7a5e6b3d52d87293abefb6bba573d41067a61ae7e6a2d033",
+  "dbContentSha256": "514dad8e335355ef47e66087021f044388332b715d1689c569f0adfebb3ad92a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "두 식을 cases로 묶은 연립방정식을 주고, 두 번째 식을 x에 대한 식으로 고쳐 첫 번째 식에 대입해 해를 고르게 한다.",
+  "after": "같은 조건을 «두 일차방정식을 동시에 만족하는 값»으로 나타내고, 첫 번째 식을 y에 대한 식으로 고쳐 계수가 있는 두 번째 식에 대입해 해를 고르게 한다.",
+  "sharedConcept": "대입법으로 연립일차방정식 풀기",
+  "sharedProcedure": "한 식을 한 문자에 대한 식으로 정리 → 다른 식에 대입 → 일차방정식 풀기 → 구한 값을 다시 대입해 나머지 문자 구하기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "일차방정식의 풀이",
+   "미지수가 2개인 일차방정식",
+   "연립방정식의 해의 뜻",
+   "등식의 변형"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A25-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "대입법으로 연립방정식의 해 고르기(이항이 필요한 꼴)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 78,
+   "params": 8,
+   "numberRetention": 0.125,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

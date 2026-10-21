@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A67-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dae-d502-77c3-bd30-5138e5ae6d1b",
+ "startedAt": "2026-10-21T17:58:21+0900",
+ "elapsedSec": 16.3,
+ "studentSha256": {
+  "fig-1.png": "c0581e2761ac0d8096062201472f4014d485cb14740bccc80be11b51d62149ff",
+  "student.json": "7605f5cc567def9c68498559c11e57f998b12dbb1c4c294de6fa0c5becfbde68"
+ },
+ "promptSha256": "30665165fe8138f5a40f1346027c20ef138eedec6c53b85a846a68084ea49d4e",
+ "freezeCommit": "32fc29621c88f9e42739639f9e59c914d2aa18e0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"64°\",\"work\":\"접기 전후의 각이 같으므로 ∠QPE=∠QPR=32°이다. 따라서 ∠RPE=32°+32°=64°이다. 직사각형의 위아래 변은 평행하므로 엇각인 ∠x=∠RPE=64°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "64°",
+  "work": "접기 전후의 각이 같으므로 ∠QPE=∠QPR=32°이다. 따라서 ∠RPE=32°+32°=64°이다. 직사각형의 위아래 변은 평행하므로 엇각인 ∠x=∠RPE=64°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b7323cf75e42760d2423a9c88ba8fdb273488a108d96609fd770d0e90a5894b1"
+}

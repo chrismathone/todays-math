@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 269,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r2",
+ "authorId": "claude-opus-5-5:1a51fe5e-a08d-4d21-8796-25a2c61cc36c",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 삼각형 $PQR$는 $\\angle Q=90^{\\circ}$인 직각삼각형이다. 빗변 $\\overline{PR}$ 위에 $\\overline{MQ}=\\overline{MR}$가 되도록 점 $M$을 잡았다. $\\angle P=60^{\\circ}$이고 $\\overline{PR}=14\\,\\mathrm{cm}$일 때, $\\overline{PQ}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$7\\,\\mathrm{cm}$",
+ "solution": "$\\triangle PQR$에서 $\\angle R=180^{\\circ}-(90^{\\circ}+60^{\\circ})=30^{\\circ}$이다.\n$\\overline{MQ}=\\overline{MR}$이므로 $\\triangle MQR$는 이등변삼각형이고 $\\angle MQR=\\angle R=30^{\\circ}$이다.\n$\\angle PMQ$는 $\\triangle MQR$의 외각이므로 $\\angle PMQ=30^{\\circ}+30^{\\circ}=60^{\\circ}$이다.\n$\\triangle PQM$에서 $\\angle P=\\angle PMQ=60^{\\circ}$이므로 $\\angle PQM=60^{\\circ}$이고, $\\triangle PQM$은 정삼각형이다. 따라서 $\\overline{PQ}=\\overline{PM}=\\overline{MQ}=\\overline{MR}$이다.\n$\\overline{PR}=\\overline{PM}+\\overline{MR}=2\\overline{PQ}=14\\,\\mathrm{cm}$이므로 $\\overline{PQ}=7\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A68-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A68-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ef30370f56f3f103-0-3",
+  "problemCode": "J20501-A68-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "695655c1ad2930c8600d1bcdffb39d6d053edd7d4f3c30ff509b9bc859663bea",
+  "dbContentSha256": "75e22664c27d88bb2ff6afc14745a65fc8c7a849047613019c0a225c2b182d01",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-1_이등변삼각형의성질.hwp",
+    "sha256": "d19e40a7ae1f59bb4193778f1b9babddfc17b6f5c13993aa261bd121bf8819a3",
+    "bytes": 246784
+   }
+  ],
+  "originalFigureSha256": [
+   "fe18ab45ad63ab2e03d10d864db8c529d445e3cfcc0e4c51f01035b65e6cf8fa"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers",
+   "representation"
+  ],
+  "before": "직각삼각형에서 30°인 각과 직각을 낀 짧은 변의 길이를 주고, 빗변 위의 점이 빗변 쪽 꼭짓점과 직각 꼭짓점에서 같은 거리에 있을 때 빗변의 길이를 묻는다.",
+  "after": "직각 꼭짓점을 오른쪽 아래에 둔 직각삼각형에서 60°인 각과 빗변의 길이를 주고, 같은 조건의 점을 써서 짧은 변의 길이를 거꾸로 묻는다.",
+  "sharedConcept": "이등변삼각형의 두 밑각은 같다 · 삼각형의 외각의 성질 · 세 각이 60°인 삼각형은 정삼각형",
+  "sharedProcedure": "내각의 합으로 나머지 예각 구하기 → 이등변삼각형의 밑각 → 외각으로 60° 얻기 → 정삼각형 찾기 → 빗변 = 짧은 변의 2배로 길이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 합",
+   "삼각형의 외각의 성질",
+   "이등변삼각형의 두 밑각의 크기는 같다",
+   "정삼각형의 뜻과 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A68-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형 안의 이등변삼각형에서 정삼각형을 찾아 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.133,
+   "longestRun": 10,
+   "residualChars": 63,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

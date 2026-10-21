@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20206-A24-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d73-653f-75c2-8f87-d5baa565457b",
+ "startedAt": "2026-10-21T16:53:26+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "student.json": "2cdb540b27ff697bb1c506cd7966499f3c2a5e66d8bd0f9a242bf6c63f095ff7"
+ },
+ "promptSha256": "821013207af3fb8964a9fa13eecce30e83bd734e2a27bc6f0cc10bbda72c8e43",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12 m\",\"work\":\"가로의 길이를 x m라 하면 세로의 길이는 (3x-4) m이다.\\n울타리 길이는 88 m 이하이므로 2{x+(3x-4)}≤88이다.\\n8x-8≤88에서 x≤12이므로 가로의 길이는 최대 12 m이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12 m",
+  "work": "가로의 길이를 x m라 하면 세로의 길이는 (3x-4) m이다.\n울타리 길이는 88 m 이하이므로 2{x+(3x-4)}≤88이다.\n8x-8≤88에서 x≤12이므로 가로의 길이는 최대 12 m이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "89e7e3f276acbff7ca46e87b720fb87b692e450d430ffc2a70b7a790ae8a574d"
+}

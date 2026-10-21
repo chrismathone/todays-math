@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db2-696c-7ba1-8ed5-ed6e4f1d699c",
+ "startedAt": "2026-10-21T18:02:15+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "fig-1.png": "b6972df6c54b474fec831114d16f728c20bd48002cdec3a445aed2a6f0317daa",
+  "student.json": "691838e8279f0dd32a7c0c190538b651a3dc2a671487510f21ce59d2abbcd7f7"
+ },
+ "promptSha256": "173d15c1765f004f38a69ecf37daad1eb2369ff021a7e98fab62a3db86f4d96a",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"58°\",\"work\":\"직각삼각형 ADE와 ADF는 빗변 AD가 공통이고 DE=DF이므로 합동이다. 따라서 ∠EAD=∠DAF이고, ∠EAD=90°−61°=29°이므로 ∠BAC=2×29°=58°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "58°",
+  "work": "직각삼각형 ADE와 ADF는 빗변 AD가 공통이고 DE=DF이므로 합동이다. 따라서 ∠EAD=∠DAF이고, ∠EAD=90°−61°=29°이므로 ∠BAC=2×29°=58°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cd54214fdec90de3e06e281462a3fc5e82d88b57c792d30091d90964d07a9c89"
+}

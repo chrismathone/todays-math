@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "66c09fd9-56d7-42ef-b7ae-db12f51a4a55",
+ "startedAt": "2026-10-21T16:55:39+0900",
+ "elapsedSec": 6.2,
+ "studentSha256": {
+  "fig-1.png": "3fbac479099a60961473859d65ccdd4927111893783c94b78698460627c745b2",
+  "student.json": "10759e30b8a9e5ce96b63500ffa247379201cf9ae61c14582ee5e03e8e1d90eb"
+ },
+ "promptSha256": "53b4b7a7615803146a45c0c3fb84ebcd552db3e6ff9242cdd3df7875f4fc461f",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$9x^{2}y$\", \"work\": \"밑넓이 = $(4x^{4}y^{3})^{2} = 16x^{8}y^{6}$\\n부피 = $\\\\frac{1}{3} \\\\times 16x^{8}y^{6} \\\\times h = 48x^{10}y^{7}$\\n$h = 48x^{10}y^{7} \\\\times 3 \\\\div 16x^{8}y^{6} = 9x^{2}y$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$9x^{2}y$",
+  "work": "밑넓이 = $(4x^{4}y^{3})^{2} = 16x^{8}y^{6}$\n부피 = $\\frac{1}{3} \\times 16x^{8}y^{6} \\times h = 48x^{10}y^{7}$\n$h = 48x^{10}y^{7} \\times 3 \\div 16x^{8}y^{6} = 9x^{2}y$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d56141dab3268697d0dd73431c0bf8ae1f0728ab99fa291ee684221da53d91f"
+}

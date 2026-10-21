@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7e-431c-7491-a678-7df06e647c7d",
+ "startedAt": "2026-10-21T17:05:18+0900",
+ "elapsedSec": 15.1,
+ "studentSha256": {
+  "student.json": "af3229849ea7e52f009a4d9fc2dce4df468a5b07a02d2ac93bf97ff905fd362b"
+ },
+ "promptSha256": "43a0059ec7e2202f0a2a6820829f516cf60336cd5c2556e27c449b16455e84c1",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$16x^{2}-21x+32$\",\"work\":\"(가)에서 $A=(7x^{2}-9x+6)+(-8x^{2}+6x+10)=-x^{2}-3x+16$.\\n(나)에서 $B=(-6x^{2}+8x-7)-(11x^{2}-10x+9)=-17x^{2}+18x-16$.\\n따라서 $A-B=(-x^{2}-3x+16)-(-17x^{2}+18x-16)=16x^{2}-21x+32$.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$16x^{2}-21x+32$",
+  "work": "(가)에서 $A=(7x^{2}-9x+6)+(-8x^{2}+6x+10)=-x^{2}-3x+16$.\n(나)에서 $B=(-6x^{2}+8x-7)-(11x^{2}-10x+9)=-17x^{2}+18x-16$.\n따라서 $A-B=(-x^{2}-3x+16)-(-17x^{2}+18x-16)=16x^{2}-21x+32$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ebd218e5cfd810baa724ad001860c8c808242cbe449e7a4fc37323bd8bfee862"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de2-db1d-7d30-9cf7-786130bfb180",
+ "startedAt": "2026-10-21T18:55:10+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "42c9a88442762d8fbb6dc5d6c85eae2d7ce620358cb9944b6d142aa67067d8ac"
+ },
+ "promptSha256": "5242392ef5a3c3d0260a3ac9e3dca96eabfb4f6bb8a515aa064d869d5a648235",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"80 이상이 되려면 십의 자리 숫자는 8 또는 9여야 한다.\\n각 경우 일의 자리에는 남은 공의 숫자 4개 중 하나가 올 수 있으므로, 모두 2×4=8가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "80 이상이 되려면 십의 자리 숫자는 8 또는 9여야 한다.\n각 경우 일의 자리에는 남은 공의 숫자 4개 중 하나가 올 수 있으므로, 모두 2×4=8가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4f638fa4b72ab4bb86960fadcf8b1ea73042440e47359b86e8d2685fd30a8913"
+}

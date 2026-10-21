@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da6-0e80-7330-85a7-68b7f2caf997",
+ "startedAt": "2026-10-21T17:48:46+0900",
+ "elapsedSec": 14.8,
+ "studentSha256": {
+  "student.json": "c67282d85eacbac70d55789408e1aa46821d88e457df21ad48c8d625a113ca8f"
+ },
+ "promptSha256": "e4946e941458b1f0db463b851ce5a0bc05fe81eb623394a52eec4bd52667db4e",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"점 (2, -7)을 대입하면 14-7b=0이므로 b=2이다.\\n따라서 그래프의 방정식은 3x+2y+8=0이다.\\n② (1, -5)를 대입하면 3-10+8=1≠0이고, 나머지 점은 모두 방정식을 만족한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "점 (2, -7)을 대입하면 14-7b=0이므로 b=2이다.\n따라서 그래프의 방정식은 3x+2y+8=0이다.\n② (1, -5)를 대입하면 3-10+8=1≠0이고, 나머지 점은 모두 방정식을 만족한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "76281012913a5ff678cc0380b315ad8922632531c38383a4879419226b835508"
+}

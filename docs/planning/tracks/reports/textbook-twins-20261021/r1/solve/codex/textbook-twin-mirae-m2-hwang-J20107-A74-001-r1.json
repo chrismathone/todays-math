@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d57-cfd5-7b52-b24a-33fd6095e6b9",
+ "startedAt": "2026-10-21T16:23:18+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "c251658c4e5aa05e36516e5927b4ab7ad14609caadaf9b80004ae418777bb223"
+ },
+ "promptSha256": "96655cac30dd9ca59b65c83ecba4b1ed422f3a8943155d8a4f1c3e1b99d07f88",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$5x^{2}-4x+4$\",\"work\":\"원래 식에서 결과로 나온 식을 빼면 A이다.\\n$A=(4x^{2}-x+6)-(-x^{2}+3x+2)=5x^{2}-4x+4$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$5x^{2}-4x+4$",
+  "work": "원래 식에서 결과로 나온 식을 빼면 A이다.\n$A=(4x^{2}-x+6)-(-x^{2}+3x+2)=5x^{2}-4x+4$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6dae7b4bdefb6c5a20da7835e65187271358206de24c31a61f6fbeaab0d7bed8"
+}

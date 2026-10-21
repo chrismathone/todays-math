@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d76-d6ea-7c71-9df2-45675ec91e54",
+ "startedAt": "2026-10-21T16:57:11+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "fig-1.png": "5b345bbd5c8370d2984aaa344f6eb3bae4a5dd65b056ee38e208fcfa4b88e912",
+  "student.json": "d1dfe8db2652e968fe348182cc4d9e62171e4279c50c04ef5c5f17554c5929ec"
+ },
+ "promptSha256": "907e63d4c7f750bd91b626c12acced8d75cc5d1ea120363219ebe01e9eb65410",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"84°\",\"work\":\"I'은 △IBC의 내심이므로 ∠IBC = 2×12° = 24°이다.\\nI는 △ABC의 내심이므로 ∠ABC = 2×24° = 48°이다.\\nAB = AC이므로 ∠ACB = 48°이고, ∠x = 180°−48°−48° = 84°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "84°",
+  "work": "I'은 △IBC의 내심이므로 ∠IBC = 2×12° = 24°이다.\nI는 △ABC의 내심이므로 ∠ABC = 2×24° = 48°이다.\nAB = AC이므로 ∠ACB = 48°이고, ∠x = 180°−48°−48° = 84°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3a28576f87a8612b84db8dbc7075bac80f5fcdea7f5632ad4b58f8a46ae53758"
+}

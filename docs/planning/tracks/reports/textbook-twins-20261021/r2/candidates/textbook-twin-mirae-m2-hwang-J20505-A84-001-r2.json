@@ -1,0 +1,143 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 293,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r2",
+ "authorId": "claude-opus-5-5:c7676365-d937-4ccc-b82b-ca31bc8d442d",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림]\n평행사변형 $ABCD$에서 변 $AD$ 위의 점 $E$와 변 $BC$ 위의 점 $F$를 이은 $\\overline{EF}$를 따라 종이를 접었더니 꼭짓점 $C$가 꼭짓점 $A$와 겹치고, 정오각형 $ABFEG$가 생겼다. 이때 $\\angle DAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$18^{\\circ}$",
+ "solution": "[1단계] 정오각형의 한 내각의 크기는 $\\frac{180^{\\circ}\\times 3}{5}=108^{\\circ}$이므로 $\\angle ABF=\\angle ABC=108^{\\circ}$이다.\n[2단계] 정오각형의 변이므로 $\\overline{BA}=\\overline{BF}$이고, $\\triangle ABF$는 이등변삼각형이므로 $\\angle BFA=\\frac{1}{2}\\times(180^{\\circ}-108^{\\circ})=36^{\\circ}$이다.\n[3단계] 점 $C$가 점 $A$로 접혔으므로 $\\overline{FC}=\\overline{FA}$이고, $\\triangle FCA$는 이등변삼각형이다. $\\angle BFA$는 $\\triangle FCA$의 한 외각이므로 $\\angle FCA+\\angle FAC=36^{\\circ}$, 즉 $\\angle ACB=\\angle FCA=18^{\\circ}$이다.\n[4단계] $\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC=\\angle ACB=18^{\\circ}$(엇각)이다.\n따라서 $\\angle DAC=18^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A84-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A84-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-20",
+  "problemCode": "J20505-A84-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "00dfcbb4185a0785bb5101b1f4c5ecd6130591d379715df8ed85f6ad649d673b",
+  "dbContentSha256": "4eb247d3da14032ae410381c38126fe8bed07354c71311ba296121de7e151f79",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "24987dcc218629af6f9889fabdd86f67834e36a2f0fb9e27eb870a87e87ccdba"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "context"
+  ],
+  "before": "평행사변형을 접어 한 꼭짓점을 마주 보는 꼭짓점에 겹치게 했더니 정오각형이 생긴다. 접힌 꼭짓점에서 한 변과 대각선이 이루는 각을 그림에 x로 표시해 두고, 평행사변형의 한 각에서 빼서 구한다.",
+  "after": "접는 방향을 바꿔 C를 A에 겹치게 하고 정오각형 ABFEG가 생긴다. 구하는 각은 그림에 표시하지 않고 발문에서 ∠DAC라고 이름으로 밝힌다(두 가지로 읽힐 여지가 없다). 이 각은 빼기가 아니라 엇각으로 옮겨 구한다.",
+  "sharedConcept": "정오각형의 내각, 접기로 생기는 같은 길이(이등변삼각형), 삼각형의 외각, 평행사변형의 성질(대변이 평행 → 엇각)",
+  "sharedProcedure": "정오각형의 한 내각 108° → 정오각형의 변으로 만든 이등변삼각형의 밑각 36° → 접어서 생긴 이등변삼각형에 외각 성질을 써서 18° → 평행사변형의 성질로 구하는 각에 옮기기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "다각형의 내각의 크기의 합과 정다각형의 한 내각",
+   "이등변삼각형의 두 밑각",
+   "삼각형의 외각의 성질",
+   "평행선의 엇각",
+   "접은 도형의 합동(접는 선에 대한 대칭)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A84-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형을 접어 정오각형이 생길 때 대각선과 한 변이 이루는 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.171,
+   "longestRun": 9,
+   "residualChars": 79,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

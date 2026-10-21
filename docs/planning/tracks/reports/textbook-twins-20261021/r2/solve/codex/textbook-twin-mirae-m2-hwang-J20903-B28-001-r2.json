@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B28-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-869d-7e82-b1a5-672ceed714d3",
+ "startedAt": "2026-10-21T18:55:54+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "ccb3c04dc1b5f7822fc1c48d6a20af619ebefddc79fb659a4ea1149e927009a4"
+ },
+ "promptSha256": "bdbe5cc7c6d497e76a60dda952464e28812aef7dbdd88e04e772092bfe966d53",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"기약분수의 분모의 소인수가 2 또는 5뿐이면 유한소수가 된다. 따라서 조건을 만족하는 카드의 수는 1(역수가 정수), 2, 4, 5, 8, 10, 16, 20, 25로 총 9개이다. 구하는 확률은 $\\\\frac{9}{25}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "기약분수의 분모의 소인수가 2 또는 5뿐이면 유한소수가 된다. 따라서 조건을 만족하는 카드의 수는 1(역수가 정수), 2, 4, 5, 8, 10, 16, 20, 25로 총 9개이다. 구하는 확률은 $\\frac{9}{25}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5930944bbb283249da6071598bba5265c3650568c01d891f6d158f57ba6a930a"
+}

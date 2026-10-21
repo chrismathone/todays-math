@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4fd4898d-7b64-4357-8830-89e73e0a814f",
+ "startedAt": "2026-10-21T17:56:06+0900",
+ "elapsedSec": 7.1,
+ "studentSha256": {
+  "fig-1.png": "a04676b718967bd07f209646bbf1c14cbf4a427fd1f09c0df131ae66f3324ce0",
+  "student.json": "f58792e93f41bb7e05e1e5c88802be0dab838296001b8bd1a46fd2ac5ca6f5ce"
+ },
+ "promptSha256": "8c7082d38eb08f62a74691da15342a7f7f2159c2a6507578bc9c8ee7d7dcaca4",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"G는 △ABC의 무게중심이므로 △GBC = (1/3)△ABC이고, GM은 △GBC의 중선이므로 △GMC = (1/6)△ABC이다. H는 △GBC의 무게중심으로 중선 GM 위에 있고 HM = (1/3)GM이다. 따라서 △HMC = (1/3)△GMC = (1/18)△ABC = 7이므로 △ABC = 126 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "G는 △ABC의 무게중심이므로 △GBC = (1/3)△ABC이고, GM은 △GBC의 중선이므로 △GMC = (1/6)△ABC이다. H는 △GBC의 무게중심으로 중선 GM 위에 있고 HM = (1/3)GM이다. 따라서 △HMC = (1/3)△GMC = (1/18)△ABC = 7이므로 △ABC = 126 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "335a98c7b26522bb93a459246d70267d2175be9f4d7424d093ccac66382782bc"
+}

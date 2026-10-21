@@ -1,0 +1,137 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 125,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음에서 $[~~]$ 안의 수가 주어진 부등식의 해인 것을 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "$x-4>-2$ $[\\,1\\,]$",
+  "$2x+3\\le 5$ $[\\,-2\\,]$",
+  "$3-x<1$ $[\\,3\\,]$",
+  "$5x-2\\ge 2x+7$ $[\\,2\\,]$",
+  "$\\frac{x}{2}-\\frac{x-1}{3}>1$ $[\\,4\\,]$"
+ ],
+ "answer": "②, ③",
+ "solution": "$[~~]$ 안의 수를 각 부등식에 대입한다.\n① $1-4>-2$, $-3>-2$ (거짓)\n② $2\\times(-2)+3\\le 5$, $-1\\le 5$ (참)\n③ $3-3<1$, $0<1$ (참)\n④ $5\\times 2-2\\ge 2\\times 2+7$, $8\\ge 11$ (거짓)\n⑤ $\\frac{4}{2}-\\frac{4-1}{3}>1$, $1>1$ (거짓)\n따라서 해인 것은 ②, ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-2",
+  "problemCode": "J20201-A87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "7152e0bfe68aa709322357391b3f65ff5fa6be99cdecf3879b490dd447e0dd9a",
+  "dbContentSha256": "2f1cc88eb33801ce84727f8c75f1cfe3883348f7277b546064073b09ab26314b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "보기마다 부등식과 대입할 수가 묶여 있고, 대입해 참이 되는 보기 둘을 고른다. 마지막 보기는 분수 계수 부등식.",
+  "after": "같은 묶음 꼴이지만 대입할 수 다섯과 부등식 다섯을 새로 짰다. 양변에 미지수가 있는 보기와 분수 뺄셈 보기를 넣고, 경계에서 등호가 없어 거짓이 되는 보기를 두었다.",
+  "sharedConcept": "부등식의 해 — 대입하여 참이 되는 값",
+  "sharedProcedure": "각 보기의 수를 대입 → 양변 계산 → 참인 보기 둘 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "식의 값 대입",
+   "분수의 사칙연산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A87-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 수가 해인 부등식 모두 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.36",
+    "이어진 같은 글 33자",
+    "원본 수 7개 가운데 86% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.361,
+   "longestRun": 33,
+   "residualChars": 86,
+   "params": 7,
+   "numberRetention": 0.857,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

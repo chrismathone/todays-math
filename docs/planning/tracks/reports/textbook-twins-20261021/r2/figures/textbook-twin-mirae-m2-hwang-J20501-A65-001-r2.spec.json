@@ -1,0 +1,59 @@
+{
+ "version": 2,
+ "points": {
+  "D": [
+   100,
+   16
+  ],
+  "E": [
+   40,
+   200
+  ],
+  "F": [
+   160,
+   200
+  ]
+ },
+ "segments": {
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "ticks": 1
+  },
+  "DF": {
+   "points": [
+    "D",
+    "F"
+   ],
+   "ticks": 1
+  },
+  "EF": [
+   "E",
+   "F"
+  ]
+ },
+ "angles": {
+  "angF": {
+   "vertex": "F",
+   "points": [
+    "E",
+    "D"
+   ],
+   "label": "72°"
+  },
+  "angD": {
+   "vertex": "D",
+   "points": [
+    "E",
+    "F"
+   ]
+  }
+ },
+ "labels": {
+  "D": "D",
+  "E": "E",
+  "F": "F"
+ }
+}

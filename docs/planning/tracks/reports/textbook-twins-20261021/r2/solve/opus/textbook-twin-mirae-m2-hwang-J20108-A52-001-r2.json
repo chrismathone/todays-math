@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "be6bd5df-92ae-413f-b1bc-dd9a26230e2a",
+ "startedAt": "2026-10-21T16:54:17+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "37650a10f148143ac5881a854ada6e10f12b89104cb115cf6e0a1dcf8f94de6b"
+ },
+ "promptSha256": "c024bfd40a10296613aac13d2c6663aa0c125079a8a4c627fac95db3322c2e49",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"4\", \"work\": \"(6a^2+6ab)÷3a = 2a+2b, (12ab-16b^2)÷(-4b) = -3a+4b. 합하면 -a+6b. a=-2, b=1/3 대입: 2+2=4\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "(6a^2+6ab)÷3a = 2a+2b, (12ab-16b^2)÷(-4b) = -3a+4b. 합하면 -a+6b. a=-2, b=1/3 대입: 2+2=4",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3b89f78beccf4bd92e423bf394735fd3b7b1438741aaf335be587d2c60e288e8"
+}

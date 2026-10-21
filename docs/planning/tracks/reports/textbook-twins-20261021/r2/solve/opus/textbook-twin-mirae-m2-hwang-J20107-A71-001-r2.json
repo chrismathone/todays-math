@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "db2b7fc2-77ae-4ab6-857c-54378eb3b241",
+ "startedAt": "2026-10-21T16:55:08+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "4a70f83dc1497f0bdce2277f37ecbdce1b61492613abd399b42bf5db6bdef78e"
+ },
+ "promptSha256": "d6e81c5fc8573d6f3e53c694882d93b79ea8ebf5491744d5edde7125a71e97e6",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"-9(x^2-6x+7) = -9x^2+54x-63, 6(2x^2-7x+8) = 12x^2-42x+48. 더하면 (-9+12)x^2 + (54-42)x + (-63+48) = 3x^2+12x-15\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "-9(x^2-6x+7) = -9x^2+54x-63, 6(2x^2-7x+8) = 12x^2-42x+48. 더하면 (-9+12)x^2 + (54-42)x + (-63+48) = 3x^2+12x-15",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "370ab5b2ca4ce8f710e4fd74232b9a42ee362fa4fea5f9922949125a3032385b"
+}

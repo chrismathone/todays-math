@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df0-287b-7bf3-ace6-205d0566df00",
+ "startedAt": "2026-10-21T19:09:42+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "student.json": "e9cafbf3dff2103e8df2bf460df4766025df5752e3564f7fd9ebaaf299aaf305"
+ },
+ "promptSha256": "da0d6b4e4343cef68d3f0899ef7b4addb8c7b1b172b80d0ac9916f6c7b952a69",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"외심은 세 꼭짓점까지의 거리가 같고, 둔각삼각형에서는 삼각형 바깥에 있으므로 ①, ③은 옳다.\\n내심은 세 변까지의 거리가 같고 각의 이등분선 위에 있으므로 ②, ④도 옳다.\\n외심 O가 BC의 중점이면 ∠A=90°인 직각삼각형이어야 한다. ∠A는 둔각이므로 ⑤는 옳지 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "외심은 세 꼭짓점까지의 거리가 같고, 둔각삼각형에서는 삼각형 바깥에 있으므로 ①, ③은 옳다.\n내심은 세 변까지의 거리가 같고 각의 이등분선 위에 있으므로 ②, ④도 옳다.\n외심 O가 BC의 중점이면 ∠A=90°인 직각삼각형이어야 한다. ∠A는 둔각이므로 ⑤는 옳지 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0cb7f6bd113b446f7ba638edeedf0bb9058359df0730f7a666c150ed21d6d466"
+}

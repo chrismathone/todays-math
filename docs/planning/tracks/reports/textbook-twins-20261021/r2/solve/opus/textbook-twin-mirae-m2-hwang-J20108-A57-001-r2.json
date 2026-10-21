@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6f254465-cf17-490a-9f66-32b3d10a45c7",
+ "startedAt": "2026-10-21T16:54:28+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "4d7c4e09c17a7b6857cc5a1e421b76054791f2ecb2612093c54a3d2a5c5c14f3"
+ },
+ "promptSha256": "e3db6df495892a6d384cc0bc3210d270310b0f176be87de0031ff12ff6c502ef",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$\", \"work\": \"⑴ $8a(a+6)=8a^2+48a$, $-7(9-a)=-63+7a$ → $8a^2+55a-63$\\n⑵ $9x(x+6y)=9x^2+54xy$, $-7y(8x-y)=-56xy+7y^2$ → $9x^2-2xy+7y^2$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$",
+  "work": "⑴ $8a(a+6)=8a^2+48a$, $-7(9-a)=-63+7a$ → $8a^2+55a-63$\n⑵ $9x(x+6y)=9x^2+54xy$, $-7y(8x-y)=-56xy+7y^2$ → $9x^2-2xy+7y^2$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f4a3843d70104f5fe867b435fd2da28e25bb939b02327b5c67f00757a2ece82b"
+}

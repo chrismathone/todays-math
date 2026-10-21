@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 247,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r2",
+ "authorId": "claude-opus-5-5:ff4d7f65-9660-4323-afbc-e676c36161cb",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=4x-7$의 그래프가 지나는 점을 다음에서 고르면?",
+ "choices": [
+  "$(-5,\\,27)$",
+  "$(-4,\\,-9)$",
+  "$(4,\\,23)$",
+  "$(5,\\,13)$",
+  "$(6,\\,31)$"
+ ],
+ "answer": "④",
+ "solution": "각 점의 $x$좌표를 $y=4x-7$에 대입하여 나온 값이 그 점의 $y$좌표와 같은지 확인한다.\n$x=-5$이면 $y=-27$, $x=-4$이면 $y=-23$, $x=4$이면 $y=9$, $x=6$이면 $y=17$이므로 ①, ②, ③, ⑤는 그래프 위의 점이 아니다.\n$x=5$이면 $y=4\\times 5-7=13$이므로 점 $(5,\\,13)$은 그래프 위에 있다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-3",
+  "problemCode": "J20401-A78-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "566d235a29fa3a2d32317582945cf04df35d6fdbd479521e7f482bb6756de2e5",
+  "dbContentSha256": "e6ed1d49faa3bfb50e5c61d2ec818afaafc7894ff2240acd297c5bb0f096632d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "기울기와 $y$절편이 모두 음수인 일차함수 식이 주어지고, $x$좌표가 $-2$부터 $2$까지 작은 정수인 다섯 점 가운데 그래프 위의 점 하나를 고른다.",
+  "after": "기울기는 양수이고 상수항은 음수인 일차함수 식이 주어지고, $x$좌표가 $-5$, $-4$, $4$, $5$, $6$으로 원점에서 멀리 떨어진 다섯 점 가운데 그래프 위의 점 하나를 고른다. 틀린 보기는 상수항이나 $x$의 부호를 잘못 처리했을 때 나오는 값으로 만들었다.",
+  "sharedConcept": "점 $(p,\\,q)$가 일차함수의 그래프 위에 있다 ⇔ $x=p$를 대입한 함숫값이 $q$이다",
+  "sharedProcedure": "각 점의 $x$좌표를 식에 대입 → 함숫값 계산 → 그 점의 $y$좌표와 비교 → 같은 점 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "순서쌍과 좌표",
+   "일차함수의 뜻과 함숫값",
+   "정수의 곱셈과 덧셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A78-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수의 식에 대입하여 그래프 위의 점 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.077,
+   "longestRun": 6,
+   "residualChars": 55,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

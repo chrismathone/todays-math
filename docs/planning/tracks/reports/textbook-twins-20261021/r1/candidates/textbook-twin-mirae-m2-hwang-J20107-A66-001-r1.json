@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 16,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$5(ax^{2}-x+1)-2(x^{2}+bx+1)$을 간단히 하였더니 $x^{2}$의 계수, $x$의 계수, 상수항이 모두 같은 값이 되었다. 두 수 $a$, $b$에 대하여 $a+b$의 값은?",
+ "choices": [
+  "$-5$",
+  "$-3$",
+  "$-1$",
+  "$1$",
+  "$3$"
+ ],
+ "answer": "②",
+ "solution": "$5(ax^{2}-x+1)-2(x^{2}+bx+1)=5ax^{2}-5x+5-2x^{2}-2bx-2=(5a-2)x^{2}+(-5-2b)x+3$이다. 세 값이 모두 상수항 $3$과 같으므로 $5a-2=3$, $-5-2b=3$에서 $a=1$, $b=-4$이다. 따라서 $a+b=-3$이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-6",
+  "problemCode": "J20107-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "b5e1c0011b120a2a7c728b5723604253c126cef35b0700dea714d92e10947dd6",
+  "dbContentSha256": "6bdeba9a45e73987a7b2af6d910439980900195e84accbd5f149a80f2e97d4b7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "inverse-target"
+  ],
+  "before": "미지 계수 a, b가 든 두 이차식의 상수배 차를 전개한 뒤, 두 계수가 상수항과 같다는 조건으로 a, b를 구해 그 차를 묻는 객관식",
+  "after": "미지 계수 a, b의 자리와 상수배(5, −2)를 바꾸고, 세 계수가 모두 같다는 조건으로 a, b를 구해 그 합을 묻는 객관식",
+  "sharedConcept": "이차식의 덧셈과 뺄셈, 동류항 정리와 계수 비교",
+  "sharedProcedure": "분배법칙으로 전개 → 동류항끼리 묶어 계수를 문자로 나타냄 → 조건식 세워 a, b 구함 → 요구한 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "분배법칙",
+   "동류항의 계산",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A66-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수 조건으로 미지 계수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.154,
+   "longestRun": 6,
+   "residualChars": 69,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

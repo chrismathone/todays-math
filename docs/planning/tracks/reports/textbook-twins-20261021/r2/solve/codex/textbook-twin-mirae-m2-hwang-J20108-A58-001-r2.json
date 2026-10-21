@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7b-1d49-7440-b5c4-4370018f2d26",
+ "startedAt": "2026-10-21T17:01:51+0900",
+ "elapsedSec": 19.0,
+ "studentSha256": {
+  "student.json": "5a2d077064083838332a859d1fbdb294e239e81570156b09aa0aec76ce96e3c7"
+ },
+ "promptSha256": "85d3e81dd78a7fe71de893a24ad1969b740e924d149458acb3e51100dd2c020b",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $3b-5$ ⑵ $\\\\frac{20a}{b}-28+\\\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\\\frac{5}{2}$\",\n  \"work\": \"⑴ 각 항을 $7ab$로 나누면 $3b-5$이다.\\n⑵ 각 항에 $\\\\frac{4}{ab}$를 곱하면 $\\\\frac{20a}{b}-28+\\\\frac{40b}{a}$이다.\\n⑶ $(2b-3)-(5b+2)=-3b-5$이다.\\n⑷ $(2y-\\\\frac{3}{2})-(3y+1)=-y-\\\\frac{5}{2}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $3b-5$ ⑵ $\\frac{20a}{b}-28+\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\frac{5}{2}$",
+  "work": "⑴ 각 항을 $7ab$로 나누면 $3b-5$이다.\n⑵ 각 항에 $\\frac{4}{ab}$를 곱하면 $\\frac{20a}{b}-28+\\frac{40b}{a}$이다.\n⑶ $(2b-3)-(5b+2)=-3b-5$이다.\n⑷ $(2y-\\frac{3}{2})-(3y+1)=-y-\\frac{5}{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6f120e8f385227eb39ded28e2c5b5ba2240f1d00864b8d55b99f8b487ed3e246"
+}

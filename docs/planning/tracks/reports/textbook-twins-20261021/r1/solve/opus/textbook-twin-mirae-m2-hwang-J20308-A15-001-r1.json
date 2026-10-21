@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cd274a5e-bdbf-47da-8386-a3b1c696283b",
+ "startedAt": "2026-10-21T17:02:12+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "7eacb5bdb6a8f051c196a05c133b5f130c8708285f65cf1b5cb10ae695ba5710"
+ },
+ "promptSha256": "7363d19f4886a2cfc3b7381ffce87dae7dba5a5766a6a1480519ca86eb529304",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"갈 때 거리를 x km라 하면 돌아올 때 거리는 (x+2) km이다. x/4 + (x+2)/6 = 3 → 양변에 12를 곱하면 3x + 2(x+2) = 36 → 5x = 32 → x = 32/5. 돌아올 때 거리 = 32/5 + 2 = 42/5 km.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "갈 때 거리를 x km라 하면 돌아올 때 거리는 (x+2) km이다. x/4 + (x+2)/6 = 3 → 양변에 12를 곱하면 3x + 2(x+2) = 36 → 5x = 32 → x = 32/5. 돌아올 때 거리 = 32/5 + 2 = 42/5 km.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5d3840be2a7e1b114fc3df981e123dbecb451f04a5717f7678def3e2e5a9b291"
+}

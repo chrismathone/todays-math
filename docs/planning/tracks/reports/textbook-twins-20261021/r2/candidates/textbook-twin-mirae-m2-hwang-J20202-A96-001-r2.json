@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 150,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r2",
+ "authorId": "claude-fable-5-1:c2902da3-189b-43d5-9d28-b9514e28a8f7",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n다음 일차부등식 가운데 그 해를 수직선 위에 나타냈을 때 위의 그림처럼 되는 것은?",
+ "choices": [
+  "$12(x+9)\\ge 11(x+10)-12$",
+  "$\\frac{x}{9}>\\frac{x+30}{36}$",
+  "$12x-30\\ge 90$",
+  "$19-10x\\le 9-11x$",
+  "$9x-20\\ge 11x-40$"
+ ],
+ "answer": "③",
+ "solution": "그림은 $10$에 색칠한 점을 찍고 오른쪽으로 나타낸 것이므로 $x\\ge 10$이다.\n① $12x+108\\ge 11x+98$이므로 $x\\ge -10$\n② 양변에 $36$을 곱하면 $4x>x+30$, $3x>30$이므로 $x>10$\n③ $12x\\ge 120$이므로 $x\\ge 10$\n④ $-10x+11x\\le 9-19$이므로 $x\\le -10$\n⑤ $-2x\\ge -20$이므로 $x\\le 10$\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20202-A96-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20202-A96-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-13",
+  "problemCode": "J20202-A96-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "38a0386d1ffa56f008fe5fb21d807a0b4426553320c6b611c501ae08ca293cec",
+  "dbContentSha256": "bb0244d92e920adb17d9af2aab477613dc248c2a2e1a79bfdf117197ac83df6c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [
+   "43d6dc9b0e3cbf375190c3e5ab89972e3007f097d0592cd65b39c84ff4cccdc9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "수직선에 빈 점과 오른쪽 화살표로 나타낸 해(경계가 음수인 초과 부등식)를 읽고, 보기 다섯 부등식(이항·분수·괄호 꼴)을 각각 풀어 같은 해를 갖는 하나를 고른다.",
+  "after": "수직선에 색칠한 점과 오른쪽 화살표로 나타낸 해(경계가 양수인 이상 부등식)를 읽고, 보기 다섯 부등식(괄호·분수·음수 계수·상수항 이항 꼴)을 풀어 같은 해를 고른다. 오답 보기에 경계는 같고 부호 방향·등호 포함 여부만 다른 것을 두어 점의 종류까지 읽어야 한다.",
+  "sharedConcept": "일차부등식의 해를 수직선에 나타내기와 일차부등식의 풀이",
+  "sharedProcedure": "수직선 그림을 부등식으로 읽기 → 각 보기의 일차부등식을 풀기(괄호 풀기·분모 없애기·이항·음수로 나눌 때 부등호 방향 바꾸기) → 그림의 해와 같은 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "일차부등식의 풀이",
+   "부등식의 해를 수직선 위에 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A96-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "수직선 위의 해와 같은 해를 갖는 일차부등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.128,
+   "longestRun": 10,
+   "residualChars": 97,
+   "params": 8,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "6c7d3498-c831-4f3f-be07-b1d18252b74a",
+ "startedAt": "2026-10-21T18:18:30+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "ec0471883d0cceba16f7f22278f908deed75a80c50402f3e91a145ad5acae637"
+ },
+ "promptSha256": "97b0eef768b8a6361adb9e8ee360a45189d03db088066aa09d3804c2e205f90b",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"직선 PQ의 기울기는 (-9 - 7) / (2 - (-6)) = -16 / 8 = -2이다. 서아가 그은 직선은 직선 PQ와 평행하므로 기울기가 -2이고 점 R(8, -6)을 지나므로 y - (-6) = -2(x - 8)에서 y = -2x + 10이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "직선 PQ의 기울기는 (-9 - 7) / (2 - (-6)) = -16 / 8 = -2이다. 서아가 그은 직선은 직선 PQ와 평행하므로 기울기가 -2이고 점 R(8, -6)을 지나므로 y - (-6) = -2(x - 8)에서 y = -2x + 10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4866452bad223531aaa7095a7e51654a01a9320b4be1e5a7639e88f022c3f7bf"
+}

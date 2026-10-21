@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd6-97a4-7203-920e-9479da420353",
+ "startedAt": "2026-10-21T18:41:47+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "84b1fe39b87a5c3d7c826430a15d945504149ff2803a3e045dd1391ed300c339"
+ },
+ "promptSha256": "1e4300944e404319ad064e0d45254d4211812edb556161a3e5f3bd774ed1f461",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"$8-3x\\\\ge 6x+35$에서 $-9x\\\\ge 27$이다.\\n양변을 음수 $-9$로 나누면 부등호의 방향이 바뀌므로 $x\\\\le -3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "$8-3x\\ge 6x+35$에서 $-9x\\ge 27$이다.\n양변을 음수 $-9$로 나누면 부등호의 방향이 바뀌므로 $x\\le -3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "eb88d2ed2ed4940d06d7f272904f73617fe0015e9af68b9bb923285e8f4d58cb"
+}

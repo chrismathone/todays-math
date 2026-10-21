@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da4-7d75-7df0-8544-223088595341",
+ "startedAt": "2026-10-21T17:47:03+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "fb4af9c0788f654d56076805a717b679cefaae40e9f995fca9b474eaa20da0ab"
+ },
+ "promptSha256": "926d6199fbf87164a4e82f0d24d914378ad27246ef0c9d2345ee9eec1bf44a13",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"71\",\"work\":\"십의 자리 숫자를 a, 일의 자리 숫자를 b라 하면 a+b=8, 10b+a=4(10a+b)+3이다.\\n둘째 식을 정리하면 2b=13a+1이고, b=8-a를 대입하면 15a=15이므로 a=1, b=7이다.\\n따라서 자리를 바꾼 수는 71이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "71",
+  "work": "십의 자리 숫자를 a, 일의 자리 숫자를 b라 하면 a+b=8, 10b+a=4(10a+b)+3이다.\n둘째 식을 정리하면 2b=13a+1이고, b=8-a를 대입하면 15a=15이므로 a=1, b=7이다.\n따라서 자리를 바꾼 수는 71이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "243c8fcfcf30c6f2900efd91112ffd231642a75608da8f30bd36b8bbfa8ed6dc"
+}

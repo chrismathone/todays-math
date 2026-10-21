@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2d37d78d-8aca-4e39-996a-4444a47eb269",
+ "startedAt": "2026-10-21T17:03:21+0900",
+ "elapsedSec": 6.6,
+ "studentSha256": {
+  "student.json": "7c6abcbcbe75e633063ea43f86aedfcb4b3cfe44e2313990e02297a4707a27b6"
+ },
+ "promptSha256": "078e0c1986be5ba239134986e2860a9c28cd43945dda0a1a963228d6e8665006",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"① $y=\\\\pi x^{2}$ → 이차식이므로 일차함수가 아니다.\\n② $y=60x$ → 일차함수이다.\\n③ $xy=36$, 즉 $y=\\\\dfrac{36}{x}$ → 일차함수가 아니다.\\n④ 산 값은 $700x+4y$(원)이다. $y$는 공책 한 권의 값이고 산 값이 아니므로, $y$가 $x$의 일차식으로 정해지지 않는다.\\n⑤ 정육각형의 한 내각은 $y=120$으로 일정하다 → 일차함수가 아니다.\", \"confidence\": \"high\", \"issues\": [\"④는 '산 값'을 나타내는 변수가 따로 없다. $y$가 공책 한 권의 값으로 쓰여서 $x$, $y$ 사이의 함수 관계가 정해지지 않는다. 다만 정답 판단에는 영향이 없다.\"]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① $y=\\pi x^{2}$ → 이차식이므로 일차함수가 아니다.\n② $y=60x$ → 일차함수이다.\n③ $xy=36$, 즉 $y=\\dfrac{36}{x}$ → 일차함수가 아니다.\n④ 산 값은 $700x+4y$(원)이다. $y$는 공책 한 권의 값이고 산 값이 아니므로, $y$가 $x$의 일차식으로 정해지지 않는다.\n⑤ 정육각형의 한 내각은 $y=120$으로 일정하다 → 일차함수가 아니다.",
+  "confidence": "high",
+  "issues": [
+   "④는 '산 값'을 나타내는 변수가 따로 없다. $y$가 공책 한 권의 값으로 쓰여서 $x$, $y$ 사이의 함수 관계가 정해지지 않는다. 다만 정답 판단에는 영향이 없다."
+  ]
+ },
+ "eventsSha256": "74154b4c9dc79c4298e4d138070e66a88f61376713d394720595803bcb93ea0f"
+}

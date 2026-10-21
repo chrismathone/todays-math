@@ -1,0 +1,63 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   128,
+   108
+  ],
+  "B": [
+   20,
+   180
+  ],
+  "C": [
+   176,
+   180
+  ],
+  "H": [
+   128,
+   180
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AH": [
+   "A",
+   "H"
+  ]
+ },
+ "angles": {
+  "rightA": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "right": true
+  },
+  "rightH": {
+   "vertex": "H",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "H": "H"
+ }
+}

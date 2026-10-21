@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-bb4c-74c2-abab-3cb49f2592bb",
+ "startedAt": "2026-10-21T17:53:52+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "4015cdb4c50733a7c077e5e1285dacdad42fa72660196a2997283913c2df574f"
+ },
+ "promptSha256": "e1018354a71f61db258502d021655af1063505fe0bc77596d85f32cd41841f5a",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"일차함수 $y=ax+b$에서 기울기는 $a$, y절편은 $b$이다. 기울기가 $-\\\\frac{3}{5}$이고 $(0,4)$를 지나므로 $b=4$이다. 따라서 $y=-\\\\frac{3}{5}x+4$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "일차함수 $y=ax+b$에서 기울기는 $a$, y절편은 $b$이다. 기울기가 $-\\frac{3}{5}$이고 $(0,4)$를 지나므로 $b=4$이다. 따라서 $y=-\\frac{3}{5}x+4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8b7220a7800068119df118bc9c33fadb708ddc3031aae0ffc2bbecbdd5bdb714"
+}

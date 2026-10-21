@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e5bcc5f5-385f-404d-9dc2-7ab0569b0eb1",
+ "startedAt": "2026-10-21T16:30:23+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "student.json": "0d3cb01edca96682df804a7241cf0d1a7a2a3a55cb9c24c051cdbba9016a0b7f"
+ },
+ "promptSha256": "bbb30722458408e27a59e0f000db3cd7d33f2e02d54b9415b4c63c53bd995508",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"① x+2y=0 (일차, 미지수 2개). ② -x+y/3+1=0 (일차). ③ x^2이 양변에서 소거되어 x+3y=0 (일차). ④ 5x-2x-2y=1 → 3x-2y-1=0 (일차). ⑤ x^2+x-y=0 으로 x에 대한 이차식이 남으므로 미지수가 2개인 일차방정식이 아니다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "① x+2y=0 (일차, 미지수 2개). ② -x+y/3+1=0 (일차). ③ x^2이 양변에서 소거되어 x+3y=0 (일차). ④ 5x-2x-2y=1 → 3x-2y-1=0 (일차). ⑤ x^2+x-y=0 으로 x에 대한 이차식이 남으므로 미지수가 2개인 일차방정식이 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b99271c54517cbead1c440692c1e1b822231ab6e36d8bb73c7b12bea4b41b647"
+}

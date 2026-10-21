@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "92631d37-de43-44e0-87bc-5d0008018647",
+ "startedAt": "2026-10-21T18:49:53+0900",
+ "elapsedSec": 16.4,
+ "studentSha256": {
+  "student.json": "b5a3271bcd5354cd770489b57e5408100a7171a151a0d075aaa112dfae9d3797"
+ },
+ "promptSha256": "dab4cc036c583a674a8ee5b89450dd71359658e6063d482e11f14a26a5e098b3",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"공을 꺼내어 확인하고 다시 넣으므로 전체 경우의 수는 $12 \\\\times 12 = 144$가지이다. 두 수의 합이 10의 배수인 경우는 합이 10 또는 20인 경우이다. 합이 10인 순서쌍은 $(1, 9), (2, 8), \\\\dots, (9, 1)$의 9가지이고, 합이 20인 순서쌍은 $(8, 12), (9, 11), (10, 10), (11, 9), (12, 8)$의 5가지이다. 따라서 두 수의 합이 10의 배수인 경우의 수는 $9 + 5 = 14$가지이므로 구하는 확률은 $\\\\frac{14}{144} = \\\\frac{7}{72}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "공을 꺼내어 확인하고 다시 넣으므로 전체 경우의 수는 $12 \\times 12 = 144$가지이다. 두 수의 합이 10의 배수인 경우는 합이 10 또는 20인 경우이다. 합이 10인 순서쌍은 $(1, 9), (2, 8), \\dots, (9, 1)$의 9가지이고, 합이 20인 순서쌍은 $(8, 12), (9, 11), (10, 10), (11, 9), (12, 8)$의 5가지이다. 따라서 두 수의 합이 10의 배수인 경우의 수는 $9 + 5 = 14$가지이므로 구하는 확률은 $\\frac{14}{144} = \\frac{7}{72}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a004165fea2dc4fc4ac68bb90cbc23c10c9a4978aa677967e185738a9ea0e438"
+}

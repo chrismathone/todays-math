@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A83-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "807e7a0b-9e54-444f-bbdf-e18f1af9843b",
+ "startedAt": "2026-10-21T16:20:41+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "26c4c6b13b90c136c1ab0570a7747e3cd8c907a6443e26b56840079a66db64d2"
+ },
+ "promptSha256": "0de46a94956aebb1216f98bc5b87ba3aae831e7c21ae44001b23145b732da302",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"11\", \"work\": \"$0.\\\\dot{4}\\\\dot{5} = \\\\frac{45}{99} = \\\\frac{5}{11}$이다. 따라서 $\\\\frac{5}{n} = \\\\frac{5}{11}$이므로 $n = 11$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "11",
+  "work": "$0.\\dot{4}\\dot{5} = \\frac{45}{99} = \\frac{5}{11}$이다. 따라서 $\\frac{5}{n} = \\frac{5}{11}$이므로 $n = 11$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8d3378b08dc974693f3e8f632b92207211907a9e864fb8f6a8fc53a083d7fdf5"
+}

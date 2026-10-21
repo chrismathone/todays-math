@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5d25a433-e3d1-4384-a326-012431751afb",
+ "startedAt": "2026-10-21T17:04:29+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "3bcb11d39461ce0bbde8c70474bdf9536ea80051a70db70661c36ddfa59d2d0b"
+ },
+ "promptSha256": "b9666f003ad4270500b0538a4b62a1d0ce78aca59625abbe8e9505d200fec37e",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"각 점의 x좌표를 y=-3x+2에 대입한다. ① x=-2 → y=8 (≠-4) ② x=-1 → y=5 (≠-5) ③ x=0 → y=2 (≠-2) ④ x=2 → y=-6+2=-4 (일치) ⑤ x=3 → y=-7 (≠7). 따라서 그래프가 지나는 점은 (2, -4)이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "각 점의 x좌표를 y=-3x+2에 대입한다. ① x=-2 → y=8 (≠-4) ② x=-1 → y=5 (≠-5) ③ x=0 → y=2 (≠-2) ④ x=2 → y=-6+2=-4 (일치) ⑤ x=3 → y=-7 (≠7). 따라서 그래프가 지나는 점은 (2, -4)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0af9189012caf204f28b5d9e6dd51ea4f613a2a0fcd328a53705048bccc646d5"
+}

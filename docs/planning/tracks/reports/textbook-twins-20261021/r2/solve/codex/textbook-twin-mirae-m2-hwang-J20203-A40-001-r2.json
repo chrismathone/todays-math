@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A40-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd6-5142-7582-8d73-566c4a2bc358",
+ "startedAt": "2026-10-21T18:41:28+0900",
+ "elapsedSec": 18.0,
+ "studentSha256": {
+  "student.json": "bdd462474e3be0f7cf85d69aa21773e08cc7b547bd3a7fa183fdcd2be5af6f05"
+ },
+ "promptSha256": "095f39fd405782288cb45f96a22ba82a0b71662d9ffa31ad33f0ada18a9521fa",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-3\",\"work\":\"양변에 15를 곱하여 정리하면 $13x<27+5a$, 즉 $x<\\\\frac{27+5a}{13}$이다.\\n자연수 해가 없으려면 가장 작은 자연수 1이 해가 아니어야 하므로 $\\\\frac{27+5a}{13}\\\\le 1$이다.\\n따라서 $a\\\\le -\\\\frac{14}{5}$이므로 정수 $a$의 최댓값은 $-3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-3",
+  "work": "양변에 15를 곱하여 정리하면 $13x<27+5a$, 즉 $x<\\frac{27+5a}{13}$이다.\n자연수 해가 없으려면 가장 작은 자연수 1이 해가 아니어야 하므로 $\\frac{27+5a}{13}\\le 1$이다.\n따라서 $a\\le -\\frac{14}{5}$이므로 정수 $a$의 최댓값은 $-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f1ac7a7c71326aa6cb70843607ed7823c1f6b7425439f5d30b62d77513bb1066"
+}

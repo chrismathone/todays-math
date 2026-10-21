@@ -1,0 +1,151 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   74,
+   170
+  ],
+  "B": [
+   50,
+   86
+  ],
+  "C": [
+   158,
+   146
+  ],
+  "D": [
+   50,
+   170
+  ],
+  "E": [
+   158,
+   170
+  ],
+  "L1": [
+   20,
+   170
+  ],
+  "L2": [
+   195,
+   170
+  ]
+ },
+ "segments": {
+  "l": [
+   "L1",
+   "L2"
+  ],
+  "DB": [
+   "D",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CE": [
+   "C",
+   "E"
+  ],
+  "AB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "ticks": 1
+  },
+  "AC": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "ticks": 1
+  }
+ },
+ "angles": {
+  "rD": {
+   "vertex": "D",
+   "points": [
+    "B",
+    "A"
+   ],
+   "right": true
+  },
+  "rE": {
+   "vertex": "E",
+   "points": [
+    "C",
+    "A"
+   ],
+   "right": true
+  },
+  "rA": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "d_BD": {
+   "points": [
+    "B",
+    "D"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  },
+  "d_CE": {
+   "points": [
+    "C",
+    "E"
+   ],
+   "label": "2 cm",
+   "side": "auto"
+  }
+ },
+ "regions": {
+  "shade": {
+   "boundary": [
+    {
+     "seg": [
+      "D",
+      "B"
+     ]
+    },
+    {
+     "seg": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "D"
+     ]
+    }
+   ],
+   "fill": "#eeeeee"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "L2": {
+   "text": "l",
+   "italic": true
+  }
+ }
+}

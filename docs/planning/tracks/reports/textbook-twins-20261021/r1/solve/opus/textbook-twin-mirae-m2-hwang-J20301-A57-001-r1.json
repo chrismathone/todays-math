@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A57-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "db0a1086-c0c7-482c-b1e4-11370a3a4b7b",
+ "startedAt": "2026-10-21T16:29:58+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "b182f5a725240eacb02895a667b3e6c2971a9a34370ad6b4b4658fda384444e3"
+ },
+ "promptSha256": "489d5cf32b47187fecea7b3fc4a74ff163d9608d466a9e9fe05fc792d3808d62",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $3x+2y=27$ ⑵ $4x+6y=70$\", \"work\": \"⑴ 세발자전거 x대의 바퀴는 3x개, 두발자전거 y대의 바퀴는 2y개이므로 3x+2y=27이다. ⑵ 4점 문제 x개로 4x점, 6점 문제 y개로 6y점을 받았으므로 4x+6y=70이다.\", \"confidence\": \"high\", \"issues\": [\"⑵는 양변을 2로 나눈 2x+3y=35도 같은 방정식이다. 여기서는 상황을 그대로 옮긴 꼴로 답했다.\"]}\n```",
+ "parsed": {
+  "answer": "⑴ $3x+2y=27$ ⑵ $4x+6y=70$",
+  "work": "⑴ 세발자전거 x대의 바퀴는 3x개, 두발자전거 y대의 바퀴는 2y개이므로 3x+2y=27이다. ⑵ 4점 문제 x개로 4x점, 6점 문제 y개로 6y점을 받았으므로 4x+6y=70이다.",
+  "confidence": "high",
+  "issues": [
+   "⑵는 양변을 2로 나눈 2x+3y=35도 같은 방정식이다. 여기서는 상황을 그대로 옮긴 꼴로 답했다."
+  ]
+ },
+ "eventsSha256": "feb71547e16a91e1b8c985eebf086a29285a5182ef183ece637fc7e890e43b59"
+}

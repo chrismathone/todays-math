@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 264,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r2",
+ "authorId": "claude-opus-5-5:b7c92d9d-e8ce-4cdc-ab18-79d66d33a545",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 $\\triangle ABC$의 외심을 $O$라 하고, 꼭짓점 $C$와 점 $O$를 잇는 직선이 변 $AB$와 만나는 점을 $D$라 하자. $\\angle AOD=76^{\\circ}$, $\\angle OAD=28^{\\circ}$일 때, $\\angle ABC$의 크기는?",
+ "choices": [
+  "$48^{\\circ}$",
+  "$50^{\\circ}$",
+  "$52^{\\circ}$",
+  "$54^{\\circ}$",
+  "$56^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "세 점 $C$, $O$, $D$가 한 직선 위에 있으므로 $\\angle AOC=180^{\\circ}-\\angle AOD=180^{\\circ}-76^{\\circ}=104^{\\circ}$이다. 점 $O$가 $\\triangle ABC$의 외심이므로 $\\angle AOC=2\\angle ABC$이다. 따라서 $\\angle ABC=\\frac{1}{2}\\times104^{\\circ}=52^{\\circ}$이고 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A88-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A88-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-6",
+  "problemCode": "J20503-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "9069b6f0cbfb68e640d2b229f6de2dc6eee781633a6eca55200d4522f9c6a52e",
+  "dbContentSha256": "3d8e68f2b9dc3fb4d3a8dcfb34c5c922e38ea2b3aad38f09410b91e4a9884118",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "e4a02ab88251e9f835773845aad3e8367273cd2ea278c36f10c4f43f1bd4cf52"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "외심 O와 꼭짓점 A를 지나는 직선이 밑변과 만나는 점 D에서, O에 생긴 각과 C 쪽의 각을 주고 A의 맞은편 꼭짓점 B의 각을 묻는다.",
+  "after": "꼭짓점 C에서 외심 O를 지나는 직선이 변 AB와 만나는 점 D에서, O에 생긴 각과 A에 생긴 각을 주고 호 AC의 맞은편 꼭짓점 B의 각을 묻는다.",
+  "sharedConcept": "삼각형의 외심과 꼭짓점이 이루는 각은 맞은편 내각의 2배(∠AOC=2∠ABC)",
+  "sharedProcedure": "일직선 위의 평각으로 외심에서의 각(∠AOC)을 구함 → 외심의 성질로 2배 관계 적용 → 절반을 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질(OA=OB=OC)",
+   "외심에서 ∠AOC=2∠ABC",
+   "평각과 보각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A88-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심을 지나는 직선과 평각을 이용하여 삼각형의 한 내각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'angAOD' ray to 'D' is not covered by a rendered segment",
+     "session": "71e23abd-3b0c-422e-8dbd-089303f45a10",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.093,
+   "longestRun": 7,
+   "residualChars": 78,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

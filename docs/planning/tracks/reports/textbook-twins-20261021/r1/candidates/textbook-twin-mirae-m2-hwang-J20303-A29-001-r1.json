@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 172,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r1",
+ "authorId": "middle-engine:2-1|연립일차방정식|09",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "연립방정식 $\\begin{cases}0.2x+0.4y=1.8\\\\x+0.9y=5.7\\end{cases}$ 의 해를 구하시오.",
+ "choices": [],
+ "answer": "$x=3$, $y=3$",
+ "solution": "두 식의 양변에 각각 $10$을 곱하여 계수를 정수로 고치면 $2x+4y=18$, $10x+9y=57$이다.\n두 식을 연립하여 풀면 $x=3$, $y=3$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-16",
+  "problemCode": "J20303-A29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 16,
+  "sourceContentSha256": "ac2f67f4cdd8f0906ad5c7868e1e6551e091a54899758ad9b2f9e8e181fb51a7",
+  "dbContentSha256": "fed6837c3e86ca27e05269c7dc78476fc1a066525aff4d5cd308aefe001c27eb",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분수 계수 식(분모 2 · 3)과 소수 계수 식으로 된 연립방정식의 해를 단답형으로 구한다. 분수 식에 분모의 최소공배수를, 소수 식에 10 의 배수를 곱해 정수 계수로 고친 뒤 $x$ 항을 빼서 소거한다.",
+  "after": "엔진이 새 분모와 새 소수 계수를 정해 만든 연립방정식의 해를 단답형으로 구한다. 각 식을 정수 계수로 고친 뒤 가감법으로 한 문자를 소거해 푼다.",
+  "sharedConcept": "계수가 분수 · 소수인 연립일차방정식은 양변에 적당한 수를 곱해 정수 계수로 고친 뒤 푼다",
+  "sharedProcedure": "분수 식에 분모의 공배수 곱하기 → 소수 식에 10 의 거듭제곱 곱하기 → 가감법으로 한 문자 소거 → 나머지 문자 대입 → 해 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(가감법 · 대입법)",
+   "일차방정식의 양변에 같은 수 곱하기",
+   "분수 · 소수 계수를 정수로 고치기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A29-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 분수 · 소수인 연립방정식을 정수 계수로 고쳐 풀기(단답형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|연립일차방정식|09",
+   "seed": 3093296877,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:0b40f689-a3c3-442e-8a0d-302c80bc0540",
+   "authorRationale": "분수 계수 식과 소수 계수 식을 각각 정수 계수로 고친 뒤 가감법으로 해를 구하는 단답형 «해를 구하시오» 꼴이 원본과 같다(개념 · 절차 · 물음 꼴 일치).",
+   "facts": {
+    "a1": 2,
+    "b1": 4,
+    "c1": 18,
+    "a2": 10,
+    "b2": 9,
+    "c2": 57,
+    "x0": 3,
+    "y0": 3,
+    "dec": 1
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 23자"
+   ],
+   "overlap4": 0.1,
+   "longestRun": 5,
+   "residualChars": 23,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f8db8b69-6ae5-41a3-8517-a3e3e8a21345",
+ "startedAt": "2026-10-21T17:03:28+0900",
+ "elapsedSec": 4.8,
+ "studentSha256": {
+  "student.json": "dd9ab1e58688a10e04e2a629f19dff654a1b0ed0c284933c3c5ba4ed1a584a62"
+ },
+ "promptSha256": "0314c61fb403e8eaca31634d76236861bdc97d71a538304a4b5abfcc3555b3c8",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"그래프를 y축 방향으로 5만큼 평행이동하면 y = ax - 3 + 5 = ax + 2가 된다. 이 식이 y = -2x + b와 같아야 하므로 기울기는 a = -2, y절편은 b = 2이다. 따라서 a + b = -2 + 2 = 0이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그래프를 y축 방향으로 5만큼 평행이동하면 y = ax - 3 + 5 = ax + 2가 된다. 이 식이 y = -2x + b와 같아야 하므로 기울기는 a = -2, y절편은 b = 2이다. 따라서 a + b = -2 + 2 = 0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "614551f8ed138eb763c0204be19f09e4cf86d286f75ecbca06ce66e8d1351249"
+}

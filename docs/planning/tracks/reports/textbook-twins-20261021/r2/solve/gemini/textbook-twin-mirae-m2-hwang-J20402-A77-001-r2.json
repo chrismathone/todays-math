@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "bc5e1ae7-e9d0-4168-8ce3-c8ee80359da2",
+ "startedAt": "2026-10-21T18:17:44+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "bbfd767b030174b66c68da64bd80e6d3888ae612edc48f185dc56f03c6048fc0"
+ },
+ "promptSha256": "ae0460e3d1cdfa79b27d5506bec9e0ed12f28e3923db1ad958e88a5dfe73e594",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"일차함수의 그래프를 $y$축의 방향으로 평행이동하면 기울기는 변하지 않습니다. 주어진 일차함수 $y=-\\\\frac{5}{4}x+2$의 기울기가 $-\\\\frac{5}{4}$이므로, 평행이동하여 완전히 포개어지는 일차함수의 기울기 역시 $-\\\\frac{5}{4}$이어야 합니다. 보기 중 기울기가 $-\\\\frac{5}{4}$인 것은 ④($y$축 방향으로 $-8$만큼 평행이동)뿐입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "일차함수의 그래프를 $y$축의 방향으로 평행이동하면 기울기는 변하지 않습니다. 주어진 일차함수 $y=-\\frac{5}{4}x+2$의 기울기가 $-\\frac{5}{4}$이므로, 평행이동하여 완전히 포개어지는 일차함수의 기울기 역시 $-\\frac{5}{4}$이어야 합니다. 보기 중 기울기가 $-\\frac{5}{4}$인 것은 ④($y$축 방향으로 $-8$만큼 평행이동)뿐입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1c68c2a99e678f6792b61b43e3c25f0e2676c403ef4f28b91958d9c75da48ec4"
+}

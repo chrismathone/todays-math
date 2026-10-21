@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6e-4fa0-7410-a330-de9cb8e95092",
+ "startedAt": "2026-10-21T16:47:52+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "ac2c6301bfea4b66a675cd0a9da2bae6a7b6205808edc274371f7e0de88679ed"
+ },
+ "promptSha256": "7c679a412abec3c7cf33e00cfc3c94a758d259e09f1808fe5f40098ae63a8133",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"부등식의 양변에 같은 수를 더하거나 빼도 부등호 방향은 유지된다. 양수를 곱하거나 나누어도 방향은 유지되고, 음수를 곱하거나 나누면 방향이 바뀐다.\\n따라서 $a<b$에서 $\\\\frac{a-2}{4}<\\\\frac{b-2}{4}$이므로 ②가 옳지 않다. 나머지 보기는 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "부등식의 양변에 같은 수를 더하거나 빼도 부등호 방향은 유지된다. 양수를 곱하거나 나누어도 방향은 유지되고, 음수를 곱하거나 나누면 방향이 바뀐다.\n따라서 $a<b$에서 $\\frac{a-2}{4}<\\frac{b-2}{4}$이므로 ②가 옳지 않다. 나머지 보기는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "db0f599125d62ed7c7bda7e803181c35ce996125b62cc58eeea772faa87ffdaa"
+}

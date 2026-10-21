@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e135da73-af1b-4b7b-af33-27dea6467d04",
+ "startedAt": "2026-10-21T16:55:19+0900",
+ "elapsedSec": 4.1,
+ "studentSha256": {
+  "student.json": "af3229849ea7e52f009a4d9fc2dce4df468a5b07a02d2ac93bf97ff905fd362b"
+ },
+ "promptSha256": "43a0059ec7e2202f0a2a6820829f516cf60336cd5c2556e27c449b16455e84c1",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$16x^{2}-21x+32$\", \"work\": \"(가)에서 A = (7x²-9x+6)+(-8x²+6x+10) = -x²-3x+16\\n(나)에서 B = (-6x²+8x-7)-(11x²-10x+9) = -17x²+18x-16\\nA-B = (-x²-3x+16)-(-17x²+18x-16) = 16x²-21x+32\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$16x^{2}-21x+32$",
+  "work": "(가)에서 A = (7x²-9x+6)+(-8x²+6x+10) = -x²-3x+16\n(나)에서 B = (-6x²+8x-7)-(11x²-10x+9) = -17x²+18x-16\nA-B = (-x²-3x+16)-(-17x²+18x-16) = 16x²-21x+32",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9ba264e2f64bef55a83833cb36804e087d52e2716fef4cceb98e8a9876929816"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "42739be2-3bbe-4353-ad8d-e95f848700cb",
+ "startedAt": "2026-10-21T18:02:01+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "a2a83e97ce5f316c309e69ccb35fdc9700880ab2389ae775b1f2dab5c40da51b"
+ },
+ "promptSha256": "76380df1fca222368bc49b0ed4fb21912aa0aa3f41779d9edb9a40b4721aa435",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"연립방정식에서 y의 계수는 각각 +4와 -9입니다. y를 없애기 위해 계수의 절댓값의 최소공배수인 36으로 맞추려면 ㉠에는 9를 곱하고 ㉡에는 4를 곱해야 합니다. 두 식에서 y의 부호가 서로 반대이므로 두 식을 더하면 y가 소거됩니다. 따라서 알맞은 계산은 ㉠×9+㉡×4입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "연립방정식에서 y의 계수는 각각 +4와 -9입니다. y를 없애기 위해 계수의 절댓값의 최소공배수인 36으로 맞추려면 ㉠에는 9를 곱하고 ㉡에는 4를 곱해야 합니다. 두 식에서 y의 부호가 서로 반대이므로 두 식을 더하면 y가 소거됩니다. 따라서 알맞은 계산은 ㉠×9+㉡×4입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2b07ba999a908399e30baa9926bac6ed1487ea238b89f2fe4a28b8f4346dfed7"
+}

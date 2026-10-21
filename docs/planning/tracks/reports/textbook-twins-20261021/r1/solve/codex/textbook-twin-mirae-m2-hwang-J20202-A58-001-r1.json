@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d70-5f7a-7573-9349-6f6a6608c937",
+ "startedAt": "2026-10-21T16:50:07+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "b4d597a327dc01b370393c57eaf47d38db191be6ea8c885ee2325db8b4e0bdab"
+ },
+ "promptSha256": "9f48e32722d2f6f05023212c04737ced49a7a63524f65efdf3034bd7a149b188",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"양변에서 $4x+6$을 빼면 $-15\\\\le 3x$이다.\\n양변을 3으로 나누면 $-5\\\\le x$, 즉 $x\\\\ge -5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "양변에서 $4x+6$을 빼면 $-15\\le 3x$이다.\n양변을 3으로 나누면 $-5\\le x$, 즉 $x\\ge -5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4f068889bf6649db4923d796184697b78a1879ab12f7ceda7a8fa07327a82fd8"
+}

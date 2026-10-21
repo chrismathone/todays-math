@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 279,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A65-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 직각삼각형 $ABC$는 $\\angle B=90^{\\circ}$이고, $\\angle C$의 이등분선이 $\\overline{AB}$와 만나는 점을 $D$라 하자. $\\overline{CA}=20\\,\\mathrm{cm}$이고 $\\triangle ACD$의 넓이가 $50\\,\\mathrm{cm}^{2}$일 때, $\\overline{BD}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$5\\,\\mathrm{cm}$",
+ "solution": "점 $D$에서 $\\overline{CA}$에 내린 수선의 발을 $H$라 하자. 직각삼각형 $CBD$와 $CHD$에서 빗변 $CD$는 공통, $\\angle BCD=\\angle HCD$이므로 $\\triangle CBD\\equiv\\triangle CHD$($\\mathrm{RHA}$ 합동)이고 $\\overline{BD}=\\overline{HD}$이다. $\\triangle ACD$의 넓이가 $50\\,\\mathrm{cm}^{2}$이므로 $\\frac{1}{2}\\times20\\times\\overline{HD}=50$에서 $\\overline{HD}=5\\,\\mathrm{cm}$이다. 따라서 $\\overline{BD}=5\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A65-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A65-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-1-3",
+  "problemCode": "J20502-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "0555edc37cae387cfc14181cd8618e86a01db65bbb4e8a9b0520e413c21980c9",
+  "dbContentSha256": "905fb28b98009e93e3f24611676ac28ab57f224b5a25d4c649d077f9ecc361e7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "75bcec7f42d08fe9200537e9f734c71ca81794af37a60326f214c988af4ca6bd"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "직각이 $C$인 삼각형에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만난 점 $D$에 대해, 빗변 12와 삼각형 $ABD$의 넓이 24를 주고 $\\overline{CD}$를 구한다.",
+  "after": "직각을 $B$로, 이등분되는 각을 $\\angle C$로 바꾸어 이등분선이 $\\overline{AB}$와 만나게 했다. 빗변 20과 삼각형 $ACD$의 넓이 50을 주고 $\\overline{BD}$를 구한다. 수치는 실제 도형이 존재하도록 골랐다.",
+  "sharedConcept": "각의 이등분선 위의 점에서 두 변까지의 거리가 같음(RHA 합동)과 넓이 공식의 역산",
+  "sharedProcedure": "빗변에 수선 긋기 → RHA 합동으로 수선 길이 = 구하는 변 → 넓이 = ½ × 빗변 × 수선 → 수선 길이 역산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "각의 이등분선의 성질",
+   "직각삼각형의 합동 조건(RHA)",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A65-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "각의 이등분선의 성질과 넓이로 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rB' ray to 'A' is not covered by a rendered segment",
+     "session": "e6e8fb97-86e4-48ea-97a6-6d6729c5451e",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.36"
+   ],
+   "overlap4": 0.361,
+   "longestRun": 11,
+   "residualChars": 64,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A23-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "81b1bc06-a08a-47ed-8e24-b098c19daf21",
+ "startedAt": "2026-10-21T17:02:30+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "5a40eb23e95bdecacae1ce5111506f300e1f2721d3c039c60a10c846a36bc975"
+ },
+ "promptSha256": "e8d0287e150c5ba2840d37a2c1c7ddc77556f6ee289c63bdc8c5cb527b7700f3",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ④\", \"work\": \"y축에 평행한 직선은 x=k 꼴이다. ② x+7=0 → x=-7, ④ 2x-9=0 → x=9/2 이므로 둘 다 y축에 평행하다. ①, ③(y=0), ⑤(y=2/3)는 y=k 꼴이라 x축에 평행하거나 x축과 같은 직선이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ④",
+  "work": "y축에 평행한 직선은 x=k 꼴이다. ② x+7=0 → x=-7, ④ 2x-9=0 → x=9/2 이므로 둘 다 y축에 평행하다. ①, ③(y=0), ⑤(y=2/3)는 y=k 꼴이라 x축에 평행하거나 x축과 같은 직선이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6163871cac4b651ccc4ac640fc997799eeee8a0a769c7a28cd7f53fef3d02d8d"
+}

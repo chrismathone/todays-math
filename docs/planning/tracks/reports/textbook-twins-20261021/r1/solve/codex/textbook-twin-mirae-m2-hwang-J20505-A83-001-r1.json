@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A83-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db6-24eb-7342-bd88-87931bf340ef",
+ "startedAt": "2026-10-21T18:06:20+0900",
+ "elapsedSec": 17.3,
+ "studentSha256": {
+  "fig-1.png": "f8d021ec699f755dfd0edf0619731b2560a407f143dacbcb47ac948c8ecf1090",
+  "student.json": "e60be79a92e92d6273f9d4f4cbc302f38e45ecfaf31ba19c58c8b22ae3c2890a"
+ },
+ "promptSha256": "bf97f00a886c7787042ff6b523ddbf05e208552c5ebe1651b02c8ad2f90e125b",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"21 cm²\",\"work\":\"O는 대각선의 중점이므로 AD, BC까지의 거리는 각각 3.5 cm이다. △AOE와 △COF는 합동이므로 AE=CF이고, AE+BF=CF+BF=BC=12 cm이다. 따라서 구하는 넓이의 합은 ½×3.5×12=21 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "21 cm²",
+  "work": "O는 대각선의 중점이므로 AD, BC까지의 거리는 각각 3.5 cm이다. △AOE와 △COF는 합동이므로 AE=CF이고, AE+BF=CF+BF=BC=12 cm이다. 따라서 구하는 넓이의 합은 ½×3.5×12=21 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "973431b699d039c3d62c0576fc0e81db232de0417248a927685cc0eabbcd807b"
+}

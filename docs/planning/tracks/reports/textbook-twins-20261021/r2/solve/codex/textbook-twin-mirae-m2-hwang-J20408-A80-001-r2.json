@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A80-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-435c-7400-9ed6-77df87165efe",
+ "startedAt": "2026-10-21T18:59:59+0900",
+ "elapsedSec": 7.9,
+ "studentSha256": {
+  "fig-1.png": "e05a9bff92fc339a07aebfd07967c6605c08721cd0ae56228ae3adcb33d154df",
+  "student.json": "dfe83b3c388ba60ce43c47b5d19064b22a01d13422e10b97d358639fabae61a6"
+ },
+ "promptSha256": "f43cd14c12986dd04544360ef445d840e11d271085b7d3bad65ad950f530afeb",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$2x+3y+6=0$에서 $y=0$이면 $x=-3$, $x=0$이면 $y=-2$이다. 그림에서 두 점 $(-3,0)$과 $(0,-2)$를 지나는 직선은 $l_3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$2x+3y+6=0$에서 $y=0$이면 $x=-3$, $x=0$이면 $y=-2$이다. 그림에서 두 점 $(-3,0)$과 $(0,-2)$를 지나는 직선은 $l_3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4bae768b37d08d5d8ab9930f9c244e8501789246720be9d24c48440541125d18"
+}

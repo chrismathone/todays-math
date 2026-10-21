@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A49-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f8497aa6-97f8-4ebc-8b11-2eaee75d5358",
+ "startedAt": "2026-10-21T17:07:45+0900",
+ "elapsedSec": 8.3,
+ "studentSha256": {
+  "fig-1.png": "b33d94c315383db741e5303fd6e830fdb73739819faf26bcaff6736d3c8152c0",
+  "student.json": "cfb42af42238e3381a529a62a61daf918974af257517a7f91f34740e9c179003"
+ },
+ "promptSha256": "99002e7c2cdd2f0b513cc9c24e3518f38f567b098c6306e65b631abdce8d3702",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"24 cm²\", \"work\": \"∠A는 공통이고 ∠ADE=∠C이므로 AA 닮음에 의해 △ADE∽△ACB이다. 대응변은 AE↔AB, AD↔AC이다. AB=7+5=12 cm이므로 닮음비는 AE:AB=8:12=2:3이고, 넓이의 비는 4:9이다. 따라서 △ADE의 넓이는 54×4/9=24 cm²이다. (같은 비로 AC=10.5 cm, EC=2.5 cm이다.)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "24 cm²",
+  "work": "∠A는 공통이고 ∠ADE=∠C이므로 AA 닮음에 의해 △ADE∽△ACB이다. 대응변은 AE↔AB, AD↔AC이다. AB=7+5=12 cm이므로 닮음비는 AE:AB=8:12=2:3이고, 넓이의 비는 4:9이다. 따라서 △ADE의 넓이는 54×4/9=24 cm²이다. (같은 비로 AC=10.5 cm, EC=2.5 cm이다.)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5beb288b6198a8d9ffaa566532fcd7671d4bdee96c4d88b7213c55fadb1360f5"
+}

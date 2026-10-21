@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A72-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc8-00cc-7423-8777-134fcd9e9013",
+ "startedAt": "2026-10-21T18:25:50+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "bc01fa3c3b1e744872edcd647f1e23fb12be7b2d44895356da0b5df4ace94577"
+ },
+ "promptSha256": "e3fb343d6c9d9d60550a675da761eb739e85508a98dca6833b30b2866fba3733",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"한 문제를 틀릴 확률은 $3/4$이므로 세 문제를 모두 틀릴 확률은 $(3/4)^3=27/64$이다.\\n따라서 적어도 한 문제를 맞힐 확률은 $1-27/64=37/64$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "한 문제를 틀릴 확률은 $3/4$이므로 세 문제를 모두 틀릴 확률은 $(3/4)^3=27/64$이다.\n따라서 적어도 한 문제를 맞힐 확률은 $1-27/64=37/64$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fdafaa428f74493b1866e54169bb37c24fda21375a3b57877848165f3b469620"
+}

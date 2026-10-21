@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfb-1f49-7582-b935-6a241de20bfb",
+ "startedAt": "2026-10-21T19:21:41+0900",
+ "elapsedSec": 14.4,
+ "studentSha256": {
+  "fig-1.png": "c046ea87e39e12aa9bff61e1310d5534eeb11da4e32297042206fe888bbfb7b3",
+  "student.json": "1e412743cf4ce236509222b05a4e3cd385a07701e55847d8d67d42100355d457"
+ },
+ "promptSha256": "1d2077aa7d3f65f89ff04f83fc39fb9e373430de835dceff312deb8833e00167",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"53 cm²\",\"work\":\"합동의 대응변에서 $AB=CD=5$, $BC=DE=9$이므로 $BD=14$이다.\\n사다리꼴 $ABDE$에서 두 직각삼각형을 빼면 색칠한 부분의 넓이는 $\\\\frac{(5+9)\\\\times14}{2}-2\\\\times\\\\frac{5\\\\times9}{2}=53\\\\,(\\\\mathrm{cm}^2)$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "53 cm²",
+  "work": "합동의 대응변에서 $AB=CD=5$, $BC=DE=9$이므로 $BD=14$이다.\n사다리꼴 $ABDE$에서 두 직각삼각형을 빼면 색칠한 부분의 넓이는 $\\frac{(5+9)\\times14}{2}-2\\times\\frac{5\\times9}{2}=53\\,(\\mathrm{cm}^2)$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9c89988be5a0d4dcf688d0646b199cd68270ceeda674b9f17cf7336c59dc4b67"
+}

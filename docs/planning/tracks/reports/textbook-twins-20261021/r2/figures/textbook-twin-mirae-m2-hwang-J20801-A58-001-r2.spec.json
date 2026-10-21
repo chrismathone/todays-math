@@ -1,0 +1,123 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   40,
+   120
+  ],
+  "B": [
+   40,
+   200
+  ],
+  "C": [
+   184,
+   200
+  ],
+  "D": [
+   264,
+   200
+  ],
+  "E": [
+   264,
+   56
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "AC": [
+   "A",
+   "C"
+  ],
+  "CE": [
+   "C",
+   "E"
+  ],
+  "EA": [
+   "E",
+   "A"
+  ]
+ },
+ "regions": {
+  "shade": {
+   "boundary": [
+    {
+     "seg": [
+      "A",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "A"
+     ]
+    }
+   ],
+   "fill": "#eeeeee"
+  }
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  },
+  "rD": {
+   "vertex": "D",
+   "points": [
+    "C",
+    "E"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "cd": {
+   "points": [
+    "C",
+    "D"
+   ],
+   "label": "5 cm",
+   "side": "auto"
+  },
+  "de": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E"
+ }
+}

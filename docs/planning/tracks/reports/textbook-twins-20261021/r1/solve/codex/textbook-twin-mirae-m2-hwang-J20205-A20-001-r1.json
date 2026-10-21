@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A20-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d73-141b-7bc1-a6b8-d4a370505805",
+ "startedAt": "2026-10-21T16:53:05+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "4bc995692018c3c1b9571ff9c4fc0c1fe342b1c1664df7c27b95187aeb657a40"
+ },
+ "promptSha256": "db330d8e70a58ab054059097d806c39794dcb4e6f92fd931afad0eee1fd56b79",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"29명 이상\",\"work\":\"40명의 단체 입장권 가격은 12000×40×0.7=336000원이다.\\n인원을 n명이라 하면 40명의 단체 입장권을 사는 것이 유리하려면 12000n>336000, 즉 n>28이어야 한다.\\n따라서 29명 이상일 때 유리하다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "29명 이상",
+  "work": "40명의 단체 입장권 가격은 12000×40×0.7=336000원이다.\n인원을 n명이라 하면 40명의 단체 입장권을 사는 것이 유리하려면 12000n>336000, 즉 n>28이어야 한다.\n따라서 29명 이상일 때 유리하다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "39ea57e9530dccbfcec6f3206a9f90778e5c7e0f07a120aa38e5cbd41c2bb0fe"
+}

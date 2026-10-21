@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 54,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A62-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중에서 옳지 않은 것은?",
+ "choices": [
+  "유한소수는 모두 유리수이다.",
+  "순환소수는 모두 무한소수이다.",
+  "정수가 아닌 유리수는 유한소수 또는 순환소수로 나타낼 수 있다.",
+  "순환하지 않는 무한소수는 분수로 나타낼 수 없다.",
+  "순환마디는 항상 소수점 아래 첫째 자리에서 시작한다."
+ ],
+ "answer": "⑤",
+ "solution": "① 유한소수는 분모가 $10$의 거듭제곱인 분수로 쓸 수 있으므로 유리수이다. ② 순환소수는 소수점 아래 숫자가 끝없이 이어지므로 무한소수이다. ③ 정수가 아닌 유리수를 소수로 나타내면 유한소수 또는 순환소수가 된다. ④ 분수로 나타낼 수 있는 수는 유한소수나 순환소수가 되므로, 순환하지 않는 무한소수는 분수로 나타낼 수 없다. ⑤ $0.2\\dot{5}$처럼 순환마디가 소수점 아래 둘째 자리부터 시작하는 순환소수도 있다. 따라서 옳지 않은 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-14",
+  "problemCode": "J20102-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "90d92f6a9e9bf2c97a0c581633744c7ee1cfa9ae24609d656e4ff03b8d47adf5",
+  "dbContentSha256": "90d92f6a9e9bf2c97a0c581633744c7ee1cfa9ae24609d656e4ff03b8d47adf5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "structure"
+  ],
+  "before": "유리수·유한소수·무한소수·순환소수의 관계에 대한 진술 다섯 개 가운데 참인 것 하나를 고른다.",
+  "after": "같은 개념 관계에 대한 진술 다섯 개 가운데 거짓인 것 하나를 고른다. 거짓 진술은 순환마디 시작 자리에 관한 것으로 바꾸었다.",
+  "sharedConcept": "유리수와 소수의 분류(유한소수·순환소수·순환하지 않는 무한소수)",
+  "sharedProcedure": "각 진술을 정의와 대조 → 반례 떠올리기 → 참·거짓 판정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "유리수의 뜻",
+   "유한소수와 무한소수",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A62-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "유리수와 순환소수에 대한 진술의 참·거짓 판별",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.303,
+   "longestRun": 12,
+   "residualChars": 101,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

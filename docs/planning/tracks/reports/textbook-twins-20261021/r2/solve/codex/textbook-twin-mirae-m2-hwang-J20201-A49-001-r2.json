@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A49-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd8-38d7-7ea3-8d0c-a7071b5b67ac",
+ "startedAt": "2026-10-21T18:43:33+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "dfabd4aa167aa717bff6cd76a9f7b8619d9d8ad8e074db0ed2496dd0293e42ab"
+ },
+ "promptSha256": "6371f31cdce9951f2e9b28d2f1a6e1b290ffe7dc99a73680f1970123a5e8cca6",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ⑤\",\"work\":\"$a<b$의 양변에 음수를 곱하면 부등호 방향이 바뀌므로 $-5a+9>-5b+9$이다. 따라서 ①은 옳다.\\n양변을 양수 4로 나누고 9를 더하면 $\\\\frac{a}{4}+9<\\\\frac{b}{4}+9$이다. 따라서 ⑤는 옳다.\\n②의 부등호는 $<$, ③과 ④의 부등호는 $>$이어야 한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ⑤",
+  "work": "$a<b$의 양변에 음수를 곱하면 부등호 방향이 바뀌므로 $-5a+9>-5b+9$이다. 따라서 ①은 옳다.\n양변을 양수 4로 나누고 9를 더하면 $\\frac{a}{4}+9<\\frac{b}{4}+9$이다. 따라서 ⑤는 옳다.\n②의 부등호는 $<$, ③과 ④의 부등호는 $>$이어야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "434124cde46954f02e5ee78b5ca39a406b7d242338691005e03e6f3f0b33ec3d"
+}

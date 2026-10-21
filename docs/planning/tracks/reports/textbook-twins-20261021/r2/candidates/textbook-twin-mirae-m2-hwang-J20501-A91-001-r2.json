@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 271,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A91-001-r2",
+ "authorId": "claude-opus-5-5:ae2e0297-9258-4d67-b921-c1c883e0b2cd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n미나가 직사각형 모양의 포장지 $ABCD$에서 $\\overline{AD}$ 위의 점 $E$와 $\\overline{BC}$ 위의 점 $F$를 이은 $\\overline{EF}$를 따라 그림과 같이 접었더니, 접혀 올라간 부분의 한 변이 $\\overline{AD}$와 점 $G$에서 만났다. $\\overline{GF}=8\\,\\mathrm{cm}$, $\\overline{EF}=7\\,\\mathrm{cm}$일 때, $\\overline{GE}$의 길이는?",
+ "choices": [
+  "$6\\,\\mathrm{cm}$",
+  "$7\\,\\mathrm{cm}$",
+  "$8\\,\\mathrm{cm}$",
+  "$9\\,\\mathrm{cm}$",
+  "$10\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "접은 각이므로 $\\angle GFE=\\angle EFC$이다. $\\overline{AD}\\parallel\\overline{BC}$이므로 엇각으로 $\\angle GEF=\\angle EFC$이다. 따라서 $\\angle GFE=\\angle GEF$이므로 $\\triangle GEF$는 $\\overline{GE}=\\overline{GF}$인 이등변삼각형이다. $\\overline{EF}=7\\,\\mathrm{cm}$는 쓰지 않는다. 그러므로 $\\overline{GE}=\\overline{GF}=8\\,\\mathrm{cm}$이고, 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A91-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A91-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-3",
+  "problemCode": "J20501-A91-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "578aff3c0308d034b5235bcd71eee20ce9b73bf122b984a829229927e9dd5f95",
+  "dbContentSha256": "552aeff609df2bbf9fe1d1ec01f8322a0589472cdff08296263267e899d4efaa",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "46cc0255edf164cc9bcc13a2a565f1c9e06c27d4b4432748e9f5b26aa1c99408"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers",
+   "context"
+  ],
+  "before": "직사각형 종이를 대각 방향 선으로 접어 생긴 삼각형에서 윗변 위 선분 길이와 접는 선 길이를 주고, 아래쪽 꼭짓점에서 교점까지의 비스듬한 선분 길이를 묻는다.",
+  "after": "포장지를 접은 장면에서 비스듬한 선분 길이와 접는 선 길이를 주고, 윗변 위의 선분 길이를 거꾸로 묻는다(접는 선 길이는 쓰지 않는 값).",
+  "sharedConcept": "접은 각과 평행선의 엇각으로 두 각이 같은 삼각형이 이등변삼각형이 됨",
+  "sharedProcedure": "접은 각이 같음 확인 → 평행선의 엇각이 같음 확인 → 두 밑각이 같으므로 이등변삼각형 → 같은 두 변의 길이가 같음"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "평행선의 엇각",
+   "접은 도형에서 접은 각의 크기가 같음",
+   "두 내각의 크기가 같은 삼각형은 이등변삼각형"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A91-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직사각형 종이 접기에서 이등변삼각형이 되는 조건으로 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.086,
+   "longestRun": 7,
+   "residualChars": 108,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

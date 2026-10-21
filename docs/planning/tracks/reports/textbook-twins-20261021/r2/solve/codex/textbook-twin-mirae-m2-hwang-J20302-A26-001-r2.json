@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A26-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-e457-7ab1-a589-b6c850dcac01",
+ "startedAt": "2026-10-21T18:51:56+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "92baa6d1a4a410234569d67b9116b655f98c42310e359e4c1214802ecb818308"
+ },
+ "promptSha256": "82d8c2ccf274bf36bd7baa2cb972b119cb9ea9f9378f4c342cbac6f7e05b3e0a",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"10\",\"work\":\"공통인 해는 $7x-y=-13$과 $-9x+6y=45$를 모두 만족한다. 첫째 식에서 $y=7x+13$이므로 둘째 식에 대입하면 $33x=-33$, 따라서 $x=-1$, $y=6$이다.\\n$m=x+9y=53$, $n=6y-7x=43$이므로 $m-n=10$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "10",
+  "work": "공통인 해는 $7x-y=-13$과 $-9x+6y=45$를 모두 만족한다. 첫째 식에서 $y=7x+13$이므로 둘째 식에 대입하면 $33x=-33$, 따라서 $x=-1$, $y=6$이다.\n$m=x+9y=53$, $n=6y-7x=43$이므로 $m-n=10$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "011f882061d879c71bf16d88d5beceecdbb8effea5159090a1734c20e9d6fdbc"
+}

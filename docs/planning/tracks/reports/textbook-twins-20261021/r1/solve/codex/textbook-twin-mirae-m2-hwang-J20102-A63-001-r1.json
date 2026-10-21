@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A63-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5d-cd91-7c92-a254-fd97bd283126",
+ "startedAt": "2026-10-21T16:29:50+0900",
+ "elapsedSec": 10.2,
+ "studentSha256": {
+  "student.json": "f8cf1b64ab638a36c90357b4977bedb3128041b8f50a1071e81aaed0b3f43b0f"
+ },
+ "promptSha256": "d3ec04dc3751bfdaa82eb520105fd80db275590267bffe41f6fceebbe6c6ca65",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6\",\"work\":\"5/27 = 0.185185…이므로 순환마디는 185이고 a = 3이다.\\n4/11 = 0.363636…이므로 순환마디는 36이고 b = 2이다.\\n따라서 ab = 3 × 2 = 6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6",
+  "work": "5/27 = 0.185185…이므로 순환마디는 185이고 a = 3이다.\n4/11 = 0.363636…이므로 순환마디는 36이고 b = 2이다.\n따라서 ab = 3 × 2 = 6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5a7f6cb42fa003b91b04d8182a4aebbebb73e21cacca41cc9053d20a497b6460"
+}

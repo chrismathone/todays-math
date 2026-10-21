@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-691c-7641-8a99-2244ac9079a1",
+ "startedAt": "2026-10-21T16:54:32+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "student.json": "858c0d050aeae3105efb4b529346750001b9800feb5ffd87e0b8a08ac1fba9d0"
+ },
+ "promptSha256": "63c044e287bc9169cfc3286c7833df9251347fd965575fc2a4c9ed1dacfac95d",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$x=2$를 대입하면 $-4+4y=0$이다. 따라서 $4y=4$이므로 $y=1$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$x=2$를 대입하면 $-4+4y=0$이다. 따라서 $4y=4$이므로 $y=1$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8b6d408d4ddbe0e1947c60a378b8459f9cf3d8b17cb4ca50a27f199df2fc738c"
+}

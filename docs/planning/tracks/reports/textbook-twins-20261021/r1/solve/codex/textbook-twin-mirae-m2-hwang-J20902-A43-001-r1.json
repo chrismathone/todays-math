@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A43-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-2884-7833-a3c0-a6a7b00da5e5",
+ "startedAt": "2026-10-21T18:24:55+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "student.json": "a45bd0f7d57c7a0251c22cb0e6ea8b2f7cccf881f0e25f722d9285fb66728f17"
+ },
+ "promptSha256": "444d6c4b70fe2b00458747812a2b42313ac3f9dec930b2f7041bb860d7a74d7c",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"32개\",\"work\":\"짝수이므로 일의 자리는 4, 6의 2가지이다. 백의 자리와 십의 자리는 각각 4가지이고, 같은 숫자를 여러 번 써도 되므로 4×4×2=32개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "32개",
+  "work": "짝수이므로 일의 자리는 4, 6의 2가지이다. 백의 자리와 십의 자리는 각각 4가지이고, 같은 숫자를 여러 번 써도 되므로 4×4×2=32개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e894b6ddf3f7883bcbf9a54aaa53f19ffc844ec6214effd754d390d0c655d014"
+}

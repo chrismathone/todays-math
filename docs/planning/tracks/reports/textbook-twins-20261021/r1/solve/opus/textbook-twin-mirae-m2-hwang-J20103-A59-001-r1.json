@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "73b39c50-1fca-4396-8b44-5227f99ee9c0",
+ "startedAt": "2026-10-21T16:20:12+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "9d33e42a27a3208f30d9c57fe785fef45b3668e1cce0d725be80e1ddf20704fc"
+ },
+ "promptSha256": "b294c42e87dd10512966c658c3c112fd4c2b865ddf416a0b2826b01f32566bdd",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "0.7666... = (76-7)/90 = 69/90 = 23/30.\n\n```json\n{\"answer\": \"⑤\", \"work\": \"x = 0.7666… 로 두면 100x = 76.666…, 10x = 7.666… 이므로 90x = 69. 따라서 x = 69/90 = 23/30 (23과 30은 서로소).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "x = 0.7666… 로 두면 100x = 76.666…, 10x = 7.666… 이므로 90x = 69. 따라서 x = 69/90 = 23/30 (23과 30은 서로소).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "01da27ab3288cc4c8af19754217fff8004f3c737a0bb78c7eca89f2ea9667844"
+}

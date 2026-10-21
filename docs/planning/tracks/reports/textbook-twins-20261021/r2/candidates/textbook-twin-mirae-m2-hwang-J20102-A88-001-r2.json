@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 62,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A88-001-r2",
+ "authorId": "claude-fable-5-1:dd9d25e8-00f4-4243-9677-91d7da91c458",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20102-A88-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다섯 학생이 각자 순환소수 하나를 골라 순환마디 위에 점을 찍는 방법으로 적었다. 바르게 적은 학생은?",
+ "choices": [
+  "지우: $0.060606\\cdots=0.0\\dot{6}$",
+  "서아: $3.5555\\cdots=3.\\dot{5}\\dot{5}$",
+  "하루: $2.407407\\cdots=2.\\dot{4}0\\dot{7}$",
+  "도하: $0.009009\\cdots=0.00\\dot{9}$",
+  "미나: $4.013013\\cdots=4.0\\dot{1}3\\dot{0}$"
+ ],
+ "answer": "③",
+ "solution": "순환마디를 찾아 그 첫 숫자와 끝 숫자 위에 점을 찍는다. 순환마디에 $0$이 들어가면 그 $0$도 함께 센다. 지우: 순환마디가 $06$이므로 $0.\\dot{0}\\dot{6}$이어야 한다. 서아: 순환마디가 $5$ 하나이므로 $3.\\dot{5}$이어야 한다. 도하: 순환마디가 $009$이므로 $0.\\dot{0}0\\dot{9}$이어야 한다. 미나: 순환마디가 $013$이므로 $4.\\dot{0}1\\dot{3}$이어야 한다. 하루: 순환마디가 $407$이므로 $2.\\dot{4}0\\dot{7}$로 바르게 적었다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f51412c6202b9b52-0-3",
+  "problemCode": "J20102-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "086f4ef38e82371c38cec4a8752ea4926a886dddc4613f074248375465ebe26e",
+  "dbContentSha256": "37be17ea7f93e88ee6f3cff4b7f5bd3a6984a7274835bb034481bb0fd52d1129",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-1_유리수와소수.hwp",
+    "sha256": "6116d73a7cc205ab4e6c5e43a9c96de78b2253a917ea5d1cc5e514550885fe68",
+    "bytes": 39424
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "다섯 개의 순환소수를 점 표기로 바꾼 식을 늘어놓고, 그중 순환마디의 양 끝에 점을 바르게 찍은 하나를 고른다. 오답 보기는 순환마디 안의 0을 빠뜨리거나, 점을 엉뚱한 자리에 찍거나, 한 자리 순환마디에 점을 둘 찍은 것.",
+  "after": "다섯 학생이 각자 적은 점 표기 가운데 바르게 적은 학생을 고른다. 오답 짜임은 같다(순환마디 앞의 0을 빠뜨림 · 점 위치가 밀림 · 한 자리 순환마디에 점 둘). 수와 인물 장면을 새로 두고, 정답 위치를 ③으로 옮겼다.",
+  "sharedConcept": "순환소수의 점 표기(순환마디의 첫 숫자와 끝 숫자 위에 점)",
+  "sharedProcedure": "소수에서 되풀이되는 부분을 찾아 순환마디 정하기 → 순환마디의 양 끝 숫자 위에 점 찍기 → 보기의 표기와 견주어 바른 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "순환소수의 뜻",
+   "순환마디 찾기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A88-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 점 표기 가운데 옳은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.045,
+   "longestRun": 4,
+   "residualChars": 119,
+   "params": 10,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

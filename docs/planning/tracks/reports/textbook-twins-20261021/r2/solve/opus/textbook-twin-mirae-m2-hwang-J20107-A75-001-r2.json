@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c6110be2-69a5-4789-b1a3-f82afc8fa464",
+ "startedAt": "2026-10-21T16:55:19+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "fd355cdef54efdacc841b2c26ae0f8e0ea2107912db969709e9a265ce2faaa68"
+ },
+ "promptSha256": "f3467cc65a437b39cdf1e446a994074887f5c087895f3e840a322b370da7668c",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$10x-4y-1$\", \"work\": \"(7x+6y-9) − B = −3x+10y−8 이므로 B = (7x+6y−9) − (−3x+10y−8) = 7x+3x + 6y−10y − 9+8 = 10x − 4y − 1\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$10x-4y-1$",
+  "work": "(7x+6y-9) − B = −3x+10y−8 이므로 B = (7x+6y−9) − (−3x+10y−8) = 7x+3x + 6y−10y − 9+8 = 10x − 4y − 1",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cfd965d0002776dfb9c31b774c957cf4e78603dfb9a9189d98506933f5b7bf98"
+}

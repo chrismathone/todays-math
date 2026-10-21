@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2ea59993-0202-4f65-902e-c1a9d878a326",
+ "startedAt": "2026-10-21T16:14:22+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "d7e088964fd901dfa4ee1ae1e496b430f3bfbd541961f88ab77fc644744e05b0"
+ },
+ "promptSha256": "6f36ce819872664bfb03f758bda938daebb73fc73e69130110e7ea820d6b0748",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $5a^2-2a+3$ ⑵ $7x^2-20xy-18y^2$\", \"work\": \"⑴ 전개하면 $5a^2+10a-12a+3$이고, 동류항 $10a-12a=-2a$를 정리하면 $5a^2-2a+3$이다. ⑵ 전개하면 $7x^2-14xy-6xy-18y^2$이고, 동류항 $-14xy-6xy=-20xy$를 정리하면 $7x^2-20xy-18y^2$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $5a^2-2a+3$ ⑵ $7x^2-20xy-18y^2$",
+  "work": "⑴ 전개하면 $5a^2+10a-12a+3$이고, 동류항 $10a-12a=-2a$를 정리하면 $5a^2-2a+3$이다. ⑵ 전개하면 $7x^2-14xy-6xy-18y^2$이고, 동류항 $-14xy-6xy=-20xy$를 정리하면 $7x^2-20xy-18y^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f4d23efde21659150541f0e155642c6704d4e4934fe30f4780f4e629155cba48"
+}

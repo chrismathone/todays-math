@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A45-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-927b-7272-967b-7b86d6192dd8",
+ "startedAt": "2026-10-21T19:09:04+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "student.json": "a6fcbb9829947ea408f668314b1592d852724f8a94b92c222f298215f5bea58f"
+ },
+ "promptSha256": "e09ea42bb8bc5f881edee2d679a34c4094f53a33bc7d35995000fc05fbf487c6",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-5\",\"work\":\"x좌표가 -1에서 3으로 4만큼 증가하므로 y좌표의 증가량은 -12이다. 따라서 구하는 y좌표는 7+(-12)=-5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-5",
+  "work": "x좌표가 -1에서 3으로 4만큼 증가하므로 y좌표의 증가량은 -12이다. 따라서 구하는 y좌표는 7+(-12)=-5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5da7712807546c696e2c990e22cd52cd3856ab6feee0b437d506119b6ceb8153"
+}

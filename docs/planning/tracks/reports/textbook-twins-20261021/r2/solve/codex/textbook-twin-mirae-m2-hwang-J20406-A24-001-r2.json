@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df0-0787-75e1-8026-cff85122c380",
+ "startedAt": "2026-10-21T19:09:34+0900",
+ "elapsedSec": 8.3,
+ "studentSha256": {
+  "student.json": "7e0d1fa16851a831381f37045454b4aee584b6fdd2c7b378c3111b19969d89ef"
+ },
+ "promptSha256": "25f9524c3468e33e0b23478d9bad6e0b1ef553e90777472ffc5dfbf0e0e15b12",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"줄어든 높이는 36−22=14 cm이다.\\n3분마다 2 cm씩 줄어드므로 걸린 시간은 (14÷2)×3=21분이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "줄어든 높이는 36−22=14 cm이다.\n3분마다 2 cm씩 줄어드므로 걸린 시간은 (14÷2)×3=21분이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dcc566033fccad00f15cd7d9a5b1e03c2fe5d61cbd0bf27fda98c245601da753"
+}

@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "860390b4-3533-4623-9c65-88a1c455aa20",
+ "startedAt": "2026-10-21T16:31:11+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "fig-1.png": "22cf50a84460aabebf537adb3331fe870af58001c192fcc712617faad9ed4667",
+  "student.json": "36f869f71c2b2ea2a906ce199f0a1206b6dbf743c767a3bd2c00bb25f107b81c"
+ },
+ "promptSha256": "30e95de9621bd7765d6ea7f017645b2165f74817577e253b5ef0f594426def59",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"I는 내심이므로 AI, BI는 각의 이등분선이다. ∠A = 2×26° = 52°, ∠B = 2×34° = 68°. 그러므로 ∠x = ∠ACB = 180° − 52° − 68° = 60°.\", \"confidence\": \"high\", \"issues\": [\"그림에서 x 호가 ∠ACB 전체인지 ∠ICB인지 분명하지 않다. ∠ICB로 보면 90° − 26° − 34° = 30°인데, 이 값은 보기에 없다. 그래서 x = ∠ACB로 보고 풀었다.\", \"그림의 26° 호는 ∠BAC 전체에 걸친 것처럼 보이지만, 문제 글에서는 ∠IAB = 26°라고 했다. 풀이는 글을 따랐다.\"]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "I는 내심이므로 AI, BI는 각의 이등분선이다. ∠A = 2×26° = 52°, ∠B = 2×34° = 68°. 그러므로 ∠x = ∠ACB = 180° − 52° − 68° = 60°.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 x 호가 ∠ACB 전체인지 ∠ICB인지 분명하지 않다. ∠ICB로 보면 90° − 26° − 34° = 30°인데, 이 값은 보기에 없다. 그래서 x = ∠ACB로 보고 풀었다.",
+   "그림의 26° 호는 ∠BAC 전체에 걸친 것처럼 보이지만, 문제 글에서는 ∠IAB = 26°라고 했다. 풀이는 글을 따랐다."
+  ]
+ },
+ "eventsSha256": "842cc5dc1bed51edd8fd997f21f8d837adeda28672925a6a6cf3d8e350eafb02"
+}

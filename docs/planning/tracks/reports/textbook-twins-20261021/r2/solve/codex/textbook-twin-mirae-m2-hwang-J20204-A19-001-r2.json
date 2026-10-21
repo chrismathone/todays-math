@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dde-de68-78e3-8d0a-675095cf5dbf",
+ "startedAt": "2026-10-21T18:50:49+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "1ff830b0cd1b88c7679fee75ffec30d1621fc796b4e3c1be8247b5b5f9648260"
+ },
+ "promptSha256": "3af0fb8abd557a302c0e8dd4c464ace40d660d84c9c15d2b12110836169d095e",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6년 후\",\"work\":\"지금으로부터 $x$년 후 두 사람의 나이는 각각 $40+x$살, $10+x$살이다. $40+x<3(10+x)$를 풀면 $x>5$이다. 이를 만족하는 가장 작은 자연수는 $6$이므로 6년 후이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6년 후",
+  "work": "지금으로부터 $x$년 후 두 사람의 나이는 각각 $40+x$살, $10+x$살이다. $40+x<3(10+x)$를 풀면 $x>5$이다. 이를 만족하는 가장 작은 자연수는 $6$이므로 6년 후이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "17ed932d3b7154bc78afdf72a26146196305faaebc3ba8c4532f648376812d3e"
+}

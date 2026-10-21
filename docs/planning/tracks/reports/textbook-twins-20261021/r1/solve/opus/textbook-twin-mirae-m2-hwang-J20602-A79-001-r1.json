@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A79-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "bc6ac5af-ee7d-4c96-ab15-a478797becdc",
+ "startedAt": "2026-10-21T17:09:42+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "fig-1.png": "d1b5cd9a171129fb5e4f024f31591d501b81b83053b1ea935e935f3a1108a070",
+  "student.json": "05abf9e9083e71e1eb6c2dd7c405e317ade478588d481b11ca5bc9322a6bf181"
+ },
+ "promptSha256": "d75f9315c292a345ce90898010333d1f1e593d306d6dba30d5a72b413f0cc97b",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 15 ⑵ 구할 수 없음 (QR의 길이가 주어지지 않음)\", \"work\": \"⑴ AD=12, BD=16, AB=20이고 12²+16²=20²이므로 ∠ADB=90°이다. 따라서 ∠ADC=90°이다. BD:AD=16:12=4:3, AD:DC=12:9=4:3이고 끼인각이 모두 90°이므로 △ABD∽△CAD(SAS 닮음)이다. AB:CA=4:3에서 20:x=4:3이므로 x=15이다(△ADC에서 √(12²+9²)=15로도 확인됨). ⑵ PQ=6+10=16, PR=8+4=12이다. PS:PR=6:12=1:2, PT:PQ=8:16=1:2이고 ∠P는 공통이므로 △PST∽△PRQ(SAS 닮음, 닮음비 1:2)이다. 따라서 ST:RQ=1:2, 즉 x=½·QR이다. 그런데 QR의 길이가 주어지지 않아 x의 값을 정할 수 없다.\", \"confidence\": \"medium\", \"issues\": [\"⑵: 그림에 QR의 길이가 표시되어 있지 않다. △PST∽△PRQ(닮음비 1:2)이므로 x=QR/2라는 것까지만 알 수 있고, x의 값은 구할 수 없다. 원래 문제에서 QR 길이(예: 12 cm라면 x=6)가 빠진 것으로 보인다.\", \"⑴: 그림에 직각 표시는 없다. 하지만 12²+16²=20²이므로 ∠ADB=90°임을 알 수 있다.\"]}\n```",
+ "parsed": {
+  "answer": "⑴ 15 ⑵ 구할 수 없음 (QR의 길이가 주어지지 않음)",
+  "work": "⑴ AD=12, BD=16, AB=20이고 12²+16²=20²이므로 ∠ADB=90°이다. 따라서 ∠ADC=90°이다. BD:AD=16:12=4:3, AD:DC=12:9=4:3이고 끼인각이 모두 90°이므로 △ABD∽△CAD(SAS 닮음)이다. AB:CA=4:3에서 20:x=4:3이므로 x=15이다(△ADC에서 √(12²+9²)=15로도 확인됨). ⑵ PQ=6+10=16, PR=8+4=12이다. PS:PR=6:12=1:2, PT:PQ=8:16=1:2이고 ∠P는 공통이므로 △PST∽△PRQ(SAS 닮음, 닮음비 1:2)이다. 따라서 ST:RQ=1:2, 즉 x=½·QR이다. 그런데 QR의 길이가 주어지지 않아 x의 값을 정할 수 없다.",
+  "confidence": "medium",
+  "issues": [
+   "⑵: 그림에 QR의 길이가 표시되어 있지 않다. △PST∽△PRQ(닮음비 1:2)이므로 x=QR/2라는 것까지만 알 수 있고, x의 값은 구할 수 없다. 원래 문제에서 QR 길이(예: 12 cm라면 x=6)가 빠진 것으로 보인다.",
+   "⑴: 그림에 직각 표시는 없다. 하지만 12²+16²=20²이므로 ∠ADB=90°임을 알 수 있다."
+  ]
+ },
+ "eventsSha256": "44f4f82482f296fbc680ec1651187472e3756a6f58df2ba92d805ecc47ca2649"
+}

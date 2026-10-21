@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de9-26d1-7971-a9b1-64ad55d598f2",
+ "startedAt": "2026-10-21T19:02:03+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "fig-1.png": "c5e8f0e882c6406f750edcb4cedef4d296b52266f8ce7205caa6a6ce3db55871",
+  "student.json": "be849cbe5c9c5de156e004e027f901300c5101afd39691a983f7766597acc436"
+ },
+ "promptSha256": "b1853fa9c1f999c7cae5f964933b96bf34fddfdf1aeda79f832129aedeb7b7e7",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"20\",\"work\":\"두 직선과 y축의 교점은 각각 (0, 2), (0, 12)이므로 밑변의 길이는 10이다. 두 방정식을 연립하면 두 직선의 교점은 (4, 4)이므로 높이는 4이다. 따라서 삼각형의 넓이는 10×4÷2=20이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "20",
+  "work": "두 직선과 y축의 교점은 각각 (0, 2), (0, 12)이므로 밑변의 길이는 10이다. 두 방정식을 연립하면 두 직선의 교점은 (4, 4)이므로 높이는 4이다. 따라서 삼각형의 넓이는 10×4÷2=20이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cec56225354a7137e5cebf975e62d3231bbf8bda8418fc811ce9c6686f500200"
+}

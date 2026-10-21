@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 46,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r2",
+ "authorId": "claude-fable-5-1:5f676964-5912-4197-92c2-a5585abf467b",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n하루는 그림처럼 밑면이 정사각형인 사각뿔 모양의 유리 장식품을 보고 있다. 밑면의 한 변의 길이는 $4x^{4}y^{3}$이고, 장식품의 부피는 $48x^{10}y^{7}$이다. 이 장식품의 높이를 구하시오.",
+ "choices": [],
+ "answer": "$9x^{2}y$",
+ "solution": "밑면의 넓이는 $(4x^{4}y^{3})^{2}=16x^{8}y^{6}$이다. 높이를 $h$라 하면 부피는 $\\frac{1}{3}\\times 16x^{8}y^{6}\\times h=\\frac{16}{3}x^{8}y^{6}h$이다. $\\frac{16}{3}x^{8}y^{6}h=48x^{10}y^{7}$이므로 $h=48x^{10}y^{7}\\div \\frac{16}{3}x^{8}y^{6}=48x^{10}y^{7}\\times \\frac{3}{16x^{8}y^{6}}=9x^{2}y$이다. 따라서 높이는 $9x^{2}y$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B18-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B18-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-4",
+  "problemCode": "J20106-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "60888a01a69c5a16e8229b1c32e9c3d2c0c0b92efd926086ac7f667ff0e306b5",
+  "dbContentSha256": "9e5ac6533b5dc0b3bee0c671dcf50f460549d4c0b49ab2745057cdc1ca2a4182",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [
+   "0ec5ce42b88127f67ac9cffddd5be6e8896789990ea5d0e3435057c8b0a7a831"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "그림 속 정사각뿔의 밑면 한 변의 길이(단항식)와 부피(단항식)를 주고 높이를 구하게 한다.",
+  "after": "유리 장식품이라는 장면에서 정사각뿔의 밑면 한 변의 길이와 부피를 새 단항식으로 주고 높이를 구하게 한다. 계수가 1/3 과 약분되지 않는 짜임이라 분수 나눗셈으로 정리하는 단계가 들어간다.",
+  "sharedConcept": "단항식의 곱셈과 나눗셈(거듭제곱 · 나눗셈)을 뿔의 부피 공식에 적용",
+  "sharedProcedure": "밑면 한 변을 제곱해 밑넓이 → 부피 = 1/3 × 밑넓이 × 높이 식 세우기 → 부피를 (1/3 × 밑넓이)로 나누어 높이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈과 나눗셈",
+   "뿔의 부피 공식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-B18-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "뿔의 부피 공식에서 단항식의 나눗셈으로 높이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.032,
+   "longestRun": 4,
+   "residualChars": 66,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

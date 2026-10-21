@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 224,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r2",
+ "authorId": "claude-opus-5-5:2b4fb983-8858-4217-9c15-a199a68575e4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=-\\frac{1}{2}x+a$의 그래프의 $x$절편은 $8$이다. 이 그래프가 $y$축과 만나는 점의 $y$좌표는? (단, $a$는 수이다.)",
+ "choices": [
+  "$-8$",
+  "$-4$",
+  "$2$",
+  "$4$",
+  "$8$"
+ ],
+ "answer": "④",
+ "solution": "$x$절편이 $8$이므로 $x=8$일 때 $y=0$이다. $0=-\\frac{1}{2}\\times 8+a$에서 $a=4$이다. 즉 $y=-\\frac{1}{2}x+4$이고, $x=0$일 때 $y=4$이므로 $y$축과 만나는 점의 $y$좌표는 $4$이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-5",
+  "problemCode": "J20402-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "4b77630c4ff37f650e9c92758b082bd7f6a398baa1da68f38a3fe2a4f9b3b95c",
+  "dbContentSha256": "33e810a9502f89329e8f0c18b12d2b9ebb7e51981052ecdb7f371a8e87cc26e0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "different",
+   "answer": "same"
+  },
+  "authorSawDbText": false,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "기울기가 양의 정수인 일차함수에서 x절편(음수)이 주어지면, 상수항을 정한 다음 y절편을 고르게 한다.",
+  "after": "기울기가 음의 분수인 일차함수에서 x절편(양수)이 주어지면, 상수항을 정한 다음 y절편을 'y축과 만나는 점의 y좌표'로 바꿔 묻는다.",
+  "sharedConcept": "x절편 · y절편의 뜻(x절편은 y=0일 때의 x값, y절편은 x=0일 때의 y값)",
+  "sharedProcedure": "x절편의 뜻에 따라 (x절편, 0)을 대입 → 일차방정식을 풀어 상수 구하기 → x=0을 대입해 y절편 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수의 뜻",
+   "x절편과 y절편의 뜻",
+   "일차방정식의 풀이",
+   "분수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "x절편이 주어진 일차함수의 상수를 구해 y절편 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.347,
+   "longestRun": 10,
+   "residualChars": 52,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

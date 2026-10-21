@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "bad1160c-5088-4f0a-82f2-c45cfddfd513",
+ "startedAt": "2026-10-21T17:04:16+0900",
+ "elapsedSec": 6.7,
+ "studentSha256": {
+  "student.json": "6a4196480005fb7c690a8eb5e2d45365c4b7f5f4179f1c68d140f220d8d3240b"
+ },
+ "promptSha256": "c5162549a64a2c9267e701cb3cba3fa9a97da450f58829bc845aa1c1ad3de883",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"무게가 6 g 늘 때마다 5 cm 늘어나므로 1 g당 5/6 cm 늘어난다. 무게를 x g, 길이를 y cm라 하면 y = 12 + (5/6)x이다. x = 9를 넣으면 y = 12 + 7.5 = 19.5 (cm)이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "무게가 6 g 늘 때마다 5 cm 늘어나므로 1 g당 5/6 cm 늘어난다. 무게를 x g, 길이를 y cm라 하면 y = 12 + (5/6)x이다. x = 9를 넣으면 y = 12 + 7.5 = 19.5 (cm)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "be19487f7467de616ecccf732e181e04f54718ea2bbc6c85f7c23135741f5864"
+}

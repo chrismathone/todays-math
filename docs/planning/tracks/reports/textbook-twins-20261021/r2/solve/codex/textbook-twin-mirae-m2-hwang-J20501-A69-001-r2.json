@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A69-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df2-1215-7d83-b368-fcd8f54f4c59",
+ "startedAt": "2026-10-21T19:11:47+0900",
+ "elapsedSec": 14.8,
+ "studentSha256": {
+  "fig-1.png": "3b80ba2fa5269daea5afc9b1517daded2fd1664d4b5b316efa33e92868513772",
+  "student.json": "7ac3ceaa3688fb142df7be2eb9f23cf5df15297117d94582a788579701716952"
+ },
+ "promptSha256": "c9b7f2a081b886a5902b9d87c734b0c5e96503b6871c9d358331473f522035fc",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 7 ⑵ 5\",\"work\":\"⑴ ∠A=∠C이므로 마주 보는 변의 길이가 같아 BC=AB=7 cm이다. 따라서 x=7이다.\\n⑵ ∠F=180°−35°−110°=35°이므로 ∠D=∠F이다. 따라서 EF=DE=5 cm이므로 x=5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 7 ⑵ 5",
+  "work": "⑴ ∠A=∠C이므로 마주 보는 변의 길이가 같아 BC=AB=7 cm이다. 따라서 x=7이다.\n⑵ ∠F=180°−35°−110°=35°이므로 ∠D=∠F이다. 따라서 EF=DE=5 cm이므로 x=5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2eec9173f422a81f51a33779f91c1d6cfb9817a9cbf6b825f6b8cee909a88f15"
+}

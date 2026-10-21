@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1c702a4e-b3b1-4a0e-bb2a-3553c9b05dd5",
+ "startedAt": "2026-10-21T16:55:23+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "9313ce48701880e04cb3d3a2e32557c871daa9f136f34c3726132b3f85f4626a"
+ },
+ "promptSha256": "c5261f6f79f9692e0c0ceadccec3b31bb8d8c44d15e4d24bd190a5837013a177",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"② $(a^{2}+5a)-a(a-9)=a^{2}+5a-a^{2}+9a=14a$ → 일차식\\n① 이차식, ③ $a-7a^{2}$ 이차식, ④ $a^{2}+a-5$ 이차식, ⑤ $-a^{2}+8$ 이차식\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "② $(a^{2}+5a)-a(a-9)=a^{2}+5a-a^{2}+9a=14a$ → 일차식\n① 이차식, ③ $a-7a^{2}$ 이차식, ④ $a^{2}+a-5$ 이차식, ⑤ $-a^{2}+8$ 이차식",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "120f386ec7df1562c438aa971b533f09e92fabf73af6aef045179fb2da702725"
+}

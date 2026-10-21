@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 262,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r2",
+ "authorId": "claude-opus-5-5:58dfd33e-67cf-4554-ad69-6e7a77a1a9ba",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 $\\triangle ABC$의 세 꼭짓점을 지나는 원의 중심 $O$, 곧 $\\triangle ABC$의 외심이 삼각형 안에 있다. $\\angle AOC=104^{\\circ}$, $\\angle OBC=19^{\\circ}$일 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$29^{\\circ}$",
+  "$31^{\\circ}$",
+  "$33^{\\circ}$",
+  "$35^{\\circ}$",
+  "$37^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "점 $O$가 외심이므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이고, $\\triangle OAB$, $\\triangle OBC$, $\\triangle OCA$는 모두 이등변삼각형이다. $\\triangle OCA$에서 $\\angle OAC=\\angle OCA=\\frac{1}{2}\\times(180^{\\circ}-104^{\\circ})=38^{\\circ}$이다. $\\angle OCB=\\angle OBC=19^{\\circ}$이고 $\\angle OBA=\\angle OAB=\\angle x$이다. $\\triangle ABC$의 세 내각의 합이 $180^{\\circ}$이므로 $2\\times(\\angle x+19^{\\circ}+38^{\\circ})=180^{\\circ}$이고, $\\angle x=33^{\\circ}$이다. 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A64-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A64-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-5",
+  "problemCode": "J20503-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "fdd709a65fde98e3496506b1a418d0d8b49c04d1c90b2028f633023b3586f8af",
+  "dbContentSha256": "278d5d6cb1a38a220c598fe220a6e3c1074256be838d449db00b4bfe298d3292",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "6076fd35bde39c1ff425ebcbee6dcc4826fe74cc38c04b7173ceeafc0a69c032"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "외심이 안에 있는 삼각형에서 한 꼭짓점 쪽 밑각 하나와 다른 두 반지름이 이루는 중심각 하나를 주고, 남은 이등변삼각형의 밑각을 구한다. 보기는 30°부터 38°까지의 짝수 각이다.",
+  "after": "중심각은 C와 A 사이의 ∠AOC로, 밑각은 B 쪽의 ∠OBC로 옮겨 주고, 구하는 각을 ∠OAB로 바꿨다. 보기는 29°~37°의 홀수 각으로 원본 보기와 겹치는 수가 없다.",
+  "sharedConcept": "외심에서 세 꼭짓점까지의 거리가 같아 생기는 세 이등변삼각형과 삼각형의 내각의 합",
+  "sharedProcedure": "외심 성질로 세 이등변삼각형 확인 → 중심각에서 그 이등변삼각형의 밑각 구하기 → 나머지 밑각 옮기기 → 2×(세 밑각의 합)=180°로 x 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질",
+   "이등변삼각형의 두 밑각의 크기는 같다",
+   "삼각형의 세 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A64-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심과 중심각 · 밑각이 주어질 때 남은 밑각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.088,
+   "longestRun": 7,
+   "residualChars": 73,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

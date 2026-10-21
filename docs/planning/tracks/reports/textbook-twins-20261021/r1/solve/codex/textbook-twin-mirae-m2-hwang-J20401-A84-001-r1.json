@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dac-fb94-7e02-9403-8838041548ec",
+ "startedAt": "2026-10-21T17:56:20+0900",
+ "elapsedSec": 8.5,
+ "studentSha256": {
+  "student.json": "72f0f171d3eeac32aa1a08d380e560aaa73fb22db6744b54fa9d9ad1944edf61"
+ },
+ "promptSha256": "b08a649988fce69476b5c76894c9c950c1a5683e5544dc043c9c25439617c12a",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"f(-2/3)=(3/2)×(-2/3)=-1이므로 ④의 값 1은 옳지 않다. 나머지 보기는 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "f(-2/3)=(3/2)×(-2/3)=-1이므로 ④의 값 1은 옳지 않다. 나머지 보기는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9e26a1467ed5d7c24563dc039c287e237bb59b3689f643c8ece01abf4b1dc47a"
+}

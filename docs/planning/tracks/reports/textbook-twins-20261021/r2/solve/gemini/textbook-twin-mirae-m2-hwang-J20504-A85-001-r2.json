@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A85-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "3ec96dfe-c77b-48b9-b0dd-a1c9cc45255f",
+ "startedAt": "2026-10-21T18:02:15+0900",
+ "elapsedSec": 28.2,
+ "studentSha256": {
+  "fig-1.png": "2a79b7fcf237b668d560a90b34cefa8c9a52221a5fe1c8ddd144604679ca0865",
+  "student.json": "033af81c61d8cbfab416a48109fbe5543a47373930ba6b9256fe4468ebb82a8b"
+ },
+ "promptSha256": "91421c9590a4c476f9c85c4c3a006e0770439d1e5c265f837e5dd96af9800060",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"30 cm\",\n  \"work\": \"점 I가 내심이므로 선분 BI, CI는 각각 ∠B, ∠C의 이등분선이다. DE // BC에 의해 엇각의 크기가 같으므로 ∠DIB = ∠IBC = ∠DBI, ∠EIC = ∠ICB = ∠ECI이다. 따라서 △DIB, △EIC는 이등변삼각형이 되어 DI = DB = 8 cm, EI = EC = 10 cm이므로 DE = DI + EI = 18 cm이다. 또한 DE // BC에 의해 △ADE ∽ △ABC (AA 닮음)이고 AB = AD + DB = 12 + 8 = 20 cm이므로 AD : AB = DE : BC, 즉 12 : 20 = 18 : BC이다. 따라서 BC = (20 × 18) / 12 = 30 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "30 cm",
+  "work": "점 I가 내심이므로 선분 BI, CI는 각각 ∠B, ∠C의 이등분선이다. DE // BC에 의해 엇각의 크기가 같으므로 ∠DIB = ∠IBC = ∠DBI, ∠EIC = ∠ICB = ∠ECI이다. 따라서 △DIB, △EIC는 이등변삼각형이 되어 DI = DB = 8 cm, EI = EC = 10 cm이므로 DE = DI + EI = 18 cm이다. 또한 DE // BC에 의해 △ADE ∽ △ABC (AA 닮음)이고 AB = AD + DB = 12 + 8 = 20 cm이므로 AD : AB = DE : BC, 즉 12 : 20 = 18 : BC이다. 따라서 BC = (20 × 18) / 12 = 30 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8396949eac51e045ecb76363d07e0b99b035f5045613a0edd0d0d422cfc8142f"
+}

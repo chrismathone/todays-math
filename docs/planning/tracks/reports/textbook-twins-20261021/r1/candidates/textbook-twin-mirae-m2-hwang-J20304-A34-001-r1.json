@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 187,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A34-001-r1",
+ "authorId": "claude-fable-5-1:8409027a-7640-43bc-b94a-13f07b447407",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "도하는 연립방정식 $\\begin{cases} \\,ax+by=13 \\\\ \\,bx-ay=-11 \\end{cases}$를 옮겨 쓰면서 $a$와 $b$의 자리를 서로 바꾸어 적었고, 바꾼 식을 풀어 $x=-1$, $y=3$을 얻었다. 이때 $a+b$의 값을 구하시오. (단, $a$와 $b$는 수이다.)",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "바꾸어 적은 연립방정식은 $\\begin{cases} \\,bx+ay=13 \\\\ \\,ax-by=-11 \\end{cases}$이다. $x=-1$, $y=3$을 대입하면 $3a-b=13$, $-a-3b=-11$. 둘째 식에서 $a=11-3b$를 첫째 식에 대입하면 $33-9b-b=13$, $-10b=-20$, $b=2$, $a=5$. 따라서 $a+b=7$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-17",
+  "problemCode": "J20304-A34-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "41491aeecf4013a465968273dfce746b645fbe7502d94e838e6a09b8ad0ff8e8",
+  "dbContentSha256": "6bee89711e2c5faf82c8ec2b6db0591d542778158fff8b2d812f3b041ac8076e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "미지 계수 둘이 서로 바뀐 연립방정식의 해가 주어지고, 바뀐 식에 해를 대입해 두 계수의 연립방정식을 가감법으로 풀어 합을 구한다.",
+  "after": "인물이 옮겨 쓰다 계수를 바꾼 장면으로 두고, 부호 배치를 달리한 식에 해를 대입해 두 계수의 연립방정식을 대입법으로 풀어 합을 구한다.",
+  "sharedConcept": "계수를 바꾸어 푼 해를 바꾼 식에 대입해 원래 계수 구하기",
+  "sharedProcedure": "계수를 바꾼 식 세우기 → 해 대입 → a, b의 연립방정식 풀기 → 합 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "연립방정식의 해의 뜻",
+   "연립방정식의 풀이(대입법·가감법)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A34-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 계수를 서로 바꾸어 푼 해로 원래 계수의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.257,
+   "longestRun": 12,
+   "residualChars": 73,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d7db8b80-0c0f-4e43-86ce-15436b60af21",
+ "startedAt": "2026-10-21T17:03:40+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "5ac7003716a0f3d5528b8a6bdd83cd29f720d08339ba63fbef3a2979152b751f"
+ },
+ "promptSha256": "bcf6c3d14b5312b59a1807b0ea2b03913cdf7141a980bac000178edaf3b01968",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"-12\", \"work\": \"y=ax-2를 y축 방향으로 6만큼 평행이동하면 y=ax-2+6=ax+4이다. 이것이 y=-3x+b와 같으므로 a=-3, b=4이다. 따라서 ab=(-3)×4=-12\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "-12",
+  "work": "y=ax-2를 y축 방향으로 6만큼 평행이동하면 y=ax-2+6=ax+4이다. 이것이 y=-3x+b와 같으므로 a=-3, b=4이다. 따라서 ab=(-3)×4=-12",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "06f04e1005bba2dd2eca618ca79efa7f14415eda81cc60dd6368264518d06aa4"
+}

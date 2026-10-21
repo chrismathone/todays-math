@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9eac821e-63b8-4ed0-b94c-bca586310bde",
+ "startedAt": "2026-10-21T17:56:17+0900",
+ "elapsedSec": 8.9,
+ "studentSha256": {
+  "fig-1.png": "2160c63e9e516f14538eb538b3621347afb595df75db1fed24e4ccbb48279bb8",
+  "student.json": "68cdb7f7a64ce14de440b1f97996c9c6c5e6f4d29fb90c51dd3aea07dd246ae6"
+ },
+ "promptSha256": "aff5c5e575a1d177c8a13f607e66d2c240a2ceb7022742c042406ae545b90fc5",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"14\", \"work\": \"G는 무게중심이므로 AG:GD = 2:1 → x = AG = 2×3 = 6 cm. PQ ∥ BC이므로 △AGQ ∽ △ADC이고 닮음비는 AG:AD = 2:3 → y = GQ = (2/3)×12 = 8 cm. 따라서 x + y = 6 + 8 = 14\", \"confidence\": \"medium\", \"issues\": [\"그림에서 x, y 라벨이 어느 선분을 가리키는지 분명하지 않다. x는 AG 근처에 있지만 선분 AG 위가 아니라 삼각형 AGQ 안쪽에 있고, y는 GQ 아래 사다리꼴 안에 있다. 그래서 x = AG, y = GQ로 보고 풀었다.\", \"x + y의 단위가 cm이므로 답을 14 cm로 쓸 수도 있다.\"]}\n```",
+ "parsed": {
+  "answer": "14",
+  "work": "G는 무게중심이므로 AG:GD = 2:1 → x = AG = 2×3 = 6 cm. PQ ∥ BC이므로 △AGQ ∽ △ADC이고 닮음비는 AG:AD = 2:3 → y = GQ = (2/3)×12 = 8 cm. 따라서 x + y = 6 + 8 = 14",
+  "confidence": "medium",
+  "issues": [
+   "그림에서 x, y 라벨이 어느 선분을 가리키는지 분명하지 않다. x는 AG 근처에 있지만 선분 AG 위가 아니라 삼각형 AGQ 안쪽에 있고, y는 GQ 아래 사다리꼴 안에 있다. 그래서 x = AG, y = GQ로 보고 풀었다.",
+   "x + y의 단위가 cm이므로 답을 14 cm로 쓸 수도 있다."
+  ]
+ },
+ "eventsSha256": "09cf052e1dad4ea803cba4c12b5a37d7297d2abbaf1d3688c0ce97f06b52dbe4"
+}

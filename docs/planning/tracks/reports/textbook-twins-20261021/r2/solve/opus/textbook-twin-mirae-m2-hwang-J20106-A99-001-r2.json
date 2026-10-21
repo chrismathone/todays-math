@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "828e6a02-4efc-4fdb-bad3-e688b969ad3f",
+ "startedAt": "2026-10-21T17:06:55+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "student.json": "f6be2733b4fd1e1c9a82a243545cb0f695e2a301d11379f4b0016d491e2c6efb"
+ },
+ "promptSha256": "29cf4351b9c491d5a9e9f222889a99cf329504bc213f4b0ca9ee2fab2e62415d",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $\\\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\\\frac{4b}{a^{4}}$ ⑷ $\\\\frac{y^{2}}{36x^{2}}$\", \"work\": \"⑴ $\\\\frac{20p^4q^2}{4p^2q^5}=\\\\frac{5p^2}{q^3}$\\n⑵ $\\\\frac{28x^3y^4}{-7xy^3}=-4x^2y$\\n⑶ $4a^2b^4\\\\div(-a^6b^3)=-\\\\frac{4b}{a^4}$\\n⑷ $\\\\frac{1}{9}x^2y^4\\\\div 4x^4y^2=\\\\frac{y^2}{36x^2}$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\frac{4b}{a^{4}}$ ⑷ $\\frac{y^{2}}{36x^{2}}$",
+  "work": "⑴ $\\frac{20p^4q^2}{4p^2q^5}=\\frac{5p^2}{q^3}$\n⑵ $\\frac{28x^3y^4}{-7xy^3}=-4x^2y$\n⑶ $4a^2b^4\\div(-a^6b^3)=-\\frac{4b}{a^4}$\n⑷ $\\frac{1}{9}x^2y^4\\div 4x^4y^2=\\frac{y^2}{36x^2}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "31c216bef1bcd60ee4ef326df10b854375e9344731ed87fb3dd6a4808b8b0565"
+}

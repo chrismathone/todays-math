@@ -1,0 +1,160 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 265,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r1",
+ "authorId": "middle-engine:2-2|삼각형의 성질|03",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "그림과 같은 삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위의 점이고 $\\overline{DB}=\\overline{DC}=\\overline{CA}$이다. 점 $E$는 $\\overline{BC}$의 연장선 위의 점이고 $\\angle ACE=78^\\circ$일 때, $\\angle ADC$의 크기를 구하시오.",
+ "choices": [
+  "$42^\\circ$",
+  "$104^\\circ$",
+  "$62^\\circ$",
+  "$52^\\circ$",
+  "$55^\\circ$"
+ ],
+ "answer": "④",
+ "solution": "$\\angle B=\\angle a$라 하면 $\\overline{DB}=\\overline{DC}$에서 $\\angle DCB=\\angle a$, 외각에서 $\\angle ADC=2\\angle a$이다.\n$\\overline{CD}=\\overline{CA}$에서 $\\angle A=\\angle ADC=2\\angle a$이므로 $\\angle ACE=\\angle A+\\angle B=3\\angle a=78^\\circ$, 즉 $\\angle a=26^\\circ$이다.\n따라서 $\\angle ADC=2\\times26^\\circ=52^\\circ$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A64-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A64-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-2",
+  "problemCode": "J20501-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "880d33fe4190869a566d3c2b24685c82a95d092cf6ca5fe401f100e1f504742f",
+  "dbContentSha256": "607bb11684edb05e193e3c25763f545e767e1ff0a48990d1a89b343f43200088",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "0624c0afe7fc33de715a1004515a5c6f8e49fb0073925047bd7190faa005d3c5"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "한 변 위의 점 D로 두 이등변삼각형이 이웃하고, 밑각 하나가 주어졌을 때 변의 연장선과 이루는 외각을 고르는 객관식",
+  "after": "같은 짜임에서 엔진이 밑각 값을 새로 정하고 연장선 위 외각을 값 묻는 객관식으로 만든다",
+  "sharedConcept": "이등변삼각형의 두 밑각 · 삼각형의 외각",
+  "sharedProcedure": "작은 이등변삼각형의 밑각 → 외각으로 큰 이등변삼각형의 밑각 → 두 내각의 합으로 ∠ACE"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "삼각형의 외각의 성질",
+   "이등변삼각형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A64-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이웃한 이등변삼각형에서 외각의 크기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|삼각형의 성질|03",
+   "seed": 537084699,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:0786f382-78f7-4957-86a1-9f1bb1a972b1",
+   "authorRationale": "이웃한 두 이등변삼각형(DB=DC, CD=CA)에서 외각을 두 번 써 연장선 위 점 E에 대한 ∠ACE를 구하는 값 묻기 — 견본과 조건 배치 · 풀이 단계 · 그림 역할이 같고, 원본도 값을 묻는 객관식이므로 파생기 결과와 꼴이 맞는다",
+   "facts": {
+    "mode": 1,
+    "a": 26,
+    "e": 78,
+    "x": 52
+   }
+  },
+  "figureAuthoring": {
+   "method": "middle-engine-figureSpec",
+   "newFigures": 1,
+   "originalCropEmbedded": false
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.155,
+   "longestRun": 10,
+   "residualChars": 74,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

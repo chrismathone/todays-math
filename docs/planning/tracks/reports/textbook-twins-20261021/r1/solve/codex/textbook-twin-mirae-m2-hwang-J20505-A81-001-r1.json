@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db5-aa39-7ad1-81a6-46cd5f2567d9",
+ "startedAt": "2026-10-21T18:05:49+0900",
+ "elapsedSec": 20.2,
+ "studentSha256": {
+  "fig-1.png": "b08f3429413ff84c4eec459499b54f2cc6edaa3b968edb6f713ce70cd98aa338",
+  "student.json": "4be6ec5358c62f673b5349eb4ab8c3b50b36ac325d33b0889e80a7ff78354de9"
+ },
+ "promptSha256": "ce468dba25ededb492a352adfe572ba548100434e44e467d3b88770f70d9b2a8",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"AD ∥ BC이고 AE가 ∠A를 이등분하므로 ∠BAE=∠AEB이다. 따라서 BE=AB=6 cm이다.\\n마찬가지로 ∠CDF=∠DFC이므로 CF=CD=6 cm이다.\\nBC=AD=15 cm이므로 EF=BC−BE−CF=15−6−6=3 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AD ∥ BC이고 AE가 ∠A를 이등분하므로 ∠BAE=∠AEB이다. 따라서 BE=AB=6 cm이다.\n마찬가지로 ∠CDF=∠DFC이므로 CF=CD=6 cm이다.\nBC=AD=15 cm이므로 EF=BC−BE−CF=15−6−6=3 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "526db3f6137eeb70bb344fc63e283cbb9dc58898219b0cad74a1ecac013bd93f"
+}

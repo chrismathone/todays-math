@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 343,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r2",
+ "authorId": "claude-opus-5-5:f5bf8e34-a8d0-4ca7-a9b3-aa7b2156744d",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n하루네 마당에는 반지름의 길이가 $25\\,\\mathrm{m}$인 사분원 모양의 잔디밭이 있다. 그림과 같이 이 잔디밭 안에 직사각형 $\\mathrm{OPQR}$ 모양의 꽃밭을 만들었는데, 꼭짓점 $\\mathrm{P}$, $\\mathrm{R}$는 두 반지름 위에, 꼭짓점 $\\mathrm{Q}$는 호 위에 있다. $\\overline{OR}=7\\,\\mathrm{m}$일 때, 꽃밭 $\\square OPQR$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$168\\,\\mathrm{m}^2$",
+ "solution": "점 $\\mathrm{Q}$는 호 위의 점이므로 $\\overline{OQ}=25\\,\\mathrm{m}$이다. $\\overline{RQ}$와 $\\overline{OR}$는 수직이므로 $\\triangle ORQ$는 직각삼각형이고, 피타고라스 정리에 의하여 $\\overline{RQ}^2=25^2-7^2=576$이다. $\\overline{RQ}>0$이므로 $\\overline{RQ}=24\\,\\mathrm{m}$이다. 따라서 $\\square OPQR$의 넓이는 $7\\times 24=168\\,(\\mathrm{m}^2)$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A60-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A60-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-6acad58d478a2c12-1-5",
+  "problemCode": "J20801-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "2ff8e497499fe09611c6dd7a6bbdb7ff90a9c190e3ff009ae481f1b20ab0a89a",
+  "dbContentSha256": "db7eae11bb98c2f744ee286ecce114f66c30b74cd4c73221d0e11f5d9f14db26",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-5_피타고라스정리.hwp",
+    "sha256": "70d323e1bf27aa297cd816e3fa38d6ce501379c936568afa88378c7d14949504",
+    "bytes": 877568
+   }
+  ],
+  "originalFigureSha256": [
+   "9ff72971c023170c0a84ab1070356402546c4cfec5a0279c142dd5ab7ea58424"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "사분원의 반지름과 가로로 놓인 변(반지름 위의 변) 길이를 주고, 호 위의 꼭짓점을 가진 내접 직사각형의 넓이를 구한다. 그림에는 반지름과 가로 변 길이가 함께 표시된다.",
+  "after": "마당의 사분원 잔디밭 안 꽃밭 장면으로 바꾸고, 세로로 놓인 짧은 변 길이만 그림에 표시하며 반지름은 글로만 준다. 직각삼각형의 다른 쪽 변을 구해 넓이를 구한다.",
+  "sharedConcept": "사분원에 내접한 직사각형의 대각선은 반지름이므로 피타고라스 정리로 나머지 변을 구한다.",
+  "sharedProcedure": "호 위의 꼭짓점과 중심을 이은 선분 = 반지름 → 직각삼각형에서 피타고라스 정리로 나머지 한 변 → 가로 × 세로로 넓이"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리"
+  },
+  "prerequisites": [
+   "원의 반지름",
+   "직사각형의 성질과 넓이",
+   "피타고라스 정리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20801-A60-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "사분원에 내접한 직사각형에서 피타고라스 정리로 변의 길이를 구해 넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.121,
+   "longestRun": 7,
+   "residualChars": 95,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

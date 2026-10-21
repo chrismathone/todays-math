@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 373,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A79-001-r1",
+ "authorId": "claude-fable-5-1:9b0a36b7-c371-475d-ae44-b6996be08521",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "지우와 서아가 각각 주사위 한 개씩을 동시에 던진다. 지우의 주사위는 $4$의 약수의 눈이 나오고, 서아의 주사위는 $5$ 이상의 눈이 나올 확률을 구하시오.",
+ "choices": [],
+ "answer": "$\\frac{1}{6}$",
+ "solution": "지우의 주사위에서 $4$의 약수의 눈은 $1,\\,2,\\,4$의 $3$가지이므로 그 확률은 $\\frac{3}{6}=\\frac{1}{2}$이다. 서아의 주사위에서 $5$ 이상의 눈은 $5,\\,6$의 $2$가지이므로 그 확률은 $\\frac{2}{6}=\\frac{1}{3}$이다. 두 사건은 서로 영향을 주지 않으므로 구하는 확률은 $\\frac{1}{2}\\times\\frac{1}{3}=\\frac{1}{6}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-e53994353bd4ed35-0-3",
+  "problemCode": "J20904-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "4a731252f148f22c5cb3f5231e64440458f09b525df8d15da0d712a795fe5138",
+  "dbContentSha256": "9e4a2ece4e712142b036cf9bade228f4f52b252466f97a4e26edfde090236e10",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-4_확률의계산.hwp",
+    "sha256": "f575117245aaea83acda23273b14ba4185da7e29edd4f6a7530ee3618e2657f5",
+    "bytes": 93184
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "주사위 두 개를 던져 한쪽은 소수, 다른 쪽은 홀수의 눈이 나올 확률",
+  "after": "두 사람이 주사위를 하나씩 던져 한쪽은 4의 약수, 다른 쪽은 5 이상의 눈이 나올 확률",
+  "sharedConcept": "서로 영향을 주지 않는 두 사건이 동시에 일어날 확률",
+  "sharedProcedure": "각 주사위에서 조건에 맞는 눈의 개수를 세어 확률 구함 → 두 확률을 곱함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "확률의 뜻",
+   "두 사건이 동시에 일어날 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-A79-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위에서 각각 다른 조건이 동시에 일어날 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.163,
+   "longestRun": 7,
+   "residualChars": 55,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

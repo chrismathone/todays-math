@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "8779acf4-515e-4f83-ae49-929060e166fd",
+ "startedAt": "2026-10-21T18:13:17+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "bfc48874c9764480bf4ebc283bbef15dc94f28be553a69c08e55160d17568255"
+ },
+ "promptSha256": "2c256aba2d71f7aa93eaddad70abada4a099c70a6adab82088290e298a6cc9af",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"처음 수의 십의 자리 숫자를 x, 일의 자리 숫자를 y라 하면, 3x = y - 2에서 y = 3x + 2이다. 두 자리 숫자를 바꾼 수와의 관계에서 (10y + x) - (10x + y) = 54, 즉 y - x = 6이다. y = 3x + 2를 대입하면 (3x + 2) - x = 6에서 2x = 4이므로 x = 2, y = 8이다. 따라서 구하는 자연수는 28이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "처음 수의 십의 자리 숫자를 x, 일의 자리 숫자를 y라 하면, 3x = y - 2에서 y = 3x + 2이다. 두 자리 숫자를 바꾼 수와의 관계에서 (10y + x) - (10x + y) = 54, 즉 y - x = 6이다. y = 3x + 2를 대입하면 (3x + 2) - x = 6에서 2x = 4이므로 x = 2, y = 8이다. 따라서 구하는 자연수는 28이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5c9b97100f4c98963df0ce2c75bf689eb4716fb15716ef0c932ccc1c923f6835"
+}

@@ -1,0 +1,156 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 281,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r2",
+ "authorId": "claude-opus-5-5:d32d7ef0-2be9-4c0f-97b7-500e7f5d2862",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 $\\triangle ABC$에서 점 $D$는 변 $BC$ 위에 있고, $\\overline{DE}\\perp\\overline{AB}$, $\\overline{DF}\\perp\\overline{AC}$, $\\overline{DE}=\\overline{DF}$이다. $\\angle BAC=76^{\\circ}$일 때, $\\angle ADF$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$52^{\\circ}$",
+ "solution": "$\\triangle ADE$와 $\\triangle ADF$는 $\\angle AED=\\angle AFD=90^{\\circ}$인 직각삼각형이고, 빗변 $AD$는 공통, $\\overline{DE}=\\overline{DF}$이므로 $\\triangle ADE\\equiv\\triangle ADF$($\\mathrm{RHS}$ 합동)이다. 따라서 $\\angle DAF=\\angle DAE=\\frac{1}{2}\\times76^{\\circ}=38^{\\circ}$이다. $\\triangle ADF$에서 세 내각의 크기의 합은 $180^{\\circ}$이므로 $\\angle ADF=180^{\\circ}-(90^{\\circ}+38^{\\circ})=52^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A67-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A67-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-1-5",
+  "problemCode": "J20502-A67-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "9b394cab225417431175add01cfe017320f0001838fedf1e4b3a577023f9affe",
+  "dbContentSha256": "dca908d0f0e387b20a76a6e066548b02056167e7654f479858995db85075bf48",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "97915be4d9f875473f3d99d2ac5da2e80aa76c4d7a4424e15562a255947d04d1"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "거의 이등변삼각형 꼴의 삼각형에서 꼭지각의 크기와, D에서 두 변까지의 수선의 길이가 같다는 조건이 주어지고, 직각은 90° 수치로 나타냈다. 꼭지점 A 쪽 B변 옆 직각삼각형에서 D의 각을 묻는다.",
+  "after": "좌우가 다른 삼각형에서 꼭지각 76°와 수선 길이가 같다는 조건이 주어지고, 직각은 수직 기호(⊥)로 나타냈다. 물음은 C 변 쪽 직각삼각형에서 D의 각(∠ADF)으로 옮겼다. 주어진 값과 구하는 값의 방향은 원본과 같다.",
+  "sharedConcept": "직각삼각형의 RHS 합동으로 AD가 ∠BAC를 이등분함을 보이기",
+  "sharedProcedure": "RHS 합동 확인 → 대응각이 같으므로 ∠BAC를 반으로 나눔 → 직각삼각형의 내각의 합으로 D의 각 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHS)",
+   "합동인 도형의 대응각",
+   "삼각형의 세 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A67-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "수선의 길이가 같은 점과 RHS 합동으로 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rE' ray to 'A' is not covered by a rendered segment",
+     "session": "ef3e92d9-bfff-45fb-b67a-ae609d36b6c4",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: angle 'angA' ray to 'B' is not covered by a rendered segment",
+     "session": "e1b830e7-597a-4796-b5b3-aed34406df7a",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.204,
+   "longestRun": 8,
+   "residualChars": 52,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 4,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A55-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 계산하시오.\n$\\left\\{-15a^{2}b^{3}+(-10a^{3}b^{2})\\right\\}\\div\\left(-\\frac{5}{3}ab^{2}\\right)$",
+ "choices": [],
+ "answer": "$6a^{2}+9ab$",
+ "solution": "괄호 안을 정리하면 $-15a^{2}b^{3}-10a^{3}b^{2}$이다.\n나눗셈을 역수의 곱셈으로 바꾸면 $(-15a^{2}b^{3}-10a^{3}b^{2})\\times\\left(-\\frac{3}{5ab^{2}}\\right)$이다.\n첫째 항은 $9ab$, 둘째 항은 $6a^{2}$이다.\n따라서 답은 $6a^{2}+9ab$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-18",
+  "problemCode": "J20108-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "b765ac93d67baf533454b63ed125474bcff598a9bab6beb87e3db0c772fd5727",
+  "dbContentSha256": "5fa9add800231e9a6e0a0a1363b5769a12c6c5c3b1a2ee33375686cc6e7829c6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "괄호 안에 음수 항을 빼는 꼴이 있고, 양의 분수 계수 단항식으로 나눈다.",
+  "after": "괄호 안에 음수 항을 더하는 꼴이 있고, 음의 분수 계수 단항식으로 나누어 부호 처리까지 한다.",
+  "sharedConcept": "다항식을 분수 계수 단항식으로 나누기",
+  "sharedProcedure": "괄호 안 정리 → 나누는 식의 역수를 곱하기 → 각 항에 분배 → 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "역수",
+   "단항식의 나눗셈",
+   "분배법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A55-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수 계수 단항식으로 다항식 나누기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 34자"
+   ],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 34,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

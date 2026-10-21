@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dde-9579-7ec0-bad6-a4c2d0a8ab1e",
+ "startedAt": "2026-10-21T18:50:30+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "fig-1.png": "d757bacd3251987f493bae7382a3f99c937ad6f9934569e585f77c6ba53e5033",
+  "student.json": "e23ef0f871116871ba4e43fe460f89ef6b5fc59402769a92b51a29c01d836662"
+ },
+ "promptSha256": "47250888aa5d2aeea4983e255f003f26407023312a3a8e65665514d916b94051",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"이항하여 정리하면 $ax>-4a$이다.\\n$a<0$이므로 양변을 $a$로 나누면 부등호 방향이 바뀌어 $x<-4$이다.\\n따라서 $-4$에 빈 점을 찍고 왼쪽으로 나타낸 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "이항하여 정리하면 $ax>-4a$이다.\n$a<0$이므로 양변을 $a$로 나누면 부등호 방향이 바뀌어 $x<-4$이다.\n따라서 $-4$에 빈 점을 찍고 왼쪽으로 나타낸 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3eb874598963be00dc250d55c567d58833fd52b1d05572119af5dae49570a437"
+}

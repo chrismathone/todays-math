@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-90f4-7b61-9d10-a186aaf9e53b",
+ "startedAt": "2026-10-21T18:51:35+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "1f68b7d8c68533e9e96e24b6372551aff4f1d37de2fa36eb37d6836d891f238e"
+ },
+ "promptSha256": "48e1b94444da3e81944b643c3b07830c239748953ec2e3872dc40418b3bcaee3",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$x=8, y=-3$\",\"work\":\"첫째 식에 10을, 둘째 식에 12를 곱하면 $3x+4y=12$, $3x-4y=36$이다.\\n두 식을 더하면 $6x=48$이므로 $x=8$이다.\\n이를 $3x+4y=12$에 대입하면 $24+4y=12$이므로 $y=-3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$x=8, y=-3$",
+  "work": "첫째 식에 10을, 둘째 식에 12를 곱하면 $3x+4y=12$, $3x-4y=36$이다.\n두 식을 더하면 $6x=48$이므로 $x=8$이다.\n이를 $3x+4y=12$에 대입하면 $24+4y=12$이므로 $y=-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5d177bc0a90603e586119c4a602fa66eff968828029150679e70d72963d79d42"
+}

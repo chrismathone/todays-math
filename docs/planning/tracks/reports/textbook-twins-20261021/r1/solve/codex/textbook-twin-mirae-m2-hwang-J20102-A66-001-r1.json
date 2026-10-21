@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A66-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5e-5eed-78a0-ac05-4ca95713c985",
+ "startedAt": "2026-10-21T16:30:28+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "student.json": "4c89ab6c029bb8f7fde0c6640863b210329bd66a1c59003345dae65a684c3d69"
+ },
+ "promptSha256": "94604033b7cafac544da1591397680887b844e2f180aef90a68c5aae6b849645",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"2\",\"work\":\"$\\\\frac{7}{54}=0.1\\\\overline{296}$이므로 순환마디는 296이고, 순환마디에 들어가지 않는 숫자는 소수점 바로 아래의 1이다. 따라서 a=3, b=1이므로 a-b=2이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "2",
+  "work": "$\\frac{7}{54}=0.1\\overline{296}$이므로 순환마디는 296이고, 순환마디에 들어가지 않는 숫자는 소수점 바로 아래의 1이다. 따라서 a=3, b=1이므로 a-b=2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "112cc9eaed78675f5721c18efc6a27213c741f6e1de757eb5320c0b706a813df"
+}

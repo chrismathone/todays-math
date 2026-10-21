@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A19-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "1d258306-f26c-4f6c-8386-5665c54b2ca1",
+ "startedAt": "2026-10-21T18:15:03+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "8967e8be640443732dd7f88543637cd6f7e762f1ee1fc76e15558f45829bb90a"
+ },
+ "promptSha256": "a4671b65f044f15715590c003ec6635e0e206399a6c25d4419996253f21e78cd",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"-3\",\n  \"work\": \"두 일차방정식 3x+y=5와 x-y=7을 연립하여 더하면 4x=12에서 x=3이고, y=-4이다. 교점의 좌표 (3, -4)를 2x+ay=18에 대입하면 2(3)+a(-4)=18, 6-4a=18이므로 a=-3이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "-3",
+  "work": "두 일차방정식 3x+y=5와 x-y=7을 연립하여 더하면 4x=12에서 x=3이고, y=-4이다. 교점의 좌표 (3, -4)를 2x+ay=18에 대입하면 2(3)+a(-4)=18, 6-4a=18이므로 a=-3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f8df9024acfa4ee06f2e50a3d5cbbb5388ad37531e949bcd000fdc1cf0f25db0"
+}

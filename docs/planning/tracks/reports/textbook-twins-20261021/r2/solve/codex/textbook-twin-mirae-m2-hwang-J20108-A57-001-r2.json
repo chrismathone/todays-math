@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7a-e556-7d21-b4a8-a3662db8b923",
+ "startedAt": "2026-10-21T17:01:37+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "student.json": "4d7c4e09c17a7b6857cc5a1e421b76054791f2ecb2612093c54a3d2a5c5c14f3"
+ },
+ "promptSha256": "e3db6df495892a6d384cc0bc3210d270310b0f176be87de0031ff12ff6c502ef",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$\",\"work\":\"분배법칙으로 전개한 뒤 동류항끼리 정리한다.\\n⑴ $8a^2+48a-63+7a=8a^2+55a-63$\\n⑵ $9x^2+54xy-56xy+7y^2=9x^2-2xy+7y^2$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $8a^2+55a-63$ ⑵ $9x^2-2xy+7y^2$",
+  "work": "분배법칙으로 전개한 뒤 동류항끼리 정리한다.\n⑴ $8a^2+48a-63+7a=8a^2+55a-63$\n⑵ $9x^2+54xy-56xy+7y^2=9x^2-2xy+7y^2$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "852569f705e4c8617181657ab3bc85e2ad523fa92e81daea6f812d43061c8553"
+}

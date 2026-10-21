@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-0d00-7972-9c4c-990d87f1a859",
+ "startedAt": "2026-10-21T17:47:40+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "student.json": "6bc8738f81d3e5272cd7ba176bb49a831361330f295870ad2b6b0d2796714faa"
+ },
+ "promptSha256": "944ca03f145e701114fa0afc2c13f6dd76a95f83d615a018d614d11f8acb300d",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4 km/h\",\"work\":\"강을 거슬러 올라갈 때의 속력은 6÷3=2 km/h, 내려올 때의 속력은 6÷1=6 km/h이다.\\n두 속력의 합은 흐르지 않는 물에서의 배의 속력의 2배이므로, 구하는 속력은 (2+6)÷2=4 km/h이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4 km/h",
+  "work": "강을 거슬러 올라갈 때의 속력은 6÷3=2 km/h, 내려올 때의 속력은 6÷1=6 km/h이다.\n두 속력의 합은 흐르지 않는 물에서의 배의 속력의 2배이므로, 구하는 속력은 (2+6)÷2=4 km/h이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5eecd9083e415e4cc7a2eb66a1546eae07a323185082d7903643dbaefbde8be1"
+}

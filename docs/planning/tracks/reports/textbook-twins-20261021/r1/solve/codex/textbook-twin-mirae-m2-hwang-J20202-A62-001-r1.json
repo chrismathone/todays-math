@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-19da-7871-b62b-0df66fc03de9",
+ "startedAt": "2026-10-21T16:50:55+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "cec8f1d2fa2dc29d826bf1c87725f82951bc7b27a1a70eb965369b0cca958d9b"
+ },
+ "promptSha256": "7541bb12b31d5ced6b3a4279adbe1bb3584b73fa57e5b8d215c0c84902ff329e",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$9x+4>12x-11$에서 양변에 $11-9x$를 더하면 $15>3x$이다.\\n양변을 $3$으로 나누면 $x<5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$9x+4>12x-11$에서 양변에 $11-9x$를 더하면 $15>3x$이다.\n양변을 $3$으로 나누면 $x<5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6651505f4d482d1d341c5309da0f15148d9f8f27c91624055b2f2e804f3e1914"
+}

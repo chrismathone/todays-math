@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 272,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 직각삼각형 $ABC$는 $\\angle B=90^{\\circ}$이다. 빗변 $AC$의 중점을 $M$이라 하고, $\\overline{MN}\\perp\\overline{AC}$가 되도록 변 $BC$ 위에 점 $N$을 잡았더니 $\\overline{BN}=\\overline{MN}$이었다. 이때 $\\angle x$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$60^{\\circ}$",
+ "solution": "$\\angle ACB=a$라 하자. $\\triangle AMN$과 $\\triangle CMN$에서 $\\overline{AM}=\\overline{CM}$, $\\overline{MN}$은 공통, $\\angle AMN=\\angle CMN=90^{\\circ}$이므로 $\\triangle AMN\\equiv\\triangle CMN$($\\mathrm{SAS}$ 합동)이고 $\\angle MAN=a$이다. 또 직각삼각형 $ABN$과 $AMN$에서 빗변 $AN$은 공통, $\\overline{BN}=\\overline{MN}$이므로 $\\triangle ABN\\equiv\\triangle AMN$($\\mathrm{RHS}$ 합동)이고 $\\angle BAN=\\angle MAN=a$이다. $\\triangle ABC$에서 $2a+a+90^{\\circ}=180^{\\circ}$이므로 $a=30^{\\circ}$이다. 따라서 $\\triangle ABN$에서 $\\angle x=180^{\\circ}-90^{\\circ}-30^{\\circ}=60^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A58-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A58-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-5",
+  "problemCode": "J20502-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "2b697f05e251e84de2b7235ab2d7e0a5f4ab90c66e33cf762665752f5f4c9637",
+  "dbContentSha256": "38ff12d4ce0bec400169d3bd51ae8700dd0c914377245f75b86a62a799e3d652",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "c991889eebecaf4a3681ff04c3bd4f9f6a8f94e9821ca93bea642eeaac2a9f8a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "빗변의 중점에서 세운 수선의 발과 직각 꼭짓점까지의 거리가 같을 때, 수선의 발이 있는 쪽 밑각(빗변과 한 변 사이 각)의 크기를 묻는다.",
+  "after": "직각을 $B$로 옮기고 수직이등분선의 발을 $N$으로 두어, 밑각이 아니라 수선의 발에서 생기는 각 $\\angle ANB$를 묻는다. 밑각 $30^{\\circ}$를 거쳐 한 번 더 삼각형의 내각으로 넘어간다.",
+  "sharedConcept": "수직이등분선에 의한 SAS 합동과 RHS 합동으로 각이 같음을 끌어내기",
+  "sharedProcedure": "중점·수선으로 SAS 합동 → 밑각 둘이 같음 → RHS 합동으로 나머지 각도 같음 → 삼각형 내각의 합 → 구하는 각"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "삼각형의 합동 조건(SAS)",
+   "직각삼각형의 합동 조건(RHS)",
+   "삼각형의 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A58-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형에서 두 번의 합동으로 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rB' ray to 'C' is not covered by a rendered segment",
+     "session": "4fa46132-06d5-42a5-8f34-1a49c780d940",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.095,
+   "longestRun": 8,
+   "residualChars": 66,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

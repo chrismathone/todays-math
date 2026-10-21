@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c3fb9ad3-f53f-422e-9340-8467a9205708",
+ "startedAt": "2026-10-21T16:28:39+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "fig-1.png": "a38620d88b44413a3b58a53ee86096c6d7185674e458124abfd5c45a6fb0a142",
+  "student.json": "fde3e52ebcc82163fa6636f0f88d5bfa6cafba049f38df226cfa1e3de971dd0c"
+ },
+ "promptSha256": "9635f7f79683218934b7b96866f775f90a19f09ef0f1c0d6ab65c9635aed4464",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"그림은 -4에서 빈 동그라미를 찍고 오른쪽으로 향하므로 해는 x>-4이다. a<0이면 양변을 a로 나눌 때 부등호 방향이 바뀐다. ① ax<4a에서 x>4. ② 2ax≤-8a에서 x≥-4(등호가 있어 맞지 않음). ③ -a>0이므로 -ax<4a에서 x<-4. ④ ax<-4a에서 x>-4이므로 그림과 맞는다. ⑤ ax>4a에서 x<4.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그림은 -4에서 빈 동그라미를 찍고 오른쪽으로 향하므로 해는 x>-4이다. a<0이면 양변을 a로 나눌 때 부등호 방향이 바뀐다. ① ax<4a에서 x>4. ② 2ax≤-8a에서 x≥-4(등호가 있어 맞지 않음). ③ -a>0이므로 -ax<4a에서 x<-4. ④ ax<-4a에서 x>-4이므로 그림과 맞는다. ⑤ ax>4a에서 x<4.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cbe94c055549ec6c2983a31448b6fc546307a601b6c3714a673f1770c56690fd"
+}

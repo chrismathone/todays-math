@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dce-44d7-7271-8e1e-b59268f08172",
+ "startedAt": "2026-10-21T18:32:41+0900",
+ "elapsedSec": 15.1,
+ "studentSha256": {
+  "fig-1.png": "a8eb19f7fe29c4f83e8d3e1f4e66951793ebd2d4b46e9efbe16834dccc6da345",
+  "student.json": "c8ed923340d440bfd51532b89247891ce54f6181fa9bb6aa9963c71636058aad"
+ },
+ "promptSha256": "118dda91bb6c6dca9dcd37e8f3ae02884c8fb37d8c46dd34b18c13147c3e320f",
+ "freezeCommit": "fd14b9eaa54898615b95e3f05074dac06183f2fb",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$9x-y+19$\",\n  \"work\": \"왼쪽 면과 오른쪽 면이 마주 보므로 공통 합은 $(2x-3y+5)+(-x+5y-1)=x+2y+4$이다.\\n$A$는 $-2x+y-3$과 마주 보므로 $A=(x+2y+4)-(-2x+y-3)=3x+y+7$이다.\\n$B$는 $4x-y+9$와 마주 보므로 $B=(x+2y+4)-(4x-y+9)=-3x+3y-5$이다.\\n따라서 $2A-B=2(3x+y+7)-(-3x+3y-5)=9x-y+19$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$9x-y+19$",
+  "work": "왼쪽 면과 오른쪽 면이 마주 보므로 공통 합은 $(2x-3y+5)+(-x+5y-1)=x+2y+4$이다.\n$A$는 $-2x+y-3$과 마주 보므로 $A=(x+2y+4)-(-2x+y-3)=3x+y+7$이다.\n$B$는 $4x-y+9$와 마주 보므로 $B=(x+2y+4)-(4x-y+9)=-3x+3y-5$이다.\n따라서 $2A-B=2(3x+y+7)-(-3x+3y-5)=9x-y+19$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2f1ba686f103e6b7c0f04fef648a59d7e6f05842327fab618fc8aaa6bf8ad736"
+}

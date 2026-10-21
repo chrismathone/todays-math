@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 3,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r2",
+ "authorId": "claude-fable-5-1:1a9b5ca7-cb94-4713-b959-96f144d5b4a7",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 식을 간단히 정리한 뒤 $x$의 계수를 $xy$의 계수에 더하면 $0$이 된다. 상수 $a$의 값은?\n$(56x^{2}y-64xy+112x^{2})\\div 8x+7x(ay-11)$",
+ "choices": [
+  "$-8$",
+  "$-7$",
+  "$7$",
+  "$8$",
+  "$10$"
+ ],
+ "answer": "④",
+ "solution": "$(56x^{2}y-64xy+112x^{2})\\div 8x=7xy-8y+14x$이고 $7x(ay-11)=7axy-77x$이다.\n두 식을 더해 동류항끼리 모으면 $(7a+7)xy-63x-8y$이다.\n$xy$의 계수 $7a+7$과 $x$의 계수 $-63$을 더하면 $0$이므로 $7a+7-63=0$, $7a=56$, $a=8$이다.\n따라서 정답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-14",
+  "problemCode": "J20108-A54-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "83627657274e878b692b43ffe7fe0adb2d274f00160542928c726384690b8457",
+  "dbContentSha256": "a2acfe88f28d51ebdb430ebb806a8578ab6e6165f540d42582d63acf0f3b1fc2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "단항식×다항식 항이 앞에, 다항식÷단항식 항이 뒤에 놓인 식을 전개·정리한 뒤, xy 계수와 x 계수의 합이 0이라는 조건으로 미지수 a를 구하는 5지선다(보기 1~5).",
+  "after": "다항식÷단항식 항을 앞에, 단항식×다항식 항을 뒤에 두고 나누는 단항식·계수를 모두 새로 잡은 식을 정리한 뒤, 같은 계수 조건(합이 0)으로 a를 구하는 5지선다. 보기는 음수·양수가 섞인 새 값.",
+  "sharedConcept": "단항식과 다항식의 곱셈·나눗셈이 섞인 식의 계산과 계수 비교",
+  "sharedProcedure": "분배법칙으로 곱 전개 → 다항식을 단항식으로 나누기 → 동류항 정리 → 조건으로 a의 일차방정식 세우기 → a 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식과 다항식의 곱셈",
+   "다항식을 단항식으로 나누기",
+   "동류항 정리",
+   "일차방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A54-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "혼합 계산 후 계수 조건으로 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.157,
+   "longestRun": 6,
+   "residualChars": 73,
+   "params": 9,
+   "numberRetention": 0.222,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

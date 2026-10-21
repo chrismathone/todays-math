@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 155,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20206-A20-001-r1",
+ "authorId": "claude-fable-5-1:2b72f83c-e4eb-4bb1-b8e5-9ac41356bf24",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "하루는 철사를 구부려 직사각형 모양의 사진틀을 만들려고 한다. 세로의 길이는 가로의 길이보다 $3\\,\\mathrm{cm}$ 짧게 하고, 틀의 테두리 전체 길이는 $42\\,\\mathrm{cm}$보다 작지 않게 할 생각이다. 가로의 길이는 최소 몇 $\\mathrm{cm}$로 해야 하는지 풀이 과정과 함께 서술하시오.",
+ "choices": [],
+ "answer": "$12\\,\\mathrm{cm}$",
+ "solution": "가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(x-3)\\,\\mathrm{cm}$이다. 테두리 전체 길이는 둘레이므로 $2\\{x+(x-3)\\} \\ge 42$가 성립해야 한다. 정리하면 $4x-6 \\ge 42$, $4x \\ge 48$, $x \\ge 12$이다. 따라서 가로의 길이는 최소 $12\\,\\mathrm{cm}$로 해야 한다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-20",
+  "problemCode": "J20206-A20-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "00222c7993a6795aab548f9bfce473571efe805867f3699f83729f8a689ae33b",
+  "dbContentSha256": "34b8847d69bd506681446fd2eec3b13f231450e6de93906f50f66d015c79e96a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "두 변의 차가 주어진 직사각형에서 둘레의 하한이 주어지고, 짧은 변(세로)의 최솟값을 구한다.",
+  "after": "철사로 사진틀을 만드는 장면에서 세로가 가로보다 일정 길이 짧다는 조건과 둘레의 하한이 주어지고, 긴 변(가로)의 최솟값을 구한다.",
+  "sharedConcept": "일차부등식의 활용 — 직사각형의 둘레",
+  "sharedProcedure": "구하는 변을 x로 놓기 → 다른 변을 x의 식으로 나타내기 → 둘레 2(가로+세로)로 부등식 세우기 → 일차부등식 풀기 → 조건에 맞는 답 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d9477f71-58e7-4d2f-8ab7-1c7beb3dbce1",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(속력, 도형, 기타)"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "직사각형의 둘레의 길이",
+   "문자를 사용한 식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20206-A20-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "변의 관계가 주어진 직사각형의 둘레에 대한 일차부등식",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d9477f71-58e7-4d2f-8ab7-1c7beb3dbce1",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.069,
+   "longestRun": 6,
+   "residualChars": 90,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 382,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B26-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$2$, $5$, $7$, $8$, $9$의 숫자가 각각 하나씩 적힌 $5$장의 카드가 있다. 이 가운데 $2$장을 임의로 뽑아 차례로 십의 자리와 일의 자리에 놓아 두 자리 자연수를 만들 때, 만든 수가 $3$의 배수일 확률은?",
+ "choices": [
+  "$\\frac{1}{10}$",
+  "$\\frac{1}{5}$",
+  "$\\frac{1}{4}$",
+  "$\\frac{3}{10}$",
+  "$\\frac{2}{5}$"
+ ],
+ "answer": "④",
+ "solution": "십의 자리에 올 수 있는 숫자는 $5$가지, 일의 자리에는 남은 $4$가지이므로 만들 수 있는 두 자리 자연수는 $5\\times 4=20$(개)이다.\n이 가운데 각 자리 숫자의 합이 $3$의 배수인 수는 $27$, $57$, $72$, $75$, $78$, $87$의 $6$개이다.\n따라서 구하는 확률은 $\\frac{6}{20}=\\frac{3}{10}$이다. 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-9",
+  "problemCode": "J20903-B26-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "a060fc046ef4d0b02f61dbb3a416a3cf1d46f67bd7dc3d7e6bb565b44d788e4b",
+  "dbContentSha256": "26cd048d8942d36c38fb2a9dfb019044ba51e5baaadc630e3184eaab2a176003",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "1~6 숫자 카드 6장에서 2장을 뽑아 만든 두 자리 수 30개 가운데 4의 배수인 것의 비율을 구한다",
+  "after": "2, 5, 7, 8, 9 숫자 카드 5장에서 2장을 뽑아 만든 두 자리 수 20개 가운데 3의 배수인 것의 비율을 구한다",
+  "sharedConcept": "수 만들기 경우의 수와 확률",
+  "sharedProcedure": "만들 수 있는 두 자리 수의 개수 n(n−1) → 조건(배수)을 만족하는 수 나열 → 개수/전체 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "자연수 만들기 경우의 수",
+   "배수 판정",
+   "확률의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B26-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "카드로 만든 두 자리 수가 배수일 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.205,
+   "longestRun": 11,
+   "residualChars": 91,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

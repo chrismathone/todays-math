@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b63227d0-7c9c-48ab-acf1-39595bf0499b",
+ "startedAt": "2026-10-21T16:56:16+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "72469f93ba4adefb59f9e5415ba14f7b1617429c18bffd442ab8fd1914b420cf"
+ },
+ "promptSha256": "b4ce32b5476242e0863e4e9179d78d5cdabe88860d65e68be8320f3c8f0c4a23",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"31\", \"work\": \"(2x^5/y)^a = 2^a x^{5a}/y^a, (14x^2/y^5)^2 = 196x^4/y^{10}. 나누면 (2^a/196) x^{5a-4} y^{10-a}. 2^a/196 = 8/49 → 2^a = 32 → a=5. b = 25-4 = 21, c = 10-5 = 5. a+b+c = 5+21+5 = 31\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "31",
+  "work": "(2x^5/y)^a = 2^a x^{5a}/y^a, (14x^2/y^5)^2 = 196x^4/y^{10}. 나누면 (2^a/196) x^{5a-4} y^{10-a}. 2^a/196 = 8/49 → 2^a = 32 → a=5. b = 25-4 = 21, c = 10-5 = 5. a+b+c = 5+21+5 = 31",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "13dc78f7f9b284c73e6ec477c30501c53f3e42e1bd492d6d95995d8fd473d8fc"
+}

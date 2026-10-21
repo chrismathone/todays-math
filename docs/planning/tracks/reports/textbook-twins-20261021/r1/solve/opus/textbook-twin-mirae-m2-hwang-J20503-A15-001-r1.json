@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d654199d-931b-4724-97c5-4da3db467a4e",
+ "startedAt": "2026-10-21T17:04:35+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "3aff188a514acaebe8b7b66e1c27e2279e7ab4a0e515677af52b89f26148442c"
+ },
+ "promptSha256": "7a821200f3abdc706caefec10a781aaded6561dec458a5c5ad6d84dc327f1322",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"내심은 세 내각의 이등분선의 교점으로, 모든 삼각형에서 항상 삼각형의 내부에 있다. 둔각삼각형에서 외부에 있는 것은 외심이다. ①②③⑤는 모두 옳다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "내심은 세 내각의 이등분선의 교점으로, 모든 삼각형에서 항상 삼각형의 내부에 있다. 둔각삼각형에서 외부에 있는 것은 외심이다. ①②③⑤는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0e08e796e783072b532b0024cc02c3cc4248ca2072d9ad18915301797111342d"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d68-170d-71d2-bb7d-6eaa68077005",
+ "startedAt": "2026-10-21T16:41:05+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "c517e25bd9e544a27a2c344a22587ac8aa7d7198a93cd8c6533555a72eb07df8"
+ },
+ "promptSha256": "059319851fb38f18373e9f700a22db05e947bd942635fd66b24885f072011245",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$(a^3)^3=a^9$이므로 왼쪽은 $a^{20-\\\\square-9}$이다. 따라서 $20-\\\\square-9=4$이므로 $\\\\square=7$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$(a^3)^3=a^9$이므로 왼쪽은 $a^{20-\\square-9}$이다. 따라서 $20-\\square-9=4$이므로 $\\square=7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bedc83952beeca72b54c2805675db38ab0763dc43aa5a2776499567ed9fd95f8"
+}

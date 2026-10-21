@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B32-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f0915470-124d-4010-b961-cc7cceabbff8",
+ "startedAt": "2026-10-21T17:13:05+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "3a06b02011d0178272e25b19c75bf1a4f027499d4afb95fae58aef62bbab3bfd"
+ },
+ "promptSha256": "1115f98bcc0eead71b08d13a78a8967b23b83751b2c350ae36d9934e26fae133",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "Pairs with difference 3: (1,4),(2,5),(3,6) and the reverse → 6 out of 36 = 1/6.\n\n```json\n{\"answer\": \"$\\\\frac{1}{6}$\", \"work\": \"모든 경우의 수: 6×6=36. 눈의 수의 차가 3인 경우 (지우, 도하): (1,4),(4,1),(2,5),(5,2),(3,6),(6,3) → 6가지. 확률 = 6/36 = 1/6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "모든 경우의 수: 6×6=36. 눈의 수의 차가 3인 경우 (지우, 도하): (1,4),(4,1),(2,5),(5,2),(3,6),(6,3) → 6가지. 확률 = 6/36 = 1/6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "25adf3569cf3d0ed2e477ec35b2298980f07731bf6f3fe39f48caf719a9b9e8c"
+}

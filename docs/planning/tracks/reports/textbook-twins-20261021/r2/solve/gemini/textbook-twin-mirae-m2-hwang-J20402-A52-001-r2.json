@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "4233cf20-4e0a-4538-98e8-d6e83e36f6c7",
+ "startedAt": "2026-10-21T18:17:27+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "e85f585b915d7785aac4b48d17b123a6b8dae6c35fcc494364ad68ea82836471"
+ },
+ "promptSha256": "4164dbff2e0a38a76d418f55ac37fd98d709bba5a3247642a99e2fec4fddfa0d",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"$x$절편이 $8$이므로 점 $(8, 0)$을 $y = -\\\\frac{1}{2}x + a$에 대입하면 $0 = -\\\\frac{1}{2} \\\\times 8 + a$에서 $a = 4$이다. $y$축과 만나는 점의 $y$좌표는 $y$절편과 같으므로 $a = 4$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "$x$절편이 $8$이므로 점 $(8, 0)$을 $y = -\\frac{1}{2}x + a$에 대입하면 $0 = -\\frac{1}{2} \\times 8 + a$에서 $a = 4$이다. $y$축과 만나는 점의 $y$좌표는 $y$절편과 같으므로 $a = 4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "02528a5a90cc03f2e0b82685855870af6bc834dc70ada65e2238698c11fb9890"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B30-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "288ba944-89d3-42b2-81f0-1776ddd66f4f",
+ "startedAt": "2026-10-21T17:12:59+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "6b5529bf27f12334c7d562b1be7ef7890d01b87f6f0b4f5cf8c4f17948d8b865"
+ },
+ "promptSha256": "65a7e628a3fc118c9913cb0e07553bca78eb65486d462b9d7ca7fd2db9fe3207",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{5}{12}$\", \"work\": \"모든 경우의 수: 6×6=36. 2x<y+3 ⇔ y>2x−3. x=1: y=1~6 (6가지), x=2: y=2~6 (5가지), x=3: y=4,5,6 (3가지), x=4: y=6 (1가지), x=5와 x=6: 없음 (0가지). 조건을 만족하는 경우는 모두 15가지이므로 확률은 15/36=5/12\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{5}{12}$",
+  "work": "모든 경우의 수: 6×6=36. 2x<y+3 ⇔ y>2x−3. x=1: y=1~6 (6가지), x=2: y=2~6 (5가지), x=3: y=4,5,6 (3가지), x=4: y=6 (1가지), x=5와 x=6: 없음 (0가지). 조건을 만족하는 경우는 모두 15가지이므로 확률은 15/36=5/12",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6d0e9684344a154489f8cd95d021a895ba662231733225179e8fc47e5832d926"
+}

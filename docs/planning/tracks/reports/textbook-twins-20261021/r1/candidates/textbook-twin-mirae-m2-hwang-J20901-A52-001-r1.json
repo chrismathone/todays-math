@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 355,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A52-001-r1",
+ "authorId": "middle-engine:2-2|경우의 수|03",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "서로 다른 두 개의 주사위를 동시에 던질 때, 나오는 두 눈의 수의 합이 $6$ 또는 $8$인 경우의 수를 구하시오.",
+ "choices": [],
+ "answer": "$10$",
+ "solution": "합이 $6$인 경우는 $5$가지, 합이 $8$인 경우는 $5$가지이고, 두 사건은 동시에 일어나지 않는다.\n따라서 구하는 경우의 수는 $5+5=10$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-16",
+  "problemCode": "J20901-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 16,
+  "sourceContentSha256": "367ccad07e740dfba5ce4849841f32450ab90e00de82880a85853a1c43bf1537",
+  "dbContentSha256": "367ccad07e740dfba5ce4849841f32450ab90e00de82880a85853a1c43bf1537",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "1~20 카드 중 한 장을 뽑을 때 6의 배수인 경우와 20의 약수인 경우를 각각 세어 합을 구한다.",
+  "after": "엔진이 새로 정한 범위의 수에서 두 조건의 경우의 수를 각각 세어 더한 값을 구한다.",
+  "sharedConcept": "동시에 일어나지 않는 두 사건의 경우의 수의 합",
+  "sharedProcedure": "첫 조건의 수 나열·세기 → 둘째 조건의 수 나열·세기 → 겹침 없음 확인 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "배수 · 약수",
+   "경우의 수의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "수 뽑기에서 두 조건의 경우의 수의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|경우의 수|03",
+   "seed": 2355496552,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+   "authorRationale": "1~n 카드에서 한 장을 뽑아 '배수 또는 약수' 두 사건을 각각 세어 더하는 절차가 같고, 원본도 값 하나를 구하는 단답형이라 물음 꼴이 그대로 맞는다.",
+   "facts": {
+    "kind": 1,
+    "S1": 6,
+    "S2": 8,
+    "ans": 10
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 32자"
+   ],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 32,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 330,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 $\\overline{AD}$는 $\\triangle ABC$의 중선이고, 점 $G$는 $\\triangle ABC$의 무게중심, 점 $G'$은 $\\triangle GBC$의 무게중심이다. $\\overline{GG'}=6\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$27\\,\\mathrm{cm}$",
+ "solution": "$\\overline{GD}$는 $\\triangle GBC$의 중선이고 점 $G'$은 그 무게중심이므로 $\\overline{GG'}:\\overline{G'D}=2:1$이다. 따라서 $\\overline{GD}=\\frac{3}{2}\\overline{GG'}=9\\,(\\mathrm{cm})$이다. 점 $G$는 $\\triangle ABC$의 무게중심이므로 $\\overline{AG}:\\overline{GD}=2:1$, 즉 $\\overline{AD}=3\\overline{GD}=27\\,(\\mathrm{cm})$이다. 따라서 답은 $27\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A53-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A53-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9f59e35640dafd86-0-2",
+  "problemCode": "J20705-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "8d30057c7d8dea6e2508f468c9568330fcf1a5ce348556b7db5251ceb9a140d4",
+  "dbContentSha256": "88f234d52e2ad819eac95b1e1bb20f076edf80860428e9d9935c34f75cbfcca6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-4_삼각형의무게중심.hwp",
+    "sha256": "8d155fc6bc36207a3640e3dbfba689008469a20d2b35a9bdaa4dbcea03ff054b",
+    "bytes": 234496
+   }
+  ],
+  "originalFigureSha256": [
+   "85d47167f1289a1d09f250eb70fb058107f7990d32b6d6f6af496bd26528474f"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "두 겹 무게중심에서 가장 아래 조각 G'D의 길이를 주고, 꼭짓점 쪽 조각 AG의 길이를 묻는다.",
+  "after": "두 겹 무게중심에서 가운데 조각 GG'의 길이를 주고, 중선 AD 전체의 길이를 묻는다.",
+  "sharedConcept": "무게중심은 중선을 꼭짓점 쪽부터 2:1로 나눈다(두 번 적용)",
+  "sharedProcedure": "G'의 2:1로 GD 구하기 → G의 2:1로 AD(또는 AG) 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질(2:1)",
+   "중선의 정의"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A53-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 겹 무게중심에서 중선 조각의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.44",
+    "이어진 같은 글 24자"
+   ],
+   "overlap4": 0.439,
+   "longestRun": 24,
+   "residualChars": 51,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

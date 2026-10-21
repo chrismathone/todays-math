@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 260,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r2",
+ "authorId": "claude-opus-5-5:967f6438-81de-4129-8657-e313a2629889",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하는 $\\angle A$가 둔각인 $\\triangle ABC$를 그린 뒤, 이 삼각형의 외심을 $O$, 내심을 $I$라고 표시하였다. 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$\\overline{OA}=\\overline{OB}=\\overline{OC}$이다.",
+  "점 $I$에서 세 변 $AB$, $BC$, $CA$까지의 거리는 모두 같다.",
+  "점 $O$는 $\\triangle ABC$의 바깥쪽에 놓인다.",
+  "$\\angle IBA=\\angle IBC$이다.",
+  "점 $O$는 변 $BC$의 중점이다."
+ ],
+ "answer": "⑤",
+ "solution": "외심 $O$는 세 꼭짓점에서 같은 거리에 있으므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이다(①은 옳다). 내심 $I$는 세 변에서 같은 거리에 있다(②는 옳다). 둔각삼각형의 외심은 삼각형의 외부에 있다(③은 옳다). 내심은 세 내각의 이등분선의 교점이므로 $\\overline{BI}$는 $\\angle B$를 이등분하고, $\\angle IBA=\\angle IBC$이다(④는 옳다). 외심이 빗변의 중점에 오는 것은 직각삼각형일 때이고, $\\angle A$가 둔각이면 외심은 변 $BC$ 위가 아니라 삼각형의 외부에 있다. 따라서 ⑤는 옳지 않으므로 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-8",
+  "problemCode": "J20503-A15-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "037b1315fb3714d6fead2c4b5761df3352e7f7523b27c320d05385b5725d2607",
+  "dbContentSha256": "037b1315fb3714d6fead2c4b5761df3352e7f7523b27c320d05385b5725d2607",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure"
+  ],
+  "before": "삼각형 일반에 대한 외심·내심의 성질과 위치를 다룬 일반 명제 다섯 개 가운데 거짓을 고른다(외심이 늘 안쪽에 있다는 명제가 거짓).",
+  "after": "둔각삼각형 하나를 정해 두고 그 삼각형의 외심 O와 내심 I에 대한 구체적인 명제 다섯 개(같은 거리, 각의 이등분, 위치) 가운데 거짓을 고른다. 거짓 보기는 직각삼각형의 경우와 헷갈려 둔각삼각형의 외심을 변의 중점이라고 한 명제다.",
+  "sharedConcept": "삼각형의 외심과 내심의 성질, 삼각형의 모양에 따른 외심의 위치",
+  "sharedProcedure": "보기마다 외심·내심의 정의와 성질을 떠올린다 → 삼각형의 모양(예각·직각·둔각)에 따라 외심의 위치를 판단한다 → 성립하지 않는 명제를 고른다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "수직이등분선의 성질",
+   "각의 이등분선의 성질",
+   "삼각형의 외심과 그 위치",
+   "삼각형의 내심"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A15-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "둔각삼각형의 외심과 내심의 성질 판별",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.03,
+   "longestRun": 6,
+   "residualChars": 104,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

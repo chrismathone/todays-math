@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A49-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3a46fcfb-e429-43b9-b4b3-10f460a4b449",
+ "startedAt": "2026-10-21T17:03:28+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "ce5be2ff31158ddb66338a7a4bc1f7d5de8b06ae0caac8f7ff05c86238237b0f"
+ },
+ "promptSha256": "96b9101b09edaf8972bc2f1675c6e947f76e80b490af1170ae82a1af7966565e",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"-11\", \"work\": \"점 (-2, 6) 대입: 6 = (1/4)a·(-2) + 2 → -a/2 = 4 → a = -8. 따라서 y = -2x + 2. y축 방향으로 b만큼 평행이동하면 y = -2x + 2 + b. 점 (4, -3) 대입: -3 = -8 + 2 + b → b = 3. a - b = -8 - 3 = -11\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "-11",
+  "work": "점 (-2, 6) 대입: 6 = (1/4)a·(-2) + 2 → -a/2 = 4 → a = -8. 따라서 y = -2x + 2. y축 방향으로 b만큼 평행이동하면 y = -2x + 2 + b. 점 (4, -3) 대입: -3 = -8 + 2 + b → b = 3. a - b = -8 - 3 = -11",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8997ac487b38ffce176788606db668b9b980973c1cd57255eeb8cfe10a25db61"
+}

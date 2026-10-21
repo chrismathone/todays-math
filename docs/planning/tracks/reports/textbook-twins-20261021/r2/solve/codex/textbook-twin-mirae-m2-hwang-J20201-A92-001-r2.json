@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd6-290b-7f83-9161-8b6390b64a3d",
+ "startedAt": "2026-10-21T18:41:18+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "355f0be0b8585c7fdf7e548f2b97ddf492dfd7ba4d2637ba61c98f527362f79a"
+ },
+ "promptSha256": "0667a17ff0da7fb93f8a8eb8b209b377d263fb4196f3a8224f11ac699197a59b",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"양변에서 9를 빼면 $-\\\\frac{a}{6}\\\\le-\\\\frac{b}{6}$이다. 양변에 -6을 곱하면 부등호 방향이 바뀌어 $a\\\\ge b$이다. 양변에 양수 $\\\\frac{8}{11}$을 곱하면 $\\\\frac{8a}{11}\\\\ge\\\\frac{8b}{11}$이므로 ③이 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "양변에서 9를 빼면 $-\\frac{a}{6}\\le-\\frac{b}{6}$이다. 양변에 -6을 곱하면 부등호 방향이 바뀌어 $a\\ge b$이다. 양변에 양수 $\\frac{8}{11}$을 곱하면 $\\frac{8a}{11}\\ge\\frac{8b}{11}$이므로 ③이 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "98e54d6ef148ff8e025510b288ff58a139394de2cc72a7b726461b0c4d20b3b6"
+}

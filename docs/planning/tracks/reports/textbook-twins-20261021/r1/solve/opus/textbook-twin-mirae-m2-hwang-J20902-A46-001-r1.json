@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A46-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "42d34f43-3941-430b-81ee-7bb53d399b7a",
+ "startedAt": "2026-10-21T17:12:02+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "fec26f6ff43b83bc46a1bab08ce664e2f390266d187f86cc2f0544e6b713d471"
+ },
+ "promptSha256": "4ae72e810c2fdecc8ae8b7da1558ad8939b080498e8bc20125c8762e574b3ac4",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"16개\", \"work\": \"십의 자리: 0을 제외한 5, 7, 8, 9 중 하나 → 4가지\\n일의 자리: 십의 자리에 쓴 카드를 제외한 나머지 4장(0 포함) 중 하나 → 4가지\\n따라서 4 × 4 = 16(개)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "16개",
+  "work": "십의 자리: 0을 제외한 5, 7, 8, 9 중 하나 → 4가지\n일의 자리: 십의 자리에 쓴 카드를 제외한 나머지 4장(0 포함) 중 하나 → 4가지\n따라서 4 × 4 = 16(개)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "52c03d83fcff5014f65067dcfc592ff7af570ed10e3900f9fb690fe226d97a1d"
+}

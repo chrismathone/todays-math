@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A76-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ed5299ce-dc94-42f7-a250-802670dbff19",
+ "startedAt": "2026-10-21T17:12:19+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "400fb108b225a254f21aa4bf8b15f59337f322527e8d762019bc127379257e82"
+ },
+ "promptSha256": "5646fe14c803c563c979a1ee58d0dbc3a6544274ce71c9c4033c844c72fa2a41",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"A에서 흰 공이 나올 확률: 5/9, B에서 검은 공이 나올 확률: 5/9. 두 사건은 독립이므로 (5/9)×(5/9) = 25/81\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "A에서 흰 공이 나올 확률: 5/9, B에서 검은 공이 나올 확률: 5/9. 두 사건은 독립이므로 (5/9)×(5/9) = 25/81",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c32a9dee29aa14678f89bc31ca808cacd35d000776ea554947f9a44e631b819c"
+}

@@ -1,0 +1,102 @@
+{
+ "version": "graph-1",
+ "xRange": [
+  1.5,
+  8.5
+ ],
+ "yRange": [
+  -1.5,
+  2.5
+ ],
+ "width": 320,
+ "height": 200,
+ "axes": false,
+ "segments": [
+  {
+   "from": [
+    5,
+    0
+   ],
+   "to": [
+    8.3,
+    0
+   ],
+   "arrow": true
+  },
+  {
+   "from": [
+    5,
+    0
+   ],
+   "to": [
+    1.7,
+    0
+   ],
+   "arrow": true
+  },
+  {
+   "from": [
+    5,
+    0
+   ],
+   "to": [
+    5,
+    1
+   ]
+  },
+  {
+   "from": [
+    5,
+    1
+   ],
+   "to": [
+    1.7,
+    1
+   ],
+   "arrow": true
+  }
+ ],
+ "polygons": [
+  {
+   "points": [
+    [
+     5,
+     0
+    ],
+    [
+     1.7,
+     0
+    ],
+    [
+     1.7,
+     1
+    ],
+    [
+     5,
+     1
+    ]
+   ],
+   "fill": "#eeeeee"
+  }
+ ],
+ "points": [
+  {
+   "at": [
+    5,
+    0
+   ],
+   "radius": 4,
+   "open": true
+  }
+ ],
+ "labels": [
+  {
+   "at": [
+    5,
+    0
+   ],
+   "text": "5",
+   "dy": 22
+  }
+ ]
+}

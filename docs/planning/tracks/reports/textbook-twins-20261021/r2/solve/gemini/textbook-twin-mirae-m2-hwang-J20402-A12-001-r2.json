@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0b3b084f-0a8e-4596-a6ab-4406e1b7cb9d",
+ "startedAt": "2026-10-21T18:16:35+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "student.json": "1bfd7a7be9e3927a1044296d520fbae1124184b4d78aa5bdb0dfd4a877fba229"
+ },
+ "promptSha256": "0fe6c1a93733875572e2812af66d034299ea28b154be15964a941df03d008f6a",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"① $y = \\\\pi x^2$ (이차함수)\\n② $y = 60x$ ($y=ax$ 꼴의 일차함수)\\n③ $y = \\\\frac{36}{x}$ (반비례 관계, 일차함수 아님)\\n④ $y$의 값이 주기적으로 반복되는 관계이므로 일차함수가 아님\\n⑤ 정육각형의 한 내각의 크기는 변의 길이와 관계없이 항상 $120^\\\\circ$이므로 $y = 120$ (상수함수)\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "① $y = \\pi x^2$ (이차함수)\n② $y = 60x$ ($y=ax$ 꼴의 일차함수)\n③ $y = \\frac{36}{x}$ (반비례 관계, 일차함수 아님)\n④ $y$의 값이 주기적으로 반복되는 관계이므로 일차함수가 아님\n⑤ 정육각형의 한 내각의 크기는 변의 길이와 관계없이 항상 $120^\\circ$이므로 $y = 120$ (상수함수)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "483035bf96ec0617338bf4110ee59dd1ba4f78e2ecc10e84ff82931436a04f06"
+}

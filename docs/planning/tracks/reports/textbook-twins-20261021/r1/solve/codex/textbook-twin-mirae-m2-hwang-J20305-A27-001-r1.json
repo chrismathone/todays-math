@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-66c1-74b1-934d-efe64a083c15",
+ "startedAt": "2026-10-21T17:48:03+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "2784588f88a7c70f27794004098df294b939da832cbad61148f0c93b4af65aec"
+ },
+ "promptSha256": "203ab71ea37dc1b3009f1fa44d3c4be8fed2fef66d9ee9bc59467f69916f69c8",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"9\",\"work\":\"해가 무수히 많으므로 둘째 방정식은 첫째 방정식의 -3배이다. 따라서 9=-3a, -b=-12이므로 a=-3, b=12이다. 그러므로 a+b=9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "해가 무수히 많으므로 둘째 방정식은 첫째 방정식의 -3배이다. 따라서 9=-3a, -b=-12이므로 a=-3, b=12이다. 그러므로 a+b=9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cc6848b898bed53fa9ab5e426cfd6b6c672d902eff70a39bd1ac4ba465738220"
+}

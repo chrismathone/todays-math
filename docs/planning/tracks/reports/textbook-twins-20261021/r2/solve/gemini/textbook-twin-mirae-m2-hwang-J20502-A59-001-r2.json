@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "19df9e1a-b61e-4482-8daf-a6351ce88fce",
+ "startedAt": "2026-10-21T18:29:02+0900",
+ "elapsedSec": 32.6,
+ "studentSha256": {
+  "fig-1.png": "0e660211bfaab908f7f6e0214d9fdc5c1527e2af95413a96346aa5a402a37332",
+  "student.json": "bfb3d42443629445bb019be68f6229390d743405665330c24dce3afb9f6ec010"
+ },
+ "promptSha256": "861de4ca86798eabba7c6fcffcb3a73a7f2969682e2b4c0caeb3475dc3574c5c",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"직각삼각형 EAB와 EDB에서 $\\\\angle A = \\\\angle EDB = 90^\\\\circ$, 빗변 $\\\\overline{BE}$는 공통, $\\\\overline{BA} = \\\\overline{BD}$이므로 RHS 합동이다.\\n따라서 $\\\\angle ABE = \\\\angle EBD = 26^\\\\circ$이므로 $\\\\angle B = 26^\\\\circ \\\\times 2 = 52^\\\\circ$이다.\\n직각삼각형 ABC와 EDC에서 $\\\\angle C$가 공통이므로 $\\\\angle x = \\\\angle DEC = 90^\\\\circ - \\\\angle C = \\\\angle B = 52^\\\\circ$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형 EAB와 EDB에서 $\\angle A = \\angle EDB = 90^\\circ$, 빗변 $\\overline{BE}$는 공통, $\\overline{BA} = \\overline{BD}$이므로 RHS 합동이다.\n따라서 $\\angle ABE = \\angle EBD = 26^\\circ$이므로 $\\angle B = 26^\\circ \\times 2 = 52^\\circ$이다.\n직각삼각형 ABC와 EDC에서 $\\angle C$가 공통이므로 $\\angle x = \\angle DEC = 90^\\circ - \\angle C = \\angle B = 52^\\circ$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "35797139bdc92544518ebe242f47c9992ef2c9985573687c438f2432ffa391b7"
+}

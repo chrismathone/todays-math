@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 189,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r2",
+ "authorId": "claude-opus-5-5:f0e4f750-a882-4d0f-8eae-6cf7208e2d04",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "하루는 연립방정식 $\\begin{cases} 5x-6y=-2 & \\cdots \\cdots ㉠ \\\\ x+4y=1 & \\cdots \\cdots ㉡ \\end{cases}$를 풀다가 ㉠의 우변 $-2$를 다른 수로 잘못 옮겨 적었고, ㉡은 바르게 적었다. 그렇게 푼 결과 $x=3$을 얻었을 때, 하루가 $-2$ 대신 적은 수는?",
+ "choices": [
+  "$-18$",
+  "$-12$",
+  "$12$",
+  "$18$",
+  "$24$"
+ ],
+ "answer": "④",
+ "solution": "㉠의 우변을 $k$로 잘못 적었다고 하자. ㉡은 바르게 적었으므로 $x=3$을 $x+4y=1$에 대입하면 $4y=-2$이므로 $y=-\\frac{1}{2}$이다.\n$x=3$, $y=-\\frac{1}{2}$을 $5x-6y=k$에 대입하면 $k=15+3=18$이다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-8",
+  "problemCode": "J20304-A48-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "9b6ec6e893d0a44ebfc7d79b1cff03f27907d412fbd45fb3f014f24a8a5d6ef1",
+  "dbContentSha256": "d47830546e0de6990255bd8678baf7c3ab16b45b573cd62d5c4037c4b68a43e2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "아래 식의 상수항을 잘못 보고 얻은 y 값이 주어지고, 바르게 본 위 식에서 x(분수)를 구한 뒤 잘못 본 상수항을 고른다.",
+  "after": "위 식의 우변을 잘못 옮겨 적고 얻은 x 값이 주어지고, 바르게 적은 아래 식에서 y(분수)를 구한 뒤 잘못 적은 수를 고른다.",
+  "sharedConcept": "연립방정식의 해의 뜻 — 잘못 본 식의 해도 바르게 본 식은 만족한다",
+  "sharedProcedure": "주어진 값을 바르게 본 식에 대입 → 나머지 미지수(분수) 구하기 → 두 값을 잘못 본 식의 좌변에 대입 → 잘못 본 상수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "연립방정식의 해의 뜻",
+   "일차방정식의 풀이",
+   "유리수의 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A48-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "상수항을 잘못 보고 얻은 해의 한 값으로 잘못 본 상수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.043,
+   "longestRun": 6,
+   "residualChars": 96,
+   "params": 10,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

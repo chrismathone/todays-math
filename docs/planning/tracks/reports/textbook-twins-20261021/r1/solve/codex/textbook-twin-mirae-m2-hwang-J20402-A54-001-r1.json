@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-780f-7f03-940f-e733aab73a90",
+ "startedAt": "2026-10-21T17:52:29+0900",
+ "elapsedSec": 7.8,
+ "studentSha256": {
+  "student.json": "63e9c8bab841c777ed33d4280802c02a7e460427187bf3269c0f747f3f186b1c"
+ },
+ "promptSha256": "4cd3c51a38700ae0770e37426b9915421b835ea5e00c0a18d5dff98cf5d79a04",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3\",\"work\":\"앞의 그래프에서 y=0이면 -4x+12=0이므로 x축과 만나는 점의 x좌표는 3이다.\\n뒤의 그래프에서 x=0이면 y=b이므로 y축과 만나는 점의 y좌표는 b이다. 따라서 b=3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "앞의 그래프에서 y=0이면 -4x+12=0이므로 x축과 만나는 점의 x좌표는 3이다.\n뒤의 그래프에서 x=0이면 y=b이므로 y축과 만나는 점의 y좌표는 b이다. 따라서 b=3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8b6a31586d7713aad0f947d80a22d9226108d85721338e28a3cecec8258c8baa"
+}

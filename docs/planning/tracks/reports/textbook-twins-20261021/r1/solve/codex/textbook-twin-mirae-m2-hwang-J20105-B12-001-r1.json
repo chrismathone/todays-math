@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d68-9b03-72c1-aa18-45731203a178",
+ "startedAt": "2026-10-21T16:41:38+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "f9644c26df1d94da81b6a80c21caf4a5c1543846b2abe3f8b5423373d99d0735"
+ },
+ "promptSha256": "90871fbec141ca941ed60cd8d050ec56d78c8fc161fa32e2a76db8ba4925e649",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12\",\"work\":\"좌변을 정리하면 $\\\\frac{6^a}{81}x^{4a-4}y^{8-a}$이다.\\n계수를 비교하면 $6^a=36$이므로 $a=2$이다.\\n따라서 $b=4a-4=4$, $c=8-a=6$이므로 $a+b+c=12$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12",
+  "work": "좌변을 정리하면 $\\frac{6^a}{81}x^{4a-4}y^{8-a}$이다.\n계수를 비교하면 $6^a=36$이므로 $a=2$이다.\n따라서 $b=4a-4=4$, $c=8-a=6$이므로 $a+b+c=12$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5f3c49bbea7a9e528f5a1d3a0da11b5fb66d75c22967751962dc8f0d6e1a75ca"
+}

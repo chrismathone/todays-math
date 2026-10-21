@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f062ca18-a71d-488e-9745-4b2309c7de76",
+ "startedAt": "2026-10-21T16:17:23+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "bbe8a018cd95c022cf24a9956d0da86930bcee14b7b04e79b20f5c5db0d181bb"
+ },
+ "promptSha256": "18c6ca0d27a08d07840d04d29d1286f4bebc83229a0598f2514ed928cea5ef75",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"어떤 단항식을 A라 하면 A × 2x = 10x^2y^3 이므로 A = 10x^2y^3 ÷ 2x = 5xy^3 이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "어떤 단항식을 A라 하면 A × 2x = 10x^2y^3 이므로 A = 10x^2y^3 ÷ 2x = 5xy^3 이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fbe4e38f0d878f2b971e18bc6b353ff9e381430947d992852f185a5e2f292f42"
+}

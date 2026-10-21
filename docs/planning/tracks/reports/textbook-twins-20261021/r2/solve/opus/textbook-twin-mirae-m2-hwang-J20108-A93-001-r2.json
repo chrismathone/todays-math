@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "996a5bf5-4044-4b8c-b0cc-e0d1ff4278b2",
+ "startedAt": "2026-10-21T16:54:44+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "4f03772a7de2a50e1750906a7e700941cfeb1cb80cbd23333d4881a61a696831"
+ },
+ "promptSha256": "1d45e700308fbb990b9a2f00e616285a7c59870b7a6b93e546b8960a30ab27db",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "A = 4xy^2(6x^2y -5xy+7) = 24x^3y^3 -20x^2y^3 +28xy^2.\n\n```json\n{\"answer\": \"$24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$\", \"work\": \"A ÷ 4xy^2 = 6x^2y-5xy+7 이므로 A = 4xy^2(6x^2y-5xy+7) = 24x^3y^3 - 20x^2y^3 + 28xy^2\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+  "work": "A ÷ 4xy^2 = 6x^2y-5xy+7 이므로 A = 4xy^2(6x^2y-5xy+7) = 24x^3y^3 - 20x^2y^3 + 28xy^2",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "32c0c0369bb66550a76e11e16ac4e96ed23c9815edf75ce90438b302a8a7cbdc"
+}

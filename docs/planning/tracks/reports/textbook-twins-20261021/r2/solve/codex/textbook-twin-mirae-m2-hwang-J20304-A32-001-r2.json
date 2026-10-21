@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A32-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de4-696c-7351-8a02-f7be3cfaa9c5",
+ "startedAt": "2026-10-21T18:56:52+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "b793386178dd1e754c311990544a17167bb973d21478f9da6e5a00accd68f66e"
+ },
+ "promptSha256": "0c76ec65c64aba9e931b1602e4b5e1b6e092d78836e6a63fce9d8a31989a42e6",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"바르게 적은 식 $6x+y=40$에 $y=-8$을 대입하면 $6x-8=40$이므로 $x=8$이다.\\n따라서 $k=9x+8y=9\\\\times8+8\\\\times(-8)=8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "바르게 적은 식 $6x+y=40$에 $y=-8$을 대입하면 $6x-8=40$이므로 $x=8$이다.\n따라서 $k=9x+8y=9\\times8+8\\times(-8)=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "318a37356dd18f4bd8dcbd9975ec43efef7ad3a1d3df0d22c1f933e85280ab75"
+}

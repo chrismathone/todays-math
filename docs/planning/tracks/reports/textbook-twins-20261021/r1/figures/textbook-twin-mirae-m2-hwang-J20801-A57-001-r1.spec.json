@@ -1,0 +1,140 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   60,
+   80
+  ],
+  "B": [
+   60,
+   200
+  ],
+  "C": [
+   220,
+   200
+  ],
+  "M1": [
+   60,
+   140
+  ],
+  "M2": [
+   140,
+   200
+  ],
+  "s1": [
+   18,
+   140
+  ],
+  "s2": [
+   140,
+   250
+  ]
+ },
+ "circles": {
+  "c1": {
+   "center": "M1",
+   "radius": 60,
+   "draw": false
+  },
+  "c2": {
+   "center": "M2",
+   "radius": 80,
+   "draw": false
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ]
+ },
+ "arcs": {
+  "arcAB": {
+   "circle": "c1",
+   "from": "A",
+   "to": "B",
+   "dir": "ccw"
+  },
+  "arcBC": {
+   "circle": "c2",
+   "from": "B",
+   "to": "C",
+   "dir": "ccw"
+  }
+ },
+ "regions": {
+  "r1": {
+   "boundary": [
+    {
+     "seg": [
+      "B",
+      "A"
+     ]
+    },
+    {
+     "arc": {
+      "circle": "c1",
+      "from": "A",
+      "to": "B",
+      "dir": "ccw"
+     }
+    }
+   ],
+   "fill": "#e6e6e6"
+  },
+  "r2": {
+   "boundary": [
+    {
+     "seg": [
+      "C",
+      "B"
+     ]
+    },
+    {
+     "arc": {
+      "circle": "c2",
+      "from": "B",
+      "to": "C",
+      "dir": "ccw"
+     }
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "ac": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "12 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "s1": "S₁",
+  "s2": "S₂"
+ }
+}

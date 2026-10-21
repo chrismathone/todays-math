@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3ca83c8a-4961-4986-bf03-63aa6e0ebeff",
+ "startedAt": "2026-10-21T16:24:12+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "b56d666acec0c0ba2ef2038d5114a4fad8755650b394c1af811d4947c0555b61"
+ },
+ "promptSha256": "696a32b472a8b8009bb1e2e30208f528b584d9e3281abebf42d222d4dc4b3c2f",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "16 GiB = 2^4 × 2^10 MiB = 2^14 MiB = 2^14 × 2^20 B = 2^34 B.\n\n```json\n{\"answer\": \"$2^{34}$ B\", \"work\": \"16 GiB = 2^4 × 2^10 MiB = 2^14 MiB\\n2^14 MiB = 2^14 × 2^20 B = 2^34 B\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$2^{34}$ B",
+  "work": "16 GiB = 2^4 × 2^10 MiB = 2^14 MiB\n2^14 MiB = 2^14 × 2^20 B = 2^34 B",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1ec24b4e7f726c96e6a1e5fd50b39cbaa6ea06f7774e667dac32020795dba696"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A60-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d55-05e1-78a1-8be4-94a82631f28d",
+ "startedAt": "2026-10-21T16:20:15+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "d2b8afe831f913d59954360a2bad79b5c7acf98d297a419169b61b25fbf91396"
+ },
+ "promptSha256": "af30333a8ec47b662e80195f4e2af6ffad9aab719bfee8eaf503df7a9d6bc97f",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"10\",\"work\":\"전개하면 $-8x^{2}-12xy+18x$이다. 따라서 $p=-8$, $q=18$이므로 $p+q=10$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "10",
+  "work": "전개하면 $-8x^{2}-12xy+18x$이다. 따라서 $p=-8$, $q=18$이므로 $p+q=10$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a786ff64d4cebf74fbbbcab529c1b8493297db5929d526f1cb1ecac1cd59a907"
+}

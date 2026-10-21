@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A18-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-3c96-7a51-827e-832263b733e4",
+ "startedAt": "2026-10-21T18:58:52+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "7fa40a5ff64b85d69938894a72839174b204146f099ada0ee74a1dc32a66b85c"
+ },
+ "promptSha256": "783e7618192d1f7f3a1684770833d8e8f4dc00baa4644d98528ec3653ba3c424",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-10\",\"work\":\"첫째 식을 2배하면 $4x-10y=-20$이다. 둘째 식 $4x+ay=3$에서 이를 빼면 $(a+10)y=23$이다. 해가 없으려면 $a+10=0$이어야 하므로 $a=-10$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-10",
+  "work": "첫째 식을 2배하면 $4x-10y=-20$이다. 둘째 식 $4x+ay=3$에서 이를 빼면 $(a+10)y=23$이다. 해가 없으려면 $a+10=0$이어야 하므로 $a=-10$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6af5d397d327f55921af6b74d69c6ced6319e2790ae2ec885c13175601edea3e"
+}

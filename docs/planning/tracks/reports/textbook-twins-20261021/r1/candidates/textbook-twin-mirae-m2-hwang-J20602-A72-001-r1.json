@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 302,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r1",
+ "authorId": "claude-fable-5-1:0f6d3721-35c5-4e43-a28b-4bde4966c504",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림은 $\\angle A=90^{\\circ}$인 직각삼각형 $ABC$의 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 한 것이다. 다음 중 옳지 않은 것을 모두 고르면? (정답 2개)",
+ "choices": [
+  "$\\triangle ABC \\backsim \\triangle HBA$",
+  "$\\triangle ABH \\backsim \\triangle CAH$",
+  "$\\overline{AH}^{2}=\\overline{BH}\\times \\overline{CH}$",
+  "$\\overline{AB}^{2}=\\overline{BH}\\times \\overline{CH}$",
+  "$\\overline{AC}^{2}=\\overline{AB}\\times \\overline{AH}$"
+ ],
+ "answer": "④, ⑤",
+ "solution": "① $\\triangle ABC$와 $\\triangle HBA$에서 $\\angle B$는 공통, $\\angle BAC=\\angle BHA=90^{\\circ}$이므로 $\\triangle ABC \\backsim \\triangle HBA$ ($\\mathrm{AA}$ 닮음)이다. (참)\n② $\\triangle ABH$와 $\\triangle CAH$에서 $\\angle AHB=\\angle CHA=90^{\\circ}$, $\\angle BAH=90^{\\circ}-\\angle B=\\angle C$이므로 $\\triangle ABH \\backsim \\triangle CAH$ ($\\mathrm{AA}$ 닮음)이다. (참)\n③ ②에서 $\\overline{BH}:\\overline{AH}=\\overline{AH}:\\overline{CH}$이므로 $\\overline{AH}^{2}=\\overline{BH}\\times \\overline{CH}$이다. (참)\n④ ①에서 $\\overline{AB}:\\overline{HB}=\\overline{BC}:\\overline{BA}$이므로 $\\overline{AB}^{2}=\\overline{BH}\\times \\overline{BC}$이다. 따라서 ④는 옳지 않다.\n⑤ $\\triangle ABC$와 $\\triangle HAC$에서 $\\angle C$는 공통, $\\angle BAC=\\angle AHC=90^{\\circ}$이므로 $\\triangle ABC \\backsim \\triangle HAC$이고 $\\overline{AC}:\\overline{HC}=\\overline{BC}:\\overline{AC}$, 즉 $\\overline{AC}^{2}=\\overline{CH}\\times \\overline{CB}$이다. 따라서 ⑤는 옳지 않다.\n따라서 옳지 않은 것은 ④, ⑤이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A72-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A72-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-1a5ea8acdfea66b8-0-3",
+  "problemCode": "J20602-A72-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "50859d1982c1d32fff37957d5f3d1e8491cb714736c84f595f5c0fed2f6910ec",
+  "dbContentSha256": "dc815f88c28517887ac7e7e2ac0f6f79d5599bbb7356213fd6a60f1d1bebe0f5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "c63caf7d5101690b4dcc1d32ed1beb8790688bff5c3b95a32d8b34fac1227276",
+    "bytes": 2240512
+   }
+  ],
+  "originalFigureSha256": [
+   "609b65e849c78474d3ceaac2b781fb9e40de5686969c762e7fd176f409599de3"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation"
+  ],
+  "before": "직각이 꼭짓점 C에 있고 빗변 AB 에 수선 CD 를 내린 그림에서, 닮은 삼각형 쌍 둘과 «한 변의 제곱 = 두 선분의 곱» 꼴 셋을 보기로 주고 틀린 것 둘을 고르게 한다. 틀린 보기는 곱의 짝을 잘못 지은 것들.",
+  "after": "직각이 꼭짓점 A에 있고 빗변 BC 에 수선 AH 를 내린 그림. 닮은 쌍 둘(큰 삼각형과 작은 삼각형 · 작은 삼각형끼리)과 제곱 관계 셋을 보기로 두되, 참인 제곱 관계를 수선 길이의 제곱(AH² = BH×CH)으로 바꾸고 틀린 둘은 빗변 조각 대신 다른 변을 곱한 것으로 둔다.",
+  "sharedConcept": "직각삼각형에서 빗변에 내린 수선으로 생기는 세 닮은 직각삼각형과 그로부터 나오는 변의 제곱 관계",
+  "sharedProcedure": "공통각과 직각으로 AA 닮음 확인 → 대응변 비례식 세우기 → 제곱 관계로 고쳐 보기와 대조 → 틀린 보기 둘 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 닮음 조건(AA 닮음)",
+   "닮은 도형의 대응변의 길이의 비",
+   "직각삼각형의 두 예각의 합이 90°"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A72-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형 빗변 위 수선의 닮음에서 옳지 않은 관계식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.269,
+   "longestRun": 13,
+   "residualChars": 106,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

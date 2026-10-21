@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0169d5b1-205b-41f7-90f6-e879e780da44",
+ "startedAt": "2026-10-21T18:19:07+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "58c6a801c7da6a98e657cd07471afcc83a561979c9e710f29674184bbd7ab07e"
+ },
+ "promptSha256": "edf3e220c8f1d28f035121719dd79146431b4cca53b8cf2eaaf9b7fd798cac94",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"$f\\\\left(-\\\\frac{4}{7}\\\\right) = -\\\\frac{5}{4} \\\\times \\\\left(-\\\\frac{4}{7}\\\\right) = \\\\frac{5}{7}$이므로 옳지 않은 것은 ③이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "$f\\left(-\\frac{4}{7}\\right) = -\\frac{5}{4} \\times \\left(-\\frac{4}{7}\\right) = \\frac{5}{7}$이므로 옳지 않은 것은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c30fb1a4583e56b2965927a6989b25e35df1d4ace7654c8855c9d416d6d092af"
+}

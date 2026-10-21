@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A78-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cee1b349-1887-4bbe-87ff-1b3df2341cbc",
+ "startedAt": "2026-10-21T17:09:41+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "fig-1.png": "81a3dbcc39c41cbf266e34e6d71bfb9d77f8db472c98e55518ab6e6de0875a62",
+  "student.json": "6464d06e123a05938d3e44ca291fbe14fed39fb6c8f6b9016c4042ea53531208"
+ },
+ "promptSha256": "f1620ed43e582e1a639117c661dcb4d7038c12c75d9fec61abd60f48d7e34412",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{8}{9}$\", \"work\": \"∠CAD=∠ABE=∠BCF=θ라 하자. △ABE에서 ∠DEF(=∠BED, 외각)=∠BAE+∠ABE=(∠A−θ)+θ=∠A이다. 같은 방법으로 △BCF에서 ∠EFD=∠B, △CAD에서 ∠FDE=∠C이다. 따라서 △EFD∽△ABC(AA 닮음)이고 대응은 E↔A, F↔B, D↔C이다. DE는 각 F의 대변이므로 각 B의 대변 AC=8에 대응하고, EF는 각 D의 대변이므로 각 C의 대변 AB=9에 대응한다. 그러므로 DE/EF=AC/AB=8/9이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{8}{9}$",
+  "work": "∠CAD=∠ABE=∠BCF=θ라 하자. △ABE에서 ∠DEF(=∠BED, 외각)=∠BAE+∠ABE=(∠A−θ)+θ=∠A이다. 같은 방법으로 △BCF에서 ∠EFD=∠B, △CAD에서 ∠FDE=∠C이다. 따라서 △EFD∽△ABC(AA 닮음)이고 대응은 E↔A, F↔B, D↔C이다. DE는 각 F의 대변이므로 각 B의 대변 AC=8에 대응하고, EF는 각 D의 대변이므로 각 C의 대변 AB=9에 대응한다. 그러므로 DE/EF=AC/AB=8/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d09287468d3186825b604b977aa6fb8255136ade7dad62d15688cb896e3cc7d1"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-0746-7451-a1a1-cf0af552ac06",
+ "startedAt": "2026-10-21T18:58:38+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "student.json": "f68f0da22fbfa7df2020191bf4518dbd28f913ed273326f3fac5e7d1d2f1d940"
+ },
+ "promptSha256": "6f25a4ebef921c9dd5f81c8b5e3bf82a00b0dfe32cc585afd8355c5f12e1d016",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8 km/h\",\"work\":\"거슬러 갈 때의 속력은 30÷5=6 km/h, 되돌아올 때의 속력은 30÷3=10 km/h이다.\\n두 속력은 각각 유람선의 속력에서 강물의 속력을 빼거나 더한 것이므로, 물이 흐르지 않을 때 유람선의 속력은 (6+10)÷2=8 km/h이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8 km/h",
+  "work": "거슬러 갈 때의 속력은 30÷5=6 km/h, 되돌아올 때의 속력은 30÷3=10 km/h이다.\n두 속력은 각각 유람선의 속력에서 강물의 속력을 빼거나 더한 것이므로, 물이 흐르지 않을 때 유람선의 속력은 (6+10)÷2=8 km/h이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4137576c21451498d3721ea4ea35275f6573e926642848ac37df1bde9567e94d"
+}

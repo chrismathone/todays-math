@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A42-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6f-bc77-78b1-bdda-ed5a4447cbec",
+ "startedAt": "2026-10-21T16:49:26+0900",
+ "elapsedSec": 14.0,
+ "studentSha256": {
+  "student.json": "78d56348757361c5ab2a7cb05be0a42bbab4273e68691eb91825667efd2846dc"
+ },
+ "promptSha256": "6d0ee4d51921d3f6d6c4ded556f31550541a3246aa637165754bbd4059d543f6",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3\",\"work\":\"A=(9-3x)/2에 -2<x≤6을 적용하면 -4.5≤A<7.5이다.\\n따라서 가장 큰 정수 M=7, 가장 작은 정수 m=-4이므로 M+m=3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "A=(9-3x)/2에 -2<x≤6을 적용하면 -4.5≤A<7.5이다.\n따라서 가장 큰 정수 M=7, 가장 작은 정수 m=-4이므로 M+m=3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c52f76406e89a2156d881fb9dabfb964302c050b772732dfc7bf26243397175f"
+}

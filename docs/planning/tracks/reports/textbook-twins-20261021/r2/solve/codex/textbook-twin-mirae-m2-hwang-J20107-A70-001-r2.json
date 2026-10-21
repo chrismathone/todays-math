@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A70-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7d-2645-72c0-af00-83403702d685",
+ "startedAt": "2026-10-21T17:04:05+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "student.json": "60fc8b4ef3b8f0f2d404259d5f9415947a779f41c5096f447edb14903d7b8a6d"
+ },
+ "promptSha256": "1aa410a5e0a1894bfbd3c8a132ffd64b0ed7529c2ac629ff5ff8b8cdb934b2f3",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$A-8(a-b)=-9a+10b+6$이므로\\n$A=-9a+10b+6+8a-8b=-a+2b+6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$A-8(a-b)=-9a+10b+6$이므로\n$A=-9a+10b+6+8a-8b=-a+2b+6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e82d7861d99d710409e6d09d0a68a6c5e82e224c74667da870bec6b704fba61a"
+}

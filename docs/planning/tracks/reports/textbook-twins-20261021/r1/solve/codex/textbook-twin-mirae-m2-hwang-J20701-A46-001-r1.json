@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A46-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbb-8834-7e73-ba5c-6b5e3156f5b2",
+ "startedAt": "2026-10-21T18:12:13+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "fig-1.png": "b8a725b8a1a5a550a13e1619a09f143088a3001d7784918bdca5a62d93d910e9",
+  "student.json": "68404663d0f853d6b466f25657a985bf69345138dbf99e5475c9653927b4863a"
+ },
+ "promptSha256": "73ec3057caaeed205b226a508dfadf7ccdf7d5ed97bf9bc0029935df700251b8",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"BC∥DE이고 맞꼭지각이 같으므로 △ABC∽△AED이다.\\n따라서 AB:AE=BC:DE이므로 5:2=10:DE이다.\\n그러므로 DE=10×2÷5=4 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "BC∥DE이고 맞꼭지각이 같으므로 △ABC∽△AED이다.\n따라서 AB:AE=BC:DE이므로 5:2=10:DE이다.\n그러므로 DE=10×2÷5=4 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6f4f3970787bdc34a04a8ccea3a5bef2d2596356933d4f2c7e4fd06dbbd14ff3"
+}

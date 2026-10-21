@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 138,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+ "authorId": "claude-fable-5-1:648f4206-64a6-47ee-8716-be4a3775de2e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "아래 ㄱ~ㄹ 가운데 일차부등식을 빠짐없이 고른 것은?\nㄱ. $7x-1\\ge 9+7x$ ㄴ. $x^{2}+8x>x^{2}-x+10$\nㄷ. $x^{2}-8<x+1$ ㄹ. $9x-11\\le 12-x$",
+ "choices": [
+  "ㄱ, ㄹ",
+  "ㄴ, ㄹ",
+  "ㄷ, ㄹ",
+  "ㄱ, ㄴ, ㄹ",
+  "ㄴ, ㄷ, ㄹ"
+ ],
+ "answer": "②",
+ "solution": "모든 항을 좌변으로 옮겨 정리한다.\nㄱ. $7x-1\\ge 9+7x$ 에서 $-10\\ge 0$ 이므로 $x$가 사라져 일차부등식이 아니다.\nㄴ. $x^{2}+8x>x^{2}-x+10$ 에서 $9x-10>0$ 이므로 일차부등식이다.\nㄷ. $x^{2}-8<x+1$ 에서 $x^{2}-x-9<0$ 이므로 $x^{2}$ 항이 남아 일차부등식이 아니다.\nㄹ. $9x-11\\le 12-x$ 에서 $10x-23\\le 0$ 이므로 일차부등식이다.\n따라서 일차부등식은 ㄴ, ㄹ이고 정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-7",
+  "problemCode": "J20202-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "e20f0f4bc10ad82e1983d50881ce6074573942765bd02f18f5f12977a5a8ccc0",
+  "dbContentSha256": "8bd0adf30c945037149732468932c150eeb05711e05ed09addb33e0f3deb5ac1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "부등식 넷을 주고 정리했을 때 (일차식)>0 꼴이 되는 것을 고르는 조합 객관식. 넷 중 둘은 x가 소거되어 상수만 남고, 하나는 바로 일차식, 하나는 x² 항이 소거되어 일차식이 된다. 정답은 뒤의 둘.",
+  "after": "부등식 넷을 주고 같은 판정을 하는 조합 객관식. 하나는 x가 소거되어 상수만 남고, 하나는 x² 항이 소거되어 일차식, 하나는 x² 항이 소거되지 않아 이차식으로 남고, 하나는 바로 일차식. 정답은 x²가 소거되는 것과 바로 일차식인 것 둘로, 보기 위치도 ②로 바뀜. 수는 모두 새로 둠.",
+  "sharedConcept": "일차부등식의 뜻 — 모든 항을 한쪽으로 이항해 정리했을 때 (일차식)<0, >0, ≤0, ≥0 꼴이 되는 부등식",
+  "sharedProcedure": "각 부등식의 항을 좌변으로 이항 → 동류항 정리 → 좌변이 x에 대한 일차식인지 판정(x 소거·x² 잔존 확인) → 해당하는 기호의 조합을 보기에서 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 뜻과 표현",
+   "일차식과 동류항 정리",
+   "부등식의 성질(이항)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A57-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차부등식인 것 모두 고르기(조합 객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.079,
+   "longestRun": 5,
+   "residualChars": 80,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

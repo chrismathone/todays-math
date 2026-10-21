@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5e85ffa2-957b-4b14-8d3e-84871485320b",
+ "startedAt": "2026-10-21T16:54:17+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "abd0ef03f28a5f66b2e708952501d74c8206349539a605387323988f3460a05c"
+ },
+ "promptSha256": "39441566279a294d45ac1de7090be6cb424d57da0e545cc68adc0d258d3df923",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"A = (3/4·a − 1/2·b + 1/8) × (−4ab) = −3a²b + 2ab² − 1/2·ab\\n바른 계산: A × (−4ab) = (−3a²b)(−4ab) + (2ab²)(−4ab) + (−1/2·ab)(−4ab) = 12a³b² − 8a²b³ + 2a²b²\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "A = (3/4·a − 1/2·b + 1/8) × (−4ab) = −3a²b + 2ab² − 1/2·ab\n바른 계산: A × (−4ab) = (−3a²b)(−4ab) + (2ab²)(−4ab) + (−1/2·ab)(−4ab) = 12a³b² − 8a²b³ + 2a²b²",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6b141b741b449e9416e270ed8ef025990d8948646af6b72bfaef3341be1d0579"
+}

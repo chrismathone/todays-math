@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A70-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d63-6388-76b1-b9c5-97bf580f0d0c",
+ "startedAt": "2026-10-21T16:35:57+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "student.json": "ddc490682949da79cd7bf8056ca65a19066e1b877ed149d8d1bf9e2550a678df"
+ },
+ "promptSha256": "7cc66c0a36317741884f9c7d94da12b1c647f4767eae1bf012c23100d00ba2bd",
+ "freezeCommit": "1f022fa5fa99b8553458e0290369a75de543769a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"기약분수의 분모에 2와 5 이외의 소인수가 있으면 무한소수이다.\\n각 분수를 약분하면 7/16, 2/15, 1/4, 9/40, 4/25이다.\\n②의 분모 15에만 2와 5 이외의 소인수 3이 있으므로 정답은 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "기약분수의 분모에 2와 5 이외의 소인수가 있으면 무한소수이다.\n각 분수를 약분하면 7/16, 2/15, 1/4, 9/40, 4/25이다.\n②의 분모 15에만 2와 5 이외의 소인수 3이 있으므로 정답은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e92916100ff9502d8f7f5eb8d25b880ccc1f98b3c755ff856d74754eb242e13c"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd6-bc8d-7140-a6e2-805e083a1007",
+ "startedAt": "2026-10-21T18:41:56+0900",
+ "elapsedSec": 16.2,
+ "studentSha256": {
+  "fig-1.png": "d823e53146427baaa3299c95ee653e8fc4800395f6a55f3756b8a3408abd15d8",
+  "student.json": "7a785258f9f36fac278f1e6a94570943a81bebd9307fa2b4e596890a6084b60b"
+ },
+ "promptSha256": "f487eb009d46c3cf1061c5468b9dbb691c06c88561e97fb0d437fbb6d1e64f94",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$5x^3y^3$\",\n  \"work\": \"평행사변형의 넓이는 $4x^3y^2\\\\times 3x^2y^3=12x^5y^5$이다.\\n따라서 삼각형의 넓이는 $12x^5y^5\\\\times\\\\frac{5}{3y}=20x^5y^4$이다.\\n삼각형의 높이를 $h$라 하면 $\\\\frac{1}{2}\\\\times 8x^2y\\\\times h=20x^5y^4$이므로 $h=5x^3y^3$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$5x^3y^3$",
+  "work": "평행사변형의 넓이는 $4x^3y^2\\times 3x^2y^3=12x^5y^5$이다.\n따라서 삼각형의 넓이는 $12x^5y^5\\times\\frac{5}{3y}=20x^5y^4$이다.\n삼각형의 높이를 $h$라 하면 $\\frac{1}{2}\\times 8x^2y\\times h=20x^5y^4$이므로 $h=5x^3y^3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e41acfb5d1ee0f47a7bd74934b437ec72fad15075f8f0db3b82b176a9178d3d1"
+}

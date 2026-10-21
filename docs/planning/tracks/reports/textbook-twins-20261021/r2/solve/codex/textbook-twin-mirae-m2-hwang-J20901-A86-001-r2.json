@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfc-43a7-7d31-b058-b681f58a87c8",
+ "startedAt": "2026-10-21T19:22:55+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "fig-1.png": "528327887785c2edd6492026cb4beaced1022e9939c7f1808f6e9d784173917e",
+  "student.json": "5afc0a2afe9992455e78db28adf1fea494b08f79d90ee05925bd24741569f77f"
+ },
+ "promptSha256": "d5fff2ffc715a7be3312e9142bd9caa7fbb56d528350cb70d3596a5c14e8aa07",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"B→C→A로 가는 경로는 4×1=4가지이다.\\nB→D→A로 가는 경로는 3×3=9가지이다.\\n따라서 전체 경로의 수는 4+9=13가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "B→C→A로 가는 경로는 4×1=4가지이다.\nB→D→A로 가는 경로는 3×3=9가지이다.\n따라서 전체 경로의 수는 4+9=13가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "86384b28cf5efa0496e3aef2c34c49ecdbd73f625fa4d975fbdec9f7c7de9cd4"
+}

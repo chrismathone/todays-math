@@ -1,0 +1,115 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 240,
+  "height": 250
+ },
+ "points": {
+  "O": [
+   120,
+   128
+  ],
+  "A": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 90
+  },
+  "B": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 30
+  },
+  "C": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -30
+  },
+  "D": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -90
+  },
+  "E": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -150
+  },
+  "F": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 150
+  },
+  "P": [
+   120,
+   40
+  ]
+ },
+ "circles": {
+  "c": {
+   "center": "O",
+   "radius": 88,
+   "draw": false
+  },
+  "pdot": {
+   "center": "P",
+   "radius": 3
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FA": [
+   "F",
+   "A"
+  ]
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "NE"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "E": {
+   "text": "E",
+   "position": "SW"
+  },
+  "F": {
+   "text": "F",
+   "position": "NW"
+  },
+  "P": {
+   "text": "P",
+   "dx": 0,
+   "dy": 22
+  }
+ }
+}

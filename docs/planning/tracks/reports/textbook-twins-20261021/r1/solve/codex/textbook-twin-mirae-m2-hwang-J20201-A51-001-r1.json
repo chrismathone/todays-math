@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6c-bca0-71b2-8b06-f1c6ccd7e3b9",
+ "startedAt": "2026-10-21T16:46:09+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "539b60f6f8a05accefaafc76ded7e9feb6e1c6a72c024a6f2ac3977d2ae791c9"
+ },
+ "promptSha256": "5648322fcd60d899b24e103acdb98b99c777e168664d91bd04edfaa3a2edc64c",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"주어진 부등식의 양변에서 2를 빼고 -3으로 나누면 부등호 방향이 바뀌므로 $a\\\\ge b$이다.\\n따라서 $-a\\\\le -b$이고, 양변에 7을 더하면 $7-a\\\\le 7-b$이므로 옳지 않은 것은 ③이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "주어진 부등식의 양변에서 2를 빼고 -3으로 나누면 부등호 방향이 바뀌므로 $a\\ge b$이다.\n따라서 $-a\\le -b$이고, 양변에 7을 더하면 $7-a\\le 7-b$이므로 옳지 않은 것은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fbe9180228f4a9a817fcb4b25ee7a02bbd90220eb478496f28a2b56f99e64a6f"
+}

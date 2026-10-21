@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c29a6012-f5e1-4a40-8d20-3f86e2a5971b",
+ "startedAt": "2026-10-21T18:28:08+0900",
+ "elapsedSec": 29.8,
+ "studentSha256": {
+  "fig-1.png": "c3b5228ffcf5a056b2fd7d97fe6a3ccc26ee3a90b8d123580cd0e9927ca6a530",
+  "student.json": "67a2c1cbd2adab61e9fd7bf0bbd6f9a914417b7b7daa3c1d66526a8c30b49c0f"
+ },
+ "promptSha256": "328160a7813898fa3ca0d3728f35e8edeb6506699e82620f86ad057ed01e9e6f",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"7 cm\",\n  \"work\": \"직각삼각형 $PQR$에서 $\\\\angle R = 90^\\\\circ - 60^\\\\circ = 30^\\\\circ$이다. $\\\\overline{MQ} = \\\\overline{MR}$이므로 $\\\\angle MQR = \\\\angle R = 30^\\\\circ$이고, $\\\\angle PQM = 90^\\\\circ - 30^\\\\circ = 60^\\\\circ$이다. $\\\\triangle PQM$에서 $\\\\angle P = 60^\\\\circ$, $\\\\angle PQM = 60^\\\\circ$이므로 $\\\\triangle PQM$은 정삼각형이다. 따라서 $\\\\overline{PQ} = \\\\overline{PM} = \\\\overline{MQ} = \\\\overline{MR}$이 되어 점 $M$은 빗변 $\\\\overline{PR}$의 중점이다. 그러므로 $\\\\overline{PQ} = \\\\frac{1}{2}\\\\overline{PR} = \\\\frac{1}{2} \\\\times 14 = 7\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "7 cm",
+  "work": "직각삼각형 $PQR$에서 $\\angle R = 90^\\circ - 60^\\circ = 30^\\circ$이다. $\\overline{MQ} = \\overline{MR}$이므로 $\\angle MQR = \\angle R = 30^\\circ$이고, $\\angle PQM = 90^\\circ - 30^\\circ = 60^\\circ$이다. $\\triangle PQM$에서 $\\angle P = 60^\\circ$, $\\angle PQM = 60^\\circ$이므로 $\\triangle PQM$은 정삼각형이다. 따라서 $\\overline{PQ} = \\overline{PM} = \\overline{MQ} = \\overline{MR}$이 되어 점 $M$은 빗변 $\\overline{PR}$의 중점이다. 그러므로 $\\overline{PQ} = \\frac{1}{2}\\overline{PR} = \\frac{1}{2} \\times 14 = 7\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "09de47d7c1eb288e62e0a98c06b930412f5fa1d04cc5f61faf00cdd8d602661c"
+}

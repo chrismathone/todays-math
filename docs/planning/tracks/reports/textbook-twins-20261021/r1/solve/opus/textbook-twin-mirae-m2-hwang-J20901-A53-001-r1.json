@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A53-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "50be8e23-4b6f-45cc-80e3-c915c18c0c02",
+ "startedAt": "2026-10-21T17:11:42+0900",
+ "elapsedSec": 5.7,
+ "studentSha256": {
+  "student.json": "42c6c0867085cc02d68c84d74004b7cdb886bba15d744084056c63e117c3d48b"
+ },
+ "promptSha256": "146e174918e63d60ec2d264660ad534fcc5be6af111aac429acd7283cceda6b8",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 4 ⑵ 3\", \"work\": \"⑴ 두 눈의 수의 합이 9인 경우는 (3,6), (4,5), (5,4), (6,3)이므로 4가지이다. ⑵ 1부터 18까지의 자연수 중 5의 배수는 5, 10, 15이므로 3가지이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ 4 ⑵ 3",
+  "work": "⑴ 두 눈의 수의 합이 9인 경우는 (3,6), (4,5), (5,4), (6,3)이므로 4가지이다. ⑵ 1부터 18까지의 자연수 중 5의 배수는 5, 10, 15이므로 3가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea32033153e53bfddd87f7adc8c681c5d46ee317c20c23f364e5b610357641db"
+}

@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 326,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A31-001-r1",
+ "authorId": "claude-fable-5-1:f9191227-d7e4-4af2-be8d-878397dde7ff",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$\\triangle ABC$에서 $\\overline{BC}$의 중점을 $D$라 하고, 변 $AB$ 위에 $\\overline{AP}=\\overline{PQ}=\\overline{QB}$가 되도록 두 점 $P$, $Q$를 잡는다. 직선 $QD$가 변 $AC$의 연장선과 만나는 점을 $E$라 하자. $\\overline{QD}=4\\,\\mathrm{cm}$이고 $\\overline{PC}=x\\,\\mathrm{cm}$, $\\overline{DE}=y\\,\\mathrm{cm}$일 때, $x+y$의 값을 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$20$",
+ "solution": "$\\triangle PBC$에서 두 점 $Q$, $D$는 각각 $\\overline{PB}$, $\\overline{BC}$의 중점이므로 $\\overline{QD}\\parallel\\overline{PC}$이고 $\\overline{PC}=2\\overline{QD}=2\\times 4=8\\,(\\mathrm{cm})$. 즉 $x=8$. $\\triangle AQE$에서 $\\overline{PC}\\parallel\\overline{QE}$이고 $\\overline{AP}:\\overline{AQ}=1:2$이므로 $\\overline{PC}:\\overline{QE}=1:2$, $8:\\overline{QE}=1:2$에서 $\\overline{QE}=16\\,(\\mathrm{cm})$. 따라서 $\\overline{DE}=\\overline{QE}-\\overline{QD}=16-4=12\\,(\\mathrm{cm})$이므로 $y=12$. 그러므로 $x+y=8+12=20$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20704-A31-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20704-A31-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-e07b6dbebddb2e1f-1-4",
+  "problemCode": "J20704-A31-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "a77fee77d35091d4ffddf7d12c075d00006a42374a79dcf8428ccaa8f7d7e154",
+  "dbContentSha256": "3ba6fd7f2c6773d6160da46b5e4ecb61f49696699d5ad8362f69127b853f5a62",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-3_평행선사이의선분의길이의비.hwp",
+    "sha256": "3c3540da486426fa51435b688bc6ab7f49964cc103d9f365f62c56e36b4d7007",
+    "bytes": 821248
+   }
+  ],
+  "originalFigureSha256": [
+   "c310e9c0ab8ca37b0e399ae9bdb9acbb0e7c8fa2b8331fec6e6aca716fab6848"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "한 변을 삼등분한 점 둘과 다른 변의 중점으로 중점연결 선분을 만들고, 그 선분의 연장선이 세 번째 변의 연장선과 만나는 점까지의 길이를 비례식으로 구해 두 미지수의 합을 묻는다. 미지수는 그림 속 활로만 정해진다.",
+  "after": "삼등분점을 다른 변(AB)에 두고 연장선이 만나는 변도 바꾸어(AC) 좌우 배치를 새로 짰으며, 두 미지수가 어느 선분인지 발문에 글로 명시했다. 중점연결 길이와 연장선의 길이 비례는 같은 두 단계.",
+  "sharedConcept": "삼각형의 두 변의 중점을 연결한 선분의 성질과 평행선 사이의 선분 길이의 비",
+  "sharedProcedure": "작은 삼각형에서 두 중점 확인 → 평행 · 길이 2배로 x 구함 → 큰 삼각형에서 평행선의 비 1:2로 연장선 전체 길이 구함 → 주어진 조각을 빼서 y 구함 → x+y"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "b34dbe8b-fd8a-4428-8758-941c5bf6aea6",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 두 변의 중점을 연결한 선분"
+  },
+  "prerequisites": [
+   "삼각형의 두 변의 중점을 연결한 선분의 성질",
+   "평행선과 선분의 길이의 비",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20704-A31-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "삼등분점과 중점으로 만든 평행선에서 연장선까지의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "b34dbe8b-fd8a-4428-8758-941c5bf6aea6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'xLab' has no line/circle/label-free position",
+     "session": "128987a6-7785-4bc0-b670-ec2a18500a91",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "mismatch",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.102,
+   "longestRun": 6,
+   "residualChars": 91,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

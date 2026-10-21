@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A26-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "688ef51c-5191-4a7f-b7a5-da1c5b2d0910",
+ "startedAt": "2026-10-21T18:01:45+0900",
+ "elapsedSec": 16.2,
+ "studentSha256": {
+  "student.json": "92baa6d1a4a410234569d67b9116b655f98c42310e359e4c1214802ecb818308"
+ },
+ "promptSha256": "1ea1b6cf411aee33e988d9d166e385ad672bfcbba8d25719fee37ecda8655fec",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"10\",\n  \"work\": \"두 연립방정식의 해가 서로 같으므로 상수항이 온전히 주어진 두 식 7x - y = -13과 -9x + 6y = 45를 연립하여 공통해를 구한다.\\n-3x + 2y = 15에 y = 7x + 13을 대입하면 2(7x + 13) - 3x = 15에서 11x = -11이므로 x = -1, y = 6이다.\\n이를 나머지 식들에 대입하면,\\nx + 9y = m에서 m = -1 + 9(6) = 53,\\n6y = 7x + n에서 36 = -7 + n이므로 n = 43이다.\\n따라서 m - n = 53 - 43 = 10이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "10",
+  "work": "두 연립방정식의 해가 서로 같으므로 상수항이 온전히 주어진 두 식 7x - y = -13과 -9x + 6y = 45를 연립하여 공통해를 구한다.\n-3x + 2y = 15에 y = 7x + 13을 대입하면 2(7x + 13) - 3x = 15에서 11x = -11이므로 x = -1, y = 6이다.\n이를 나머지 식들에 대입하면,\nx + 9y = m에서 m = -1 + 9(6) = 53,\n6y = 7x + n에서 36 = -7 + n이므로 n = 43이다.\n따라서 m - n = 53 - 43 = 10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0f01af8d7cb224be2f3389120bbe0d0c4d34d861c2f53aacc264c771d19918db"
+}

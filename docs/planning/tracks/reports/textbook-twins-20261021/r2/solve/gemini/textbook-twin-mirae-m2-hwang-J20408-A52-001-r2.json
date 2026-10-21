@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "a176877c-de28-470c-ba91-f189f427c111",
+ "startedAt": "2026-10-21T18:14:15+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "student.json": "0f583d53c9395d6b98c0177e5f95f0265284c7e95a019ab0bd202a254bb55798"
+ },
+ "promptSha256": "a78614c34f6e25ede170b7ce903c6c537dd30a96eb3e6a3d8657c216f74ebe40",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"두 직선이 한 점에서도 만나지 않으려면 서로 평행해야 하므로 기울기가 같고 y절편이 달라야 합니다. 일차함수 $y=\\\\frac{7}{9}x-8$의 기울기는 $\\\\frac{7}{9}$입니다. 보기 ④ $7x-9y+10=0$을 $y$에 관하여 풀면 $y=\\\\frac{7}{9}x+\\\\frac{10}{9}$이 되어 기울기가 $\\\\frac{7}{9}$로 같고 y절편이 다르므로 두 직선은 평행하여 만나지 않습니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "두 직선이 한 점에서도 만나지 않으려면 서로 평행해야 하므로 기울기가 같고 y절편이 달라야 합니다. 일차함수 $y=\\frac{7}{9}x-8$의 기울기는 $\\frac{7}{9}$입니다. 보기 ④ $7x-9y+10=0$을 $y$에 관하여 풀면 $y=\\frac{7}{9}x+\\frac{10}{9}$이 되어 기울기가 $\\frac{7}{9}$로 같고 y절편이 다르므로 두 직선은 평행하여 만나지 않습니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "000b58b0ac3cfb387c13eca4a88554f5c4d5ee4741ac4b77a14a4b6ededa1332"
+}

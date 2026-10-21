@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A53-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2c529592-2cf3-440d-ad2f-178c9c203846",
+ "startedAt": "2026-10-21T16:25:48+0900",
+ "elapsedSec": 5.2,
+ "studentSha256": {
+  "student.json": "04163feb99dbc590e4f7f03471a94e22c5ab283b144a06a7b590dee6639b3280"
+ },
+ "promptSha256": "a677be967c5e6eab6ff1eaeb86a5aeca3b4f8a7a0da8d8abf897c5f817b0ce5a",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ◯ ⑻ ✕\", \"work\": \"x=2를 대입한다. ⑴ 0≥0 참 ⑵ 0>0 거짓 ⑶ 5<4 거짓 ⑷ 5≥4 참 ⑸ 0≤0 참 ⑹ 0<0 거짓 ⑺ 5≤5 참 ⑻ 5>5 거짓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ◯ ⑻ ✕",
+  "work": "x=2를 대입한다. ⑴ 0≥0 참 ⑵ 0>0 거짓 ⑶ 5<4 거짓 ⑷ 5≥4 참 ⑸ 0≤0 참 ⑹ 0<0 거짓 ⑺ 5≤5 참 ⑻ 5>5 거짓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0e77ee6d90a629e533615d5382f411e2cfb78819fc4a837d70c19a118ee282d0"
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 35,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A60-001-r2",
+ "authorId": "claude-fable-5-1:e4e6a77c-dc64-4a0b-9fa4-0ec5462aea44",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A60-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아는 $(2a^{2}b^{5})^{3}$에 $(-4a^{3}b^{2})^{2}$을 곱한 결과를 간단히 하여 $pa^{q}b^{r}$ 꼴로 정리하였다. 이때 세 자연수 $p$, $q$, $r$에 대하여 $p+q+r$의 값은?",
+ "choices": [
+  "$150$",
+  "$155$",
+  "$157$",
+  "$159$",
+  "$163$"
+ ],
+ "answer": "④",
+ "solution": "$(2a^{2}b^{5})^{3}=8a^{6}b^{15}$, $(-4a^{3}b^{2})^{2}=16a^{6}b^{4}$이다. 두 식을 곱하면 $8\\times16=128$, $a^{6}\\times a^{6}=a^{12}$, $b^{15}\\times b^{4}=b^{19}$이므로 결과는 $128a^{12}b^{19}$이다. 따라서 $p=128$, $q=12$, $r=19$이고 $p+q+r=128+12+19=159$이므로 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-5",
+  "problemCode": "J20106-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "b089e6ecd53b714af5905cee2e05887c74984682e19849c65aa3f798edd8947c",
+  "dbContentSha256": "98444fd9f29c37284f22c926a65d2cd924c7cabd89ad73342f9ee0adb5d38fd4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "두 단항식의 거듭제곱을 곱한 식이 등식 꼴로 주어지고, 그 결과를 계수와 두 지수로 나타낸 세 자연수의 합을 객관식으로 묻는다.",
+  "after": "인물이 세제곱한 단항식에 제곱한 단항식을 곱해 정리했다는 서술로 식을 제시하고, 정리한 결과의 계수와 두 지수의 합을 객관식으로 묻는다. 등식 대신 말로 된 곱셈 지시이며 거듭제곱의 차수 배치(세제곱이 앞, 제곱이 뒤)와 문자, 수가 모두 새롭다.",
+  "sharedConcept": "지수법칙(곱의 거듭제곱, 거듭제곱의 거듭제곱, 지수의 합)을 이용한 단항식의 곱셈",
+  "sharedProcedure": "각 거듭제곱을 전개한다 → 계수끼리 곱하고 같은 문자의 지수끼리 더한다 → 계수와 두 지수를 읽어 합을 구한다 → 보기에서 고른다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(곱의 거듭제곱, 거듭제곱의 거듭제곱)",
+   "단항식의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A60-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 거듭제곱의 곱을 간단히 하여 계수와 지수의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.013,
+   "longestRun": 4,
+   "residualChars": 79,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

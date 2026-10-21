@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 51,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r1",
+ "authorId": "middle-engine:2-1|유리수와 순환소수|02",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "다음 순환소수를 순환마디를 이용하여 간단히 나타내시오.\n$1.959595\\cdots$",
+ "choices": [
+  "$2.\\overline{95}$",
+  "$10.\\overline{95}$",
+  "$3.\\overline{95}$",
+  "$4.\\overline{95}$",
+  "$1.\\overline{95}$"
+ ],
+ "answer": "⑤",
+ "solution": "소수점 아래에서 $95$ 부분이 한없이 되풀이되므로 순환마디는 $95$ 이다.\n따라서 순환마디의 양 끝 숫자 위에 점을 찍어 $1.\\overline{95}$ 로 나타낸다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-2",
+  "problemCode": "J20102-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "864ae3f24bf318495d8caa0922aa92fae2ceeedabd299913d3c97c89a9279716",
+  "dbContentSha256": "428a1817de7adef0359035c21e51194624e21ab86009613f550d2ec47015d822",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소수점 아래 세 자리씩 되풀이되는 소수 하나를 주고, 순환마디의 양 끝에 점을 찍은 표기 가운데 맞는 것을 고르게 한다.",
+  "after": "엔진이 새로 정한 순환소수 하나를 주고 그 순환마디 표기를 묻는 객관식으로 파생된다.",
+  "sharedConcept": "순환소수의 순환마디와 기호 표현",
+  "sharedProcedure": "반복되는 숫자 묶음 찾기 → 순환마디 확정 → 양 끝 숫자에 점 찍기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "유한소수와 무한소수",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A59-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 순환마디 기호로 나타내기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|유리수와 순환소수|02",
+   "seed": 1534976990,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+   "authorRationale": "순환소수 하나를 주고 순환마디로 간단히 나타내는 같은 절차(반복 부분 찾기 → 기호로 쓰기)이며, 파생기로 값을 묻는 객관식이 되면 원본의 물음 꼴과 같다.",
+   "facts": {
+    "rInt": 1,
+    "rPreLen": 0,
+    "rPreVal": 0,
+    "rCycLen": 2,
+    "rCycVal": 95
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.071,
+   "longestRun": 5,
+   "residualChars": 47,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

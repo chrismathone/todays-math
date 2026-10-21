@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ded-c7cb-7291-a045-c67dba409c17",
+ "startedAt": "2026-10-21T19:07:06+0900",
+ "elapsedSec": 16.3,
+ "studentSha256": {
+  "fig-1.png": "517f19d5bbacc5ee2115582f3f170cf771b9aeaa4de15a4a0744d4dd968bf5fa",
+  "student.json": "9aeb3dfc8ded0384f39bf64f7456d3d872e9cf38aeae80fe9bb21e9d398e5869"
+ },
+ "promptSha256": "2628eaa081e5e0989540ab7b90703fd6ea21564c3cd9c996143b746fdb8dc0a5",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행사변형의 대각은 같으므로 ∠PQR=76°이다. PQ=PR이므로 ∠PRQ=76°이다.\\nQ, R, T가 일직선 위에 있으므로 ∠PRT=180°−76°=104°이다.\\nRP=RT이므로 ∠RTP=(180°−104°)÷2=38°이다. PS∥QT이므로 엇각인 ∠SPT=∠RTP=38°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행사변형의 대각은 같으므로 ∠PQR=76°이다. PQ=PR이므로 ∠PRQ=76°이다.\nQ, R, T가 일직선 위에 있으므로 ∠PRT=180°−76°=104°이다.\nRP=RT이므로 ∠RTP=(180°−104°)÷2=38°이다. PS∥QT이므로 엇각인 ∠SPT=∠RTP=38°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "039dcb612fa94d540ba69df67331d2d575f5ea70caac506c58215100e8153234"
+}

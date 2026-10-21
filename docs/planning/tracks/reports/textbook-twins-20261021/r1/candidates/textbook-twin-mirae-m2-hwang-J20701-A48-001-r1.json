@@ -1,0 +1,139 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 323,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A48-001-r1",
+ "authorId": "claude-fable-5-1:8a900d5d-5808-4cf0-96fc-16fbb6cff9b6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 $\\triangle ABC$에서 점 $D$, $E$는 각각 $\\overline{AB}$, $\\overline{AC}$ 위의 점이고 $\\overline{DE}\\parallel\\overline{BC}$이다. 점 $F$는 $\\overline{BC}$ 위의 점이고 $\\overline{AF}$가 $\\overline{DE}$와 만나는 점을 $G$라 하자. $\\overline{DG}=6\\,\\mathrm{cm}$, $\\overline{GE}=9\\,\\mathrm{cm}$, $\\overline{BF}=8\\,\\mathrm{cm}$일 때, $\\overline{FC}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$12\\,\\mathrm{cm}$",
+ "solution": "$\\triangle ABF$에서 $\\overline{DG}\\parallel\\overline{BF}$이므로 $\\overline{DG}:\\overline{BF}=\\overline{AG}:\\overline{AF}$이고, $\\triangle AFC$에서 $\\overline{GE}\\parallel\\overline{FC}$이므로 $\\overline{GE}:\\overline{FC}=\\overline{AG}:\\overline{AF}$이다. 두 비가 같으므로 $\\overline{DG}:\\overline{GE}=\\overline{BF}:\\overline{FC}$, 즉 $6:9=8:\\overline{FC}$에서 $6\\overline{FC}=72$이다. 따라서 $\\overline{FC}=12\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A48-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A48-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-2f9433ef525d0528-0-2",
+  "problemCode": "J20701-A48-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "b53cc74881e1dd32cf662b146d3e7b0c3c28e3de10b92440cc7ec2f3c6fb2258",
+  "dbContentSha256": "3a76035d4071bdbb9c28211a5ed4fb71992ae6ac7ac7d15ba547ad588999bcbc",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-3_평행선사이의선분의길이의비.hwp",
+    "sha256": "5f0eeb9abb4b62f7153b03822a216b42e5c10863a67c1d10b31876fa6023edde",
+    "bytes": 292864
+   }
+  ],
+  "originalFigureSha256": [
+   "40d7661042e13581bb24d88d6d4df21024ab42dce1d530527e470aa917c695fe"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "삼각형 안의 평행선이 꼭짓점에서 밑변으로 그은 선분에 의해 나뉠 때, 밑변의 두 부분과 평행선의 한 부분을 주고 평행선의 다른 부분을 묻는 단답형",
+  "after": "같은 배치에서 평행선의 두 부분과 밑변의 한 부분을 주고 밑변의 다른 부분을 묻는 단답형(주어진 것과 구하는 것을 위아래로 맞바꿈)",
+  "sharedConcept": "한 꼭짓점을 지나는 선분으로 나뉜 두 삼각형에서 평행선이 만드는 길이의 비가 같음",
+  "sharedProcedure": "두 작은 삼각형에서 각각 비례식 세우기 → 공통 비로 묶어 한 비례식 만들기 → 비례식 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형에서 평행선 사이의 선분의 길이의 비"
+  },
+  "prerequisites": [
+   "삼각형에서 평행선 사이의 선분의 길이의 비",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20701-A48-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "꼭짓점에서 그은 선분으로 나뉜 평행선의 두 부분과 밑변의 두 부분의 비",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.118,
+   "longestRun": 6,
+   "residualChars": 81,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

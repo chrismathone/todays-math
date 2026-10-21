@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 69,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A82-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$\\frac{80\\times 99+512}{990}$ 을 순환소수로 나타낼 때, 소수점 아래 $75$ 번째 자리의 숫자를 구하시오.",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "$\\dfrac{80\\times 99+512}{990}=\\dfrac{80\\times 99}{990}+\\dfrac{512}{990}=8+\\dfrac{512}{990}$ 이다. $\\dfrac{512}{990}=0.5171717\\cdots=0.5\\dot{1}\\dot{7}$ 이므로 주어진 수는 $8.5\\dot{1}\\dot{7}$ 이다. 소수점 아래 둘째 자리부터 순환마디 $17$ 이 반복되므로 $75-1=74=2\\times 37$ 에서 $75$ 번째 자리 숫자는 순환마디의 둘째 숫자인 $7$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-12",
+  "problemCode": "J20103-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "8cc00e71f7b30cf7157cc4e1767bd1508b00cb7fcf0e3f5158ccf24e69b95b08",
+  "dbContentSha256": "0a8fe93dac244291c5a741c47c198ced7618f4e23d0d4a559d080145b2c9a611",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "분자가 곱과 합으로 적힌 분수를 정수 부분과 순환소수로 나누어 쓰고, 묻는 자리가 순환마디의 첫째 숫자에 떨어지도록 되어 있다.",
+  "after": "같은 꼴의 다른 분수를 주고, 묻는 자리가 순환마디의 둘째 숫자에 떨어지도록 하여 나머지 판단을 실제로 하게 한다.",
+  "sharedConcept": "분수를 순환소수로 나타내고 순환마디로 특정 자리 숫자 찾기",
+  "sharedProcedure": "분수를 정수 부분 + 진분수로 분리 → 진분수를 순환소수로 → 순환 시작 자리 확인 → 나머지로 자리 숫자 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환마디",
+   "나눗셈의 나머지"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A82-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 소수점 아래 n 번째 자리 숫자",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 37자"
+   ],
+   "overlap4": 0.559,
+   "longestRun": 19,
+   "residualChars": 37,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

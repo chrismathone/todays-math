@@ -1,0 +1,38 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "4e013753-cf6d-4c11-8af0-9d4c0031995a",
+ "startedAt": "2026-10-21T18:47:49+0900",
+ "elapsedSec": 23.4,
+ "studentSha256": {
+  "fig-1.png": "528327887785c2edd6492026cb4beaced1022e9939c7f1808f6e9d784173917e",
+  "student.json": "5afc0a2afe9992455e78db28adf1fea494b08f79d90ee05925bd24741569f77f"
+ },
+ "promptSha256": "fae1d5f102b1ab64644d4bcbf15aa16c074089e8cffa3e41185a42c2b88d3e86",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"$\\mathrm{B}$에서 $\\mathrm{A}$로 가는 경로는 $\\mathrm{C}$를 거치는 경우와 $\\mathrm{D}$를 거치는 경우로 나뉜다.\\n1) $\\\\mathrm{B} \\\\to \\\\mathrm{C} \\\\to \\\\mathrm{A}$: $4 \\\\times 1 = 4$가지\\n2) $\\\\mathrm{B} \\\\to \\\\mathrm{D} \\\\to \\\\mathrm{A}$: $3 \\\\times 3 = 9$가지\\n따라서 구하는 전체 경로의 수는 $4 + 9 = 13$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "$\\mathrm{B}$에서 $\\mathrm{A}$로 가는 경로는 $\\mathrm{C}$를 거치는 경우와 $\\mathrm{D}$를 거치는 경우로 나뉜다.\n1) $\\mathrm{B} \\to \\mathrm{C} \\to \\mathrm{A}$: $4 \\times 1 = 4$가지\n2) $\\mathrm{B} \\to \\mathrm{D} \\to \\mathrm{A}$: $3 \\times 3 = 9$가지\n따라서 구하는 전체 경로의 수는 $4 + 9 = 13$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "22102b56b3c191385be57dfb3648754ec9875b3a76892e6c511d8e44c6166fa3",
+ "formatRepair": {
+  "kind": "escape four invalid JSON backslashes before mathrm in work only",
+  "originalRawSha256": "1363295cbb772ccfe3af9d7fe21bad5872335bf05ec3db03342ba1815ffaeeea",
+  "repairedJsonSha256": "c7f30153817fd0813992e74ffd2d00f1691c182d0a5f70e97796277056bb9a58",
+  "externalRepairedJson": "/Users/pss/Desktop/creative/display-survey/textbook-twins/run/gemini/textbook-twin-mirae-m2-hwang-J20901-A86-001-r2/format-repaired.json"
+ }
+}

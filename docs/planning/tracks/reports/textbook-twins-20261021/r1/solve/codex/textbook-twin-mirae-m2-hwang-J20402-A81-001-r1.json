@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-1152-7e21-878f-1c37167b5f18",
+ "startedAt": "2026-10-21T17:53:09+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "c7628f1399180863daaf9bbf244864695f47f10ed95bb9f6e9bd39bee4454f1c"
+ },
+ "promptSha256": "e2cb1349f11eeb6fad109326d21fd8a16b060c89d2a03df85b28b58dbabdf3b8",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$(0, 3)$\",\"work\":\"$x$절편이 6이므로 $x=6$, $y=0$을 대입하면 $0=-3+3k$, 따라서 $k=1$이다.\\n$y$축 위에서는 $x=0$이므로 $y=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$(0, 3)$",
+  "work": "$x$절편이 6이므로 $x=6$, $y=0$을 대입하면 $0=-3+3k$, 따라서 $k=1$이다.\n$y$축 위에서는 $x=0$이므로 $y=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bce507de952f576c1cb5db330545233bc7f8bc23de5fe1b2184ae682babcbcd1"
+}

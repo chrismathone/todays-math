@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A73-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df7-182d-77f0-91b9-9ef8309e188a",
+ "startedAt": "2026-10-21T19:17:17+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "fig-1.png": "b9d5679800006a935c6cab2c2460df4195ac86e987b90dc2cce4d6f5df362df6",
+  "student.json": "d469eca1f41b67a36d4fa14b3248e4688049a914c6a7c31343a090cf23c96074"
+ },
+ "promptSha256": "9ba4936a9fa14554151419634e2a89e83802e2c372b4a433b145595dc940cd0e",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$AB=AD+DB=6+5=11\\\\,\\\\mathrm{cm}$이다.\\n$\\\\triangle ABC\\\\sim\\\\triangle ADE$이므로 $BC:DE=AB:AD=11:6$이다.\\n따라서 $BC=9\\\\times\\\\frac{11}{6}=\\\\frac{33}{2}\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$AB=AD+DB=6+5=11\\,\\mathrm{cm}$이다.\n$\\triangle ABC\\sim\\triangle ADE$이므로 $BC:DE=AB:AD=11:6$이다.\n따라서 $BC=9\\times\\frac{11}{6}=\\frac{33}{2}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b23926d34476973c9bbb0d3c5469f944b7d863ba09477d49a54a97e0c64b17f7"
+}

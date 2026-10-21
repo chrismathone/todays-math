@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A49-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbb-5009-7993-b5f0-6dad4279509f",
+ "startedAt": "2026-10-21T18:11:59+0900",
+ "elapsedSec": 14.4,
+ "studentSha256": {
+  "fig-1.png": "b33d94c315383db741e5303fd6e830fdb73739819faf26bcaff6736d3c8152c0",
+  "student.json": "cfb42af42238e3381a529a62a61daf918974af257517a7f91f34740e9c179003"
+ },
+ "promptSha256": "1609bb89379935e1e1d8d90a1cd38ff6ae12a7e23bace509f775d5e099c5b17c",
+ "freezeCommit": "e9b0cc7dcbdc69ed996fa456dc1e7d052bcd45ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"24 cm²\",\n  \"work\": \"AB = 7 + 5 = 12 cm이다.\\n∠A가 공통이고 ∠ADE = ∠ACB이므로 △ADE ∽ △ACB이다.\\n닮음비는 AE : AB = 8 : 12 = 2 : 3이므로, △ADE의 넓이는 54 × (2/3)² = 24 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "24 cm²",
+  "work": "AB = 7 + 5 = 12 cm이다.\n∠A가 공통이고 ∠ADE = ∠ACB이므로 △ADE ∽ △ACB이다.\n닮음비는 AE : AB = 8 : 12 = 2 : 3이므로, △ADE의 넓이는 54 × (2/3)² = 24 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c12aab0760ea05b67833419fe85d7fdf7ad4d06e1493c1f92d28e54ccdce46e1"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B13-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dba-f514-7391-a1e7-bb818313027c",
+ "startedAt": "2026-10-21T18:11:35+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "fig-1.png": "4ef24e1e76201b9f92dcd90a0bcf545d760f6209637b37fbe1b351b7f5cc9422",
+  "student.json": "10e8a648b04591fe328dab0c748823dbce8550f29fff307cbb22e012fd1a6213"
+ },
+ "promptSha256": "4d9eb801e8a24504a2102de3d2215ab474feb00bfc825f5adfc3ebb9189281b0",
+ "freezeCommit": "e9b0cc7dcbdc69ed996fa456dc1e7d052bcd45ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4 m\",\"work\":\"삼각형 ABC와 ADE는 두 각이 각각 같으므로 닮음이다. 조명탑 밑에서 그림자 끝까지의 거리는 6+4=10 m이므로, 조명탑의 높이를 h m라 하면 4:10=1.6:h이다. 따라서 h=1.6×10÷4=4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4 m",
+  "work": "삼각형 ABC와 ADE는 두 각이 각각 같으므로 닮음이다. 조명탑 밑에서 그림자 끝까지의 거리는 6+4=10 m이므로, 조명탑의 높이를 h m라 하면 4:10=1.6:h이다. 따라서 h=1.6×10÷4=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "151a622723ddd307cc2f6a5ac4ca7e78aa608a315614a9f40d7ccc7ffe95412b"
+}

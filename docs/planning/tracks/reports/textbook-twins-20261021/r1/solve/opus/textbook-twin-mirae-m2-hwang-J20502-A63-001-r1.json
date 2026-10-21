@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2b662581-bb64-4149-9874-1fa85248708c",
+ "startedAt": "2026-10-21T17:05:38+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "bf6223832624658fec10b1770a979b00faedbe9eefb4c9a65aaa7e18a002fda0",
+  "student.json": "30cb45487b6bed619f2a427303abab72d65c238e52a5581ad445a3d24cf09509"
+ },
+ "promptSha256": "9ad05fcd35078880d3bfe0752ed025f0be8d1c32c35411aec796b3dee0aa7e3d",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $\\\\triangle ABC \\\\equiv \\\\triangle EDF$, RHS 합동 ⑵ 12 cm\", \"work\": \"∠B=∠D=90°, 빗변 AC=EF=13 cm, 한 변 AB=ED=5 cm이므로 빗변의 길이와 다른 한 변의 길이가 각각 같다 → RHS 합동. 대응하는 꼭짓점: A↔E, B↔D, C↔F. 따라서 BC=DF=12 cm.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle ABC \\equiv \\triangle EDF$, RHS 합동 ⑵ 12 cm",
+  "work": "∠B=∠D=90°, 빗변 AC=EF=13 cm, 한 변 AB=ED=5 cm이므로 빗변의 길이와 다른 한 변의 길이가 각각 같다 → RHS 합동. 대응하는 꼭짓점: A↔E, B↔D, C↔F. 따라서 BC=DF=12 cm.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "77c5670fab518281dbc7fe924f89363d4c4febc7b4403e00b2c347254f76f8e1"
+}

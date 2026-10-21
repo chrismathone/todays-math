@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A63-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7f-4f10-7f91-bd42-f851eeb37def",
+ "startedAt": "2026-10-21T17:06:26+0900",
+ "elapsedSec": 15.6,
+ "studentSha256": {
+  "student.json": "23372233bf6e21746f4aaffcf7b793b23fb8f467bb060b23bb71332cbd61ed75"
+ },
+ "promptSha256": "631a287276074a16763a990760c50c6e34b0271aa6b839107742b96d515e64bf",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$\",\n  \"work\": \"⑴ 계수를 곱하면 7×8=56이다.\\n⑵ 같은 문자의 지수를 더하면 $-6m^{8+6}n^{7+9}=-6m^{14}n^{16}$이다.\\n⑶ 분수의 제곱을 계산하여 곱하면 $9x^{6-6}y^{7+12}=9y^{19}$이다.\\n⑷ 각 인수를 제곱하여 곱하면 $49a^{18-16}b^{12+14}=49a^{2}b^{26}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+  "work": "⑴ 계수를 곱하면 7×8=56이다.\n⑵ 같은 문자의 지수를 더하면 $-6m^{8+6}n^{7+9}=-6m^{14}n^{16}$이다.\n⑶ 분수의 제곱을 계산하여 곱하면 $9x^{6-6}y^{7+12}=9y^{19}$이다.\n⑷ 각 인수를 제곱하여 곱하면 $49a^{18-16}b^{12+14}=49a^{2}b^{26}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cd9fb54d7126b60a56245b48028dbb5f70f80823c4da7393cf97c68fbc94d4c7"
+}

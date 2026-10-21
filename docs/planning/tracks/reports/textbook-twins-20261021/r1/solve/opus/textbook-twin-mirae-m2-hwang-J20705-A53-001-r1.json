@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "531cfd56-87dd-4ac4-9080-5e1d16e74472",
+ "startedAt": "2026-10-21T17:10:12+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "fig-1.png": "63e8f7cb22f22ecb661b205a3e89814a7bfb10f4ff11798bf77ef26bb8b14300",
+  "student.json": "7d8384fa3da32fae500f03dd4a7cd40daf15d33ae20e83adace519ffe7bbace8"
+ },
+ "promptSha256": "2973939017a9107c37e2d9c55198e6acdafea1e319f29393db5aa1942f37a5a8",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"27 cm\", \"work\": \"G'은 △GBC의 무게중심이고 GD는 △GBC의 중선이므로 GG' = (2/3)GD이다. 따라서 GD = 6 × 3/2 = 9 cm이다. G는 △ABC의 무게중심이므로 GD = (1/3)AD이고, AD = 3 × 9 = 27 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "27 cm",
+  "work": "G'은 △GBC의 무게중심이고 GD는 △GBC의 중선이므로 GG' = (2/3)GD이다. 따라서 GD = 6 × 3/2 = 9 cm이다. G는 △ABC의 무게중심이므로 GD = (1/3)AD이고, AD = 3 × 9 = 27 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "381466003fff373318dbac80887ac386812e3a04ee3110ed546261d817e87d7c"
+}

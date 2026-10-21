@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbc-525a-77f2-8bab-ca36821ebe3d",
+ "startedAt": "2026-10-21T18:13:05+0900",
+ "elapsedSec": 14.6,
+ "studentSha256": {
+  "fig-1.png": "5665c3cfc2db1ff0954acb2d54ef53d229c635fbc83aea9955180741c77e559f",
+  "student.json": "b34ae80eb4048d40b53a8cd3f9e878f9c5b5c7270263cd683ffbf3cf71f3fa54"
+ },
+ "promptSha256": "a34722db51100bb38254f4a81dd307d48c1f4143720154e9f631d2c48e792dcc",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"16 cm\",\"work\":\"사다리꼴의 두 옆변의 중점을 이은 MN은 두 밑변과 평행하다. 중점 연결 정리에 의해 삼각형 ABC에서 MQ=BC÷2=13 cm, 삼각형 ABD에서 MP=AD÷2이다. 그림에서 MQ−MP=PQ이므로 13−AD÷2=5. 따라서 AD=16 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "16 cm",
+  "work": "사다리꼴의 두 옆변의 중점을 이은 MN은 두 밑변과 평행하다. 중점 연결 정리에 의해 삼각형 ABC에서 MQ=BC÷2=13 cm, 삼각형 ABD에서 MP=AD÷2이다. 그림에서 MQ−MP=PQ이므로 13−AD÷2=5. 따라서 AD=16 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e160a228ea83e81c11cb070578d1c2b8d9170c52892a97f37a6ae722233e12ca"
+}

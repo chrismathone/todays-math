@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "996d2a1c-db34-4809-b257-d2851768759e",
+ "startedAt": "2026-10-21T17:55:42+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "4ff1d87c0bde5ac6ae0508ba66054012245cef85181063b6d023a5d4a331ef36"
+ },
+ "promptSha256": "ade6cd9cbcbcc2172a6c6b7c06c56422f2c6a81e0daeb9e73e633ad40b9eeb9d",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "3b - 28 = -13 → 3b = 15 → b = 5.\n\n```json\n{\"answer\": \"④\", \"work\": \"x=b, y=4를 대입: 3b-7·4=-13 → 3b-28=-13 → 3b=15 → b=5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=b, y=4를 대입: 3b-7·4=-13 → 3b-28=-13 → 3b=15 → b=5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3ad582ccb432dd01e9f2fb1cd7db704d3cc0be121b0cc5d47269bfcc71bb7d74"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "754b24c8-044e-4d16-8173-d631798b9cfd",
+ "startedAt": "2026-10-21T17:07:01+0900",
+ "elapsedSec": 8.4,
+ "studentSha256": {
+  "fig-1.png": "06d4c6c6d3eaf005ed60a06e6d051c2910dc43397e3f0adec046c8dfda05da6e",
+  "student.json": "b449846f01499e796e5bda05ccfb6df6ba83d9d769b2bbb33cb5401439df4951"
+ },
+ "promptSha256": "60a63f9bc8040fbe0dc68caf866c4f37cc07c4ac404731c9c330ad369413df3c",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"∠B = x로 둔다. AB=AC이므로 ∠ACB = x이다. CA=CE이므로 ∠CAE = ∠CEA이고, ∠ACB는 삼각형 ACE의 외각이므로 ∠CEA = x/2이다. AD∥BE이므로 엇각에 의해 ∠DAE = ∠AEB = x/2 = 33°, 따라서 x = 66°이다. 평행사변형의 대각은 같으므로 ∠ADC = ∠B = 66°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "∠B = x로 둔다. AB=AC이므로 ∠ACB = x이다. CA=CE이므로 ∠CAE = ∠CEA이고, ∠ACB는 삼각형 ACE의 외각이므로 ∠CEA = x/2이다. AD∥BE이므로 엇각에 의해 ∠DAE = ∠AEB = x/2 = 33°, 따라서 x = 66°이다. 평행사변형의 대각은 같으므로 ∠ADC = ∠B = 66°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "75430760517d9e74fbe70a161e4a63896a12ddd361a769ab7ed7305308b8a9d2"
+}

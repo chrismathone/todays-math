@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "deea0616-061a-44fb-a982-44701085ec00",
+ "startedAt": "2026-10-21T18:13:04+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "8d1154c7ebc26c4bfb28b0f1bc1e5b185d0b7560aea95244e9267c4e8f91723a"
+ },
+ "promptSha256": "67189b02e23c4669f2225180c3122acf293744aeaa397371338d0a56abbaa9c7",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"큰 수를 $x$, 작은 수를 $y$라 하면 $x + y = 67$, $x = 7y + 3$ ($y > 3$)이다. 첫 번째 식에 대입하면 $(7y + 3) + y = 67$, $8y = 64$에서 $y = 8$, $x = 59$이다. 따라서 작은 수는 $8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "큰 수를 $x$, 작은 수를 $y$라 하면 $x + y = 67$, $x = 7y + 3$ ($y > 3$)이다. 첫 번째 식에 대입하면 $(7y + 3) + y = 67$, $8y = 64$에서 $y = 8$, $x = 59$이다. 따라서 작은 수는 $8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e7657f4cde4f7b388219c1bfb28bebd08d68960fb00c69c6d5375220dd29fef3"
+}

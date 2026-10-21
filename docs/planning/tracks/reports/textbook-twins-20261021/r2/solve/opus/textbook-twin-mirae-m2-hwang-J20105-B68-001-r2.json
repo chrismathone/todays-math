@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B68-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "18b236c8-157b-40db-9488-27a8338f087a",
+ "startedAt": "2026-10-21T17:55:17+0900",
+ "elapsedSec": 3.4,
+ "studentSha256": {
+  "student.json": "36fe4d47545c1221541588fcc55563bbb79524de7adf4cf8709e700fc042a1fb"
+ },
+ "promptSha256": "2f672193e05a2dafe55b272818f565003ec05cdf0d65a0ddec420a91e4d92d9c",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "12-7=5, so □=5.\n\n```json\n{\"answer\": \"5\", \"work\": \"(y^4)^3 = y^{12}, y^{12} ÷ y^7 = y^5, y^5 ÷ y^□ = 1 이고 y≠1, y>0 이므로 5-□=0, □=5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "(y^4)^3 = y^{12}, y^{12} ÷ y^7 = y^5, y^5 ÷ y^□ = 1 이고 y≠1, y>0 이므로 5-□=0, □=5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0204939d53605ee3d18d258fe7835cc614f8555dce797de77008edc33cc11436"
+}

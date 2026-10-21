@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "07ba3f02-2a5a-49ee-a827-0bc8ad86265d",
+ "startedAt": "2026-10-21T17:08:18+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "1de6a4da5f4e7c1a010d1aaff4fa1bd50ca87639b6073ce7659db74c532d3187"
+ },
+ "promptSha256": "e078a94deb09ddacae39447870cc1ae3c6240f2ae750255f78be2a76817db4f0",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 4, 5 ⑵ 4, 5, 6 ⑶ 7 ⑷ 6, 7\", \"work\": \"⑴ x+5<11 → x<6 → 4, 5\\n⑵ x+5≤11 → x≤6 → 4, 5, 6\\n⑶ 4x-9>15 → 4x>24 → x>6 → 7\\n⑷ 4x-9≥15 → x≥6 → 6, 7\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ 4, 5 ⑵ 4, 5, 6 ⑶ 7 ⑷ 6, 7",
+  "work": "⑴ x+5<11 → x<6 → 4, 5\n⑵ x+5≤11 → x≤6 → 4, 5, 6\n⑶ 4x-9>15 → 4x>24 → x>6 → 7\n⑷ 4x-9≥15 → x≥6 → 6, 7",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e8769cc1fa87dc32be93602c94389b1dd1513c6f5f56ac45226f888f51d3a640"
+}

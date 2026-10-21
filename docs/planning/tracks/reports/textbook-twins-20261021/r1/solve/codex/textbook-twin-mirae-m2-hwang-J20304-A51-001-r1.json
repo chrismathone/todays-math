@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da3-e9bc-7683-a321-bfdd75b3cd18",
+ "startedAt": "2026-10-21T17:46:25+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "bbb1f9f016c861d0771994b51f7343f31796bea1a2a8a232cd426f8214821ade"
+ },
+ "promptSha256": "e6f0e841be0c51b49580ca088d8147efb74ecc46c710f03c4bbb3aa086b2c97d",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"첫째 연립방정식에서 두 번째 식을 3배하여 첫 번째 식에서 빼면 14y=-28이므로 b=-2, a=1이다.\\n따라서 둘째 연립방정식은 x+2y=7, -2x+y=-4이다.\\n첫 번째 식을 2배하여 두 번째 식과 더하면 5y=10이므로 y=2, x=3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "첫째 연립방정식에서 두 번째 식을 3배하여 첫 번째 식에서 빼면 14y=-28이므로 b=-2, a=1이다.\n따라서 둘째 연립방정식은 x+2y=7, -2x+y=-4이다.\n첫 번째 식을 2배하여 두 번째 식과 더하면 5y=10이므로 y=2, x=3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e964741c3c5dda556806126a9cc071408e2593ba93b06937e6a96a7809b540e5"
+}

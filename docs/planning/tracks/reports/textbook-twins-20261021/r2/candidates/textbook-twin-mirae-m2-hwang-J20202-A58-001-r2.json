@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 139,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r2",
+ "authorId": "claude-fable-5-1:acb3e350-e968-4338-a655-8a70107ae755",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우가 공책에 적어 둔 부등식 $8-3x\\ge 6x+35$를 풀었다. 해를 바르게 나타낸 것은?",
+ "choices": [
+  "$x\\le -3$",
+  "$x\\ge -3$",
+  "$x\\le 3$",
+  "$x\\ge 3$",
+  "$x\\le -9$"
+ ],
+ "answer": "①",
+ "solution": "$8-3x\\ge 6x+35$에서 $x$항은 좌변으로, 상수항은 우변으로 이항하면 $-3x-6x\\ge 35-8$, 즉 $-9x\\ge 27$이다. 양변을 음수 $-9$로 나누면 부등호의 방향이 바뀌어 $x\\le -3$이다. 따라서 답은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-8",
+  "problemCode": "J20202-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "f8919608f285f4f71fd53d1b38915e00ad00044890d993982c7b965fec1c9955",
+  "dbContentSha256": "c9b52b3ab580839c6f4004b5a32039d94e8544775d31dca623034ea3f18bddda",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context",
+   "structure"
+  ],
+  "before": "양변에 미지수 항과 상수항이 섞인 일차부등식(부등호 <)을 정리해 미지수 계수가 음수가 되면 나누면서 방향을 뒤집어 해(양수 범위)를 고르는 객관식",
+  "after": "짧은 장면 속에 주어진 부등호 ≥ 꼴의 일차부등식을 같은 절차로 정리해 음수 계수로 나누며 방향을 뒤집고, 음수 쪽 범위인 해를 고르는 객관식. 원본의 수(5, 2, 1, 7, 4)는 보기까지 모두 쓰지 않음",
+  "sharedConcept": "일차부등식의 풀이 — 부등식의 성질(음수로 나누면 부등호 방향이 바뀜)",
+  "sharedProcedure": "미지수 항·상수항 이항 → 동류항 정리 → 음수 계수로 나누며 부등호 방향 바꾸기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "일차방정식의 풀이(이항)",
+   "일차부등식의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A58-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "양변에 미지수가 있는 일차부등식 풀기(계수가 음수가 되는 경우)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 55,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

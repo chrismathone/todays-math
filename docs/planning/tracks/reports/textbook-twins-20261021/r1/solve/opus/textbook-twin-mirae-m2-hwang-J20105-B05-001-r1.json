@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B05-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b250b468-0e28-4f5d-a423-4dc7a3a2e27b",
+ "startedAt": "2026-10-21T16:23:14+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "b62208a658047ec8c2d196003ced256e6ecac60cce5375d09a954bcb15519483"
+ },
+ "promptSha256": "21d537485d1e7b8969f716ee535d14d6205bd66369393c67661ae22ded1eeabd",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "gcd(14,35,21)=7, p=2,q=5,r=3, sum 7+10=17.\n\n```json\n{\"answer\": \"17\", \"work\": \"pn=14, qn=35, rn=21이므로 n은 14, 35, 21의 공약수이다. 최대공약수는 7이므로 n=7이다. 이때 p=2, q=5, r=3이고 n+p+q+r=7+2+5+3=17이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "17",
+  "work": "pn=14, qn=35, rn=21이므로 n은 14, 35, 21의 공약수이다. 최대공약수는 7이므로 n=7이다. 이때 p=2, q=5, r=3이고 n+p+q+r=7+2+5+3=17이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7382261cd6a5afa32c0ff0e006892ee21555546bef050d83ff3b593423931c77"
+}

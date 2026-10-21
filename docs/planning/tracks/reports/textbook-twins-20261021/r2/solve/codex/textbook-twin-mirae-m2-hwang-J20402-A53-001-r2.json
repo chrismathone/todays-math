@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A53-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dea-462c-7922-9fb0-b0dcb4049fe3",
+ "startedAt": "2026-10-21T19:03:16+0900",
+ "elapsedSec": 9.6,
+ "studentSha256": {
+  "student.json": "cc4b0b36ced0e67c847f91b9dfaa96589fe39359a3274b5d2623845023712b8d"
+ },
+ "promptSha256": "7591a5f18d2204fa12cf65d05b555926b1e750dd5e590c64f02fb1a1d4f225ec",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"y=0을 대입하면 x=10이므로 A(10, 0)이다.\\nx=0을 대입하면 y=8이므로 B(0, 8)이다.\\n따라서 삼각형 AOB의 넓이는 10×8÷2=40이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "y=0을 대입하면 x=10이므로 A(10, 0)이다.\nx=0을 대입하면 y=8이므로 B(0, 8)이다.\n따라서 삼각형 AOB의 넓이는 10×8÷2=40이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e814d1a38fe8b6931c4115c2d3fe0022d783be8ece726534e665b4006bfd161f"
+}

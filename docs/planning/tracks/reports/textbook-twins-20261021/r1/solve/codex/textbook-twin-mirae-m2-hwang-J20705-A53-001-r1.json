@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc0-fcf6-7c60-abbe-aecd24bc69ec",
+ "startedAt": "2026-10-21T18:18:11+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "63e8f7cb22f22ecb661b205a3e89814a7bfb10f4ff11798bf77ef26bb8b14300",
+  "student.json": "7d8384fa3da32fae500f03dd4a7cd40daf15d33ae20e83adace519ffe7bbace8"
+ },
+ "promptSha256": "6a4f3bcde841e99d46159a7646f27dd50699d65bc8f3c085b52c40544d594175",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"27 cm\",\"work\":\"D는 BC의 중점이므로 GD는 △GBC의 중선이다. 무게중심의 성질에 의해 GG′:G′D=2:1이므로 GD=6×3/2=9 cm이다. 또한 AG:GD=2:1이므로 AD=3GD=27 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "27 cm",
+  "work": "D는 BC의 중점이므로 GD는 △GBC의 중선이다. 무게중심의 성질에 의해 GG′:G′D=2:1이므로 GD=6×3/2=9 cm이다. 또한 AG:GD=2:1이므로 AD=3GD=27 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b913fdada8291a5b707abaa85be905985c80342cc1486f68dde4b69421652d3c"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df4-f3ac-7920-9cf0-45c51ad3e257",
+ "startedAt": "2026-10-21T19:14:56+0900",
+ "elapsedSec": 17.7,
+ "studentSha256": {
+  "fig-1.png": "aadb77cabe674e98f1e683bb2d30ca3eb294d19a60d19916eaa29d3b685759f6",
+  "student.json": "312d363130853602db97e3ad5f210387c8db9e2bded33e38e9392950a9956bd7"
+ },
+ "promptSha256": "82e6aa678421950808cec97ca2be25d3c0d1d7c00c0a8924c9387e64e4c4f53d",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"AD∥BC이고 BE가 ∠B의 이등분선이므로 ∠ABE=∠AEB이다. 따라서 이등변삼각형 ABE에서 AE=AB=8 cm이다.\\n마찬가지로 이등변삼각형 DCF에서 DF=DC=8 cm이다.\\nAD=BC=13 cm이므로 AF=13−8=5 cm, FE=AE−AF=8−5=3 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AD∥BC이고 BE가 ∠B의 이등분선이므로 ∠ABE=∠AEB이다. 따라서 이등변삼각형 ABE에서 AE=AB=8 cm이다.\n마찬가지로 이등변삼각형 DCF에서 DF=DC=8 cm이다.\nAD=BC=13 cm이므로 AF=13−8=5 cm, FE=AE−AF=8−5=3 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f13ded8755740a665e0bc63b2a5d7e418245fa00bd31dca5f35df8776bbd2ea6"
+}

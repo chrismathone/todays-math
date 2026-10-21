@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 80,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A74-001-r2",
+ "authorId": "claude-fable-5-1:2ad8a041-c782-462d-8428-0b6e98eda4f0",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-A74-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "분수 $\\frac{n}{420}$은 순환소수로, 분수 $\\frac{n-4}{420}$는 유한소수로 나타낼 수 있다. 이를 만족시키는 두 자리 자연수 $n$을 모두 더한 값은?",
+ "choices": [
+  "$184$",
+  "$205$",
+  "$226$",
+  "$247$",
+  "$268$"
+ ],
+ "answer": "③",
+ "solution": "$420=2^{2}\\times 3\\times 5\\times 7$이므로 $\\frac{n-4}{420}$가 유한소수가 되려면 $n-4$가 $3\\times 7=21$의 배수이어야 한다. $n$이 두 자리 자연수이므로 $6\\le n-4\\le 95$이고, 이 범위에 있는 $21$의 배수는 $21,~42,~63,~84$이다. 따라서 $n=25,~46,~67,~88$이다. 한편 $\\frac{n}{420}$이 순환소수가 되려면 약분한 뒤에도 분모에 $3$ 또는 $7$이 남아야 하므로 $n$이 $21$의 배수가 아니어야 한다. $25,~46,~67,~88$은 모두 $3$의 배수도 아니고 $7$의 배수도 아니므로 약분되지 않아 네 수 모두 조건을 만족시킨다. 구하는 합은 $25+46+67+88=226$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-8",
+  "problemCode": "J20101-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "2d20531cb9f36f9bbf8a5387e28635f493564344420be6f3847c51ccd4e3f34e",
+  "dbContentSha256": "ca9332bc0db841ae691a21130b072c274e24245958e46ec8e12d78f31b723b8d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분모가 2²·3·5·11 꼴인 두 분수에서, 분자에 5를 더한 쪽이 유한소수가 되고 원래 분자 쪽은 순환소수가 되는 두 자리 n 을 모두 찾아 합을 객관식으로 고른다.",
+  "after": "분모가 2²·3·5·7 꼴인 두 분수에서, 분자에서 4를 뺀 쪽이 유한소수가 되고 원래 분자 쪽은 순환소수가 되는 두 자리 n 을 모두 찾아 합을 객관식으로 고른다. 더하는 조건이 빼는 조건으로 바뀌고 소인수 11 대신 7을 쓴다.",
+  "sharedConcept": "분모를 소인수분해하여 2, 5 이외의 소인수가 약분되는지로 유한소수·순환소수를 판별",
+  "sharedProcedure": "분모 소인수분해 → 유한소수 조건에서 분자가 (2, 5 이외 소인수의 곱)의 배수임을 얻기 → 두 자리 범위에서 후보 n 나열 → 각 n 에 대해 원래 분수가 순환소수인지 확인 → 합 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "배수와 약수",
+   "유한소수로 나타낼 수 있는 분수의 조건",
+   "순환소수의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A74-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수의 유한소수·순환소수 조건을 동시에 만족시키는 자연수의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.279,
+   "longestRun": 12,
+   "residualChars": 65,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

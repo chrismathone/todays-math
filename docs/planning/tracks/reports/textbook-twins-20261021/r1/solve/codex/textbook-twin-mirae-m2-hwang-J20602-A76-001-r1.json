@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A76-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbd-c909-7223-87f8-472a110e4765",
+ "startedAt": "2026-10-21T18:14:41+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "fig-1.png": "a6c3d17e0371b8e3f09aca60fbc3a1897c768d5f233aaf2a4923d399b4cedda2",
+  "student.json": "7302491e42913aa30e3cbf9b85e163d00e9843098d5dc5fa1e8fd8d7343ded04"
+ },
+ "promptSha256": "ca74f9d59878e88d4ed246b2058489b63bc70ffc9e01baacfd19bb619265ae72",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"직각삼각형 ABE에서 BE=√(15²−12²)=9 cm이므로 EC=12−9=3 cm이다.\\n△ABE∽△FCE이므로 CF/12=EC/BE=3/9에서 CF=4 cm이다.\\n따라서 △ECF의 넓이는 (1/2)×3×4=6 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형 ABE에서 BE=√(15²−12²)=9 cm이므로 EC=12−9=3 cm이다.\n△ABE∽△FCE이므로 CF/12=EC/BE=3/9에서 CF=4 cm이다.\n따라서 △ECF의 넓이는 (1/2)×3×4=6 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a6f3d2b4778bfc9379e50486298c2b9e26a413b789534249431194b2ee9e074c"
+}

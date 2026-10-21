@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "d47e3668-7088-42d4-beec-72ea82026bfc",
+ "startedAt": "2026-10-21T18:30:23+0900",
+ "elapsedSec": 19.6,
+ "studentSha256": {
+  "fig-1.png": "56c796d9e898a7b96c983e6d30adfe12f46d37be913593f3dac8d083c7c2e304",
+  "student.json": "42cc9b46b9b2b9bd641cac934ed3fc9fb34e6243b24e35c425287bb6f2dbc1a6"
+ },
+ "promptSha256": "c6b41864ea875fe62141c9f802703cf53724382b44d35b33c1087ab0ff207e2c",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"직각삼각형 DBM과 ECM에서 $\\\\overline{BM}=\\\\overline{CM}$(빗변)이고 $\\\\overline{MD}=\\\\overline{ME}$이므로 RHS 합동($\\\\triangle DBM\\\\equiv\\\\triangle ECM$)이다. 합동인 두 삼각형의 대응변과 대응각의 크기가 같으므로 $\\\\angle B=\\\\angle C$, $\\\\overline{BD}=\\\\overline{CE}$, $\\\\angle BMD=\\\\angle CME$가 항상 성립한다. 반면 $\\\\overline{BD}=\\\\overline{DM}$은 $\\\\angle B=45^\\\\circ$일 때만 성립하므로 항상 옳다고 볼 수 없다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "직각삼각형 DBM과 ECM에서 $\\overline{BM}=\\overline{CM}$(빗변)이고 $\\overline{MD}=\\overline{ME}$이므로 RHS 합동($\\triangle DBM\\equiv\\triangle ECM$)이다. 합동인 두 삼각형의 대응변과 대응각의 크기가 같으므로 $\\angle B=\\angle C$, $\\overline{BD}=\\overline{CE}$, $\\angle BMD=\\angle CME$가 항상 성립한다. 반면 $\\overline{BD}=\\overline{DM}$은 $\\angle B=45^\\circ$일 때만 성립하므로 항상 옳다고 볼 수 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "af792a1171c72a6aae1ce4137b7442e8b22563853615802cafba1e91a39279bb"
+}

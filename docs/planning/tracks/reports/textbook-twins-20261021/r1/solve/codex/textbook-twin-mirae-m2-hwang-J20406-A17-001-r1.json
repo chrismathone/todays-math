@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-b3dd-7cb2-bad7-608e3333e598",
+ "startedAt": "2026-10-21T17:54:56+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "6a4196480005fb7c690a8eb5e2d45365c4b7f5f4179f1c68d140f220d8d3240b"
+ },
+ "promptSha256": "c5162549a64a2c9267e701cb3cba3fa9a97da450f58829bc845aa1c1ad3de883",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"9 g인 추를 매달면 늘어난 길이는 (9 ÷ 6) × 5 = 7.5 cm이다.\\n따라서 용수철의 길이는 12 + 7.5 = 19.5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "9 g인 추를 매달면 늘어난 길이는 (9 ÷ 6) × 5 = 7.5 cm이다.\n따라서 용수철의 길이는 12 + 7.5 = 19.5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "17e5deaca76ac2e31887ce620930f4a56e785411a739d95be273583ceea45d0c"
+}

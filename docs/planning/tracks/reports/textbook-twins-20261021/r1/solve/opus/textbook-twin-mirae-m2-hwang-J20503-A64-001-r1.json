@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "beadc96f-742a-45e7-bcc1-d7270acb631b",
+ "startedAt": "2026-10-21T17:04:40+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "fig-1.png": "7c9b4f2a5a8e9f45b7bee76515672a58aa8960247383d32db2cd64400f0d448e",
+  "student.json": "b7f33218414681a43d99a81fd0580133f105f0fd723afa5630c33da06ed63a03"
+ },
+ "promptSha256": "c49e0c6079612e1161db13debe0a81e7cecd9aee76ffa54e94c1aa37bfbf3820",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"O는 외심이므로 OA=OB=OC입니다. 따라서 △OAB, △OBC, △OCA는 모두 이등변삼각형입니다. ∠AOB=120°이므로 ∠OAB=∠OBA=(180°−120°)÷2=30°입니다. ∠OBC=∠OCB=28°이고, ∠OAC=∠OCA=x입니다. △ABC의 내각의 합에서 2(30°+28°+x)=180°이므로 x=32°입니다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "O는 외심이므로 OA=OB=OC입니다. 따라서 △OAB, △OBC, △OCA는 모두 이등변삼각형입니다. ∠AOB=120°이므로 ∠OAB=∠OBA=(180°−120°)÷2=30°입니다. ∠OBC=∠OCB=28°이고, ∠OAC=∠OCA=x입니다. △ABC의 내각의 합에서 2(30°+28°+x)=180°이므로 x=32°입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "60d1802d6dc551f7d60ebd36bfd0d2d3c3f8be7832580037618dbf522bafb4f9"
+}

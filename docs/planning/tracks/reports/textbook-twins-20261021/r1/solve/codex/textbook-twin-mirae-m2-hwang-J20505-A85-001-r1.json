@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A85-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db7-460f-7bf0-90a2-70fea80121a1",
+ "startedAt": "2026-10-21T18:07:34+0900",
+ "elapsedSec": 22.9,
+ "studentSha256": {
+  "fig-1.png": "01effd4a08572911135db2ba72cb2f4584c84dbb9ec3676fe51fbab75b9d799a",
+  "student.json": "2e4e929d5f32825fe79c10c942b0d6651edf7b544e0dcab9bb9e24467fc83115"
+ },
+ "promptSha256": "2520c8a289d18e49b92f0dac8caff25e3a41330d48a3aeb692cc6e215524c884",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ x = 8 cm, y = 65° ⑵ x = 6 cm, y = 5 cm\",\"work\":\"⑴ 평행사변형은 대변의 길이와 대각의 크기가 각각 같으므로 AD=BC=8 cm, ∠D=∠B=65°이다.\\n⑵ 평행사변형의 두 대각선은 서로를 이등분하므로 OC=12÷2=6 cm, OD=10÷2=5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ x = 8 cm, y = 65° ⑵ x = 6 cm, y = 5 cm",
+  "work": "⑴ 평행사변형은 대변의 길이와 대각의 크기가 각각 같으므로 AD=BC=8 cm, ∠D=∠B=65°이다.\n⑵ 평행사변형의 두 대각선은 서로를 이등분하므로 OC=12÷2=6 cm, OD=10÷2=5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "429b177ed83120eb66ffeb21f62f92d35a6f7fab7950e6160ff4ca64df798901"
+}

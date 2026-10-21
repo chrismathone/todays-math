@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A61-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-d5e6-7171-92ea-a64a662d484a",
+ "startedAt": "2026-10-21T18:49:41+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "d50456a4eb16babbf36c77ee214516cdcc9830fb0d0bd625b74e7d6648eefaad"
+ },
+ "promptSha256": "207138c41e178b1f2ed010f5cc2cef885bb552c34fa92f2f971aa0246a9e1da8",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6\",\"work\":\"양변에 6을 곱하면 $5(x+2)>3x+21$이다.\\n정리하면 $2x>11$, 즉 $x>\\\\frac{11}{2}$이므로 가장 작은 자연수는 6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6",
+  "work": "양변에 6을 곱하면 $5(x+2)>3x+21$이다.\n정리하면 $2x>11$, 즉 $x>\\frac{11}{2}$이므로 가장 작은 자연수는 6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2b3af114a148b4d67a70361f66dadf039e82ac9a9306a61d9ce53f8739c059ac"
+}

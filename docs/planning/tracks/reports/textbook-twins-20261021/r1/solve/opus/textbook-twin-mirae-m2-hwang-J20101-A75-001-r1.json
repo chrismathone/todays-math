@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "08894640-5799-4e8e-b97b-d1ccacb75989",
+ "startedAt": "2026-10-21T16:21:56+0900",
+ "elapsedSec": 4.8,
+ "studentSha256": {
+  "student.json": "9ca8e97045eb0567b46528adf0b0dcd5d85449cc01007f493689ff88a5829615"
+ },
+ "promptSha256": "e0803fece347457b508ef9ef85953c93b6e69e6b1c71bf0c6edd75d1198ca780",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"0.5\\\\dot{1} = (51-5)/90 = 46/90 = 23/45 = 23/(3^2×5). 유한소수가 되려면 분모의 3^2이 약분되어야 하므로 a는 9의 배수. 두 자리 9의 배수는 18, 27, …, 99로 10개.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "0.5\\dot{1} = (51-5)/90 = 46/90 = 23/45 = 23/(3^2×5). 유한소수가 되려면 분모의 3^2이 약분되어야 하므로 a는 9의 배수. 두 자리 9의 배수는 18, 27, …, 99로 10개.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d2674902173f954a0910886f18e230df602195d5b263ae49290ae26c1567798f"
+}

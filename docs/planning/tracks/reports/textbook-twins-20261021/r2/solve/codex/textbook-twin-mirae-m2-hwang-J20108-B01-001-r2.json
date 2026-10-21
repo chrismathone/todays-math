@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-B01-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcd-e85c-7890-b9dc-dd0ed769423b",
+ "startedAt": "2026-10-21T18:32:17+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "fig-1.png": "512861752c18dfed427cdb2eca324844f9b10bd565241ecf017f93da6cc57277",
+  "student.json": "3084f5a0415684e88b343374377f6de48936d6c03b856428f76990ec589503b5"
+ },
+ "promptSha256": "b977901189a34ff57bacebd308b8a054cef4facd4c73f1ebbfb5365be443c705",
+ "freezeCommit": "3a9bef89c14952aea9204f84a821c72a71474e2c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{5}{2}a+b$\",\"work\":\"높이를 $h$라 하면 사다리꼴의 넓이는 $\\\\frac{(4ab+8ab)h}{2}=6abh$이다.\\n따라서 $h=\\\\frac{15a^{2}b+6ab^{2}}{6ab}=\\\\frac{5}{2}a+b$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{5}{2}a+b$",
+  "work": "높이를 $h$라 하면 사다리꼴의 넓이는 $\\frac{(4ab+8ab)h}{2}=6abh$이다.\n따라서 $h=\\frac{15a^{2}b+6ab^{2}}{6ab}=\\frac{5}{2}a+b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "98c0ffd7eacd1a0fcdfb5d17a96524de3f9eee77486ca32aca5bc164e13ae833"
+}

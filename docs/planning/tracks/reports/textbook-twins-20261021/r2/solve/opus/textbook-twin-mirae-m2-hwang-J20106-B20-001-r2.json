@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b13728a7-75eb-40f8-aeb7-1c1f9eba5c3b",
+ "startedAt": "2026-10-21T17:55:02+0900",
+ "elapsedSec": 7.9,
+ "studentSha256": {
+  "fig-1.png": "d823e53146427baaa3299c95ee653e8fc4800395f6a55f3756b8a3408abd15d8",
+  "student.json": "7a785258f9f36fac278f1e6a94570943a81bebd9307fa2b4e596890a6084b60b"
+ },
+ "promptSha256": "e80f108d943e974449d7572d33f26e42bfcd65e0c9e952ea0b5c34a0c8c462f9",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$5x^3y^3$\", \"work\": \"평행사변형 넓이 = $4x^3y^2 \\\\times 3x^2y^3 = 12x^5y^5$. 삼각형 넓이 = $12x^5y^5 \\\\times \\\\frac{5}{3y} = 20x^5y^4$. 삼각형 높이를 $h$라 하면 $\\\\frac{1}{2} \\\\times 8x^2y \\\\times h = 4x^2y \\\\cdot h = 20x^5y^4$이므로 $h = 20x^5y^4 \\\\div 4x^2y = 5x^3y^3$.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$5x^3y^3$",
+  "work": "평행사변형 넓이 = $4x^3y^2 \\times 3x^2y^3 = 12x^5y^5$. 삼각형 넓이 = $12x^5y^5 \\times \\frac{5}{3y} = 20x^5y^4$. 삼각형 높이를 $h$라 하면 $\\frac{1}{2} \\times 8x^2y \\times h = 4x^2y \\cdot h = 20x^5y^4$이므로 $h = 20x^5y^4 \\div 4x^2y = 5x^3y^3$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6171990e7c360f428cf573675af524721b57a8afd794eccd4e6486835318b981"
+}

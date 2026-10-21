@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 174,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} \\,3x-y=8 \\\\ \\,5y=4x+15 \\end{cases}$의 해는?",
+ "choices": [
+  "$x=2$, $y=-2$",
+  "$x=5$, $y=7$",
+  "$x=4$, $y=4$",
+  "$x=7$, $y=5$",
+  "$x=1$, $y=-5$"
+ ],
+ "answer": "②",
+ "solution": "$3x-y=8$에서 $y=3x-8$이다. 이를 $5y=4x+15$에 대입하면 $5(3x-8)=4x+15$, $15x-40=4x+15$, $11x=55$, $x=5$이다. $x=5$를 $y=3x-8$에 대입하면 $y=7$이다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-6",
+  "problemCode": "J20302-A25-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "614780e28cafda1c7a5e6b3d52d87293abefb6bba573d41067a61ae7e6a2d033",
+  "dbContentSha256": "514dad8e335355ef47e66087021f044388332b715d1689c569f0adfebb3ad92a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "한 식은 x 항만 좌변에 두고 y 항과 상수를 우변에 둔 꼴, 다른 식은 표준형으로 주고 해를 다섯 쌍 가운데 고르게 한다. 표준형 식을 x에 대해 정리해 대입한다.",
+  "after": "첫 식을 표준형으로, 둘째 식을 y 항만 좌변에 둔 꼴로 뒤집어 주고 해를 다섯 쌍 가운데 고르게 한다. 표준형 식을 y에 대해 정리해 대입한다.",
+  "sharedConcept": "대입법으로 연립일차방정식 풀기",
+  "sharedProcedure": "한 식을 한 문자에 대해 정리 → 다른 식에 대입 → 일차방정식 풀기 → 나머지 문자 값 구하기 → 보기와 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "일차방정식의 풀이",
+   "미지수가 2개인 일차방정식",
+   "연립방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A25-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "대입법으로 연립방정식의 해 구하기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 8개 가운데 62% 그대로"
+   ],
+   "overlap4": 0.271,
+   "longestRun": 7,
+   "residualChars": 52,
+   "params": 8,
+   "numberRetention": 0.625,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

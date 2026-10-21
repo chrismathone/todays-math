@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 288,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A91-001-r1",
+ "authorId": "middle-engine:2-2|여러 가지 사각형|05",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "그림과 같은 정사각형 $ABCD$의 대각선 $AC$ 위에 $\\angle BEC=104^\\circ$가 되도록 점 $E$를 잡았다. 이때 $\\angle ADE$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$59^\\circ$",
+ "solution": "삼각형 $ABE$와 삼각형 $ADE$에서 $\\overline{AB}=\\overline{AD}$, $\\angle BAE=\\angle DAE=45^\\circ$, $\\overline{AE}$는 공통이므로 두 삼각형은 합동이다.\n$\\angle AEB=180^\\circ-104^\\circ=76^\\circ$이므로 $\\angle AED=\\angle AEB=76^\\circ$이다.\n삼각형 $AED$에서 $\\angle ADE=180^\\circ-45^\\circ-76^\\circ=59^\\circ$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A91-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A91-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-13",
+  "problemCode": "J20507-A91-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "90e90f72cdc6105aff2126d9604f57e0cb84ae224eda935160db92aa95a9f633",
+  "dbContentSha256": "d5d2e24ea6540b61bede3d81a783899aa31ca43ef6f782136d9667dcb741d7a9",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "c3c54ac6197799e6557bbdbb20738cc0c9c97cd778807f780db3b9e9972f8fbf"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "정사각형의 대각선 위 점 E에 대해 한 꼭짓점에서 잰 각(∠ABE)을 주고, 합동인 삼각형의 대응각으로 반대쪽 각(∠DEC에 해당하는 x)을 구한다.",
+  "after": "같은 자리의 점에 대해 삼각형의 꼭지각(∠BEC)을 주고, 45°와 내각의 합으로 밑각을 얻은 뒤 합동으로 옮겨 다른 꼭짓점의 각(∠ADE)을 구한다. 수는 엔진이 새로 정한다.",
+  "sharedConcept": "정사각형의 대각선은 내각을 이등분하고, 대각선 위의 점과 두 꼭짓점이 이루는 두 삼각형은 SAS 합동이다",
+  "sharedProcedure": "대각선이 만드는 45° 확인 → 직각 또는 내각의 합으로 삼각형의 나머지 각 계산 → SAS 합동 → 대응각으로 구하는 각 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직사각형, 마름모, 정사각형"
+  },
+  "prerequisites": [
+   "정사각형의 성질",
+   "삼각형의 합동 조건",
+   "삼각형의 내각의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20507-A91-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정사각형의 대각선 위의 점과 합동을 이용한 각의 크기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|여러 가지 사각형|05",
+   "seed": 611142533,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:167a8d23-20dc-4aed-aa63-09f1402a7ca3",
+   "authorRationale": "정사각형의 대각선 AC 위에 점을 잡고 삼각형의 SAS 합동과 45° · 내각의 합으로 각을 구하는 단답형 — 개념 · 단계 수(직각 분해 → 삼각형 내각합 → 합동 대응각) · 그림의 역할이 같다.",
+   "facts": {
+    "mode": 1,
+    "b": 104,
+    "x": 59
+   }
+  },
+  "figureAuthoring": {
+   "method": "middle-engine-figureSpec",
+   "newFigures": 1,
+   "originalCropEmbedded": false
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.49"
+   ],
+   "overlap4": 0.488,
+   "longestRun": 17,
+   "residualChars": 44,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

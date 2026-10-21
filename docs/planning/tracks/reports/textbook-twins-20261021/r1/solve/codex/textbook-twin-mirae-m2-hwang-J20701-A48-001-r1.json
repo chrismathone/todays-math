@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A48-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbb-f6e7-7040-806c-d6332376444e",
+ "startedAt": "2026-10-21T18:12:41+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "fig-1.png": "1ffe94ddb22dd2d2fdc40d6dd820120be628ed825be02ab49815daf70e1ac323",
+  "student.json": "1b429d2d818513afad948ba87683c26c033c52dd1cdfe58d923ccfe90bd12e35"
+ },
+ "promptSha256": "a270a3f47040c7eca16253cd7c2fe9c61be0c45a9f307d6a96844becc5fc52bb",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12 cm\",\"work\":\"DE ∥ BC이므로 △ADG ∽ △ABF, △AGE ∽ △AFC이다. 따라서 DG/BF = AG/AF = GE/FC이므로 6/8 = 9/FC이다. 이를 풀면 FC = 12 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12 cm",
+  "work": "DE ∥ BC이므로 △ADG ∽ △ABF, △AGE ∽ △AFC이다. 따라서 DG/BF = AG/AF = GE/FC이므로 6/8 = 9/FC이다. 이를 풀면 FC = 12 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "18e2107dfd518a5ca59a2da53a052c88310e737148d1bda6e71ff9a5059c1442"
+}

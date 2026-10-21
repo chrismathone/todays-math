@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-3082-79b3-b3ad-9f0e18b4095d",
+ "startedAt": "2026-10-21T19:08:38+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "fig-1.png": "aa9d954fa598d71e04408c8eb90bd925920d144b2827b9dd276a817e0b52fef6",
+  "student.json": "09bd439295f13e693498a82c429b88ab4d28501e46dd420f931b602ec36f66cd"
+ },
+ "promptSha256": "3f25f00729122c27cf35f01a2f7af880ed52e46b3af940adb1764a33404eb79f",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"직선은 두 점 $(-1,-6)$, $(3,6)$을 지나므로 기울기는 $\\\\frac{6-(-6)}{3-(-1)}=3$이다. 따라서 직선의 식은 $y=3x-3$이다. 이 직선과 $y=3x+5$의 그래프는 기울기가 같고 $y$절편이 달라 평행하므로 어느 점에서도 만나지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "직선은 두 점 $(-1,-6)$, $(3,6)$을 지나므로 기울기는 $\\frac{6-(-6)}{3-(-1)}=3$이다. 따라서 직선의 식은 $y=3x-3$이다. 이 직선과 $y=3x+5$의 그래프는 기울기가 같고 $y$절편이 달라 평행하므로 어느 점에서도 만나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c7eab029646efe51f98a80b89053dc1fb05f7c214e9f91992d1dbfc1a9db0763"
+}

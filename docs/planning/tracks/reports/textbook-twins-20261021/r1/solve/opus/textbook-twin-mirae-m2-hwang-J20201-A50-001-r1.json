@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A50-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "56cb68cd-251b-4562-b58d-1f209c942a34",
+ "startedAt": "2026-10-21T16:25:34+0900",
+ "elapsedSec": 3.3,
+ "studentSha256": {
+  "student.json": "588be3cc6d22edadca5f75b5411f33270014acf227b8a3f1322d00b15e04b511"
+ },
+ "promptSha256": "7b67de08d620b069474318efe62801bd731c89845963ebab56b709e1a90842e4",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"양변에서 1/3을 빼면 -2/5 a ≥ -2/5 b. 양변을 음수 -2/5로 나누면 부등호 방향이 바뀌어 a ≤ b.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "양변에서 1/3을 빼면 -2/5 a ≥ -2/5 b. 양변을 음수 -2/5로 나누면 부등호 방향이 바뀌어 a ≤ b.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "685d468e50386a569f7fca9757cc81c51d77e20e7c7fc2dfb494443c3b7b5099"
+}

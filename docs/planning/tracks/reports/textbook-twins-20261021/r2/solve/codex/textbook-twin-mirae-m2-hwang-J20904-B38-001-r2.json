@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B38-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-9059-7813-97b3-d006732da0a7",
+ "startedAt": "2026-10-21T19:24:21+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "fig-1.png": "ae4fc466df01940d72056c8c26111cdc29100f787adcfdde6f98537f3df71bd1",
+  "student.json": "134520592c40394ec343f34ad800135d878593095a187dbba8c5c893f9f5e811"
+ },
+ "promptSha256": "6777a61f9973133ee12b31a1ab89d28bcbecf3999908779fbb5e3989bc7a23c7",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"P에서 3의 배수는 3, 6, 12, 21로 4개이고, Q에서는 6, 18, 27로 3개이다. 두 회전판을 각각 돌리므로 함께 상품을 받을 확률은 $\\\\frac{4}{6}\\\\times\\\\frac{3}{8}=\\\\frac{1}{4}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "P에서 3의 배수는 3, 6, 12, 21로 4개이고, Q에서는 6, 18, 27로 3개이다. 두 회전판을 각각 돌리므로 함께 상품을 받을 확률은 $\\frac{4}{6}\\times\\frac{3}{8}=\\frac{1}{4}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "95a23cfade02f66441cf96ae0c159f4e353ab2976d90b83bec3a07315851ae83"
+}

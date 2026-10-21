@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A62-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5d-a093-7703-94f1-af5a0795fa9f",
+ "startedAt": "2026-10-21T16:29:39+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "b566a2f487bf30a8a48a6a3dbecace27cec6a6583faa45709fe5a34848237abf"
+ },
+ "promptSha256": "0dea26b8ee691b8f7291ea23437092bdcb2c87a00a514c9ad2d34710e9fe4606",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"순환마디가 항상 소수점 아래 첫째 자리에서 시작하는 것은 아니다.\\n예를 들어 0.1666…의 순환마디는 6이며, 소수점 아래 둘째 자리에서 시작한다.\\n①~④는 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "순환마디가 항상 소수점 아래 첫째 자리에서 시작하는 것은 아니다.\n예를 들어 0.1666…의 순환마디는 6이며, 소수점 아래 둘째 자리에서 시작한다.\n①~④는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "260efeb4ae2064cbd2f2848ff42cad2c81179fc93025d7263ebf0ff55105edb9"
+}

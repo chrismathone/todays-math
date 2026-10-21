@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a836acab-5bb9-4c98-94d3-477f8c4509f6",
+ "startedAt": "2026-10-21T16:54:56+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "364c6887782d437f4df5e5b794aba1963ef1cf7767352f5628d1fc090d52f40e"
+ },
+ "promptSha256": "63883e7f8208593736fef945249f00972a92383132eb627b97689e680e57150f",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"식을 전개하면 35x^2+7ax+35-6bx^2+36x-48 = (35-6b)x^2+(7a+36)x-13 이다. 상수항을 비교하면 k=-13이다. x^2의 계수에서 35-6b=-13이므로 b=8이다. x의 계수에서 7a+36=-13이므로 a=-7이다. 따라서 a-b=-7-8=-15이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "식을 전개하면 35x^2+7ax+35-6bx^2+36x-48 = (35-6b)x^2+(7a+36)x-13 이다. 상수항을 비교하면 k=-13이다. x^2의 계수에서 35-6b=-13이므로 b=8이다. x의 계수에서 7a+36=-13이므로 a=-7이다. 따라서 a-b=-7-8=-15이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1eb38b29343d44b2c0509be642fba44cccce1b1065c8937854794e01d941a521"
+}

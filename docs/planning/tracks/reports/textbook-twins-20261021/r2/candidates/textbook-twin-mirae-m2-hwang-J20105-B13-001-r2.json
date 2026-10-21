@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 103,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B13-001-r2",
+ "authorId": "claude-fable-5-1:87b017e9-e05d-4025-a1bf-271708f19c56",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B13-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하시오.\n⑴ $3^{10}\\times 3^{4}$\n⑵ $c^{10}\\times c^{15}$\n⑶ $a\\times a^{14}\\times a^{3}$\n⑷ $y^{3}\\times x^{8}\\times y^{15}\\times x$",
+ "choices": [],
+ "answer": "⑴ $3^{14}$ ⑵ $c^{25}$ ⑶ $a^{18}$ ⑷ $x^{9}y^{18}$",
+ "solution": "밑이 같은 거듭제곱의 곱은 지수를 더한다.\n⑴ $3^{10}\\times 3^{4}=3^{10+4}=3^{14}$\n⑵ $c^{10}\\times c^{15}=c^{10+15}=c^{25}$\n⑶ $a=a^{1}$ 이므로 $a\\times a^{14}\\times a^{3}=a^{1+14+3}=a^{18}$\n⑷ 밑이 같은 것끼리 모으면 $(x^{8}\\times x)\\times (y^{3}\\times y^{15})=x^{8+1}\\times y^{3+15}=x^{9}y^{18}$\n따라서 답은 ⑴ $3^{14}$ ⑵ $c^{25}$ ⑶ $a^{18}$ ⑷ $x^{9}y^{18}$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f3d0bfc4a549536b-1-1",
+  "problemCode": "J20105-B13-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "7cad3673608f66096051da4287a4a4f9a662e43c66cbf9b1705d446113999f94",
+  "dbContentSha256": "4e1c2b67dbcd34554dc73eb239a479a7b3aa62723e25175ce6c671ca3bb81fe0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-1_지수법칙1.hwp",
+    "sha256": "9f3a1cbafe9c8ca2b17c43e38d80cd0f34c18055f48c3e602d82f86013cbfcd7",
+    "bytes": 261120
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷 — 수 밑 두 거듭제곱의 곱, 문자 밑 두 거듭제곱의 곱, 지수 없는 인수가 가운데 낀 같은 문자 셋의 곱, 두 문자가 번갈아 놓인 네 인수의 곱(지수 없는 인수는 둘째 자리)을 지수법칙으로 간단히 한다.",
+  "after": "같은 네 소문항 꼴이되 수는 전부 새로 잡았다(원본 수 12개 가운데 숨은 지수 1 둘만 같음). ⑶은 지수 없는 인수를 맨 앞에 두고, ⑷은 $y$ 로 시작해 지수 없는 $x$ 를 맨 끝에 두어 답을 쓸 때 문자 순서를 다시 맞추도록 짜임을 바꿨다.",
+  "sharedConcept": "지수법칙 ⑴ $a^{m}\\times a^{n}=a^{m+n}$ (지수 없는 문자는 지수가 1)",
+  "sharedProcedure": "밑이 같은 인수끼리 모은다 → 지수 없는 인수는 지수 1로 본다 → 지수를 더한다 → 문자 순서대로 정리한다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻(밑과 지수)",
+   "곱셈의 교환법칙 · 결합법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B13-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "밑이 같은 거듭제곱의 곱 — 지수의 합으로 간단히 하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.041,
+   "longestRun": 4,
+   "residualChars": 53,
+   "params": 11,
+   "numberRetention": 0.364,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

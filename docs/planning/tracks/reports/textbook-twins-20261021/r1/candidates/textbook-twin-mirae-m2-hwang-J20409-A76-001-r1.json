@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 217,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r1",
+ "authorId": "claude-fable-5-1:66ecd9e0-4b8d-4fae-b92d-b2bd84d1b54d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림]\n다음 그림에서 직선 $l$의 방정식은 $\\,y=-2x+8$이다. 두 직선 $l$, $m$과 $x$축으로 둘러싸인 삼각형의 넓이를 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$12$",
+ "solution": "① 직선 $l$에서 $y=0$일 때 $-2x+8=0$이므로 $x$절편은 $4$이다.\n② 직선 $m$은 두 점 $(-2,\\,0)$, $(0,\\,2)$를 지나므로 기울기가 $\\dfrac{2-0}{0-(-2)}=1$이고 $y=x+2$이다.\n③ $-2x+8=x+2$에서 $x=2$, $y=4$이므로 두 직선의 교점은 $(2,\\,4)$이다.\n④ 밑변은 $x$축 위의 $x=-2$부터 $x=4$까지이므로 길이가 $6$이고, 높이는 교점의 $y$좌표 $4$이다.\n따라서 삼각형의 넓이는 $\\dfrac{1}{2}\\times 6\\times 4=12$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A76-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A76-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-20",
+  "problemCode": "J20409-A76-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "430547f1cc05de940af21e905e3eefb121d3ba9ffd71b24cbc748ce63bef028d",
+  "dbContentSha256": "cf242b7e3730c458622d3bfe6d9c379f1512a32c3a5bc82d746fa104f81db370",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [
+   "02e8a36ea683d417d03b382b1ee3f403bf3b5bb626a6164120e74efbe5e14eba"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "두 직선 모두 그림의 x절편·y절편을 읽어 식을 세우고, 교점을 구한 뒤 x축 위의 밑변과 교점의 y좌표로 넓이를 구하는 서술형.",
+  "after": "한 직선은 식으로 글에 주고, 다른 직선은 그림의 두 절편을 읽어 식을 세우게 한 뒤 같은 절차로 x축과 둘러싸인 삼각형의 넓이를 서술하게 한다.",
+  "sharedConcept": "두 직선의 교점과 x절편으로 삼각형의 밑변·높이를 정한다",
+  "sharedProcedure": "각 직선의 식 세우기 → 연립해 교점 구하기 → 밑변(x절편 사이 거리)과 높이(교점의 y좌표) → 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "절편을 이용한 일차함수의 식",
+   "연립일차방정식의 풀이",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A76-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 직선과 x축으로 둘러싸인 삼각형의 넓이(서술형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 39자"
+   ],
+   "overlap4": 0.472,
+   "longestRun": 18,
+   "residualChars": 39,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

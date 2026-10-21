@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6a1ab5a2-21aa-44b3-a2b4-5d1e1a295bf3",
+ "startedAt": "2026-10-21T17:05:55+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "fig-1.png": "97ff0e9b1bd2014f04b64cd9d8f983926f11aae8c98328369d8932fd3e90d2b1",
+  "student.json": "e375a6c55ab79400dca0281788caf46fee438808991d629260be5e87ac929a47"
+ },
+ "promptSha256": "b77063321171f112c7ae2b4664b41746084894ca7d92fad18e1745674779f113",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"△AOP와 △BOP에서 ∠PAO=∠PBO=90°이고 빗변 OP는 공통이며 ∠AOP=∠BOP이므로 RHA 합동이다(⑤). 따라서 PA=PB(①), OA=OB(②), ∠APO=∠BPO(③)가 성립한다. OA=PA는 ∠AOP=45°일 때만 성립하므로 항상 옳다고 할 수 없다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "△AOP와 △BOP에서 ∠PAO=∠PBO=90°이고 빗변 OP는 공통이며 ∠AOP=∠BOP이므로 RHA 합동이다(⑤). 따라서 PA=PB(①), OA=OB(②), ∠APO=∠BPO(③)가 성립한다. OA=PA는 ∠AOP=45°일 때만 성립하므로 항상 옳다고 할 수 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "83f410909d4733502a262683fc0a5564029811889b20a99ac2eeafe8e453c391"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-680e-7e82-849e-98d82120117d",
+ "startedAt": "2026-10-21T17:14:11+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "e7fbe5f0e8606ddb904cf653f92cfdacb1caa640f4ed27d6218ea22a469a927a"
+ },
+ "promptSha256": "3a1028ec93527b870ed58691f1bf2c4f99ad76694817a5a1fcd3591b15df3ddc",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"y=-1을 5x+3y=7에 대입하면 5x-3=7이므로 a=x=2이다.\\nb=x-5y=2-5(-1)=7이므로 a+b=2+7=9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "y=-1을 5x+3y=7에 대입하면 5x-3=7이므로 a=x=2이다.\nb=x-5y=2-5(-1)=7이므로 a+b=2+7=9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "57c37a8be2cedafef5a73d3ad605e325be99d3cd0e5a9fb5c80d750e015ee7c8"
+}

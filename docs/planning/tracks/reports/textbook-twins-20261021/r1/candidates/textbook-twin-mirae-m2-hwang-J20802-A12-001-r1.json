@@ -1,0 +1,139 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 344,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A12-001-r1",
+ "authorId": "claude-fable-5-1:b2d1e78a-9f70-4924-8672-3d56d5f0ab0f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 길이가 $20\\,\\mathrm{cm}$, $12\\,\\mathrm{cm}$인 나무 막대가 한 개씩 있다. 여기에 길이가 $x\\,\\mathrm{cm}$인 막대 한 개를 더하여 세 막대의 양 끝을 맞대어 직각삼각형을 만들려고 한다. $x^{2}$이 될 수 있는 값을 모두 구하시오.",
+ "choices": [],
+ "answer": "$256$, $544$",
+ "solution": "가장 긴 막대가 어느 것인지에 따라 나누어 생각한다.\n(ⅰ) 가장 긴 막대가 $20\\,\\mathrm{cm}$인 경우: $x^{2}+12^{2}=20^{2}$이므로 $x^{2}=400-144=256$\n(ⅱ) 가장 긴 막대가 $x\\,\\mathrm{cm}$인 경우: $x^{2}=20^{2}+12^{2}=400+144=544$\n따라서 $x^{2}$이 될 수 있는 값은 $256$, $544$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A12-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A12-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-6acad58d478a2c12-1-3",
+  "problemCode": "J20802-A12-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "71cf4b7be04f19beb2f00fd02be89aec14b1689c63ab572c08c6f0ff5c979a2d",
+  "dbContentSha256": "cf6d42d7718835ee03d947c89ebfb89c9f1aa02876714071ca383ca12a1e8e4f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-5_피타고라스정리.hwp",
+    "sha256": "70d323e1bf27aa297cd816e3fa38d6ce501379c936568afa88378c7d14949504",
+    "bytes": 877568
+   }
+  ],
+  "originalFigureSha256": [
+   "f9195c677f0ef02ccca5da6fba44ca4647c10d333487bac2214885b2fa3dd90f"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "두 막대의 길이와 미지의 세 번째 막대로 직각삼각형을 만들 때, 어느 것이 빗변인지에 따라 두 가지로 나누어 미지 길이의 제곱을 모두 구한다",
+  "after": "같은 짜임이되 소재를 나무 막대로, 길이를 20과 12로 바꾸고 «주어진 두 막대에 하나를 더한다»는 장면으로 제시한다",
+  "sharedConcept": "피타고라스 정리와 빗변의 경우 나누기",
+  "sharedProcedure": "가장 긴 변이 어느 것인지 경우 나누기 → 각 경우에 피타고라스 정리 적용 → 두 값 모두 답으로"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리의 활용"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "제곱근의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20802-A12-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "세 변 중 빗변이 정해지지 않은 직각삼각형에서 미지 변의 제곱 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.127,
+   "longestRun": 10,
+   "residualChars": 74,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

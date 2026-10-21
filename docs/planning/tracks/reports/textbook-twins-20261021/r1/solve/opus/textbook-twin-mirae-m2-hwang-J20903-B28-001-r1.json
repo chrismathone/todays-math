@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B28-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "640fba1a-33e3-492f-af0c-abb3619aa67d",
+ "startedAt": "2026-10-21T17:12:53+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "3a8d43187fdcd64930f72bfc352681e337f0847d0b1d39320233f1e30846b7b7"
+ },
+ "promptSha256": "1518f0dae6e635edd72c0252ca9c6135ddd9d3f4f2f3e4cc20bd4691cf2b0f13",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"1/n이 정수 또는 유한소수가 되려면 n의 소인수가 2와 5뿐이어야 한다(n=1이면 역수 1은 정수). 1~20 중 이런 수는 1, 2, 4, 5, 8, 10, 16, 20으로 8개이다. 따라서 확률은 8/20 = 2/5이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "1/n이 정수 또는 유한소수가 되려면 n의 소인수가 2와 5뿐이어야 한다(n=1이면 역수 1은 정수). 1~20 중 이런 수는 1, 2, 4, 5, 8, 10, 16, 20으로 8개이다. 따라서 확률은 8/20 = 2/5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "abcca04e8959e577016c5882a89bcf2a04741558c6b520a965b6444eae85d119"
+}

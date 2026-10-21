@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A79-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df7-9c34-7ec3-9e1c-2d46740c0b14",
+ "startedAt": "2026-10-21T19:17:50+0900",
+ "elapsedSec": 36.6,
+ "studentSha256": {
+  "fig-1.png": "8ca9d54a510e89b592539203e6443be53e9cb2d941d791aa507a28260ccb642b",
+  "student.json": "93e97fa166b24b5421667a6aafd5126d1e19f9f874a93f0374e070e9f3a8e9ad"
+ },
+ "promptSha256": "2309ee1cffc3e025c84aa85cbaa939a8bcdce24d758d518500097432ea20086a",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 14 ⑵ 21\",\n  \"work\": \"⑴ BC=20 cm이고 AB:CB=BD:BA=1:2이다. 끼인각 B가 같으므로 삼각형 ABD와 CBA는 닮음이다. 따라서 AD:CA=1:2이므로 x=7×2=14.\\n⑵ PQ=12 cm, PR=15 cm이고 PS:PR=PT:PQ=2:3이다. 끼인각 P가 같으므로 삼각형 PST와 PRQ는 닮음이다. 따라서 ST:RQ=2:3이므로 x=14×3÷2=21.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ 14 ⑵ 21",
+  "work": "⑴ BC=20 cm이고 AB:CB=BD:BA=1:2이다. 끼인각 B가 같으므로 삼각형 ABD와 CBA는 닮음이다. 따라서 AD:CA=1:2이므로 x=7×2=14.\n⑵ PQ=12 cm, PR=15 cm이고 PS:PR=PT:PQ=2:3이다. 끼인각 P가 같으므로 삼각형 PST와 PRQ는 닮음이다. 따라서 ST:RQ=2:3이므로 x=14×3÷2=21.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "49f089238b40e7eac363eab6ab97759f060b7a49f57bc3d6d3f44f5a19ed9c21"
+}

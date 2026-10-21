@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-2e8c-7392-b685-65ee689c1d75",
+ "startedAt": "2026-10-21T18:23:51+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "8c412464961923add03927b0460a0808d9e727f1048525dc47013634bdce8040"
+ },
+ "promptSha256": "090fb76ed96520185b1681e63bf43d52f6155ff65b371071d53f5967360d004f",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"10가지\",\"work\":\"합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)로 5가지이다.\\n합이 8인 경우는 (2,6), (3,5), (4,4), (5,3), (6,2)로 5가지이다.\\n따라서 경우의 수는 5+5=10이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "10가지",
+  "work": "합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)로 5가지이다.\n합이 8인 경우는 (2,6), (3,5), (4,4), (5,3), (6,2)로 5가지이다.\n따라서 경우의 수는 5+5=10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4a4708eec8097a6ff66a960b9673b8fdf7bd57e3b231eea8d8fdfe2b1c44b244"
+}
