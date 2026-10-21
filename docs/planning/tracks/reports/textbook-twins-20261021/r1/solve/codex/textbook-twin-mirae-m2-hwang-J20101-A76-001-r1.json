@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A76-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d64-86df-7b72-a491-3cb37488372a",
+ "startedAt": "2026-10-21T16:37:11+0900",
+ "elapsedSec": 16.1,
+ "studentSha256": {
+  "student.json": "04dcf763aba9e1472e4aa93ea46ebbea365d073ed760edc7e2781bfede4c3fe0"
+ },
+ "promptSha256": "a145b2301370e5f132f0761b9802a0037fd14558ce2d606d5fb58d3d7558f0e2",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"53\",\"work\":\"기약분수 9/n이 유한소수이므로 n의 소인수는 2와 5뿐이다. n은 70의 약수이면서 두 자리 수이므로 n=10이다. m/70=9/10에서 m=63이므로 m-n=53이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "53",
+  "work": "기약분수 9/n이 유한소수이므로 n의 소인수는 2와 5뿐이다. n은 70의 약수이면서 두 자리 수이므로 n=10이다. m/70=9/10에서 m=63이므로 m-n=53이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "26f4a4e741c575750fa5672be148c77583a8ab201bb18c3da29e20586496a9f4"
+}

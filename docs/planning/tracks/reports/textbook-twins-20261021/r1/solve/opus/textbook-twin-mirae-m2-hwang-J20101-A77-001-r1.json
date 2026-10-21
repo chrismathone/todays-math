@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e72776e9-3c26-49e0-9dd0-54f3b53e6936",
+ "startedAt": "2026-10-21T16:22:07+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "3b38598d81cfc753c75febc169181dc2c9e19e9fd65212c836e1799426f51b88"
+ },
+ "promptSha256": "99a517e63b79ab50913bcc413d537d12a7ef4b430446db4664fcfc0bc44fbfd0",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"77\", \"work\": \"350 = 2 × 5² × 7이다. n/350이 유한소수가 되려면 기약분수로 고쳤을 때 분모의 7이 약분되어 없어져야 하므로 n은 7의 배수이다. 조건 (나)에서 n은 11의 배수이기도 하므로 n은 7과 11의 공배수, 즉 77의 배수이다. 77의 배수 중 두 자리 자연수는 77 하나뿐이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "77",
+  "work": "350 = 2 × 5² × 7이다. n/350이 유한소수가 되려면 기약분수로 고쳤을 때 분모의 7이 약분되어 없어져야 하므로 n은 7의 배수이다. 조건 (나)에서 n은 11의 배수이기도 하므로 n은 7과 11의 공배수, 즉 77의 배수이다. 77의 배수 중 두 자리 자연수는 77 하나뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e3b501275e7fc06ffbd22d2a8dd8334d09238099ef2e44566601560a24e2e8b3"
+}

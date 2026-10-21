@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2af40fd1-6957-4bb7-8d9d-c2b7eccae17e",
+ "startedAt": "2026-10-21T16:21:46+0900",
+ "elapsedSec": 4.1,
+ "studentSha256": {
+  "student.json": "1b75da11b23340ce3ecc081999a3e2deee00dababd2b9e1e20de6bb2dd1bcb09"
+ },
+ "promptSha256": "b26930ce5bd09a5e034040e4f5ca0e7e6ed780c70fb04f9f92ca48b09e5dbf9c",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"8/6 = 4/3이므로 A는 3의 배수여야 한다. 2/14 = 1/7이므로 A는 7의 배수여야 한다. 따라서 A는 3과 7의 최소공배수의 배수이고, 가장 작은 값은 21이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "8/6 = 4/3이므로 A는 3의 배수여야 한다. 2/14 = 1/7이므로 A는 7의 배수여야 한다. 따라서 A는 3과 7의 최소공배수의 배수이고, 가장 작은 값은 21이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e891cacf74342bc42fedc27b9e706bc6cb1485e4cffb47bc06e59869f43ef951"
+}

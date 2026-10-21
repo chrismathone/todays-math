@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d64-f583-7791-816f-a8fda951a9f0",
+ "startedAt": "2026-10-21T16:37:39+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "student.json": "bc4b7277c4b164f533ec5502fcd3abc713f2a60ae94d66b87bffc3d8d26293d2"
+ },
+ "promptSha256": "0a2ecdf78d65df20d196f37a82067d1cfcf21debf4264522ff8db14175578561",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"63\",\n  \"work\": \"기약분수가 유한소수가 되려면 분모의 소인수가 2 또는 5뿐이어야 한다. 두 분수는 모두 기약분수이고, 9=3²이므로 A는 9의 배수여야 한다. 또한 84=2²×3×7이므로 A는 21의 배수여야 한다. 따라서 가장 작은 A는 9와 21의 최소공배수인 63이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "63",
+  "work": "기약분수가 유한소수가 되려면 분모의 소인수가 2 또는 5뿐이어야 한다. 두 분수는 모두 기약분수이고, 9=3²이므로 A는 9의 배수여야 한다. 또한 84=2²×3×7이므로 A는 21의 배수여야 한다. 따라서 가장 작은 A는 9와 21의 최소공배수인 63이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2f09cfa2ec40a89ba920e49110f27e05b481b8d0d892edfde3813319c7b48c92"
+}

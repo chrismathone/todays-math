@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d63-f0ca-75f2-b05b-85447dcf8c81",
+ "startedAt": "2026-10-21T16:36:33+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "1b75da11b23340ce3ecc081999a3e2deee00dababd2b9e1e20de6bb2dd1bcb09"
+ },
+ "promptSha256": "b26930ce5bd09a5e034040e4f5ca0e7e6ed780c70fb04f9f92ca48b09e5dbf9c",
+ "freezeCommit": "1f022fa5fa99b8553458e0290369a75de543769a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"기약분수로 나타내면 8/6=4/3, 2/14=1/7이다. 유한소수가 되려면 기약분수의 분모에 2와 5 이외의 소인수가 없어야 하므로 A는 3과 7의 공배수여야 한다. 따라서 가장 작은 A는 최소공배수인 21이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "기약분수로 나타내면 8/6=4/3, 2/14=1/7이다. 유한소수가 되려면 기약분수의 분모에 2와 5 이외의 소인수가 없어야 하므로 A는 3과 7의 공배수여야 한다. 따라서 가장 작은 A는 최소공배수인 21이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "12ca1053b55e65740f0a44beec58f212fe0c78511e26d28687706a3d0ac9ab86"
+}
