@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dae-36b7-7292-bcc2-c96fd683fd4b",
+ "startedAt": "2026-10-21T17:57:40+0900",
+ "elapsedSec": 18.9,
+ "studentSha256": {
+  "fig-1.png": "d7d6ac84c56bf703f4b763a830f13debd15cbd94d7e5edc75c7ad4465bfef227",
+  "student.json": "96a73eaa3b98545cd79186f06d4e772a2ebaf70fabd3ce56a26977276e9cdcf6"
+ },
+ "promptSha256": "56e3d0cc47854434fe46026ef0c6a96ccd701456e27944ade38fa6e69c5bddbd",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"∠ADC=x라 하자. DB=DC이고 ∠ADC는 삼각형 DBC의 외각이므로 ∠DBC=∠BCD=x/2이다. DC=CA이므로 ∠DAC=∠ADC=x이다. 삼각형 ABC의 외각 성질에 따라 78°=x+x/2이므로 x=52°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "∠ADC=x라 하자. DB=DC이고 ∠ADC는 삼각형 DBC의 외각이므로 ∠DBC=∠BCD=x/2이다. DC=CA이므로 ∠DAC=∠ADC=x이다. 삼각형 ABC의 외각 성질에 따라 78°=x+x/2이므로 x=52°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4085b21c722b9c5ae96f6d638bf1d7cedfcfd6ebb23cb84c3eb3a2b2ebe601b6"
+}

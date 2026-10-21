@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "31864a23-92ac-4b3e-8239-e958fa2f5791",
+ "startedAt": "2026-10-21T17:04:27+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "987b8d3334dbb8689edc2011e412f25e20f26a67556c387f0edbf48b06fd611b"
+ },
+ "promptSha256": "e9a718f125b70af4829d04110b16b8a7ad17965c749f4a2fb5c07c2e6809d86e",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"f(3)=3a-4, f(-3)=-3a-4 이므로 f(3)+f(-3)=(3a-4)+(-3a-4)=-8. a가 소거되어 a와 관계없이 항상 -8.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "f(3)=3a-4, f(-3)=-3a-4 이므로 f(3)+f(-3)=(3a-4)+(-3a-4)=-8. a가 소거되어 a와 관계없이 항상 -8.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f09e27a03bcbc076ac7f708233a849acf548420d2a70794a0a79d871b1089130"
+}
