@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6c-e1d3-7c63-b55c-7d4f7a877292",
+ "startedAt": "2026-10-21T16:46:19+0900",
+ "elapsedSec": 14.8,
+ "studentSha256": {
+  "student.json": "a7d802a717d24be20e8f5a567ee407e96dd3619176ad51a2d03b1cf456b89f7a"
+ },
+ "promptSha256": "22afd3d71fbf7f5a4c41d1a793ba26655b1902eb4231ad42fb78235998af54ce",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $5x+3>28$ ⑵ $7x<35$ ⑶ $1200x\\\\le 10000$ ⑷ $x+(x-3)<20$\",\n  \"work\": \"⑴ x의 5배에 3을 더한 값은 5x+3이다.\\n⑵ 직사각형의 넓이는 7x이고, ‘미만’은 <로 나타낸다.\\n⑶ 빵값은 1200x이고, ‘이하’는 ≤로 나타낸다.\\n⑷ 동생의 나이는 x-3이므로 두 사람의 나이의 합은 x+(x-3)이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $5x+3>28$ ⑵ $7x<35$ ⑶ $1200x\\le 10000$ ⑷ $x+(x-3)<20$",
+  "work": "⑴ x의 5배에 3을 더한 값은 5x+3이다.\n⑵ 직사각형의 넓이는 7x이고, ‘미만’은 <로 나타낸다.\n⑶ 빵값은 1200x이고, ‘이하’는 ≤로 나타낸다.\n⑷ 동생의 나이는 x-3이므로 두 사람의 나이의 합은 x+(x-3)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8edbd06aa75ce7714d0b6bffdeb618bf7e744f720af03de296cbb95c72fa8c0c"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A88-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6d-dfd9-7cc0-acea-e2c6e28da0d9",
+ "startedAt": "2026-10-21T16:47:24+0900",
+ "elapsedSec": 17.3,
+ "studentSha256": {
+  "student.json": "dda9b854271e4375176fca29e651e464b935a18e51f8ef819967af550a8c5bfa"
+ },
+ "promptSha256": "a87b341c99e961dd6dffb426a0b1764023a9866fcc3cb907a54b759d45c30b56",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"$b<c$의 양변을 음수 $a$로 나누면 부등호 방향이 바뀌므로 $b/a>c/a$이다. 따라서 ⑤가 옳지 않다. ①, ②는 같은 수를 더하거나 빼고, ③은 음수를, ④는 양수를 곱한 것으로 모두 성립한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "$b<c$의 양변을 음수 $a$로 나누면 부등호 방향이 바뀌므로 $b/a>c/a$이다. 따라서 ⑤가 옳지 않다. ①, ②는 같은 수를 더하거나 빼고, ③은 음수를, ④는 양수를 곱한 것으로 모두 성립한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "488225791c9a86dda435f6da330cc84970cd2e1a8839b5c8fa006a9219e7543b"
+}

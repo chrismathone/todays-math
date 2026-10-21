@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8879e381-0d62-4a83-ae05-a43b978b36aa",
+ "startedAt": "2026-10-21T16:26:24+0900",
+ "elapsedSec": 6.3,
+ "studentSha256": {
+  "student.json": "0219ce8a7c53d177265e3e555b3393d93feccde337d3ca0845e53a9e34665ae9"
+ },
+ "promptSha256": "94c1ba6d721132129c1760d35ace59b59066c9cd4c105b2050b5599a62be5992",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"x=-2를 각 부등식에 대입한다.\\n① -2+7=5, 5<5 거짓\\n② 좌변 2-(-2)=4, 우변 3(-2)+9=3, 4>3 참\\n③ 좌변 -7, 우변 0, -7≥0 거짓\\n④ -2/4=-1/2, -1/2>0 거짓\\n⑤ 좌변 -7, 우변 -10, -7≤-10 거짓\\n따라서 참이 되는 것은 ②뿐이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "x=-2를 각 부등식에 대입한다.\n① -2+7=5, 5<5 거짓\n② 좌변 2-(-2)=4, 우변 3(-2)+9=3, 4>3 참\n③ 좌변 -7, 우변 0, -7≥0 거짓\n④ -2/4=-1/2, -1/2>0 거짓\n⑤ 좌변 -7, 우변 -10, -7≤-10 거짓\n따라서 참이 되는 것은 ②뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "251f8fbb0f357ae7dcc69acc198c3a9d53cae4cd59f1336d717dc7bc5d3d0ffe"
+}

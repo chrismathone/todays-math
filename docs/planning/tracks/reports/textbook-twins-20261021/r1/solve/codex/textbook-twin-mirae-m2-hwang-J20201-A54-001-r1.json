@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6d-3d5d-7f31-8dd5-f1ef39f318dc",
+ "startedAt": "2026-10-21T16:46:42+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "student.json": "14c117ca5d45c7c5458d6dc74c5288be40b11eaa35af5ac0f06fb02aca2ff906"
+ },
+ "promptSha256": "6508c73c897e34575dadc841daf98a7344978001a5fca8ae803767f4d25d2c70",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ -3, -2 ⑵ -3, -2, -1 ⑶ 0 ⑷ -1, 0\",\n  \"work\": \"⑴ 양변에 1을 더하면 x < -1, ⑵ x ≤ -1이다.\\n⑶ 양변에서 3을 빼고 2로 나누면 x > -1, ⑷ x ≥ -1이다.\\n주어진 네 값 중 각 조건을 만족하는 값을 고른다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ -3, -2 ⑵ -3, -2, -1 ⑶ 0 ⑷ -1, 0",
+  "work": "⑴ 양변에 1을 더하면 x < -1, ⑵ x ≤ -1이다.\n⑶ 양변에서 3을 빼고 2로 나누면 x > -1, ⑷ x ≥ -1이다.\n주어진 네 값 중 각 조건을 만족하는 값을 고른다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "820afcee5c4ec0245ae08d1e86436dc63b4e2889cad4e52762c9755a6acc0612"
+}
