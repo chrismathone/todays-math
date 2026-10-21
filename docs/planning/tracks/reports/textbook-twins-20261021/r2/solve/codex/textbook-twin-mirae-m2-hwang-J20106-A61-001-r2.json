@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7f-2417-7603-a80d-1991f5c125d3",
+ "startedAt": "2026-10-21T17:06:15+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "de271d84cf77e5c23ba50fe40ac2b5e754ac2b466ad60199aac2182b616bee08"
+ },
+ "promptSha256": "1756509c6f9705744d36b2097f0010c02159dac3b2c56cfebaf2139d6591abc2",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$A=12a^{4}b^{5}\\\\div\\\\left(\\\\frac45a^{4}b^{2}\\\\right)=\\\\left(12\\\\times\\\\frac54\\\\right)a^{4-4}b^{5-2}=15b^{3}$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$A=12a^{4}b^{5}\\div\\left(\\frac45a^{4}b^{2}\\right)=\\left(12\\times\\frac54\\right)a^{4-4}b^{5-2}=15b^{3}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5476bedc40bfd432990de21a232c40ae6f66f98512fdbbedd1048f912b14c7ff"
+}

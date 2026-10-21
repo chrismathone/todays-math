@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "82c6d950-723c-41e6-96ce-cde74b92e4f1",
+ "startedAt": "2026-10-21T16:55:16+0900",
+ "elapsedSec": 3.2,
+ "studentSha256": {
+  "student.json": "5525b78af8bc5e4ae71133c822a4ece944e4fe6436d63bc9d10ce0111d0a4ef0"
+ },
+ "promptSha256": "9b23f64d1c4b3daef23c4983f41dd2cd65b74628111f5c1b9bdc305c77d0a9ea",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "P = -x²+8x-10 + 7x²-6x+9 = 6x²+2x-1\n\n```json\n{\"answer\": \"$6x^{2}+2x-1$\", \"work\": \"P = (-x^{2}+8x-10) + (7x^{2}-6x+9) = 6x^{2}+2x-1\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$6x^{2}+2x-1$",
+  "work": "P = (-x^{2}+8x-10) + (7x^{2}-6x+9) = 6x^{2}+2x-1",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8a197b710d095b41f61318130913c8d5a4d9048deb7e91feaf6961292e3231c9"
+}

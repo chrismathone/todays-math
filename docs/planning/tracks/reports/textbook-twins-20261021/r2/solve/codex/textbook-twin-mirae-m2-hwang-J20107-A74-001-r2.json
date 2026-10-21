@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7d-ea2d-7c23-b5ca-1ba61cc598bb",
+ "startedAt": "2026-10-21T17:04:55+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "student.json": "5525b78af8bc5e4ae71133c822a4ece944e4fe6436d63bc9d10ce0111d0a4ef0"
+ },
+ "promptSha256": "9b23f64d1c4b3daef23c4983f41dd2cd65b74628111f5c1b9bdc305c77d0a9ea",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$6x^{2}+2x-1$\",\"work\":\"양변에 $7x^{2}-6x+9$를 더하면 $P=(-x^{2}+8x-10)+(7x^{2}-6x+9)$이다. 동류항끼리 계산하면 $P=6x^{2}+2x-1$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$6x^{2}+2x-1$",
+  "work": "양변에 $7x^{2}-6x+9$를 더하면 $P=(-x^{2}+8x-10)+(7x^{2}-6x+9)$이다. 동류항끼리 계산하면 $P=6x^{2}+2x-1$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "335734901f615aa256a3c92d12a9251a627a50a3b8d68d75aa9d2aac40096a02"
+}
