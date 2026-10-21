@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A62-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d55-5ec0-7d72-9041-44fb61453636",
+ "startedAt": "2026-10-21T16:20:38+0900",
+ "elapsedSec": 17.8,
+ "studentSha256": {
+  "student.json": "86f41246ad15e5ccadbb033c7052be4773393a42984d4620c6863166fd227dcc"
+ },
+ "promptSha256": "580a616093671accfd3bdf2f58a820d6d7863517b283e3face8461430d3bba0b",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$8a^{2}b^{2}-12ab^{3}$\",\n  \"work\": \"왼쪽을 정리하면 $\\\\square\\\\times\\\\frac{3}{2ab}\\\\times a^{2}b=\\\\frac{3a}{2}\\\\square$이다.\\n따라서 $\\\\square=(12a^{3}b^{2}-18a^{2}b^{3})\\\\times\\\\frac{2}{3a}=8a^{2}b^{2}-12ab^{3}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$8a^{2}b^{2}-12ab^{3}$",
+  "work": "왼쪽을 정리하면 $\\square\\times\\frac{3}{2ab}\\times a^{2}b=\\frac{3a}{2}\\square$이다.\n따라서 $\\square=(12a^{3}b^{2}-18a^{2}b^{3})\\times\\frac{2}{3a}=8a^{2}b^{2}-12ab^{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "70da02c2c9b7dbc19dc3a3b8bcb883c189876e6730ff425b8777f48796125162"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d54-c6cd-7203-a7ab-c1d415df3537",
+ "startedAt": "2026-10-21T16:19:59+0900",
+ "elapsedSec": 16.1,
+ "studentSha256": {
+  "student.json": "ff3065230329c4546d24bc076563a34aa2dcbf3eceee1aa82024a977bc713cb3"
+ },
+ "promptSha256": "af85e0801d8d26c8cfb15b740dad7aee5bf7fbee728a37724aa6e2fb06dab1c1",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $-2x^{2}+14x-12$ ⑵ $-2x^{2}+4xy$\",\"work\":\"⑴ $(6x^{2}-9x)$를 $\\\\frac{3}{4}x$로 나누면 $8x-12$이므로, $8x-12-2x^{2}+6x=-2x^{2}+14x-12$.\\n⑵ 분수를 정리하고 괄호를 풀면 $3x^{2}+2xy+2xy-5x^{2}=-2x^{2}+4xy$.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $-2x^{2}+14x-12$ ⑵ $-2x^{2}+4xy$",
+  "work": "⑴ $(6x^{2}-9x)$를 $\\frac{3}{4}x$로 나누면 $8x-12$이므로, $8x-12-2x^{2}+6x=-2x^{2}+14x-12$.\n⑵ 분수를 정리하고 괄호를 풀면 $3x^{2}+2xy+2xy-5x^{2}=-2x^{2}+4xy$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "eb1718e237ca8de95081153e1ca501052fa47579f20ff0c5131dd411e28ebca7"
+}

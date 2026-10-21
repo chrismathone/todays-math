@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "89d9d02f-ade9-4965-adee-9c083545a024",
+ "startedAt": "2026-10-21T16:15:19+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "fig-1.png": "32f5e2336a5ca981cdc7648dfc3d995bc82ba24495a7c2b522ded16c42037a37",
+  "student.json": "03c1e4c2136b934954bcc1eb2a3eadc6e2234701fa828cc921459b359721f61c"
+ },
+ "promptSha256": "522a72c19a01c7de3a2e354ec5a09083d6fc9633f6bfac9ad6b051129652a698",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"길을 한쪽으로 모아 붙이면 잔디밭은 가로 $(8a+4)-2a=6a+4$, 세로 $6a-a=5a$인 직사각형이 된다. 넓이는 $(6a+4)\\\\times 5a=30a^{2}+20a$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "길을 한쪽으로 모아 붙이면 잔디밭은 가로 $(8a+4)-2a=6a+4$, 세로 $6a-a=5a$인 직사각형이 된다. 넓이는 $(6a+4)\\times 5a=30a^{2}+20a$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b268258296fe321e6bb1bcefaebd298bc0098a3219ab302ae87f71d477442c87"
+}

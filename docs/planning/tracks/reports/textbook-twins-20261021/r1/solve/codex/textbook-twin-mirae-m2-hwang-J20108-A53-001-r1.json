@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d53-8a51-7b73-adc9-83ef0e074b39",
+ "startedAt": "2026-10-21T16:18:38+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "student.json": "8610aa29275ad78dbace0b41d915c73e968c31694fe7b56153233c6d9ccb12d1"
+ },
+ "promptSha256": "71f6c2fb2187e9460138d02bfcd46aef657b8ffc651f1071fadeece18e21a42e",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"어떤 식을 $A$라 하면 $A(3xy)=18x^{4}y^{3}+45x^{4}y^{2}$이다.\\n바르게 계산하려면 잘못 계산한 식을 $(3xy)^2=9x^{2}y^{2}$으로 나누므로, $2x^{2}y+5x^{2}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "어떤 식을 $A$라 하면 $A(3xy)=18x^{4}y^{3}+45x^{4}y^{2}$이다.\n바르게 계산하려면 잘못 계산한 식을 $(3xy)^2=9x^{2}y^{2}$으로 나누므로, $2x^{2}y+5x^{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "01fc3d2af75a6e8e2e031f4ea73121f89ca28c36e25da4b1aa1fa0f6d0c28bb1"
+}

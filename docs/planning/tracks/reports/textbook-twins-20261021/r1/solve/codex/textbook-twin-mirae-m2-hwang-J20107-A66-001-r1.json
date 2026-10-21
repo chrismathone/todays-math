@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d56-79f2-7663-92eb-26247cf02112",
+ "startedAt": "2026-10-21T16:21:50+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "b663710612c8fb63f257632326081c255851d43793e3cf0ea6cf404112402bb4"
+ },
+ "promptSha256": "560cb3a89da9edb6a071c8d59ecebd02e1a3e082ed01ee19fa125d4a31f035f3",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"주어진 식을 정리하면 $(5a-2)x^{2}+(-5-2b)x+3$이다.\\n상수항이 3이므로 $5a-2=3$, $-5-2b=3$이다.\\n따라서 $a=1$, $b=-4$이므로 $a+b=-3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "주어진 식을 정리하면 $(5a-2)x^{2}+(-5-2b)x+3$이다.\n상수항이 3이므로 $5a-2=3$, $-5-2b=3$이다.\n따라서 $a=1$, $b=-4$이므로 $a+b=-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "55040e5fdcc3b78020fb2e8dced7abe9c1145bc6062bb5000dc0e4552dfd646a"
+}

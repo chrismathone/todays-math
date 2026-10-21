@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A55-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "31da3d85-7a2e-4102-951f-8740c15c9467",
+ "startedAt": "2026-10-21T16:14:11+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "56017697ccbcbd67c0086ecb1004d8885c2a71934cefdd7d4793033d8376a46d"
+ },
+ "promptSha256": "804f64d37e5e15bb9e67ff205da6169df712f7885cb626488cf08115e7f0adf0",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$6a^{2}+9ab$\", \"work\": \"나눗셈을 역수의 곱으로 바꾼다: ÷(-5/3 ab²) = ×(-3/(5ab²)).\\n-15a²b³ × (-3/(5ab²)) = 9ab\\n-10a³b² × (-3/(5ab²)) = 6a²\\n따라서 결과는 9ab + 6a² = 6a² + 9ab\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$6a^{2}+9ab$",
+  "work": "나눗셈을 역수의 곱으로 바꾼다: ÷(-5/3 ab²) = ×(-3/(5ab²)).\n-15a²b³ × (-3/(5ab²)) = 9ab\n-10a³b² × (-3/(5ab²)) = 6a²\n따라서 결과는 9ab + 6a² = 6a² + 9ab",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a01b399d966e97a8fdc150e4ed28f06a1ce180ccb29a5be524721bb04308b189"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A56-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d54-1988-7053-bd73-b391797f69f9",
+ "startedAt": "2026-10-21T16:19:14+0900",
+ "elapsedSec": 16.5,
+ "studentSha256": {
+  "student.json": "efe2d9693a01fe9ceee14be3aa58cd292f4a83576174cb6d3490a3e310190abf"
+ },
+ "promptSha256": "ec026b05cbc0f5eda1bf5638aef2951fb49afd835482ada2bec19525f9603b90",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $12b^2-30b$ ⑵ $-20x^2-28xy$ ⑶ $5a^2-10ab+30a$ ⑷ $-21x^2+18xy-3x$\",\n  \"work\": \"분배법칙을 이용하여 단항식을 괄호 안의 각 항에 곱한다.\\n계수끼리 곱하고, 같은 문자의 곱은 지수를 더하여 정리한다.\\n⑷에서 음수와 음수의 곱인 $(-6y)(-3x)$는 $18xy$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $12b^2-30b$ ⑵ $-20x^2-28xy$ ⑶ $5a^2-10ab+30a$ ⑷ $-21x^2+18xy-3x$",
+  "work": "분배법칙을 이용하여 단항식을 괄호 안의 각 항에 곱한다.\n계수끼리 곱하고, 같은 문자의 곱은 지수를 더하여 정리한다.\n⑷에서 음수와 음수의 곱인 $(-6y)(-3x)$는 $18xy$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d90fbc217688479a3dde0666af7669039e9da9095a3dcd2d75d8158dafafe54"
+}

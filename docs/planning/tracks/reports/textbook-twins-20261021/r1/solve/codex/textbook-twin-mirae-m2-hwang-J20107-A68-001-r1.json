@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A68-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d56-c8eb-78e2-8feb-6a62f90512a0",
+ "startedAt": "2026-10-21T16:22:10+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "f2e66879bd17ae067496d56924cde88c435e0492c4aa85469669bd10262d9204"
+ },
+ "promptSha256": "8025973959592a7dc0bc13fb70780ad795b0ee124b66d6125789f17a8db2b4f9",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"중괄호 안은 $2x-y+3x-y=5x-2y$이다.\\n대괄호 안은 $7x-(5x-2y)-4y=2x-2y$이다.\\n전체 식은 $6x-3y-(2x-2y)=4x-y$이므로 두 계수의 합은 $4+(-1)=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "중괄호 안은 $2x-y+3x-y=5x-2y$이다.\n대괄호 안은 $7x-(5x-2y)-4y=2x-2y$이다.\n전체 식은 $6x-3y-(2x-2y)=4x-y$이므로 두 계수의 합은 $4+(-1)=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5aa8cc1aa222b704befe8bf2fb6bc6966c06492fca1c6b5af505e51ce776ef54"
+}

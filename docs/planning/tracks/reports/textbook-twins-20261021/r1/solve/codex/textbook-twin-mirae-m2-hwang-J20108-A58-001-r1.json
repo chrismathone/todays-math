@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d54-88b9-7cf2-9025-f40b100cec1c",
+ "startedAt": "2026-10-21T16:19:43+0900",
+ "elapsedSec": 15.8,
+ "studentSha256": {
+  "student.json": "aa3c6f3b921e13751bf13d78a3ff93f23179b6a1d1ed09e69357a847a2e9b4c5"
+ },
+ "promptSha256": "a7853d80e1b7cabd7f7db047c4f901c8505dfd64b6f4b41dd144a7a2e7c07eaf",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $3b+2$ ⑵ $\\\\frac{9x}{y}+3-\\\\frac{15y}{x}$ ⑶ $a+5$ ⑷ $-2x-8$\",\n  \"work\": \"⑴ 각 항을 6b로 나누면 $3b+2$이다.\\n⑵ 각 항에 나누는 식의 역수 $\\\\frac{3}{xy}$를 곱하면 $\\\\frac{9x}{y}+3-\\\\frac{15y}{x}$이다.\\n⑶ $(3a+2)-(2a-3)=a+5$이다.\\n⑷ $(2x-3)-(4x+5)=-2x-8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $3b+2$ ⑵ $\\frac{9x}{y}+3-\\frac{15y}{x}$ ⑶ $a+5$ ⑷ $-2x-8$",
+  "work": "⑴ 각 항을 6b로 나누면 $3b+2$이다.\n⑵ 각 항에 나누는 식의 역수 $\\frac{3}{xy}$를 곱하면 $\\frac{9x}{y}+3-\\frac{15y}{x}$이다.\n⑶ $(3a+2)-(2a-3)=a+5$이다.\n⑷ $(2x-3)-(4x+5)=-2x-8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "beae96d31a85c542274e08eb5638102012e090d0fdf3dd2b24771184be159187"
+}

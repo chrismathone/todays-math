@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A61-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cfd73f0e-654d-4a7c-ac01-4bfd0cbcb50b",
+ "startedAt": "2026-10-21T16:14:46+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "18fe1bda3ef3a2f8327f4d69e1812874937cc4fa6830d74f9085213f237ec8d0"
+ },
+ "promptSha256": "867f6ac4f295ace07a865ad1e1c3b4b52277935cb0f433eee19b52b7b15ab5cb",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $14a^2+8a$ ⑵ $x^2+17xy$\", \"work\": \"⑴ $6a^2-12a+8a^2+20a=14a^2+8a$ ⑵ $7x^2-xy-6x^2+18xy=x^2+17xy$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $14a^2+8a$ ⑵ $x^2+17xy$",
+  "work": "⑴ $6a^2-12a+8a^2+20a=14a^2+8a$ ⑵ $7x^2-xy-6x^2+18xy=x^2+17xy$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8967d7b61d65a662efb026b2dcf55722609a177edaa8082f9b3c2e8f598d0cf3"
+}

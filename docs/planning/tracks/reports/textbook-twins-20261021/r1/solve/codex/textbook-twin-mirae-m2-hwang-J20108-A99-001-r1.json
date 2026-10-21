@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d56-07d2-7201-83e3-bbf92d25f4d4",
+ "startedAt": "2026-10-21T16:21:21+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "fig-1.png": "32f5e2336a5ca981cdc7648dfc3d995bc82ba24495a7c2b522ded16c42037a37",
+  "student.json": "03c1e4c2136b934954bcc1eb2a3eadc6e2234701fa828cc921459b359721f61c"
+ },
+ "promptSha256": "6ff18b8a1ef1d824e35954af53f4507c2f4d50d408912538f84e394ffed62762",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"길을 제외한 잔디밭을 모으면 가로는 $(8a+4)-2a=6a+4$, 세로는 $6a-a=5a$이다.\\n따라서 넓이는 $(6a+4)(5a)=30a^{2}+20a$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "길을 제외한 잔디밭을 모으면 가로는 $(8a+4)-2a=6a+4$, 세로는 $6a-a=5a$이다.\n따라서 넓이는 $(6a+4)(5a)=30a^{2}+20a$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "93f29f2e615311e2d8c11095a271d58e99bbf37ccb22b748e3aad96360d03b1a"
+}

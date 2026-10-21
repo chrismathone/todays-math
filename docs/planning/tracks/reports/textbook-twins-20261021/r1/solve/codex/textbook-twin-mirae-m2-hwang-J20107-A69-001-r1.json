@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d56-f77d-7903-bd24-6530c8c668ae",
+ "startedAt": "2026-10-21T16:22:22+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "b2094a540e15d2b32a0f65487b9d237310067e5df96a90e4212d16b85e7e0c0b"
+ },
+ "promptSha256": "bf119105a8a401e4f97d4c8e3d0acf9952b308418d1241794fad2e9b2408b43a",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"식을 정리하면 $\\\\frac{2a-3}{6}x-\\\\frac{7}{3}y$이다.\\n두 계수의 곱이 $\\\\frac{7}{9}$이므로 $-\\\\frac{7(2a-3)}{18}=\\\\frac{7}{9}$이다.\\n따라서 $2a-3=-2$이므로 $a=\\\\frac{1}{2}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "식을 정리하면 $\\frac{2a-3}{6}x-\\frac{7}{3}y$이다.\n두 계수의 곱이 $\\frac{7}{9}$이므로 $-\\frac{7(2a-3)}{18}=\\frac{7}{9}$이다.\n따라서 $2a-3=-2$이므로 $a=\\frac{1}{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "61c865167bae37abffce5c8606abe9f3bcb22c11552117ae24887156b825609d"
+}
