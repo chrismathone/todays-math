@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A78-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd6-fbff-7f82-a80a-5ad5603d6af7",
+ "startedAt": "2026-10-21T18:42:12+0900",
+ "elapsedSec": 14.5,
+ "studentSha256": {
+  "student.json": "bde8a19be1e1f6aacbdc081c6fbf1f0818d19aa6a7ea33c37f9c35b26b66df85"
+ },
+ "promptSha256": "0c0ba97cedcb33766b2cec5343505bbce7f62ed5c118c92e4055dfde69e86253",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"33\",\n  \"work\": \"유한소수로 나타낼 수 있는 기약분수의 분모에는 소인수 2와 5만 있어야 한다.\\n$\\\\frac{14k}{105}=\\\\frac{2k}{15}$에서 분모의 소인수 3이 약분되어야 하므로 k는 3의 배수이다. $\\\\frac{9k}{110}$에서는 분모의 소인수 11이 약분되어야 하므로 k는 11의 배수이다.\\n따라서 가장 작은 k는 3과 11의 최소공배수인 33이다. 실제로 k=33이면 두 수는 각각 4.4와 2.7이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "33",
+  "work": "유한소수로 나타낼 수 있는 기약분수의 분모에는 소인수 2와 5만 있어야 한다.\n$\\frac{14k}{105}=\\frac{2k}{15}$에서 분모의 소인수 3이 약분되어야 하므로 k는 3의 배수이다. $\\frac{9k}{110}$에서는 분모의 소인수 11이 약분되어야 하므로 k는 11의 배수이다.\n따라서 가장 작은 k는 3과 11의 최소공배수인 33이다. 실제로 k=33이면 두 수는 각각 4.4와 2.7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0fec5ebae86549b13bf000cc156f14010aa0e156fd835a4d4ef0cdc1b6ea37a9"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A49-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "fa6c0db3-56e5-4799-b8ad-b75decf17e39",
+ "startedAt": "2026-10-21T17:55:20+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "dfabd4aa167aa717bff6cd76a9f7b8619d9d8ad8e074db0ed2496dd0293e42ab"
+ },
+ "promptSha256": "39bc02512aef39519dcfe85f09653165da01f261cbce05cf3461df583c282faa",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①, ⑤\", \"work\": \"a<b에서 ① -5a>-5b 이므로 -5a+9>-5b+9 (옳음). ② 8a<8b 이므로 8a-11<8b-11 (틀림). ③ -a>-b 이므로 (10-a)/3>(10-b)/3 (틀림). ④ -6a>-6b 이므로 12-6a>12-6b (틀림). ⑤ a/4<b/4 이므로 a/4+9<b/4+9 (옳음).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①, ⑤",
+  "work": "a<b에서 ① -5a>-5b 이므로 -5a+9>-5b+9 (옳음). ② 8a<8b 이므로 8a-11<8b-11 (틀림). ③ -a>-b 이므로 (10-a)/3>(10-b)/3 (틀림). ④ -6a>-6b 이므로 12-6a>12-6b (틀림). ⑤ a/4<b/4 이므로 a/4+9<b/4+9 (옳음).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e97b416a9a6be57e7ea98465ffcbb18e6c381bf5e7551bc4942401ab1090c020"
+}

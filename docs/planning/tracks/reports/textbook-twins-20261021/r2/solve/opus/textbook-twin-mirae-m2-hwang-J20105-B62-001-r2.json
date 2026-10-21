@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B62-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1e46e7d7-0585-43cf-8cef-adbeb3479efa",
+ "startedAt": "2026-10-21T17:55:15+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "9fc5723bafc0ac96149155eb3e53891519febcf63691ddcd91f7988013a6c62e"
+ },
+ "promptSha256": "c99138796ae18531da93882a3c759f7ecc12ef5039e76f253f7325728b2c9a96",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"64 cm^2\", \"work\": \"넓이 = 2^m × 2^n = 2^{m+n} = 2^6 = 64 (cm^2)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "64 cm^2",
+  "work": "넓이 = 2^m × 2^n = 2^{m+n} = 2^6 = 64 (cm^2)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "93a738449aec2e00fd779363b7f5781fa1fa88f7190fd75a0d9b9f2391307bc4"
+}

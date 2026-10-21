@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d162cf10-d348-47d9-80d1-ab0423fa4a42",
+ "startedAt": "2026-10-21T17:55:25+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "e1f9f7641bac8b9f897124bb4e43d861df6bca8738d99a9cf097ab3ceb379b18"
+ },
+ "promptSha256": "43d6772b46cc4768bea6f86ff86b5f0dc0b33efdc12fdd26ebaa5991ca2dd854",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"양변에 24를 곱하면 4(x+7)-3(5x-9)<0\\n4x+28-15x+27<0 → -11x+55<0 → x>5\\n따라서 부등식을 만족시키지 않는 값은 x≤5인 x이므로 보기 중 5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "양변에 24를 곱하면 4(x+7)-3(5x-9)<0\n4x+28-15x+27<0 → -11x+55<0 → x>5\n따라서 부등식을 만족시키지 않는 값은 x≤5인 x이므로 보기 중 5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7a11342889f30d41a62c7677db065d902ab34bd5b0705c9dbcac1e9cafd32f81"
+}
