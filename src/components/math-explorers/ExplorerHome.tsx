@@ -25,6 +25,7 @@ import {
   useLearningSounds,
 } from "@/components/math-srs/LearningSounds";
 import type { LearningSoundStatus } from "@/lib/math-srs/learningSoundEngine";
+import { studentDateLabel } from "@/components/fading/labels";
 import { kstDateOf } from "@/lib/kstDate";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import {
@@ -717,7 +718,7 @@ export default function ExplorerHome({
             </span>
           </div>
           <p className={`${s.quietNote} ${a.sheetNote}`}>
-            모은 카드와 연결된 앞개념을 살펴보세요. 기억 복습은 오늘의 탐험에
+            모은 카드와 먼저 알아둘 개념을 살펴보세요. 기억 복습은 오늘의 탐험에
             이어져요.
           </p>
           <div className={s.collection}>
@@ -753,14 +754,14 @@ export default function ExplorerHome({
                   {state.dueCardIds.includes(card.id)
                     ? "다시 기억할 때"
                     : card.progress?.level
-                      ? `${card.progress.due.slice(5).replace("-", "/")} 복습`
+                      ? `${studentDateLabel(card.progress.due, state.today)} 복습`
                       : "아직 수집 전"}
                 </small>
               </button>
             ))}
           </div>
           <p className={s.scheduleNote}>
-            도움 없이 기억하면 복습 간격이 1 → 3 → 7 → 14 → 30일로 늘어나요.
+            복습할 때가 되면 오늘의 탐험에서 다시 만나요.
           </p>
           <SupplementShelf state={state} onInspect={onInspectSupplement} />
         </ExplorerSheet>

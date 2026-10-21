@@ -275,7 +275,11 @@ describe("교사 Hi-fi B 구조", () => {
     await screen.findByRole("heading", { name: "이도윤" });
     fireEvent.click(screen.getByRole("button", { name: "미리 보기" }));
     await screen.findByText("학생 앱 표본");
-    expect(screen.getAllByText("저장되지 않음").length).toBeGreaterThan(0);
+    expect(
+      screen.getByRole("region", { name: "기억 학습 미리 보기" }),
+    ).toHaveTextContent(
+      "별도 기억 학습 화면입니다. 탐험이 포함된 학생 홈과 다르며 저장되지 않습니다.",
+    );
     fireEvent.click(screen.getByRole("button", { name: "학생 현황으로" }));
     expect(screen.getByRole("heading", { name: "이도윤" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "미리 보기" })).toHaveFocus();

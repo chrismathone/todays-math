@@ -105,6 +105,30 @@ const openSettings = () =>
 const motionSwitch = () =>
   screen.getByRole("switch", { name: "움직임 줄이기" });
 
+it("uses relative collection dates and a return reminder without publishing the interval ladder", () => {
+  const state = view();
+  state.today = now;
+  const card = state.units[0].cards[0];
+  card.progress = {
+    level: 1,
+    due: "2026-09-27",
+    lastDate: now,
+    attemptedAt: now,
+    missed: 0,
+  };
+  const before = structuredClone(state);
+  home(state);
+  fireEvent.click(screen.getByRole("button", { name: "도감" }));
+  const collection = screen.getByRole("dialog", { name: "나의 개념 도감" });
+  expect(collection).toHaveTextContent("내일 복습");
+  expect(collection).toHaveTextContent(
+    "복습할 때가 되면 오늘의 탐험에서 다시 만나요.",
+  );
+  expect(collection).toHaveTextContent("먼저 알아둘 개념");
+  expect(collection).not.toHaveTextContent(/09\/27|1 → 3 → 7|앞개념/);
+  expect(state).toEqual(before);
+});
+
 it("shows one journey heading inside the book while retaining board controls and totals", () => {
   home(view(), { studyBook: true, conceptMemory: <p>오늘 공부</p> });
   expect(
