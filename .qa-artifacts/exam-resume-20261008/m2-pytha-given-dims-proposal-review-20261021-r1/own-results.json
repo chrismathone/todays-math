@@ -1,0 +1,698 @@
+{
+  "counts": {
+    "assertions": 70,
+    "passed": 70,
+    "failed": 0,
+    "actualTriples": 10,
+    "helperConsumerCases": 20,
+    "actualSeedOutputs": 0
+  },
+  "checks": [
+    {
+      "name": "OriginalActualSHA",
+      "pass": true
+    },
+    {
+      "name": "CandidateActualSHA",
+      "pass": true
+    },
+    {
+      "name": "TenDistinctTriples",
+      "pass": true
+    },
+    {
+      "name": "TriplesSourceUnchanged",
+      "pass": true
+    },
+    {
+      "name": "drawScalePositiveUniform",
+      "pass": true
+    },
+    {
+      "name": "09WholeSourceUnchanged",
+      "pass": true
+    },
+    {
+      "name": "10OnlyDimensionAttachmentChanged",
+      "pass": true
+    },
+    {
+      "name": "09GivenCAandCB",
+      "pass": true
+    },
+    {
+      "name": "10GivenCBandABOnly",
+      "pass": true
+    },
+    {
+      "name": "ExactSameVectorSegmentsAnglesSource",
+      "pass": true
+    },
+    {
+      "name": "ExactSameVertexLabelsSource",
+      "pass": true
+    },
+    {
+      "name": "Only09and10UseHelper",
+      "pass": true
+    },
+    {
+      "name": "ConditionalDimensionsCorrectEdges",
+      "pass": true
+    },
+    {
+      "name": "AllUnrelatedMethodsUnchanged",
+      "pass": true
+    },
+    {
+      "name": "10CurrentOneBranch",
+      "pass": true
+    },
+    {
+      "name": "triple0Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple0RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple0ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple0GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple0PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple1Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple1RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple1ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple1GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple1PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple2Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple2RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple2ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple2GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple2PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple3Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple3RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple3ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple3GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple3PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple4Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple4RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple4ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple4GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple4PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple5Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple5RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple5ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple5GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple5PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple6Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple6RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple6ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple6GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple6PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple7Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple7RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple7ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple7GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple7PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple8Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple8RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple8ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple8GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple8PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "triple9Pythagorean",
+      "pass": true
+    },
+    {
+      "name": "triple9RightAndFoot",
+      "pass": true
+    },
+    {
+      "name": "triple9ScaledLengths",
+      "pass": true
+    },
+    {
+      "name": "triple9GivenLabelsNoHiddenSide",
+      "pass": true
+    },
+    {
+      "name": "triple9PositiveTargets",
+      "pass": true
+    },
+    {
+      "name": "ProposedTestPrintedNotFacts",
+      "pass": true
+    },
+    {
+      "name": "ProposedTestTwoTypes100And10Forced",
+      "pass": true
+    },
+    {
+      "name": "ProposedTestVectorAndGivensContract",
+      "pass": true
+    },
+    {
+      "name": "SourceCandidateTestUnchanged",
+      "pass": true
+    },
+    {
+      "name": "UTF8Probe",
+      "pass": true
+    }
+  ],
+  "cases": [
+    {
+      "triple": [
+        3,
+        4,
+        5
+      ],
+      "dimension09": {
+        "CA": 4,
+        "CB": 3
+      },
+      "dimension10": {
+        "CB": 3,
+        "AB": 5
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "544/5",
+          "-408/5"
+        ],
+        "D": [
+          "544/5",
+          "0"
+        ]
+      },
+      "scale": "34",
+      "own09CD": "12/5",
+      "own10BD": "9/5",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        6,
+        8,
+        10
+      ],
+      "dimension09": {
+        "CA": 8,
+        "CB": 6
+      },
+      "dimension10": {
+        "CB": 6,
+        "AB": 10
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "544/5",
+          "-408/5"
+        ],
+        "D": [
+          "544/5",
+          "0"
+        ]
+      },
+      "scale": "17",
+      "own09CD": "24/5",
+      "own10BD": "18/5",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        5,
+        12,
+        13
+      ],
+      "dimension09": {
+        "CA": 12,
+        "CB": 5
+      },
+      "dimension10": {
+        "CB": 5,
+        "AB": 13
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "24480/169",
+          "-10200/169"
+        ],
+        "D": [
+          "24480/169",
+          "0"
+        ]
+      },
+      "scale": "170/13",
+      "own09CD": "60/13",
+      "own10BD": "25/13",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        9,
+        12,
+        15
+      ],
+      "dimension09": {
+        "CA": 12,
+        "CB": 9
+      },
+      "dimension10": {
+        "CB": 9,
+        "AB": 15
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "544/5",
+          "-408/5"
+        ],
+        "D": [
+          "544/5",
+          "0"
+        ]
+      },
+      "scale": "34/3",
+      "own09CD": "36/5",
+      "own10BD": "27/5",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        8,
+        15,
+        17
+      ],
+      "dimension09": {
+        "CA": 15,
+        "CB": 8
+      },
+      "dimension10": {
+        "CB": 8,
+        "AB": 17
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "2250/17",
+          "-1200/17"
+        ],
+        "D": [
+          "2250/17",
+          "0"
+        ]
+      },
+      "scale": "10",
+      "own09CD": "120/17",
+      "own10BD": "64/17",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        12,
+        16,
+        20
+      ],
+      "dimension09": {
+        "CA": 16,
+        "CB": 12
+      },
+      "dimension10": {
+        "CB": 12,
+        "AB": 20
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "544/5",
+          "-408/5"
+        ],
+        "D": [
+          "544/5",
+          "0"
+        ]
+      },
+      "scale": "17/2",
+      "own09CD": "48/5",
+      "own10BD": "36/5",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        7,
+        24,
+        25
+      ],
+      "dimension09": {
+        "CA": 24,
+        "CB": 7
+      },
+      "dimension10": {
+        "CB": 7,
+        "AB": 25
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "19584/125",
+          "-5712/125"
+        ],
+        "D": [
+          "19584/125",
+          "0"
+        ]
+      },
+      "scale": "34/5",
+      "own09CD": "168/25",
+      "own10BD": "49/25",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        15,
+        20,
+        25
+      ],
+      "dimension09": {
+        "CA": 20,
+        "CB": 15
+      },
+      "dimension10": {
+        "CB": 15,
+        "AB": 25
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "544/5",
+          "-408/5"
+        ],
+        "D": [
+          "544/5",
+          "0"
+        ]
+      },
+      "scale": "34/5",
+      "own09CD": "12",
+      "own10BD": "9",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        10,
+        24,
+        26
+      ],
+      "dimension09": {
+        "CA": 24,
+        "CB": 10
+      },
+      "dimension10": {
+        "CB": 10,
+        "AB": 26
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "24480/169",
+          "-10200/169"
+        ],
+        "D": [
+          "24480/169",
+          "0"
+        ]
+      },
+      "scale": "85/13",
+      "own09CD": "120/13",
+      "own10BD": "50/13",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    },
+    {
+      "triple": [
+        20,
+        21,
+        29
+      ],
+      "dimension09": {
+        "CA": 21,
+        "CB": 20
+      },
+      "dimension10": {
+        "CB": 20,
+        "AB": 29
+      },
+      "sourceVectorPoints": {
+        "A": [
+          "0",
+          "0"
+        ],
+        "B": [
+          "170",
+          "0"
+        ],
+        "C": [
+          "74970/841",
+          "-71400/841"
+        ],
+        "D": [
+          "74970/841",
+          "0"
+        ]
+      },
+      "scale": "170/29",
+      "own09CD": "420/29",
+      "own10BD": "400/29",
+      "type10AAcorrespondence": "ABC ~ CBD (A↔C,B↔B,C↔D), sharedB andrightC/D, henceCB²=BD*BA.",
+      "sqrt09StudentNotation": "Sourceunchanged usesAB=sqrt(a²+b²)=c. CurriculumplacementUNKNOWN inthisscope; noofficialM2exclusion/approval inferred."
+    }
+  ],
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\proposal.json": "9d6ff476a288c429411fe64fd41e4ce6edb7cc6f941ea8d48520114d993204db",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "6c0ebb07e1e546e1faacc0554ca67a40fc5ac0229e6eecd996e6684e13976ca9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\src\\lib\\middle\\m2Pytha.ts": "032376812b8ba86e60068dcc5387daaf768e9aaaa6c53b5fe4e02793c1fe1d39",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-test-proposal-20261021-r1.ts": "b12fb23512380256add2fb43f90c4b95b68143f80c48cf50473c45e21eabf6e9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\proposal.json": "9d6ff476a288c429411fe64fd41e4ce6edb7cc6f941ea8d48520114d993204db",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "6c0ebb07e1e546e1faacc0554ca67a40fc5ac0229e6eecd996e6684e13976ca9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\src\\lib\\middle\\m2Pytha.ts": "032376812b8ba86e60068dcc5387daaf768e9aaaa6c53b5fe4e02793c1fe1d39",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-test-proposal-20261021-r1.ts": "b12fb23512380256add2fb43f90c4b95b68143f80c48cf50473c45e21eabf6e9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5"
+  },
+  "sourceEOL": {
+    "originalCRLF": 764,
+    "candidateCRLF": 0
+  },
+  "futureVersionRequired": "20261021-given-only-altitude-dimensions-r1",
+  "currentAdapterEntryPresent": false,
+  "UNKNOWN": "09sqrtstudentnotationactualcurriculumplacementnotresolved; noprimaryevidenceinscope; do not guessgradegate.",
+  "unexecutedTestProposalSHA256": "b12fb23512380256add2fb43f90c4b95b68143f80c48cf50473c45e21eabf6e9"
+}

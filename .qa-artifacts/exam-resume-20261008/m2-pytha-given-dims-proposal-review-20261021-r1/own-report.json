@@ -1,0 +1,75 @@
+{
+  "status": "STATIC_GIVEN_DIMENSION_CANDIDATE_PASS;RUNTIME_RENDER_PENDING",
+  "counts": {
+    "assertions": 70,
+    "passed": 70,
+    "failed": 0,
+    "actualTriples": 10,
+    "helperConsumerCases": 20,
+    "actualSeedOutputs": 0
+  },
+  "sourceBindingsBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\proposal.json": "9d6ff476a288c429411fe64fd41e4ce6edb7cc6f941ea8d48520114d993204db",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "6c0ebb07e1e546e1faacc0554ca67a40fc5ac0229e6eecd996e6684e13976ca9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\src\\lib\\middle\\m2Pytha.ts": "032376812b8ba86e60068dcc5387daaf768e9aaaa6c53b5fe4e02793c1fe1d39",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-test-proposal-20261021-r1.ts": "b12fb23512380256add2fb43f90c4b95b68143f80c48cf50473c45e21eabf6e9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\proposal.json": "9d6ff476a288c429411fe64fd41e4ce6edb7cc6f941ea8d48520114d993204db",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "6c0ebb07e1e546e1faacc0554ca67a40fc5ac0229e6eecd996e6684e13976ca9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-candidate-20261021-r1\\src\\lib\\middle\\m2Pytha.ts": "032376812b8ba86e60068dcc5387daaf768e9aaaa6c53b5fe4e02793c1fe1d39",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m2-pytha-given-dims-test-proposal-20261021-r1.ts": "b12fb23512380256add2fb43f90c4b95b68143f80c48cf50473c45e21eabf6e9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5"
+  },
+  "productionAndInputChanges": 0,
+  "findings": {
+    "actualTriples": "All10literalTRIPLESdistinctpositiveandPythagorean. CandidateTRIPLESunchanged. ExactFraction coordinates useCA=b,CB=a,AB=c, uniformscale170/c; rightC/rightD, collinearityADwithAB,0<AD<AB andallshownlengthscalefactors verified.",
+    "type09": "Whole09sourceunchanged afterEOLnormalization, bothgivenCA=b/CB=a retained. Newconditionaldimensionhelperproducessameca/cbobjectsfor09andnoablabel. StudentanswerCD=ab/cpositiveunique byarea; notnewwholegradeapproval.",
+    "type10": "OnlydimA(bcm)replacedbydimHyp(ccm)andcomment. StemgivesCB=a/AB=c, sourceanswerBD=a²/candAA explanationunchanged. Onlycb/ablabels, no derivedCAbcmlabel; no addedanswer/numericlabelelsewhere.",
+    "geometryAndUnrelated": "Exactsourcehelperpoint/segment/rightangle/vertexlabelcodeunchanged; allsourceoutsidehelper/type10unchanged afterEOLnormalization. Helperhasexactly2consumers09/10.",
+    "currentBranchFacts": "Current10hasoneunconditionalTRIPLESpickbranch, nothistoricalmode0/1. Historical24/30handoffclaimnotcurrentincidence; actualseedoutputs0.",
+    "testProposal": "Unexecutedprovidedtestsourceparsesactualprintedgivens, comparesdimensionedges/values, checksvectorrightangles/projection/interiority/unitratios; includes100seeds/typeand10forcedcases/type. No factsoracle. Thisisstaticinspection, parenttestcountsnotown."
+  },
+  "curriculumObservation": {
+    "status": "UNKNOWN",
+    "subject": "Unchanged09solutionusesAB=sqrt(a²+b²)=c.",
+    "boundary": "Noactualprimarygrade-placementreviewinthisscope. Do notassertofficialM2exclusion orwholemethodapprovalfromsqrtglyph/type/Unitname; noAIorhardgradegatedesigned. Candidatepatchdoesnotintroducethisnotation.",
+    "conditionalPrerequisites": "Pythagoreanrelationship,positivebranches,areaformulaandM2AAsimilarity/sameangleBfor10. Exactrational auditcoordinatesarenotrequiredstudentmethod."
+  },
+  "integrationConditions": {
+    "typeKey": "2-2|피타고라스 정리|10",
+    "futureAdapterVersionRequired": "20261021-given-only-altitude-dimensions-r1",
+    "currentProductionEntryPresent": false,
+    "versionNotAppliedHere": true,
+    "preservation": "Futuregeneratorrevisionforchangedgiven-dimensioninformation; preserveoldseedoutputs/reference/sourceprovenance andissuedquestions. NoDBrefresh/rebuild/unlock. 09unchangedoutputshouldremainregressionprotected.",
+    "sourceEOL": {
+      "originalCRLF": 764,
+      "candidateCRLF": 0
+    },
+    "EOLComparison": "UnchangedsourcecontentcheckedwithCRLFnormalization, rawsourcehashesrecordedseparately; nofalseclaimunrelatedbyteidentityifEOLdiffers."
+  },
+  "executionBoundary": {
+    "NodeCalls": 0,
+    "RAMProbes": 0,
+    "ActualAPIGeneratedOutputs": 0,
+    "ActualRendererCalls": 0,
+    "DBNetworkAPIModelCalls": 0,
+    "browserCIMinstall": 0
+  },
+  "limitations": [
+    "Python/sourceonly. No actualTScompile,Vitetst,API,SVG/native/physicalprint/layout/readabilitycertification.",
+    "Static10triples/20consumerreconstructionsarenotactualseedincidence.",
+    "RenderingthenewABdimensionmayhaveplacement/collisionconstraints; strictactualrendererneededlater, notsilentlydropdim.",
+    "Officialwholegrade/rights/sourceidentity/native/publicreleaseapprovalsremainheld.",
+    "Onlynewownauditnamespacewritten; production,providedcandidate/testproposal,oldraw/private/dirtyfilesunchanged."
+  ],
+  "artifacts": {
+    "own-review.py": "1e0e3f19cecb380122b30b72ae2c4d776f7eafd39071d38c7b12f9bbbc81b5f1",
+    "own-results.json": "a49ed867548149f0c7109f00f194f9702b8c136bb60b431dbbffeb9e1ec6f62a",
+    "own-inspect.py": "201ca883d2fe3dab9bb9ba18eda7d1982c448126c3328d9e5a5329bcfa4d7f03",
+    "own-utf8-probe.txt": "e9d00d333b0189a57841d78c9f3cdfe2a6661002c0591ec703f68b997d844186"
+  }
+}
