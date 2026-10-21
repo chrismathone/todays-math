@@ -21,6 +21,11 @@ import { formatDraftDate } from "./WorkroomHome";
 import WorkProgress from "./WorkProgress";
 import Icon from "./WorkspaceIcon";
 import { libraryDocumentInfo } from "./libraryDocumentInfo";
+import LibraryFilterBar, {
+  type LibraryScope,
+  type LibrarySort,
+  type LibraryTagFilter,
+} from "./LibraryFilterBar";
 import {
   SHEET_TAGS,
   isTaggableKind,
@@ -62,7 +67,7 @@ const EDIT_TITLE: Readonly<Record<DocumentKind, string>> = {
 /** 연산 쓰기 문이 닫혀 있을 때 — 읽기는 되고 바꾸는 것만 막는다(`arithmeticDocumentPolicy`). */
 const ARITHMETIC_READ_ONLY = "연산 연습지 저장 준비 중 · 지금은 읽기만 됩니다";
 /** 태그 거름(W8) — null 은 «태그 전체», "none" 은 «태그 없음»(시험지 · 연산 연습지 가운데 태그가 없는 것). */
-type TagFilter = SheetTag | "none" | null;
+type TagFilter = LibraryTagFilter;
 const tagMatches = (item: PrivateDocumentSummary, tag: TagFilter) =>
   tag === null
     ? true
@@ -154,8 +159,22 @@ function PrivateLibraryContent({
   );
   const activeTag = tagFor(kind);
   const [workingOnly, setWorkingOnly] = useState(false);
-  const [sort, setSort] = useState("newest");
+  const [sort, setSort] = useState<LibrarySort>("newest");
   const [mineOnly, setMineOnly] = useState(false);
+  /**
+   * ④ 보기 범위(05 §8.26 · Codex 합의 (가)) — 고를 때마다 도착할 범위를 고른다. 이전 범위는 기억하지 않는다.
+   * «내 작업 중만»은 학원 소속이면 내 자료만 받아 온다(작업 중은 내 것만 센다 — `isMyWork`).
+   * 서버를 다시 읽는 것은 학원 자료 전체 ↔ 내 자료만 · 내 작업 중만 사이뿐이다(`refresh` 가 `mineOnly` 를 본다).
+   */
+  const scope: LibraryScope = workingOnly
+    ? "working"
+    : mineOnly
+      ? "mine"
+      : "all";
+  const setScope = (next: LibraryScope) => {
+    setWorkingOnly(next === "working");
+    setMineOnly(Boolean(branchId) && next !== "all");
+  };
   const [cleanupFailures, setCleanupFailures] = useState<CleanupFailure[]>([]);
   // 월말평가 M1 — 낸 기록 · 낼 수 있는 반(출력 메뉴가 있을 때만). 못 읽으면 띠 · 딱지 · 단추를 숨긴다(목록은 그대로).
   const [publications, setPublications] = useState<ExamPublicationList | null>(
@@ -221,12 +240,18 @@ function PrivateLibraryContent({
   );
   // 종류 × 내 작업 중 × 검색 × 내 자료는 교집합이다. 종류 수는 «그 종류를 고르면 몇 개가 남나»,
   // 작업 중 수는 «그 토글을 켜면 몇 개가 남나» — 어느 단추의 수도 다른 단추의 수에 더해지지 않는다.
+  // «내 자료만 · 내 작업 중만»이면 화면에서도 내 것만 남긴다 — 범위를 바꾸며 읽기가 실패하면 앞 범위(학원 전체)의
+  // 목록이 남는데, 내 자료만 ↔ 작업 중은 다시 읽지 않아 동료 자료가 «내 자료만» 아래 보였다(2026-10-21 Codex 구현 검토).
+  const scoped = useMemo(
+    () => (mineOnly ? items.filter(owned) : items),
+    [items, mineOnly, owned],
+  );
   const searched = useMemo(() => {
     const search = query.trim().toLocaleLowerCase();
-    return items.filter((item) =>
+    return scoped.filter((item) =>
       item.title.toLocaleLowerCase().includes(search),
     );
-  }, [items, query]);
+  }, [scoped, query]);
   const base = useMemo(
     () => (workingOnly ? searched.filter(isMyWork) : searched),
     [searched, workingOnly, isMyWork],
@@ -386,123 +411,35 @@ function PrivateLibraryContent({
         )}
         {onNew && <button onClick={onNew}>새 시험지</button>}
       </WorkspacePageHeader>
-      <div className={s.kindTabs} role="group" aria-label="자료 종류별 보기">
-        <button
-          type="button"
-          aria-pressed={kind === "all"}
-          onClick={() => setKind("all")}
-        >
-          전체 자료 <span>{allCount}</span>
-        </button>
-        {DOCUMENT_KINDS.map((entry) => (
-          <button
-            key={entry.id}
-            type="button"
-            aria-pressed={kind === entry.id}
-            onClick={() => setKind(entry.id)}
-          >
-            {entry.label} <span>{kindCounts[entry.id]}</span>
-          </button>
-        ))}
-      </div>
-      {taggableView(kind) ? (
-        <div
-          className={`${s.kindTabs} ${o.tagTabs}`}
-          role="group"
-          aria-label="태그별 보기"
-        >
-          <button
-            type="button"
-            aria-pressed={tag === null}
-            onClick={() => setTag(null)}
-          >
-            태그 전체
-          </button>
-          {SHEET_TAGS.map((entry) => (
-            <button
-              key={entry}
-              type="button"
-              aria-pressed={tag === entry}
-              onClick={() => setTag(tag === entry ? null : entry)}
-            >
-              {entry} <span>{tagCounts[entry]}</span>
-            </button>
-          ))}
-          <span className={o.vRule} aria-hidden />
-          <button
-            type="button"
-            aria-pressed={tag === "none"}
-            onClick={() => setTag(tag === "none" ? null : "none")}
-          >
-            태그 없음 <span>{noneCount}</span>
-          </button>
-        </div>
-      ) : (
-        <p className={o.tagFolded} data-tag-folded>
-          {tag
-            ? `태그 «${tag === "none" ? "태그 없음" : tag}» — 시험지 · 연산 연습지를 고르면 다시 걸립니다.`
-            : "태그는 시험지 · 연산 연습지에만 있습니다."}
-        </p>
-      )}
-      <div className={s.toggles}>
-        <label className={s.toggle}>
-          <input
-            type="checkbox"
-            checked={workingOnly}
-            onChange={(event) => setWorkingOnly(event.target.checked)}
-          />
-          내 작업 중만 <span>({workingCount})</span>
-        </label>
-        {branchId && (
-          <label className={s.toggle}>
-            <input
-              type="checkbox"
-              checked={mineOnly}
-              onChange={(event) => setMineOnly(event.target.checked)}
-            />
-            내 자료만 보기
-          </label>
-        )}
-      </div>
-      <div className={s.tools}>
-        <input
-          type="search"
-          aria-label="저장한 자료 검색"
-          placeholder="자료 이름으로 찾기"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-        <label>
-          정렬
-          <select
-            aria-label="자료 정렬"
-            value={sort}
-            onChange={(event) => setSort(event.target.value)}
-          >
-            <option value="newest">최근 수정순</option>
-            <option value="name">이름순</option>
-            <option value="count">문항 많은순</option>
-          </select>
-        </label>
-        <button onClick={() => void refresh()} disabled={loading}>
-          새로고침
-        </button>
-      </div>
+      <LibraryFilterBar
+        kind={kind}
+        onKindChange={setKind}
+        allCount={allCount}
+        kindCounts={kindCounts}
+        tag={tag}
+        onTagChange={setTag}
+        tagCounts={tagCounts}
+        noneCount={noneCount}
+        scope={scope}
+        onScopeChange={setScope}
+        branch={Boolean(branchId)}
+        workingCount={workingCount}
+        sort={sort}
+        onSortChange={setSort}
+        query={query}
+        onQueryChange={setQuery}
+        loading={loading}
+        onRefresh={() => void refresh()}
+        total={scoped.length}
+        shown={filtered.length}
+        filtered={hasFilters}
+      />
       {workingOnly && (
         <p className={s.note}>
           진행 단계가 기록된 내 자료입니다. ‘이어서 작업’은 기록된 단계로
           엽니다.
         </p>
       )}
-      <p className={s.resultCount} aria-live="polite">
-        저장한 자료 <strong>{items.length}</strong>개
-        {hasFilters && (
-          <>
-            {" "}
-            · 검색 결과 <strong>{filtered.length}</strong>개
-          </>
-        )}
-      </p>
       {error && (
         <p className={s.error} role="alert">
           {error}
@@ -641,7 +578,7 @@ function PrivateLibraryContent({
             </h2>
             <p>
               {hasFilters
-                ? "자료 이름이나 종류 · 태그를 바꿔 다시 찾아보세요."
+                ? "자료 이름이나 종류 · 태그 · 보기를 바꿔 다시 찾아보세요."
                 : "시험지를 편집하거나 내 자료에서 문제를 추출하면 여기에 저장됩니다."}
             </p>
             {hasFilters && (

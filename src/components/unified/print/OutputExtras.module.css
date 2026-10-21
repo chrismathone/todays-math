@@ -290,28 +290,7 @@
   color: var(--learn-muted);
 }
 
-/* ───────────── W8 — 내 시험지 탭 ───────────── */
-.tagTabs {
-  margin-top: 10px;
-  align-items: center;
-}
-.tagTabs button {
-  font-weight: 500;
-}
-.vRule {
-  align-self: stretch;
-  width: 1px;
-  margin-inline: 4px;
-  background: var(--learn-track);
-}
-.tagFolded {
-  margin: 12px 0 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: var(--learn-neutral);
-  color: var(--learn-muted);
-  font-size: 13px;
-}
+/* ───────────── W8 — 내 시험지 탭(목록 행의 종류 · 태그 딱지). 태그 거르기는 거르기 줄의 «태그» 드롭다운(05 §8.26). ───────────── */
 .kindStack {
   display: inline-flex;
   flex-direction: column;

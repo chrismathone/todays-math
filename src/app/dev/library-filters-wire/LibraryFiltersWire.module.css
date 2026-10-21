@@ -1,0 +1,272 @@
+/* 내 자료 거르기 줄 — Wire 5안의 거르기 줄. 페이지 머리 · 틀은 `parts.module.css`.
+   거르기 줄은 `.library` 의 크기 컨테이너에 대어 줄을 바꾼다(이름 없는 @container — 가장 가까운 컨테이너가 `.library`). */
+
+/* ───────────── 거르기 줄 — 다섯 안이 같이 쓰는 것 ───────────── */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 20px 0 12px;
+}
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 16px;
+}
+/* 조작은 줄지 않는다 — 줄어드는 것은 찾기 칸뿐이고, 그래도 안 들면 무리째 다음 줄로 간다. */
+.field,
+.bar button,
+.bar .checks,
+.inlineCount {
+  flex-shrink: 0;
+}
+.bar button {
+  white-space: nowrap;
+}
+.field {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+}
+.field > select {
+  width: 100%;
+}
+.bar .field[data-labelled] > select {
+  padding-left: 46px;
+}
+.fieldLabel {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--learn-muted);
+  font-size: 12px;
+  pointer-events: none;
+}
+/* 꺼진 드롭다운 — `.library select { cursor: pointer }` 가 전역 금지 커서를 이기므로 여기서 되돌린다(D-30). */
+.bar select:disabled {
+  cursor: not-allowed;
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--learn-muted);
+}
+/* 태그 없는 종류에서 기억한 태그 — 걸리지 않으니 흐리게(열면 «태그 풀기»). */
+.bar select[data-paused]:not(:disabled) {
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--learn-muted);
+}
+.folded {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.sheet .folded > p {
+  margin: 0;
+}
+.bar .searchFill {
+  flex: 1 1 200px;
+  min-width: 160px;
+}
+.bar .searchFixed {
+  flex: 0 0 280px;
+}
+.bar .searchCapped {
+  flex: 1 1 200px;
+  min-width: 160px;
+  max-width: 360px;
+}
+.bar .searchCore {
+  flex: 1 1 200px;
+  min-width: 140px;
+}
+.inlineCount {
+  margin: 0 0 0 4px;
+  color: var(--learn-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.inlineCount strong {
+  color: var(--learn-ink, #172b4d);
+  font-variant-numeric: tabular-nums;
+}
+
+/* A — 거르기 무리 · 찾기 무리. 한 줄에 안 들면 찾기 무리가 통째로 둘째 줄로 가 줄을 채운다. */
+.barA > .group:first-child {
+  flex: 0 1 auto;
+}
+.barA .find {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+}
+
+/* B — 찾기 · 새로고침이 먼저, 드롭다운 셋 · 체크 둘이 뒤. 좁으면 찾기 줄이 위, 드롭다운 줄이 아래. */
+.barB {
+  flex-wrap: nowrap;
+}
+.barB .find {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+}
+.barB .selects {
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+}
+
+/* C — 드롭다운 넷 · 찾기(최대 360) · 새로고침(오른쪽 끝). */
+.barC .selects {
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+}
+.barC .find {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+}
+.end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* D — 핵심 무리(종류 · 찾기)가 남는 폭을 먹고, 덧붙임 무리는 제 폭. 좁으면 덧붙임 무리가 둘째 줄 왼쪽으로. */
+.barD .core {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+}
+.barD .more {
+  flex: 0 1 auto;
+}
+.bar .press {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+.bar .press[aria-pressed="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.press span {
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* E — 찾기(채움) · «거르기» 단추 · 정렬 · 새로고침. 거르기 넷은 공용 고르기 창 안. */
+.barE {
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.bar .popTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  max-width: 360px;
+  color: var(--learn-ink, #172b4d);
+}
+.popLabel {
+  color: var(--learn-muted);
+}
+.popValue {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sheet {
+  padding: 4px 20px 12px;
+}
+.sheet section {
+  padding: 12px 0;
+  border-top: 1px solid var(--learn-track);
+}
+.sheet section:first-child {
+  border-top: 0;
+}
+.sheet h3 {
+  margin: 0 0 8px;
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.sheet section > div,
+.sheet section > p {
+  margin-top: 0;
+}
+.footButton {
+  margin-left: auto;
+}
+
+/* ───────────── 줄을 접는 폭 ───────────── */
+
+/* B — 한 줄(찾기 280 + 드롭다운 셋 + 체크 둘)이 1040 쯤이라 1280 화면(본문 976)부터 접는다. */
+@container (max-width: 1080px) {
+  .barB {
+    flex-wrap: wrap;
+  }
+  .barB .find {
+    flex: 1 1 100%;
+  }
+  .bar.barB .searchFixed {
+    flex: 1 1 200px;
+  }
+  .barB .selects {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+}
+
+/* C — 드롭다운 넷이 첫 줄을 다 쓰면 찾기는 둘째 줄을 채운다(최대 360 을 푼다). */
+@container (max-width: 900px) {
+  .barC .selects {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+  .bar.barC .searchCapped {
+    max-width: none;
+  }
+}
+
+/* ───────────── 폰(본문 358) ───────────── */
+
+@container (max-width: 480px) {
+  .barA > .group:first-child > .field {
+    flex: 1 1 calc(50% - 4px);
+  }
+  .barA .find {
+    flex-wrap: wrap;
+  }
+  .bar.barA .searchFill {
+    flex: 1 1 100%;
+  }
+  .barB .selects > .field:nth-child(-n + 2) {
+    flex: 1 1 calc(50% - 4px);
+  }
+  .barB .checks {
+    display: contents;
+  }
+  .barC .selects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .barE {
+    flex-wrap: wrap;
+  }
+  .bar.barE .searchFill {
+    flex: 1 1 100%;
+  }
+  .bar .popTrigger {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+}
