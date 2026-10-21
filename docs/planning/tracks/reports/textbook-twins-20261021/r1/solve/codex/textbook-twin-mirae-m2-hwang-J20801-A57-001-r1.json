@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc3-03d0-7a20-9f4c-5c3f0324e9f1",
+ "startedAt": "2026-10-21T18:20:23+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "fig-1.png": "78ad0bc3e93f244fe233e59baca7dcd359febf09e0ad7216ea3a32638828c8fb",
+  "student.json": "61d31b407bcdb888f457ad3fce8087a80d29f1f4d91c92b0d745f02f8864bdd6"
+ },
+ "promptSha256": "2d0b6a0bdd6bf05534bfcf0bc9bfa4f3b250a51eadad5f4bfb6acbb3cce2bfd1",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"피타고라스 정리에 의해 AB²+BC²=AC²=12²=144이다.\\n지름이 d인 반원의 넓이는 πd²/8이므로 S₁+S₂=π(AB²+BC²)/8=18π cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "피타고라스 정리에 의해 AB²+BC²=AC²=12²=144이다.\n지름이 d인 반원의 넓이는 πd²/8이므로 S₁+S₂=π(AB²+BC²)/8=18π cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7546a2469d6b1e0aec36335c085d25b519836d0eaee5d6f1293481e092fc73a3"
+}

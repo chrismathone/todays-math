@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A35-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6f0fcab0-2d4e-431a-b061-39c548dbfc4f",
+ "startedAt": "2026-10-21T17:11:11+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "fig-1.png": "332aa2073bbcbe5f4aca43b5070bdbbaffd602c767d6dfc1c33e33fa542925ed",
+  "student.json": "1f6825ee07e67d09b596b2d37de1552b3c5ed3755eeb99420b07b6dfc2633e31"
+ },
+ "promptSha256": "bfda168e9c7549b8245306f377df19b9b33858ef7b16e84d7ddc15f1727a6cc3",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"72 cm²\", \"work\": \"BC=√(9²+12²)=15 cm. △ABC∽△FAC이므로 AC²=CF·BC, 즉 CF=144/15=48/5 cm. 점 G가 DE 위에 있으므로 FG=BC=15 cm, GE=CF=48/5 cm. 따라서 △FEG=½·15·48/5=72 cm²(=직사각형 FGEC의 절반=½·AC²).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "72 cm²",
+  "work": "BC=√(9²+12²)=15 cm. △ABC∽△FAC이므로 AC²=CF·BC, 즉 CF=144/15=48/5 cm. 점 G가 DE 위에 있으므로 FG=BC=15 cm, GE=CF=48/5 cm. 따라서 △FEG=½·15·48/5=72 cm²(=직사각형 FGEC의 절반=½·AC²).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "06515ba41edd15f99ad45004bc454d8e1cbba39fa742573bbc666b77386ccf11"
+}

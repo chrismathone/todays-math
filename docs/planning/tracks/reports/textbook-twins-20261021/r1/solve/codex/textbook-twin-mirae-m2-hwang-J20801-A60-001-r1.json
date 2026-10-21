@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc3-a371-7f61-b472-42ca3f142102",
+ "startedAt": "2026-10-21T18:21:04+0900",
+ "elapsedSec": 15.1,
+ "studentSha256": {
+  "fig-1.png": "c0b45901ad383167187aa21af2a0f1acdd2eca96aaf10da9cdd119235323cf26",
+  "student.json": "1c34200ac8fa266402212d8b41ca570e82f6b4f0f2175cc4dc58184821f48b63"
+ },
+ "promptSha256": "dff10f2d73b979995aa0961082bbd7f67f997cd78edb82d6403ec333fb2f2f2c",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"120 cm²\",\n  \"work\": \"OD는 반지름이므로 17 cm이고, CD=OE=8 cm이다.\\n직각삼각형 OCD에서 OC²=17²−8²=225이므로 OC=15 cm이다.\\n따라서 직사각형 OCDE의 넓이는 15×8=120 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "120 cm²",
+  "work": "OD는 반지름이므로 17 cm이고, CD=OE=8 cm이다.\n직각삼각형 OCD에서 OC²=17²−8²=225이므로 OC=15 cm이다.\n따라서 직사각형 OCDE의 넓이는 15×8=120 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "41d9c4afb557cb6a9f74df06063ab5028a93fb26fe52924a8c013d7768d1c2b2"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A46-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc5-4816-7b60-80ac-ad93eaa08686",
+ "startedAt": "2026-10-21T18:22:52+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "fbcb75c41538d09824bd975dcb8423915096adc19f69dae082d3eb59e915a5b5"
+ },
+ "promptSha256": "65bf8b3bc6cd6d0d9db2ad231a10b361ae760cd92759c0ce661b70f226b7e612",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"① 홀수가 아닌 수는 짝수이므로 8개이다.\\n② 소수는 2, 3, 5, 7, 11, 13으로 6개이다.\\n③ 10 초과인 수는 6개, ④ 7의 배수는 2개, ⑤ 16의 약수는 5개이다.\\n따라서 경우의 수가 가장 큰 사건은 ①이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "① 홀수가 아닌 수는 짝수이므로 8개이다.\n② 소수는 2, 3, 5, 7, 11, 13으로 6개이다.\n③ 10 초과인 수는 6개, ④ 7의 배수는 2개, ⑤ 16의 약수는 5개이다.\n따라서 경우의 수가 가장 큰 사건은 ①이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8bcb00c73690e58ff10281cdf2281d416d4d4d7dfb22a2139b68c4ca08e34fe4"
+}

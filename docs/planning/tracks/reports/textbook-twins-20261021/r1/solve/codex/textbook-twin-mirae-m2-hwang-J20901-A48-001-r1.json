@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A48-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc5-9d4d-7591-a454-dc856dac69e7",
+ "startedAt": "2026-10-21T18:23:14+0900",
+ "elapsedSec": 8.4,
+ "studentSha256": {
+  "student.json": "010610b364c961cb84f4216d2bb84606f5c86004fd5dd2c48b74e1b9c32c625a"
+ },
+ "promptSha256": "952949400f71a55de0504d5911e8ecf3fdba2411138b7f428ac59852b87bd771",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"1부터 19까지에서 8의 배수는 8, 16으로 2개이고, 6의 배수는 6, 12, 18로 3개이다.\\n두 배수에 공통으로 속하는 수가 없으므로 경우의 수는 2+3=5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "1부터 19까지에서 8의 배수는 8, 16으로 2개이고, 6의 배수는 6, 12, 18로 3개이다.\n두 배수에 공통으로 속하는 수가 없으므로 경우의 수는 2+3=5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "581225d9155eed0dcc7282acabc4fcb43c4e1180f3246c0529a938f4c6120872"
+}

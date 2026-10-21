@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A37-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "227800c5-ad4e-41e5-8456-a6b3fa077371",
+ "startedAt": "2026-10-21T17:11:20+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "fig-1.png": "efbe9c7d63007a99194c815f83193f2aed7d633e85ad3a11b82edc1611982ae4",
+  "student.json": "bb42eb52bbde7afc890b63e08f9ef0256706baae0f669e9535c4b6540f21de54"
+ },
+ "promptSha256": "d6bba30d7bed0570f9d17c5acab9c4dacfa9d84bd8b70cd3ae32838b1d6b5576",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"15 cm\", \"work\": \"옆면 ABFE, ADHE, DCGH를 한 평면에 펼치면 B에서 G까지의 가로 거리는 AB+AD+DC = 5+2+5 = 12 cm이고, 세로 거리는 BF = 9 cm이다. 가장 짧은 길은 펼친 그림에서 B와 G를 잇는 선분이므로 √(12²+9²) = √225 = 15 cm이다.\", \"confidence\": \"high\", \"issues\": [\"그림에서 DH 위의 점에서 내려오는 점선이 G를 지나 F까지 이어진 것처럼 그려져 있다. 끝점이 G라고 보면 글과 맞으므로 그리는 과정에서 생긴 것으로 보인다.\"]}\n```",
+ "parsed": {
+  "answer": "15 cm",
+  "work": "옆면 ABFE, ADHE, DCGH를 한 평면에 펼치면 B에서 G까지의 가로 거리는 AB+AD+DC = 5+2+5 = 12 cm이고, 세로 거리는 BF = 9 cm이다. 가장 짧은 길은 펼친 그림에서 B와 G를 잇는 선분이므로 √(12²+9²) = √225 = 15 cm이다.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 DH 위의 점에서 내려오는 점선이 G를 지나 F까지 이어진 것처럼 그려져 있다. 끝점이 G라고 보면 글과 맞으므로 그리는 과정에서 생긴 것으로 보인다."
+  ]
+ },
+ "eventsSha256": "11e9ef07348eb66b0710e8f43f3e14ea2c138ae6fc795865f5a57051ef2a7bb1"
+}

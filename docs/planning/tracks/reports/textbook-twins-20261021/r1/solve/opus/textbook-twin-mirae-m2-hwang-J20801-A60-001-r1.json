@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3aec46f9-6ecb-4c20-b203-7782388862e7",
+ "startedAt": "2026-10-21T17:11:04+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "c0b45901ad383167187aa21af2a0f1acdd2eca96aaf10da9cdd119235323cf26",
+  "student.json": "1c34200ac8fa266402212d8b41ca570e82f6b4f0f2175cc4dc58184821f48b63"
+ },
+ "promptSha256": "515588d34eea43a174a67dfe884b51156db2ba30d289ef95178502f30aa0df2e",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"120 cm²\", \"work\": \"D가 호 위에 있으므로 대각선 OD는 반지름이고 OD = 17 cm이다. 직각삼각형 ODE에서 OE = 8이므로 피타고라스 정리로 ED = √(17² − 8²) = √225 = 15 cm이다. 따라서 OC = 15 cm이고, 넓이는 15 × 8 = 120 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "120 cm²",
+  "work": "D가 호 위에 있으므로 대각선 OD는 반지름이고 OD = 17 cm이다. 직각삼각형 ODE에서 OE = 8이므로 피타고라스 정리로 ED = √(17² − 8²) = √225 = 15 cm이다. 따라서 OC = 15 cm이고, 넓이는 15 × 8 = 120 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "11d647173e152b74ed4de808a6bfdf7ec6ac4e925788ac21fd2175d7c5591b23"
+}

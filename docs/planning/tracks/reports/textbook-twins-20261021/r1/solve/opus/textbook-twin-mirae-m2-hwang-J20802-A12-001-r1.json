@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A12-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "004155af-393c-4c84-8f04-f083f3b46da1",
+ "startedAt": "2026-10-21T17:11:04+0900",
+ "elapsedSec": 6.7,
+ "studentSha256": {
+  "fig-1.png": "82d988f86409fd61137df2429d86630c5ddd3d3ffdccba86ca71f0170d3b9d76",
+  "student.json": "f83dbe02c36290db9c5cdeb432313271918aeb129e956077a18451b83bdd0270"
+ },
+ "promptSha256": "dfa2837640562b68cacdb2d3c37b49bcb7d3f6240ec0eb5821f72091fa724a9a",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"256, 544\", \"work\": \"그림에서 두 막대의 길이는 20 cm와 12 cm이다. (1) 20 cm가 빗변이면 $x^2+12^2=20^2$이므로 $x^2=400-144=256$ ($x=16$). (2) x cm가 빗변이면 $x^2=20^2+12^2=400+144=544$. 12 cm는 20 cm보다 짧으므로 빗변이 될 수 없다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "256, 544",
+  "work": "그림에서 두 막대의 길이는 20 cm와 12 cm이다. (1) 20 cm가 빗변이면 $x^2+12^2=20^2$이므로 $x^2=400-144=256$ ($x=16$). (2) x cm가 빗변이면 $x^2=20^2+12^2=400+144=544$. 12 cm는 20 cm보다 짧으므로 빗변이 될 수 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b3d07f8f108b0a357626e3c827ad6a370f2c309176e9074260f023d92bbe7c3b"
+}

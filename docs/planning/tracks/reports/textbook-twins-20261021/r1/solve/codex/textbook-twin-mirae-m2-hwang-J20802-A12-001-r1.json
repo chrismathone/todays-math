@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A12-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc3-de7b-7bb0-8f24-07bf6b208714",
+ "startedAt": "2026-10-21T18:21:19+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "fig-1.png": "82d988f86409fd61137df2429d86630c5ddd3d3ffdccba86ca71f0170d3b9d76",
+  "student.json": "f83dbe02c36290db9c5cdeb432313271918aeb129e956077a18451b83bdd0270"
+ },
+ "promptSha256": "1d4877845c27fc90dcc5a7a3be38dbd722acec2729734f79e8ded84731080f14",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$256, 544$\",\n  \"work\": \"빗변은 20 cm인 막대 또는 x cm인 막대이다.\\n20 cm인 막대가 빗변이면 피타고라스 정리에 따라 $x^2=20^2-12^2=256$이다.\\nx cm인 막대가 빗변이면 $x^2=20^2+12^2=544$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$256, 544$",
+  "work": "빗변은 20 cm인 막대 또는 x cm인 막대이다.\n20 cm인 막대가 빗변이면 피타고라스 정리에 따라 $x^2=20^2-12^2=256$이다.\nx cm인 막대가 빗변이면 $x^2=20^2+12^2=544$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e9caa2cd2a4ff4eab0f051fd015cd9e1a5123267965712f84720b2b7267e702f"
+}
