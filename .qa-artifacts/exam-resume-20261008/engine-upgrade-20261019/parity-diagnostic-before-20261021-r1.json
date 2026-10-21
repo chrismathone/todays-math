@@ -1,0 +1,14 @@
+{
+  "source": {
+    "path": "src/__tests__/unit/renderParity.test.tsx",
+    "sha256": "ea08636dac4ad1ba098d33b177ed376f51b02c9583fb6b470b063b34e6bdd6cc"
+  },
+  "golden": {
+    "path": "src/__tests__/fixtures/renderParity.json",
+    "sha256": "c0cae32dc04af1fbe1b22723e7f2b5bc77070422abbe9ed4fafb75c8142a9808"
+  },
+  "diagnosticCopy": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/parity-readonly-diagnostic-20261021-r1.test.tsx",
+  "diagnosticIsNotGoldenApproval": true,
+  "onlyOutputTargetAndDiagnosticDumpFlagChanged": true,
+  "productionFilesWritten": 0
+}
