@@ -811,7 +811,10 @@ describe("shared course plan", () => {
       />,
     );
     expect(screen.getByLabelText("소단원")).toHaveValue(section.id);
-    await userEvent.selectOptions(screen.getByLabelText("하루 학습량"), "15");
+    await userEvent.selectOptions(
+      screen.getByLabelText("코스 하루 목표"),
+      "15",
+    );
     await userEvent.click(
       screen.getByRole("button", { name: "학습 설정 저장" }),
     );
@@ -827,7 +830,7 @@ describe("shared course plan", () => {
     const onSave = vi.fn();
     render(<CoursePlanForm plan={null} revision={0} onSave={onSave} />);
     expect(screen.getByLabelText("학년")).toHaveValue("");
-    expect(screen.getByLabelText("하루 학습량")).toHaveValue("10");
+    expect(screen.getByLabelText("코스 하루 목표")).toHaveValue("10");
     expect(
       screen.queryByRole("option", { name: "초등 2학년" }),
     ).not.toBeInTheDocument();
