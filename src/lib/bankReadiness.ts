@@ -1,5 +1,6 @@
 import "server-only";
 import {
+  BANK_READINESS_BODY_BYTES,
   bankCheckRequestSchema,
   bankTextbookSlotsRequestSchema,
   type BankCheckItem,
@@ -142,7 +143,8 @@ export async function loadTextbookSlotReadiness(
 
 /**
  * 라우트의 몸 — 운영(`/api/studio/problems/…`)과 dev 짝이 같이 쓴다. 관문은 부르는 라우트가 먼저 지난다.
- * 본문은 상한(16KB — id 200개 남짓) 안에서 엄격하게 읽는다. 틀린 요청은 400, 그 밖의 실패는 503.
+ * 본문은 상한(`BANK_READINESS_BODY_BYTES` — 100문항의 id + 형식 선택) 안에서 엄격하게 읽는다.
+ * 틀린 요청은 400, 그 밖의 실패는 503.
  */
 export async function bankReadinessResponse(
   request: Request,
@@ -151,7 +153,9 @@ export async function bankReadinessResponse(
 ): Promise<Response> {
   let body: unknown;
   try {
-    body = await readStrictJson(request, { maxBytes: 16 * 1024 });
+    body = await readStrictJson(request, {
+      maxBytes: BANK_READINESS_BODY_BYTES,
+    });
   } catch {
     return Response.json(
       { error: "요청 내용을 읽지 못했습니다." },
