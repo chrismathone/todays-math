@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc0-6e88-7611-84a3-8fee9f3dfa17",
+ "startedAt": "2026-10-21T18:17:34+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "fig-1.png": "0addabac8d271321508793d36342d9d30c4f5790e807cb5251e1ea0359d9a4a4",
+  "student.json": "04f01eeb9ae0ed601f2c944153c99f3ade68edc44786cde5b1ea7880d52f9aca"
+ },
+ "promptSha256": "e9932ef9d773ce2e23c84fdb7fb27dc926b8e895750245effa64c8acab39a531",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"무게중심은 중선을 2:1로 나누므로 GD=AD/3이고, G'D=GD/3=AD/9이다.\\n또한 D는 BC의 중점이므로 CD=BC/2이다.\\n따라서 △G'CD의 넓이는 △ABC의 넓이의 1/18이므로, △ABC의 넓이는 5×18=90 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "무게중심은 중선을 2:1로 나누므로 GD=AD/3이고, G'D=GD/3=AD/9이다.\n또한 D는 BC의 중점이므로 CD=BC/2이다.\n따라서 △G'CD의 넓이는 △ABC의 넓이의 1/18이므로, △ABC의 넓이는 5×18=90 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7b9848501778ca276a147b6fd81f3c2e4632596344af49cb3a8dbb80a56f3d75"
+}

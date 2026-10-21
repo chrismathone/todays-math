@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A75-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbd-7c57-7c41-b47b-6e60134b63a1",
+ "startedAt": "2026-10-21T18:14:21+0900",
+ "elapsedSec": 19.6,
+ "studentSha256": {
+  "fig-1.png": "42e655312626ecc2a8e35f683b1a14e954d1cce93b5deef42491d1615f3f37c3",
+  "student.json": "7916587382051ffe38d4b9fb43d683535eeb9a2de9bf0722784fe30a7a5849a9"
+ },
+ "promptSha256": "fd780fe54371f7e87fee7f97fd0a1886260de5c1251383109ab5a10cd34c0c62",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"M은 AB의 중점이므로 AM=15 cm이다.\\n△AMD와 △ACB는 ∠A가 같고 ∠AMD=∠ACB=90°이므로 닮음이다.\\n따라서 DM/BC=AM/AC, 즉 DM/18=15/24이므로 DM=45/4 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "M은 AB의 중점이므로 AM=15 cm이다.\n△AMD와 △ACB는 ∠A가 같고 ∠AMD=∠ACB=90°이므로 닮음이다.\n따라서 DM/BC=AM/AC, 즉 DM/18=15/24이므로 DM=45/4 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "62ccdc4541eb87249f289e929b881236f9f6f36ecad84efd99c15f9ec7280f65"
+}

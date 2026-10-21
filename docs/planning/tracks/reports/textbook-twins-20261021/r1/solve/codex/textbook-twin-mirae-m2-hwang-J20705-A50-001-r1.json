@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc0-3e1a-7321-b27a-c501316342f5",
+ "startedAt": "2026-10-21T18:17:22+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "fig-1.png": "7330ca9016edf8a9ac44567e19520df70d6e89d646af271eab6dc9a06b9239f0",
+  "student.json": "b04084fc52691326f5107307842c39ced63b274e2e8689d26737dc62716dfb61"
+ },
+ "promptSha256": "dfb999ffc8e534c43988c53348fbbe4b6bd219992ac2e9e8abc43a5107eeffca",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"직각삼각형에서 빗변의 중점 M에 대하여 BM=AC/2=15 cm이다.\\n무게중심 G는 중선 BM을 B에서부터 2:1로 나누므로 BG=(2/3)×15=10 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형에서 빗변의 중점 M에 대하여 BM=AC/2=15 cm이다.\n무게중심 G는 중선 BM을 B에서부터 2:1로 나누므로 BG=(2/3)×15=10 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8c167ae1b3d27ca1009e4cec0bc3d7423f2e7ae3b23281d26133e95a89616611"
+}

@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A79-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbe-e215-7680-99f6-374e4f708732",
+ "startedAt": "2026-10-21T18:15:53+0900",
+ "elapsedSec": 44.3,
+ "studentSha256": {
+  "fig-1.png": "d1b5cd9a171129fb5e4f024f31591d501b81b83053b1ea935e935f3a1108a070",
+  "student.json": "05abf9e9083e71e1eb6c2dd7c405e317ade478588d481b11ca5bc9322a6bf181"
+ },
+ "promptSha256": "3c4974a300cf83f170535be13684a90bd4735f20f3039413384a3ef48e235d48",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 15 cm ⑵ 구할 수 없음(정보 부족)\",\n  \"work\": \"⑴ 20²=12²+16²이므로 피타고라스 정리의 역에 의해 ∠ADB=90°이다. 따라서 x²=12²+9²=225이므로 x=15 cm이다.\\n⑵ PQ=16 cm, PR=12 cm이고 PS/PR=PT/PQ=1/2이다. 끼인각 P가 같으므로 삼각형 PST와 PRQ는 닮음이고 ST=QR/2이다. 그러나 QR이나 각 P의 크기가 주어지지 않아 x를 결정할 수 없다.\",\n  \"confidence\": \"high\",\n  \"issues\": [\"⑵는 길이나 각도에 관한 추가 조건이 부족하여 x의 값이 하나로 정해지지 않는다.\"]\n}\n```",
+ "parsed": {
+  "answer": "⑴ 15 cm ⑵ 구할 수 없음(정보 부족)",
+  "work": "⑴ 20²=12²+16²이므로 피타고라스 정리의 역에 의해 ∠ADB=90°이다. 따라서 x²=12²+9²=225이므로 x=15 cm이다.\n⑵ PQ=16 cm, PR=12 cm이고 PS/PR=PT/PQ=1/2이다. 끼인각 P가 같으므로 삼각형 PST와 PRQ는 닮음이고 ST=QR/2이다. 그러나 QR이나 각 P의 크기가 주어지지 않아 x를 결정할 수 없다.",
+  "confidence": "high",
+  "issues": [
+   "⑵는 길이나 각도에 관한 추가 조건이 부족하여 x의 값이 하나로 정해지지 않는다."
+  ]
+ },
+ "eventsSha256": "3cb747b3424171bc1f9ecb6f467bbb7d1ed69b797501e93052023f6e7b9a2229"
+}
