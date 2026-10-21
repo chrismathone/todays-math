@@ -104,7 +104,10 @@ import {
   type ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import { definitionCard } from "@/lib/math-explorers/definition-cards";
-import { createExplorerState } from "@/lib/math-explorers/engine";
+import {
+  applyExplorerAction,
+  createExplorerState,
+} from "@/lib/math-explorers/engine";
 import {
   emptySrsState,
   parseSrsState,
@@ -290,7 +293,7 @@ describe("authenticated math explorer persistence", () => {
       (
         await post({
           ...body,
-          action: { type: "goal", unitId: first.units[0].id },
+          action: { type: "start", route: "unit", unitId: first.units[0].id },
         })
       ).status,
     ).toBe(409);
@@ -341,7 +344,7 @@ describe("authenticated math explorer persistence", () => {
             action: value,
           })
         ).status,
-      ).toBe(409);
+      ).toBe(value.type === "start" ? 409 : 403);
     const request = (body: unknown) =>
       new Request(`${base}/api/learn/math-srs/course`, {
         method: "POST",
@@ -359,7 +362,7 @@ describe("authenticated math explorer persistence", () => {
           }),
         )
       ).status,
-    ).toBe(409);
+    ).toBe(403);
     await expect(
       changeSrsState(f.studentId, (state) =>
         startSrsMission(state, f.studentId, now, 71, randomUUID),
@@ -402,7 +405,7 @@ describe("authenticated math explorer persistence", () => {
           action: { type: "goal", unitId: "g4-numbers" },
         })
       ).status,
-    ).toBe(409);
+    ).toBe(403);
     expect(
       (
         await post({
@@ -411,7 +414,7 @@ describe("authenticated math explorer persistence", () => {
           action: { type: "course", grade: 4 },
         })
       ).status,
-    ).toBe(400);
+    ).toBe(403);
     // Asking the concept engine for another route only resumes the frozen session.
     view = await action(view, { type: "start", route: "memory" });
     expect(view.session?.id).toBe(frozen.sourceSessionId);
@@ -434,7 +437,7 @@ describe("authenticated math explorer persistence", () => {
           }),
         )
       ).status,
-    ).toBe(409);
+    ).toBe(403);
     await expect(
       changeSrsState(f.studentId, (state) =>
         startSrsMission(state, f.studentId, now, 71, randomUUID),
@@ -818,7 +821,7 @@ describe("authenticated math explorer persistence", () => {
           action: { type: "goal", unitId: "g4-numbers" },
         })
       ).status,
-    ).toBe(409);
+    ).toBe(403);
 
     const retryBody = {
       requestId: randomUUID(),
@@ -1196,12 +1199,29 @@ describe("authenticated math explorer persistence", () => {
       (await data(await read())).journey?.days.map((day) => day.date),
     ).toEqual(["2026-09-28"]);
   });
-  it("stores selected grade and goal, then supports due-memory and prerequisite-repair sessions", async () => {
+  it("reads a previously saved grade and goal, then supports due-memory and prerequisite-repair sessions", async () => {
+    const target = (await data(await read())).units.find(
+      (unit) => unit.grade === 4,
+    )!;
+    let explorers = applyExplorerAction(
+      createExplorerState(f.studentId),
+      { type: "course", grade: 4 },
+      "2026-09-27",
+      randomUUID(),
+    ).state;
+    explorers = applyExplorerAction(
+      explorers,
+      { type: "goal", unitId: target.id },
+      "2026-09-27",
+      randomUUID(),
+    ).state;
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 2,
+      payload: { ...emptySrsState(), explorers },
+    });
     let view = await data(await read());
-    view = await action(view, { type: "course", grade: 4 });
     expect(view.profile.courseGrade).toBe(4);
-    const target = view.units.find((unit) => unit.grade === 4)!;
-    view = await action(view, { type: "goal", unitId: target.id });
     expect(view.profile.goalUnitId).toBe(target.id);
     view = await action(view, {
       type: "start",
@@ -1364,14 +1384,14 @@ describe("authenticated math explorer persistence", () => {
     expect(f.writes).toBe(1);
     const reused = await post({
       ...body,
-      action: { type: "course", grade: 4 },
+      action: { type: "start", route: "memory" },
     });
     expect(reused.status).toBe(409);
     expect((await reused.json()).error.code).toBe("CONFLICT");
     const stale = await post({
       ...body,
       requestId: randomUUID(),
-      action: { type: "course", grade: 4 },
+      action: { type: "start", route: "memory" },
     });
     expect(stale.status).toBe(409);
     expect((await stale.json()).error.code).toBe("REVISION_MISMATCH");

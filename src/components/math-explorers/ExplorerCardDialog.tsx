@@ -20,7 +20,6 @@ export default function ExplorerCardDialog({
   onInspect,
   onSolution,
   onWorkshopSolution,
-  onSetGoal,
   onClose,
 }: {
   card: ExplorerCard;
@@ -31,7 +30,6 @@ export default function ExplorerCardDialog({
   onInspect: (card: ExplorerCard) => void;
   onSolution: () => void;
   onWorkshopSolution?: () => void;
-  onSetGoal: () => void;
   onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -183,16 +181,6 @@ export default function ExplorerCardDialog({
             </div>
           </section>
         ) : null}
-        <button
-          type="button"
-          className={s.secondary}
-          disabled={busy || active || state.profile.goalUnitId === card.unitId}
-          onClick={onSetGoal}
-        >
-          {state.profile.goalUnitId === card.unitId
-            ? "목표 단원으로 설정했어요"
-            : "이 단원을 다음 탐험 목표로"}
-        </button>
       </div>
     </dialog>
   );

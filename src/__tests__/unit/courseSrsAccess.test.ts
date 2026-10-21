@@ -92,10 +92,14 @@ describe("SRS feature access", () => {
       ),
     ).toBe(true);
   });
+  it("forbids the retired student plan writer", () => {
+    expect(
+      studentGateFor(false, "POST", "/api/learn/math-srs/course/plan").kind,
+    ).toBe("forbidden");
+  });
   it.each([
     ["GET", "/api/learn/math-srs/course"],
     ["POST", "/api/learn/math-srs/course"],
-    ["POST", "/api/learn/math-srs/course/plan"],
     ["POST", "/api/learn/math-srs/course/attempts"],
     ["POST", "/api/learn/math-srs/course/hint"],
     ["GET", "/api/learn/math-srs/course/figure"],

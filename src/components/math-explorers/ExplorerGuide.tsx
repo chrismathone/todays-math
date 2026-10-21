@@ -121,7 +121,7 @@ export function GuidePicker() {
   );
 }
 
-export function GuideArt() {
+export function GuideArt({ pose = "guide" }: { pose?: "guide" | "done" }) {
   const guide = useExplorerGuide();
   if (!guide) return <div className={b.guideArt}>길잡이</div>;
   return (
@@ -135,8 +135,8 @@ export function GuideArt() {
     >
       {guide.id ? (
         <img
-          src={guideAssetPath(guide.id, "guide")}
-          alt={names[guide.id]}
+          src={guideAssetPath(guide.id, pose)}
+          alt={pose === "done" ? `${names[guide.id]}의 축하` : names[guide.id]}
           width={100}
           height={76}
         />
@@ -150,15 +150,15 @@ export function GuideArt() {
 export function GuideReward() {
   const guide = useExplorerGuide();
   if (!guide?.id)
-    return <div className={b.reward}>오늘의 한 장을 채웠어요</div>;
+    return (
+      <div className={b.guideEnding}>
+        <GuideArt pose="done" />
+        <div className={b.reward}>오늘의 한 장을 채웠어요</div>
+      </div>
+    );
   return (
     <div className={b.guideEnding}>
-      <img
-        src={guideAssetPath(guide.id, "done")}
-        alt={`${names[guide.id]}의 축하`}
-        width={100}
-        height={76}
-      />
+      <GuideArt pose="done" />
       <div className={b.reward}>
         <img
           src={guideAssetPath(guide.id, "reward")}

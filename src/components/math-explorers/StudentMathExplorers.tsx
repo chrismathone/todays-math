@@ -1317,9 +1317,6 @@ function ExplorerGame({
                 void send({ type: "solution", cardId: detail.id })
               }
               onWorkshopSolution={() => void send({ type: "lab-solution" })}
-              onSetGoal={() =>
-                void send({ type: "goal", unitId: detail.unitId })
-              }
               onClose={() => {
                 setDetailId(null);
                 setSolution(null);

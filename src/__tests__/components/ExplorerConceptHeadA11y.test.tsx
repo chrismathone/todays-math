@@ -113,7 +113,6 @@ function dialog(level: number) {
       busy={false}
       onInspect={vi.fn()}
       onSolution={vi.fn()}
-      onSetGoal={vi.fn()}
       onClose={vi.fn()}
     />,
   );

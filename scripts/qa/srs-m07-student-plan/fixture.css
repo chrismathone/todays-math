@@ -1,0 +1,8 @@
+@font-face {
+  font-family: M07Pretendard;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+}
+:root {
+  --font-pretendard: M07Pretendard;
+}

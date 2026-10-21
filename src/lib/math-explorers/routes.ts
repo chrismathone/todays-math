@@ -11,6 +11,7 @@ import {
 import { dataResponseSchema } from "@/contracts/common.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
 import {
+  forbiddenError,
   jsonError,
   jsonOk,
   unauthorizedError,
@@ -217,6 +218,12 @@ export async function handleExplorerRequest(
       if (!parsed.success) return noStore(validationError(parsed.error));
       if (parsed.data.studentId !== studentId)
         return noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409));
+      // Keep these shared actions for teacher settings, but retire student writes.
+      if (
+        parsed.data.action.type === "course" ||
+        parsed.data.action.type === "goal"
+      )
+        return noStore(forbiddenError());
       const changed = await changeExplorer(
         studentId,
         parsed.data,

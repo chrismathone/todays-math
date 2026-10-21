@@ -573,12 +573,9 @@ describe("chest press — queue, reload, leaving and other buttons", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /학습 설정/ }));
     const settings = await screen.findByRole("dialog", { name: "학습 설정" });
-    const grades = within(
-      within(settings).getByLabelText("학년 선택"),
-    ).getAllByRole("button");
-    expect(grades.every((button) => button.hasAttribute("disabled"))).toBe(
-      true,
-    );
+    expect(
+      within(settings).queryByLabelText("학년 선택"),
+    ).not.toBeInTheDocument();
     fireEvent.click(
       within(settings).getByRole("button", { name: "학습 설정 닫기" }),
     );
@@ -592,14 +589,19 @@ describe("chest press — queue, reload, leaving and other buttons", () => {
         .getAllByRole("button")
         .find((button) => button.getAttribute("data-level") === "1")!,
     );
-    const goal = await screen.findByRole("button", {
-      name: "이 단원을 다음 탐험 목표로",
+    const solution = await screen.findByRole("button", {
+      name: "불러오는 중…",
     });
-    expect(goal).toBeDisabled();
+    expect(solution).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: /탐험 목표|목표 단원/ }),
+    ).not.toBeInTheDocument();
 
     await act(async () => release());
     await waitFor(() => expect(start).toBeEnabled());
-    expect(goal).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "뜻과 해설 보기" }),
+    ).toBeEnabled();
     expect(api.posts).toHaveLength(1);
   });
 

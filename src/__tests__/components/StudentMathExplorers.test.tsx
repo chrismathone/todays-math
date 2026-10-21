@@ -531,7 +531,13 @@ describe("StudentMathExplorers", () => {
         if (requests.length === 1) throw new TypeError("Lost response");
         const result = applyExplorerAction(
           stored,
-          input.action,
+          input.action.type === "expedition-start"
+            ? {
+                type: "start",
+                route: "unit",
+                unitId: explorerView(stored, now).units[0].id,
+              }
+            : input.action,
           now,
           input.requestId,
         );
@@ -544,19 +550,22 @@ describe("StudentMathExplorers", () => {
       }),
     );
     render(<StudentMathExplorers />);
-    fireEvent.click(await screen.findByRole("button", { name: "학습 설정" }));
-    fireEvent.click(await screen.findByRole("button", { name: "초4" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: /오늘의 탐험 시작/ }),
+    );
     fireEvent.click(
       await screen.findByRole("button", { name: "같은 요청 다시 시도" }),
     );
     await waitFor(() => expect(requests).toHaveLength(2));
     expect(requests[1]).toEqual(requests[0]);
+    expect(requests[0].action.type).toBe("expedition-start");
     await waitFor(() =>
-      expect(screen.getByRole("button", { name: "초4" })).toHaveAttribute(
-        "aria-pressed",
-        "true",
-      ),
+      expect(
+        screen.queryByRole("button", { name: "같은 요청 다시 시도" }),
+      ).not.toBeInTheDocument(),
     );
+    expect(stored.profile.definitions?.session).toBeDefined();
+    expect(revision).toBe(1);
   });
 
   it("maps completed expedition days without moving for individual answers or a review-only run", () => {
@@ -758,6 +767,40 @@ describe("StudentMathExplorers", () => {
       );
     },
   );
+
+  it("M-07 keeps the stored goal and card browsing without offering goal writes", async () => {
+    const initial = stateView();
+    initial.profile.goalUnitId = initial.units[0].id;
+    const before = structuredClone(initial);
+    const fetcher = vi
+      .fn<(url: string, options?: RequestInit) => Promise<Response>>()
+      .mockImplementation(async () => response(initial));
+    vi.stubGlobal("fetch", fetcher);
+    render(<StudentMathExplorers initialView="collection" />);
+    const collection = await screen.findByRole("dialog", {
+      name: "나의 개념 도감",
+    });
+    const card = initial.units[0].cards[0];
+    fireEvent.click(
+      within(collection).getByRole("button", { name: new RegExp(card.name) }),
+    );
+    const detail = await screen.findByRole("dialog", {
+      name: new RegExp(card.name),
+    });
+    expect(
+      within(detail).queryByRole("button", { name: /목표 단원|탐험 목표/ }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(
+      within(detail).getByRole("button", { name: "개념 카드 닫기" }),
+    );
+    fireEvent.click(
+      within(collection).getByRole("button", { name: "나의 개념 도감 닫기" }),
+    );
+    expect(fetcher.mock.calls.every(([, options]) => !options?.body)).toBe(
+      true,
+    );
+    expect(initial).toEqual(before);
+  });
 
   it("opens and closes the collection when the route view changes", async () => {
     vi.stubGlobal(
@@ -1020,7 +1063,9 @@ describe("ExplorerHome mission and sheets", () => {
     expect(onStart).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole("button", { name: "학습 설정" }));
     expect(screen.getByRole("dialog", { name: "학습 설정" })).toBeVisible();
-    expect(screen.getByRole("button", { name: "초4" })).toBeEnabled();
+    expect(
+      screen.queryByRole("button", { name: "초4" }),
+    ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "학습 설정 닫기" }));
     fireEvent.click(screen.getByRole("button", { name: /^우리 기지/ }));
     expect(screen.getByRole("dialog", { name: "우리 기지" })).toBeVisible();
@@ -1058,7 +1103,9 @@ describe("ExplorerHome mission and sheets", () => {
     expect(onStart).not.toHaveBeenCalled();
     expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "학습 설정" }));
-    expect(screen.getByRole("button", { name: "초4" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "초4" }),
+    ).not.toBeInTheDocument();
   });
 });
 
@@ -1077,7 +1124,6 @@ describe("ExplorerCardDialog explanations", () => {
           busy={false}
           onInspect={vi.fn()}
           onSolution={onSolution}
-          onSetGoal={vi.fn()}
           onClose={vi.fn()}
         />,
       );
@@ -1127,7 +1173,6 @@ describe("ExplorerCardDialog — 이름 옆 갈래 딱지(05 §8.19 · D-143)", 
         busy={false}
         onInspect={vi.fn()}
         onSolution={vi.fn()}
-        onSetGoal={vi.fn()}
         onClose={vi.fn()}
       />,
     );
