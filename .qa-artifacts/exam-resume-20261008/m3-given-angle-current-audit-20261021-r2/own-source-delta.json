@@ -1,0 +1,28 @@
+{
+  "beforeCommit": "886e7664cd157374f4b4138594d346f152720d9d",
+  "diff": [
+    "--- ",
+    "+++ ",
+    "@@ -314,8 +314,10 @@",
+    "     dims.PD = \"x cm\";",
+    "   } else {",
+    "     angles = {",
+    "-      a1: { vertex: \"O\", points: [\"A\", \"P\"], label: `${w / 2}°` },",
+    "-      a2: { vertex: \"O\", points: [\"P\", \"B\"], label: `${w / 2}°` },",
+    "+      // The halves are equal; only the whole angle is given numerically.",
+    "+      a1: { vertex: \"O\", points: [\"A\", \"P\"], radius: 14, arcs: 1 },",
+    "+      a2: { vertex: \"O\", points: [\"P\", \"B\"], radius: 14, arcs: 1 },",
+    "+      givenAOB: { vertex: \"O\", points: [\"A\", \"B\"], radius: 38, label: `${w}°` },",
+    "       ax: { vertex: \"P\", points: [\"C\", \"D\"], label: \"x\" },",
+    "     };",
+    "   }",
+    "@@ -330,6 +332,7 @@",
+    "       PD: [\"P\", \"D\"],",
+    "     },",
+    "     ...(angles ? { angles } : {}),",
+    "+    ...(mode === 1 ? { style: { clear_angle_labels: true } } : {}),",
+    "     labels,",
+    "   };",
+    "   return withDims(shape, dims) as Fig;"
+  ]
+}

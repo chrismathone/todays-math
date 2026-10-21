@@ -1,0 +1,63 @@
+{
+  "status": "bounded actual-current M3 given-angle repair checks passed; no student/wholegrade/rights/native operation approval",
+  "provenance": {
+    "source": "src/lib/middle/m2GeoTri.ts figBisector09 + type09mode1",
+    "originalCard": "M3 / docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+    "beforeFixture": "src/__tests__/fixtures/m2Bisector-before-given-angle-20261021.json",
+    "beforeCommit": "886e7664cd157374f4b4138594d346f152720d9d",
+    "parentActualOutputArtifact": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m3-given-angle-20261021-r1/actual-current-outputs.json"
+  },
+  "counts": {
+    "suppliedActualHandlerCasesIndependentlyChecked": 21,
+    "suppliedActualAPIArtifactsChecked": 100,
+    "suppliedFinalMathJaxSVGsChecked": 21,
+    "ownActualPythonMeasuredSpecRenders": 21,
+    "suppliedAPI_mode0ExactBeforeMatches": 55,
+    "suppliedAPI_mode1OnlyAnglesStyleChanges": 45,
+    "ownTSorAPIOrNode": 0,
+    "browser": 0,
+    "model": 0,
+    "DB": 0
+  },
+  "mathematicalCheck": "Read w from actual content and derive180−w using two perpendicular feet/quadrilateral sum; then compare answer. All source/spec points, body lines, point labels, ax target angle, content/answer/solution/facts/metadata matchbefore after restoring onlydeclared angles/style. This is evidence of finite records, not whole-grade proof. Fitted coordinate geometry was already independently measured prechange and points are byte-identical; no newly invented problem data.",
+  "diagram": {
+    "halfMarks": "a1/a2 each radius14/arcs1, no labels; whole givenAOB radius38 labelled w°, ax unchanged",
+    "onlyOneGivenAndUnknown": true,
+    "noNumericHalfOrAnswerLabels": true,
+    "allMetricLabelClips": 0,
+    "allMetricHaloClips": 0,
+    "labelPairOverlapRows": 0,
+    "wholeOrTargetLabelBodySegmentHitRows": 0,
+    "leaderAttachment": "For each actual ResolvedScene angle leader independently computed circle mid-arc anchor from current rays/radius; all errors<1e-10. Leader label-end matches actual angle label position. givenAOB references O-A/B, ax references P-C/D, preserving which marked angle each callout describes."
+  },
+  "realMetricsBoundary": "MeasuredSpec differs from producerFigureSpec only by supplied actual label_metrics. Current Python compile/resolve/render uses those metrics, not own guessed font widths. Final suppliedMathJax SVG hash checked and data-label metadata inspected. Actual intermediate ownPython data-mj records preserved in results, separate from final vector substitution.",
+  "RNGAndCompatibility": {
+    "type09HandlerSourceExactlyUnchanged": true,
+    "mode0Fixture147RowsAvailable": 147,
+    "mode0OwnActual147Rerun": false,
+    "mode0Evidence": "Current actualAPI mode0 records match completeold147-output set exactly; no full147current handlercapture provided in this artifact. Shared helper conditional leaves no style/angle fields on mode0, source diff reviewed. No independent newTS/RNG execution.",
+    "declaredChangesOnly": "mode1 angles + scoped clear_angle_labels style; adapterversion. Old issued questions/raw evidence and IDs untouched."
+  },
+  "limits": [
+    "Metric rectangles and selected label-vs-body segment checks do not prove every glyph ink/stroke/leader/arc pair at raster/print scale",
+    "Successful Python/render and no boxes clipped do not certify fullUI/browser/physical printing",
+    "Callout leaders are engine annotation attachments, not new mathematical construction lines or extra student deductions",
+    "Parent63candidate search/currentcapture proof is parent evidence, not repeated own test count",
+    "No direct semantic source/official grade/prerequisite/Unit/rights/native/public-loadability approval",
+    "No actual TS/API rerun, no changes to production or existing questions"
+  ],
+  "hashes": {
+    "beforeAfterUnchanged": true,
+    "boundFiles": 93,
+    "boundArtifactSourceHashesAllMatched": true
+  },
+  "artifactSHA256": {
+    "own-after.json": "36c02dc323c3b5e331dcf4612bc72c704e70305d367a071fc7b92b39834a74b3",
+    "own-audit.py": "5969cbc137d6e70b6a2c79be4d14243995485eccbc3c3f39c003abe0cb2e17d2",
+    "own-before.json": "36c02dc323c3b5e331dcf4612bc72c704e70305d367a071fc7b92b39834a74b3",
+    "own-finalize.py": "c74c7acd9b7362cc8b330c83d5f84cae6983b8dacb0c667f321bcfabc6eea7bf",
+    "own-probe.txt": "bc185d022fc8fd9615aee90fb8ad99180a0628fdddc0df43745dfa7f4e77a0ce",
+    "own-results.json": "c472ca956693fa386d5de26ed0cd10dd3e3e856f19566b71d9314bbd8014d0d5",
+    "own-source-delta.json": "a60a97a2295ac95e210c5cc290e969b734e3c057e90ce0efc2906b2f7b82337f"
+  }
+}
