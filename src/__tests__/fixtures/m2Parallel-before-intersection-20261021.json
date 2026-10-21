@@ -1,0 +1,6685 @@
+{
+  "beforeCommit": "90cb60fcd",
+  "technicalOnly": true,
+  "newQuestionCredits": 0,
+  "modes10": [
+    {
+      "mode": 0,
+      "index": 0,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=6\\,\\mathrm{cm}$, $\\overline{BC}=12\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$8\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=6:12$이다.\n삼각형 $ABC$에서 $\\overline{EO}=12\\times\\dfrac{6}{18}=\\dfrac{72}{18}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{72}{18}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{72}{18}=8\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 6,
+          "q": 12,
+          "x": 8
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              64,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              156,
+              39.52
+            ],
+            "E": [
+              48.67,
+              83.68
+            ],
+            "F": [
+              171.33,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 1,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=6\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$8\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=12:6$이다.\n삼각형 $ABC$에서 $\\overline{EO}=6\\times\\dfrac{12}{18}=\\dfrac{72}{18}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{72}{18}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{72}{18}=8\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 12,
+          "q": 6,
+          "x": 8
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              64,
+              172
+            ],
+            "C": [
+              156,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              48.67,
+              127.84
+            ],
+            "F": [
+              171.33,
+              127.84
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 2,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{BC}=15\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=10:15$이다.\n삼각형 $ABC$에서 $\\overline{EO}=15\\times\\dfrac{10}{25}=\\dfrac{150}{25}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{150}{25}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{150}{25}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 10,
+          "q": 15,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              48.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              171.33,
+              39.52
+            ],
+            "E": [
+              36.4,
+              92.51
+            ],
+            "F": [
+              183.6,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "10 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "15 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 3,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=15\\,\\mathrm{cm}$, $\\overline{BC}=10\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=15:10$이다.\n삼각형 $ABC$에서 $\\overline{EO}=10\\times\\dfrac{15}{25}=\\dfrac{150}{25}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{150}{25}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{150}{25}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 15,
+          "q": 10,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              48.67,
+              172
+            ],
+            "C": [
+              171.33,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              36.4,
+              119.01
+            ],
+            "F": [
+              183.6,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "15 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "10 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 4,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=24\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$16\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=12:24$이다.\n삼각형 $ABC$에서 $\\overline{EO}=24\\times\\dfrac{12}{36}=\\dfrac{288}{36}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{288}{36}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{288}{36}=16\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 12,
+          "q": 24,
+          "x": 16
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              64,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              156,
+              39.52
+            ],
+            "E": [
+              48.67,
+              83.68
+            ],
+            "F": [
+              171.33,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 5,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=21\\,\\mathrm{cm}$, $\\overline{BC}=28\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$24\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=21:28$이다.\n삼각형 $ABC$에서 $\\overline{EO}=28\\times\\dfrac{21}{49}=\\dfrac{588}{49}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{588}{49}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{588}{49}=24\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 21,
+          "q": 28,
+          "x": 24
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              41,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              179,
+              39.52
+            ],
+            "E": [
+              31.14,
+              96.3
+            ],
+            "F": [
+              188.86,
+              96.3
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "21 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "28 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 6,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=20\\,\\mathrm{cm}$, $\\overline{BC}=30\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$24\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=20:30$이다.\n삼각형 $ABC$에서 $\\overline{EO}=30\\times\\dfrac{20}{50}=\\dfrac{600}{50}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{600}{50}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{600}{50}=24\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 20,
+          "q": 30,
+          "x": 24
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              48.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              171.33,
+              39.52
+            ],
+            "E": [
+              36.4,
+              92.51
+            ],
+            "F": [
+              183.6,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "30 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 7,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=4\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$6\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=12:4$이다.\n삼각형 $ABC$에서 $\\overline{EO}=4\\times\\dfrac{12}{16}=\\dfrac{48}{16}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{48}{16}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{48}{16}=6\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 12,
+          "q": 4,
+          "x": 6
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              79.33,
+              172
+            ],
+            "C": [
+              140.67,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              64,
+              138.88
+            ],
+            "F": [
+              156,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 8,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=24\\,\\mathrm{cm}$, $\\overline{BC}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=24:8$이다.\n삼각형 $ABC$에서 $\\overline{EO}=8\\times\\dfrac{24}{32}=\\dfrac{192}{32}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{192}{32}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{192}{32}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 24,
+          "q": 8,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              79.33,
+              172
+            ],
+            "C": [
+              140.67,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              64,
+              138.88
+            ],
+            "F": [
+              156,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 0,
+      "index": 9,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=30\\,\\mathrm{cm}$, $\\overline{BC}=20\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$24\\,\\mathrm{cm}$",
+        "solution": "삼각형 $AOD$와 삼각형 $COB$는 $\\mathrm{AA}$ 닮음이므로 $\\overline{AO}:\\overline{CO}=\\overline{AD}:\\overline{CB}=30:20$이다.\n삼각형 $ABC$에서 $\\overline{EO}=20\\times\\dfrac{30}{50}=\\dfrac{600}{50}\\,(\\mathrm{cm})$이고, 같은 방법으로 $\\overline{OF}=\\dfrac{600}{50}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{EF}=2\\times\\dfrac{600}{50}=24\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "p": 30,
+          "q": 20,
+          "x": 24
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              48.67,
+              172
+            ],
+            "C": [
+              171.33,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              36.4,
+              119.01
+            ],
+            "F": [
+              183.6,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "30 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 0,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=6\\,\\mathrm{cm}$, $\\overline{EF}=8\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{8}-\\dfrac{1}{6}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=12\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 6,
+          "ef": 8,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              64,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              156,
+              39.52
+            ],
+            "E": [
+              48.67,
+              83.68
+            ],
+            "F": [
+              171.33,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 1,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{EF}=8\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$6\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{8}-\\dfrac{1}{12}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=6\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 12,
+          "ef": 8,
+          "x": 6
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              64,
+              172
+            ],
+            "C": [
+              156,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              48.67,
+              127.84
+            ],
+            "F": [
+              171.33,
+              127.84
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 2,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{EF}=12\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$15\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{12}-\\dfrac{1}{10}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=15\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 10,
+          "ef": 12,
+          "x": 15
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              48.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              171.33,
+              39.52
+            ],
+            "E": [
+              36.4,
+              92.51
+            ],
+            "F": [
+              183.6,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "10 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 3,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=15\\,\\mathrm{cm}$, $\\overline{EF}=12\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$10\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{12}-\\dfrac{1}{15}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=10\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 15,
+          "ef": 12,
+          "x": 10
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              48.67,
+              172
+            ],
+            "C": [
+              171.33,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              36.4,
+              119.01
+            ],
+            "F": [
+              183.6,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "15 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 4,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{EF}=16\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$24\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{16}-\\dfrac{1}{12}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=24\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 12,
+          "ef": 16,
+          "x": 24
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              64,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              156,
+              39.52
+            ],
+            "E": [
+              48.67,
+              83.68
+            ],
+            "F": [
+              171.33,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "16 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 5,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=21\\,\\mathrm{cm}$, $\\overline{EF}=24\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$28\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{24}-\\dfrac{1}{21}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=28\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 21,
+          "ef": 24,
+          "x": 28
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              41,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              179,
+              39.52
+            ],
+            "E": [
+              31.14,
+              96.3
+            ],
+            "F": [
+              188.86,
+              96.3
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "21 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 6,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=20\\,\\mathrm{cm}$, $\\overline{EF}=24\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$30\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{24}-\\dfrac{1}{20}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=30\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 20,
+          "ef": 24,
+          "x": 30
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              48.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              171.33,
+              39.52
+            ],
+            "E": [
+              36.4,
+              92.51
+            ],
+            "F": [
+              183.6,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 7,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{EF}=6\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$4\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{6}-\\dfrac{1}{12}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=4\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 12,
+          "ef": 6,
+          "x": 4
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              79.33,
+              172
+            ],
+            "C": [
+              140.67,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              64,
+              138.88
+            ],
+            "F": [
+              156,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 8,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=24\\,\\mathrm{cm}$, $\\overline{EF}=12\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$8\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{12}-\\dfrac{1}{24}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=8\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 24,
+          "ef": 12,
+          "x": 8
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              79.33,
+              172
+            ],
+            "C": [
+              140.67,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              64,
+              138.88
+            ],
+            "F": [
+              156,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "index": 9,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "10",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비의 응용",
+        "difficulty": "응용",
+        "content": "그림과 같이 $\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$는 두 대각선의 교점이고 $\\overline{EF}$는 점 $O$를 지난다. $\\overline{EF}\\parallel\\overline{BC}$이고 $\\overline{AD}=30\\,\\mathrm{cm}$, $\\overline{EF}=24\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+        "answer": "$20\\,\\mathrm{cm}$",
+        "solution": "$\\overline{EF}$가 두 대각선의 교점을 지나므로 $\\dfrac{2}{\\overline{EF}}=\\dfrac{1}{\\overline{AD}}+\\dfrac{1}{\\overline{BC}}$이다.\n$\\dfrac{2}{24}-\\dfrac{1}{30}=\\dfrac{1}{\\overline{BC}}$이므로 $\\overline{BC}=20\\,\\mathrm{cm}$이다.",
+        "facts": {
+          "mode": 1,
+          "p": 30,
+          "ef": 24,
+          "x": 20
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              18,
+              39.52
+            ],
+            "B": [
+              48.67,
+              172
+            ],
+            "C": [
+              171.33,
+              172
+            ],
+            "D": [
+              202,
+              39.52
+            ],
+            "E": [
+              36.4,
+              119.01
+            ],
+            "F": [
+              183.6,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": [
+              "E",
+              "F"
+            ],
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BD": [
+              "B",
+              "D"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "30 cm",
+              "side": "auto"
+            },
+            "d_EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "old09": [
+    {
+      "seed": 20261021,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=22\\,\\mathrm{cm}$, $\\overline{AE}=2\\,\\mathrm{cm}$, $\\overline{EB}=3\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$16\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=12\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=2:5$이고 $\\overline{BH}=22-12=10\\,(\\mathrm{cm})$이므로 $\\overline{EG}=10\\times\\dfrac{2}{5}=\\dfrac{20}{5}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=12+\\dfrac{20}{5}=16\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 2,
+          "n": 3,
+          "p": 12,
+          "q": 22,
+          "x": 16
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              59.82,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              160.18,
+              39.52
+            ],
+            "E": [
+              43.09,
+              92.51
+            ],
+            "F": [
+              176.91,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "22 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20268940,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=32\\,\\mathrm{cm}$, $\\overline{AE}=3\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$24\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=12\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=3:5$이고 $\\overline{BH}=32-12=20\\,(\\mathrm{cm})$이므로 $\\overline{EG}=20\\times\\dfrac{3}{5}=\\dfrac{60}{5}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=12+\\dfrac{60}{5}=24\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 3,
+          "n": 2,
+          "p": 12,
+          "q": 32,
+          "x": 24
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              75.5,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              144.5,
+              39.52
+            ],
+            "E": [
+              41,
+              119.01
+            ],
+            "F": [
+              179,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "32 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20276859,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=27\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=9\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$15\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:15$이고 $\\overline{BH}=27-7=20\\,(\\mathrm{cm})$이므로 $\\overline{EG}=20\\times\\dfrac{6}{15}=\\dfrac{120}{15}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{120}{15}=15\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 9,
+          "p": 7,
+          "q": 27,
+          "x": 15
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              86.15,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              133.85,
+              39.52
+            ],
+            "E": [
+              58.89,
+              92.51
+            ],
+            "F": [
+              161.11,
+              92.51
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "27 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20284778,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=6\\,\\mathrm{cm}$, $\\overline{BC}=13\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$9\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=6\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:14$이고 $\\overline{BH}=13-6=7\\,(\\mathrm{cm})$이므로 $\\overline{EG}=7\\times\\dfrac{6}{14}=\\dfrac{42}{14}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=6+\\dfrac{42}{14}=9\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 8,
+          "p": 6,
+          "q": 13,
+          "x": 9
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              67.54,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              152.46,
+              39.52
+            ],
+            "E": [
+              46.31,
+              96.3
+            ],
+            "F": [
+              173.69,
+              96.3
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "13 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20292697,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=14\\,\\mathrm{cm}$, $\\overline{BC}=23\\,\\mathrm{cm}$, $\\overline{AE}=2\\,\\mathrm{cm}$, $\\overline{EB}=7\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$16\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=14\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=2:9$이고 $\\overline{BH}=23-14=9\\,(\\mathrm{cm})$이므로 $\\overline{EG}=9\\times\\dfrac{2}{9}=\\dfrac{18}{9}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=14+\\dfrac{18}{9}=16\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 2,
+          "n": 7,
+          "p": 14,
+          "q": 23,
+          "x": 16
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              54,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              166,
+              39.52
+            ],
+            "E": [
+              46,
+              68.96
+            ],
+            "F": [
+              174,
+              68.96
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "14 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "23 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20300616,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=5\\,\\mathrm{cm}$, $\\overline{BC}=12\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$10\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=5\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=5:7$이고 $\\overline{BH}=12-5=7\\,(\\mathrm{cm})$이므로 $\\overline{EG}=7\\times\\dfrac{5}{7}=\\dfrac{35}{7}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=5+\\dfrac{35}{7}=10\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 5,
+          "n": 2,
+          "p": 5,
+          "q": 12,
+          "x": 10
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              71.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              148.33,
+              39.52
+            ],
+            "E": [
+              33.33,
+              134.15
+            ],
+            "F": [
+              186.67,
+              134.15
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20308535,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=8\\,\\mathrm{cm}$, $\\overline{BC}=22\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=5\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$17\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=8\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:14$이고 $\\overline{BH}=22-8=14\\,(\\mathrm{cm})$이므로 $\\overline{EG}=14\\times\\dfrac{9}{14}=\\dfrac{126}{14}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=8+\\dfrac{126}{14}=17\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 5,
+          "p": 8,
+          "q": 22,
+          "x": 17
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              76.55,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              143.45,
+              39.52
+            ],
+            "E": [
+              38.91,
+              124.69
+            ],
+            "F": [
+              181.09,
+              124.69
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "22 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20316454,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=17\\,\\mathrm{cm}$, $\\overline{AE}=4\\,\\mathrm{cm}$, $\\overline{EB}=4\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=4:8$이고 $\\overline{BH}=17-7=10\\,(\\mathrm{cm})$이므로 $\\overline{EG}=10\\times\\dfrac{4}{8}=\\dfrac{40}{8}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{40}{8}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 4,
+          "n": 4,
+          "p": 7,
+          "q": 17,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              72.12,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              147.88,
+              39.52
+            ],
+            "E": [
+              45.06,
+              105.76
+            ],
+            "F": [
+              174.94,
+              105.76
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "17 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20324373,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{BC}=24\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$, $\\overline{EB}=5\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$17\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=10\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=5:10$이고 $\\overline{BH}=24-10=14\\,(\\mathrm{cm})$이므로 $\\overline{EG}=14\\times\\dfrac{5}{10}=\\dfrac{70}{10}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=10+\\dfrac{70}{10}=17\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 5,
+          "n": 5,
+          "p": 10,
+          "q": 24,
+          "x": 17
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              71.67,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              148.33,
+              39.52
+            ],
+            "E": [
+              44.83,
+              105.76
+            ],
+            "F": [
+              175.17,
+              105.76
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "10 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20332292,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=30\\,\\mathrm{cm}$, $\\overline{AE}=4\\,\\mathrm{cm}$, $\\overline{EB}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$18\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=12\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=4:12$이고 $\\overline{BH}=30-12=18\\,(\\mathrm{cm})$이므로 $\\overline{EG}=18\\times\\dfrac{4}{12}=\\dfrac{72}{12}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=12+\\dfrac{72}{12}=18\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 4,
+          "n": 8,
+          "p": 12,
+          "q": 30,
+          "x": 18
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              73.2,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              146.8,
+              39.52
+            ],
+            "E": [
+              54.8,
+              83.68
+            ],
+            "F": [
+              165.2,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "30 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20340211,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=11\\,\\mathrm{cm}$, $\\overline{BC}=25\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=5\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$20\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=11\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:14$이고 $\\overline{BH}=25-11=14\\,(\\mathrm{cm})$이므로 $\\overline{EG}=14\\times\\dfrac{9}{14}=\\dfrac{126}{14}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=11+\\dfrac{126}{14}=20\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 5,
+          "p": 11,
+          "q": 25,
+          "x": 20
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              69.52,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              150.48,
+              39.52
+            ],
+            "E": [
+              36.4,
+              124.69
+            ],
+            "F": [
+              183.6,
+              124.69
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "11 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "25 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20348130,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=13\\,\\mathrm{cm}$, $\\overline{BC}=23\\,\\mathrm{cm}$, $\\overline{AE}=3\\,\\mathrm{cm}$, $\\overline{EB}=7\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$16\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=13\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=3:10$이고 $\\overline{BH}=23-13=10\\,(\\mathrm{cm})$이므로 $\\overline{EG}=10\\times\\dfrac{3}{10}=\\dfrac{30}{10}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=13+\\dfrac{30}{10}=16\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 3,
+          "n": 7,
+          "p": 13,
+          "q": 23,
+          "x": 16
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              58,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              162,
+              39.52
+            ],
+            "E": [
+              46,
+              79.26
+            ],
+            "F": [
+              174,
+              79.26
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "13 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "23 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20356049,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=8\\,\\mathrm{cm}$, $\\overline{BC}=28\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$23\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=8\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:8$이고 $\\overline{BH}=28-8=20\\,(\\mathrm{cm})$이므로 $\\overline{EG}=20\\times\\dfrac{6}{8}=\\dfrac{120}{8}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=8+\\dfrac{120}{8}=23\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 2,
+          "p": 8,
+          "q": 28,
+          "x": 23
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              83.71,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              136.29,
+              39.52
+            ],
+            "E": [
+              34.43,
+              138.88
+            ],
+            "F": [
+              185.57,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "28 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20363968,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{BC}=19\\,\\mathrm{cm}$, $\\overline{AE}=7\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$17\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=10\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=7:9$이고 $\\overline{BH}=19-10=9\\,(\\mathrm{cm})$이므로 $\\overline{EG}=9\\times\\dfrac{7}{9}=\\dfrac{63}{9}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=10+\\dfrac{63}{9}=17\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 7,
+          "n": 2,
+          "p": 10,
+          "q": 19,
+          "x": 17
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              61.58,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              158.42,
+              39.52
+            ],
+            "E": [
+              27.68,
+              142.56
+            ],
+            "F": [
+              192.32,
+              142.56
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "10 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "19 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20371887,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=27\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=6\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$19\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:15$이고 $\\overline{BH}=27-7=20\\,(\\mathrm{cm})$이므로 $\\overline{EG}=20\\times\\dfrac{9}{15}=\\dfrac{180}{15}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{180}{15}=19\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 6,
+          "p": 7,
+          "q": 27,
+          "x": 19
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              86.15,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              133.85,
+              39.52
+            ],
+            "E": [
+              45.26,
+              119.01
+            ],
+            "F": [
+              174.74,
+              119.01
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "27 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20379806,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=11\\,\\mathrm{cm}$, $\\overline{BC}=19\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$17\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=11\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:8$이고 $\\overline{BH}=19-11=8\\,(\\mathrm{cm})$이므로 $\\overline{EG}=8\\times\\dfrac{6}{8}=\\dfrac{48}{8}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=11+\\dfrac{48}{8}=17\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 2,
+          "p": 11,
+          "q": 19,
+          "x": 17
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              56.74,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              163.26,
+              39.52
+            ],
+            "E": [
+              27.68,
+              138.88
+            ],
+            "F": [
+              192.32,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "11 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "19 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20387725,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=8\\,\\mathrm{cm}$, $\\overline{BC}=24\\,\\mathrm{cm}$, $\\overline{AE}=2\\,\\mathrm{cm}$, $\\overline{EB}=6\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=8\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=2:8$이고 $\\overline{BH}=24-8=16\\,(\\mathrm{cm})$이므로 $\\overline{EG}=16\\times\\dfrac{2}{8}=\\dfrac{32}{8}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=8+\\dfrac{32}{8}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 2,
+          "n": 6,
+          "p": 8,
+          "q": 24,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              79.33,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              140.67,
+              39.52
+            ],
+            "E": [
+              64,
+              72.64
+            ],
+            "F": [
+              156,
+              72.64
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20395644,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=13\\,\\mathrm{cm}$, $\\overline{BC}=21\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=9\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$17\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=13\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:18$이고 $\\overline{BH}=21-13=8\\,(\\mathrm{cm})$이므로 $\\overline{EG}=8\\times\\dfrac{9}{18}=\\dfrac{72}{18}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=13+\\dfrac{72}{18}=17\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 9,
+          "p": 13,
+          "q": 21,
+          "x": 17
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              53.05,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              166.95,
+              39.52
+            ],
+            "E": [
+              35.52,
+              105.76
+            ],
+            "F": [
+              184.48,
+              105.76
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "13 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "21 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20403563,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=5\\,\\mathrm{cm}$, $\\overline{BC}=25\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=3\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$20\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=5\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:12$이고 $\\overline{BH}=25-5=20\\,(\\mathrm{cm})$이므로 $\\overline{EG}=20\\times\\dfrac{9}{12}=\\dfrac{180}{12}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=5+\\dfrac{180}{12}=20\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 3,
+          "p": 5,
+          "q": 25,
+          "x": 20
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              91.6,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              128.4,
+              39.52
+            ],
+            "E": [
+              36.4,
+              138.88
+            ],
+            "F": [
+              183.6,
+              138.88
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "25 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20411482,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=13\\,\\mathrm{cm}$, $\\overline{AE}=4\\,\\mathrm{cm}$, $\\overline{EB}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$9\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=4:12$이고 $\\overline{BH}=13-7=6\\,(\\mathrm{cm})$이므로 $\\overline{EG}=6\\times\\dfrac{4}{12}=\\dfrac{24}{12}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{24}{12}=9\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 4,
+          "n": 8,
+          "p": 7,
+          "q": 13,
+          "x": 9
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              60.46,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              159.54,
+              39.52
+            ],
+            "E": [
+              46.31,
+              83.68
+            ],
+            "F": [
+              173.69,
+              83.68
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "13 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20419401,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=22\\,\\mathrm{cm}$, $\\overline{AE}=3\\,\\mathrm{cm}$, $\\overline{EB}=7\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$15\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=12\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=3:10$이고 $\\overline{BH}=22-12=10\\,(\\mathrm{cm})$이므로 $\\overline{EG}=10\\times\\dfrac{3}{10}=\\dfrac{30}{10}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=12+\\dfrac{30}{10}=15\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 3,
+          "n": 7,
+          "p": 12,
+          "q": 22,
+          "x": 15
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              59.82,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              160.18,
+              39.52
+            ],
+            "E": [
+              47.27,
+              79.26
+            ],
+            "F": [
+              172.73,
+              79.26
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "22 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20427320,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=6\\,\\mathrm{cm}$, $\\overline{BC}=14\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$, $\\overline{EB}=3\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$11\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=6\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=5:8$이고 $\\overline{BH}=14-6=8\\,(\\mathrm{cm})$이므로 $\\overline{EG}=8\\times\\dfrac{5}{8}=\\dfrac{40}{8}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=6+\\dfrac{40}{8}=11\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 5,
+          "n": 3,
+          "p": 6,
+          "q": 14,
+          "x": 11
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              70.57,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              149.43,
+              39.52
+            ],
+            "E": [
+              37.71,
+              122.32
+            ],
+            "F": [
+              182.29,
+              122.32
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "14 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "3 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20435239,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=7\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$13\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:13$이고 $\\overline{BH}=20-7=13\\,(\\mathrm{cm})$이므로 $\\overline{EG}=13\\times\\dfrac{6}{13}=\\dfrac{78}{13}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{78}{13}=13\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 7,
+          "p": 7,
+          "q": 20,
+          "x": 13
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              77.8,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              142.2,
+              39.52
+            ],
+            "E": [
+              50.2,
+              100.66
+            ],
+            "F": [
+              169.8,
+              100.66
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20443158,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=9\\,\\mathrm{cm}$, $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=5\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$15\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=9\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:11$이고 $\\overline{BH}=20-9=11\\,(\\mathrm{cm})$이므로 $\\overline{EG}=11\\times\\dfrac{6}{11}=\\dfrac{66}{11}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=9+\\dfrac{66}{11}=15\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 5,
+          "p": 9,
+          "q": 20,
+          "x": 15
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              68.6,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              151.4,
+              39.52
+            ],
+            "E": [
+              41,
+              111.78
+            ],
+            "F": [
+              179,
+              111.78
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20451077,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=5\\,\\mathrm{cm}$, $\\overline{BC}=9\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=6\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$7\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=5\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:12$이고 $\\overline{BH}=9-5=4\\,(\\mathrm{cm})$이므로 $\\overline{EG}=4\\times\\dfrac{6}{12}=\\dfrac{24}{12}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=5+\\dfrac{24}{12}=7\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 6,
+          "p": 5,
+          "q": 9,
+          "x": 7
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              58.89,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              161.11,
+              39.52
+            ],
+            "E": [
+              38.44,
+              105.76
+            ],
+            "F": [
+              181.56,
+              105.76
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20458996,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=16\\,\\mathrm{cm}$, $\\overline{AE}=2\\,\\mathrm{cm}$, $\\overline{EB}=7\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$9\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=2:9$이고 $\\overline{BH}=16-7=9\\,(\\mathrm{cm})$이므로 $\\overline{EG}=9\\times\\dfrac{2}{9}=\\dfrac{18}{9}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{18}{9}=9\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 2,
+          "n": 7,
+          "p": 7,
+          "q": 16,
+          "x": 9
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              69.75,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              150.25,
+              39.52
+            ],
+            "E": [
+              58.25,
+              68.96
+            ],
+            "F": [
+              161.75,
+              68.96
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "16 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20466915,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=11\\,\\mathrm{cm}$, $\\overline{BC}=24\\,\\mathrm{cm}$, $\\overline{AE}=4\\,\\mathrm{cm}$, $\\overline{EB}=9\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$15\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=11\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=4:13$이고 $\\overline{BH}=24-11=13\\,(\\mathrm{cm})$이므로 $\\overline{EG}=13\\times\\dfrac{4}{13}=\\dfrac{52}{13}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=11+\\dfrac{52}{13}=15\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 4,
+          "n": 9,
+          "p": 11,
+          "q": 24,
+          "x": 15
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              67.83,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              152.17,
+              39.52
+            ],
+            "E": [
+              52.5,
+              80.28
+            ],
+            "F": [
+              167.5,
+              80.28
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "11 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "24 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20474834,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=14\\,\\mathrm{cm}$, $\\overline{BC}=22\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=9\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$18\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=14\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:18$이고 $\\overline{BH}=22-14=8\\,(\\mathrm{cm})$이므로 $\\overline{EG}=8\\times\\dfrac{9}{18}=\\dfrac{72}{18}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=14+\\dfrac{72}{18}=18\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 9,
+          "p": 14,
+          "q": 22,
+          "x": 18
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              51.45,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              168.55,
+              39.52
+            ],
+            "E": [
+              34.73,
+              105.76
+            ],
+            "F": [
+              185.27,
+              105.76
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "14 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "22 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20482753,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=12\\,\\mathrm{cm}$, $\\overline{BC}=23\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$, $\\overline{EB}=2\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$21\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=12\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=9:11$이고 $\\overline{BH}=23-12=11\\,(\\mathrm{cm})$이므로 $\\overline{EG}=11\\times\\dfrac{9}{11}=\\dfrac{99}{11}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=12+\\dfrac{99}{11}=21\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 9,
+          "n": 2,
+          "p": 12,
+          "q": 23,
+          "x": 21
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              62,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              158,
+              39.52
+            ],
+            "E": [
+              26,
+              147.91
+            ],
+            "F": [
+              194,
+              147.91
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "12 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "23 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "9 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "2 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20490672,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=7\\,\\mathrm{cm}$, $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$, $\\overline{EB}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$12\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=7\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=5:13$이고 $\\overline{BH}=20-7=13\\,(\\mathrm{cm})$이므로 $\\overline{EG}=13\\times\\dfrac{5}{13}=\\dfrac{65}{13}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=7+\\dfrac{65}{13}=12\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 5,
+          "n": 8,
+          "p": 7,
+          "q": 20,
+          "x": 12
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              77.8,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              142.2,
+              39.52
+            ],
+            "E": [
+              54.8,
+              90.47
+            ],
+            "F": [
+              165.2,
+              90.47
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "7 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20498591,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=11\\,\\mathrm{cm}$, $\\overline{BC}=18\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{EB}=8\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$14\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=11\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=6:14$이고 $\\overline{BH}=18-11=7\\,(\\mathrm{cm})$이므로 $\\overline{EG}=7\\times\\dfrac{6}{14}=\\dfrac{42}{14}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=11+\\dfrac{42}{14}=14\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 6,
+          "n": 8,
+          "p": 11,
+          "q": 18,
+          "x": 14
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              53.78,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              166.22,
+              39.52
+            ],
+            "E": [
+              38.44,
+              96.3
+            ],
+            "F": [
+              181.56,
+              96.3
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "11 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "18 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "6 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "8 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20506510,
+      "output": {
+        "grade": "중2",
+        "unitSection": "평행선 사이의 선분의 길이의 비",
+        "rpmBook": "2-2",
+        "rpmMinor": "평행선 사이의 선분의 길이의 비",
+        "rpmType": "09",
+        "rpmTitle": "사다리꼴에서 평행선 사이의 선분의 길이의 비",
+        "difficulty": "응용",
+        "content": "그림과 같은 사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=11\\,\\mathrm{cm}$, $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$, $\\overline{EB}=4\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이를 구하시오.",
+        "answer": "$16\\,\\mathrm{cm}$",
+        "solution": "점 $A$를 지나고 $\\overline{DC}$에 평행한 직선이 $\\overline{EF}$, $\\overline{BC}$와 만나는 점을 각각 $G$, $H$라 하면 $\\overline{GF}=\\overline{AD}=11\\,\\mathrm{cm}$이다.\n삼각형 $ABH$에서 $\\overline{EG}:\\overline{BH}=\\overline{AE}:\\overline{AB}=5:9$이고 $\\overline{BH}=20-11=9\\,(\\mathrm{cm})$이므로 $\\overline{EG}=9\\times\\dfrac{5}{9}=\\dfrac{45}{9}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{EF}=11+\\dfrac{45}{9}=16\\,(\\mathrm{cm})$이다.",
+        "facts": {
+          "mode": 0,
+          "m": 5,
+          "n": 4,
+          "p": 11,
+          "q": 20,
+          "x": 16
+        },
+        "figureSpec": {
+          "version": 2,
+          "points": {
+            "A": [
+              59.4,
+              39.52
+            ],
+            "B": [
+              18,
+              172
+            ],
+            "C": [
+              202,
+              172
+            ],
+            "D": [
+              160.6,
+              39.52
+            ],
+            "E": [
+              36.4,
+              113.12
+            ],
+            "F": [
+              183.6,
+              113.12
+            ]
+          },
+          "segments": {
+            "AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "parallel": 1
+            },
+            "EF": {
+              "points": [
+                "E",
+                "F"
+              ],
+              "parallel": 1
+            },
+            "BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "parallel": 1
+            },
+            "AE": [
+              "A",
+              "E"
+            ],
+            "EB": [
+              "E",
+              "B"
+            ],
+            "DF": [
+              "D",
+              "F"
+            ],
+            "FC": [
+              "F",
+              "C"
+            ]
+          },
+          "labels": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "D",
+            "E": "E",
+            "F": "F"
+          },
+          "dimensions": {
+            "d_AD": {
+              "points": [
+                "A",
+                "D"
+              ],
+              "label": "11 cm",
+              "side": "auto"
+            },
+            "d_BC": {
+              "points": [
+                "B",
+                "C"
+              ],
+              "label": "20 cm",
+              "side": "auto"
+            },
+            "d_AE": {
+              "points": [
+                "A",
+                "E"
+              ],
+              "label": "5 cm",
+              "side": "auto"
+            },
+            "d_EB": {
+              "points": [
+                "E",
+                "B"
+              ],
+              "label": "4 cm",
+              "side": "auto"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

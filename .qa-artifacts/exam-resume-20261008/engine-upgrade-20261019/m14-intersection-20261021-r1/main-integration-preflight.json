@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-21T14:08:19.728316+00:00",
+  "oldMain": "7266c9b2808ff6690b34853b3fb46dbc9576ac62",
+  "newMain": "6c26a17c925196e82ef4c760fc10d3fe75ab3101",
+  "remoteCommits": 83,
+  "changedPaths": 4057,
+  "scopeFilesChanged": [],
+  "summary": "New textbook twin / answer review QA and provenance evidence; preserve coauthor changes without running model/DB workflows",
+  "dirtyOwnedSHA256": {
+    "src/lib/middle/m2GeoSim.ts": "554be24f7bf01f7694e66280fa635335fa71ddf7a689b49549dace4e276dead4",
+    "src/lib/examStudy/adapters.ts": "0e60047849a7439b855ec0defee0e40a879d50275ea4653ae359889a5f835fae",
+    "src/__tests__/unit/middleM2ParallelIntersection.test.ts": "2082482262f743ca30fb89984ad067ad2b8d60c4fa1e2f78a71802522087d082",
+    "src/__tests__/fixtures/m2Parallel-before-intersection-20261021.json": "3fb7932ddf9f28ed799489bbd3a7a3f81ca0563832aa23b598ebcbf2189ab24a"
+  }
+}

@@ -1222,6 +1222,9 @@ function figTrapMid09(
   if (opts.diag) {
     segments.AC = ["A", "C"];
     segments.BD = ["B", "D"];
+    // AO:OC = AD:BC; compute the intersection before fitting/rounding.
+    pts.O = lerp(A, C, ad / (ad + bc));
+    out.O = "O";
   }
   const anchors: Record<string, XY> = {
     ad: [(A[0] + D[0]) / 2, h + 16],
