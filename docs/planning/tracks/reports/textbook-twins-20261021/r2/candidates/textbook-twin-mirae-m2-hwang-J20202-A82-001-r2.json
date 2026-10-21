@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 148,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r2",
+ "authorId": "claude-opus-5-5:3aa6252f-94c9-461d-9213-962234578067",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 일차부등식은?",
+ "choices": [
+  "$4x-9<4x+6$",
+  "$3x^{2}-x\\ge 2x^{2}+7$",
+  "$2x(x+3)\\le 2x^{2}+8$",
+  "$9-7>6$",
+  "$6x-2x<4x$"
+ ],
+ "answer": "③",
+ "solution": "① $4x-9<4x+6$에서 우변을 이항하면 $-15<0$이 되어 $x$가 없어지므로 일차부등식이 아니다.\n② $3x^{2}-x\\ge 2x^{2}+7$에서 $x^{2}-x-7\\ge 0$이 되어 이차항이 남으므로 일차부등식이 아니다.\n③ $2x(x+3)\\le 2x^{2}+8$에서 $2x^{2}+6x\\le 2x^{2}+8$, $6x-8\\le 0$이므로 일차부등식이다.\n④ $9-7>6$은 $x$가 없이 수끼리만 비교한 부등식이므로 일차부등식이 아니다.\n⑤ $6x-2x<4x$에서 $4x-4x<0$, 곧 $0<0$이 되어 $x$가 없어지므로 일차부등식이 아니다.\n따라서 일차부등식은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-9aa6b0628f6acf9f-0-1",
+  "problemCode": "J20202-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "283d62bd61d0ab1e070bc9f0d1e7f5b7e7893cf743924294e7f9129fef58eae6",
+  "dbContentSha256": "ed812642a44cd21bb6d0656f99e16e1d42680f83d6d260e2f4b1f60c9ac1105a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-3_일차부등식의풀이.hwp",
+    "sha256": "b20aa6950689545c26230390b59141bae84024cfca2171f4412498d31439a6c2",
+    "bytes": 110080
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "부등식 다섯 개(수만의 부등식, x가 소거되는 것 둘, 이차항이 남는 것, 괄호를 전개하면 이차항이 소거되는 것) 가운데 이항·정리 후 일차식이 되는 하나를 고른다. 정답이 마지막 보기에 있다.",
+  "after": "모두 부등식인 다섯 보기(x가 소거되어 상수만 남는 것, 이차항이 남는 것, 단항식×다항식을 전개하면 이차항이 소거되는 것, 수만의 부등식, 동류항이 모두 소거되는 것) 가운데 일차부등식 하나를 고른다. 보기 배치와 수를 바꾸고 정답을 가운데에 두었으며, 이차항이 남는 보기는 양변에 모두 이차항이 있는 꼴로 바꾸었다.",
+  "sharedConcept": "일차부등식의 뜻 — 모든 항을 좌변으로 이항해 정리했을 때 (일차식) > 0 꼴(또는 <, ≥, ≤)이 되는 부등식",
+  "sharedProcedure": "괄호 전개 → 우변의 항을 좌변으로 이항 → 동류항 정리 → 남은 식이 x에 대한 일차식인지 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "단항식과 다항식의 곱셈(전개)",
+   "이항과 동류항 정리",
+   "일차식의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차부등식의 뜻 — 정리한 꼴을 보고 일차부등식 하나 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.056,
+   "longestRun": 5,
+   "residualChars": 59,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

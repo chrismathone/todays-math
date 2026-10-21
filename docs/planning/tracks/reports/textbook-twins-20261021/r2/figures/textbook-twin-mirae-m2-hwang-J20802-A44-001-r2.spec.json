@@ -1,0 +1,155 @@
+{
+ "version": 2,
+ "theme": "exam-thin",
+ "points": {
+  "A": {
+   "type": "raw",
+   "x": 20,
+   "y": 200
+  },
+  "B": {
+   "type": "raw",
+   "x": 309,
+   "y": 200
+  },
+  "C": {
+   "type": "raw",
+   "x": 245,
+   "y": 80
+  },
+  "M": {
+   "type": "raw",
+   "x": 164.5,
+   "y": 200
+  },
+  "P": {
+   "type": "raw",
+   "x": 132.5,
+   "y": 140
+  },
+  "Q": {
+   "type": "raw",
+   "x": 277,
+   "y": 140
+  }
+ },
+ "circles": {
+  "cAB": {
+   "center": "M",
+   "radius": 144.5,
+   "draw": false
+  },
+  "cA": {
+   "center": "P",
+   "radius": 127.5,
+   "draw": false
+  },
+  "cB": {
+   "center": "Q",
+   "radius": 68,
+   "draw": false
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ]
+ },
+ "arcs": {
+  "semiAB": {
+   "circle": "cAB",
+   "from": "B",
+   "to": "A",
+   "dir": "ccw"
+  },
+  "semiCA": {
+   "circle": "cA",
+   "from": "C",
+   "to": "A",
+   "dir": "ccw"
+  },
+  "semiCB": {
+   "circle": "cB",
+   "from": "C",
+   "to": "B",
+   "dir": "cw"
+  }
+ },
+ "regions": {
+  "luneLeft": {
+   "boundary": [
+    {
+     "arc": {
+      "circle": "cA",
+      "from": "C",
+      "to": "A",
+      "dir": "ccw"
+     }
+    },
+    {
+     "arc": {
+      "circle": "cAB",
+      "from": "A",
+      "to": "C",
+      "dir": "cw"
+     }
+    }
+   ],
+   "fill": "#e6e6e6"
+  },
+  "luneRight": {
+   "boundary": [
+    {
+     "arc": {
+      "circle": "cB",
+      "from": "C",
+      "to": "B",
+      "dir": "cw"
+     }
+    },
+    {
+     "arc": {
+      "circle": "cAB",
+      "from": "B",
+      "to": "C",
+      "dir": "ccw"
+     }
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "angles": {
+  "rightC": {
+   "vertex": "C",
+   "points": [
+    "A",
+    "B"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "SW"
+  },
+  "B": {
+   "text": "B",
+   "position": "SE"
+  },
+  "C": {
+   "text": "C",
+   "position": "N"
+  }
+ }
+}

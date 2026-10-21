@@ -1,0 +1,93 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   85,
+   24
+  ],
+  "B": [
+   20,
+   180
+  ],
+  "C": [
+   202,
+   180
+  ],
+  "I": [
+   98,
+   128
+  ],
+  "D": [
+   50,
+   108
+  ],
+  "rlbl": [
+   72,
+   142
+  ]
+ },
+ "circles": {
+  "incircle": {
+   "center": "I",
+   "radius": 52
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "ID": [
+   "I",
+   "D"
+  ]
+ },
+ "angles": {
+  "rightD": {
+   "vertex": "D",
+   "points": [
+    "I",
+    "B"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "AB_len": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "13 cm",
+   "side": "auto"
+  },
+  "CA_len": {
+   "points": [
+    "C",
+    "A"
+   ],
+   "label": "15 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "I": "I",
+  "D": "D",
+  "rlbl": {
+   "text": "4 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 362,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r2",
+ "authorId": "claude-fable-5-1:36e54ab2-7ee5-4c11-8768-67c2d0798369",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "숫자 $0$, $6$, $7$, $8$, $9$가 하나씩 적힌 공이 주머니에 들어 있다. 서아가 이 주머니에서 공을 하나 꺼내 그 숫자를 십의 자리에 놓고, 이어서 하나 더 꺼내 그 숫자를 일의 자리에 놓아 두 자리 자연수를 만든다. 만든 수가 $80$ 이상이 되는 경우는 모두 몇 가지인가?",
+ "choices": [
+  "$6$",
+  "$7$",
+  "$8$",
+  "$9$",
+  "$10$"
+ ],
+ "answer": "③",
+ "solution": "$80$ 이상이 되려면 십의 자리의 숫자가 $8$ 또는 $9$이어야 한다.\n십의 자리가 $8$인 수는 $80$, $86$, $87$, $89$의 $4$가지이고, 십의 자리가 $9$인 수는 $90$, $96$, $97$, $98$의 $4$가지이다.\n따라서 구하는 경우의 수는 $4+4=8$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-1",
+  "problemCode": "J20902-A44-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "20748a49d242b5d2d254807287f6703c688220c10d17e6446268b05d2bccfd7a",
+  "dbContentSha256": "554cd1eb44705c833dc8e7d80d8ee0a1c36220e7d089689b0112751c41555aed",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "한 자리 숫자가 적힌 카드 넉 장에서 두 장을 골라 두 자리 수를 만들 때, 어떤 값 이상이 되는 수를 세는 객관식.",
+  "after": "숫자 공 다섯 개(0 포함)를 주머니에서 차례로 꺼내 십의 자리 · 일의 자리에 놓는 장면으로 바꾸고, 기준값과 숫자 집합을 전부 새로 두어 두 자리 수 가운데 기준 이상인 것을 세는 객관식.",
+  "sharedConcept": "서로 다른 숫자로 두 자리 자연수 만들기에서 조건을 만족하는 경우의 수",
+  "sharedProcedure": "조건을 십의 자리 숫자의 조건으로 바꾼다 → 가능한 십의 자리마다 일의 자리 숫자를 나열한다 → 합의 법칙으로 더한다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "여러 가지 경우의 수"
+  },
+  "prerequisites": [
+   "경우의 수의 뜻",
+   "합의 법칙",
+   "자연수 만들기의 경우의 수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20902-A44-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 자리 자연수 만들기에서 크기 조건을 만족하는 경우의 수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.1,
+   "longestRun": 9,
+   "residualChars": 101,
+   "params": 8,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

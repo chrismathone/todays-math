@@ -1,0 +1,100 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 270,
+  "height": 230
+ },
+ "style": {
+  "show_points": true
+ },
+ "points": {
+  "A": [
+   108.75,
+   84.25
+  ],
+  "B": [
+   30,
+   200
+  ],
+  "C": [
+   240,
+   200
+  ],
+  "I": [
+   117.5,
+   153.7
+  ],
+  "D": [
+   61.5,
+   153.7
+  ],
+  "E": [
+   187.5,
+   153.7
+  ]
+ },
+ "circles": {
+  "inc": {
+   "center": "I",
+   "radius": 46.3
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "parallel": 1
+  },
+  "CA": [
+   "C",
+   "A"
+  ],
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "parallel": 1
+  }
+ },
+ "dimensions": {
+  "AD_len": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "12 cm",
+   "side": "auto"
+  },
+  "DB_len": {
+   "points": [
+    "D",
+    "B"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  },
+  "EC_len": {
+   "points": [
+    "E",
+    "C"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "I": "I",
+  "D": "D",
+  "E": "E"
+ }
+}

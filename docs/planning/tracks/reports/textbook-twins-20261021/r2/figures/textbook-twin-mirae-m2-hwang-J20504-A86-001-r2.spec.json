@@ -1,0 +1,228 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 520,
+  "height": 240
+ },
+ "points": {
+  "A": [
+   91,
+   48
+  ],
+  "B": [
+   50,
+   190
+  ],
+  "C": [
+   210,
+   190
+  ],
+  "I": [
+   111,
+   144
+  ],
+  "A2": [
+   398,
+   46
+  ],
+  "B2": [
+   290,
+   190
+  ],
+  "C2": [
+   472,
+   190
+  ],
+  "I2": [
+   390,
+   140
+  ],
+  "D2": [
+   390,
+   190
+  ],
+  "F2": [
+   350,
+   110
+  ],
+  "lenIF": [
+   382,
+   106
+  ],
+  "lenID": [
+   410,
+   165
+  ],
+  "n1": [
+   130,
+   216
+  ],
+  "n2": [
+   381,
+   216
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AI": [
+   "A",
+   "I"
+  ],
+  "BI": [
+   "B",
+   "I"
+  ],
+  "CI": [
+   "C",
+   "I"
+  ],
+  "A2F2": [
+   "A2",
+   "F2"
+  ],
+  "F2B2": [
+   "F2",
+   "B2"
+  ],
+  "B2D2": [
+   "B2",
+   "D2"
+  ],
+  "D2C2": [
+   "D2",
+   "C2"
+  ],
+  "C2A2": [
+   "C2",
+   "A2"
+  ],
+  "B2I2": [
+   "B2",
+   "I2"
+  ],
+  "I2D2": [
+   "I2",
+   "D2"
+  ],
+  "I2F2": [
+   "I2",
+   "F2"
+  ]
+ },
+ "angles": {
+  "angIAC": {
+   "vertex": "A",
+   "points": [
+    "I",
+    "C"
+   ],
+   "label": "28°",
+   "radius": 18,
+   "label_distance": 28
+  },
+  "angIAB": {
+   "vertex": "A",
+   "points": [
+    "I",
+    "B"
+   ],
+   "label": "x°",
+   "radius": 28,
+   "label_distance": 50
+  },
+  "angIBA": {
+   "vertex": "B",
+   "points": [
+    "I",
+    "A"
+   ],
+   "label": "37°",
+   "radius": 28,
+   "label_distance": 46
+  },
+  "angIBC": {
+   "vertex": "B",
+   "points": [
+    "I",
+    "C"
+   ],
+   "label": "y°",
+   "radius": 18,
+   "label_distance": 30
+  },
+  "angI2B2C2": {
+   "vertex": "B2",
+   "points": [
+    "I2",
+    "D2"
+   ],
+   "label": "y°",
+   "radius": 22,
+   "label_distance": 34
+  },
+  "rightD2": {
+   "vertex": "D2",
+   "points": [
+    "I2",
+    "C2"
+   ],
+   "right": true
+  },
+  "rightF2": {
+   "vertex": "F2",
+   "points": [
+    "I2",
+    "A2"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "I": {
+   "text": "I",
+   "position": "NE"
+  },
+  "A2": {
+   "text": "A",
+   "position": "N"
+  },
+  "B2": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C2": {
+   "text": "C",
+   "position": "SE"
+  },
+  "I2": {
+   "text": "I",
+   "position": "E"
+  },
+  "D2": {
+   "text": "D",
+   "position": "S"
+  },
+  "F2": {
+   "text": "F",
+   "position": "W"
+  },
+  "lenIF": "4 cm",
+  "lenID": "x cm",
+  "n1": "(1)",
+  "n2": "(2)"
+ }
+}

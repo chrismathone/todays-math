@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 177,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r2",
+ "authorId": "claude-opus-5-5:58d4cccf-57b8-45d6-a6f1-d445f5fecc91",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "미나와 하루가 봉사 활동에서 종이학을 접었다. 미나가 접은 종이학을 $x$마리, 하루가 접은 종이학을 $y$마리라 하자. 두 사람이 접은 종이학은 모두 $28$마리이고, 미나가 접은 수의 $3$배에서 하루가 접은 수를 빼면 $32$마리이다. 다음 물음에 답하시오.\n⑴ 위의 상황을 나타낸 연립방정식 $\\begin{cases} \\,x+y=\\square ~ \\\\ \\,3x-y=\\square ~ \\end{cases}$에서 □ 안에 알맞은 수를 써넣으시오.\n⑵ ⑴의 연립방정식을 풀어 미나와 하루가 접은 종이학의 수를 각각 구하시오.",
+ "choices": [],
+ "answer": "⑴ $28$, $32$ ⑵ $x=15$, $y=13$",
+ "solution": "⑴ 모두 $28$마리이므로 $x+y=28$이고, 미나가 접은 수의 $3$배에서 하루가 접은 수를 빼면 $32$마리이므로 $3x-y=32$이다.\n⑵ 두 식을 변끼리 더하면 $4x=60$이므로 $x=15$이다. $x+y=28$에 $x=15$를 대입하면 $y=13$이다.\n따라서 미나는 $15$마리, 하루는 $13$마리를 접었다($x=15$, $y=13$).",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-81d82163ce2aaf9f-0-3",
+  "problemCode": "J20302-A28-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "568d391f066cdf15b50975589a0848ef07858f23c8572c1700468d1788de0800",
+  "dbContentSha256": "1e67ac3e5b23dc6b6c6bffa2528050788901b900af702d6b917bddb2e60f6eda",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_4-2_연립일차방정식의풀이.hwp",
+    "sha256": "d4c6b97488a229589c58a9f7fc45d46b3fe797bc11fda234ddc800e138314d1b",
+    "bytes": 271360
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "이름 없는 두 자연수의 합과 차가 주어지고, 계수가 모두 1인 합·차 연립방정식의 빈칸을 채운 뒤 변끼리 더해 두 수를 구한다.",
+  "after": "두 사람이 접은 종이학 수의 합과 '한 사람 수의 3배에서 다른 사람 수를 뺀 값'이 주어지고, 그 연립방정식의 빈칸을 채운 뒤 변끼리 더해 y를 없애고 두 수를 구한다.",
+  "sharedConcept": "문장으로 주어진 두 조건을 연립일차방정식으로 나타내고 가감법(덧셈)으로 풀기",
+  "sharedProcedure": "조건을 읽어 두 일차방정식 세우기 → y의 계수가 서로 반대인 두 식을 변끼리 더해 y 없애기 → x 구하기 → 한 식에 대입해 y 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "문장을 일차방정식으로 나타내기",
+   "가감법으로 연립방정식 풀기",
+   "대입하여 나머지 미지수 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A28-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "문장 조건을 연립방정식으로 나타내고 가감법(덧셈)으로 풀기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.209,
+   "longestRun": 15,
+   "residualChars": 159,
+   "params": 3,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

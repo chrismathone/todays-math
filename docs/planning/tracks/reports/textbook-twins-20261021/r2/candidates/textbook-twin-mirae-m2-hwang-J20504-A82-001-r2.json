@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 252,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r2",
+ "authorId": "claude-opus-5-5:d7e7e7c4-861e-491a-b1f4-d0b324d26601",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 점 $I$는 $\\triangle ABC$의 내심이고, $\\angle IAB=26^{\\circ}$, $\\angle IBA=34^{\\circ}$이다. $\\angle ACB=\\angle x$라 할 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$50^{\\circ}$",
+  "$55^{\\circ}$",
+  "$60^{\\circ}$",
+  "$65^{\\circ}$",
+  "$70^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "점 $I$가 $\\triangle ABC$의 내심이면 $\\overline{AI}$, $\\overline{BI}$는 각각 $\\angle A$, $\\angle B$의 이등분선이다.\n그러므로 $\\angle BAC=2\\times 26^{\\circ}=52^{\\circ}$, $\\angle ABC=2\\times 34^{\\circ}=68^{\\circ}$이다.\n삼각형의 세 내각의 크기의 합은 $180^{\\circ}$이므로 $52^{\\circ}+68^{\\circ}+\\angle x=180^{\\circ}$이다.\n따라서 $\\angle x=60^{\\circ}$이고, 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A82-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A82-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-6",
+  "problemCode": "J20504-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "694defbe0f15328aec50a12626a18534ba231b6e632dbdaa59cd83e510a7fbc6",
+  "dbContentSha256": "20c4ec1732195c9ea09ab5fed12f8da3387a25368833e4964378185166bb84ca",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "1642a353aad1c0e75515c1dad1cbd6ee76c28878726c1c5c95f203ba064a37e4"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "아래 두 꼭짓점에서 내심과 밑변이 이루는 두 각이 주어지고, 꼭대기 꼭짓점의 내각을 구한다",
+  "after": "꼭대기 꼭짓점과 한 밑각 꼭짓점에서 내심과 변 AB가 이루는 두 각이 주어지고, 남은 꼭짓점 C의 내각을 구한다. 그림에는 AI, BI만 그어 x가 가리키는 각이 ∠ACB 전체임이 분명하다",
+  "sharedConcept": "삼각형의 내심은 세 내각의 이등분선의 교점이다",
+  "sharedProcedure": "내심의 성질로 주어진 각을 두 배 해서 두 내각을 구함 → 삼각형 내각의 합 180°에서 두 각을 뺌"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "삼각형의 내심의 뜻과 성질(각의 이등분선의 교점)",
+   "삼각형의 세 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "삼각형의 내심과 각의 이등분선을 이용해 나머지 한 내각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.164,
+   "longestRun": 12,
+   "residualChars": 58,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

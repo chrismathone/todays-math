@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 381,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r2",
+ "authorId": "claude-fable-5-1:f1d895c8-cd27-4471-ba58-893adb6d6e45",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "하루가 주사위 한 개를 두 번 던져 처음 나온 눈의 수를 $a$, 두 번째 나온 눈의 수를 $b$라 하자. 좌표평면 위의 점 $(a,\\,b)$가 직선 $2x+y=10$ 위에 있을 확률은?",
+ "choices": [
+  "$\\frac{1}{18}$",
+  "$\\frac{1}{9}$",
+  "$\\frac{1}{12}$",
+  "$\\frac{1}{6}$",
+  "$\\frac{7}{36}$"
+ ],
+ "answer": "③",
+ "solution": "주사위를 두 번 던질 때 일어나는 모든 경우의 수는 $6\\times6=36$이다.\n점 $(a,\\,b)$가 직선 위에 있으려면 $2a+b=10$, 즉 $b=10-2a$이어야 한다.\n$a$, $b$가 모두 $1$ 이상 $6$ 이하인 순서쌍은 $(2,\\,6)$, $(3,\\,4)$, $(4,\\,2)$의 $3$가지이다.\n따라서 구하는 확률은 $\\frac{3}{36}=\\frac{1}{12}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-8",
+  "problemCode": "J20903-B25-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "4d5c5955a490f2797d4f45293e3cbc651dbaee41bb4c1ac724fcce54cbb06aa3",
+  "dbContentSha256": "cd8dc1d4a415036fadfa956fdf14f845c12863cadfa5acad567278f8e7bf95e2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "context"
+  ],
+  "before": "주사위를 두 번 던져 얻은 두 눈을 미지수 둘로 두고, 계수가 붙은 일차방정식(차 꼴)을 만족하는 순서쌍의 개수를 세어 확률을 고르는 객관식.",
+  "after": "두 눈을 좌표로 하는 점이 주어진 직선(합 꼴 일차방정식) 위에 놓일 조건으로 바꾸어, 같은 방식으로 순서쌍을 세어 확률을 고르는 객관식. 수와 정답(1/12)이 모두 새것.",
+  "sharedConcept": "확률의 뜻 — 방정식을 만족하는 경우의 수를 전체 경우의 수로 나눈다",
+  "sharedProcedure": "전체 경우의 수 36 → 방정식을 한 미지수에 대해 정리 → 1~6 범위에 드는 순서쌍 나열 → 개수/36 을 기약분수로"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "경우의 수(두 주사위)",
+   "확률의 뜻",
+   "일차방정식의 해 · 좌표평면 위의 점과 직선"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B25-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위 눈이 일차방정식(직선)을 만족할 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "overlap4": 0.171,
+   "longestRun": 10,
+   "residualChars": 82,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 337,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A39-001-r2",
+ "authorId": "claude-fable-5-1:cbb7fb44-f03d-441d-8c0f-4a8a296351fa",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "그림에서 $\\overline{PQ}\\parallel\\overline{RS}$이고 두 선분 $\\overline{PS}$, $\\overline{QR}$은 점 $M$에서 만난다. 점 $M$을 지나고 $\\overline{RS}$에 평행한 직선이 $\\overline{QS}$와 만나는 점을 $N$이라 하자. $\\overline{PQ}=8\\,\\mathrm{cm}$, $\\overline{RS}=12\\,\\mathrm{cm}$일 때, $\\overline{MN}$의 길이를 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$\\frac{24}{5}\\,\\mathrm{cm}$",
+ "solution": "$\\overline{PQ}\\parallel\\overline{RS}$이므로 $\\triangle MPQ\\backsim\\triangle MSR$ (AA 닮음)이고 $\\overline{QM}:\\overline{RM}=\\overline{PQ}:\\overline{SR}=8:12=2:3$이다. 따라서 $\\overline{QM}:\\overline{QR}=2:(2+3)=2:5$이다. $\\triangle QRS$에서 $\\overline{MN}\\parallel\\overline{RS}$이므로 $\\overline{QM}:\\overline{QR}=\\overline{MN}:\\overline{RS}$, 즉 $2:5=\\overline{MN}:12$에서 $5\\overline{MN}=24$이다. 따라서 $\\overline{MN}=\\frac{24}{5}\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20703-A39-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20703-A39-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-1a5ea8acdfea66b8-0-11",
+  "problemCode": "J20703-A39-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "5376976532d82cdb5dd65b4a73f399eb2e353317f5056533a9098a39d56e738e",
+  "dbContentSha256": "a5c51b3bd8780598e87e48daf2382d0b65de7a0b0cbfc1c1180e512ad52a354e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "c63caf7d5101690b4dcc1d32ed1beb8790688bff5c3b95a32d8b34fac1227276",
+    "bytes": 2240512
+   }
+  ],
+  "originalFigureSha256": [
+   "ce043ccd6f327c9c179fc374428a2c5e295a6167442cee4cbc80b842fd17f2f8"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "비스듬히 기운 두 평행 선분이 사각형의 양옆 변이고, 두 대각선의 교점에서 밑변으로 내린 평행 선분의 길이를 두 평행 선분의 길이로부터 구한다. 길이는 치수 활로 표시.",
+  "after": "두 평행 선분을 수직으로 세운 그림으로 바꾸고 점 이름을 P, Q, R, S, M, N으로 새로 붙였다. 두 선분 PS, QR의 교점 M을 지나 평행한 선분 MN의 길이를 묻는다. 길이는 변 옆 글 표시(치수 활 없음).",
+  "sharedConcept": "평행한 두 선분과 교차하는 두 선분이 만드는 닮은 삼각형 · 삼각형에서 평행선과 선분의 길이의 비",
+  "sharedProcedure": "두 평행 선분으로 닮은 삼각형 찾기 → 교점이 한 선분을 나누는 비 구하기 → 전체에 대한 비로 바꾸기 → 큰 삼각형에서 평행선의 비로 가운데 선분의 길이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0acbc409-9301-40fe-a511-4c87e4c2983f",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "평행선 사이의 선분의 길이의 비"
+  },
+  "prerequisites": [
+   "삼각형의 닮음 조건(AA 닮음)",
+   "삼각형에서 평행선과 선분의 길이의 비",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20703-A39-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 평행 선분의 교차 선분 교점을 지나는 평행 선분의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0acbc409-9301-40fe-a511-4c87e4c2983f",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 1,
+   "residualChars": 76,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
