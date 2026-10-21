@@ -1,0 +1,424 @@
+/* 내 자료 거르기 줄 — Hi-fi 5안(Wire C). 페이지 머리 · 틀은 `../library-filters-wire/parts.module.css`.
+   거르기 줄은 `.library` 의 크기 컨테이너에 대어 줄을 바꾼다(이름 없는 @container — 가장 가까운 컨테이너가 `.library`). */
+
+.subhead {
+  margin: 14px 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.note {
+  max-width: 1100px;
+  color: #3b4a63;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ───────────── 상태 넷 — PC 본문 폭(1232)으로 ───────────── */
+
+.strip {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+}
+.stripRow {
+  box-sizing: border-box;
+  width: 1296px;
+  padding: 10px 32px 12px;
+  border-radius: 6px;
+  background: var(--learn-bg);
+  box-shadow: inset 0 0 0 1px #dde3ec;
+}
+.stripLabel {
+  margin: 0 0 8px;
+  color: #596c86;
+  font-size: 12px;
+}
+.strip .stripLibrary {
+  width: 1232px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.strip .bar {
+  margin: 0;
+}
+
+/* ───────────── 다섯 안이 같은 줄(Wire C) ───────────── */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 20px 0 12px;
+}
+.selects {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.find {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+/* 조작은 줄지 않는다 — 줄어드는 것은 찾기 칸뿐이고, 그래도 안 들면 무리째 다음 줄로 간다. */
+.field,
+.bar button,
+.count {
+  flex-shrink: 0;
+}
+.bar button {
+  white-space: nowrap;
+}
+.field {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+}
+.field > select {
+  width: 100%;
+}
+.name {
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.bar .search {
+  flex: 1 1 200px;
+  min-width: 160px;
+  max-width: 360px;
+}
+.end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  color: var(--learn-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.count strong {
+  color: var(--learn-ink, #172b4d);
+  font-variant-numeric: tabular-nums;
+}
+.countName {
+  display: none;
+}
+/* 초점 — 기존 `--learn-focus`(흰 면 2.47:1)가 아니라 코발트(5.79:1). DESIGN.md «새 조작의 초점은 --learn-accent». */
+/* `[data-look]` 로 `.library :is(button, input, select):focus-visible`(0,2,1)보다 무겁게 — 두 모듈의 싣는 차례에 기대지 않는다. */
+.bar[data-look] :is(select, input, button):focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+/* 꺼진 드롭다운 — `.library select { cursor: pointer }` 가 전역 금지 커서를 이기므로 되돌린다(D-30). */
+.bar select:disabled {
+  cursor: not-allowed;
+}
+/* H2 ~ H5 — 화살표를 우리 것으로(Windows · Mac 같은 꺾쇠). */
+.bar:not([data-look="H1"]) select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23596c86' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 14px;
+}
+
+/* ───────────── H1 — 지금 칸 그대로 ───────────── */
+
+.bar[data-look="H1"] .field > select {
+  padding-left: 46px;
+}
+.bar[data-look="H1"] .name {
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.bar[data-look="H1"] .field[data-paused] > select,
+.bar[data-look="H1"] select:disabled {
+  background-color: var(--learn-neutral);
+  color: var(--learn-muted);
+}
+
+/* ───────────── H2 — 걸린 칸만 코발트(지금 칩의 «눌림» 꼴) ───────────── */
+
+.bar[data-look="H2"] select,
+.bar[data-look="H2"] .search {
+  font-size: 14px;
+}
+.bar[data-look="H2"] .field > select {
+  padding-left: 48px;
+}
+.bar[data-look="H2"] .name {
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.bar[data-look="H2"] .field[data-active] > select {
+  border-color: var(--learn-accent);
+  background-color: var(--learn-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233159df' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  color: var(--learn-accent);
+  font-weight: 600;
+}
+.bar[data-look="H2"] .field[data-active] .name {
+  color: var(--learn-accent);
+}
+.bar[data-look="H2"] .field[data-paused] > select,
+.bar[data-look="H2"] select:disabled {
+  border-style: dashed;
+  color: var(--learn-muted);
+}
+.bar[data-look="H2"] .count[data-filtered] strong {
+  color: var(--learn-accent);
+}
+
+/* ───────────── H3 — 이름 칸 · 값 칸 ───────────── */
+
+.bar[data-look="H3"] select,
+.bar[data-look="H3"] .search {
+  font-size: 14px;
+}
+.bar[data-look="H3"] .field > select {
+  padding-left: 58px;
+}
+.bar[data-look="H3"] .name {
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  border-right: 1px solid var(--learn-control);
+  border-radius: 7px 0 0 7px;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.bar[data-look="H3"] .field[data-active] .name {
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+.bar[data-look="H3"] .field[data-active] > select {
+  font-weight: 650;
+}
+.bar[data-look="H3"] .field[data-paused] > select,
+.bar[data-look="H3"] select:disabled {
+  background-color: var(--learn-neutral);
+  color: var(--learn-muted);
+}
+.bar[data-look="H3"] .count {
+  align-items: center;
+  min-height: 28px;
+  padding-left: 12px;
+  border-left: 1px solid var(--learn-track);
+}
+.bar[data-look="H3"] .countName {
+  display: inline;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ───────────── H4 — 한 띠로 잇기 ───────────── */
+/* 칸마다 44px 테두리를 그대로 두고 1px 겹쳐 잇는다 — 조작 높이(44)를 지키면서 한 띠로 보인다(Codex: 바깥 틀 + 42px 칸은 규격 미달). */
+
+.bar[data-look="H4"] .selects {
+  gap: 0;
+}
+.bar[data-look="H4"] .field + .field {
+  margin-left: -1px;
+}
+.bar[data-look="H4"] select,
+.bar[data-look="H4"] .search {
+  font-size: 14px;
+}
+.bar[data-look="H4"] .field > select {
+  padding-right: 30px;
+  padding-left: 44px;
+  border-radius: 0;
+  background-position: right 10px center;
+}
+.bar[data-look="H4"] .field:first-child > select {
+  border-radius: 8px 0 0 8px;
+}
+.bar[data-look="H4"] .field:last-child > select {
+  border-radius: 0 8px 8px 0;
+}
+/* 겹친 테두리 — 초점 · 걸린 칸이 이웃 칸 테두리에 덮이지 않게 위로 */
+.bar[data-look="H4"] .field:focus-within,
+.bar[data-look="H4"] .field[data-active] {
+  z-index: 1;
+}
+.bar[data-look="H4"] select:focus-visible {
+  outline-offset: -3px;
+}
+.bar[data-look="H4"] .name {
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.bar[data-look="H4"] .field[data-active]::after {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  left: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--learn-accent);
+  content: "";
+  pointer-events: none;
+}
+.bar[data-look="H4"] .field[data-active] > select {
+  color: var(--learn-accent);
+  font-weight: 600;
+}
+.bar[data-look="H4"] .field[data-paused] > select,
+.bar[data-look="H4"] select:disabled {
+  background-color: var(--learn-neutral);
+  color: var(--learn-muted);
+}
+
+/* ───────────── H5 — 위에 작은 이름 ───────────── */
+
+.bar[data-look="H5"] select,
+.bar[data-look="H5"] .search {
+  font-size: 14px;
+}
+.bar[data-look="H5"] .field > select {
+  padding-top: 17px;
+  padding-bottom: 3px;
+  padding-left: 12px;
+  line-height: 20px;
+}
+.bar[data-look="H5"] .name {
+  top: 5px;
+  left: 13px;
+  color: var(--learn-muted);
+  font-size: 11px;
+  line-height: 13px;
+}
+.bar[data-look="H5"] .field[data-active] > select {
+  border-color: var(--learn-accent);
+  box-shadow: inset 3px 0 0 var(--learn-accent);
+}
+.bar[data-look="H5"] .field[data-active] .name {
+  color: var(--learn-accent);
+  font-weight: 600;
+}
+.bar[data-look="H5"] .field[data-paused] > select,
+.bar[data-look="H5"] select:disabled {
+  background-color: var(--learn-neutral);
+  color: var(--learn-muted);
+}
+.bar[data-look="H5"] .count {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  line-height: 1.3;
+}
+.bar[data-look="H5"] .countName {
+  display: block;
+  font-size: 11px;
+}
+
+/* ───────────── 좁은 폭 — 드롭다운 줄 / 찾기 줄 ───────────── */
+
+/* H2 · H3 — 14px 글과 이름 자리로 칸이 넓어 1280 화면(본문 976)에서 한 줄에 안 든다. 그 폭부터 미리 접어 찾기가 둘째 줄을 채운다. */
+@container (max-width: 1100px) {
+  .bar[data-look="H2"] .selects,
+  .bar[data-look="H3"] .selects {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+  .bar[data-look="H2"] .search,
+  .bar[data-look="H3"] .search {
+    max-width: none;
+  }
+}
+
+@container (max-width: 900px) {
+  .selects {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+  .bar .search {
+    max-width: none;
+  }
+  /* H4 — 띠가 줄을 다 쓰면 네 칸이 남는 폭을 나눠 가진다(줄지는 않는다 — 값이 잘리지 않게). */
+  .bar[data-look="H4"] .field {
+    flex: 1 0 auto;
+  }
+}
+
+/* ───────────── 720 이하(폰 · 작은 태블릿) — 드롭다운 2 × 2 ───────────── */
+
+@container (max-width: 720px) {
+  .selects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .bar[data-look="H4"] .selects {
+    gap: 0;
+  }
+  /* H4 폰 — 2 × 2 도 1px 겹쳐 한 판으로, 바깥 네 모서리만 둥글게 */
+  .bar[data-look="H4"] .field + .field {
+    margin-left: 0;
+  }
+  .bar[data-look="H4"] .field:nth-child(even) {
+    margin-left: -1px;
+  }
+  .bar[data-look="H4"] .field:nth-child(n + 3) {
+    margin-top: -1px;
+  }
+  .bar[data-look="H4"] .field:nth-child(1) > select {
+    border-radius: 8px 0 0 0;
+  }
+  .bar[data-look="H4"] .field:nth-child(2) > select {
+    border-radius: 0 8px 0 0;
+  }
+  .bar[data-look="H4"] .field:nth-child(3) > select {
+    border-radius: 0 0 0 8px;
+  }
+  .bar[data-look="H4"] .field:nth-child(4) > select {
+    border-radius: 0 0 8px 0;
+  }
+}
+
+/* ④ 보기 범위 — 정한 것을 표로 */
+.scopeRules {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 2px 14px;
+  max-width: 1100px;
+  margin: 4px 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.scopeRules dt {
+  color: #596c86;
+}
+.scopeRules dd {
+  margin: 0;
+}

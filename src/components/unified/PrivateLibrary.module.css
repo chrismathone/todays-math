@@ -12,62 +12,6 @@
   padding: 28px 32px;
   container: library / inline-size;
 }
-.tools {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 8px 0 14px;
-}
-.kindTabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.kindTabs button {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  min-height: 44px;
-}
-.kindTabs button[aria-pressed="true"] {
-  background: var(--library-soft);
-  border-color: var(--library-accent);
-  color: var(--library-accent);
-}
-.kindTabs span {
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  color: var(--library-muted);
-}
-/* 상태 토글 둘 — 종류 줄과 따로 둔다. 종류 × 작업 중 × 내 자료는 교집합이다. */
-.toggles {
-  display: flex;
-  gap: 4px 20px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-label.toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  color: var(--library-muted);
-  font-size: 13px;
-  white-space: nowrap;
-  cursor: pointer;
-}
-.toggle span {
-  font-variant-numeric: tabular-nums;
-}
-.toggle input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-height: 0;
-  padding: 0;
-  accent-color: var(--library-accent);
-}
 .readOnlyNote {
   margin: 0 0 8px;
   color: var(--library-muted);
@@ -108,20 +52,6 @@ label.toggle {
   color: var(--learn-ink);
   overflow-wrap: anywhere;
 }
-.tools > input {
-  flex: 1;
-  max-width: 420px;
-  min-width: 180px;
-  margin-right: auto;
-}
-.tools label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--library-muted);
-  font-size: 13px;
-  white-space: nowrap;
-}
 .library input,
 .library select {
   border: 1px solid var(--library-control);
@@ -134,7 +64,8 @@ label.toggle {
   font: inherit;
   font-size: 13px;
 }
-.library select {
+/* 꺼진 select 에는 손가락을 주지 않는다(D-30) — 전역 금지 커서가 그대로 선다. */
+.library select:not(:disabled) {
   cursor: pointer;
 }
 .library button {
@@ -152,22 +83,147 @@ label.toggle {
   background: var(--library-soft);
   border-color: var(--library-accent);
 }
+/* 꺼진 단추는 금지 커서(D-30) — 전역 규칙을 덮지 않는다(작업실과 같은 말). */
 .library button:disabled {
   opacity: 0.55;
-  cursor: default;
+  cursor: not-allowed;
 }
 .library :is(button, input, select):focus-visible {
   outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
-.resultCount {
-  margin: 0 0 10px;
+
+/* ───────────── 거르기 줄 — Wire C · Hi-fi H4 «한 띠로 잇기»(05 §8.26, 원장님 2026-10-21) ─────────────
+   드롭다운 넷(종류 · 태그 · 보기 · 정렬)을 칸마다 44px 테두리 그대로 1px 겹쳐 한 띠로 잇고, 찾기 → 새로고침 · 결과 수.
+   넓으면 한 줄, 900 이하는 띠 줄 / 찾기 줄, 720 이하는 띠가 2 × 2. 시안 `/dev/library-filters-hifi` H4. */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 20px 0 12px;
+}
+.filterSelects {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-width: 0;
+}
+/* 찾기 · 새로고침 · 결과 수 — 좁은 폰에서 한 줄에 안 들면 새로고침 · 결과 수가 다음 줄 오른쪽으로 간다(넘치지 않게). */
+.filterFind {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+/* 조작은 줄지 않는다 — 줄어드는 것은 찾기 칸뿐이고, 그래도 안 들면 무리째 다음 줄로 간다. */
+.filterField,
+.filterEnd button,
+.filterCount {
+  flex-shrink: 0;
+}
+.filterEnd button {
+  white-space: nowrap;
+}
+.filterField {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+}
+.filterField + .filterField {
+  margin-left: -1px;
+}
+/* 겹친 테두리 — 초점 · 걸린 칸이 이웃 칸 테두리에 덮이지 않게 위로 */
+.filterField:focus-within,
+.filterField[data-active] {
+  z-index: 1;
+}
+.library .filterField > select {
+  width: 100%;
+  appearance: none;
+  padding: 9px 30px 9px 44px;
+  border-radius: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23596c86' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  font-size: 14px;
+  /* 아주 좁은 칸에서 값이 넘치면 «…»로 끊는다(값은 열면 다 보인다). */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.library .filterField:first-child > select {
+  border-radius: 8px 0 0 8px;
+}
+.library .filterField:last-child > select {
+  border-radius: 0 8px 8px 0;
+}
+/* 칸 안의 작은 이름 — 누름은 그대로 드롭다운으로 간다 */
+.filterName {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: var(--library-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+/* 걸린 칸 — 코발트 밑줄 2px · 코발트 글 */
+.filterField[data-active]::after {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  left: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--library-accent);
+  content: "";
+  pointer-events: none;
+}
+.library .filterField[data-active] > select {
+  color: var(--library-accent);
+  font-weight: 600;
+}
+/* 태그 없는 종류 — 기억한 태그(«· 미적용») · 꺼진 칸은 회색 면 */
+.library .filterField[data-paused] > select,
+.library .filterField > select:disabled {
+  background-color: var(--learn-neutral, #edf0f6);
+  color: var(--library-muted);
+}
+.library .filterSearch {
+  flex: 1 1 200px;
+  min-width: 160px;
+  max-width: 360px;
+  font-size: 14px;
+}
+.filterEnd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.filterCount {
+  margin: 0;
   color: var(--library-muted);
   font-size: 13px;
+  white-space: nowrap;
 }
-.resultCount strong {
+.filterCount strong {
   color: var(--library-ink);
   font-variant-numeric: tabular-nums;
+}
+/* 초점은 코발트 — 기존 --learn-focus 는 흰 면 2.47:1(DESIGN.md «새 조작의 초점은 --learn-accent»). 띠 안 칸은 안쪽으로. */
+.filterBar :is(select, input, button):focus-visible {
+  outline-color: var(--library-accent);
+}
+.filterField > select:focus-visible {
+  outline-offset: -3px;
 }
 .board {
   border: 1px solid var(--library-line);
@@ -438,28 +494,92 @@ label.toggle {
   .mobileLabel {
     display: inline;
   }
-  .tools > input {
-    flex-basis: 100%;
-    max-width: none;
-  }
-  .tools label {
-    gap: 5px;
-  }
-  .tools > button {
-    margin-left: auto;
-  }
 }
 @media (max-width: 640px) {
   .library {
     padding: 20px 16px;
   }
-  .tools {
-    gap: 8px;
+}
+
+/* 거르기 줄 — 900 이하: 띠 줄 / 찾기 줄(찾기가 줄을 채운다). 띠의 칸은 남는 폭을 나눠 갖되 줄지 않는다(값이 잘리지 않게). */
+@container library (max-width: 900px) {
+  .filterSelects {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
   }
-  .tools label {
-    font-size: 12px;
+  .filterField {
+    flex: 1 0 auto;
   }
-  .tools select {
-    padding: 8px 5px;
+  .library .filterSearch {
+    max-width: none;
+  }
+}
+/* 720 이하(폰 · 작은 태블릿) — 띠가 2 × 2. 1px 겹쳐 한 판으로, 바깥 네 모서리만 둥글게. */
+@container library (max-width: 720px) {
+  .filterSelects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .filterField + .filterField {
+    margin-left: 0;
+  }
+  .filterField:nth-child(even) {
+    margin-left: -1px;
+  }
+  .filterField:nth-child(n + 3) {
+    margin-top: -1px;
+  }
+  .library .filterField:nth-child(1) > select {
+    border-radius: 8px 0 0 0;
+  }
+  .library .filterField:nth-child(2) > select {
+    border-radius: 0 8px 0 0;
+  }
+  .library .filterField:nth-child(3) > select {
+    border-radius: 0 0 0 8px;
+  }
+  .library .filterField:nth-child(4) > select {
+    border-radius: 0 0 8px 0;
+  }
+}
+/* 360 폰(본문 360 이하) — 칸 안 여백 · 이름을 줄여 값 자리를 넓힌다. */
+@container library (max-width: 360px) {
+  .filterName {
+    left: 9px;
+    font-size: 11px;
+  }
+  .library .filterField > select {
+    padding-right: 24px;
+    padding-left: 34px;
+    background-position: right 7px center;
+    background-size: 12px;
+  }
+}
+/* 320 폰(본문 300 이하) — 2 × 2 칸에 값이 안 들어 한 줄에 하나씩, 위아래 바깥 모서리만 둥글게. */
+@container library (max-width: 300px) {
+  .filterSelects {
+    grid-template-columns: 1fr;
+  }
+  .filterField:nth-child(even) {
+    margin-left: 0;
+  }
+  .filterField:nth-child(n + 2) {
+    margin-top: -1px;
+  }
+  .library .filterField:nth-child(1) > select {
+    border-radius: 8px 8px 0 0;
+  }
+  .library .filterField:nth-child(2) > select,
+  .library .filterField:nth-child(3) > select {
+    border-radius: 0;
+  }
+  .library .filterField:nth-child(4) > select {
+    border-radius: 0 0 8px 8px;
+  }
+}
+/* 인쇄에는 거르기 줄을 내지 않는다(DESIGN.md «인쇄할 때 셸 · 필터 … 는 나오지 않아야 한다»). */
+@media print {
+  .filterBar {
+    display: none;
   }
 }

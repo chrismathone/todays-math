@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 
 import lib from "@/components/unified/PrivateLibrary.module.css";
+import old from "../library-filters-wire/oldFilterRow.module.css";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import Icon from "@/components/unified/WorkspaceIcon";
 import we from "@/components/unified/WorksheetEditor.module.css";
@@ -317,7 +318,7 @@ function Library({
         <button type="button">작업 파일 불러오기</button>
         <button type="button">새 시험지</button>
       </WorkspacePageHeader>
-      <div className={lib.kindTabs} role="group" aria-label="자료 종류별 보기">
+      <div className={old.kindTabs} role="group" aria-label="자료 종류별 보기">
         <button
           type="button"
           aria-pressed={g.kind === "all"}
@@ -337,8 +338,8 @@ function Library({
         ))}
       </div>
       {tagRow}
-      <div className={lib.toggles}>
-        <label className={lib.toggle}>
+      <div className={old.toggles}>
+        <label className={old.toggle}>
           <input
             type="checkbox"
             checked={g.workingOnly}
@@ -348,7 +349,7 @@ function Library({
         </label>
         {toggleExtra}
       </div>
-      <div className={lib.tools}>
+      <div className={old.tools}>
         <input
           type="search"
           aria-label="저장한 자료 검색"
@@ -371,7 +372,7 @@ function Library({
           {g.notice}
         </p>
       )}
-      <p className={lib.resultCount} aria-live="polite">
+      <p className={old.resultCount} aria-live="polite">
         저장한 자료 <strong>{g.rows.length}</strong>개
         {g.hasFilters && (
           <>
@@ -489,7 +490,7 @@ function TagRow1({ g }: { g: G }) {
   if (!taggable(g.kind)) return null;
   return (
     <div
-      className={`${lib.kindTabs} ${h.tagTabs}`}
+      className={`${old.kindTabs} ${h.tagTabs}`}
       role="group"
       aria-label="태그별 보기"
     >
@@ -617,7 +618,7 @@ function W8H2() {
           tagRow={<TagRow2 g={g} />}
           rowTag="kind"
           toggleExtra={
-            <label className={lib.toggle}>
+            <label className={old.toggle}>
               <input
                 type="checkbox"
                 disabled={off}
@@ -722,7 +723,7 @@ function TagRow4({ g }: { g: G }) {
       {GROUPS.map((group) => (
         <div key={group.label} className={h.tagGroup}>
           <span className={h.tagGroupLabel}>{group.label}</span>
-          <div className={`${lib.kindTabs} ${h.tagTabs}`} style={{ margin: 0 }}>
+          <div className={`${old.kindTabs} ${h.tagTabs}`} style={{ margin: 0 }}>
             {group.tags.map((t) => (
               <button
                 type="button"
@@ -738,7 +739,7 @@ function TagRow4({ g }: { g: G }) {
       ))}
       <div className={h.tagGroup}>
         <span className={h.tagGroupLabel}>정리</span>
-        <div className={`${lib.kindTabs} ${h.tagTabs}`} style={{ margin: 0 }}>
+        <div className={`${old.kindTabs} ${h.tagTabs}`} style={{ margin: 0 }}>
           <button
             type="button"
             aria-pressed={g.tag === "none"}

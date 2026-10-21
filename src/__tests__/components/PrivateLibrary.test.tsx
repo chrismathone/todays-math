@@ -73,8 +73,23 @@ const boardProps = () => ({
   onOpenDraft: vi.fn(),
   onOpenExtraction: vi.fn(),
 });
-const workingToggle = (count: number) =>
-  screen.getByRole("checkbox", { name: `내 작업 중만 (${count})` });
+/**
+ * 거르기 줄(2026-10-21 Wire C · Hi-fi H4) — 종류 · 태그 · 보기 · 정렬 드롭다운 넷 + 찾기 + 새로고침 + 결과 수.
+ * 칩 줄 · 체크는 없다. «내 작업 중만»은 «보기 범위»의 항목이다.
+ */
+const filterBar = () => screen.getByRole("group", { name: "자료 거르기" });
+const picker = (name: string) =>
+  within(filterBar()).getByRole<HTMLSelectElement>("combobox", { name });
+const choose = (name: string, value: string) =>
+  fireEvent.change(picker(name), { target: { value } });
+const options = (name: string) =>
+  within(picker(name))
+    .getAllByRole("option")
+    .map((option) => option.textContent);
+const workingOption = () =>
+  options("보기 범위").find((text) => text?.startsWith("내 작업 중만"));
+const shownCount = () =>
+  within(filterBar()).getByRole("status").textContent?.replace(/\s+/g, " ");
 const listResponse = (items: PrivateDocumentSummary[]) =>
   Response.json({ data: items, meta: { total: items.length } });
 const titles = () =>
@@ -110,14 +125,16 @@ describe("private library board", () => {
     expect(
       screen.queryByRole("button", { name: "분수 연산 복습 이어서 작업" }),
     ).toBeNull();
-    // «작업 중»은 종류가 아니라 상태 토글이다 — 출력 단계로 저장한 연산은 거기 안 든다.
-    fireEvent.click(workingToggle(1));
+    // «작업 중»은 종류가 아니라 보기 범위다 — 출력 단계로 저장한 연산은 거기 안 든다.
+    expect(workingOption()).toBe("내 작업 중만 (1)");
+    choose("보기 범위", "working");
     expect(
       screen.queryByRole("button", { name: "분수 연산 복습 열기" }),
     ).toBeNull();
-    expect(screen.getByRole("button", { name: "연산 연습지 0" })).toBeVisible();
-    fireEvent.click(workingToggle(1));
-    fireEvent.click(screen.getByRole("button", { name: "연산 연습지 1" }));
+    expect(options("자료 종류")).toContain("연산 연습지 (0)");
+    choose("보기 범위", "all");
+    expect(options("자료 종류")).toContain("연산 연습지 (1)");
+    choose("자료 종류", "arithmeticSheet");
     expect(
       screen.getByRole("button", { name: "분수 연산 복습 수정" }),
     ).toHaveAttribute("title", "수정 · 출력 설정 열기");
@@ -138,7 +155,8 @@ describe("private library board", () => {
     const props = boardProps();
     render(<PrivateLibrary {...props} />);
     await screen.findByRole("button", { name: "Alpha 학습지 이어서 작업" });
-    fireEvent.click(workingToggle(1));
+    expect(workingOption()).toBe("내 작업 중만 (1)");
+    choose("보기 범위", "working");
     expect(screen.queryByRole("button", { name: "beta 평가 열기" })).toBeNull();
     expect(
       screen.getByText(
@@ -219,15 +237,13 @@ describe("private library board", () => {
     expect(
       transport.mock.calls.find(([, init]) => init?.method === "POST")?.[0],
     ).toBe("/api/library/documents/alpha?ownerId=owner-b");
-    fireEvent.click(screen.getByRole("checkbox", { name: "내 자료만 보기" }));
+    choose("보기 범위", "mine");
     await waitFor(() =>
       expect(
         screen.queryByRole("button", { name: "공개 시험지 사본으로 열기" }),
       ).toBeNull(),
     );
-    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
-      "저장한 자료 1개",
-    );
+    expect(shownCount()).toBe("1개 중 1개");
   });
 
   it("drops shared rows and branch controls when membership changes", async () => {
@@ -247,9 +263,8 @@ describe("private library board", () => {
     view.rerender(<PrivateLibrary {...props} branchId={null} />);
     expect(screen.getByRole("heading", { name: "내 시험지" })).toBeVisible();
     expect(screen.queryByText(/작성자: 동료/)).toBeNull();
-    expect(
-      screen.queryByRole("checkbox", { name: "내 자료만 보기" }),
-    ).toBeNull();
+    // 학원 소속이 아니면 «보기»는 둘 — 내 자료만은 없다(늘 내 자료만 받아 온다).
+    expect(options("보기 범위")).toEqual(["내 자료 전체", "내 작업 중만 (0)"]);
   });
 
   it("shows six columns, counts, newest order and client-side search, kind and sorting without writes", async () => {
@@ -262,7 +277,7 @@ describe("private library board", () => {
     ).toEqual(["번호", "종류", "자료 이름", "문항 수", "최근 수정", "관리"]);
     expect(titles()).toEqual(["beta 평가", "Gamma 추출 자료", "Alpha 학습지"]);
     expect(boardRow("Alpha 학습지").getAllByRole("cell")).toHaveLength(6);
-    expect(screen.getByText(/저장한 자료/).textContent).toBe("저장한 자료 3개");
+    expect(shownCount()).toBe("3개");
 
     fireEvent.change(screen.getByRole("combobox", { name: "자료 정렬" }), {
       target: { value: "name" },
@@ -272,24 +287,33 @@ describe("private library board", () => {
       target: { value: "count" },
     });
     expect(titles()).toEqual(["Gamma 추출 자료", "Alpha 학습지", "beta 평가"]);
-    // 종류 고르기는 단추 묶음 하나뿐이다 — 같은 값을 덮어쓰던 «종류» 드롭다운은 없다.
-    expect(screen.queryByRole("combobox", { name: "자료 종류" })).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "시험지 2" }));
+    // 종류는 정렬과 같은 드롭다운 하나뿐이다(2026-10-21 Wire C) — 종류 칩 묶음은 없다.
+    expect(
+      screen.queryByRole("group", { name: "자료 종류별 보기" }),
+    ).toBeNull();
+    expect(options("자료 종류")).toContain("시험지 (2)");
+    choose("자료 종류", "draft");
     expect(titles()).toEqual(["Alpha 학습지", "beta 평가"]);
     fireEvent.change(
       screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
       { target: { value: "  ALPHA  " } },
     );
     expect(titles()).toEqual(["Alpha 학습지"]);
-    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
-      "저장한 자료 3개 · 검색 결과 1개",
-    );
+    expect(shownCount()).toBe("3개 중 1개");
     // 종류 수는 검색까지 적용한 집합에서 센다 — 검색 뒤 추출 자료는 0.
-    fireEvent.click(screen.getByRole("button", { name: "추출한 자료 0" }));
+    expect(options("자료 종류")).toContain("추출한 자료 (0)");
+    choose("자료 종류", "extraction");
     expect(
       screen.getByRole("heading", { name: "조건에 맞는 자료가 없습니다" }),
     ).toBeVisible();
+    expect(
+      screen.getByText(
+        "자료 이름이나 종류 · 태그 · 보기를 바꿔 다시 찾아보세요.",
+      ),
+    ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
+    // 초기화는 검색 · 종류 · 태그 · 보기를 처음으로 — 정렬은 그대로(문항 많은순).
+    expect(picker("자료 정렬").value).toBe("count");
     expect(titles()).toEqual(["Gamma 추출 자료", "Alpha 학습지", "beta 평가"]);
     // 목록 읽기는 한 번 — 낸 기록(월말평가 M1 · `/api/exam-publications`)은 따로 읽는다.
     expect(
@@ -353,7 +377,8 @@ describe("private library board", () => {
     const { rerender } = render(<PrivateLibrary {...props} canConceptBlank />);
     await screen.findByRole("table");
     expect(boardRow("합동 백지").getByText("개념 백지")).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "개념 백지 1" }));
+    expect(options("자료 종류")).toContain("개념 백지 (1)");
+    choose("자료 종류", "conceptBlank");
     expect(titles()).toEqual(["합동 백지"]);
     expect(
       screen.getByRole("button", { name: "합동 백지 수정" }),
@@ -979,7 +1004,10 @@ describe("private library delete confirmation dialog", () => {
     await seeded();
     fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
     expect(screen.getByText("저장한 자료를 불러오는 중입니다…")).toBeVisible();
+    // 읽는 동안 새로고침은 꺼진다 — 겹쳐 읽지 않는다.
+    expect(screen.getByRole("button", { name: "새로고침" })).toBeDisabled();
     await screen.findByRole("button", { name: "오늘 수학 학습지 열기" });
+    expect(screen.getByRole("button", { name: "새로고침" })).toBeEnabled();
   });
 
   it("preserves an open dialog across a new remote revision without confirming unseen changes", async () => {
@@ -1056,7 +1084,7 @@ describe("private library delete confirmation dialog", () => {
 /**
  * 2026-10-16 외부 검토(codex) — «종류»와 «작업 중»을 한 줄에 두어 5건이 8처럼 읽혔고(P2),
  * 종류 단추와 «종류» 드롭다운이 같은 값을 덮어써 교집합을 못 골랐다(P2). 종류 네 개의 합이 전체이고,
- * 작업 중은 독립 토글이며, 종류 × 작업 중 × 검색 × 내 자료는 교집합이다.
+ * 작업 중은 종류와 따로 고르며(2026-10-21 부터 «보기 범위»의 항목), 종류 × 작업 중 × 검색 × 내 자료는 교집합이다.
  */
 describe("private library kinds · status · intersections (2026-10-16 review)", () => {
   const five: PrivateDocumentSummary[] = [
@@ -1089,12 +1117,7 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       updatedAt: "2026-09-04T00:00:00Z",
     },
   ];
-  const kindButtons = () =>
-    within(screen.getByRole("group", { name: "자료 종류별 보기" }))
-      .getAllByRole("button")
-      .map((button) => button.textContent?.replace(/\s+/g, " ").trim());
-
-  it("sums the four kinds to the whole (5 documents · 3 working ≠ 8) and keeps working as a separate toggle", async () => {
+  it("sums the four kinds to the whole (5 documents · 3 working ≠ 8) and keeps working apart from the kinds", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () => listResponse(five)),
@@ -1107,24 +1130,24 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       />,
     );
     await screen.findByRole("table");
-    expect(kindButtons()).toEqual([
-      "전체 자료 5",
-      "시험지 2",
-      "연산 연습지 0",
-      "추출한 자료 2",
-      "개념 백지 1",
+    expect(options("자료 종류")).toEqual([
+      "전체 자료 (5)",
+      "시험지 (2)",
+      "연산 연습지 (0)",
+      "추출한 자료 (2)",
+      "개념 백지 (1)",
     ]);
-    expect(workingToggle(3)).not.toBeChecked();
+    expect(picker("보기 범위").value).toBe("all");
+    expect(workingOption()).toBe("내 작업 중만 (3)");
     expect(screen.queryByRole("button", { name: /^작업 중/ })).toBeNull();
-    expect(screen.queryByRole("combobox", { name: "자료 종류" })).toBeNull();
   });
 
   it.each([
-    ["시험지 2", ["시험지 출력 단계", "시험지 작업 중"]],
-    ["연산 연습지 0", []],
-    ["추출한 자료 2", ["추출 작업 중", "추출 기록 없음"]],
-    ["개념 백지 1", ["개념 백지 하나"]],
-  ])("selecting «%s» leaves only that kind", async (name, expected) => {
+    ["draft", ["시험지 출력 단계", "시험지 작업 중"]],
+    ["arithmeticSheet", []],
+    ["extraction", ["추출 작업 중", "추출 기록 없음"]],
+    ["conceptBlank", ["개념 백지 하나"]],
+  ])("selecting «%s» leaves only that kind", async (kind, expected) => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () => listResponse(five)),
@@ -1137,7 +1160,7 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       />,
     );
     await screen.findByRole("table");
-    fireEvent.click(screen.getByRole("button", { name }));
+    choose("자료 종류", kind);
     if (expected.length) expect(titles()).toEqual(expected);
     else
       expect(
@@ -1158,23 +1181,25 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       />,
     );
     await screen.findByRole("table");
-    // 시험지 → 작업 중 토글의 수는 시험지 안의 작업 중(2)
-    fireEvent.click(screen.getByRole("button", { name: "시험지 2" }));
-    fireEvent.click(workingToggle(2));
+    // 시험지 → «내 작업 중만»의 수는 시험지 안의 작업 중(2)
+    choose("자료 종류", "draft");
+    expect(workingOption()).toBe("내 작업 중만 (2)");
+    choose("보기 범위", "working");
     expect(titles()).toEqual(["시험지 출력 단계", "시험지 작업 중"]);
-    // 작업 중을 켠 채 종류 수를 다시 센다 — 전체 3 = 2 + 0 + 1 + 0
-    expect(kindButtons()).toEqual([
-      "전체 자료 3",
-      "시험지 2",
-      "연산 연습지 0",
-      "추출한 자료 1",
-      "개념 백지 0",
+    // 작업 중을 건 채 종류 수를 다시 센다 — 전체 3 = 2 + 0 + 1 + 0
+    expect(options("자료 종류")).toEqual([
+      "전체 자료 (3)",
+      "시험지 (2)",
+      "연산 연습지 (0)",
+      "추출한 자료 (1)",
+      "개념 백지 (0)",
     ]);
-    // 종류를 바꿔도 작업 중은 남는다(교집합) — 드롭다운이 덮어쓰던 때와 다르다
-    fireEvent.click(screen.getByRole("button", { name: "추출한 자료 1" }));
+    // 종류를 바꿔도 작업 중은 남는다(교집합) — 종류와 보기는 서로 덮어쓰지 않는다
+    choose("자료 종류", "extraction");
     expect(titles()).toEqual(["추출 작업 중"]);
-    expect(workingToggle(1)).toBeChecked();
-    fireEvent.click(screen.getByRole("button", { name: "전체 자료 3" }));
+    expect(picker("보기 범위").value).toBe("working");
+    expect(workingOption()).toBe("내 작업 중만 (1)");
+    choose("자료 종류", "all");
     expect(titles()).toEqual([
       "시험지 출력 단계",
       "추출 작업 중",
@@ -1185,23 +1210,23 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
       { target: { value: "시험지" } },
     );
-    expect(kindButtons()[0]).toBe("전체 자료 2");
-    expect(workingToggle(2)).toBeChecked();
-    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
-      "저장한 자료 5개 · 검색 결과 2개",
-    );
-    fireEvent.click(workingToggle(2));
-    expect(kindButtons()[0]).toBe("전체 자료 2");
+    expect(options("자료 종류")[0]).toBe("전체 자료 (2)");
+    expect(picker("보기 범위").value).toBe("working");
+    expect(workingOption()).toBe("내 작업 중만 (2)");
+    expect(shownCount()).toBe("5개 중 2개");
+    choose("보기 범위", "all");
+    expect(options("자료 종류")[0]).toBe("전체 자료 (2)");
     expect(titles()).toEqual(["시험지 출력 단계", "시험지 작업 중"]);
-    // 초기화는 토글까지 푼다
+    // 초기화는 보기까지 푼다
     fireEvent.change(
       screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
       { target: { value: "없는 이름" } },
     );
-    fireEvent.click(workingToggle(0));
+    expect(workingOption()).toBe("내 작업 중만 (0)");
+    choose("보기 범위", "working");
     fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
-    expect(workingToggle(3)).not.toBeChecked();
-    expect(kindButtons()[0]).toBe("전체 자료 5");
+    expect(picker("보기 범위").value).toBe("all");
+    expect(options("자료 종류")[0]).toBe("전체 자료 (5)");
   });
 
   it("counts only my own working documents and never a colleague's", async () => {
@@ -1228,16 +1253,15 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
     );
     render(<PrivateLibrary {...boardProps()} branchId="branch-a" />);
     await screen.findByText(/작성자: 동료/);
-    expect(kindButtons()[0]).toBe("전체 자료 6");
-    expect(workingToggle(3)).toBeVisible();
-    fireEvent.click(workingToggle(3));
-    expect(screen.queryByText(/작성자: 동료/)).toBeNull();
+    expect(options("자료 종류")[0]).toBe("전체 자료 (6)");
+    expect(workingOption()).toBe("내 작업 중만 (3)");
+    choose("보기 범위", "working");
+    await waitFor(() => expect(screen.queryByText(/작성자: 동료/)).toBeNull());
     expect(
       screen.queryByRole("button", { name: "동료 작업 중 이어서 작업" }),
     ).toBeNull();
-    fireEvent.click(workingToggle(3));
-    fireEvent.click(screen.getByRole("checkbox", { name: "내 자료만 보기" }));
-    await waitFor(() => expect(kindButtons()[0]).toBe("전체 자료 5"));
+    choose("보기 범위", "mine");
+    await waitFor(() => expect(options("자료 종류")[0]).toBe("전체 자료 (5)"));
   });
 
   it("labels the edit icon with where it really lands (extraction → 문항 검토)", async () => {
@@ -1347,7 +1371,8 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
       expect(
         screen.queryByRole("button", { name: "연산 검토 중 이어서 작업" }),
       ).toBeNull();
-      expect(workingToggle(1)).toBeVisible();
+      // 이어서 작업은 숨어도 작업 중에는 센다(연산 메뉴가 없을 뿐 진행 단계는 기록돼 있다).
+      expect(workingOption()).toBe("내 작업 중만 (1)");
     });
   });
 
@@ -1503,7 +1528,7 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
   });
 });
 
-// 2026-10-16 W8 «시험지 태그»(Hi-fi 1안 + 3안의 접힌 한 줄) — 종류 줄 아래 같은 꼴의 태그 줄.
+// 2026-10-16 W8 «시험지 태그» — 2026-10-21 부터 태그 줄이 아니라 거르기 줄의 «태그» 드롭다운(Wire C · Hi-fi H4).
 describe("private library tag filter (W8)", () => {
   const doc = (
     id: string,
@@ -1537,14 +1562,6 @@ describe("private library tag filter (W8)", () => {
     }),
     doc("d8", "conceptBlank", "중2 부등식 개념 백지"),
   ];
-  const tagButtons = () =>
-    within(screen.getByRole("group", { name: "태그별 보기" }))
-      .getAllByRole("button")
-      .map((button) => button.textContent?.replace(/\s+/g, " ").trim());
-  const kinds = () =>
-    within(screen.getByRole("group", { name: "자료 종류별 보기" }))
-      .getAllByRole("button")
-      .map((button) => button.textContent?.replace(/\s+/g, " ").trim());
   const show = async () => {
     vi.stubGlobal(
       "fetch",
@@ -1562,21 +1579,22 @@ describe("private library tag filter (W8)", () => {
     await screen.findByRole("table");
   };
 
-  it("shows a second row like the kind row — counts, «태그 없음» after a divider — and a tag badge under the kind", async () => {
+  it("lists the tags with counts, «태그 없음» last after a divider, and a tag badge under the kind", async () => {
     await show();
-    expect(tagButtons()).toEqual([
+    expect(options("태그")).toEqual([
       "태그 전체",
-      "일일TEST 2",
-      "주간TEST 1",
-      "단원TEST 0",
-      "숙제 1",
-      "복습 0",
-      "오답 0",
-      "입학TEST 0",
-      "내신대비 0",
+      "일일TEST (2)",
+      "주간TEST (1)",
+      "단원TEST (0)",
+      "숙제 (1)",
+      "복습 (0)",
+      "오답 (0)",
+      "입학TEST (0)",
+      "내신대비 (0)",
       // 시험지 · 연산 연습지 가운데 태그가 없는 것만 — 추출한 자료 · 개념 백지는 세지 않는다.
-      "태그 없음 2",
+      "태그 없음 (2)",
     ]);
+    expect(picker("태그").querySelector("hr")).not.toBeNull();
     expect(boardRow("중2 일일 10.16").getByText("일일TEST")).toBeVisible();
     expect(boardRow("중1 정수 덧셈").getByText("숙제")).toBeVisible();
     expect(boardRow("쎈 중2 추출").queryByText(/TEST|숙제/)).toBeNull();
@@ -1584,76 +1602,275 @@ describe("private library tag filter (W8)", () => {
 
   it("intersects tag × kind × working × search; every count is «what remains if chosen»", async () => {
     await show();
-    fireEvent.click(screen.getByRole("button", { name: "일일TEST 2" }));
+    choose("태그", "일일TEST");
     expect(titles()).toEqual(["중2 일일 10.16", "중2 일일 10.15"]);
     // 종류 수도 태그를 건 채 다시 센다 — 태그가 없는 종류는 태그 거름이 쉰다.
-    expect(kinds()).toEqual([
-      "전체 자료 2",
-      "시험지 2",
-      "연산 연습지 0",
-      "추출한 자료 1",
-      "개념 백지 1",
+    expect(options("자료 종류")).toEqual([
+      "전체 자료 (2)",
+      "시험지 (2)",
+      "연산 연습지 (0)",
+      "추출한 자료 (1)",
+      "개념 백지 (1)",
     ]);
-    expect(workingToggle(1)).not.toBeChecked();
-    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
-      "저장한 자료 8개 · 검색 결과 2개",
-    );
+    expect(picker("보기 범위").value).toBe("all");
+    expect(workingOption()).toBe("내 작업 중만 (1)");
+    expect(shownCount()).toBe("8개 중 2개");
     // 종류를 고르면 태그 수는 그 종류 안에서 센다.
-    fireEvent.click(screen.getByRole("button", { name: "연산 연습지 0" }));
-    expect(tagButtons()).toContain("숙제 1");
-    expect(tagButtons()).toContain("일일TEST 0");
-    expect(tagButtons()).toContain("태그 없음 1");
-    fireEvent.click(screen.getByRole("button", { name: "태그 없음 1" }));
+    choose("자료 종류", "arithmeticSheet");
+    expect(options("태그")).toContain("숙제 (1)");
+    expect(options("태그")).toContain("일일TEST (0)");
+    expect(options("태그")).toContain("태그 없음 (1)");
+    choose("태그", "none");
     expect(titles()).toEqual(["중1 소인수분해 연습"]);
-    // 다시 누르면 푼다.
-    fireEvent.click(screen.getByRole("button", { name: "태그 없음 1" }));
+    // «태그 전체»로 푼다.
+    choose("태그", "");
     expect(titles()).toEqual(["중1 정수 덧셈", "중1 소인수분해 연습"]);
     // 내 작업 중 × 검색도 태그 수의 분모를 줄인다.
-    fireEvent.click(screen.getByRole("button", { name: "시험지 4" }));
-    fireEvent.click(workingToggle(2));
-    expect(tagButtons()).toContain("일일TEST 1");
-    expect(tagButtons()).toContain("태그 없음 1");
+    choose("자료 종류", "draft");
+    expect(workingOption()).toBe("내 작업 중만 (2)");
+    choose("보기 범위", "working");
+    expect(options("태그")).toContain("일일TEST (1)");
+    expect(options("태그")).toContain("태그 없음 (1)");
     fireEvent.change(
       screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
       { target: { value: "일일" } },
     );
-    expect(tagButtons()).toContain("일일TEST 1");
-    expect(tagButtons()).toContain("태그 없음 0");
+    expect(options("태그")).toContain("일일TEST (1)");
+    expect(options("태그")).toContain("태그 없음 (0)");
   });
 
-  it("collapses to one line naming the paused tag on a kind without tags, and re-applies it on return", async () => {
+  it("reads «· 미적용» on a kind without tags, keeps the tag and re-applies it on return", async () => {
     await show();
-    fireEvent.click(screen.getByRole("button", { name: "일일TEST 2" }));
-    fireEvent.click(screen.getByRole("button", { name: "추출한 자료 1" }));
-    expect(screen.queryByRole("group", { name: "태그별 보기" })).toBeNull();
-    expect(
-      screen.getByText(
-        "태그 «일일TEST» — 시험지 · 연산 연습지를 고르면 다시 걸립니다.",
-      ),
-    ).toBeVisible();
+    choose("태그", "일일TEST");
+    choose("자료 종류", "extraction");
+    // 같은 칸이 «일일TEST · 미적용»으로 읽히고, 열면 «태그 풀기» 하나 — 칸 수가 그대로다.
+    expect(picker("태그")).toHaveDisplayValue("일일TEST · 미적용");
+    expect(options("태그")).toEqual(["일일TEST · 미적용", "태그 풀기"]);
+    expect(picker("태그")).toBeEnabled();
+    expect(picker("태그")).toHaveAccessibleDescription(
+      /^태그는 시험지 · 연산 연습지에만 있습니다\. 그 종류를 고르면 다시 걸립니다\./,
+    );
     // 쉬는 태그는 거르지 않는다.
     expect(titles()).toEqual(["쎈 중2 추출"]);
-    fireEvent.click(screen.getByRole("button", { name: "시험지 2" }));
+    choose("자료 종류", "draft");
+    expect(picker("태그").value).toBe("일일TEST");
     expect(titles()).toEqual(["중2 일일 10.16", "중2 일일 10.15"]);
-    fireEvent.click(screen.getByRole("button", { name: "태그 전체" }));
-    fireEvent.click(screen.getByRole("button", { name: "개념 백지 1" }));
-    expect(
-      screen.getByText("태그는 시험지 · 연산 연습지에만 있습니다."),
-    ).toBeVisible();
+    // 기억한 태그가 없으면 칸 글이 곧 까닭인 «시험지 · 연산만»으로 꺼진다.
+    choose("태그", "");
+    choose("자료 종류", "conceptBlank");
+    expect(picker("태그")).toBeDisabled();
+    expect(picker("태그")).toHaveDisplayValue("시험지 · 연산만");
+  });
+
+  it("releases a paused tag from the same dropdown and moves focus to the kind dropdown", async () => {
+    await show();
+    choose("태그", "일일TEST");
+    choose("자료 종류", "extraction");
+    picker("태그").focus();
+    choose("태그", "");
+    // 풀면 태그 칸이 꺼지므로 초점은 그 칸을 꺼지게 한 종류 칸으로 간다.
+    expect(picker("자료 종류")).toHaveFocus();
+    expect(picker("태그")).toBeDisabled();
+    expect(picker("태그")).toHaveDisplayValue("시험지 · 연산만");
+    // 푼 태그는 돌아가도 다시 걸리지 않는다.
+    choose("자료 종류", "draft");
+    expect(picker("태그").value).toBe("");
+    expect(titles()).toHaveLength(4);
   });
 
   it("검색 조건 초기화 also clears the tag", async () => {
     await show();
-    fireEvent.click(screen.getByRole("button", { name: "주간TEST 1" }));
+    choose("태그", "주간TEST");
     fireEvent.change(
       screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
       { target: { value: "없는 이름" } },
     );
     fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
-    expect(screen.getByRole("button", { name: "태그 전체" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
+    expect(picker("태그").value).toBe("");
     expect(titles()).toHaveLength(8);
+  });
+});
+
+/**
+ * 2026-10-21 원장님 «상단 정렬하자. 드랍다운으로 스타일 맞춰서 깔끔하게» · «행을 너무 많이 써서 공간낭비함».
+ * Wire C(드롭다운 넷 + 찾기 · 결과 수는 줄 끝 · 이름은 칸 안) · Hi-fi H4(한 띠). ④ 보기 범위는 Codex 와 (가).
+ */
+describe("private library filter bar (Wire C · Hi-fi H4)", () => {
+  const mine = (id: string, title: string, patch = {}) => ({
+    ...boardItems[0],
+    id,
+    title,
+    ownerId: "owner-a",
+    ...patch,
+  });
+  const colleague = {
+    ...boardItems[1],
+    id: "c1",
+    title: "동료 공개 시험지",
+    ownerId: "owner-b",
+    ownerName: "동료",
+    visibility: "branch" as const,
+  };
+  const branchServer = () => {
+    const lists: string[] = [];
+    const transport = vi.fn<typeof fetch>(async (url) => {
+      const href = String(url);
+      if (href.startsWith("/api/library/documents?")) lists.push(href);
+      const own = [
+        mine("m1", "내 작업 중 시험지", {
+          workflow: { source: "bank", step: "review" },
+        }),
+        mine("m2", "내 시험지"),
+      ];
+      return listResponse(
+        href.includes("mine=true") ? own : [...own, colleague],
+      );
+    });
+    vi.stubGlobal("fetch", transport);
+    return lists;
+  };
+
+  it("lays the four dropdowns, search, refresh and the count on one bar — no chip rows or checkboxes", async () => {
+    branchServer();
+    render(<PrivateLibrary {...boardProps()} branchId="branch-a" />);
+    await screen.findByRole("table");
+    const bar = filterBar();
+    expect(
+      within(bar)
+        .getAllByRole("combobox")
+        .map((select) => select.getAttribute("aria-label")),
+    ).toEqual(["자료 종류", "태그", "보기 범위", "자료 정렬"]);
+    // 이름은 칸 안에 작게 — 화면에 보이는 글, 읽는 이름은 aria-label
+    for (const name of ["종류", "태그", "보기", "정렬"])
+      expect(within(bar).getByText(name)).toHaveAttribute(
+        "aria-hidden",
+        "true",
+      );
+    expect(
+      within(bar).getByRole("searchbox", { name: "저장한 자료 검색" }),
+    ).toBeVisible();
+    expect(within(bar).getByRole("button", { name: "새로고침" })).toBeVisible();
+    expect(shownCount()).toBe("3개");
+    expect(options("보기 범위")).toEqual([
+      "학원 자료 전체",
+      "내 자료만",
+      "내 작업 중만 (1)",
+    ]);
+    expect(screen.queryByRole("checkbox")).toBeNull();
+    expect(
+      screen.queryByRole("group", { name: "자료 종류별 보기" }),
+    ).toBeNull();
+    expect(screen.queryByRole("group", { name: "태그별 보기" })).toBeNull();
+    expect(screen.queryByText(/검색 결과/)).toBeNull();
+  });
+
+  it("picks the arrival scope each time — reads mine from the server only when it must, keeps no memory (④)", async () => {
+    const lists = branchServer();
+    render(<PrivateLibrary {...boardProps()} branchId="branch-a" />);
+    await screen.findByText("동료 공개 시험지");
+    expect(lists).toHaveLength(1);
+    expect(lists[0]).not.toContain("mine=true");
+    choose("보기 범위", "mine");
+    await waitFor(() => expect(lists).toHaveLength(2));
+    expect(lists[1]).toContain("mine=true");
+    await waitFor(() =>
+      expect(screen.queryByText("동료 공개 시험지")).toBeNull(),
+    );
+    // 내 자료만 ↔ 내 작업 중만은 화면 안 거름 — 다시 읽지 않는다.
+    choose("보기 범위", "working");
+    expect(titles()).toEqual(["내 작업 중 시험지"]);
+    expect(lists).toHaveLength(2);
+    // 작업 중에서 «학원 자료 전체»를 고르면 그대로 — «내 자료만»이 남지 않는다.
+    choose("보기 범위", "all");
+    expect(picker("보기 범위").value).toBe("all");
+    await screen.findByText("동료 공개 시험지");
+    expect(lists).toHaveLength(3);
+    expect(lists[2]).not.toContain("mine=true");
+    // 학원 자료 전체에서 바로 «내 작업 중만»이면 내 자료만 받아 온다.
+    choose("보기 범위", "working");
+    await waitFor(() => expect(lists).toHaveLength(4));
+    expect(lists[3]).toContain("mine=true");
+    expect(shownCount()).toBe("2개 중 1개");
+  });
+
+  // Codex 구현 검토(2026-10-21) — 범위를 바꾸며 읽기가 실패하면 앞 범위의 목록이 남는다. «내 자료만» 아래에
+  // 동료 자료가 다시 나타나면 안 된다(내 자료만 ↔ 작업 중은 다시 읽지 않으므로 화면에서도 내 것만 남긴다).
+  it("never shows a colleague's rows under «내 자료만» when reading the scope failed", async () => {
+    const lists: string[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (url) => {
+        const href = String(url);
+        if (href.startsWith("/api/library/documents?")) lists.push(href);
+        if (href.includes("mine=true"))
+          return Response.json(
+            { error: { message: "잠시 뒤 다시 시도해 주세요." } },
+            { status: 503 },
+          );
+        return listResponse([
+          mine("m1", "내 작업 중 시험지", {
+            workflow: { source: "bank", step: "review" },
+          }),
+          mine("m2", "내 시험지"),
+          colleague,
+        ]);
+      }),
+    );
+    render(<PrivateLibrary {...boardProps()} branchId="branch-a" />);
+    await screen.findByText("동료 공개 시험지");
+    choose("보기 범위", "working");
+    await waitFor(() => expect(lists).toHaveLength(2));
+    expect(await screen.findByRole("alert")).toBeVisible();
+    choose("보기 범위", "mine");
+    expect(screen.queryByText("동료 공개 시험지")).toBeNull();
+    expect(titles()).toEqual(["내 작업 중 시험지", "내 시험지"]);
+    // 분모도 내 자료로 센다 — 앞 범위(학원 전체 3)가 아니다.
+    expect(shownCount()).toBe("2개 중 2개");
+  });
+
+  it("does not read again when an account outside a branch switches between its two scopes", async () => {
+    const lists: string[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (url) => {
+        const href = String(url);
+        if (href.startsWith("/api/library/documents?")) lists.push(href);
+        return listResponse([
+          mine("m1", "내 작업 중 시험지", {
+            workflow: { source: "bank", step: "review" },
+          }),
+          mine("m2", "내 시험지"),
+        ]);
+      }),
+    );
+    render(<PrivateLibrary {...boardProps()} />);
+    await screen.findByRole("table");
+    expect(lists).toHaveLength(1);
+    expect(lists[0]).toContain("mine=true");
+    choose("보기 범위", "working");
+    expect(titles()).toEqual(["내 작업 중 시험지"]);
+    choose("보기 범위", "all");
+    expect(titles()).toHaveLength(2);
+    expect(lists).toHaveLength(1);
+  });
+
+  it("tells beforehand that «태그 풀기» switches the tag dropdown off", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () =>
+        listResponse([
+          mine("m1", "내 시험지", { tag: "숙제" }),
+          { ...boardItems[2], id: "x9", ownerId: "owner-a" },
+        ]),
+      ),
+    );
+    render(<PrivateLibrary {...boardProps()} />);
+    await screen.findByRole("table");
+    choose("태그", "숙제");
+    choose("자료 종류", "extraction");
+    // 닫힌 select 는 화살표 하나에도 값이 바뀐다(Windows) — 바뀌기 전에 무엇이 일어나는지 읽힌다.
+    expect(picker("태그")).toHaveAccessibleDescription(
+      /«태그 풀기»를 고르면 태그를 지우고 이 칸은 꺼집니다\. 초점은 자료 종류 칸으로 옮겨 갑니다\./,
+    );
   });
 });
