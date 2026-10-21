@@ -1,0 +1,38 @@
+test_dihedral_angle_is_acute_regardless_of_normal_sign (copied_existing_tests.AngleAndAreaTests.test_dihedral_angle_is_acute_regardless_of_normal_sign) ... ok
+test_line_plane_angle (copied_existing_tests.AngleAndAreaTests.test_line_plane_angle) ... ok
+test_planarity_check_rejects_a_skew_quad (copied_existing_tests.AngleAndAreaTests.test_planarity_check_rejects_a_skew_quad) ... ok
+test_projected_area_equals_S_cos_theta (copied_existing_tests.AngleAndAreaTests.test_projected_area_equals_S_cos_theta) ... ok
+test_degenerate_camera_and_circle_inputs (copied_existing_tests.CameraAndCurveTests.test_degenerate_camera_and_circle_inputs) ... ok
+test_depth_split_separates_front_and_back (copied_existing_tests.CameraAndCurveTests.test_depth_split_separates_front_and_back) ... ok
+test_every_projected_point_lies_within_the_sphere_outline (copied_existing_tests.CameraAndCurveTests.test_every_projected_point_lies_within_the_sphere_outline) ... ok
+test_parallel_planes_have_no_intersection (copied_existing_tests.CameraAndCurveTests.test_parallel_planes_have_no_intersection) ... ok
+test_plane_intersection_point_lies_on_both_planes (copied_existing_tests.CameraAndCurveTests.test_plane_intersection_point_lies_on_both_planes) ... ok
+test_sphere_stays_a_circle_and_its_great_circle_fits_inside (copied_existing_tests.CameraAndCurveTests.test_sphere_stays_a_circle_and_its_great_circle_fits_inside) ... ok
+test_collinear_points_do_not_define_a_plane (copied_existing_tests.PlaneAndFootTests.test_collinear_points_do_not_define_a_plane) ... ok
+test_foot_lands_on_plane_and_is_perpendicular (copied_existing_tests.PlaneAndFootTests.test_foot_lands_on_plane_and_is_perpendicular) ... ok
+test_foot_on_a_tilted_plane (copied_existing_tests.PlaneAndFootTests.test_foot_on_a_tilted_plane) ... ok
+test_scope_is_the_calling_module_not_this_helper (copied_existing_tests.RegistryIntegrationTests.test_scope_is_the_calling_module_not_this_helper) ... ok
+test_verify_solid_registers_in_the_shared_ledger (copied_existing_tests.RegistryIntegrationTests.test_verify_solid_registers_in_the_shared_ledger) ... ok
+test_correct_scene_passes (copied_existing_tests.VerifySolidTests.test_correct_scene_passes) ... ok
+test_degenerate_view_is_flagged_during_verification (copied_existing_tests.VerifySolidTests.test_degenerate_view_is_flagged_during_verification) ... ok
+test_foot_left_off_the_plane_is_caught (copied_existing_tests.VerifySolidTests.test_foot_left_off_the_plane_is_caught) ... ok
+test_hand_placed_foot_is_caught (copied_existing_tests.VerifySolidTests.test_hand_placed_foot_is_caught)
+눈대중으로 찍은 A′ — 이게 이 모듈을 만든 이유다. ... ok
+test_length_ratio_uses_one_scale (copied_existing_tests.VerifySolidTests.test_length_ratio_uses_one_scale) ... ok
+test_line_angle_kind (copied_existing_tests.VerifySolidTests.test_line_angle_kind) ... ok
+test_perpendicularity (copied_existing_tests.VerifySolidTests.test_perpendicularity) ... ok
+test_projected_area_label_is_checked (copied_existing_tests.VerifySolidTests.test_projected_area_label_is_checked) ... ok
+test_skew_polygon_area_is_refused (copied_existing_tests.VerifySolidTests.test_skew_polygon_area_is_refused) ... ok
+test_unknown_angle_kind_is_rejected (copied_existing_tests.VerifySolidTests.test_unknown_angle_kind_is_rejected) ... ok
+test_wrong_dihedral_label_is_caught (copied_existing_tests.VerifySolidTests.test_wrong_dihedral_label_is_caught) ... ok
+test_back_facing_detects_the_hidden_side_of_a_box (copied_existing_tests.ViewTests.test_back_facing_detects_the_hidden_side_of_a_box) ... ok
+test_bad_scale_is_rejected (copied_existing_tests.ViewTests.test_bad_scale_is_rejected) ... ok
+test_degenerate_view_is_reported (copied_existing_tests.ViewTests.test_degenerate_view_is_reported) ... ok
+test_isometric_is_a_view (copied_existing_tests.ViewTests.test_isometric_is_a_view) ... ok
+test_projection_is_affine_and_y_grows_downward (copied_existing_tests.ViewTests.test_projection_is_affine_and_y_grows_downward) ... ok
+test_view_direction_collapses_points_that_overlap (copied_existing_tests.ViewTests.test_view_direction_collapses_points_that_overlap) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.012s
+
+OK
