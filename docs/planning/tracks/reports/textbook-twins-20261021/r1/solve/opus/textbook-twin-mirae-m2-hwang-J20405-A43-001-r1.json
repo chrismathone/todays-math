@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3868291a-6c89-4aa1-b86f-6ce1df647559",
+ "startedAt": "2026-10-21T17:03:59+0900",
+ "elapsedSec": 6.7,
+ "studentSha256": {
+  "student.json": "bc9d78dab144f45fc86e3647a11a5d53c544ae4d088295f985a7ebd216f924e0"
+ },
+ "promptSha256": "335ab7417cc52d0c3f031fe0333b2ba11e242285bba2ba6b584daad10912eb6f",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"직선 l의 기울기는 (-2-7)/(4-1) = -3이고, l의 식은 y = -3x + 10이다. 직선 m은 l과 만나지 않으므로 l과 평행하고 기울기가 같다. 따라서 m의 기울기도 -3이다. m이 점 (-2, 5)를 지나므로 5 = -3(-2) + b에서 b = -1이다. 그러므로 m의 식은 y = -3x - 1이다. y절편이 -1로 l의 10과 다르므로 두 직선은 겹치지 않는다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "직선 l의 기울기는 (-2-7)/(4-1) = -3이고, l의 식은 y = -3x + 10이다. 직선 m은 l과 만나지 않으므로 l과 평행하고 기울기가 같다. 따라서 m의 기울기도 -3이다. m이 점 (-2, 5)를 지나므로 5 = -3(-2) + b에서 b = -1이다. 그러므로 m의 식은 y = -3x - 1이다. y절편이 -1로 l의 10과 다르므로 두 직선은 겹치지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fcd4f64b49dcd62a97dbc1e9dea583cdbe4a14ba864c0ac3e0453f46c84dc64c"
+}

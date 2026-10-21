@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A45-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "87ff9ea3-d915-4b3b-ae43-db095f3d115d",
+ "startedAt": "2026-10-21T17:04:06+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "c7536d44233a47f1a1dca96502dad83de8feb0904a9db95a25c50880a899595c"
+ },
+ "promptSha256": "dfdaa3be57ab3a7f399e76cddc34c2626ddf769122471a9d895e2f79f2872956",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"-3\", \"work\": \"기울기 = (-12)/3 = -4 이므로 y = -4x + b. 점 (-2, 5)를 대입하면 5 = 8 + b, 따라서 b = -3이고 y = -4x - 3. 점 (m, 9)를 대입하면 9 = -4m - 3, 즉 -4m = 12이므로 m = -3.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "-3",
+  "work": "기울기 = (-12)/3 = -4 이므로 y = -4x + b. 점 (-2, 5)를 대입하면 5 = 8 + b, 따라서 b = -3이고 y = -4x - 3. 점 (m, 9)를 대입하면 9 = -4m - 3, 즉 -4m = 12이므로 m = -3.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "29e71195a58e13023b4633a55fd5a67a4295e93f9f8d93f7b9617a02aac7dbb4"
+}

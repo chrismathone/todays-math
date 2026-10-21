@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-fe19-7b90-a9f3-60525e67ef1e",
+ "startedAt": "2026-10-21T17:55:15+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "student.json": "8a63d8a9d6795862d30cfe1f2b9551ddd6fa039491d29956f4cbb68f750ebc0f"
+ },
+ "promptSha256": "4172fc4d42d87d2cdf600d0a3cead108dd2bb63ef3ddcd8088f448a474f7a18e",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"① f(-3)=-4, ② g(4)=3으로 옳다.\\n③ f(12)=1=g(3)으로 옳다.\\n④ f(1/4)=48이고 g(4)=3이므로 옳지 않다.\\n⑤ f(-4)+g(6)=-3+7=4로 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "① f(-3)=-4, ② g(4)=3으로 옳다.\n③ f(12)=1=g(3)으로 옳다.\n④ f(1/4)=48이고 g(4)=3이므로 옳지 않다.\n⑤ f(-4)+g(6)=-3+7=4로 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "830ab86cee8c0a7389b45f0ae2f0fc583542913c3e9d0f113abffecf39dd49b5"
+}

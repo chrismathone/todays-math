@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A58-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "204dc0eb-2778-44fd-a514-017e9546ecac",
+ "startedAt": "2026-10-21T17:04:23+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "f8a7431a1254b69fcd654fba8f412393803e0d283aa44e598bc21ce529608044"
+ },
+ "promptSha256": "72df3ab2d81bd44d88be4479f5dfc9a971b66aa19f4af45fbef7146f6c94f928",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"① $y=12000x$ → 일차함수\\n② $y=120-4x$ → 일차함수\\n③ $y=\\\\frac{240}{x}$ → $x$가 분모에 있으므로 일차함수가 아님\\n④ $800x+1200y=24000$에서 $y=-\\\\frac{2}{3}x+20$ → 일차함수\\n⑤ $y=\\\\frac{1}{2}(x+8)\\\\times5=\\\\frac{5}{2}x+20$ → 일차함수\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "① $y=12000x$ → 일차함수\n② $y=120-4x$ → 일차함수\n③ $y=\\frac{240}{x}$ → $x$가 분모에 있으므로 일차함수가 아님\n④ $800x+1200y=24000$에서 $y=-\\frac{2}{3}x+20$ → 일차함수\n⑤ $y=\\frac{1}{2}(x+8)\\times5=\\frac{5}{2}x+20$ → 일차함수",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9d976118bc88b727c342297a8b8b27b9f2c5ac8143dc448c6703dedff2e5476d"
+}

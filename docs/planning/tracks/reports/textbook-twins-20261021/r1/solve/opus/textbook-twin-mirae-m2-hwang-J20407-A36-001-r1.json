@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "fdc2062c-0f6d-482f-afbb-3933954f02b0",
+ "startedAt": "2026-10-21T17:04:09+0900",
+ "elapsedSec": 7.1,
+ "studentSha256": {
+  "fig-1.png": "b6fc64a8ce3393d9c607fa9f89b43422ac8ff19e0dcfe56d7bec050154162515",
+  "student.json": "06353eed03c53828d05b3ed6eeef6037cb11d37396fc8251ce232b37839ca163"
+ },
+ "promptSha256": "0d9b8c6e9ca1fc96ab9dc59a987f1e1b2033298bcf772f68311a9e93610ceeca",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"6 %\", \"work\": \"충전 시간을 x분, 배터리 양을 y%라 하면 y = ax + b 꼴이다. 기울기 a = (96−36)/(30−10) = 60/20 = 3이므로 1분에 3%씩 충전된다. x = 10일 때 y = 36이므로 36 = 3·10 + b, b = 6이다. 따라서 충전을 시작하기 전(x = 0) 배터리 양은 6%이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "6 %",
+  "work": "충전 시간을 x분, 배터리 양을 y%라 하면 y = ax + b 꼴이다. 기울기 a = (96−36)/(30−10) = 60/20 = 3이므로 1분에 3%씩 충전된다. x = 10일 때 y = 36이므로 36 = 3·10 + b, b = 6이다. 따라서 충전을 시작하기 전(x = 0) 배터리 양은 6%이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "128390bbe9c982956c03daafa9c6a76577945d7e4ba3e6ec00656d006caf38d7"
+}

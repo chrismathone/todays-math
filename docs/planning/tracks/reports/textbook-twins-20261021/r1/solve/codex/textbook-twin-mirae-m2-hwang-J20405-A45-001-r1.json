@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A45-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-2cdc-72e2-91fc-c763f39bf190",
+ "startedAt": "2026-10-21T17:54:21+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "c7536d44233a47f1a1dca96502dad83de8feb0904a9db95a25c50880a899595c"
+ },
+ "promptSha256": "dfdaa3be57ab3a7f399e76cddc34c2626ddf769122471a9d895e2f79f2872956",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-3\",\"work\":\"기울기는 -12÷3=-4이다.\\ny=-4x+b에 (-2, 5)를 대입하면 5=8+b이므로 b=-3이다.\\n점 (m, 9)를 지나므로 9=-4m-3에서 m=-3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-3",
+  "work": "기울기는 -12÷3=-4이다.\ny=-4x+b에 (-2, 5)를 대입하면 5=8+b이므로 b=-3이다.\n점 (m, 9)를 지나므로 9=-4m-3에서 m=-3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c8b2b22bf3cb98dbc3ed095f38a04ccec0ecc35cd5e0bc0c269702678695c03c"
+}
