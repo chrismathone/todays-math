@@ -1,0 +1,130 @@
+/* 내 자료의 옛 거르기 줄(2026-10-16 ~ 10-21) — 종류 칩 줄 · 태그 칩 줄 · 체크 줄 · 찾기 줄 · 결과 수 줄.
+   제품은 2026-10-21 부터 거르기 줄 하나(`PrivateLibrary.module.css` 의 `.filterBar` · 05 §8.26)라 이 규칙을 걷었다.
+   옛 모양을 기록으로 보이는 시안 둘이 이 한 벌을 쓴다 — `/dev/library-filters-wire` 의 «지금» · `/dev/exam-output-hifi` 의 W8.
+   `.library` 안에서만 쓴다(변수 --library-* · 단추 꼴이 거기서 온다). */
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 8px 0 14px;
+}
+.kindTabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.kindTabs button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+}
+.kindTabs button[aria-pressed="true"] {
+  background: var(--library-soft);
+  border-color: var(--library-accent);
+  color: var(--library-accent);
+}
+.kindTabs span {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--library-muted);
+}
+/* 상태 토글 둘 */
+.toggles {
+  display: flex;
+  gap: 4px 20px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+label.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--library-muted);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.toggle span {
+  font-variant-numeric: tabular-nums;
+}
+.toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--library-accent);
+}
+.resultCount {
+  margin: 0 0 10px;
+  color: var(--library-muted);
+  font-size: 13px;
+}
+.resultCount strong {
+  color: var(--library-ink);
+  font-variant-numeric: tabular-nums;
+}
+.tools > input {
+  flex: 1;
+  max-width: 420px;
+  min-width: 180px;
+  margin-right: auto;
+}
+.tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--library-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+/* 태그 줄(W8) */
+.tagTabs {
+  margin-top: 10px;
+  align-items: center;
+}
+.tagTabs button {
+  font-weight: 500;
+}
+.vRule {
+  align-self: stretch;
+  width: 1px;
+  margin-inline: 4px;
+  background: var(--learn-track);
+}
+.tagFolded {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+/* 이름 없는 컨테이너 — 가장 가까운 것이 `.library` 다(모듈이 달라 이름 있는 컨테이너에 기대지 않는다). */
+@container (max-width: 800px) {
+  .tools > input {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .tools label {
+    gap: 5px;
+  }
+  .tools > button {
+    margin-left: auto;
+  }
+}
+@media (max-width: 640px) {
+  .tools {
+    gap: 8px;
+  }
+  .tools label {
+    font-size: 12px;
+  }
+  .tools select {
+    padding: 8px 5px;
+  }
+}

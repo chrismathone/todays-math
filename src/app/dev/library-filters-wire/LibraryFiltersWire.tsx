@@ -10,8 +10,6 @@ import {
 } from "react";
 
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
-import lib from "@/components/unified/PrivateLibrary.module.css";
-import o from "@/components/unified/print/OutputExtras.module.css";
 import Icon from "@/components/unified/WorkspaceIcon";
 import {
   DOCUMENT_KINDS,
@@ -20,6 +18,7 @@ import {
 import { SHEET_TAGS } from "@/contracts/sheetTag.contract";
 
 import w from "./LibraryFiltersWire.module.css";
+import old from "./oldFilterRow.module.css";
 import {
   LibraryMock,
   MeasureStore,
@@ -183,7 +182,7 @@ function ScopeSelect({ f }: { f: F }) {
 
 function WorkingCheck({ f, ctl = true }: { f: F; ctl?: boolean }) {
   return (
-    <label className={lib.toggle} data-ctl={ctl || undefined}>
+    <label className={old.toggle} data-ctl={ctl || undefined}>
       <input
         type="checkbox"
         checked={f.workingOnly}
@@ -197,7 +196,7 @@ function WorkingCheck({ f, ctl = true }: { f: F; ctl?: boolean }) {
 function MineCheck({ f, ctl = true }: { f: F; ctl?: boolean }) {
   if (!f.branch) return null;
   return (
-    <label className={lib.toggle} data-ctl={ctl || undefined}>
+    <label className={old.toggle} data-ctl={ctl || undefined}>
       <input
         type="checkbox"
         checked={f.mineOnly}
@@ -283,7 +282,7 @@ function InlineCount({ f }: { f: F }) {
 
 function KindChips({ f, ctl }: { f: F; ctl: boolean }) {
   return (
-    <div className={lib.kindTabs} role="group" aria-label="자료 종류별 보기">
+    <div className={old.kindTabs} role="group" aria-label="자료 종류별 보기">
       <button
         type="button"
         data-ctl={ctl || undefined}
@@ -320,7 +319,7 @@ function TagChips({
   if (!taggableView(f.kind))
     return (
       <div className={w.folded}>
-        <p className={o.tagFolded} data-ctl={ctl || undefined}>
+        <p className={old.tagFolded} data-ctl={ctl || undefined}>
           {f.tag
             ? `태그 «${tagName(f.tag)}» — 시험지 · 연산 연습지를 고르면 다시 걸립니다.`
             : "태그는 시험지 · 연산 연습지에만 있습니다."}
@@ -334,7 +333,7 @@ function TagChips({
     );
   return (
     <div
-      className={`${lib.kindTabs} ${o.tagTabs}`}
+      className={`${old.kindTabs} ${old.tagTabs}`}
       role="group"
       aria-label="태그별 보기"
     >
@@ -357,7 +356,7 @@ function TagChips({
           {entry} <span>{f.tagCounts[entry]}</span>
         </button>
       ))}
-      <span className={o.vRule} aria-hidden />
+      <span className={old.vRule} aria-hidden />
       <button
         type="button"
         data-ctl={ctl || undefined}
@@ -375,11 +374,11 @@ function BarNow({ f }: { f: F }) {
     <div data-bar>
       <KindChips f={f} ctl />
       <TagChips f={f} ctl />
-      <div className={lib.toggles}>
+      <div className={old.toggles}>
         <WorkingCheck f={f} />
         <MineCheck f={f} />
       </div>
-      <div className={lib.tools} data-now-tools>
+      <div className={old.tools} data-now-tools>
         <input
           data-ctl
           type="search"
@@ -551,7 +550,7 @@ function BarE({ f }: { f: F }) {
             </section>
             <section>
               <h3>보기</h3>
-              <div className={lib.toggles}>
+              <div className={old.toggles}>
                 <WorkingCheck f={f} ctl={false} />
                 <MineCheck f={f} ctl={false} />
               </div>

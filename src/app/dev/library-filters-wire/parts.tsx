@@ -29,6 +29,7 @@ import {
 import type { DocumentWorkflow } from "@/contracts/workspaceWorkflow.contract";
 
 import { COLLEAGUE, ME, WIRE_ROWS, type WireRow } from "./fixtures";
+import old from "./oldFilterRow.module.css";
 import p from "./parts.module.css";
 
 /**
@@ -226,7 +227,7 @@ export function LibraryMock({
         </p>
       )}
       {resultLine && (
-        <p className={lib.resultCount}>
+        <p className={old.resultCount}>
           저장한 자료 <strong>{f.items.length}</strong>개
           {f.hasFilters && (
             <>
@@ -356,7 +357,12 @@ function measure(frame: HTMLElement, visibleHeight: number): Measure | null {
   const gap = Math.round(
     board.getBoundingClientRect().top - header.getBoundingClientRect().bottom,
   );
-  const middles = [...bar.querySelectorAll("[data-ctl]")]
+  // 시안의 조작에는 data-ctl 이 있다 — 제품 부품(구현 확인 틀)에는 없으니 실제 조작으로 센다.
+  const marked = bar.querySelectorAll("[data-ctl]");
+  const controls = marked.length
+    ? marked
+    : bar.querySelectorAll('select, input, button, [role="status"]');
+  const middles = [...controls]
     .map((element) => element.getBoundingClientRect())
     .filter((rect) => rect.width > 0)
     .map((rect) => rect.top + rect.height / 2)

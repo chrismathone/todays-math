@@ -10,6 +10,7 @@ import {
   type RefObject,
 } from "react";
 
+import LibraryFilterBar from "@/components/unified/LibraryFilterBar";
 import lib from "@/components/unified/PrivateLibrary.module.css";
 import { DOCUMENT_KINDS } from "@/contracts/privateWorkspace.contract";
 import { SHEET_TAGS } from "@/contracts/sheetTag.contract";
@@ -475,6 +476,78 @@ function OptionSection({
   );
 }
 
+/* ───────────── 구현 확인 — 제품 부품(`LibraryFilterBar`) 그대로, 같은 틀 · 같은 자로 ───────────── */
+
+function ProductBar({ f }: { f: F }) {
+  return (
+    <div data-bar>
+      <LibraryFilterBar
+        kind={f.kind}
+        onKindChange={f.setKind}
+        allCount={f.allCount}
+        kindCounts={f.kindCounts}
+        tag={f.tag}
+        onTagChange={f.setTag}
+        tagCounts={f.tagCounts}
+        noneCount={f.noneCount}
+        scope={f.scope}
+        onScopeChange={f.setScope}
+        branch={f.branch}
+        workingCount={f.workingCount}
+        sort={f.sort}
+        onSortChange={f.setSort}
+        query={f.query}
+        onQueryChange={f.setQuery}
+        loading={false}
+        onRefresh={() => undefined}
+        total={f.items.length}
+        shown={f.filtered.length}
+        filtered={f.hasFilters}
+      />
+    </div>
+  );
+}
+
+function ProductSection({
+  screen,
+  branch,
+}: {
+  screen: Screen;
+  branch: boolean;
+}) {
+  const f = useHifiFilters(branch);
+  return (
+    <section className={p.option} id="hifi-product" data-hifi-option="product">
+      <div className={p.optionHead}>
+        <h2>구현 — 고르신 H4 를 제품 부품으로</h2>
+        <p className={h.note}>
+          원장님 2026-10-21 — H4 · 차례 «종류 · 태그 · 보기 · 정렬» · «보기 ·
+          학원 자료 전체» · «16개 중 3개»(05 §8.26). 아래 틀은 시안이 아니라
+          제품의 <code>LibraryFilterBar</code> 와{" "}
+          <code>PrivateLibrary.module.css</code> 그대로다 — 위 H4 와 같은 자로
+          잰다.
+        </p>
+      </div>
+      <PcFrame id="product" screen={screen}>
+        <LibraryMock
+          f={f}
+          bar={<ProductBar f={f} />}
+          resultLine={false}
+          emptyHint={EMPTY_HINT}
+        />
+      </PcFrame>
+      <PhoneFrame id="product">
+        <LibraryMock
+          f={f}
+          bar={<ProductBar f={f} />}
+          resultLine={false}
+          emptyHint={EMPTY_HINT}
+        />
+      </PhoneFrame>
+    </section>
+  );
+}
+
 export function LibraryFiltersHifi() {
   const [screen, setScreen] = useState<Screen>("1536");
   const [branch, setBranch] = useState(true);
@@ -613,7 +686,10 @@ export function LibraryFiltersHifi() {
               <Summary
                 screen={screen}
                 measures={measures}
-                rows={OPTIONS.map((spec) => ({ id: spec.id, label: spec.id }))}
+                rows={[
+                  ...OPTIONS.map((spec) => ({ id: spec.id, label: spec.id })),
+                  { id: "product", label: "구현(H4)" },
+                ]}
               />
               <nav className={p.jump} aria-label="안으로 가기">
                 {OPTIONS.map((spec) => (
@@ -621,6 +697,7 @@ export function LibraryFiltersHifi() {
                     {spec.id}
                   </a>
                 ))}
+                <a href="#hifi-product">구현</a>
               </nav>
             </header>
             {OPTIONS.map((spec) => (
@@ -631,6 +708,11 @@ export function LibraryFiltersHifi() {
                 branch={branch}
               />
             ))}
+            <ProductSection
+              key={`product-${branch}`}
+              screen={screen}
+              branch={branch}
+            />
           </div>
         </HifiOptions.Provider>
       )}
