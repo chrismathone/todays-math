@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B62-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9b20e362-e4a7-4e3f-9ce1-38ec775543bd",
+ "startedAt": "2026-10-21T16:24:44+0900",
+ "elapsedSec": 3.5,
+ "studentSha256": {
+  "student.json": "167b43efe80daec80821c9d507e856d42a0b2ad036a3ef185bfa6973ccde8a3e"
+ },
+ "promptSha256": "a33409d92c7a051290d47c61d78fdc9641b165e63fec9f841b2f7de0b0dfedb2",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"32\", \"work\": \"abc = 2^x · 2^y · 2^z = 2^{x+y+z} = 2^5 = 32\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "32",
+  "work": "abc = 2^x · 2^y · 2^z = 2^{x+y+z} = 2^5 = 32",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1996c7a54fe0a21cff38e699cb5726aa41afdef5360e7b6758b22f66adda9abf"
+}
