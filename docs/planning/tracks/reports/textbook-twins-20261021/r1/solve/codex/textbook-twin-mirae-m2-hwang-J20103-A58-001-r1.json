@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d60-2f17-71d3-9908-f42db2dd2663",
+ "startedAt": "2026-10-21T16:32:26+0900",
+ "elapsedSec": 26.3,
+ "studentSha256": {
+  "student.json": "cc497a1a9ef05d70c518f987dbfff563a28dcebb32508fa6f3decee56b139b9e"
+ },
+ "promptSha256": "f4c39f08f7df6f8f56013ef788428857ea9cb7882129fb341e475a4003a6b1a5",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"11 ÷ 15 = 0.7333…이다. 0.7ȧ는 소수 둘째 자리부터 a가 반복되므로 a = 3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "11 ÷ 15 = 0.7333…이다. 0.7ȧ는 소수 둘째 자리부터 a가 반복되므로 a = 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "394c152145496c13d9d4ff718bc1879945b7b475142dac1160dfb3218609ac0a"
+}

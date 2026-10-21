@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5f-39a9-7463-b297-429985c6580c",
+ "startedAt": "2026-10-21T16:31:24+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "student.json": "f7e48bef7b7b6a5d9c4f01fac5b2228415406618f35fef037a5a38e0d676620a"
+ },
+ "promptSha256": "d222ac3a113ed09b06b95e616be6806bffdc7c46d3a7fc54ac3dc9c6f42b5d0f",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3\",\"work\":\"9/7 = 1.285714285714…로 순환마디는 285714이고 길이는 6이다.\\n50 = 6×8+2이므로 a = 8, 75 = 6×12+3이므로 b = 5이다.\\n따라서 a-b = 8-5 = 3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "9/7 = 1.285714285714…로 순환마디는 285714이고 길이는 6이다.\n50 = 6×8+2이므로 a = 8, 75 = 6×12+3이므로 b = 5이다.\n따라서 a-b = 8-5 = 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fa352ae3d8c44a2562ee25945509d8682f201e833af7741df5bf68daa37ca1db"
+}

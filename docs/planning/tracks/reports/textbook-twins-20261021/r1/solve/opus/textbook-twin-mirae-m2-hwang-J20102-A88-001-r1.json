@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A88-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c30f789a-db0b-4c4d-96dd-ee55854dde93",
+ "startedAt": "2026-10-21T16:19:56+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "a031583f4c6ce4ae8903f1db10fe8521fc7463755f5eff0dbb9aae5dac093d5f"
+ },
+ "promptSha256": "bc9e14d719d82600ff4c3e8e3179c0a14e3944636ed1b875ce7f36ca4b36ec96",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"① 순환마디 03 → $0.\\\\dot{0}\\\\dot{3}$ (틀림)\\n② 순환마디 4 → $0.\\\\dot{4}$ (틀림)\\n③ 순환마디 085 → $5.\\\\dot{0}8\\\\dot{5}$ (틀림)\\n④ 순환마디 002 → $0.\\\\dot{0}0\\\\dot{2}$ (틀림)\\n⑤ 순환마디 605 → $1.\\\\dot{6}0\\\\dot{5}$ (옳음)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "① 순환마디 03 → $0.\\dot{0}\\dot{3}$ (틀림)\n② 순환마디 4 → $0.\\dot{4}$ (틀림)\n③ 순환마디 085 → $5.\\dot{0}8\\dot{5}$ (틀림)\n④ 순환마디 002 → $0.\\dot{0}0\\dot{2}$ (틀림)\n⑤ 순환마디 605 → $1.\\dot{6}0\\dot{5}$ (옳음)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2e96b49a4ca0c9e60bb62591435d0ace2608f60b4b99478416368d2a8ddfd87b"
+}

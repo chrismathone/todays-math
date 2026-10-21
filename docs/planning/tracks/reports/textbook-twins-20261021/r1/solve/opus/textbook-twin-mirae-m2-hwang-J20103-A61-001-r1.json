@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A61-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "bc2dfc26-4041-4dd6-a5ae-d21e250494b6",
+ "startedAt": "2026-10-21T16:20:23+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "bd1c543ea7ffd6d669e1336cae766673e5ae34d06853c46e216708a968f337c6"
+ },
+ "promptSha256": "9431a277f382cf02240353ae0610666907719e4a4e10d7ce96e8158ad532280e",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"83\", \"work\": \"$0.2\\\\dot{4}\\\\dot{5}=\\\\frac{245-2}{990}=\\\\frac{243}{990}=\\\\frac{27}{110}$. 분모−분자 $=110-27=83$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "83",
+  "work": "$0.2\\dot{4}\\dot{5}=\\frac{245-2}{990}=\\frac{243}{990}=\\frac{27}{110}$. 분모−분자 $=110-27=83$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1b517b481a87415668c0d896bd0dc5f61bdd3d9e280506e113f4f2dc6f04bc79"
+}
