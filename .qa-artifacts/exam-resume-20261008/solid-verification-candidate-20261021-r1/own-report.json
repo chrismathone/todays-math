@@ -1,0 +1,92 @@
+{
+  "status": "QA-only candidate ready for independent parent review, NOT applied to production",
+  "baselineSHA256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+  "candidateSHA256": "a99f66a9af0abe5b46e290aae972dd35c8380126c3a81b671cc97dabab0c9689",
+  "patchSHA256": "7baf81693813de1c6a2c0b98f20887ab667e13e284c516e8212b5a8a9710f48c",
+  "gitApplyCheck": {
+    "exitCode": 0,
+    "stderr": ""
+  },
+  "method": "Own shadow core contains candidate figure_solid + exact Root figure_svg and __init__, python -B -S. No sourceD execution or generation.",
+  "dependenciesAndSourceBinding": {
+    "baseline": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "existingTest": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\hangul-engine-import-20261021-r1\\source-tests\\test_figure_solid.py": "b8461f3dca6dc3034974156aec2680ec8b5013e99c2a7d7c737d827539e46fe6"
+    },
+    "candidateSHA256": "a99f66a9af0abe5b46e290aae972dd35c8380126c3a81b671cc97dabab0c9689",
+    "original47SourceSHA256": "7ec39228ca295c252fd52454000206b42f5517f4bc62b2371642072943162d08",
+    "publicHelpersBytePrefixUnchanged": true
+  },
+  "beforeAfterRootAndExistingTestsUnchanged": true,
+  "original47": {
+    "passed": 47,
+    "failed": 0,
+    "positive9Unchanged": true,
+    "retry5Invalidated": true,
+    "expectedValuesChanged": false,
+    "onlyHarnessChange": "Copied prechange script E path points to own-shadow rather than Root; cases/assertions unchanged."
+  },
+  "additionalControls": {
+    "count": 16,
+    "passed": 16,
+    "results": "own-additional-results.json"
+  },
+  "existingSourceTests": {
+    "run": 32,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "copiedBytesSHA256": "b8461f3dca6dc3034974156aec2680ec8b5013e99c2a7d7c737d827539e46fe6",
+    "notCountedAsNewIndependentCases": true
+  },
+  "implementation": [
+    "Only verify_solid body changed; all other public/private function/class AST definitions unchanged.",
+    "Remove shared registry entry at function entry using same caller scope depth; write count only on success.",
+    "Validate finite/nonnegative tolerances, finite labels/coords, positive length and nonzero geometry, angle0..90, projected area labelNone or finite nonnegative.",
+    "Validate Plane point/normal finite and unit normal within rel/abs1e-9; reject nonunit normals instead of silently normalizing supplied objects.",
+    "Validate equation4coefficients finite and nonzero normal; preserve sign/scale-equivalent valid equation forms.",
+    "Validate derived area/angle/distance/scale/expected-length values finite. Do not skip tiny or malformed length labels in ratio loop.",
+    "Validate optional projection view numeric fields when used; no public projection helper changed."
+  ],
+  "normalAssumptionCounterexample": {
+    "planeNormal": [
+      0,
+      0,
+      2
+    ],
+    "point": [
+      0,
+      0,
+      1
+    ],
+    "unchangedPublicFootReturned": [
+      0.0,
+      0.0,
+      -3.0
+    ],
+    "mathematicallyCorrectFoot": [
+      0,
+      0,
+      0
+    ],
+    "candidateVerifyRejects": true
+  },
+  "harnessFailurePreserved": "First generated candidate had invalid inserted validation indentation before elif; own-preparation-failure.json and own-failed-candidate.txt retain failure. Corrected only QA preparation code. Root never changed.",
+  "limits": [
+    "Not geometry-to-SVG or hash binding guarantee; successful check registration remains scope/key only.",
+    "No general 3D topology/area theorem/overflow exhaustive proof, no new curriculum prerequisite permission/wholemath/grade/rights/native/public release approval.",
+    "Public helpers intentionally unchanged: direct foot() on nonunit Plane still gives wrong foot; strengthened verifier rejects that Plane rather than globally repairing it.",
+    "Unit normal1e-9 tolerance is explicit candidate policy to review; no automatic re-normalization or semantic task repair.",
+    "No bank26000/student/DB/sourceD/root edits; no Node/heavy/API/network/new worker/worktree.",
+    "47replays,16additional and32existing tests reported as separate cohorts; no sum with prechange/Pytha70/parent counts."
+  ],
+  "actualImportPaths": {
+    "solid": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r1\\own-shadow\\core\\figure_solid.py",
+    "svg": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r1\\own-shadow\\core\\figure_svg.py"
+  },
+  "preserved": "All previous raw/audits/Pytha c459 and unrelated four dirty curriculum files untouched"
+}
