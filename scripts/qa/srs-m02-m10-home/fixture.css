@@ -1,0 +1,8 @@
+@font-face {
+  font-family: HomePretendard;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+}
+:root {
+  --font-pretendard: HomePretendard;
+}

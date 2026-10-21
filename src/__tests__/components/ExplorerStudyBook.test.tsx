@@ -31,7 +31,20 @@ describe("§8.25 오늘 공부", () => {
           journey={<p>진도판</p>}
           study={
             <DailyStudy
-              plan={{ ...plan, status }}
+              plan={{
+                ...plan,
+                status,
+                activities:
+                  status === "done"
+                    ? ([
+                        {
+                          ...later,
+                          state: "done",
+                          source: { title: "소수의 곱셈", subtitle: "" },
+                        },
+                      ] as FadingDailyPlan["activities"])
+                    : plan.activities,
+              }}
               busy={false}
               onStart={vi.fn()}
               startId="start"

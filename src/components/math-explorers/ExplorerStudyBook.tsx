@@ -7,7 +7,10 @@ import type {
 } from "@/contracts/fadingDaily.contract";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import { StudyBook } from "@/components/math-srs/StudyBook";
-import { curriculumName } from "@/components/fading/labels";
+import {
+  curriculumName,
+  studentCurriculumName,
+} from "@/components/fading/labels";
 import { ExplorerMath } from "./ExplorerMath";
 import b from "./explorer-study-book.module.css";
 import {
@@ -33,13 +36,39 @@ export function DailyStudy({
   const next = plan.activities.find((activity) => activity.key === plan.next);
   const done = plan.status === "done" || plan.status === "short";
   const unit = useContext(StudyUnit);
+  // The context names the current learning target. Only completed activities
+  // name today's work: a mission's recorded display name or a recall's section.
+  // A mission name is not an inventory of every course problem it contained.
+  const units = done
+    ? [
+        ...new Set(
+          plan.activities
+            .filter((activity) => activity.state === "done")
+            .map((activity) =>
+              activity.kind === "recall"
+                ? studentCurriculumName(activity.section)
+                : [activity.source.title, activity.source.subtitle]
+                    .filter(Boolean)
+                    .map(curriculumName)
+                    .join(" · "),
+            )
+            .filter(Boolean),
+        ),
+      ]
+    : unit
+      ? [curriculumName(unit)]
+      : [];
   return (
     <div className={b.study}>
       <h1>{done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1>
-      {unit ? (
-        <p className={b.unit}>
-          <ExplorerMath text={curriculumName(unit)} />
-        </p>
+      {units.length ? (
+        <div className={b.unit}>
+          {units.map((label) => (
+            <div key={label}>
+              <ExplorerMath text={label} />
+            </div>
+          ))}
+        </div>
       ) : null}
       {done ? (
         <>
