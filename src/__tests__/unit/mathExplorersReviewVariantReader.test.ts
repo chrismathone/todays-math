@@ -76,6 +76,29 @@ function independentTruth(cardId: string, statement: string) {
   return includesBoundary !== statement.includes("포함되지 않는다");
 }
 describe("review variant reader floor", () => {
+  it.each(["g5-at-least", "g5-more-than"])(
+    "does not reveal truth from the range direction: %s",
+    (id) => {
+      const combinations = new Set<string>();
+      for (let seed = 0; seed < 4; seed++) {
+        const card = reviewVariantCard(definitionCard(id), {
+          version: 1,
+          seed,
+          cardIds: [...ids],
+        });
+        combinations.add(
+          `${card.exampleTitle.match(/이상|이하|초과|미만/)![0]}:${card.truth}`,
+        );
+        expect(card.truth).toBe(independentTruth(id, card.trap));
+      }
+      expect([...combinations].sort()).toEqual(
+        (id === "g5-at-least" ? ["이상", "이하"] : ["초과", "미만"])
+          .flatMap((term) => [`${term}:false`, `${term}:true`])
+          .sort(),
+      );
+    },
+  );
+
   it.each(ids)(
     "changes the numeric choice set for adjacent seeds: %s",
     (id) => {

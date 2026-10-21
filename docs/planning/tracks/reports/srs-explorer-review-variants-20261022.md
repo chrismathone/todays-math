@@ -67,3 +67,11 @@ Reader 발행 뒤 local writer RED→GREEN에서 이상/이하의 인접 씨앗 
 다르지만 네 숫자 집합이 같음을 발견했다. 활성 전 reader 보정에서 한 오답 거리(3→4)를
 고쳐, 5카드 × 인접 640쌍의 보기 집합이 모두 달라지는 시험을 추가한다. 새 데이터가
 아직 공유 환경에 없을 때의 보정이며, 이 보정 커밋까지 포함한 reader가 운영 성공해야 한다.
+
+
+리드의 활성 전 검토로 범위 방향과 참거짓이 같은 parity였던 불필요한 정답 단서를 없앴다.
+방향은 seed의 첫 bit, 참거짓은 두 번째 bit로 정하며 이상/이하·초과/미만 각각 true/false의
+네 조합을 회귀로 고정한다. 최신 floor는 `fix(srs): decouple review truth from range direction`
+이며 f8086ff79 또는 1e3563d80만으로 활성하지 않는다. 초기 shell 실행은 fixture의 이미
+열린 회차 resume를 expedition-start에 연결하지 못해 0캡처에서 종료했고, finally에서
+browser/server 종료를 확인했다. 최종 증거는 이 보정 이후 별도로 생성한다.

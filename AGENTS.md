@@ -177,7 +177,8 @@ session and its completed-day replay record may carry `reviewVariant` —
 `EXPLORER_REVIEW_VARIANT_CARD_IDS`. Missing identity always means the original
 static examples, including old/open sessions and historical days. The reader
 commit "feat(srs): read versioned explorer review examples before writing them"
-plus its pre-activation correction "fix(srs): keep consecutive review example sets distinct"
+and the latest pre-activation correction "fix(srs): decouple review truth from range direction"
+(which also includes the consecutive-example-set correction)
 is the floor: once a record carries this identity, never run older code against
 the shared database or roll production back below it. Version 1 templates are
 immutable; view, grading and solutions resolve the same stored identity. The

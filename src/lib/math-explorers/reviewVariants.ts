@@ -14,7 +14,7 @@ export function reviewVariantCard(
   if (!variant?.cardIds.some((id) => id === card.id)) return card;
   const seed = variant.seed;
   const n = 10 + (seed % 80);
-  const truth = seed % 2 === 0;
+  const truth = Math.floor(seed / 2) % 2 === 0;
   const decimal = (hundredths: number) =>
     `${Math.floor(hundredths / 100)}.${String(hundredths % 100).padStart(2, "0")}`.replace(
       /\.?0+$/,
