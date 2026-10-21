@@ -5,6 +5,7 @@ import {
   checkPreviewAnswer,
   previewFigureSvg,
   previewMeaning,
+  previewPracticeInput,
   type PreviewCard,
 } from "@/lib/math-srs/preview";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
@@ -32,6 +33,7 @@ export default function StudentCoursePreview({
   const scroll = useRef<HTMLDivElement>(null);
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<boolean | null>(null);
+  const practiceInput = previewPracticeInput(card);
   function check(event: FormEvent) {
     event.preventDefault();
     if (!busy) setResult(checkPreviewAnswer(card, answer));
@@ -111,11 +113,14 @@ export default function StudentCoursePreview({
                     <input
                       id={`${id}-answer`}
                       type="text"
-                      inputMode="numeric"
+                      inputMode={practiceInput ? undefined : "numeric"}
+                      placeholder={practiceInput?.placeholder}
+                      spellCheck={false}
+                      enterKeyHint="done"
                       autoComplete="off"
                       value={answer}
                       disabled={busy}
-                      aria-describedby={`${id}-feedback`}
+                      aria-describedby={`${id}-feedback${practiceInput ? ` ${id}-help` : ""}`}
                       onChange={(event) => {
                         setAnswer(event.target.value);
                         setResult(null);
@@ -133,6 +138,11 @@ export default function StudentCoursePreview({
                       확인 <EnterKey />
                     </button>
                   </div>
+                  {practiceInput ? (
+                    <p id={`${id}-help`} className={s.inputHelp}>
+                      {practiceInput.help}
+                    </p>
+                  ) : null}
                 </form>
                 <div
                   id={`${id}-feedback`}
