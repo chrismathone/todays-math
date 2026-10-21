@@ -1,0 +1,53 @@
+{
+  "scope": "latest mandatory engine52 integration and6fixture byte-contract static audit",
+  "status": "STATIC_BOUNDARIES_RECORDED_INDEPENDENT_RUNTIME_PENDING",
+  "latestInstructionOverridesPriorExclusion": true,
+  "reviewSHA256": "ddab92749663ea8b3348c56823fc9fac7cd11f87f9330d30f9dcb9af39865ace",
+  "counts": {
+    "patchFiles": 52,
+    "baseObjectsAvailable": 52,
+    "incomingGitBlobStaticMatches": 52,
+    "fixtureContractsReadAndHashed": 6,
+    "pendingCounterexampleCases": 34,
+    "ownEngineOrSixFixtureRuntimeRuns": 0,
+    "NodeBrowserRuns": 0,
+    "gradeRightsOperationalApprovals": 0
+  },
+  "threewayStates": {
+    "already-incoming": 1,
+    "base-unchanged": 32,
+    "new-file": 16,
+    "three-way-preserve-current-delta": 3
+  },
+  "preserve": [
+    "clear_angle_labels (present in current AND incoming)",
+    "current finite/nondegenerate/ray/arcs checks",
+    "strengthened data-grid validation/placement",
+    "single escape implementation",
+    "catalogue hideUnit/showAfter corrections",
+    "old assets/source/runtime reports and unrelated dirty",
+    "final figureReview and source-and-rendered-images; no unrelatedsrc patch or automatic passed changes"
+  ],
+  "checkerCaveats": [
+    "decoded text comparison is not sufficient raw byte receipt",
+    "os.makedirs writes checker expected dir even withoutsave; copy to owned QA before future run",
+    "capture timeout/returncode/stderr; do not regenerate expected outputs"
+  ],
+  "harnessFailurePreserved": "first static reconstruction51/52 due missing final newline in catalogue; corrected EOF preservation52/52; both receipts retained",
+  "bindings": {
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changed": [],
+    "patch06SHA256": "80ea37d0792aa1879abc443781eaaba5e673bf838eb13f99ce1a90e733311644",
+    "expectedRawBytes": "own-six-fixture-contract.json"
+  },
+  "sourceOrRootWrites": 0,
+  "noImportedExternalOrRootEngine": true,
+  "parentCurrentSixResults": "reference only; not independently executed or counted",
+  "limits": [
+    "No production merge/execution or six-output parity claim",
+    "No whole engine/mathematical/grade/provenance/licence/native/public/DB approval",
+    "Read-only Git object parsing and own stdlib report generation only"
+  ],
+  "next": "Parent owns coherent3way merge and raw-byte6 replay; independent34counterexample runtime requires a separate authorized scope"
+}
