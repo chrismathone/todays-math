@@ -1,0 +1,5 @@
+{
+  "status": "fixture preparation failure, not source defect",
+  "reason": "Initial conflict fixture supplied arcs=3; current strict engine only allows0..2, so whole script stopped before writing results. Corrected v2 uses ticks=2/arcs=1; original script retained.",
+  "exception": "SpecRepairFailed: FigureSpecError angle a arcs must be between0and2"
+}
