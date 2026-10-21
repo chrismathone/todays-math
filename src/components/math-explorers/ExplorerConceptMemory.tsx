@@ -719,10 +719,19 @@ export default function ExplorerConceptMemory({
       {
         studyBook: true,
         separateExpedition: dailyPlan?.integration.expedition === false,
+        // A concept day's prerequisite target also names the explorer bundle.
+        // Only a course target or a problem mission identifies problem progress.
         dailyUnit:
-          dailyPlan?.prerequisite?.target.title ??
-          dailyPlan?.activities.find((activity) => activity.kind === "practice")
-            ?.source.title,
+          (dailyPlan?.prerequisite?.target.courseSectionId
+            ? dailyPlan.prerequisite.target.title
+            : undefined) ??
+          dailyPlan?.activities.find(
+            (
+              activity,
+            ): activity is Extract<FadingDailyActivity, { kind: "practice" }> =>
+              activity.kind === "practice" &&
+              activity.source.kind !== "explorers",
+          )?.source.title,
         dailyExplorerAllowed: !dailyBusy && !dailyFailure,
       },
     );

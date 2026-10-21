@@ -486,7 +486,7 @@ export default function ExplorerHome({
       {studyBook ? (
         <ExplorerStudyBook
           grade={gradeLabel(state.profile.courseGrade)}
-          unit={dailyUnit ?? currentUnit?.title ?? title}
+          unit={dailyUnit}
           theme={journeyTheme}
           study={conceptMemory}
           journey={

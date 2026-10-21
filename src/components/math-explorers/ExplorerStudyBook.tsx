@@ -131,7 +131,7 @@ export function ExplorerStudyBook({
   journey,
 }: {
   grade: string;
-  unit: string;
+  unit?: string;
   theme?: JourneyThemeId;
   study: ReactNode;
   journey: ReactNode;
@@ -148,7 +148,9 @@ export function ExplorerStudyBook({
           {guide?.picking ? (
             <GuidePicker />
           ) : (
-            <StudyUnit.Provider value={unit}>{study}</StudyUnit.Provider>
+            <StudyUnit.Provider value={unit ?? null}>
+              {study}
+            </StudyUnit.Provider>
           )}
         </>
       }
