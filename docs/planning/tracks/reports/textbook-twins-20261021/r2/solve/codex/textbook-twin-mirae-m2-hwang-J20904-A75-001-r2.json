@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A75-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-1786-7bf3-90a2-70b679cbc630",
+ "startedAt": "2026-10-21T19:23:50+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "236be6b5215ed28dae49969963eb48c4ca355bfce43b3663578bb76ab00dbc90"
+ },
+ "promptSha256": "b4260ee38471e965134e5cfa5d2892029cc410417865b0c31b511815bd6fed93",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"두 사람이 모두 틀릴 확률은 독립이므로 $\\\\left(1-\\\\frac{2}{3}\\\\right)\\\\left(1-\\\\frac{5}{8}\\\\right)=\\\\frac{1}{8}$이다.\\n따라서 적어도 한 사람이 맞힐 확률은 $1-\\\\frac{1}{8}=\\\\frac{7}{8}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "두 사람이 모두 틀릴 확률은 독립이므로 $\\left(1-\\frac{2}{3}\\right)\\left(1-\\frac{5}{8}\\right)=\\frac{1}{8}$이다.\n따라서 적어도 한 사람이 맞힐 확률은 $1-\\frac{1}{8}=\\frac{7}{8}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "32d7189361530a4b7fd4e44465ee5143ff7d76c951ac995ff877d3ec7f97abfe"
+}

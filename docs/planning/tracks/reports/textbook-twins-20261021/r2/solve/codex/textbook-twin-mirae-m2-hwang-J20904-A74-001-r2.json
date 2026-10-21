@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfc-d8e4-7751-86fb-89733674e8f4",
+ "startedAt": "2026-10-21T19:23:34+0900",
+ "elapsedSec": 16.0,
+ "studentSha256": {
+  "student.json": "b8701f076956059122bed83dc99faa14de3e9d0b54dbbd37369eafc2e651e063"
+ },
+ "promptSha256": "9970f31af4d096a3357e174b0a3eee3ba26cb3ed2ee0bd5f6c1355f8e7bb512f",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{8}{27}$\",\"work\":\"미나를 기준으로 가능한 결과는 ‘승–패–승’과 ‘패–승–승’이다. 따라서 구하는 확률은 $\\\\frac23\\\\times\\\\frac13\\\\times\\\\frac23+\\\\frac13\\\\times\\\\frac23\\\\times\\\\frac23=\\\\frac{8}{27}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{8}{27}$",
+  "work": "미나를 기준으로 가능한 결과는 ‘승–패–승’과 ‘패–승–승’이다. 따라서 구하는 확률은 $\\frac23\\times\\frac13\\times\\frac23+\\frac13\\times\\frac23\\times\\frac23=\\frac{8}{27}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2f6992ea22b629c166ab018c743e31b2df6cd739f7d5dd71414a72fa4cc0348f"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-645f-7c41-9531-332108f6ac2c",
+ "startedAt": "2026-10-21T19:24:09+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "76a8c58f248e33e591b8c4f0202c68ac6fb34e18369e3c5fc5d7d37545d2818c"
+ },
+ "promptSha256": "cd402b4b8cf54f4fec3566f6d6900a03814c60fbe92f7c9289cc714c649e7456",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{8}{25}$\",\"work\":\"막대에 걸 확률은 1−1/5=4/5이다. 한 번만 걸리는 경우는 (성공, 실패), (실패, 성공)이므로 확률은 (4/5)×(1/5)+(1/5)×(4/5)=8/25이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{8}{25}$",
+  "work": "막대에 걸 확률은 1−1/5=4/5이다. 한 번만 걸리는 경우는 (성공, 실패), (실패, 성공)이므로 확률은 (4/5)×(1/5)+(1/5)×(4/5)=8/25이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b2fc13e1b5314e0dff642536839a52993acf5e6ba02cdbcea7a62064a0c771c5"
+}
