@@ -76,6 +76,31 @@ function independentTruth(cardId: string, statement: string) {
   return includesBoundary !== statement.includes("포함되지 않는다");
 }
 describe("review variant reader floor", () => {
+  it("prints both tenths operands with one decimal place, matching the two-place explanation", () => {
+    for (let seed = 0; seed < 640; seed++) {
+      const card = reviewVariantCard(definitionCard("g5-decimal-multiply"), {
+        version: 1,
+        seed,
+        cardIds: [...ids],
+      });
+      for (const example of card.examples)
+        expect(example.text).toMatch(/^\d+\.\d × \d+\.\d = /);
+      expect(card.trap).toMatch(/^\d+\.\d × \d+\.\d은 /);
+      const [left, right] = card.examples[0].text
+        .match(/\d+(?:\.\d+)?/g)!
+        .map(Number);
+      expect(card.explanation).toContain(
+        `${Math.round(left * 10)} × ${Math.round(right * 10)} = ${Math.round(left * right * 100)}`,
+      );
+    }
+    const boundary = reviewVariantCard(definitionCard("g5-decimal-multiply"), {
+      version: 1,
+      seed: 9,
+      cardIds: [...ids],
+    });
+    expect(boundary.examples[0].text).toBe("2.0 × 0.2 = 0.4");
+  });
+
   it.each(["g5-at-least", "g5-more-than"])(
     "does not reveal truth from the range direction: %s",
     (id) => {
