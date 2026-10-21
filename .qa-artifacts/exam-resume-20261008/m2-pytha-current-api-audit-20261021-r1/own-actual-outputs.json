@@ -1,0 +1,7356 @@
+{
+  "actualAPICalls": 80,
+  "rows": [
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026102107,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=15\\,\\mathrm{cm}$, $\\overline{CB}=8\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{17}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{8^2+15^2}=17\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times8\\times15=\\dfrac{1}{2}\\times17\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{120}{17}=\\dfrac{120}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026206836,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=16\\,\\mathrm{cm}$, $\\overline{CB}=12\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{48}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{12^2+16^2}=20\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times12\\times16=\\dfrac{1}{2}\\times20\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{192}{20}=\\dfrac{48}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "16 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026311565,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026416294,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{60}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{5^2+12^2}=13\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times5\\times12=\\dfrac{1}{2}\\times13\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{60}{13}=\\dfrac{60}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026521023,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=20\\,\\mathrm{cm}$, $\\overline{CB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$12\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{15^2+20^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times15\\times20=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{300}{25}=12\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026625752,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{10^2+24^2}=26\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times10\\times24=\\dfrac{1}{2}\\times26\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{240}{26}=\\dfrac{120}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026730481,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=21\\,\\mathrm{cm}$, $\\overline{CB}=20\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{420}{29}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{20^2+21^2}=29\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times20\\times21=\\dfrac{1}{2}\\times29\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{420}{29}=\\dfrac{420}{29}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            89.14387633769323,
+            -84.89892984542212
+          ],
+          "D": [
+            89.14387633769323,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "21 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026835210,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2026939939,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{60}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{5^2+12^2}=13\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times5\\times12=\\dfrac{1}{2}\\times13\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{60}{13}=\\dfrac{60}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027044668,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=16\\,\\mathrm{cm}$, $\\overline{CB}=12\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{48}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{12^2+16^2}=20\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times12\\times16=\\dfrac{1}{2}\\times20\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{192}{20}=\\dfrac{48}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "16 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027149397,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{60}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{5^2+12^2}=13\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times5\\times12=\\dfrac{1}{2}\\times13\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{60}{13}=\\dfrac{60}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027254126,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=20\\,\\mathrm{cm}$, $\\overline{CB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$12\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{15^2+20^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times15\\times20=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{300}{25}=12\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027358855,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027463584,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{10^2+24^2}=26\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times10\\times24=\\dfrac{1}{2}\\times26\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{240}{26}=\\dfrac{120}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027568313,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027673042,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=15\\,\\mathrm{cm}$, $\\overline{CB}=8\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{17}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{8^2+15^2}=17\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times8\\times15=\\dfrac{1}{2}\\times17\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{120}{17}=\\dfrac{120}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027777771,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027882500,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=7\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{168}{25}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{7^2+24^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times7\\times24=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{168}{25}=\\dfrac{168}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2027987229,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=16\\,\\mathrm{cm}$, $\\overline{CB}=12\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{48}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{12^2+16^2}=20\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times12\\times16=\\dfrac{1}{2}\\times20\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{192}{20}=\\dfrac{48}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "16 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028091958,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=15\\,\\mathrm{cm}$, $\\overline{CB}=8\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{17}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{8^2+15^2}=17\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times8\\times15=\\dfrac{1}{2}\\times17\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{120}{17}=\\dfrac{120}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028196687,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=21\\,\\mathrm{cm}$, $\\overline{CB}=20\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{420}{29}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{20^2+21^2}=29\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times20\\times21=\\dfrac{1}{2}\\times29\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{420}{29}=\\dfrac{420}{29}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            89.14387633769323,
+            -84.89892984542212
+          ],
+          "D": [
+            89.14387633769323,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "21 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028301416,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=8\\,\\mathrm{cm}$, $\\overline{CB}=6\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{24}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{6^2+8^2}=10\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{48}{10}=\\dfrac{24}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028406145,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{60}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{5^2+12^2}=13\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times5\\times12=\\dfrac{1}{2}\\times13\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{60}{13}=\\dfrac{60}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028510874,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=7\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{168}{25}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{7^2+24^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times7\\times24=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{168}{25}=\\dfrac{168}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028615603,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{10^2+24^2}=26\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times10\\times24=\\dfrac{1}{2}\\times26\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{240}{26}=\\dfrac{120}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028720332,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=20\\,\\mathrm{cm}$, $\\overline{CB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$12\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{15^2+20^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times15\\times20=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{300}{25}=12\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028825061,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{10^2+24^2}=26\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times10\\times24=\\dfrac{1}{2}\\times26\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{240}{26}=\\dfrac{120}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2028929790,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=8\\,\\mathrm{cm}$, $\\overline{CB}=6\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{24}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{6^2+8^2}=10\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{48}{10}=\\dfrac{24}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2029034519,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=7\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{168}{25}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{7^2+24^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times7\\times24=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{168}{25}=\\dfrac{168}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|09",
+      "seed": 2029139248,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=8\\,\\mathrm{cm}$, $\\overline{CB}=6\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{24}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{6^2+8^2}=10\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{48}{10}=\\dfrac{24}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 0,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=4\\,\\mathrm{cm}$, $\\overline{CB}=3\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{12}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{3^2+4^2}=5\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times3\\times4=\\dfrac{1}{2}\\times5\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{12}{5}=\\dfrac{12}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 1,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=8\\,\\mathrm{cm}$, $\\overline{CB}=6\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{24}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{6^2+8^2}=10\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{48}{10}=\\dfrac{24}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 2,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{60}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{5^2+12^2}=13\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times5\\times12=\\dfrac{1}{2}\\times13\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{60}{13}=\\dfrac{60}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 3,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=12\\,\\mathrm{cm}$, $\\overline{CB}=9\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{36}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{9^2+12^2}=15\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times9\\times12=\\dfrac{1}{2}\\times15\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{108}{15}=\\dfrac{36}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.60000000000001
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "9 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 4,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=15\\,\\mathrm{cm}$, $\\overline{CB}=8\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{17}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{8^2+15^2}=17\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times8\\times15=\\dfrac{1}{2}\\times17\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{120}{17}=\\dfrac{120}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 5,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=16\\,\\mathrm{cm}$, $\\overline{CB}=12\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{48}{5}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{12^2+16^2}=20\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times12\\times16=\\dfrac{1}{2}\\times20\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{192}{20}=\\dfrac{48}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "16 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 6,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=7\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{168}{25}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{7^2+24^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times7\\times24=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{168}{25}=\\dfrac{168}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 7,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=20\\,\\mathrm{cm}$, $\\overline{CB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$12\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{15^2+20^2}=25\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times15\\times20=\\dfrac{1}{2}\\times25\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{300}{25}=12\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 8,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=24\\,\\mathrm{cm}$, $\\overline{CB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{120}{13}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{10^2+24^2}=26\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times10\\times24=\\dfrac{1}{2}\\times26\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{240}{26}=\\dfrac{120}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "24 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|09",
+      "forcedBucket": 9,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CA}=21\\,\\mathrm{cm}$, $\\overline{CB}=20\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 빗변 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{CD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{420}{29}\\,\\mathrm{cm}$",
+      "solution": "피타고라스 정리에 의해 $\\overline{AB}=\\sqrt{20^2+21^2}=29\\,(\\mathrm{cm})$이다.\n$\\triangle ABC$의 넓이를 두 가지 방법으로 나타내면 $\\dfrac{1}{2}\\times20\\times21=\\dfrac{1}{2}\\times29\\times\\overline{CD}$이므로 $\\overline{CD}=\\dfrac{420}{29}=\\dfrac{420}{29}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            89.14387633769323,
+            -84.89892984542212
+          ],
+          "D": [
+            89.14387633769323,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "ca": {
+            "points": [
+              "C",
+              "A"
+            ],
+            "label": "21 cm",
+            "side": "auto"
+          },
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026102107,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026206836,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=6\\,\\mathrm{cm}$, $\\overline{AB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{18}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $6^2=\\overline{BD}\\times10$이므로 $\\overline{BD}=\\dfrac{36}{10}=\\dfrac{18}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026311565,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=8\\,\\mathrm{cm}$, $\\overline{AB}=17\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{64}{17}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $8^2=\\overline{BD}\\times17$이므로 $\\overline{BD}=\\dfrac{64}{17}=\\dfrac{64}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "17 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026416294,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=10\\,\\mathrm{cm}$, $\\overline{AB}=26\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{50}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $10^2=\\overline{BD}\\times26$이므로 $\\overline{BD}=\\dfrac{100}{26}=\\dfrac{50}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "26 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026521023,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026625752,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026730481,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=12\\,\\mathrm{cm}$, $\\overline{AB}=20\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{36}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $12^2=\\overline{BD}\\times20$이므로 $\\overline{BD}=\\dfrac{144}{20}=\\dfrac{36}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026835210,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2026939939,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=9\\,\\mathrm{cm}$, $\\overline{AB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{27}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $9^2=\\overline{BD}\\times15$이므로 $\\overline{BD}=\\dfrac{81}{15}=\\dfrac{27}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.60000000000001
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "9 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027044668,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=7\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{49}{25}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $7^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{49}{25}=\\dfrac{49}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027149397,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=6\\,\\mathrm{cm}$, $\\overline{AB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{18}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $6^2=\\overline{BD}\\times10$이므로 $\\overline{BD}=\\dfrac{36}{10}=\\dfrac{18}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027254126,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=6\\,\\mathrm{cm}$, $\\overline{AB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{18}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $6^2=\\overline{BD}\\times10$이므로 $\\overline{BD}=\\dfrac{36}{10}=\\dfrac{18}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027358855,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=6\\,\\mathrm{cm}$, $\\overline{AB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{18}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $6^2=\\overline{BD}\\times10$이므로 $\\overline{BD}=\\dfrac{36}{10}=\\dfrac{18}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027463584,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027568313,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=20\\,\\mathrm{cm}$, $\\overline{AB}=29\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{400}{29}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $20^2=\\overline{BD}\\times29$이므로 $\\overline{BD}=\\dfrac{400}{29}=\\dfrac{400}{29}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            89.14387633769323,
+            -84.89892984542212
+          ],
+          "D": [
+            89.14387633769323,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "29 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027673042,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027777771,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=7\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{49}{25}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $7^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{49}{25}=\\dfrac{49}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027882500,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=10\\,\\mathrm{cm}$, $\\overline{AB}=26\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{50}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $10^2=\\overline{BD}\\times26$이므로 $\\overline{BD}=\\dfrac{100}{26}=\\dfrac{50}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "26 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2027987229,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=8\\,\\mathrm{cm}$, $\\overline{AB}=17\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{64}{17}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $8^2=\\overline{BD}\\times17$이므로 $\\overline{BD}=\\dfrac{64}{17}=\\dfrac{64}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "17 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028091958,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028196687,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028301416,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028406145,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028510874,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=8\\,\\mathrm{cm}$, $\\overline{AB}=17\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{64}{17}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $8^2=\\overline{BD}\\times17$이므로 $\\overline{BD}=\\dfrac{64}{17}=\\dfrac{64}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "17 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028615603,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=8\\,\\mathrm{cm}$, $\\overline{AB}=17\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{64}{17}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $8^2=\\overline{BD}\\times17$이므로 $\\overline{BD}=\\dfrac{64}{17}=\\dfrac{64}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "17 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028720332,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=10\\,\\mathrm{cm}$, $\\overline{AB}=26\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{50}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $10^2=\\overline{BD}\\times26$이므로 $\\overline{BD}=\\dfrac{100}{26}=\\dfrac{50}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "26 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028825061,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2028929790,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=7\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{49}{25}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $7^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{49}{25}=\\dfrac{49}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2029034519,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=9\\,\\mathrm{cm}$, $\\overline{AB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{27}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $9^2=\\overline{BD}\\times15$이므로 $\\overline{BD}=\\dfrac{81}{15}=\\dfrac{27}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.60000000000001
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "9 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "freshAPI30",
+      "key": "2-2|피타고라스 정리|10",
+      "seed": 2029139248,
+      "variant": 0,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=7\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{49}{25}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $7^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{49}{25}=\\dfrac{49}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 0,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=3\\,\\mathrm{cm}$, $\\overline{AB}=5\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{9}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $3^2=\\overline{BD}\\times5$이므로 $\\overline{BD}=\\dfrac{9}{5}=\\dfrac{9}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "3 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 1,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=6\\,\\mathrm{cm}$, $\\overline{AB}=10\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{18}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $6^2=\\overline{BD}\\times10$이므로 $\\overline{BD}=\\dfrac{36}{10}=\\dfrac{18}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "6 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 2,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=5\\,\\mathrm{cm}$, $\\overline{AB}=13\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{25}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $5^2=\\overline{BD}\\times13$이므로 $\\overline{BD}=\\dfrac{25}{13}=\\dfrac{25}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "5 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "13 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 3,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=9\\,\\mathrm{cm}$, $\\overline{AB}=15\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{27}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $9^2=\\overline{BD}\\times15$이므로 $\\overline{BD}=\\dfrac{81}{15}=\\dfrac{27}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.60000000000001
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "9 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 4,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=8\\,\\mathrm{cm}$, $\\overline{AB}=17\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{64}{17}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $8^2=\\overline{BD}\\times17$이므로 $\\overline{BD}=\\dfrac{64}{17}=\\dfrac{64}{17}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            132.35294117647058,
+            -70.58823529411765
+          ],
+          "D": [
+            132.35294117647058,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "17 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 5,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=12\\,\\mathrm{cm}$, $\\overline{AB}=20\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{36}{5}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $12^2=\\overline{BD}\\times20$이므로 $\\overline{BD}=\\dfrac{144}{20}=\\dfrac{36}{5}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.80000000000001,
+            -81.59999999999998
+          ],
+          "D": [
+            108.80000000000001,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 6,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=7\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{49}{25}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $7^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{49}{25}=\\dfrac{49}{25}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            156.672,
+            -45.69600000000001
+          ],
+          "D": [
+            156.672,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "7 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 7,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=15\\,\\mathrm{cm}$, $\\overline{AB}=25\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$9\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $15^2=\\overline{BD}\\times25$이므로 $\\overline{BD}=\\dfrac{225}{25}=9\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            108.8,
+            -81.6
+          ],
+          "D": [
+            108.8,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "15 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "25 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 8,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=10\\,\\mathrm{cm}$, $\\overline{AB}=26\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{50}{13}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $10^2=\\overline{BD}\\times26$이므로 $\\overline{BD}=\\dfrac{100}{26}=\\dfrac{50}{13}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            144.85207100591714,
+            -60.35502958579883
+          ],
+          "D": [
+            144.85207100591714,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "10 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "26 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    },
+    {
+      "cohort": "forcedTripleAPI10",
+      "key": "2-2|피타고라스 정리|10",
+      "forcedBucket": 9,
+      "seed": 2026102199,
+      "variant": 0,
+      "rngDraws": 1,
+      "content": "직각삼각형 ABC에서 $\\angle C=90^\\circ$이고 $\\overline{CB}=20\\,\\mathrm{cm}$, $\\overline{AB}=29\\,\\mathrm{cm}$이다. 꼭짓점 $C$에서 $\\overline{AB}$에 내린 수선의 발을 $D$라 할 때, $\\overline{BD}$의 길이를 구하시오.",
+      "answer": "$\\dfrac{400}{29}\\,\\mathrm{cm}$",
+      "solution": "직각삼각형 $ABC$와 직각삼각형 $CBD$는 $\\angle B$를 공유하고 각각 $\\angle C=\\angle BDC=90^\\circ$이므로 서로 닮음이다 (AA 닮음).\n따라서 $\\overline{CB}^2=\\overline{BD}\\times\\overline{BA}$, 즉 $20^2=\\overline{BD}\\times29$이므로 $\\overline{BD}=\\dfrac{400}{29}=\\dfrac{400}{29}\\,\\mathrm{cm}$이다.",
+      "figureSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            170,
+            0
+          ],
+          "C": [
+            89.14387633769323,
+            -84.89892984542212
+          ],
+          "D": [
+            89.14387633769323,
+            0
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CA": [
+            "C",
+            "A"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ]
+        },
+        "angles": {
+          "c": {
+            "vertex": "C",
+            "points": [
+              "A",
+              "B"
+            ],
+            "right": true
+          },
+          "d": {
+            "vertex": "D",
+            "points": [
+              "C",
+              "A"
+            ],
+            "right": true
+          }
+        },
+        "dimensions": {
+          "cb": {
+            "points": [
+              "C",
+              "B"
+            ],
+            "label": "20 cm",
+            "side": "auto"
+          },
+          "ab": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "29 cm",
+            "side": "auto"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        }
+      }
+    }
+  ],
+  "heapLimit": 226492416,
+  "moduleHashesAtFirstImport": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\elementary\\rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\problem\\chooseAllRule.ts": "6fcae25115c8db9ecf80ddc86e12f9d6d7f622233ad190b50982e68afaae58f3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\problem\\choiceCountRule.ts": "f016d4b0972261e74815c2f9d84dc9d2ed3c19a53c49876462fc5d56f46742fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\problem\\parseProblemContent.ts": "16db53f2ec1c90fd760f31a4379487ca47a3d2415bac5358a61175ed671011fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\boxBlock.ts": "24ced7f1f1e8ee86dc5a1aedd573a5243a4f27c67d851cabdde3217d2ddd32c0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\subQuestion.ts": "80c37bea078946fa3e279e508125b521e707737a19037f3d140f526532ff8d3b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\boxHeader.ts": "d8772a23cdc32ff02ce007c860db38ede85a8bd381a22e944da66e4f8e7d5371",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\circledNumber.ts": "7bad8cc524bc82e9b482ab546463ef1d24453008c007eb01c49217b984c8323d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\displayWidth.ts": "12d5be50ed88bfcebd4c70ed42d1b8bf8d1d06ac0244fde7e8a8c91c7abf71cb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\equationChain.ts": "7d7898166840e72fc3a9f3ec286bacc05ef83619215b9c389b88c09b01251a7b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\segments.ts": "07d0f15e468044ab764c65ed0ef97e1d74aac9ea4f9963670e693672042ffb5a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\normalizeMathgenText.ts": "9dfde82c3cbd99512da0816796c6dfa782fdc75a5afc96478a8a04ad955fd913",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\escapedStyleLeak.ts": "29ededbe4707748d3dafe3d484c81f7e8f9d72e7db64f0ac01006c558e6e0630",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\katexCommands.generated.ts": "550fce06ca30eeb42ebc240c0878288251466af73257208ada49b7946eda4998",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\blankAnswerSlot.ts": "ad97c06f5cb62f1b5eb07a5372d545b48f5fa5523ea023adeacf19a75e3f46c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\problem\\choiceRepairRules.ts": "c9f955b5ef066fb227cc6e99ccdd378b174266846401474161e791aca8f0b973",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\solutionText.ts": "cf74e9a3ea3e369439978952112cb518c2344ac844dcdd08e399dd1c5320ba6b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\tier.ts": "f142495325f5c55eaabf30c106170efdfbad708fe0a6aaa7ce4faa572010ab13",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\problemText.ts": "0e403df275b362659f675581e741043b3b28b6f3b0e95acf12b3dd7c052750bb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Calc.ts": "3a429bb5f1250516cdad4685a0323c2caba6699c2d6cd5a767a3ae9d32e14b49",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Josa.ts": "c1b919b17257bb2911fe094347144e85e554923bb4141d4a79d092479a6094bd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Extra.ts": "9cfa0c68f3c8d572a72f8213d8470ef073a96529a79c99ed7ff9a0229c526b8e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Book1.ts": "820372eb846181084625dd4a4ace566ced07eca853e38450dc11bfb6bfae5bcf",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Shared.ts": "4341dba9b3305707c5410948a65d20149225bf4789c3c0c7587295bc06b87663",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Book2.ts": "b838359f705a03b557c08cdef1699a97bbf052e910894bb2da7fcefa35a87fbb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Expr.ts": "730630b804f0ef793c45b0cabcf6c6e21f333d0f03ea7a542f4ec1b94850a336",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo1.ts": "6202a63b1f5dd2bbb2811a50812ceec5be004836e988ec3800fcaa7f92b5753c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Stat.ts": "018fbe27cba477e5de63827bee9bb8a2451fbfa69e51da0b760becf99eeb5600",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo3.ts": "825819274a29b25720b7452301d6fab766847ced74e7abbca817255cbb0e58fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1LinearApply.ts": "f7722431a1d0146e4f8fa5c714321730b9559251274fd1f11a8c53bc564a0753",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Num.ts": "b39e6d22f16a7b4109eef986c2152faf42411419a3b40b2fb8e46a660edab4fb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Prop.ts": "ecc711a9c054b5908dc365102d9802ab7351b03e71fb67e8c56f92f28cad44e1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Real.ts": "250b2593129e07a75261168d4d0faa8f576d26e030a42e53b063e5295ceee944",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\realScene.ts": "011716dde97f9b5359efaf0a420f8b9f1848d1395f8ed31cc3c1125cf923fab3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Solid.ts": "f949d70b96c644ccbe439aed34dbaf6595ac01b0b66f7c4985c6b1854b4d89a3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1StatFig.ts": "0b518aa834f3798f0c64877ac49d311eb2b219cf7e5eb5287a9a27cded482196",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top.ts": "9f4cd0a7ee65540e363fb13164c8b3fb23788a01cc83ae4e4d737d27f5117eea",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top2.ts": "595ab7a42c1b499a1eb118c6f959312439ae85e61f4e1f33d6e86bc5e3c8052d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top3.ts": "2019b45080592a44a97822ae1a8eab6be3ffbb82bce378ffc4ef972a7be05ffd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top4.ts": "0c4545587db5f9811ca8edba2b479c8f1b67a9b347f1c71b55b44a82c5ecbaea",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5a.ts": "897f08956159ba3feda256517870ad402b091787edda0b9824559e15455ba327",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5b.ts": "c20bf1c79974fd3ba5fd85b060bbf8c7146a9c321f9f71e5b8c6680fddec5326",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5c.ts": "c49bd3678ae00efbc3709c3690ed67383fd1c9fd3e9294b1fe8001991d34bd2a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5d.ts": "0e04d2d3495af92982f6f5949c0bb76ed3454efdbbca6ae6e748f2ccd027e726",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5e.ts": "1c6a023b707ae8b5f0a0e96f55f23c387e02cb179caecedf4a006eeb45eed1e8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5f.ts": "6b053edf25ccb516cdd88180926ea9f19543783e4d446bcf97ace7e067c51f75",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5g.ts": "83a855f9af1640986f977426934dc1b54d28670fb63f5414fbcef380923a95cd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5h.ts": "b046a53ea7578997bf5385a49a76f1443c2cb3afb152d11421272e847bb376bf",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Top5i.ts": "39613b3a7a0d3382fd2b2b9be977423732cd6b78f379919699bde62c041e31a4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Types10.ts": "c605e9b29e916b28e49a0a83761a3de7fc04c682308cfd5cf8efddf16729b8f3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2.ts": "51aa1c9ee1b083bddaccf833c8f9f19b1f8d6cc26fb216ce2dc2304b70fe319e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Center.ts": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Counting.ts": "e7a64c86aff4c97d239821cea38bae14d868b961c8010c0231b59b612041174a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Shade.ts": "5fc8f8e66d97425dd6a444c50a0892586ba941c2c8044080581d0e86014ae0f9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Func.ts": "3f5711c67a421b70d0f29ae64f2918bc2396eeecd49e53a2ad55109587d8f842",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoQuad.ts": "845f781fbfa93b1beca4e7ec35bbc392f1cbe11a327714fbaacec6d30d49350f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\figureDims.ts": "daa3f0d5abfecabb7dd001e5cd4b008738cf11860e5422733b96b658ff34cd98",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoSim.ts": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoTri.ts": "ccf2283bb2452b92744c9a497758302101f0c1fcc764cfc075f987248ff3efe5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2IneqApply.ts": "c3e295288c37c9df9e66d180c52eec970d715e9f56d2ed30795a11f44b4b92fa",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Line.ts": "5d611e088479429920ac221cb88d108c1c4da940378cdf1ae2776b16c06a8100",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Mono.ts": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Prob.ts": "2e8912c2729e2b5fdcf19661a826496c1a37a4a09810eb77f23e6964012ba674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Quad.ts": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Rational.ts": "eeac49f63d71172590de147e8cc06d372330dd29d7c9b142a29e3512b8dae847",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Real.ts": "a8466a1e981050b122111bcaf4f4f106bbf70000cf8c8afb8fa5f2059d7f0e2c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2System.ts": "98b6c0b4c3b101ab035860fcc3c840574bdc7ab8c0111842c4e1229a869bd678",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2SystemApply.ts": "c0049e4b1c5f1e83543043cc40437f5770ae3bfc74f63290bf0cd9bd8da55af6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top.ts": "035b4090af760939cc9eef0fb456f83ae2155ac78f378f6812015c78652c214c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top2.ts": "2864f34534d088484853c9bf564dcbe19834cac4435189b2158e7c24ec826be0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top3.ts": "f0ad313267aa2361799617f5dd1ba4fad499e06b8f770a6443cdb9d20bfbea8c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top4.ts": "ea5ba6fcd73a49ab4b20e81c4f533ea6eca8e072a0c67a327f5ca542da5ce6fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5a.ts": "fefc0855bf496478e3a41c6501522489f915bb1e3f212413d7df34465594644b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5b.ts": "487aaca4c001268f0681feb17195e4ae263cab6c11660e65cc29b95912bdad40",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5c.ts": "e24aee4c3e4db6b47d5454d08017fc8cd05ba674a50f1c70118b2accc8cd0034",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5d.ts": "bb3cb29d03c95beb57681533bb0b1b3c522ea2831da14ff23c37cec9c4ae4bb9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5e.ts": "5d1a6ebd71cd9fa90964e9bb741cc48b337daeee1a836b05103e779c24ca02f1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5f.ts": "a56edcadcdef3283c03bb8e4b96b7ca062921a07c167369d9b36d1626744e255",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5g.ts": "7f02100090658ac217cb5923135bb515aeaa3df3dfa859ae27a174344d41e354",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5h.ts": "16c9ee1fdf06e56162fbc83929eadc3b45288fedd69f098eba4ea5550a3ee2bf",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5i.ts": "19c44354016be76105482e83a2ba66bfa002ae483574407fe9549f8b0b75cff1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Top5j.ts": "180869d777ddab8bf7a8dc4df3dc17b7e0ac4974e23e496c1b99cfa12e525add",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3.ts": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Figures.ts": "56cd9f00f752b2145ce2b0e0edc731aed02649a37259b53678f743bec9c07051",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3AngleApply.ts": "f1f760790c94acd92bf9ac2e352bd87cec7f36c556fbbb424a8741ae914a115e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Poly.ts": "fe177c3296c22d0ff550588c901ebe8c283fe1e20237a7777ee3391c39362c5c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Quad.ts": "f6b18c92385bb78749236825bb142423280ed3e89ed5b24a962cb1bccc3f1ce5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Root.ts": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Stat2.ts": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Tangent.ts": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Reinforcement20261018.ts": "7510d2964a747b69aa10508e0e936b0ae66218107982c57a364c83ac3e04fe49",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top.ts": "b4c2565fc682d67f1bec68013eea8155cc493766c0328bc8c9f9ac398e335142",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top2.ts": "ed5d00483e068f10fdbc57f684e1b5539ff3cefe0c80492e7d7bab35aa108778",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top3.ts": "2c4e65ae86ac20b339f1d556e271daf760a72197d8cb8f57738a72510f90697a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top4.ts": "8c43cf73d995e07bb1ccc8ad60956ed0d8c76e4068943f3e0d4b7e800bea4d7b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top5a.ts": "ea0434261199e13ce70914bbb399c3e522a2ed7cee60add9b284750c01b743f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Top5b.ts": "0bbf9b87c69f138eb9dbad2fb2f7ff169d9b5bf1e82a68002de75d484bc51a2e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\midSupB.ts": "33730087e835d9e141d6c0d712682b099c2fb07ccdf7d95d752256564c0e9ba1"
+  },
+  "DBImports": 0,
+  "networkCalls": 0,
+  "factsParamsNotCollected": true,
+  "forcedMechanism": "In-memory exact selected entry.handler wrapper supplies one deterministic RNG bucket, original handler and actual public API pipeline used; finally restores handler. No source edits."
+}
