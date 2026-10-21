@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B13-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d65-58c5-7501-90ab-d5a2342bf779",
+ "startedAt": "2026-10-21T16:38:05+0900",
+ "elapsedSec": 16.5,
+ "studentSha256": {
+  "student.json": "303622d71dac756c4692445b48b2f495c61fcc2199fdc8c7bcd7864f84e76056"
+ },
+ "promptSha256": "1f63d914e39e721d0292219370da3da226a1bc6c6b43d650bf01cf73445463ed",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3개\",\"work\":\"기약분수의 분모의 소인수가 2 또는 5뿐이면 유한소수이다.\\n4.25, 21/56=3/8=0.375, 3/125=0.024는 유한소수이다.\\n5/18과 7/22는 분모에 각각 3과 11이 있고, 1.2345⋯는 무한소수이므로 유한소수는 모두 3개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3개",
+  "work": "기약분수의 분모의 소인수가 2 또는 5뿐이면 유한소수이다.\n4.25, 21/56=3/8=0.375, 3/125=0.024는 유한소수이다.\n5/18과 7/22는 분모에 각각 3과 11이 있고, 1.2345⋯는 무한소수이므로 유한소수는 모두 3개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e3d2aad6c10ea1fc5283edb06250af311ca860a4557e3c32f06b7575f5ded163"
+}

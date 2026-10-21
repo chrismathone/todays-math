@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d77-0a1d-7723-a172-7217df21eda3",
+ "startedAt": "2026-10-21T16:57:24+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "fig-1.png": "22cf50a84460aabebf537adb3331fe870af58001c192fcc712617faad9ed4667",
+  "student.json": "36f869f71c2b2ea2a906ce199f0a1206b6dbf743c767a3bd2c00bb25f107b81c"
+ },
+ "promptSha256": "f4e734fd916c7c3f29bd32dfe912e3784c5a30799210b5ae471222926deb8c14",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"내심 I는 각의 이등분선의 교점이므로 ∠A=2×26°=52°, ∠B=2×34°=68°이다.\\n삼각형의 내각의 합은 180°이므로 ∠x=180°−52°−68°=60°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "내심 I는 각의 이등분선의 교점이므로 ∠A=2×26°=52°, ∠B=2×34°=68°이다.\n삼각형의 내각의 합은 180°이므로 ∠x=180°−52°−68°=60°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bd485b3fd7f461c91f0fb0ac91993f007b094d06e5ba251d23128c56c93ebe88"
+}

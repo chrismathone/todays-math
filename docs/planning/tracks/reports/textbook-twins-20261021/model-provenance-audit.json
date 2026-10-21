@@ -1,0 +1,19 @@
+{
+ "counts": {
+  "author:claude-fable-5-1": 53,
+  "author-r2:claude-fable-5-1": 68,
+  "author-r2:claude-opus-5-5": 159,
+  "solver:gpt-6-astra": 672,
+  "solver:claude-opus-5-5": 516,
+  "review:claude-sonnet-5-5": 672,
+  "solver:gemini-3.8-flash-high": 156
+ },
+ "errors": [],
+ "historicalEnvelopeUnavailable": 71,
+ "historicalModels": {
+  "claude-fable-5-1": 71
+ },
+ "externalAudit": "/Users/pss/Desktop/creative/display-survey/textbook-twins/model-provenance-audit.json",
+ "sha256": "599348e1919c8fecde3a9902898bafb590feaad97f1b2dce7f72caa5ab61790e",
+ "codexModelEvidence": "explicit CLI gpt-6-astra xhigh; modelUsage envelope 없음"
+}

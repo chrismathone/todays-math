@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 127,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 부등식 중 $x=-2$를 해로 갖는 것은?",
+ "choices": [
+  "$x+7<5$",
+  "$2-x>3x+9$",
+  "$3x-1\\ge x+2$",
+  "$\\frac{x}{4}>0$",
+  "$5x+3\\le 2x-6$"
+ ],
+ "answer": "②",
+ "solution": "$x=-2$를 대입한다.\n① $5<5$ (거짓)\n② $2-(-2)=4$, $3\\times(-2)+9=3$이므로 $4>3$ (참)\n③ $-7\\ge 0$ (거짓)\n④ $-\\frac{1}{2}>0$ (거짓)\n⑤ $-7\\le -10$ (거짓)\n따라서 $x=-2$를 해로 갖는 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0c814a01b5d7293b-0-3",
+  "problemCode": "J20201-A89-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "c0e0b3c8a55a6ffb74471c6e5647c2cf3fe5e083b55f455b1c4d868f3ced48d7",
+  "dbContentSha256": "cb55966c437bfc8cbb193b6afb2d3292c4a2c2aff4180f63140a8ad3caa6c3b2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-1_부등식과그해.hwp",
+    "sha256": "fcc7457ec541b7a1f4cbdd68ddc8747249278b0b6f7b7dba1c69ccc4bc8ebab4",
+    "bytes": 40960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "양수 $1$을 다섯 부등식에 대입해 참이 되는 것 하나를 고른다. 보기에는 상수 더하기 · 양변 일차식 · 분수 꼴이 섞여 있다.",
+  "after": "음수 $-2$를 다섯 부등식에 대입해 참이 되는 것 하나를 고른다. 같은 종류의 보기를 새 식으로 짜고, 경계에서 거짓이 되는 보기와 정답 위치를 바꿨다.",
+  "sharedConcept": "부등식의 해 — 대입하여 참이 되는 값",
+  "sharedProcedure": "값 대입 → 양변 계산 → 참·거짓 판정 → 참인 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "식의 값 대입",
+   "정수의 사칙연산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A89-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 값을 해로 갖는 부등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.08,
+   "longestRun": 6,
+   "residualChars": 53,
+   "params": 7,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

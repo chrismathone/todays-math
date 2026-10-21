@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A60-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "187ae7c4-ae9e-4a5d-a5cc-e65df8a8956a",
+ "startedAt": "2026-10-21T17:05:28+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "fig-1.png": "faed94c12c59d3071fc596bd5a74d671fbdb9cd6ab34e69103f610f342e835fe",
+  "student.json": "3503c97f4a9312e871c4e455844e587e299c340ca11af2b17c253aef1490b6df"
+ },
+ "promptSha256": "ffdd26b39f4cb2cb8ab4078a23aee70dcbfc0759cf3ae80d47a7c78988556634",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "풀이: △DBC와 △DEC는 RHS 합동이므로 CE = 5 cm이고, 따라서 AE = 8 cm입니다. △ADE와 △ACB의 닮음에서 BD = 10/3 cm가 나옵니다. 피타고라스 정리로 검산하면 AD = 26/3 cm로 맞습니다.\n\n```json\n{\"answer\": \"$\\\\frac{10}{3}$ cm\", \"work\": \"△DBC와 △DEC에서 ∠DBC=∠DEC=90°, CD는 공통, BD=DE이므로 △DBC≡△DEC (RHS 합동). 따라서 CE=CB=5 cm이고 AE=13−5=8 cm이다. △ADE와 △ACB에서 ∠A는 공통, ∠AED=∠ABC=90°이므로 △ADE∽△ACB (AA 닮음). 따라서 DE:CB=AE:AB, 즉 DE:5=8:12에서 DE=10/3 cm이다. 그러므로 BD=DE=10/3 cm이다. (검산: AD=12−10/3=26/3, AE²+DE²=64+100/9=676/9=AD²)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{10}{3}$ cm",
+  "work": "△DBC와 △DEC에서 ∠DBC=∠DEC=90°, CD는 공통, BD=DE이므로 △DBC≡△DEC (RHS 합동). 따라서 CE=CB=5 cm이고 AE=13−5=8 cm이다. △ADE와 △ACB에서 ∠A는 공통, ∠AED=∠ABC=90°이므로 △ADE∽△ACB (AA 닮음). 따라서 DE:CB=AE:AB, 즉 DE:5=8:12에서 DE=10/3 cm이다. 그러므로 BD=DE=10/3 cm이다. (검산: AD=12−10/3=26/3, AE²+DE²=64+100/9=676/9=AD²)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ccef06b75814c2621e241758c5a8bb2049eca6a1724b72f448c10f145aa2ac05"
+}

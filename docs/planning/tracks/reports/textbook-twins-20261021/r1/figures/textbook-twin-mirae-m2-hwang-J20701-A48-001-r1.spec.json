@@ -1,0 +1,120 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   80,
+   26
+  ],
+  "B": [
+   18,
+   172
+  ],
+  "C": [
+   202,
+   172
+  ],
+  "D": [
+   42.8,
+   113.6
+  ],
+  "E": [
+   153.2,
+   113.6
+  ],
+  "F": [
+   91.6,
+   172
+  ],
+  "G": {
+   "type": "intersection",
+   "segments": [
+    "AF",
+    "DE"
+   ]
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "parallel": 1
+  },
+  "CA": [
+   "C",
+   "A"
+  ],
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "parallel": 1
+  },
+  "AF": [
+   "A",
+   "F"
+  ]
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "W"
+  },
+  "E": {
+   "text": "E",
+   "position": "E"
+  },
+  "F": {
+   "text": "F",
+   "position": "S"
+  },
+  "G": {
+   "text": "G",
+   "position": "NE"
+  }
+ },
+ "dimensions": {
+  "d_DG": {
+   "points": [
+    "D",
+    "G"
+   ],
+   "label": "6 cm",
+   "side": "auto"
+  },
+  "d_GE": {
+   "points": [
+    "G",
+    "E"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  },
+  "d_BF": {
+   "points": [
+    "B",
+    "F"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  }
+ }
+}

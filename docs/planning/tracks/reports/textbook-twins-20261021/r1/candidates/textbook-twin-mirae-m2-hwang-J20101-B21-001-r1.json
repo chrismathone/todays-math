@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 92,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B21-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 분수를 각각 소수로 나타낼 때, 순환소수가 되는 것을 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "$-\\frac{18}{45}$",
+  "$\\frac{5}{12}$",
+  "$\\frac{13}{2^{2}\\times 5^{3}}$",
+  "$\\frac{21}{2\\times 3\\times 7^{2}}$",
+  "$\\frac{35}{2^{3}\\times 5\\times 7}$"
+ ],
+ "answer": "②, ④",
+ "solution": "① $-\\frac{18}{45}=-\\frac{2}{5}$ ③ $\\frac{13}{2^{2}\\times 5^{3}}$ ⑤ $\\frac{35}{2^{3}\\times 5\\times 7}=\\frac{1}{2^{3}}$ 은 분모의 소인수가 $2$ 또는 $5$뿐이므로 유한소수이다. ② $\\frac{5}{12}=\\frac{5}{2^{2}\\times 3}$ 은 분모에 $3$이, ④ $\\frac{21}{2\\times 3\\times 7^{2}}=\\frac{1}{2\\times 7}$ 은 분모에 $7$이 남으므로 순환소수이다. 따라서 답은 ②, ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0124605e6f884b3c-0-3",
+  "problemCode": "J20101-B21-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "9b50b9dbe36c6c73d1ca1f38dc3679bdab0788b5dce105477408b67b1e10611d",
+  "dbContentSha256": "54e4ce397d7cce3a0e5cdd0f2657a4ad665b7eac4470888829ce652106e3624a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-2_유리수의소수표현.hwp",
+    "sha256": "2a85b6431eec9917cf847e6d0f48a9c6d10b051acdc335c774a23dc208a60501",
+    "bytes": 40448
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "자연수 분모 셋과 소인수 곱 분모 둘(음수 하나 포함) 가운데 순환소수가 되는 둘을 고른다. 정답은 분모 3²인 것과 11이 남는 것.",
+  "after": "음수 분수를 약분하면 유한소수가 되는 쪽에 두고, 분자 21이 3과 7을 하나씩 지워 7이 하나 남는 분수를 정답에 넣어 약분 뒤 남는 소인수를 세게 했다.",
+  "sharedConcept": "순환소수가 되는 분수의 조건(기약분수 분모에 2, 5 이외의 소인수)",
+  "sharedProcedure": "각 분수를 기약분수로 → 분모 소인수분해 → 2, 5 이외 소인수가 남는 둘 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "순환소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B21-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 분수 중 순환소수가 되는 것 모두 고르기(정답 2개)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.306,
+   "longestRun": 15,
+   "residualChars": 75,
+   "params": 12,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

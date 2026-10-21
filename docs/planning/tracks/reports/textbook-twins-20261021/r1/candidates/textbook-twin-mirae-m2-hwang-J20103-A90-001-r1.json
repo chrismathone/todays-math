@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 75,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 순환소수를 분수로 바르게 나타내지 못한 것은?",
+ "choices": [
+  "$0.\\dot{7}=\\frac{7}{9}$",
+  "$0.\\dot{3}\\dot{6}=\\frac{4}{11}$",
+  "$2.4\\dot{1}=\\frac{237}{90}$",
+  "$0.\\dot{5}0\\dot{2}=\\frac{502}{999}$",
+  "$0.6\\dot{3}=\\frac{19}{30}$"
+ ],
+ "answer": "③",
+ "solution": "① $\\dfrac{7}{9}$, ② $\\dfrac{36}{99}=\\dfrac{4}{11}$, ④ $\\dfrac{502}{999}$, ⑤ $\\dfrac{63-6}{90}=\\dfrac{57}{90}=\\dfrac{19}{30}$ 은 모두 옳다. ③ $x=2.4\\dot{1}$ 이라 하면 $100x=241.11\\cdots$, $10x=24.11\\cdots$ 이므로 $90x=217$, $x=\\dfrac{217}{90}$ 이다. 따라서 옳지 않은 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-c3b8fb93d4fa485d-0-2",
+  "problemCode": "J20103-A90-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "babbde5c59609848c060370e4a8410413c62d21398cfbf63a18f6b1712f9b126",
+  "dbContentSha256": "76257d04d191d7b5df551898b167741cc225442ce2207386721ebde10dc52cf5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-3_순환소수의분수표현.hwp",
+    "sha256": "626f88a9ab44ae352a855e765fb4e7adfb2505b64c8ea4519587f15bacbf5eee",
+    "bytes": 41984
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "다섯 가지 순환소수의 분수 표현 가운데 틀린 것 하나를 고르며, 틀린 보기는 정수 부분이 있는 혼합 순환소수에서 빼는 수를 잘못 잡은 꼴이다.",
+  "after": "보기 다섯을 새 순환소수로 구성하고 틀린 보기의 위치를 바꾸되, 오류 유형은 같게 하여 순환하지 않는 부분을 덜 빼는 실수를 찾게 한다.",
+  "sharedConcept": "여러 꼴의 순환소수를 분수로 나타내는 공식",
+  "sharedProcedure": "각 보기의 순환소수를 공식 또는 거듭제곱 차로 분수화 → 약분 → 제시된 분수와 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내는 공식",
+   "분수의 약분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A90-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 분수 표현 중 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.094,
+   "longestRun": 8,
+   "residualChars": 68,
+   "params": 14,
+   "numberRetention": 0.214,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

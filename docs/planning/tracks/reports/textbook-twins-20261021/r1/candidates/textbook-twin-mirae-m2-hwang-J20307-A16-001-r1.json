@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 192,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r1",
+ "authorId": "claude-fable-5-1:f860984f-a5ee-40b9-9cf2-9ff181470ed7",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "어느 합창단에서 소프라노 단원과 알토 단원이 한 명씩 짝을 지어 서면 알토 단원이 $6$명 남는다고 한다. 합창단의 단원이 모두 $40$명일 때, 소프라노 단원 수는?",
+ "choices": [
+  "$14$",
+  "$17$",
+  "$20$",
+  "$23$",
+  "$26$"
+ ],
+ "answer": "②",
+ "solution": "소프라노 단원 수를 $x$, 알토 단원 수를 $y$라 하면 $\\begin{cases} x+y=40 \\\\ y=x+6 \\end{cases}$이다. 두 번째 식을 첫 번째 식에 대입하면 $x+(x+6)=40$, $2x=34$, $x=17$이다. 따라서 소프라노 단원 수는 $17$이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-12",
+  "problemCode": "J20307-A16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "9f50dc1d6ccfd6301db7e7cb68b44f16f0e95458b20a2b6ff9f8d03bdc0853c4",
+  "dbContentSha256": "a6d98985d3730e7523c6622ef69cd44154327e4c58223da9695fd2614ebe97f1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "두 집단을 둘씩 짝지을 때 한쪽이 몇 명 남는다는 조건과 전체 인원을 주고, 더 많은 쪽의 인원을 고르게 한다.",
+  "after": "합창단의 두 파트를 한 명씩 짝지을 때 한쪽이 남는다는 조건과 전체 단원 수를 주고, 더 적은 쪽의 인원을 고르게 한다.",
+  "sharedConcept": "합과 차가 주어진 두 수를 연립일차방정식으로 구하기",
+  "sharedProcedure": "두 집단의 수를 미지수로 놓기 → 합의 식과 차의 식 세우기 → 대입법으로 풀기 → 묻는 집단의 수 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(가격, 개수, 증감, 도형)"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(대입법)",
+   "문장을 식으로 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20307-A16-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "합과 차가 주어진 두 집단의 인원 구하기(연립방정식의 활용)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.068,
+   "longestRun": 7,
+   "residualChars": 65,
+   "params": 8,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

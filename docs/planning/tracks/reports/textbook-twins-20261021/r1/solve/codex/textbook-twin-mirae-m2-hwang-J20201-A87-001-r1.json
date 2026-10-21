@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6d-9c38-78f2-8030-f21d6bf4a4f2",
+ "startedAt": "2026-10-21T16:47:06+0900",
+ "elapsedSec": 17.3,
+ "studentSha256": {
+  "student.json": "ed1917195b33985b0c69c6240843b55fc8f48b3080a9f35aaf7122dcb6c41f87"
+ },
+ "promptSha256": "d975d18d738ba7c0c0ebd75661211ef7e9951c17fa8eb842db4d675c1a1733e7",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②, ③\",\n  \"work\": \"각 수를 대입하면\\n① -3 > -2: 거짓\\n② -1 ≤ 5: 참\\n③ 0 < 1: 참\\n④ 8 ≥ 11: 거짓\\n⑤ 2 - 1 > 1, 즉 1 > 1: 거짓\\n따라서 ②, ③이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "②, ③",
+  "work": "각 수를 대입하면\n① -3 > -2: 거짓\n② -1 ≤ 5: 참\n③ 0 < 1: 참\n④ 8 ≥ 11: 거짓\n⑤ 2 - 1 > 1, 즉 1 > 1: 거짓\n따라서 ②, ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d7c6c1e5972c1c1bcf9d88b1f9f595032877060a860f8772d5ee81b08a0ef4ed"
+}

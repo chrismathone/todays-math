@@ -1,0 +1,144 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 124,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A85-001-r1",
+ "authorId": "middle-engine:2-1|일차부등식|01",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "다음 보기 중 부등식인 것을 모두 고르시오.",
+ "choices": [
+  "$10-8<5$",
+  "$x-2y$",
+  "$3x\\ge2(x-3)$",
+  "$5x=10$",
+  "$8+7=15$"
+ ],
+ "answer": "①, ③",
+ "solution": "부등식은 부등호 $<$, $>$, $\\le$, $\\ge$ 를 사용하여 수 또는 식의 대소 관계를 나타낸 식이다.\n등호로 이어진 식과 부등호가 없는 식은 부등식이 아니다.\n따라서 부등식인 것은 ①, ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0c814a01b5d7293b-0-1",
+  "problemCode": "J20201-A85-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "4ba2ca56fb123a4171a8c25925fccc16d2ea12163ca82e30b6d6748b2843748b",
+  "dbContentSha256": "1183737b85aef63cc28d8ee1f712deea60297989b0a1e3e6e1ae7c9121dae704",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-1_부등식과그해.hwp",
+    "sha256": "fcc7457ec541b7a1f4cbdd68ddc8747249278b0b6f7b7dba1c69ccc4bc8ebab4",
+    "bytes": 40960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "다항식 · 등식 · 수만으로 된 부등식 · 문자 부등식이 섞인 다섯 식에서 부등식 둘을 고른다.",
+  "after": "엔진이 다항식 · 등식 · 부등식을 새로 섞어 다섯 식을 만들고 부등식 둘을 고르게 한다.",
+  "sharedConcept": "부등식의 뜻 — 부등호로 대소를 나타낸 식",
+  "sharedProcedure": "각 식의 기호 확인 → 부등호가 있는 식 판별 → 둘 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "등식의 뜻",
+   "다항식",
+   "부등호"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A85-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부등식인 것 모두 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|일차부등식|01",
+   "seed": 1291764381,
+   "variant": 6,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+   "authorRationale": "식 다섯 가운데 부등식인 것을 모두 고르는 꼴(정답 둘)로 개념 · 절차 · 물음 꼴이 견본과 같다.",
+   "facts": {
+    "보기수": 5,
+    "mask": 5
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.15,
+   "longestRun": 8,
+   "residualChars": 43,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

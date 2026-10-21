@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A75-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "34fbe80b-17d5-439a-a013-ecf38e6c9451",
+ "startedAt": "2026-10-21T18:48:49+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "236be6b5215ed28dae49969963eb48c4ca355bfce43b3663578bb76ab00dbc90"
+ },
+ "promptSha256": "b4260ee38471e965134e5cfa5d2892029cc410417865b0c31b511815bd6fed93",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑤\",\n  \"work\": \"두 사람이 모두 틀릴 확률은 $\\\\left(1 - \\\\frac{2}{3}\\\\right) \\\\times \\\\left(1 - \\\\frac{5}{8}\\\\right) = \\\\frac{1}{3} \\\\times \\\\frac{3}{8} = \\\\frac{1}{8}$이다. 따라서 적어도 한 사람이 문제를 맞힐 확률은 $1 - \\\\frac{1}{8} = \\\\frac{7}{8}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑤",
+  "work": "두 사람이 모두 틀릴 확률은 $\\left(1 - \\frac{2}{3}\\right) \\times \\left(1 - \\frac{5}{8}\\right) = \\frac{1}{3} \\times \\frac{3}{8} = \\frac{1}{8}$이다. 따라서 적어도 한 사람이 문제를 맞힐 확률은 $1 - \\frac{1}{8} = \\frac{7}{8}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0eef3f1ab67e378cd28e903d46b8055e53eb8d70a47c14ee08f901f23a93bd9b"
+}

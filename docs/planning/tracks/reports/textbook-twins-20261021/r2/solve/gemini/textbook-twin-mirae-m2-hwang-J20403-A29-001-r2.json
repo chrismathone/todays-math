@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "297dcccb-0ef3-4073-a1d7-84f749b89c4e",
+ "startedAt": "2026-10-21T18:15:02+0900",
+ "elapsedSec": 22.2,
+ "studentSha256": {
+  "fig-1.png": "ddc525829820421ef080384379f87f489412d7650a25509c07133a677fc882f0",
+  "student.json": "a16db171cc74755271372ca0a6e27c57392974920ab4712e7ec2d8570eb91956"
+ },
+ "promptSha256": "0915ca105b7e738afa326959cbf382b01aa936c2ae53cf663a2662989c00af3d",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"일차함수 $y=ax+6$의 그래프는 항상 점 $(0, 6)$을 지납니다. 직선이 점 $\\\\mathrm{P}(8, -10)$을 지날 때 $-10 = 8a + 6$에서 $a = -2$이고, 점 $\\\\mathrm{Q}(9, 0)$을 지날 때 $0 = 9a + 6$에서 $a = -\\\\frac{2}{3}$입니다. 따라서 직선이 선분 $\\\\mathrm{PQ}$와 만나도록 하는 $a$의 값의 범위는 $-2 \\\\le a \\\\le -\\\\frac{2}{3}$입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "일차함수 $y=ax+6$의 그래프는 항상 점 $(0, 6)$을 지납니다. 직선이 점 $\\mathrm{P}(8, -10)$을 지날 때 $-10 = 8a + 6$에서 $a = -2$이고, 점 $\\mathrm{Q}(9, 0)$을 지날 때 $0 = 9a + 6$에서 $a = -\\frac{2}{3}$입니다. 따라서 직선이 선분 $\\mathrm{PQ}$와 만나도록 하는 $a$의 값의 범위는 $-2 \\le a \\le -\\frac{2}{3}$입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "976c35f6e97ad79607f1708512e6543696b06464dd7df8d8f569ce18c69a5d50"
+}

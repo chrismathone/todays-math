@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 26,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r2",
+ "authorId": "claude-fable-5-1:c61d6f80-918a-4709-94d7-2f89c57984a9",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 다항식 $A$, $B$가 아래 (가), (나)를 모두 만족시킨다. 이때 $A-B$를 구하시오.\n(가) $A-(7x^{2}-9x+6)=-8x^{2}+6x+10$\n(나) $-6x^{2}+8x-7-B=11x^{2}-10x+9$",
+ "choices": [],
+ "answer": "$16x^{2}-21x+32$",
+ "solution": "(가)에서 $A=(-8x^{2}+6x+10)+(7x^{2}-9x+6)=-x^{2}-3x+16$이다.\n(나)에서 $B=(-6x^{2}+8x-7)-(11x^{2}-10x+9)=-17x^{2}+18x-16$이다.\n따라서 $A-B=(-x^{2}-3x+16)-(-17x^{2}+18x-16)=16x^{2}-21x+32$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-1-5",
+  "problemCode": "J20107-A76-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "de8d26c97f7d6a49ff07a5313c54b6121d6be7cd6ad7ce1607590e3696cf8961",
+  "dbContentSha256": "bc8bf27697bfa7d23540f119328afeb7fcbe1d5d6e09b3e47b2670f55a8cb525",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "이차식 A를 더한 등식과 이차식 B를 뺀 등식 두 개가 주어지고, 각각을 이항해 A, B를 구한 뒤 두 식의 합을 묻는다.",
+  "after": "A에서 이차식을 뺀 등식과 이차식에서 B를 뺀 등식 두 개가 주어지고, 각각을 이항해 A, B를 구한 뒤 두 식의 차를 묻는다. 계수는 모두 6 이상으로 원본의 수를 하나도 쓰지 않았다.",
+  "sharedConcept": "이차식의 덧셈과 뺄셈(등식에서 모르는 다항식 구하기)",
+  "sharedProcedure": "(가)를 이항해 A 구하기 → (나)를 이항해 B 구하기 → 두 식을 괄호 풀어 동류항끼리 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항의 계산",
+   "다항식의 덧셈과 뺄셈",
+   "등식의 성질(이항)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A76-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 등식에서 다항식 A, B를 각각 구해 A와 B의 합·차 계산하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.079,
+   "longestRun": 5,
+   "residualChars": 81,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 52,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A60-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중에서 가장 작은 수는?",
+ "choices": [
+  "$4.\\dot{7}\\dot{6}$",
+  "$4.76\\dot{2}$",
+  "$4.7\\dot{6}$",
+  "$4.\\dot{7}6\\dot{2}$",
+  "$4.7\\dot{6}\\dot{2}$"
+ ],
+ "answer": "②",
+ "solution": "각 수를 풀어 쓰면 ① $4.\\dot{7}\\dot{6}=4.7676\\cdots$ ② $4.76\\dot{2}=4.76222\\cdots$ ③ $4.7\\dot{6}=4.7666\\cdots$ ④ $4.\\dot{7}6\\dot{2}=4.762762\\cdots$ ⑤ $4.7\\dot{6}\\dot{2}=4.76262\\cdots$이다. ①과 ③은 소수점 아래 셋째 자리가 $7$, $6$이고 ②, ④, ⑤는 $2$이므로 ②, ④, ⑤ 가운데서 비교하면 넷째 자리가 각각 $2$, $7$, $6$이다. 따라서 가장 작은 수는 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-3",
+  "problemCode": "J20102-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "a6f879ac8c57367b93c6fe8690abf5ff8b40a97928dc22d1701ba02e84f8319e",
+  "dbContentSha256": "1c9fc0e26f706ca21b6e8ddbf01860475df01f002fd544eb3d5dadd7f0f5c40d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "정수 부분과 소수 첫 두 자리가 비슷한 순환소수 다섯 개를 풀어 써서 비교하고, 가장 큰 것을 고른다.",
+  "after": "같은 꼴의 순환소수 다섯 개를 풀어 써서 자리마다 비교하되, 가장 작은 것을 고른다.",
+  "sharedConcept": "순환소수의 대소 비교",
+  "sharedProcedure": "각 순환소수를 소수로 풀어 쓰기 → 같은 자리부터 숫자 비교 → 극값 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "소수의 대소 비교",
+   "순환소수의 기호 표현"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A60-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수 여러 개의 대소 비교",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 30자"
+   ],
+   "overlap4": 0.211,
+   "longestRun": 7,
+   "residualChars": 30,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

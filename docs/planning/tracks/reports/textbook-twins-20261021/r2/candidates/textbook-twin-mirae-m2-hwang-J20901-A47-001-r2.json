@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 350,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r2",
+ "authorId": "claude-fable-5-1:1b7b7d2e-bfcc-4e7b-9435-ccbbc7600eb5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "미나와 서아가 주사위를 각각 하나씩 동시에 던져서 미나가 던진 주사위의 눈의 수를 $a$, 서아가 던진 주사위의 눈의 수를 $b$라 하자. $2b-a=7$을 만족시키는 경우의 수는?",
+ "choices": [
+  "$2$",
+  "$3$",
+  "$4$",
+  "$6$",
+  "$8$"
+ ],
+ "answer": "②",
+ "solution": "$2b-a=7$에서 $a=2b-7$이다. $b$에 $1$부터 $6$까지 차례로 넣어 $a$가 $1$ 이상 $6$ 이하가 되는 것만 고른다. $b=4$이면 $a=1$, $b=5$이면 $a=3$, $b=6$이면 $a=5$이고, $b$가 $3$ 이하이면 $a$가 $0$ 이하가 되어 눈의 수가 될 수 없다. 따라서 순서쌍 $(a,\\,b)$는 $(1,\\,4)$, $(3,\\,5)$, $(5,\\,6)$의 $3$개이므로 구하는 경우의 수는 $3$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-2",
+  "problemCode": "J20901-A47-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "f0d83cc8e24660e6f9ba2abc132bae869fc47f1f12f7c0fea4f4d0fe2341b8cf",
+  "dbContentSha256": "1f98ec19ada0eafce962116f1a2f81844f65125cd2a314370d3824b3dc0dd834",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "주사위 하나를 두 번 던져 앞뒤 눈을 x, y로 두고, x의 2배와 y의 합이 정해진 값이 되는 순서쌍의 개수를 보기 1~5 가운데 고른다.",
+  "after": "두 사람이 주사위를 하나씩 동시에 던져 각자의 눈을 a, b로 두고, b의 2배에서 a를 뺀 값이 정해진 수가 되는 순서쌍의 개수를 고른다. 보기는 2 · 3 · 4 · 6 · 8로 새로 짰고, 식의 짜임(차의 꼴, 계수가 붙는 변수)과 수를 모두 바꾸었다.",
+  "sharedConcept": "두 주사위 눈의 순서쌍 가운데 일차방정식을 만족시키는 것의 개수 세기",
+  "sharedProcedure": "한 변수를 다른 변수로 나타낸다 → 눈의 수 1~6 범위에서 가능한 값을 차례로 대입한다 → 두 수가 모두 1~6인 순서쌍만 남긴다 → 개수를 센다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "경우의 수의 뜻",
+   "순서쌍으로 경우 나열하기",
+   "일차방정식의 해"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A47-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위 눈이 일차방정식을 만족시키는 경우의 수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.017,
+   "longestRun": 4,
+   "residualChars": 70,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

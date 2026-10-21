@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A89-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-623e-70a0-a6ba-1e5051af9d56",
+ "startedAt": "2026-10-21T19:00:07+0900",
+ "elapsedSec": 8.5,
+ "studentSha256": {
+  "fig-1.png": "d5ac7275575bb1b9b7da7292caa4d96bc87b34b1cc8aecf204b7872e36f7fe7c",
+  "student.json": "115ab1853d2728a82237258d80890a73f3f809d811f4f2adf054ecb553e61f10"
+ },
+ "promptSha256": "9a22892a448610c2a60a972e82335dd92820ea64b5be9a05520cef8423813782",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8\",\"work\":\"직선이 (5, 0)을 지나므로 5p=15에서 p=3이다.\\n또 (0, -3)을 지나므로 -3q=15에서 q=-5이다.\\n따라서 p-q=3-(-5)=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "직선이 (5, 0)을 지나므로 5p=15에서 p=3이다.\n또 (0, -3)을 지나므로 -3q=15에서 q=-5이다.\n따라서 p-q=3-(-5)=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e23513ef51816df821bbfb94ebc943ba63c589dc1ec5bbee42570122c41eea72"
+}

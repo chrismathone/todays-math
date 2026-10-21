@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6e-23b5-7372-857d-113655944421",
+ "startedAt": "2026-10-21T16:47:41+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "0219ce8a7c53d177265e3e555b3393d93feccde337d3ca0845e53a9e34665ae9"
+ },
+ "promptSha256": "94c1ba6d721132129c1760d35ace59b59066c9cd4c105b2050b5599a62be5992",
+ "freezeCommit": "5f82349afee217328e21a0c224b124cfd3eb9fb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"각 부등식에 $x=-2$를 대입하면\\n① $5<5$ (거짓), ② $4>3$ (참), ③ $-7\\\\ge0$ (거짓), ④ $-\\\\frac12>0$ (거짓), ⑤ $-7\\\\le-10$ (거짓).\\n따라서 정답은 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "각 부등식에 $x=-2$를 대입하면\n① $5<5$ (거짓), ② $4>3$ (참), ③ $-7\\ge0$ (거짓), ④ $-\\frac12>0$ (거짓), ⑤ $-7\\le-10$ (거짓).\n따라서 정답은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "88b6f957331557867efb9054050a34e04c81431f8e28f0bfa0d12b4ebf95eeaf"
+}

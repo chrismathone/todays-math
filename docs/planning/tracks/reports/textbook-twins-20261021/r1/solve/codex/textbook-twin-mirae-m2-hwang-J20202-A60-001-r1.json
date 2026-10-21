@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A60-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d70-be02-7ea0-976a-cbb708757e38",
+ "startedAt": "2026-10-21T16:50:32+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "eb93b9b0a2dd4f3d115eb71f818bd10404fed6a1f90ddb42aefdca7d165d3a5a"
+ },
+ "promptSha256": "7c15dd4ab7a74bb9c72aa69bc0bd745fcadd04c02b03c03727f102ec7785974e",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"1\",\"work\":\"주어진 부등식을 정리하면 2x≤8, 즉 x≤4이다. 따라서 9-2x≥1이고, x=4일 때 1이 되므로 최솟값은 1이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "1",
+  "work": "주어진 부등식을 정리하면 2x≤8, 즉 x≤4이다. 따라서 9-2x≥1이고, x=4일 때 1이 되므로 최솟값은 1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f7a66a680fdd1194b06b33a2e747664be26ea9ba65344867ec153643692df928"
+}

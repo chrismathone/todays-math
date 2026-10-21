@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-3111-7852-8beb-9ef9019c11e5",
+ "startedAt": "2026-10-21T17:52:11+0900",
+ "elapsedSec": 7.8,
+ "studentSha256": {
+  "student.json": "dd9ab1e58688a10e04e2a629f19dff654a1b0ed0c284933c3c5ba4ed1a584a62"
+ },
+ "promptSha256": "0314c61fb403e8eaca31634d76236861bdc97d71a538304a4b5abfcc3555b3c8",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"y축의 방향으로 5만큼 평행이동한 그래프는 y=ax-3+5=ax+2이다.\\ny=-2x+b와 일치하므로 a=-2, b=2이다.\\n따라서 a+b=0이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "y축의 방향으로 5만큼 평행이동한 그래프는 y=ax-3+5=ax+2이다.\ny=-2x+b와 일치하므로 a=-2, b=2이다.\n따라서 a+b=0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e82a8d55e1239827a0793810d8e647f9addd4abdf372e8e2121bd5a8b5a15946"
+}

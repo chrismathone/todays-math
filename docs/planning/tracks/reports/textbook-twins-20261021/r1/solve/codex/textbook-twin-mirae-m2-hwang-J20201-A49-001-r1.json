@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A49-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6c-6094-75e2-a136-f7fa6eb0711c",
+ "startedAt": "2026-10-21T16:45:46+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "ec86e37284bacb77d0540a8f983f8d3791b221ddcaa4d4eb53355906a562f45e"
+ },
+ "promptSha256": "f94738c4f206f247f241285229ccb1329c0c3e814983340b59f1a11ab5ef6735",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ④\",\"work\":\"부등식의 양변에 양수를 곱하면 부등호 방향이 유지되고, 음수를 곱하면 반대로 바뀐다. 같은 수를 더해도 방향은 변하지 않는다.\\n따라서 9-3a>9-3b, 5a<5b이므로 ①, ④가 옳다. ②, ③, ⑤는 부등호 방향이 반대이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ④",
+  "work": "부등식의 양변에 양수를 곱하면 부등호 방향이 유지되고, 음수를 곱하면 반대로 바뀐다. 같은 수를 더해도 방향은 변하지 않는다.\n따라서 9-3a>9-3b, 5a<5b이므로 ①, ④가 옳다. ②, ③, ⑤는 부등호 방향이 반대이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "08341bb609b429f3ce7d6175fcb8bf7033d44971e8d4b1b35377d9ba0c3eceb3"
+}

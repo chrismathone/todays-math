@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A78-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dea-9ce2-7d93-84bb-1ea4d64c7351",
+ "startedAt": "2026-10-21T19:03:39+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "ba37f5ea0ffd7f9477104e5aff4b06276390ac1fe9d98a22afa4792e6aa9e200"
+ },
+ "promptSha256": "3d8feca01c7ba782bcb5db985dfa74723f37c3d2b3928a9cf795cd9079ccbfc6",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"x축 위에서는 $y=0$이다. ①, ②, ④, ⑤에 $y=0$을 대입하면 모두 $x=4$이므로 $(4,0)$에서 만난다. ③은 $x=4$일 때 $y=-3$이므로 그 점을 지나지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x축 위에서는 $y=0$이다. ①, ②, ④, ⑤에 $y=0$을 대입하면 모두 $x=4$이므로 $(4,0)$에서 만난다. ③은 $x=4$일 때 $y=-3$이므로 그 점을 지나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3176f0c2057ddde7ee661826b5994991e5431e31ed4f325a44fc12dfe9576808"
+}

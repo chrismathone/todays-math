@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d54-5bbf-7051-8efd-f75e4d6479dc",
+ "startedAt": "2026-10-21T16:19:31+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "d7e088964fd901dfa4ee1ae1e496b430f3bfbd541961f88ab77fc644744e05b0"
+ },
+ "promptSha256": "6f36ce819872664bfb03f758bda938daebb73fc73e69130110e7ea820d6b0748",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $5a^2-2a+3$ ⑵ $7x^2-20xy-18y^2$\",\"work\":\"분배법칙으로 괄호를 풀고 동류항끼리 계산한다.\\n⑴ $5a^2+10a-12a+3=5a^2-2a+3$\\n⑵ $7x^2-14xy-6xy-18y^2=7x^2-20xy-18y^2$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $5a^2-2a+3$ ⑵ $7x^2-20xy-18y^2$",
+  "work": "분배법칙으로 괄호를 풀고 동류항끼리 계산한다.\n⑴ $5a^2+10a-12a+3=5a^2-2a+3$\n⑵ $7x^2-14xy-6xy-18y^2=7x^2-20xy-18y^2$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c9ee839e5505dc02ab4bd0dff6664808648a0c0a2efdd831df37d88130d8712b"
+}

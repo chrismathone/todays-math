@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 180,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 5x+3y=7 \\\\ x-5y=b \\end{cases}$의 해가 $x=a$, $y=-1$일 때, $a+b$의 값은? (단, $b$는 수이다.)",
+ "choices": [
+  "$5$",
+  "$7$",
+  "$9$",
+  "$11$",
+  "$13$"
+ ],
+ "answer": "③",
+ "solution": "$x=a$, $y=-1$을 $5x+3y=7$에 대입하면 $5a-3=7$이므로 $a=2$이다. $x=2$, $y=-1$을 $x-5y=b$에 대입하면 $b=2+5=7$이다. 따라서 $a+b=9$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-4",
+  "problemCode": "J20302-A35-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "99d5ba612375fb0d5a06ff2b25ed13e6967473a910366694bf626919260e4616",
+  "dbContentSha256": "2adcb378ba0464dad56af7c5b690cd159a263a190de4186c8be001d6b19b1349",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "해의 x값은 수로, y값은 미지수 b로 주고 둘째 식의 상수항이 a일 때 b−a를 묻는다.",
+  "after": "해의 y값을 수로, x값을 미지수 a로 바꾸어 주고 둘째 식의 상수항이 b일 때 a+b를 묻는다.",
+  "sharedConcept": "연립방정식의 해를 식에 대입하여 미지수 구하기",
+  "sharedProcedure": "해를 미지수 없는 식에 대입해 해의 나머지 값 구하기 → 완성된 해를 다른 식에 대입해 상수 구하기 → 요구한 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "연립방정식의 해의 뜻",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A35-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 주어진 연립방정식에서 미지수의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.098,
+   "longestRun": 5,
+   "residualChars": 44,
+   "params": 9,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

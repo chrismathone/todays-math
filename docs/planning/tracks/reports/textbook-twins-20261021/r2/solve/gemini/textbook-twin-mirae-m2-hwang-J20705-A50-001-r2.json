@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "018960a7-0f8c-4845-9e4e-242e9dfab120",
+ "startedAt": "2026-10-21T18:43:34+0900",
+ "elapsedSec": 22.9,
+ "studentSha256": {
+  "fig-1.png": "03f6433baa36227b1a1455e0efe7b8d8e3e9b586d4904a4232342827a3f2d7f6",
+  "student.json": "eca11964fcbfdc42efff03d72a4ec2d69c492cb012a358310079e8e5210b0c92"
+ },
+ "promptSha256": "0a5f54ab926984f6c29f0373bda21505fd0bcf53abc5856e4d83e4e150f7c409",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"직각삼각형의 빗변의 중점 $M$은 외심이므로 $\\\\overline{BM} = \\\\frac{1}{2}\\\\overline{AC} = \\\\frac{1}{2} \\\\times 30 = 15\\\\,\\\\mathrm{cm}$이다.\\n점 $G$는 $\\\\triangle ABC$의 무게중심이므로 중선 $BM$을 꼭짓점 $B$로부터 $2:1$로 나눈다.\\n따라서 $\\\\overline{BG} = \\\\frac{2}{3}\\\\overline{BM} = \\\\frac{2}{3} \\\\times 15 = 10\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형의 빗변의 중점 $M$은 외심이므로 $\\overline{BM} = \\frac{1}{2}\\overline{AC} = \\frac{1}{2} \\times 30 = 15\\,\\mathrm{cm}$이다.\n점 $G$는 $\\triangle ABC$의 무게중심이므로 중선 $BM$을 꼭짓점 $B$로부터 $2:1$로 나눈다.\n따라서 $\\overline{BG} = \\frac{2}{3}\\overline{BM} = \\frac{2}{3} \\times 15 = 10\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d220a5d3dd642affca540bd87c2409063c4b9b4d90e53c5a3d988ae1f09b37bd"
+}

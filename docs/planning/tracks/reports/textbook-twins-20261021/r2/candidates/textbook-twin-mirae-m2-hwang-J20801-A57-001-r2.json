@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 340,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r2",
+ "authorId": "claude-fable-5-1:9f34e34a-8013-475d-b1df-4ecfedac65fb",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림] 도하는 $\\overline{DF}=10\\,\\mathrm{cm}$, $\\angle E=90^{\\circ}$인 삼각형 $DEF$를 그린 다음, 변 $DE$와 변 $EF$ 위에 각 변을 지름으로 하는 반원을 하나씩 삼각형 바깥쪽에 그려 색칠하였다. 색칠한 두 부분 $P$, $Q$의 넓이를 합하면?",
+ "choices": [
+  "$5\\pi\\,\\mathrm{cm}^{2}$",
+  "$10\\pi\\,\\mathrm{cm}^{2}$",
+  "$\\frac{25}{2}\\pi\\,\\mathrm{cm}^{2}$",
+  "$25\\pi\\,\\mathrm{cm}^{2}$",
+  "$50\\pi\\,\\mathrm{cm}^{2}$"
+ ],
+ "answer": "③",
+ "solution": "$\\angle E=90^{\\circ}$이므로 $\\overline{DE}^{2}+\\overline{EF}^{2}=\\overline{DF}^{2}$이다. 두 직각변 위의 반원 넓이의 합은 $\\frac{1}{2}\\pi\\left(\\frac{\\overline{DE}}{2}\\right)^{2}+\\frac{1}{2}\\pi\\left(\\frac{\\overline{EF}}{2}\\right)^{2}=\\frac{\\pi}{8}\\overline{DF}^{2}$, 곧 빗변 $\\overline{DF}$ 위의 반원 넓이와 같다. 빗변의 반지름이 $5\\,\\mathrm{cm}$이므로 $P+Q=\\frac{1}{2}\\times\\pi\\times 5^{2}=\\frac{25}{2}\\pi\\,(\\mathrm{cm}^{2})$. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A57-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A57-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-14",
+  "problemCode": "J20801-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "047682e71c1d42487bfeee70e8735ace33a1ea902107a91a32616b9bab4954e6",
+  "dbContentSha256": "27708497126d4b1356778702132bc8bf96b4e3858932d53362974fa6dec5cd5b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "b1c72db78c4eb6ea68948e09f301dc179a3d82b15039f5d8fcb04b39cba622c0"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "빗변 길이가 주어진 직각삼각형에서 두 직각변을 지름으로 하는 반원 두 개의 넓이를 첨자 기호로 두고 그 합을 객관식으로 고른다.",
+  "after": "학생이 삼각형 바깥에 반원을 그려 색칠한 장면으로 바꾸고, 꼭짓점 이름과 넓이 기호를 새로 두었으며 빗변 길이도 다르게 하여 색칠한 두 부분 넓이의 합을 객관식으로 고른다.",
+  "sharedConcept": "피타고라스 정리의 활용 — 직각삼각형의 세 변 위에 그린 반원 사이의 넓이 관계",
+  "sharedProcedure": "직각변 위 두 반원 넓이의 합이 빗변 위 반원 넓이와 같음을 확인 → 빗변의 반을 반지름으로 → 반원 넓이 계산 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "원의 넓이",
+   "반원의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20801-A57-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형의 변을 지름으로 하는 반원의 넓이 관계",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.087,
+   "longestRun": 8,
+   "residualChars": 119,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

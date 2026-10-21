@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-ec08-75f0-b497-05c49fa9c566",
+ "startedAt": "2026-10-21T18:59:37+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "student.json": "74de9f3dfb598e4964f0a4f82ff8c87002bb43ae12e1f43128eef5261cd3dfc7"
+ },
+ "promptSha256": "e0193b8bd7007b0ccb9e3955a6955c69e50b39c7a492b8488b652e289f441d34",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"점 $(-8,11)$을 대입하면 $-8a+88=40$이므로 $a=6$이다.\\n따라서 그래프의 식은 $3x+4y=20$이다.\\n③은 $3\\\\times24+4\\\\times(-12)=24\\\\ne20$이므로 그래프 위에 있지 않다. 나머지 점은 모두 식을 만족한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "점 $(-8,11)$을 대입하면 $-8a+88=40$이므로 $a=6$이다.\n따라서 그래프의 식은 $3x+4y=20$이다.\n③은 $3\\times24+4\\times(-12)=24\\ne20$이므로 그래프 위에 있지 않다. 나머지 점은 모두 식을 만족한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab8e02ab419f9541b1184872de98322e58bab858a4fd485876c9ccb72dca4c2e"
+}

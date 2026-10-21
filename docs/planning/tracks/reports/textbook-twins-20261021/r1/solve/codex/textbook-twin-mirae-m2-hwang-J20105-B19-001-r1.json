@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6a-3dfb-7e91-a1da-42853a87d160",
+ "startedAt": "2026-10-21T16:43:26+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "f10eeb7a9d7ef38579023d3fc53bb8727ca3e2352bdfc8277eaaf1649c8cb790"
+ },
+ "promptSha256": "7f9891d4c68ac9f19e64ba982075b7c06a45af05bf3d7f0bdf1fbec55d3677a3",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6\",\"work\":\"같은 밑의 거듭제곱을 나누면 지수를 빼므로 $x^{3m-5-6}=x^7$이다. 따라서 $3m-11=7$, $3m=18$이므로 $m=6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6",
+  "work": "같은 밑의 거듭제곱을 나누면 지수를 빼므로 $x^{3m-5-6}=x^7$이다. 따라서 $3m-11=7$, $3m=18$이므로 $m=6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab9a2c2077721362faadfdbeab3e4325e2459aea4554c2cdebd0b041c0481592"
+}

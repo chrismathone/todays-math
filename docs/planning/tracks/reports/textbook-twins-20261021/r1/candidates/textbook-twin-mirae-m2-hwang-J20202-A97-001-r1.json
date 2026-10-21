@@ -1,0 +1,151 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 151,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$a<0$일 때, 다음 일차부등식 가운데 해를 수직선 위에 나타낸 것이 아래 그림과 같은 것은?\n[그림]",
+ "choices": [
+  "$ax-4a<0$",
+  "$2ax\\le -8a$",
+  "$-ax<4a$",
+  "$ax+4a<0$",
+  "$3ax+5a>2ax+9a$"
+ ],
+ "answer": "④",
+ "solution": "그림은 $-4$에 빈 점을 찍고 오른쪽으로 나타낸 것이므로 $x>-4$이다. $a<0$이므로 양변을 $a$로 나눌 때 부등호의 방향이 바뀐다.\n① $ax<4a$에서 $x>4$\n② $2ax\\le -8a$에서 $x\\ge -4$\n③ $-a>0$이므로 양변을 $-a$로 나누면 $x<-4$\n④ $ax<-4a$에서 $x>-4$\n⑤ $ax>4a$에서 $x<4$\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20202-A97-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20202-A97-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51f4c1431376eff4-1-5",
+  "problemCode": "J20202-A97-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "50ad66c6db0cebd71c75eb576e37c91496f509872ca9c9cb66bcaa34fdf9a494",
+  "dbContentSha256": "e77202fa17736c17f74490f9756298cfa4b7fb9b7f889c5860d60150c9c161c1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-3_일차부등식의풀이.hwp",
+    "sha256": "a374a285941d2fa27cc2228a9abef548e08ea23bbddde87c8c6d5b1b038b8194",
+    "bytes": 416768
+   }
+  ],
+  "originalFigureSha256": [
+   "d456d3b542c34866516b331a8c36fff8f7ca2800315d065aa1395bdc1b35453c",
+   "ec4aa64c4cbd42f3d828202c62bd379cea906129c4cff3621217acd0099f9e5f",
+   "180f77bc277fe8b005e7dab9290be1e35633c23b8fb5655293fb77964e43a8d7",
+   "10f3b1f063ccd527c1e7dab5efb2da563ff39281044881cd172a47ad9062d499",
+   "898f9868cb792102cce5c165aca71e9e4906f13c444c3ae2a93ed401f71914cd"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "representation",
+   "numbers"
+  ],
+  "before": "a<0 조건에서 ax 꼴 부등식 하나를 풀어(해 x≥−3) 맞는 수직선을 다섯 그림 중 고름",
+  "after": "수직선 그림 하나(x>−4, 빈 점)를 주고 a<0 조건의 다섯 ax 꼴 부등식 중 해가 그림과 같은 것을 고름 — 보기 다섯이 그림일 수 없어 방향을 뒤집음",
+  "sharedConcept": "계수의 부호가 음수인 미지수로 나눌 때 부등호 방향이 바뀜, 해의 수직선 표현",
+  "sharedProcedure": "ax 항·상수항 정리 → a(또는 −a)의 부호 판단 → 나누며 방향 결정 → 경계값·점의 종류·방향을 그림과 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질(음수로 나누기)",
+   "문자 계수가 있는 식의 정리",
+   "부등식의 해를 수직선에 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A97-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "문자 계수의 부호를 고려한 일차부등식과 수직선",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.188,
+   "longestRun": 11,
+   "residualChars": 73,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

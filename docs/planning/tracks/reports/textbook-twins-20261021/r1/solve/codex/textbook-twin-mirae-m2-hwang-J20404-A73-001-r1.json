@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-67b2-7ba1-9c4d-bfa3d2014719",
+ "startedAt": "2026-10-21T17:53:31+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "fig-1.png": "d16be4eb1d8097c5112ab6aeb8479c17d75e233aec193061721b5a2802202f5c",
+  "student.json": "08ca26879b71563c6cc6506ad2296d1af9610cf435a3916496aaa608a44bd9f7"
+ },
+ "promptSha256": "89b4de4f4bc298ceccae127c5a753d8fe1153041cd2fe732445f170eb30a7edd",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"그래프는 두 점 (-2, 8), (3, -2)를 지나므로 기울기는 (-2-8)/(3+2)=-2이다.\\n따라서 일차함수의 식은 y=-2x+4이다.\\nx=-1일 때 y=6이므로 점 (-1, 6)을 지난다는 ②가 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "그래프는 두 점 (-2, 8), (3, -2)를 지나므로 기울기는 (-2-8)/(3+2)=-2이다.\n따라서 일차함수의 식은 y=-2x+4이다.\nx=-1일 때 y=6이므로 점 (-1, 6)을 지난다는 ②가 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0a9b57f8e205ac1fbaab0cad2a1098463c24e9702263225717a54b02f3d614cb"
+}

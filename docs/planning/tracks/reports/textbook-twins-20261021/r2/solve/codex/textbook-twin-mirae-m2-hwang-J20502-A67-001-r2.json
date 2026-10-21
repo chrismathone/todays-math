@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df3-cf44-7b10-bee4-c335d8315cde",
+ "startedAt": "2026-10-21T19:13:41+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "fig-1.png": "e2efe42a4fc37ee11b62b066c99c3b763ab0b5d9fb8c5e084fb3b44a2f1bb8fd",
+  "student.json": "1516b61965265dd2f9028fc0cc3fe79567d96f13b2d123e669e12627d46e5bb5"
+ },
+ "promptSha256": "d9a3bd4cd8dd378bbcd2af13e2780cf95701c77cd87f3ef35339ee1cd2ef75d7",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"52°\",\"work\":\"직각삼각형 ADE와 ADF는 빗변 AD가 공통이고 DE=DF이므로 합동이다. 따라서 ∠DAF=76°÷2=38°이다.\\n삼각형 ADF에서 ∠AFD=90°이므로 ∠ADF=90°−38°=52°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "52°",
+  "work": "직각삼각형 ADE와 ADF는 빗변 AD가 공통이고 DE=DF이므로 합동이다. 따라서 ∠DAF=76°÷2=38°이다.\n삼각형 ADF에서 ∠AFD=90°이므로 ∠ADF=90°−38°=52°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "056fdf0c4c520765cebd343b4b212c3d366a6af7eb1d2d75bc8062c72451c9f8"
+}

@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 301,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A52-001-r1",
+ "authorId": "claude-fable-5-1:0eb6adec-6302-4e79-aaff-e7ce3605521d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아가 평면도형을 두 개씩 짝지어 다섯 쌍을 적었다. 이 가운데 두 도형이 항상 서로 닮은 도형인 것을 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "두 평행사변형",
+  "두 정삼각형",
+  "두 사다리꼴",
+  "두 둔각삼각형",
+  "두 정육각형"
+ ],
+ "answer": "②, ⑤",
+ "solution": "두 정삼각형은 세 각이 모두 $60^{\\circ}$이고 세 변의 길이의 비가 같으므로 항상 닮은 도형이다. 두 정육각형은 모든 각이 $120^{\\circ}$로 같고 모든 변의 길이의 비가 같으므로 항상 닮은 도형이다. 평행사변형, 사다리꼴, 둔각삼각형은 각의 크기나 변의 길이의 비가 달라질 수 있으므로 항상 닮은 도형이 아니다. 따라서 답은 ②, ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5df88c4a5144cf6d-0-1",
+  "problemCode": "J20601-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "f185e84e2ac38dd3ca85a11ed3ed04a3cdd6475e645f7b8f00ae79328a7e6e6c",
+  "dbContentSha256": "a9797a325594e70ac2e0a09b7ca1a4f7d22e07ed22e919e0e54f0255d85d52df",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-1_닮은도형.hwp",
+    "sha256": "cfcb7bfdbd14497d0dfeba52044c79858ce99de3bf9255819d4eecadc2883515",
+    "bytes": 1498624
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "다섯 가지 평면도형 쌍(이등변삼각형 · 직각삼각형 · 직사각형 · 정사각형 · 원) 가운데 항상 닮음인 것 둘을 고른다.",
+  "after": "학생이 적은 다섯 가지 평면도형 쌍(평행사변형 · 정삼각형 · 사다리꼴 · 둔각삼각형 · 정육각형) 가운데 항상 닮음인 것 둘을 고른다. 항상 닮음인 쌍이 정다각형 둘로 바뀌었다.",
+  "sharedConcept": "항상 닮은 평면도형의 판별(정다각형 · 원은 항상 닮음, 각이나 변의 비가 달라질 수 있는 도형은 아님)",
+  "sharedProcedure": "각 도형 쌍의 모양이 하나로 정해지는지 확인 → 각과 변의 비가 모두 정해지는 쌍을 찾음 → 그 둘을 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "닮은 도형"
+  },
+  "prerequisites": [
+   "닮은 도형의 뜻",
+   "정다각형의 뜻",
+   "삼각형과 사각형의 분류"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20601-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "항상 닮은 평면도형 모두 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "이어진 같은 글 23자",
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.293,
+   "longestRun": 23,
+   "residualChars": 79,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

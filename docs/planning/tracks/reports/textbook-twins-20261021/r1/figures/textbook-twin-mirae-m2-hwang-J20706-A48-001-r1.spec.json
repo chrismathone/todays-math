@@ -1,0 +1,45 @@
+{
+ "version": 2,
+ "points": {
+  "O": [
+   100,
+   100
+  ],
+  "P": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 180
+  },
+  "Q": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 0
+  },
+  "dim": [
+   100,
+   86
+  ]
+ },
+ "circles": {
+  "c": {
+   "center": "O",
+   "radius": 70
+  }
+ },
+ "segments": {
+  "PQ": {
+   "points": [
+    "P",
+    "Q"
+   ],
+   "dashed": "5 3"
+  }
+ },
+ "labels": {
+  "dim": {
+   "text": "12 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

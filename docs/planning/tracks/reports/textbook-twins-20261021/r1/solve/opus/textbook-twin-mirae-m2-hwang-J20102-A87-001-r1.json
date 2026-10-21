@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "bcf70377-9897-4162-8250-1561879924f2",
+ "startedAt": "2026-10-21T16:19:50+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "f7e48bef7b7b6a5d9c4f01fac5b2228415406618f35fef037a5a38e0d676620a"
+ },
+ "promptSha256": "d222ac3a113ed09b06b95e616be6806bffdc7c46d3a7fc54ac3dc9c6f42b5d0f",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"3\", \"work\": \"9/7 = 1.285714285714…이므로 소수점 아래 첫째 자리부터 285714의 6개 숫자가 반복된다. 50 = 6×8 + 2이므로 a는 반복마디의 2번째 숫자인 8이다. 75 = 6×12 + 3이므로 b는 반복마디의 3번째 숫자인 5이다. 따라서 a − b = 8 − 5 = 3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "9/7 = 1.285714285714…이므로 소수점 아래 첫째 자리부터 285714의 6개 숫자가 반복된다. 50 = 6×8 + 2이므로 a는 반복마디의 2번째 숫자인 8이다. 75 = 6×12 + 3이므로 b는 반복마디의 3번째 숫자인 5이다. 따라서 a − b = 8 − 5 = 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1abb1e3958046deffd8e601fb6e74112ed1c68a81365d51200d787b3a1c90487"
+}

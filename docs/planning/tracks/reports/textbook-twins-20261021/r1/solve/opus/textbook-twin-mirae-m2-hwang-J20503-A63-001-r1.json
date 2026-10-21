@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "16f01474-3dd5-41d4-ac49-18cd60a0f04c",
+ "startedAt": "2026-10-21T17:04:39+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "e1b95696598d71742a3db168f44ebcf53ec6ac0dfd9709737324ef3cf56a827b",
+  "student.json": "c13e5cded0866f74d21d32da236e2e4b77ccd1ac3e21a5bb77c9961d600307ad"
+ },
+ "promptSha256": "35eeb554cadbd1cba58dfe72baf672f093966be3d579ff2fde8a6545892d253e",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"O가 외심이므로 OB = OC = r(외접원의 반지름)이다. △OBC의 둘레는 2r + 14 = 34이므로 2r = 20, r = 10 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "O가 외심이므로 OB = OC = r(외접원의 반지름)이다. △OBC의 둘레는 2r + 14 = 34이므로 2r = 20, r = 10 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "40f87d7a04a63af3b6a89db4f99af1f69453fa43481bc3d7710f14ecbea2dd9f"
+}

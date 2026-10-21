@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d55-30e7-71b0-ad2c-b3655e3290d8",
+ "startedAt": "2026-10-21T16:20:26+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "18fe1bda3ef3a2f8327f4d69e1812874937cc4fa6830d74f9085213f237ec8d0"
+ },
+ "promptSha256": "867f6ac4f295ace07a865ad1e1c3b4b52277935cb0f433eee19b52b7b15ab5cb",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $14a^2+8a$ ⑵ $x^2+17xy$\",\"work\":\"분배법칙으로 전개한 뒤 동류항끼리 계산한다.\\n⑴ $6a^2-12a+8a^2+20a=14a^2+8a$\\n⑵ $7x^2-xy-6x^2+18xy=x^2+17xy$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $14a^2+8a$ ⑵ $x^2+17xy$",
+  "work": "분배법칙으로 전개한 뒤 동류항끼리 계산한다.\n⑴ $6a^2-12a+8a^2+20a=14a^2+8a$\n⑵ $7x^2-xy-6x^2+18xy=x^2+17xy$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c0e8e85c9d723d3a0092c6e153c89d8a0af81732c8a213f5aa1eb8b5ced27d10"
+}

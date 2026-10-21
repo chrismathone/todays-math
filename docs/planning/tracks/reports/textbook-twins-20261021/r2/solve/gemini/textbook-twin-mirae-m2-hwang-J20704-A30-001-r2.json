@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "24ea3917-c2ea-435d-9746-be5feb4509f2",
+ "startedAt": "2026-10-21T18:39:59+0900",
+ "elapsedSec": 83.9,
+ "studentSha256": {
+  "fig-1.png": "9b99ed194deca5de145064d90c54bafdb4f4ee977766536548bc20bfa57419be",
+  "student.json": "df8bbdf9f3212b93be72f6029579c6da6b5781191dab029f305b29fea31f567f"
+ },
+ "promptSha256": "c107f30e381749a00bffa48fb27479ce99265e99debf950ff95197c6fa2227c8",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"16 cm\",\n  \"work\": \"$\\\\triangle ABD$에서 점 $M$은 $\\\\overline{AB}$의 중점이고 $\\\\overline{MP}\\\\parallel\\\\overline{AD}$이므로 중점연결정리에 의해 $\\\\overline{MP} = \\\\frac{1}{2}\\\\overline{AD} = 5\\\\text{ cm}$이다. 그림에서 $\\\\overline{PQ} = 3\\\\text{ cm}$이므로 $\\\\overline{MQ} = \\\\overline{MP} + \\\\overline{PQ} = 5 + 3 = 8\\\\text{ cm}$이다. $\\\\triangle ABC$에서 $\\\\overline{MQ}\\\\parallel\\\\overline{BC}$이고 $M$이 $\\\\overline{AB}$의 중점이므로 $\\\\overline{BC} = 2\\\\overline{MQ} = 2 \\\\times 8 = 16\\\\text{ cm}$이다. (또는 사다리꼴 중점 공식 $\\\\overline{PQ} = \\\\frac{\\\\overline{BC} - \\\\overline{AD}}{2} = 3\\\\text{ cm}$에서 $\\\\overline{BC} = 16\\\\text{ cm}$)\",\n  \"confidence\": \"high\",\n  \"issues\": [\n    \"그림에서 점 P, Q의 라벨이 선분 MN과 대각선들의 교점 바로 옆이 아닌 대각선의 교점 부근에 다소 높게 표시되어 있으나, 문제 본문에서 P와 Q를 선분 MN과 대각선들의 교점으로 명확히 정의하고 있고 3 cm 표시가 선분 PQ에 대응하므로 문제 해결에는 지장이 없습니다.\"\n  ]\n}\n```\n",
+ "parsed": {
+  "answer": "16 cm",
+  "work": "$\\triangle ABD$에서 점 $M$은 $\\overline{AB}$의 중점이고 $\\overline{MP}\\parallel\\overline{AD}$이므로 중점연결정리에 의해 $\\overline{MP} = \\frac{1}{2}\\overline{AD} = 5\\text{ cm}$이다. 그림에서 $\\overline{PQ} = 3\\text{ cm}$이므로 $\\overline{MQ} = \\overline{MP} + \\overline{PQ} = 5 + 3 = 8\\text{ cm}$이다. $\\triangle ABC$에서 $\\overline{MQ}\\parallel\\overline{BC}$이고 $M$이 $\\overline{AB}$의 중점이므로 $\\overline{BC} = 2\\overline{MQ} = 2 \\times 8 = 16\\text{ cm}$이다. (또는 사다리꼴 중점 공식 $\\overline{PQ} = \\frac{\\overline{BC} - \\overline{AD}}{2} = 3\\text{ cm}$에서 $\\overline{BC} = 16\\text{ cm}$)",
+  "confidence": "high",
+  "issues": [
+   "그림에서 점 P, Q의 라벨이 선분 MN과 대각선들의 교점 바로 옆이 아닌 대각선의 교점 부근에 다소 높게 표시되어 있으나, 문제 본문에서 P와 Q를 선분 MN과 대각선들의 교점으로 명확히 정의하고 있고 3 cm 표시가 선분 PQ에 대응하므로 문제 해결에는 지장이 없습니다."
+  ]
+ },
+ "eventsSha256": "b052867a1835d22a17db685b98246d1010b7f94a06720802eb6e08d2a5bfae1c"
+}

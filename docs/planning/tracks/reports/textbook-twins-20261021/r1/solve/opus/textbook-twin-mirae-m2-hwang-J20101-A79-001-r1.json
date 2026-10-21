@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A79-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "55a7a3c0-92d0-494d-8774-fb0372ddbc3f",
+ "startedAt": "2026-10-21T16:22:18+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "eecdcb2ccd386344bb4ac357a002a2c984ffdb0a2f9ab8b9d406fd66e48beb3e"
+ },
+ "promptSha256": "af3e7d76748af0a642087301c1fda3ca57f56ecf4c75d77652bcdc568b980624",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"기약분수로 고친 뒤 분모의 소인수가 2와 5뿐인지 확인한다. ① 11/20: 20=2²×5이므로 유한소수(0.55). ② -15/36=-5/12: 12=2²×3으로 분모에 3이 있으므로 순환소수(-0.41666…)가 되어 나눗셈이 끝나지 않는다. ③ 7/8: 8=2³이므로 유한소수(0.875). ④ -26/65=-2/5이므로 유한소수(-0.4). ⑤ 42/120=7/20이므로 유한소수(0.35).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "기약분수로 고친 뒤 분모의 소인수가 2와 5뿐인지 확인한다. ① 11/20: 20=2²×5이므로 유한소수(0.55). ② -15/36=-5/12: 12=2²×3으로 분모에 3이 있으므로 순환소수(-0.41666…)가 되어 나눗셈이 끝나지 않는다. ③ 7/8: 8=2³이므로 유한소수(0.875). ④ -26/65=-2/5이므로 유한소수(-0.4). ⑤ 42/120=7/20이므로 유한소수(0.35).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d4e2b94175ea9aa74125324e4d1c3b6e62fdf70dbe2d0d7a0fdadd1a3f2f6e3a"
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 380,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연필꽂이에 연필 $24$자루가 꽂혀 있다. 이 가운데 $15$자루는 노란색이고 나머지는 모두 초록색이다. 연필 한 자루를 임의로 뽑을 때, 초록색 연필이 나올 확률은?",
+ "choices": [
+  "$\\frac{1}{4}$",
+  "$\\frac{3}{8}$",
+  "$\\frac{1}{2}$",
+  "$\\frac{5}{8}$",
+  "$\\frac{3}{4}$"
+ ],
+ "answer": "②",
+ "solution": "초록색 연필은 $24-15=9$(자루)이다.\n따라서 구하는 확률은 $\\frac{9}{24}=\\frac{3}{8}$이다. 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-7",
+  "problemCode": "J20903-B24-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "1cf6d565dfb8cc02f0b91f3c3b020f8a7d02df2b1aee1b9046235c87a11aa886",
+  "dbContentSha256": "62be16b9aa9cfa3ba1f46bc38ca04ea900262c2c07974ee6eea1fb592876ae01",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "전체 개수와 한 색의 개수가 주어진 바둑돌에서 나머지 색이 나올 확률을 뺄셈 후 분수로 구한다",
+  "after": "전체 개수와 한 색의 개수가 주어진 연필에서 나머지 색이 나올 확률을 뺄셈 후 분수로 구한다",
+  "sharedConcept": "확률의 뜻 — (사건의 경우의 수)/(모든 경우의 수)",
+  "sharedProcedure": "나머지 개수 = 전체 − 주어진 색 → 전체로 나눔 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "확률의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B24-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "나머지 개수를 구해 확률 계산",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.085,
+   "longestRun": 7,
+   "residualChars": 76,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

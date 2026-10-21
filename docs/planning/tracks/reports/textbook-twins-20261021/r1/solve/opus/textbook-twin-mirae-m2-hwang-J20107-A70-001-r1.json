@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A70-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "80928cbb-9636-4bf4-aa89-88caf6fa64d5",
+ "startedAt": "2026-10-21T16:15:56+0900",
+ "elapsedSec": 3.2,
+ "studentSha256": {
+  "student.json": "58ceb9690da3df0aa15f69b8135ac43a089df94bdce850e9e11d9e947080da61"
+ },
+ "promptSha256": "7fc0bb8bed2b7db3033e61a47a68ff22c93d7c0edf678366114f3b3dcdbeabe3",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "A = x+6y-5 -6x+2y = -5x+8y-5 → ②\n\n```json\n{\"answer\": \"②\", \"work\": \"A = x+6y-5 - 2(3x-y) = x+6y-5-6x+2y = -5x+8y-5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "A = x+6y-5 - 2(3x-y) = x+6y-5-6x+2y = -5x+8y-5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "764617350d387a5e3563b19911c4c2d86b4e84c86b4c5a87a5321305417c4388"
+}

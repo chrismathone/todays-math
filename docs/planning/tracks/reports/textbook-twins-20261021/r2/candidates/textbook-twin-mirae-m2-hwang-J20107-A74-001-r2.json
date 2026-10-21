@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 24,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r2",
+ "authorId": "claude-fable-5-1:d3a66a5f-a5d6-484b-b27d-ab19e6c31b12",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "등식 $P-(7x^{2}-6x+9)=-x^{2}+8x-10$을 만족시키는 이차식 $P$를 구하시오.",
+ "choices": [],
+ "answer": "$6x^{2}+2x-1$",
+ "solution": "빼서 $-x^{2}+8x-10$이 되었으므로 뺀 식을 다시 더하면 $P$가 된다. $P=(-x^{2}+8x-10)+(7x^{2}-6x+9)=-x^{2}+7x^{2}+8x-6x-10+9$이다. 따라서 $P=6x^{2}+2x-1$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-0-3",
+  "problemCode": "J20107-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "e818085177993ec7d63a500e64d23dc6a1f846c583646290eef8bdd7d0aa627d",
+  "dbContentSha256": "bd768520314c2041709f5b33e87bd14cc625c36612352b6ea3233898cd0b0620",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "말로 서술된 조건(어떤 식에서 이차식을 뺀 결과가 주어짐)에서 처음의 식을 구한다.",
+  "after": "같은 관계를 등식 $P-(\\,\\cdot\\,)=(\\,\\cdot\\,)$ 꼴로 직접 제시하고, 이를 만족시키는 이차식 $P$를 구한다. 계수는 모두 새로 잡았다.",
+  "sharedConcept": "이차식의 덧셈과 뺄셈 — 뺄셈의 역연산으로 처음 식 구하기",
+  "sharedProcedure": "뺄셈 관계를 식으로 쓰기 → 결과에 뺀 식을 더하기 → 동류항끼리 정리하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항의 계산",
+   "다항식의 덧셈과 뺄셈",
+   "이차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A74-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이차식의 뺄셈 관계에서 처음 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 36자"
+   ],
+   "overlap4": 0.061,
+   "longestRun": 4,
+   "residualChars": 36,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

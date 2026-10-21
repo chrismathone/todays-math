@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 41,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r2",
+ "authorId": "claude-fable-5-1:e3a3a54d-d661-4dc2-8349-e8251818a962",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$-4a^{2}b\\div \\square \\times (3ab^{3})^{2}=\\dfrac{6}{5}ab^{2}$이 성립하도록 $\\square$ 안에 들어갈 단항식을 구하시오.",
+ "choices": [],
+ "answer": "$-30a^{3}b^{5}$",
+ "solution": "$(3ab^{3})^{2}=9a^{2}b^{6}$이므로 주어진 식의 좌변은 $(-4a^{2}b\\times 9a^{2}b^{6})\\div \\square=-36a^{4}b^{7}\\div \\square$이다.\n따라서 $\\square=-36a^{4}b^{7}\\div \\dfrac{6}{5}ab^{2}=-36a^{4}b^{7}\\times \\dfrac{5}{6ab^{2}}=-30a^{3}b^{5}$이다.\n답은 $-30a^{3}b^{5}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce14b504524bdd49-1-6",
+  "problemCode": "J20106-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "9da60ca2542ca32b20201b9b95d0871e0529ed3773a533d28da144488ab37a8f",
+  "dbContentSha256": "82196d351de59918bf8eb468191a258f907eba2fd18bae3e107878eff8bca616",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "149462077a4603f021e5440bc1688a0f9c1b559711a7b009a0d8ac75d0402509",
+    "bytes": 335872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "거듭제곱으로 묶인 단항식을 맨 앞에 두고, 그것을 □로 나눈 뒤 다른 단항식을 곱한 결과(분수 계수)가 주어질 때 나누는 식 □를 구한다.",
+  "after": "보통 단항식을 맨 앞에 두고 □로 나눈 뒤 거듭제곱으로 묶인 단항식을 곱한 결과(분수 계수)가 주어질 때 나누는 식 □를 구한다. 거듭제곱의 위치와 계수·지수·문자를 모두 새로 정했다.",
+  "sharedConcept": "단항식의 거듭제곱과 곱셈·나눗셈의 혼합 계산에서 나누는 식을 역산으로 구하기",
+  "sharedProcedure": "거듭제곱 전개 → 알려진 두 단항식의 곱 계산 → (곱) ÷ □ = (결과) 꼴로 정리 → □ = (곱) ÷ (결과), 역수를 곱해 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(거듭제곱의 거듭제곱)",
+   "단항식의 곱셈",
+   "단항식의 나눗셈(역수 이용)",
+   "분수 계수의 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A66-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 혼합 계산에서 나누는 식 □ 구하기(거듭제곱 포함)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.027,
+   "longestRun": 4,
+   "residualChars": 40,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

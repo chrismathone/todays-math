@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B62-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6a-a786-72d0-9f45-acf30fc4322a",
+ "startedAt": "2026-10-21T16:43:53+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "student.json": "167b43efe80daec80821c9d507e856d42a0b2ad036a3ef185bfa6973ccde8a3e"
+ },
+ "promptSha256": "a33409d92c7a051290d47c61d78fdc9641b165e63fec9f841b2f7de0b0dfedb2",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"32\",\"work\":\"밑이 같은 거듭제곱의 곱은 지수를 더하므로 $abc=2^{x+y+z}=2^5=32$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "32",
+  "work": "밑이 같은 거듭제곱의 곱은 지수를 더하므로 $abc=2^{x+y+z}=2^5=32$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bb35387b1887a5d0a78d7b3cf330477eecb01a67d1f06b7a37154cc6f66d08a3"
+}

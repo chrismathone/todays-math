@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 241,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r2",
+ "authorId": "claude-opus-5-5:5e58c638-f0fc-47e5-a3e0-8e0cbe5f79c4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "도하가 조사한 어느 바다에서는 수면에서 깊이 $3\\,\\mathrm{km}$까지 내려가는 동안 $100\\,\\mathrm{m}$ 더 깊어질 때마다 바닷물의 온도가 $0.4\\,^{\\circ}\\mathrm{C}$씩 낮아진다. 수면의 수온은 $22\\,^{\\circ}\\mathrm{C}$이다. 수면으로부터 깊이가 $x\\,\\mathrm{km}$인 곳의 수온을 $y\\,^{\\circ}\\mathrm{C}$라 할 때, $y$를 $x$에 대한 식으로 나타낸 것과 수온이 $18\\,^{\\circ}\\mathrm{C}$인 곳의 깊이를 차례로 구하시오. (단, $0 \\le x \\le 3$)",
+ "choices": [],
+ "answer": "$y=22-4x$, $1\\,\\mathrm{km}$",
+ "solution": "$100\\,\\mathrm{m}$ 깊어질 때마다 $0.4\\,^{\\circ}\\mathrm{C}$씩 낮아지므로 $1\\,\\mathrm{km}$ 깊어지면 수온은 $0.4\\times 10=4\\,(^{\\circ}\\mathrm{C})$ 낮아진다. 깊이가 $x\\,\\mathrm{km}$이면 수온이 $4x\\,^{\\circ}\\mathrm{C}$ 낮아지므로 $y=22-4x$ ($0 \\le x \\le 3$)이다. $y=18$을 대입하면 $18=22-4x$, $4x=4$, $x=1$이다. 따라서 식은 $y=22-4x$이고, 수온이 $18\\,^{\\circ}\\mathrm{C}$인 곳의 깊이는 $1\\,\\mathrm{km}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-13",
+  "problemCode": "J20406-A16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "daf01eb2c7d9a84a24b6901be58087fdee602882be1b42d6099757702739ee8e",
+  "dbContentSha256": "25607b9ce9d3fdf2b108e4f1017c3725302a7a52428876ca401aa01f7b4f5737",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "높은 곳으로 올라갈수록 기온이 일정하게 내려가는 상황에서 m 단위 변화율을 km 단위로 바꿔 고도와 기온의 관계식을 세우고, 주어진 기온이 되는 고도를 구한다(소문항 없이 한 물음에 두 답).",
+  "after": "바닷속으로 내려갈수록 수온이 일정하게 내려가는 상황에서 m 단위 변화율을 km 단위로 바꿔 깊이와 수온의 관계식을 세우고, 주어진 수온이 되는 깊이를 구한다(소문항 없이 한 물음에 두 답을 차례로 씀).",
+  "sharedConcept": "일정하게 변하는 두 양 사이의 관계를 일차함수로 나타내고 활용하기",
+  "sharedProcedure": "100 m당 변화량을 1 km당 변화량으로 환산 → 처음 값과 변화율로 일차함수식 세우기 → 주어진 y값 대입 → 일차방정식 풀어 x 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 활용(온도, 길이)"
+  },
+  "prerequisites": [
+   "m와 km 단위 환산",
+   "일차함수의 식 세우기",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20406-A16-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단위를 환산해 깊이와 수온의 일차함수식을 세우고, 주어진 수온이 되는 깊이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.096,
+   "longestRun": 6,
+   "residualChars": 128,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

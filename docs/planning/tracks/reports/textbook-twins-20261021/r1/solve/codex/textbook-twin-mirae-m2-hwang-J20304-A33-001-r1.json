@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d87-769e-7833-8097-084726049af3",
+ "startedAt": "2026-10-21T17:15:21+0900",
+ "elapsedSec": 1826.5,
+ "studentSha256": {
+  "student.json": "79faebaffddd4020d80ae7c4db9d7361473e63b0fe30edb7e8e18eb12839c896"
+ },
+ "promptSha256": "aaf37f8b1dba3e7e003ae869ea6e7e74453ff3d39691f9907d196fe244561f81",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"(1, 2), (-2, 4)를 대입하면 a+2b=8, -2a+4b=8이다.\\n두 식을 연립하면 b=3, a=2이다.\\n(k, 6)을 대입하면 2k+18=8이므로 k=-5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "(1, 2), (-2, 4)를 대입하면 a+2b=8, -2a+4b=8이다.\n두 식을 연립하면 b=3, a=2이다.\n(k, 6)을 대입하면 2k+18=8이므로 k=-5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c3db13d1a64b4144fb2384b3d9832d461a5e7920deda80b393ce57c94b66b196"
+}

@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 290,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 변 $BC$와 만나는 점을 $E$, $\\angle D$의 이등분선이 변 $BC$와 만나는 점을 $F$라 하자. $\\overline{AB}=6\\,\\mathrm{cm}$, $\\overline{AD}=15\\,\\mathrm{cm}$일 때, $\\overline{EF}$의 길이는?",
+ "choices": [
+  "$2\\,\\mathrm{cm}$",
+  "$3\\,\\mathrm{cm}$",
+  "$4\\,\\mathrm{cm}$",
+  "$5\\,\\mathrm{cm}$",
+  "$6\\,\\mathrm{cm}$"
+ ],
+ "answer": "②",
+ "solution": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle BEA=\\angle DAE=\\angle BAE$(엇각)이고, $\\triangle ABE$는 이등변삼각형이므로 $\\overline{BE}=\\overline{AB}=6\\,\\mathrm{cm}$이다.\n같은 방법으로 $\\angle CFD=\\angle ADF=\\angle CDF$이므로 $\\overline{CF}=\\overline{CD}=\\overline{AB}=6\\,\\mathrm{cm}$이다.\n$\\overline{BC}=\\overline{AD}=15\\,\\mathrm{cm}$이므로 $\\overline{EF}=15-6-6=3\\,(\\mathrm{cm})$이다. 따라서 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A81-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A81-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-9",
+  "problemCode": "J20505-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "21788e1dd493e7fc08eefa2a99064e5ee6826833bbcbc0f78cc614af7f29c95d",
+  "dbContentSha256": "8de10237b99b9a15179a7a7d88baaaebcd178cafb96f0edd72a46d81659cb2bd",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "7700dce02fdd8e83b4d1549256fd834db9b86c60a5a2af347303804399cd5cd8"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "윗변 두 꼭짓점의 각 이등분선이 아랫변과 만나는 두 점이 서로 엇갈려 겹치고, 두 이등변삼각형의 밑변 합에서 아랫변을 빼 겹친 길이를 구한다.",
+  "after": "변의 길이를 바꿔 두 이등변삼각형이 겹치지 않게 하고, 아랫변에서 두 밑변을 빼 남는 가운데 구간의 길이를 구한다.",
+  "sharedConcept": "각의 이등분선과 평행선의 엇각으로 생기는 이등변삼각형 · 평행사변형의 대변",
+  "sharedProcedure": "엇각 → 이등변삼각형 둘 → 두 밑변 길이 = 옆변 길이 → 아랫변과 비교해 EF 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행사변형의 대변의 길이",
+   "평행선의 엇각",
+   "이등변삼각형이 되는 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형의 두 내각의 이등분선이 변 위에 만드는 선분의 길이(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.246,
+   "longestRun": 11,
+   "residualChars": 84,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

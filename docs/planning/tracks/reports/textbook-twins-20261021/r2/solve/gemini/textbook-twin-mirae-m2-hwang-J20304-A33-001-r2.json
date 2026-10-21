@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "83a7d460-0a81-46e5-94e7-43cb158dc829",
+ "startedAt": "2026-10-21T18:12:32+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "792cacd95dd496af884346f075e920ff6395d8349cd76fa6f3292fc171044e85"
+ },
+ "promptSha256": "42bf16055a1a473c0c938b34f82e53c7af47aa1ccc30e0388ba9569c8e52b782",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"두 점 $(-9, -6)$, $(6, 6)$을 $ax+by=6$에 각각 대입하면 $-9a-6b=6$, $6a+6b=6$이다. 이를 연립하여 풀면 $a=-4$, $b=5$이므로 일차방정식은 $-4x+5y=6$이다. $x=16$을 대입하면 $-64+5y=6$에서 $5y=70$, 즉 $y=14$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "두 점 $(-9, -6)$, $(6, 6)$을 $ax+by=6$에 각각 대입하면 $-9a-6b=6$, $6a+6b=6$이다. 이를 연립하여 풀면 $a=-4$, $b=5$이므로 일차방정식은 $-4x+5y=6$이다. $x=16$을 대입하면 $-64+5y=6$에서 $5y=70$, 즉 $y=14$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d0867c15c668c96d72c157e6d0b2c779d32f29c88d652511c444c9e99b1bfcef"
+}

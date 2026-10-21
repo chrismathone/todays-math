@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7a-1ac4-7551-a8c8-6bc9c295221c",
+ "startedAt": "2026-10-21T17:00:45+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "ce87165138cee5ed44ff48c69f8c7631d39f61d0b87e333642b578249e6a78a9"
+ },
+ "promptSha256": "65f54b646bc0f3128abdc9e60c2ce00759b98e1876c1db33c5c91fd63f07bf6c",
+ "freezeCommit": "d2f74b1328a8198730d54ff05bcbdc04a5030e33",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"주어진 식을 정리하면 7xy-8y+14x+7axy-77x=7(a+1)xy-63x-8y이다.\\nx의 계수와 xy의 계수의 합이 0이므로 -63+7(a+1)=0이다.\\n따라서 7a=56이므로 a=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "주어진 식을 정리하면 7xy-8y+14x+7axy-77x=7(a+1)xy-63x-8y이다.\nx의 계수와 xy의 계수의 합이 0이므로 -63+7(a+1)=0이다.\n따라서 7a=56이므로 a=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d78ec1c415715387d252a694d54888572e5a9097b1f3e012f60e962ffecffeb1"
+}

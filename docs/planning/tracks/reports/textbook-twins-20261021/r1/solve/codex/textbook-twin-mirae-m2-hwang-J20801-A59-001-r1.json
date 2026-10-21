@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc3-6cf6-7cd1-b3cd-0279a44f74d6",
+ "startedAt": "2026-10-21T18:20:50+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "fig-1.png": "6f5f394fe260758d67f81b8ea08390a5033cb04893c4d10771c21ef410ba2e17",
+  "student.json": "fc025b6b7f976decf235d339b14ae45019c223f30ee6d809d84635d234653044"
+ },
+ "promptSha256": "1907baf17d754e896e3f5829c8cdee49bad50bd3e85b8549b931475345b617b5",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"32 cm\",\"work\":\"직각삼각형 ABD에서 피타고라스 정리에 의해 BD=√(30²+40²)=50 cm이다.\\n△ADH∽△BDA이므로 AD²=BD×DH이다.\\n따라서 DH=40²÷50=32 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "32 cm",
+  "work": "직각삼각형 ABD에서 피타고라스 정리에 의해 BD=√(30²+40²)=50 cm이다.\n△ADH∽△BDA이므로 AD²=BD×DH이다.\n따라서 DH=40²÷50=32 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6ffa74826b5cb6256d7db8af904becadcb8f8d16bee004665139055a557f223d"
+}

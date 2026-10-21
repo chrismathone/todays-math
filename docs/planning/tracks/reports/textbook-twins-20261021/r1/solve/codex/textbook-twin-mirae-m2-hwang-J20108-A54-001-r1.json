@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d53-bc3d-7370-8293-ddc4bb7e3c21",
+ "startedAt": "2026-10-21T16:18:51+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "406d7b83dbe09b5490c596cb481d13feaa75d4961de4b2958ce2d5b2918edb8d"
+ },
+ "promptSha256": "672dcf8d7b09abdf5ecaf4bcd19daf0731a1c152c64495fb80f1ff4f92c982d7",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"주어진 식을 전개하여 정리하면 $(2a-5)xy+17x+7y$이다.\\n따라서 두 계수의 합은 $(2a-5)+17=0$이므로 $a=-6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "주어진 식을 전개하여 정리하면 $(2a-5)xy+17x+7y$이다.\n따라서 두 계수의 합은 $(2a-5)+17=0$이므로 $a=-6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fccacb38c8110706d5207da152f6bcc149d42e84ba0425a5d261b4441dcc9f80"
+}

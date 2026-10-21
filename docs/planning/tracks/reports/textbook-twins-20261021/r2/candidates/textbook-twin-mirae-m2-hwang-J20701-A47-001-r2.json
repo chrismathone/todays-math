@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 322,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r2",
+ "authorId": "claude-opus-5-5:24047718-05eb-4bdb-8de7-6114981c2445",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 두 선분 $AD$와 $BC$는 점 $E$에서 만나고 $\\overline{AB}\\parallel\\overline{CD}$이다. 점 $G$는 $\\overline{EC}$ 위, 점 $F$는 $\\overline{CD}$ 위에 있고 $\\overline{GF}\\parallel\\overline{ED}$이다. $\\overline{AB}=5\\,\\mathrm{cm}$, $\\overline{AE}=7\\,\\mathrm{cm}$, $\\overline{CF}=10\\,\\mathrm{cm}$, $\\overline{FD}=15\\,\\mathrm{cm}$일 때, $\\overline{GF}$의 길이는?",
+ "choices": [
+  "$13\\,\\mathrm{cm}$",
+  "$14\\,\\mathrm{cm}$",
+  "$15\\,\\mathrm{cm}$",
+  "$16\\,\\mathrm{cm}$",
+  "$17\\,\\mathrm{cm}$"
+ ],
+ "answer": "②",
+ "solution": "$\\overline{CD}=10+15=25\\,(\\mathrm{cm})$이다. $\\overline{AB}\\parallel\\overline{CD}$이므로 $\\overline{AB}:\\overline{DC}=\\overline{AE}:\\overline{DE}$에서 $5:25=7:\\overline{DE}$, $5\\overline{DE}=175$, $\\overline{DE}=35\\,\\mathrm{cm}$이다. $\\triangle ECD$에서 $\\overline{GF}\\parallel\\overline{ED}$이므로 $\\overline{GF}:\\overline{ED}=\\overline{CF}:\\overline{CD}$에서 $\\overline{GF}:35=10:25$, $25\\overline{GF}=350$이다. 따라서 $\\overline{GF}=14\\,\\mathrm{cm}$이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A47-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20701-A47-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-8",
+  "problemCode": "J20701-A47-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "04ca5dc05b8c3f257fc670e01d004261e29fa18e1a7653e53d0ffcddfcab00c3",
+  "dbContentSha256": "a4130eed2ba9e50ccd83a7d5c79fbeda2d53a2d156f58eb2a4993165cfa25245",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "10b5b61f0902c483a3b7e99e6999c547c003dd37c27a24a1cc30d2a20c0fbcc7"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "representation"
+  ],
+  "before": "모래시계 모양 두 삼각형에서 위 짧은 변, 위 삼각형의 한 변(아래 평행선과 이어지는 쪽 다리), 아래 밑변이 나뉜 두 조각을 주고, 아래 삼각형의 왼쪽 다리에 평행한 선분의 길이를 구한다. 그림에는 길이가 주어지고 글은 평행 조건만 말한다.",
+  "after": "같은 모래시계 모양에서, 주어지는 위 삼각형의 변은 이번에는 반대쪽 다리 위의 조각이고, 아래 삼각형의 오른쪽 다리에 평행한 선분을 구한다(평행선이 맞서는 다리가 바뀌고, 밑변 조각의 배치도 뒤집힌다). 점의 위치와 길이는 모두 글로도 밝힌다.",
+  "sharedConcept": "삼각형에서 평행선 사이의 선분의 길이의 비(모래시계 꼴과 삼각형 안 평행선)",
+  "sharedProcedure": "밑변 전체 길이 구하기 → 모래시계 꼴 닮음비로 아래 삼각형의 다리 길이 구하기 → 아래 삼각형 안 평행선으로 비례식 세우기 → 구하는 선분 길이 계산 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형에서 평행선 사이의 선분의 길이의 비"
+  },
+  "prerequisites": [
+   "삼각형에서 평행선과 선분의 길이의 비",
+   "비례식의 성질",
+   "평행선과 엇각·동위각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20701-A47-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "엇갈린 두 선분과 평행선이 만드는 비를 두 번 써서 선분의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c4e5b0fc-1fd4-4329-a382-b0b6a840faaa",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.03,
+   "longestRun": 5,
+   "residualChars": 105,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

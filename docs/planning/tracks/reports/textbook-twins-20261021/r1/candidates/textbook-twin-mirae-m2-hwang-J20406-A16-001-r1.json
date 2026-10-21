@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 241,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r1",
+ "authorId": "claude-fable-5-1:06b51bc8-9db8-4c8b-a8d5-3ed413ec2221",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "어느 지역은 지표에서 땅속으로 $4\\,\\mathrm{km}$까지는 깊이가 $100\\,\\mathrm{m}$ 깊어질 때마다 땅속 온도가 $2.5\\,^\\circ\\mathrm{C}$씩 올라간다고 한다. 지표의 온도가 $15\\,^\\circ\\mathrm{C}$일 때, 지표로부터 깊이가 $x\\,\\mathrm{km}$인 곳의 온도를 $y\\,^\\circ\\mathrm{C}$라 하자. $y$를 $x$의 식으로 나타내고, 땅속 온도가 $90\\,^\\circ\\mathrm{C}$인 곳의 깊이를 구하시오. (단, $0 \\le x \\le 4$)",
+ "choices": [],
+ "answer": "$y=25x+15$, $3\\,\\mathrm{km}$",
+ "solution": "깊이 $100\\,\\mathrm{m}$마다 $2.5\\,^\\circ\\mathrm{C}$씩 올라가므로 $1\\,\\mathrm{km}$ 깊어지면 온도는 $2.5\\times 10=25\\,(^\\circ\\mathrm{C})$ 올라간다. 따라서 $x\\,\\mathrm{km}$ 깊어지면 $25x\\,^\\circ\\mathrm{C}$ 올라가므로 $y=25x+15$ ($0 \\le x \\le 4$)이다. $y=90$을 대입하면 $90=25x+15$, $25x=75$, $x=3$이다. 따라서 식은 $y=25x+15$이고, 온도가 $90\\,^\\circ\\mathrm{C}$인 곳의 깊이는 $3\\,\\mathrm{km}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-13",
+  "problemCode": "J20406-A16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "daf01eb2c7d9a84a24b6901be58087fdee602882be1b42d6099757702739ee8e",
+  "dbContentSha256": "25607b9ce9d3fdf2b108e4f1017c3725302a7a52428876ca401aa01f7b4f5737",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "고도가 올라갈수록 기온이 일정 비율로 내려가는 상황에서, 단위(m→km)를 맞춰 일차함수 식을 세우고 특정 기온이 되는 고도를 거꾸로 구한다.",
+  "after": "땅속으로 내려갈수록 온도가 일정 비율로 올라가는 상황에서, 같은 단위 환산을 거쳐 증가하는 일차함수 식을 세우고 특정 온도가 되는 깊이를 거꾸로 구한다.",
+  "sharedConcept": "일차함수의 활용 — 변화율을 기울기로 하는 식 세우기와 함숫값에서 변수 구하기",
+  "sharedProcedure": "100 m당 변화량을 1 km당 변화량으로 환산 → y=(초깃값)+(변화율)x 로 식 세우기 → 주어진 y 대입 → 일차방정식 풀어 x 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 활용(온도, 길이)"
+  },
+  "prerequisites": [
+   "일차함수의 뜻과 식 세우기",
+   "일차방정식의 풀이",
+   "길이 단위의 환산(m, km)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20406-A16-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수의 활용 — 단위 환산을 포함한 온도 관계식 세우기와 역으로 깊이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.138,
+   "longestRun": 6,
+   "residualChars": 114,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

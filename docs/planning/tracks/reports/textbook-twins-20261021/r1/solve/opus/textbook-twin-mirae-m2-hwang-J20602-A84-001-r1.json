@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A84-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "38b9f429-3903-4b94-b1d0-08dd781f569a",
+ "startedAt": "2026-10-21T17:07:25+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "fig-1.png": "21b1cba81f8449447329b9eb859c51bb41df388d1a177353f4c8c7b14d22209c",
+  "student.json": "f2ab6cf4e3262af580fe1e5fda1dab394b1db6c0d6d1557483f772ed403099c8"
+ },
+ "promptSha256": "9e86cc0b7cc6cc7adfce5c589bce36b72082f429a2b2c7ac5ecdcda24b3a7f48",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"10 cm\", \"work\": \"∠C는 공통이고 ∠DEC=∠ABC=90°이므로 △CED∽△CBA(AA 닮음). 대응변: DE↔AB, CD↔CA. 따라서 DE:AB=CD:CA이고 6:15=CD:25이므로 CD=10 cm. (참고: BC=20 cm, CE=8 cm로 3:4:5 비가 맞음)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "10 cm",
+  "work": "∠C는 공통이고 ∠DEC=∠ABC=90°이므로 △CED∽△CBA(AA 닮음). 대응변: DE↔AB, CD↔CA. 따라서 DE:AB=CD:CA이고 6:15=CD:25이므로 CD=10 cm. (참고: BC=20 cm, CE=8 cm로 3:4:5 비가 맞음)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2e29563eacc79015449a30cd2f5f50f07abd41b3c0e58709fd97b643ab59f95a"
+}

@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 74,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A89-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하는 순환소수 $0.\\dot{6}0\\dot{4}$ 를 $x$ 로 놓고 분수로 고치려고 한다. 소수점 아래 부분이 같아지는 두 식을 만들어 변끼리 뺄 때 이용하는 식은?",
+ "choices": [
+  "$10x-x$",
+  "$100x-x$",
+  "$100x-10x$",
+  "$1000x-x$",
+  "$1000x-100x$"
+ ],
+ "answer": "④",
+ "solution": "$x=0.604604\\cdots$ 이고 순환마디가 세 자리이므로 양변에 $1000$ 을 곱하면 $1000x=604.604604\\cdots$ 이다. 두 식의 소수점 아래 부분이 같으므로 $1000x-x=604$, $x=\\dfrac{604}{999}$ 이다. 따라서 이용하는 식은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-c3b8fb93d4fa485d-0-1",
+  "problemCode": "J20103-A89-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "22709f257632f8c8697b4761ab2d1ab7d1133c0e0c3d4d82efc0b991b3be3084",
+  "dbContentSha256": "6b1bf4204b5ce1390bc062cc2c7b150aeb8cd3cfd09e9eccaaf7165ec7aa0956",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-3_순환소수의분수표현.hwp",
+    "sha256": "626f88a9ab44ae352a855e765fb4e7adfb2505b64c8ea4519587f15bacbf5eee",
+    "bytes": 41984
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "소수점 아래 바로 순환하는 두 자리 순환마디의 순환소수를 주고 분수로 고치는 데 필요한 식을 고른다.",
+  "after": "학생이 분수로 고치는 장면을 넣고, 세 자리 순환마디의 순환소수로 바꾸어 필요한 식을 고르게 한다.",
+  "sharedConcept": "순환마디 길이에 따라 10 의 거듭제곱을 곱해 소수 부분을 없애는 원리",
+  "sharedProcedure": "순환마디 길이 확인 → 알맞은 거듭제곱 곱하기 → 원래 식과의 차 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수의 표현(순환마디)",
+   "소수에 10의 거듭제곱 곱하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A89-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 분수로 고칠 때 필요한 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "overlap4": 0.157,
+   "longestRun": 8,
+   "residualChars": 91,
+   "params": 4,
+   "numberRetention": 0.75,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

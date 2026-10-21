@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "d08ca826-d836-4b93-b856-db2e0166b086",
+ "startedAt": "2026-10-21T18:13:13+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "ab9f0e3f49c0af49ce4b502a8ca60dd0b97f478b24e9f5ce9963117ed49ed0eb"
+ },
+ "promptSha256": "ef86aa5497de171d5219541fecc1968a27ac2f90a4127a41270e79a13f1091bd",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"19\",\n  \"work\": \"처음 수의 십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $x+y=10$, $10y+x=5(10x+y)-4$이다. 식을 정리하면 $49x-5y=4$이고, $y=10-x$를 대입하면 $54x=54$에서 $x=1$, $y=9$이다. 따라서 도하의 사물함 번호는 $19$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "19",
+  "work": "처음 수의 십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $x+y=10$, $10y+x=5(10x+y)-4$이다. 식을 정리하면 $49x-5y=4$이고, $y=10-x$를 대입하면 $54x=54$에서 $x=1$, $y=9$이다. 따라서 도하의 사물함 번호는 $19$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a063b94d4e2818de278c5bbbdeeab1824eeca632123e7dfe1e8a3004215ae844"
+}

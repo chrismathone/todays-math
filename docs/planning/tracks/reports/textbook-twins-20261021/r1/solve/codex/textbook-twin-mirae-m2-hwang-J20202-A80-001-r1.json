@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-8fa1-7233-8d04-5cd8f91ae629",
+ "startedAt": "2026-10-21T16:51:25+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "39fcbbcb39f196c5dcdcc168c349ebb48e1f195db25698e0c0c7e11deab9e276"
+ },
+ "promptSha256": "addc0b4b67a5bc00e5885ce6615e085fa33bcfc001b9dcc249a5062e99799702",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"①, ②, ③, ⑤를 각각 풀면 모두 x≤2이다.\\n④는 0.3x≥0.6이므로 x≥2이다.\\n따라서 해가 나머지 넷과 같지 않은 것은 ④이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "①, ②, ③, ⑤를 각각 풀면 모두 x≤2이다.\n④는 0.3x≥0.6이므로 x≥2이다.\n따라서 해가 나머지 넷과 같지 않은 것은 ④이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bfe0e199f21a3f94c9d4246934f67e664222b489efd6782eb8756f79be085fb7"
+}

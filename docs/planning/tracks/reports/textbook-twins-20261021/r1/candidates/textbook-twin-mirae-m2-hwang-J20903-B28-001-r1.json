@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 384,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B28-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$1$부터 $20$까지의 자연수가 각각 하나씩 적힌 $20$개의 공이 주머니에 들어 있다. 이 주머니에서 공 한 개를 임의로 꺼낼 때, 공에 적힌 수의 역수가 정수 또는 유한소수일 확률은?",
+ "choices": [
+  "$\\frac{1}{4}$",
+  "$\\frac{3}{10}$",
+  "$\\frac{7}{20}$",
+  "$\\frac{2}{5}$",
+  "$\\frac{9}{20}$"
+ ],
+ "answer": "④",
+ "solution": "역수가 정수가 되는 수는 $1$뿐이므로 그 확률은 $\\frac{1}{20}$이다.\n역수가 유한소수가 되려면 분모의 소인수가 $2$ 또는 $5$뿐이어야 하므로 그런 수는 $2$, $4$, $5$, $8$, $10$, $16$, $20$의 $7$개이고 그 확률은 $\\frac{7}{20}$이다.\n두 사건은 동시에 일어날 수 없으므로 구하는 확률은 $\\frac{1}{20}+\\frac{7}{20}=\\frac{8}{20}=\\frac{2}{5}$이다. 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-11",
+  "problemCode": "J20903-B28-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "5caf5b4e2a63a1ec0732538bd5bd6dab94ed23f7ef1950da6e45e28a3e5d4060",
+  "dbContentSha256": "d9aef5a50c7ae60570cdfec7b1f0d0c737df32b6c96ec944da4012e70f359765",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "1~12가 적힌 정십이면체 주사위에서 눈의 역수가 정수인 경우와 유한소수인 경우의 확률을 더한다",
+  "after": "1~20이 적힌 공 주머니에서 꺼낸 수의 역수가 정수인 경우와 유한소수인 경우의 확률을 더한다",
+  "sharedConcept": "유한소수 판정과 사건 A 또는 B의 확률",
+  "sharedProcedure": "역수가 정수인 수 세기 → 분모 소인수가 2, 5뿐인 수 세기 → 각 확률을 더함 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "유한소수로 나타낼 수 있는 분수",
+   "확률의 뜻",
+   "사건 A 또는 B가 일어날 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B28-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "역수가 유한소수일 확률(또는)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.262,
+   "longestRun": 18,
+   "residualChars": 89,
+   "params": 6,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

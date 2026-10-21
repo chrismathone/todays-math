@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 315,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r2",
+ "authorId": "claude-opus-5-5:ab010b08-5c5e-4c90-849a-daa81802fecd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 삼각형 $ABC$는 $\\angle ACB=90^{\\circ}$인 직각삼각형이고, 빗변 $\\overline{AB}$ 위의 점 $H$에 대하여 $\\overline{CH}\\perp\\overline{AB}$이다. $\\overline{CH}=6\\,\\mathrm{cm}$, $\\overline{BH}=4\\,\\mathrm{cm}$일 때, 색칠한 $\\triangle ACH$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$27\\,\\mathrm{cm}^{2}$",
+ "solution": "$\\triangle BCH$에서 $\\angle B=90^{\\circ}-\\angle BCH$이고, $\\angle ACH+\\angle BCH=90^{\\circ}$이므로 $\\angle ACH=90^{\\circ}-\\angle BCH$\n따라서 $\\angle B=\\angle ACH$\n$\\triangle CBH$와 $\\triangle ACH$에서 $\\angle CHB=\\angle AHC=90^{\\circ}$, $\\angle B=\\angle ACH$이므로 $\\triangle CBH\\backsim\\triangle ACH$($\\mathrm{AA}$ 닮음)\n$\\overline{BH}:\\overline{CH}=\\overline{CH}:\\overline{AH}$이므로 $4:6=6:\\overline{AH}$, $4\\overline{AH}=36$, $\\overline{AH}=9\\,\\mathrm{cm}$\n따라서 $\\triangle ACH=\\frac{1}{2}\\times9\\times6=27\\,(\\mathrm{cm}^{2})$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A85-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A85-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ada9546260b1b4d2-1-4",
+  "problemCode": "J20602-A85-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "a8a676747d7ab9c101d60cc8719a5023d4dfe38ef700e430fde81ce6974c7f03",
+  "dbContentSha256": "93ee3b247a324383a320e1580bfd2e180778b61396af128d257f442baf867e6f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-2_삼각형의닮음조건.hwp",
+    "sha256": "31ceffc5d47e2ef900d5ffd9371a3a7d964428524443c7524211fdb0fcd69180",
+    "bytes": 963072
+   }
+  ],
+  "originalFigureSha256": [
+   "0d12812ed61904e72ddc0555eaa65c863dab763ba86bf3b217de27d58ac8c567"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "직각인 꼭짓점에서 빗변에 수선을 내리고, 수선의 길이와 한쪽 빗변 조각의 길이를 준 뒤, 길이를 모르는 다른 조각이 속한 작은 직각삼각형의 넓이를 묻는다(직각 꼭짓점이 위, 빗변이 아래, 색칠한 삼각형이 왼쪽).",
+  "after": "직각 꼭짓점을 C로, 수선의 발을 H로 바꾸고, 짧은 쪽 조각(4)과 수선(6)을 주어 긴 쪽 조각이 속한 작은 직각삼각형 ACH의 넓이를 묻는다. 색칠한 삼각형이 왼쪽의 큰 쪽이며 수치는 새로 정했다.",
+  "sharedConcept": "직각삼각형에서 빗변에 내린 수선으로 생긴 두 직각삼각형의 AA 닮음",
+  "sharedProcedure": "각의 관계로 대응각이 같음을 보이기 → AA 닮음 세우기 → 대응변의 비례식으로 모르는 빗변 조각 구하기 → 작은 삼각형의 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 AA 닮음 조건",
+   "닮은 도형에서 대응변의 길이의 비",
+   "비례식 풀기",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A85-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형에서 빗변에 내린 수선으로 생긴 닮은 삼각형을 이용해 작은 삼각형의 넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.172,
+   "longestRun": 10,
+   "residualChars": 61,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

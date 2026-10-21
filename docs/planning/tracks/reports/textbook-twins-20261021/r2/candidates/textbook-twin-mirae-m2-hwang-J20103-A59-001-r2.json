@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 65,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r2",
+ "authorId": "claude-fable-5-1:69b73db6-c37b-444d-8f7a-489524188015",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 순환소수 $0.2\\dot{4}\\dot{5}$와 같은 수는?",
+ "choices": [
+  "$\\frac{49}{200}$",
+  "$\\frac{11}{45}$",
+  "$\\frac{27}{110}$",
+  "$\\frac{49}{198}$",
+  "$\\frac{27}{100}$"
+ ],
+ "answer": "③",
+ "solution": "$x=0.2\\dot{4}\\dot{5}$라 하고 양변에 $10$과 $1000$을 각각 곱하면\n$10x=2.454545\\cdots$\n$1000x=245.454545\\cdots$\n두 식을 변끼리 빼면 $990x=243$이므로 $x=\\frac{243}{990}=\\frac{27}{110}$이다.\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-11",
+  "problemCode": "J20103-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "975d14d1953bb9163e9479f485469266da0f5c3da81b3c7c1315971f0c7fd271",
+  "dbContentSha256": "78bcea150ae98c7ff5f4ac74200bedcc084b803e1120dfc0fb5963e7278a64c3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "순환하지 않는 자리 하나와 두 자리 순환마디를 가진 순환소수를 주고, 그것을 분수로 바꾼 결과를 보기 다섯 가운데서 고르게 한다.",
+  "after": "순환하지 않는 자리 하나와 두 자리 순환마디를 가진 새 순환소수를 주고, 보기의 분수 다섯 가운데 그 순환소수와 값이 같은 것을 고르게 한다. 오답 보기는 빼기를 빠뜨리거나 분모를 잘못 잡는 흔한 실수에서 나오는 값으로 두었다.",
+  "sharedConcept": "순환소수를 x로 놓고 10의 거듭제곱을 곱해 순환 부분을 없애서 분수로 나타내기",
+  "sharedProcedure": "x로 놓기 → 10x와 1000x 만들기 → 변끼리 빼서 990x 구하기 → 분수로 쓰고 약분하기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수의 뜻과 순환마디 점 표기",
+   "분수의 약분",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A59-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환하지 않는 자리가 있는 두 자리 순환마디의 순환소수를 분수로 고쳐 보기에서 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.048,
+   "longestRun": 5,
+   "residualChars": 46,
+   "params": 10,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

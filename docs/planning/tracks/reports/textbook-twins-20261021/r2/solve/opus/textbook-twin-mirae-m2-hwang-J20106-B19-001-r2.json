@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f3a8393f-bbdc-4a98-a51f-6e355234c01c",
+ "startedAt": "2026-10-21T17:06:56+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "da5f78c33e98011d26b620f2bd26e8fdf8c0657613e2f9cab7b7cbcc998df705",
+  "student.json": "acbfb8dd0a70818d6474d1dbcbdae28408959b4583a1095b1efa5f659cfc361f"
+ },
+ "promptSha256": "ab9c75ae76571bf9d41a44b8b4c00a813aad4f6181eb1243695bd6a35563d652",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"세로 = 84a^5 ÷ (3a^2 × 8a^2) = 84a^5 ÷ 24a^4 = (7/2)a. 겉넓이 = 2(3a^2·8a^2 + 3a^2·(7/2)a + 8a^2·(7/2)a) = 2(24a^4 + (21/2)a^3 + 28a^3) = 48a^4 + 21a^3 + 56a^3 = 48a^4 + 77a^3\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "세로 = 84a^5 ÷ (3a^2 × 8a^2) = 84a^5 ÷ 24a^4 = (7/2)a. 겉넓이 = 2(3a^2·8a^2 + 3a^2·(7/2)a + 8a^2·(7/2)a) = 2(24a^4 + (21/2)a^3 + 28a^3) = 48a^4 + 21a^3 + 56a^3 = 48a^4 + 77a^3",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0da76261f9530332544d30a279f845e947917014336170ccc9e5278c81a46ff5"
+}

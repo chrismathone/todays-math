@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 190,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r2",
+ "authorId": "claude-opus-5-5:104d2120-74e1-4cf6-bdda-ad2798688f6e",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20304-A51-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x=a$, $y=b$가 연립방정식 $\\begin{cases} 8x+5y=10 \\\\ 3x=2y+27 \\end{cases}$을 만족시킨다. 이때 연립방정식 $\\begin{cases} ax+by=-28 \\\\ bx-ay=-3 \\end{cases}$의 해는?",
+ "choices": [
+  "$x=2$, $y=-3$",
+  "$x=-2$, $y=3$",
+  "$x=3$, $y=-2$",
+  "$x=-3$, $y=2$",
+  "$x=2$, $y=3$"
+ ],
+ "answer": "②",
+ "solution": "$3x=2y+27$을 정리하면 $3x-2y=27$이다. $8x+5y=10$의 양변에 $2$를, $3x-2y=27$의 양변에 $5$를 곱해 더하면 $31x=155$이므로 $x=5$이다. $x=5$를 $8x+5y=10$에 대입하면 $5y=-30$이므로 $y=-6$이다. 따라서 $a=5$, $b=-6$이다.\n구하는 연립방정식은 $5x-6y=-28$, $-6x-5y=-3$이다. 첫째 식에 $6$, 둘째 식에 $5$를 곱해 더하면 $-61y=-183$이므로 $y=3$이다. $y=3$을 $5x-6y=-28$에 대입하면 $5x=-10$이므로 $x=-2$이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-5",
+  "problemCode": "J20304-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "60a37b6d03182e9be0121bd3523c8981b1ad413e80c83f784e9ba32cb9e2bfd4",
+  "dbContentSha256": "a9dedae1de5460f1c937f2907211ebc62d4ed446eaff6ae789515216fcdcb508",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "표준형으로 쓴 두 일차방정식의 해를 a, b로 놓고, 그 a, b를 계수로 하며 두 식에서 a, b의 자리가 맞바뀐 꼴(ax+by, bx+ay)의 연립방정식을 풀어 해를 고른다.",
+  "after": "한 식이 이항하지 않은 꼴(3x=2y+27)로 주어진 연립방정식을 만족시키는 x=a, y=b를 먼저 구하고, a, b를 계수로 하되 둘째 식에서 뺄셈이 들어간 꼴(ax+by, bx−ay)의 연립방정식을 풀어 해를 고른다. 해는 음수 계수 b를 거쳐 x가 음수로 나온다.",
+  "sharedConcept": "연립일차방정식의 해와 그 해를 계수로 하는 새 연립방정식",
+  "sharedProcedure": "첫 연립방정식을 가감법으로 풀기 → a, b 정하기 → a, b를 넣어 새 연립방정식 세우기 → 가감법으로 다시 풀기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "일차방정식의 이항과 정리",
+   "연립방정식의 풀이(가감법·대입법)",
+   "연립방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A51-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "연립방정식의 해를 계수로 하는 다른 연립방정식의 해 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.225,
+   "longestRun": 12,
+   "residualChars": 91,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

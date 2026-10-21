@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da8-889b-76e3-86b8-5f2b84a3b776",
+ "startedAt": "2026-10-21T17:51:28+0900",
+ "elapsedSec": 16.0,
+ "studentSha256": {
+  "student.json": "7c6abcbcbe75e633063ea43f86aedfcb4b3cfe44e2313990e02297a4707a27b6"
+ },
+ "promptSha256": "078e0c1986be5ba239134986e2860a9c28cd43945dda0a1a963228d6e8665006",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"일차함수는 $y=ax+b$ ($a\\\\ne0$) 꼴이다. ②는 $y=60x$이므로 일차함수이다. ①은 $y=\\\\pi x^2$, ③은 $y=36/x$, ⑤는 $y=120$이므로 일차함수가 아니다.\",\"confidence\":\"high\",\"issues\":[\"④는 총 구입 금액이나 다른 조건이 제시되지 않아 x와 y의 관계를 정할 수 없다.\"]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "일차함수는 $y=ax+b$ ($a\\ne0$) 꼴이다. ②는 $y=60x$이므로 일차함수이다. ①은 $y=\\pi x^2$, ③은 $y=36/x$, ⑤는 $y=120$이므로 일차함수가 아니다.",
+  "confidence": "high",
+  "issues": [
+   "④는 총 구입 금액이나 다른 조건이 제시되지 않아 x와 y의 관계를 정할 수 없다."
+  ]
+ },
+ "eventsSha256": "65e61ebb0c9a7d80c88304c274d471f022f242c38640eb686534611c51a4668b"
+}

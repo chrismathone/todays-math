@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0c14eca0-82eb-435d-ac33-8bb6bc314242",
+ "startedAt": "2026-10-21T18:23:43+0900",
+ "elapsedSec": 23.3,
+ "studentSha256": {
+  "fig-1.png": "aa9d954fa598d71e04408c8eb90bd925920d144b2827b9dd276a817e0b52fef6",
+  "student.json": "09bd439295f13e693498a82c429b88ab4d28501e46dd420f931b602ec36f66cd"
+ },
+ "promptSha256": "6c2ed729184085e43246c24a3d4feec54aa2f1e8a07511c7a50f8f551bb1aad3",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"직선이 두 점 $(-1,~-6)$과 $(3,~6)$을 지나므로 기울기는 \\\\frac{6-(-6)}{3-(-1)}=3이고, 직선의 방정식은 $y=3x-3$이다. 일차함수 $y=3x+5$는 이 직선과 기울기가 같고 $y$절편이 다르므로 두 직선은 평행하여 어느 점에서도 만나지 않는다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "직선이 두 점 $(-1,~-6)$과 $(3,~6)$을 지나므로 기울기는 \\frac{6-(-6)}{3-(-1)}=3이고, 직선의 방정식은 $y=3x-3$이다. 일차함수 $y=3x+5$는 이 직선과 기울기가 같고 $y$절편이 다르므로 두 직선은 평행하여 어느 점에서도 만나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f2507f49fcb1a3b2d0c11361e88bf0981d7d5122aaeb671599cc450f9b822b29"
+}

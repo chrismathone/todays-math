@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A57-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-0fb3-7320-a427-b25cff3e6c80",
+ "startedAt": "2026-10-21T18:51:02+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "dfcc82fce361022b5a2615c9c29b9f6c5bc350b5e0740fcefcdedd8aa521f4e4"
+ },
+ "promptSha256": "270f20351ea61d55a9e7da5de0e731bdc60fb1c06dfd8b55459cdce8a657d487",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $3x+4y=31$ ⑵ $2x+3y=23$\",\"work\":\"⑴ 세발자전거의 바퀴는 한 대에 3개, 승용차의 바퀴는 한 대에 4개이므로 $3x+4y=31$이다.\\n⑵ 2점짜리 슛 x개의 득점은 2x점, 3점짜리 슛 y개의 득점은 3y점이므로 $2x+3y=23$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $3x+4y=31$ ⑵ $2x+3y=23$",
+  "work": "⑴ 세발자전거의 바퀴는 한 대에 3개, 승용차의 바퀴는 한 대에 4개이므로 $3x+4y=31$이다.\n⑵ 2점짜리 슛 x개의 득점은 2x점, 3점짜리 슛 y개의 득점은 3y점이므로 $2x+3y=23$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d2923e9bdc3d2faef889c3e3d949108ae406a61a888b5895621fdf6072e5adcf"
+}

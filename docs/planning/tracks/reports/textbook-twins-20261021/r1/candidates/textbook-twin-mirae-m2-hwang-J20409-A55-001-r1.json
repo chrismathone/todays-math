@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 214,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r1",
+ "authorId": "claude-fable-5-1:66ecd9e0-4b8d-4fae-b92d-b2bd84d1b54d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "두 일차방정식 $x+y=5$와 $3x-y=-1$의 그래프의 교점을 지나고, 두 점 $(1,\\,3)$, $(3,\\,7)$을 지나는 직선과 평행한 직선의 방정식은?",
+ "choices": [
+  "$2x-y-2=0$",
+  "$2x-y+2=0$",
+  "$x-2y+7=0$",
+  "$2x+y-6=0$",
+  "$x+2y-9=0$"
+ ],
+ "answer": "②",
+ "solution": "두 식을 변끼리 더하면 $4x=4$, $x=1$이고 $y=4$이므로 교점은 $(1,\\,4)$이다. 두 점 $(1,\\,3)$, $(3,\\,7)$을 지나는 직선의 기울기는 $\\dfrac{7-3}{3-1}=2$이므로 구하는 직선의 기울기도 $2$이다. $y=2x+b$에 $(1,\\,4)$를 대입하면 $b=2$이므로 $y=2x+2$, 즉 $2x-y+2=0$이다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-07ecf6280c42ef91-0-3",
+  "problemCode": "J20409-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "975641365c0ec6bacc3546b00e6c0af76f646791dfd6ea5799c08f8a5744152f",
+  "dbContentSha256": "64909f14e7667559e5b25d419692eb93a31adefdf90dcda1331fefc4bb2a5562",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-7_일차함수의그래프와연립일차방정식.hwp",
+    "sha256": "893c512788f8720916d44122281f5985e6e965e88beb4cfeae4f6e902f96fb39",
+    "bytes": 122368
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "두 일반형 직선의 교점을 구한 뒤, 일반형으로 주어진 다른 직선의 기울기를 읽어 평행한 직선의 식을 일반형 보기에서 고른다.",
+  "after": "교점은 같은 방식으로 구하되, 평행의 기준이 되는 직선을 두 점으로 주어 기울기를 두 점에서 계산하게 하고 일반형 보기에서 고른다.",
+  "sharedConcept": "두 그래프의 교점 = 연립방정식의 해, 평행한 직선은 기울기가 같다",
+  "sharedProcedure": "연립해 교점 구하기 → 기준 직선의 기울기 구하기 → 교점 대입해 y절편 → 일반형으로 고치기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이",
+   "두 점을 지나는 직선의 기울기",
+   "일차함수의 식 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A55-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 그래프의 교점을 지나고 주어진 직선과 평행한 직선의 방정식",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.312,
+   "longestRun": 12,
+   "residualChars": 98,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "45910e9a-8997-4096-a738-fbc641587db9",
+ "startedAt": "2026-10-21T18:15:50+0900",
+ "elapsedSec": 23.8,
+ "studentSha256": {
+  "fig-1.png": "c5e8f0e882c6406f750edcb4cedef4d296b52266f8ce7205caa6a6ce3db55871",
+  "student.json": "be849cbe5c9c5de156e004e027f901300c5101afd39691a983f7766597acc436"
+ },
+ "promptSha256": "70a691b8374b3031565a15a5f352396763cf0050a5a73ed734716e68d25a11dd",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"20\",\n  \"work\": \"두 직선 x - 2y + 4 = 0과 2x + y - 12 = 0의 y절편은 각각 (0, 2)와 (0, 12)이므로 y축 위의 밑변의 길이는 12 - 2 = 10이다. 두 식을 연립하여 교점을 구하면 (4, 4)이므로 삼각형의 높이는 교점의 x좌표인 4이다. 따라서 구하는 삼각형의 넓이는 1/2 × 10 × 4 = 20이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "20",
+  "work": "두 직선 x - 2y + 4 = 0과 2x + y - 12 = 0의 y절편은 각각 (0, 2)와 (0, 12)이므로 y축 위의 밑변의 길이는 12 - 2 = 10이다. 두 식을 연립하여 교점을 구하면 (4, 4)이므로 삼각형의 높이는 교점의 x좌표인 4이다. 따라서 구하는 삼각형의 넓이는 1/2 × 10 × 4 = 20이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a243ae58774c3a039bc9d35b92b7ca39ad1fb9f6dd52266dc9eaf146d02b2598"
+}

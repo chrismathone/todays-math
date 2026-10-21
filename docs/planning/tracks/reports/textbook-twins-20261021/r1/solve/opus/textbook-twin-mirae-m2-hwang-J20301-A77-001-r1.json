@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "24de78ec-fd41-42cc-a3bf-7eb01d2e48d2",
+ "startedAt": "2026-10-21T16:30:13+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "90806c45ee14ff8591fd5793191b8811b07c3be3df84417157972d0645a8ad48"
+ },
+ "promptSha256": "48e679fa088b7d67811ecd1254d4f02f4c85337df1d22e6c1a573ffcc914f361",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "y=2x: 3x+3-x=19-2x → 2x+3=19-2x → 4x=16, x=4, y=8.\n\nNote: \"일차방정식\" with two unknowns — fine.\n\n```json\n{\"answer\": \"$x=4,\\\\ y=8$\", \"work\": \"y=2x를 대입: 3(x+1)-x=19-2x → 2x+3=19-2x → 4x=16 → x=4, y=8. 검산: 3·5-4=11, 19-8=11\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$x=4,\\ y=8$",
+  "work": "y=2x를 대입: 3(x+1)-x=19-2x → 2x+3=19-2x → 4x=16 → x=4, y=8. 검산: 3·5-4=11, 19-8=11",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a8832ee05e512151102fc456653699fee08f3b0d447d98bf4930736713cd1c60"
+}

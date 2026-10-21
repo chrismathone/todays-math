@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A34-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-371c-7403-b390-f5658af38202",
+ "startedAt": "2026-10-21T17:13:59+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "b8eb4b95776727c50c8d7ad26acb2f72dddd68b744e76e378afe03ed1a3c3ec6"
+ },
+ "promptSha256": "e78754e8957188eb26c15666eb4c98cfea098f696453660ff850d5fe7f7ac132",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"②는 ㉠×4+㉡×3을 하면 $24x+11y=37$이 되어 어느 미지수도 소거되지 않는다.\\n①은 y가, ③은 x가 소거되며, ④와 ⑤는 올바른 대입법이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "②는 ㉠×4+㉡×3을 하면 $24x+11y=37$이 되어 어느 미지수도 소거되지 않는다.\n①은 y가, ③은 x가 소거되며, ④와 ⑤는 올바른 대입법이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4cda4c4b54160de072b422218ee2489defe436f2e18ac541c583064598761ab2"
+}

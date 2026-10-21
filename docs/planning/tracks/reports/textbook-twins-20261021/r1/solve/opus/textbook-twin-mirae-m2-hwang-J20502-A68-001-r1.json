@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A68-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "0f485d93-ef48-41c4-b8a7-d7c477bfc751",
+ "startedAt": "2026-10-21T17:06:01+0900",
+ "elapsedSec": 7.4,
+ "studentSha256": {
+  "fig-1.png": "ad7e5603cd9279fc0865699cc4a8ef505003e5ae3d6bd23f28157a035661854b",
+  "student.json": "cc8e861f360fcc960dcb490db52933083107ef906265c927137f6acb10814e30"
+ },
+ "promptSha256": "15b2c5c48b650783aea300b9c72cac7f133cacbc8bf9e60678d763fc25801e3e",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"15/2 cm² (7.5 cm²)\", \"work\": \"∠AFD=∠DGC=90°, AD=DC, ∠ADF=90°−∠GDC=∠DCG이므로 △AFD≡△DGC (RHA 합동). 따라서 DF=CG=5 cm, DG=AF=8 cm이다. FG=DG−DF=8−5=3 cm이고, △CFG의 넓이는 ½×FG×CG=½×3×5=15/2 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "15/2 cm² (7.5 cm²)",
+  "work": "∠AFD=∠DGC=90°, AD=DC, ∠ADF=90°−∠GDC=∠DCG이므로 △AFD≡△DGC (RHA 합동). 따라서 DF=CG=5 cm, DG=AF=8 cm이다. FG=DG−DF=8−5=3 cm이고, △CFG의 넓이는 ½×FG×CG=½×3×5=15/2 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c9f9283867fbef23658dfac76470777c69525d42c9b464b8cba2bbb81de2c382"
+}

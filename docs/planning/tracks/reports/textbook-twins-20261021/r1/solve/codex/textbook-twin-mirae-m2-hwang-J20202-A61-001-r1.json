@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d70-f0ba-7583-8c21-943cd4d1acfe",
+ "startedAt": "2026-10-21T16:50:45+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "38ed2f2426eb776b65a234802749df05d9dcf21b89091b5f4886e034932462ac"
+ },
+ "promptSha256": "e539f47fe97b460bf0da02503b15bc76245b2d87eb4f321849ea85fa7c5fb272",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5\",\"work\":\"양변에 18을 곱하면 3(x+7)>2(5x-8)이다.\\n정리하면 7x<37, 즉 x<37/7이므로 이를 만족하는 가장 큰 자연수는 5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "양변에 18을 곱하면 3(x+7)>2(5x-8)이다.\n정리하면 7x<37, 즉 x<37/7이므로 이를 만족하는 가장 큰 자연수는 5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "904d0f4b90402e0ba1c773ea38c2fae40225b30ee8015ff291e512c646fbab9b"
+}

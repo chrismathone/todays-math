@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A95-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d72-2088-7503-9c6c-1351163aa890",
+ "startedAt": "2026-10-21T16:52:02+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "fig-1.png": "b5829111cd4a2d07d9b951c52efedde921a984258fa2ac70cd0f75de52e5ea27",
+  "student.json": "700f83693d3dffbcb3cb74ca389af20e822e9c925d73ceb9b47d985901c7c6fa"
+ },
+ "promptSha256": "8d0e09cda0f03e0f0cc43029ef89f1218c0c99dadb4c50c0c4430d212606a9b3",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"그림은 2를 포함하여 오른쪽으로 나타냈으므로 해는 $x\\\\ge 2$이다.\\n③은 $\\\\frac{1}{2}x+1\\\\ge 2$를 정리하면 $x\\\\ge 2$이므로 그림과 일치한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그림은 2를 포함하여 오른쪽으로 나타냈으므로 해는 $x\\ge 2$이다.\n③은 $\\frac{1}{2}x+1\\ge 2$를 정리하면 $x\\ge 2$이므로 그림과 일치한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "41b0fda690b490d573fc3eac08d2fab01ae464615e00bc435e8a5748beb96eb0"
+}

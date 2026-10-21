@@ -1,0 +1,153 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 47,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림의 직육면체는 밑면의 세로가 $3a^{2}$, 높이가 $2a^{3}$이고 부피가 $30a^{8}$이다. 이 직육면체의 겉넓이는?\n[그림]",
+ "choices": [
+  "$10a^{6}+42a^{5}$",
+  "$20a^{6}+21a^{5}$",
+  "$20a^{6}+42a^{5}$",
+  "$20a^{5}+42a^{6}$",
+  "$20a^{6}+36a^{5}$"
+ ],
+ "answer": "③",
+ "solution": "밑면의 가로를 $x$라 하면 $x\\times 3a^{2}\\times 2a^{3}=6a^{5}x=30a^{8}$이므로 $x=30a^{8}\\div 6a^{5}=5a^{3}$이다. 겉넓이는 $2(5a^{3}\\times 3a^{2}+5a^{3}\\times 2a^{3}+3a^{2}\\times 2a^{3})=2(15a^{5}+10a^{6}+6a^{5})=20a^{6}+42a^{5}$이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B19-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B19-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-9",
+  "problemCode": "J20106-B19-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "55f7b0e05646bd643d0c9f2ad076ec318659ca5dfcf1ef14c312292565423125",
+  "dbContentSha256": "af393ffcd85ee392bcd88400a466418af143dc083d32ebf3e7d113adc74d664e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [
+   "fa0759ad642ff47d315c08f69f344c4bc5b8fcdbbe54e545dc4512ff959b3008"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "밑면의 가로·세로와 부피에서 높이를 구한 뒤 겉넓이를 고른다.",
+  "after": "밑면의 세로와 높이, 부피에서 밑면의 가로를 구한 뒤 겉넓이를 고른다. 미지의 모서리를 높이에서 밑변으로 옮기고 수를 새로 정했다.",
+  "sharedConcept": "단항식의 곱셈·나눗셈의 활용(직육면체의 부피와 겉넓이)",
+  "sharedProcedure": "부피 공식에서 미지 모서리를 나눗셈으로 결정 → 세 면의 넓이 곱셈 → 합의 2배"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "직육면체의 부피와 겉넓이",
+   "다항식의 덧셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-B19-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부피가 주어진 직육면체의 겉넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'BC_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "6b68642d-c8f2-4c43-80e9-75b0300770fe",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.151,
+   "longestRun": 11,
+   "residualChars": 99,
+   "params": 11,
+   "numberRetention": 0.364,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

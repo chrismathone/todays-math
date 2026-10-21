@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A64-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db1-9b01-7cc2-82b4-99eadc55ddd6",
+ "startedAt": "2026-10-21T18:01:23+0900",
+ "elapsedSec": 17.4,
+ "studentSha256": {
+  "fig-1.png": "e9509c54984329bad2a577568f0e34e1639425d24d180958ee77b7d36a6ddb9f",
+  "student.json": "b5fae9a0191ee4db00f25f44160e8dc8f2f17df0cb654614a276321b2beb3e87"
+ },
+ "promptSha256": "e54dd865e649281627dc8687e5e114d057eab5c9ae18637893f7b2b5e9fc649a",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"40.5 cm²\",\n  \"work\": \"직각삼각형 ABD와 CAE는 빗변이 같고 ∠ABD=∠CAE이므로 합동이다. 따라서 AD=CE=2 cm, AE=BD=7 cm이므로 DE=9 cm이다. 사다리꼴 DBCE의 넓이는 (7+2)×9÷2=40.5 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "40.5 cm²",
+  "work": "직각삼각형 ABD와 CAE는 빗변이 같고 ∠ABD=∠CAE이므로 합동이다. 따라서 AD=CE=2 cm, AE=BD=7 cm이므로 DE=9 cm이다. 사다리꼴 DBCE의 넓이는 (7+2)×9÷2=40.5 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8060e92a74f5d2b47c52781290c39c3f1cce3f40ccd5a2d7619deb855975925a"
+}

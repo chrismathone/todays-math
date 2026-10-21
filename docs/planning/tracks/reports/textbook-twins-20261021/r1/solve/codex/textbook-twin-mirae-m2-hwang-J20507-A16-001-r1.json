@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A16-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db3-3ef9-7e10-9801-bdbd209a7504",
+ "startedAt": "2026-10-21T18:03:10+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "fig-1.png": "fe092f945bee2f9a333ff813560263ba0a582b70887b5e70b7eb96fc46b824b6",
+  "student.json": "70ff1fc9d2fbe16fa9938cf917ead110b6f977665b78d0872fc49486a7beea7a"
+ },
+ "promptSha256": "9aa451611556fc2e1dd38c007eca48227a39a97d75b14bb734b4ce8760074d13",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"50 cm²\",\"work\":\"정사각형의 두 대각선은 서로를 이등분하므로 AC=2×OA=10 cm이다.\\n정사각형의 넓이는 두 대각선 길이의 곱의 절반이므로 10×10÷2=50 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "50 cm²",
+  "work": "정사각형의 두 대각선은 서로를 이등분하므로 AC=2×OA=10 cm이다.\n정사각형의 넓이는 두 대각선 길이의 곱의 절반이므로 10×10÷2=50 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a0d9696f6deab4636a315c05cdb4a24ae74a43344de043e5fc2ab8342e027d50"
+}

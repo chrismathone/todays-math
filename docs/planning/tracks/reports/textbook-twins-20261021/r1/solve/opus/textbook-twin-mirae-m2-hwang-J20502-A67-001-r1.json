@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c707f7d8-1c11-4603-992e-e2c229797183",
+ "startedAt": "2026-10-21T17:05:57+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "b6972df6c54b474fec831114d16f728c20bd48002cdec3a445aed2a6f0317daa",
+  "student.json": "691838e8279f0dd32a7c0c190538b651a3dc2a671487510f21ce59d2abbcd7f7"
+ },
+ "promptSha256": "517e174cebe1d49fe78359d48e51f0632f9dd20890a562342e75cf890a479792",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "삼각형 AED와 AFD는 RHS 합동이므로 AD가 ∠BAC를 이등분합니다. 따라서 ∠BAC = 2 × 29° = 58°입니다.\n\n```json\n{\"answer\": \"58°\", \"work\": \"△AED와 △AFD에서 ∠AED=∠AFD=90°, AD는 공통, DE=DF이므로 RHS 합동이다. 따라서 ∠DAE=∠DAF이다. △AED에서 ∠DAE=180°-90°-61°=29°이다. 그러므로 ∠BAC=2×29°=58°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "58°",
+  "work": "△AED와 △AFD에서 ∠AED=∠AFD=90°, AD는 공통, DE=DF이므로 RHS 합동이다. 따라서 ∠DAE=∠DAF이다. △AED에서 ∠DAE=180°-90°-61°=29°이다. 그러므로 ∠BAC=2×29°=58°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "32cdcbc96519ccf0be85ca01b77332538ab2c2a82b493d31cfecf8ff38b1bf4d"
+}

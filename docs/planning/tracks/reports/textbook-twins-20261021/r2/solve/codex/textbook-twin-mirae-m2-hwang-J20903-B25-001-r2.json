@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-3f20-71c1-9f81-1ccd282e2a9a",
+ "startedAt": "2026-10-21T18:55:36+0900",
+ "elapsedSec": 8.8,
+ "studentSha256": {
+  "student.json": "9c2c13433d541a5890fd34fd1eceaaaff2af41f75ef8bb3655bc9dc05808f42f"
+ },
+ "promptSha256": "c801dc1504891de6068a4d9c5926cd31b592f69a0a29266894b9a21978d28c22",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"주사위를 두 번 던질 때 가능한 경우는 $6\\\\times6=36$가지이다.\\n$2a+b=10$을 만족하는 $(a,b)$는 $(2,6)$, $(3,4)$, $(4,2)$의 3가지이다.\\n따라서 확률은 $\\\\frac{3}{36}=\\\\frac{1}{12}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "주사위를 두 번 던질 때 가능한 경우는 $6\\times6=36$가지이다.\n$2a+b=10$을 만족하는 $(a,b)$는 $(2,6)$, $(3,4)$, $(4,2)$의 3가지이다.\n따라서 확률은 $\\frac{3}{36}=\\frac{1}{12}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "97d29fffe566e5ddb430eba8bea60a9230b3aca95940bc204d376f4264f8407f"
+}

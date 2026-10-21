@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "cdb24dc7-f989-4700-8eb8-54779f2254b4",
+ "startedAt": "2026-10-21T18:35:07+0900",
+ "elapsedSec": 27.5,
+ "studentSha256": {
+  "fig-1.png": "60c24a8c65433e7257452dcaef89cdde3245845e47da99b431a87606bbe456f1",
+  "student.json": "2efc0fd6d4843e2f7629b157a88e36fe730782dbfef53e400bc4d4516d0aa90a"
+ },
+ "promptSha256": "89a20762099c0f52b037d1af2de54918b9435652b8775c11bb536c579fa84b4c",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"대응하는 모서리의 길이의 비로부터 두 삼각기둥의 닮음비는 $\\\\overline{EF}:\\\\overline{KL}=10:14=5:7$이다(①, ②는 참).\\n대응각의 크기가 같으므로 $x=40$이고, 닮음비 $5:7$에 의해 $20:y=5:7\\\\implies y=28$, $z:35=5:7\\\\implies z=25$이므로 $x+y-z=40+28-25=43$이다(③은 참).\\n꼭짓점 $A, C, F, D$에 대응하는 꼭짓점은 각각 $G, I, L, J$이므로 면 $\\\\mathrm{ACFD}$에 대응하는 면은 면 $\\\\mathrm{GILJ}$이다(④는 거짓).\\n대응하는 면끼리 닮음이므로 $\\\\triangle DEF\\\\backsim\\\\triangle JKL$이다(⑤는 참).\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "대응하는 모서리의 길이의 비로부터 두 삼각기둥의 닮음비는 $\\overline{EF}:\\overline{KL}=10:14=5:7$이다(①, ②는 참).\n대응각의 크기가 같으므로 $x=40$이고, 닮음비 $5:7$에 의해 $20:y=5:7\\implies y=28$, $z:35=5:7\\implies z=25$이므로 $x+y-z=40+28-25=43$이다(③은 참).\n꼭짓점 $A, C, F, D$에 대응하는 꼭짓점은 각각 $G, I, L, J$이므로 면 $\\mathrm{ACFD}$에 대응하는 면은 면 $\\mathrm{GILJ}$이다(④는 거짓).\n대응하는 면끼리 닮음이므로 $\\triangle DEF\\backsim\\triangle JKL$이다(⑤는 참).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e0b5613bf4c7b5bc25235a2f7e7b024c6871bc0a1f95dd394a59580bcd24f01b"
+}

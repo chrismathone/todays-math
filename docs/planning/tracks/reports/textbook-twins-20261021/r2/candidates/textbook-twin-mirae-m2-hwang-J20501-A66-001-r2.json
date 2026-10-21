@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 267,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r2",
+ "authorId": "claude-opus-5-5:19ed2451-b868-4262-b364-0a603783e300",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림과 같이 두 변 $\\overline{AB}$와 $\\overline{AC}$의 길이가 같은 삼각형 $ABC$에서 밑각 $\\angle C$의 크기는 $72^{\\circ}$이다. 꼭짓점 $B$에서 $\\angle ABC$를 반으로 나누는 선을 그어 $\\overline{AC}$와 만나는 점을 $D$라 하였더니 $\\overline{AD}=12\\,\\mathrm{cm}$였다. 밑변 $\\overline{BC}$의 길이는?",
+ "choices": [
+  "$10\\,\\mathrm{cm}$",
+  "$11\\,\\mathrm{cm}$",
+  "$12\\,\\mathrm{cm}$",
+  "$13\\,\\mathrm{cm}$",
+  "$14\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{AB}=\\overline{AC}$이므로 $\\angle ABC=\\angle C=72^{\\circ}$이고, $\\angle A=180^{\\circ}-2\\times72^{\\circ}=36^{\\circ}$이다. $\\overline{BD}$가 $\\angle ABC$를 이등분하므로 $\\angle ABD=\\angle DBC=36^{\\circ}$이다. $\\triangle ABD$에서 $\\angle A=\\angle ABD=36^{\\circ}$이므로 $\\overline{DB}=\\overline{DA}=12\\,\\mathrm{cm}$이다. $\\angle BDC$는 $\\triangle ABD$의 외각이므로 $\\angle BDC=36^{\\circ}+36^{\\circ}=72^{\\circ}=\\angle C$이고, 따라서 $\\triangle BCD$는 $\\overline{BC}=\\overline{BD}$인 이등변삼각형이다. 그러므로 $\\overline{BC}=12\\,\\mathrm{cm}$이고, 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A66-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A66-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-2",
+  "problemCode": "J20501-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "3036953d250b7cdf5ba376521d482dc5b1b7bb495cacd1436a9b128c5ebb4a11",
+  "dbContentSha256": "b9b809b893e31dbfd53beb835c562f6ddee04d7aa62338569539b76a47afad38",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "8573bd03746e0a8156262888b1bfcaddec482d050ff8889ce65d4898e06f689a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "꼭지각의 크기와 밑변의 길이를 주고, 한 밑각의 이등분선이 맞은편 빗변과 만나 생기는 꼭짓점 쪽 조각의 길이를 묻는다",
+  "after": "꼭지각 대신 밑각의 크기를 주고, 다른 쪽 밑각의 이등분선으로 생기는 꼭짓점 쪽 조각의 길이를 준 뒤 밑변의 길이를 거꾸로 묻는다",
+  "sharedConcept": "이등변삼각형의 두 밑각은 같고, 두 내각이 같은 삼각형은 이등변삼각형이다(꼭지각 36°인 이등변삼각형과 밑각의 이등분선)",
+  "sharedProcedure": "밑각·꼭지각 구하기 → 이등분된 각 구하기 → 외각으로 새 각 구하기 → 이등변삼각형 두 개 찾기 → 같은 길이 옮기기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 합",
+   "삼각형의 외각의 성질",
+   "이등변삼각형의 밑각의 성질",
+   "이등변삼각형이 되는 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A66-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "꼭지각이 36°인 이등변삼각형에서 밑각의 이등분선으로 생기는 이등변삼각형을 이용해 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.107,
+   "longestRun": 8,
+   "residualChars": 107,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

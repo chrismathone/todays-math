@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd5-1855-78c2-9920-5af7a5b11ad0",
+ "startedAt": "2026-10-21T18:40:08+0900",
+ "elapsedSec": 22.0,
+ "studentSha256": {
+  "student.json": "1de6a4da5f4e7c1a010d1aaff4fa1bd50ca87639b6073ce7659db74c532d3187"
+ },
+ "promptSha256": "5079720ed1bfc76284e7ee29ca65df51dbe871ce76aac71ffe2aebf7c788f27f",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 4, 5 (2개) ⑵ 4, 5, 6 (3개) ⑶ 7 (1개) ⑷ 6, 7 (2개)\",\n  \"work\": \"⑴ x<6이므로 4, 5이다.\\n⑵ x≤6이므로 4, 5, 6이다.\\n⑶ 4x>24, 즉 x>6이므로 7이다.\\n⑷ 4x≥24, 즉 x≥6이므로 6, 7이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ 4, 5 (2개) ⑵ 4, 5, 6 (3개) ⑶ 7 (1개) ⑷ 6, 7 (2개)",
+  "work": "⑴ x<6이므로 4, 5이다.\n⑵ x≤6이므로 4, 5, 6이다.\n⑶ 4x>24, 즉 x>6이므로 7이다.\n⑷ 4x≥24, 즉 x≥6이므로 6, 7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6017f758b734030d2cf2fba2375673a4aaf3da11afe1c4ef53efa698bb476800"
+}

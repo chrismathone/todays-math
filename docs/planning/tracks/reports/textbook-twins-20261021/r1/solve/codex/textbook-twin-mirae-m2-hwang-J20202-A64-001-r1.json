@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-64ed-78e2-be83-b6f71e46d111",
+ "startedAt": "2026-10-21T16:51:14+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "a454be36f07c148a8a845b0f39dfdb4b36468176f38851ea8345c968637eb2b7"
+ },
+ "promptSha256": "741c71fcbfd16f2db5a39a4aab828a26eb63cd92dc884cffcacdcb084a379eba",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"양변에 10을 곱하면 4x+6>5x-10이다.\\n정리하면 x<16이므로, 해가 될 수 없는 값은 16이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "양변에 10을 곱하면 4x+6>5x-10이다.\n정리하면 x<16이므로, 해가 될 수 없는 값은 16이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0e9b8680fe991bccc1a45a7e53655e9b638e506b10d60f50d8b77da4caf4a118"
+}

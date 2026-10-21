@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "1b40793f-0b87-48a6-b57a-a00af52c6441",
+ "startedAt": "2026-10-21T18:34:54+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "c4d1f178d729100372e70da996007610423f213a8af594048e7f11749ba7a976"
+ },
+ "promptSha256": "56455511422feb99b4f9ee1d0e71f70277ef57cc3d9284af4cf3a6a17593c1ce",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"정다각형(정오각형), 구, 정다면체(정육면체, 정팔면체)는 크기와 상관없이 항상 서로 닮은 도형이다. 반면 부채꼴은 중심각의 크기가 다르면 서로 닮은 도형이 되지 않으므로 서로 닮지 않은 두 도형으로 짝지을 수 있다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "정다각형(정오각형), 구, 정다면체(정육면체, 정팔면체)는 크기와 상관없이 항상 서로 닮은 도형이다. 반면 부채꼴은 중심각의 크기가 다르면 서로 닮은 도형이 되지 않으므로 서로 닮지 않은 두 도형으로 짝지을 수 있다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fc132b634280fd1e545785eff5723da491480fb62e276be2f934f45bd924f684"
+}

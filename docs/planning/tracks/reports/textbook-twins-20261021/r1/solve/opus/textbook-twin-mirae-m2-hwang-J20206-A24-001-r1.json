@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20206-A24-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8356a7d6-c38b-4f11-992c-22bc855e9610",
+ "startedAt": "2026-10-21T16:29:14+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "2cdb540b27ff697bb1c506cd7966499f3c2a5e66d8bd0f9a242bf6c63f095ff7"
+ },
+ "promptSha256": "821013207af3fb8964a9fa13eecce30e83bd734e2a27bc6f0cc10bbda72c8e43",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"12 m\", \"work\": \"가로를 x m라 하면 세로는 (3x-4) m이다.\\n둘레: 2{x+(3x-4)} ≤ 88 → 8x-8 ≤ 88 → x ≤ 12\\n세로가 양수여야 하므로 x > 4/3이고, x=12일 때 세로는 32 m이다.\\n따라서 가로의 길이는 최대 12 m\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "12 m",
+  "work": "가로를 x m라 하면 세로는 (3x-4) m이다.\n둘레: 2{x+(3x-4)} ≤ 88 → 8x-8 ≤ 88 → x ≤ 12\n세로가 양수여야 하므로 x > 4/3이고, x=12일 때 세로는 32 m이다.\n따라서 가로의 길이는 최대 12 m",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "869dd10b68c514e8c9f734a8efbecfc95b2546221380dd62b23d427f08008939"
+}

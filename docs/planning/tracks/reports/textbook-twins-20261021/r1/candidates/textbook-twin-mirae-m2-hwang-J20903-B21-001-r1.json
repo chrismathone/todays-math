@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 377,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B21-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 그 확률이 $1$인 것을 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "주사위 한 개를 던질 때, $7$ 이상의 눈이 나올 확률",
+  "빨간 구슬만 $8$개 들어 있는 상자에서 구슬 한 개를 꺼낼 때, 빨간 구슬이 나올 확률",
+  "서로 다른 동전 두 개를 동시에 던질 때, 적어도 한 개는 앞면이 나올 확률",
+  "서로 다른 주사위 두 개를 동시에 던질 때, 나오는 두 눈의 수의 곱이 $40$ 이하일 확률",
+  "$1$부터 $9$까지의 자연수가 하나씩 적힌 $9$장의 카드 중 한 장을 뽑을 때, 홀수가 적힌 카드가 나올 확률"
+ ],
+ "answer": "②, ④",
+ "solution": "① 주사위의 눈은 $6$ 이하이므로 $7$ 이상의 눈은 나올 수 없다. 확률은 $0$이다.\n② 상자 속 구슬이 모두 빨간 구슬이므로 반드시 빨간 구슬이 나온다. 확률은 $1$이다.\n③ 두 동전이 모두 뒷면인 경우가 $1$가지이므로 적어도 한 개가 앞면일 확률은 $1-\\frac{1}{4}=\\frac{3}{4}$이다.\n④ 두 눈의 수의 곱은 최대 $6\\times 6=36$이므로 항상 $40$ 이하이다. 확률은 $1$이다.\n⑤ 홀수는 $1, 3, 5, 7, 9$의 $5$가지이므로 확률은 $\\frac{5}{9}$이다.\n따라서 확률이 $1$인 것은 ②, ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-6",
+  "problemCode": "J20903-B21-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "26f5bf93561f6d9a3a53186b213e9ba4a722ca87bf3227a5fe2e431a0ee3dbff",
+  "dbContentSha256": "26f5bf93561f6d9a3a53186b213e9ba4a722ca87bf3227a5fe2e431a0ee3dbff",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "다섯 가지 상황(동전 동시 앞뒤 · 주사위 1 이상 · 두 주사위 합 13 미만 · 가위바위보 비김 · 흰 구슬만 든 주머니에서 파란 구슬) 가운데 반드시 일어나는 사건 둘을 고른다",
+  "after": "다섯 가지 상황(주사위 7 이상 · 빨간 구슬만 든 상자 · 두 동전 적어도 하나 앞면 · 두 주사위 곱 40 이하 · 카드 홀수) 가운데 반드시 일어나는 사건 둘을 고른다",
+  "sharedConcept": "확률의 성질 — 반드시 일어나는 사건의 확률은 1, 절대 일어나지 않는 사건의 확률은 0",
+  "sharedProcedure": "각 상황의 사건이 반드시 일어나는지 판단 → 아니면 확률을 직접 계산 → 확률이 1인 것 둘을 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "경우의 수",
+   "확률의 뜻",
+   "확률의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B21-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "확률이 1인 사건 모두 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.321,
+   "longestRun": 19,
+   "residualChars": 175,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

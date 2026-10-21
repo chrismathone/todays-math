@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 314,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A84-001-r1",
+ "authorId": "claude-fable-5-1:a9597081-a1f0-4070-87d9-d67b61dfc8ee",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 $\\angle B=90^{\\circ}$인 직각삼각형 $ABC$에서 점 $D$는 $\\overline{BC}$ 위의 점이고, 점 $D$에서 $\\overline{AC}$에 내린 수선의 발을 $E$라 하자. $\\overline{AB}=15\\,\\mathrm{cm}$, $\\overline{AC}=25\\,\\mathrm{cm}$, $\\overline{DE}=6\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$10\\,\\mathrm{cm}$",
+ "solution": "$\\triangle ABC$와 $\\triangle DEC$에서 $\\angle C$는 공통, $\\angle ABC=\\angle DEC=90^{\\circ}$이므로 $\\triangle ABC\\backsim\\triangle DEC$($\\mathrm{AA}$ 닮음)\n$\\overline{AB}:\\overline{DE}=\\overline{AC}:\\overline{DC}$이므로 $15:6=25:\\overline{DC}$, $15\\overline{DC}=150$\n따라서 $\\overline{CD}=10\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A84-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A84-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ada9546260b1b4d2-1-3",
+  "problemCode": "J20602-A84-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "4b16c6d044060e28d3263b4d476da9793bfce0c231196fd66cbb60462c88c56f",
+  "dbContentSha256": "e28769e1a7e5d425a45bb27497ed4f7ae655897d2aa88f5fdae05f0aee76627d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-2_삼각형의닮음조건.hwp",
+    "sha256": "31ceffc5d47e2ef900d5ffd9371a3a7d964428524443c7524211fdb0fcd69180",
+    "bytes": 963072
+   }
+  ],
+  "originalFigureSha256": [
+   "331b77d7d2d1c6614ef61f61710c8e372997093c7d467334fe146a816c2120bf"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "밑변의 연장선 위 점 D에서 빗변에 내린 수선으로 생기는 큰 직각삼각형 DEC와 원래 직각삼각형 ABC가 공통각 C로 닮음일 때, 빗변의 두 토막과 수선·밑변을 주고 높이 AB를 묻는다.",
+  "after": "밑변 BC 위의 점 D에서 빗변에 내린 수선으로 생기는 작은 직각삼각형 DEC와 ABC가 닮음일 때, 두 변과 수선의 길이를 주고 밑변 위 토막 CD를 묻는다.",
+  "sharedConcept": "공통각과 직각을 가진 두 직각삼각형의 AA 닮음",
+  "sharedProcedure": "공통각·직각 확인 → AA 닮음 → 대응변 비례식 → 길이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 닮음 조건(AA)",
+   "수선의 발"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A84-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "공통각을 가진 두 직각삼각형의 닮음으로 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.014,
+   "longestRun": 4,
+   "residualChars": 76,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

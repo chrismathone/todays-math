@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "63008f70-5cf7-41c0-9a46-46d58b64b89c",
+ "startedAt": "2026-10-21T17:09:19+0900",
+ "elapsedSec": 7.5,
+ "studentSha256": {
+  "fig-1.png": "36b8887ff69ce96e89c06eed977d2632a5892448f7d36bfcde099ea472ed6fb5",
+  "student.json": "9ab78be80d247a7e2f64f86d61c0770a6fc1ff94fd313d4aeb7235460633e2bf"
+ },
+ "promptSha256": "957e5a0e9f4bb6745c281eeac9067ec9402431786228c4686b8d08bf91eecb56",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④, ⑤\", \"work\": \"∠A=90°이고 AH⊥BC이므로 △ABC∽△HBA∽△HAC(AA 닮음)이다. 따라서 ①, ②는 옳다. △ABH∽△CAH에서 AH²=BH×CH이므로 ③은 옳다. △ABC∽△HBA에서 AB²=BH×BC이므로 ④(BH×CH)는 옳지 않다. △ABC∽△HAC에서 AC²=CH×CB이므로 ⑤(AB×AH)는 옳지 않다. 참고로 AB×AC=BC×AH도 성립하지만 ⑤의 식과는 다르다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④, ⑤",
+  "work": "∠A=90°이고 AH⊥BC이므로 △ABC∽△HBA∽△HAC(AA 닮음)이다. 따라서 ①, ②는 옳다. △ABH∽△CAH에서 AH²=BH×CH이므로 ③은 옳다. △ABC∽△HBA에서 AB²=BH×BC이므로 ④(BH×CH)는 옳지 않다. △ABC∽△HAC에서 AC²=CH×CB이므로 ⑤(AB×AH)는 옳지 않다. 참고로 AB×AC=BC×AH도 성립하지만 ⑤의 식과는 다르다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5ebb34d597538cfdabf5232ecb64371d1231fbe496359a3be6a2e6bf12947fc4"
+}

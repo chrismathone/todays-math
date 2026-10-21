@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A19-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a7488d42-b455-42ea-9ef3-2b8cd1c11b45",
+ "startedAt": "2026-10-21T17:02:54+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "90789cf42afc561b3dd1c198ee4dde817c6603c5671279d9582a333edc2fda60"
+ },
+ "promptSha256": "f0491fc3585ca649ad8db6e00f3b2c7eb25a32db58978d2127e2602724cc867e",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$-6$\", \"work\": \"x+4=-3x-4에서 4x=-8, x=-2, y=2. 교점 (-2, 2)를 y=-4x+a에 대입하면 2=8+a, a=-6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$-6$",
+  "work": "x+4=-3x-4에서 4x=-8, x=-2, y=2. 교점 (-2, 2)를 y=-4x+a에 대입하면 2=8+a, a=-6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5e1b9e867a763fa8f42153001194cc2e912ab831c2e9872fca2265923a731bc9"
+}

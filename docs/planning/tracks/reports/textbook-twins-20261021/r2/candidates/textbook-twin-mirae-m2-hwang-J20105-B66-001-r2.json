@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 112,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B66-001-r2",
+ "authorId": "claude-fable-5-1:ceaf11ff-4c81-4b16-a38a-9d6ab2931d14",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B66-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하시오.\n⑴ $10^{9}\\times 10^{13}$ ⑵ $m^{11}\\times m^{15}$\n⑶ $k^{12}\\times k^{9}\\times k^{14}$ ⑷ $p^{10}\\times q^{13}\\times q^{11}\\times p^{15}$",
+ "choices": [],
+ "answer": "⑴ $10^{22}$ ⑵ $m^{26}$ ⑶ $k^{35}$ ⑷ $p^{25}q^{24}$",
+ "solution": "밑이 같은 거듭제곱의 곱은 지수를 더한다.\n⑴ $10^{9+13}=10^{22}$이다.\n⑵ $m^{11+15}=m^{26}$이다.\n⑶ $k^{12+9+14}=k^{35}$이다.\n⑷ $p$ 끼리, $q$ 끼리 모으면 $p^{10+15}\\times q^{13+11}=p^{25}q^{24}$이다.\n따라서 답은 ⑴ $10^{22}$ ⑵ $m^{26}$ ⑶ $k^{35}$ ⑷ $p^{25}q^{24}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-80d549db6b2908b5-0-1",
+  "problemCode": "J20105-B66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "2cfc00bc0488e4835e8fdb5eb2391f20b5778500c731330285a0f6130d3393e2",
+  "dbContentSha256": "9f583fea6ef09009316586f2966d9c14836d864ba1f7f0d9554c2c793a67915e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-1_지수법칙1.hwp",
+    "sha256": "ccc884e82fad659309a15cd514795c2a957c8797b5c114bbf4eb50026b8285fc",
+    "bytes": 37888
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "한 자리 지수의 거듭제곱 곱 네 개를 간단히 한다. 두 인수 곱 둘(수 밑 하나 · 문자 밑 하나), 지수가 생략된 인수가 섞인 세 인수 곱 하나, 두 문자가 번갈아 나오는 네 인수 곱 하나.",
+  "after": "두 자리 지수의 거듭제곱 곱 네 개를 간단히 한다. 밑 10 의 두 인수 곱, 문자 밑의 두 인수 곱, 지수가 모두 드러난 세 인수 곱, 두 문자가 p·q·q·p 순으로 섞인 네 인수 곱. 지수가 모두 9 이상이라 원본의 수를 하나도 물려받지 않는다.",
+  "sharedConcept": "지수법칙 ⑴ $a^{m}\\times a^{n}=a^{m+n}$",
+  "sharedProcedure": "밑이 같은 인수를 모은다 → 지수를 더한다 → 밑이 다른 문자는 각각 따로 정리해 곱으로 쓴다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻(밑과 지수)",
+   "자연수의 덧셈",
+   "문자를 사용한 식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B66-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "밑이 같은 거듭제곱의 곱 — 지수의 합으로 간단히 하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 63,
+   "params": 8,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

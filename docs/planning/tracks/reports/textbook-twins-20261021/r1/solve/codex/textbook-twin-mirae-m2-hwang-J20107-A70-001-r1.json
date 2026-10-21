@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A70-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d57-2303-77f2-94fd-b6d8d24deae7",
+ "startedAt": "2026-10-21T16:22:34+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "58ceb9690da3df0aa15f69b8135ac43a089df94bdce850e9e11d9e947080da61"
+ },
+ "promptSha256": "7fc0bb8bed2b7db3033e61a47a68ff22c93d7c0edf678366114f3b3dcdbeabe3",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"양변에서 $2(3x-y)$를 빼면 $A=x+6y-5-2(3x-y)$이다. 괄호를 풀고 동류항을 정리하면 $A=x+6y-5-6x+2y=-5x+8y-5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "양변에서 $2(3x-y)$를 빼면 $A=x+6y-5-2(3x-y)$이다. 괄호를 풀고 동류항을 정리하면 $A=x+6y-5-6x+2y=-5x+8y-5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "20282b4d6e22334b797136c89f43a5258c2461c9cf62172a5907f33c8442850b"
+}

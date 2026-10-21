@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A19-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dee-b222-7cf3-8a96-26eb68f7e31c",
+ "startedAt": "2026-10-21T19:08:06+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "c6768923b0536d7099cfe205318f917a7ac5ce2dc3223e85809d3e72e2b60ddd"
+ },
+ "promptSha256": "b6391271d9a3f886993f3880f832c50e94eb50ab52220a34264aa9da8943380e",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"볼펜에 쓸 수 있는 돈은 14000-4500=9500원이다. 볼펜 13자루는 9100원, 14자루는 9800원이므로 최대 13자루까지 살 수 있다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "볼펜에 쓸 수 있는 돈은 14000-4500=9500원이다. 볼펜 13자루는 9100원, 14자루는 9800원이므로 최대 13자루까지 살 수 있다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab3041a22c0bd592fe6255867e4fb2579ebdbf1f80633184da55e2dedde2978e"
+}

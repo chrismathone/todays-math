@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5d-689c-7862-993a-d64106024700",
+ "startedAt": "2026-10-21T16:29:25+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "student.json": "8d1e6be3cd4067c159b82f298a9e656e2324c6a33a555282b5de9f6caeb3e961"
+ },
+ "promptSha256": "14e183a0b2d15f5eb8273049756909808d3f5ed42e13a8c57afa69ceaeb22ddc",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"71/55 = 1.290909…이므로 소수점 아래 둘째 자리부터 9, 0이 반복된다.\\n83 - 1 = 82 = 2 × 41이므로 소수점 아래 83째 자리 숫자는 0이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "71/55 = 1.290909…이므로 소수점 아래 둘째 자리부터 9, 0이 반복된다.\n83 - 1 = 82 = 2 × 41이므로 소수점 아래 83째 자리 숫자는 0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c72bd0e94b7e8936a3920bfc32eded9b594e6c83680e8a74ddaf53c7b19273ed"
+}

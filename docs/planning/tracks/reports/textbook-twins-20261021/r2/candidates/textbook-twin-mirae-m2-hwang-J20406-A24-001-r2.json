@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 243,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r2",
+ "authorId": "claude-opus-5-5:a00668b4-a299-41b0-b3cb-07ba76ed1259",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하가 높이 $36\\,\\mathrm{cm}$인 얼음 기둥을 실온에 두었더니, $3$분이 지날 때마다 높이가 $2\\,\\mathrm{cm}$씩 일정하게 줄어들었다. 실온에 둔 시간을 $x$분, 그때 얼음 기둥의 높이를 $y\\,\\mathrm{cm}$로 놓자. 얼음 기둥의 높이가 $22\\,\\mathrm{cm}$로 줄어드는 것은 실온에 둔 지 몇 분이 지났을 때인가?",
+ "choices": [
+  "$15$분",
+  "$18$분",
+  "$21$분",
+  "$24$분",
+  "$27$분"
+ ],
+ "answer": "③",
+ "solution": "$3$분마다 $2\\,\\mathrm{cm}$씩 줄어들므로 $1$분에 $\\frac{2}{3}\\,\\mathrm{cm}$씩 줄어든다. 그러므로 $y=36-\\frac{2}{3}x$, 즉 $y=-\\frac{2}{3}x+36$이다. $y=22$를 넣으면 $22=-\\frac{2}{3}x+36$, $\\frac{2}{3}x=14$, $x=21$이다. 따라서 높이가 $22\\,\\mathrm{cm}$가 되는 것은 $21$분이 지났을 때이고, 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-d962ee5dc8c8a2ee-0-3",
+  "problemCode": "J20406-A24-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "f594843edfdebe6000fe13f47b7d8f2d67b49b5038a0476f29e581ade5dff651",
+  "dbContentSha256": "bd15f119233e7e348342b1c09b1fbba8f36cb91cd785f9c4a42aa8c0ef1817d1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-5_일차함수의식구하기와활용.hwp",
+    "sha256": "59591e6cfa0c18dc2340c5f9fe51c9ca52ad85570c81d807c212894e9f5b398e",
+    "bytes": 64000
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "처음 길이가 주어지고 몇 분마다 1cm씩 줄어드는 양초에서 x와 y를 정한 뒤, 길이가 어떤 값이 되는 때가 몇 분 후인지 고른다(변화량 1이 단위 길이라 1분당 변화가 단위분수가 된다).",
+  "after": "처음 높이가 주어지고 3분마다 2cm씩 줄어드는 얼음 기둥에서, 먼저 x와 y를 정해 두는 문장을 따로 두고 높이가 22cm가 되는 때를 고른다(시간·길이가 모두 1이 아닌 비라 1분당 변화가 1이 아닌 분자를 가진 분수가 된다).",
+  "sharedConcept": "일정한 비율로 줄어드는 양을 일차함수로 나타내어 활용하기",
+  "sharedProcedure": "몇 분마다 줄어드는 양을 1분당 줄어드는 양으로 바꾸기 → y=(1분당 변화)x+(처음 양) 식 세우기 → 주어진 y값 대입 → 일차방정식 풀어 x 구하기 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 활용(온도, 길이)"
+  },
+  "prerequisites": [
+   "일차함수의 뜻과 식 y=ax+b",
+   "분수 계수가 있는 일차방정식의 풀이",
+   "단위 시간당 변화량 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20406-A24-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일정하게 줄어드는 길이를 일차함수 식으로 나타내어 주어진 길이가 되는 시간 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.056,
+   "longestRun": 7,
+   "residualChars": 118,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

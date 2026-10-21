@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbf-ec60-7a52-a8a4-e0fe5d7c0a77",
+ "startedAt": "2026-10-21T18:17:01+0900",
+ "elapsedSec": 20.9,
+ "studentSha256": {
+  "fig-1.png": "48effc728f2614f1f988020890154d3d40e1a9b5a6a15f34a0c69b4e449d7f14",
+  "student.json": "a478932f855bd7d8e87f606008d548b5963ec865efd781e1b0b65b14c62f31ec"
+ },
+ "promptSha256": "74f39159a9d0bf0df4fe30154ebdf29706232be28381e71591582cbe155f5478",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\triangle AOB\\\\backsim\\\\triangle DOC$, AA 닮음 ⑵ $\\\\triangle ADE\\\\backsim\\\\triangle ACB$, SAS 닮음\",\n  \"work\": \"⑴ ∠OAB=∠ODC=40°이고, ∠AOB=∠DOC(맞꼭지각)이므로 AA 닮음이다.\\n⑵ AB=4+8=12 cm, AC=6+2=8 cm이다. AD:AC=4:8=1:2, AE:AB=6:12=1:2이고, 그 끼인각 ∠DAE=∠CAB이므로 SAS 닮음이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle AOB\\backsim\\triangle DOC$, AA 닮음 ⑵ $\\triangle ADE\\backsim\\triangle ACB$, SAS 닮음",
+  "work": "⑴ ∠OAB=∠ODC=40°이고, ∠AOB=∠DOC(맞꼭지각)이므로 AA 닮음이다.\n⑵ AB=4+8=12 cm, AC=6+2=8 cm이다. AD:AC=4:8=1:2, AE:AB=6:12=1:2이고, 그 끼인각 ∠DAE=∠CAB이므로 SAS 닮음이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a830a1bc5a0099587f98541acf9bfb64d8ea18e97f7abd5d9dbe2629cc410c69"
+}

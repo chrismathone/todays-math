@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "19b61515-295a-42a7-b0c4-87086add3541",
+ "startedAt": "2026-10-21T18:13:30+0900",
+ "elapsedSec": 17.9,
+ "studentSha256": {
+  "student.json": "f68f0da22fbfa7df2020191bf4518dbd28f913ed273326f3fac5e7d1d2f1d940"
+ },
+ "promptSha256": "1a853f18a1e49a3ec4a00681bdaf49a12b03ab6c6806bf81ef826e1221177f71",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"시속 8 km\",\n  \"work\": \"정지한 물에서의 유람선의 속력을 시속 x km, 강물의 속력을 시속 y km라 하면,\\n거슬러 올라갈 때: 5(x - y) = 30에서 x - y = 6\\n따라 내려올 때: 3(x + y) = 30에서 x + y = 10\\n두 식을 더하면 2x = 16이므로 x = 8이다.\\n따라서 물이 흐르지 않을 때 유람선의 속력은 시속 8 km이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "시속 8 km",
+  "work": "정지한 물에서의 유람선의 속력을 시속 x km, 강물의 속력을 시속 y km라 하면,\n거슬러 올라갈 때: 5(x - y) = 30에서 x - y = 6\n따라 내려올 때: 3(x + y) = 30에서 x + y = 10\n두 식을 더하면 2x = 16이므로 x = 8이다.\n따라서 물이 흐르지 않을 때 유람선의 속력은 시속 8 km이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7b0ee582da54c092517c321bb9eaa58351989c125df0c3549be3d64a97ca1e96"
+}

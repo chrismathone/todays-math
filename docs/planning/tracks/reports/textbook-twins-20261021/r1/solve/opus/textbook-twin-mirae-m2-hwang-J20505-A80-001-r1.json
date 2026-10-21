@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "77fde888-9a75-420c-ba0b-246d7d8e4f38",
+ "startedAt": "2026-10-21T17:06:27+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "fig-1.png": "99802be2a19468298fb459a913db22eb792bc32e2cb05f6942995e3710db7893",
+  "student.json": "2fadf6dfcd430f073bb4a673cbc3f807b9d98db2b3beb7fe4759b96e93be480b"
+ },
+ "promptSha256": "78cfc40af17a7163de8cada824337d12e68d48d143a160c2cd274eee8765663d",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"7 cm\", \"work\": \"AD∥BC이므로 ∠BFA=∠DAF=∠BAF이다. 따라서 △ABF는 이등변삼각형이고 BF=AB=10이다. ∠A=2α로 두면 △AGD에서 ∠ADE=90°−α이다. 엇각이므로 ∠DEC=∠ADE=90°−α이다. ∠C=2α이므로 ∠CDE=180°−2α−(90°−α)=90°−α이다. 따라서 △CDE는 이등변삼각형이고 CE=CD=10이다. BC=13이므로 BE=13−10=3이다. EF=BF−BE=10−3=7 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "7 cm",
+  "work": "AD∥BC이므로 ∠BFA=∠DAF=∠BAF이다. 따라서 △ABF는 이등변삼각형이고 BF=AB=10이다. ∠A=2α로 두면 △AGD에서 ∠ADE=90°−α이다. 엇각이므로 ∠DEC=∠ADE=90°−α이다. ∠C=2α이므로 ∠CDE=180°−2α−(90°−α)=90°−α이다. 따라서 △CDE는 이등변삼각형이고 CE=CD=10이다. BC=13이므로 BE=13−10=3이다. EF=BF−BE=10−3=7 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "32209fc554724f9cf681a5168c09de898b5ddec1027a0850238d0412a47855df"
+}

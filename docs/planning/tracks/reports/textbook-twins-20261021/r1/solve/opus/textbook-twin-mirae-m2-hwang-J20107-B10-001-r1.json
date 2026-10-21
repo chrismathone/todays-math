@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B10-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f52a111e-66b4-43f3-a5cb-37afc9284064",
+ "startedAt": "2026-10-21T16:16:40+0900",
+ "elapsedSec": 4.1,
+ "studentSha256": {
+  "student.json": "8416a983d8fb1545816730877d7e318aa3ae5c20562dca9f833abaf6b92ecdba"
+ },
+ "promptSha256": "0aa1dee8e891447dacf7ef59f141d59fb056b19556d5d4fa18e628c70ec5f9a9",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $3x^{2}+3x-6$ ⑵ $-4x^{2}-x-5$\", \"work\": \"⑴ 동류항끼리 더하면 $(-2+5)x^{2}+(4-1)x+(1-7)=3x^{2}+3x-6$. ⑵ 괄호를 풀면 $2x^{2}-9-6x^{2}-x+4$이고, 동류항끼리 정리하면 $(2-6)x^{2}-x+(-9+4)=-4x^{2}-x-5$.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $3x^{2}+3x-6$ ⑵ $-4x^{2}-x-5$",
+  "work": "⑴ 동류항끼리 더하면 $(-2+5)x^{2}+(4-1)x+(1-7)=3x^{2}+3x-6$. ⑵ 괄호를 풀면 $2x^{2}-9-6x^{2}-x+4$이고, 동류항끼리 정리하면 $(2-6)x^{2}-x+(-9+4)=-4x^{2}-x-5$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2cfa5954fea998e059174c19fc4ae05e6a360219c7a51ac7d8cc6daba9191316"
+}

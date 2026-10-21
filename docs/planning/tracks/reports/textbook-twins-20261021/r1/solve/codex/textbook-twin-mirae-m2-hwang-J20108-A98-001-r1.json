@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d55-d2c8-7712-bad8-7fc14cc097e7",
+ "startedAt": "2026-10-21T16:21:07+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "fig-1.png": "749051bc39f9060943a421e42046a62ca3234fa5c96c70ecc4274b50cafd0e01",
+  "student.json": "f76f4723c3f4ed071998e0d398c5f9c07c97298248cb7212f2debdc305e24016"
+ },
+ "promptSha256": "2a996e41d8cc04bb0e01ca6b4f5dc9372c698d92f3ee2f3f1be062ef3ae8299c",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$5x-3y$\",\"work\":\"삼각형의 높이는 넓이의 2배를 밑변의 길이로 나눈 값이다.\\n따라서 높이는 $\\\\frac{2(10x^{2}y-6xy^{2})}{4xy}=5x-3y$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$5x-3y$",
+  "work": "삼각형의 높이는 넓이의 2배를 밑변의 길이로 나눈 값이다.\n따라서 높이는 $\\frac{2(10x^{2}y-6xy^{2})}{4xy}=5x-3y$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "53599ffd336a776b526d242801eff1a46767ecc4c575a17e91bbe6d82c26b4d3"
+}

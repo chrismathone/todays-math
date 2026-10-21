@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "8f93e812-41b7-404c-95ba-49d902f33234",
+ "startedAt": "2026-10-21T18:24:06+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "164af6f00aefd567ee677d9379a59db79851eaddc82ef9c4876c79516024a52f"
+ },
+ "promptSha256": "710bf2769d3b5cbfe3fd37e61abd8cf80a3b8a40570d7f18f41d446a219d8054",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑤\",\n  \"work\": \"좌표평면에서 두 직선이 만나지 않으려면 평행해야 하므로, 직선 $4x+2y-3=0$($y=-2x+\\\\frac{3}{2}$)과 기울기가 $-2$로 같아야 한다. 기울기가 $-2$이고 점 $(-4,~3)$을 지나는 직선의 방정식은 $y-3=-2(x+4)$이므로 정리하면 $2x+y+5=0$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑤",
+  "work": "좌표평면에서 두 직선이 만나지 않으려면 평행해야 하므로, 직선 $4x+2y-3=0$($y=-2x+\\frac{3}{2}$)과 기울기가 $-2$로 같아야 한다. 기울기가 $-2$이고 점 $(-4,~3)$을 지나는 직선의 방정식은 $y-3=-2(x+4)$이므로 정리하면 $2x+y+5=0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2dab5712f352540e6a5559d5be5e790555d007ade53c2198bbdd978817c2dba7"
+}

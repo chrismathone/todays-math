@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A60-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db0-64ee-7763-94db-83c9308b2cab",
+ "startedAt": "2026-10-21T18:00:03+0900",
+ "elapsedSec": 29.8,
+ "studentSha256": {
+  "fig-1.png": "faed94c12c59d3071fc596bd5a74d671fbdb9cd6ab34e69103f610f342e835fe",
+  "student.json": "3503c97f4a9312e871c4e455844e587e299c340ca11af2b17c253aef1490b6df"
+ },
+ "promptSha256": "7b75528fc20b17fcf79258554704b299df40b500497eb43c06253530f589d660",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\dfrac{10}{3}\\\\,\\\\mathrm{cm}$\",\n  \"work\": \"$BD=DE=x\\\\,\\\\mathrm{cm}$라 하자.\\n삼각형 ACD는 밑변을 AC로 잡으면 높이가 DE이므로 넓이는 $\\\\frac12\\\\times13x$이다. 삼각형 BCD의 넓이는 $\\\\frac12\\\\times5x$이다.\\n두 넓이의 합이 삼각형 ABC의 넓이와 같으므로 $\\\\frac12\\\\times13x+\\\\frac12\\\\times5x=\\\\frac12\\\\times12\\\\times5$이다.\\n따라서 $9x=30$, $x=\\\\frac{10}{3}$이므로 $BD=\\\\frac{10}{3}\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$\\dfrac{10}{3}\\,\\mathrm{cm}$",
+  "work": "$BD=DE=x\\,\\mathrm{cm}$라 하자.\n삼각형 ACD는 밑변을 AC로 잡으면 높이가 DE이므로 넓이는 $\\frac12\\times13x$이다. 삼각형 BCD의 넓이는 $\\frac12\\times5x$이다.\n두 넓이의 합이 삼각형 ABC의 넓이와 같으므로 $\\frac12\\times13x+\\frac12\\times5x=\\frac12\\times12\\times5$이다.\n따라서 $9x=30$, $x=\\frac{10}{3}$이므로 $BD=\\frac{10}{3}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f6c602428c75d9b6143f3291623e1135d9293f955992a3f03235580f8bc3c5de"
+}

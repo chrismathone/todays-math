@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbe-0077-7cc2-8afb-98873b03531b",
+ "startedAt": "2026-10-21T18:14:55+0900",
+ "elapsedSec": 25.4,
+ "studentSha256": {
+  "fig-1.png": "25be7d1e47fdb9e77c566126692d80956b373e3946f18fb2db1447163f585eff",
+  "student.json": "431fa3fb8b0ba2b8319445945c9be8e1aafd7b725275433969bf5b52d2206382"
+ },
+ "promptSha256": "19bcc9fc7d1eec34442f5e83bd2c41ad01c32aa8a7f3248774d53a57fdc9b587",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6 cm\",\"work\":\"정삼각형이므로 AB=BC=10+15=25 cm이다.\\n∠ABE=∠ECD=60°이고, ∠BAE=∠AEC−60°=∠CED이므로 △ABE∽△ECD이다.\\n따라서 AB:EC=BE:CD, 즉 25:15=10:CD이므로 CD=6 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6 cm",
+  "work": "정삼각형이므로 AB=BC=10+15=25 cm이다.\n∠ABE=∠ECD=60°이고, ∠BAE=∠AEC−60°=∠CED이므로 △ABE∽△ECD이다.\n따라서 AB:EC=BE:CD, 즉 25:15=10:CD이므로 CD=6 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9dcb07d1497072226f3dbb0cedd8e49044fbb91a3a8df46560287f893cba7ce3"
+}

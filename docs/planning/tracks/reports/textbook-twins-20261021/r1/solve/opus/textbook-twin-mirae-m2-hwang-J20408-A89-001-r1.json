@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A89-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b319656c-f477-4f85-a8ce-6fb041b82b38",
+ "startedAt": "2026-10-21T17:02:42+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "fig-1.png": "8b27870f2d050926d48237b5c0adcc15e4f552081239e48b6775b9de9e881123",
+  "student.json": "92e0bc436a160ad3cc19617363b8de3b23b832d9909c852a86784711493421a1"
+ },
+ "promptSha256": "7e339dc39c3bd474ae6af83ad613cc39be8c1d9b73962d9acede0256993e26d5",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"4\", \"work\": \"그림에서 그래프는 x절편 -2, y절편 6이므로 두 점 (-2, 0), (0, 6)을 지난다.\\n(-2, 0)을 대입하면 -2a+12=0이므로 a=6이다.\\n(0, 6)을 대입하면 6b+12=0이므로 b=-2이다.\\n따라서 a+b=6+(-2)=4이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "그림에서 그래프는 x절편 -2, y절편 6이므로 두 점 (-2, 0), (0, 6)을 지난다.\n(-2, 0)을 대입하면 -2a+12=0이므로 a=6이다.\n(0, 6)을 대입하면 6b+12=0이므로 b=-2이다.\n따라서 a+b=6+(-2)=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d88c33670fae421e53c651795fc6911fcd82755b1f4e129b3f63ac6ad924ee0c"
+}

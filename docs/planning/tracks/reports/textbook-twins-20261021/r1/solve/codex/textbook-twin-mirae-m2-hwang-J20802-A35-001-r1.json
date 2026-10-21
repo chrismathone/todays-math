@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A35-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc4-14bf-7770-adcf-5b04c53a5417",
+ "startedAt": "2026-10-21T18:21:33+0900",
+ "elapsedSec": 20.7,
+ "studentSha256": {
+  "fig-1.png": "332aa2073bbcbe5f4aca43b5070bdbbaffd602c767d6dfc1c33e33fa542925ed",
+  "student.json": "1f6825ee07e67d09b596b2d37de1552b3c5ed3755eeb99420b07b6dfc2633e31"
+ },
+ "promptSha256": "8abfa7dac7b54de1214b753d297b44418fcef163c542413885d35ea014373203",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"72 cm²\",\n  \"work\": \"피타고라스 정리에 의해 BC=√(9²+12²)=15 cm이다.\\n△ABC∽△FAC이므로 BC×FC=AC², 따라서 FC=144/15=48/5 cm이다.\\n정사각형에서 FG=BC=15 cm, GE=FC=48/5 cm이므로 △FEG의 넓이는 (1/2)×15×(48/5)=72 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "72 cm²",
+  "work": "피타고라스 정리에 의해 BC=√(9²+12²)=15 cm이다.\n△ABC∽△FAC이므로 BC×FC=AC², 따라서 FC=144/15=48/5 cm이다.\n정사각형에서 FG=BC=15 cm, GE=FC=48/5 cm이므로 △FEG의 넓이는 (1/2)×15×(48/5)=72 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6f8741fc12daeba4bd433ba448e09ba7ee32e40b4c78ed75b5ba84f3c6426a96"
+}

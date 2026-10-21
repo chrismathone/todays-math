@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 251,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r1",
+ "authorId": "claude-fable-5-1:d385ff22-b0d3-4a53-b290-3956d5f2c402",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 그림에서 $\\overline{AB}=\\overline{AC}$인 이등변삼각형 $ABC$의 내심을 $I$, $\\triangle IBC$의 내심을 $I'$이라 하자. $\\angle I'BC=12^{\\circ}$일 때, $\\angle x$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$84^{\\circ}$",
+ "solution": "점 $I'$은 $\\triangle IBC$의 내심이므로 $\\angle IBC=2\\angle I'BC=24^{\\circ}$이다. 점 $I$는 $\\triangle ABC$의 내심이므로 $\\angle ABC=2\\angle IBC=48^{\\circ}$이다. $\\overline{AB}=\\overline{AC}$이므로 $\\angle ACB=\\angle ABC=48^{\\circ}$이고, 따라서 $\\angle x=180^{\\circ}-2\\times 48^{\\circ}=84^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A81-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A81-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-11",
+  "problemCode": "J20504-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "9a58dd1d8fd11060589adc3e68724343eaef40f0588073315f54e334092011bd",
+  "dbContentSha256": "228b8ff2fc397250800036f1e5c4b8c1bcc0b0de66503a16d15389c9e8bde2cb",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "ef7fe28bff07ce850fde4a6181049752770be71f2b80206ac53d810e47caa33d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "이등변삼각형의 꼭지각이 주어지고, 내심의 내심에서 밑변과 이루는 각(두 번 반으로 나눈 각)을 구한다.",
+  "after": "두 번 반으로 나뉜 각 ∠I'BC가 주어지고 거꾸로 두 번 두 배 하여 밑각을 얻은 뒤 꼭지각 x를 구한다.",
+  "sharedConcept": "내심은 세 내각의 이등분선의 교점 · 이등변삼각형의 두 밑각은 같다",
+  "sharedProcedure": "내심의 각의 이등분 → 다시 내심의 각의 이등분 → 이등변삼각형 밑각 → 내각의 합 180°"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "이등변삼각형의 성질",
+   "삼각형의 내심의 성질",
+   "삼각형의 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이등변삼각형의 내심과 그 내심을 꼭짓점으로 하는 삼각형의 내심",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'Ip' has no line/circle/label-free position",
+     "session": "117ed61d-c84e-4c7a-9a46-799bd82874f1",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.48",
+    "이어진 같은 글 20자"
+   ],
+   "overlap4": 0.477,
+   "longestRun": 20,
+   "residualChars": 51,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

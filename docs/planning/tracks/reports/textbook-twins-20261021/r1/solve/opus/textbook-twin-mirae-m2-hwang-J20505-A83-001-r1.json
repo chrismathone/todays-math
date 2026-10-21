@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A83-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "67c74db4-a17f-4e06-9f18-e708947685c1",
+ "startedAt": "2026-10-21T17:06:40+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "fig-1.png": "f8d021ec699f755dfd0edf0619731b2560a407f143dacbcb47ac948c8ecf1090",
+  "student.json": "e60be79a92e92d6273f9d4f4cbc302f38e45ecfaf31ba19c58c8b22ae3c2890a"
+ },
+ "promptSha256": "7df01ca56f719ec9ce0549b2d38323ce30afbc60180e0775b06ef8a02d0be8cd",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"21 cm²\", \"work\": \"△OAE와 △OCF는 합동이다(ASA: OA=OC, 엇각 ∠OAE=∠OCF, 맞꼭지각 ∠AOE=∠COF). 따라서 △OAE+△OBF = △OCF+△OBF = △OBC. △OBC의 넓이는 평행사변형의 1/4이므로 (12×7)/4 = 21 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "21 cm²",
+  "work": "△OAE와 △OCF는 합동이다(ASA: OA=OC, 엇각 ∠OAE=∠OCF, 맞꼭지각 ∠AOE=∠COF). 따라서 △OAE+△OBF = △OCF+△OBF = △OBC. △OBC의 넓이는 평행사변형의 1/4이므로 (12×7)/4 = 21 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab254e96a34ec8bea0bd162d00cc46e14032ad0c0f8ab188c9dec2538f0d3368"
+}

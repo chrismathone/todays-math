@@ -1,0 +1,98 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   200,
+   20
+  ],
+  "B": [
+   77,
+   152
+  ],
+  "C": [
+   228,
+   152
+  ],
+  "D": [
+   169.3,
+   52.9
+  ],
+  "E": [
+   212.5,
+   78.7
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "AE": [
+   "A",
+   "E"
+  ],
+  "EC": [
+   "E",
+   "C"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ]
+ },
+ "angles": {
+  "angB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "arcs": 1
+  },
+  "angE": {
+   "vertex": "E",
+   "points": [
+    "A",
+    "D"
+   ],
+   "arcs": 1
+  }
+ },
+ "dimensions": {
+  "AD_len": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "3 cm",
+   "side": "auto"
+  },
+  "AE_len": {
+   "points": [
+    "A",
+    "E"
+   ],
+   "label": "4 cm",
+   "side": "auto"
+  },
+  "EC_len": {
+   "points": [
+    "E",
+    "C"
+   ],
+   "label": "5 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E"
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A85-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de1-1922-7283-a59f-861f22fd18ef",
+ "startedAt": "2026-10-21T18:53:15+0900",
+ "elapsedSec": 24.4,
+ "studentSha256": {
+  "fig-1.png": "2a79b7fcf237b668d560a90b34cefa8c9a52221a5fe1c8ddd144604679ca0865",
+  "student.json": "033af81c61d8cbfab416a48109fbe5543a47373930ba6b9256fe4468ebb82a8b"
+ },
+ "promptSha256": "d170e285575a5d384af6772e56bfc7b41d6af913765c3b64e91766009c2beb2f",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"30 cm\",\n  \"work\": \"내심의 성질에 의해 BI, CI는 각각 ∠B, ∠C의 이등분선이다. DE∥BC이므로 ∠DBI=∠BID, ∠ECI=∠CIE이다.\\n따라서 삼각형 BDI와 CEI는 이등변삼각형이므로 DI=DB=8 cm, IE=EC=10 cm이다. 즉, DE=18 cm이다.\\n삼각형 ADE와 ABC는 닮음이고 AB=12+8=20 cm이므로 $\\\\frac{DE}{BC}=\\\\frac{AD}{AB}=\\\\frac{12}{20}$이다.\\n따라서 $BC=18\\\\times\\\\frac{20}{12}=30\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "30 cm",
+  "work": "내심의 성질에 의해 BI, CI는 각각 ∠B, ∠C의 이등분선이다. DE∥BC이므로 ∠DBI=∠BID, ∠ECI=∠CIE이다.\n따라서 삼각형 BDI와 CEI는 이등변삼각형이므로 DI=DB=8 cm, IE=EC=10 cm이다. 즉, DE=18 cm이다.\n삼각형 ADE와 ABC는 닮음이고 AB=12+8=20 cm이므로 $\\frac{DE}{BC}=\\frac{AD}{AB}=\\frac{12}{20}$이다.\n따라서 $BC=18\\times\\frac{20}{12}=30\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5b346abb73a2af086e6adb7f6c6b6396470fb727445fcd9d8d0b9e10004486df"
+}

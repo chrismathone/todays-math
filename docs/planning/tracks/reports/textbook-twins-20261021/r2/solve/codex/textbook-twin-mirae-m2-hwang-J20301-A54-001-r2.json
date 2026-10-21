@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-571a-7ab3-9114-88501a54ec00",
+ "startedAt": "2026-10-21T18:44:47+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "student.json": "4ff1d87c0bde5ac6ae0508ba66054012245cef85181063b6d023a5d4a331ef36"
+ },
+ "promptSha256": "ac8e0ddb04a1cb9b25cc8e61db87c0ee011d9149b308ec781fc9acf8af71c063",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$x=b$, $y=4$를 대입하면 $3b-28=-13$이다.\\n따라서 $3b=15$이므로 $b=5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$x=b$, $y=4$를 대입하면 $3b-28=-13$이다.\n따라서 $3b=15$이므로 $b=5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "60bd7d250dda067507cfabf77d2e3b2eed85a22d7f4f3cc879ad7809734c829b"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "1dfbde9c-ca65-4886-981f-380cb5288612",
+ "startedAt": "2026-10-21T18:33:52+0900",
+ "elapsedSec": 26.2,
+ "studentSha256": {
+  "fig-1.png": "a511bcae0cc92ebc132ba9fc814e583008220ebc42ea3009c43ad2171e677caa",
+  "student.json": "f05ad09db0b4f50c5f07dc1f00d079ae1da5b781abea3764263d8470ef15c237"
+ },
+ "promptSha256": "d2307ec98b9e98615934d5a22e16572e3844190bf029ef11a1624f7657c416a0",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"평행사변형 $ABCD$에서 $AD \\\\parallel BC$이므로 이웃한 두 각의 합 $\\\\angle A + \\\\angle B = 180^\\\\circ$에서 $\\\\angle A = 180^\\\\circ - 115^\\\\circ = 65^\\\\circ$이다. $\\\\triangle ADE$에서 세 내각의 합은 $180^\\\\circ$이므로 $\\\\angle x = 180^\\\\circ - (\\\\angle A + \\\\angle ADE) = 180^\\\\circ - (65^\\\\circ + 40^\\\\circ) = 75^\\\\circ$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "평행사변형 $ABCD$에서 $AD \\parallel BC$이므로 이웃한 두 각의 합 $\\angle A + \\angle B = 180^\\circ$에서 $\\angle A = 180^\\circ - 115^\\circ = 65^\\circ$이다. $\\triangle ADE$에서 세 내각의 합은 $180^\\circ$이므로 $\\angle x = 180^\\circ - (\\angle A + \\angle ADE) = 180^\\circ - (65^\\circ + 40^\\circ) = 75^\\circ$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6e820a9faf328dc417e852c0a6874220d2c71906c1f514cb4a61726a6e427791"
+}

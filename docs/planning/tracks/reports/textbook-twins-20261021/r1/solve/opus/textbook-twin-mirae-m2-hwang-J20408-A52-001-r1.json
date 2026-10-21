@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cf9c67cf-ff14-4529-aafa-513e8760ab8f",
+ "startedAt": "2026-10-21T17:02:36+0900",
+ "elapsedSec": 6.2,
+ "studentSha256": {
+  "student.json": "712085e8622debbd43e34ac8ee46af48c97b69378c387f096b4a69ded614938c"
+ },
+ "promptSha256": "7a6b50d52145c965948352d824950bcbd31418c9d6e264024abef0c1b522726c",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"만나지 않으려면 기울기가 같고 y절편이 달라야 한다(평행). ① y=2/3x+2, ② y=-2/3x+3, ③ y=-3/2x-1/2, ④ y=3/2x-5/2, ⑤ y=-2/5x-4/5. ②만 기울기가 -2/3로 같고 y절편이 3≠4이므로 평행하여 만나지 않는다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "만나지 않으려면 기울기가 같고 y절편이 달라야 한다(평행). ① y=2/3x+2, ② y=-2/3x+3, ③ y=-3/2x-1/2, ④ y=3/2x-5/2, ⑤ y=-2/5x-4/5. ②만 기울기가 -2/3로 같고 y절편이 3≠4이므로 평행하여 만나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e656f3cb7a1d7f0cb4571b658b738a81a28210f9fd45896acb4ab2cd8e709bcc"
+}

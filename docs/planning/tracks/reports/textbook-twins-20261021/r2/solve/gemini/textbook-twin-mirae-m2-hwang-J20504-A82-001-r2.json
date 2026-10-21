@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c4dcd868-7dcf-46f7-a0d9-39d3b7f4a0f5",
+ "startedAt": "2026-10-21T18:02:13+0900",
+ "elapsedSec": 21.5,
+ "studentSha256": {
+  "fig-1.png": "40fa66ecd618799500ae90d4e09175cfeb912f07b41b5f22a59dfd2e890336b4",
+  "student.json": "96e399f34adf82d8cf18b74332a98cfacc40f97b0eb232758cff991d00463b56"
+ },
+ "promptSha256": "1024b48be25b98b5cf596eb7391ed0c334efd39411edbd8e4aacd5aef95add0a",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"점 $I$는 $\\\\triangle ABC$의 내심이므로 $AI$, $BI$는 각각 $\\\\angle A$, $\\\\angle B$의 이등분선이다.\\n따라서 $\\\\angle A = 2 \\\\times 26^{\\\\circ} = 52^{\\\\circ}$, $\\\\angle B = 2 \\\\times 34^{\\\\circ} = 68^{\\\\circ}$이다.\\n삼각형의 세 내각의 크기의 합은 $180^{\\\\circ}$이므로,\\n$\\\\angle x = 180^{\\\\circ} - (52^{\\\\circ} + 68^{\\\\circ}) = 60^{\\\\circ}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "점 $I$는 $\\triangle ABC$의 내심이므로 $AI$, $BI$는 각각 $\\angle A$, $\\angle B$의 이등분선이다.\n따라서 $\\angle A = 2 \\times 26^{\\circ} = 52^{\\circ}$, $\\angle B = 2 \\times 34^{\\circ} = 68^{\\circ}$이다.\n삼각형의 세 내각의 크기의 합은 $180^{\\circ}$이므로,\n$\\angle x = 180^{\\circ} - (52^{\\circ} + 68^{\\circ}) = 60^{\\circ}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4150c5b12cb0048b0a5bad75c4c3257d7399624ad1791fbad405d5679a98b41e"
+}

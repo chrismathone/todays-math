@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 173,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r1",
+ "authorId": "claude-fable-5-1:0b40f689-a3c3-442e-8a0d-302c80bc0540",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 연립방정식의 해는?\n$\\begin{cases} 0.3(x+y)-0.2(x-y)=2.8 \\\\ (x+2):(y+1)=5:6 \\end{cases}$",
+ "choices": [
+  "$x=-3$, $y=5$",
+  "$x=3$, $y=-5$",
+  "$x=3$, $y=5$",
+  "$x=5$, $y=3$",
+  "$x=5$, $y=-3$"
+ ],
+ "answer": "③",
+ "solution": "첫째 식의 괄호를 풀면 $0.3x+0.3y-0.2x+0.2y=2.8$, 즉 $0.1x+0.5y=2.8$이고 양변에 $10$을 곱하면 $x+5y=28$ …㉠이다. 둘째 식은 비례식의 성질에서 $6(x+2)=5(y+1)$, 정리하면 $6x-5y=-7$ …㉡이다. ㉠과 ㉡을 변끼리 더하면 $7x=21$, $x=3$이다. $x=3$을 ㉠에 대입하면 $3+5y=28$, $y=5$이다. 따라서 해는 $x=3$, $y=5$이므로 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-7",
+  "problemCode": "J20303-A34-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "6ede867cac03516036ee4cc3d1f4fec53ef1f05c3ed698122e32c0d5496dc325",
+  "dbContentSha256": "713089304cdad1740e0d6fd5abe20da0162688a451d8adfb87a39930ba0047fa",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "괄호가 든 소수 계수 식과 비례식으로 된 연립방정식의 해를 다섯 쌍 가운데 고른다. 괄호를 풀어 정리하고 10 을 곱해 정수 계수로, 비례식은 내항 · 외항의 곱으로 일차식으로 고친 뒤 $y$ 항 계수가 같아 변끼리 빼서 소거한다.",
+  "after": "괄호가 든 소수 계수 식과 비례식(외항 · 내항의 비 5:6)으로 된 연립방정식의 해를 다섯 쌍 가운데 고른다. 괄호를 풀면 소수 계수 식이 한 번에 정리되고, 비례식을 고친 식과 $y$ 항 계수가 부호만 반대가 되어 변끼리 더해 소거한다.",
+  "sharedConcept": "괄호 · 소수 계수 · 비례식이 섞인 연립방정식을 정수 계수의 일차방정식 두 개로 고쳐 푼다",
+  "sharedProcedure": "괄호 풀어 동류항 정리 → 10 곱해 정수 계수로 → 비례식을 외항 · 내항의 곱으로 일차식화 → 가감법으로 한 문자 소거 → 대입하여 나머지 문자 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(가감법)",
+   "괄호가 있는 연립방정식의 풀이",
+   "소수 계수를 정수로 고치기",
+   "비례식의 성질(외항의 곱 = 내항의 곱)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A34-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "괄호 · 소수 계수 식과 비례식이 섞인 연립방정식 풀기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.19,
+   "longestRun": 7,
+   "residualChars": 74,
+   "params": 5,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

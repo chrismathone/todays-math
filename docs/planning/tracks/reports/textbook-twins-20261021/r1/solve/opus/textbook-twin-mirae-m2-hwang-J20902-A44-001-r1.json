@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ba9a9f73-2029-43db-852f-571eeeb6c7a9",
+ "startedAt": "2026-10-21T17:11:56+0900",
+ "elapsedSec": 6.4,
+ "studentSha256": {
+  "student.json": "0848c8f612c0a318b1a263d9694177bb818cf761b0ae73016b93a54a799cbf32"
+ },
+ "promptSha256": "ddef4cbfae2387a8821674878eed607c7483a063c23466a0b646b8175821bde8",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"70보다 작으려면 십의 자리가 4 또는 5여야 한다. 십의 자리가 4이면 일의 자리에 남은 카드 4장 중 하나를 쓸 수 있어 4가지, 십의 자리가 5일 때도 4가지이다. 따라서 4+4=8가지이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "70보다 작으려면 십의 자리가 4 또는 5여야 한다. 십의 자리가 4이면 일의 자리에 남은 카드 4장 중 하나를 쓸 수 있어 4가지, 십의 자리가 5일 때도 4가지이다. 따라서 4+4=8가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c3c3f173b00a5ab470b4dafb9fbb8622adecf6f768076fe3ca2478dfe4bd96c1"
+}

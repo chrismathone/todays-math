@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 335,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A83-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 점 $G$는 $\\triangle ABC$의 무게중심이고 점 $D$는 $\\overline{BC}$의 중점이다. $\\overline{BG}$ 위의 점 $M$이 $\\overline{GM}:\\overline{MB}=1:2$를 만족시키고 $\\triangle ABC$의 넓이가 $90\\,\\mathrm{cm}^2$일 때, 색칠한 $\\triangle GDM$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$5\\,\\mathrm{cm}^2$",
+ "solution": "점 $G$는 $\\triangle ABC$의 무게중심이므로 $\\triangle GBD=\\frac{1}{6}\\triangle ABC=\\frac{1}{6}\\times90=15\\,(\\mathrm{cm}^2)$이다. $\\triangle GDM$과 $\\triangle GBD$는 꼭짓점 $D$에서의 높이가 같고 밑변의 비가 $\\overline{GM}:\\overline{GB}=1:3$이므로 $\\triangle GDM=\\frac{1}{3}\\triangle GBD=\\frac{1}{3}\\times15=5\\,(\\mathrm{cm}^2)$이다. 따라서 답은 $5\\,\\mathrm{cm}^2$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A83-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A83-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9f59e35640dafd86-0-4",
+  "problemCode": "J20705-A83-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "e04f0f518b7c5c4daaa004a0b6491297215fea352e8360af527c99fa7eb97cba",
+  "dbContentSha256": "d0c9aebe95ae134478eada4db74e1b1a883120d0a0e7c78f782e508e9c7855ef",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-4_삼각형의무게중심.hwp",
+    "sha256": "8d155fc6bc36207a3640e3dbfba689008469a20d2b35a9bdaa4dbcea03ff054b",
+    "bytes": 234496
+   }
+  ],
+  "originalFigureSha256": [
+   "cf386bf8cb74338c2e0334d0ce9fc6066499b6e813abcc8099692154902174db"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "무게중심이 만든 여섯 조각 중 하나(GDC)를 GC의 중점으로 반으로 갈라, 전체 넓이에서 작은 조각의 넓이를 구한다.",
+  "after": "여섯 조각 중 하나(GBD)를 GB 위의 1:2 내분점으로 갈라, 전체 넓이에서 1/3 조각의 넓이를 구한다 — 중점 대신 비가 주어진 배치.",
+  "sharedConcept": "무게중심은 삼각형을 넓이가 같은 여섯 조각으로 나눈다 · 높이가 같은 삼각형의 넓이비는 밑변의 비",
+  "sharedProcedure": "여섯 조각 하나 = 전체의 1/6 → 주어진 비로 그 조각을 나눠 넓이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "무게중심과 여섯 삼각형의 넓이가 같음",
+   "높이가 같은 삼각형의 넓이비",
+   "선분의 내분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A83-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "무게중심의 여섯 등분 조각을 다시 비로 나눈 넓이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.197,
+   "longestRun": 12,
+   "residualChars": 71,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

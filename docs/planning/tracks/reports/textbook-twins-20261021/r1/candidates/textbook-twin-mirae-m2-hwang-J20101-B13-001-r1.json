@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 86,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B13-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 수 중에서 유한소수인 것은 모두 몇 개인지 구하시오.\n$4.25$, $\\frac{5}{18}$, $\\frac{21}{56}$, $1.2345\\cdots$, $\\frac{3}{125}$, $\\frac{7}{22}$",
+ "choices": [],
+ "answer": "$3$",
+ "solution": "$4.25$는 소수점 아래 숫자가 둘로 끝나므로 유한소수이다. $\\frac{5}{18}=0.2777\\cdots$ 는 무한소수이다. $\\frac{21}{56}=\\frac{3}{8}=0.375$ 는 유한소수이다. $1.2345\\cdots$ 는 소수점 아래 숫자가 끝없이 이어지므로 무한소수이다. $\\frac{3}{125}=0.024$ 는 유한소수이다. $\\frac{7}{22}=0.31818\\cdots$ 는 무한소수이다. 따라서 유한소수인 것은 $4.25$, $\\frac{21}{56}$, $\\frac{3}{125}$의 $3$개이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-1",
+  "problemCode": "J20101-B13-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "bcc8b94b473d93aa2b9cbc18f9668ba5de99ec02697c9b24ca78199ffcd29496",
+  "dbContentSha256": "8af01b19e4779a0575ebfec913d356f278383c44df0f70579fbefd8ae9624431",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "소수·분수·원주율이 섞인 다섯 수 가운데 무한소수의 개수를 센다.",
+  "after": "소수·분수·끝없이 이어지는 소수가 섞인 여섯 수 가운데 유한소수의 개수를 세게 뒤집었다.",
+  "sharedConcept": "유한소수와 무한소수의 구분",
+  "sharedProcedure": "각 수를 소수로 나타내기(분수는 약분 뒤 나누기) → 소수점 아래가 끝나는지 판별 → 개수 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "유한소수와 무한소수의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B13-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 수 가운데 유한소수(무한소수)의 개수 세기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.047,
+   "longestRun": 5,
+   "residualChars": 46,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

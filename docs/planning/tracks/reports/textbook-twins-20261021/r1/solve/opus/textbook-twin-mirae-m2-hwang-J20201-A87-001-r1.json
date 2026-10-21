@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "61cce835-1705-4138-b214-d955ecf5350c",
+ "startedAt": "2026-10-21T16:26:11+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "student.json": "ed1917195b33985b0c69c6240843b55fc8f48b3080a9f35aaf7122dcb6c41f87"
+ },
+ "promptSha256": "d975d18d738ba7c0c0ebd75661211ef7e9951c17fa8eb842db4d675c1a1733e7",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ③\", \"work\": \"① 1-4=-3, -3>-2 거짓 / ② 2(-2)+3=-1, -1≤5 참 / ③ 3-3=0, 0<1 참 / ④ 좌변 8, 우변 11, 8≥11 거짓 / ⑤ 4/2-(4-1)/3=2-1=1, 1>1 거짓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ③",
+  "work": "① 1-4=-3, -3>-2 거짓 / ② 2(-2)+3=-1, -1≤5 참 / ③ 3-3=0, 0<1 참 / ④ 좌변 8, 우변 11, 8≥11 거짓 / ⑤ 4/2-(4-1)/3=2-1=1, 1>1 거짓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bf48b6a39c0f7092e9158893b724eacfc9ae38c2751f7422130180d878815d4a"
+}

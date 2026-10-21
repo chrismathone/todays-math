@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "000cd606-d5f9-4e45-b350-be3b811f3ee9",
+ "startedAt": "2026-10-21T17:59:49+0900",
+ "elapsedSec": 6.8,
+ "studentSha256": {
+  "student.json": "42c9a88442762d8fbb6dc5d6c85eae2d7ce620358cb9944b6d142aa67067d8ac"
+ },
+ "promptSha256": "7b09526d7dae8f5eaddc6245d99d2730dfa0f13af437f2e93afab0ebf36cd43f",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"80 이상이 되려면 십의 자리가 8 또는 9여야 한다.\\n십의 자리 8: 일의 자리는 남은 0, 6, 7, 9 중 하나이므로 4가지.\\n십의 자리 9: 일의 자리는 남은 0, 6, 7, 8 중 하나이므로 4가지.\\n따라서 4 + 4 = 8가지.\", \"confidence\": \"high\", \"issues\": [\"첫 번째 공을 다시 넣는지가 명시되어 있지 않다. '이어서 하나 더 꺼내'는 꺼낸 공을 다시 넣지 않는다는 뜻으로 보았다. 다시 넣는다면 5 + 5 = 10가지가 되어 답이 ⑤가 된다.\"]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "80 이상이 되려면 십의 자리가 8 또는 9여야 한다.\n십의 자리 8: 일의 자리는 남은 0, 6, 7, 9 중 하나이므로 4가지.\n십의 자리 9: 일의 자리는 남은 0, 6, 7, 8 중 하나이므로 4가지.\n따라서 4 + 4 = 8가지.",
+  "confidence": "high",
+  "issues": [
+   "첫 번째 공을 다시 넣는지가 명시되어 있지 않다. '이어서 하나 더 꺼내'는 꺼낸 공을 다시 넣지 않는다는 뜻으로 보았다. 다시 넣는다면 5 + 5 = 10가지가 되어 답이 ⑤가 된다."
+  ]
+ },
+ "eventsSha256": "c269e6324d44d37830e1c3a79785c250747457aa29f7d4c1da956b339b727d85"
+}

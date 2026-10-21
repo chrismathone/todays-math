@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "45a1f461-45a8-4a30-a298-804bac239479",
+ "startedAt": "2026-10-21T16:15:34+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "b663710612c8fb63f257632326081c255851d43793e3cf0ea6cf404112402bb4"
+ },
+ "promptSha256": "560cb3a89da9edb6a071c8d59ecebd02e1a3e082ed01ee19fa125d4a31f035f3",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"전개하면 $(5a-2)x^{2}+(-5-2b)x+3$이다. 상수항이 3이므로 세 계수가 모두 3이어야 한다. $5a-2=3$에서 $a=1$이고, $-5-2b=3$에서 $b=-4$이다. 따라서 $a+b=-3$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "전개하면 $(5a-2)x^{2}+(-5-2b)x+3$이다. 상수항이 3이므로 세 계수가 모두 3이어야 한다. $5a-2=3$에서 $a=1$이고, $-5-2b=3$에서 $b=-4$이다. 따라서 $a+b=-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3c7da2a90894f041ed9d2d9721fbc0ca14048e5f25b6195fcfb184a1b5c24b40"
+}

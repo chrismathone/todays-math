@@ -1,0 +1,159 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 264,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r1",
+ "authorId": "claude-fable-5-1:f1b92172-e962-4710-a704-9f9a2ef49176",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n점 $O$가 $\\triangle ABC$의 외심이고, 점 $B$에서 점 $O$를 지나도록 그은 직선이 변 $AC$와 만나는 점을 $D$라 하자. $\\angle AOD=56^{\\circ}$, $\\angle OAD=32^{\\circ}$일 때, $\\angle ACB$의 크기는?",
+ "choices": [
+  "$56^{\\circ}$",
+  "$58^{\\circ}$",
+  "$60^{\\circ}$",
+  "$62^{\\circ}$",
+  "$64^{\\circ}$"
+ ],
+ "answer": "④",
+ "solution": "세 점 $B$, $O$, $D$가 한 직선 위에 있으므로 $\\angle AOB=180^{\\circ}-\\angle AOD=180^{\\circ}-56^{\\circ}=124^{\\circ}$이다. 점 $O$가 외심이므로 $\\angle AOB=2\\angle ACB$가 성립한다. 따라서 $\\angle ACB=\\frac{1}{2}\\times124^{\\circ}=62^{\\circ}$이고 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A88-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A88-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-6",
+  "problemCode": "J20503-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "9069b6f0cbfb68e640d2b229f6de2dc6eee781633a6eca55200d4522f9c6a52e",
+  "dbContentSha256": "3d8e68f2b9dc3fb4d3a8dcfb34c5c922e38ea2b3aad38f09410b91e4a9884118",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "e4a02ab88251e9f835773845aad3e8367273cd2ea278c36f10c4f43f1bd4cf52"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "꼭짓점 A에서 외심을 지나 밑변에 닿는 선을 긋고, 외심 둘레의 보각 하나와 밑각 하나를 준 뒤 꼭짓점 B의 내각을 고른다.",
+  "after": "꼭짓점 B에서 외심을 지나 맞은편 변에 닿는 선을 긋고, 외심 둘레의 보각 하나와 밑각 하나를 준 뒤 꼭짓점 C의 내각을 고른다. 선을 긋는 꼭짓점과 묻는 꼭짓점을 바꾸었다.",
+  "sharedConcept": "외심에서 한 변을 보는 각은 그 변의 대각의 2배",
+  "sharedProcedure": "한 직선 위 보각으로 중심각 구하기 → 중심각 = 2 × 대각 → 반으로 나누어 내각 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질",
+   "평각과 보각",
+   "외심과 중심각의 관계 ∠BOC = 2∠A"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A88-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심을 지나는 선의 보각으로 중심각을 구해 대각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'angAOD' ray to 'A' is not covered by a rendered segment",
+     "session": "f788494b-336f-4a7a-aa7b-30001d93ad97",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: angle 'angAOD' ray to 'D' is not covered by a rendered segment",
+     "session": "e8e17222-9334-4c17-8cf9-2fcd84562a9d",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.056,
+   "longestRun": 7,
+   "residualChars": 75,
+   "params": 7,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

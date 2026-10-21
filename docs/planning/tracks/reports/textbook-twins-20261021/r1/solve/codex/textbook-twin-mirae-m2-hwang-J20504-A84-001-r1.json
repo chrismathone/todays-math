@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A84-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d77-35f5-70a2-a1ed-8d35c1796daf",
+ "startedAt": "2026-10-21T16:57:36+0900",
+ "elapsedSec": 65.6,
+ "studentSha256": {
+  "fig-1.png": "c62e6f1d498327cacc43ff41262f42a195060200adda2c4b08d4fb07db76eb5b",
+  "student.json": "af5f1b03be073542e652c8c31b68a09717d0dc59e51ea6c5de796bbacd72e3dc"
+ },
+ "promptSha256": "e64e1218ee75c622361295e79ec087ab87c7f77ac9020a9620e0905bb9e4dadf",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12°\",\"work\":\"이등변삼각형이므로 ∠ACB=(180°−44°)÷2=68°. I는 내심이므로 ∠ICB=34°. O는 외심이므로 ∠BOC=2×44°=88°이고, OB=OC이므로 ∠OCB=46°. 따라서 x=∠OCI=46°−34°=12°.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12°",
+  "work": "이등변삼각형이므로 ∠ACB=(180°−44°)÷2=68°. I는 내심이므로 ∠ICB=34°. O는 외심이므로 ∠BOC=2×44°=88°이고, OB=OC이므로 ∠OCB=46°. 따라서 x=∠OCI=46°−34°=12°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "49e1e0510f6cc463bec8366f2a30550e46f6ad9d50d04ee14329a316ce28afa7"
+}

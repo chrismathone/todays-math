@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A79-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e6e5b5a8-be66-408a-986b-9c749ac5c623",
+ "startedAt": "2026-10-21T17:12:26+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "a6ce71f1d36df4d60b2be4ca8130b86b44ea756ef1e7e2b4448eb84cb97f60f3"
+ },
+ "promptSha256": "fa866158b7e0a4a2748dcbc25fbb038ae0ec7d09e08398398480f80ac249e9b8",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{1}{6}$\", \"work\": \"4의 약수: 1, 2, 4 → 확률 3/6 = 1/2\\n5 이상의 눈: 5, 6 → 확률 2/6 = 1/3\\n두 사건은 서로 독립이므로 1/2 × 1/3 = 1/6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "4의 약수: 1, 2, 4 → 확률 3/6 = 1/2\n5 이상의 눈: 5, 6 → 확률 2/6 = 1/3\n두 사건은 서로 독립이므로 1/2 × 1/3 = 1/6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "37db9cd811e8c28e3bb37b763c72171a5b9e187ebcb6ec69651ad6cc187d5656"
+}

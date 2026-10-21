@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f04ee326-011b-4083-8900-73afe99eefe9",
+ "startedAt": "2026-10-21T17:55:10+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "81f904a6ee22960f988349df207588baddd00859a3c01716b3f08a4bc2ab95ab"
+ },
+ "promptSha256": "711191de68907360faa8d577be7377abc21ad4f95c39b61a720c7a3737db3da7",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"지수끼리 계산하면 21 − 3×□ − 5 = 7이다. 16 − 3□ = 7이므로 3□ = 9, □ = 3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "지수끼리 계산하면 21 − 3×□ − 5 = 7이다. 16 − 3□ = 7이므로 3□ = 9, □ = 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6813e1755987a4e4547af688917c579b14d92c738fc455fe8d1e4637f2d1f900"
+}

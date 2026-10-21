@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A27-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d85-af22-78d1-8ae1-2b83105c9d58",
+ "startedAt": "2026-10-21T17:13:24+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "45fad035be10d510dfbb3137572cbc1b06c10288bd3a80b46f328c52c69e2c92"
+ },
+ "promptSha256": "65984294c3dd0bebab15a5b1945977c3c182997145bf1c7cc73fd60c66033599",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$(4,\\\\,2)$\",\"work\":\"첫째 식을 2배한 식에서 둘째 식을 빼면 5y=10이므로 y=2이다.\\n2x+y=10에 y=2를 대입하면 x=4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$(4,\\,2)$",
+  "work": "첫째 식을 2배한 식에서 둘째 식을 빼면 5y=10이므로 y=2이다.\n2x+y=10에 y=2를 대입하면 x=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8a93fe594e36a738aa5ad67e26984dd43eec72ee60b415fc092f5aa31fd6003f"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbe-63cd-7171-bf1e-07beaeb8fff9",
+ "startedAt": "2026-10-21T18:15:20+0900",
+ "elapsedSec": 32.3,
+ "studentSha256": {
+  "fig-1.png": "81a3dbcc39c41cbf266e34e6d71bfb9d77f8db472c98e55518ab6e6de0875a62",
+  "student.json": "6464d06e123a05938d3e44ca291fbe14fed39fb6c8f6b9016c4042ea53531208"
+ },
+ "promptSha256": "906ab2213dbaee80c7097af0c69c5617f3a9fd53bd54ac9113cc5850a2cd451b",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{8}{9}$\",\n  \"work\": \"공통각을 x라 하자. △ABE의 외각에서 ∠DEF=(∠BAC−x)+x=∠BAC이다. 마찬가지로 △BCF의 외각에서 ∠EFD=(∠ABC−x)+x=∠ABC이다. 따라서 △DEF∽△CAB이므로 DE/EF=CA/AB=8/9이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$\\frac{8}{9}$",
+  "work": "공통각을 x라 하자. △ABE의 외각에서 ∠DEF=(∠BAC−x)+x=∠BAC이다. 마찬가지로 △BCF의 외각에서 ∠EFD=(∠ABC−x)+x=∠ABC이다. 따라서 △DEF∽△CAB이므로 DE/EF=CA/AB=8/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4acab22e01af94a95f7057185ac056c71f722138890904de2f2250f47aa48690"
+}

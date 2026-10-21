@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 156,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20206-A24-001-r1",
+ "authorId": "claude-fable-5-1:2b72f83c-e4eb-4bb1-b8e5-9ac41356bf24",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아는 직사각형 모양의 텃밭 가장자리를 따라 울타리를 두르려고 한다. 텃밭의 세로의 길이는 가로의 길이의 $3$배보다 $4\\,\\mathrm{m}$ 짧고, 준비할 수 있는 울타리의 길이는 $88\\,\\mathrm{m}$를 넘지 못한다. 텃밭의 가로의 길이는 최대 몇 $\\mathrm{m}$인지 구하시오.",
+ "choices": [],
+ "answer": "$12\\,\\mathrm{m}$",
+ "solution": "가로의 길이를 $x\\,\\mathrm{m}$라 하면 세로의 길이는 $(3x-4)\\,\\mathrm{m}$이다. 울타리의 길이는 둘레와 같으므로 $2\\{x+(3x-4)\\} \\le 88$이다. 정리하면 $8x-8 \\le 88$, $8x \\le 96$, $x \\le 12$이다. 따라서 가로의 길이는 최대 $12\\,\\mathrm{m}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-9",
+  "problemCode": "J20206-A24-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "0f3c6ac64325cf304c0cb95e7ee9a1d0cdf4a33fdef74c80ee1c876cb1fbf606",
+  "dbContentSha256": "ebbde749f5572cdca1d9d252e9c3dd026b29eccbbb698cbd3192f43a9aa4562c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "한 변이 다른 변의 2배보다 일정 길이 짧은 직사각형에서 둘레의 상한이 주어지고, 기준이 되는 변(세로)의 최댓값을 구한다.",
+  "after": "텃밭 울타리 장면에서 세로가 가로의 3배보다 일정 길이 짧다는 관계와 울타리 길이의 상한이 주어지고, 기준이 되는 변(가로)의 최댓값을 구한다.",
+  "sharedConcept": "일차부등식의 활용 — 직사각형의 둘레",
+  "sharedProcedure": "기준 변을 x로 놓기 → 다른 변을 ax−b 꼴로 나타내기 → 둘레 2(가로+세로)로 부등식 세우기 → 일차부등식 풀기 → 최댓값 답하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d9477f71-58e7-4d2f-8ab7-1c7beb3dbce1",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(속력, 도형, 기타)"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "직사각형의 둘레의 길이",
+   "문자를 사용한 식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20206-A24-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "한 변이 다른 변의 배수 관계로 주어진 직사각형의 둘레에 대한 일차부등식",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d9477f71-58e7-4d2f-8ab7-1c7beb3dbce1",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.056,
+   "longestRun": 5,
+   "residualChars": 77,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

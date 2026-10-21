@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 290,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r2",
+ "authorId": "claude-opus-5-5:d9b01b06-2b68-473d-9fa7-2c4b04c6f81a",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20505-A81-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$에서 $\\angle B$의 이등분선이 변 $AD$와 만나는 점을 $E$, $\\angle C$의 이등분선이 변 $AD$와 만나는 점을 $F$라 하자. $\\overline{AB}=8\\,\\mathrm{cm}$, $\\overline{BC}=13\\,\\mathrm{cm}$일 때, $\\overline{FE}$의 길이는?",
+ "choices": [
+  "$2\\,\\mathrm{cm}$",
+  "$3\\,\\mathrm{cm}$",
+  "$4\\,\\mathrm{cm}$",
+  "$5\\,\\mathrm{cm}$",
+  "$6\\,\\mathrm{cm}$"
+ ],
+ "answer": "②",
+ "solution": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle AEB=\\angle EBC=\\angle ABE$(엇각)이다. 따라서 $\\triangle ABE$는 이등변삼각형이고 $\\overline{AE}=\\overline{AB}=8\\,\\mathrm{cm}$이다.\n같은 방법으로 $\\angle DFC=\\angle FCB=\\angle DCF$(엇각)이므로 $\\triangle DFC$는 이등변삼각형이고 $\\overline{DF}=\\overline{DC}=\\overline{AB}=8\\,\\mathrm{cm}$이다.\n$\\overline{AD}=\\overline{BC}=13\\,\\mathrm{cm}$인데 $\\overline{AE}+\\overline{DF}=16\\,\\mathrm{cm}$로 $\\overline{AD}$보다 길므로 두 선분 $AE$와 $DF$는 $\\overline{FE}$만큼 겹친다.\n$\\overline{FE}=x\\,\\mathrm{cm}$라 하면 $\\overline{AF}=(8-x)\\,\\mathrm{cm}$이고 $\\overline{AD}=(8-x)+8=16-x$이므로 $16-x=13$, $x=3$이다.\n따라서 $\\overline{FE}=3\\,\\mathrm{cm}$이므로 정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A81-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A81-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-9",
+  "problemCode": "J20505-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "21788e1dd493e7fc08eefa2a99064e5ee6826833bbcbc0f78cc614af7f29c95d",
+  "dbContentSha256": "8de10237b99b9a15179a7a7d88baaaebcd178cafb96f0edd72a46d81659cb2bd",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "7700dce02fdd8e83b4d1549256fd834db9b86c60a5a2af347303804399cd5cd8"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "평행사변형에서 위쪽 두 꼭짓점의 각의 이등분선이 아랫변과 만나는 두 점 사이 거리를 묻는다. 윗변과 옆변의 길이가 주어지고, 두 이등변삼각형의 밑변 쪽 변을 더한 길이가 아랫변보다 길어 두 점이 엇갈린다.",
+  "after": "평행사변형에서 아래쪽 두 꼭짓점의 각의 이등분선이 윗변과 만나는 두 점 사이 거리를 묻는다. 옆변과 아랫변의 길이가 주어지고, 이번에도 두 이등변삼각형에서 생기는 선분을 더한 길이(16)가 윗변(13)보다 길어 두 점이 엇갈린다.",
+  "sharedConcept": "평행선의 엇각, 이등변삼각형의 성질, 평행사변형의 대변의 길이가 같다는 성질",
+  "sharedProcedure": "엇각으로 두 이등변삼각형 찾기 → 이등분선이 지나는 변 위 두 선분이 각각 옆변과 같다고 알기 → 두 선분의 합이 그 변보다 길어 겹친다고 판단하기 → 겹친 부분을 x로 두고 대변 길이로 식 세워 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행선에서 엇각의 크기는 같다",
+   "두 밑각의 크기가 같은 삼각형은 이등변삼각형이다",
+   "평행사변형의 두 쌍의 대변의 길이는 각각 같다"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형에서 이웃한 두 각의 이등분선이 맞은편 변과 엇갈려 만날 때, 두 교점 사이 거리 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.145,
+   "longestRun": 11,
+   "residualChars": 84,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

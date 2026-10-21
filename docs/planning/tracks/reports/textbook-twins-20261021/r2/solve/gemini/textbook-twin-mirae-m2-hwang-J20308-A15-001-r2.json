@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c4bad015-1bc7-4051-aec4-e4f8ed8ea08a",
+ "startedAt": "2026-10-21T18:13:27+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "1c4a4d0592b83505697dc97f4e10bbb3403119d443675261f1006ea63c2cb7c6"
+ },
+ "promptSha256": "1a8dc6d4e9d39db37bd819fafa6faff7edbd3e38731f918f924528a4910f15e3",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"갈 때 걸은 거리를 $x\\\\,\\\\mathrm{km}$라 하면, 돌아올 때 달린 거리는 $(x - 2)\\\\,\\\\mathrm{km}$이다.\\n총 걸린 시간이 $4$시간이므로 $\\\\frac{x}{2} + \\\\frac{x - 2}{6} = 4$이다.\\n양변에 $6$을 곱하면 $3x + (x - 2) = 24$, $4x = 26$, 즉 $x = \\\\frac{13}{2}\\\\,\\\\mathrm{km}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "갈 때 걸은 거리를 $x\\,\\mathrm{km}$라 하면, 돌아올 때 달린 거리는 $(x - 2)\\,\\mathrm{km}$이다.\n총 걸린 시간이 $4$시간이므로 $\\frac{x}{2} + \\frac{x - 2}{6} = 4$이다.\n양변에 $6$을 곱하면 $3x + (x - 2) = 24$, $4x = 26$, 즉 $x = \\frac{13}{2}\\,\\mathrm{km}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a994fdf877bc1acd5e9e21f903ab88d7eee7bfc4e3db30c59615468d65fead9a"
+}

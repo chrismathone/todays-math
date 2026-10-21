@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "07811ea6-3ae1-48e3-85ab-f09bb8b2bd33",
+ "startedAt": "2026-10-21T17:06:39+0900",
+ "elapsedSec": 7.4,
+ "studentSha256": {
+  "fig-1.png": "a8eb19f7fe29c4f83e8d3e1f4e66951793ebd2d4b46e9efbe16834dccc6da345",
+  "student.json": "c8ed923340d440bfd51532b89247891ce54f6181fa9bb6aa9963c71636058aad"
+ },
+ "promptSha256": "e62551f0bf5b12accb490fd3010b97a537add19e371806718efffee65248e6cf",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$9x-y+19$\", \"work\": \"전개도를 접으면 마주 보는 면의 쌍은 (2x-3y+5, -x+5y-1), (A, -2x+y-3), (B, 4x-y+9)이다. 첫 번째 쌍의 합은 x+2y+4이다. 따라서 A=(x+2y+4)-(-2x+y-3)=3x+y+7이고, B=(x+2y+4)-(4x-y+9)=-3x+3y-5이다. 2A-B=(6x+2y+14)-(-3x+3y-5)=9x-y+19이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$9x-y+19$",
+  "work": "전개도를 접으면 마주 보는 면의 쌍은 (2x-3y+5, -x+5y-1), (A, -2x+y-3), (B, 4x-y+9)이다. 첫 번째 쌍의 합은 x+2y+4이다. 따라서 A=(x+2y+4)-(-2x+y-3)=3x+y+7이고, B=(x+2y+4)-(4x-y+9)=-3x+3y-5이다. 2A-B=(6x+2y+14)-(-3x+3y-5)=9x-y+19이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9439369658ede876cc47057823311298c2ef9dbc13ef5f95f4ca191df7edb8fe"
+}

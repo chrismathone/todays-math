@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A18-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-306a-7041-a0e9-b9decd35e765",
+ "startedAt": "2026-10-21T17:47:49+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "student.json": "f8c5230a2eb03e5c2f068e27cf07ced9a35ba74766bede85e486861b14ab378d"
+ },
+ "promptSha256": "3795014084bdd93b84184a2d38d1e3f388a524a99562e0872360352e84170bfc",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"2\",\"work\":\"첫째 식에 5를 곱하면 $5x+5ay=5$이다. 해가 없으려면 두 식의 좌변은 같고 우변은 달라야 하므로 $5a=10$이다. 따라서 $a=2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "2",
+  "work": "첫째 식에 5를 곱하면 $5x+5ay=5$이다. 해가 없으려면 두 식의 좌변은 같고 우변은 달라야 하므로 $5a=10$이다. 따라서 $a=2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2650620b135a8490df6cff00cdea163f4202e38773410d9991088f657cde42dc"
+}

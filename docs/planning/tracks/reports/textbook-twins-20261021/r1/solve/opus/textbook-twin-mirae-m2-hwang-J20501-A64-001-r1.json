@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d67f31e3-b2c4-4ef6-9da6-59181e92b76d",
+ "startedAt": "2026-10-21T17:04:55+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "fig-1.png": "d7d6ac84c56bf703f4b763a830f13debd15cbd94d7e5edc75c7ad4465bfef227",
+  "student.json": "96a73eaa3b98545cd79186f06d4e772a2ebaf70fabd3ce56a26977276e9cdcf6"
+ },
+ "promptSha256": "53f31282ac0a3e1b080aaa47fc3e7ea7e4b433c807175ea02f3cb577b38827e2",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"∠B=∠a로 놓는다. DB=DC이므로 ∠DCB=a이고, 삼각형 DBC의 외각은 ∠ADC=2a이다. CD=CA이므로 ∠A=∠ADC=2a이다. 삼각형 ABC의 외각은 ∠ACE=∠A+∠B=3a=78°이므로 a=26°이다. 따라서 ∠ADC=2a=52°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "∠B=∠a로 놓는다. DB=DC이므로 ∠DCB=a이고, 삼각형 DBC의 외각은 ∠ADC=2a이다. CD=CA이므로 ∠A=∠ADC=2a이다. 삼각형 ABC의 외각은 ∠ACE=∠A+∠B=3a=78°이므로 a=26°이다. 따라서 ∠ADC=2a=52°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c52fe73485f4a8011f588e3199ccdd333543c6f9ebbdfe774c59885575e25aa5"
+}

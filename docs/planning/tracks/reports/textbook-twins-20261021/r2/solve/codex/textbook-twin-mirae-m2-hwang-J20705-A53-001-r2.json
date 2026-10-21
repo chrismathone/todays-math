@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddb-14ce-7140-8099-aeba170b4ca9",
+ "startedAt": "2026-10-21T18:46:41+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "fig-1.png": "792d0dab19903abae88b976a168f52fe89690e3a9bb223d98a7bf62d35340ca2",
+  "student.json": "301dc4f666dfaec4a364f9cd4262b09e40c8e7f44ac4961725e11cd522919f67"
+ },
+ "promptSha256": "6d95cceb3c7b65bbc94d267dc384e04d1b4bcf04380d1969c49b6fadd62ef75b",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4 cm\",\"work\":\"무게중심은 중선을 꼭짓점에서부터 2:1로 나누므로 AG:GM=2:1이다. 따라서 GM=24÷2=12 cm이다. 삼각형 GBC의 무게중심이 H이므로 GH:HM=2:1이고, HM=12÷3=4 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4 cm",
+  "work": "무게중심은 중선을 꼭짓점에서부터 2:1로 나누므로 AG:GM=2:1이다. 따라서 GM=24÷2=12 cm이다. 삼각형 GBC의 무게중심이 H이므로 GH:HM=2:1이고, HM=12÷3=4 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1397096b37c21e9809ca34256fd088b8bdcdd9c0debcba90022f4ce74616cf30"
+}

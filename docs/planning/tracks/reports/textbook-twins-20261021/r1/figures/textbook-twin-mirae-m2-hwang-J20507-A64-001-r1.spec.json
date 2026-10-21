@@ -1,0 +1,80 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   95,
+   30
+  ],
+  "B": [
+   20,
+   130
+  ],
+  "C": [
+   145,
+   130
+  ],
+  "D": [
+   220,
+   30
+  ],
+  "O": [
+   120,
+   80
+  ]
+ },
+ "segments": {
+  "AB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "parallel": 2
+  },
+  "DC": {
+   "points": [
+    "D",
+    "C"
+   ],
+   "parallel": 2
+  },
+  "BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "parallel": 1
+  },
+  "AD": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "parallel": 1
+  },
+  "AC": [
+   "A",
+   "C"
+  ],
+  "BD": [
+   "B",
+   "D"
+  ]
+ },
+ "angles": {
+  "rO": {
+   "vertex": "O",
+   "points": [
+    "A",
+    "B"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "O": "O"
+ }
+}

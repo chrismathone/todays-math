@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "799aa7a4-09d4-48a3-82ff-b1c166e8ab9f",
+ "startedAt": "2026-10-21T16:16:49+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "fig-1.png": "ef0c4ab4ab19bd51d502c534f9150172d8b0bd97a7a89fc58fa65111e6ae550b",
+  "student.json": "416cc4ff4820d003cbf5e000eaed13269a6782155b5cb63260e1fbb52f5e8a82"
+ },
+ "promptSha256": "6399065078f493bba7795beb7230f3aa2c7b14bb4e7c7f40eda115520e768faa",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$9x+2y+2$\", \"work\": \"접으면 가운데 네 면 줄에서 한 칸 건너 있는 면끼리 마주 본다: (−x+2y−1)과 A, (x−3y+2)와 (3x+y+3). 위의 B와 아래의 2x−5y+7도 서로 마주 본다. 마주 보는 두 면의 합은 (x−3y+2)+(3x+y+3)=4x−2y+5이다. 따라서 A=4x−2y+5−(−x+2y−1)=5x−4y+6이고 B=4x−2y+5−(2x−5y+7)=2x+3y−2이다. A+2B=5x−4y+6+4x+6y−4=9x+2y+2이다.\", \"confidence\": \"high\", \"issues\": [\"그림의 면이 모두 정사각형이라 실제로는 정육면체 전개도로 보이지만, 정육면체도 직육면체이므로 풀이에는 문제가 없다.\"]}\n```",
+ "parsed": {
+  "answer": "$9x+2y+2$",
+  "work": "접으면 가운데 네 면 줄에서 한 칸 건너 있는 면끼리 마주 본다: (−x+2y−1)과 A, (x−3y+2)와 (3x+y+3). 위의 B와 아래의 2x−5y+7도 서로 마주 본다. 마주 보는 두 면의 합은 (x−3y+2)+(3x+y+3)=4x−2y+5이다. 따라서 A=4x−2y+5−(−x+2y−1)=5x−4y+6이고 B=4x−2y+5−(2x−5y+7)=2x+3y−2이다. A+2B=5x−4y+6+4x+6y−4=9x+2y+2이다.",
+  "confidence": "high",
+  "issues": [
+   "그림의 면이 모두 정사각형이라 실제로는 정육면체 전개도로 보이지만, 정육면체도 직육면체이므로 풀이에는 문제가 없다."
+  ]
+ },
+ "eventsSha256": "5d338754414ca7039f45ec925a3603cf0bc89c6812ac168ae917dc99d7cc9332"
+}

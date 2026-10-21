@@ -1,0 +1,115 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   70.71,
+   71.24
+  ],
+  "B": [
+   20,
+   180
+  ],
+  "C": [
+   176,
+   180
+  ],
+  "D": [
+   226.71,
+   71.24
+  ],
+  "E": [
+   56,
+   180
+  ],
+  "F": [
+   140,
+   180
+  ],
+  "G": {
+   "type": "intersection",
+   "segments": [
+    "AF",
+    "DE"
+   ]
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DA": [
+   "D",
+   "A"
+  ],
+  "AF": [
+   "A",
+   "F"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ]
+ },
+ "angles": {
+  "a1": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "F"
+   ],
+   "arcs": 1
+  },
+  "a2": {
+   "vertex": "A",
+   "points": [
+    "F",
+    "D"
+   ],
+   "arcs": 1
+  },
+  "rg": {
+   "vertex": "G",
+   "points": [
+    "A",
+    "E"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "AB_len": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  },
+  "AD_len": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "13 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "F": "F",
+  "G": "G"
+ }
+}

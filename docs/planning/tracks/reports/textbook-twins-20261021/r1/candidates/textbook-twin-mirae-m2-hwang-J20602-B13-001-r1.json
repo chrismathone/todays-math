@@ -1,0 +1,139 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 318,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B13-001-r1",
+ "authorId": "claude-fable-5-1:a9597081-a1f0-4070-87d9-d67b61dfc8ee",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 그림과 같이 키가 $1.6\\,\\mathrm{m}$인 도하가 운동장 조명탑에서 $6\\,\\mathrm{m}$ 떨어진 곳에 서 있다. 조명탑의 불빛 때문에 생긴 도하의 그림자의 길이가 $4\\,\\mathrm{m}$일 때, 조명탑의 높이를 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$4\\,\\mathrm{m}$",
+ "solution": "그림자의 끝을 $A$, 도하의 발과 머리를 각각 $B$, $C$, 조명탑의 아래와 위를 각각 $D$, $E$라 하자.\n$\\triangle ABC$와 $\\triangle ADE$에서 $\\angle A$는 공통, $\\angle ABC=\\angle ADE=90^{\\circ}$이므로 $\\triangle ABC\\backsim\\triangle ADE$($\\mathrm{AA}$ 닮음)\n$\\overline{AB}:\\overline{AD}=\\overline{BC}:\\overline{DE}$이므로 $4:(4+6)=1.6:\\overline{DE}$, $4\\overline{DE}=16$, $\\overline{DE}=4\\,\\mathrm{m}$\n따라서 조명탑의 높이는 $4\\,\\mathrm{m}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-B13-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-B13-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4f277d28f84575e7-0-4",
+  "problemCode": "J20602-B13-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "7403314e698c7480119615d2eeb61953ea8f75b790a239638c8c751949654690",
+  "dbContentSha256": "5ad52e0d46b45e0ea452b2fade7e75bbe02b25c4af3d3c296b1406f9cb7e891d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-2_삼각형의닮음조건.hwp",
+    "sha256": "92433d7da0ef45780c27015353bc12016f992f7e586015529a1852c45798d3a4",
+    "bytes": 2057728
+   }
+  ],
+  "originalFigureSha256": [
+   "1c0a7b866784f0da4e72959cd6dd61046d5e651caca2c29b2c50f36a362690dd"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "가로등에서 일정 거리 떨어진 막대의 그림자 끝이 가로등 그림자 끝과 일치할 때, 막대 높이·그림자 길이·거리로 공통각 AA 닮음을 세워 가로등 높이를 구한다.",
+  "after": "조명탑 불빛 아래 서 있는 사람의 키·그림자 길이·조명탑까지의 거리로 같은 꼴의 AA 닮음을 세워 조명탑 높이를 구한다. 그림자 길이와 거리의 합이 큰 삼각형의 밑변이 되는 짜임은 같다.",
+  "sharedConcept": "한 점에서 퍼지는 빛이 만드는 두 직각삼각형의 AA 닮음으로 높이 구하기",
+  "sharedProcedure": "공통각·직각으로 AA 닮음 → 밑변의 합 구하기 → 대응변 비례식 → 높이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 닮음 조건(AA)",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-B13-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "불빛과 그림자가 만드는 닮은 직각삼각형으로 높이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "mismatch",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.115,
+   "longestRun": 6,
+   "residualChars": 56,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

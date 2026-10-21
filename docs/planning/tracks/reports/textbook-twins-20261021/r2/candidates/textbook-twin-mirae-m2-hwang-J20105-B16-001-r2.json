@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 106,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r2",
+ "authorId": "claude-fable-5-1:a7e77b22-ca49-4d1e-bba1-a4f03724b482",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$2^{7}+2^{7}+2^{7}+2^{7}+2^{7}+2^{7}+2^{7}+2^{7}$ 을 $2$ 의 거듭제곱으로 나타내시오.",
+ "choices": [],
+ "answer": "$2^{10}$",
+ "solution": "$2^{7}$ 이 $8$ 개 더해져 있으므로 $2^{7}+2^{7}+\\cdots+2^{7}=8\\times 2^{7}$ 이다.\n$8=2^{3}$ 이므로 $8\\times 2^{7}=2^{3}\\times 2^{7}=2^{3+7}=2^{10}$ 이다.\n따라서 답은 $2^{10}$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f3d0bfc4a549536b-1-4",
+  "problemCode": "J20105-B16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "5b4aa3e3139e4856a9389d2c81a699024335e135581b906f643548d5f36c0c7b",
+  "dbContentSha256": "b0a180ab9daf36891bea5bcb6e7146330e3a6009999f7cd8c8a645afcc7017b3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-1_지수법칙1.hwp",
+    "sha256": "9f3a1cbafe9c8ca2b17c43e38d80cd0f34c18055f48c3e602d82f86013cbfcd7",
+    "bytes": 261120
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "같은 거듭제곱 네 개의 합을 (항의 개수)×(거듭제곱)으로 묶고, 항의 개수를 밑의 거듭제곱으로 바꿔 지수를 더해 하나의 거듭제곱으로 쓴다.",
+  "after": "같은 거듭제곱 여덟 개의 합을 (항의 개수)×(거듭제곱)으로 묶고, 항의 개수 8을 2의 세제곱으로 바꿔 지수를 더해 하나의 거듭제곱으로 쓴다. 항의 개수와 지수가 모두 새 값이고 결과도 다른 거듭제곱이다.",
+  "sharedConcept": "같은 수의 거듭제곱의 합은 (개수)×(거듭제곱)이고, 개수를 밑의 거듭제곱으로 바꾸면 지수법칙 ⑴로 합칠 수 있다",
+  "sharedProcedure": "같은 항의 개수 세기 → (개수)×(거듭제곱)으로 쓰기 → 개수를 밑의 거듭제곱으로 바꾸기 → 지수를 더해 하나의 거듭제곱으로 나타내기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ (밑이 같은 거듭제곱의 곱)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B16-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "같은 거듭제곱의 합을 하나의 거듭제곱으로 나타내기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.46"
+   ],
+   "overlap4": 0.462,
+   "longestRun": 9,
+   "residualChars": 40,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

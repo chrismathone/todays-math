@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd5-ad19-7f82-a3fe-d5fc614ceb99",
+ "startedAt": "2026-10-21T18:40:46+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "student.json": "82ba65697472035fd4dace3bfa1fd9412f700ec5acd50d789572e949fef4a261"
+ },
+ "promptSha256": "231284bbf1f426f400a8e6cab21d1e93a4d268af828dadec087bad43ef901c18",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$x=-4$를 대입하면\\n① $-13<-12$, ② $37\\\\ge 36$, ③ $-\\\\frac{1}{2}>-7$, ⑤ $15\\\\ge 12$는 모두 참이다.\\n④는 $-23<-38$로 거짓이므로 $x=-4$가 해가 아니다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$x=-4$를 대입하면\n① $-13<-12$, ② $37\\ge 36$, ③ $-\\frac{1}{2}>-7$, ⑤ $15\\ge 12$는 모두 참이다.\n④는 $-23<-38$로 거짓이므로 $x=-4$가 해가 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "07960e312202d6a9137885a0d43ffe7f44c58148afc04968b9603d6ac433a7b7"
+}

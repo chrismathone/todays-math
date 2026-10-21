@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B06-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5e2ed219-757b-4f6c-bfb1-6c4de794d267",
+ "startedAt": "2026-10-21T16:23:18+0900",
+ "elapsedSec": 4.1,
+ "studentSha256": {
+  "student.json": "497a090222abc74a2b00beb478e9105186351a63b662717e21ffcf7698879fde"
+ },
+ "promptSha256": "56442861e19edac59862c8743a531bf4a1d4df6dd67725f732578950dede68e9",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "8^7 = 2^21 = 2^20 · 2 = a^4 · 2.\n\n```json\n{\"answer\": \"②\", \"work\": \"$8^{7}=(2^{3})^{7}=2^{21}=2^{20}\\\\times 2=(2^{5})^{4}\\\\times 2=2a^{4}$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$8^{7}=(2^{3})^{7}=2^{21}=2^{20}\\times 2=(2^{5})^{4}\\times 2=2a^{4}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d4b1147936567380110d456371fb85a35413fb71ea88df316342ef104d4fd81"
+}

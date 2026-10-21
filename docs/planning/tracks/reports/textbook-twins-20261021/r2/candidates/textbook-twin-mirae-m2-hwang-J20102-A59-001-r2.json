@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 51,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r2",
+ "authorId": "claude-fable-5-1:de3c59c5-f01f-4868-94b2-4e662ea192c5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "순환소수 $0.4273273273\\cdots$의 순환마디 양 끝 숫자 위에 점을 찍어 바르게 나타낸 것을 고르시오.",
+ "choices": [
+  "$0.\\dot{4}27\\dot{3}$",
+  "$0.4\\dot{2}7\\dot{3}$",
+  "$0.4\\dot{2}\\dot{7}$",
+  "$0.\\dot{4}\\dot{2}\\dot{7}$",
+  "$0.42\\dot{7}\\dot{3}$"
+ ],
+ "answer": "②",
+ "solution": "$0.4273273273\\cdots$는 소수점 아래 첫째 자리의 $4$ 다음부터 $273$이 한없이 되풀이되므로 순환마디는 $273$이다.\n순환마디의 첫 숫자 $2$와 끝 숫자 $3$ 위에 점을 찍으면 $0.4\\dot{2}7\\dot{3}$이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-2",
+  "problemCode": "J20102-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "864ae3f24bf318495d8caa0922aa92fae2ceeedabd299913d3c97c89a9279716",
+  "dbContentSha256": "428a1817de7adef0359035c21e51194624e21ab86009613f550d2ec47015d822",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "정수 부분 바로 뒤부터 세 자리 마디가 되풀이되는 순환소수를 주고, 보기 다섯 가운데 마디의 처음과 끝 숫자 위에 점을 찍은 올바른 표기를 고르게 한다.",
+  "after": "소수점 아래 되풀이되지 않는 숫자 하나 뒤부터 세 자리 마디가 되풀이되는 순환소수를 주고, 점 위치만 서로 다른 보기 다섯 가운데 올바른 표기를 고르게 한다.",
+  "sharedConcept": "순환소수의 순환마디와 점 표기",
+  "sharedProcedure": "되풀이되는 숫자 묶음을 찾아 순환마디를 정한다 → 순환마디의 처음 숫자와 끝 숫자 위에 점을 찍는다 → 보기 가운데 일치하는 표기를 고른다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "유한소수와 무한소수",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A59-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 순환마디에 점을 찍어 나타낸 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.143,
+   "longestRun": 5,
+   "residualChars": 62,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

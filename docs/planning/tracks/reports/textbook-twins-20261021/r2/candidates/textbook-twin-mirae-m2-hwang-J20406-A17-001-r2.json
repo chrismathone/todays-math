@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 242,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r2",
+ "authorId": "claude-opus-5-5:68ac197c-47f0-4ed4-baef-35f95ca19962",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아는 실험실에서 용수철 하나에 물체를 걸어 보며 길이를 재었다. 아무것도 걸지 않았을 때 이 용수철은 $15\\,\\mathrm{cm}$였고, 걸어 둔 물체가 $8\\,\\mathrm{g}$ 무거워질 때마다 용수철은 $3\\,\\mathrm{cm}$만큼 고르게 늘어났다. 무게가 $20\\,\\mathrm{g}$인 물체를 걸면 용수철은 몇 $\\mathrm{cm}$가 되는가?",
+ "choices": [
+  "$21.5\\,\\mathrm{cm}$",
+  "$22\\,\\mathrm{cm}$",
+  "$22.5\\,\\mathrm{cm}$",
+  "$23\\,\\mathrm{cm}$",
+  "$23.5\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "물체의 무게가 $1\\,\\mathrm{g}$ 무거워질 때마다 용수철은 $\\frac{3}{8}\\,\\mathrm{cm}$씩 늘어난다. 무게가 $x\\,\\mathrm{g}$인 물체를 걸었을 때 용수철의 길이를 $y\\,\\mathrm{cm}$라 하면 $y=\\frac{3}{8}x+15$이다. $x=20$을 대입하면 $y=\\frac{3}{8}\\times 20+15=7.5+15=22.5$이다. 따라서 용수철은 $22.5\\,\\mathrm{cm}$가 되므로 정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-12",
+  "problemCode": "J20406-A17-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "034c492d52772577ca0c3e26ad591c0060cb04936948a045c5cb96abe0c0d523",
+  "dbContentSha256": "6ab7db5036a7be3aca274bc2e7f74dcfecbeead4cec59ab027710e3d6a347767",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "처음 길이와 '몇 g마다 몇 cm' 꼴의 늘어나는 비율이 주어진 용수철에 추를 달았을 때의 길이를 보기 다섯 가운데서 고른다.",
+  "after": "실험실에서 물체를 걸어 보는 장면으로, 처음 길이 15 cm와 '8 g마다 3 cm' 비율을 주고 20 g짜리 물체를 걸었을 때의 길이를 보기 다섯 가운데서 고른다.",
+  "sharedConcept": "변화율이 일정한 두 양 사이의 관계를 일차함수로 나타내고 함숫값 구하기",
+  "sharedProcedure": "1 g당 늘어나는 길이 구하기 → $y=ax+b$ 꼴의 식 세우기 → 주어진 무게 대입 → 길이 계산 후 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 활용(온도, 길이)"
+  },
+  "prerequisites": [
+   "일차함수의 뜻과 식",
+   "함숫값 구하기",
+   "분수와 자연수의 곱셈",
+   "소수의 덧셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20406-A17-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수의 활용 — 용수철의 길이(단위당 변화량을 구해 식 세우기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "58973041-d139-4268-b39e-5268e39e1632",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.035,
+   "longestRun": 4,
+   "residualChars": 124,
+   "params": 9,
+   "numberRetention": 0.222,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

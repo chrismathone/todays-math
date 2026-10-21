@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-96d3-7133-8d19-b5f8c4188005",
+ "startedAt": "2026-10-21T17:52:37+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "ee12ef49336c4e0b417d74d278365f2095298ab81a1f3168f523e38923f087e7"
+ },
+ "promptSha256": "b2f6848d49682d8cca08f022e396e88450e9aeb33d4066d9bcf5fd910d303f24",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행이동해도 직선의 기울기는 변하지 않는다. 주어진 직선의 기울기는 -4/5이므로, 기울기가 같은 ③의 그래프와 겹쳐질 수 있다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행이동해도 직선의 기울기는 변하지 않는다. 주어진 직선의 기울기는 -4/5이므로, 기울기가 같은 ③의 그래프와 겹쳐질 수 있다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d48f7c59161aa5f56d7d9cc008bf4d4ba5bbe1cb2216fc921154e4dd03b67de1"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5d06b58e-23ba-4a36-80fc-edcbb8a5cb37",
+ "startedAt": "2026-10-21T16:29:35+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "0b40dd10a3d284d4391f482c940ea84a457b4d8d863c09302cf4d80bd0a73757"
+ },
+ "promptSha256": "2eb01134a57f8a17e0d3c9236dd50228f2a878c72a4163c661de56402bcdcea9",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"ㄱ: 3x+y=3x-6 → y+6=0 (미지수 1개, 해당 안 됨). ㄴ: y/3-x+1=0 (미지수 2개 일차, 해당). ㄷ: -x^2+x+2y=0 (이차항 있음, 해당 안 됨). ㄹ: 2x-2y=x+1 → x-2y-1=0 (해당). 따라서 아닌 것은 ㄱ, ㄷ\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ: 3x+y=3x-6 → y+6=0 (미지수 1개, 해당 안 됨). ㄴ: y/3-x+1=0 (미지수 2개 일차, 해당). ㄷ: -x^2+x+2y=0 (이차항 있음, 해당 안 됨). ㄹ: 2x-2y=x+1 → x-2y-1=0 (해당). 따라서 아닌 것은 ㄱ, ㄷ",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "84a04ef7bad330c55f16de4797f5c8b8e498f111aa0a7ce62b1881c9f578d901"
+}

@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A86-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7a8ca1d9-7273-4a40-b9b8-6cd234fb6848",
+ "startedAt": "2026-10-21T17:07:32+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "fig-1.png": "c8df77c242740aad41e67e944252ae19c9b81dfbbb0d5669236d7099974a860c",
+  "student.json": "3c6a869dee39b0ae48a869152a4e344aee484a67a391b32d9062c6611cca5a09"
+ },
+ "promptSha256": "b56cccaffd904ad097139c8ed721cece23781ea77b98e6888898e32ed2d6673b",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"12 m\", \"work\": \"같은 시각에는 햇빛이 지면과 이루는 각이 같으므로, 막대와 그림자가 만드는 직각삼각형과 나무와 그림자가 만드는 직각삼각형은 닮음(AA 닮음)이다. 따라서 3 : 5 = h : 20이고, 5h = 60이므로 h = 12 (m)이다.\", \"confidence\": \"high\", \"issues\": [\"그림이 실제 비율대로 그려져 있지 않다. 두 삼각형 모두 세로 변이 밑변보다 길게 그려져 있지만, 수치로는 3 < 5, 12 < 20이다. 답에는 영향이 없다.\"]}\n```",
+ "parsed": {
+  "answer": "12 m",
+  "work": "같은 시각에는 햇빛이 지면과 이루는 각이 같으므로, 막대와 그림자가 만드는 직각삼각형과 나무와 그림자가 만드는 직각삼각형은 닮음(AA 닮음)이다. 따라서 3 : 5 = h : 20이고, 5h = 60이므로 h = 12 (m)이다.",
+  "confidence": "high",
+  "issues": [
+   "그림이 실제 비율대로 그려져 있지 않다. 두 삼각형 모두 세로 변이 밑변보다 길게 그려져 있지만, 수치로는 3 < 5, 12 < 20이다. 답에는 영향이 없다."
+  ]
+ },
+ "eventsSha256": "271b189e676655085c1ea4ef2d77efe0b0b650f14962ee144cd64584ab6d9964"
+}

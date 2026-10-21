@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B32-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcc-8eb5-7b00-b61d-f0c4cc6cb424",
+ "startedAt": "2026-10-21T18:30:49+0900",
+ "elapsedSec": 9.2,
+ "studentSha256": {
+  "student.json": "3a06b02011d0178272e25b19c75bf1a4f027499d4afb95fae58aef62bbab3bfd"
+ },
+ "promptSha256": "1115f98bcc0eead71b08d13a78a8967b23b83751b2c350ae36d9934e26fae133",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{1}{6}$\",\"work\":\"전체 경우의 수는 6×6=36이다. 눈의 수의 차가 3인 경우는 (1,4), (2,5), (3,6), (4,1), (5,2), (6,3)의 6가지이므로, 확률은 6/36=1/6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "전체 경우의 수는 6×6=36이다. 눈의 수의 차가 3인 경우는 (1,4), (2,5), (3,6), (4,1), (5,2), (6,3)의 6가지이므로, 확률은 6/36=1/6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c59f285e94a57d4ea30a4dc49991f57d643abd7d783c6a7983c3d2d74b7145ae"
+}

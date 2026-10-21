@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 29,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B09-001-r2",
+ "authorId": "claude-fable-5-1:18f7872a-ea01-4736-a96a-7e4f467172df",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-B09-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 $a$에 대한 이차식이 아닌 것은?",
+ "choices": [
+  "$7a^{2}-5a+1$",
+  "$(a^{2}+5a)-a(a-9)$",
+  "$a(1-7a)$",
+  "$9a^{2}-8a^{2}+a-5$",
+  "$8-a^{2}$"
+ ],
+ "answer": "②",
+ "solution": "② $(a^{2}+5a)-a(a-9)=a^{2}+5a-a^{2}+9a=14a$ 이므로 일차식이다.\n③ $a(1-7a)=a-7a^{2}$ 이므로 이차식이다.\n④ $9a^{2}-8a^{2}+a-5=a^{2}+a-5$ 이므로 이차식이다.\n①, ⑤는 $a^{2}$ 항이 그대로 남아 이차식이다.\n따라서 이차식이 아닌 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2e15327a388749ce-0-2",
+  "problemCode": "J20107-B09-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "f5ad822c602b6529bf35c6e0939cee69bbd78d107542d9953ac4582497931908",
+  "dbContentSha256": "822c5ab26e5e646b97651b8126c5ca205672daa4869b0c166cda51cddda0951b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "343fbfc39f4a6c8695ea14751c15bec8c5cc8d6e82d14742c6da162ec6e98af2",
+    "bytes": 40960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "x에 대한 다섯 식 가운데 전개·동류항 정리 후 차수가 2가 아닌 하나를 고른다. 정답 보기는 단항식 곱과 x² 항을 빼서 x² 이 사라지는 꼴.",
+  "after": "문자를 a로 바꾸고, 정답 보기를 괄호 묶음과 단항식 곱의 차로 두어 전개 뒤 a² 항이 서로 지워지는 꼴로 짰다. 나머지 보기도 동류항 정리형·곱 전개형·상수 포함형으로 역할만 유지하고 식은 전부 새로 만들었으며 원본 수(2, 3, 4, 6)를 쓰지 않았다.",
+  "sharedConcept": "이차식의 뜻(정리한 뒤 차수가 2인 다항식)",
+  "sharedProcedure": "각 보기를 전개 → 동류항 정리 → 최고차항의 차수 확인 → 2가 아닌 것 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "다항식의 차수",
+   "단항식과 다항식의 곱(분배법칙)",
+   "동류항 정리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-B09-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "전개·정리 후 이차식 판별하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.1,
+   "longestRun": 9,
+   "residualChars": 65,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

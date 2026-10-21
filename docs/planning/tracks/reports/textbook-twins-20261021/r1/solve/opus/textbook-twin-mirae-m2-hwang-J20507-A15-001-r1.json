@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A15-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8cfdc09b-9c13-481b-a163-b1b765ecff61",
+ "startedAt": "2026-10-21T17:06:04+0900",
+ "elapsedSec": 5.7,
+ "studentSha256": {
+  "student.json": "24c3a9f63a6ec788df98913b9fdb25a0c076cace87a0e172c1fe32c91d63f17c"
+ },
+ "promptSha256": "16e12ede4f78f606344a5df17497b98600037dfb039a5e720716871b095a7028",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"평행사변형의 두 대각선은 서로를 이등분하므로 OA=OC, OB=OD이다. 여기에 OA=OB를 더하면 AC=2OA=2OB=BD가 되어 두 대각선의 길이가 같아지므로 직사각형이 된다. ①, ②, ④는 마름모가 되는 조건이고, ⑤는 모든 평행사변형에서 이미 성립한다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행사변형의 두 대각선은 서로를 이등분하므로 OA=OC, OB=OD이다. 여기에 OA=OB를 더하면 AC=2OA=2OB=BD가 되어 두 대각선의 길이가 같아지므로 직사각형이 된다. ①, ②, ④는 마름모가 되는 조건이고, ⑤는 모든 평행사변형에서 이미 성립한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d4b031aabc1efd4ec01687387587c206bd17c2b2a7962fe959e0789c485ecff"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d60-968d-7901-81a2-31b95f1a129b",
+ "startedAt": "2026-10-21T16:32:53+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "student.json": "9d33e42a27a3208f30d9c57fe785fef45b3668e1cce0d725be80e1ddf20704fc"
+ },
+ "promptSha256": "b294c42e87dd10512966c658c3c112fd4c2b865ddf416a0b2826b01f32566bdd",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"x=0.7666…이라 두면 100x=76.666…, 10x=7.666…이다.\\n두 식을 빼면 90x=69이므로 x=69/90=23/30이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "x=0.7666…이라 두면 100x=76.666…, 10x=7.666…이다.\n두 식을 빼면 90x=69이므로 x=69/90=23/30이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "59da9f7a86a8ec66cb6430b9c0a41f7c92d9ee129e38f2ed86bc7bf5a8d8c416"
+}

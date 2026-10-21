@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A86-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db7-9fb6-7012-a22f-18604fd3d08c",
+ "startedAt": "2026-10-21T18:07:57+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "fig-1.png": "fb51fab2227314bfad50aaefa88f23fde19041f087b65cb60ab3f0b35e8d9af2",
+  "student.json": "0676f4dc84ac0788b63cbdd0f7033e35a3b70ade6ae4c798ad71a0b1750b8d7b"
+ },
+ "promptSha256": "dbaada5e479488f563fa8bcf28c96ed291e80c3331610077e1ebd7a6ce7ba335",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"78°\",\"work\":\"AD∥BC이므로 엇각인 ∠DAE=∠AEB=39°이다. AE는 ∠A의 이등분선이므로 ∠DAB=2×39°=78°이다. 평행사변형의 마주 보는 두 각의 크기는 같으므로 ∠BCD=78°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "78°",
+  "work": "AD∥BC이므로 엇각인 ∠DAE=∠AEB=39°이다. AE는 ∠A의 이등분선이므로 ∠DAB=2×39°=78°이다. 평행사변형의 마주 보는 두 각의 크기는 같으므로 ∠BCD=78°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "20ad2a5cfdad6072c4ae815fd3a1340c5f00709a34c04b938967f56806e75205"
+}

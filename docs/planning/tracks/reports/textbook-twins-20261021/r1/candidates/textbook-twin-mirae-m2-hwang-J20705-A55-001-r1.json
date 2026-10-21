@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 332,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A55-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 점 $P$는 $\\triangle ABC$의 변 $BC$ 위의 점이고, $\\overline{AD}$, $\\overline{AE}$는 각각 $\\triangle ABP$, $\\triangle APC$의 중선이다. 점 $G$가 $\\triangle ABP$의 무게중심, 점 $G'$이 $\\triangle APC$의 무게중심이고 $\\overline{GG'}=10\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$30\\,\\mathrm{cm}$",
+ "solution": "$\\triangle ADE$에서 $\\overline{AG}:\\overline{AD}=\\overline{AG'}:\\overline{AE}=2:3$이므로 $\\overline{GG'}\\parallel\\overline{DE}$이고 $\\overline{GG'}:\\overline{DE}=2:3$이다. $10:\\overline{DE}=2:3$에서 $\\overline{DE}=15\\,\\mathrm{cm}$이다. $\\overline{BD}=\\overline{DP}$, $\\overline{PE}=\\overline{EC}$이므로 $\\overline{DE}=\\frac{1}{2}\\overline{BC}$이다. 따라서 $\\overline{BC}=2\\times15=30\\,(\\mathrm{cm})$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A55-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A55-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-720824b629c397d4-1-2",
+  "problemCode": "J20705-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "e1d66fe6f5456a251bd7ca237e757b98702cba4d4d762e1b55086a9795c85151",
+  "dbContentSha256": "b856a08f0aaad5f706f017d0fe08fcd443418bf0fafdadb4066d7740603cf016",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-4_삼각형의무게중심.hwp",
+    "sha256": "ea1d380a785b7ae83830781675c22e3de06f2abb11f9591e2dfca8143694288c",
+    "bytes": 792064
+   }
+  ],
+  "originalFigureSha256": [
+   "a8d9fabdde81083db5d46b6314f602c4bf0ff2455c53756857856daf85f9cdc5"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "밑변의 중점 M으로 나눈 두 삼각형 각각의 무게중심 G, G' 사이의 거리를 주고 밑변 전체의 길이를 묻는다.",
+  "after": "밑변 위의 임의의 점 P(중점이 아님)로 나눈 두 삼각형 각각의 무게중심 사이의 거리를 주고 밑변 전체의 길이를 묻는다 — 풀이에 중점 조건이 필요 없음을 드러낸 짜임.",
+  "sharedConcept": "무게중심의 2:3 비 · 두 변을 같은 비로 나누는 선분은 밑변과 평행하고 길이비가 같다 · 중점 사이 거리는 밑변의 절반",
+  "sharedProcedure": "AG:AD = AG':AE = 2:3 → GG' ∥ DE, GG':DE = 2:3 → DE 구하기 → BC = 2DE"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질(2:1)",
+   "삼각형에서 평행선과 선분의 길이의 비",
+   "중선의 정의"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A55-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "나란한 두 삼각형의 무게중심 사이 거리로 밑변 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'GG_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "cc44d0f1-6067-4d5f-81f6-7775a5fbb3b8",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.209,
+   "longestRun": 11,
+   "residualChars": 75,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A61-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7b-c508-7a50-80c4-bc495b712d29",
+ "startedAt": "2026-10-21T17:02:34+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "e260e4389f3e7f7948d5bf9d1aa32ed5606c76ff00ee460018319e01f70b32cb"
+ },
+ "promptSha256": "c52bced0589066f479f81049ecfa1b3134acffafd38d7ddd1fbb462ade8750a9",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $19b^2-38b$ ⑵ $6p^2-51pq$\",\"work\":\"⑴ $7b^2-56b+12b^2+18b=19b^2-38b$\\n⑵ $54p^2-9pq-48p^2-42pq=6p^2-51pq$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $19b^2-38b$ ⑵ $6p^2-51pq$",
+  "work": "⑴ $7b^2-56b+12b^2+18b=19b^2-38b$\n⑵ $54p^2-9pq-48p^2-42pq=6p^2-51pq$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0303bf413664ec9e0b01aebbdc890e24dec5e9039123b514ded68fdf1a6f4500"
+}

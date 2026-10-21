@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 291,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$의 변 $BC$ 위에 점 $E$를 잡았다. $\\angle BAE=28^{\\circ}$, $\\angle BCD=112^{\\circ}$일 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$80^{\\circ}$",
+  "$82^{\\circ}$",
+  "$84^{\\circ}$",
+  "$86^{\\circ}$",
+  "$88^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "평행사변형에서 이웃한 두 내각의 합은 $180^{\\circ}$이므로 $\\angle B=180^{\\circ}-112^{\\circ}=68^{\\circ}$이다.\n$\\triangle ABE$에서 $\\angle x=\\angle AEB=180^{\\circ}-28^{\\circ}-68^{\\circ}=84^{\\circ}$이다. 따라서 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A82-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A82-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-10",
+  "problemCode": "J20505-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "979b3782bc7d3608ecef72f95585b51712ff786dd62c3c2ce2eb41037efbcbfc",
+  "dbContentSha256": "94b2d77ff4474bb5edc1b34a6fdb3bb3e29dc518d45a1862c1624a2d87470ee4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "94803a374f275c05fb046543feb1b8848a098f0beda5904fa46182ab0e8d5ffe"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "윗꼭짓점에서 오른쪽 변 위의 점으로 선분을 그어 생긴 삼각형에서, 한 내각과 이웃 꼭짓점의 각이 주어지고 나머지 각을 구한다.",
+  "after": "같은 꼭짓점에서 아랫변 위의 점으로 선분을 그어, 반대쪽 삼각형에서 주어진 각과 아랫변 반대편 꼭짓점의 각으로 나머지 각을 구한다.",
+  "sharedConcept": "평행사변형의 이웃한 두 내각의 합 · 삼각형의 내각의 합",
+  "sharedProcedure": "이웃각으로 삼각형의 한 각 구하기 → 삼각형 내각의 합으로 x 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행사변형의 이웃한 두 내각의 합",
+   "삼각형의 내각의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형의 내각과 삼각형의 내각의 합으로 각 구하기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.208,
+   "longestRun": 9,
+   "residualChars": 56,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

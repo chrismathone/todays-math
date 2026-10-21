@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d79-d8e4-77d1-84d5-8ed81a7a13d4",
+ "startedAt": "2026-10-21T17:00:28+0900",
+ "elapsedSec": 16.6,
+ "studentSha256": {
+  "student.json": "abd0ef03f28a5f66b2e708952501d74c8206349539a605387323988f3460a05c"
+ },
+ "promptSha256": "39441566279a294d45ac1de7090be6cb424d57da0e545cc68adc0d258d3df923",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"주어진 몫에 $-4ab$를 곱하면 $A$이므로, 바른 계산은 주어진 몫에 $(-4ab)^2$을 곱한 것이다.\\n$A\\\\times(-4ab)=16a^2b^2\\\\left(\\\\frac34a-\\\\frac12b+\\\\frac18\\\\right)=12a^3b^2-8a^2b^3+2a^2b^2$\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "주어진 몫에 $-4ab$를 곱하면 $A$이므로, 바른 계산은 주어진 몫에 $(-4ab)^2$을 곱한 것이다.\n$A\\times(-4ab)=16a^2b^2\\left(\\frac34a-\\frac12b+\\frac18\\right)=12a^3b^2-8a^2b^3+2a^2b^2$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "594f966b9e81cc1d17775055f37e92896e6160e7eba86dab8b1a3e9c9f729b5e"
+}

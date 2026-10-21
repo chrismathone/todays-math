@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 392,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r2",
+ "authorId": "claude-opus-5-5:fac729c0-f1b5-4cd3-a568-1e78efce20c0",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림]\n그림과 같은 정칠각형 $\\mathrm{ABCDEFG}$의 꼭짓점 $\\mathrm{A}$에 말 $\\mathrm{P}$가 놓여 있다. 지우는 크기가 다른 주사위 두 개를 동시에 한 번 굴리고, 나온 두 눈의 수를 더한 만큼 말 $\\mathrm{P}$를 $\\mathrm{A} \\to \\mathrm{B} \\to \\mathrm{C} \\to \\cdots$ 의 방향으로 한 번에 꼭짓점 하나씩 옮긴다. 말 $\\mathrm{P}$가 꼭짓점 $\\mathrm{D}$에 멈출 확률을 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$\\frac{5}{36}$",
+ "solution": "[1단계] 두 주사위를 굴릴 때 일어날 수 있는 모든 경우의 수는 $6\\times 6=36$이다.\n[2단계] $\\mathrm{A}$에서 $\\mathrm{D}$까지는 꼭짓점 $3$개만큼 옮겨야 하고, 정칠각형을 한 바퀴 돌면 $7$칸이므로 두 눈의 수의 합이 $3$ 또는 $3+7=10$이어야 한다. (합은 $12$ 이하이므로 $17$ 이상은 안 된다.)\n(ⅰ) 합이 $3$인 경우: $(1,\\,2)$, $(2,\\,1)$의 $2$가지이므로 확률은 $\\frac{2}{36}$이다.\n(ⅱ) 합이 $10$인 경우: $(4,\\,6)$, $(5,\\,5)$, $(6,\\,4)$의 $3$가지이므로 확률은 $\\frac{3}{36}$이다.\n[3단계] 두 경우는 동시에 일어날 수 없으므로 구하는 확률은 $\\frac{2}{36}+\\frac{3}{36}=\\frac{5}{36}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20903-B87-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20903-B87-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-20",
+  "problemCode": "J20903-B87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "5dadcf5bba47284cb618268a43a2e5c0650f1a435aeb6642f7080bbe022a28cf",
+  "dbContentSha256": "4136a492a3686eb94c5688d897b34a889f9b7a17cc0a36555455e1194013c44d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [
+   "f01209503970e0080b986174f6fd1a3b09fc421436717f6f558dc708eef14dc0"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers",
+   "context"
+  ],
+  "before": "정오각형의 한 꼭짓점에서 출발한 점이 두 주사위 눈의 합만큼 돌고 나서 출발한 꼭짓점으로 되돌아올 확률을 구한다(합이 꼭짓점 수의 배수인 두 경우).",
+  "after": "정칠각형의 한 꼭짓점에서 출발한 말이 두 주사위 눈의 합만큼 정해진 방향으로 옮겨진 뒤 출발점이 아닌 세 칸 떨어진 꼭짓점에 멈출 확률을 구한다(합이 7로 나눈 나머지가 3인 두 경우 3, 10).",
+  "sharedConcept": "다각형 둘레를 도는 이동과 두 주사위 눈의 합 · 동시에 일어나지 않는 사건의 확률의 합",
+  "sharedProcedure": "모든 경우의 수 36 → 도착 조건을 만족하는 합 찾기(한 바퀴 더 도는 경우 포함) → 각 합의 순서쌍 세기 → 각 확률을 구해 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "두 주사위를 던질 때의 경우의 수",
+   "순서쌍으로 경우 나열하기",
+   "동시에 일어나지 않는 두 사건의 확률의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B87-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "다각형 위를 주사위 눈의 합만큼 이동해 특정 꼭짓점에 멈출 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.118,
+   "longestRun": 7,
+   "residualChars": 105,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df6-8b2b-79c0-827b-224bb73caa8c",
+ "startedAt": "2026-10-21T19:16:40+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "fig-1.png": "60c24a8c65433e7257452dcaef89cdde3245845e47da99b431a87606bbe456f1",
+  "student.json": "2efc0fd6d4843e2f7629b157a88e36fe730782dbfef53e400bc4d4516d0aa90a"
+ },
+ "promptSha256": "e353c9c7902aff08f90124e5c81b7d29a73715829754baffc40516f8eeff4b04",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"대응하는 모서리 EF와 KL의 길이가 각각 10 cm, 14 cm이므로 닮음비는 5:7이다. 따라서 BC:HI=5:7이고, x=40, y=20×7/5=28, z=35×5/7=25이므로 x+y-z=43이다. 꼭짓점의 대응에 따라 면 ACFD에 대응하는 면은 면 GILJ이므로 ④가 옳지 않다. 또한 삼각형 DEF와 JKL은 서로 닮음이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "대응하는 모서리 EF와 KL의 길이가 각각 10 cm, 14 cm이므로 닮음비는 5:7이다. 따라서 BC:HI=5:7이고, x=40, y=20×7/5=28, z=35×5/7=25이므로 x+y-z=43이다. 꼭짓점의 대응에 따라 면 ACFD에 대응하는 면은 면 GILJ이므로 ④가 옳지 않다. 또한 삼각형 DEF와 JKL은 서로 닮음이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a373928b3a2256a459cc34d39769dd779111bbf8e2682931daeb9441f6e0026c"
+}

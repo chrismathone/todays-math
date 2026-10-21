@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 170,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r1",
+ "authorId": "middle-engine:2-1|연립일차방정식|04A",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "$x$, $y$가 음이 아닌 정수일 때, 일차방정식 $5x+3y=28$의 해 $(x, y)$는 모두 몇 개인지 구하시오.",
+ "choices": [
+  "$2$개",
+  "$3$개",
+  "$4$개",
+  "$1$개",
+  "$5$개"
+ ],
+ "answer": "①",
+ "solution": "$x=0$, $1$, $2$, $\\cdots$를 대입하여 $28-5x$가 $3$의 음이 아닌 배수가 되는 경우를 세면 모두 $2$개이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ffc616326d5bfbaa-0-3",
+  "problemCode": "J20301-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "786e6702db54900d38af56d3de347f066f15343fb5c6bdaaed8387fa75b402c1",
+  "dbContentSha256": "bb937583697106fa82c15c3ffd88aac6a7513a54a3c94b03097bd041963c0055",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-1_연립일차방정식과그해.hwp",
+    "sha256": "291f6116cc7eea5c0ab4f3470f4fed09c4e895acecfd0e51f276f4b73841c261",
+    "bytes": 47104
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers"
+  ],
+  "before": "x 에 0부터 차례로 대입해 y 가 음이 아닌 정수가 되는 순서쌍의 개수를 다섯 수 가운데 고른다.",
+  "after": "엔진이 새 계수·상수항을 정해 음이 아닌 정수해의 개수를 세게 하고, 파생기가 보기 다섯의 객관식으로 만든다.",
+  "sharedConcept": "조건(음이 아닌 정수)이 있는 일차방정식의 해",
+  "sharedProcedure": "x 에 0, 1, 2, …를 차례로 대입 → y 값 계산 → 음이 아닌 정수인 것만 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 해의 뜻",
+   "순서쌍",
+   "정수와 유리수의 구분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A80-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "음이 아닌 정수 조건에서 일차방정식의 해의 개수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|연립일차방정식|04A",
+   "seed": 4189761371,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+   "authorRationale": "음이 아닌 정수 조건에서 일차방정식의 해의 개수를 세는 같은 개념·절차이며, 파생기로 값을 묻는 객관식이 된다.",
+   "facts": {
+    "a": 5,
+    "b": 3,
+    "c": 28,
+    "answer": 2
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 6개 가운데 83% 그대로"
+   ],
+   "overlap4": 0.238,
+   "longestRun": 13,
+   "residualChars": 45,
+   "params": 6,
+   "numberRetention": 0.833,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 163,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A55-001-r2",
+ "authorId": "claude-fable-5-1:c6516700-b316-4293-9a42-9fa05a842bda",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20301-A55-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아가 두 수 $x$, $y$ 에 대한 연립방정식을 세워 풀었더니 해가 순서쌍 $(9,\\ -6)$ 이었다. 서아가 세운 연립방정식으로 알맞은 것은?",
+ "choices": [
+  "$\\begin{cases} \\,x+y=3 \\\\ \\,3x-y=30 \\end{cases}$",
+  "$\\begin{cases} \\,2x+3y=0 \\\\ \\,x-2y=21 \\end{cases}$",
+  "$\\begin{cases} \\,2x+y=12 \\\\ \\,x+3y=-6 \\end{cases}$",
+  "$\\begin{cases} \\,4x+3y=18 \\\\ \\,2x-3y=30 \\end{cases}$",
+  "$\\begin{cases} \\,7x+6y=27 \\\\ \\,2x-y=20 \\end{cases}$"
+ ],
+ "answer": "②",
+ "solution": "$x=9$, $y=-6$ 을 두 식에 모두 대입하여 둘 다 성립하는 것을 찾는다.\n① $9+(-6)=3$ 은 성립하지만 $27-(-6)=33\\neq 30$\n② $18+(-18)=0$ 성립, $9-(-12)=21$ 성립\n③ $18+(-6)=12$ 은 성립하지만 $9+(-18)=-9\\neq -6$\n④ $36+(-18)=18$ 은 성립하지만 $18-(-18)=36\\neq 30$\n⑤ $63+(-36)=27$ 은 성립하지만 $18-(-6)=24\\neq 20$\n따라서 $(9,\\ -6)$ 을 해로 갖는 연립방정식은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-4",
+  "problemCode": "J20301-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "00fb1175aedda02bd61a3ef434c2dc030a2343b16d98b6f00abb159c68514ed0",
+  "dbContentSha256": "d3b4f7b1cd5bd8cad4552de3d589358fd7babe4bd24bd55fa2348c195b95baed",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "해를 x, y 의 값 두 개로 따로 주고, 다섯 연립방정식 가운데 그 값이 두 식을 모두 만족시키는 것 하나를 고른다.",
+  "after": "인물이 세운 연립방정식의 해를 순서쌍 하나로 주고, 다섯 연립방정식 가운데 그 순서쌍이 두 식을 모두 만족시키는 것 하나를 고른다. 해와 계수 · 상수항을 모두 새로 정했다.",
+  "sharedConcept": "연립방정식의 해 — 두 일차방정식을 동시에 만족시키는 x, y 의 값",
+  "sharedProcedure": "주어진 x, y 의 값을 각 연립방정식의 두 식에 대입 → 등식이 성립하는지 확인 → 두 식이 모두 성립하는 것을 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 해",
+   "미지수가 2개인 일차방정식의 해",
+   "연립방정식의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A55-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 해를 갖는 연립방정식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.109,
+   "longestRun": 6,
+   "residualChars": 124,
+   "params": 10,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

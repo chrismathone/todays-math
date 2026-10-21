@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A84-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a4c301f9-f0f3-46dc-ac25-9b83f7a39868",
+ "startedAt": "2026-10-21T16:31:22+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "fig-1.png": "c62e6f1d498327cacc43ff41262f42a195060200adda2c4b08d4fb07db76eb5b",
+  "student.json": "af5f1b03be073542e652c8c31b68a09717d0dc59e51ea6c5de796bbacd72e3dc"
+ },
+ "promptSha256": "c32490b3fe8c3ba7c59abe51e536ea868f4ee6941f5481d99d18297e9faa3192",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"12°\", \"work\": \"∠B=∠C=(180°−44°)/2=68°. I는 내심이므로 ∠ICB=68°/2=34°. O는 외심이므로 ∠BOC=2∠A=88°이고, OB=OC이므로 ∠OCB=(180°−88°)/2=46°. 따라서 ∠x=∠OCI=46°−34°=12°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "12°",
+  "work": "∠B=∠C=(180°−44°)/2=68°. I는 내심이므로 ∠ICB=68°/2=34°. O는 외심이므로 ∠BOC=2∠A=88°이고, OB=OC이므로 ∠OCB=(180°−88°)/2=46°. 따라서 ∠x=∠OCI=46°−34°=12°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5c5d21b6ad756b744ed775f0c87347f1d60b9c3ab36e1488091d4bb85dde31fb"
+}

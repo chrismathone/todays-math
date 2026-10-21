@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcb-211c-7eb0-8555-0433b6ec655b",
+ "startedAt": "2026-10-21T18:29:15+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "bf2b99d00d5332626311061d897858dcd83176118aabb0a93d394f9ee0f42d9a"
+ },
+ "promptSha256": "3ac7ce76d6fcf51fcda737e6a65b49451181be270f35507811d19b7597ef3219",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"서로 다른 두 주사위를 던질 때 전체 경우의 수는 6×6=36이다. 3a-b=5를 만족하는 (a,b)는 (2,1), (3,4)의 2가지이므로 확률은 2/36=1/18이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "서로 다른 두 주사위를 던질 때 전체 경우의 수는 6×6=36이다. 3a-b=5를 만족하는 (a,b)는 (2,1), (3,4)의 2가지이므로 확률은 2/36=1/18이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f339e8ae06487d87c51f5f158218d39cf1fe380c0f6cc53176fd1e866f894dcc"
+}

@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 37,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r2",
+ "authorId": "claude-fable-5-1:4115605e-77f8-4245-aa88-059ec6de831b",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$\\left(3x^{2}y^{P}\\right)^{3}\\times \\left(-2xy^{3}\\right)^{2}\\div \\frac{3}{4}x^{Q}y^{2}=Rx^{4}y^{13}$이 성립할 때, 세 자연수 $P$, $Q$, $R$에 대하여 $P+Q+R$의 값은?",
+ "choices": [
+  "$140$",
+  "$144$",
+  "$148$",
+  "$151$",
+  "$155$"
+ ],
+ "answer": "④",
+ "solution": "$\\left(3x^{2}y^{P}\\right)^{3}=27x^{6}y^{3P}$, $\\left(-2xy^{3}\\right)^{2}=4x^{2}y^{6}$이므로 좌변은 $27x^{6}y^{3P}\\times 4x^{2}y^{6}\\times \\frac{4}{3x^{Q}y^{2}}=144x^{8-Q}y^{3P+4}$이다. 이것이 $Rx^{4}y^{13}$과 같으므로 $8-Q=4$에서 $Q=4$, $3P+4=13$에서 $P=3$, $R=144$이다. 따라서 $P+Q+R=3+4+144=151$이므로 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-7",
+  "problemCode": "J20106-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "9eb2404e44530d7a2a3ba4d13ba6f87e5583a053f03287f884002e117547da80",
+  "dbContentSha256": "08fd93753477d41a0542b05329d88d9fac732124606a0ba104a23038c3063f43",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "제곱한 단항식을 분수 계수 단항식으로 나눈 뒤 또 다른 제곱 단항식을 곱한 결과를 주고, 첫 인수의 지수·나누는 식의 지수·결과의 계수에 든 세 자연수의 합을 고른다.",
+  "after": "세제곱한 단항식에 제곱 단항식을 곱한 뒤 분수 계수 단항식으로 나눈 결과를 주고, 세제곱 안의 지수·나누는 식의 지수·결과의 계수에 든 세 자연수의 합을 고른다. 곱셈과 나눗셈의 순서가 바뀌고 미지 지수가 세제곱 안에 들어가 지수 비교식이 $3P+4=13$ 꼴이 된다.",
+  "sharedConcept": "지수법칙과 단항식의 곱셈·나눗셈 혼합 계산에서 계수와 지수 비교",
+  "sharedProcedure": "거듭제곱 전개 → 나눗셈을 역수의 곱으로 바꿔 계수·지수 정리 → 우변과 계수·지수 비교 → 세 자연수 구해 합산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(거듭제곱의 거듭제곱, 곱셈·나눗셈)",
+   "단항식의 곱셈과 나눗셈",
+   "단항식의 곱셈과 나눗셈의 혼합 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A62-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 혼합 계산 결과를 비교하여 미지의 지수와 계수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.099,
+   "longestRun": 7,
+   "residualChars": 74,
+   "params": 10,
+   "numberRetention": 0.2,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

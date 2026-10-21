@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 248,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A83-001-r1",
+ "authorId": "claude-fable-5-1:644746bd-9f1a-4988-abe3-ade6f81db79a",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 가운데 $y$가 $x$에 대한 일차함수인 것을 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "$2x-y=7$",
+  "$y=\\frac{6}{x}$",
+  "$y=4$",
+  "$y=\\frac{5-2x}{3}$",
+  "$y=\\frac{x^{2}}{3}$"
+ ],
+ "answer": "①, ④",
+ "solution": "① $2x-y=7$을 $y$에 대하여 정리하면 $y=2x-7$이므로 일차함수이다.\n② $y=\\frac{6}{x}$은 $x$가 분모에 있으므로 일차함수가 아니다.\n③ $y=4$는 $x$의 값에 관계없이 $y$의 값이 일정한 상수함수이므로 일차함수가 아니다.\n④ $y=\\frac{5-2x}{3}=-\\frac{2}{3}x+\\frac{5}{3}$이므로 일차함수이다.\n⑤ $y=\\frac{x^{2}}{3}$은 $x$에 대한 이차식이므로 일차함수가 아니다.\n따라서 답은 ①, ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6d2b7e156d996e54-0-1",
+  "problemCode": "J20401-A83-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "e968cef2914024df63a505b05bd96bd7660c2b6691f7202f42eb32fe7579a3b2",
+  "dbContentSha256": "456f7065af32b7d7ef1a41d6af6efc403209bb1991aeafafe25ed2a510e01864",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-2_일차함수와그그래프.hwp",
+    "sha256": "738b0e7870ca46a39301619f9978cd042293e87e29e401c4088a212e966f61b5",
+    "bytes": 50688
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "상수함수 · x+y=0 꼴 · 분모가 수인 분수식 · 반비례식 · x(2-x)처럼 전개해야 보이는 이차식 다섯 가운데 일차함수인 둘(2번 · 3번)을 고른다.",
+  "after": "ax-y=c 꼴(y로 정리하면 기울기 2) · 반비례식 · 상수함수 · 분모가 수인 분수식 · x²/3 꼴의 이차식 다섯 가운데 일차함수인 둘(1번 · 4번)을 고른다. 보기 배열과 정답 위치를 바꾸고 y로 옮겨 정리해야 하는 보기를 계수 있는 꼴로 두었다.",
+  "sharedConcept": "일차함수의 뜻 — y=ax+b(a≠0) 꼴로 나타낼 수 있는가",
+  "sharedProcedure": "각 식을 y에 대하여 정리 → 분모의 x · 상수함수 · 이차식 걸러내기 → 일차식인 것 둘 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "일차함수의 뜻",
+   "등식을 한 문자에 대하여 정리하기",
+   "반비례 관계"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A83-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수인 식 모두 고르기(정답 2개)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.39",
+    "이어진 같은 글 25자",
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.393,
+   "longestRun": 25,
+   "residualChars": 59,
+   "params": 5,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

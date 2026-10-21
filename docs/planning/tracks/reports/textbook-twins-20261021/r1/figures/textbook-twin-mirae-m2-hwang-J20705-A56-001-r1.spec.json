@@ -1,0 +1,114 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   140,
+   10
+  ],
+  "B": [
+   20,
+   240
+  ],
+  "C": [
+   260,
+   240
+  ],
+  "D": [
+   140,
+   240
+  ],
+  "G": [
+   140,
+   163.33
+  ],
+  "Gp": [
+   140,
+   214.44
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AD": [
+   "A",
+   "D"
+  ],
+  "GB": [
+   "G",
+   "B"
+  ],
+  "GC": [
+   "G",
+   "C"
+  ],
+  "GpB": [
+   "Gp",
+   "B"
+  ],
+  "GpC": [
+   "Gp",
+   "C"
+  ]
+ },
+ "regions": {
+  "shade": {
+   "boundary": [
+    {
+     "seg": [
+      "G",
+      "Gp"
+     ]
+    },
+    {
+     "seg": [
+      "Gp",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "G"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "G": {
+   "text": "G",
+   "position": "NW"
+  },
+  "Gp": {
+   "text": "G'",
+   "position": "NW"
+  }
+ }
+}

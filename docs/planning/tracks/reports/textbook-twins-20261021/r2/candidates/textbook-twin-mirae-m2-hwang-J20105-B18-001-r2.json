@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 108,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B18-001-r2",
+ "authorId": "claude-fable-5-1:6f35f3ef-3a78-4ca4-9427-118c62553007",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B18-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하시오. (수의 거듭제곱은 지수를 써서 나타낸다.)\n⑴ $7^{8}\\div 7^{15}$\n⑵ $m^{20}\\div m^{11}$\n⑶ $t^{18}\\div t^{7}\\div t^{10}$\n⑷ $(k^{8})^{2}\\div (k^{7})^{3}$",
+ "choices": [],
+ "answer": "⑴ $\\frac{1}{7^{7}}$ ⑵ $m^{9}$ ⑶ $t$ ⑷ $\\frac{1}{k^{5}}$",
+ "solution": "⑴ 나누는 쪽 지수가 더 크므로 $7^{8}\\div 7^{15}=\\frac{1}{7^{15-8}}=\\frac{1}{7^{7}}$이다.\n⑵ $m^{20}\\div m^{11}=m^{20-11}=m^{9}$이다.\n⑶ 앞에서부터 차례로 나누면 $t^{18}\\div t^{7}\\div t^{10}=t^{11}\\div t^{10}=t$이다.\n⑷ 괄호를 먼저 풀면 $(k^{8})^{2}\\div (k^{7})^{3}=k^{16}\\div k^{21}=\\frac{1}{k^{5}}$이다.\n따라서 답은 ⑴ $\\frac{1}{7^{7}}$ ⑵ $m^{9}$ ⑶ $t$ ⑷ $\\frac{1}{k^{5}}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-462f92d07b044ff5-1-1",
+  "problemCode": "J20105-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "995dbdfb0818042bbbb7a89b12df1297df4d630ec8cbfbc7dc2cc1582f24bf99",
+  "dbContentSha256": "6c5244d4643307e3e721c85263ec06f95e4c94caae4b0d80edc34bd78f2e07ee",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-2_지수법칙2.hwp",
+    "sha256": "dd8ffba18592998c314e12893178cbff4628c16beec3433c2cc175b5f16ef38b",
+    "bytes": 260608
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷으로 같은 밑의 나눗셈을 간단히 한다. 첫째는 수가 밑이고 지수가 큰 쪽을 작은 쪽으로 나누어 거듭제곱이 남고, 둘째는 문자가 밑이고 작은 쪽을 큰 쪽으로 나누어 분수가 되며, 셋째는 문자 거듭제곱 셋을 차례로 나누고, 넷째는 거듭제곱의 거듭제곱을 먼저 푼 뒤 나눈다.",
+  "after": "소문항 넷의 절차는 같되 첫째·둘째의 결과 꼴을 맞바꾸었다. 첫째는 수가 밑이면서 지수가 작은 쪽을 큰 쪽으로 나누어 분수가 되고, 둘째는 문자가 밑이면서 큰 쪽을 작은 쪽으로 나누어 거듭제곱이 남는다. 셋째는 문자 거듭제곱 셋을 차례로 나누어 문자 하나가 남고, 넷째는 거듭제곱의 거듭제곱을 푼 뒤 나누어 분수가 된다. 수는 원본과 겹치지 않게 전부 새로 잡았다(겹치는 수는 2·3뿐). 수가 밑인 경우의 답 표기를 지수 꼴로 못 박아 답이 하나로 정해지게 했다.",
+  "sharedConcept": "지수법칙 ⑶ — 같은 밑의 거듭제곱의 나눗셈(지수 크기에 따른 세 경우)과 거듭제곱의 거듭제곱",
+  "sharedProcedure": "밑이 같은지 확인 → 괄호가 있으면 지수끼리 곱해 먼저 푼다 → 두 지수의 크기를 비교한다 → 큰 쪽에서 작은 쪽을 빼 지수를 정하고, 나누는 쪽이 크면 분수 꼴로 쓴다 → 나눗셈이 이어지면 앞에서부터 차례로 반복한다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻과 밑·지수",
+   "지수법칙 ⑴ 거듭제곱의 곱셈",
+   "지수법칙 ⑵ 거듭제곱의 거듭제곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B18-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "같은 밑의 거듭제곱 나눗셈을 지수의 크기 비교로 간단히 하기(소문항 넷)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.028,
+   "longestRun": 4,
+   "residualChars": 75,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

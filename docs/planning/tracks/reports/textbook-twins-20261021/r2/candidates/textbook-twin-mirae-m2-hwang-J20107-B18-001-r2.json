@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 32,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r2",
+ "authorId": "claude-fable-5-1:57a087ce-59e9-4ab1-b8f9-88c73cc0a9fb",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "하루가 아래 전개도를 접어 직육면체 상자를 만들려고 한다. 접었을 때 마주 보게 되는 두 면에 적힌 다항식의 합이 어느 쌍이든 서로 같도록 $A$, $B$를 정했다. 이때 $2A-B$를 계산하시오.\n[그림]",
+ "choices": [],
+ "answer": "$9x-y+19$",
+ "solution": "세로로 늘어선 네 면의 둘째 면 양옆에 붙은 두 면은 접으면 서로 마주 보므로, 마주 보는 두 면의 합은 $(2x-3y+5)+(-x+5y-1)=x+2y+4$이다.\n$A$가 적힌 첫째 면은 셋째 면 $-2x+y-3$과 마주 보므로 $A=(x+2y+4)-(-2x+y-3)=3x+y+7$이다.\n$B$가 적힌 둘째 면은 넷째 면 $4x-y+9$와 마주 보므로 $B=(x+2y+4)-(4x-y+9)=-3x+3y-5$이다.\n따라서 $2A-B=2(3x+y+7)-(-3x+3y-5)=6x+2y+14+3x-3y+5=9x-y+19$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20107-B18-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20107-B18-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-11",
+  "problemCode": "J20107-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "4ad695e3286e5c5c5c243ffdbe3e867dc49e7768342cd4efa806f33810f990ca",
+  "dbContentSha256": "aef7eee92bd16335ce980e071634840f8f33ee40ce47c2a1cde3584cdd344a13",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [
+   "be130c5405096ab105022c149221d7d65e874ccf16005691c148812f30697e35"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "십자 모양 전개도에서 가로 네 면 양끝에 미지의 식 A, B가 있고, 위·아래로 붙은 두 면이 마주 보는 알려진 쌍이다. 그 쌍의 합을 공통 합으로 삼아 A, B를 각각 구한 뒤 A에서 B의 2배를 뺀다. 면은 모두 정사각형으로 그려져 있다.",
+  "after": "세로로 늘어선 네 면(가로 100·세로 80 또는 50의 직사각형)에 둘째 면 양옆으로 좁은 두 면이 붙은 직육면체 전개도. 양옆 두 면이 마주 보는 알려진 쌍이고, A는 첫째 면, B는 둘째 면에 있어 각각 셋째·넷째 면과 마주 본다. 공통 합에서 A, B를 구한 뒤 A의 2배에서 B를 뺀다. 면의 가로·세로가 달라 직육면체임이 그림에서 드러난다.",
+  "sharedConcept": "직육면체 전개도에서 마주 보는 면 찾기와 다항식의 덧셈·뺄셈",
+  "sharedProcedure": "알려진 마주 보는 한 쌍의 합을 구함 → 공통 합에서 마주 보는 면의 식을 빼어 A, B를 각각 구함 → 괄호를 풀어 A, B의 일차결합을 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "직육면체의 전개도에서 마주 보는 면 찾기",
+   "다항식의 덧셈과 뺄셈",
+   "분배법칙으로 괄호 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-B18-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "전개도의 마주 보는 면 조건으로 미지의 다항식을 구해 일차결합 계산하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'cL' has no line/circle/label-free position",
+     "session": "0887622c-506d-4e50-852b-a7738b44a863",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.176,
+   "longestRun": 7,
+   "residualChars": 71,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

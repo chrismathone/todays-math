@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "164726bf-0896-4622-b394-ba1205a8cd34",
+ "startedAt": "2026-10-21T17:05:09+0900",
+ "elapsedSec": 9.6,
+ "studentSha256": {
+  "fig-1.png": "fe137c90bc5ae83949ef4023369969fca62ffc1333ab9f3db5f437f6bf712941",
+  "student.json": "e772da584570953239744c8d80f974d889e3b56bf98f8f6ede19987200d9daa1"
+ },
+ "promptSha256": "d54c98717ce06acdf013a6b66faaf043817a4e3ed67a47c2ecb1b54836a0d478",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"5 cm\", \"work\": \"∠R = 90° − 60° = 30°이다. MQ = MR이므로 △MQR은 이등변삼각형이고, ∠MQR = ∠R = 30°이다. 따라서 ∠PQM = 90° − 30° = 60°이다. △PQM에서 ∠P = ∠PQM = 60°이므로 ∠PMQ도 60°가 되어 △PQM은 정삼각형이다. 그래서 PQ = PM = MQ이다. 한편 MQ = MR이므로 PM = MR이고, M은 PR의 중점이다. 따라서 PQ = PM = 10 ÷ 2 = 5 cm이다.\", \"confidence\": \"high\", \"issues\": [\"그림에서 'M' 글자가 PR 위의 점 옆이 아니라 선분 QM 가운데쯤에 적혀 있다. 그래도 글에 'M은 PR 위의 점'이라고 되어 있어 풀이에는 영향이 없다.\", \"'10 cm' 표시가 PR의 위쪽에 있다. 글에서 PR = 10 cm라고 했으므로 그대로 따랐다.\"]}\n```",
+ "parsed": {
+  "answer": "5 cm",
+  "work": "∠R = 90° − 60° = 30°이다. MQ = MR이므로 △MQR은 이등변삼각형이고, ∠MQR = ∠R = 30°이다. 따라서 ∠PQM = 90° − 30° = 60°이다. △PQM에서 ∠P = ∠PQM = 60°이므로 ∠PMQ도 60°가 되어 △PQM은 정삼각형이다. 그래서 PQ = PM = MQ이다. 한편 MQ = MR이므로 PM = MR이고, M은 PR의 중점이다. 따라서 PQ = PM = 10 ÷ 2 = 5 cm이다.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 'M' 글자가 PR 위의 점 옆이 아니라 선분 QM 가운데쯤에 적혀 있다. 그래도 글에 'M은 PR 위의 점'이라고 되어 있어 풀이에는 영향이 없다.",
+   "'10 cm' 표시가 PR의 위쪽에 있다. 글에서 PR = 10 cm라고 했으므로 그대로 따랐다."
+  ]
+ },
+ "eventsSha256": "658294060a82f9658278c553194fd07d0d5d5ad207982c3693cae11c66b13c91"
+}

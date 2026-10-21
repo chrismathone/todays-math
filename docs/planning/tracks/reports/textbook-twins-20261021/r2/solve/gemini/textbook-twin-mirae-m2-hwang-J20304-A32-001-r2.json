@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A32-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "74367b9e-1783-4cd8-bc23-7ce56052ae42",
+ "startedAt": "2026-10-21T18:12:26+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "student.json": "b793386178dd1e754c311990544a17167bb973d21478f9da6e5a00accd68f66e"
+ },
+ "promptSha256": "94f32ab70c1f78e17ea6bc7efe3a8aace8c112682f95c8d3891ef4cac8a91190",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"바르게 적은 식 $6x+y=40$에 $y=-8$을 대입하면 $6x-8=40$에서 $x=8$이다. 잘못 적은 식 $9x+8y=k$에 $x=8$, $y=-8$을 대입하면 $k=9\\\\times 8 + 8\\\\times(-8) = 72 - 64 = 8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "바르게 적은 식 $6x+y=40$에 $y=-8$을 대입하면 $6x-8=40$에서 $x=8$이다. 잘못 적은 식 $9x+8y=k$에 $x=8$, $y=-8$을 대입하면 $k=9\\times 8 + 8\\times(-8) = 72 - 64 = 8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "33452928b0ff32cca11b8fb8fcd4ac7318ce9161885d7fbf5cc347b731427af7"
+}

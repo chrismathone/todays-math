@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-0028-7340-b7ef-f0e96373ffcc",
+ "startedAt": "2026-10-21T16:55:11+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "6b73807739f25fc66d418da816a3f546fb5c61990651e9d7b71366c5a6026f07"
+ },
+ "promptSha256": "aad22b9fb0133b8a16d1096609382d41d2ab5c1a743df9ba2d96a52793d9d46b",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"ㄱ은 xy항이 있어 일차방정식이 아니다.\\nㄷ은 정리하면 y=3이므로 미지수가 1개이다.\\nㄴ, ㄹ, ㅁ은 각각 2x+3y=12, 2x+y=5, x+y=4로 정리되므로 미지수가 2개인 일차방정식이다. 따라서 모두 3개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "ㄱ은 xy항이 있어 일차방정식이 아니다.\nㄷ은 정리하면 y=3이므로 미지수가 1개이다.\nㄴ, ㄹ, ㅁ은 각각 2x+3y=12, 2x+y=5, x+y=4로 정리되므로 미지수가 2개인 일차방정식이다. 따라서 모두 3개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "46b4b0d186051c5fe1285859e7bf5d3a16552dcdb361bbb945b7dc5a727139f0"
+}

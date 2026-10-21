@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcb-eb89-7103-a09d-92c2f59dc6e6",
+ "startedAt": "2026-10-21T18:30:07+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "b13879285411294fedca303b731a1a7d0137b81ca1d3742b5000415a7fa870bd"
+ },
+ "promptSha256": "51135c71a2503bf5ba20ae0e618469a6788c459a62ebe30c68e4e9d5583fb05f",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"카드를 다시 넣고 뽑으므로 전체 경우의 수는 9×9=81이다.\\n합이 9의 배수인 경우는 합이 9 또는 18일 때이다. 합이 9인 순서쌍은 (1,8), …, (8,1)의 8가지이고, 합이 18인 순서쌍은 (9,9)의 1가지이다.\\n따라서 확률은 (8+1)/81=1/9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "카드를 다시 넣고 뽑으므로 전체 경우의 수는 9×9=81이다.\n합이 9의 배수인 경우는 합이 9 또는 18일 때이다. 합이 9인 순서쌍은 (1,8), …, (8,1)의 8가지이고, 합이 18인 순서쌍은 (9,9)의 1가지이다.\n따라서 확률은 (8+1)/81=1/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3837bc3243d0ad0bacfc7d5df99de7eee9e67bff387de9f682ac0ee4b4415ca3"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-9986-74c2-a078-a31fd4188d16",
+ "startedAt": "2026-10-21T18:45:04+0900",
+ "elapsedSec": 15.3,
+ "studentSha256": {
+  "student.json": "fe26d7fd06cbf7e13705e145775d0481c8220abe25402190e5c9214f070b0566"
+ },
+ "promptSha256": "c2bd5fca9eb0987121d9d87cf32bc73354b600aee5759f84628c7a36cf8b8e22",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"ㄱ, ㄷ은 미지수 x, y가 모두 1차인 일차방정식이다.\\nㄴ은 $x^2$항이 있으므로 일차방정식이 아니다.\\nㄹ은 $6y=0$, ㅁ은 $6x=-8$로 정리되어 미지수가 1개인 일차방정식이다.\\n따라서 ㄱ, ㄷ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ, ㄷ은 미지수 x, y가 모두 1차인 일차방정식이다.\nㄴ은 $x^2$항이 있으므로 일차방정식이 아니다.\nㄹ은 $6y=0$, ㅁ은 $6x=-8$로 정리되어 미지수가 1개인 일차방정식이다.\n따라서 ㄱ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a7efafabbfee22f0bf204b1401c8e3a660a0102acdc311f5e96fe993ea7180c8"
+}

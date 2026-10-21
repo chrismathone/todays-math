@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df5-391d-7253-86e1-07e814a4d868",
+ "startedAt": "2026-10-21T19:15:14+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "fig-1.png": "a511bcae0cc92ebc132ba9fc814e583008220ebc42ea3009c43ad2171e677caa",
+  "student.json": "f05ad09db0b4f50c5f07dc1f00d079ae1da5b781abea3764263d8470ef15c237"
+ },
+ "promptSha256": "2d5bd847ad460abae11f27463732e474e9c842e9cfbc0d65b40af5aac7d6ad5b",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"평행사변형의 이웃한 두 내각의 합은 180°이므로 ∠DAB = 180° − 115° = 65°이다.\\nE가 변 AB 위에 있으므로 ∠DAE = 65°이다. 삼각형 ADE에서 x = 180° − 65° − 40° = 75°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "평행사변형의 이웃한 두 내각의 합은 180°이므로 ∠DAB = 180° − 115° = 65°이다.\nE가 변 AB 위에 있으므로 ∠DAE = 65°이다. 삼각형 ADE에서 x = 180° − 65° − 40° = 75°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3fbfbbc4d46d18f5e4d01e6546c7fac20f19a435c93bd893b6f63b1d02bac0cc"
+}

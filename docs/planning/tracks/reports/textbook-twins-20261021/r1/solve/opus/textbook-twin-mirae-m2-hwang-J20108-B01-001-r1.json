@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-B01-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d69c1e2e-7770-4eff-96b0-d63aa7aa76a3",
+ "startedAt": "2026-10-21T16:15:25+0900",
+ "elapsedSec": 8.7,
+ "studentSha256": {
+  "fig-1.png": "d761f332c1935b04e9127f4c75d3bec04273e33646b749fa3015c7f4023a1892",
+  "student.json": "e5df1961a2b6ad837bd3df5a32b80a4b3d4badb1d4e7bd474da904f2d5244bde"
+ },
+ "promptSha256": "e14ec7a4a3c4117388e389705a1c4c466e568f5f242801119ed35a7d813e16b7",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$x+4y$\", \"work\": \"넓이 = (2x + b)·6xy/2 = 3xy(2x + b) = 6x^2y + 3xyb. 이것이 9x^2y + 12xy^2와 같으므로 3xyb = 3x^2y + 12xy^2이다. 양변을 3xy로 나누면 b = x + 4y이다.\", \"confidence\": \"high\", \"issues\": [\"그림에서 높이 '6xy'가 이탤릭이 아닌 글꼴로 적혀 있지만 의미는 같다.\", \"그림처럼 아랫변(x+4y)이 윗변(2x)보다 길려면 4y > x여야 한다. 문제에 이 조건은 없지만 답에는 영향이 없다.\"]}\n```",
+ "parsed": {
+  "answer": "$x+4y$",
+  "work": "넓이 = (2x + b)·6xy/2 = 3xy(2x + b) = 6x^2y + 3xyb. 이것이 9x^2y + 12xy^2와 같으므로 3xyb = 3x^2y + 12xy^2이다. 양변을 3xy로 나누면 b = x + 4y이다.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 높이 '6xy'가 이탤릭이 아닌 글꼴로 적혀 있지만 의미는 같다.",
+   "그림처럼 아랫변(x+4y)이 윗변(2x)보다 길려면 4y > x여야 한다. 문제에 이 조건은 없지만 답에는 영향이 없다."
+  ]
+ },
+ "eventsSha256": "3166f718c542168b4ed335b32942d94296b0e06a59125a7a6093b748cdfd9aea"
+}

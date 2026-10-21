@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A45-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "bc103fb6-433e-40ce-8384-c7a7ffeeabd2",
+ "startedAt": "2026-10-21T18:48:13+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "student.json": "aad0353c85ddfb9a73aaedaa664e32c9cd5b7d84ea2b33860ee469a284b585ce"
+ },
+ "promptSha256": "5a8ca71980b462098e01c68fd7c162e2a361dace3e58eea42a19105c2d68a007",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"오전 활동을 고르는 경우의 수는 6가지이고, 오후 활동을 고르는 경우의 수는 8가지이다. 오전과 오후의 활동을 각각 하나씩 고르는 것은 두 사건이 잇달아 일어나는 경우이므로 곱의 법칙에 의해 구하는 경우의 수는 6 × 8 = 48이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "오전 활동을 고르는 경우의 수는 6가지이고, 오후 활동을 고르는 경우의 수는 8가지이다. 오전과 오후의 활동을 각각 하나씩 고르는 것은 두 사건이 잇달아 일어나는 경우이므로 곱의 법칙에 의해 구하는 경우의 수는 6 × 8 = 48이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "453a8fb440e899c41cf282aabdf3ad3d1d5b1cf2b55f295014072735b887f45a"
+}

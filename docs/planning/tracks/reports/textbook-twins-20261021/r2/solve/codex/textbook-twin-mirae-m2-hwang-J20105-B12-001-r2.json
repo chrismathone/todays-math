@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B12-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d84-2121-7742-b5ec-d17595b584ad",
+ "startedAt": "2026-10-21T17:11:42+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "72469f93ba4adefb59f9e5415ba14f7b1617429c18bffd442ab8fd1914b420cf"
+ },
+ "promptSha256": "b4ce32b5476242e0863e4e9179d78d5cdabe88860d65e68be8320f3c8f0c4a23",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"31\",\"work\":\"식을 정리하면 (2^a/196)x^{5a-4}y^{10-a}이다.\\n2^a/196=8/49이므로 2^a=32, a=5이다.\\nb=5a-4=21, c=10-a=5이므로 a+b+c=31이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "31",
+  "work": "식을 정리하면 (2^a/196)x^{5a-4}y^{10-a}이다.\n2^a/196=8/49이므로 2^a=32, a=5이다.\nb=5a-4=21, c=10-a=5이므로 a+b+c=31이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "29d627a4a8e1c5ab8a020a246927347474eeb03c4b8a7a34211aa10910303c1d"
+}

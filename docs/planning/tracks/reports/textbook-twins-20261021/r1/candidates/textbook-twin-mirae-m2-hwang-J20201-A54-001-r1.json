@@ -1,0 +1,130 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 123,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$x$의 값이 $-3$, $-2$, $-1$, $0$일 때, 다음 부등식의 해를 모두 찾아 (　　) 안에 쓰시오.\n⑴ $x-1<-2$ (　　)\n⑵ $x-1\\le -2$ (　　)\n⑶ $2x+3>1$ (　　)\n⑷ $2x+3\\ge 1$ (　　)",
+ "choices": [],
+ "answer": "⑴ $-3$, $-2$ ⑵ $-3$, $-2$, $-1$ ⑶ $0$ ⑷ $-1$, $0$",
+ "solution": "$x=-3, -2, -1, 0$을 차례로 대입하여 참이 되는 값을 찾는다.\n⑴ $x-1<-2$는 $x=-3$일 때 $-4<-2$, $x=-2$일 때 $-3<-2$로 참이고 $x=-1$일 때 $-2<-2$는 거짓이므로 해는 $-3$, $-2$\n⑵ $x=-1$일 때 $-2\\le -2$도 참이므로 해는 $-3$, $-2$, $-1$\n⑶ $2x+3>1$은 $x=0$일 때 $3>1$만 참이므로 해는 $0$\n⑷ $x=-1$일 때 $1\\ge 1$도 참이므로 해는 $-1$, $0$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-efb70e97c9d000da-0-3",
+  "problemCode": "J20201-A54-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "cd484a028d76eeacf1024b027b466de44b41acb3727301cde9ce94f8136ceaec",
+  "dbContentSha256": "63e3c4dbab0e7b452a3bae3e5be3e406fc4e86a3676d7cbbfd92fe52a3178560",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-1_부등식과그해.hwp",
+    "sha256": "35a4df147c8674b4cadb1c404c1963fbb18cb671d9b038cb84902ed987869ba3",
+    "bytes": 283648
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "네 후보값(음수 하나 · 0 · 양수 둘)에 대해 네 부등식의 해를 고른다. 두 짝(엄격 · 등호 포함)이고 경계는 양수.",
+  "after": "네 후보값(음수 셋 · 0)에 대해 네 부등식의 해를 고른다. 두 짝 구조는 같지만 경계가 음수 $-1$이어서 음수 범위에서 등호 포함 여부를 가른다.",
+  "sharedConcept": "주어진 값 가운데 부등식의 해 찾기",
+  "sharedProcedure": "후보값 차례로 대입 → 참·거짓 판정 → 참인 값 모두 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "정수의 사칙연산",
+   "식의 값 대입"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A54-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 값 가운데 부등식의 해 모두 찾기(소문항 넷)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.45",
+    "이어진 같은 글 23자",
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.455,
+   "longestRun": 23,
+   "residualChars": 74,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

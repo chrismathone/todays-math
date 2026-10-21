@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A62-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df2-d951-7532-8feb-d85b606e7af0",
+ "startedAt": "2026-10-21T19:12:38+0900",
+ "elapsedSec": 13.7,
+ "studentSha256": {
+  "fig-1.png": "4bc189876cb4ed831a8f811b930f898b2151a66a211158d0797131f0dd6b3624",
+  "student.json": "f20c292e6eb328c14e0feafeacb4917c71adf8aa8884ae3562c0f45e2dbd80e7"
+ },
+ "promptSha256": "8814943797953a09c74427a58c706d66cba6104234cb7cb6d798df1f00045cf6",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $\\\\triangle ABC\\\\equiv\\\\triangle FDE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같음) ⑵ 5 cm\",\"work\":\"$\\\\angle A=90^\\\\circ-60^\\\\circ=30^\\\\circ=\\\\angle F$이다. 두 직각삼각형에서 빗변 $AB=FD=10\\\\text{ cm}$이므로 RHA 합동이다. 따라서 대응변의 길이가 같으므로 $DE=BC=5\\\\text{ cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle ABC\\equiv\\triangle FDE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같음) ⑵ 5 cm",
+  "work": "$\\angle A=90^\\circ-60^\\circ=30^\\circ=\\angle F$이다. 두 직각삼각형에서 빗변 $AB=FD=10\\text{ cm}$이므로 RHA 합동이다. 따라서 대응변의 길이가 같으므로 $DE=BC=5\\text{ cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d04494821370378dad82c862faed079bc6d6448f6f6d34d3e357cdd8d6b180b"
+}

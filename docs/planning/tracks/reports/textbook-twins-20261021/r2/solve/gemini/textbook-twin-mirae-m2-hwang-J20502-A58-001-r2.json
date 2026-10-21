@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "83f86279-6baa-44c2-8e24-9098e3d7c514",
+ "startedAt": "2026-10-21T18:28:38+0900",
+ "elapsedSec": 24.4,
+ "studentSha256": {
+  "fig-1.png": "2a53ea8de024e3da754729e090c8efcdf870f78db9eb3bde9fa9ce7347f826e9",
+  "student.json": "57f9d89a52d2686feadadda8d599ba7247654441d92243ca749c0f6033844810"
+ },
+ "promptSha256": "6dda8b1ae3584c1640ea355416557cba8af8a68df6ff7c7921af46a9461fcb00",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"30°\",\n  \"work\": \"직각삼각형 AMN과 ABN에서 빗변 AN이 공통이고 \\\\overline{MN}=\\\\overline{BN}이므로 \\\\triangle AMN \\\\equiv \\\\triangle ABN (RHS 합동)이다. 따라서 \\\\angle BAN = \\\\angle MAN = x이므로 \\\\angle BAC = 2x이다. 또한 점 N은 \\\\overline{AC}의 수직이등분선 위에 있으므로 \\\\overline{NA}=\\\\overline{NC}에서 \\\\angle C = \\\\angle NAC = x이다. 직각삼각형 ABC에서 \\\\angle BAC + \\\\angle C = 2x + x = 90°이므로 3x = 90°, 즉 x = 30°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "30°",
+  "work": "직각삼각형 AMN과 ABN에서 빗변 AN이 공통이고 \\overline{MN}=\\overline{BN}이므로 \\triangle AMN \\equiv \\triangle ABN (RHS 합동)이다. 따라서 \\angle BAN = \\angle MAN = x이므로 \\angle BAC = 2x이다. 또한 점 N은 \\overline{AC}의 수직이등분선 위에 있으므로 \\overline{NA}=\\overline{NC}에서 \\angle C = \\angle NAC = x이다. 직각삼각형 ABC에서 \\angle BAC + \\angle C = 2x + x = 90°이므로 3x = 90°, 즉 x = 30°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9570409c8608e8f32b2440979ada89206b84c9063d4d9ab8becc6a4d8122b9dc"
+}

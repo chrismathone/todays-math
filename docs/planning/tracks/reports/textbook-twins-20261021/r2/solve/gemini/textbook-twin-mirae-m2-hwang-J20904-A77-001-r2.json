@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "aaf62750-dd62-484e-a9b7-30032da2ce2e",
+ "startedAt": "2026-10-21T18:49:03+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "76a8c58f248e33e591b8c4f0202c68ac6fb34e18369e3c5fc5d7d37545d2818c"
+ },
+ "promptSha256": "cd402b4b8cf54f4fec3566f6d6900a03814c60fbe92f7c9289cc714c649e7456",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{8}{25}$\",\n  \"work\": \"고리를 막대에 걸지 못할 확률은 $\\\\frac{20}{100} = \\\\frac{1}{5}$이므로 막대에 걸 확률은 $1 - \\\\frac{1}{5} = \\\\frac{4}{5}$이다. 두 번 중 한 번만 막대에 걸 확률은 (성공, 실패) 또는 (실패, 성공)인 경우이므로 $\\\\frac{4}{5} \\\\times \\\\frac{1}{5} + \\\\frac{1}{5} \\\\times \\\\frac{4}{5} = \\\\frac{8}{25}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$\\frac{8}{25}$",
+  "work": "고리를 막대에 걸지 못할 확률은 $\\frac{20}{100} = \\frac{1}{5}$이므로 막대에 걸 확률은 $1 - \\frac{1}{5} = \\frac{4}{5}$이다. 두 번 중 한 번만 막대에 걸 확률은 (성공, 실패) 또는 (실패, 성공)인 경우이므로 $\\frac{4}{5} \\times \\frac{1}{5} + \\frac{1}{5} \\times \\frac{4}{5} = \\frac{8}{25}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "902e48bfa1291f61b537a939b9cab019ee956c7d47113ffc608072197a958d96"
+}

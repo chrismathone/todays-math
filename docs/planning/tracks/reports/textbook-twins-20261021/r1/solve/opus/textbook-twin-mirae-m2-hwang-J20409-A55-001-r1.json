@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3fe0cdde-6cf3-4119-9b89-da38e58d9e9a",
+ "startedAt": "2026-10-21T17:03:02+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "8ae1faf53d4d3f44ba4620097a1482fea1264c35303c823e43b5e2f9363ad771"
+ },
+ "promptSha256": "435e4621589698d974b97b37bb6bc9dca8aaa7e5970940db04149710da2f1245",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"두 식을 더하면 4x=4이므로 x=1, y=4이고, 교점은 (1, 4)이다. 두 점 (1, 3), (3, 7)을 지나는 직선의 기울기는 (7-3)/(3-1)=2이다. 따라서 구하는 직선은 y-4=2(x-1), 즉 y=2x+2이고, 이를 정리하면 $2x-y+2=0$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 식을 더하면 4x=4이므로 x=1, y=4이고, 교점은 (1, 4)이다. 두 점 (1, 3), (3, 7)을 지나는 직선의 기울기는 (7-3)/(3-1)=2이다. 따라서 구하는 직선은 y-4=2(x-1), 즉 y=2x+2이고, 이를 정리하면 $2x-y+2=0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d89f11b32f40a56765ad531c920475a151a386b0b48b73f425650255adde03e"
+}

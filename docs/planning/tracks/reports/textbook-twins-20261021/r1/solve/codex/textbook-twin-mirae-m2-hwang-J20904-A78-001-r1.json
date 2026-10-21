@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc9-903e-7570-b4e4-e3e6d3b282c8",
+ "startedAt": "2026-10-21T18:27:33+0900",
+ "elapsedSec": 8.8,
+ "studentSha256": {
+  "student.json": "1cf39f4441811e1c508e204a86e78b73aeba4cbf5aa8b95d3a174ea2b696f113"
+ },
+ "promptSha256": "ae6d157db964cc67150d1498141ee8aa9f091ee5bcc1b21e42ac551ff5d010dc",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{7}{20}$\",\"work\":\"1부터 20까지 4의 배수는 4, 8, 12, 16, 20으로 5개이고, 9의 배수는 9, 18로 2개이다. 두 경우에 중복되는 수가 없으므로 구하는 확률은 (5+2)/20=7/20이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{7}{20}$",
+  "work": "1부터 20까지 4의 배수는 4, 8, 12, 16, 20으로 5개이고, 9의 배수는 9, 18로 2개이다. 두 경우에 중복되는 수가 없으므로 구하는 확률은 (5+2)/20=7/20이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "45dea85a8ad24f061da15534703e0a4e0caecdcc90c019227f01c8811b804f7d"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A83-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "df2cb125-8633-474d-b672-fd4d90915ea3",
+ "startedAt": "2026-10-21T17:59:35+0900",
+ "elapsedSec": 7.8,
+ "studentSha256": {
+  "fig-1.png": "7f74a4948fa52d1c62cfc08620d05c33d1539409bb9027f41a004f749af4d1c7",
+  "student.json": "cec7105dfd040c8732e0964abf9e452f5640826d8f52349b55a669a7b40bd267"
+ },
+ "promptSha256": "5e855a46d66f47dc437a3f52ce6a611538a8181e35b95bbe1dc1f45dfda616fc",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"∠B+∠C=180°−56°=124°. 그림에서 x=∠BDC, y=∠BEC이다. △DBC에서 x=180°−∠C−∠B/2, △EBC에서 y=180°−∠B−∠C/2이다. 따라서 x+y=360°−(3/2)(∠B+∠C)=360°−186°=174°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "∠B+∠C=180°−56°=124°. 그림에서 x=∠BDC, y=∠BEC이다. △DBC에서 x=180°−∠C−∠B/2, △EBC에서 y=180°−∠B−∠C/2이다. 따라서 x+y=360°−(3/2)(∠B+∠C)=360°−186°=174°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7a8434643478436c3a12269a10c83e38011978a93f1f0757472cf9fa7591b103"
+}

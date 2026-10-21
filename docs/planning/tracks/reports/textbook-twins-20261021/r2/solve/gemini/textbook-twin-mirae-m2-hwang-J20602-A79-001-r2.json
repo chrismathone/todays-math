@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A79-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "5b9883a1-b038-4544-a2fb-57668359820d",
+ "startedAt": "2026-10-21T18:36:40+0900",
+ "elapsedSec": 98.6,
+ "studentSha256": {
+  "fig-1.png": "8ca9d54a510e89b592539203e6443be53e9cb2d941d791aa507a28260ccb642b",
+  "student.json": "93e97fa166b24b5421667a6aafd5126d1e19f9f874a93f0374e070e9f3a8e9ad"
+ },
+ "promptSha256": "959d49472ded870a7c31b58eb7a5d9064d7b5ba4c153b3f423deb1653373410f",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 14 ⑵ 21\",\n  \"work\": \"⑴ 점 D가 BC 위에 있으므로 BC = 5 + 15 = 20 cm이다. △DBA와 △ABC에서 ∠B는 공통이고, BD : BA = 5 : 10 = 1 : 2, BA : BC = 10 : 20 = 1 : 2이므로 △DBA ∽ △ABC (SAS 닮음)이다. 따라서 DA : AC = 1 : 2에서 7 : x = 1 : 2이므로 x = 14이다.\\n⑵ PQ = 10 + 2 = 12 cm, PR = 8 + 7 = 15 cm이다. △PTS와 △PQR에서 ∠P는 공통이고, PT : PQ = 8 : 12 = 2 : 3, PS : PR = 10 : 15 = 2 : 3이므로 △PTS ∽ △PQR (SAS 닮음)이다. 따라서 TS : QR = 2 : 3에서 14 : x = 2 : 3, 2x = 42이므로 x = 21이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ 14 ⑵ 21",
+  "work": "⑴ 점 D가 BC 위에 있으므로 BC = 5 + 15 = 20 cm이다. △DBA와 △ABC에서 ∠B는 공통이고, BD : BA = 5 : 10 = 1 : 2, BA : BC = 10 : 20 = 1 : 2이므로 △DBA ∽ △ABC (SAS 닮음)이다. 따라서 DA : AC = 1 : 2에서 7 : x = 1 : 2이므로 x = 14이다.\n⑵ PQ = 10 + 2 = 12 cm, PR = 8 + 7 = 15 cm이다. △PTS와 △PQR에서 ∠P는 공통이고, PT : PQ = 8 : 12 = 2 : 3, PS : PR = 10 : 15 = 2 : 3이므로 △PTS ∽ △PQR (SAS 닮음)이다. 따라서 TS : QR = 2 : 3에서 14 : x = 2 : 3, 2x = 42이므로 x = 21이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8e865316617d406e80a1afe68a7b6ff0d9c61b92914b6c9c919693766e8fb46c"
+}

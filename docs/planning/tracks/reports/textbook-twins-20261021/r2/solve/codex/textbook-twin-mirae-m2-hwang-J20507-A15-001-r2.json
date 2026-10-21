@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A15-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df4-5715-79a2-aa14-e2625eea9368",
+ "startedAt": "2026-10-21T19:14:16+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "student.json": "2ae04e310f5fa25e613fb8226a065788b04f42ca422b8d918dae261f3064aaa2"
+ },
+ "promptSha256": "2f04ce856223b45e2bff6b9c4ea799f38afa045475bc402fecd4957e7950351b",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"평행사변형에서 이웃한 두 각의 합은 180°이므로 ①, ③, ⑤이면 모든 각이 90°가 되어 직사각형이다. ②처럼 두 대각선의 길이가 같아도 직사각형이 된다. 그러나 ④는 이웃한 두 변의 길이가 같다는 조건으로, 마름모가 되지만 직사각형이 된다고 할 수는 없다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "평행사변형에서 이웃한 두 각의 합은 180°이므로 ①, ③, ⑤이면 모든 각이 90°가 되어 직사각형이다. ②처럼 두 대각선의 길이가 같아도 직사각형이 된다. 그러나 ④는 이웃한 두 변의 길이가 같다는 조건으로, 마름모가 되지만 직사각형이 된다고 할 수는 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "997d7f4fccddbed4902949647284ea16bdd9796775bdb1666d0181e7c847182e"
+}

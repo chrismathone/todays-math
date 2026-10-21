@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d72-5270-7c42-9bf4-cc8fe942888e",
+ "startedAt": "2026-10-21T16:52:15+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "505edc3ce578d9cf3bace96dc44e87b90a9c450eece63feb9331e5e9977651f1",
+  "student.json": "7cf1e821adafd66dbd7d63a1a2fec5b81f858f075652bc5e5ca399f4b20a0eab"
+ },
+ "promptSha256": "15dd05e8220346f6571f5933adeb663f55272978d8be27a8895862abbe7dc8f5",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"그림은 5에 빈 원이 있고 왼쪽으로 표시되어 있으므로 해는 $x<5$이다.\\n④ $2x+7<17$을 풀면 $2x<10$, 즉 $x<5$이므로 그림과 일치한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그림은 5에 빈 원이 있고 왼쪽으로 표시되어 있으므로 해는 $x<5$이다.\n④ $2x+7<17$을 풀면 $2x<10$, 즉 $x<5$이므로 그림과 일치한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "564515fcfe0f6538d6d90b6eeab844c33f1815463bacb85c1d2d0f574259d89f"
+}

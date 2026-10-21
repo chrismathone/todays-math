@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d85-5097-7dc2-b71c-88d5e6a05721",
+ "startedAt": "2026-10-21T17:13:00+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "72bde498ed1ae8cd28ec67dda2fe9f493756f645512e5bb28ddadf67d199c437"
+ },
+ "promptSha256": "94ffff0ba529793919703d95b7727ab86a4edb864b260048b21753a86018d560",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"첫째 식에서 y=3x-8이다. 이를 둘째 식에 대입하면 15x-40=4x+15이므로 11x=55, x=5이다. 따라서 y=3×5-8=7이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫째 식에서 y=3x-8이다. 이를 둘째 식에 대입하면 15x-40=4x+15이므로 11x=55, x=5이다. 따라서 y=3×5-8=7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6d8efa74dfcc8c1b1dcb81b886c117c87be1ad6f6dd20cced31b311018ac9d6a"
+}

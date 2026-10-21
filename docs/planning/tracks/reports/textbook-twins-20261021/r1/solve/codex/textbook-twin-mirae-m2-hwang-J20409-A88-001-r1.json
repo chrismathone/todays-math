@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da8-6688-7762-ae59-a8070ccc2656",
+ "startedAt": "2026-10-21T17:51:19+0900",
+ "elapsedSec": 8.6,
+ "studentSha256": {
+  "fig-1.png": "be514d9144082d89b865f4c2d000d118c27463b05be0bb7708c1448eab9ab838",
+  "student.json": "4252f4249beb7bd48ff8f28a1cbfab040bb16d7a3e21db39576cfda7f1c3d077"
+ },
+ "promptSha256": "04c2adf0076d497f388706feeba01182776709f3ba323506bc8f181e8e08d7b6",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-4\",\"work\":\"그림에서 두 직선의 교점은 (3, 1)이다.\\nx+ay=1에 대입하면 3+a=1이므로 a=-2이다.\\nbx-2y=4에 대입하면 3b-2=4이므로 b=2이다.\\n따라서 ab=(-2)×2=-4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-4",
+  "work": "그림에서 두 직선의 교점은 (3, 1)이다.\nx+ay=1에 대입하면 3+a=1이므로 a=-2이다.\nbx-2y=4에 대입하면 3b-2=4이므로 b=2이다.\n따라서 ab=(-2)×2=-4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a12aa5973c82a823d88dd15755b2b7ad0b27d72b66c24e1d87a85aa73abfaac6"
+}

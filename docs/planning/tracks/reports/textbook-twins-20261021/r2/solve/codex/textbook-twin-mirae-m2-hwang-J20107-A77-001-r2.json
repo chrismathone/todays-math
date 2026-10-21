@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dce-1e0b-7b73-8213-1dc0c095410f",
+ "startedAt": "2026-10-21T18:32:31+0900",
+ "elapsedSec": 9.9,
+ "studentSha256": {
+  "student.json": "8096e05d038bcd6f1176c216ac0fdbede2d48c9c184d3085518a39c5beccb09a"
+ },
+ "promptSha256": "849ca2f1772fa1d455131d046756c3f96df20252259f905d1cceb174107b9c1f",
+ "freezeCommit": "fd14b9eaa54898615b95e3f05074dac06183f2fb",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$9x^{2}-22x-3$\",\"work\":\"조건에서 $4(2x^{2}-5x+1)-A=-x^{2}+2x+7$이다.\\n따라서 $A=8x^{2}-20x+4-(-x^{2}+2x+7)=9x^{2}-22x-3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$9x^{2}-22x-3$",
+  "work": "조건에서 $4(2x^{2}-5x+1)-A=-x^{2}+2x+7$이다.\n따라서 $A=8x^{2}-20x+4-(-x^{2}+2x+7)=9x^{2}-22x-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "33abb19cf311f8bad66f7168067a49fdec47c3aa1d6dfa6467f1e11793c27568"
+}

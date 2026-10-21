@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A43-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6f-f31b-79b1-9e38-770519c6b6e5",
+ "startedAt": "2026-10-21T16:49:40+0900",
+ "elapsedSec": 27.7,
+ "studentSha256": {
+  "fig-1.png": "99ecb5af9f57023e3ee56f91630879bb6b7b4cdfd530a534cef894ff46bea992",
+  "student.json": "7f1db8decfc304539f2fa04c819dfb10cf42c91fc78c024b7625f5ca6d0b9c09"
+ },
+ "promptSha256": "a58227fd1146649aa85d7c6905d35b8857e5d0e713804710b0b439c3fa4b6d40",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$a=8$\",\n  \"work\": \"그림에서 2는 빈 원이고 오른쪽으로 표시되어 있으므로 해는 $x>2$이다.\\n주어진 부등식의 양변에 12를 곱하면 $3(x+a)-2(5x-1)<12$이다.\\n정리하면 $-7x<10-3a$이므로 $x>\\\\frac{3a-10}{7}$이다.\\n따라서 $\\\\frac{3a-10}{7}=2$이므로 $3a=24$, $a=8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$a=8$",
+  "work": "그림에서 2는 빈 원이고 오른쪽으로 표시되어 있으므로 해는 $x>2$이다.\n주어진 부등식의 양변에 12를 곱하면 $3(x+a)-2(5x-1)<12$이다.\n정리하면 $-7x<10-3a$이므로 $x>\\frac{3a-10}{7}$이다.\n따라서 $\\frac{3a-10}{7}=2$이므로 $3a=24$, $a=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5c2e0d1fcf3303cea2ee48ebf3a4d81f33713a1fe81835795698b104c9325387"
+}

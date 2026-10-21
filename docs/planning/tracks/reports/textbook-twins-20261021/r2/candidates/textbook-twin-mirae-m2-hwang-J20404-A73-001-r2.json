@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 232,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r2",
+ "authorId": "claude-opus-5-5:49217b91-0cd1-4916-a63a-b7d8961eee2a",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n하루가 좌표평면에 일차함수의 그래프를 그렸더니 위 그림과 같은 직선이 되었다. 이 직선에 대한 설명으로 옳은 것은?",
+ "choices": [
+  "그래프가 $x$축과 만나는 점의 $x$좌표는 $-1$이다.",
+  "점 $(2,~5)$는 이 직선 위에 있다.",
+  "일차함수 $y=3x+5$의 그래프와는 어느 점에서도 만나지 않는다.",
+  "그래프가 $y$축과 만나는 점의 좌표는 $(0,~3)$이다.",
+  "일차함수 $y=3x+2$의 그래프를 $y$축의 방향으로 $-6$만큼 평행이동하면 이 직선과 겹친다."
+ ],
+ "answer": "③",
+ "solution": "직선이 두 점 $(-1,~-6)$, $(3,~6)$을 지나므로 기울기는 $\\frac{6-(-6)}{3-(-1)}=\\frac{12}{4}=3$이다. 식을 $y=3x+b$라 하고 점 $(3,~6)$을 대입하면 $6=9+b$, $b=-3$이므로 $y=3x-3$이다.\n① $y=0$이면 $0=3x-3$, $x=1$이므로 $x$축과 만나는 점의 $x$좌표는 $1$이다. (거짓)\n② $x=2$이면 $y=6-3=3$이므로 점 $(2,~5)$는 직선 위에 있지 않다. (거짓)\n③ $y=3x+5$와 기울기는 $3$으로 같고 $y$절편은 $5$와 $-3$으로 다르므로 두 그래프는 평행하여 만나지 않는다. (참)\n④ $y$절편이 $-3$이므로 $y$축과 점 $(0,~-3)$에서 만난다. (거짓)\n⑤ $y=3x+2$를 $y$축의 방향으로 $-6$만큼 평행이동하면 $y=3x-4$이므로 이 직선과 겹치지 않는다. (거짓)\n따라서 옳은 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20404-A73-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20404-A73-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-7",
+  "problemCode": "J20404-A73-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "284998105ef1619922ae0ba440ab97d6de343a38b4c74722defd6a2665f84dc3",
+  "dbContentSha256": "5b94e11515aa9f2c78b4b1164ca3002faf07540395612ebb41de1fd149f20e93",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [
+   "2bc73e9c4540d5ffe9e1c7f99c21914b3f3615fa56a820136501e9a7688a5fc9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure",
+   "context"
+  ],
+  "before": "기울기가 양수이고 두 점이 모두 제1·2사분면에 있는 직선 그림을 주고, 절편·지나는 점·평행·평행이동에 대한 다섯 설명 가운데 맞는 하나를 고르게 한다. 맞는 것은 평행이동 설명이다.",
+  "after": "제3사분면과 제1사분면에 있는 두 점이 표시된 직선 그림을 주고, 축과 만나는 점·직선 위의 점·평행(«만나지 않는다»로 나타냄)·평행이동에 대한 설명을 새 순서와 새 말로 배치한다. 맞는 것은 평행 관계 설명이다.",
+  "sharedConcept": "그래프에서 일차함수의 식을 구하고 그 그래프의 성질(절편, 지나는 점, 평행, 평행이동)을 판단한다",
+  "sharedProcedure": "그림에서 두 점 읽기 → 기울기 구하기 → 한 점을 대입해 y절편 구하기 → 보기마다 식에 대입·비교해 참거짓 판단"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "aac676fa-c37c-4517-850d-36ee73eb2e8c",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프의 성질"
+  },
+  "prerequisites": [
+   "두 점을 지나는 직선의 기울기",
+   "기울기와 한 점으로 일차함수의 식 구하기",
+   "x절편과 y절편",
+   "두 일차함수의 그래프의 평행",
+   "일차함수의 그래프의 평행이동"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20404-A73-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "그래프에서 구한 일차함수 식으로 절편·지나는 점·평행·평행이동 설명의 참거짓 판단",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "aac676fa-c37c-4517-850d-36ee73eb2e8c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.197,
+   "longestRun": 13,
+   "residualChars": 165,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

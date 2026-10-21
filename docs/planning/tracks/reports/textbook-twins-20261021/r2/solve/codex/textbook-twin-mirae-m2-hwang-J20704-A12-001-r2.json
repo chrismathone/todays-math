@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A12-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df9-9323-7a23-b953-be7067517a60",
+ "startedAt": "2026-10-21T19:19:59+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "066c63610514e0ce0e8593a4e9e2bb35f77716818cf21c2f20720cdc78e2d71b",
+  "student.json": "599238247b4d7159f8ebe20fbdcd196569df1e3dadff02ebc4e842b9ced75ff4"
+ },
+ "promptSha256": "d6030c1826c0ad134e9338e81bc53d71441e32862dffa0716b8e7e3b5b40a3d8",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"삼각형의 중점 연결 정리에 의해 $PQ=RS=\\\\frac{AC}{2}=9\\\\,\\\\mathrm{m}$, $QR=SP=\\\\frac{BD}{2}=7\\\\,\\\\mathrm{m}$이다.\\n따라서 산책로를 한 바퀴 도는 길이는 $9+7+9+7=32\\\\,\\\\mathrm{m}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "삼각형의 중점 연결 정리에 의해 $PQ=RS=\\frac{AC}{2}=9\\,\\mathrm{m}$, $QR=SP=\\frac{BD}{2}=7\\,\\mathrm{m}$이다.\n따라서 산책로를 한 바퀴 도는 길이는 $9+7+9+7=32\\,\\mathrm{m}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4642d9f4708674fadca19643226bc13a444469c841f5be63b5cf62dd279844c6"
+}

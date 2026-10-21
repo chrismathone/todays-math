@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A70-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3dd82b30-4c81-4eb4-8304-6540b73a8516",
+ "startedAt": "2026-10-21T16:55:04+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "60fc8b4ef3b8f0f2d404259d5f9415947a779f41c5096f447edb14903d7b8a6d"
+ },
+ "promptSha256": "1aa410a5e0a1894bfbd3c8a132ffd64b0ed7529c2ac629ff5ff8b8cdb934b2f3",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "A = -9a+10b+6 + 8a - 8b = -a + 2b + 6 → ③\n\n```json\n{\"answer\": \"③\", \"work\": \"A - 8(a-b) = -9a+10b+6 이므로 A = -9a+10b+6 + 8a-8b = -a+2b+6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "A - 8(a-b) = -9a+10b+6 이므로 A = -9a+10b+6 + 8a-8b = -a+2b+6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7750060c5b2529fa590ae83a05788855eef370464661acdd8834a2625c39eb17"
+}

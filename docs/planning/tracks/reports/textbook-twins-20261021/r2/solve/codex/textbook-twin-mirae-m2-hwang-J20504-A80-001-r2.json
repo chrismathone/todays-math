@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A80-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-7f1f-7e61-b088-298a03388c1e",
+ "startedAt": "2026-10-21T18:52:36+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "fig-1.png": "e4ee2c02f1e3b2b03f4cfafa5eb372451f6b808c8076341b0dc7b55c3180d064",
+  "student.json": "a752769259b77f47983570ac0e7029a0a99f55b668397bc66ff0ce0b2793b0b1"
+ },
+ "promptSha256": "cf4bc9aaaa0078be6a50f599a3d14b07b48324d810b529dd3c760fa4f93e9bf4",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"내심 I에서 세 변까지의 거리는 모두 내접원의 반지름인 4 cm이다. $BC=x$라 하면 삼각형을 I를 꼭짓점으로 하는 세 삼각형으로 나누어 $84=\\\\frac12\\\\times4\\\\times(13+15+x)$이다. 따라서 $28+x=42$이므로 $BC=14\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "내심 I에서 세 변까지의 거리는 모두 내접원의 반지름인 4 cm이다. $BC=x$라 하면 삼각형을 I를 꼭짓점으로 하는 세 삼각형으로 나누어 $84=\\frac12\\times4\\times(13+15+x)$이다. 따라서 $28+x=42$이므로 $BC=14\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fb6f4d9d42f99336d4573b45ddce8ac766c45bd34c9aef5b922a2d37edeed449"
+}

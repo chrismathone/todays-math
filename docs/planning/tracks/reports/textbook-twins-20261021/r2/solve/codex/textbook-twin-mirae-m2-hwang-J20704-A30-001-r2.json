@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df9-bd19-7931-9437-a51050788f9d",
+ "startedAt": "2026-10-21T19:20:10+0900",
+ "elapsedSec": 21.3,
+ "studentSha256": {
+  "fig-1.png": "9b99ed194deca5de145064d90c54bafdb4f4ee977766536548bc20bfa57419be",
+  "student.json": "df8bbdf9f3212b93be72f6029579c6da6b5781191dab029f305b29fea31f567f"
+ },
+ "promptSha256": "fe6b102a746f727f4e841c111dcef40759b14ff3d4d897a768c87c7f217776a5",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"16 cm\",\"work\":\"두 다리의 중점을 이은 MN은 두 밑변과 평행하다. 중점 연결 정리에 따라 $MP=\\\\frac{AD}{2}=5$ cm, $MQ=\\\\frac{BC}{2}$이다. 그림에서 $PQ=3$ cm이므로 $MQ=5+3=8$ cm, 따라서 $BC=16$ cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "16 cm",
+  "work": "두 다리의 중점을 이은 MN은 두 밑변과 평행하다. 중점 연결 정리에 따라 $MP=\\frac{AD}{2}=5$ cm, $MQ=\\frac{BC}{2}$이다. 그림에서 $PQ=3$ cm이므로 $MQ=5+3=8$ cm, 따라서 $BC=16$ cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f1519bf879734aaba59a459775f47de71d810a8e6232e465f79d42f8717f348a"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dad-cf6b-7ce3-9ee3-ec41e82157b1",
+ "startedAt": "2026-10-21T17:57:14+0900",
+ "elapsedSec": 26.4,
+ "studentSha256": {
+  "fig-1.png": "95679642d537c3e7c9cf8215ad590980ab7407bba583cbdee2186364dc84c631",
+  "student.json": "6b8479f049c174c4d08a4097bfb177d0dfcf5943c1120921f4d05ab768f3e14b"
+ },
+ "promptSha256": "5870f52ca8514d303862e1859f70455321b3e797d796651dba8ba1f958a82385",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"B, O, D가 한 직선 위에 있으므로 ∠AOB=180°−56°=124°이다.\\n같은 호 AB에 대한 원주각 ∠ACB는 중심각 ∠AOB의 절반이므로 ∠ACB=124°÷2=62°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "B, O, D가 한 직선 위에 있으므로 ∠AOB=180°−56°=124°이다.\n같은 호 AB에 대한 원주각 ∠ACB는 중심각 ∠AOB의 절반이므로 ∠ACB=124°÷2=62°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8d84866f4b91dffeba7a5f7fc0da1fc927985febd728ffbccd6461358b07cb44"
+}

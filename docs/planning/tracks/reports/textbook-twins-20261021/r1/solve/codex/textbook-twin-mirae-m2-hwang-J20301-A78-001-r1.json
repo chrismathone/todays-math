@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-5d6b-7271-aa4a-a3ee403a0693",
+ "startedAt": "2026-10-21T16:55:35+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "8ab33d404d005cda42ecaa57b0b564123f5c61d964d0cd6235788d5398f04632"
+ },
+ "promptSha256": "6fe86b44ec6ad6f214eb4e1e4ad520193889dac17bae6ebd35b88cf66c575513",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"①~④의 순서쌍을 대입하면 모두 x-2y=5이다. ⑤는 9-2×3=3≠5이므로 해가 아니다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "①~④의 순서쌍을 대입하면 모두 x-2y=5이다. ⑤는 9-2×3=3≠5이므로 해가 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ae06e1675646ed46debdf5ce9fbf239231d9fe6db8ada32c2034bd2a50ea7164"
+}

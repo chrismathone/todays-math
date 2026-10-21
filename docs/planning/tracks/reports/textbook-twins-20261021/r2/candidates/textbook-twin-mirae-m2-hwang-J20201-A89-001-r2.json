@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 127,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r2",
+ "authorId": "claude-fable-5-1:0332004c-b810-403e-9f5d-87906221a9fb",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20201-A89-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 부등식 중 $x=-4$가 해가 <u>아닌</u> 것은?",
+ "choices": [
+  "$x-9<-12$",
+  "$9-7x\\ge 36$",
+  "$\\frac{x}{8}>-7$",
+  "$8x+9<7x-10$",
+  "$-x+11\\ge 2x+20$"
+ ],
+ "answer": "④",
+ "solution": "각 부등식에 $x=-4$를 대입하여 참·거짓을 확인한다.\n① $-4-9=-13<-12$ (참)\n② $9-7\\times(-4)=37\\ge 36$ (참)\n③ $\\frac{-4}{8}=-\\frac{1}{2}>-7$ (참)\n④ 좌변 $8\\times(-4)+9=-23$, 우변 $7\\times(-4)-10=-38$이므로 $-23<-38$ (거짓)\n⑤ 좌변 $-(-4)+11=15$, 우변 $2\\times(-4)+20=12$이므로 $15\\ge 12$ (참)\n따라서 $x=-4$가 해가 아닌 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0c814a01b5d7293b-0-3",
+  "problemCode": "J20201-A89-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "c0e0b3c8a55a6ffb74471c6e5647c2cf3fe5e083b55f455b1c4d868f3ced48d7",
+  "dbContentSha256": "cb55966c437bfc8cbb193b6afb2d3292c4a2c2aff4180f63140a8ad3caa6c3b2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-1_부등식과그해.hwp",
+    "sha256": "fcc7457ec541b7a1f4cbdd68ddc8747249278b0b6f7b7dba1c69ccc4bc8ebab4",
+    "bytes": 40960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "주어진 한 값을 다섯 부등식에 각각 대입해 참이 되는 부등식 하나를 고른다(참 하나 · 거짓 넷).",
+  "after": "주어진 한 값을 다섯 부등식에 각각 대입해 거짓이 되는 부등식 하나를 고른다(참 넷 · 거짓 하나). 대입값과 계수를 모두 새 수로 바꿨고, 분수 꼴 보기는 상수항 쪽에 수를 두어 짜임을 달리했다.",
+  "sharedConcept": "부등식의 해 — 미지수에 값을 대입했을 때 부등식이 참이 되면 그 값이 해이다.",
+  "sharedProcedure": "주어진 값을 각 보기에 대입 → 좌변·우변의 값 계산 → 부등호가 성립하는지 판정 → 조건에 맞는 보기 하나 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "부등식의 해",
+   "정수와 유리수의 사칙계산",
+   "식의 값"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A89-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 값이 부등식의 해인지 대입하여 판별하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.048,
+   "longestRun": 6,
+   "residualChars": 66,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

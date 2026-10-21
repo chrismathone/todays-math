@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A27-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-9365-79e0-b79f-e1755cf3ab2c",
+ "startedAt": "2026-10-21T19:04:42+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "fig-1.png": "0d2c5922ff62f5671eb983d0e260a3757836ed2c6cf0d2e4eec1062afadadabd",
+  "student.json": "f34dda59528ada9475c55453330667918329b4b2afcfcfeb140b809f083ee131"
+ },
+ "promptSha256": "7f0403a3601197b052a3c06dccddb1af4ccc4748d538507e395e2314adacde6a",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"24 kg\",\"work\":\"그래프는 두 점 (4, 6200), (10, 7700)을 지나므로 기울기는 (7700−6200)÷(10−4)=250이다.\\n따라서 배송비는 y=250x+5200이다.\\n11200=250x+5200을 풀면 x=24이므로 상자의 무게는 24 kg이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "24 kg",
+  "work": "그래프는 두 점 (4, 6200), (10, 7700)을 지나므로 기울기는 (7700−6200)÷(10−4)=250이다.\n따라서 배송비는 y=250x+5200이다.\n11200=250x+5200을 풀면 x=24이므로 상자의 무게는 24 kg이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "16b83db912b73cc93f88a271911316dae6505ee879effa083ee7d95379915daa"
+}

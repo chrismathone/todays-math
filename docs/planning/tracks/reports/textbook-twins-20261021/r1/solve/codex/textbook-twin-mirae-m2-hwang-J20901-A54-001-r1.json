@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-8e40-7da1-9fc6-759207198210",
+ "startedAt": "2026-10-21T18:24:16+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "de4c776b84d72a4e91bb7a06be9862b12febb2f34ef53857b598d9c1912434a1"
+ },
+ "promptSha256": "72704ee6128c1692102cf831558fdd38832cc89a8762efecdb78612cf691f01f",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8\",\"work\":\"눈의 차가 3인 (A, B)는 (1,4), (2,5), (3,6), (4,1), (5,2), (6,3)으로 6가지이다.\\n눈의 차가 5인 경우는 (1,6), (6,1)로 2가지이다.\\n따라서 경우의 수는 6+2=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "눈의 차가 3인 (A, B)는 (1,4), (2,5), (3,6), (4,1), (5,2), (6,3)으로 6가지이다.\n눈의 차가 5인 경우는 (1,6), (6,1)로 2가지이다.\n따라서 경우의 수는 6+2=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5cb099208b33ba1fcb5da280c7d7c1fbc59898c80fdce1d72c73f6c6d8f3c1d4"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A56-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "eab37078-d7c5-4085-a729-2135dab6557a",
+ "startedAt": "2026-10-21T16:54:27+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "8d83468eb05b226c9813b3958e7d3f0277d8b1eb2d57c7b93ab148013f4c9934"
+ },
+ "promptSha256": "1059f01712c1f2f1e750783a2642992898b977fde3aa7b97328ebbd90f7d8709",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$\", \"work\": \"분배법칙 적용: ⑴ 8m·7m=56m², 8m·(-9)=-72m ⑵ 6p·(-9q)=-54pq, 7q·(-9q)=-63q² ⑶ -7x·8x=-56x², -7x·(-6y)=42xy, -7x·9=-63x ⑷ 9a·6b=54ab, -7b·6b=-42b², -8·6b=-48b\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$",
+  "work": "분배법칙 적용: ⑴ 8m·7m=56m², 8m·(-9)=-72m ⑵ 6p·(-9q)=-54pq, 7q·(-9q)=-63q² ⑶ -7x·8x=-56x², -7x·(-6y)=42xy, -7x·9=-63x ⑷ 9a·6b=54ab, -7b·6b=-42b², -8·6b=-48b",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "352f5f1c5f790be209f7afdd6805b7f7333d226a00f95661d20558c95d06bb5f"
+}

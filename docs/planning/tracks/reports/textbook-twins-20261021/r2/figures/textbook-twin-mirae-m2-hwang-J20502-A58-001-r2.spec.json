@@ -1,0 +1,100 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   250,
+   69.91
+  ],
+  "B": [
+   250,
+   190
+  ],
+  "C": [
+   42,
+   190
+  ],
+  "M": [
+   146,
+   129.96
+  ],
+  "N": [
+   180.67,
+   190
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BN": {
+   "points": [
+    "B",
+    "N"
+   ],
+   "ticks": 2
+  },
+  "NC": [
+   "N",
+   "C"
+  ],
+  "AM": {
+   "points": [
+    "A",
+    "M"
+   ],
+   "ticks": 1
+  },
+  "MC": {
+   "points": [
+    "M",
+    "C"
+   ],
+   "ticks": 1
+  },
+  "MN": {
+   "points": [
+    "M",
+    "N"
+   ],
+   "ticks": 2
+  },
+  "AN": [
+   "A",
+   "N"
+  ]
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "N"
+   ],
+   "right": true
+  },
+  "rM": {
+   "vertex": "M",
+   "points": [
+    "A",
+    "N"
+   ],
+   "right": true
+  },
+  "angX": {
+   "vertex": "A",
+   "points": [
+    "N",
+    "M"
+   ],
+   "label": "x"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "M": "M",
+  "N": "N"
+ }
+}

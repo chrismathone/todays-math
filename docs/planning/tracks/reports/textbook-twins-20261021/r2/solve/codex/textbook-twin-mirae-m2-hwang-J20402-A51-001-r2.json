@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A51-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de9-fd3e-79c3-98f8-22bcc0e5c154",
+ "startedAt": "2026-10-21T19:02:58+0900",
+ "elapsedSec": 10.2,
+ "studentSha256": {
+  "student.json": "c2aa61a70570ce7d807f53d98b80dc9129652cdab7b780a3b89d906c6ba0e62f"
+ },
+ "promptSha256": "330cc9d8bce56ab4d01676d7f5040cea02838443146acbea34e191357d9c3aed",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"직선을 아래쪽으로 5만큼 옮기면 $y=\\\\frac{1}{2}x+b-5$이다.\\n이 식이 $y=ax-4$와 같으므로 $a=\\\\frac{1}{2}$, $b-5=-4$에서 $b=1$이다.\\n따라서 $a+b=\\\\frac{3}{2}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직선을 아래쪽으로 5만큼 옮기면 $y=\\frac{1}{2}x+b-5$이다.\n이 식이 $y=ax-4$와 같으므로 $a=\\frac{1}{2}$, $b-5=-4$에서 $b=1$이다.\n따라서 $a+b=\\frac{3}{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a1561544ab513c814bf3a9894c0abcc7901d6361a63df616073f93cc17b19446"
+}

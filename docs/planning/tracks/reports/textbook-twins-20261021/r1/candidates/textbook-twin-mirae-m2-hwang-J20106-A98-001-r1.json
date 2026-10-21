@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 43,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A98-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 계산하시오.\n⑴ $8x^{3}\\times\\frac{1}{4}xy^{2}$ ⑵ $-2x^{4}y\\times(-7xy^{3})$\n⑶ $(-3a^{3})^{2}\\times 2ab^{2}$ ⑷ $(2ab^{2})^{2}\\times(-a^{3}b)^{3}$",
+ "choices": [],
+ "answer": "⑴ $2x^{4}y^{2}$ ⑵ $14x^{5}y^{4}$ ⑶ $18a^{7}b^{2}$ ⑷ $-4a^{11}b^{7}$",
+ "solution": "⑴ $8\\times\\frac{1}{4}\\times x^{3}\\times x\\times y^{2}=2x^{4}y^{2}$ ⑵ $(-2)\\times(-7)\\times x^{4}\\times x\\times y\\times y^{3}=14x^{5}y^{4}$ ⑶ $9a^{6}\\times 2ab^{2}=18a^{7}b^{2}$ ⑷ $4a^{2}b^{4}\\times(-a^{9}b^{3})=-4a^{11}b^{7}$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-aea973a819cd3a31-0-1",
+  "problemCode": "J20106-A98-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "b8bdc32a2f46e4e563a25f7f5673b07d06c3e784e8aa891cfd936f6a45e99849",
+  "dbContentSha256": "025aed5ae27b4cc56cddd20e4cca20e3108fb2a6685d0e96d5b07c3faa6ef2df",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "f86c854db9405fb705444de6982bb4aa1c61cb2ecdfe8dd9bbfc6b1ac6a856fc",
+    "bytes": 94208
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷: 분수 계수 곱, 음수끼리 곱, 음수 제곱과의 곱, 제곱과 음수 세제곱의 곱.",
+  "after": "같은 네 단계를 두되 문자 배치와 어느 인수에 음수·거듭제곱이 붙는지를 바꾸고 수를 새로 정했다.",
+  "sharedConcept": "단항식의 곱셈",
+  "sharedProcedure": "거듭제곱 전개 → 계수 곱(부호 결정) → 같은 문자 지수 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "유리수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A98-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 곱셈 소문항 연습",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.284,
+   "longestRun": 8,
+   "residualChars": 73,
+   "params": 6,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

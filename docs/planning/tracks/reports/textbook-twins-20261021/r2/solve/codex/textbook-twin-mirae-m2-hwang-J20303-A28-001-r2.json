@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-6a95-70b0-8412-b56e74e7af53",
+ "startedAt": "2026-10-21T18:51:25+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "edf3ed185f30ed3c04efafb03970140bf291bc4021099a5e5157cf5d874706aa"
+ },
+ "promptSha256": "9582ac97321bb8e975b610e58242ab4541db131fa63eae44140e9883c1510b2d",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"첫째 식에 10을, 둘째 식에 6을 곱하면 $2x+5y=-4$, $2x-3y=12$이다.\\n두 식을 빼면 $8y=-16$이므로 $y=-2$이다.\\n이를 $2x-3y=12$에 대입하면 $2x+6=12$이므로 $x=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "첫째 식에 10을, 둘째 식에 6을 곱하면 $2x+5y=-4$, $2x-3y=12$이다.\n두 식을 빼면 $8y=-16$이므로 $y=-2$이다.\n이를 $2x-3y=12$에 대입하면 $2x+6=12$이므로 $x=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c7e93522f09aca119a5ed013548e4b5ecd2ec9e876d5d41a42dea8ed09b2b2c3"
+}

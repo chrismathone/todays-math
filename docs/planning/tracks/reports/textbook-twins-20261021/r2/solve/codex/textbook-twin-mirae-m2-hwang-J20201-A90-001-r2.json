@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd5-d4b2-7b73-ade3-22cd4c67e08b",
+ "startedAt": "2026-10-21T18:40:57+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "8ed801e3e0615e9312fdf26fb7ce759d4f33b8068aa71508aa774cb6d7ff5ad7"
+ },
+ "promptSha256": "363045ad4228cf56debb4d23c913ed0a9873e7f270e76d3e4ca1af18f3d4ee9e",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"부등식의 양변에 음수를 곱하면 부등호 방향이 바뀐다. 따라서 $x>y$의 양변에 $-6$을 곱하고 9를 더하면 $-6x+9<-6y+9$이므로 ③이 옳지 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "부등식의 양변에 음수를 곱하면 부등호 방향이 바뀐다. 따라서 $x>y$의 양변에 $-6$을 곱하고 9를 더하면 $-6x+9<-6y+9$이므로 ③이 옳지 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cb3f301f08a2a8ea142bad60a1f19eb8a18a5e4003c3129446a3bc09c73810b2"
+}

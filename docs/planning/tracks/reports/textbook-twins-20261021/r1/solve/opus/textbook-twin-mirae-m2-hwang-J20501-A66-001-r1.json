@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c17c24fd-6977-441e-b502-50e970763e2d",
+ "startedAt": "2026-10-21T17:05:01+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "8fe3cb2bc4605606062bbe7c197cac8f7ec95cee66b00420d043c5343a8bba69",
+  "student.json": "275b23127db307929893af7878db8286fb6905c04eafabb7f05dc460daf74775"
+ },
+ "promptSha256": "7c10110ea8e22d7ac91bfc8018d73339b40f6fcc9607e12bc9886e289b3f08fb",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"∠B=∠C=(180°−36°)/2=72°이고, BD가 ∠B를 이등분하므로 ∠ABD=∠DBC=36°이다. △ABD에서 ∠A=∠ABD=36°이므로 BD=AD=8 cm이다. △BCD에서 ∠BDC=∠A+∠ABD=72°=∠C이므로 BC=BD=8 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "∠B=∠C=(180°−36°)/2=72°이고, BD가 ∠B를 이등분하므로 ∠ABD=∠DBC=36°이다. △ABD에서 ∠A=∠ABD=36°이므로 BD=AD=8 cm이다. △BCD에서 ∠BDC=∠A+∠ABD=72°=∠C이므로 BC=BD=8 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d6dcdde302ecb3bd2af5a1078ec9cbefc774fb3ed425d98cfa6f9c123c0df1af"
+}

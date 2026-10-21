@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A50-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6c-8f3a-7bf1-ad55-c0b935c01de0",
+ "startedAt": "2026-10-21T16:45:58+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "588be3cc6d22edadca5f75b5411f33270014acf227b8a3f1322d00b15e04b511"
+ },
+ "promptSha256": "7b67de08d620b069474318efe62801bd731c89845963ebab56b709e1a90842e4",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"양변에서 1/3을 빼면 -(2/5)a ≥ -(2/5)b이다.\\n양변을 음수 -2/5로 나누면 부등호 방향이 바뀌므로 a ≤ b이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "양변에서 1/3을 빼면 -(2/5)a ≥ -(2/5)b이다.\n양변을 음수 -2/5로 나누면 부등호 방향이 바뀌므로 a ≤ b이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bb2eac8e68141bd22138a0e9f3f00d43b3593b921d145c637b683aaa4f7e04b0"
+}

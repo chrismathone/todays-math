@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A49-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9c244b37-264b-490a-9f89-991ba0f514ef",
+ "startedAt": "2026-10-21T17:11:34+0900",
+ "elapsedSec": 3.6,
+ "studentSha256": {
+  "student.json": "34b83682af18ad4ef44793aca10b21fc001b36f8c698cc58bff44bb5a93b0dae"
+ },
+ "promptSha256": "403fa0eff010612854ef7a622a0e9a35695d51635c064c5c1566823630ac2762",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"미술관과 박물관 중 한 곳을 고르는 두 사건은 동시에 일어나지 않으므로 합의 법칙을 쓴다. 5 + 4 = 9\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "미술관과 박물관 중 한 곳을 고르는 두 사건은 동시에 일어나지 않으므로 합의 법칙을 쓴다. 5 + 4 = 9",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9e832793849acec341d5c26ddb8df02f3799d4f146fa9644f4f9049f390c71db"
+}

@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 17,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A67-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아는 $-3x^{2}+5x-2$에 어떤 식을 더해야 하는 문제에서 잘못하여 그 식을 뺐고, 그 결과로 $x^{2}+2x-9$를 얻었다. 바르게 계산한 식을 구하시오.",
+ "choices": [],
+ "answer": "$-7x^{2}+8x+5$",
+ "solution": "어떤 식을 $P$라 하면 $-3x^{2}+5x-2-P=x^{2}+2x-9$이므로 $P=-3x^{2}+5x-2-(x^{2}+2x-9)=-4x^{2}+3x+7$이다. 바르게 계산하면 $-3x^{2}+5x-2+(-4x^{2}+3x+7)=-7x^{2}+8x+5$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-7",
+  "problemCode": "J20107-A67-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "cfb6b6e0e93a166dabd83aa6a5709d48be9bc4f0cc81a193ca03520425f3f68c",
+  "dbContentSha256": "14c2373ec6442c2c3b4a9bb93b1a087e5eab6ff24f5f203d0c12da82349a72c8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "알려진 이차식에서 모르는 식을 빼야 하는데 더해 버린 결과가 주어지고, 바른 결과를 묻는 단답형",
+  "after": "학생이 알려진 이차식에 모르는 식을 더해야 하는데 빼 버린 결과가 주어지고, 바른 결과를 묻는 단답형(실수의 방향을 뒤집음)",
+  "sharedConcept": "이차식의 덧셈과 뺄셈, 잘못된 계산에서 원래 식 되찾기",
+  "sharedProcedure": "모르는 식을 문자로 놓고 잘못된 계산식 세우기 → 이항하여 모르는 식 구하기 → 바른 연산으로 다시 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "이차식의 덧셈과 뺄셈",
+   "등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A67-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "바르게 계산한 식 구하기(이차식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.218,
+   "longestRun": 9,
+   "residualChars": 59,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A55-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d53-e7b7-7cf2-b0d9-981264f372cf",
+ "startedAt": "2026-10-21T16:19:02+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "student.json": "56017697ccbcbd67c0086ecb1004d8885c2a71934cefdd7d4793033d8376a46d"
+ },
+ "promptSha256": "804f64d37e5e15bb9e67ff205da6169df712f7885cb626488cf08115e7f0adf0",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$9ab+6a^{2}$\",\"work\":\"각 항을 $-\\\\frac{5}{3}ab^{2}$로 나눈다.\\n$(-15a^{2}b^{3})\\\\div(-\\\\frac{5}{3}ab^{2})=9ab$\\n$(-10a^{3}b^{2})\\\\div(-\\\\frac{5}{3}ab^{2})=6a^{2}$\\n따라서 $9ab+6a^{2}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$9ab+6a^{2}$",
+  "work": "각 항을 $-\\frac{5}{3}ab^{2}$로 나눈다.\n$(-15a^{2}b^{3})\\div(-\\frac{5}{3}ab^{2})=9ab$\n$(-10a^{3}b^{2})\\div(-\\frac{5}{3}ab^{2})=6a^{2}$\n따라서 $9ab+6a^{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f6e01acbffe90222eb67ea7dd1c1b5e656efae0daebebaa8e003f8acca1aa0f5"
+}

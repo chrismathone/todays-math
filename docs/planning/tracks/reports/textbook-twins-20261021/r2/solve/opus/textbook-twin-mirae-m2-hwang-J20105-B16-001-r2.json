@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "381b12b4-c0b8-458b-96cd-4b2fdb1af4d7",
+ "startedAt": "2026-10-21T17:55:13+0900",
+ "elapsedSec": 3.3,
+ "studentSha256": {
+  "student.json": "971cb349ff08f24b63d578cd12c99d6a0b8dd37cee770a20680825da0a768c54"
+ },
+ "promptSha256": "69bb2400355f5b80eb7c488fa9b430a0e42f505dfd6747b604b2a1519d96271f",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$2^{10}$\", \"work\": \"2^7이 8개이므로 8×2^7 = 2^3×2^7 = 2^{3+7} = 2^{10}\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$2^{10}$",
+  "work": "2^7이 8개이므로 8×2^7 = 2^3×2^7 = 2^{3+7} = 2^{10}",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5bf6ca40f2aee2c4b04f1dfcd50314b95f7525a816ea134a205ee077173a5db9"
+}

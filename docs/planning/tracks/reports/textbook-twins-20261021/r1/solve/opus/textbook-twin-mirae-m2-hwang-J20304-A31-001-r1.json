@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3e1be214-60fb-406f-ba5e-967c860feca0",
+ "startedAt": "2026-10-21T17:01:42+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "3491f9a2077effec372dc428e68adf883eeba509fb9135361d5e0ed7d238680c"
+ },
+ "promptSha256": "a6871aa9e7276e80ed02c40f27f3466aad035c6e161f3d775d4fc1c98a25645b",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"x=-2, y=3을 대입한다. 첫째 식에서 -2a+12=2이므로 a=5이다. 둘째 식에서 -10+3b=14이므로 b=8이다. 따라서 ab=5×8=40이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=-2, y=3을 대입한다. 첫째 식에서 -2a+12=2이므로 a=5이다. 둘째 식에서 -10+3b=14이므로 b=8이다. 따라서 ab=5×8=40이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c66bcb1fcdf8601e879a70333794f951d1f3d23b3ebf7de9acfa68be4c542e8d"
+}

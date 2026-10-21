@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 128,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+ "authorId": "claude-fable-5-1:b4daa10a-5e43-4d49-ac11-71c528307ef1",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x>y$일 때, 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$x+7>y+7$",
+  "$\\frac{x}{6}>\\frac{y}{6}$",
+  "$-6x+9>-6y+9$",
+  "$\\frac{x-8}{7}>\\frac{y-8}{7}$",
+  "$y-10<x-10$"
+ ],
+ "answer": "③",
+ "solution": "① $x>y$의 양변에 $7$을 더하면 $x+7>y+7$ (옳다)\n② 양변을 양수 $6$으로 나누어도 부등호의 방향은 그대로이므로 $\\frac{x}{6}>\\frac{y}{6}$ (옳다)\n③ 양변에 음수 $-6$을 곱하면 방향이 바뀌어 $-6x<-6y$이고, 양변에 $9$를 더해도 방향은 그대로이므로 $-6x+9<-6y+9$ (옳지 않다)\n④ 양변에서 $8$을 빼면 $x-8>y-8$이고, 양변을 양수 $7$로 나누어도 방향은 그대로이므로 $\\frac{x-8}{7}>\\frac{y-8}{7}$ (옳다)\n⑤ 양변에서 $10$을 빼면 $x-10>y-10$, 즉 $y-10<x-10$ (옳다)\n따라서 옳지 않은 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-3eec77215718b71c-0-1",
+  "problemCode": "J20201-A90-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "3c44787e8f3479c91af673a7aceb89cce1a1d9d0e0fa455e8f5cb6b616b52e61",
+  "dbContentSha256": "cb3a385c648ded02c3d9bb1e47ad100456fb6a70bbc68f60919dd7e37607dc59",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-2_부등식의성질.hwp",
+    "sha256": "05f46293115e94424e585738427655594804b5eb7b00c3af4455036ec3f07da0",
+    "bytes": 38912
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "두 수의 대소가 주어진 상태에서 양변에 더하기·빼기·양수로 나누기·음수 곱한 뒤 더하기·더한 뒤 양수로 나누기를 적용한 다섯 부등식 가운데 틀린 하나를 고른다. 틀린 보기는 더한 뒤 양수로 나눈 꼴이다.",
+  "after": "문자를 x, y로 바꾸고 모든 상수를 6~10 범위의 새 수로 둔다. 틀린 보기를 음수를 곱한 뒤 더하는 꼴로 옮기고, 더한 뒤 양수로 나눈 꼴은 옳은 보기로 둔다. 한 보기는 좌우를 바꿔 적은 꼴로 나타낸다.",
+  "sharedConcept": "부등식의 성질(양변에 같은 수를 더하거나 빼거나, 양수·음수를 곱하거나 나눌 때 부등호 방향의 변화)",
+  "sharedProcedure": "주어진 부등식 확인 → 각 보기에 적용된 연산 파악 → 음수 곱셈·나눗셈에서만 방향이 바뀜을 적용 → 결과와 보기 비교 → 틀린 보기 하나 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "부등식의 성질",
+   "유리수의 사칙연산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A90-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부등식의 성질을 이용하여 옳지 않은 부등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 1,
+   "residualChars": 49,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

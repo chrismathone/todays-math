@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5e-90f0-7993-86f8-df980a6ebc16",
+ "startedAt": "2026-10-21T16:30:40+0900",
+ "elapsedSec": 20.5,
+ "studentSha256": {
+  "student.json": "e0cdb4a60811f92b66750ab56c9fff0b4fd2896646ec8058e790fe5979d7323e"
+ },
+ "promptSha256": "99bebc66eda86fd95aca18a0f11f5af02a8e1ed4c7d92668c6e527b7b97dfdde",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3\",\"work\":\"629÷990=0.6353535…이다. 첫째 자리 이후 3, 5가 반복되므로 소수점 아래 짝수 번째 자리의 숫자는 3이다. 따라서 20번째 자리의 숫자는 3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "629÷990=0.6353535…이다. 첫째 자리 이후 3, 5가 반복되므로 소수점 아래 짝수 번째 자리의 숫자는 3이다. 따라서 20번째 자리의 숫자는 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0ebea30ff01829952c9ab5a9f31fe10ec7cf99ab93d4714bc58f5e9b54433188"
+}

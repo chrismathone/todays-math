@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A12-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbc-2808-7f50-8f73-753aafcdaf38",
+ "startedAt": "2026-10-21T18:12:54+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "2fa0640681cbea38ad31b593f70ea0d8ab528b0f41bdff4dff54083da394a03e"
+ },
+ "promptSha256": "b367104e346980674ae3a8e251adaac7c7e008a66cf05406d897149ee4503615",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"삼각형의 중점 연결 정리에 의해 PQ=RS=22÷2=11 cm, QR=SP=14÷2=7 cm이다.\\n따라서 사각형 PQRS의 둘레는 2×(11+7)=36 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "삼각형의 중점 연결 정리에 의해 PQ=RS=22÷2=11 cm, QR=SP=14÷2=7 cm이다.\n따라서 사각형 PQRS의 둘레는 2×(11+7)=36 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea47a83710e1c0f8f5d9425b5849398f91814a5315a55c7b440bab512bc886c7"
+}

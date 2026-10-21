@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dad-1d16-7ff2-86e8-5530c9e5d288",
+ "startedAt": "2026-10-21T17:56:28+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "3aff188a514acaebe8b7b66e1c27e2279e7ab4a0e515677af52b89f26148442c"
+ },
+ "promptSha256": "7a821200f3abdc706caefec10a781aaded6561dec458a5c5ad6d84dc327f1322",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"내심은 세 내각의 이등분선이 만나는 점으로, 항상 삼각형의 내부에 있다. 따라서 둔각삼각형의 내심이 외부에 있다는 ④가 옳지 않다. 나머지 설명은 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "내심은 세 내각의 이등분선이 만나는 점으로, 항상 삼각형의 내부에 있다. 따라서 둔각삼각형의 내심이 외부에 있다는 ④가 옳지 않다. 나머지 설명은 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a8e28936291616faddf6534b2f841f4f8531c787fbcc44bd044bdac4b35d8794"
+}

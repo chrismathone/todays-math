@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc1-81d9-70a0-a213-a0b5a570caae",
+ "startedAt": "2026-10-21T18:18:45+0900",
+ "elapsedSec": 18.3,
+ "studentSha256": {
+  "fig-1.png": "36719804efc0442f43b04a8f97ae256ca8f6cc09a1105d97b5b3237c64f72334",
+  "student.json": "8d4b744aaa4f9a002abfd708816707a85903a311ede750fa631b7c39788668e4"
+ },
+ "promptSha256": "8189dc1410e0a6331cbd3135728e420b3d4347cf001623864d2c12032b263a78",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12 cm²\",\"work\":\"무게중심과 세 꼭짓점을 이어 만든 세 삼각형의 넓이는 서로 같다.\\nG가 △ABC의 무게중심이므로 △GBC의 넓이는 108÷3=36 cm²이다.\\nG'이 △GBC의 무게중심이므로 △GG'C의 넓이는 36÷3=12 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12 cm²",
+  "work": "무게중심과 세 꼭짓점을 이어 만든 세 삼각형의 넓이는 서로 같다.\nG가 △ABC의 무게중심이므로 △GBC의 넓이는 108÷3=36 cm²이다.\nG'이 △GBC의 무게중심이므로 △GG'C의 넓이는 36÷3=12 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "285d58620f242d80d88a03639987de49634136d934cc7cc783d8f6111dbcabe9"
+}

@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 294,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A85-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "아래 두 사각형은 모두 평행사변형 $ABCD$이다. 각 그림에서 $x$, $y$의 값을 구하시오.\n[그림]\n⑴ 왼쪽 그림\n⑵ 오른쪽 그림 (점 $O$는 두 대각선이 만나는 점이고 $\\overline{AC}=12\\,\\mathrm{cm}$, $\\overline{BD}=10\\,\\mathrm{cm}$이다.)",
+ "choices": [],
+ "answer": "⑴ $x=8$, $y=65$ ⑵ $x=6$, $y=5$",
+ "solution": "⑴ 대변의 길이는 같으므로 $x=\\overline{AD}=\\overline{BC}=8$이고, 대각의 크기는 같으므로 $y=\\angle D=\\angle B=65$이다.\n⑵ 두 대각선은 서로를 이등분하므로 $x=\\overline{OC}=\\frac{1}{2}\\overline{AC}=6$, $y=\\overline{OD}=\\frac{1}{2}\\overline{BD}=5$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A85-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A85-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-aa6d7134992fa333-0-2",
+  "problemCode": "J20505-A85-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "adfd7423abfe24ea105b22606212410a2193757ac7888045ef504048cd689c7d",
+  "dbContentSha256": "545de9467798884ba55ab58fb833dbefa374396defc496404482f4f6458bd5ca",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-5_평행사변형의성질.hwp",
+    "sha256": "5d2a12537ffa93a0c9eb29bd27b5ccd7b0c3d64f5a86b26430268aff7129331c",
+    "bytes": 170496
+   }
+  ],
+  "originalFigureSha256": [
+   "5a978471f8f061eee01c6ed69b1e80713df1d7c5597890d04f079629327ec02f",
+   "fa7a6608aa077cd8c4c2a575dc21e675fbe23bb114582b119e8ae4d91ea9499a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "⑴ 한 변과 한 각이 적힌 그림에서 대변·대각의 값을 읽고, ⑵ 대각선의 반쪽 길이 둘이 적힌 그림에서 나머지 반쪽 둘을 구한다.",
+  "after": "⑴ 아랫변과 아랫각이 주어진 그림에서 윗변과 맞은편 각을 구하고, ⑵ 대각선 전체 길이를 글로 주고 교점에서 꼭짓점까지의 반쪽 길이를 구한다.",
+  "sharedConcept": "평행사변형의 대변·대각 · 대각선이 서로를 이등분함",
+  "sharedProcedure": "대변 길이 같음으로 x → 대각 크기 같음으로 y → 대각선의 절반으로 x, y"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행사변형의 뜻",
+   "평행사변형의 대변과 대각",
+   "평행사변형의 대각선의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A85-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행사변형의 성질(대변·대각·대각선)로 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: label 'mx' has no line/circle/label-free position",
+     "session": "b78303dc-aa82-41c2-bf7c-21b7a3299030",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.175,
+   "longestRun": 9,
+   "residualChars": 69,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

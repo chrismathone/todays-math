@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A56-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da7-ac4b-7260-884b-c5262025bd20",
+ "startedAt": "2026-10-21T17:50:32+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "41914b2eac1c749a830e01cbf8e0788ea58a7645bce107186d5a6305989b2da7"
+ },
+ "promptSha256": "e57835802d0a46dcdeacdf62a2034f04c072eb4250c53970fde67ddb88d79876",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-6\",\"work\":\"교점에서 두 함수의 y값이 같으므로 3×1-5=4×1+k이다. 따라서 -2=4+k이므로 k=-6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-6",
+  "work": "교점에서 두 함수의 y값이 같으므로 3×1-5=4×1+k이다. 따라서 -2=4+k이므로 k=-6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cba613dcbb5713624bc3326827010a0318dae2a667d851ef5f160944f030725b"
+}

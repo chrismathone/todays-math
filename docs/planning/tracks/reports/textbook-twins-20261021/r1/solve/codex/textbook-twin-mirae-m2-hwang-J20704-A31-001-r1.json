@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A31-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbc-8b8a-7dd0-bbb8-d3864cd49982",
+ "startedAt": "2026-10-21T18:13:19+0900",
+ "elapsedSec": 21.4,
+ "studentSha256": {
+  "fig-1.png": "1e115aa600b45b72476684c63e4948f48ce565d678fff26f6b97f6d1487d4ed3",
+  "student.json": "4a8c225c9885c6a5df5260c5cd77961544244a92b0f2b608b4d8638ef66bfeac"
+ },
+ "promptSha256": "2bb3ac5005389228a7e8179f97e48b02e446a4388a3a8ba02b773c479905299f",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"20 cm\",\"work\":\"Q는 BP의 중점이고 D는 BC의 중점이므로, 삼각형 BPC에서 중점 연결 정리에 의해 PC=2QD=8 cm이고 PC∥QE이다.\\n따라서 삼각형 APC와 삼각형 AQE는 닮음이고, AP:AQ=1:2이므로 QE=2PC=16 cm이다.\\nDE=QE-QD=12 cm이므로 x+y=8+12=20 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "20 cm",
+  "work": "Q는 BP의 중점이고 D는 BC의 중점이므로, 삼각형 BPC에서 중점 연결 정리에 의해 PC=2QD=8 cm이고 PC∥QE이다.\n따라서 삼각형 APC와 삼각형 AQE는 닮음이고, AP:AQ=1:2이므로 QE=2PC=16 cm이다.\nDE=QE-QD=12 cm이므로 x+y=8+12=20 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f2e18a15431c9c61651149f480b2983eec0607a8556be536e92c3e7aaa34f047"
+}

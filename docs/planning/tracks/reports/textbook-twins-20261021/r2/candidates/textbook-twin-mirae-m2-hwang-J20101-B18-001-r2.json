@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 89,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r2",
+ "authorId": "claude-fable-5-1:8d09cf33-ee6a-4803-a27f-dcc81ba7668e",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "분자가 같은 두 분수 $\\frac{A}{22}$, $\\frac{A}{30}$을 소수로 나타내면 둘 다 유한소수가 된다고 한다. 자연수 $A$의 값 중 가장 작은 것을 구하시오.",
+ "choices": [],
+ "answer": "$33$",
+ "solution": "$22=2\\times 11$, $30=2\\times 3\\times 5$이다.\n기약분수로 나타냈을 때 분모에 $2$, $5$ 이외의 소인수가 남지 않아야 하므로 $\\frac{A}{22}$가 유한소수가 되려면 $A$는 $11$의 배수, $\\frac{A}{30}$이 유한소수가 되려면 $A$는 $3$의 배수이어야 한다.\n따라서 $A$는 $3$과 $11$의 공배수이고, 가장 작은 자연수는 $3$과 $11$의 최소공배수인 $33$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-11",
+  "problemCode": "J20101-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "2d7d7f070146eee676fbdd883fa1cd41cc857e8d40469405888410824b802fcd",
+  "dbContentSha256": "bfd1fed478781c085317e2321f72531b0da69b4b336b451c7a3e2e1dc985609b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers",
+   "representation"
+  ],
+  "before": "서로 다른 두 기약분수에 같은 자연수를 곱해 둘 다 유한소수가 되게 하는 가장 작은 곱하는 수를 묻는다. 분모의 2·5 이외 소인수가 각각 3, 7로 서로소이고 지수가 1이다.",
+  "after": "분자가 미지수 A로 같은 두 분수가 둘 다 유한소수가 되도록 하는 가장 작은 A를 묻는다. 분모의 2·5 이외 소인수가 각각 11, 3으로 서로소이고 지수가 1이라 공배수가 곧 두 수의 곱이다.",
+  "sharedConcept": "유한소수가 되는 분수의 조건(기약분수의 분모의 소인수가 2, 5뿐)",
+  "sharedProcedure": "두 분모를 소인수분해 → 2, 5 이외의 소인수를 찾아 각각 A가 그 수의 배수임을 확인 → 두 수의 최소공배수를 구함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "최소공배수",
+   "유한소수로 나타낼 수 있는 분수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B18-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수가 모두 유한소수가 되도록 하는 자연수의 최솟값",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.089,
+   "longestRun": 5,
+   "residualChars": 48,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

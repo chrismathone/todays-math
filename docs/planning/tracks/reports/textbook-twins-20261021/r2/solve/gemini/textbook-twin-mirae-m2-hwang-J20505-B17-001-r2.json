@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "b7d8c58b-86de-4883-90e5-8af18c95cc69",
+ "startedAt": "2026-10-21T18:20:19+0900",
+ "elapsedSec": 60.9,
+ "studentSha256": {
+  "fig-1.png": "517f19d5bbacc5ee2115582f3f170cf771b9aeaa4de15a4a0744d4dd968bf5fa",
+  "student.json": "9aeb3dfc8ded0384f39bf64f7456d3d872e9cf38aeae80fe9bb21e9d398e5869"
+ },
+ "promptSha256": "fae1eda6f15d41b380ffc2e14c44000cf3d8fc846fcac5bc624fc9b65f18e529",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"1) 평행사변형 $PQRS$에서 마주보는 각의 크기가 같으므로 $\\\\angle Q = \\\\angle S = 76^\\\\circ$이다.\\n2) $\\\\triangle PQR$에서 $\\\\overline{PQ}=\\\\overline{PR}$인 이등변삼각형이므로 $\\\\angle PRQ = \\\\angle Q = 76^\\\\circ$이다.\\n3) $\\\\triangle PRT$에서 $\\\\overline{RP}=\\\\overline{RT}$인 이등변삼각형이므로 외각의 성질에 의해 $\\\\angle PRQ = \\\\angle RPT + \\\\angle PTR = 2\\\\angle PTR$이 되어 $\\\\angle PTR = 38^\\\\circ$이다.\\n4) $\\\\overline{PS} \\\\parallel \\\\overline{QT}$이므로 엇각에 의해 $\\\\angle SPT = \\\\angle PTR = 38^\\\\circ$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "1) 평행사변형 $PQRS$에서 마주보는 각의 크기가 같으므로 $\\angle Q = \\angle S = 76^\\circ$이다.\n2) $\\triangle PQR$에서 $\\overline{PQ}=\\overline{PR}$인 이등변삼각형이므로 $\\angle PRQ = \\angle Q = 76^\\circ$이다.\n3) $\\triangle PRT$에서 $\\overline{RP}=\\overline{RT}$인 이등변삼각형이므로 외각의 성질에 의해 $\\angle PRQ = \\angle RPT + \\angle PTR = 2\\angle PTR$이 되어 $\\angle PTR = 38^\\circ$이다.\n4) $\\overline{PS} \\parallel \\overline{QT}$이므로 엇각에 의해 $\\angle SPT = \\angle PTR = 38^\\circ$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1fdafbdeab23e242c5431aa5f29517968bd4d2cdd71492227430fd063614b9d8"
+}

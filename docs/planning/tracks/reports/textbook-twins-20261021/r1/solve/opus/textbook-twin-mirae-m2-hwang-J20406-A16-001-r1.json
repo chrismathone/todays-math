@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "bba5cfa2-0125-447d-8398-767fbdc97442",
+ "startedAt": "2026-10-21T17:04:11+0900",
+ "elapsedSec": 5.2,
+ "studentSha256": {
+  "student.json": "b130bb7c3acc26d0a6721894bce8a1d35d50c95c83583ce54db75e41c5d3650e"
+ },
+ "promptSha256": "898c67d8c5fe5280a344d9823ac560a492093bb8bf6bce0f3fc66b7812f56e55",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$y=25x+15$, 3 km\", \"work\": \"깊이가 100 m 깊어질 때마다 2.5°C씩 오르므로, 1 km 깊어질 때마다 2.5×10=25°C씩 오른다. 따라서 y=25x+15이다. y=90을 대입하면 90=25x+15, 25x=75, x=3이다. 이 값은 0≤x≤4를 만족하므로 깊이는 3 km이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$y=25x+15$, 3 km",
+  "work": "깊이가 100 m 깊어질 때마다 2.5°C씩 오르므로, 1 km 깊어질 때마다 2.5×10=25°C씩 오른다. 따라서 y=25x+15이다. y=90을 대입하면 90=25x+15, 25x=75, x=3이다. 이 값은 0≤x≤4를 만족하므로 깊이는 3 km이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7488cc27ee1075d5bf4dc063e71c87cc2cdbb1007cb0a335dfcbed0e54d8dbb5"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c8ac7fd2-afe9-4b0e-a142-641bc56a5bda",
+ "startedAt": "2026-10-21T17:04:35+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "72f0f171d3eeac32aa1a08d380e560aaa73fb22db6744b54fa9d9ad1944edf61"
+ },
+ "promptSha256": "b08a649988fce69476b5c76894c9c950c1a5683e5544dc043c9c25439617c12a",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"f(-4)=3/2·(-4)=-6 (옳음), f(2)=3 (옳음), f(1/6)=3/2·1/6=1/4 (옳음), f(-2/3)=3/2·(-2/3)=-1 ≠ 1 (옳지 않음), f(5/2)=3/2·5/2=15/4 (옳음)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "f(-4)=3/2·(-4)=-6 (옳음), f(2)=3 (옳음), f(1/6)=3/2·1/6=1/4 (옳음), f(-2/3)=3/2·(-2/3)=-1 ≠ 1 (옳지 않음), f(5/2)=3/2·5/2=15/4 (옳음)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d9a5697e71ed105565867ed97352072d26072e6535d35ebc5ae3a3c3cfa6b5cf"
+}

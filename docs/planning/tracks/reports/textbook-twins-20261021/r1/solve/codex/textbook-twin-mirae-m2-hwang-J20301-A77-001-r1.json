@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-2d7e-7c43-a56b-0152ccbe19c9",
+ "startedAt": "2026-10-21T16:55:22+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "90806c45ee14ff8591fd5793191b8811b07c3be3df84417157972d0645a8ad48"
+ },
+ "promptSha256": "48e679fa088b7d67811ecd1254d4f02f4c85337df1d22e6c1a573ffcc914f361",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$(x,y)=(4,8)$\",\"work\":\"주어진 방정식을 정리하면 $2x+y=16$이다.\\n$y=2x$를 대입하면 $4x=16$이므로 $x=4$, $y=8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$(x,y)=(4,8)$",
+  "work": "주어진 방정식을 정리하면 $2x+y=16$이다.\n$y=2x$를 대입하면 $4x=16$이므로 $x=4$, $y=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b16c717c14b30b3a359f0d6f02516e525b31b4cbdc9c1b26ff03047717067e65"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-ec21-71a1-9413-fdbc2dee39fe",
+ "startedAt": "2026-10-21T19:05:04+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "047fa6c5522976393c738a28eb84298204d7145bbc7c4cb22371e2c61fdaa9dc"
+ },
+ "promptSha256": "248f481bc4884b199e104606917a949566a32b5c028fc6aa8c116f1102a25f23",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"① f(-6)=2, ③ g(-2)=12로 옳다.\\n④ f(4)=-3=g(11/2), ⑤ f(-3)-g(6)=4-(-4)=8로 옳다.\\n② f(2/3)=-18이지만 2g(10)=2×(-12)=-24이므로 옳지 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① f(-6)=2, ③ g(-2)=12로 옳다.\n④ f(4)=-3=g(11/2), ⑤ f(-3)-g(6)=4-(-4)=8로 옳다.\n② f(2/3)=-18이지만 2g(10)=2×(-12)=-24이므로 옳지 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "21d38dfeaeb1954a8f51685cca25e64e7403a41b3089164768fbceae012ff28a"
+}

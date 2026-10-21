@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A85-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d14642df-5e65-403c-a327-bb803a4199c0",
+ "startedAt": "2026-10-21T17:07:30+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "29a460f6347ce62fdb236c61ca85856f0326f377ecbc96fae17e7caa65ce781b",
+  "student.json": "62e645cbe7714935730b3b714c04f744cca018932ac13f279c4aa673b257ecc9"
+ },
+ "promptSha256": "cb2b5c430d6eba6358eb8f3a45db4d52f718d863846b29e8f79ae6a61b03aaeb",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "BH²=AH·HC → HC=9, AC=13, area=13·6/2=39.\n\n```json\n{\"answer\": \"39 cm²\", \"work\": \"△ABH∽△BCH(AA)이므로 BH² = AH×CH, 36 = 4×CH, CH = 9 cm. AC = 4+9 = 13 cm. 넓이 = ½×13×6 = 39 cm²\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "39 cm²",
+  "work": "△ABH∽△BCH(AA)이므로 BH² = AH×CH, 36 = 4×CH, CH = 9 cm. AC = 4+9 = 13 cm. 넓이 = ½×13×6 = 39 cm²",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c2d9bcba0a3dbf34b2f6be8a7f460cf7973b8a420d24744846ab4c6c8322a2c7"
+}

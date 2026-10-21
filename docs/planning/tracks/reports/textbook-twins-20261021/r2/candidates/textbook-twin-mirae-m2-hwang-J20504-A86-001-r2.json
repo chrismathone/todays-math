@@ -1,0 +1,159 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 256,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A86-001-r2",
+ "authorId": "claude-fable-5-1:27513094-f0d0-4096-a800-279c2d64c634",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 그림 ⑴, ⑵에서 점 $I$는 모두 $\\triangle ABC$의 내심이다. ⑵에서는 $\\overline{ID}\\perp\\overline{BC}$, $\\overline{IF}\\perp\\overline{AB}$이고 $\\angle ABC=54^{\\circ}$이다. 각 그림에서 $x$, $y$의 값을 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "⑴ $x=28$, $y=37$ ⑵ $x=4$, $y=27$",
+ "solution": "⑴ 내심은 세 내각의 이등분선이 만나는 점이므로 $\\angle IAB=\\angle IAC=28^{\\circ}$에서 $x=28$이고, $\\angle IBC=\\angle IBA=37^{\\circ}$에서 $y=37$이다.\n⑵ 내심에서 세 변에 이르는 거리는 모두 같으므로 $\\overline{ID}=\\overline{IF}=4\\,\\mathrm{cm}$에서 $x=4$이다. 또 $\\overline{BI}$가 $\\angle ABC$를 이등분하므로 $\\angle IBC=\\frac{1}{2}\\times 54^{\\circ}=27^{\\circ}$에서 $y=27$이다.\n따라서 ⑴ $x=28$, $y=37$ ⑵ $x=4$, $y=27$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A86-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A86-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03d665583002de54-0-1",
+  "problemCode": "J20504-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "91e0fdef1821aec2b612f586251a7c5194df2575d477f06b4b6ba6439e9b81e5",
+  "dbContentSha256": "6477c59c6523ae8ed1da345e0eb2534f31e87b3a8a390fb968c0c2b94c04aac1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-4_삼각형의내심.hwp",
+    "sha256": "177cdc1d2d6f4e35bdd651defe29e1687f81d37b59a68412e88ca8ca7c822db0",
+    "bytes": 216576
+   }
+  ],
+  "originalFigureSha256": [
+   "0ed6021552f4fb5fdfc4026d6efa5d8a3e3674a6605e668cfdc362feaa6cc55e",
+   "04d36290a44eed9c45806c4d05aad11296eb21681e6737705bca9a18cf58ccda"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "소문항 둘. 첫째는 두 꼭짓점 B, C에서 이등분된 각의 한쪽 크기를 주고 다른 쪽을 묻는다. 둘째는 내심에서 두 변에 내린 수선 가운데 하나의 길이와 꼭지각 A 전체를 그림에 주고, 나머지 수선 길이와 A의 반각을 묻는다.",
+  "after": "소문항 둘. 첫째는 꼭짓점 A, B에서 이등분된 각의 한쪽을 주고 다른 쪽을 묻는다. 둘째는 수선을 AB, BC에 내려 AB쪽 수선 길이를 그림에 주고, 각 B 전체는 글로 준 뒤 BC쪽 수선 길이와 B의 반각을 묻는다. 두 그림을 한 장에 나란히 두었다.",
+  "sharedConcept": "삼각형의 내심은 세 내각의 이등분선의 교점이며, 내심에서 세 변에 이르는 거리는 같다",
+  "sharedProcedure": "내심의 성질 확인 → 이등분된 두 각이 같음을 써서 각 구하기 → 세 변까지의 거리가 같음을 써서 길이 구하기 → 주어진 내각의 절반으로 각 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "각의 이등분선의 성질",
+   "삼각형의 내심의 뜻과 성질",
+   "점과 직선 사이의 거리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A86-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "내심의 성질(각의 이등분 · 변까지의 거리)로 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'angI2B2C2' ray to 'C2' is not covered by a rendered segment",
+     "session": "c6c5297d-76a2-40da-a40e-2269e7311058",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: fixed canvas clips scene content: content=(-8.95, 19.05, 455.648, 225.576), canvas=(0, 0, 480, 228)",
+     "session": "9c435999-7c79-4e20-9b5a-35c3d2b9b775",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.132,
+   "longestRun": 7,
+   "residualChars": 58,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

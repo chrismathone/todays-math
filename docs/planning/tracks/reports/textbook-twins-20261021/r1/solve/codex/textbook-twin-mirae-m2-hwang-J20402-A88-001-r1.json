@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A88-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-3bd6-7e10-976d-b574480815df",
+ "startedAt": "2026-10-21T17:53:19+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "fig-1.png": "7b6559c7e5496ec712f397fe8f84728a987986ff5e1c5436cffcadcff69c9983",
+  "student.json": "3a11bf4383464473a33874aa47a3097bb23921ded830d2c28e08dd9ea2abf32a"
+ },
+ "promptSha256": "e18e86676ae3fac5a82e20a5eb7f20fba87ceb697b076fcee67077ddc2ff4054",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"그래프는 (2, 3), (6, 1)을 지나므로 기울기는 (1-3)/(6-2)=-1/2이다.\\n따라서 일차함수의 식은 y=-x/2+4이다.\\nx축과 만나는 점에서 y=0이므로 x=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그래프는 (2, 3), (6, 1)을 지나므로 기울기는 (1-3)/(6-2)=-1/2이다.\n따라서 일차함수의 식은 y=-x/2+4이다.\nx축과 만나는 점에서 y=0이므로 x=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0e759aa9276612850db660d5449ef66b7c7b5ec1e73ef5ae42600b2105f95454"
+}

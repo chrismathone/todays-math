@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d59-bf9a-7ca2-925b-17a0044ac857",
+ "startedAt": "2026-10-21T16:25:25+0900",
+ "elapsedSec": 14.8,
+ "studentSha256": {
+  "student.json": "4a5ab5c3a9ba8061bc1d76e3dd8dcd12f81fc77aff2fea82440c0394c600b7f0"
+ },
+ "promptSha256": "9600307fe796a88c5af0b1582a6c7a5f109d061212c591a95ef77f6f9b324520",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"④의 좌변은 $12a^{4}b^{3}\\\\div(-3a^{2}b)\\\\times2ab^{2}=(-4a^{2}b^{2})\\\\times2ab^{2}=-8a^{3}b^{4}$이다.\\n따라서 a의 지수가 2인 ④가 옳지 않다. 나머지 보기는 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "④의 좌변은 $12a^{4}b^{3}\\div(-3a^{2}b)\\times2ab^{2}=(-4a^{2}b^{2})\\times2ab^{2}=-8a^{3}b^{4}$이다.\n따라서 a의 지수가 2인 ④가 옳지 않다. 나머지 보기는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "19f967e92fde1f00c37f165b911b8e3a5bb2f0c009ad16efa76d0026d3ca9a7b"
+}

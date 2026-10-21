@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 240,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r2",
+ "authorId": "claude-opus-5-5:b64a35aa-03d6-4d44-82c6-dea48149ac17",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "하루네 마당에는 지난밤에 내린 눈이 쌓여 있었는데, 오늘 아침 다시 눈이 내리기 시작하여 쌓인 눈의 깊이가 일정한 빠르기로 늘어나고 있다. 눈이 다시 내리기 시작한 뒤 지난 시간과 마당에 쌓인 눈의 깊이가 다음 표와 같을 때, 눈이 다시 내리기 시작하기 전 마당에 쌓여 있던 눈의 깊이를 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$7\\,\\mathrm{cm}$",
+ "solution": "$3$시간 후부터 $7$시간 후까지 $4$시간 동안 눈의 깊이가 $28-16=12\\,(\\mathrm{cm})$ 늘어났으므로 $1$시간에 $3\\,\\mathrm{cm}$씩 깊어진다.\n눈이 다시 내리기 시작하기 전 쌓여 있던 눈의 깊이를 $b\\,\\mathrm{cm}$, 다시 내리기 시작한 지 $x$시간 후 눈의 깊이를 $y\\,\\mathrm{cm}$라 하면 $y=3x+b$이다.\n$x=3$, $y=16$을 대입하면 $16=3\\times 3+b$, $b=7$이다.\n따라서 눈이 다시 내리기 시작하기 전 쌓여 있던 눈의 깊이는 $7\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20407-A36-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20407-A36-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-17",
+  "problemCode": "J20407-A36-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "fda1a145210c7c8905e7689ec745d4c46b4997d27eee2f601ffebb74e27f446a",
+  "dbContentSha256": "1a37fc795bbb0555e39716c6b60562f8ef933137222f9782ad677ea66d647056",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [
+   "e5e92744fb960f291f4b2a79d45692f463b1c509126e0d22d4aa4ed1a6dc9375"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "물을 일정하게 넣고 있는 수조에서, 넣은 시간(분) 두 개와 그때의 물의 양(L)을 세로로 놓인 표로 주고, 물을 넣기 전 처음 들어 있던 물의 양을 묻는다.",
+  "after": "눈이 일정하게 쌓이고 있는 마당에서, 지난 시간(시간) 두 개와 그때의 눈의 깊이(cm)를 가로로 놓인 표로 주고, 눈이 다시 내리기 전 처음 쌓여 있던 눈의 깊이를 묻는다.",
+  "sharedConcept": "일정하게 변하는 양을 일차함수 y=ax+b로 나타내고, 처음 양을 y절편으로 구하기",
+  "sharedProcedure": "표의 두 값에서 단위 시간당 변화량(기울기) 구하기 → y=ax+b 세우기 → 한 점 대입해 b 구하기 → 처음 양 답하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d495853c-37b3-4d8a-89e6-45e90602491a",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 활용(속력, 도형, 기타)"
+  },
+  "prerequisites": [
+   "일차함수 y=ax+b의 뜻",
+   "기울기와 변화량",
+   "일차식에 수 대입하여 미지수 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20407-A36-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "표에 주어진 두 시각의 양으로 처음 양(y절편) 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d495853c-37b3-4d8a-89e6-45e90602491a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.033,
+   "longestRun": 6,
+   "residualChars": 108,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

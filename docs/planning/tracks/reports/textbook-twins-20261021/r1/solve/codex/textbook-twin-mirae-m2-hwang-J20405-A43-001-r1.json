@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daa-e040-7910-a219-31ff8e6d2e15",
+ "startedAt": "2026-10-21T17:54:01+0900",
+ "elapsedSec": 9.6,
+ "studentSha256": {
+  "student.json": "bc9d78dab144f45fc86e3647a11a5d53c544ae4d088295f985a7ebd216f924e0"
+ },
+ "promptSha256": "335ab7417cc52d0c3f031fe0333b2ba11e242285bba2ba6b584daad10912eb6f",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"직선 l의 기울기는 (-2-7)/(4-1)=-3이다.\\n직선 m은 l과 평행하므로 y=-3x+b로 놓는다.\\n점 (-2, 5)를 대입하면 5=6+b이므로 b=-1이다. 따라서 y=-3x-1이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "직선 l의 기울기는 (-2-7)/(4-1)=-3이다.\n직선 m은 l과 평행하므로 y=-3x+b로 놓는다.\n점 (-2, 5)를 대입하면 5=6+b이므로 b=-1이다. 따라서 y=-3x-1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b523bf9d9d51b14bbf4d5a8fc45c314ad810d41d3df71542d5f1b5c42eefe9f4"
+}

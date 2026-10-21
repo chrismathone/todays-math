@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-B02-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3564154e-413b-40bf-9fc3-022c38bf9d13",
+ "startedAt": "2026-10-21T16:28:52+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "fig-1.png": "4702d58cc98a8c442144bbdac443dd9657e615727d3f0b8abc5c0059235d172e",
+  "student.json": "6513f7d030a522da21b454baef275dbd81832175e8f4936254dae06b0e77c7f5"
+ },
+ "promptSha256": "1534d84ce0e4af7f63293b4189c73092ab6b7baab0fce2d684e8e32bbc7ecf31",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$x\\\\le -1$\", \"work\": \"그림에서 첫 번째 부등식의 해는 x≤3이다. 3(2x-a)≥7x-9를 정리하면 6x-3a≥7x-9, -x≥3a-9, x≤9-3a이다. 9-3a=3이므로 a=2이다. a=2를 두 번째 부등식에 넣으면 12-2x≥4+10이므로 -2x≥2, 따라서 x≤-1이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$x\\le -1$",
+  "work": "그림에서 첫 번째 부등식의 해는 x≤3이다. 3(2x-a)≥7x-9를 정리하면 6x-3a≥7x-9, -x≥3a-9, x≤9-3a이다. 9-3a=3이므로 a=2이다. a=2를 두 번째 부등식에 넣으면 12-2x≥4+10이므로 -2x≥2, 따라서 x≤-1이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "643ea60524e1062745b01477142cd487ea1ff35bebcb72a275e4b236dc18a10c"
+}

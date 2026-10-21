@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 198,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r1",
+ "authorId": "middle-engine:2-1|연립일차방정식의 활용|14",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "배를 타고 강을 따라 $6\\,\\mathrm{km}$ 떨어진 두 지점 사이를 왕복하는데 강을 거슬러 올라갈 때는 $3$시간, 내려올 때는 $1$시간이 걸렸다. 흐르지 않는 물에서의 배의 속력은 시속 몇 $\\mathrm{km}$인지 구하시오. (단, 강물과 배의 속력은 각각 일정하다.)",
+ "choices": [],
+ "answer": "시속 $4\\,\\mathrm{km}$",
+ "solution": "흐르지 않는 물에서의 배의 속력을 시속 $x\\,\\mathrm{km}$, 강물의 속력을 시속 $y\\,\\mathrm{km}$라 하면 거슬러 올라갈 때 $(x-y)\\times3=6$, 내려올 때 $(x+y)\\times1=6$이다.\n풀면 $x=4$, $y=2$이다.\n따라서 배의 속력은 시속 $4\\,\\mathrm{km}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-12",
+  "problemCode": "J20308-A22-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "c023c209f20e0d7a54d5f109867ad952129b18b299720f70f28ace13f40fb8ad",
+  "dbContentSha256": "5003530e4d3249ced6b93e024ee3aec84eb63bb0d3d91da10f2981418d8986b3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "일정한 길이의 강을 거슬러 오르는 시간과 내려오는 시간을 주고, 배의 속력과 강물 속력을 미지수로 놓아 연립방정식으로 정지한 물에서의 배의 속력을 구하는 단답형.",
+  "after": "엔진이 새 거리와 새 두 시간을 정해, 같은 방식으로 흐르지 않는 물에서의 배의 속력을 구하는 단답형.",
+  "sharedConcept": "강물의 속력이 배의 속력에 더해지고 빼지는 관계를 이용한 연립일차방정식의 활용",
+  "sharedProcedure": "배 · 강물 속력을 미지수로 놓기 → 상류 식 (x−y)×시간 = 거리, 하류 식 (x+y)×시간 = 거리 세우기 → 변끼리 더해 x 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c967065d-b309-4431-9d15-f6b12671ee6a",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(일, 속력)"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(가감법)",
+   "거리 = 속력 × 시간",
+   "강물 · 배의 속력 관계(상류 · 하류)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20308-A22-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "강을 왕복하는 배의 정지한 물에서의 속력 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c967065d-b309-4431-9d15-f6b12671ee6a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|연립일차방정식의 활용|14",
+   "seed": 503582668,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:a5ee89da-73c7-4418-9642-f8a4d320fd60",
+   "authorRationale": "두 지점 사이를 배로 왕복하며 거슬러 오르는 시간과 내려오는 시간이 주어지고, 정지한 물에서의 배의 속력을 묻는 단답형으로 개념 · 풀이 절차(상류 식 · 하류 식을 세워 변끼리 더함) · 물음 꼴이 모두 같다.",
+   "facts": {
+    "D": 6,
+    "t1": 3,
+    "t2": 1,
+    "b": 4,
+    "w": 2
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.22,
+   "longestRun": 8,
+   "residualChars": 87,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

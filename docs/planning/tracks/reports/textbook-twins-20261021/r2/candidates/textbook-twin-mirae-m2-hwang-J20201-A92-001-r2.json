@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 130,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r2",
+ "authorId": "claude-fable-5-1:35509ca3-2892-4e9b-b13c-bfc185e613f5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$9-\\frac{a}{6}\\le 9-\\frac{b}{6}$일 때, 다음 가운데 옳은 것은?",
+ "choices": [
+  "$a\\le b$",
+  "$a-8\\le b-8$",
+  "$\\frac{8a}{11}\\ge \\frac{8b}{11}$",
+  "$10-a\\ge 10-b$",
+  "$12+\\frac{a}{9}\\le 12+\\frac{b}{9}$"
+ ],
+ "answer": "③",
+ "solution": "$9-\\frac{a}{6}\\le 9-\\frac{b}{6}$의 양변에서 $9$를 빼면 $-\\frac{a}{6}\\le -\\frac{b}{6}$이고, 양변에 음수 $-6$을 곱하면 부등호의 방향이 바뀌어 $a\\ge b$이다.\n① $a\\ge b$이므로 옳지 않다.\n② $a\\ge b$의 양변에서 $8$을 빼면 $a-8\\ge b-8$이므로 옳지 않다.\n③ $a\\ge b$의 양변에 양수 $\\frac{8}{11}$을 곱하면 $\\frac{8a}{11}\\ge \\frac{8b}{11}$이므로 옳다.\n④ $a\\ge b$의 양변에 $-1$을 곱하면 $-a\\le -b$, 여기에 $10$을 더하면 $10-a\\le 10-b$이므로 옳지 않다.\n⑤ $a\\ge b$의 양변을 $9$로 나누면 $\\frac{a}{9}\\ge \\frac{b}{9}$, 여기에 $12$를 더하면 $12+\\frac{a}{9}\\ge 12+\\frac{b}{9}$이므로 옳지 않다.\n따라서 옳은 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-3eec77215718b71c-0-3",
+  "problemCode": "J20201-A92-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "8bea6947da70ab27ac34267aef294468d39b5a63cd6248a7eea07ae80295e21c",
+  "dbContentSha256": "1bd97e44336da031e2309e75a00b4f9c33698496a0d18c763a57cfb7a7135aac",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_3-2_부등식의성질.hwp",
+    "sha256": "05f46293115e94424e585738427655594804b5eb7b00c3af4455036ec3f07da0",
+    "bytes": 38912
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "상수에서 문자의 정수배를 뺀 두 식의 대소(≥)가 주어지고, 그로부터 a와 b의 대소를 끌어낸 뒤 다섯 보기의 변형식 가운데 참인 것 하나를 고른다. 결론은 a가 b보다 작거나 같음.",
+  "after": "상수에서 문자를 양수로 나눈 값을 뺀 두 식의 대소(≤)가 주어지고, 음수를 곱해 a가 b보다 크거나 같음을 끌어낸 뒤 다섯 보기 가운데 참인 것 하나를 고른다. 조건의 계수가 분수이고 부등호 방향과 결론이 원본과 반대이며, 수는 모두 새로 둠.",
+  "sharedConcept": "부등식의 성질 — 양변에 같은 수를 더하거나 빼도 방향 유지, 양수를 곱하거나 나누면 방향 유지, 음수를 곱하거나 나누면 방향 반대",
+  "sharedProcedure": "주어진 부등식 양변에서 상수 빼기 → 음수를 곱해(나눠) a, b의 대소 얻기(방향 반대) → 각 보기를 그 대소에서 덧셈·뺄셈·곱셈 성질로 변형 → 참인 보기 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻과 부등호의 종류",
+   "부등식의 성질(덧셈·뺄셈·양수 곱셈·음수 곱셈)",
+   "일차식의 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A92-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 부등식에서 a, b의 대소를 구한 뒤 부등식의 성질로 옳은 보기 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.033,
+   "longestRun": 5,
+   "residualChars": 64,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

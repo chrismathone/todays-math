@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 42,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A93-001-r2",
+ "authorId": "claude-fable-5-1:b6de9dcd-1e70-4927-beb7-56fda881dd94",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A93-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 등식이 성립하도록 하는 $\\square$ 안의 식은?\n$\\left(-\\dfrac{2a^{2}}{b}\\right)^{2}\\times\\square\\div 6ab^{3}=-\\dfrac{4}{3}a^{5}b$",
+ "choices": [
+  "$-6a^{2}b^{4}$",
+  "$-2a^{4}b^{6}$",
+  "$-2a^{2}b^{6}$",
+  "$-6a^{2}b^{6}$",
+  "$2a^{2}b^{6}$"
+ ],
+ "answer": "③",
+ "solution": "먼저 거듭제곱을 계산하면 $\\left(-\\dfrac{2a^{2}}{b}\\right)^{2}=\\dfrac{4a^{4}}{b^{2}}$이다.\n$\\square$ 안의 식을 $A$라 하면 $\\dfrac{4a^{4}}{b^{2}}\\times A\\div 6ab^{3}=\\dfrac{4a^{4}}{b^{2}}\\times A\\times\\dfrac{1}{6ab^{3}}=\\dfrac{2a^{3}}{3b^{5}}A$이다.\n$\\dfrac{2a^{3}}{3b^{5}}A=-\\dfrac{4}{3}a^{5}b$이므로 $A=-\\dfrac{4}{3}a^{5}b\\times\\dfrac{3b^{5}}{2a^{3}}=-2a^{2}b^{6}$이다.\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-5",
+  "problemCode": "J20106-A93-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "3ab1f81352e49c0ef4bd4842ac14fe31cfe4aedf5b03999cf0f9a796ea631d07",
+  "dbContentSha256": "6dcc79593b938388585d33ca9feedcc151d724eed2783d01b181b1a8cf4a9880",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "음수 부호가 붙은 분수 꼴 단항식의 제곱 × 빈칸 ÷ 단항식 = 단항식(분수 계수) 꼴의 등식에서, 거듭제곱을 먼저 전개한 뒤 빈칸의 식을 역산해 보기에서 고른다. 분수의 분자는 문자 하나, 분모에 계수와 문자가 있다.",
+  "after": "같은 자리(가운데 곱셈 자리)에 빈칸을 둔 등식이지만 문자를 a, b로 바꾸고 분수의 분자에 계수와 거듭제곱 문자, 분모에 문자 하나를 두어 전개 결과의 모양을 바꾸었다. 우변 계수도 분수(−4/3)이며 보기 다섯에서 고른다.",
+  "sharedConcept": "지수법칙을 이용한 단항식의 곱셈과 나눗셈, 등식에서 모르는 단항식 구하기",
+  "sharedProcedure": "분수 꼴 단항식의 거듭제곱 전개 → 빈칸을 A로 두고 좌변을 A의 단항식 배로 정리 → 우변과 비교해 A를 역산(역수 곱하기) → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(거듭제곱의 거듭제곱, 분수의 거듭제곱)",
+   "단항식의 곱셈과 나눗셈",
+   "나눗셈을 역수의 곱셈으로 바꾸기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A93-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "거듭제곱이 포함된 단항식의 곱셈·나눗셈 등식에서 □ 안의 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.045,
+   "longestRun": 6,
+   "residualChars": 85,
+   "params": 6,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

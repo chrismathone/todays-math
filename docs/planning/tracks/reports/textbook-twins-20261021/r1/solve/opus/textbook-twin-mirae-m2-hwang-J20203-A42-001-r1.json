@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A42-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "09f75454-d055-48c0-8e30-03f80b8e1dd4",
+ "startedAt": "2026-10-21T16:27:13+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "78d56348757361c5ab2a7cb05be0a42bbab4273e68691eb91825667efd2846dc"
+ },
+ "promptSha256": "6d0ee4d51921d3f6d6c4ded556f31550541a3246aa637165754bbd4059d543f6",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"3\", \"work\": \"-2<x≤6 에서 -18≤-3x<6, -9≤9-3x<15, -9/2≤A<15/2. 가장 큰 정수 M=7, 가장 작은 정수 m=-4. 따라서 M+m=3\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "-2<x≤6 에서 -18≤-3x<6, -9≤9-3x<15, -9/2≤A<15/2. 가장 큰 정수 M=7, 가장 작은 정수 m=-4. 따라서 M+m=3",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e9c438f90f0a208e81e72f8eb9645e7241464758fe15f1c42bb8958f38722f4d"
+}

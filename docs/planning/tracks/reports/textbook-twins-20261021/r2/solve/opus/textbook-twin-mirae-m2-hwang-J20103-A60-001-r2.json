@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "be96b67f-9196-4175-864d-6647d13dd1bf",
+ "startedAt": "2026-10-21T17:07:31+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "e99820a1169318474503316f62f6cde58d6698d1baa49a1e2c6ddc9f4d4fd8da"
+ },
+ "promptSha256": "9c547634eae0ffbddda7f6c0781183a72b9ec0c3a03f156c561762c82db73451",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"0.8\\\\dot{5} = (85-8)/90 = 77/90 → 역수 90/77; 1.\\\\dot{1} = (11-1)/9 = 10/9 → 역수 9/10; 넓이 = 90/77 × 9/10 = 81/77\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "0.8\\dot{5} = (85-8)/90 = 77/90 → 역수 90/77; 1.\\dot{1} = (11-1)/9 = 10/9 → 역수 9/10; 넓이 = 90/77 × 9/10 = 81/77",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1399bccb53f696eafe03d8c1d6d810cf18b0d497bd9505c4d0a34b339cbee655"
+}

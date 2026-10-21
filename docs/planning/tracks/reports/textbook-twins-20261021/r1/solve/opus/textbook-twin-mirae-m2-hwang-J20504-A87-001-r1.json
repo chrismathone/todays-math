@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "81f3466a-e884-475e-9d82-39499cb13687",
+ "startedAt": "2026-10-21T16:31:42+0900",
+ "elapsedSec": 8.6,
+ "studentSha256": {
+  "fig-1.png": "3eccdb6fb3e0562b76a14dfa22e87709a96f18d1dbd7d53d2538e3e39c5d09d8",
+  "student.json": "8bb338dec3f8624e754f303dfbd4fc05146419e9797a53269b213f152329d74a"
+ },
+ "promptSha256": "086f206e3eb01ac548d1b850180d93a9042f0904a68fd820b142b8b904551ac1",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"15°\", \"work\": \"점 I가 내심이므로 AI, BI, CI는 각각 ∠A, ∠B, ∠C의 이등분선이다. 그래서 ∠A=2·45°, ∠B=2·30°, ∠C=2x이다. 삼각형의 세 내각의 합은 180°이므로 2(45°+30°+x)=180°이다. 즉 45°+30°+x=90°이고, 따라서 x=∠ICA=15°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "15°",
+  "work": "점 I가 내심이므로 AI, BI, CI는 각각 ∠A, ∠B, ∠C의 이등분선이다. 그래서 ∠A=2·45°, ∠B=2·30°, ∠C=2x이다. 삼각형의 세 내각의 합은 180°이므로 2(45°+30°+x)=180°이다. 즉 45°+30°+x=90°이고, 따라서 x=∠ICA=15°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8033bc1bc296e985cefdd708dcd26350b167bcd68f88ee7da2eddd9a4863f43f"
+}

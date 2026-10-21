@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A61-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ee87a7ca-756e-4bd9-aa7c-aa25b32b3e9f",
+ "startedAt": "2026-10-21T16:27:43+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "38ed2f2426eb776b65a234802749df05d9dcf21b89091b5f4886e034932462ac"
+ },
+ "promptSha256": "e539f47fe97b460bf0da02503b15bc76245b2d87eb4f321849ea85fa7c5fb272",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"5\", \"work\": \"양변에 18을 곱하면 3(x+7) > 2(5x-8), 즉 3x+21 > 10x-16. 정리하면 37 > 7x이므로 x < 37/7 (≈5.29). 따라서 이를 만족시키는 자연수는 1, 2, 3, 4, 5이고, 그중 가장 큰 것은 5이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "양변에 18을 곱하면 3(x+7) > 2(5x-8), 즉 3x+21 > 10x-16. 정리하면 37 > 7x이므로 x < 37/7 (≈5.29). 따라서 이를 만족시키는 자연수는 1, 2, 3, 4, 5이고, 그중 가장 큰 것은 5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "43e77125f9ba13b1f21a40c0e5bbb1d170da4db2f44c4cc1057fab362bede1ac"
+}

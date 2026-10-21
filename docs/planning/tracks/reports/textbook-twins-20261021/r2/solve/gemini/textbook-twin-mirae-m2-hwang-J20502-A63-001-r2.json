@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "5a91c654-7c1f-4804-a9d0-b747bfa0a937",
+ "startedAt": "2026-10-21T18:29:43+0900",
+ "elapsedSec": 40.3,
+ "studentSha256": {
+  "fig-1.png": "c84b00a66f59851d6d87fb908f65ef79b2e2a110fbdd1938724d0a3d8ed6f23b",
+  "student.json": "25d448324d40c95b479f74f0c561091a212075b03a95d5139231e08a53eeb92c"
+ },
+ "promptSha256": "b64d7c0a1c363960df75c22225603b6de4ce421241306338fb37e51840725c8b",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 포개어진다, $\\\\triangle ABC \\\\equiv \\\\triangle FED$, RHS 합동 ⑵ 16 cm\",\n  \"work\": \"⑴ 직각삼각형 $ABC$와 직각삼각형 $FED$에서 빗변의 길이($\\\\overline{BC}=\\\\overline{ED}=20\\\\text{ cm}$)와 다른 한 변의 길이($\\\\overline{AB}=\\\\overline{EF}=12\\\\text{ cm}$)가 각각 같으므로 두 직각삼각형은 RHS 합동이다. 따라서 두 조각은 꼭 포개어지며, $\\\\triangle ABC \\\\equiv \\\\triangle FED$이다.\\n⑵ 두 삼각형이 합동이므로 대응변의 길이가 같다. 따라서 $\\\\overline{DF} = \\\\overline{AC} = 16\\\\text{ cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ 포개어진다, $\\triangle ABC \\equiv \\triangle FED$, RHS 합동 ⑵ 16 cm",
+  "work": "⑴ 직각삼각형 $ABC$와 직각삼각형 $FED$에서 빗변의 길이($\\overline{BC}=\\overline{ED}=20\\text{ cm}$)와 다른 한 변의 길이($\\overline{AB}=\\overline{EF}=12\\text{ cm}$)가 각각 같으므로 두 직각삼각형은 RHS 합동이다. 따라서 두 조각은 꼭 포개어지며, $\\triangle ABC \\equiv \\triangle FED$이다.\n⑵ 두 삼각형이 합동이므로 대응변의 길이가 같다. 따라서 $\\overline{DF} = \\overline{AC} = 16\\text{ cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "87bcc9524a9a75f54b980ba56f24615dc2885569956e45f54a48d294366b1fa2"
+}

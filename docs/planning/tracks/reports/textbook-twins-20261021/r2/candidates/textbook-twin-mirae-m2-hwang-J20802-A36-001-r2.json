@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 346,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r2",
+ "authorId": "claude-fable-5-1:3dd5427b-7f14-4134-a3ae-4b91cdb1ef6c",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "서아는 직사각형 모양의 카드 $PQRS$를 꼭짓점 $R$가 반대쪽으로 넘어가도록 대각선 $QS$를 따라 접었다. 넘어간 꼭짓점 $R$의 새 위치를 $R'$이라 하면 $\\overline{QR'}$은 변 $PS$와 한 점 $T$에서 만난다. $\\overline{PQ}=8\\,\\mathrm{cm}$, 대각선 $\\overline{QS}=17\\,\\mathrm{cm}$이고, $T$에서 대각선 $QS$에 수직으로 그은 선분이 $QS$와 만나는 점을 $H$라 할 때, $\\overline{QT}$의 길이를 풀이 과정과 함께 서술하시오.\n[그림]",
+ "choices": [],
+ "answer": "$\\dfrac{289}{30}\\,\\mathrm{cm}$",
+ "solution": "[1단계] $\\triangle QRS$에서 $\\angle R=90^{\\circ}$이므로 피타고라스 정리에 의하여 $\\overline{QR}^{2}=17^{2}-8^{2}=225$, 즉 $\\overline{QR}=15\\,\\mathrm{cm}$이다.\n[2단계] 접은 각은 서로 같으므로 $\\angle TQS=\\angle RQS$이고, $\\overline{PS}/\\!/\\overline{QR}$이므로 $\\angle TSQ=\\angle RQS$(엇각)이다. 따라서 $\\angle TQS=\\angle TSQ$이므로 $\\triangle TQS$는 $\\overline{TQ}=\\overline{TS}$인 이등변삼각형이고, 꼭지각의 꼭짓점 $T$에서 밑변에 내린 수선은 밑변을 이등분하므로 $\\overline{QH}=\\dfrac{1}{2}\\times 17=\\dfrac{17}{2}\\,\\mathrm{cm}$이다.\n[3단계] $\\triangle QHT$와 $\\triangle QRS$에서 $\\angle QHT=\\angle QRS=90^{\\circ}$, $\\angle Q$는 공통이므로 $\\triangle QHT\\backsim\\triangle QRS$(AA 닮음)이다. $\\overline{QT}:\\overline{QS}=\\overline{QH}:\\overline{QR}$에서 $\\overline{QT}:17=\\dfrac{17}{2}:15$, $15\\,\\overline{QT}=\\dfrac{289}{2}$이다.\n[4단계] 따라서 $\\overline{QT}=\\dfrac{289}{30}\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A36-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A36-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-20",
+  "problemCode": "J20802-A36-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "194cf4662ac21db4ed468e07e899cab801e18d423682b9b0110e9fe65813bbbb",
+  "dbContentSha256": "8ce1ffb0150c4b25ceb1d7f3dd5db9438ad2fc21394018a2295d16f5b80f044b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "de07a69ac3055016add01799eb83b8d0385117e9bbd41927528b7dc4348d8fab"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "직사각형의 세로와 가로 두 변 길이를 주고, 한 대각선으로 접었을 때 겹치는 부분에 생기는 이등변삼각형의 한 등변 길이를 묻는다. 수선의 발이 대각선을 이등분함을 쓰고 닮음비로 구한다.",
+  "after": "카드를 접는 장면으로 바꾸고 문자도 새로 두었다. 두 변 대신 한 변과 대각선 길이를 주어 피타고라스 정리로 나머지 변을 먼저 구하게 한 뒤, 같은 이등변삼각형·수선·닮음의 흐름으로 등변 길이를 묻는다.",
+  "sharedConcept": "피타고라스 정리와 접은 도형에서 생기는 이등변삼각형, 직각삼각형의 닮음",
+  "sharedProcedure": "피타고라스 정리로 직각삼각형의 세 변 확정 → 접은 각과 엇각으로 이등변삼각형 확인 → 수선의 발이 밑변을 이등분함을 이용 → 직각삼각형 AA 닮음비로 길이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리의 활용"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "삼각형의 닮음 조건(AA)",
+   "이등변삼각형의 성질",
+   "평행선과 엇각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20802-A36-001",
+  "difficultyProposal": "심화하",
+  "sourceDifficulty": "심화하",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직사각형을 대각선으로 접었을 때 생기는 이등변삼각형의 변의 길이(피타고라스 정리 · 닮음)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.022,
+   "longestRun": 4,
+   "residualChars": 145,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

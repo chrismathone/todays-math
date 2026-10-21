@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 359,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r1",
+ "authorId": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림은 네 마을 $\\mathrm{A}$, $\\mathrm{B}$, $\\mathrm{C}$, $\\mathrm{D}$ 사이에 난 산책로를 나타낸 것이다. 하루가 $\\mathrm{A}$ 마을을 출발하여 $\\mathrm{B}$ 마을에 도착하는 경로의 수는? (단, 같은 마을을 두 번 지나지 않는다.)\n[그림]",
+ "choices": [
+  "$5$",
+  "$6$",
+  "$9$",
+  "$12$",
+  "$18$"
+ ],
+ "answer": "③",
+ "solution": "(ⅰ) $\\mathrm{A}$ → $\\mathrm{C}$ → $\\mathrm{B}$로 가는 경우: $\\mathrm{A}$에서 $\\mathrm{C}$로 가는 길이 $2$가지, 그 각각에 대하여 $\\mathrm{C}$에서 $\\mathrm{B}$로 가는 길이 $3$가지이므로 $2\\times 3=6$(가지)\n(ⅱ) $\\mathrm{A}$ → $\\mathrm{D}$ → $\\mathrm{B}$로 가는 경우: $\\mathrm{A}$에서 $\\mathrm{D}$로 가는 길이 $1$가지, 그 각각에 대하여 $\\mathrm{D}$에서 $\\mathrm{B}$로 가는 길이 $3$가지이므로 $1\\times 3=3$(가지)\n(ⅰ), (ⅱ)는 동시에 일어나지 않으므로 구하는 경로의 수는 $6+3=9$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20901-A86-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20901-A86-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-6",
+  "problemCode": "J20901-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "14b231b6e477f21c7513a9b4205e58de2c048abb5e3f10ffaebb43f5fa971aef",
+  "dbContentSha256": "c2d80078377d4cb5913b204bc718e44c26716588382aa6c4f63f23ed9661b399",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [
+   "1f1551e419f8e0879b6f9e4479b21b05e944c3a3b1e72f98dee901ab64df2370"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "representation"
+  ],
+  "before": "네 도시를 잇는 도로 그림(A–C 3개, C–B 2개, A–D 2개, D–B 2개)에서 A→B 경로를 C 경유와 D 경유로 나누어 곱의 법칙으로 각각 구한 뒤 더해 고른다.",
+  "after": "네 마을을 잇는 산책로 그림(A–C 2개, C–B 3개, A–D 1개, D–B 3개)에서 A→B 경로를 C 경유와 D 경유로 나누어 곱으로 각각 구한 뒤 더해 고른다. 길은 곡선 대신 꺾인 선으로 나타낸다.",
+  "sharedConcept": "경로를 경유지에 따라 나누어 경우의 수의 곱과 합을 함께 쓰기",
+  "sharedProcedure": "그림에서 구간별 길의 수 읽기 → C 경유 경로 수(곱) → D 경유 경로 수(곱) → 두 경우 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "경우의 수의 합",
+   "경우의 수의 곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A86-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 경유지를 지나는 길 그림에서 경로의 수(곱의 법칙 + 합의 법칙)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.152,
+   "longestRun": 8,
+   "residualChars": 69,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

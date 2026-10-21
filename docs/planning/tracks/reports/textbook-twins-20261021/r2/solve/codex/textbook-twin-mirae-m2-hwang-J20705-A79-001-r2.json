@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddb-7420-78c3-acc6-a5d69fff38eb",
+ "startedAt": "2026-10-21T18:47:05+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "fig-1.png": "2160c63e9e516f14538eb538b3621347afb595df75db1fed24e4ccbb48279bb8",
+  "student.json": "68cdb7f7a64ce14de440b1f97996c9c6c5e6f4d29fb90c51dd3aea07dd246ae6"
+ },
+ "promptSha256": "1a749fb91dfd7ac5ea8262316a2b8ff1f471bfb6f264ab90a1ad0082253f0b69",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"14 cm\",\"work\":\"무게중심은 중선을 2:1로 나누므로 x=AG=2×GD=6 cm이다. GQ∥DC이므로 삼각형 AGQ와 ADC는 닮음이고, GQ:DC=AG:AD=2:3이다. 따라서 y=12×2/3=8 cm이므로 x+y=14 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "14 cm",
+  "work": "무게중심은 중선을 2:1로 나누므로 x=AG=2×GD=6 cm이다. GQ∥DC이므로 삼각형 AGQ와 ADC는 닮음이고, GQ:DC=AG:AD=2:3이다. 따라서 y=12×2/3=8 cm이므로 x+y=14 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "097270d62d05d5a99392f462a75039b0831b3922c73fd045074485694dbcb3cf"
+}

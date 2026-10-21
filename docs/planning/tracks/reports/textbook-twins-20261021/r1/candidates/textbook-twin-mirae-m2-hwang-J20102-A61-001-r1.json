@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 53,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A61-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "분수 $\\frac{71}{55}$을 소수로 나타낼 때, 소수점 아래 $83$째 자리 숫자는?",
+ "choices": [
+  "$0$",
+  "$1$",
+  "$2$",
+  "$5$",
+  "$9$"
+ ],
+ "answer": "①",
+ "solution": "$\\frac{71}{55}=1.2909090\\cdots=1.2\\dot{9}\\dot{0}$이므로 순환마디는 $90$이고, 소수점 아래 둘째 자리부터 $9$, $0$의 $2$개의 숫자가 되풀이된다. 둘째 자리부터 $83$째 자리까지의 숫자는 $82$개이고 $82=2\\times 41$이므로 $83$째 자리 숫자는 순환마디의 마지막 숫자인 $0$이다. 따라서 답은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-4",
+  "problemCode": "J20102-A61-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "7806c031f53ca535e588e7b49383c0d99a3fb3499054892bf53b734b0de576d7",
+  "dbContentSha256": "da95ccaf55dc21f1300a55c7878202fd6359389a8d231ef7fa63e8fecfaa2a33",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "1보다 작은 분수를 소수로 고치면 첫 자리 하나 뒤에 두 자리 순환마디가 나오고, 멀리 떨어진 자리의 숫자를 고른다.",
+  "after": "1보다 큰 분수를 소수로 고치면 정수 부분과 비순환 자리 하나 뒤에 두 자리 순환마디가 나오고, 멀리 떨어진 자리의 숫자를 고른다.",
+  "sharedConcept": "순환하지 않는 자리가 있는 순환소수의 특정 자리 숫자",
+  "sharedProcedure": "나눗셈으로 소수 전개 → 순환마디와 시작 자리 확인 → 비순환 자리 수를 빼고 순환마디 길이로 나눈 나머지 → 숫자 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환소수와 순환마디",
+   "나머지를 이용한 주기 판단"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A61-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수의 소수 전개에서 특정 자리 숫자 구하기(비순환 자리 포함)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 34자"
+   ],
+   "overlap4": 0.548,
+   "longestRun": 16,
+   "residualChars": 34,
+   "params": 6,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

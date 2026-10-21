@@ -1,0 +1,147 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   196,
+   42
+  ],
+  "B": [
+   28,
+   210
+  ],
+  "C": [
+   322,
+   210
+  ],
+  "D": [
+   175,
+   210
+  ],
+  "P": [
+   140,
+   98
+  ],
+  "Q": [
+   84,
+   154
+  ],
+  "E": [
+   448,
+   378
+  ],
+  "xLab": [
+   223,
+   168
+  ],
+  "qdLab": [
+   138,
+   168
+  ],
+  "yLab": [
+   303,
+   308
+  ]
+ },
+ "segments": {
+  "AP": {
+   "points": [
+    "A",
+    "P"
+   ],
+   "ticks": 1
+  },
+  "PQ": {
+   "points": [
+    "P",
+    "Q"
+   ],
+   "ticks": 1
+  },
+  "QB": {
+   "points": [
+    "Q",
+    "B"
+   ],
+   "ticks": 1
+  },
+  "BD": {
+   "points": [
+    "B",
+    "D"
+   ],
+   "ticks": 2
+  },
+  "DC": {
+   "points": [
+    "D",
+    "C"
+   ],
+   "ticks": 2
+  },
+  "AC": [
+   "A",
+   "C"
+  ],
+  "CE": [
+   "C",
+   "E"
+  ],
+  "PC": [
+   "P",
+   "C"
+  ],
+  "QD": [
+   "Q",
+   "D"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ]
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "W"
+  },
+  "C": {
+   "text": "C",
+   "position": "NE"
+  },
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "E": {
+   "text": "E",
+   "position": "S"
+  },
+  "P": {
+   "text": "P",
+   "position": "W"
+  },
+  "Q": {
+   "text": "Q",
+   "position": "W"
+  },
+  "xLab": {
+   "text": "x cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "qdLab": {
+   "text": "4 cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "yLab": {
+   "text": "y cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

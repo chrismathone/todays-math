@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A57-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-4dcf-7d61-961e-96da22df1ed6",
+ "startedAt": "2026-10-21T18:49:06+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "student.json": "f52bf8a9bf289fff60cb479622942fa3fc226346e2f434d6a1b06d04bd2ff35b"
+ },
+ "promptSha256": "05d2d4acda29736056b4dc548eb7a5134b4297329d4cc85eaac6a74ead1e9143",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"ㄱ은 정리하면 $-10\\\\ge 0$으로 일차항이 없어 일차부등식이 아니다.\\nㄴ은 $9x-10>0$, ㄹ은 $10x-23\\\\le 0$으로 일차부등식이다.\\nㄷ은 $x^2-x-9<0$으로 이차부등식이다.\\n따라서 ㄴ, ㄹ을 고른 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ은 정리하면 $-10\\ge 0$으로 일차항이 없어 일차부등식이 아니다.\nㄴ은 $9x-10>0$, ㄹ은 $10x-23\\le 0$으로 일차부등식이다.\nㄷ은 $x^2-x-9<0$으로 이차부등식이다.\n따라서 ㄴ, ㄹ을 고른 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8f4664656044630fe8b9480513c6d8fe07c13a7de64e91d2a4a720938bb0a6fb"
+}

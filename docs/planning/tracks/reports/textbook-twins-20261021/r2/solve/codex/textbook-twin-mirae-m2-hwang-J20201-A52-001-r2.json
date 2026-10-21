@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A52-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd4-b501-7e42-aa9f-54311d6d38ee",
+ "startedAt": "2026-10-21T18:39:43+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "296fe584f974639fd862467cd1ca6398ac51962f6604db5e929f35082d57cc49"
+ },
+ "promptSha256": "733519ae2bed6e2923c70606fe9e39d5dfb29639b0fd6c6a7033ab72ddedd3c2",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\frac{x}{6}+9\\\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\\\le 18000$ ⑷ $x+(x+18)<50$\",\n  \"work\": \"⑴ ‘이상’은 크거나 같음을 뜻한다.\\n⑵ 평행사변형의 넓이는 밑변×높이이므로 8x이고, ‘초과’는 큼을 뜻한다.\\n⑶ 총요금은 1500x원이고, ‘이하’는 작거나 같음을 뜻한다.\\n⑷ 삼촌의 나이는 x+18살이므로 두 사람의 나이의 합은 x+(x+18)이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\frac{x}{6}+9\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\le 18000$ ⑷ $x+(x+18)<50$",
+  "work": "⑴ ‘이상’은 크거나 같음을 뜻한다.\n⑵ 평행사변형의 넓이는 밑변×높이이므로 8x이고, ‘초과’는 큼을 뜻한다.\n⑶ 총요금은 1500x원이고, ‘이하’는 작거나 같음을 뜻한다.\n⑷ 삼촌의 나이는 x+18살이므로 두 사람의 나이의 합은 x+(x+18)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "360dfe4599fa0e9ce8a872778022d19eaa3119b0453148e73a9735822aeba3c2"
+}

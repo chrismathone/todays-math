@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 319,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A48-001-r1",
+ "authorId": "claude-fable-5-1:473d18ae-eea6-4b3e-8e82-875527978b13",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림] 다음 그림과 같이 지름의 길이가 $12\\,\\mathrm{cm}$인 구 모양의 비누 한 덩이를 녹여 남김없이 지름의 길이가 $4\\,\\mathrm{cm}$인 구 모양의 작은 비누로 다시 굳히려고 한다. 작은 비누는 모두 몇 개가 나오는가?",
+ "choices": [
+  "$3$개",
+  "$9$개",
+  "$18$개",
+  "$27$개",
+  "$81$개"
+ ],
+ "answer": "④",
+ "solution": "지름의 길이가 $12\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 두 구의 닮음비는 $12:4=3:1$이므로 부피의 비는 $3^{3}:1^{3}=27:1$이다. 큰 비누 한 덩이의 부피는 작은 비누 한 개의 부피의 $27$배이므로 작은 비누는 $27$개가 나온다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20706-A48-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20706-A48-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-4",
+  "problemCode": "J20706-A48-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "3a1ffa8144772b3b7ae12a4cf5ecc78030035d1dea5f19ba469246228f16db6d",
+  "dbContentSha256": "b4c76e9277dde6362808cd1e65c66345f1615b4bfe4dfca44e40aa904b392ff8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "9cff8e74cf6dadd1f469c993c76ec3936f61df8cb06b1f7e647b9559f8a9e89a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "반지름이 주어진 큰 구 하나를 녹여 반지름이 주어진 작은 구를 몇 개 만들 수 있는지 묻는다. 닮음비 4:1에서 부피의 비 64:1을 얻어 개수를 답한다.",
+  "after": "지름이 주어진 큰 구 모양 비누를 녹여 지름이 주어진 작은 구 모양 비누가 몇 개 나오는지 묻는다. 지름의 비 12:4에서 닮음비 3:1, 부피의 비 27:1을 얻어 개수를 답한다.",
+  "sharedConcept": "닮은 두 입체도형의 부피의 비는 닮음비의 세제곱의 비",
+  "sharedProcedure": "두 구의 닮음비 구하기 → 세제곱하여 부피의 비 구하기 → 부피의 비가 곧 개수임을 읽기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "7e443597-c3a3-4e5e-bc82-ae5b43a507d2",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "닮은 도형의 넓이의 비와 부피의 비"
+  },
+  "prerequisites": [
+   "닮음비",
+   "닮은 두 입체도형의 부피의 비",
+   "구는 항상 서로 닮음"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20706-A48-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "큰 구를 녹여 만드는 작은 구의 개수(부피의 비의 활용)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "7e443597-c3a3-4e5e-bc82-ae5b43a507d2",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.13,
+   "longestRun": 7,
+   "residualChars": 80,
+   "params": 6,
+   "numberRetention": 0.167,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

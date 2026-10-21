@@ -1,0 +1,145 @@
+{
+ "version": 2,
+ "points": {
+  "O": [
+   0,
+   170
+  ],
+  "A": [
+   170,
+   170
+  ],
+  "B": [
+   0,
+   0
+  ],
+  "E": [
+   0,
+   90
+  ],
+  "D": [
+   150,
+   90
+  ],
+  "C": [
+   150,
+   170
+  ]
+ },
+ "circles": {
+  "q": {
+   "center": "O",
+   "radius": 170,
+   "draw": false
+  }
+ },
+ "segments": {
+  "OA": [
+   "O",
+   "A"
+  ],
+  "OB": [
+   "O",
+   "B"
+  ],
+  "ED": [
+   "E",
+   "D"
+  ],
+  "DC": [
+   "D",
+   "C"
+  ]
+ },
+ "arcs": {
+  "arcAB": {
+   "circle": "q",
+   "from": "A",
+   "to": "B",
+   "dir": "ccw"
+  }
+ },
+ "regions": {
+  "rect": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "D"
+     ]
+    },
+    {
+     "seg": [
+      "D",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "angles": {
+  "rE": {
+   "vertex": "E",
+   "points": [
+    "O",
+    "D"
+   ],
+   "right": true
+  },
+  "rD": {
+   "vertex": "D",
+   "points": [
+    "E",
+    "C"
+   ],
+   "right": true
+  },
+  "rC": {
+   "vertex": "C",
+   "points": [
+    "D",
+    "O"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "oa": {
+   "points": [
+    "O",
+    "A"
+   ],
+   "label": "17 cm",
+   "side": "auto"
+  },
+  "oe": {
+   "points": [
+    "O",
+    "E"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "O": "O",
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E"
+ }
+}

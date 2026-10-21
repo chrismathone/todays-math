@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dec-6aa2-71a1-8e30-f80ab71e309d",
+ "startedAt": "2026-10-21T19:05:37+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "fig-1.png": "465321fc70b20bf57748651f03760d9b2393e2002e863af5122982e6466aaecd",
+  "student.json": "4b53fb0835d4c4b2154704862de1a99033e1f017c204d8658c6003f4a2965868"
+ },
+ "promptSha256": "7551848f372e9c1a7fbbd198e252db5d98fb47b236d83799161c3d285e9ab7a2",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"외심 O에서 세 꼭짓점까지의 거리는 같으므로 OA=OB=OC이다. 삼각형 OCA의 둘레가 41 cm이므로 OA+OC=41−15=26 cm이다. 따라서 OB=26÷2=13 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "외심 O에서 세 꼭짓점까지의 거리는 같으므로 OA=OB=OC이다. 삼각형 OCA의 둘레가 41 cm이므로 OA+OC=41−15=26 cm이다. 따라서 OB=26÷2=13 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8f7f28f61c521f8eb6c1704a162a0673355428f132842f67fa4ee02a44de1534"
+}

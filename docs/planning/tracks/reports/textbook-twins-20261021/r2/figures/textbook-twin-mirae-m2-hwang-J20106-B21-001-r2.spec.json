@@ -1,0 +1,70 @@
+{
+ "version": 2,
+ "theme": "exam-thin",
+ "points": {
+  "D": {
+   "type": "raw",
+   "x": 70,
+   "y": 60
+  },
+  "E": {
+   "type": "raw",
+   "x": 70,
+   "y": 200
+  },
+  "F": {
+   "type": "raw",
+   "x": 290,
+   "y": 200
+  },
+  "lenDE": {
+   "type": "raw",
+   "x": 30,
+   "y": 130
+  },
+  "lenEF": {
+   "type": "raw",
+   "x": 180,
+   "y": 228
+  }
+ },
+ "segments": {
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FD": [
+   "F",
+   "D"
+  ]
+ },
+ "angles": {
+  "rightE": {
+   "vertex": "E",
+   "points": [
+    "D",
+    "F"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "D": "D",
+  "E": "E",
+  "F": "F",
+  "lenDE": {
+   "text": "(5/2)x²y",
+   "dx": 0,
+   "dy": 0
+  },
+  "lenEF": {
+   "text": "6xy²",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

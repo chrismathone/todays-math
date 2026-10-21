@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 343,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A60-001-r1",
+ "authorId": "claude-fable-5-1:2d32f50e-2f3f-4dd3-8158-ff0ecdd32c72",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 다음 그림과 같이 반지름의 길이가 $17\\,\\mathrm{cm}$인 사분원 모양의 종이에서 두 변이 반지름 위에 놓이고 꼭짓점 $D$가 호 위에 있는 직사각형 $OCDE$를 오려 내려고 한다. $\\overline{OE}=8\\,\\mathrm{cm}$일 때, 오려 내는 $\\square OCDE$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$120\\,\\mathrm{cm}^{2}$",
+ "solution": "점 $D$는 호 위의 점이므로 $\\overline{OD}=17\\,\\mathrm{cm}$이다. 직각삼각형 $OED$에서 피타고라스 정리에 의하여 $\\overline{ED}^{2}=17^{2}-8^{2}=225$, $\\overline{ED}>0$이므로 $\\overline{ED}=15\\,\\mathrm{cm}$ 따라서 $\\square OCDE$의 넓이는 $8\\times 15=120\\,(\\mathrm{cm}^{2})$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A60-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A60-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-6acad58d478a2c12-1-5",
+  "problemCode": "J20801-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "2ff8e497499fe09611c6dd7a6bbdb7ff90a9c190e3ff009ae481f1b20ab0a89a",
+  "dbContentSha256": "db7eae11bb98c2f744ee286ecce114f66c30b74cd4c73221d0e11f5d9f14db26",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-5_피타고라스정리.hwp",
+    "sha256": "70d323e1bf27aa297cd816e3fa38d6ce501379c936568afa88378c7d14949504",
+    "bytes": 877568
+   }
+  ],
+  "originalFigureSha256": [
+   "9ff72971c023170c0a84ab1070356402546c4cfec5a0279c142dd5ab7ea58424"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "사분원의 반지름과 내접 직사각형의 가로 변을 주고, 호 위의 꼭짓점까지의 거리가 반지름임을 써서 세로를 구해 넓이를 구하게 한다.",
+  "after": "종이를 오려 내는 장면으로 바꾸고 반지름과 세로 변을 주어, 같은 원리로 가로를 구해 넓이를 구하게 한다.",
+  "sharedConcept": "원의 반지름과 피타고라스 정리(사분원에 내접한 직사각형)",
+  "sharedProcedure": "호 위의 꼭짓점과 중심 사이 거리 = 반지름 → 직각삼각형에서 피타고라스 정리로 남은 변 구하기 → 가로×세로"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리"
+  },
+  "prerequisites": [
+   "원의 반지름",
+   "피타고라스 정리",
+   "직사각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20801-A60-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "사분원에 내접하는 직사각형의 넓이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.203,
+   "longestRun": 8,
+   "residualChars": 73,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

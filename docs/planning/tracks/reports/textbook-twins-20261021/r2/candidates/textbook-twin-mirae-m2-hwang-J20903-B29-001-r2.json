@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 385,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r2",
+ "authorId": "claude-opus-5-5:b6ee8d33-e698-4b3a-bb86-8aef2ec8fb6e",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "상자 속에 $1$부터 $12$까지의 자연수가 하나씩 적힌 공 $12$개가 들어 있다. 도하가 이 상자에서 공 한 개를 꺼내 수를 적어 두고 상자에 도로 넣은 다음, 다시 공 한 개를 꺼냈다. 두 공에 적힌 수의 합이 $10$의 배수일 확률은?",
+ "choices": [
+  "$\\frac{1}{18}$",
+  "$\\frac{1}{16}$",
+  "$\\frac{7}{72}$",
+  "$\\frac{1}{9}$",
+  "$\\frac{5}{36}$"
+ ],
+ "answer": "③",
+ "solution": "꺼낸 공을 도로 넣으므로 모든 경우의 수는 $12\\times 12=144$이다.\n두 수의 합은 $2$ 이상 $24$ 이하이므로 합이 $10$의 배수가 되는 것은 합이 $10$ 또는 $20$일 때이다.\n합이 $10$인 경우는 $(1,\\,9)$, $(2,\\,8)$, $(3,\\,7)$, $(4,\\,6)$, $(5,\\,5)$, $(6,\\,4)$, $(7,\\,3)$, $(8,\\,2)$, $(9,\\,1)$의 $9$가지이므로 확률은 $\\frac{9}{144}$이다.\n합이 $20$인 경우는 $(8,\\,12)$, $(9,\\,11)$, $(10,\\,10)$, $(11,\\,9)$, $(12,\\,8)$의 $5$가지이므로 확률은 $\\frac{5}{144}$이다.\n두 사건은 동시에 일어날 수 없으므로 구하는 확률은 $\\frac{9}{144}+\\frac{5}{144}=\\frac{14}{144}=\\frac{7}{72}$이다. 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-13",
+  "problemCode": "J20903-B29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "db4038816efbeb98b500cd256387ecbc10414c2416c981ec1cd7aac713c2457f",
+  "dbContentSha256": "84e0187a01f25c102d2ac66245742ecf8605b3faa61230e5aeae9c044513abd7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "1~8이 적힌 정팔면체 주사위를 두 번 던져, 두 눈의 합이 주사위 면의 수와 같은 수(8)의 배수가 될 확률을 고른다. 배수가 되는 합은 8과 16 두 가지이다.",
+  "after": "1~12가 적힌 공을 꺼냈다가 도로 넣고 다시 꺼내(복원추출), 두 수의 합이 공의 개수와 다른 수(10)의 배수가 될 확률을 고른다. 배수가 되는 합은 10과 20 두 가지이고, 큰 합 쪽의 경우가 여러 가지라 직접 세어야 한다.",
+  "sharedConcept": "동시에 일어나지 않는 두 사건 중 어느 하나가 일어날 확률(확률의 덧셈)",
+  "sharedProcedure": "모든 경우의 수를 곱으로 구함 → 합의 범위에서 배수가 되는 합을 찾음 → 각 합의 순서쌍을 세어 확률을 구함 → 두 확률을 더하고 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "두 사건이 잇달아 일어나는 경우의 수(곱의 법칙)",
+   "순서쌍으로 경우 세기",
+   "확률의 뜻",
+   "동시에 일어나지 않는 두 사건의 확률의 덧셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B29-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 번 시행에서 합이 어떤 수의 배수일 확률(배타적 사건의 덧셈)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.099,
+   "longestRun": 8,
+   "residualChars": 106,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

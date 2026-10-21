@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A86-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df9-06a4-7ba3-8b98-34bea921b87e",
+ "startedAt": "2026-10-21T19:19:23+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "fig-1.png": "1f7b8d2eeb454bce95a1bd21dc4e7f04a99c18fe3b6f601dc6763f23e1e11b5c",
+  "student.json": "9c952280caaf7f90eda6bd52e7275d2766b228ebba944c0248b7e2c0c784293b"
+ },
+ "promptSha256": "b478dd029866f21848d0e1a8346ca5562c89eb9e7bdeb375a1f87480d9bf4d49",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"10 m\",\"work\":\"빛의 입사각과 반사각이 같으므로 두 직각삼각형 ABC와 DEC는 닮음이다. 따라서 $\\\\frac{DE}{1.6}=\\\\frac{15}{2.4}$이므로 $DE=1.6\\\\times\\\\frac{15}{2.4}=10\\\\,\\\\mathrm{m}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "10 m",
+  "work": "빛의 입사각과 반사각이 같으므로 두 직각삼각형 ABC와 DEC는 닮음이다. 따라서 $\\frac{DE}{1.6}=\\frac{15}{2.4}$이므로 $DE=1.6\\times\\frac{15}{2.4}=10\\,\\mathrm{m}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d5a646fd54effb5cfbf3a0c3db51314b3a9f723fa9104e5e7a6e3df7e0e78ea"
+}

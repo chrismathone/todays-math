@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 200,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r2",
+ "authorId": "claude-opus-5-5:9a56f905-f009-4891-9bde-0b8b3cd17eb1",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "연립방정식 $\\begin{cases} 4x+ay=10 \\\\ -6x+9y=b \\end{cases}$ 에서 두 일차방정식의 그래프가 완전히 겹쳐 해가 무수히 많다. 두 상수 $a$, $b$에 대하여 $b-a$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$-9$",
+ "solution": "$a=0$이면 첫째 식의 그래프는 $y$축에 평행한 직선이 되어 둘째 식의 그래프와 겹칠 수 없으므로 $a\\ne0$이다. 두 식을 각각 $y$에 대하여 풀면 $y=-\\frac{4}{a}x+\\frac{10}{a}$, $y=\\frac{2}{3}x+\\frac{b}{9}$이다. 두 그래프가 일치하므로 기울기와 $y$절편이 각각 같다. 기울기에서 $-\\frac{4}{a}=\\frac{2}{3}$이므로 $a=-6$이다. $y$절편에서 $\\frac{b}{9}=\\frac{10}{-6}=-\\frac{5}{3}$이므로 $b=-15$이다. 따라서 $b-a=-15-(-6)=-9$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-11",
+  "problemCode": "J20305-A27-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "bb5d6fd3080c3a02295e36d5c8ca4531f76671e32577ba06db5570f3a92bfedd",
+  "dbContentSha256": "f6abe2f6b5c3509aa1d42520c2457e24897cea87a2999f87f6c004d89601e874",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "원본은 첫째 식의 우변 상수와 둘째 식의 x의 계수가 미지수이고, 해가 무수히 많다는 조건으로 두 값을 구한 뒤 차를 묻는다.",
+  "after": "쌍둥이는 첫째 식의 y의 계수와 둘째 식의 우변 상수가 미지수이다(미지수가 놓인 자리가 바뀜). 그래프가 겹친다는 조건으로 두 값을 구하고, 빼는 순서를 바꾼 차 b-a를 묻는다.",
+  "sharedConcept": "해가 무수히 많은 연립일차방정식은 두 일차방정식의 그래프가 일치할 때이다(기울기와 y절편이 각각 같다)",
+  "sharedProcedure": "두 식을 y에 대하여 풀기 → 기울기를 같게 놓아 한 미지수 구하기 → y절편을 같게 놓아 다른 미지수 구하기 → 두 값으로 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "b107b8ef-1798-4878-aaaf-7bdf4eac5489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "해가 특수한 연립방정식"
+  },
+  "prerequisites": [
+   "일차방정식을 y에 대하여 풀기",
+   "일차함수의 그래프의 기울기와 y절편",
+   "연립방정식의 해와 두 그래프의 위치 관계"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20305-A27-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 무수히 많은 연립방정식에서 계수와 상수항에 든 두 미지수를 구해 식의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "b107b8ef-1798-4878-aaaf-7bdf4eac5489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.098,
+   "longestRun": 6,
+   "residualChars": 54,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

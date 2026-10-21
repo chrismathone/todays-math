@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 236,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r2",
+ "authorId": "claude-opus-5-5:ea3c9bb7-0fa6-4563-99ad-8916f1c38cd2",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "좌표평면 위에 하루가 두 점 $\\mathrm{P}(-6,~7)$, $\\mathrm{Q}(2,~-9)$를 찍고 직선 $\\mathrm{PQ}$를 그었다. 이어서 서아가 직선 $\\mathrm{PQ}$와 평행하면서 점 $\\mathrm{R}(8,~-6)$을 지나는 직선을 그었다. 서아가 그은 직선을 그래프로 하는 일차함수의 식은?",
+ "choices": [
+  "$y=-2x-5$",
+  "$y=-\\frac{1}{2}x-2$",
+  "$y=-2x+10$",
+  "$y=2x-22$",
+  "$y=\\frac{1}{2}x-10$"
+ ],
+ "answer": "③",
+ "solution": "직선 $\\mathrm{PQ}$의 기울기는 $\\frac{-9-7}{2-(-6)}=\\frac{-16}{8}=-2$이다. 서아가 그은 직선은 직선 $\\mathrm{PQ}$와 평행하므로 기울기가 $-2$이고, 식을 $y=-2x+b$로 놓는다. 점 $\\mathrm{R}(8,~-6)$을 지나므로 $-6=-2\\times8+b$, $b=10$이다. 따라서 구하는 식은 $y=-2x+10$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-10",
+  "problemCode": "J20405-A43-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "a9770719ddb26a1291494f7af656e23d2f007b58495cf3c136cef5a9cf211f2a",
+  "dbContentSha256": "3e50d605b62e9babcee758f7ffe31aafb9c5dd4c7aa91a13d68d516af2fbd518",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "두 점을 지나는 직선과 평행하고 다른 한 점을 지나는 직선의 일차함수 식을 다섯 식 가운데서 고른다. 기울기는 음의 정수, y절편은 양수이다.",
+  "after": "두 인물이 차례로 직선을 긋는 장면에서, 이름 붙인 두 점 P, Q로 정한 직선과 평행하고 점 R을 지나는 직선의 식을 고른다. 수는 모두 새로 정했고 기울기는 -2, y절편은 10이다. 오답에는 직선 PQ 자체의 식, 기울기 부호를 바꾼 식, 기울기를 역수로 바꾼 식을 두었다.",
+  "sharedConcept": "평행한 두 일차함수 그래프는 기울기가 같다 · 두 점으로 기울기 구하기",
+  "sharedProcedure": "두 점으로 기울기 구하기 → 평행이므로 같은 기울기로 y=ax+b 세우기 → 한 점을 대입해 b 구하기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 식 구하기"
+  },
+  "prerequisites": [
+   "두 점을 지나는 직선의 기울기",
+   "평행한 일차함수 그래프의 기울기 관계",
+   "그래프 위의 점의 좌표를 대입해 y절편 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20405-A43-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 점을 지나는 직선과 평행하고 한 점을 지나는 일차함수의 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.21,
+   "longestRun": 17,
+   "residualChars": 127,
+   "params": 9,
+   "numberRetention": 0.444,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

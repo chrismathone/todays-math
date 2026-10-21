@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A76-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "06f6e7d5-834f-4389-a6aa-cc1af6760e3c",
+ "startedAt": "2026-10-21T17:09:34+0900",
+ "elapsedSec": 7.5,
+ "studentSha256": {
+  "fig-1.png": "a6c3d17e0371b8e3f09aca60fbc3a1897c768d5f233aaf2a4923d399b4cedda2",
+  "student.json": "7302491e42913aa30e3cbf9b85e163d00e9843098d5dc5fa1e8fd8d7343ded04"
+ },
+ "promptSha256": "157cac4d7049aa2ee5284b1b4d5949e700873f66e8b1a060d5988c3582bf24a7",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"직각삼각형 ABE에서 피타고라스 정리로 BE = √(15² − 12²) = 9 cm이므로 EC = 12 − 9 = 3 cm이다. ∠ABE = ∠FCE = 90°이고 ∠AEB = ∠FEC(맞꼭지각)이므로 △ABE ∽ △FCE(AA 닮음)이다. 따라서 AB : BE = FC : CE, 즉 12 : 9 = FC : 3이고 FC = 4 cm이다. 넓이는 ½ × 3 × 4 = 6 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형 ABE에서 피타고라스 정리로 BE = √(15² − 12²) = 9 cm이므로 EC = 12 − 9 = 3 cm이다. ∠ABE = ∠FCE = 90°이고 ∠AEB = ∠FEC(맞꼭지각)이므로 △ABE ∽ △FCE(AA 닮음)이다. 따라서 AB : BE = FC : CE, 즉 12 : 9 = FC : 3이고 FC = 4 cm이다. 넓이는 ½ × 3 × 4 = 6 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1c4cd9fce206d6de8a5af46544a9c0d5c1345fd10b165cd0b83a2c18d73bdd41"
+}

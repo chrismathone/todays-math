@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc8-9881-7c71-b2f1-36b5bba76abd",
+ "startedAt": "2026-10-21T18:26:29+0900",
+ "elapsedSec": 16.5,
+ "studentSha256": {
+  "student.json": "b07f7348f53157bbf86eb8aa50bb711b6c5cc982dd43b44ed99b741bc40e9ebe"
+ },
+ "promptSha256": "bf45147cd83b493ed26043fd134538621a6e1f6d56ab6a59354ac59dbd27f89a",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{3}{32}$\",\"work\":\"세 번째 세트까지 가려면 처음 두 세트에서 두 사람이 한 번씩 이겨야 한다.\\n따라서 구하는 확률은 2×(1/4)×(3/4)×(1/4)=3/32이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{3}{32}$",
+  "work": "세 번째 세트까지 가려면 처음 두 세트에서 두 사람이 한 번씩 이겨야 한다.\n따라서 구하는 확률은 2×(1/4)×(3/4)×(1/4)=3/32이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "44df69bf6c8c70a9fb4cf01a7ebf7d8b680e8ecb4b420027a0196231f57d4cdd"
+}

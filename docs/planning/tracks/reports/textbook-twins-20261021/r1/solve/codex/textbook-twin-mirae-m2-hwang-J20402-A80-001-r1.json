@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da9-e5f2-7291-8d24-e1b07776cabe",
+ "startedAt": "2026-10-21T17:52:57+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "5ac7003716a0f3d5528b8a6bdd83cd29f720d08339ba63fbef3a2979152b751f"
+ },
+ "promptSha256": "bcf6c3d14b5312b59a1807b0ea2b03913cdf7141a980bac000178edaf3b01968",
+ "freezeCommit": "cf106c32495b725143237f5ec0e6c678e89a8cb6",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-12\",\"work\":\"y축의 방향으로 6만큼 평행이동하면 y=ax-2+6=ax+4이다. 따라서 a=-3, b=4이므로 ab=-12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-12",
+  "work": "y축의 방향으로 6만큼 평행이동하면 y=ax-2+6=ax+4이다. 따라서 a=-3, b=4이므로 ab=-12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e1dea7c677bcf1dec7a6f522168a7b4c743af7f526934cfc342461a9316ae58a"
+}

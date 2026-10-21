@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A73-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7d-a4e9-76a2-bae5-c3e54b847599",
+ "startedAt": "2026-10-21T17:04:37+0900",
+ "elapsedSec": 17.6,
+ "studentSha256": {
+  "student.json": "daa8389594ee9b9bbf5a0bcc415dcb49c99fbe3af99ea7cc07ae0013a1f76430"
+ },
+ "promptSha256": "b3cb5c27d3ef106d83536f1ea8c6e3908f9c9d7926d15ada3a2a02fcf07bb4b2",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $8y^{2}+y+3$ ⑵ $7b^{2}+14b-17$ ⑶ $20y^{2}-3y+6$ ⑷ $5b^{2}+8b-14$\",\n  \"work\": \"괄호를 풀고 동류항끼리 계산한다.\\n⑴ $(6+2)y^{2}+(-7+8)y+9-6=8y^{2}+y+3$\\n⑵ $(9-2)b^{2}+(6+8)b-7-10=7b^{2}+14b-17$\\n⑶ $14y^{2}-12y+16+6y^{2}+9y-10=20y^{2}-3y+6$\\n⑷ $12b^{2}-6b+42-7b^{2}+14b-56=5b^{2}+8b-14$\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $8y^{2}+y+3$ ⑵ $7b^{2}+14b-17$ ⑶ $20y^{2}-3y+6$ ⑷ $5b^{2}+8b-14$",
+  "work": "괄호를 풀고 동류항끼리 계산한다.\n⑴ $(6+2)y^{2}+(-7+8)y+9-6=8y^{2}+y+3$\n⑵ $(9-2)b^{2}+(6+8)b-7-10=7b^{2}+14b-17$\n⑶ $14y^{2}-12y+16+6y^{2}+9y-10=20y^{2}-3y+6$\n⑷ $12b^{2}-6b+42-7b^{2}+14b-56=5b^{2}+8b-14$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8c05b4477ecefb8261ebd3885f0ff0ff4357bc2a8885c44896ee17900a3fa8e5"
+}

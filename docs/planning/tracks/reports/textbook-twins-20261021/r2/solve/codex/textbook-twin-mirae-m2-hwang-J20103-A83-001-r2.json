@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A83-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd2-02a8-7240-a58b-e36a5627be4a",
+ "startedAt": "2026-10-21T18:36:46+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "student.json": "27d75fd4541fb3d3d933d23ca6bcbb54f9a4d40fceae7f97af00c49fa00d59eb"
+ },
+ "promptSha256": "3b376d778e5799b9b53f7e57dab132f5a58e83dc5e40505c97eb0fb2ca1f23f8",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"9\",\"work\":\"$0.\\\\dot{8}\\\\dot{1}=\\\\frac{81}{99}=\\\\frac{9}{11}$이므로 얼룩에 가려진 자연수는 9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "$0.\\dot{8}\\dot{1}=\\frac{81}{99}=\\frac{9}{11}$이므로 얼룩에 가려진 자연수는 9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d1c196ded1285227260bfced7d4f8d23c20d47333ab217725fd74fcccf6112f"
+}

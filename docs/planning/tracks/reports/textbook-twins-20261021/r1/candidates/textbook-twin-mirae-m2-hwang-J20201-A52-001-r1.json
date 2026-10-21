@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 121,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A52-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 부등식으로 나타내시오.\n⑴ $x$의 $5$배에 $3$을 더하면 $28$보다 크다.\n⑵ 가로의 길이가 $x\\,\\mathrm{cm}$, 세로의 길이가 $7\\,\\mathrm{cm}$인 직사각형의 넓이는 $35\\,\\mathrm{cm}^{2}$ 미만이다.\n⑶ 한 개에 $1200$원인 빵 $x$개를 산 금액은 $10000$원 이하이다.\n⑷ $x$살인 지우와 지우보다 $3$살 어린 동생의 나이를 합하면 $20$보다 작다.",
+ "choices": [],
+ "answer": "⑴ $5x+3>28$ ⑵ $7x<35$ ⑶ $1200x\\le 10000$ ⑷ $x+(x-3)<20$",
+ "solution": "⑴ $x$의 $5$배에 $3$을 더한 수는 $5x+3$이므로 $5x+3>28$\n⑵ 직사각형의 넓이는 $x\\times 7=7x$이므로 $7x<35$\n⑶ 빵 $x$개의 금액은 $1200x$원이므로 $1200x\\le 10000$\n⑷ 동생의 나이는 $x-3$살이므로 $x+(x-3)<20$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-efb70e97c9d000da-0-1",
+  "problemCode": "J20201-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "4187d360d1ae9497fbf7f6c51224d8c2911e6d868d00ca6c7cf0b0a2a5e85458",
+  "dbContentSha256": "8fb3162b0b36c3227bcb85049a239816887b0eca235d1b24d7f0cfe593111744",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-1_부등식과그해.hwp",
+    "sha256": "35a4df147c8674b4cadb1c404c1963fbb18cb671d9b038cb84902ed987869ba3",
+    "bytes": 283648
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "소문항 넷 — 수의 배와 뺄셈 · 삼각형 넓이(높이가 미지수) · 송이당 가격이 미지수인 꽃값 · 두 살 많은 형과의 나이 합. 각각 작다 · 이하 · 이상 · 크다.",
+  "after": "소문항 넷 — 수의 배와 덧셈 · 직사각형 넓이(가로가 미지수) · 개수가 미지수인 빵값 · 세 살 어린 동생과의 나이 합. 각각 크다 · 미만 · 이하 · 작다. 금액 문항은 미지수의 자리를 가격에서 개수로 바꿨다.",
+  "sharedConcept": "문장(이상 · 이하 · 초과 · 미만 · 크다 · 작다)을 부등식으로 나타내기",
+  "sharedProcedure": "양을 식으로 쓰기 → 비교 대상 확인 → 알맞은 부등호 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "문자를 사용한 식",
+   "부등호의 뜻(이상 · 이하 · 초과 · 미만)",
+   "직사각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "문장을 부등식으로 나타내기(소문항 넷)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 8개 가운데 62% 그대로"
+   ],
+   "overlap4": 0.207,
+   "longestRun": 13,
+   "residualChars": 121,
+   "params": 8,
+   "numberRetention": 0.625,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

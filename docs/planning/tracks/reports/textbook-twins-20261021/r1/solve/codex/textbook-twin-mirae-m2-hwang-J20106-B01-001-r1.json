@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B01-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5b-f30a-7fd2-81eb-db96bdf2b7a2",
+ "startedAt": "2026-10-21T16:27:49+0900",
+ "elapsedSec": 15.5,
+ "studentSha256": {
+  "student.json": "b69596373825d9c355c36fceacf9a5a5dbcd870ec5c3290dd801fbfdc6a67e23"
+ },
+ "promptSha256": "0ba0899eb229a79a519fc9d2b6273258f5e3ed7a7873fe6961d79e195f68ff8e",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$2a^{9}b^{8}$\",\n  \"work\": \"$(-a^{3}b^{2})^{3}=-a^{9}b^{6}$, $(2ab^{2})^{2}=4a^{2}b^{4}$.\\n따라서 주어진 식은 $\\\\frac{-4a^{11}b^{10}}{-2a^{2}b^{2}}=2a^{9}b^{8}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$2a^{9}b^{8}$",
+  "work": "$(-a^{3}b^{2})^{3}=-a^{9}b^{6}$, $(2ab^{2})^{2}=4a^{2}b^{4}$.\n따라서 주어진 식은 $\\frac{-4a^{11}b^{10}}{-2a^{2}b^{2}}=2a^{9}b^{8}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fa98199b47f51e4e11e7c7280368c8406321624ce1ed5f67621cbd578fbfdae2"
+}

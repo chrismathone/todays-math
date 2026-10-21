@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A19-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de8-1059-7733-871d-682921009bee",
+ "startedAt": "2026-10-21T19:00:52+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "8967e8be640443732dd7f88543637cd6f7e762f1ee1fc76e15558f45829bb90a"
+ },
+ "promptSha256": "957b5edda7899c5005fbf0078f2e50ad29ebceebfd77bbfbcf96fccb83a40580",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-3\",\"work\":\"앞의 두 방정식을 더하면 4x=12이므로 x=3이다. 이를 x-y=7에 대입하면 y=-4이다.\\n공통 교점 (3, -4)를 2x+ay=18에 대입하면 6-4a=18이므로 a=-3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-3",
+  "work": "앞의 두 방정식을 더하면 4x=12이므로 x=3이다. 이를 x-y=7에 대입하면 y=-4이다.\n공통 교점 (3, -4)를 2x+ay=18에 대입하면 6-4a=18이므로 a=-3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "00c0520df9c0ac07f40b8e28b61af102d14c4340727ba3b21e60e2670ed6b2e2"
+}

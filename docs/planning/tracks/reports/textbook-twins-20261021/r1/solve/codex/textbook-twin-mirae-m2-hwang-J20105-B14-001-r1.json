@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B14-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d69-06ac-7ff1-a6a9-513a7ac70a3b",
+ "startedAt": "2026-10-21T16:42:06+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "68c38d8a6c2440fd565a3dd3208055add4b6b1c0aad5241be91b84b0edd363ef"
+ },
+ "promptSha256": "5c23a80936ff32907dde27097d1502501b33231c0fa6b87f435c36138e03727a",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$m=3$, $n=2$\",\"work\":\"$4=2^2$, $9=3^2$, $10=2\\\\times5$이므로 $4\\\\times9\\\\times10\\\\times11=2^3\\\\times3^2\\\\times5\\\\times11$이다. 따라서 $m=3$, $n=2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$m=3$, $n=2$",
+  "work": "$4=2^2$, $9=3^2$, $10=2\\times5$이므로 $4\\times9\\times10\\times11=2^3\\times3^2\\times5\\times11$이다. 따라서 $m=3$, $n=2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f432842c1f2faa76a789ae8207ecfb7d2edcc4256946ca8ff1bc08f527bf1aa1"
+}

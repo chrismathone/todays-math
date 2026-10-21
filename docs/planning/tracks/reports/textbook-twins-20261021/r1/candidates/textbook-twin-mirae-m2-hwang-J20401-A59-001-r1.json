@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 246,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A59-001-r1",
+ "authorId": "claude-fable-5-1:644746bd-9f1a-4988-abe3-ade6f81db79a",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $f(x)=ax-4$에서 $f(3)+f(-3)$의 값은 상수 $a$의 값에 관계없이 항상 같다. 그 값은?",
+ "choices": [
+  "$-12$",
+  "$-8$",
+  "$-4$",
+  "$0$",
+  "$8$"
+ ],
+ "answer": "②",
+ "solution": "$f(3)=3a-4$, $f(-3)=-3a-4$이다.\n두 값을 더하면 $f(3)+f(-3)=(3a-4)+(-3a-4)=-8$이고, $a$가 들어 있는 항이 서로 지워져 $a$의 값과 관계가 없다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-2",
+  "problemCode": "J20401-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "5e032a9ff5ffde8020521709b51c899e0c2da0343db8710745764790c4b69935",
+  "dbContentSha256": "858dee35b617aca041eb1026d92286e2b37f7a9516bab6759f5f0ef294e374f8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "기울기가 미지수 a이고 상수항이 양수인 일차함수에서, 절댓값이 같고 부호가 반대인 두 x에 대한 함숫값의 합을 객관식으로 묻는다.",
+  "after": "상수항이 음수인 일차함수에서 같은 꼴의 두 함숫값의 합을 묻되, 그 합이 a와 무관하게 일정하다는 사실을 발문에 드러내고 그 값을 고르게 한다. 보기에 상수항의 1배 · 2배 · 부호 반대 값을 섞었다.",
+  "sharedConcept": "함숫값 대입과 동류항 정리 — 미지 계수가 상쇄되어 합이 상수항의 2배가 됨",
+  "sharedProcedure": "f(3), f(-3)에 대입 → 두 식 더하기 → a항 소거 → 상수항의 2배"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "함숫값",
+   "일차식의 덧셈과 동류항 정리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A59-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지 계수가 소거되는 두 함숫값의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.184,
+   "longestRun": 11,
+   "residualChars": 52,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

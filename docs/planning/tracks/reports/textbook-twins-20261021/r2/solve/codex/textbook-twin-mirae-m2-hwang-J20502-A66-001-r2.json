@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df3-9a72-78f3-bf95-df1d773654d9",
+ "startedAt": "2026-10-21T19:13:28+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "fig-1.png": "56c796d9e898a7b96c983e6d30adfe12f46d37be913593f3dac8d083c7c2e304",
+  "student.json": "42cc9b46b9b2b9bd641cac934ed3fc9fb34e6243b24e35c425287bb6f2dbc1a6"
+ },
+ "promptSha256": "2ebc618110a7981890ce6cf842f11aa9d3738dfd8d9e7449aabd8c5beb3d0ae6",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"두 직각삼각형 DBM과 ECM은 빗변 BM=CM이고 DM=EM이므로 합동이다. 따라서 ∠B=∠C, BD=CE, ∠BMD=∠CME이므로 ①, ③, ④, ⑤는 옳다.\\nBD=DM은 ∠B=45°일 때만 성립하므로 항상 옳지는 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 직각삼각형 DBM과 ECM은 빗변 BM=CM이고 DM=EM이므로 합동이다. 따라서 ∠B=∠C, BD=CE, ∠BMD=∠CME이므로 ①, ③, ④, ⑤는 옳다.\nBD=DM은 ∠B=45°일 때만 성립하므로 항상 옳지는 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7e1a71fdcf7ee951fb221efee727a02b0314e4eb0f43a2a3e47c316e5aaf20f4"
+}

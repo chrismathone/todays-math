@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d76-0f76-70f2-9288-9c6c2506259f",
+ "startedAt": "2026-10-21T16:56:20+0900",
+ "elapsedSec": 14.1,
+ "studentSha256": {
+  "student.json": "c9fe674b12a2af890c4d8f64b81dbb57bc6c69dc437608b5f37632a7347a1b1b"
+ },
+ "promptSha256": "b9fc873b9fd843f8df71d70e7822b1ba654f72fe4b8dce7ae661dbecaa00ad3e",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$x=3, y=3$\",\"work\":\"첫째 식에 5를 곱하면 $x+2y=9$이다.\\n여기서 둘째 식을 빼면 $1.1y=3.3$이므로 $y=3$이다.\\n이를 $x+2y=9$에 대입하면 $x=3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$x=3, y=3$",
+  "work": "첫째 식에 5를 곱하면 $x+2y=9$이다.\n여기서 둘째 식을 빼면 $1.1y=3.3$이므로 $y=3$이다.\n이를 $x+2y=9$에 대입하면 $x=3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "64d935cc73393bc7d64aba5cc7c50034e61fad482b1a2507088f3c11641dadfb"
+}

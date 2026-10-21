@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "fb03d4a8-697a-4708-81e8-948ecf621284",
+ "startedAt": "2026-10-21T17:10:05+0900",
+ "elapsedSec": 6.8,
+ "studentSha256": {
+  "fig-1.png": "0addabac8d271321508793d36342d9d30c4f5790e807cb5251e1ea0359d9a4a4",
+  "student.json": "04f01eeb9ae0ed601f2c944153c99f3ade68edc44786cde5b1ea7880d52f9aca"
+ },
+ "promptSha256": "05d3ee0dfb8fe7b6dfbfa99e67f17457d538fae261b4bd50cc2d727108ffad83",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"G'은 △GBC의 무게중심이고 GD는 △GBC의 중선이므로 △G'CD = (1/6)△GBC이다. G는 △ABC의 무게중심이므로 △GBC = (1/3)△ABC이다. 따라서 △G'CD = (1/18)△ABC이고, △ABC = 18 × 5 = 90 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "G'은 △GBC의 무게중심이고 GD는 △GBC의 중선이므로 △G'CD = (1/6)△GBC이다. G는 △ABC의 무게중심이므로 △GBC = (1/3)△ABC이다. 따라서 △G'CD = (1/18)△ABC이고, △ABC = 18 × 5 = 90 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "088a85635bcf5190826fbcae9020824daae4545d1431238d68bc1d0353360af6"
+}

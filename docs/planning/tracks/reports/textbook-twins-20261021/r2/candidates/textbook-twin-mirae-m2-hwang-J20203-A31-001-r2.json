@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 131,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A31-001-r2",
+ "authorId": "claude-fable-5-1:edb855bc-79a6-4cd1-82a3-5db8179f036c",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20203-A31-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$a<0$일 때, $x$에 대한 일차부등식 $5-3ax<ax+13$의 해는?",
+ "choices": [
+  "$x>-\\frac{2}{a}$",
+  "$x<\\frac{2}{a}$",
+  "$x<-\\frac{2}{a}$",
+  "$x>\\frac{a}{2}$",
+  "$x<-\\frac{a}{2}$"
+ ],
+ "answer": "③",
+ "solution": "$5-3ax<ax+13$에서 $x$가 있는 항은 왼쪽으로, 상수항은 오른쪽으로 옮기면 $-3ax-ax<13-5$, 즉 $-4ax<8$이다. $a<0$이므로 $-4a>0$이고, 양변을 양수 $-4a$로 나누면 부등호의 방향은 그대로이다. 따라서 $x<\\frac{8}{-4a}$, 즉 $x<-\\frac{2}{a}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-10",
+  "problemCode": "J20203-A31-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "4de381d4f103cff2cd82ed253623c75109aed0cc277c8e7ca78e3480d2edbad2",
+  "dbContentSha256": "184732df4c56bbaf02b63f95d9813b1a9ba9ad375c82a0ca44bbc1bac4cde37e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "a가 음수라는 조건 아래, 양변에 모두 ax 항과 상수항이 있는 부등식을 주고 해를 다섯 보기 가운데서 고르게 한다. 양변의 문자항을 한쪽에 모아 -(수)·a 꼴 계수를 만들고, 그 계수의 부호를 판단해 나누어 a가 들어간 식으로 해를 얻는다.",
+  "after": "같은 조건 아래 왼쪽은 상수항이 앞에 오고 문자항이 음수 계수로 뒤에 오며, 오른쪽은 계수 1인 ax 항과 상수항인 부등식을 준다. 문자항을 모으면 -4ax가 되고 -4a의 부호를 판단해 나누어 a가 들어간 해를 얻은 뒤 보기에서 고른다. 보기는 부등호 방향과 분수의 위아래·부호를 바꾼 오답으로 구성했다.",
+  "sharedConcept": "계수가 문자인 일차부등식의 풀이 — 문자의 부호에 따른 부등호 방향 판단",
+  "sharedProcedure": "문자항과 상수항을 각 변으로 이항 → 동류항 정리로 (수)·a·x 꼴 계수 만들기 → a<0으로부터 그 계수의 부호 판단 → 양변을 계수로 나누어 x의 범위를 a의 식으로 나타내기 → 보기에서 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 응용"
+  },
+  "prerequisites": [
+   "부등식의 성질(음수를 곱하거나 나눌 때 부등호의 방향)",
+   "일차부등식의 풀이(이항과 동류항 정리)",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20203-A31-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 문자인 일차부등식의 풀이(양변에 문자항이 있는 경우)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.044,
+   "longestRun": 5,
+   "residualChars": 52,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

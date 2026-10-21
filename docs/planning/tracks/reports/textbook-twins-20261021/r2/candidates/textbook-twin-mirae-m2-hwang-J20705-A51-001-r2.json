@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 328,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r2",
+ "authorId": "claude-fable-5-1:bde7ccec-2cab-44b9-bc3e-ab5c08b0e4a4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20705-A51-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n$\\triangle ABC$에서 변 $BC$의 중점을 $M$, 무게중심을 $G$라 하고, 다시 $\\triangle GBC$의 무게중심을 $H$라 하자. 색칠한 부분인 $\\triangle HMC$의 넓이가 $7\\,\\mathrm{cm}^2$이면 $\\triangle ABC$의 넓이는?",
+ "choices": [
+  "$108\\,\\mathrm{cm}^2$",
+  "$117\\,\\mathrm{cm}^2$",
+  "$126\\,\\mathrm{cm}^2$",
+  "$135\\,\\mathrm{cm}^2$",
+  "$144\\,\\mathrm{cm}^2$"
+ ],
+ "answer": "③",
+ "solution": "$H$가 $\\triangle GBC$의 무게중심이므로 $\\overline{GH}:\\overline{HM}=2:1$이고, 높이가 같은 두 삼각형의 넓이비에서 $\\triangle GMC=3\\triangle HMC=21\\,(\\mathrm{cm}^2)$이다. $G$가 $\\triangle ABC$의 무게중심이므로 $\\overline{AG}:\\overline{GM}=2:1$이고, $\\triangle AMC=3\\triangle GMC=63\\,(\\mathrm{cm}^2)$이다. $M$이 변 $BC$의 중점이므로 $\\triangle ABC=2\\triangle AMC=126\\,(\\mathrm{cm}^2)$이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A51-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A51-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-11",
+  "problemCode": "J20705-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "b23b430548f80dca0b3ccd6c599459ccad5e406bf84969abe105440e0200eef7",
+  "dbContentSha256": "31bafd805d9fa07b1c471d9b358172660251cae69f4af15ae55a6416ba40465a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "208e950def0613ff08407270c759e573b7ea4759b3de98d69a45a4185ff8be57"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "representation"
+  ],
+  "before": "무게중심 G와 △GBC의 무게중심 G'을 잡고, 왼쪽 아래 작은 삼각형(G'·B·중점)의 넓이에서 전체 삼각형의 넓이를 되짚는 객관식. 그림은 전체가 음영.",
+  "after": "중점을 M, 안쪽 무게중심을 H로 이름 붙이고, 오른쪽 아래 작은 삼각형 HMC만 색칠해 그 넓이에서 전체 넓이를 되짚는 객관식. 수는 7 → 126으로 새로 두고 정답 기호도 ③으로 바뀜.",
+  "sharedConcept": "무게중심은 중선을 2:1로 나누며, 높이가 같은 삼각형의 넓이비는 밑변의 비와 같다",
+  "sharedProcedure": "안쪽 무게중심의 2:1로 작은 삼각형 ×3 → 바깥 무게중심의 2:1로 다시 ×3 → 중선이 넓이를 이등분하므로 ×2"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질(중선을 2:1로 나눔)",
+   "높이가 같은 삼각형의 넓이비",
+   "중선이 삼각형의 넓이를 이등분함"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A51-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 번 겹친 무게중심에서 작은 삼각형의 넓이로 전체 삼각형의 넓이 되짚기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.153,
+   "longestRun": 9,
+   "residualChars": 100,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

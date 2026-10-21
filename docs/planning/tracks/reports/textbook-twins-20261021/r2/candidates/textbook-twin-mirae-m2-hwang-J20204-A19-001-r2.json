@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 157,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r2",
+ "authorId": "claude-opus-5-5:3a432882-91c8-4ef6-9733-9a39c3036918",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "올해 도하의 이모는 $40$살이고 도하는 $10$살이다. 이모의 나이가 도하의 나이의 $3$배보다 처음으로 작아지는 것은 지금으로부터 몇 년 후인지 구하시오.",
+ "choices": [],
+ "answer": "$6$년 후",
+ "solution": "$x$년 후 이모의 나이는 $(40+x)$살, 도하의 나이는 $(10+x)$살이므로 $40+x<3(10+x)$이다. $40+x<30+3x$, $-2x<-10$, $x>5$이다. $x=5$이면 두 값이 $45$로 같아 «작다»가 성립하지 않는다. $x>5$를 만족하는 가장 작은 자연수는 $6$이다. 따라서 $6$년 후이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-18",
+  "problemCode": "J20204-A19-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "0723a8dfb1125793ca32097f79280d4a78cc4b31c939133068602ae31ce68553",
+  "dbContentSha256": "0723a8dfb1125793ca32097f79280d4a78cc4b31c939133068602ae31ce68553",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "부모와 자녀의 지금 나이가 주어지고, 부모의 나이가 자녀 나이의 몇 배보다 작아지기 시작하는 때가 몇 년 후부터인지 묻는다.",
+  "after": "이모와 조카의 올해 나이가 주어지고, 이모의 나이가 조카 나이의 3배보다 처음으로 작아지는 때가 지금으로부터 몇 년 후인지 묻는다(답을 «○년 후»라는 한 시점으로 쓰게 함).",
+  "sharedConcept": "나이 문제에서 일차부등식을 세워 풀고 자연수 해의 최솟값 구하기",
+  "sharedProcedure": "x년 후 두 사람의 나이를 식으로 나타냄 → 배수 조건으로 부등식 세우기 → 괄호 풀기 · 이항 → 음수로 나누며 부등호 방향 바꾸기 → 조건을 만족하는 가장 작은 자연수 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(수, 평균, 정가)"
+  },
+  "prerequisites": [
+   "문자를 사용한 식",
+   "일차부등식의 풀이",
+   "부등식의 성질(음수로 나누면 부등호 방향이 바뀜)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20204-A19-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "x년 후 나이의 배수 관계로 일차부등식을 세워 처음 성립하는 때 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.059,
+   "longestRun": 4,
+   "residualChars": 54,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

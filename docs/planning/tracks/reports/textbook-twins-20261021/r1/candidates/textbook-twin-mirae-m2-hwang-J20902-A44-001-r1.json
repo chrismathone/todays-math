@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 362,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r1",
+ "authorId": "claude-fable-5-1:d3e66adf-9d79-45e3-9c14-3d3c4d1c28a4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "숫자 $4$, $5$, $7$, $8$, $9$가 각각 하나씩 적힌 카드 $5$장이 있다. 이 중에서 카드 $2$장을 뽑아 두 자리 자연수를 만들 때, 그 수가 $70$보다 작은 경우의 수는?",
+ "choices": [
+  "$6$",
+  "$7$",
+  "$8$",
+  "$9$",
+  "$10$"
+ ],
+ "answer": "③",
+ "solution": "$70$보다 작으려면 십의 자리의 숫자가 $4$ 또는 $5$이어야 한다.\n십의 자리가 $4$인 수는 $45$, $47$, $48$, $49$의 $4$가지, 십의 자리가 $5$인 수는 $54$, $57$, $58$, $59$의 $4$가지이다.\n따라서 구하는 경우의 수는 $4+4=8$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-1",
+  "problemCode": "J20902-A44-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "20748a49d242b5d2d254807287f6703c688220c10d17e6446268b05d2bccfd7a",
+  "dbContentSha256": "554cd1eb44705c833dc8e7d80d8ee0a1c36220e7d089689b0112751c41555aed",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "inverse-target"
+  ],
+  "before": "네 장의 숫자 카드에서 두 장을 뽑아 두 자리 수를 만들 때, 어떤 값 이상인 수가 몇 가지인지 센다(십의 자리가 큰 쪽으로 제한).",
+  "after": "다섯 장의 숫자 카드에서 두 장을 뽑아 두 자리 수를 만들 때, 어떤 값보다 작은 수가 몇 가지인지 센다(십의 자리가 작은 쪽으로 제한).",
+  "sharedConcept": "크기 조건이 붙은 두 자리 자연수의 개수 세기(카드는 한 번만 사용)",
+  "sharedProcedure": "조건을 만족하는 십의 자리 숫자 가리기 → 각 십의 자리마다 가능한 일의 자리 세기 → 모두 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "여러 가지 경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수",
+   "합의 법칙",
+   "곱의 법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20902-A44-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "숫자 카드로 만든 두 자리 수 가운데 크기 조건을 만족하는 수의 개수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.46",
+    "원본 수 8개 가운데 62% 그대로"
+   ],
+   "overlap4": 0.464,
+   "longestRun": 13,
+   "residualChars": 59,
+   "params": 8,
+   "numberRetention": 0.625,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

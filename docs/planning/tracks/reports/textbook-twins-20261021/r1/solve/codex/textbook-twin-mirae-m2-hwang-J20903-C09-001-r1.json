@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-C09-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcd-7e22-75b2-a8c0-ff7a29338f00",
+ "startedAt": "2026-10-21T18:31:50+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "8de08eceeab55a93eb71f2b02481d062dda2e562f11796b359c0ee6942e1f711",
+  "student.json": "d31086ac19480a34169868da12c6b8812d28d092aee4b5ce8dd598510449bb99"
+ },
+ "promptSha256": "8d8153b0489bacc475988e1e1044ba468ba09956980d1cc8c6925d8e3c9df9ab",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{3}{10}$\",\"work\":\"전체 학생 수는 18+15+24+9+14=80명이다.\\n치킨을 고른 학생은 24명이므로 확률은 24/80=3/10이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{3}{10}$",
+  "work": "전체 학생 수는 18+15+24+9+14=80명이다.\n치킨을 고른 학생은 24명이므로 확률은 24/80=3/10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e9036a69c26ee0abd4dbee7dcc5c897db044f1c67e174b589261a5ae18fd76bb"
+}

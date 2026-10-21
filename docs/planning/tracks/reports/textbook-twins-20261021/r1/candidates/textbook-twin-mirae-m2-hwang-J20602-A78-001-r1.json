@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 308,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A78-001-r1",
+ "authorId": "claude-fable-5-1:b839ca4a-7ef1-4a56-a50d-47e5e7eb1c0a",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 $\\triangle ABC$의 내부에 $\\angle CAD=\\angle ABE=\\angle BCF$가 되도록 세 선분 $\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$를 그었더니 $\\triangle DEF$가 생겼다. $\\overline{AB}=9\\,\\mathrm{cm}$, $\\overline{AC}=8\\,\\mathrm{cm}$, $\\overline{BC}=7\\,\\mathrm{cm}$일 때, $\\frac{\\overline{DE}}{\\overline{EF}}$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$\\frac{8}{9}$",
+ "solution": "점 $E$는 $\\overline{AD}$ 위에, 점 $F$는 $\\overline{BE}$ 위에, 점 $D$는 $\\overline{CF}$ 위에 있다.\n$\\triangle ABE$에서 외각의 성질에 의하여 $\\angle DEF=\\angle BAE+\\angle ABE=\\angle BAE+\\angle CAD=\\angle A$\n$\\triangle BCF$에서 $\\angle EFD=\\angle FBC+\\angle FCB=\\angle FBC+\\angle ABE=\\angle B$\n따라서 $\\triangle EFD\\backsim\\triangle ABC$ ($\\mathrm{AA}$ 닮음)이고 $\\overline{DE}:\\overline{EF}=\\overline{CA}:\\overline{AB}$이다.\n그러므로 $\\frac{\\overline{DE}}{\\overline{EF}}=\\frac{8}{9}$",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A78-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A78-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-16",
+  "problemCode": "J20602-A78-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 16,
+  "sourceContentSha256": "e4a5e815326932601e109cf17fd76e58f5b5675d740acb88661f11ac3d83a76a",
+  "dbContentSha256": "c6f13b40ff75a6814117a16f820cfeba95b5b1c09496d11d700de07f537b0a2a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "7355fcaa5ec15aa83e171d00856efbad98d685db3d7fdb0d21187731ba9132f9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "세 꼭짓점에서 각각 다음 변 쪽으로 같은 각만큼 기울여 그은 세 선분이 안쪽 삼각형을 만들고, 외각의 성질로 안쪽 삼각형의 두 각이 바깥 삼각형의 두 각과 같음을 보인 뒤 AA 닮음으로 두 변의 비를 묻는다. 세 변 6, 5, 4가 주어지고 묻는 비는 AC:BC에 대응한다.",
+  "after": "세 선분을 반대 방향(각 꼭짓점에서 앞 변 쪽)으로 기울여 그어 대응 꼭짓점이 바뀐 짜임. 외각의 성질 두 번으로 안쪽 삼각형의 두 각이 ∠A, ∠B와 같음을 보이고 AA 닮음으로 CA:AB에 대응하는 비 DE/EF를 구한다. 세 변은 9, 8, 7.",
+  "sharedConcept": "삼각형의 외각의 성질과 AA 닮음, 닮은 도형의 대응변의 길이의 비",
+  "sharedProcedure": "외각의 성질로 안쪽 삼각형의 한 각을 바깥 삼각형의 각으로 바꾸기 → 다른 한 각도 같은 방법으로 → AA 닮음과 대응 꼭짓점 확정 → 대응변의 비로 답"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 외각의 성질",
+   "삼각형의 닮음 조건(AA)",
+   "닮은 도형에서 대응변의 길이의 비"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A78-001",
+  "difficultyProposal": "심화하",
+  "sourceDifficulty": "심화하",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외각의 성질로 안쪽 삼각형과 바깥 삼각형의 AA 닮음을 찾아 변의 길이의 비 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.099,
+   "longestRun": 6,
+   "residualChars": 84,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

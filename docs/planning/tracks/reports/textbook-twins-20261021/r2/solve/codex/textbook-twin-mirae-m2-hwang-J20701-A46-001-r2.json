@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A46-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df9-648e-72a3-944e-beefd27ca4b1",
+ "startedAt": "2026-10-21T19:19:47+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "fig-1.png": "64f4595226ecf6058e4a7a57e1bbf125124191a132af65ddfcce978b241efbbd",
+  "student.json": "66b81540c06dfc5fe04b5d814e04422f6a32997b34d779775acbabc0b2baecea"
+ },
+ "promptSha256": "f63cf0cd7b2af7a6fc28b7ab08a3c3d7c5269507b848964082dedb6a1709cff8",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$BC\\\\parallel DE$이고 맞꼭지각이 같으므로 $\\\\triangle ADE\\\\sim\\\\triangle ACB$이다.\\n따라서 $AD:AC=DE:CB$이므로 $x:21=12:18$, $x=21\\\\times\\\\frac{12}{18}=14$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$BC\\parallel DE$이고 맞꼭지각이 같으므로 $\\triangle ADE\\sim\\triangle ACB$이다.\n따라서 $AD:AC=DE:CB$이므로 $x:21=12:18$, $x=21\\times\\frac{12}{18}=14$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9c24b55046e2c0c5f8591057b6870d3b714aa6546e860083e9e7cf37abbc0bad"
+}

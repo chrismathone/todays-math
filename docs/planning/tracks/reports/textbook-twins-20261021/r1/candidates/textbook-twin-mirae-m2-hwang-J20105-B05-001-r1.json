@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 95,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B05-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$x^{14}y^{35}z^{21}$을 양의 정수 $p,~q,~r,~n$을 사용하여 $(x^{p}y^{q}z^{r})^{n}$ 꼴로 나타내려고 한다. $n$이 될 수 있는 가장 큰 값을 택할 때, $n+p+q+r$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$17$",
+ "solution": "$(x^{p}y^{q}z^{r})^{n}=x^{pn}y^{qn}z^{rn}$이므로 $pn=14$, $qn=35$, $rn=21$이다.\n$n$은 $14$, $35$, $21$의 공약수이고, 가장 큰 값은 최대공약수 $7$이다.\n$n=7$이면 $p=2$, $q=5$, $r=3$이다.\n따라서 $n+p+q+r=7+2+5+3=17$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-10",
+  "problemCode": "J20105-B05-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "74df42efac5ab7cd641e248ba7da29b46df23dbe95c89a2ea07dc73ca0206603",
+  "dbContentSha256": "0e47e7d66d46b33e951a910a9bcaf10f0899b0838a8290142ce6d92b5a9c0887",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "괄호 거듭제곱을 전개한 결과가 주어지고, 바깥 지수가 최대가 되는 경우의 네 양의 정수의 합을 묻는다.",
+  "after": "전개된 단항식을 먼저 주고 괄호 거듭제곱 꼴로 되돌리는 방향으로 서술을 뒤집었다. 지수 셋과 최대공약수를 새로 정했다.",
+  "sharedConcept": "곱의 거듭제곱 (ab)^n=a^n b^n 과 최대공약수",
+  "sharedProcedure": "괄호 전개 → 지수끼리 등식 세우기 → 바깥 지수는 최대공약수 → 나머지 값 구해 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "최대공약수",
+   "지수법칙 ⑷ 곱의 거듭제곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B05-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱의 거듭제곱과 최대공약수 — 미지 지수 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.016,
+   "longestRun": 4,
+   "residualChars": 67,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

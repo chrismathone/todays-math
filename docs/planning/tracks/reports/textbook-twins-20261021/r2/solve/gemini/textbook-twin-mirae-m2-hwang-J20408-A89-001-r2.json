@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A89-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "f1a321b3-a56d-452e-b3c4-cf7d95bf272a",
+ "startedAt": "2026-10-21T18:14:27+0900",
+ "elapsedSec": 22.1,
+ "studentSha256": {
+  "fig-1.png": "d5ac7275575bb1b9b7da7292caa4d96bc87b34b1cc8aecf204b7872e36f7fe7c",
+  "student.json": "115ab1853d2728a82237258d80890a73f3f809d811f4f2adf054ecb553e61f10"
+ },
+ "promptSha256": "56e13a9c37379f02ba958fb8ea789de13e738a68e93006aceffaa4b69565c845",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"8\",\n  \"work\": \"직선이 두 점 $(5, 0)$, $(0, -3)$을 지나므로 $px+qy=15$에 각 점의 좌표를 대입한다. 점 $(5, 0)$을 대입하면 $5p = 15$에서 $p = 3$, 점 $(0, -3)$을 대입하면 $-3q = 15$에서 $q = -5$이다. 따라서 $p-q = 3 - (-5) = 8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "8",
+  "work": "직선이 두 점 $(5, 0)$, $(0, -3)$을 지나므로 $px+qy=15$에 각 점의 좌표를 대입한다. 점 $(5, 0)$을 대입하면 $5p = 15$에서 $p = 3$, 점 $(0, -3)$을 대입하면 $-3q = 15$에서 $q = -5$이다. 따라서 $p-q = 3 - (-5) = 8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "801ef708d9c634b953deaba5183447f621c3af6bea7c8428ed40a90b321c5cb2"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db8-732d-7791-b8f7-68eadd8f63e2",
+ "startedAt": "2026-10-21T18:08:51+0900",
+ "elapsedSec": 17.3,
+ "studentSha256": {
+  "fig-1.png": "39e04110b32964e9bf551e49c40a5bd103bffba568242056c878e4707b2e3289",
+  "student.json": "a4936f1a41d7b554ae61e2ff9b80404a514322ecd6cf28fc0510dbb47335246b"
+ },
+ "promptSha256": "f792239b16686bfa104607de9d1a2b921bf1348e98ca11e411cf7b41cc0e4843",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"닮음비는 BC:HI=6:10=3:5이다. 따라서 9:y=3:5에서 y=15, z:20=3:5에서 z=12이다. 대응하는 각과 삼각기둥의 두 밑면의 성질에 의해 x=70이다. 면 ABED의 대응면은 면 GHKJ이고 △ABC∽△GHI이므로 ①~④는 옳다. x+y-z=70+15-12=73이므로 ⑤가 옳지 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "닮음비는 BC:HI=6:10=3:5이다. 따라서 9:y=3:5에서 y=15, z:20=3:5에서 z=12이다. 대응하는 각과 삼각기둥의 두 밑면의 성질에 의해 x=70이다. 면 ABED의 대응면은 면 GHKJ이고 △ABC∽△GHI이므로 ①~④는 옳다. x+y-z=70+15-12=73이므로 ⑤가 옳지 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "467d1009f851b90b149540b264993f3a9e64bf8ccb51584ae73c8a494750c67d"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A15-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db3-0c10-7773-9531-b93364ab97b3",
+ "startedAt": "2026-10-21T18:02:57+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "24c3a9f63a6ec788df98913b9fdb25a0c076cace87a0e172c1fe32c91d63f17c"
+ },
+ "promptSha256": "16e12ede4f78f606344a5df17497b98600037dfb039a5e720716871b095a7028",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행사변형의 두 대각선은 서로를 이등분하므로 $AC=2OA$, $BD=2OB$이다. 따라서 $OA=OB$이면 $AC=BD$이다. 두 대각선의 길이가 같은 평행사변형은 직사각형이므로 정답은 ③이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행사변형의 두 대각선은 서로를 이등분하므로 $AC=2OA$, $BD=2OB$이다. 따라서 $OA=OB$이면 $AC=BD$이다. 두 대각선의 길이가 같은 평행사변형은 직사각형이므로 정답은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ebf28474812169a47990268f2f11e7641449e5470815f1c8e6e8566a1315f698"
+}

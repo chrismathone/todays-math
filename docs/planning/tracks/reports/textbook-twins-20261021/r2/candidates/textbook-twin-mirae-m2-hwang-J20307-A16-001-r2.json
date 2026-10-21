@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 192,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r2",
+ "authorId": "claude-opus-5-5:e3ac3f37-24c6-454b-9007-6230c747db9c",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "어느 캠프에서 카약 한 대에 경험자 한 명과 초보자 한 명이 함께 타도록 짝을 지었더니, 짝을 찾지 못한 초보자가 $5$명 남았다. 캠프 참가자가 모두 $37$명일 때, 초보자의 수는?",
+ "choices": [
+  "$17$",
+  "$19$",
+  "$21$",
+  "$23$",
+  "$25$"
+ ],
+ "answer": "③",
+ "solution": "경험자 수를 $x$, 초보자 수를 $y$라 하면 $\\begin{cases} x+y=37 \\\\ y=x+5 \\end{cases}$이다. 두 번째 식을 첫 번째 식에 대입하면 $x+(x+5)=37$, $2x=32$, $x=16$이다. $x=16$을 두 번째 식에 대입하면 $y=21$이다. 따라서 초보자의 수는 $21$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-12",
+  "problemCode": "J20307-A16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "9f50dc1d6ccfd6301db7e7cb68b44f16f0e95458b20a2b6ff9f8d03bdc0853c4",
+  "dbContentSha256": "a6d98985d3730e7523c6622ef69cd44154327e4c58223da9695fd2614ebe97f1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "학급의 남녀 학생을 둘씩 짝 지을 때 남는 쪽 인원과 전체 인원이 주어지고, 남는 쪽(많은 쪽)의 인원을 보기에서 고른다.",
+  "after": "캠프의 경험자와 초보자를 카약 한 대에 한 명씩 짝 지을 때 남는 초보자 수와 전체 참가자 수가 주어지고, 남는 쪽(많은 쪽)인 초보자 수를 보기에서 고른다. 보기 값은 원본 보기와 겹치지 않는다.",
+  "sharedConcept": "합과 차 조건으로 연립일차방정식 세우기",
+  "sharedProcedure": "두 집단을 미지수로 놓기 → 전체 인원으로 합의 식, 남는 인원으로 차의 식 세우기 → 대입법으로 풀기 → 묻는 집단의 수 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(가격, 개수, 증감, 도형)"
+  },
+  "prerequisites": [
+   "문장을 일차방정식으로 나타내기",
+   "연립일차방정식의 풀이(대입법)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20307-A16-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "짝 짓고 남는 인원과 전체 인원으로 두 집단의 수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 77,
+   "params": 8,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

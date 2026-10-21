@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da7-2589-7b63-957a-1b62e205b668",
+ "startedAt": "2026-10-21T17:49:57+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "student.json": "90789cf42afc561b3dd1c198ee4dde817c6603c5671279d9582a333edc2fda60"
+ },
+ "promptSha256": "f0491fc3585ca649ad8db6e00f3b2c7eb25a32db58978d2127e2602724cc867e",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-6\",\"work\":\"x+4=-3x-4를 풀면 x=-2, y=2이므로 두 직선의 교점은 (-2, 2)이다.\\n이 점을 y=-4x+a에 대입하면 2=8+a이므로 a=-6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-6",
+  "work": "x+4=-3x-4를 풀면 x=-2, y=2이므로 두 직선의 교점은 (-2, 2)이다.\n이 점을 y=-4x+a에 대입하면 2=8+a이므로 a=-6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f3c65a40b30041435dc665378198bf3ebbe19c142f8490156aba61710ed4d8b9"
+}

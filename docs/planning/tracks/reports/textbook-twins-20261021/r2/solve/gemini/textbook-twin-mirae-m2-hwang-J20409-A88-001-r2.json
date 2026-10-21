@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "44d462b1-aef9-4cf9-ac0f-f446d36b86dd",
+ "startedAt": "2026-10-21T18:16:14+0900",
+ "elapsedSec": 21.6,
+ "studentSha256": {
+  "fig-1.png": "357eed92d2c478d194d6df765565800a644ea811faf50949bf69f179b9898feb",
+  "student.json": "b972ca172df7cf48193761ec6abf9f091c349278fe3b39485d257832a4ddde06"
+ },
+ "promptSha256": "1fcc81be5b201362c264401a842d41d0b6e0d4917b120c9dd4fbce79a2b8b7b0",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"6\",\n  \"work\": \"그림에서 두 직선의 교점 P의 좌표는 $(1, 4)$이다.\\n직선 $\\\\ell: ax+2y=5$에 점 $(1, 4)$를 대입하면 $a + 2\\\\times 4 = 5 \\\\implies a = -3$\\n직선 $m: 3x-by=11$에 점 $(1, 4)$를 대입하면 $3\\\\times 1 - 4b = 11 \\\\implies b = -2$\\n따라서 $ab = (-3)\\\\times(-2) = 6$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "6",
+  "work": "그림에서 두 직선의 교점 P의 좌표는 $(1, 4)$이다.\n직선 $\\ell: ax+2y=5$에 점 $(1, 4)$를 대입하면 $a + 2\\times 4 = 5 \\implies a = -3$\n직선 $m: 3x-by=11$에 점 $(1, 4)$를 대입하면 $3\\times 1 - 4b = 11 \\implies b = -2$\n따라서 $ab = (-3)\\times(-2) = 6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "63a030e144388118e116aa7caa8e4c969dc130578160b8c3dc41b0a7f94c92fb"
+}

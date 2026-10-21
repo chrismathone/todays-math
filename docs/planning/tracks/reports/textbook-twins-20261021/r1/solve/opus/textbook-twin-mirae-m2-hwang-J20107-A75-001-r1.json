@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "67edf307-57e1-406e-b928-d837653bd706",
+ "startedAt": "2026-10-21T16:16:18+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "164227039bbcc2ac9d1e2b228a968d29ea4c82278bc12426089fc74043ea2cdd"
+ },
+ "promptSha256": "a96090c7e0fead826f0562888da626874a913801b7c08c996c2337c0a27d7615",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "□ = -5a+b-1 + 2a-7b+3 = -3a-6b+2\n\n```json\n{\"answer\": \"$-3a-6b+2$\", \"work\": \"□ = (-5a+b-1)+(2a-7b+3)\\n= (-5a+2a)+(b-7b)+(-1+3)\\n= -3a-6b+2\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$-3a-6b+2$",
+  "work": "□ = (-5a+b-1)+(2a-7b+3)\n= (-5a+2a)+(b-7b)+(-1+3)\n= -3a-6b+2",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "81939f3bfb22391a0d4fd37dab0abc6f7c2129f0537a19e580af9d2e05f7c008"
+}

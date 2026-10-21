@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6c90c168-b32a-47b8-88d0-2d4d7439c646",
+ "startedAt": "2026-10-21T17:08:05+0900",
+ "elapsedSec": 8.9,
+ "studentSha256": {
+  "fig-1.png": "5665c3cfc2db1ff0954acb2d54ef53d229c635fbc83aea9955180741c77e559f",
+  "student.json": "b34ae80eb4048d40b53a8cd3f9e878f9c5b5c7270263cd683ffbf3cf71f3fa54"
+ },
+ "promptSha256": "f397840787e6377b5dbaa116de8d22eb750b4b685b61960dc807cbda002d0ddd",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"16 cm\", \"work\": \"삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 MN∥BC∥AD이다. △ABC에서 MQ = ½BC = 13 cm이다. △ABD에서 MP = ½AD이다. 그림에서 P가 M과 Q 사이에 있으므로 PQ = MQ − MP = 13 − ½AD = 5이다. 따라서 ½AD = 8, AD = 16 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "16 cm",
+  "work": "삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 MN∥BC∥AD이다. △ABC에서 MQ = ½BC = 13 cm이다. △ABD에서 MP = ½AD이다. 그림에서 P가 M과 Q 사이에 있으므로 PQ = MQ − MP = 13 − ½AD = 5이다. 따라서 ½AD = 8, AD = 16 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "476eea0c320296407d2b6af35d76ed3b8ba1a300668794bdac97a81ad0988866"
+}

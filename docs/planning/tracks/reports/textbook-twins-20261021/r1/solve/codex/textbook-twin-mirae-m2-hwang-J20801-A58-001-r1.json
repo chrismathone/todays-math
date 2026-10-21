@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A58-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc3-2fa6-7b23-83a0-0198031465d7",
+ "startedAt": "2026-10-21T18:20:35+0900",
+ "elapsedSec": 15.6,
+ "studentSha256": {
+  "fig-1.png": "fd8fcceed23d254bfb06a0fbd6529cd3e5b9de927a15797f965189b3b9112a3a",
+  "student.json": "253ddbede6aa6696647523241040551070d24e0388ab5842ea778f34c86d6c9e"
+ },
+ "promptSha256": "da614ad28890b91c9fb37c88db6f9c9fcd2617601d1630d86649fed7696cd409",
+ "freezeCommit": "1b293d74476a53162251ee11d4bd5d3f6b0bb2c5",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"50 cm²\",\n  \"work\": \"합동이므로 AB=CD=6 cm, DE=BC=8 cm이다. 사다리꼴 ABDE의 넓이는 (6+8)×(8+6)÷2=98 cm²이다. 따라서 △ACE의 넓이는 두 직각삼각형의 넓이를 뺀 98−2×(6×8÷2)=50 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "50 cm²",
+  "work": "합동이므로 AB=CD=6 cm, DE=BC=8 cm이다. 사다리꼴 ABDE의 넓이는 (6+8)×(8+6)÷2=98 cm²이다. 따라서 △ACE의 넓이는 두 직각삼각형의 넓이를 뺀 98−2×(6×8÷2)=50 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "302a0b027ab842fd76f6aba5f46dea49cecc037860c2e14fe6a5e3bfe44843d5"
+}

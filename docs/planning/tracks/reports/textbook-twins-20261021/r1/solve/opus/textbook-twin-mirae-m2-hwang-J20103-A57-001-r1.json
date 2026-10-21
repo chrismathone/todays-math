@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A57-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1e0daf21-d97a-4f4a-85d3-664f69a1d587",
+ "startedAt": "2026-10-21T16:20:01+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "33352d0c61cb44deb2be7a826a50b6f254532fdf494d7098ac69945c47d798f0"
+ },
+ "promptSha256": "9365579c89a063aa2160fa50c9324d59bd6a541bd83a9dd9041cf3dc750ef7bc",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"x=1.07333…에서 순환마디 3이 소수점 아래 셋째 자리부터 시작한다. 1000x=1073.333…, 100x=107.333…로 소수점 아래 부분이 같으므로 1000x-100x=966, x=966/900=161/150\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "x=1.07333…에서 순환마디 3이 소수점 아래 셋째 자리부터 시작한다. 1000x=1073.333…, 100x=107.333…로 소수점 아래 부분이 같으므로 1000x-100x=966, x=966/900=161/150",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "74b5a51907dd4eeec611a8762d2059b780d57a9af1e37d8157b9b7784ee4bb5b"
+}

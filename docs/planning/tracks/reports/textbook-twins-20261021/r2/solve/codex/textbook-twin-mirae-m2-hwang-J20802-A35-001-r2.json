@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A35-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfb-89f9-7431-a819-872a46b07339",
+ "startedAt": "2026-10-21T19:22:08+0900",
+ "elapsedSec": 17.6,
+ "studentSha256": {
+  "fig-1.png": "3ba7918254de6e0b4911694ae00a37ed44501d0fa74eeddf3b9e8d67c8c1f692",
+  "student.json": "89ec3e52266753695ba0017f7c57867aecdc3868fde9291761fb97821d236c42"
+ },
+ "promptSha256": "76db19045fa1274e590e7dde512060e58fd8b4359cbe2aad65a1352f4bcd9ef2",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"288 cm²\",\"work\":\"△ABF와 △CBA가 닮음이므로 $BF=\\\\frac{AB^2}{BC}=\\\\frac{49}{25}$ cm이다.\\n사각형 BFGD는 직사각형이므로 $DG=BF$이고, $GE=25-\\\\frac{49}{25}=\\\\frac{576}{25}$ cm이다.\\n△BGE의 밑변 GE에 대한 높이는 정사각형의 한 변인 25 cm이므로 넓이는 $\\\\frac12\\\\times\\\\frac{576}{25}\\\\times25=288$ cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "288 cm²",
+  "work": "△ABF와 △CBA가 닮음이므로 $BF=\\frac{AB^2}{BC}=\\frac{49}{25}$ cm이다.\n사각형 BFGD는 직사각형이므로 $DG=BF$이고, $GE=25-\\frac{49}{25}=\\frac{576}{25}$ cm이다.\n△BGE의 밑변 GE에 대한 높이는 정사각형의 한 변인 25 cm이므로 넓이는 $\\frac12\\times\\frac{576}{25}\\times25=288$ cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fa1a17408471703c6b99cd344c7b5311288b61a851129a61e736f38158a7640d"
+}

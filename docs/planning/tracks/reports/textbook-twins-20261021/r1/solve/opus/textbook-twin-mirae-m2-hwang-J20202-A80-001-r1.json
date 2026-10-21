@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "0f44208b-eeee-47b8-ab90-6bf30abdcf65",
+ "startedAt": "2026-10-21T16:28:01+0900",
+ "elapsedSec": 6.7,
+ "studentSha256": {
+  "student.json": "39fcbbcb39f196c5dcdcc168c349ebb48e1f195db25698e0c0c7e11deab9e276"
+ },
+ "promptSha256": "addc0b4b67a5bc00e5885ce6615e085fa33bcfc001b9dcc249a5062e99799702",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"① $-4x\\\\ge -8 \\\\Rightarrow x\\\\le 2$\\n② $x-4\\\\le -2 \\\\Rightarrow x\\\\le 2$\\n③ 양변에 12를 곱하면 $3x-4\\\\le 2 \\\\Rightarrow x\\\\le 2$\\n④ 양변에 10을 곱하면 $4x-3\\\\ge x+3 \\\\Rightarrow 3x\\\\ge 6 \\\\Rightarrow x\\\\ge 2$\\n⑤ 양변에 10을 곱하면 $6x+2\\\\le 3x+8 \\\\Rightarrow 3x\\\\le 6 \\\\Rightarrow x\\\\le 2$\\n해가 $x\\\\le 2$가 아닌 것은 ④뿐이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "① $-4x\\ge -8 \\Rightarrow x\\le 2$\n② $x-4\\le -2 \\Rightarrow x\\le 2$\n③ 양변에 12를 곱하면 $3x-4\\le 2 \\Rightarrow x\\le 2$\n④ 양변에 10을 곱하면 $4x-3\\ge x+3 \\Rightarrow 3x\\ge 6 \\Rightarrow x\\ge 2$\n⑤ 양변에 10을 곱하면 $6x+2\\le 3x+8 \\Rightarrow 3x\\le 6 \\Rightarrow x\\le 2$\n해가 $x\\le 2$가 아닌 것은 ④뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d58e63a1004403c3202eaf351d95533510a5d6732a100625391bf5a25ff0e2ab"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A45-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "24b43112-301e-4b3b-b6ac-8ac9854f563e",
+ "startedAt": "2026-10-21T18:24:19+0900",
+ "elapsedSec": 59.4,
+ "studentSha256": {
+  "student.json": "a6fcbb9829947ea408f668314b1592d852724f8a94b92c222f298215f5bea58f"
+ },
+ "promptSha256": "e09ea42bb8bc5f881edee2d679a34c4094f53a33bc7d35995000fc05fbf487c6",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"-5\",\n  \"work\": \"기울기는 \\\\frac{-12}{4} = -3이다. 일차함수의 식을 y = -3x + b라 하면 점 (-1, 7)을 지나므로 7 = -3 \\\\times (-1) + b에서 b = 4이다. 따라서 y = -3x + 4이고, x = 3을 대입하면 y = -3 \\\\times 3 + 4 = -5이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "-5",
+  "work": "기울기는 \\frac{-12}{4} = -3이다. 일차함수의 식을 y = -3x + b라 하면 점 (-1, 7)을 지나므로 7 = -3 \\times (-1) + b에서 b = 4이다. 따라서 y = -3x + 4이고, x = 3을 대입하면 y = -3 \\times 3 + 4 = -5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0dfd3191253a0ede20f7bf909581002bff1b100306740a8b7111edd34f1b93c6"
+}

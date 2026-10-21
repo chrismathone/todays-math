@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "77ab9c5f-e2c9-412a-9396-f436a75e9cd0",
+ "startedAt": "2026-10-21T17:10:55+0900",
+ "elapsedSec": 8.1,
+ "studentSha256": {
+  "fig-1.png": "6f5f394fe260758d67f81b8ea08390a5033cb04893c4d10771c21ef410ba2e17",
+  "student.json": "fc025b6b7f976decf235d339b14ae45019c223f30ee6d809d84635d234653044"
+ },
+ "promptSha256": "4251f1d9973f42fd73bb5dfbc62e73eca6e7ef9b07c61556e541131f6c4aa2f8",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"32 cm\", \"work\": \"직각삼각형 ABD에서 BD = √(30²+40²) = 50 cm이다. △ABD와 △HAD는 ∠D를 공유하는 직각삼각형이므로 서로 닮음이고, 따라서 AD² = DH·BD이다. 1600 = DH·50이므로 DH = 32 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "32 cm",
+  "work": "직각삼각형 ABD에서 BD = √(30²+40²) = 50 cm이다. △ABD와 △HAD는 ∠D를 공유하는 직각삼각형이므로 서로 닮음이고, 따라서 AD² = DH·BD이다. 1600 = DH·50이므로 DH = 32 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0d4b806f20d7c594715df6d79dc75e33f4babe6ff9036c92bd4fbac0b0052b82"
+}

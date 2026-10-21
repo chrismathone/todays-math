@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-ba80-7ae3-8e5b-f737b6e30dc1",
+ "startedAt": "2026-10-21T19:09:14+0900",
+ "elapsedSec": 8.7,
+ "studentSha256": {
+  "fig-1.png": "f681854770fafd2b411dc0bf4a8d61bbafdad2576c89a6aacb12eae4eddfc690",
+  "student.json": "e21ee490ae4a8edf9fb0182e6fc37329d51d966bf3722868560862f5f83039b2"
+ },
+ "promptSha256": "134829a69956c069f2f85b414ef20aa5ecad659631f02afca0864cdb2cb59e5e",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7 cm\",\"work\":\"눈의 깊이는 7−3=4시간 동안 28−16=12 cm 늘었으므로, 한 시간에 3 cm씩 늘어난다.\\n따라서 눈이 다시 내리기 전 쌓여 있던 눈의 깊이는 16−3×3=7 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7 cm",
+  "work": "눈의 깊이는 7−3=4시간 동안 28−16=12 cm 늘었으므로, 한 시간에 3 cm씩 늘어난다.\n따라서 눈이 다시 내리기 전 쌓여 있던 눈의 깊이는 16−3×3=7 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6c35c94a6b50b0456d79434993075d6a727fa51b810a2888663ea611e629f83b"
+}

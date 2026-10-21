@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A72-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d57-74b7-7a12-8403-f729641b5b8a",
+ "startedAt": "2026-10-21T16:22:54+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "916e74a972cb3a4c1d51c60a2a47d486cbaedb1b17db7745f8c24da54dd31461"
+ },
+ "promptSha256": "4da0c4cf6226bd376bbbb4db9c342d1cb0d361dcc1e0272d04482158f0932ebf",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $2a+4b$ ⑵ $-8x+8y$ ⑶ $3a-8b+9$ ⑷ $-2x+2y-11$\",\n  \"work\": \"괄호를 풀고 동류항끼리 계산한다.\\n⑴ (3-1)a+(-2+6)b=2a+4b\\n⑵ -2x+7y-6x+y=-8x+8y\\n⑶ 5a-2b+1-2a-6b+8=3a-8b+9\\n⑷ 6x-3y-9-8x+5y-2=-2x+2y-11\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $2a+4b$ ⑵ $-8x+8y$ ⑶ $3a-8b+9$ ⑷ $-2x+2y-11$",
+  "work": "괄호를 풀고 동류항끼리 계산한다.\n⑴ (3-1)a+(-2+6)b=2a+4b\n⑵ -2x+7y-6x+y=-8x+8y\n⑶ 5a-2b+1-2a-6b+8=3a-8b+9\n⑷ 6x-3y-9-8x+5y-2=-2x+2y-11",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6adb41f87a4525eeeeb2fb7fcdcaf751f3b0b524e3084ab46cb4c2acd7d2d37c"
+}

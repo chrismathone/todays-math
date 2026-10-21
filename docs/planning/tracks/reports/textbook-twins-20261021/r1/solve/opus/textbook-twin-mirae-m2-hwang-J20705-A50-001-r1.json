@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cf49b357-e211-4c40-b94a-3e3733c2e9bc",
+ "startedAt": "2026-10-21T17:10:04+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "7330ca9016edf8a9ac44567e19520df70d6e89d646af271eab6dc9a06b9239f0",
+  "student.json": "b04084fc52691326f5107307842c39ced63b274e2e8689d26737dc62716dfb61"
+ },
+ "promptSha256": "6f2c40b66a95591086be859c95bdbafcff65b5dea024d5ac3f3449ce2585a957",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "BM=15, BG=10. \n\n```json\n{\"answer\": \"④\", \"work\": \"직각삼각형의 빗변의 중점 M은 외심이므로 BM = AM = CM = 30/2 = 15 cm. G는 중선 BM 위에 있고 BG:GM = 2:1이므로 BG = (2/3)×15 = 10 cm.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직각삼각형의 빗변의 중점 M은 외심이므로 BM = AM = CM = 30/2 = 15 cm. G는 중선 BM 위에 있고 BG:GM = 2:1이므로 BG = (2/3)×15 = 10 cm.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "674de1bd178bc6e649a64763b65d0c2d59423b88c073bd30e06274fe6161e383"
+}

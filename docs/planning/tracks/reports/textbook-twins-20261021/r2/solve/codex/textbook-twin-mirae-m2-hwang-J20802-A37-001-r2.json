@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A37-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfb-cec4-7360-99ad-8345df906f16",
+ "startedAt": "2026-10-21T19:22:25+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "fig-1.png": "eb6e9bf56d13ab53b60f8d6aeced41f49e1b316660b71164d8795f40abec12f7",
+  "student.json": "3e820792a4b2c812b6dafab10fd923a89b723ffa380e200e4d5ff53c41802753"
+ },
+ "promptSha256": "952a26ec9cb27c68a569a7d6ac2d5b8bd4fe3807c8acfda2493a30837e187690",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"25 cm\",\"work\":\"실이 지나는 세 옆면을 펼치면 가로가 4+12+4=20 cm, 세로가 15 cm인 직사각형이 된다. 실의 길이는 펼친 그림에서 H와 C를 잇는 직선일 때 가장 짧으므로, 피타고라스 정리에 따라 $\\\\sqrt{20^2+15^2}=25$ cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "25 cm",
+  "work": "실이 지나는 세 옆면을 펼치면 가로가 4+12+4=20 cm, 세로가 15 cm인 직사각형이 된다. 실의 길이는 펼친 그림에서 H와 C를 잇는 직선일 때 가장 짧으므로, 피타고라스 정리에 따라 $\\sqrt{20^2+15^2}=25$ cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d9f2d4391abddfbe4f089397255e27b01fb6ac19b2a9fe3faeeee03c54c1cd19"
+}

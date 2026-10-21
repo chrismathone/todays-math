@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A68-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df3-fdcf-7c60-b31f-1b4127adcf41",
+ "startedAt": "2026-10-21T19:13:53+0900",
+ "elapsedSec": 22.8,
+ "studentSha256": {
+  "fig-1.png": "c1c674eb5a37c125836846c61643d9466e9b2208058887ded23e587d37abc43c",
+  "student.json": "dc9465a9a48514da8a1174460cbd9394f5aed4f7264da212f27e2c6e0bc07a7f"
+ },
+ "promptSha256": "e672fb92186a55e38230b5da5d750bcfd3e44fa5136decde43d0b871fe600e51",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"10 cm²\",\n  \"work\": \"직각삼각형 ADF와 DCG는 빗변 AD=DC이고 ∠ADF=∠DCG이므로 합동이다.\\n따라서 DF=CG=5 cm, DG=AF=9 cm이므로 FG=9−5=4 cm이다.\\n삼각형 CFG의 넓이는 $\\\\frac12\\\\times FG\\\\times CG=\\\\frac12\\\\times4\\\\times5=10\\\\,\\\\mathrm{cm}^2$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "10 cm²",
+  "work": "직각삼각형 ADF와 DCG는 빗변 AD=DC이고 ∠ADF=∠DCG이므로 합동이다.\n따라서 DF=CG=5 cm, DG=AF=9 cm이므로 FG=9−5=4 cm이다.\n삼각형 CFG의 넓이는 $\\frac12\\times FG\\times CG=\\frac12\\times4\\times5=10\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ede7d26c504a2a857ad8dd1d65efa67d36c20246c1e4502530089b74998b8a50"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-351a-72b1-8770-6a240d068e6d",
+ "startedAt": "2026-10-21T18:52:17+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "a2a83e97ce5f316c309e69ccb35fdc9700880ab2389ae775b1f2dab5c40da51b"
+ },
+ "promptSha256": "aa181eb29751277847bcf7dca01317853bc7bfb91b3753c31509f13403202e5f",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"㉠에 9를 곱하면 y의 계수는 36, ㉡에 4를 곱하면 y의 계수는 -36이다. 따라서 두 식을 더하는 ㉠×9+㉡×4로 y를 없앨 수 있다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "㉠에 9를 곱하면 y의 계수는 36, ㉡에 4를 곱하면 y의 계수는 -36이다. 따라서 두 식을 더하는 ㉠×9+㉡×4로 y를 없앨 수 있다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "69add86821ef1aad11b47d699b33300d76179fb47eaf905efd763b030b039ec5"
+}

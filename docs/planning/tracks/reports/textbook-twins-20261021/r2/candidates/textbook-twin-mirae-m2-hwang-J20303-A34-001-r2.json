@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 173,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r2",
+ "authorId": "claude-fable-5-1:44546851-3602-401f-ac24-c2263830161f",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 0.4(x+y)+0.6(x-y)=5 \\\\ (x+5):(y+9)=9:4 \\end{cases}$ 의 해 $x$, $y$를 바르게 짝 지은 것은?",
+ "choices": [
+  "$x=-5$, $y=4$",
+  "$x=4$, $y=-5$",
+  "$x=4$, $y=5$",
+  "$x=5$, $y=-4$",
+  "$x=5$, $y=4$"
+ ],
+ "answer": "②",
+ "solution": "첫째 식의 괄호를 풀면 $0.4x+0.4y+0.6x-0.6y=5$, 즉 $x-0.2y=5$이고 양변에 $10$을 곱하면 $10x-2y=50$, 곧 $5x-y=25$ …㉠이다. 둘째 식은 비례식의 성질에서 $4(x+5)=9(y+9)$, 정리하면 $4x-9y=61$ …㉡이다. ㉠에서 $y=5x-25$를 ㉡에 대입하면 $4x-45x+225=61$, $-41x=-164$, $x=4$이다. $x=4$를 ㉠에 대입하면 $20-y=25$, $y=-5$이다. 따라서 해는 $x=4$, $y=-5$이므로 정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-7",
+  "problemCode": "J20303-A34-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "6ede867cac03516036ee4cc3d1f4fec53ef1f05c3ed698122e32c0d5496dc325",
+  "dbContentSha256": "713089304cdad1740e0d6fd5abe20da0162688a451d8adfb87a39930ba0047fa",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소수 계수와 괄호가 섞인 식 하나와 비례식 하나로 된 연립방정식의 해를 보기 다섯에서 고른다. 첫째 식의 괄호 안이 서로 다른 꼴(두 문자의 차, 한 문자의 배수와 다른 문자의 차)이고, 비례식은 두 일차식의 비가 정수비와 같다.",
+  "after": "첫째 식의 괄호 안을 두 문자의 합과 차로 맞세워 두 소수 계수를 곱해 더하는 짜임으로 바꾸고, 비례식의 상수와 비를 모두 새 수로 두었다. 소수 정리 → 10배 → 비례식 내항·외항 → 대입(또는 가감)으로 푸는 절차는 그대로이며, 해 역시 보기 다섯에서 고른다.",
+  "sharedConcept": "괄호·소수 계수·비례식이 섞인 연립일차방정식의 풀이",
+  "sharedProcedure": "괄호 풀어 동류항 정리 → 양변에 10을 곱해 정수 계수로 → 비례식을 내항·외항의 곱으로 일차식화 → 가감법 또는 대입법으로 한 문자 소거 → 나머지 문자 구하기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "비례식의 성질(내항의 곱 = 외항의 곱)",
+   "계수가 소수인 연립방정식의 풀이",
+   "괄호가 있는 연립방정식의 풀이",
+   "가감법과 대입법"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A34-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "소수 계수·괄호·비례식이 섞인 연립방정식의 해 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.092,
+   "longestRun": 5,
+   "residualChars": 84,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

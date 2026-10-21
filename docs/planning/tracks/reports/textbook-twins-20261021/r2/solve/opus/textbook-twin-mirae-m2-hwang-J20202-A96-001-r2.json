@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "868617f4-5d06-4505-9a1e-e698935e14fd",
+ "startedAt": "2026-10-21T17:55:30+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "fig-1.png": "7c293aee9f2af0ee7ddac224bdd256e1eae4ef46c2772ea40088869f22049693",
+  "student.json": "9869e4b5cff7a1b5707864cc0df2d3260de520a5d66f56e96f2382e9fe056de5"
+ },
+ "promptSha256": "48bd5c97d8bb0e954703ccf29b6ec0a5bccbe04c2c8f61f6324f82ea4077cbcc",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"그림: 10에 속이 찬 점이 있고 오른쪽이 색칠되어 있으므로 x ≥ 10이다. ① 12x+108 ≥ 11x+98이므로 x ≥ -10이다. ② 양변에 36을 곱하면 4x > x+30이므로 x > 10이다(10은 포함되지 않음). ③ 12x ≥ 120이므로 x ≥ 10이다(그림과 일치). ④ x ≤ -10이다. ⑤ -2x ≥ -20이므로 x ≤ 10이다.\", \"confidence\": \"high\", \"issues\": [\"수직선의 왼쪽 화살표는 해를 나타내는 것이 아니라 수직선 자체의 방향 표시로 보았다.\"]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그림: 10에 속이 찬 점이 있고 오른쪽이 색칠되어 있으므로 x ≥ 10이다. ① 12x+108 ≥ 11x+98이므로 x ≥ -10이다. ② 양변에 36을 곱하면 4x > x+30이므로 x > 10이다(10은 포함되지 않음). ③ 12x ≥ 120이므로 x ≥ 10이다(그림과 일치). ④ x ≤ -10이다. ⑤ -2x ≥ -20이므로 x ≤ 10이다.",
+  "confidence": "high",
+  "issues": [
+   "수직선의 왼쪽 화살표는 해를 나타내는 것이 아니라 수직선 자체의 방향 표시로 보았다."
+  ]
+ },
+ "eventsSha256": "c17ca7562f9dbbcae32b43ef9d4442a70671e00fa6c53a587e53cde367901394"
+}

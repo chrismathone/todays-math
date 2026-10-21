@@ -1,0 +1,155 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 269,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r1",
+ "authorId": "claude-fable-5-1:0786f382-78f7-4957-86a1-9f1bb1a972b1",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 $\\angle Q=90^{\\circ}$인 직각삼각형 $PQR$에서 점 $M$은 $\\overline{PR}$ 위의 점이고 $\\overline{MQ}=\\overline{MR}$이다. $\\angle P=60^{\\circ}$, $\\overline{PR}=10\\,\\mathrm{cm}$일 때, $\\overline{PQ}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$5\\,\\mathrm{cm}$",
+ "solution": "$\\triangle PQR$에서 $\\angle R=180^{\\circ}-90^{\\circ}-60^{\\circ}=30^{\\circ}$이다. $\\triangle MQR$은 $\\overline{MQ}=\\overline{MR}$인 이등변삼각형이므로 $\\angle MQR=\\angle R=30^{\\circ}$이고, 외각의 성질에서 $\\angle PMQ=30^{\\circ}+30^{\\circ}=60^{\\circ}$이다. $\\triangle PQM$에서 $\\angle P=\\angle PMQ=60^{\\circ}$이므로 $\\angle PQM=60^{\\circ}$가 되어 $\\triangle PQM$은 정삼각형이고 $\\overline{PQ}=\\overline{PM}=\\overline{MQ}=\\overline{MR}$이다. $\\overline{PR}=\\overline{PM}+\\overline{MR}=2\\overline{PQ}=10\\,\\mathrm{cm}$이므로 $\\overline{PQ}=5\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A68-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20501-A68-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ef30370f56f3f103-0-3",
+  "problemCode": "J20501-A68-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "695655c1ad2930c8600d1bcdffb39d6d053edd7d4f3c30ff509b9bc859663bea",
+  "dbContentSha256": "75e22664c27d88bb2ff6afc14745a65fc8c7a849047613019c0a225c2b182d01",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-1_이등변삼각형의성질.hwp",
+    "sha256": "d19e40a7ae1f59bb4193778f1b9babddfc17b6f5c13993aa261bd121bf8819a3",
+    "bytes": 246784
+   }
+  ],
+  "originalFigureSha256": [
+   "fe18ab45ad63ab2e03d10d864db8c529d445e3cfcc0e4c51f01035b65e6cf8fa"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "representation",
+   "numbers"
+  ],
+  "before": "직각삼각형의 빗변 위 점이 직각 꼭짓점과 한 끝점에서 같은 거리에 있을 때, 30° 각과 한 변의 길이를 주어 빗변의 길이를 구함",
+  "after": "같은 짜임에서 60° 각과 빗변의 길이를 주어 짧은 변의 길이를 구함",
+  "sharedConcept": "이등변삼각형의 밑각 · 외각 · 세 각이 60°이면 정삼각형",
+  "sharedProcedure": "나머지 내각 → 이등변삼각형의 밑각 → 외각 60° → 정삼각형 → 길이 관계로 구하는 변"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 합",
+   "삼각형의 외각의 성질",
+   "이등변삼각형의 성질",
+   "정삼각형"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A68-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형 안의 이등변삼각형과 정삼각형으로 변의 길이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'angP' ray to 'R' is not covered by a rendered segment",
+     "session": "639968a8-7c8c-43b5-9759-fd60b0830b94",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: dimension 'd_PR' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))",
+     "session": "48e5eb18-bfdb-4666-8a0a-5049ef28851d",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.135,
+   "longestRun": 10,
+   "residualChars": 55,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

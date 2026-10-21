@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 390,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B34-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$1$부터 $20$까지의 자연수가 각각 하나씩 적힌 $20$개의 공이 들어 있는 주머니에서 공 한 개를 임의로 꺼낸다. 다음 중 옳은 것은?",
+ "choices": [
+  "$20$이 적힌 공이 나올 확률은 $1$이다.",
+  "$7$이 적힌 공이 나올 확률은 $\\frac{7}{20}$이다.",
+  "$21$ 이상의 수가 적힌 공이 나올 확률은 $\\frac{1}{20}$이다.",
+  "$1$ 이상의 수가 적힌 공이 나올 확률은 $1$이다.",
+  "$0$이 적힌 공이 나올 확률은 $\\frac{1}{20}$이다."
+ ],
+ "answer": "④",
+ "solution": "① $20$이 적힌 공은 한 개이므로 확률은 $\\frac{1}{20}$이다.\n② $7$이 적힌 공도 한 개이므로 확률은 $\\frac{1}{20}$이다.\n③ $21$ 이상의 수가 적힌 공은 없으므로 확률은 $0$이다.\n④ 모든 공에 $1$ 이상의 수가 적혀 있으므로 확률은 $1$이다.\n⑤ $0$이 적힌 공은 없으므로 확률은 $0$이다.\n따라서 옳은 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f218ff1431070b91-0-2",
+  "problemCode": "J20903-B34-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "08cdda854ba3307245d56af5e5b6df64595865546f30ee36718856ab7b65c92a",
+  "dbContentSha256": "272cc0ea0ff935952805a3d9de37332cb31e82a121e26db733cfdea0ab2bde2e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-3_확률의기본성질.hwp",
+    "sha256": "1a27df146fdc8058386ab0310b26bbfccaa316085a6f1571f09b1d433fc0e968",
+    "bytes": 48640
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "1~15 카드 상자에서 특정 수 · 없는 수 · 범위 조건의 확률에 대한 다섯 진술 가운데 옳은 것 하나를 고른다",
+  "after": "1~20 공 주머니에서 특정 수 · 없는 수 · 범위 조건의 확률에 대한 다섯 진술 가운데 옳은 것 하나를 고른다",
+  "sharedConcept": "확률의 뜻과 성질(0 · 1 · 1/n)",
+  "sharedProcedure": "각 진술의 사건이 몇 가지인지 세기 → 확률 계산 → 진술 값과 비교해 옳은 것 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "확률의 뜻",
+   "확률의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B34-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "수 카드·공에서 확률의 성질 옳은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.22,
+   "longestRun": 11,
+   "residualChars": 124,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

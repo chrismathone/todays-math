@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 273,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림의 직각삼각형 $ABC$는 $\\angle C=90^{\\circ}$이고, 빗변 $AB$ 위의 점 $D$는 $\\overline{BD}=\\overline{BC}$를 만족한다. 점 $D$를 지나고 $\\overline{AB}$에 수직인 직선이 $\\overline{AC}$와 만나는 점을 $E$라 하자. $\\angle DBE=20^{\\circ}$일 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$36^{\\circ}$",
+  "$38^{\\circ}$",
+  "$40^{\\circ}$",
+  "$42^{\\circ}$",
+  "$44^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "직각삼각형 $BCE$와 $BDE$에서 빗변 $BE$는 공통, $\\overline{BC}=\\overline{BD}$이므로 $\\triangle BCE\\equiv\\triangle BDE$($\\mathrm{RHS}$ 합동)이다. 따라서 $\\angle CBE=\\angle DBE=20^{\\circ}$이고 $\\angle ABC=40^{\\circ}$이다. $\\triangle ABC$에서 $\\angle A=180^{\\circ}-90^{\\circ}-40^{\\circ}=50^{\\circ}$이다. $\\triangle ADE$에서 $\\angle x=180^{\\circ}-90^{\\circ}-50^{\\circ}=40^{\\circ}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A59-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A59-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-3",
+  "problemCode": "J20502-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "c552eae2e84d5aa687199195afd4dc154253fc9cf67fda1a1def5cdf842e5fe6",
+  "dbContentSha256": "8626f9c6928b74fa6b232f249f68823aa0ce724afd67c069a78088f09bae64a0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "8cba6bb765454137a1f8278675de563c50c9050ded1e0f434dc626b965814f56"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "직각 꼭짓점이 $B$이고 빗변 $AC$ 위에 수선의 발 $E$가 있다. $\\overline{AB}=\\overline{AE}$와 $\\angle EAD$의 크기를 주고, 수선과 밑변이 만드는 각을 고른다.",
+  "after": "직각 꼭짓점을 $C$로, 수선의 발 $D$를 빗변 $AB$ 위로 옮기고 등변 조건을 $\\overline{BD}=\\overline{BC}$로 바꾸었다. 주어진 각은 $20^{\\circ}$, 묻는 각은 수선과 다른 변 $AC$가 만드는 각이다.",
+  "sharedConcept": "RHS 합동으로 각이 이등분됨을 알아낸 뒤 삼각형 내각의 합 적용",
+  "sharedProcedure": "빗변 공통·한 변 같음 → RHS 합동 → 주어진 각의 두 배가 꼭짓각 → 큰 삼각형 내각의 합으로 나머지 각 → 작은 직각삼각형 내각의 합으로 $x$"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHS)",
+   "삼각형의 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A59-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "RHS 합동과 내각의 합으로 각의 크기 구하기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.077,
+   "longestRun": 8,
+   "residualChars": 94,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

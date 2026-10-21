@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "d032b33e-8752-45f3-866a-6a3cb8c905ea",
+ "startedAt": "2026-10-21T18:01:20+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "d8651bac59f7d7dc2f64738412d405f788c0e71cff15429570aa4dfe2013638b"
+ },
+ "promptSha256": "9115b931ec580d4d4fffae0b6c98886c8ed2850541eae34ff30a98d7720df365",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"(-8, -4)\",\n  \"work\": \"주어진 방정식을 정리하면 3x - 4y = -8이다. x가 y의 2배이므로 x = 2y를 대입하면 3(2y) - 4y = -8, 2y = -8에서 y = -4이다. 따라서 x = -8이므로 순서쌍은 (-8, -4)이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "(-8, -4)",
+  "work": "주어진 방정식을 정리하면 3x - 4y = -8이다. x가 y의 2배이므로 x = 2y를 대입하면 3(2y) - 4y = -8, 2y = -8에서 y = -4이다. 따라서 x = -8이므로 순서쌍은 (-8, -4)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6e643b2f3ba44492b54a95724192e4fabb88f9112df2655ea4210bd6994ce485"
+}

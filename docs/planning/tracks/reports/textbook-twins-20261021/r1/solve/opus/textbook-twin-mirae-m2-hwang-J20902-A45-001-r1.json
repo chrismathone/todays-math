@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A45-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e3b139c8-cf5c-4edc-8073-678228634a55",
+ "startedAt": "2026-10-21T17:11:59+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "53f58c1b286a0fe17f0f22dd3aa78530b0ac6bd0fa59a6dba17f17fb0b767a1e"
+ },
+ "promptSha256": "7e68e4f748c025b9d7810485f747e2ba2a37a7f10dec24aed2b4378437b28c56",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"꽃 1종류를 고르는 경우는 7가지, 포장지 1종류를 고르는 경우는 12가지이다. 두 가지를 함께 고르므로 곱의 법칙을 쓴다: 7 × 12 = 84\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "꽃 1종류를 고르는 경우는 7가지, 포장지 1종류를 고르는 경우는 12가지이다. 두 가지를 함께 고르므로 곱의 법칙을 쓴다: 7 × 12 = 84",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8684dcf83ebb4f76a3ab7ded914a20d39028cfa789e0afaff28f9578a3714cf3"
+}

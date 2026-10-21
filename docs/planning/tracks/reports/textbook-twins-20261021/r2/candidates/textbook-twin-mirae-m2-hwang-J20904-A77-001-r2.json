@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 371,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r2",
+ "authorId": "claude-opus-5-5:66be5dde-2e1f-4b0b-8f82-4526128c0dcc",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "도하가 고리 던지기를 할 때 고리를 막대에 걸지 못할 확률은 $20\\,\\%$이다. 도하가 고리를 두 번 던질 때, 두 번 가운데 한 번만 막대에 걸 확률을 기약분수로 나타내시오.",
+ "choices": [],
+ "answer": "$\\frac{8}{25}$",
+ "solution": "고리를 걸지 못할 확률은 $\\frac{20}{100}=\\frac{1}{5}$이므로 걸 확률은 $1-\\frac{1}{5}=\\frac{4}{5}$이다. 첫 번째에만 걸 확률은 $\\frac{4}{5}\\times\\frac{1}{5}=\\frac{4}{25}$이고, 두 번째에만 걸 확률은 $\\frac{1}{5}\\times\\frac{4}{5}=\\frac{4}{25}$이다. 두 경우는 동시에 일어나지 않으므로 구하는 확률은 $\\frac{4}{25}+\\frac{4}{25}=\\frac{8}{25}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-18",
+  "problemCode": "J20904-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "faa7b9b1a80c6e5f04fe68ef1135906c1c4c590a4b704b6aeadd8bb66623eed4",
+  "dbContentSha256": "b882f8f7198c537c5ddc0252bf8d06dc1a921b2c421d774591b2b36d46f5a4e7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "운동선수가 한 번에 성공할 확률을 백분율로 주고, 같은 시도를 두 번 할 때 정확히 한 번 성공할 확률을 묻는다.",
+  "after": "놀이에서 한 번에 실패할 확률을 백분율로 주고, 여사건으로 성공 확률을 먼저 구한 뒤 두 번 가운데 정확히 한 번 성공할 확률을 기약분수로 묻는다.",
+  "sharedConcept": "독립인 시행에서 확률의 곱셈과, 동시에 일어나지 않는 사건의 확률의 덧셈",
+  "sharedProcedure": "백분율을 분수로 바꾸기 → 여사건으로 다른 쪽 확률 구하기 → 첫 번째만·두 번째만 성공하는 경우의 확률을 각각 곱으로 구하기 → 두 확률 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "사건 A가 일어나지 않을 확률",
+   "확률의 덧셈",
+   "확률의 곱셈",
+   "백분율과 분수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-A77-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "같은 시행을 두 번 할 때 한 번만 성공할 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 58,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

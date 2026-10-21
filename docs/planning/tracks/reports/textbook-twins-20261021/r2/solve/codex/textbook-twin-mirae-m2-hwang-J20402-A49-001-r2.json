@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A49-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de9-aa64-7461-9cd1-c58a1ed3a43f",
+ "startedAt": "2026-10-21T19:02:36+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "62375f580df714d25be8fb8a90d403c52c3af55ea4426f6d1f175a783e108d8c"
+ },
+ "promptSha256": "6507045e0e8333ca7aa0c727b9f3a85e07fa0ba8c16c45583e9b82dff6b4b66a",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12\",\"work\":\"x=3, y=8을 대입하면 8=a-1이므로 a=9이다.\\n평행이동한 직선은 y=3x-1+b이고, 점 (-3, -7)을 지나므로 -7=-10+b에서 b=3이다.\\n따라서 a+b=9+3=12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12",
+  "work": "x=3, y=8을 대입하면 8=a-1이므로 a=9이다.\n평행이동한 직선은 y=3x-1+b이고, 점 (-3, -7)을 지나므로 -7=-10+b에서 b=3이다.\n따라서 a+b=9+3=12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "af0d0ce100941005cce8856259e8e1dfc99568033361d64c84e3a487684470aa"
+}

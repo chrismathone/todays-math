@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A74-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-1e1b-7271-a7a0-9e5ba80e8c18",
+ "startedAt": "2026-10-21T19:04:12+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "fig-1.png": "2d98d3526e95e569f45fd21e2194ea7931c5512b032dcca7068f8bca75cc0845",
+  "student.json": "c8e0684ed7e11277eb6d56b916606f3d3cb8790ba7044e2304d5186e73fa792b"
+ },
+ "promptSha256": "881a9cffde23319c0acf525b01217e8bc8ace06ba45272a800d9f404e983509e",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"그림에서 그래프가 오른쪽 위로 향하고 y절편이 음수이므로 $a>0$, $b<0$이다.\\n따라서 $y=-bx-a$는 기울기 $-b>0$, y절편 $-a<0$이다.\\n$x<0$이면 $y<0$이므로 제2사분면을 지나지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "그림에서 그래프가 오른쪽 위로 향하고 y절편이 음수이므로 $a>0$, $b<0$이다.\n따라서 $y=-bx-a$는 기울기 $-b>0$, y절편 $-a<0$이다.\n$x<0$이면 $y<0$이므로 제2사분면을 지나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "aa9b983744cec65591832c20decf7a5b95bcf1c2d6855ccc5eae4a72ec16710a"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A68-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0c47a70d-8da5-415e-a30a-28051f2db9e8",
+ "startedAt": "2026-10-21T18:31:07+0900",
+ "elapsedSec": 155.3,
+ "studentSha256": {
+  "fig-1.png": "c1c674eb5a37c125836846c61643d9466e9b2208058887ded23e587d37abc43c",
+  "student.json": "dc9465a9a48514da8a1174460cbd9394f5aed4f7264da212f27e2c6e0bc07a7f"
+ },
+ "promptSha256": "2ff34c45f567bf7d0fda389841f5695cafc9779b2880ebe2307d35d8148a9502",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"10 cm²\",\n  \"work\": \"정사각형 $ABCD$에서 $\\\\overline{AD} = \\\\overline{DC}$, $\\\\angle ADC = 90^\\\\circ$이다. $\\\\angle AFD = \\\\angle DGC = 90^\\\\circ$이고 $\\\\angle FAD = 90^\\\\circ - \\\\angle FDA = \\\\angle CDG$이므로 $\\\\triangle AFD \\\\equiv \\\\triangle DGC$ (RHA 합동)이다. 따라서 $\\\\overline{DG} = \\\\overline{AF} = 9\\\\,\\\\mathrm{cm}$, $\\\\overline{DF} = \\\\overline{CG} = 5\\\\,\\\\mathrm{cm}$이다. 점 $D, F, G$는 직선 $DE$ 위의 점이므로 $\\\\overline{FG} = \\\\overline{DG} - \\\\overline{DF} = 9 - 5 = 4\\\\,\\\\mathrm{cm}$이다. 또한 $\\\\overline{CG} \\\\perp \\\\overline{FG}$이므로 직각삼각형 $CFG$의 넓이는 $\\\\frac{1}{2} \\\\times \\\\overline{FG} \\\\times \\\\overline{CG} = \\\\frac{1}{2} \\\\times 4 \\\\times 5 = 10\\\\,\\\\mathrm{cm}^2$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "10 cm²",
+  "work": "정사각형 $ABCD$에서 $\\overline{AD} = \\overline{DC}$, $\\angle ADC = 90^\\circ$이다. $\\angle AFD = \\angle DGC = 90^\\circ$이고 $\\angle FAD = 90^\\circ - \\angle FDA = \\angle CDG$이므로 $\\triangle AFD \\equiv \\triangle DGC$ (RHA 합동)이다. 따라서 $\\overline{DG} = \\overline{AF} = 9\\,\\mathrm{cm}$, $\\overline{DF} = \\overline{CG} = 5\\,\\mathrm{cm}$이다. 점 $D, F, G$는 직선 $DE$ 위의 점이므로 $\\overline{FG} = \\overline{DG} - \\overline{DF} = 9 - 5 = 4\\,\\mathrm{cm}$이다. 또한 $\\overline{CG} \\perp \\overline{FG}$이므로 직각삼각형 $CFG$의 넓이는 $\\frac{1}{2} \\times \\overline{FG} \\times \\overline{CG} = \\frac{1}{2} \\times 4 \\times 5 = 10\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "86313af5c32ee9500e37d16aa507bedc54ce55c9b12c680ca9accb69b4ef0df0"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A66-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7c-8eec-7f42-be92-443153f24c80",
+ "startedAt": "2026-10-21T17:03:26+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "364c6887782d437f4df5e5b794aba1963ef1cf7767352f5628d1fc090d52f40e"
+ },
+ "promptSha256": "63883e7f8208593736fef945249f00972a92383132eb627b97689e680e57150f",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"전개하면 $(35-6b)x^2+(7a+36)x-13$이다.\\n상수항을 비교하면 $k=-13$이므로 $35-6b=-13$, $7a+36=-13$이다.\\n따라서 $b=8$, $a=-7$이므로 $a-b=-15$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "전개하면 $(35-6b)x^2+(7a+36)x-13$이다.\n상수항을 비교하면 $k=-13$이므로 $35-6b=-13$, $7a+36=-13$이다.\n따라서 $b=8$, $a=-7$이므로 $a-b=-15$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9b5374ff09dafde2e2ccff10727ebb409433fd2ff2045a25604477f2d5f84d87"
+}

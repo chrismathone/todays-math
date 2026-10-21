@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A58-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3c78f001-e70f-448e-a065-8f90e058ae17",
+ "startedAt": "2026-10-21T16:54:32+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "student.json": "5a2d077064083838332a859d1fbdb294e239e81570156b09aa0aec76ce96e3c7"
+ },
+ "promptSha256": "85d3e81dd78a7fe71de893a24ad1969b740e924d149458acb3e51100dd2c020b",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $3b-5$ ⑵ $\\\\frac{20a}{b}-28+\\\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\\\frac{5}{2}$\", \"work\": \"⑴ $21ab^2\\\\div7ab=3b$, $35ab\\\\div7ab=5$ → $3b-5$\\n⑵ $\\\\div\\\\frac14ab$는 $\\\\times\\\\frac{4}{ab}$: $\\\\frac{20a^2}{ab}-\\\\frac{28ab}{ab}+\\\\frac{40b^2}{ab}=\\\\frac{20a}{b}-28+\\\\frac{40b}{a}$\\n⑶ $(2b-3)-(5b+2)=-3b-5$\\n⑷ $\\\\left(2y-\\\\frac32\\\\right)-(3y+1)=-y-\\\\frac52$\", \"confidence\": \"medium\", \"issues\": [\"⑵: $5a^2$, $10b^2$ 항이 $ab$로 나누어떨어지지 않아 결과에 분수식($\\\\frac{20a}{b}$, $\\\\frac{40b}{a}$)이 남는다. 중2 다항식 범위로는 어색하므로 원문의 오식(예: $5a^2b$, $10ab^2$ 등)일 가능성이 있다.\"]}\n```",
+ "parsed": {
+  "answer": "⑴ $3b-5$ ⑵ $\\frac{20a}{b}-28+\\frac{40b}{a}$ ⑶ $-3b-5$ ⑷ $-y-\\frac{5}{2}$",
+  "work": "⑴ $21ab^2\\div7ab=3b$, $35ab\\div7ab=5$ → $3b-5$\n⑵ $\\div\\frac14ab$는 $\\times\\frac{4}{ab}$: $\\frac{20a^2}{ab}-\\frac{28ab}{ab}+\\frac{40b^2}{ab}=\\frac{20a}{b}-28+\\frac{40b}{a}$\n⑶ $(2b-3)-(5b+2)=-3b-5$\n⑷ $\\left(2y-\\frac32\\right)-(3y+1)=-y-\\frac52$",
+  "confidence": "medium",
+  "issues": [
+   "⑵: $5a^2$, $10b^2$ 항이 $ab$로 나누어떨어지지 않아 결과에 분수식($\\frac{20a}{b}$, $\\frac{40b}{a}$)이 남는다. 중2 다항식 범위로는 어색하므로 원문의 오식(예: $5a^2b$, $10ab^2$ 등)일 가능성이 있다."
+  ]
+ },
+ "eventsSha256": "56d3b20a49c30de04e69c106149a53114431d7995b77f292bd3781a7a2d3804b"
+}

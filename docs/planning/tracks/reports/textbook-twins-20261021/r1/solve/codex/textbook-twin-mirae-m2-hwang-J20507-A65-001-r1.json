@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db3-a014-7332-9926-fc60369e2e82",
+ "startedAt": "2026-10-21T18:03:35+0900",
+ "elapsedSec": 21.8,
+ "studentSha256": {
+  "fig-1.png": "06b52af6941c06bca03805c7a503482c9346082aba71970d242adc8b837ac9ca",
+  "student.json": "2747a3a39b2ecd88781a866150d1d769cd2a82897b7c652ce02f6faa19a200a2"
+ },
+ "promptSha256": "4b87f6c698058072173a1ad7a639f998073ccf560ca05b59e262746313039813",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"마름모, 40 cm\",\n  \"work\": \"PB=AB-AP=16-6=10 cm이다.\\nAB∥DC이고 BO=DO이므로 △BOP≅△DOQ에서 PB=DQ=10 cm이다.\\nPQ는 BD의 수직이등분선이므로 PB=PD, QB=QD이다. 따라서 네 변의 길이가 모두 10 cm인 마름모이고, 둘레는 4×10=40 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "마름모, 40 cm",
+  "work": "PB=AB-AP=16-6=10 cm이다.\nAB∥DC이고 BO=DO이므로 △BOP≅△DOQ에서 PB=DQ=10 cm이다.\nPQ는 BD의 수직이등분선이므로 PB=PD, QB=QD이다. 따라서 네 변의 길이가 모두 10 cm인 마름모이고, 둘레는 4×10=40 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c9b86a4b1a39f08cec22985fabd48ebc9e204790ba4dfec069c5950a61f506e8"
+}

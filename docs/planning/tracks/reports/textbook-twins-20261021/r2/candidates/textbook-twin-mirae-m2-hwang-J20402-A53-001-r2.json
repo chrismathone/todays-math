@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 225,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A53-001-r2",
+ "authorId": "claude-opus-5-5:ef333b61-dd94-4d4d-9fe8-c33d17d9b2be",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=-\\frac{4}{5}x+8$의 그래프가 $x$축과 만나는 점을 $A$, $y$축과 만나는 점을 $B$라 하자. 원점을 $O$라 할 때, $\\triangle AOB$의 넓이는?",
+ "choices": [
+  "$20$",
+  "$32$",
+  "$40$",
+  "$64$",
+  "$80$"
+ ],
+ "answer": "③",
+ "solution": "$y=0$일 때 $0=-\\frac{4}{5}x+8$에서 $x=10$이므로 $A(10, 0)$이고, $x=0$일 때 $y=8$이므로 $B(0, 8)$이다.\n$\\triangle AOB$는 $\\overline{OA}=10$, $\\overline{OB}=8$인 직각삼각형이다.\n넓이는 $\\frac{1}{2}\\times 10\\times 8=40$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-7",
+  "problemCode": "J20402-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "839c2af975f05a6c9c1dd5d85cedf0edcc95f9bee3b194520660416824fa8dcb",
+  "dbContentSha256": "34dc68f154769d8d7a8e71869ec998a423d507cb3dd7dd1343506b912f3371c9",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "기울기가 양수이고 y절편이 음수인 일차함수의 그래프와 두 좌표축이 둘러싼 도형의 넓이를 바로 묻는다.",
+  "after": "기울기가 음수이고 y절편이 양수인 일차함수의 그래프가 두 축과 만나는 점에 이름을 붙이고, 원점과 그 두 점으로 이루어진 삼각형의 넓이를 묻는다.",
+  "sharedConcept": "일차함수의 그래프의 x절편 · y절편과 좌표축으로 둘러싸인 삼각형",
+  "sharedProcedure": "y=0을 넣어 x절편 구하기 → x=0을 넣어 y절편 구하기 → 두 절편의 절댓값을 밑변 · 높이로 삼아 직각삼각형의 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수의 그래프의 x절편 · y절편",
+   "일차방정식의 풀이",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A53-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.074,
+   "longestRun": 6,
+   "residualChars": 61,
+   "params": 8,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

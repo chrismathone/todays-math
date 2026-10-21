@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d53-5f69-7fe3-9af6-19ca0059a7de",
+ "startedAt": "2026-10-21T16:18:27+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "20db8cab8875791ccbf9ecdfe01c1011ba8f101a72bc481031a4129050e79106"
+ },
+ "promptSha256": "bc9c114925cb7f8441524c1077e4fcb8f0fb02eeca58c43c5e88166c67a672b4",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"9\",\"work\":\"주어진 식을 정리하면 (-3a+b+4)-(-4a-5b+5)=a+6b-1이다.\\na=-2, b=2를 대입하면 -2+12-1=9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "주어진 식을 정리하면 (-3a+b+4)-(-4a-5b+5)=a+6b-1이다.\na=-2, b=2를 대입하면 -2+12-1=9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ffc2c5dbe24045c094259f7f71d6fcb336feb644fc13578459bb0d40a7f1eed2"
+}

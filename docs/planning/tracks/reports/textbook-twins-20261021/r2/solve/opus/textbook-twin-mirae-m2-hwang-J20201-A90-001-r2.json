@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "97802332-d6d3-46a2-8708-153ccc699fc3",
+ "startedAt": "2026-10-21T17:08:29+0900",
+ "elapsedSec": 5.6,
+ "studentSha256": {
+  "student.json": "8ed801e3e0615e9312fdf26fb7ce759d4f33b8068aa71508aa774cb6d7ff5ad7"
+ },
+ "promptSha256": "3fe7082c5f830e3c3d711174e75fbc8a0caa5e944687c4e12c95d1aa805c4a4a",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"x>y의 양변에 음수 -6을 곱하면 부등호 방향이 바뀌어 -6x<-6y이다. 양변에 9를 더해도 방향은 그대로이므로 -6x+9<-6y+9이다. 따라서 ③은 옳지 않다. ①은 양변에 7을 더한 것, ②는 양수 6으로 나눈 것, ④는 8을 빼고 양수 7로 나눈 것, ⑤는 10을 뺀 것이어서 모두 옳다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x>y의 양변에 음수 -6을 곱하면 부등호 방향이 바뀌어 -6x<-6y이다. 양변에 9를 더해도 방향은 그대로이므로 -6x+9<-6y+9이다. 따라서 ③은 옳지 않다. ①은 양변에 7을 더한 것, ②는 양수 6으로 나눈 것, ④는 8을 빼고 양수 7로 나눈 것, ⑤는 10을 뺀 것이어서 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9a7cc934b72cca50663b52d5fade9a6d10ca78fff2b8714fcb417e3ca185f7c4"
+}

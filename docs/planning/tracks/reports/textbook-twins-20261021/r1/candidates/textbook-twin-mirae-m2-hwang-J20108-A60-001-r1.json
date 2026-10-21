@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 9,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A60-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$-2x(4x+6y-9)$를 전개하였을 때 $x^{2}$의 계수를 $p$, $x$의 계수를 $q$라 하자. $p+q$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$10$",
+ "solution": "$-2x(4x+6y-9)=-8x^{2}-12xy+18x$이다.\n$x^{2}$의 계수는 $-8$, $x$의 계수는 $18$이므로 $p=-8$, $q=18$이다.\n따라서 $p+q=10$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-e693179aa51c3231-1-2",
+  "problemCode": "J20108-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "e6137e88e0996a4134ff0bb970ea3514d6dfb4e57d414d87ad0d97e2e1722fde",
+  "dbContentSha256": "0c1f496b7e9d4d6061e440fa51b2009e3a2ccefe26436ee225cc7b3d33dd726c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-5_단항식과다항식의곱셈과나눗셈.hwp",
+    "sha256": "cd5fdece8c2aaf7375b2b11cf26628221cb7985b0db94a0dd51eaf97bac2f67f",
+    "bytes": 296960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "단항식×삼항식을 전개해 두 항의 계수를 읽고 합을 구한다.",
+  "after": "음수 단항식을 곱해 전개하고, 계수를 문자로 이름 붙인 뒤 그 합을 구하게 했다. 묻는 계수 쌍도 다르다.",
+  "sharedConcept": "단항식과 다항식의 곱셈과 계수 읽기",
+  "sharedProcedure": "전개 → 해당 항의 계수 확인 → 합 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "분배법칙",
+   "계수와 항",
+   "정수의 덧셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A60-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "전개식에서 특정 항의 계수의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 39자"
+   ],
+   "overlap4": 0.114,
+   "longestRun": 6,
+   "residualChars": 39,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

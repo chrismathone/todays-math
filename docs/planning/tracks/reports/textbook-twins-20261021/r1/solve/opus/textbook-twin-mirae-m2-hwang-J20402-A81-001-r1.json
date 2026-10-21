@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A81-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "280b3422-fe91-4528-a774-9afc4812d21e",
+ "startedAt": "2026-10-21T17:03:43+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "c7628f1399180863daaf9bbf244864695f47f10ed95bb9f6e9bd39bee4454f1c"
+ },
+ "promptSha256": "e2cb1349f11eeb6fad109326d21fd8a16b060c89d2a03df85b28b58dbabdf3b8",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "x=6: 0 = -3 + 3k → k=1. y-intercept 3 → (0,3).\n\n```json\n{\"answer\": \"$(0, 3)$\", \"work\": \"x절편이 6이므로 점 (6, 0)을 대입: 0 = -1/2·6 + 3k → 3k = 3 → k = 1. 따라서 y = -1/2x + 3이고, y절편은 3이므로 y축과 만나는 점은 (0, 3).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$(0, 3)$",
+  "work": "x절편이 6이므로 점 (6, 0)을 대입: 0 = -1/2·6 + 3k → 3k = 3 → k = 1. 따라서 y = -1/2x + 3이고, y절편은 3이므로 y축과 만나는 점은 (0, 3).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cf61e04fdfd98cda8a6179137e85047e229cca212636887d57b747dfe69a667f"
+}

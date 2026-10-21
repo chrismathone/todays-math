@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B26-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcb-545a-7603-b632-1793817252b7",
+ "startedAt": "2026-10-21T18:29:28+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "b084d5357209c76bbf1bbcbedd6b758522c2de1b2d75768460ee226c147b9648"
+ },
+ "promptSha256": "399c0f06e6f8e5cc6cb4d69b183d9a82f16ca24dd3984e29aabe3ece905ec0ad",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"만들 수 있는 두 자리 자연수는 5×4=20개이다.\\n3의 배수가 되려면 두 숫자의 합이 3의 배수여야 하므로 가능한 카드 쌍은 (2,7), (5,7), (7,8)이다.\\n각 쌍으로 2개씩 만들 수 있으므로 확률은 6/20=3/10이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "만들 수 있는 두 자리 자연수는 5×4=20개이다.\n3의 배수가 되려면 두 숫자의 합이 3의 배수여야 하므로 가능한 카드 쌍은 (2,7), (5,7), (7,8)이다.\n각 쌍으로 2개씩 만들 수 있으므로 확률은 6/20=3/10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c2d4d00a12f0013ca331c02387c50f7b6ca4811c004783efa57ba73e75583cb4"
+}

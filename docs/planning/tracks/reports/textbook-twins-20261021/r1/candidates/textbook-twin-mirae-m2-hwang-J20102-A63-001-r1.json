@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 55,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A63-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "지우는 분수 $\\frac{5}{27}$을, 서아는 분수 $\\frac{4}{11}$을 각각 소수로 나타냈더니 둘 다 순환소수가 되었다. 지우가 얻은 순환소수의 순환마디를 이루는 숫자의 개수를 $a$, 서아가 얻은 순환소수의 순환마디를 이루는 숫자의 개수를 $b$라 할 때, $ab$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$6$",
+ "solution": "$\\frac{5}{27}=0.185185\\cdots=0.\\dot{1}8\\dot{5}$이므로 순환마디는 $185$이고 $a=3$이다. $\\frac{4}{11}=0.3636\\cdots=0.\\dot{3}\\dot{6}$이므로 순환마디는 $36$이고 $b=2$이다. 따라서 $ab=3\\times 2=6$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-16",
+  "problemCode": "J20102-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 16,
+  "sourceContentSha256": "82e314296f6f370c7cd395627a90c5f68cfc73f0349176c177a85745c29b7600",
+  "dbContentSha256": "a4627e129555a0d75c38b31ab31c08458776c7280db052a37684822fc7aa10c9",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "분수 두 개를 소수로 고쳐 순환마디의 숫자 개수를 각각 세고, 두 개수의 합을 구한다.",
+  "after": "두 사람이 각각 고친 분수의 순환마디 숫자 개수를 세고, 두 개수의 곱을 구한다.",
+  "sharedConcept": "순환마디를 이루는 숫자의 개수",
+  "sharedProcedure": "각 분수를 나눗셈으로 소수 전개 → 순환마디 찾기 → 숫자 개수 세기 → 두 값 결합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A63-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수의 순환마디 길이를 구해 결합하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.25,
+   "longestRun": 15,
+   "residualChars": 95,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

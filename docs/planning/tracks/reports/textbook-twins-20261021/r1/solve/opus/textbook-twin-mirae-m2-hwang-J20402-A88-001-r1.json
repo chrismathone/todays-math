@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A88-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "aefe86d2-b98d-4a3f-8848-5357b7c58571",
+ "startedAt": "2026-10-21T17:03:45+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "fig-1.png": "7b6559c7e5496ec712f397fe8f84728a987986ff5e1c5436cffcadcff69c9983",
+  "student.json": "3a11bf4383464473a33874aa47a3097bb23921ded830d2c28e08dd9ea2abf32a"
+ },
+ "promptSha256": "6655e51c8cc11b4004f3182b8ff353c32c2b42655d21c3f621b0276ef61094e5",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"그래프는 두 점 (2, 3)과 (6, 1)을 지난다. 기울기는 (1−3)/(6−2) = −1/2 이다. 점 (2, 3)을 대입하면 y = −(1/2)x + 4 이다. y = 0 으로 놓으면 x = 8 이므로 x절편은 8 이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그래프는 두 점 (2, 3)과 (6, 1)을 지난다. 기울기는 (1−3)/(6−2) = −1/2 이다. 점 (2, 3)을 대입하면 y = −(1/2)x + 4 이다. y = 0 으로 놓으면 x = 8 이므로 x절편은 8 이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d15f460dbfe6aa489f7afcc554648e253d23e1cfcc0a7ed50ff0810984d9d7b"
+}

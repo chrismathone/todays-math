@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A48-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "98d0575a-c85e-4a22-9137-1a5f23b38d10",
+ "startedAt": "2026-10-21T17:07:58+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "1ffe94ddb22dd2d2fdc40d6dd820120be628ed825be02ab49815daf70e1ac323",
+  "student.json": "1b429d2d818513afad948ba87683c26c033c52dd1cdfe58d923ccfe90bd12e35"
+ },
+ "promptSha256": "26a7646c9a68610341b54b1a2e4c8eb02ace4ea2ee4316065a727dec7e1cbb39",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"12 cm\", \"work\": \"DE∥BC이므로 △ADG∽△ABF이고 △AGE∽△AFC이다. 따라서 DG/BF = AG/AF = GE/FC이고, DG:GE = BF:FC가 된다. 6:9 = 8:FC이므로 FC = 12 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "12 cm",
+  "work": "DE∥BC이므로 △ADG∽△ABF이고 △AGE∽△AFC이다. 따라서 DG/BF = AG/AF = GE/FC이고, DG:GE = BF:FC가 된다. 6:9 = 8:FC이므로 FC = 12 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fb38efe50bba56099f9678be431b2ae4971d0b94dc51c78b0eb80c11ce1176f7"
+}

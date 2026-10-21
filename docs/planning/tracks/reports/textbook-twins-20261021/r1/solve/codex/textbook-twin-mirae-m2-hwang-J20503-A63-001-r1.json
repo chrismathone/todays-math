@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dad-4dee-78b3-8ccd-8be0351b7bc0",
+ "startedAt": "2026-10-21T17:56:41+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "e1b95696598d71742a3db168f44ebcf53ec6ac0dfd9709737324ef3cf56a827b",
+  "student.json": "c13e5cded0866f74d21d32da236e2e4b77ccd1ac3e21a5bb77c9961d600307ad"
+ },
+ "promptSha256": "9f473a437167427cbae7602f511f5372d33d720b0e52b66edebf06d9b9d01486",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"O는 외심이므로 OB=OC=외접원의 반지름이다. 반지름을 r cm라 하면 △OBC의 둘레는 2r+14=34이므로 r=10이다. 따라서 외접원의 반지름은 10 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "O는 외심이므로 OB=OC=외접원의 반지름이다. 반지름을 r cm라 하면 △OBC의 둘레는 2r+14=34이므로 r=10이다. 따라서 외접원의 반지름은 10 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1dc8557ea5ee0026fcdda3108a0140ca0137b3b3df450c6d7a5a417f5ab23b45"
+}

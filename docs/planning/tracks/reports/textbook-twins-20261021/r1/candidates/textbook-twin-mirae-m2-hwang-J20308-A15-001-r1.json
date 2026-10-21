@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 197,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r1",
+ "authorId": "claude-fable-5-1:a5ee89da-73c7-4418-9642-f8a4d320fd60",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "하루가 야영장에서 전망대까지 갈 때는 시속 $4\\,\\mathrm{km}$로 걸었고, 돌아올 때는 갈 때보다 $2\\,\\mathrm{km}$ 더 먼 다른 산길을 시속 $6\\,\\mathrm{km}$로 걸었다. 갔다가 돌아오는 데 모두 $3$시간이 걸렸을 때, 하루가 돌아올 때 걸은 거리는?",
+ "choices": [
+  "$\\frac{32}{5}\\,\\mathrm{km}$",
+  "$7\\,\\mathrm{km}$",
+  "$\\frac{38}{5}\\,\\mathrm{km}$",
+  "$\\frac{42}{5}\\,\\mathrm{km}$",
+  "$9\\,\\mathrm{km}$"
+ ],
+ "answer": "④",
+ "solution": "갈 때 걸은 거리를 $x\\,\\mathrm{km}$, 돌아올 때 걸은 거리를 $y\\,\\mathrm{km}$라 하면 $y=x+2$, $\\frac{x}{4}+\\frac{y}{6}=3$이다. 둘째 식의 양변에 $12$를 곱하면 $3x+2y=36$이고, 여기에 $y=x+2$를 대입하면 $3x+2(x+2)=36$, $5x=32$, $x=\\frac{32}{5}$이다. 따라서 $y=\\frac{32}{5}+2=\\frac{42}{5}$이므로 돌아올 때 걸은 거리는 $\\frac{42}{5}\\,\\mathrm{km}$이고, 정답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-14",
+  "problemCode": "J20308-A15-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "e4d30aea465cd7970d8fd2722750d36fbde32f5ab0ec9a88c96b99efb90ea385",
+  "dbContentSha256": "61a8d1bc4a031ec7f2b261cc26beb5a78821d85ddc9fdc2d8f4432e731179097",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "산을 오르는 길과 그보다 짧은 다른 내려오는 길을 서로 다른 속력으로 걸어 총 시간이 주어지고, 두 거리의 차와 시간의 합으로 연립방정식을 세워 올라간(긴) 거리를 분수 값으로 고르는 객관식.",
+  "after": "야영장과 전망대 사이를 갈 때와 더 먼 다른 길로 돌아올 때 서로 다른 속력으로 걸어 총 시간이 주어지고, 두 거리의 차와 시간의 합으로 연립방정식을 세워 돌아온(긴) 거리를 분수 값으로 고르는 객관식.",
+  "sharedConcept": "거리 · 속력 · 시간 관계를 이용한 연립일차방정식의 활용(두 구간의 거리 차와 시간 합)",
+  "sharedProcedure": "두 거리를 미지수로 놓기 → 거리 차 식과 시간 합 식 세우기 → 분모를 없애고 대입법으로 풀기 → 묻는 거리 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c967065d-b309-4431-9d15-f6b12671ee6a",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(일, 속력)"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(대입법)",
+   "거리 = 속력 × 시간",
+   "계수가 분수인 일차방정식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20308-A15-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "다른 길로 왕복할 때 거리 차와 총 시간으로 거리 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c967065d-b309-4431-9d15-f6b12671ee6a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.101,
+   "longestRun": 5,
+   "residualChars": 108,
+   "params": 9,
+   "numberRetention": 0.444,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

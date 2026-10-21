@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 253,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A83-001-r2",
+ "authorId": "claude-fable-5-1:9441a23d-cbbc-4adf-a640-9fbe9e1900b7",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 점 $I$는 $\\triangle ABC$의 내심이고, 점 $D$, $E$는 각각 $\\overline{BI}$, $\\overline{CI}$의 연장선이 $\\overline{AC}$, $\\overline{AB}$와 만나는 점이다. $\\angle A=56^{\\circ}$일 때, $\\angle x+\\angle y$의 크기는?",
+ "choices": [
+  "$166^{\\circ}$",
+  "$170^{\\circ}$",
+  "$174^{\\circ}$",
+  "$178^{\\circ}$",
+  "$182^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "점 $I$가 내심이므로 $\\overline{BD}$, $\\overline{CE}$는 각각 $\\angle B$, $\\angle C$의 이등분선이다. 즉 $\\angle ABD=\\frac{1}{2}\\angle B$, $\\angle ACE=\\frac{1}{2}\\angle C$이다.\n$\\angle B+\\angle C=180^{\\circ}-56^{\\circ}=124^{\\circ}$이므로 $\\angle ABD+\\angle ACE=\\frac{1}{2}\\times 124^{\\circ}=62^{\\circ}$\n$\\triangle ABD$에서 $\\angle x$는 꼭짓점 $D$의 외각이므로 $\\angle x=\\angle A+\\angle ABD$\n$\\triangle ACE$에서 $\\angle y$는 꼭짓점 $E$의 외각이므로 $\\angle y=\\angle A+\\angle ACE$\n따라서 $\\angle x+\\angle y=2\\angle A+(\\angle ABD+\\angle ACE)=2\\times 56^{\\circ}+62^{\\circ}=174^{\\circ}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A83-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A83-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-7",
+  "problemCode": "J20504-A83-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "879e7d8418918a26f37b37544edc144b129cdaa03e6b26dc7794f75b50a0cdd8",
+  "dbContentSha256": "a485254412d02f871985a836eab697028159dfe19d48ecdca29ed25f7ae26b85",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "93288dac14f4c814450a2a9768c17e9d260246f0eb511cbd831ba7ca5e518c26"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "내심에서 꼭짓점 A, C로 이은 각의 이등분선이 맞은편 변과 만나는 두 점에서 생기는 두 각 x, y의 합을, 꼭짓점 B의 크기 하나로 구하는 객관식.",
+  "after": "내심을 지나는 꼭짓점 B, C의 이등분선이 맞은편 변과 만나는 두 점 D, E에서 생기는 두 각 x, y의 합을, 꼭짓점 A의 크기 하나로 구하는 객관식. 주어진 각의 자리와 이등분선이 나오는 꼭짓점을 바꾸고 수와 보기를 새로 두었다.",
+  "sharedConcept": "삼각형의 내심은 세 내각의 이등분선의 교점이다 · 삼각형의 외각은 이웃하지 않는 두 내각의 합",
+  "sharedProcedure": "내심 → 두 선분이 각의 이등분선임을 확인 → 나머지 두 내각의 절반의 합 = (180° − 주어진 각)/2 → 각 x, y를 외각 정리로 주어진 각 + 반각으로 나타냄 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "삼각형의 내심의 뜻과 성질(각의 이등분선의 교점)",
+   "삼각형의 세 내각의 크기의 합",
+   "삼각형의 외각의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A83-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "내심의 각의 이등분선과 외각 정리로 두 각의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.169,
+   "longestRun": 10,
+   "residualChars": 74,
+   "params": 6,
+   "numberRetention": 0.167,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3dcd8a07-8798-4359-bfb9-2ab705bc5d96",
+ "startedAt": "2026-10-21T17:05:18+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "fig-1.png": "9b71be93a5a2dd91cb4aa616f7e7157286c68b6acfeaaf0b67cc8c1343813769",
+  "student.json": "29eade58d0d0c3dc0f4616cbe8506b87b62e8188c1d3b47f94f94ee7aa450996"
+ },
+ "promptSha256": "7893b608453dfb967551bfa6407ebc2cc0ed681ec62b91bf680388453d5ab4a5",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"60°\", \"work\": \"△ABN과 △AMN에서 ∠B=∠AMN=90°이고, AN은 공통이며 BN=MN이므로 두 삼각형은 RHS 합동이다. 따라서 ∠BAN=∠MAN이고 AB=AM이다. MN은 AC의 수직이등분선이므로 NA=NC이고, ∠NAC=∠C이다. 그러므로 ∠BAN=∠NAC=∠C=a이다. 삼각형 ABC의 내각에서 3a=90°이므로 a=30°이다. ∠x=∠ANB=90°−30°=60°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "60°",
+  "work": "△ABN과 △AMN에서 ∠B=∠AMN=90°이고, AN은 공통이며 BN=MN이므로 두 삼각형은 RHS 합동이다. 따라서 ∠BAN=∠MAN이고 AB=AM이다. MN은 AC의 수직이등분선이므로 NA=NC이고, ∠NAC=∠C이다. 그러므로 ∠BAN=∠NAC=∠C=a이다. 삼각형 ABC의 내각에서 3a=90°이므로 a=30°이다. ∠x=∠ANB=90°−30°=60°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1f9e96151f606f2f87c36b9811a358d431361eeff06f9d5748adb78d1c6ba9c1"
+}

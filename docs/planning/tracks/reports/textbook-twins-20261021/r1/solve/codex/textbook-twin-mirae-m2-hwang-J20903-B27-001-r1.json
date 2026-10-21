@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcb-8c17-7840-9eec-278cfd3d3c22",
+ "startedAt": "2026-10-21T18:29:43+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "4f80ca4713faf11e075e0c60e451b7e2234cdda8ecd0c81229f1fc1ee92051f9"
+ },
+ "promptSha256": "89ec66fa3f4c8e976b4ac060ff1b5403a3b920e0f966df6d0da2c77ddffc3c2f",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"ㄱ. 6의 약수인 눈은 1, 2, 3, 6이므로 확률은 4/6=2/3이다. (참)\\nㄴ. 10의 배수는 10뿐이므로 확률은 1/10이다. (거짓)\\nㄷ. A가 일어나지 않을 확률은 1−2/5=3/5이다. (참)\\nㄹ. 모든 눈이 7보다 작으므로 확률은 6/6=1이다. (참)\\n따라서 옳은 것은 ㄱ, ㄷ, ㄹ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "ㄱ. 6의 약수인 눈은 1, 2, 3, 6이므로 확률은 4/6=2/3이다. (참)\nㄴ. 10의 배수는 10뿐이므로 확률은 1/10이다. (거짓)\nㄷ. A가 일어나지 않을 확률은 1−2/5=3/5이다. (참)\nㄹ. 모든 눈이 7보다 작으므로 확률은 6/6=1이다. (참)\n따라서 옳은 것은 ㄱ, ㄷ, ㄹ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "989429dd6aa0eff894f82740a5211af0fda27b222bd9c002559c1d4d5bbbac82"
+}

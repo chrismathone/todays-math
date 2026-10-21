@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dea-6be6-7922-99d3-e4e9a89992f9",
+ "startedAt": "2026-10-21T19:03:26+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "bbfd767b030174b66c68da64bd80e6d3888ae612edc48f185dc56f03c6048fc0"
+ },
+ "promptSha256": "d4f579dd8b49496a518b60735e2d82f73c6097486ab1b08171bcaaa7162098cd",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"그래프를 y축 방향으로 평행이동하면 기울기는 변하지 않고 y절편만 변한다. 따라서 기울기가 $-\\\\frac{5}{4}$로 같은 ④가 알맞다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그래프를 y축 방향으로 평행이동하면 기울기는 변하지 않고 y절편만 변한다. 따라서 기울기가 $-\\frac{5}{4}$로 같은 ④가 알맞다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "78045de192f91a99149beda4b729faa9904f2bb2d5c5aea71e358c7ffb2add8d"
+}

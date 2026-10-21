@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A66-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5b-20b8-79d1-8375-1fd08ea7914e",
+ "startedAt": "2026-10-21T16:26:55+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "751d4871bab0401450eb8e866bc45dca95b6496334623aa246f2b15573973bfe"
+ },
+ "promptSha256": "8773b67e4b45b3f9477da5c6969e9d676c09d4b35a72aeecf9afab577f8dc203",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$-2x^{2}y^{2}$\",\"work\":\"곱셈과 나눗셈은 왼쪽부터 계산한다. 같은 단항식끼리 나누면 1이므로, 빈칸에 알맞은 식은 $-2x^{2}y^{2}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$-2x^{2}y^{2}$",
+  "work": "곱셈과 나눗셈은 왼쪽부터 계산한다. 같은 단항식끼리 나누면 1이므로, 빈칸에 알맞은 식은 $-2x^{2}y^{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "18e2c570aedd0a467ec67f1149f5c15728790b183737b6f48e34af811baa75b6"
+}

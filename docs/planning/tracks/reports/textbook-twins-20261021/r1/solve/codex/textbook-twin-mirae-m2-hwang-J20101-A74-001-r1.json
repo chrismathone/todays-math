@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A74-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d64-1c3c-7e72-87a6-840c9bb28119",
+ "startedAt": "2026-10-21T16:36:44+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "student.json": "22bf0d6e48f2a4f6d88a88e292fa7a56a1c399fb3bf97b74c7674d535e9544be"
+ },
+ "promptSha256": "83bac2cd15a6dfa6a1f1a97c234ff8173b9f40c96323d8b14595fce25e146c9d",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"420=2²×3×5×7이므로 (n-4)/420이 유한소수가 되려면 n-4가 21의 배수여야 한다.\\n두 자리 자연수 n은 25, 46, 67, 88이다. 이들은 모두 21로 나누어떨어지지 않으므로 n/420은 순환소수이다.\\n따라서 합은 25+46+67+88=226이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "420=2²×3×5×7이므로 (n-4)/420이 유한소수가 되려면 n-4가 21의 배수여야 한다.\n두 자리 자연수 n은 25, 46, 67, 88이다. 이들은 모두 21로 나누어떨어지지 않으므로 n/420은 순환소수이다.\n따라서 합은 25+46+67+88=226이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b6c49d720071600deb2b01e95033170c36bdd5bfe29e0180c0e237f3253f7db5"
+}

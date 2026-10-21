@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d66-390d-79f1-8a23-d537a5db5f5e",
+ "startedAt": "2026-10-21T16:39:02+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "6d6c7a902d13dbf237c870b6bbda78548eb4a64ddaee248644c7042ed2f4bb8a"
+ },
+ "promptSha256": "44aa22b7f310c704906d0999469a54848798744646392f14507f83e840a53648",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"기약분수의 분모의 소인수가 2와 5뿐이면 유한소수가 된다.\\n각 분수를 기약분수로 나타내면 분모는 차례로 16, 40, 12, 50, 4이다.\\n③은 1/12이고 분모에 소인수 3이 있으므로 유한소수가 되지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "기약분수의 분모의 소인수가 2와 5뿐이면 유한소수가 된다.\n각 분수를 기약분수로 나타내면 분모는 차례로 16, 40, 12, 50, 4이다.\n③은 1/12이고 분모에 소인수 3이 있으므로 유한소수가 되지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e9eca73ea1606475b895786a745af49cc626e2d100fa5e6cb025650b2cb7ad33"
+}

@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 135,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A41-001-r2",
+ "authorId": "claude-opus-5-5:bcc10e94-2b41-4028-9902-7f1c2021d19c",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20203-A41-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$x$에 대한 일차부등식 $7x+2a<x-4$ 의 해가 일차부등식 $x+1>\\frac{5x+9}{3}$ 의 해와 같다고 한다. 상수 $a$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "$x+1>\\frac{5x+9}{3}$의 양변에 $3$을 곱하면 $3x+3>5x+9$, $3x-5x>9-3$, $-2x>6$이다. 양변을 음수 $-2$로 나누면 부등호 방향이 바뀌어 $x<-3$이다.\n$7x+2a<x-4$에서 $7x-x<-4-2a$, $6x<-4-2a$, $x<\\frac{-4-2a}{6}$이다.\n두 부등식의 해가 같으므로 $\\frac{-4-2a}{6}=-3$, $-4-2a=-18$, $-2a=-14$이다.\n따라서 $a=7$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-6",
+  "problemCode": "J20203-A41-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "e690b8ea9d35a24d60925908d1875fcfbfb496f289660af9ebd1e6272c7813f4",
+  "dbContentSha256": "d20b80a9787b616e360be3cae5090d5d64c27acaedfb3b32c4d06bc244284fde",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "문자를 품은 부등식을 먼저, 분모가 있는 부등식을 뒤에 두고 두 해가 같다는 조건으로 상수를 묻는다. 분모가 있는 쪽은 음수로 나눠 부등호 방향이 바뀌고 해가 '보다 크다' 꼴로 나온다.",
+  "after": "문자를 품은 부등식의 해가 분모가 있는 부등식의 해와 같다고 한 문장으로 놓았다. 분모가 있는 쪽은 그대로 음수로 나눠 부등호 방향이 바뀌고, 해가 음수 경계값을 갖는 '보다 작다' 꼴로 나온다. 문자를 품은 쪽은 상수 항에 계수가 붙은 $2a$가 있어 경계값이 $a$에 대한 분수식이 된다.",
+  "sharedConcept": "해가 서로 같은 두 일차부등식 — 상수가 없는 부등식의 해의 경계값과 상수를 품은 부등식의 해의 경계값을 같게 놓기",
+  "sharedProcedure": "분모 있는 부등식에서 분모 없애기 → 이항해 정리하기 → 음수로 나누며 부등호 방향 바꾸기 → 상수를 품은 부등식을 이항해 정리하고 x 계수로 나누기 → 두 경계값을 같게 놓은 일차방정식 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 응용"
+  },
+  "prerequisites": [
+   "계수가 분수인 일차부등식의 풀이(양변에 분모의 배수 곱하기)",
+   "음수로 나눌 때 부등호 방향이 바뀌는 성질",
+   "이항을 이용한 일차부등식의 풀이",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20203-A41-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 서로 같은 두 일차부등식에서 상수 구하기(분수 계수 · 음수로 나누기 포함)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 4개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.071,
+   "longestRun": 5,
+   "residualChars": 47,
+   "params": 4,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

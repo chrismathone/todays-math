@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B33-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b62f173e-1a68-4bac-8b50-c149f4a47bba",
+ "startedAt": "2026-10-21T17:13:08+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "55bd57ba980a50a9261037c012bfb134f93ecafc5c7446f28acacde4a6f8e057"
+ },
+ "promptSha256": "14b00a1fdc92f0069959812c932427612408ea587951d78ba9880c325a44bac4",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 1 ⑵ 0\", \"work\": \"전체 경우의 수 5. ⑴ 노란 공이 나오는 경우 5 → 5/5 = 1 (반드시 일어나는 사건). ⑵ 흰 공이 나오는 경우 0 → 0/5 = 0 (절대로 일어나지 않는 사건).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ 1 ⑵ 0",
+  "work": "전체 경우의 수 5. ⑴ 노란 공이 나오는 경우 5 → 5/5 = 1 (반드시 일어나는 사건). ⑵ 흰 공이 나오는 경우 0 → 0/5 = 0 (절대로 일어나지 않는 사건).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c5455acb8b0992905a6cdbd42dbe280ae2d493997770bebffe78d68fe47b86da"
+}

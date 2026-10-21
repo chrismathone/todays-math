@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B21-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcf-bfb4-76b2-a239-dd0c245d7e5f",
+ "startedAt": "2026-10-21T18:34:18+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "fig-1.png": "04c0e3bc8634eaabb2826361feb84941f67a58f732b776b72e895df41c987da6",
+  "student.json": "7c6f5e4e397aacc8d61fae2be6feb5f22092a98c0f7cb7c391d26d61cbc066fa"
+ },
+ "promptSha256": "29648948660a86478d5e4247c1b291e590930c183d71cdf9aa084379fce39909",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{25}{2}\\\\pi x^{5}y^{4}$\",\"work\":\"변 EF를 축으로 회전하면 반지름이 $\\\\frac{5}{2}x^{2}y$, 높이가 $6xy^{2}$인 원뿔이 된다.\\n따라서 부피는 $\\\\frac{1}{3}\\\\pi\\\\left(\\\\frac{5}{2}x^{2}y\\\\right)^{2}\\\\cdot6xy^{2}=\\\\frac{25}{2}\\\\pi x^{5}y^{4}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{25}{2}\\pi x^{5}y^{4}$",
+  "work": "변 EF를 축으로 회전하면 반지름이 $\\frac{5}{2}x^{2}y$, 높이가 $6xy^{2}$인 원뿔이 된다.\n따라서 부피는 $\\frac{1}{3}\\pi\\left(\\frac{5}{2}x^{2}y\\right)^{2}\\cdot6xy^{2}=\\frac{25}{2}\\pi x^{5}y^{4}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab78b2d4f250543cad5ee0d263d8fb2c86fb8e0532c2ec7038e3ca4af4fd784b"
+}

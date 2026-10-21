@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4dcd8eaa-ee1f-463b-ad31-a78b5266c9fb",
+ "startedAt": "2026-10-21T17:13:14+0900",
+ "elapsedSec": 6.7,
+ "studentSha256": {
+  "fig-1.png": "5532550816a484364daf3b3d29356457d9e911683a4e435e2566d91c1443cdda",
+  "student.json": "8d9b58bbfe7c4d3148637de89b51c4d68af22503e735e194f8314235780e564f"
+ },
+ "promptSha256": "532e537806a468cbc42e6962ed907e8658fe4eaeba8abb6c47699b57f21e464d",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{1}{6}$\", \"work\": \"정육각형이므로 점 P가 A로 돌아오려면 이동한 칸 수, 곧 두 눈의 수의 합이 6의 배수여야 한다. 합은 2부터 12까지이므로 가능한 합은 6, 12뿐이다. 합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)의 5가지이고, 합이 12인 경우는 (6,6)의 1가지이다. 전체 경우의 수는 6×6=36이므로 구하는 확률은 (5+1)/36 = 1/6이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{6}$",
+  "work": "정육각형이므로 점 P가 A로 돌아오려면 이동한 칸 수, 곧 두 눈의 수의 합이 6의 배수여야 한다. 합은 2부터 12까지이므로 가능한 합은 6, 12뿐이다. 합이 6인 경우는 (1,5), (2,4), (3,3), (4,2), (5,1)의 5가지이고, 합이 12인 경우는 (6,6)의 1가지이다. 전체 경우의 수는 6×6=36이므로 구하는 확률은 (5+1)/36 = 1/6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ecd03e36c7fde03e8edcd3eb4d35ba975ecc48908d87c5957ba4661c7d9d0419"
+}

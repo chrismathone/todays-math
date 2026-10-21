@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A88-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "ca7b2d3a-b691-4739-adf8-421957f03a7c",
+ "startedAt": "2026-10-21T18:26:46+0900",
+ "elapsedSec": 74.2,
+ "studentSha256": {
+  "fig-1.png": "a97bec033ebce08e02345f43f3bd946aa1350493658b7cc12e7f072612a1b166",
+  "student.json": "2267e1c62b1e9c8a51638193f85ce660d08a703d79a8e14924cbfd624e9f6f5d"
+ },
+ "promptSha256": "c04409678f51bb33d76f3ec00916b3ef0017b3f586de8d4a808a21ecf14b3cfd",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"점 $O$는 $\\\\triangle ABC$의 외심이므로 $OA=OC$이다. 따라서 이등변삼각형 $OCA$에서 외각의 성질에 의해 $\\\\angle OAC = \\\\angle OCA = 76^{\\\\circ} / 2 = 38^{\\\\circ}$이다. 또, 세 점 $C, O, D$가 일직선 위에 있으므로 중심각 $\\\\angle AOC = 180^{\\\\circ} - 76^{\\\\circ} = 104^{\\\\circ}$이다. 외심의 성질에 의해 $\\\\angle AOC = 2\\\\angle ABC$이므로 $\\\\angle ABC = 104^{\\\\circ} / 2 = 52^{\\\\circ}$이다. (또는 $\\\\angle A = 28^{\\\\circ} + 38^{\\\\circ} = 66^{\\\\circ}$에서 $\\\\angle BOC = 132^{\\\\circ}$, $\\\\angle OBC = 24^{\\\\circ}$, $\\\\angle OBA = 28^{\\\\circ}$이므로 $\\\\angle ABC = 28^{\\\\circ} + 24^{\\\\circ} = 52^{\\\\circ}$)\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "점 $O$는 $\\triangle ABC$의 외심이므로 $OA=OC$이다. 따라서 이등변삼각형 $OCA$에서 외각의 성질에 의해 $\\angle OAC = \\angle OCA = 76^{\\circ} / 2 = 38^{\\circ}$이다. 또, 세 점 $C, O, D$가 일직선 위에 있으므로 중심각 $\\angle AOC = 180^{\\circ} - 76^{\\circ} = 104^{\\circ}$이다. 외심의 성질에 의해 $\\angle AOC = 2\\angle ABC$이므로 $\\angle ABC = 104^{\\circ} / 2 = 52^{\\circ}$이다. (또는 $\\angle A = 28^{\\circ} + 38^{\\circ} = 66^{\\circ}$에서 $\\angle BOC = 132^{\\circ}$, $\\angle OBC = 24^{\\circ}$, $\\angle OBA = 28^{\\circ}$이므로 $\\angle ABC = 28^{\\circ} + 24^{\\circ} = 52^{\\circ}$)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e3da101fa76337fd05dbe14000c3964bc58336940a1c07fe87879afc65842895"
+}

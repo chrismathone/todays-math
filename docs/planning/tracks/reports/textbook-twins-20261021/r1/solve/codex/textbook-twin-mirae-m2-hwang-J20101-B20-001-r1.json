@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B20-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d66-6698-75d1-b6eb-071fd0779a5c",
+ "startedAt": "2026-10-21T16:39:14+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "adf7909db1d1ac8f6aff424c3db3723b38e0dd9bbc0e1c1ed81daa6060c4cef2"
+ },
+ "promptSha256": "6ef64b09ed96d4471f16d83051bfb789be9b78d79975a42888958e86571824d9",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ⑤\",\"work\":\"기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\\na=14이면 1/200, a=35이면 1/500이 되어 유한소수이다.\\n나머지 보기는 약분한 뒤에도 분모에 소인수 3이 남으므로 유한소수가 아니다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\na=14이면 1/200, a=35이면 1/500이 되어 유한소수이다.\n나머지 보기는 약분한 뒤에도 분모에 소인수 3이 남으므로 유한소수가 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e12e964c94245b154932627119326a8dc703e77d76dfd6965464bbad0645d330"
+}

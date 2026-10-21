@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B13-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d68-d2c6-7722-b576-766ff82acfe8",
+ "startedAt": "2026-10-21T16:41:53+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "student.json": "e40d85647806516fa3868609941d9dc80ed30ff5c9307e92848c413f5276a134"
+ },
+ "promptSha256": "3818bece2115c859e8761462902271296ea8dd72b2c6c23377abc032ff7429fe",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $5^{13}$ ⑵ $b^{17}$ ⑶ $y^{14}$ ⑷ $a^{13}b^{8}$\",\"work\":\"밑이 같은 거듭제곱을 곱할 때는 지수를 더한다.\\n⑴ 지수: 4+9=13, ⑵ 지수: 6+11=17\\n⑶ 지수: 1+8+5=14\\n⑷ a의 지수: 3+10=13, b의 지수: 7+1=8\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $5^{13}$ ⑵ $b^{17}$ ⑶ $y^{14}$ ⑷ $a^{13}b^{8}$",
+  "work": "밑이 같은 거듭제곱을 곱할 때는 지수를 더한다.\n⑴ 지수: 4+9=13, ⑵ 지수: 6+11=17\n⑶ 지수: 1+8+5=14\n⑷ a의 지수: 3+10=13, b의 지수: 7+1=8",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "168ccfb35928429aec242a71f66d3b9c27ea6d164bcd626f11ed87780144bb2b"
+}

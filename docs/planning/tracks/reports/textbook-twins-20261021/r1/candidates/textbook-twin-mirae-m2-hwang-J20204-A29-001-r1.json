@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 159,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A29-001-r1",
+ "authorId": "claude-fable-5-1:30db0e90-bc35-4ace-8159-852dfe5ea108",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아는 원가가 $8000$원인 머그컵에 원가의 $50$ %의 이익을 붙여 정가를 정한 뒤, 축제에서 정가의 $20$ %를 할인하여 팔기로 하였다. 머그컵을 팔아 얻는 이익이 모두 $24000$원 이상이 되게 하려면 머그컵을 최소 몇 개 팔아야 하는지 구하시오.",
+ "choices": [],
+ "answer": "$15$개",
+ "solution": "정가는 $8000\\times\\left(1+\\frac{50}{100}\\right)=12000$(원)이고, 판매 가격은 $12000\\times\\left(1-\\frac{20}{100}\\right)=9600$(원)이다. 머그컵을 $x$개 판다고 하면 한 개당 이익이 $9600-8000=1600$(원)이므로 $1600x\\ge 24000$, $x\\ge 15$이다. 따라서 머그컵을 최소 $15$개 팔아야 한다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-12",
+  "problemCode": "J20204-A29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "3d523606753a52fdde65e1276df54468831f73216b49961bdcd7ee063775b446",
+  "dbContentSha256": "05abafdb2385c06975defce36a6d9b5f1cadfc2a9d855db78f3a38c427605cac",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "원가에 일정 비율의 이익을 붙여 정가를 정하고 정가에서 일정 비율 할인한 판매가로 팔 때, 총이익이 목표 이상이 되는 판매 개수의 최솟값을 구한다",
+  "after": "축제에서 파는 머그컵으로 장면을 바꾸고, 이익률·할인율·목표 이익을 새로 정해 같은 절차로 판매 개수의 최솟값을 구한다",
+  "sharedConcept": "일차부등식의 활용(원가·정가·할인과 이익)",
+  "sharedProcedure": "원가에 이익률을 붙여 정가를 구함 → 정가에 할인율을 적용해 판매가를 구함 → 한 개당 이익에 개수 x를 곱한 총이익이 목표 이상이라는 부등식을 세움 → 풀어 최솟값을 답함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(수, 평균, 정가)"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "백분율과 원가·정가·판매가의 관계"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20204-A29-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "할인 판매로 목표 이익을 얻는 판매 개수 문제",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.22,
+   "longestRun": 10,
+   "residualChars": 96,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

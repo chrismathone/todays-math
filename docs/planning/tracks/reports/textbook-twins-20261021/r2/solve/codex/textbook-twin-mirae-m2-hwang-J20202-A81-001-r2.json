@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dde-2757-7453-9dfa-021dfda58092",
+ "startedAt": "2026-10-21T18:50:02+0900",
+ "elapsedSec": 16.4,
+ "studentSha256": {
+  "student.json": "89279f632e5962607b4cd254ce6bc9cd76257f986140866589851313090c0ce7"
+ },
+ "promptSha256": "5ac27dafddaad5730f524cc5d6a02b58b114c7243aa2152392284169be51c68a",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"첫째 부등식에 12를 곱하면 $8x+9>12x-2$이므로 $x<\\\\frac{11}{4}$. 따라서 $a=\\\\frac{11}{4}$.\\n둘째 부등식에 10을 곱하면 $6x+18\\\\le 9x+30$이므로 $x\\\\ge -4$. 따라서 $b=-4$.\\n따라서 $ab=\\\\frac{11}{4}\\\\times(-4)=-11$.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫째 부등식에 12를 곱하면 $8x+9>12x-2$이므로 $x<\\frac{11}{4}$. 따라서 $a=\\frac{11}{4}$.\n둘째 부등식에 10을 곱하면 $6x+18\\le 9x+30$이므로 $x\\ge -4$. 따라서 $b=-4$.\n따라서 $ab=\\frac{11}{4}\\times(-4)=-11$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "339994926efa6c0173a7d4de553a4bec44dbfd2683a9e4ad69146e3ca34d5d8b"
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 170,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+ "authorId": "claude-fable-5-1:5d3c86ad-2014-451d-90c4-4a16e8b592e7",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우는 무게가 $4$ kg인 상자와 $7$ kg인 상자만을 골라 실어 전체 무게가 꼭 $84$ kg이 되게 하려고 한다. $4$ kg인 상자를 $x$개, $7$ kg인 상자를 $y$개 실을 때, 가능한 순서쌍 $(x,\\ y)$의 개수는? (단, $x$, $y$는 음이 아닌 정수이다.)",
+ "choices": [
+  "$6$",
+  "$4$",
+  "$7$",
+  "$8$",
+  "$9$"
+ ],
+ "answer": "②",
+ "solution": "조건을 식으로 나타내면 $4x+7y=84$이다. $y$에 $0$, $1$, $2$, $\\cdots$, $12$를 차례로 대입하면 $4x=84-7y$이므로 $84-7y$가 $4$의 배수가 되어야 하고, $84$가 $4$의 배수이므로 $7y$가 $4$의 배수, 즉 $y$는 $4$의 배수여야 한다. $y=0,\\ 4,\\ 8,\\ 12$일 때 $x=21,\\ 14,\\ 7,\\ 0$이므로 순서쌍은 $(21,\\ 0)$, $(14,\\ 4)$, $(7,\\ 8)$, $(0,\\ 12)$의 $4$개이다. 따라서 정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ffc616326d5bfbaa-0-3",
+  "problemCode": "J20301-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "786e6702db54900d38af56d3de347f066f15343fb5c6bdaaed8387fa75b402c1",
+  "dbContentSha256": "bb937583697106fa82c15c3ffd88aac6a7513a54a3c94b03097bd041963c0055",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-1_연립일차방정식과그해.hwp",
+    "sha256": "291f6116cc7eea5c0ab4f3470f4fed09c4e895acecfd0e51f276f4b73841c261",
+    "bytes": 47104
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "계수와 상수항이 주어진 미지수 2개의 일차방정식 하나를 그대로 제시하고, 음이 아닌 정수 해의 개수를 보기 다섯에서 고르게 한다.",
+  "after": "두 종류 상자의 무게와 전체 무게라는 장면에서 학생이 일차방정식을 세운 뒤, 음이 아닌 정수인 순서쌍의 개수를 보기 다섯에서 고르게 한다. 계수·상수항·보기 수를 모두 새로 두었다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 음이 아닌 정수해",
+  "sharedProcedure": "한 미지수에 0, 1, 2, …를 차례로 대입 → 다른 미지수가 음이 아닌 정수가 되는 경우만 고름 → 순서쌍의 개수를 셈"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "미지수가 2개인 일차방정식과 그 해",
+   "일차방정식의 해를 순서쌍으로 나타내기",
+   "배수와 나누어떨어짐"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A80-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지수가 2개인 일차방정식의 음이 아닌 정수해의 개수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.038,
+   "longestRun": 6,
+   "residualChars": 91,
+   "params": 6,
+   "numberRetention": 0.167,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

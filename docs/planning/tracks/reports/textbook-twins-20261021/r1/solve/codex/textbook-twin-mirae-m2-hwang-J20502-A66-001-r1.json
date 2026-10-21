@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db2-3564-71b3-b4d5-16c20f537938",
+ "startedAt": "2026-10-21T18:02:02+0900",
+ "elapsedSec": 13.3,
+ "studentSha256": {
+  "fig-1.png": "97ff0e9b1bd2014f04b64cd9d8f983926f11aae8c98328369d8932fd3e90d2b1",
+  "student.json": "e375a6c55ab79400dca0281788caf46fee438808991d629260be5e87ac929a47"
+ },
+ "promptSha256": "f345aea9c212752a4890f280691c6802f5db299af518a193a250749494b929aa",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"두 직각삼각형 AOP와 BOP는 빗변 OP가 공통이고 ∠AOP=∠BOP이므로 합동이다. 따라서 PA=PB, OA=OB, ∠APO=∠BPO이므로 ①, ②, ③, ⑤는 옳다. OA=PA는 주어진 조건으로 보장되지 않으므로 옳지 않은 것은 ④이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "두 직각삼각형 AOP와 BOP는 빗변 OP가 공통이고 ∠AOP=∠BOP이므로 합동이다. 따라서 PA=PB, OA=OB, ∠APO=∠BPO이므로 ①, ②, ③, ⑤는 옳다. OA=PA는 주어진 조건으로 보장되지 않으므로 옳지 않은 것은 ④이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9c89ec9ff619afa8d1ebbf4ba3d62932fa6cf852b7c24105b4c6522df5b5823b"
+}

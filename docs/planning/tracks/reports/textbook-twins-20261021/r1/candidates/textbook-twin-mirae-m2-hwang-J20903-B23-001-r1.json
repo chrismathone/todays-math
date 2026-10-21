@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 379,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서로 다른 두 개의 주사위를 동시에 던질 때, 나오는 두 눈의 수의 곱이 짝수일 확률을 구하시오.",
+ "choices": [],
+ "answer": "$\\frac{3}{4}$",
+ "solution": "모든 경우의 수는 $6\\times 6=36$이다.\n두 눈의 수의 곱이 홀수가 되려면 두 눈이 모두 홀수여야 하므로 그 경우의 수는 $3\\times 3=9$이고, 확률은 $\\frac{9}{36}=\\frac{1}{4}$이다.\n따라서 곱이 짝수일 확률은 $1-\\frac{1}{4}=\\frac{3}{4}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-12",
+  "problemCode": "J20903-B23-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "89845d66d6914681d85655e0671365af318d376f3f4b5b74a82dde1ffb542024",
+  "dbContentSha256": "89845d66d6914681d85655e0671365af318d376f3f4b5b74a82dde1ffb542024",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "structure"
+  ],
+  "before": "두 주사위의 눈이 같은 경우를 세어 그 확률을 1에서 빼 서로 다를 확률을 구한다",
+  "after": "두 주사위의 눈이 모두 홀수인 경우를 세어 그 확률을 1에서 빼 곱이 짝수일 확률을 구한다",
+  "sharedConcept": "어떤 사건이 일어나지 않을 확률(여사건)",
+  "sharedProcedure": "전체 경우 36 → 여사건의 경우의 수 → 여사건의 확률 → 1에서 뺌"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "두 사건이 동시에 일어나는 경우의 수",
+   "확률의 뜻",
+   "어떤 사건이 일어나지 않을 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B23-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위에서 여사건을 이용한 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 32자"
+   ],
+   "overlap4": 0.138,
+   "longestRun": 6,
+   "residualChars": 32,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-C10-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcd-a808-72a2-a107-8ec77a1a331e",
+ "startedAt": "2026-10-21T18:32:01+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "fig-1.png": "0e69a3925a037b0cd0acc7fd699124d5dc6432e7805397996a89d024cb0c04dc",
+  "student.json": "6ad521be075336e51eadc979ccaa8bebee71ea0c5273b874cf07889da7e31928"
+ },
+ "promptSha256": "c2946696d90bf5e9d1518fd9ad3e376410750ff9000fd1824a22df16baed7ae9",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{2}{5}$\",\"work\":\"20분 이상 40분 미만인 학생은 9+7=16명이다. 따라서 확률은 $\\\\frac{16}{40}=\\\\frac{2}{5}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{2}{5}$",
+  "work": "20분 이상 40분 미만인 학생은 9+7=16명이다. 따라서 확률은 $\\frac{16}{40}=\\frac{2}{5}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ac17b3dc1a46446415875b00bd5070b47e45fc33b555dcdef6b1268082d84614"
+}

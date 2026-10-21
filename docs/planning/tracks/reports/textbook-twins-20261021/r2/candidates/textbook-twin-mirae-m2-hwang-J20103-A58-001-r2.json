@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 64,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r2",
+ "authorId": "claude-fable-5-1:d0e9e320-96f4-4f30-aa40-1dadc1d8e014",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "하루가 순환소수 $0.a\\dot{5}$ 를 기약분수로 고쳤더니 $\\frac{34}{45}$ 가 되었다. 한 자리 자연수 $a$ 의 값은?",
+ "choices": [
+  "$4$",
+  "$5$",
+  "$6$",
+  "$7$",
+  "$8$"
+ ],
+ "answer": "④",
+ "solution": "$0.a\\dot{5}=\\dfrac{(10a+5)-a}{90}=\\dfrac{9a+5}{90}$ 이다. $\\dfrac{34}{45}=\\dfrac{68}{90}$ 이므로 $9a+5=68$ 이고, $9a=63$ 에서 $a=7$ 이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-10",
+  "problemCode": "J20103-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "050ea06a4c49e5e6eeae242d418c23301e5a77fd1c0fa2638e00d430a65cbffe",
+  "dbContentSha256": "0964df7aabc367e6cf4a8dc6fc7a4d788751a596fe29ea54571ac969f5eaf9ce",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "소수 첫째 자리가 미지의 숫자이고 둘째 자리부터 한 자리 숫자가 순환하는 순환소수가, 분모 45인 기약분수와 같다고 주고 그 미지의 숫자를 다섯 보기에서 고르게 한다.",
+  "after": "미지의 숫자 자리는 원본과 같게 두고(순환하지 않는 첫째 자리), 순환하는 숫자 · 주어진 기약분수 · 보기 범위를 모두 새로 정했다. 인물이 분수로 고친 결과가 주어지는 장면으로 바꾸었고, 분자 식의 계수 9 를 다루는 절차(9a+5=68 → 9a=63)를 그대로 지킨다.",
+  "sharedConcept": "순환하지 않는 자리가 있는 순환소수를 분수로 나타내는 공식",
+  "sharedProcedure": "미지의 숫자를 포함한 분자 식 세우기 → 주어진 분수를 분모 90 으로 통분 → 분자를 같게 놓은 일차방정식 풀기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내는 공식",
+   "분수의 통분과 약분",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A58-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 분수 표현이 주어질 때 미지의 숫자 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 8개 가운데 75% 그대로"
+   ],
+   "overlap4": 0.205,
+   "longestRun": 8,
+   "residualChars": 42,
+   "params": 8,
+   "numberRetention": 0.75,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

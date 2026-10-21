@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-B23-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dda-b167-7c92-a982-105535b05e6d",
+ "startedAt": "2026-10-21T18:46:15+0900",
+ "elapsedSec": 8.9,
+ "studentSha256": {
+  "fig-1.png": "5c1dfd9960a2a5bc0f49644f41cf7b0fa4a7e2c1a537862fdbedd023388ff140",
+  "student.json": "904d27cce4f9b2a05624c148e3933b08501e60d2784adf7736b292af95f1b7ae"
+ },
+ "promptSha256": "1897fece7ac8f4e7a37073451b32eb5cb3146fc93db1e9e9a5ba92338dc92776",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"30 cm\",\"work\":\"한 점에서 원에 그은 두 접선의 길이는 같으므로 AD=AF=5 cm, BE=BD=3 cm, CF=CE=7 cm이다. 따라서 AB=8 cm, BC=10 cm, CA=12 cm이므로 둘레는 8+10+12=30 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "30 cm",
+  "work": "한 점에서 원에 그은 두 접선의 길이는 같으므로 AD=AF=5 cm, BE=BD=3 cm, CF=CE=7 cm이다. 따라서 AB=8 cm, BC=10 cm, CA=12 cm이므로 둘레는 8+10+12=30 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4cbb2f901563263e3ab19f4f63386d538688e3c7f46cbff4af36231265422818"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A48-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6c-3532-7c33-9509-8a486214b152",
+ "startedAt": "2026-10-21T16:45:34+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "9f5a8bb47ee3fb0e2e0a71f57eadd3b81fdc8af63957dec64547404be8243765"
+ },
+ "promptSha256": "c2f638b75e1654bdc5d0ff8afe2c78762e6e14ce5ad0f061d45d1f5f0f76f1e0",
+ "freezeCommit": "6ef29d1b8b4c2699767665539aa3a80a2c7cc514",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"x=2를 대입하면 ① 5≤7, ② 0<5, ③ 8≥8, ⑤ 1<2는 모두 참이다.\\n④는 -1>1로 거짓이므로 x=2를 해로 갖지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=2를 대입하면 ① 5≤7, ② 0<5, ③ 8≥8, ⑤ 1<2는 모두 참이다.\n④는 -1>1로 거짓이므로 x=2를 해로 갖지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e718e3abf2cc92c5a01e6478e3d88d03ea0284c9726c6eb2993a7151327dbb8c"
+}

@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6d6f2b0c-87ef-4049-9354-628696f0a961",
+ "startedAt": "2026-10-21T17:07:09+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "fig-1.png": "39e04110b32964e9bf551e49c40a5bd103bffba568242056c878e4707b2e3289",
+  "student.json": "a4936f1a41d7b554ae61e2ff9b80404a514322ecd6cf28fc0510dbb47335246b"
+ },
+ "promptSha256": "e86a3d8e43d472c1a970348619cc73dd6ca399c1ce4a27b8fbe16bd4382471be",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"BC=6 cm에 대응하는 모서리가 HI=10 cm이므로 닮음비는 6:10=3:5이다(①, ② 옳음). ABED에 대응하는 면은 GHKJ이고, △ABC∽△GHI이다(③, ④ 옳음). 대응각의 크기는 같으므로 x°=∠LJK=∠IGH=∠CAB=70°이고 x=70이다. y=9×5/3=15이다. z:20=3:5이므로 z=12이다. 따라서 x+y−z=70+15−12=73≠75이므로 옳지 않은 것은 ⑤이다.\", \"confidence\": \"high\", \"issues\": [\"그림에서 '6 cm'와 '10 cm' 라벨이 옆모서리(CF, IL) 오른쪽에 붙어 있어 위치가 애매하다. 그래도 문제에서 BC와 HI가 대응한다고 했으므로 BC=6, HI=10으로 해석했다.\"]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "BC=6 cm에 대응하는 모서리가 HI=10 cm이므로 닮음비는 6:10=3:5이다(①, ② 옳음). ABED에 대응하는 면은 GHKJ이고, △ABC∽△GHI이다(③, ④ 옳음). 대응각의 크기는 같으므로 x°=∠LJK=∠IGH=∠CAB=70°이고 x=70이다. y=9×5/3=15이다. z:20=3:5이므로 z=12이다. 따라서 x+y−z=70+15−12=73≠75이므로 옳지 않은 것은 ⑤이다.",
+  "confidence": "high",
+  "issues": [
+   "그림에서 '6 cm'와 '10 cm' 라벨이 옆모서리(CF, IL) 오른쪽에 붙어 있어 위치가 애매하다. 그래도 문제에서 BC와 HI가 대응한다고 했으므로 BC=6, HI=10으로 해석했다."
+  ]
+ },
+ "eventsSha256": "0a3b84c4798f845c70578625667f23cc44a449d3dbfbc91022ac30168ab9835e"
+}

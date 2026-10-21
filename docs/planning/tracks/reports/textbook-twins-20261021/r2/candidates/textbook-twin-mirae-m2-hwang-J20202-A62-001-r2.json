@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 143,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r2",
+ "authorId": "claude-opus-5-5:638ab0dc-bb17-4b23-903e-10fba00809db",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차부등식 $4-3x<x+16$을 풀었을 때, 그 해로 알맞은 것은?",
+ "choices": [
+  "$x<-3$",
+  "$x>3$",
+  "$x>-3$",
+  "$x<3$",
+  "$x>-5$"
+ ],
+ "answer": "③",
+ "solution": "$4-3x<x+16$에서 $x$를 포함한 항은 좌변으로, 상수항은 우변으로 이항하면 $-3x-x<16-4$이다.\n정리하면 $-4x<12$이다.\n양변을 음수 $-4$로 나누면 부등호의 방향이 바뀌므로 $x>-3$이다.\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-51f4c1431376eff4-1-1",
+  "problemCode": "J20202-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "8a13350c7535f8ef47f194d7081f09f7800df66782803a95a628099e917648d3",
+  "dbContentSha256": "66bef409d2f413982ecb45eee7a21aab9a09b21ca592c038c507acb2afe0541a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-3_일차부등식의풀이.hwp",
+    "sha256": "a374a285941d2fa27cc2228a9abef548e08ea23bbddde87c8c6d5b1b038b8194",
+    "bytes": 416768
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "좌변이 'x항 다음 상수항', 우변도 'x항 다음 상수항'인 부등식에서 x계수 차가 음수가 되어, 정리하면 x ≤ (음수) 꼴의 해가 나온다.",
+  "after": "좌변은 상수항이 앞에 오고 x계수가 음수, 우변은 x항 다음 상수항인 짜임으로 바꾸었다. 양쪽 항을 모두 이항해야 하며, 정리하면 x > (음수) 꼴의 해가 나온다.",
+  "sharedConcept": "양변에 미지수가 있는 일차부등식의 풀이 — 음수로 나누면 부등호 방향이 바뀐다",
+  "sharedProcedure": "x항은 좌변, 상수항은 우변으로 이항 → ax ⋚ b 꼴로 정리 → 음수 계수로 양변을 나누고 부등호 방향 바꾸기 → 보기와 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "이항",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A62-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "양변에 x항이 있는 일차부등식을 이항해 풀고, 음수로 나눌 때 부등호 방향을 바꾸어 해를 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.049,
+   "longestRun": 5,
+   "residualChars": 46,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

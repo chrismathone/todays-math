@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-f100-7de0-8c1e-0aaa573cb042",
+ "startedAt": "2026-10-21T16:51:50+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "c712324154ba05f4c79c3239aa31e8c8df551f6ebd401c2d50cb17743ad32cf0"
+ },
+ "promptSha256": "e3b4f7b443ceb9a5e711b6c9b5b95cf83cd6d61ff6a45370d0c6776acad783d1",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"②는 양변에서 $x^2$을 빼면 $7x>-9$가 되므로 일차부등식이다.\\n①과 ③은 정리하면 미지수가 없고, ④는 $x^2\\\\le 9$인 이차부등식이며, ⑤는 방정식이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "②는 양변에서 $x^2$을 빼면 $7x>-9$가 되므로 일차부등식이다.\n①과 ③은 정리하면 미지수가 없고, ④는 $x^2\\le 9$인 이차부등식이며, ⑤는 방정식이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "75c5097dd67f31c1b7d186a075ec94130e69089f12825bd9ec58f84f82a6925e"
+}

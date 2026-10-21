@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A86-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de1-78c5-7ca2-8199-d947cc80a4fa",
+ "startedAt": "2026-10-21T18:53:39+0900",
+ "elapsedSec": 39.9,
+ "studentSha256": {
+  "fig-1.png": "4b25e88053e4d62e12d3be285cd0beeca27af85db40573d2110e9e5edc5bb18f",
+  "student.json": "902c57c92499c39f085f231783cf7882f05bb8cf8de2ee8528c41629d85a34be"
+ },
+ "promptSha256": "28ac667d8a92b3a30d13cde28588fc330651dc85f3ca0b3dd66ab23685114850",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ x=28, y=37 (각도: 28°, 37°) ⑵ x=4, y=27 (길이: 4 cm, 각도: 27°)\",\"work\":\"⑴ 내심 I를 지나는 AI, BI는 각각 ∠A, ∠B의 이등분선이므로 x=28, y=37이다.\\n⑵ 내심에서 삼각형의 각 변에 이르는 거리는 같으므로 ID=IF=4 cm에서 x=4이다. 또 BI는 ∠ABC를 이등분하므로 y=54÷2=27이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ x=28, y=37 (각도: 28°, 37°) ⑵ x=4, y=27 (길이: 4 cm, 각도: 27°)",
+  "work": "⑴ 내심 I를 지나는 AI, BI는 각각 ∠A, ∠B의 이등분선이므로 x=28, y=37이다.\n⑵ 내심에서 삼각형의 각 변에 이르는 거리는 같으므로 ID=IF=4 cm에서 x=4이다. 또 BI는 ∠ABC를 이등분하므로 y=54÷2=27이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5bd011782c77ec4f90fac175088b859d9afe4040d79c31650d1ff7811016d177"
+}

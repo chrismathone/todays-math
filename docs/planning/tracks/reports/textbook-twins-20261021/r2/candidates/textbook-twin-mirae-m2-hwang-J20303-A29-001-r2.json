@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 172,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r2",
+ "authorId": "claude-opus-5-5:4371c31a-943a-49e4-a965-8d61d67670c5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "연립방정식 $\\begin{cases} \\,0.3x+0.4y=1.2 \\\\ \\,\\frac{x}{4}-\\frac{y}{3}=3 \\end{cases}$의 해를 구하시오.",
+ "choices": [],
+ "answer": "$x=8$, $y=-3$",
+ "solution": "$0.3x+0.4y=1.2$의 양변에 $10$을 곱하면 $3x+4y=12$ … ①\n$\\frac{x}{4}-\\frac{y}{3}=3$의 양변에 분모 $4$, $3$의 최소공배수 $12$를 곱하면 $3x-4y=36$ … ②\n①과 ②를 변끼리 더하면 $6x=48$, $x=8$\n$x=8$을 ①에 대입하면 $24+4y=12$, $4y=-12$, $y=-3$\n따라서 연립방정식의 해는 $x=8$, $y=-3$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-16",
+  "problemCode": "J20303-A29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 16,
+  "sourceContentSha256": "ac2f67f4cdd8f0906ad5c7868e1e6551e091a54899758ad9b2f9e8e181fb51a7",
+  "dbContentSha256": "fed6837c3e86ca27e05269c7dc78476fc1a066525aff4d5cd308aefe001c27eb",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "첫째 식은 분수 계수, 둘째 식은 소수 계수(소수 첫째·둘째 자리가 섞인 상수항)인 연립방정식. 두 식을 정수 계수로 고치면 x의 계수가 같아져서 변끼리 빼어 y를 먼저 구한다.",
+  "after": "첫째 식은 소수 계수, 둘째 식은 분수 계수로 순서를 바꾼 연립방정식. 두 식을 정수 계수로 고치면 y의 계수가 서로 반대 부호가 되어 변끼리 더하여 x를 먼저 구한다.",
+  "sharedConcept": "계수가 분수인 식과 소수인 식이 섞인 연립일차방정식은 식마다 알맞은 수를 곱하여 정수 계수로 고친 뒤 푼다",
+  "sharedProcedure": "소수 계수 식에 10의 거듭제곱 곱하기 → 분수 계수 식에 분모의 최소공배수 곱하기 → 가감법으로 한 문자 없애기 → 대입하여 나머지 문자 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "분수 계수를 분모의 최소공배수를 곱하여 정수로 고치기",
+   "소수 계수를 10의 거듭제곱을 곱하여 정수로 고치기",
+   "가감법으로 연립일차방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A29-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 분수인 식과 소수인 식이 섞인 연립방정식의 풀이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 24자"
+   ],
+   "overlap4": 0.19,
+   "longestRun": 5,
+   "residualChars": 24,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 334,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A79-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 $\\overline{AD}$는 $\\triangle ABC$의 중선이고 점 $G$는 $\\triangle ABC$의 무게중심이다. $G$를 지나 $\\overline{BC}$에 평행한 직선이 $\\overline{AB}$, $\\overline{AC}$와 만나는 점을 각각 $P$, $Q$라 하자. $\\overline{GD}=5\\,\\mathrm{cm}$, $\\overline{GQ}=6\\,\\mathrm{cm}$일 때, 그림의 $x$, $y$에 대하여 $x+y$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$19$",
+ "solution": "점 $G$는 무게중심이므로 $\\overline{AG}:\\overline{GD}=2:1$에서 $\\overline{AG}=2\\times5=10\\,(\\mathrm{cm})$, 즉 $x=10$이다. $\\triangle ADC$에서 $\\overline{GQ}\\parallel\\overline{DC}$이므로 $\\overline{GQ}:\\overline{DC}=\\overline{AG}:\\overline{AD}=2:3$이다. $6:y=2:3$에서 $y=9$이다. 따라서 $x+y=10+9=19$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A79-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A79-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9f59e35640dafd86-0-3",
+  "problemCode": "J20705-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "42673a98de2e4520ea40641d2401bed78be26566598ebb3ecfdf0c5722e473ef",
+  "dbContentSha256": "c47d0e53b0e0e9d637d5cadd41f49295975f153dc98ec256e9ed59cb8cbd19e3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_7-4_삼각형의무게중심.hwp",
+    "sha256": "8d155fc6bc36207a3640e3dbfba689008469a20d2b35a9bdaa4dbcea03ff054b",
+    "bytes": 234496
+   }
+  ],
+  "originalFigureSha256": [
+   "f6de17c580f1621554b323186189614312bda48e84cf6d1cd4f14d7464c40f7d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "무게중심을 지나 밑변에 평행한 선분에서, 꼭짓점 쪽 조각 AG와 왼쪽 평행 조각 EG의 길이를 주고 GD(x)와 BD(y)를 구해 더한다.",
+  "after": "같은 구성에서 중점 쪽 조각 GD와 오른쪽 평행 조각 GQ의 길이를 주고 AG(x)와 DC(y)를 구해 더한다 — 주어진 것과 구하는 것이 서로 뒤바뀐 배치.",
+  "sharedConcept": "무게중심의 2:1 비 · 평행선에서 2:3 닮음비",
+  "sharedProcedure": "2:1로 중선 조각 구하기(x) → 평행선 닮음 2:3으로 밑변 절반 구하기(y) → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질(2:1)",
+   "삼각형에서 평행선과 선분의 길이의 비",
+   "비례식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A79-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "무게중심을 지나는 평행선에서 x, y를 구해 합하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "이어진 같은 글 23자"
+   ],
+   "overlap4": 0.224,
+   "longestRun": 23,
+   "residualChars": 82,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

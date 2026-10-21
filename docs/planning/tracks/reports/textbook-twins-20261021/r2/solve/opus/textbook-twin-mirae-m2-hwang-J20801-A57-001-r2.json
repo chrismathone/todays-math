@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "6b0e1f5a-1213-47a5-8f5d-5f3bcadfb173",
+ "startedAt": "2026-10-21T17:56:20+0900",
+ "elapsedSec": 6.6,
+ "studentSha256": {
+  "fig-1.png": "8a48cb8beae4221ffb50ae8b43b64b12f23d2df03490ac8aecef562cf9d4dff7",
+  "student.json": "6257ff6f9c1f9f9d798fde4688d1d37764c3d3c4380e27835836de0232168b8e"
+ },
+ "promptSha256": "210162eefa44c666d8a8b73fb435044a3cc96263654829f065a92d9e9892473c",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"두 반원의 넓이는 각각 (π/8)·DE², (π/8)·EF²이다. 따라서 P+Q = (π/8)(DE²+EF²)이다. 피타고라스 정리에 따라 DE²+EF² = DF² = 100이므로 P+Q = (π/8)·100 = 25π/2 cm²이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "두 반원의 넓이는 각각 (π/8)·DE², (π/8)·EF²이다. 따라서 P+Q = (π/8)(DE²+EF²)이다. 피타고라스 정리에 따라 DE²+EF² = DF² = 100이므로 P+Q = (π/8)·100 = 25π/2 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "eb2d704e50889388fb6d130c07a0604b287b33b7e825fa2ed459c43118e64b46"
+}

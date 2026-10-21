@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A57-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-d420-72f0-bd46-1430751c11f5",
+ "startedAt": "2026-10-21T16:54:59+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "b182f5a725240eacb02895a667b3e6c2971a9a34370ad6b4b4658fda384444e3"
+ },
+ "promptSha256": "489d5cf32b47187fecea7b3fc4a74ff163d9608d466a9e9fe05fc792d3808d62",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $3x+2y=27$ ⑵ $4x+6y=70$\",\"work\":\"⑴ 세발자전거 x대의 바퀴는 3x개, 두발자전거 y대의 바퀴는 2y개이므로 3x+2y=27이다.\\n⑵ 4점짜리 x개의 점수는 4x점, 6점짜리 y개의 점수는 6y점이므로 4x+6y=70이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $3x+2y=27$ ⑵ $4x+6y=70$",
+  "work": "⑴ 세발자전거 x대의 바퀴는 3x개, 두발자전거 y대의 바퀴는 2y개이므로 3x+2y=27이다.\n⑵ 4점짜리 x개의 점수는 4x점, 6점짜리 y개의 점수는 6y점이므로 4x+6y=70이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f3dff2b08bb356d018188931d6c65e8b7f1291829aa50c9245f5ed9388828efe"
+}

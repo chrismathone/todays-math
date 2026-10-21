@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 214,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r2",
+ "authorId": "claude-opus-5-5:5212b30e-a046-4ed4-abfa-6299720c7def",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "좌표평면에서 일차방정식 $x-y=7$의 그래프와 $5x+2y=0$의 그래프가 만나는 점을 P라 하자. 직선 $l$은 점 P를 지나며 일차방정식 $8x-2y+5=0$의 그래프와 평행하다. 직선 $l$을 그래프로 하는 일차함수의 식은?",
+ "choices": [
+  "$y=-4x+3$",
+  "$y=\\frac{1}{4}x-\\frac{11}{2}$",
+  "$y=4x+3$",
+  "$y=4x-13$",
+  "$y=4x+\\frac{5}{2}$"
+ ],
+ "answer": "④",
+ "solution": "$x-y=7$에서 $x=y+7$이다. 이것을 $5x+2y=0$에 대입하면 $5(y+7)+2y=0$, $7y=-35$이므로 $y=-5$이고 $x=2$이다. 따라서 P의 좌표는 $(2,\\,-5)$이다. $8x-2y+5=0$을 $y$에 대하여 풀면 $y=4x+\\frac{5}{2}$이므로, 이와 평행한 직선 $l$의 기울기는 $4$이다. $y=4x+b$에 $x=2$, $y=-5$를 대입하면 $-5=8+b$에서 $b=-13$이다. 따라서 $y=4x-13$이고, 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-07ecf6280c42ef91-0-3",
+  "problemCode": "J20409-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "975641365c0ec6bacc3546b00e6c0af76f646791dfd6ea5799c08f8a5744152f",
+  "dbContentSha256": "64909f14e7667559e5b25d419692eb93a31adefdf90dcda1331fefc4bb2a5562",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-7_일차함수의그래프와연립일차방정식.hwp",
+    "sha256": "893c512788f8720916d44122281f5985e6e965e88beb4cfeae4f6e902f96fb39",
+    "bytes": 122368
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "structure",
+   "numbers"
+  ],
+  "before": "일반형으로 주어진 두 일차방정식의 그래프의 교점과, 일반형으로 주어진 한 직선과의 평행 조건으로 구한 직선을 일반형(ax+by+c=0) 보기 가운데서 고른다.",
+  "after": "두 그래프가 만나는 점에 이름 P를 붙이고 직선 l이 따라야 할 조건을 따로 적은 뒤, 그 직선을 나타내는 일차함수의 식(y=ax+b 꼴)을 보기 가운데서 고른다. 교점은 정수 좌표지만 주어진 직선의 y절편은 분수다.",
+  "sharedConcept": "두 일차방정식의 그래프의 교점은 연립방정식의 해이고, 평행한 두 직선은 기울기가 같다",
+  "sharedProcedure": "두 식을 연립하여 교점 구하기 → 주어진 일반형 일차방정식을 y에 대하여 풀어 기울기 읽기 → 기울기와 교점으로 직선의 식 세우기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(대입법·가감법)",
+   "일차방정식 ax+by+c=0을 y=mx+n 꼴로 나타내기",
+   "평행한 두 일차함수 그래프의 기울기",
+   "기울기와 한 점으로 일차함수의 식 구하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A55-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 그래프의 교점을 지나고 주어진 직선과 평행한 직선의 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.061,
+   "longestRun": 5,
+   "residualChars": 131,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e2b9b4c7-66c1-4974-b73f-ce71590b76ef",
+ "startedAt": "2026-10-21T17:56:26+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "d5dea2ec7975f37a5bf3efb5855d680383758aa44eac2516395744481fe0ec71"
+ },
+ "promptSha256": "e0ea7f6acb7dcd18d8d03c4730fb1e98f7f3b4982b83187f24407ebc3e3872b2",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"a = 2b - 7 이고 1 ≤ a ≤ 6 이어야 한다. b=4이면 a=1, b=5이면 a=3, b=6이면 a=5이다. b ≤ 3이면 a ≤ -1이 되어 불가능하다. 따라서 (a, b) = (1, 4), (3, 5), (5, 6)으로 3가지이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "a = 2b - 7 이고 1 ≤ a ≤ 6 이어야 한다. b=4이면 a=1, b=5이면 a=3, b=6이면 a=5이다. b ≤ 3이면 a ≤ -1이 되어 불가능하다. 따라서 (a, b) = (1, 4), (3, 5), (5, 6)으로 3가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1cb2f430a5a0e87447734aad6ff19e7cedbd04660aff9489cfab43e68747eb52"
+}

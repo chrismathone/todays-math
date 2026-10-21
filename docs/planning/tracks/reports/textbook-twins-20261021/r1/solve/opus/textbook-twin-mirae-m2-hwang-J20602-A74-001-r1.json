@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A74-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8a682d31-300a-46dc-91f1-058f843bb12f",
+ "startedAt": "2026-10-21T17:09:27+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "dcd1cd37bc54985184a846a240be7b05136c2b6f5593d3b83e162ee8ea924391",
+  "student.json": "90eacfdc107072f855268c9cd1699fcc94b65f57a453beb39cb29005d44e6ab6"
+ },
+ "promptSha256": "c69803aa05a862c3c25fe9712729e5ef35b94a7435440d05793e9efa78255a11",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"∠A는 공통이고 ∠B=∠ACD이므로 △ABC∽△ACD(AA 닮음)이다. 대응변의 비에서 AB:AC=AC:AD, 즉 12:9=9:x이다. 따라서 12x=81이고 x=27/4이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "∠A는 공통이고 ∠B=∠ACD이므로 △ABC∽△ACD(AA 닮음)이다. 대응변의 비에서 AB:AC=AC:AD, 즉 12:9=9:x이다. 따라서 12x=81이고 x=27/4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "65c32da3a6e6bf8c6dcc39d51ddcc327bb03367337391bc35fd787d659ecf668"
+}

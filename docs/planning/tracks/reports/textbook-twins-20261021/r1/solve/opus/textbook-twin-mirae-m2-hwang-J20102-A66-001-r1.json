@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A66-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c05e5cc0-b4a3-4eb6-846d-fc9c92d648cd",
+ "startedAt": "2026-10-21T16:19:35+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "4c89ab6c029bb8f7fde0c6640863b210329bd66a1c59003345dae65a684c3d69"
+ },
+ "promptSha256": "94604033b7cafac544da1591397680887b844e2f180aef90a68c5aae6b849645",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"2\", \"work\": \"7/54 = 0.1296296… = 0.1\\\\dot{2}9\\\\dot{6}. 순환마디는 296이므로 a = 3, 순환마디가 아닌 소수 부분은 1이므로 b = 1. 따라서 a − b = 2.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "2",
+  "work": "7/54 = 0.1296296… = 0.1\\dot{2}9\\dot{6}. 순환마디는 296이므로 a = 3, 순환마디가 아닌 소수 부분은 1이므로 b = 1. 따라서 a − b = 2.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1c35ed14e88b7790468e6f57cd92d6d544a4f642e7e7f4ee22f082b756318c43"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-b0f8-75f1-bdda-60e6180a8dc4",
+ "startedAt": "2026-10-21T16:55:56+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "1a2dec69d6f9a6ec78cb0301191cdbd9f8151999b8b039e700d89f0254c8fd8d"
+ },
+ "promptSha256": "b3f1c77409e87b7ef97cf2a2392c8704aeb4a6dffd9f9c8264270e39f8d7efe4",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"x, y가 음이 아닌 정수이므로 0≤x≤5이다.\\n28−5x가 3의 배수가 되는 x는 2, 5이며, 각각 y는 6, 1이다.\\n따라서 해는 (2, 6), (5, 1)의 2개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "x, y가 음이 아닌 정수이므로 0≤x≤5이다.\n28−5x가 3의 배수가 되는 x는 2, 5이며, 각각 y는 6, 1이다.\n따라서 해는 (2, 6), (5, 1)의 2개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9a9150fdc4f962dec7be5e5beb2e0226bc839cdd725a32bf7c713f0577aedc40"
+}

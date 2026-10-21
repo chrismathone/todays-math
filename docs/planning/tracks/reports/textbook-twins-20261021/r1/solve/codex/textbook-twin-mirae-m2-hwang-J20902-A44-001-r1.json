@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A44-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-4c28-7f21-a4e6-ef5867e65dd6",
+ "startedAt": "2026-10-21T18:25:04+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "0848c8f612c0a318b1a263d9694177bb818cf761b0ae73016b93a54a799cbf32"
+ },
+ "promptSha256": "ddef4cbfae2387a8821674878eed607c7483a063c23466a0b646b8175821bde8",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"70보다 작으려면 십의 자리 숫자는 4 또는 5여야 한다. 각각 일의 자리에 남은 카드 4장 중 하나를 놓을 수 있으므로 경우의 수는 2×4=8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "70보다 작으려면 십의 자리 숫자는 4 또는 5여야 한다. 각각 일의 자리에 남은 카드 4장 중 하나를 놓을 수 있으므로 경우의 수는 2×4=8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3202c3ac134db92a6cc12c44977eb02244ffcaf9ccec91e1cb50df2bb5040867"
+}

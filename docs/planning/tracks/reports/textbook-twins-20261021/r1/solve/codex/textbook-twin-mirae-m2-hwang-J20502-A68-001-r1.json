@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A68-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db2-a5dd-7b62-aaa5-8547dbf0e540",
+ "startedAt": "2026-10-21T18:02:31+0900",
+ "elapsedSec": 26.1,
+ "studentSha256": {
+  "fig-1.png": "ad7e5603cd9279fc0865699cc4a8ef505003e5ae3d6bd23f28157a035661854b",
+  "student.json": "cc8e861f360fcc960dcb490db52933083107ef906265c927137f6acb10814e30"
+ },
+ "promptSha256": "9c1df2671b66b52ea9b2e735f8464ee8d08824f3ae37788425574a59a6a8f5b3",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7.5 cm²\",\"work\":\"직각삼각형 ADF와 DCG는 빗변 AD=DC이고 ∠ADF=∠DCG이므로 합동이다.\\n따라서 DG=AF=8 cm, DF=CG=5 cm이므로 FG=8−5=3 cm이다.\\n삼각형 CFG의 넓이는 FG×CG÷2=3×5÷2=7.5 cm²이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7.5 cm²",
+  "work": "직각삼각형 ADF와 DCG는 빗변 AD=DC이고 ∠ADF=∠DCG이므로 합동이다.\n따라서 DG=AF=8 cm, DF=CG=5 cm이므로 FG=8−5=3 cm이다.\n삼각형 CFG의 넓이는 FG×CG÷2=3×5÷2=7.5 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "33832cd03eeb1d489299908412798d133918d7867759d2cb09cac45ab5cbb65d"
+}

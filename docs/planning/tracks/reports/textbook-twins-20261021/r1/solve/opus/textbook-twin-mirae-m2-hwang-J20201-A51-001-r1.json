@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "85528a4b-f6bb-4190-b386-6c7ce2b585e7",
+ "startedAt": "2026-10-21T16:25:37+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "539b60f6f8a05accefaafc76ded7e9feb6e1c6a72c024a6f2ac3977d2ae791c9"
+ },
+ "promptSha256": "5648322fcd60d899b24e103acdb98b99c777e168664d91bd04edfaa3a2edc64c",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"-3a+2 ≤ -3b+2 → -3a ≤ -3b → a ≥ b (음수로 나누면 부등호 방향이 바뀜). ① a ≥ b 참. ② 양변에 6을 더해도 방향 유지: a+6 ≥ b+6 참. ③ -a ≤ -b 이므로 7-a ≤ 7-b. 따라서 7-a ≥ 7-b 는 옳지 않음. ④ -a ≤ -b 참. ⑤ a/4 ≥ b/4 이므로 a/4+1 ≥ b/4+1 참.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "-3a+2 ≤ -3b+2 → -3a ≤ -3b → a ≥ b (음수로 나누면 부등호 방향이 바뀜). ① a ≥ b 참. ② 양변에 6을 더해도 방향 유지: a+6 ≥ b+6 참. ③ -a ≤ -b 이므로 7-a ≤ 7-b. 따라서 7-a ≥ 7-b 는 옳지 않음. ④ -a ≤ -b 참. ⑤ a/4 ≥ b/4 이므로 a/4+1 ≥ b/4+1 참.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "37a1df44b2679a16d4555f23af2ec8eeba09998007f8f0f2a1102ccf24245abc"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "7db33c76-6022-4eee-ad2c-3e66266d00ad",
+ "startedAt": "2026-10-21T18:13:55+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "student.json": "f986bf9679b90dbb69b942027caf0e3039088b00ec219c5dcbd6ddaf5076fd2e"
+ },
+ "promptSha256": "325f5f2e527d775ed5d0a35301f8416574d60069074b7423e0065eb566fda45c",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"점 $(-7, 2)$를 지나며 $y$축과 수직인 직선은 $x$축에 평행한 가로선이므로 $y = 2$이다. 보기를 정리하면 ④ $6y = 12 \\\\iff y = 2$이므로 도하가 그은 직선의 방정식과 일치한다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "점 $(-7, 2)$를 지나며 $y$축과 수직인 직선은 $x$축에 평행한 가로선이므로 $y = 2$이다. 보기를 정리하면 ④ $6y = 12 \\iff y = 2$이므로 도하가 그은 직선의 방정식과 일치한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d18ac8ffd35ce76b38ef98fc6b90606a70f19f3b7c091e393104db1e714d6d93"
+}

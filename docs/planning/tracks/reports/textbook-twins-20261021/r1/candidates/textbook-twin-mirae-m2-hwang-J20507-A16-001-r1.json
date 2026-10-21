@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 284,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A16-001-r1",
+ "authorId": "claude-fable-5-1:167a8d23-20dc-4aed-aa63-09f1402a7ca3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n서아가 정사각형 모양의 손수건 $ABCD$를 두 대각선을 따라 접어 교점 $O$를 표시하였다. $\\overline{OA}=5\\,\\mathrm{cm}$일 때, 손수건 $\\square ABCD$의 넓이를 구하시오.",
+ "choices": [],
+ "answer": "$50\\,\\mathrm{cm}^{2}$",
+ "solution": "정사각형의 두 대각선은 길이가 같고 서로를 수직이등분하므로 $\\overline{AC}=2\\overline{OA}=10\\,(\\mathrm{cm})$, $\\overline{BD}=\\overline{AC}=10\\,\\mathrm{cm}$이다. $\\angle AOB=90^{\\circ}$이므로 $\\triangle ABD=\\frac{1}{2}\\times\\overline{BD}\\times\\overline{AO}=\\frac{1}{2}\\times 10\\times 5=25\\,(\\mathrm{cm}^{2})$이고, $\\square ABCD=2\\triangle ABD=50\\,(\\mathrm{cm}^{2})$이다. 따라서 넓이는 $50\\,\\mathrm{cm}^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A16-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A16-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-43dc751bbec2e710-0-2",
+  "problemCode": "J20507-A16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "21caa31090a2edf4cfdd5c968e0a1afa34b51512ca7333cb3ad05af4124ef5e0",
+  "dbContentSha256": "9c99ec09288113b9e0d74205b2f2f4f6164c6dd5c54214fa998badf44714b652",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-7_여러가지사각형의성질.hwp",
+    "sha256": "acf2133983533ff217bad38181489efcda24e36c0e7e0d4ce5142b78ea92fbbe",
+    "bytes": 144384
+   }
+  ],
+  "originalFigureSha256": [
+   "19c72b198f6fe124c3e77a33f66111f8ad6a1dd9b1a7c04221c5f081a3cae2e2"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "context",
+   "numbers"
+  ],
+  "before": "정사각형에서 대각선 한 개의 전체 길이를 주고 넓이를 구한다.",
+  "after": "정사각형에서 교점까지의 대각선 절반 길이를 주고, 대각선 전체를 복원한 뒤 넓이를 구한다. 손수건 장면.",
+  "sharedConcept": "정사각형의 두 대각선은 길이가 같고 서로를 수직이등분한다",
+  "sharedProcedure": "두 대각선 길이 확정 → 대각선 절반 구하기 → 수직이므로 삼각형 넓이 ½×밑변×높이 → 두 배(또는 ½×대각선×대각선)"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직사각형, 마름모, 정사각형"
+  },
+  "prerequisites": [
+   "정사각형의 성질",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20507-A16-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정사각형의 대각선 길이로 넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.085,
+   "longestRun": 5,
+   "residualChars": 51,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

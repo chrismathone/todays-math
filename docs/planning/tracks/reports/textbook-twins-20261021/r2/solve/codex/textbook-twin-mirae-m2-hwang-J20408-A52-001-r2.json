@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-18b0-7eb1-9af5-c7e6b2d7e12a",
+ "startedAt": "2026-10-21T18:59:48+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "0f583d53c9395d6b98c0177e5f95f0265284c7e95a019ab0bd202a254bb55798"
+ },
+ "promptSha256": "881aa71d24f73fcafde46c86f9e616c4efb55723130a6dd9b295e849d7903725",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"한 점에서도 만나지 않으려면 두 직선의 기울기가 같고 y절편이 달라야 한다. ④를 정리하면 $y=\\\\frac{7}{9}x+\\\\frac{10}{9}$이므로 주어진 직선과 기울기는 같고 y절편은 다르다. 나머지 직선은 기울기가 달라 한 점에서 만난다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "한 점에서도 만나지 않으려면 두 직선의 기울기가 같고 y절편이 달라야 한다. ④를 정리하면 $y=\\frac{7}{9}x+\\frac{10}{9}$이므로 주어진 직선과 기울기는 같고 y절편은 다르다. 나머지 직선은 기울기가 달라 한 점에서 만난다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e33bd468504459d94f9154eb7054e26b259602c3b79f74f5c94c3f7dcbb76db4"
+}

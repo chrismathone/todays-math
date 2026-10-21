@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-92bb-74f1-8c6d-faaa8e6b61e4",
+ "startedAt": "2026-10-21T18:59:14+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "f986bf9679b90dbb69b942027caf0e3039088b00ec219c5dcbd6ddaf5076fd2e"
+ },
+ "promptSha256": "41b6fca3a23549b6edee89a295f6a60f225fe122b7d5b79c2baff85025cb8cbe",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$y$축에 수직인 직선은 $x$축과 평행하므로 $y$좌표가 일정하다. 점 $(-7, 2)$를 지나므로 방정식은 $y=2$이고, 이는 ④ $6y=12$와 같다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$y$축에 수직인 직선은 $x$축과 평행하므로 $y$좌표가 일정하다. 점 $(-7, 2)$를 지나므로 방정식은 $y=2$이고, 이는 ④ $6y=12$와 같다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "94cc112dffcc2705bb743c300105666c2300f1fbfe7f27914ac6368d04f45492"
+}

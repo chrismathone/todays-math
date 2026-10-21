@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 21,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r1",
+ "authorId": "middle-engine:2-1|다항식의 계산|02",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "다음 식을 계산하시오.\n$-2\\left(2x^{2}-5x+6\\right)-3\\left(x^{2}+5x-8\\right)$",
+ "choices": [
+  "$-5x^{2}-5x+12$",
+  "$-4x^{2}-5x+12$",
+  "$7x^{2}-5x+12$",
+  "$-6x^{2}-5x+12$",
+  "$-7x^{2}-5x+12$"
+ ],
+ "answer": "⑤",
+ "solution": "괄호를 풀 때 빼는 식은 각 항의 부호를 바꾸어 더한다. 그 다음 동류항끼리 모은다.\n$-2\\left(2x^{2}-5x+6\\right)-3\\left(x^{2}+5x-8\\right)=-7x^{2}-5x+12$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-11",
+  "problemCode": "J20107-A71-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "7287dd2561c6c079792d74d7d9520f8e4a58cd127e7b2b1b209c00665ee306f0",
+  "dbContentSha256": "fa06bc46f016bedd589551357e80ce8e575bcb4c75ad4a6489e785fd791ae8f7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers"
+  ],
+  "before": "두 이차식에 각각 상수를 곱해 빼고 바르게 정리한 결과식을 고르는 객관식",
+  "after": "엔진이 새 계수로 만든 상수배 이차식의 뺄셈을 정리한 결과식을 고르는 객관식",
+  "sharedConcept": "이차식의 덧셈과 뺄셈",
+  "sharedProcedure": "분배법칙으로 전개 → 괄호 앞 부호 처리 → 동류항 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "분배법칙",
+   "동류항의 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A71-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "상수배한 이차식의 뺄셈",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|다항식의 계산|02",
+   "seed": 2272170664,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+   "authorRationale": "상수배한 두 이차식의 뺄셈을 전개·정리해 결과식을 묻는 꼴이 견본과 같고, 파생기로 결과식을 고르는 객관식이 된다",
+   "facts": {
+    "kind": 1,
+    "k1": -2,
+    "k2": -3
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "overlap4": 0.222,
+   "longestRun": 8,
+   "residualChars": 88,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

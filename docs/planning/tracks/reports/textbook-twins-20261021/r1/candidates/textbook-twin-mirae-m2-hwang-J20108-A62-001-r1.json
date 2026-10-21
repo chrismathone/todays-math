@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 11,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A62-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 등식이 성립하도록 □ 안에 들어갈 식을 구하시오.\n$\\square\\div\\frac{2}{3}ab\\times a^{2}b=12a^{3}b^{2}-18a^{2}b^{3}$",
+ "choices": [],
+ "answer": "$8a^{2}b^{2}-12ab^{3}$",
+ "solution": "$\\square\\div\\frac{2}{3}ab\\times a^{2}b=\\square\\times\\frac{3}{2ab}\\times a^{2}b=\\square\\times\\frac{3}{2}a$이다.\n따라서 $\\square=(12a^{3}b^{2}-18a^{2}b^{3})\\div\\frac{3}{2}a=(12a^{3}b^{2}-18a^{2}b^{3})\\times\\frac{2}{3a}$이다.\n계산하면 $\\square=8a^{2}b^{2}-12ab^{3}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-e693179aa51c3231-1-6",
+  "problemCode": "J20108-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "206c4f6c0d42e7279860de32f63764deffd4fe3e840c0c445d048e38f86dbe11",
+  "dbContentSha256": "b69767576893da1d80bb3f9c1cd993ba7c9b44d14deef4c43cd068bdcf38c134",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-5_단항식과다항식의곱셈과나눗셈.hwp",
+    "sha256": "cd5fdece8c2aaf7375b2b11cf26628221cb7985b0db94a0dd51eaf97bac2f67f",
+    "bytes": 296960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분수 계수 단항식을 곱하고 단항식으로 나눈 결과가 주어질 때 가운데 빈 식을 역산한다.",
+  "after": "먼저 분수 계수 단항식으로 나누고 단항식을 곱하는 순서로 바꾸어, 빈 식이 맨 앞에 오게 했다.",
+  "sharedConcept": "단항식 곱셈·나눗셈의 역연산으로 미지의 식 구하기",
+  "sharedProcedure": "빈 식에 걸린 연산을 하나의 단항식 곱으로 묶기 → 결과를 그 단항식으로 나누기 → 분배"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "역수",
+   "단항식의 곱셈과 나눗셈",
+   "다항식을 단항식으로 나누기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A62-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱셈·나눗셈이 섞인 등식에서 빈 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 47,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

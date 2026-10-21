@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3c0bf8cb-791a-43ba-b99b-40a1d2d2aaeb",
+ "startedAt": "2026-10-21T17:09:55+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "fig-1.png": "f7f26402e765120cc0af71c2a3d0c950e9f2d30f8f9e28330c0582622737f45f",
+  "student.json": "513658dce707223f72490cfac22a04cbec383148c7e9e785f078b37416ab2de9"
+ },
+ "promptSha256": "0430319f3398c9e0937010a40e67ddfb5f6f7a4b37586f822ff7ffabecf1a635",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"ㄱ과 ㅂ: SAS 닮음(△ABC∽△PQR), ㄴ과 ㅁ: AA 닮음(△DEF∽△MON), ㄷ과 ㄹ: SSS 닮음(△GHI∽△KJL)\", \"work\": \"ㄱ·ㅂ: AB:PQ=3:9=1:3, BC:QR=5:15=1:3이고 끼인각 ∠B=∠Q=50°이므로 SAS 닮음이다. ㄴ·ㅁ: ∠D=180°−45°−70°=65°이고 ∠M=180°−65°−70°=45°이다. 따라서 ∠E=∠M=45°, ∠F=∠N=70°이므로 AA 닮음이다. ㄷ·ㄹ: GH:KJ=10:5, GI:KL=14:7, HI:JL=18:9로 세 변의 비가 모두 2:1이므로 SSS 닮음이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "ㄱ과 ㅂ: SAS 닮음(△ABC∽△PQR), ㄴ과 ㅁ: AA 닮음(△DEF∽△MON), ㄷ과 ㄹ: SSS 닮음(△GHI∽△KJL)",
+  "work": "ㄱ·ㅂ: AB:PQ=3:9=1:3, BC:QR=5:15=1:3이고 끼인각 ∠B=∠Q=50°이므로 SAS 닮음이다. ㄴ·ㅁ: ∠D=180°−45°−70°=65°이고 ∠M=180°−65°−70°=45°이다. 따라서 ∠E=∠M=45°, ∠F=∠N=70°이므로 AA 닮음이다. ㄷ·ㄹ: GH:KJ=10:5, GI:KL=14:7, HI:JL=18:9로 세 변의 비가 모두 2:1이므로 SSS 닮음이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "75d1265dcd1ad4a4433178884999db65db9e38cd1340baaa91ea303543c224c0"
+}

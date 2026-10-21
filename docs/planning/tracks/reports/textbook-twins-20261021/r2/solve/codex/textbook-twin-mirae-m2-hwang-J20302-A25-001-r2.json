@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A25-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-bf89-7d62-a7e8-14f7fa525804",
+ "startedAt": "2026-10-21T18:51:47+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "602219bc0b8e45cb5003f9ccd27563a569d7ac4687ac337e72a399589306ec08"
+ },
+ "promptSha256": "4148a9493013f8cf65c434a49d4f0aca115cfa886e3d944e46590d91bac69bc7",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"첫째 식에서 y=7x-40이다.\\n둘째 식에 대입하면 8(7x-40)=11x-5이므로 45x=315, x=7이다.\\n따라서 y=49-40=9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫째 식에서 y=7x-40이다.\n둘째 식에 대입하면 8(7x-40)=11x-5이므로 45x=315, x=7이다.\n따라서 y=49-40=9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1284cc24537461ae03cd59f99eb37ae102d4ac0f410b58931554810ede09c11d"
+}

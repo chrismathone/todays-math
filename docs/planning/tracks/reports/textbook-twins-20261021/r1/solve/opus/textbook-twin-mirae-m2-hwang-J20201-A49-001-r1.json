@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A49-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "edcfb88c-691f-4e44-aea7-73b077a26705",
+ "startedAt": "2026-10-21T16:25:15+0900",
+ "elapsedSec": 18.3,
+ "studentSha256": {
+  "student.json": "ec86e37284bacb77d0540a8f983f8d3791b221ddcaa4d4eb53355906a562f45e"
+ },
+ "promptSha256": "f94738c4f206f247f241285229ccb1329c0c3e814983340b59f1a11ab5ef6735",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①, ④\", \"work\": \"a<b에서 양변에 음수를 곱하면 부등호 방향이 바뀌고, 양수를 곱하면 그대로이다.\\n① -3a>-3b이므로 9-3a>9-3b (옳음)\\n② -4a>-4b이므로 2-4a>2-4b (틀림)\\n③ 3a<3b이므로 3a+9<3b+9 (틀림)\\n④ 5a<5b (옳음)\\n⑤ 2a<2b이므로 2a+4<2b+4 (틀림)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①, ④",
+  "work": "a<b에서 양변에 음수를 곱하면 부등호 방향이 바뀌고, 양수를 곱하면 그대로이다.\n① -3a>-3b이므로 9-3a>9-3b (옳음)\n② -4a>-4b이므로 2-4a>2-4b (틀림)\n③ 3a<3b이므로 3a+9<3b+9 (틀림)\n④ 5a<5b (옳음)\n⑤ 2a<2b이므로 2a+4<2b+4 (틀림)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "83b36d0d6d366ffe51e140fffc0fbc683f5ed55063456dd44a36409950c8f77f"
+}

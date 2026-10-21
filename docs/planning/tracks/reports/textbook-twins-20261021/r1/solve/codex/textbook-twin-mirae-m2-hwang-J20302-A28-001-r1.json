@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d85-d99c-7892-b7ce-0c335555e170",
+ "startedAt": "2026-10-21T17:13:35+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "48897b46a702f5f2ec94a763f2b7ce35f15390e95aece7eddf3bcffc86b18a15"
+ },
+ "promptSha256": "ad191e68f6c13e9a47b367a76fa8d00c19c507c5ec0e54e6044b9919b0a065b4",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 27, 3 ⑵ 지우 15살, 미나 12살\",\"work\":\"나이의 합은 27살이고 지우가 3살 더 많으므로 $x+y=27$, $x-y=3$이다. 두 식을 더하면 $2x=30$이므로 $x=15$이다. 따라서 $y=27-15=12$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 27, 3 ⑵ 지우 15살, 미나 12살",
+  "work": "나이의 합은 27살이고 지우가 3살 더 많으므로 $x+y=27$, $x-y=3$이다. 두 식을 더하면 $2x=30$이므로 $x=15$이다. 따라서 $y=27-15=12$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea38cd260487cab25894bc65a0f7795af7afc2bdf199e7a45adbec51043d6c11"
+}

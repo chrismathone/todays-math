@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A43-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15deb-6bce-7d91-a071-69852ccf0a09",
+ "startedAt": "2026-10-21T19:04:32+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "student.json": "ec0471883d0cceba16f7f22278f908deed75a80c50402f3e91a145ad5acae637"
+ },
+ "promptSha256": "bcdb9d86a7d89453740fcfb1c6e2a504368073c97ce2df487b73cb0e10349354",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"직선 PQ의 기울기는 $\\\\frac{-9-7}{2-(-6)}=-2$이다. 평행한 직선의 기울기도 같으므로 $y=-2x+b$로 놓는다. 점 R(8, -6)을 대입하면 $-6=-16+b$에서 $b=10$이므로 $y=-2x+10$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "직선 PQ의 기울기는 $\\frac{-9-7}{2-(-6)}=-2$이다. 평행한 직선의 기울기도 같으므로 $y=-2x+b$로 놓는다. 점 R(8, -6)을 대입하면 $-6=-16+b$에서 $b=10$이므로 $y=-2x+10$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6ee56489c1ab917dd4a8b70774fe308e9f295304939d8dbef2f4dfb04ac5a304"
+}

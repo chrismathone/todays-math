@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 161,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A53-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x$, $y$가 자연수일 때, 일차방정식 $4x=29-3y$ 의 해가 되는 순서쌍 $(x,\\ y)$ 를 다음에서 모두 고르면? (정답 $2$개)",
+ "choices": [
+  "$(1,\\ 8)$",
+  "$(2,\\ 7)$",
+  "$(3,\\ 6)$",
+  "$(4,\\ 4)$",
+  "$(5,\\ 3)$"
+ ],
+ "answer": "②, ⑤",
+ "solution": "각 순서쌍을 $4x=29-3y$ 에 대입하여 등식이 성립하는지 확인한다.\n① $4\\times 1=4$, $29-3\\times 8=5$ → 성립하지 않음\n② $4\\times 2=8$, $29-3\\times 7=8$ → 성립\n③ $4\\times 3=12$, $29-3\\times 6=11$ → 성립하지 않음\n④ $4\\times 4=16$, $29-3\\times 4=17$ → 성립하지 않음\n⑤ $4\\times 5=20$, $29-3\\times 3=20$ → 성립\n따라서 해인 것은 ②, ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-2",
+  "problemCode": "J20301-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "3aa6f566461471f694181a2ff3dd1054365721e8b4e85a655f9fab1072ae7a65",
+  "dbContentSha256": "96298d48048b7b462245a37bdc6b89cf49f8c40db4c8cef58659f4558acf05fc",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "좌변에 두 문자가 모두 있는 일차방정식과 순서쌍 다섯을 주고, 대입해 등식이 성립하는 둘을 고른다.",
+  "after": "한 문자가 우변으로 넘어간 꼴의 일차방정식을 주고, 양변을 각각 계산해 값이 같아지는 순서쌍 둘을 고른다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 해(순서쌍)",
+  "sharedProcedure": "순서쌍을 식에 대입 → 양변 값 계산 → 등식 성립 여부 판정 → 성립하는 것 모두 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "문자에 수 대입하여 식의 값 구하기",
+   "순서쌍",
+   "일차방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A53-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순서쌍이 일차방정식의 해인지 대입으로 확인하기(둘 고르기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 9개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.2,
+   "longestRun": 8,
+   "residualChars": 68,
+   "params": 9,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

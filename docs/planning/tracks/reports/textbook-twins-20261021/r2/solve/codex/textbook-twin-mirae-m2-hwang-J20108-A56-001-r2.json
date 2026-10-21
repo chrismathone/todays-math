@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A56-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7a-7d50-7893-8302-515c5441de20",
+ "startedAt": "2026-10-21T17:01:10+0900",
+ "elapsedSec": 26.6,
+ "studentSha256": {
+  "student.json": "8d83468eb05b226c9813b3958e7d3f0277d8b1eb2d57c7b93ab148013f4c9934"
+ },
+ "promptSha256": "1059f01712c1f2f1e750783a2642992898b977fde3aa7b97328ebbd90f7d8709",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$\",\n  \"work\": \"분배법칙으로 괄호 밖의 항을 괄호 안의 각 항에 곱한다.\\n계수끼리 곱하고, 같은 문자의 곱은 제곱으로 나타낸다. 특히 ⑶에서 (-7x)×(-6y)=42xy이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $56m^2-72m$ ⑵ $-54pq-63q^2$ ⑶ $-56x^2+42xy-63x$ ⑷ $54ab-42b^2-48b$",
+  "work": "분배법칙으로 괄호 밖의 항을 괄호 안의 각 항에 곱한다.\n계수끼리 곱하고, 같은 문자의 곱은 제곱으로 나타낸다. 특히 ⑶에서 (-7x)×(-6y)=42xy이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a414c01ce8dd8babbdcd384af459ba29c32ecd28692090e427f29ad4a61c6701"
+}

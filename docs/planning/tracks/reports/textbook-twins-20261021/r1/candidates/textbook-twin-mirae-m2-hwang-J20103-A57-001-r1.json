@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 63,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A57-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x=1.07\\dot{3}$ 이라 하자. 이 순환소수를 분수로 고치기 위해 소수점 아래 부분이 같아지는 두 식을 만들어 변끼리 빼려고 한다. 이때 이용해야 하는 식은?",
+ "choices": [
+  "$100x-x$",
+  "$100x-10x$",
+  "$1000x-x$",
+  "$1000x-10x$",
+  "$1000x-100x$"
+ ],
+ "answer": "⑤",
+ "solution": "$x=1.07333\\cdots$ 의 양변에 $100$, $1000$ 을 각각 곱하면 $100x=107.333\\cdots$, $1000x=1073.333\\cdots$ 이다. 두 식의 소수점 아래 부분이 같으므로 $1000x-100x=966$ 을 이용하면 $x=\\frac{966}{900}=\\frac{161}{150}$ 이 된다. 따라서 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-9",
+  "problemCode": "J20103-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "57da0e3ebbb508bbd87bd413b0d7793995a1b2e1ca97b0c26d19d162455fbc28",
+  "dbContentSha256": "1d02e84f46add4e94bc40d969e355b97969000491c09d25c65990995f67db6fe",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "소수점 아래 순환하지 않는 자리가 한 자리, 순환마디가 두 자리인 순환소수를 주고 분수로 고칠 때 빼야 하는 두 식의 조합을 고르게 한다.",
+  "after": "순환하지 않는 자리가 두 자리, 순환마디가 한 자리인 순환소수로 바꾸어 같은 방식으로 필요한 식을 고르게 한다. 보기의 짝도 새로 배치한다.",
+  "sharedConcept": "순환소수를 분수로 나타낼 때 10의 거듭제곱을 곱해 소수 부분을 같게 만드는 원리",
+  "sharedProcedure": "순환하지 않는 자리 수와 순환마디 길이 확인 → 소수 부분이 같아지는 두 거듭제곱 결정 → 두 식의 차 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수의 표현(순환마디)",
+   "소수에 10의 거듭제곱 곱하기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A57-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 분수로 고칠 때 필요한 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "overlap4": 0.151,
+   "longestRun": 10,
+   "residualChars": 99,
+   "params": 4,
+   "numberRetention": 0.75,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

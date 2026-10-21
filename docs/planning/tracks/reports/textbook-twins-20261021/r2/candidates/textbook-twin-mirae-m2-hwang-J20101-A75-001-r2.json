@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 81,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r2",
+ "authorId": "claude-fable-5-1:cef3f8ca-4fa9-4248-ae4e-f6cf967fc569",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "순환소수 $0.4\\dot{2}\\dot{7}$에 두 자리 자연수 $a$를 곱한 수를 소수로 나타내었더니 유한소수가 되었다. 이때 가능한 $a$의 값은 모두 몇 개인가?",
+ "choices": [
+  "$3$",
+  "$5$",
+  "$8$",
+  "$9$",
+  "$10$"
+ ],
+ "answer": "④",
+ "solution": "$x=0.4\\dot{2}\\dot{7}$이라 하면 $10x=4.2727\\cdots$, $1000x=427.2727\\cdots$이므로 변끼리 빼면 $990x=423$, $x=\\frac{423}{990}=\\frac{47}{110}$이다. $110=2\\times5\\times11$이므로 $\\frac{47\\times a}{2\\times5\\times11}$이 유한소수가 되려면 $a$는 $11$의 배수이어야 한다. 두 자리 자연수 중 $11$의 배수는 $11,~22,~\\ldots,~99$의 $9$개이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-13",
+  "problemCode": "J20101-A75-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "ce22554de0c35d85585fb30fde81f25038cd4718cb31b9ad3da6365b7cf8ccb3",
+  "dbContentSha256": "61c77eb904b9e1b175feac2c88a14fffd9a050d2e3593f7b3f63ac73e215014b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "한 자리 비순환부와 두 자리 순환마디를 가진 순환소수에 두 자리 자연수를 곱해 유한소수가 되게 하는 자연수의 개수를 다섯 보기에서 고른다. 분수로 고치면 분모가 2·5·11 꼴이 되어 11의 배수를 센다.",
+  "after": "같은 꼴(비순환부 한 자리 · 순환마디 두 자리)의 새 순환소수를 쓰되, 곱한 결과가 유한소수였다는 상황으로 서술하고 가능한 두 자리 자연수의 개수를 묻는다. 990으로 나눈 뒤 9로 약분해 분모 2·5·11을 얻고 11의 배수를 세는 부담을 원본과 같게 맞췄다.",
+  "sharedConcept": "순환소수를 분수로 나타내기와 유한소수가 되기 위한 기약분수 분모의 조건",
+  "sharedProcedure": "10x, 1000x를 만들어 빼기 → 분수로 고쳐 약분 → 분모를 소인수분해 → 2, 5 이외의 소인수를 없애는 a의 조건 세우기 → 두 자리 배수의 개수 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "유한소수로 나타낼 수 있는 분수의 조건",
+   "소인수분해와 배수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A75-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수에 자연수를 곱해 유한소수가 되게 하는 두 자리 자연수의 개수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.14,
+   "longestRun": 7,
+   "residualChars": 53,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

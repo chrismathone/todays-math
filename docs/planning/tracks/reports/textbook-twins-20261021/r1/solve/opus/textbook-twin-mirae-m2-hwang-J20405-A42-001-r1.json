@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "fe06b0bf-a77b-41ca-b777-46d6a2f34c19",
+ "startedAt": "2026-10-21T17:03:58+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "4015cdb4c50733a7c077e5e1285dacdad42fa72660196a2997283913c2df574f"
+ },
+ "promptSha256": "e1018354a71f61db258502d021655af1063505fe0bc77596d85f32cd41841f5a",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"기울기 a=-3/5, y절편 b=4 → y=ax+b 에 대입하면 y=-\\\\frac{3}{5}x+4\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "기울기 a=-3/5, y절편 b=4 → y=ax+b 에 대입하면 y=-\\frac{3}{5}x+4",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5d75423e87319b435cfbb37ae2ed384fc91423f6cc04444ef80dc4041d47fbb0"
+}

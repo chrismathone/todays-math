@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 266,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r1",
+ "authorId": "middle-engine:2-2|삼각형의 성질|70",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "$\\overline{AB}=\\overline{AC}$인 이등변삼각형 $ABC$에서 $\\angle B=51^\\circ$일 때, $\\angle A$의 크기를 구하시오.",
+ "choices": [
+  "$88^\\circ$",
+  "$78^\\circ$",
+  "$39^\\circ$",
+  "$76^\\circ$",
+  "$77^\\circ$"
+ ],
+ "answer": "②",
+ "solution": "이등변삼각형의 두 밑각의 크기는 같으므로 $\\angle C=\\angle B=51^\\circ$이다.\n세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle A=180^\\circ-2\\times51^\\circ=78^\\circ$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-1",
+  "problemCode": "J20501-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "9561047fea9625f9a173853005e93a3215220a3dc76b770493efadd056dff2ab",
+  "dbContentSha256": "7592571070b62fc7f372f4df809fada127abee1bb87a22a42cbe2b6e325215db",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "e4ac53f38ac3b4424579e7c1299ea34ba10a72717c70bfbfb75487eab337274d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers"
+  ],
+  "before": "두 변이 같은 삼각형에서 밑각 하나를 주고 꼭지각을 고르는 객관식",
+  "after": "엔진이 밑각 값을 새로 정해 꼭지각을 값 묻는 객관식으로 만든다",
+  "sharedConcept": "이등변삼각형의 두 밑각의 크기는 같다",
+  "sharedProcedure": "밑각 둘이 같음 → 180°에서 밑각의 두 배를 뺌"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "이등변삼각형의 성질"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 합",
+   "이등변삼각형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20501-A65-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "밑각이 주어진 이등변삼각형의 꼭지각",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8454ebb1-e405-4c44-8b29-5b18852255ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|삼각형의 성질|70",
+   "seed": 243139004,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:0786f382-78f7-4957-86a1-9f1bb1a972b1",
+   "authorRationale": "밑각 하나가 주어진 이등변삼각형의 꼭지각을 구하는 한 단계 문항 — 원본 그림은 조건을 되풀이하는 보조 그림이라 그림 없는 견본과 풀이 절차 · 물음 꼴(값 묻는 객관식)이 같다",
+   "facts": {
+    "base": 51,
+    "apex": 78
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.49",
+    "이어진 같은 글 22자"
+   ],
+   "overlap4": 0.487,
+   "longestRun": 22,
+   "residualChars": 42,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A40-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "629b52ce-daa7-44f5-a26d-7d5ce5a51b76",
+ "startedAt": "2026-10-21T16:27:01+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "8ae0adce2212c313b4c36ba6231d9b4968ab8921318dbbda5adbd0356a9d6942"
+ },
+ "promptSha256": "70de03eb0b785e41fe2e9936efb32c16fd45965292bfffda0641ba99889da94c",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"7\", \"work\": \"양변에 10을 곱하면 5(x+a)-2(x-3)<40이므로 3x<34-5a, 즉 x<(34-5a)/3이다. 이 부등식을 만족시키는 자연수 x가 하나도 없으려면 (34-5a)/3≤1이어야 한다. 따라서 34-5a≤3, 5a≥31, a≥6.2이므로 정수 a의 최솟값은 7이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "양변에 10을 곱하면 5(x+a)-2(x-3)<40이므로 3x<34-5a, 즉 x<(34-5a)/3이다. 이 부등식을 만족시키는 자연수 x가 하나도 없으려면 (34-5a)/3≤1이어야 한다. 따라서 34-5a≤3, 5a≥31, a≥6.2이므로 정수 a의 최솟값은 7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4a9e00cbda02a54ca04021f9a0954d04a02049912a68f4f641c1c6a2ddb3afc7"
+}

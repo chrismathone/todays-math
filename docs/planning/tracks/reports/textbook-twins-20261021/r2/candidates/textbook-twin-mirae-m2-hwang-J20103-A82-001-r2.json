@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 69,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A82-001-r2",
+ "authorId": "claude-fable-5-1:94d85e60-ca98-4232-92d5-e03d6c5ee826",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A82-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아가 분수 $\\frac{75\\times 396+2731}{9900}$ 을 소수로 고쳐 쓰면 끝없이 이어지는 순환소수가 된다. 이 소수의 소수점 아래 $83$ 번째 자리에 놓이는 숫자를 쓰시오.",
+ "choices": [],
+ "answer": "$5$",
+ "solution": "$75\\times 396=29700=3\\times 9900$ 이므로 $\\dfrac{75\\times 396+2731}{9900}=3+\\dfrac{2731}{9900}$ 이다. $\\dfrac{2731}{9900}=0.27585858\\cdots=0.27\\dot{5}\\dot{8}$ 이므로 주어진 수는 $3.27\\dot{5}\\dot{8}$ 이다. 소수점 아래 셋째 자리부터 순환마디 $58$ 이 되풀이되므로 $83-2=81=2\\times 40+1$ 에서 $83$ 번째 자리에는 순환마디의 첫째 숫자가 온다. 따라서 구하는 숫자는 $5$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-12",
+  "problemCode": "J20103-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "8cc00e71f7b30cf7157cc4e1767bd1508b00cb7fcf0e3f5158ccf24e69b95b08",
+  "dbContentSha256": "0a8fe93dac244291c5a741c47c198ced7618f4e23d0d4a559d080145b2c9a611",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "context"
+  ],
+  "before": "분모가 990 인 분수(분자는 '정수×99+세 자리 수' 꼴)를 소수로 고쳐 정수 부분을 떼면 소수점 아래 첫째 자리 하나만 순환하지 않고 그 뒤로 두 자리 순환마디가 반복된다. 소수점 아래 100번째 자리 숫자를 묻는다.",
+  "after": "분모가 9900 인 분수(분자는 '두 수의 곱+네 자리 수' 꼴)를 소수로 고쳐 정수 부분을 떼면 소수점 아래 두 자리가 순환하지 않고 그 뒤로 두 자리 순환마디가 반복된다. 인물이 소수로 고치는 장면으로 바꾸고 소수점 아래 83번째 자리 숫자를 묻는다. 99 · 990 을 쓰지 않아 원본의 수를 하나도 물려받지 않는다.",
+  "sharedConcept": "분수를 순환소수로 나타내기와 순환마디를 이용해 소수점 아래 n번째 자리 숫자 찾기",
+  "sharedProcedure": "분자의 곱 부분이 분모의 배수임을 보고 정수 부분 분리 → 남은 진분수를 소수로 고쳐 순환마디와 순환하지 않는 자리 수 확인 → (n − 순환하지 않는 자리 수)를 순환마디 길이로 나눈 나머지로 자리 숫자 판정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환소수와 순환마디",
+   "순환소수의 점 표기",
+   "나눗셈의 몫과 나머지"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A82-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수를 순환소수로 고쳐 소수점 아래 n번째 자리 숫자 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.077,
+   "longestRun": 5,
+   "residualChars": 68,
+   "params": 5,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

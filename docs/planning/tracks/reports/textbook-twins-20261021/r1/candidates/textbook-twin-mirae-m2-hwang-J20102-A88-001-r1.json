@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 62,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A88-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중에서 순환소수를 순환마디에 점을 찍어 옳게 나타낸 것은?",
+ "choices": [
+  "$0.030303\\cdots=0.0\\dot{3}$",
+  "$0.4444\\cdots=0.\\dot{4}\\dot{4}$",
+  "$5.085085\\cdots=5.0\\dot{8}5\\dot{0}$",
+  "$0.002002\\cdots=0.00\\dot{2}$",
+  "$1.605605\\cdots=1.\\dot{6}0\\dot{5}$"
+ ],
+ "answer": "⑤",
+ "solution": "순환마디의 양 끝 숫자 위에 점을 찍되, 순환마디에 $0$이 들어가면 그 $0$도 순환마디의 일부로 본다. ①은 순환마디가 $03$이므로 $0.\\dot{0}\\dot{3}$, ②는 순환마디가 $4$이므로 $0.\\dot{4}$, ③은 순환마디가 $085$이므로 $5.\\dot{0}8\\dot{5}$, ④는 순환마디가 $002$이므로 $0.\\dot{0}0\\dot{2}$로 나타내야 한다. ⑤는 순환마디가 $605$이므로 $1.\\dot{6}0\\dot{5}$가 옳다. 따라서 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f51412c6202b9b52-0-3",
+  "problemCode": "J20102-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "086f4ef38e82371c38cec4a8752ea4926a886dddc4613f074248375465ebe26e",
+  "dbContentSha256": "37be17ea7f93e88ee6f3cff4b7f5bd3a6984a7274835bb034481bb0fd52d1129",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-1_유리수와소수.hwp",
+    "sha256": "6116d73a7cc205ab4e6c5e43a9c96de78b2253a917ea5d1cc5e514550885fe68",
+    "bytes": 39424
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "0이 섞인 순환소수 다섯 개에 점 표기를 붙여 놓고, 0을 순환마디에서 빠뜨리거나 숫자 하나짜리 순환마디에 점을 둘 찍은 오류 속에서 옳은 것을 고른다.",
+  "after": "새 순환소수 다섯 개로 같은 오류 유형을 배치하되, 정답 항목을 0이 순환마디 가운데에 들어가는 꼴로 바꾸었다.",
+  "sharedConcept": "0이 포함된 순환마디의 점 표기 규칙",
+  "sharedProcedure": "각 소수의 순환마디 찾기(0 포함 여부 판단) → 올바른 점 표기 쓰기 → 주어진 표기와 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "순환소수와 순환마디",
+   "순환소수의 기호 표현"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A88-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "0이 포함된 순환소수의 점 표기 옳은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "이어진 같은 글 24자"
+   ],
+   "overlap4": 0.295,
+   "longestRun": 24,
+   "residualChars": 89,
+   "params": 10,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

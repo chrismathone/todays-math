@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e3568a03-16d8-4f76-bb56-3e35a1090ba1",
+ "startedAt": "2026-10-21T16:25:03+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "08d8dc61dfeeaead89cc10afe0494b411cf5fd6c29e19e82a55ad8634058d4de"
+ },
+ "promptSha256": "42d8ddce8eb29b65c3e337a297f0685b1d3dc2700a9293395d3125e86335fc6c",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"① (-2)^3 a^{12} = -8a^{12} 옳음. ② x^5y^{15} 옳음. ③ 짝수 거듭제곱이므로 a^4/b^4 옳음. ④ (2a^2b)^4 = 2^4 a^8 b^4 = 16a^8b^4 이므로 8a^8b^4 는 틀림. ⑤ x^3y^6/27 옳음.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "① (-2)^3 a^{12} = -8a^{12} 옳음. ② x^5y^{15} 옳음. ③ 짝수 거듭제곱이므로 a^4/b^4 옳음. ④ (2a^2b)^4 = 2^4 a^8 b^4 = 16a^8b^4 이므로 8a^8b^4 는 틀림. ⑤ x^3y^6/27 옳음.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "473596e064225652aa460cd3282e53d9bb235c08b2708890f1e9b2e0e0a3e49c"
+}

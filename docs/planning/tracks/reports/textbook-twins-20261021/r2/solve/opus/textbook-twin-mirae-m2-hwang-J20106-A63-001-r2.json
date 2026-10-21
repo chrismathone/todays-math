@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A63-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "931ad64b-8d6a-4353-b8e0-75ac552cc028",
+ "startedAt": "2026-10-21T16:55:32+0900",
+ "elapsedSec": 6.3,
+ "studentSha256": {
+  "student.json": "23372233bf6e21746f4aaffcf7b793b23fb8f467bb060b23bb71332cbd61ed75"
+ },
+ "promptSha256": "631a287276074a16763a990760c50c6e34b0271aa6b839107742b96d515e64bf",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$\", \"work\": \"⑴ 계수끼리 곱하면 7×8=56이므로 $56p^6q^9$이다. ⑵ 지수법칙에 따라 m은 $m^{8+6}=m^{14}$, n은 $n^{7+9}=n^{16}$이 되어 $-6m^{14}n^{16}$이다. ⑶ $(y^6/x^3)^2=y^{12}/x^6$이므로 $9x^6y^7\\\\times y^{12}/x^6=9y^{19}$이다. ⑷ $(-7a^9b^6)^2=49a^{18}b^{12}$이고 $(b^7/a^8)^2=b^{14}/a^{16}$이므로 곱하면 $49a^{2}b^{26}$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $56p^{6}q^{9}$ ⑵ $-6m^{14}n^{16}$ ⑶ $9y^{19}$ ⑷ $49a^{2}b^{26}$",
+  "work": "⑴ 계수끼리 곱하면 7×8=56이므로 $56p^6q^9$이다. ⑵ 지수법칙에 따라 m은 $m^{8+6}=m^{14}$, n은 $n^{7+9}=n^{16}$이 되어 $-6m^{14}n^{16}$이다. ⑶ $(y^6/x^3)^2=y^{12}/x^6$이므로 $9x^6y^7\\times y^{12}/x^6=9y^{19}$이다. ⑷ $(-7a^9b^6)^2=49a^{18}b^{12}$이고 $(b^7/a^8)^2=b^{14}/a^{16}$이므로 곱하면 $49a^{2}b^{26}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9760e4a6318649d9bfc94f2fc8a2da61e5c3bbe73f42bf90c4dfa5ee983b7f72"
+}

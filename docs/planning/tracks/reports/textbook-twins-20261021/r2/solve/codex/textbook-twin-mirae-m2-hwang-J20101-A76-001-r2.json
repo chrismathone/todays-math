@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A76-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd3-3253-7f73-9a7b-d92a3c42dcc4",
+ "startedAt": "2026-10-21T18:38:04+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "a0f7f48dd03f9a6799d79d02f5313dd6d21473be12b2fc19bcef2e09c8319c9a"
+ },
+ "promptSha256": "75cd643e43477bab0d9cc6711b0d3bd8023cddd5579353cbb246e7080a266fb6",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"37\",\"work\":\"기약분수의 분모 n은 90의 약수이고, 유한소수로 나타낼 수 있으므로 소인수가 2와 5뿐이다. 가능한 n은 1, 2, 5, 10이며, 두 자리이므로 n=10이다. m/90=3/10에서 m=27이므로 m+n=37이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "37",
+  "work": "기약분수의 분모 n은 90의 약수이고, 유한소수로 나타낼 수 있으므로 소인수가 2와 5뿐이다. 가능한 n은 1, 2, 5, 10이며, 두 자리이므로 n=10이다. m/90=3/10에서 m=27이므로 m+n=37이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9aa29026eee12468431ffb447cff4877b58b47461822196f71db9eb65f08da6b"
+}

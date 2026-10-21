@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d55-a56f-7e50-bbb0-db682dd9cdb5",
+ "startedAt": "2026-10-21T16:20:56+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "6d0c0230fd157e3435abb751328e64b5aa5ad1a9adaaaee7075d86b5d66acb85"
+ },
+ "promptSha256": "34780f91207fa21ed1cae4407807ac2c8a47153c169c7889fa24fb9ec76629b1",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$16x^2-12xy$\",\"work\":\"어떤 식은 나누는 식과 몫을 곱하여 구한다.\\n$4x(4x-3y)=16x^2-12xy$\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$16x^2-12xy$",
+  "work": "어떤 식은 나누는 식과 몫을 곱하여 구한다.\n$4x(4x-3y)=16x^2-12xy$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "355e6b413bc893fe04532fd737abb420cefbaae31be6d4957282881f105b96f3"
+}

@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 147,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r2",
+ "authorId": "claude-opus-5-5:c0023a99-d0a9-4c83-af56-f9e35b85d214",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "두 일차부등식 $\\frac{2}{3}x+\\frac{3}{4}>x-\\frac{1}{6}$, $0.6(x+3)\\le 0.3(3x+10)$의 해가 차례로 $x<a$, $x\\ge b$일 때, $ab$의 값은?",
+ "choices": [
+  "$-16$",
+  "$-11$",
+  "$-4$",
+  "$4$",
+  "$11$"
+ ],
+ "answer": "②",
+ "solution": "첫째 부등식의 양변에 $12$를 곱하면 $8x+9>12x-2$이다. $9$와 $12x$를 각각 이항하여 정리하면 $-4x>-11$이고, 양변을 $-4$로 나누면 부등호의 방향이 바뀌어 $x<\\frac{11}{4}$이다. 즉 $a=\\frac{11}{4}$이다.\n둘째 부등식의 양변에 $10$을 곱하면 $6(x+3)\\le 3(3x+10)$이고, 괄호를 풀면 $6x+18\\le 9x+30$이다. $18$과 $9x$를 각각 이항하여 정리하면 $-3x\\le 12$이고, 양변을 $-3$으로 나누면 부등호의 방향이 바뀌어 $x\\ge -4$이다. 즉 $b=-4$이다.\n따라서 $ab=\\frac{11}{4}\\times(-4)=-11$이므로 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-5",
+  "problemCode": "J20202-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "fbfcd9a2fb4455c980cd51b745891c0bc70538f12dcfbc2c6f12e836405faa71",
+  "dbContentSha256": "0e3752525108c0197c45cde0370d10001076030ef10c932d6811b8ce9233ed92",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "소수 계수 · 괄호가 있는 부등식을 먼저, 분수 계수 부등식을 나중에 주고, 해를 각각 x>a, x≤b 꼴로 둔 뒤 두 경계값의 곱을 묻는다. 두 부등식 모두 마지막에 음수로 나누어 부등호 방향이 바뀐다.",
+  "after": "분수 계수 부등식을 먼저, 소수 계수 · 괄호가 있는 부등식을 나중에 두고(순서를 바꿈), 해를 각각 x<a, x≥b 꼴로 둔 뒤 두 경계값의 곱을 묻는다. 두 부등식 모두 음수로 나누는 단계가 있어 부등호 방향을 바꾸어야 한다.",
+  "sharedConcept": "계수가 소수 또는 분수인 일차부등식의 풀이(음수로 나눌 때 부등호 방향이 바뀜)",
+  "sharedProcedure": "양변에 10 또는 분모의 최소공배수를 곱해 계수를 정수로 고침 → 괄호를 풀고 이항하여 정리 → 음수인 x의 계수로 양변을 나누며 부등호 방향을 바꿈 → 해의 경계값 a, b를 읽음 → ab 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질(음수를 곱하거나 나누면 부등호 방향이 바뀜)",
+   "이항",
+   "분배법칙",
+   "최소공배수",
+   "유리수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 분수 · 소수인 두 일차부등식의 해에서 경계값의 곱 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 9개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.067,
+   "longestRun": 5,
+   "residualChars": 63,
+   "params": 9,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

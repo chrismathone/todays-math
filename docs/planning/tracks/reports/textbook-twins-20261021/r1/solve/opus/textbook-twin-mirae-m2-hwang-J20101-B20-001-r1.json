@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B20-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "347537a4-f104-452e-8152-548b42bb9975",
+ "startedAt": "2026-10-21T16:22:52+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "student.json": "adf7909db1d1ac8f6aff424c3db3723b38e0dd9bbc0e1c1ed81daa6060c4cef2"
+ },
+ "promptSha256": "6ef64b09ed96d4471f16d83051bfb789be9b78d79975a42888958e86571824d9",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ⑤\", \"work\": \"분자가 7이므로, 약분한 뒤 분모의 소인수가 2와 5뿐이려면 a의 소인수는 2, 5, 7 가운데서만 나와야 하고 7은 한 번까지만 있을 수 있다. 9=3², 18=2×3², 21=3×7은 소인수 3이 약분되지 않고 남는다. 14=2×7이면 7/(2³×5²), 35=5×7이면 7/(2²×5³)이 되어 유한소수이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "분자가 7이므로, 약분한 뒤 분모의 소인수가 2와 5뿐이려면 a의 소인수는 2, 5, 7 가운데서만 나와야 하고 7은 한 번까지만 있을 수 있다. 9=3², 18=2×3², 21=3×7은 소인수 3이 약분되지 않고 남는다. 14=2×7이면 7/(2³×5²), 35=5×7이면 7/(2²×5³)이 되어 유한소수이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "79be9edbe8ada4156d4c3b4ae99db163e7ffe5dc0283b89467f014e3328db7f2"
+}

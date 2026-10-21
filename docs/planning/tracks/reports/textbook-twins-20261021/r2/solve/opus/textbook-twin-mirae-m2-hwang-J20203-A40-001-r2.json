@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A40-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5474c4e9-9784-4849-8da4-c4afd9651cdb",
+ "startedAt": "2026-10-21T17:08:37+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "bdd462474e3be0f7cf85d69aa21773e08cc7b547bd3a7fa183fdcd2be5af6f05"
+ },
+ "promptSha256": "b99ccf7cb13bbf919de046a82c8e14fe9e5eb319469c02726b46b66852cfb0c9",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"-3\", \"work\": \"양변에 15를 곱하면 5(2x-a) < 3(9-x)이므로 10x-5a < 27-3x, 13x < 27+5a, x < (27+5a)/13이다. 해 가운데 자연수가 하나도 없으려면 x=1이 해가 아니어야 하므로 (27+5a)/13 ≤ 1이다. 정리하면 5a ≤ -14, 즉 a ≤ -2.8이다. 이 조건을 만족하는 가장 큰 정수 a는 -3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "-3",
+  "work": "양변에 15를 곱하면 5(2x-a) < 3(9-x)이므로 10x-5a < 27-3x, 13x < 27+5a, x < (27+5a)/13이다. 해 가운데 자연수가 하나도 없으려면 x=1이 해가 아니어야 하므로 (27+5a)/13 ≤ 1이다. 정리하면 5a ≤ -14, 즉 a ≤ -2.8이다. 이 조건을 만족하는 가장 큰 정수 a는 -3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2d617f84cfd2eea56a5474fde1066428170a8a070a9dee12d765dc7d7d0a1814"
+}

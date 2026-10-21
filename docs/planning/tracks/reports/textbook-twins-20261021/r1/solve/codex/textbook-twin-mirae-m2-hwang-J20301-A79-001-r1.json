@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d75-8692-7002-ab27-3520e04736d2",
+ "startedAt": "2026-10-21T16:55:45+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "0d3cb01edca96682df804a7241cf0d1a7a2a3a55cb9c24c051cdbba9016a0b7f"
+ },
+ "promptSha256": "bbb30722458408e27a59e0f000db3cd7d33f2e02d54b9415b4c63c53bd995508",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"미지수가 2개인 일차방정식은 정리했을 때 $ax+by+c=0$ 꼴이다. ③은 양변의 $x^2$이 소거되어 $x+3y=0$이 되고, ①, ②, ④도 일차방정식이다. ⑤는 $x^2+x-y=0$으로 이차항이 남으므로 일차방정식이 아니다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "미지수가 2개인 일차방정식은 정리했을 때 $ax+by+c=0$ 꼴이다. ③은 양변의 $x^2$이 소거되어 $x+3y=0$이 되고, ①, ②, ④도 일차방정식이다. ⑤는 $x^2+x-y=0$으로 이차항이 남으므로 일차방정식이 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "845898388a2b6ad21a3ae1b93d9623e1007ed50e36c3b4bbfdb7ff9f891f0219"
+}

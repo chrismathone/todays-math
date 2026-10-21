@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d72-7ca1-7f03-a3f9-cb696c10cd54",
+ "startedAt": "2026-10-21T16:52:26+0900",
+ "elapsedSec": 17.7,
+ "studentSha256": {
+  "fig-1.png": "a38620d88b44413a3b58a53ee86096c6d7185674e458124abfd5c45a6fb0a142",
+  "student.json": "fde3e52ebcc82163fa6636f0f88d5bfa6cafba049f38df226cfa1e3de971dd0c"
+ },
+ "promptSha256": "145eedc7ad78aee01adf9ce83931de554b3b3b2bf0b46f9dbb0a64dca5376bb5",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"그림은 −4에서 열린 점이고 오른쪽 방향이므로 해는 $x>-4$이다. ④의 $ax+4a<0$을 음수 $a$로 나누면 부등호 방향이 바뀌어 $x+4>0$, 즉 $x>-4$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그림은 −4에서 열린 점이고 오른쪽 방향이므로 해는 $x>-4$이다. ④의 $ax+4a<0$을 음수 $a$로 나누면 부등호 방향이 바뀌어 $x+4>0$, 즉 $x>-4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "73117c3d4961bb48d0316d77d361b334c776ad4eda9742e5c416a997cd3516e7"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A69-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b5f81d4e-2687-4865-84ea-749e4f1b43ae",
+ "startedAt": "2026-10-21T16:55:01+0900",
+ "elapsedSec": 8.2,
+ "studentSha256": {
+  "student.json": "e86366ae1a43ca22a180ffd348ea4ce74ce03090cd24b900e7502bef0a44e7fe"
+ },
+ "promptSha256": "f7e6abdd3b6724511a347445447fd28180acf0f801ccc46c80c63cd43d253070",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"통분하면 (3(ax+7y)-2(8x+9y))/30 = ((3a-16)x+3y)/30. x의 계수 (3a-16)/30, y의 계수 3/30 = 1/10. 두 계수의 곱은 (3a-16)/300 = -1/60 이므로 3a-16 = -5, 따라서 a = 11/3.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "통분하면 (3(ax+7y)-2(8x+9y))/30 = ((3a-16)x+3y)/30. x의 계수 (3a-16)/30, y의 계수 3/30 = 1/10. 두 계수의 곱은 (3a-16)/300 = -1/60 이므로 3a-16 = -5, 따라서 a = 11/3.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "06c1c7c30d96f08fd99d4e9fc984df9a72c1e452c992dee207150660eab3c847"
+}

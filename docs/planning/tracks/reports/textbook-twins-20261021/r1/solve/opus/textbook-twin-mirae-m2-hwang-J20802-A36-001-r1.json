@@ -1,0 +1,35 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b5f28a39-3e68-4da8-b39c-7a0a478a0373",
+ "startedAt": "2026-10-21T17:11:11+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "fig-1.png": "30db20c660f22b7dbddded1a79083937ef8ba077cd9089a5db77bb4c0d40106e",
+  "student.json": "7d25af1f6807597083fdcee611617946a5449a1d53ede733961ef66528595b09"
+ },
+ "promptSha256": "5a1fa898d85e35261e6a00a97bf0cbc8bce708e389c243eff3d3a1837c2da9d5",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"25/4 cm\", \"work\": \"AD ∥ BC이므로 ∠ADB = ∠DBE(엇각)이다. 접었으므로 ∠ADB = ∠A'DB = ∠EDB이다. 따라서 ∠EBD = ∠EDB이고, △EBD는 EB = ED인 이등변삼각형이다. BE = x로 두면 ED = x, EC = 8 − x, CD = 6이다. 직각삼각형 ECD에서 x² = (8 − x)² + 6²이므로 16x = 100, x = 25/4이다. 따라서 BE = 25/4 cm이다. (점 F는 BD의 중점이고 BF = 5 cm, EF = 15/4 cm이지만, BE를 구하는 데는 필요하지 않다.)\", \"confidence\": \"high\", \"issues\": [\"그림에서 E라는 글자가 BC와 A'D의 교점보다 조금 아래(A' 쪽)에 찍혀 있다. 글에서는 E를 이 교점으로 정의하므로 글을 따랐다.\", \"점 F의 정보는 BE의 길이를 구하는 데 쓰이지 않는다.\"]}\n```",
+ "parsed": {
+  "answer": "25/4 cm",
+  "work": "AD ∥ BC이므로 ∠ADB = ∠DBE(엇각)이다. 접었으므로 ∠ADB = ∠A'DB = ∠EDB이다. 따라서 ∠EBD = ∠EDB이고, △EBD는 EB = ED인 이등변삼각형이다. BE = x로 두면 ED = x, EC = 8 − x, CD = 6이다. 직각삼각형 ECD에서 x² = (8 − x)² + 6²이므로 16x = 100, x = 25/4이다. 따라서 BE = 25/4 cm이다. (점 F는 BD의 중점이고 BF = 5 cm, EF = 15/4 cm이지만, BE를 구하는 데는 필요하지 않다.)",
+  "confidence": "high",
+  "issues": [
+   "그림에서 E라는 글자가 BC와 A'D의 교점보다 조금 아래(A' 쪽)에 찍혀 있다. 글에서는 E를 이 교점으로 정의하므로 글을 따랐다.",
+   "점 F의 정보는 BE의 길이를 구하는 데 쓰이지 않는다."
+  ]
+ },
+ "eventsSha256": "2ba73d824e72da4caa7087ec6d283a13065562f735b458aa9726c6c510584e28"
+}

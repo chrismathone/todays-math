@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B24-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-faa0-72b1-bafd-2b8ce99ed0a3",
+ "startedAt": "2026-10-21T18:29:05+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "34fb89bdc8554f102462652ed0a762d77895b822dcd3ad9f3892e057f86a384e"
+ },
+ "promptSha256": "ee4bde3ad4796ffd4fe65b879419bcc3d293ce800aeb445f4362a883c3ea511a",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"초록색 연필은 24−15=9자루이다.\\n따라서 초록색 연필이 나올 확률은 9/24=3/8이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "초록색 연필은 24−15=9자루이다.\n따라서 초록색 연필이 나올 확률은 9/24=3/8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fde08165a127df35aedde8cfd7bb13d6a92079e04ac19697b2e21bf24ac20c8d"
+}

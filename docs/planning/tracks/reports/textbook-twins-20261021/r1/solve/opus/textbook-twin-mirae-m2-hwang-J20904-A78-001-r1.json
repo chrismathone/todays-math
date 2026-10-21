@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A78-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "33e363a0-e7b1-44ab-b05b-df0b24a6bfd8",
+ "startedAt": "2026-10-21T17:12:22+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "1cf39f4441811e1c508e204a86e78b73aeba4cbf5aa8b95d3a174ea2b696f113"
+ },
+ "promptSha256": "ae6d157db964cc67150d1498141ee8aa9f091ee5bcc1b21e42ac551ff5d010dc",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{7}{20}$\", \"work\": \"4의 배수: 4, 8, 12, 16, 20 → 5개\\n9의 배수: 9, 18 → 2개\\n두 사건은 동시에 일어나지 않으므로(공배수 36 > 20) 확률은 5/20 + 2/20 = 7/20\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{7}{20}$",
+  "work": "4의 배수: 4, 8, 12, 16, 20 → 5개\n9의 배수: 9, 18 → 2개\n두 사건은 동시에 일어나지 않으므로(공배수 36 > 20) 확률은 5/20 + 2/20 = 7/20",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "585dbd4afb94de797d34bd02c470d9b48e3462ea9f36f6b3b4c7a3ad14e8e9e1"
+}

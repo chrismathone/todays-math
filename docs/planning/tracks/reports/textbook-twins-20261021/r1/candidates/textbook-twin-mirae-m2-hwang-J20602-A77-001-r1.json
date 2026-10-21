@@ -1,0 +1,143 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 307,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A77-001-r1",
+ "authorId": "claude-fable-5-1:2931dc34-4e49-41fe-ac80-64130cb78fe8",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n정삼각형 $ABC$의 변 $BC$ 위에 점 $E$, 변 $AC$ 위에 점 $D$가 있고 $\\angle AED=60^{\\circ}$이다. $\\overline{BE}=10\\,\\mathrm{cm}$, $\\overline{EC}=15\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$6\\,\\mathrm{cm}$",
+ "solution": "정삼각형이므로 $\\angle B=\\angle C=60^{\\circ}$이고 $\\overline{AB}=\\overline{BC}=10+15=25\\,(\\mathrm{cm})$이다. $\\triangle ABE$에서 $\\angle BAE=180^{\\circ}-60^{\\circ}-\\angle AEB=120^{\\circ}-\\angle AEB$이고, 점 $E$에서 $\\angle CED=180^{\\circ}-\\angle AEB-60^{\\circ}=120^{\\circ}-\\angle AEB$이므로 $\\angle BAE=\\angle CED$이다. 따라서 $\\triangle BEA \\backsim \\triangle CDE$($\\mathrm{AA}$ 닮음)이다. $\\overline{BE}:\\overline{CD}=\\overline{AB}:\\overline{EC}$에서 $10:\\overline{CD}=25:15$, $25\\overline{CD}=150$이다. 따라서 $\\overline{CD}=6\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A77-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A77-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-15",
+  "problemCode": "J20602-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 15,
+  "sourceContentSha256": "72795a4ea5ab918fcb83099b694e83aad54f46ff8bec8603ea1123742f6a4a00",
+  "dbContentSha256": "33e5f7731e95722c7e720864c236b1baea8550abf760db8ac381c31166c2c3c4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "05a39777c344807a41297ab68ee819d9606010cb863c186598aa7b22a456cfff"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "정삼각형의 밑변 위 한 점에서 꼭짓점으로 그은 선과 60°를 이루는 선분이 왼쪽 변과 만나는 점까지, 밑변의 왼쪽 꼭짓점에서 잰 길이를 묻는다. 밑변이 두 조각의 길이로 주어진다.",
+  "after": "60° 각을 반대쪽으로 벌려 오른쪽 변 위에 점을 잡고, 오른쪽 꼭짓점에서 그 점까지의 길이를 묻는다. 닮음 쌍이 좌우 바뀌고 밑변의 두 조각 길이가 새롭다.",
+  "sharedConcept": "정삼각형의 60°와 내각의 합을 이용한 AA 닮음",
+  "sharedProcedure": "60° 두 각 확인 → 내각의 합으로 나머지 한 쌍의 각이 같음을 보임 → AA 닮음 → 대응변의 비례식 → 길이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "정삼각형의 성질",
+   "삼각형의 내각의 합",
+   "삼각형의 닮음 조건(AA)",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A77-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정삼각형 안에서 60°로 꺾인 선분이 만드는 닮은 삼각형의 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.062,
+   "longestRun": 5,
+   "residualChars": 52,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

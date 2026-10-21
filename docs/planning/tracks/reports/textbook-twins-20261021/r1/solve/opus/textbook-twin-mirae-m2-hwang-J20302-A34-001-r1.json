@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A34-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4255e9ba-7fe5-4f0d-8ffc-c1b346c7b75e",
+ "startedAt": "2026-10-21T17:01:29+0900",
+ "elapsedSec": 6.6,
+ "studentSha256": {
+  "student.json": "b8eb4b95776727c50c8d7ad26acb2f72dddd68b744e76e378afe03ed1a3c3ec6"
+ },
+ "promptSha256": "e78754e8957188eb26c15666eb4c98cfea098f696453660ff850d5fe7f7ac132",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"① 15x-5y=35에 ㉡을 더하면 y가 소거되어 19x=38이 되므로 알맞다. ② 12x-4y=28과 12x+15y=9를 더하면 24x+11y=37이 되어 어떤 문자도 소거되지 않으므로 알맞지 않다. ③ 두 식을 빼면 x가 소거되어 -19y=19가 되므로 알맞다. ④ ㉠에서 y=3x-7을 얻어 대입하는 것은 옳은 대입법이다. ⑤ ㉡에서 4x=-5y+3이므로 x=-5/4y+3/4이고, 이를 대입하는 것은 옳은 대입법이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① 15x-5y=35에 ㉡을 더하면 y가 소거되어 19x=38이 되므로 알맞다. ② 12x-4y=28과 12x+15y=9를 더하면 24x+11y=37이 되어 어떤 문자도 소거되지 않으므로 알맞지 않다. ③ 두 식을 빼면 x가 소거되어 -19y=19가 되므로 알맞다. ④ ㉠에서 y=3x-7을 얻어 대입하는 것은 옳은 대입법이다. ⑤ ㉡에서 4x=-5y+3이므로 x=-5/4y+3/4이고, 이를 대입하는 것은 옳은 대입법이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5286f7e26474e70283404a0339cf6354dcfaf4f5eee75b1af7b84eb306d8d105"
+}

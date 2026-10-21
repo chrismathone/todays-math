@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dae-809c-7eb1-8f02-7580826e6c6b",
+ "startedAt": "2026-10-21T17:57:59+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "student.json": "17f3f6922ea28240b1e3416905efde80aaf5526acd3577f61f8c8e7a8c926d07"
+ },
+ "promptSha256": "612c77a472d1c7fc059f743667921ad9e09eaed386d5586ae546546e031c49c9",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"AB=AC인 이등변삼각형이므로 ∠C=∠B=51°이다.\\n삼각형의 내각의 합은 180°이므로 ∠A=180°-51°-51°=78°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AB=AC인 이등변삼각형이므로 ∠C=∠B=51°이다.\n삼각형의 내각의 합은 180°이므로 ∠A=180°-51°-51°=78°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4cab10fe754a0a7eb02b2fe077e4e11e01ba7c661c497a8b2b53c9ef51152320"
+}

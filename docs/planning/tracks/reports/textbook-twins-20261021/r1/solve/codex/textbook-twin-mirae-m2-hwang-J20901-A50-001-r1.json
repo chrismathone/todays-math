@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A50-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc5-e07a-74d0-9ccb-641e93882431",
+ "startedAt": "2026-10-21T18:23:31+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "7a39751df721fae0e1b2bf65ca7ea32ecf43e0f64022ac14a491f296f957427f"
+ },
+ "promptSha256": "6ea56044a73a50b09f4c415de8caa10aa541d673fbd7e629f145d24e832ba2d5",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"합이 3인 경우는 (1,2), (2,1)의 2가지이다.\\n합이 9인 경우는 (3,6), (4,5), (5,4), (6,3)의 4가지이다.\\n따라서 경우의 수는 2+4=6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "합이 3인 경우는 (1,2), (2,1)의 2가지이다.\n합이 9인 경우는 (3,6), (4,5), (5,4), (6,3)의 4가지이다.\n따라서 경우의 수는 2+4=6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "66a7bff4b550b8832934fefba11124a7144407dba82a6ef1297a13513876ef03"
+}

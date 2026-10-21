@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-09d0-7911-97d4-e4fc6deae2bc",
+ "startedAt": "2026-10-21T18:23:42+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "7bfc2c8a89efe298ba65b28d7394152e03ad6b137a93f459a18bfeb902fe34bf"
+ },
+ "promptSha256": "1015e10749b0a0744768e34ea03647c16158656e925cc8060abaf381ffb67f5f",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"(큰 주사위의 눈, 작은 주사위의 눈)으로 나타내면,\\n곱이 6인 경우: (1,6), (2,3), (3,2), (6,1)의 4가지.\\n곱이 15인 경우: (3,5), (5,3)의 2가지.\\n따라서 경우의 수는 4+2=6이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "(큰 주사위의 눈, 작은 주사위의 눈)으로 나타내면,\n곱이 6인 경우: (1,6), (2,3), (3,2), (6,1)의 4가지.\n곱이 15인 경우: (3,5), (5,3)의 2가지.\n따라서 경우의 수는 4+2=6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c16fba7239305786890cd903a520f7f9a4e1defb609428cfea3faeebff5672ec"
+}

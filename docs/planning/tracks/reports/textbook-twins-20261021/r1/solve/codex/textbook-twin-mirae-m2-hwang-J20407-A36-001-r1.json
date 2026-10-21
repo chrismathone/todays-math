@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A36-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-5524-71c1-b06f-a3ea15201c41",
+ "startedAt": "2026-10-21T17:54:31+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "fig-1.png": "b6fc64a8ce3393d9c607fa9f89b43422ac8ff19e0dcfe56d7bec050154162515",
+  "student.json": "06353eed03c53828d05b3ed6eeef6037cb11d37396fc8251ce232b37839ca163"
+ },
+ "promptSha256": "3c2473628f8067e95c592ef4733e1e459135d083ebf24d20372c62ee46a0ffe7",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6%\",\"work\":\"20분 동안 배터리 양이 96−36=60%p 증가하므로, 1분에 3%p씩 증가한다.\\n따라서 충전 시작 전 배터리 양은 36−3×10=6(%)이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6%",
+  "work": "20분 동안 배터리 양이 96−36=60%p 증가하므로, 1분에 3%p씩 증가한다.\n따라서 충전 시작 전 배터리 양은 36−3×10=6(%)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c5ee236f2514dae3d9bd3bafabda5a642b9caf6fbcc03bd05aad0f09c1762bcf"
+}

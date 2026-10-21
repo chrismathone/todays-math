@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A20-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "93fb1402-d210-4947-8915-001741da5d79",
+ "startedAt": "2026-10-21T18:00:34+0900",
+ "elapsedSec": 18.5,
+ "studentSha256": {
+  "student.json": "f322f45d9edbab3f3deef4340124e0c733a1d92a725faf2907427f98854a18d3"
+ },
+ "promptSha256": "141d3ab2237236006f28ba42390c993574febba499eb932335c5c1789a53ffa4",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"23명\",\n  \"work\": \"회원 수를 $x$명이라 하면, 정가로 지불하는 금액은 $8000x$원이고, 30명분의 단체 요금은 $8000 \\\\times (1 - 0.25) \\\\times 30 = 180000$원이다. 단체 요금을 내는 것이 더 유리하려면 $180000 < 8000x$가 성립해야 하므로 $x > 22.5$이다. $x$는 자연수이므로 적어도 23명이어야 한다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "23명",
+  "work": "회원 수를 $x$명이라 하면, 정가로 지불하는 금액은 $8000x$원이고, 30명분의 단체 요금은 $8000 \\times (1 - 0.25) \\times 30 = 180000$원이다. 단체 요금을 내는 것이 더 유리하려면 $180000 < 8000x$가 성립해야 하므로 $x > 22.5$이다. $x$는 자연수이므로 적어도 23명이어야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1fe88975e14ae5d3d1f665e414b5bd68231d83d14988efba8aa61127fd50f7af"
+}

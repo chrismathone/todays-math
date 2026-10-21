@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A16-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-8311-7252-9ff9-6b7d5ec8f2d3",
+ "startedAt": "2026-10-21T17:54:43+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "b130bb7c3acc26d0a6721894bce8a1d35d50c95c83583ce54db75e41c5d3650e"
+ },
+ "promptSha256": "898c67d8c5fe5280a344d9823ac560a492093bb8bf6bce0f3fc66b7812f56e55",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $y=25x+15$ ($0\\\\le x\\\\le 4$) ⑵ 3 km\",\"work\":\"1 km는 100 m의 10배이므로 깊이가 1 km 깊어질 때 온도는 25°C 올라간다. 따라서 y=25x+15이다.\\n25x+15=90을 풀면 x=3이므로 깊이는 3 km이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $y=25x+15$ ($0\\le x\\le 4$) ⑵ 3 km",
+  "work": "1 km는 100 m의 10배이므로 깊이가 1 km 깊어질 때 온도는 25°C 올라간다. 따라서 y=25x+15이다.\n25x+15=90을 풀면 x=3이므로 깊이는 3 km이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bbb1b08b17ab80317b34f5f8c30c44799b817092052382b2f35ffeb740d6000c"
+}

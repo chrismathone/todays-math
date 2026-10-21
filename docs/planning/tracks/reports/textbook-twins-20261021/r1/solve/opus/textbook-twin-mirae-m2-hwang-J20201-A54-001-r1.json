@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "047d2e78-0a3c-4e17-a129-4c2275a8a380",
+ "startedAt": "2026-10-21T16:25:53+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "14c117ca5d45c7c5458d6dc74c5288be40b11eaa35af5ac0f06fb02aca2ff906"
+ },
+ "promptSha256": "6508c73c897e34575dadc841daf98a7344978001a5fca8ae803767f4d25d2c70",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $-3, -2$ ⑵ $-3, -2, -1$ ⑶ $0$ ⑷ $-1, 0$\", \"work\": \"⑴ $x-1<-2 \\\\Rightarrow x<-1$이므로 $-3, -2$이다.\\n⑵ $x-1\\\\le -2 \\\\Rightarrow x\\\\le -1$이므로 $-3, -2, -1$이다.\\n⑶ $2x+3>1 \\\\Rightarrow 2x>-2 \\\\Rightarrow x>-1$이므로 $0$이다.\\n⑷ $2x+3\\\\ge 1 \\\\Rightarrow x\\\\ge -1$이므로 $-1, 0$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $-3, -2$ ⑵ $-3, -2, -1$ ⑶ $0$ ⑷ $-1, 0$",
+  "work": "⑴ $x-1<-2 \\Rightarrow x<-1$이므로 $-3, -2$이다.\n⑵ $x-1\\le -2 \\Rightarrow x\\le -1$이므로 $-3, -2, -1$이다.\n⑶ $2x+3>1 \\Rightarrow 2x>-2 \\Rightarrow x>-1$이므로 $0$이다.\n⑷ $2x+3\\ge 1 \\Rightarrow x\\ge -1$이므로 $-1, 0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2699d3068c1a12bed959d4f1e1c6648b5faa47f43d92277d877890e22431bdbf"
+}

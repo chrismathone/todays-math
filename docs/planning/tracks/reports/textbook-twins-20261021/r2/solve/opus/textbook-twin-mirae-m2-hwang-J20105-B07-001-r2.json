@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B07-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "104f976b-4308-4428-8e1e-e64854d039f5",
+ "startedAt": "2026-10-21T16:56:11+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "180952a4ea8bbef9e22be4f302cde974d63af643483115bceee7b2bf5018d1b2"
+ },
+ "promptSha256": "746968429a6bda8b396513b3a56e1dc1470e5169308133b84c1bada8876bb8da",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"49^5 = (7^2)^5 = 7^{10}, 343 = 7^3 이므로 7^3 × 7^{a-4} = 7^{a-1}. 따라서 a-1 = 10, a = 11\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "49^5 = (7^2)^5 = 7^{10}, 343 = 7^3 이므로 7^3 × 7^{a-4} = 7^{a-1}. 따라서 a-1 = 10, a = 11",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "244979ea1c41a8b8e0fc7934b69f2418501dbc2eda4fce7f36003ed42872cf07"
+}

@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 162,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r1",
+ "authorId": "middle-engine:2-1|연립일차방정식|02A",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "순서쌍 $(2, y)$가 일차방정식 $-2x+4y=0$의 해일 때, $y$의 값을 구하시오.",
+ "choices": [
+  "$2$",
+  "$4$",
+  "$3$",
+  "$1$",
+  "$10$"
+ ],
+ "answer": "④",
+ "solution": "$x=2$를 대입하면 $-4+4y=0$이다. 이를 풀면 $y=1$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-3",
+  "problemCode": "J20301-A54-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "1fd4e4d622451b97445394a9f0f8e01ffb276462be0efc7c1f49679069040e2d",
+  "dbContentSha256": "00dca68fb8af71117663937302c1b301db212162312fec47d45d9649aec3c76a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "일차방정식과 해의 x 값을 주고, y 자리의 문자 a 값을 다섯 수 가운데 고른다.",
+  "after": "엔진이 순서쌍 (수, y) 꼴로 해를 주고 대입해 y 값을 구하게 하며, 파생기가 보기 다섯의 객관식으로 만든다.",
+  "sharedConcept": "일차방정식의 해를 대입하여 미지의 값 구하기",
+  "sharedProcedure": "주어진 x 값 대입 → y에 대한 일차방정식으로 정리 → 풀어 y 값 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "문자에 수 대입하기",
+   "일차방정식 풀기(1학년)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A54-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해의 한 좌표가 주어진 일차방정식에서 나머지 좌표 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|연립일차방정식|02A",
+   "seed": 1065523119,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+   "authorRationale": "x 값이 주어진 해에서 나머지 y 값을 대입 한 번으로 구하는 같은 절차·값 하나를 묻는 꼴이며, 파생기로 값을 묻는 객관식이 된다.",
+   "facts": {
+    "x": 2,
+    "y": 1,
+    "a": -2,
+    "b": 4,
+    "c": 0,
+    "answer": 1
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 30자",
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.074,
+   "longestRun": 5,
+   "residualChars": 30,
+   "params": 6,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

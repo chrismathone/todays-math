@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 263,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r1",
+ "authorId": "claude-fable-5-1:f1b92172-e962-4710-a704-9f9a2ef49176",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OBA=34^{\\circ}$, $\\overline{OA}=7\\,\\mathrm{cm}$이다. 이때 $x+y$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$41$",
+ "solution": "점 $O$가 외심이므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이다. 따라서 $\\overline{OC}=7\\,\\mathrm{cm}$이고 $x=7$이다. $\\triangle OAB$는 $\\overline{OA}=\\overline{OB}$인 이등변삼각형이므로 $\\angle OAB=\\angle OBA=34^{\\circ}$이고 $y=34$이다. 그러므로 $x+y=7+34=41$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A65-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A65-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-480ba5be3b0d3488-0-1",
+  "problemCode": "J20503-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "8bcb42110c6fcfb3fbfc5efebd6ae7d7afad78fbe05eb4209ce58149d70b619f",
+  "dbContentSha256": "c3a368b9dfdfc0bb13357749da87d34a8d828bc5ab6f966c03ed5e75cf2f2f38",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-3_삼각형의외심.hwp",
+    "sha256": "91119bc39ce15fb919f93ea07a50549609a147c6f0df43ee79579a53eb00a85e",
+    "bytes": 187392
+   }
+  ],
+  "originalFigureSha256": [
+   "92603b3ee26ce952663c664d70688a81d3d0c729db29c7c34dace6d2f46813a4"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "꼭짓점 A의 밑각과 선분 OC의 길이를 주고, 선분 OB의 길이 x와 꼭짓점 C의 밑각 y를 구해 더한다. 각과 길이가 서로 다른 이등변삼각형에 걸려 있다.",
+  "after": "꼭짓점 B의 밑각과 선분 OA의 길이를 주고, 선분 OC의 길이 x와 꼭짓점 A의 밑각 y를 구해 더한다. 각은 같은 이등변삼각형 안에서 옮기고 길이는 다른 선분으로 옮긴다.",
+  "sharedConcept": "외심에서 세 꼭짓점에 이르는 거리가 같고, 그로 생기는 이등변삼각형의 두 밑각이 같다",
+  "sharedProcedure": "외심의 성질로 길이 옮기기 → 이등변삼각형의 밑각으로 각 옮기기 → 두 값을 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질",
+   "이등변삼각형의 두 밑각의 크기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A65-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심의 성질로 선분 길이와 밑각을 각각 읽어 더하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'OC_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "647bdcb8-c535-4f0d-98a6-8d9eebb600dc",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 28자"
+   ],
+   "overlap4": 0.44,
+   "longestRun": 12,
+   "residualChars": 28,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

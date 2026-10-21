@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "deef2915-74f4-4b14-9063-26869a3467c2",
+ "startedAt": "2026-10-21T17:06:46+0900",
+ "elapsedSec": 5.2,
+ "studentSha256": {
+  "student.json": "7d060eaaaff8d69b551c76882f39e69b0f2a7684d71060d2886e06bd13cf2528"
+ },
+ "promptSha256": "859617c417f37ba68a35a2c7246626476e2132da8853635e10b8c9ca60be7ac6",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"(3x^2y^P)^3=27x^6y^{3P}, (-2xy^3)^2=4x^2y^6 → 곱 108x^8y^{3P+6}. ÷(3/4)x^Qy^2 → 144x^{8-Q}y^{3P+4}. 8-Q=4 → Q=4, 3P+4=13 → P=3, R=144. P+Q+R=3+4+144=151\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "(3x^2y^P)^3=27x^6y^{3P}, (-2xy^3)^2=4x^2y^6 → 곱 108x^8y^{3P+6}. ÷(3/4)x^Qy^2 → 144x^{8-Q}y^{3P+4}. 8-Q=4 → Q=4, 3P+4=13 → P=3, R=144. P+Q+R=3+4+144=151",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d855f4e843401e4b32ffe92632a59f4f8361b32cf89da18d52a0b3604983c06"
+}

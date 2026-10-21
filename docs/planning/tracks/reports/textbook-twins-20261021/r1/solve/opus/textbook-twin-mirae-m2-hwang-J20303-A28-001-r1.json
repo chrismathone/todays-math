@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b43ae589-27b5-45db-88ec-c7e5ec67ffd8",
+ "startedAt": "2026-10-21T16:30:36+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "f371b28d8e41f6f365da1b572c4e7053b031f4ace7f8ad0b5c462bec03cb3630"
+ },
+ "promptSha256": "9475acb83ee24e89d5cfc458b18fa767d7893849f26290950c4882a1e1dd76d1",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"첫째 식에 10을 곱하면 2x-5y=20이고, 둘째 식에 10을 곱하면 4x+5y=10이다. 두 식을 더하면 6x=30이므로 x=5이다. 이를 2x-5y=20에 대입하면 10-5y=20이므로 y=-2이다. 검산하면 5/5-(-2)/2=1+1=2이고, 0.4·5+0.5·(-2)=2-1=1이므로 두 식 모두 성립한다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "첫째 식에 10을 곱하면 2x-5y=20이고, 둘째 식에 10을 곱하면 4x+5y=10이다. 두 식을 더하면 6x=30이므로 x=5이다. 이를 2x-5y=20에 대입하면 10-5y=20이므로 y=-2이다. 검산하면 5/5-(-2)/2=1+1=2이고, 0.4·5+0.5·(-2)=2-1=1이므로 두 식 모두 성립한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ca727d272f7747fd268ce53512904062707f0ceb38feb894e423d0e8ef5d1c68"
+}

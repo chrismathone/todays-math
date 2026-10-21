@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A74-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbd-4ae7-7003-b162-9005dd6d5873",
+ "startedAt": "2026-10-21T18:14:08+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "fig-1.png": "dcd1cd37bc54985184a846a240be7b05136c2b6f5593d3b83e162ee8ea924391",
+  "student.json": "90eacfdc107072f855268c9cd1699fcc94b65f57a453beb39cb29005d44e6ab6"
+ },
+ "promptSha256": "d6170e2a597bfdf0fc60c22bafcb9b90fc1f9982b89c0f20bbae4192ebf99701",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"∠BAC=∠CAD이고 ∠ABC=∠ACD이므로 △ABC∽△ACD이다(AA 닮음).\\n대응변의 비에서 AB:AC=AC:AD이므로 12:9=9:x이다.\\n따라서 12x=81, x=27/4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "∠BAC=∠CAD이고 ∠ABC=∠ACD이므로 △ABC∽△ACD이다(AA 닮음).\n대응변의 비에서 AB:AC=AC:AD이므로 12:9=9:x이다.\n따라서 12x=81, x=27/4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c76c5f7825d1635631df50e2ad323c1f565ebd81c73f46d90c246708ed5f1f3f"
+}

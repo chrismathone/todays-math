@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 356,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A53-001-r1",
+ "authorId": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 각 사건이 일어나는 경우의 수를 구하시오.\n⑴ 하루가 서로 다른 주사위 두 개를 동시에 던져서 두 눈의 수의 합이 $9$가 된다.\n⑵ $1$부터 $18$까지의 자연수가 각각 하나씩 적힌 공 $18$개가 들어 있는 주머니에서 공 한 개를 꺼냈더니 $5$의 배수가 적혀 있다.",
+ "choices": [],
+ "answer": "⑴ $4$ ⑵ $3$",
+ "solution": "⑴ 합이 $9$가 되는 순서쌍은 $(3,\\,6)$, $(4,\\,5)$, $(5,\\,4)$, $(6,\\,3)$이므로 경우의 수는 $4$이다.\n⑵ $5$의 배수가 적힌 공은 $5$, $10$, $15$이므로 경우의 수는 $3$이다.\n따라서 ⑴ $4$, ⑵ $3$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4b711e3205872379-0-1",
+  "problemCode": "J20901-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "53e12c8240ca30a2a7476761bea74fc4f0da9616ef3075c025269c87e8d2dfde",
+  "dbContentSha256": "42eb61f762674c53687c45bd9947b201ce91dd3958da258aa53cee15acd017db",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-1_사건과경우의수.hwp",
+    "sha256": "a3939f7fc42141fa86d0ef7bf2edb1ffdaee2f28bb3fec21b62e74857092dc5d",
+    "bytes": 79872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "⑴ 두 주사위 눈의 합이 7인 순서쌍 세기 ⑵ 1~12 카드 중 3의 배수 세기, 두 소문항.",
+  "after": "⑴ 두 주사위 눈의 합이 9인 순서쌍 세기 ⑵ 1~18 공 중 5의 배수 세기, 두 소문항.",
+  "sharedConcept": "사건의 경우의 수를 나열해 세기",
+  "sharedProcedure": "⑴ 합이 되는 순서쌍 나열 → 세기 ⑵ 범위 안의 배수 나열 → 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "순서쌍으로 경우 나열하기",
+   "배수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A53-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주사위 합 · 수 뽑기 배수의 경우의 수(소문항 둘)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.333,
+   "longestRun": 11,
+   "residualChars": 96,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

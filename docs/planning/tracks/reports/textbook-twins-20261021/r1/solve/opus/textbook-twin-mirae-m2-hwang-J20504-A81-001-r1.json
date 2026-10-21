@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1ba3df26-2cde-4afc-bef4-538cdb84db11",
+ "startedAt": "2026-10-21T16:31:05+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "5b345bbd5c8370d2984aaa344f6eb3bae4a5dd65b056ee38e208fcfa4b88e912",
+  "student.json": "d1dfe8db2652e968fe348182cc4d9e62171e4279c50c04ef5c5f17554c5929ec"
+ },
+ "promptSha256": "93b1d6398f1fb81cf8d62f9207c7cdcc8a5656cd5bade6f5addff190894fcbbf",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"84°\", \"work\": \"I'은 △IBC의 내심이므로 BI'은 ∠IBC를 이등분한다. 따라서 ∠IBC = 2×12° = 24°이다. I는 △ABC의 내심이므로 BI는 ∠ABC를 이등분한다. 따라서 ∠ABC = 2×24° = 48°이다. AB = AC이므로 ∠ACB = ∠ABC = 48°이다. 따라서 ∠x = 180° − 2×48° = 84°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "84°",
+  "work": "I'은 △IBC의 내심이므로 BI'은 ∠IBC를 이등분한다. 따라서 ∠IBC = 2×12° = 24°이다. I는 △ABC의 내심이므로 BI는 ∠ABC를 이등분한다. 따라서 ∠ABC = 2×24° = 48°이다. AB = AC이므로 ∠ACB = ∠ABC = 48°이다. 따라서 ∠x = 180° − 2×48° = 84°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8bb57145adea6582213de5ac552cc899edfde4340bd62879d98e1880ac9aa122"
+}

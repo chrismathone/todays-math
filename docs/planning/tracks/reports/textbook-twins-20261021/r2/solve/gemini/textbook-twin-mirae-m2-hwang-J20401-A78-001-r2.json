@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c4d94f8b-98eb-4ffc-84c4-d8db01a436e4",
+ "startedAt": "2026-10-21T18:18:59+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "f5b0aea73ad6d94eb72a370d2fab4612d2b42f572bbd9b347d17969381b9377c"
+ },
+ "promptSha256": "da0eb9419ec4b0f4293b3b931115bf681e17beb0a187382c073f52f1a43769f6",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"일차함수 $y=4x-7$에 각 점의 좌표 $(x, y)$를 대입하면:\\n① $x=-5$일 때 $y=4(-5)-7=-27 \\\\neq 27$\\n② $x=-4$일 때 $y=4(-4)-7=-23 \\\\neq -9$\\n③ $x=4$일 때 $y=4(4)-7=9 \\\\neq 23$\\n④ $x=5$일 때 $y=4(5)-7=13$ (일치)\\n⑤ $x=6$일 때 $y=4(6)-7=17 \\\\neq 31$\\n따라서 그래프가 지나는 점은 ④이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "일차함수 $y=4x-7$에 각 점의 좌표 $(x, y)$를 대입하면:\n① $x=-5$일 때 $y=4(-5)-7=-27 \\neq 27$\n② $x=-4$일 때 $y=4(-4)-7=-23 \\neq -9$\n③ $x=4$일 때 $y=4(4)-7=9 \\neq 23$\n④ $x=5$일 때 $y=4(5)-7=13$ (일치)\n⑤ $x=6$일 때 $y=4(6)-7=17 \\neq 31$\n따라서 그래프가 지나는 점은 ④이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "92905fa0442fbc051537b87e08f8f6bdcdff7f61fc523a16063c2ab99ca6ca2e"
+}

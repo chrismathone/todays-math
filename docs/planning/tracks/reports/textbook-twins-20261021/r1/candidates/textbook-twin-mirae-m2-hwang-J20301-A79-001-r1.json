@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 169,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 가운데 미지수가 $2$개인 일차방정식이 아닌 것은?",
+ "choices": [
+  "$x=-2y$",
+  "$\\frac{y}{3}-x+1=0$",
+  "$x^{2}-3y=x^{2}+x$",
+  "$5x-2(x+y)=1$",
+  "$x(x+1)=y$"
+ ],
+ "answer": "⑤",
+ "solution": "① $x+2y=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n② $-x+\\frac{y}{3}+1=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n③ $x^{2}$ 항이 서로 지워져 $-x-3y=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n④ 괄호를 풀면 $3x-2y-1=0$ 이므로 미지수가 $2$개인 일차방정식이다.\n⑤ 좌변을 전개하면 $x^{2}+x-y=0$ 으로 $x^{2}$ 항이 남아 일차방정식이 아니다.\n따라서 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ffc616326d5bfbaa-0-1",
+  "problemCode": "J20301-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "59b0f33fea1645c5aac37f132fab984f630dbda10801d259ac6453b7b911eaf4",
+  "dbContentSha256": "395eb7fb2c8d2e903b5dee430886e1c29026f33b24127d0dea7df23121f20849",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-1_연립일차방정식과그해.hwp",
+    "sha256": "291f6116cc7eea5c0ab4f3470f4fed09c4e895acecfd0e51f276f4b73841c261",
+    "bytes": 47104
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "식 다섯 가운데 정리하면 한 문자가 사라져 미지수 하나가 되는 식 하나를 아닌 것으로 찾는다.",
+  "after": "식 다섯 가운데 전개하면 이차항이 남는 식 하나를 아닌 것으로 찾되, 이차항이 지워지는 식을 함정으로 넣었다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 뜻",
+  "sharedProcedure": "전개·이항 → 동류항 정리 → 문자 개수와 차수 확인 → 조건에 맞지 않는 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 뜻(1학년)",
+   "분배법칙",
+   "다항식의 차수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A79-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지수가 2개인 일차방정식이 아닌 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.277,
+   "longestRun": 18,
+   "residualChars": 68,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

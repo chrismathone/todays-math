@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dea-cd3c-7d21-9aa5-d328dfdeb995",
+ "startedAt": "2026-10-21T19:03:51+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "74ca20c629904324e8fcf0d3b7c4a7e13f31dba81b256a725a9df160405629b8"
+ },
+ "promptSha256": "091312e231f8889bf951e14e159424f9c691c170298e05d5d08fa11341f45c5c",
+ "freezeCommit": "96096ed15826cf67b67799fbce8f68daa09afe6b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5\",\"work\":\"뒤의 그래프를 y축의 방향으로 8만큼 평행이동하면 y=mx-5+8=mx+3이다. 이 그래프가 y=-2x+n과 겹치므로 m=-2, n=3이다. 따라서 n-m=3-(-2)=5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "뒤의 그래프를 y축의 방향으로 8만큼 평행이동하면 y=mx-5+8=mx+3이다. 이 그래프가 y=-2x+n과 겹치므로 m=-2, n=3이다. 따라서 n-m=3-(-2)=5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3c47196f1b7924c2477e381185a0c61519f0c8b356433f27b91f14e54a347383"
+}

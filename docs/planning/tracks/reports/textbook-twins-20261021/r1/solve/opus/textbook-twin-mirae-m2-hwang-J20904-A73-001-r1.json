@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A73-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4b3eacac-8b12-4430-a4af-852cec50c0ce",
+ "startedAt": "2026-10-21T17:12:10+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "b466f52d131eec8fe5b0a758bb3bb073cb8a633c9dfc6ca52764157b250df13d"
+ },
+ "promptSha256": "ef9c414dee13011a59d431e34ae40c9a45f61d5cb95f152cf8730d2f1ad89761",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{32}{45}$\", \"work\": \"도하가 도착할 확률 = 1 - 1/5 = 4/5, 미나가 도착할 확률 = 1 - 1/9 = 8/9. 두 사건은 서로 영향을 주지 않으므로 (4/5)×(8/9) = 32/45\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{32}{45}$",
+  "work": "도하가 도착할 확률 = 1 - 1/5 = 4/5, 미나가 도착할 확률 = 1 - 1/9 = 8/9. 두 사건은 서로 영향을 주지 않으므로 (4/5)×(8/9) = 32/45",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9055e3ff06bfa6c8e594aa449ea65bc7ab5de95ab750fd6b0e489ac77e784448"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A76-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc9-3788-7860-a48c-3620446c2d07",
+ "startedAt": "2026-10-21T18:27:10+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "400fb108b225a254f21aa4bf8b15f59337f322527e8d762019bc127379257e82"
+ },
+ "promptSha256": "5646fe14c803c563c979a1ee58d0dbc3a6544274ce71c9c4033c844c72fa2a41",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"A에서 흰 공이 나올 확률은 5/9, B에서 검은 공이 나올 확률은 5/9이다. 두 사건은 독립이므로 구하는 확률은 (5/9)×(5/9)=25/81이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "A에서 흰 공이 나올 확률은 5/9, B에서 검은 공이 나올 확률은 5/9이다. 두 사건은 독립이므로 구하는 확률은 (5/9)×(5/9)=25/81이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "63c1a3b0c137a6219f23cb05a83bf7d975bbe348ea6db156b8889e38a588c6be"
+}

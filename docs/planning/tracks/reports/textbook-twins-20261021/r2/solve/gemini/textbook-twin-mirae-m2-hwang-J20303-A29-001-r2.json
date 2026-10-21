@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "93c67bcc-e25a-408c-a4e7-69a5933bee59",
+ "startedAt": "2026-10-21T18:01:31+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "1f68b7d8c68533e9e96e24b6372551aff4f1d37de2fa36eb37d6836d891f238e"
+ },
+ "promptSha256": "93a7ab9f868b64b3b90c40662dda61c8122db2a32538e6647d8430feb1730d1c",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$x=8, y=-3$\",\n  \"work\": \"첫 번째 식의 양변에 10을 곱하면 3x+4y=12이고, 두 번째 식의 양변에 12를 곱하면 3x-4y=36이다. 두 식을 변끼리 더하면 6x=48에서 x=8이 되고, 이를 첫 번째 식에 대입하면 24+4y=12이므로 y=-3이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "$x=8, y=-3$",
+  "work": "첫 번째 식의 양변에 10을 곱하면 3x+4y=12이고, 두 번째 식의 양변에 12를 곱하면 3x-4y=36이다. 두 식을 변끼리 더하면 6x=48에서 x=8이 되고, 이를 첫 번째 식에 대입하면 24+4y=12이므로 y=-3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9e7fd28337b3e4d58fa2e1ded5ec5220d34656175a1aed292bfe4bcb230a3e54"
+}

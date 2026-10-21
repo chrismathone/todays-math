@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A24-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dab-d9cf-79a0-b474-c100b33b87a1",
+ "startedAt": "2026-10-21T17:55:05+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "3e762d253f951c87cf7cb83d99bf5d4ed1f9ee3949307156f7618be40d0392c6"
+ },
+ "promptSha256": "fbc4a77d4d287745614add3960d353c053e9b006caaff115930412fcb44810d9",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"물의 높이가 30-12=18 cm 낮아져야 한다.\\n3 cm 낮아지는 데 4분이 걸리므로, 걸리는 시간은 (18÷3)×4=24분이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "물의 높이가 30-12=18 cm 낮아져야 한다.\n3 cm 낮아지는 데 4분이 걸리므로, 걸리는 시간은 (18÷3)×4=24분이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c5015c807b0ba3420177b6d40515c554497f0345a897836bfba6ad7e45a85f92"
+}

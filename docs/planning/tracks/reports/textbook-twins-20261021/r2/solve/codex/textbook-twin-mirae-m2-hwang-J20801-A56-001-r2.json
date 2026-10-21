@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A56-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfa-f79f-7f33-8aa9-b158cf89ea15",
+ "startedAt": "2026-10-21T19:21:30+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "fig-1.png": "d0f764178448914ae2ebfc639f84e4c46b7cf117577b26e5e673c8f95f883b9c",
+  "student.json": "4574c1d91c3e2bb4a9f2d9f9ce3c9dc9c8c8217c8eb301c58500dc373825d486"
+ },
+ "promptSha256": "640bbc00d751784f41d917a6e1220a181604a24020b7444f4e6909889dc370ef",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"각 꼭짓점에 생기는 직각삼각형의 두 직각변은 8 m와 23−8=15 m이다.\\n피타고라스 정리에 의해 울타리의 한 변은 $\\\\sqrt{8^2+15^2}=17$ m이다.\\n네 변의 길이가 모두 같으므로 울타리의 전체 길이는 4×17=68 m이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "각 꼭짓점에 생기는 직각삼각형의 두 직각변은 8 m와 23−8=15 m이다.\n피타고라스 정리에 의해 울타리의 한 변은 $\\sqrt{8^2+15^2}=17$ m이다.\n네 변의 길이가 모두 같으므로 울타리의 전체 길이는 4×17=68 m이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c60ea374b9cf8bef397179123cfb3531b9a361ce1f17af5c66ef350ad59dedfd"
+}

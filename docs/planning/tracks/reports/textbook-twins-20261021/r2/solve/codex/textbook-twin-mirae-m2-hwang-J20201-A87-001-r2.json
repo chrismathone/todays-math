@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd5-6e99-7d90-a27a-5ea94c4b7165",
+ "startedAt": "2026-10-21T18:40:30+0900",
+ "elapsedSec": 16.0,
+ "studentSha256": {
+  "student.json": "3dbf97ee17551929579bdd0f3a6fb0da290dd4ea5f76280d349dd235a1749487"
+ },
+ "promptSha256": "8111b12558f8047bb1fdbaa26cf455d25bb2eb154b780a140027e8442057d914",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ④\",\"work\":\"$x=-2$를 대입하면 ① $8<9$, ④ $-\\\\frac13+\\\\frac32=\\\\frac76<2$로 참이다.\\n② $-4\\\\ge -2$, ③ $-10>-10$, ⑤ $21\\\\le 12$는 모두 거짓이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ④",
+  "work": "$x=-2$를 대입하면 ① $8<9$, ④ $-\\frac13+\\frac32=\\frac76<2$로 참이다.\n② $-4\\ge -2$, ③ $-10>-10$, ⑤ $21\\le 12$는 모두 거짓이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7210332295f827ce967546b00aef5129553cc1c989fb0e4d0f0c7d3799b08b0b"
+}

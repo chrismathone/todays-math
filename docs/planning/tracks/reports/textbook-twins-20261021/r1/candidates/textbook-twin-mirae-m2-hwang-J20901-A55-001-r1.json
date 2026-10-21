@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 358,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r1",
+ "authorId": "middle-engine:2-2|경우의 수|04",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "집에서 도서관까지 가는 버스 노선은 $6$가지, 지하철 노선은 $3$가지가 있다. 버스 또는 지하철을 타고 집에서 도서관까지 가는 경우의 수를 구하시오.",
+ "choices": [],
+ "answer": "$9$",
+ "solution": "버스를 타는 경우가 $6$가지, 지하철을 타는 경우가 $3$가지이다.\n두 경우는 동시에 일어나지 않으므로 $6+3=9$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4b711e3205872379-0-3",
+  "problemCode": "J20901-A55-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "56c32dd678b5b8f7a76d9259e06b707bde5007803b59c0391bf2aa94953e5794",
+  "dbContentSha256": "56c32dd678b5b8f7a76d9259e06b707bde5007803b59c0391bf2aa94953e5794",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-1_사건과경우의수.hwp",
+    "sha256": "a3939f7fc42141fa86d0ef7bf2edb1ffdaee2f28bb3fec21b62e74857092dc5d",
+    "bytes": 79872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "버스 노선 3가지와 지하철 노선 2가지 중 하나를 골라 가는 경우의 수를 더해 구한다.",
+  "after": "엔진이 새로 정한 두 종류의 선택지 수를 더해 한 가지를 고르는 경우의 수를 구한다.",
+  "sharedConcept": "동시에 일어나지 않는 두 사건의 경우의 수의 합",
+  "sharedProcedure": "각 종류의 가짓수 확인 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "경우의 수의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A55-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "교통수단 또는 물건 선택에서 경우의 수의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|경우의 수|04",
+   "seed": 3808541428,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+   "authorRationale": "두 종류의 교통수단(또는 물건) 가운데 하나를 고르는 경우의 수를 두 수의 합으로 구하는 절차와 단답형 물음 꼴이 그대로 같다.",
+   "facts": {
+    "kind": 0,
+    "m": 6,
+    "n": 3,
+    "ans": 9
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.50"
+   ],
+   "overlap4": 0.5,
+   "longestRun": 10,
+   "residualChars": 50,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

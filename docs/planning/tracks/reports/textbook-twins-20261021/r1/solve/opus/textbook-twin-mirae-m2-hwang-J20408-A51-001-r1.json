@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f97c5d53-79ce-4621-90ad-92281d67111a",
+ "startedAt": "2026-10-21T17:02:35+0900",
+ "elapsedSec": 6.8,
+ "studentSha256": {
+  "student.json": "c67282d85eacbac70d55789408e1aa46821d88e457df21ad48c8d625a113ca8f"
+ },
+ "promptSha256": "e4946e941458b1f0db463b851ce5a0bc05fe81eb623394a52eec4bd52667db4e",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"점 (2, -7)을 대입하면 6 - 7b + 8 = 0이므로 b = 2이고, 식은 3x + 2y + 8 = 0이다. 각 보기를 대입하면 ① -12 + 4 + 8 = 0, ② 3 - 10 + 8 = 1 ≠ 0, ③ -3 - 5 + 8 = 0, ④ 2 - 10 + 8 = 0, ⑤ 12 - 20 + 8 = 0이다. 따라서 그래프 위에 있지 않은 점은 ②이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "점 (2, -7)을 대입하면 6 - 7b + 8 = 0이므로 b = 2이고, 식은 3x + 2y + 8 = 0이다. 각 보기를 대입하면 ① -12 + 4 + 8 = 0, ② 3 - 10 + 8 = 1 ≠ 0, ③ -3 - 5 + 8 = 0, ④ 2 - 10 + 8 = 0, ⑤ 12 - 20 + 8 = 0이다. 따라서 그래프 위에 있지 않은 점은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a9ba266977e37c9f784ccdb09ef7bf4f466d136b753bca172697ac1201e20ede"
+}

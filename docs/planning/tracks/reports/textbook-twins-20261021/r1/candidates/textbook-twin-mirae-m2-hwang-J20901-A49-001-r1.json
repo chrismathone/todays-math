@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 352,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A49-001-r1",
+ "authorId": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우네 반은 현장 체험 학습 장소로 미술관 $5$곳, 과학관 $6$곳, 박물관 $4$곳을 후보로 올리고 이 중 한 곳만 가기로 했다. 지우네 반이 미술관 또는 박물관으로 가게 되는 경우의 수는?",
+ "choices": [
+  "$4$",
+  "$5$",
+  "$9$",
+  "$11$",
+  "$15$"
+ ],
+ "answer": "③",
+ "solution": "미술관으로 가는 경우의 수는 $5$, 박물관으로 가는 경우의 수는 $4$이다.\n한 곳만 가므로 두 사건은 동시에 일어날 수 없고, 구하는 경우의 수는 $5+4=9$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-2",
+  "problemCode": "J20901-A49-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "2e0c792b797190956a0f68aa51eb502162fd48a1a18cf415751c5d511bbc81ba",
+  "dbContentSha256": "9563e75f89c78ba5f3434045da6882ce7de19f0235e7c30eeae0084386a92678",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "세 종류의 여행지 후보(7·5·3곳) 가운데 한 곳을 고를 때, 그중 두 종류(둘레길·계곡)에 해당하는 경우의 수를 더해 고른다. 묻지 않는 종류가 맨 앞에 있다.",
+  "after": "세 종류의 체험 학습 후보(5·6·4곳) 가운데 한 곳을 고를 때, 그중 두 종류(미술관·박물관)의 경우의 수를 더해 고른다. 묻지 않는 종류를 가운데에 두어 필요한 수를 골라내게 한다.",
+  "sharedConcept": "동시에 일어나지 않는 두 사건의 경우의 수의 합",
+  "sharedProcedure": "물음에 해당하는 두 종류 찾기 → 각 종류의 수 확인 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "경우의 수의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A49-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "장소 선택에서 두 종류의 경우의 수의 합(불필요한 자료 포함)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.029,
+   "longestRun": 5,
+   "residualChars": 73,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

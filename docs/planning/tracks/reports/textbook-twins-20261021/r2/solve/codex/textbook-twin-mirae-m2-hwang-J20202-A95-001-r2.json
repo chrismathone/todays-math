@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A95-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd8-d295-7ba2-91d8-5b46c76dec74",
+ "startedAt": "2026-10-21T18:44:13+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "fig-1.png": "693a243b6949e2e142fb8f5659c687e5b490677e33a94af7b022fae241e3b92f",
+  "student.json": "e171e38934d5271eabca7a0842f5e3df1f7338939816efdc6f70dd4176651e3f"
+ },
+ "promptSha256": "9a38ef6364d49d8a377b250e6b9c182c040ae9695905842aac5c8109ecb276a9",
+ "freezeCommit": "e705c7bb66c96492fc344c44eb4f85bda7291d51",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"그림은 3을 포함하여 왼쪽으로 이어지므로 해는 $x\\\\le 3$이다.\\n②의 양변에 5를 곱하면 $-5x+6\\\\ge 3x-18$이고, 정리하면 $8x\\\\le 24$, 즉 $x\\\\le 3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "그림은 3을 포함하여 왼쪽으로 이어지므로 해는 $x\\le 3$이다.\n②의 양변에 5를 곱하면 $-5x+6\\ge 3x-18$이고, 정리하면 $8x\\le 24$, 즉 $x\\le 3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d746b69df7fc40f718358b45f1998296c357507576b8579a673f75e9f0184bf5"
+}

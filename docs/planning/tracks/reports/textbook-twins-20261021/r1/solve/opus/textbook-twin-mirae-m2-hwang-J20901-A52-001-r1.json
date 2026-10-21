@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a194bf6b-dcec-45de-a222-726fc3564ac5",
+ "startedAt": "2026-10-21T17:11:39+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "8c412464961923add03927b0460a0808d9e727f1048525dc47013634bdce8040"
+ },
+ "promptSha256": "090fb76ed96520185b1681e63bf43d52f6155ff65b371071d53f5967360d004f",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"10\", \"work\": \"합이 6: (1,5),(2,4),(3,3),(4,2),(5,1) → 5가지\\n합이 8: (2,6),(3,5),(4,4),(5,3),(6,2) → 5가지\\n두 사건은 동시에 일어나지 않으므로 5+5=10\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "10",
+  "work": "합이 6: (1,5),(2,4),(3,3),(4,2),(5,1) → 5가지\n합이 8: (2,6),(3,5),(4,4),(5,3),(6,2) → 5가지\n두 사건은 동시에 일어나지 않으므로 5+5=10",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "efaeb6a88ccf5da98527c7193990a49083253c5249361dc537626a87f0ef6c98"
+}

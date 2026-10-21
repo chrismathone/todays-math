@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 181,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A36-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "미나가 연립방정식 $\\begin{cases} ax-by=19 \\\\ bx+ay=4 \\end{cases}$를 풀었더니 해가 $x=2$, $y=-3$이었다. 두 수 $a$, $b$의 값을 각각 구하시오.",
+ "choices": [],
+ "answer": "$a=2$, $b=5$",
+ "solution": "$x=2$, $y=-3$을 두 식에 대입하면 $2a+3b=19$ ……㉠, $2b-3a=4$, 즉 $-3a+2b=4$ ……㉡이다. $㉠\\times 2$를 하면 $4a+6b=38$, $㉡\\times 3$을 하면 $-9a+6b=12$이다. 변끼리 빼면 $13a=26$, $a=2$이다. $a=2$를 ㉠에 대입하면 $4+3b=19$, $b=5$이다. 따라서 $a=2$, $b=5$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6ea3b647eb09cfbf-0-3",
+  "problemCode": "J20302-A36-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "0a51eaa6da6520fe57f1fac54b624e6feecd6c02fec1e41e3b9d25e94cdbd01e",
+  "dbContentSha256": "137a6957e559853e962164ea9451d7d333da87acc3d5e0103126f81ade9cd9ec",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_4-2_연립일차방정식의풀이.hwp",
+    "sha256": "47b3efc7157bd685a4e894725f185c7ddfa0f6db9f3685031943737031d79d76",
+    "bytes": 52736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "ax+by, bx−ay 꼴의 두 식에 해를 대입해 a, b에 대한 연립방정식을 만들고, 한 식에만 수를 곱하는 가감법으로 a, b를 구한다.",
+  "after": "ax−by, bx+ay 꼴로 부호 배치를 바꾸고 사람이 풀었더니 해가 나왔다는 장면을 더했다. 대입해 얻은 a, b의 연립방정식은 두 식 모두에 수를 곱해 푼다.",
+  "sharedConcept": "해가 주어진 연립방정식에서 두 미지 계수 구하기",
+  "sharedProcedure": "해를 두 식에 대입 → a, b에 대한 연립방정식 정리 → 가감법으로 한 문자 소거 → 나머지 문자 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "연립방정식의 해의 뜻",
+   "가감법으로 연립방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A36-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해를 대입하여 계수 a, b의 연립방정식을 세워 풀기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.174,
+   "longestRun": 7,
+   "residualChars": 49,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

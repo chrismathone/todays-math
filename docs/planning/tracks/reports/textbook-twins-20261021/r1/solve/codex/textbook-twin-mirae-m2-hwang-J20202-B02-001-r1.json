@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-B02-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d72-c1c3-7851-a257-9808db82d8ff",
+ "startedAt": "2026-10-21T16:52:44+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "fig-1.png": "4702d58cc98a8c442144bbdac443dd9657e615727d3f0b8abc5c0059235d172e",
+  "student.json": "6513f7d030a522da21b454baef275dbd81832175e8f4936254dae06b0e77c7f5"
+ },
+ "promptSha256": "2236db121f4b58b32987034227f2ec394315bf9f95a84aafce3037f258f835fd",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$x\\\\le -1$\",\"work\":\"그림에서 해는 $x\\\\le 3$이다.\\n$3(2x-a)\\\\ge 7x-9$를 정리하면 $x\\\\le 9-3a$이므로 $9-3a=3$, 즉 $a=2$이다.\\n이를 $6a-ax\\\\ge 2a+10$에 대입하면 $12-2x\\\\ge 14$이므로 $x\\\\le -1$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$x\\le -1$",
+  "work": "그림에서 해는 $x\\le 3$이다.\n$3(2x-a)\\ge 7x-9$를 정리하면 $x\\le 9-3a$이므로 $9-3a=3$, 즉 $a=2$이다.\n이를 $6a-ax\\ge 2a+10$에 대입하면 $12-2x\\ge 14$이므로 $x\\le -1$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "26faee0b613b0beb8673d6a029c9cf296fe6e0dd03f4ad535d05aa71e51a33f1"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f69bd102-f037-4e1c-8f3b-c7eed85977d0",
+ "startedAt": "2026-10-21T17:03:54+0900",
+ "elapsedSec": 5.0,
+ "studentSha256": {
+  "student.json": "d55cc06888a5ecab708c01d85d10ed9b7368b867898d5642e1381c028b71ea3c"
+ },
+ "promptSha256": "3b90951de130d4227759725131351ae4fc851019cb6f74a1720ca891bcf2510c",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"평행이동해도 기울기는 -2로 같으므로 구하는 직선은 2x+y+c=0 꼴이다. 점 (-3, 4)를 대입하면 -6+4+c=0이므로 c=2이다. 따라서 직선의 방정식은 2x+y+2=0이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행이동해도 기울기는 -2로 같으므로 구하는 직선은 2x+y+c=0 꼴이다. 점 (-3, 4)를 대입하면 -6+4+c=0이므로 c=2이다. 따라서 직선의 방정식은 2x+y+2=0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ce411c6b18ae58fde7969b4b2017a503972c8506d37efcb3ecd5727663e2c827"
+}

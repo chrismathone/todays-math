@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A28-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d73-b65a-7133-9c11-82ad5002e9e9",
+ "startedAt": "2026-10-21T16:53:46+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "82c513d2bea12da92aa792f71e60bd9856283aa9577b291cc8ce3a3443f30dd6"
+ },
+ "promptSha256": "0e4a226a066d90fdf16cdd0e0368b14f1edb6189726d88f8ff4c27fe82a7fa4e",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"96점\",\"work\":\"세 시험 점수의 합은 94+79+67=240점이다.\\n네 번째 점수를 x점이라 하면 (240+x)/4 ≥ 84이므로 x ≥ 96이다.\\n따라서 최소 96점을 받아야 한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "96점",
+  "work": "세 시험 점수의 합은 94+79+67=240점이다.\n네 번째 점수를 x점이라 하면 (240+x)/4 ≥ 84이므로 x ≥ 96이다.\n따라서 최소 96점을 받아야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c2cfdae437c14d34e8cd30ea0ecc8683c7bdb76186c4adc71d0c0224962c0c32"
+}

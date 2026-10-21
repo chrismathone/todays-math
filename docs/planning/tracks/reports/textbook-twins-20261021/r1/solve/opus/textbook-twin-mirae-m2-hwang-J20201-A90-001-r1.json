@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A90-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "51bf0a0f-c923-497d-af8e-fa5ce00947e7",
+ "startedAt": "2026-10-21T16:26:30+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "ac2c6301bfea4b66a675cd0a9da2bae6a7b6205808edc274371f7e0de88679ed"
+ },
+ "promptSha256": "7c679a412abec3c7cf33e00cfc3c94a758d259e09f1808fe5f40098ae63a8133",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"a<b에서 양변에서 2를 빼면 a-2<b-2, 양변을 양수 4로 나누면 (a-2)/4<(b-2)/4이므로 ②의 부등호 방향이 틀렸다. ①⑤는 같은 수를 더하거나 빼도 방향 유지, ③은 양수로 나누어 유지, ④는 음수 -3을 곱해 방향이 바뀐 뒤 1을 더해 -3a+1>-3b+1로 옳다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "a<b에서 양변에서 2를 빼면 a-2<b-2, 양변을 양수 4로 나누면 (a-2)/4<(b-2)/4이므로 ②의 부등호 방향이 틀렸다. ①⑤는 같은 수를 더하거나 빼도 방향 유지, ③은 양수로 나누어 유지, ④는 음수 -3을 곱해 방향이 바뀐 뒤 1을 더해 -3a+1>-3b+1로 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "39038b87bd1d65289db598301094c7d583defbf60cb63f923bc04ea8ace40f95"
+}

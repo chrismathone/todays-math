@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B21-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5c-96c9-7701-9630-88dbf1f9a05d",
+ "startedAt": "2026-10-21T16:28:31+0900",
+ "elapsedSec": 16.8,
+ "studentSha256": {
+  "fig-1.png": "4efa1446a024d5ac81ec60057911bc53281c518af7d303b68be9e8bb6f9dead5",
+  "student.json": "42928325fa3ffcf81aa2403c2b02d01aea420ad59bdb08f7dab131beb63830e8"
+ },
+ "promptSha256": "dc5bfeb57acb46046797b90b41e43f27098e1ecb5d5df75b2dfc379c7b1de6df",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\pi\\\\cdot\\\\overline{\\\\mathrm{AB}}\\\\cdot(\\\\overline{\\\\mathrm{BC}})^2$ (수치 결정 불가)\",\n  \"work\": \"회전체는 높이가 AB, 밑면의 반지름이 BC인 원기둥이다. 따라서 부피는 π×BC²×AB이다.\",\n  \"confidence\": \"high\",\n  \"issues\": [\"문제와 그림에 변의 길이가 주어지지 않아 부피의 수치를 구할 수 없다.\"]\n}\n```",
+ "parsed": {
+  "answer": "$\\pi\\cdot\\overline{\\mathrm{AB}}\\cdot(\\overline{\\mathrm{BC}})^2$ (수치 결정 불가)",
+  "work": "회전체는 높이가 AB, 밑면의 반지름이 BC인 원기둥이다. 따라서 부피는 π×BC²×AB이다.",
+  "confidence": "high",
+  "issues": [
+   "문제와 그림에 변의 길이가 주어지지 않아 부피의 수치를 구할 수 없다."
+  ]
+ },
+ "eventsSha256": "643508c435645e84e79466374ee50c9da3289f346c1f2fda082455e9fb8c3fd2"
+}

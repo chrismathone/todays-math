@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A54-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da7-524c-7993-82db-4b14c9d2f150",
+ "startedAt": "2026-10-21T17:50:09+0900",
+ "elapsedSec": 12.3,
+ "studentSha256": {
+  "student.json": "41052cb0f69754e488202dd98b91fcc50036158654c934e76da6b4b1b4248f06"
+ },
+ "promptSha256": "042320bcdd174c1545980b042032167867547fda830941adf830034823753fdf",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$k=-2$\",\"work\":\"해가 없으려면 두 직선이 서로 평행하고 일치하지 않아야 한다.\\n첫째 식에 2를 곱하면 $6x+2ky-2=0$이므로, 둘째 식과 평행하려면 $2k=-4$, 즉 $k=-2$이다.\\n이때 상수항이 서로 다르므로 두 직선은 일치하지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$k=-2$",
+  "work": "해가 없으려면 두 직선이 서로 평행하고 일치하지 않아야 한다.\n첫째 식에 2를 곱하면 $6x+2ky-2=0$이므로, 둘째 식과 평행하려면 $2k=-4$, 즉 $k=-2$이다.\n이때 상수항이 서로 다르므로 두 직선은 일치하지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2769f0132df23d3479a5496124867114181f26d4fffd232f5a3365213bdcc4ca"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e3a352b7-951e-4afb-9abe-c40d7721c369",
+ "startedAt": "2026-10-21T17:07:19+0900",
+ "elapsedSec": 5.7,
+ "studentSha256": {
+  "student.json": "474c020d56c924ceb7464d2c7455cfc7b7d54f2f36def0f9d3fd8b33bad6f000"
+ },
+ "promptSha256": "cc54ed575dd900cff6010fd690470a9e0118e6930f2fadebe6c9ef9de4332809",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ⑤\", \"work\": \"정삼각형은 모든 각이 60°이고, 정육각형은 모든 각이 120°이다. 두 경우 모두 대응변의 길이의 비가 늘 일정하므로 항상 닮음이다. 평행사변형, 사다리꼴, 둔각삼각형은 각의 크기나 변의 길이의 비가 서로 다를 수 있으므로 항상 닮음인 것은 아니다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "정삼각형은 모든 각이 60°이고, 정육각형은 모든 각이 120°이다. 두 경우 모두 대응변의 길이의 비가 늘 일정하므로 항상 닮음이다. 평행사변형, 사다리꼴, 둔각삼각형은 각의 크기나 변의 길이의 비가 서로 다를 수 있으므로 항상 닮음인 것은 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d1ac14ea996be39f25d1b6b6011f21d9404564279fdfa801a0b89d220c356d67"
+}

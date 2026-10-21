@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db8-f550-7f13-96ea-1334d2e69b63",
+ "startedAt": "2026-10-21T18:09:24+0900",
+ "elapsedSec": 10.6,
+ "studentSha256": {
+  "student.json": "474c020d56c924ceb7464d2c7455cfc7b7d54f2f36def0f9d3fd8b33bad6f000"
+ },
+ "promptSha256": "cc54ed575dd900cff6010fd690470a9e0118e6930f2fadebe6c9ef9de4332809",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ⑤\",\"work\":\"변의 개수가 같은 두 정다각형은 대응하는 각의 크기가 같고 대응하는 변의 길이의 비가 일정하므로 항상 닮음이다. 따라서 두 정삼각형과 두 정육각형은 항상 닮음이다. 평행사변형, 사다리꼴, 둔각삼각형은 모양이 달라질 수 있어 항상 닮지는 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "변의 개수가 같은 두 정다각형은 대응하는 각의 크기가 같고 대응하는 변의 길이의 비가 일정하므로 항상 닮음이다. 따라서 두 정삼각형과 두 정육각형은 항상 닮음이다. 평행사변형, 사다리꼴, 둔각삼각형은 모양이 달라질 수 있어 항상 닮지는 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0ab2effe6a53dea15c2a72f53efa14c7ef5ae30071859ad6160cc3dd366946c0"
+}

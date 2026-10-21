@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 82,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A76-001-r2",
+ "authorId": "claude-fable-5-1:eb88c034-18e7-4a47-8734-13adbc0300f1",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-A76-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아는 분모가 $90$인 어떤 분수를 약분하여 기약분수로 만들었더니 분자가 $3$이 되었고, 그 기약분수는 유한소수로 나타낼 수 있었다. 약분하기 전 분수의 분자를 $m$, 기약분수의 분모를 $n$이라 하면 $m$, $n$은 모두 두 자리 자연수이다. $m+n$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$37$",
+ "solution": "약분하기 전 분수는 $\\frac{m}{90}$이고 기약분수는 $\\frac{3}{n}$이다. $\\frac{m}{90}$을 약분하여 $\\frac{3}{n}$을 얻었으므로 $n$은 $90=2\\times3^{2}\\times5$의 약수이다. $\\frac{3}{n}$이 기약분수이면서 유한소수이므로 $n$은 $3$을 소인수로 갖지 않고, 소인수가 $2$ 또는 $5$뿐이어야 한다. 그런 $90$의 약수는 $1,~2,~5,~10$이고 이 중 두 자리 자연수는 $n=10$뿐이다. $\\frac{m}{90}=\\frac{3}{10}$에서 $m=27$이고 두 자리 자연수이다. 따라서 $m+n=27+10=37$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-15",
+  "problemCode": "J20101-A76-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 15,
+  "sourceContentSha256": "c850615b9d69c69ab81efbabda6e3a84c6f876255c8ffc402042cc2205fafac8",
+  "dbContentSha256": "d8bb6f3d1575a09d3dad950b1924e69b64bbd939cceeba12b5086188696351c3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "representation"
+  ],
+  "before": "분모가 주어진 분수를 기약분수로 고친 꼴(분자가 정해진 수, 분모는 미지수)이 유한소수가 된다는 조건에서, 두 자리 조건으로 미지의 분모를 하나로 정하고 원래 분자를 되찾아 두 수의 합을 구함. 조건이 모두 식 하나에 압축된 한 문장 발문.",
+  "after": "인물이 분수를 약분한 상황으로 조건을 풀어 쓴다. 분모 90, 약분 뒤 분자 3이 주어지고, 유한소수 조건과 두 자리 조건으로 약분 뒤 분모(10)를 하나로 정한 뒤 원래 분자(27)를 되찾아 합(37)을 구함. 미지수 m, n 은 발문 둘째 문장에서 이름 붙임.",
+  "sharedConcept": "기약분수가 유한소수가 되려면 분모의 소인수가 2 또는 5뿐이어야 한다",
+  "sharedProcedure": "분모 소인수분해 → 약분 뒤 분모는 원래 분모의 약수 → 소인수 2, 5뿐인 약수만 남김 → 두 자리 조건으로 분모 확정 → 원래 분자 복원 → 두 수의 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해와 약수",
+   "약분과 기약분수",
+   "유한소수로 나타낼 수 있는 분수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A76-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "기약분수가 유한소수가 되는 조건과 자릿수 조건으로 미지의 분모와 원래 분자 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.103,
+   "longestRun": 7,
+   "residualChars": 93,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

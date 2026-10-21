@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A20-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "19214fcf-2126-4d35-9930-6aab72759779",
+ "startedAt": "2026-10-21T16:29:04+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "4bc995692018c3c1b9571ff9c4fc0c1fe342b1c1664df7c27b95187aeb657a40"
+ },
+ "promptSha256": "db330d8e70a58ab054059097d806c39794dcb4e6f92fd931afad0eee1fd56b79",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"29명\", \"work\": \"40명 단체 입장료: 40×12000×0.7=336000(원). x명(x<40)이 개별로 내는 금액은 12000x원. 12000x>336000 이면 x>28. 따라서 29명 이상일 때 40명 단체 입장권이 유리하다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "29명",
+  "work": "40명 단체 입장료: 40×12000×0.7=336000(원). x명(x<40)이 개별로 내는 금액은 12000x원. 12000x>336000 이면 x>28. 따라서 29명 이상일 때 40명 단체 입장권이 유리하다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5a2101e93a6ee687d517485416f6ba5def472ec7b6a3141aa7a9769555e1d243"
+}

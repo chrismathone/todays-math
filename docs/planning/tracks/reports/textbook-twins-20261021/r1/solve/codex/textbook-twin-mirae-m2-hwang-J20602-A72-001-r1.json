@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbc-df49-7c20-8067-d6b4b63d484c",
+ "startedAt": "2026-10-21T18:13:41+0900",
+ "elapsedSec": 14.9,
+ "studentSha256": {
+  "fig-1.png": "36b8887ff69ce96e89c06eed977d2632a5892448f7d36bfcde099ea472ed6fb5",
+  "student.json": "9ab78be80d247a7e2f64f86d61c0770a6fc1ff94fd313d4aeb7235460633e2bf"
+ },
+ "promptSha256": "fbf09045a95955a17a1e415cc85aa256b71dacca5177da30ced0d5d1058514ec",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④, ⑤\",\"work\":\"각의 크기를 대응시키면 △ABC∽△HBA, △ABH∽△CAH이므로 ①, ②는 옳다.\\n닮음에서 $AH^2=BH\\\\times CH$, $AB^2=BC\\\\times BH$, $AC^2=BC\\\\times CH$를 얻는다.\\n따라서 ③은 옳고, ④와 ⑤는 옳지 않다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④, ⑤",
+  "work": "각의 크기를 대응시키면 △ABC∽△HBA, △ABH∽△CAH이므로 ①, ②는 옳다.\n닮음에서 $AH^2=BH\\times CH$, $AB^2=BC\\times BH$, $AC^2=BC\\times CH$를 얻는다.\n따라서 ③은 옳고, ④와 ⑤는 옳지 않다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d707bbb37dccaf9503101bc5cf95672d5d2de2dba20561a0ba7de982fcd32014"
+}

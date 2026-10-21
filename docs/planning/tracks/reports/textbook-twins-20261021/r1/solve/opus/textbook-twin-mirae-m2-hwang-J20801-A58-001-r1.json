@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A58-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "434f488c-7187-4cbc-9424-064067273183",
+ "startedAt": "2026-10-21T17:10:55+0900",
+ "elapsedSec": 8.4,
+ "studentSha256": {
+  "fig-1.png": "fd8fcceed23d254bfb06a0fbd6529cd3e5b9de927a15797f965189b3b9112a3a",
+  "student.json": "253ddbede6aa6696647523241040551070d24e0388ab5842ea778f34c86d6c9e"
+ },
+ "promptSha256": "8d8dd457443a50f917fe99c2fb88aca7eee2bd15a1bc3b91cd8077b6c09a79a3",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"50 cm²\", \"work\": \"△ABC≡△CDE이므로 AB=CD=6, DE=BC=8, AC=CE이다. ∠BAC+∠ACB=90°이고 ∠BAC=∠DCE이므로 ∠ACB+∠DCE=90°, 따라서 ∠ACE=90°이다. AC=√(8²+6²)=10이므로 △ACE=½·10·10=50 cm²이다. 사다리꼴 ABDE의 넓이로도 확인된다: ½(6+8)·14 − 2·(½·8·6) = 98 − 48 = 50.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "50 cm²",
+  "work": "△ABC≡△CDE이므로 AB=CD=6, DE=BC=8, AC=CE이다. ∠BAC+∠ACB=90°이고 ∠BAC=∠DCE이므로 ∠ACB+∠DCE=90°, 따라서 ∠ACE=90°이다. AC=√(8²+6²)=10이므로 △ACE=½·10·10=50 cm²이다. 사다리꼴 ABDE의 넓이로도 확인된다: ½(6+8)·14 − 2·(½·8·6) = 98 − 48 = 50.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b14b1c6e3f9ea52fe4d3314e2513c2b77b1d72915396b0fa8111593859069163"
+}

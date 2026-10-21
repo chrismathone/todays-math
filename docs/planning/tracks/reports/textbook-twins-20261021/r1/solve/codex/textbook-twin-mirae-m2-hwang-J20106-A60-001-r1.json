@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A60-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d59-f9b4-7312-8e6c-e3e598af0bf3",
+ "startedAt": "2026-10-21T16:25:40+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "330ac28acad67ba34a29deac3f97b87973204a379206b35624bdfdd227fcccd3"
+ },
+ "promptSha256": "1c9f61bfa44587bddec34fc18b0a7ebc21098b5edb0c3e7595c47c021b35b7b7",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$(3a^4b)^3=27a^{12}b^3$, $(-2a^2b^3)^2=4a^4b^6$이므로 곱은 $108a^{16}b^9$이다.\\n따라서 $A=108$, $B=16$, $C=9$이고, $A+B+C=133$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$(3a^4b)^3=27a^{12}b^3$, $(-2a^2b^3)^2=4a^4b^6$이므로 곱은 $108a^{16}b^9$이다.\n따라서 $A=108$, $B=16$, $C=9$이고, $A+B+C=133$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "10dd9892507f727f252178cd6cd047d4f30c1339567dffffe23646a60dbb3791"
+}

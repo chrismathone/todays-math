@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 136,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A42-001-r1",
+ "authorId": "claude-fable-5-1:5472cdb4-9a9c-4728-9d30-f8eff3dc949f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$-2<x\\le6$ 이고 $A=\\frac{1}{2}(9-3x)$ 일 때, $A$가 될 수 있는 값 가운데 가장 큰 정수와 가장 작은 정수를 각각 $M$, $m$이라 하자. $M+m$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$3$",
+ "solution": "$A=\\frac{1}{2}(9-3x)=\\frac{9}{2}-\\frac{3}{2}x$ 이다. $-2<x\\le6$ 의 각 변에 $-\\frac{3}{2}$를 곱하면 부등호 방향이 바뀌어 $-9\\le-\\frac{3}{2}x<3$ 이고, 각 변에 $\\frac{9}{2}$를 더하면 $-\\frac{9}{2}\\le A<\\frac{15}{2}$ 이다. 따라서 $M=7$, $m=-4$ 이므로 $M+m=3$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-10",
+  "problemCode": "J20203-A42-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "a8368d81f84cee7ac9e5b4b3bc4b4cd47a3428f1d23fb257b8cc95bc0ed652c5",
+  "dbContentSha256": "204864b35ac8e7f128522b3819edd903433748964440ffc2d6c96afbaec60dea",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "왼쪽 닫힘·오른쪽 열림인 x의 범위에서 음수 계수 일차식의 값의 범위를 구해 가장 큰·작은 정수의 합을 구함(위쪽 경계가 정수로 포함됨)",
+  "after": "왼쪽 열림·오른쪽 닫힘인 x의 범위에서 음수 계수 일차식의 값의 범위를 구해 정수 양 끝의 합을 구함(양쪽 경계가 모두 정수가 아님)",
+  "sharedConcept": "부등식의 성질을 이용한 식의 값의 범위",
+  "sharedProcedure": "식 전개 → 각 변에 음수 곱해 방향 바꾸기 → 상수 더하기 → 범위 안 최대·최소 정수 찾기 → 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 응용"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "식의 값의 범위",
+   "정수의 대소"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20203-A42-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "x의 범위가 주어질 때 일차식 값의 범위와 정수 양 끝의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.271,
+   "longestRun": 8,
+   "residualChars": 51,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 66,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우는 두 순환소수 $0.8\\dot{3}$ 과 $3.\\dot{6}$ 을 각각 기약분수로 고친 뒤, 그 역수를 차례로 $p$, $q$ 라 하였다. $pq$ 의 값은?",
+ "choices": [
+  "$\\frac{12}{55}$",
+  "$\\frac{16}{55}$",
+  "$\\frac{18}{55}$",
+  "$\\frac{21}{65}$",
+  "$\\frac{24}{65}$"
+ ],
+ "answer": "③",
+ "solution": "$0.8\\dot{3}=\\dfrac{83-8}{90}=\\dfrac{75}{90}=\\dfrac{5}{6}$ 이므로 $p=\\dfrac{6}{5}$ 이다. $3.\\dot{6}=\\dfrac{36-3}{9}=\\dfrac{33}{9}=\\dfrac{11}{3}$ 이므로 $q=\\dfrac{3}{11}$ 이다. 따라서 $pq=\\dfrac{6}{5}\\times\\dfrac{3}{11}=\\dfrac{18}{55}$ 이고 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-12",
+  "problemCode": "J20103-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "f8b99156560dc215eaa0d43eddb5ba471197637f04c7b4c9f2a50714e8e185fc",
+  "dbContentSha256": "8b9a28ba854962cd9773a77dc2c004d8d0f488e612556264f1792faedcf472df",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "순환하지 않는 자리가 있는 순환소수 하나와 정수 부분이 있는 순환소수 하나를 분수로 고쳐 각각의 역수를 곱한다.",
+  "after": "한 학생이 두 순환소수를 분수로 고쳐 역수를 구하는 장면으로 바꾸고, 두 수를 새로 정해 역수의 곱을 묻는다.",
+  "sharedConcept": "순환소수의 분수 표현과 역수",
+  "sharedProcedure": "각 순환소수를 분수로 → 약분 → 역수 → 두 역수의 곱"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "역수",
+   "분수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A60-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 순환소수의 역수의 곱",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.097,
+   "longestRun": 6,
+   "residualChars": 66,
+   "params": 12,
+   "numberRetention": 0.083,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

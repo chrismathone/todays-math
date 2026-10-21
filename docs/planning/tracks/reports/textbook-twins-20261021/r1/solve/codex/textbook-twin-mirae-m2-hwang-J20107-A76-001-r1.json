@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d58-26e6-7592-91d2-d86abebf84af",
+ "startedAt": "2026-10-21T16:23:40+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "74ef0ddd8fbb143dad76a0b09c393727dabe7f5b002ea7a8ed765237e72601c2"
+ },
+ "promptSha256": "ebd95ada3d159382c8e37614adf24ff66db252f543753b5daba092b5b1e5e098",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$3x^{2}+10x-5$\",\"work\":\"(가)에서 A=(-x²+5x-1)+(2x²-x+4)=x²+4x+3.\\n(나)에서 B=(x²-4x+2)-(3x²+2x-6)=-2x²-6x+8.\\n따라서 A-B=(x²+4x+3)-(-2x²-6x+8)=3x²+10x-5.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$3x^{2}+10x-5$",
+  "work": "(가)에서 A=(-x²+5x-1)+(2x²-x+4)=x²+4x+3.\n(나)에서 B=(x²-4x+2)-(3x²+2x-6)=-2x²-6x+8.\n따라서 A-B=(x²+4x+3)-(-2x²-6x+8)=3x²+10x-5.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cd9b7fa0e9c360a78415f6ee693a25a3d2a70496434e132ac6a7757c2b295497"
+}

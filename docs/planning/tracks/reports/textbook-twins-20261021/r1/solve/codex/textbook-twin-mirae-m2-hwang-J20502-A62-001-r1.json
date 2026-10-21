@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A62-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db1-0cd2-7202-b59e-1cf2c34b6037",
+ "startedAt": "2026-10-21T18:00:46+0900",
+ "elapsedSec": 18.2,
+ "studentSha256": {
+  "fig-1.png": "d3c6f07c9b65b0e62d7dbe1548711e6cc93443e13fac8136b676736a8aab2c41",
+  "student.json": "8d1d0b2d03b99bf52a1768301db4c26f5952e7710866f4acf289b1b1d69f50da"
+ },
+ "promptSha256": "a75c9becec1baeae8faa809b30b607803c8f0374aa4fc1abd7f67cc01b56e928",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\triangle ABC \\\\equiv \\\\triangle DFE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같다) ⑵ 5 cm\",\n  \"work\": \"두 삼각형에서 $\\\\angle A=\\\\angle D=90^\\\\circ$, $BC=FE=10\\\\text{ cm}$, $\\\\angle C=\\\\angle E=60^\\\\circ$이므로 RHA 합동이다.\\n대응변의 길이가 같으므로 $AC=DE=5\\\\text{ cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle ABC \\equiv \\triangle DFE$, RHA 합동(직각삼각형의 빗변의 길이와 한 예각의 크기가 각각 같다) ⑵ 5 cm",
+  "work": "두 삼각형에서 $\\angle A=\\angle D=90^\\circ$, $BC=FE=10\\text{ cm}$, $\\angle C=\\angle E=60^\\circ$이므로 RHA 합동이다.\n대응변의 길이가 같으므로 $AC=DE=5\\text{ cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "03b146327e05233adc9a4e1296d45d3b50901491fba7eb08a74bc85544566e5d"
+}

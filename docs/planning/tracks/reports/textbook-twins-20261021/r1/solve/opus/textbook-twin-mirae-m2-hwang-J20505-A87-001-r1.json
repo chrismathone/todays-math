@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ab361796-8e26-4a65-bbaf-b4ffeeb71af5",
+ "startedAt": "2026-10-21T17:07:00+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "3c439d2d8fa5a03c473503a5ab743992b6ddeb826910926245b3a8f0a63ea57d",
+  "student.json": "9c883878ca5ea30c7c7ae82e17e4391377a5aef97438bd64085c3d058388c666"
+ },
+ "promptSha256": "01cf93fd7aed38da16797498c4579a8a04ae6e1243bc69e1173d3c7c93382e8d",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"평행사변형의 두 대각선은 서로를 이등분하므로 AO=CO이다(①). AD∥BC이므로 엇각에 의해 ∠EAO=∠FCO이다(③). 맞꼭지각이므로 ∠AOE=∠COF이다. 따라서 ASA 합동으로 △AEO≡△CFO이다(⑤). 그러므로 OE=OF(④)이고 AE=CF이다. AE와 같은 것은 CF이지 BF가 아니다. AE=BF가 되려면 E, F가 각 변의 중점이어야 하는데, 그림에서는 그렇지 않다. 따라서 옳지 않은 것은 ②이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "평행사변형의 두 대각선은 서로를 이등분하므로 AO=CO이다(①). AD∥BC이므로 엇각에 의해 ∠EAO=∠FCO이다(③). 맞꼭지각이므로 ∠AOE=∠COF이다. 따라서 ASA 합동으로 △AEO≡△CFO이다(⑤). 그러므로 OE=OF(④)이고 AE=CF이다. AE와 같은 것은 CF이지 BF가 아니다. AE=BF가 되려면 E, F가 각 변의 중점이어야 하는데, 그림에서는 그렇지 않다. 따라서 옳지 않은 것은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "28cfb8fd5089432fc7d7c9cf301fc40a60e86aae817d158b65662a6d3b8a81d1"
+}

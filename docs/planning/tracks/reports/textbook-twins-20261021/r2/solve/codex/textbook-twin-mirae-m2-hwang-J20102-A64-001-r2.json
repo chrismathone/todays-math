@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d80-447e-7713-a92e-76e20b6d34ca",
+ "startedAt": "2026-10-21T17:07:29+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "cc4bd84e867f7366b0ecbd927f10711c25c6f13d4bebada8a18267efc7065dab"
+ },
+ "promptSha256": "45bbc24ee286d2f5e5d6594959e995148e53c478e433dabf2859a5aca30106e9",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"②는 순환마디가 126이므로 양 끝 숫자인 1과 6 위에 점을 찍은 것이 바르다.\\n①은 7에만, ③은 3과 5에, ④는 소수 부분의 0과 8에만, ⑤는 6과 2에만 점을 찍어야 한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "②는 순환마디가 126이므로 양 끝 숫자인 1과 6 위에 점을 찍은 것이 바르다.\n①은 7에만, ③은 3과 5에, ④는 소수 부분의 0과 8에만, ⑤는 6과 2에만 점을 찍어야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1eab9f2b81bbead9894db9441aa5400daf9be8ea451dec6099d520d14dd20138"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-d80b-7bc0-a24c-a3d4eb1f15cb",
+ "startedAt": "2026-10-21T19:24:39+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "95a500a95ec7fabf86dce7f98b1275dbe132a04d7d47b72d670ed53c73ee9c30"
+ },
+ "promptSha256": "120b7f4e7f34f8b9dd77cfac302d77b0583b1e9d39505fbcc34f342cf921739f",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{4}{5}$\",\"work\":\"전체 경우의 수는 5×5=25이다. 두 수가 같은 경우는 (1,1)부터 (5,5)까지 5가지이므로, 같지 않을 확률은 (25-5)/25=4/5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{4}{5}$",
+  "work": "전체 경우의 수는 5×5=25이다. 두 수가 같은 경우는 (1,1)부터 (5,5)까지 5가지이므로, 같지 않을 확률은 (25-5)/25=4/5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "101c615fe237f020bdc3bc3440386e84d8b33d9146fc3eec1f831c6b6fbc3d3d"
+}

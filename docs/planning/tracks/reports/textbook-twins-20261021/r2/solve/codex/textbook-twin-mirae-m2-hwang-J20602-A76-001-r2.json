@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A76-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df7-74c8-70a3-a936-c88a9bde6e19",
+ "startedAt": "2026-10-21T19:17:40+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "fig-1.png": "685be3ea9d5408248c53c9a250ddf7608e704aa9606faaade56bf0c83ecc6cfa",
+  "student.json": "9914bae89e1e971aa77ac1b97f081ce6cdc53e8709d44a7a9aaecaa123bb06af"
+ },
+ "promptSha256": "d69fa3b06deb5a1db8ce7ed61a0d4a4cb189e9f21e38d970b317a7669a4534bd",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"직각삼각형 ABE에서 피타고라스 정리에 의해 $BE=\\\\sqrt{13^2-5^2}=12\\\\,\\\\mathrm{cm}$이므로 $EC=18-12=6\\\\,\\\\mathrm{cm}$이다.\\n$\\\\triangle ABE\\\\sim\\\\triangle FCE$이므로 $CF=5\\\\times\\\\frac{6}{12}=\\\\frac{5}{2}\\\\,\\\\mathrm{cm}$이다.\\n따라서 $\\\\triangle ECF$의 넓이는 $\\\\frac12\\\\times6\\\\times\\\\frac52=\\\\frac{15}{2}\\\\,\\\\mathrm{cm}^2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "직각삼각형 ABE에서 피타고라스 정리에 의해 $BE=\\sqrt{13^2-5^2}=12\\,\\mathrm{cm}$이므로 $EC=18-12=6\\,\\mathrm{cm}$이다.\n$\\triangle ABE\\sim\\triangle FCE$이므로 $CF=5\\times\\frac{6}{12}=\\frac{5}{2}\\,\\mathrm{cm}$이다.\n따라서 $\\triangle ECF$의 넓이는 $\\frac12\\times6\\times\\frac52=\\frac{15}{2}\\,\\mathrm{cm}^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7651600f45be9bef40b3ba3c5d687f899cc1034c42cf45bda45eb284f6b48066"
+}

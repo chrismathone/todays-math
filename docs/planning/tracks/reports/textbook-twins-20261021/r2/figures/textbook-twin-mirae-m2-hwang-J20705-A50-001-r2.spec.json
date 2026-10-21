@@ -1,0 +1,105 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 340,
+  "height": 260
+ },
+ "style": {
+  "show_points": true
+ },
+ "points": {
+  "A": [
+   50,
+   50
+  ],
+  "B": [
+   50,
+   210
+  ],
+  "C": [
+   290,
+   210
+  ],
+  "M": [
+   170,
+   130
+  ],
+  "G": [
+   130,
+   156.67
+  ],
+  "AC_len": [
+   186,
+   108
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "AM": {
+   "points": [
+    "A",
+    "M"
+   ],
+   "ticks": 1
+  },
+  "MC": {
+   "points": [
+    "M",
+    "C"
+   ],
+   "ticks": 1
+  },
+  "BG": [
+   "B",
+   "G"
+  ],
+  "GM": [
+   "G",
+   "M"
+  ]
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "NW"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "M": {
+   "text": "M",
+   "position": "SE"
+  },
+  "G": {
+   "text": "G",
+   "position": "NW"
+  },
+  "AC_len": {
+   "text": "30 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

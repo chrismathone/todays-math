@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 2,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r2",
+ "authorId": "claude-fable-5-1:e4a711e3-a155-4b88-9a33-72fadc2efbdd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아는 다항식 $A$에 $-4ab$를 곱하는 문제를 풀다가 실수로 $-4ab$로 나누었고, 공책에는 다음과 같이 적혀 있었다.\n$A\\div\\left(-4ab\\right)=\\frac{3}{4}a-\\frac{1}{2}b+\\frac{1}{8}$\n서아가 바르게 계산했을 때 나오는 식은?",
+ "choices": [
+  "$-3a^{2}b+2ab^{2}-\\frac{1}{2}ab$",
+  "$12a^{2}b-8ab^{2}+2ab$",
+  "$12a^{3}b^{2}-8a^{2}b^{3}+2a^{2}b^{2}$",
+  "$-12a^{3}b^{2}+8a^{2}b^{3}-2a^{2}b^{2}$",
+  "$12a^{3}b^{2}-8a^{2}b^{3}-2a^{2}b^{2}$"
+ ],
+ "answer": "③",
+ "solution": "$A\\div\\left(-4ab\\right)=\\frac{3}{4}a-\\frac{1}{2}b+\\frac{1}{8}$이므로\n$A=\\left(\\frac{3}{4}a-\\frac{1}{2}b+\\frac{1}{8}\\right)\\times\\left(-4ab\\right)=-3a^{2}b+2ab^{2}-\\frac{1}{2}ab$\n따라서 바르게 계산한 식은\n$A\\times\\left(-4ab\\right)=\\left(-3a^{2}b+2ab^{2}-\\frac{1}{2}ab\\right)\\times\\left(-4ab\\right)=12a^{3}b^{2}-8a^{2}b^{3}+2a^{2}b^{2}$\n정답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-13",
+  "problemCode": "J20108-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "3cde40e992ace0e92908e2bc61dfec9af4362ba756f4d213be9809a81cbae683",
+  "dbContentSha256": "67c6987107413061c8fb69e1cddc382a94036dd8a0158258274cd7629b7131a6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "어떤 식에 단항식을 곱해야 하는데 나누어 얻은 분수 계수 다항식을 글로 알려 주고, 바르게 곱한 결과를 보기에서 고른다.",
+  "after": "인물이 공책에 적은 잘못된 나눗셈 등식을 그대로 보여 주고, 음수 계수 단항식을 곱해야 했을 때의 바른 결과를 보기에서 고른다. 변수와 수를 모두 새로 정했다.",
+  "sharedConcept": "다항식과 단항식의 곱셈·나눗셈 — 잘못 계산한 결과에서 원래 식을 되찾아 바르게 계산하기",
+  "sharedProcedure": "잘못된 결과에 단항식을 곱해 원래 식 A 구하기 → A에 단항식을 한 번 더 곱해 전개 → 보기와 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "단항식과 다항식의 곱셈",
+   "다항식을 단항식으로 나누기",
+   "지수법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A53-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱셈과 나눗셈을 바꿔 계산한 결과에서 바르게 계산한 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "overlap4": 0.022,
+   "longestRun": 5,
+   "residualChars": 193,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

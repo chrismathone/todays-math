@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 120,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A51-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$-3a+2\\le -3b+2$일 때, 다음 중에서 옳지 않은 것은?",
+ "choices": [
+  "$a\\ge b$",
+  "$a+6\\ge b+6$",
+  "$7-a\\ge 7-b$",
+  "$-a\\le -b$",
+  "$\\frac{a}{4}+1\\ge \\frac{b}{4}+1$"
+ ],
+ "answer": "③",
+ "solution": "$-3a+2\\le -3b+2$의 양변에서 $2$를 빼면 $-3a\\le -3b$이고, 양변을 $-3$으로 나누면 부등호의 방향이 바뀌어 $a\\ge b$이다.\n$a\\ge b$에서 ② $a+6\\ge b+6$, ④ $-a\\le -b$, ⑤ $\\frac{a}{4}+1\\ge\\frac{b}{4}+1$은 모두 옳다.\n③은 $-a\\le -b$의 양변에 $7$을 더하면 $7-a\\le 7-b$이므로 옳지 않다.\n따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-6",
+  "problemCode": "J20201-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "5ed65a419b0755795a629c7d9e1e30f8c6affd17d76cc43f8bc5827cf1fa49b5",
+  "dbContentSha256": "213a8dc08ce5930236a7fb4c36f9dabc222a39d4e487a15cbd35e140ae4884a5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "상수 뒤에 음의 계수 항이 붙은 엄격 부등식에서 $a<b$를 끌어내고, 그로부터 만든 다섯 변형식 중 틀린 것 하나를 고른다.",
+  "after": "음의 계수 항이 앞에 오는 등호 포함 부등식에서 $a\\ge b$를 끌어내고, 다섯 변형식 중 틀린 것 하나를 고른다. 틀린 보기는 음수 곱 뒤 상수 더하기 꼴로 바꾸고 위치도 옮겼다.",
+  "sharedConcept": "부등식의 성질 — 음수 나눗셈의 방향 반전과 그 이후 변형",
+  "sharedProcedure": "주어진 부등식에서 $a$, $b$ 관계 도출 → 각 보기 변형 확인 → 어긋나는 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 성질",
+   "정수와 유리수의 나눗셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A51-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부등식에서 대소를 도출한 뒤 옳지 않은 변형 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.173,
+   "longestRun": 12,
+   "residualChars": 56,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

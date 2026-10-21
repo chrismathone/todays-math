@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A63-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-3e81-7531-9037-199fe68cdbd2",
+ "startedAt": "2026-10-21T16:51:05+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "02aa640544109d8659b675bd01122a4ce1db1504dbf12064fe984beb74b344d3"
+ },
+ "promptSha256": "173becb37c2bee43d25d8285669391e04db14e5ea728ec3fafb2b89c597b00cb",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"①, ③, ④, ⑤의 해는 모두 $x\\\\le 3$이다.\\n②는 $-6x\\\\le -18$에서 음수로 나누면 부등호 방향이 바뀌므로 $x\\\\ge 3$이다. 따라서 해가 다른 하나는 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "①, ③, ④, ⑤의 해는 모두 $x\\le 3$이다.\n②는 $-6x\\le -18$에서 음수로 나누면 부등호 방향이 바뀌므로 $x\\ge 3$이다. 따라서 해가 다른 하나는 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e75c46e327c5ba2e9c3ad562f968734b8b9c7c881049ce77f170f30ac8fda661"
+}

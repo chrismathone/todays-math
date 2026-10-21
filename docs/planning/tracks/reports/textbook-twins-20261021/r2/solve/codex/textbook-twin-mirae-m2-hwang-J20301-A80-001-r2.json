@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dda-2637-7610-82c0-039b51724452",
+ "startedAt": "2026-10-21T18:45:40+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "student.json": "a7beae2059e569a192379a210932cf0e42338a6c0c8405e501a3df3f9abf3d54"
+ },
+ "promptSha256": "a56e24b6145b429cacfb20e75a54cbd2afe339894f51133c4789fc61f9dd0205",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"전체 무게에서 $4x+7y=84$이다. $7y=84-4x$가 4의 배수이므로 $y$도 4의 배수이다. $0\\\\le y\\\\le12$이므로 $y=0,4,8,12$이고, 순서쌍은 $(21,0),(14,4),(7,8),(0,12)$로 총 4개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "전체 무게에서 $4x+7y=84$이다. $7y=84-4x$가 4의 배수이므로 $y$도 4의 배수이다. $0\\le y\\le12$이므로 $y=0,4,8,12$이고, 순서쌍은 $(21,0),(14,4),(7,8),(0,12)$로 총 4개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b1b653812ebd4502d486f717f92907fe89f5f44ee6f286c402a62baf64f68456"
+}

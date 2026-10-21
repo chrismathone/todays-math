@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da6-71a0-7cb3-9cd4-a54883400868",
+ "startedAt": "2026-10-21T17:49:11+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "fig-1.png": "1ed35fea91913ac766888135cbc97cd9a8059c4b8f8092c34ed8e71fd76f2477",
+  "student.json": "602047f7134a59ba74afc95084741ed2408f1fba9729da795e85c393c3c6abfe"
+ },
+ "promptSha256": "36cb3740ac6f3a4bdd88fc1a30bf22729576fd378f13d27182a0cc28918bd221",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"그래프는 두 점 $(0,2)$, $(3,0)$을 지나므로 기울기는 $-\\\\frac{2}{3}$이다.\\n따라서 $y=-\\\\frac{2}{3}x+2$이고, 정리하면 $2x+3y-6=0$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "그래프는 두 점 $(0,2)$, $(3,0)$을 지나므로 기울기는 $-\\frac{2}{3}$이다.\n따라서 $y=-\\frac{2}{3}x+2$이고, 정리하면 $2x+3y-6=0$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5de6b805a9b488957b3fd96b01efe03483270340655aa1cc9ef191c38795266f"
+}

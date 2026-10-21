@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 298,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r2",
+ "authorId": "claude-opus-5-5:3222e889-6786-4764-a4a5-ac2f2cafd567",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아가 같은 종류의 도형을 두 개씩 골라 짝을 지으려고 한다. 다음 중 서로 닮지 않은 두 도형으로 짝을 지을 수도 있는 것은?",
+ "choices": [
+  "두 정오각형",
+  "두 구",
+  "두 정육면체",
+  "두 부채꼴",
+  "두 정팔면체"
+ ],
+ "answer": "④",
+ "solution": "두 정오각형은 다섯 각의 크기가 모두 $108^{\\circ}$로 같고 대응하는 변의 길이의 비가 모두 같으므로 언제나 닮은 도형이다. 두 구, 두 정육면체, 두 정팔면체는 모양이 같고 크기만 다를 수 있으므로 언제나 닮은 도형이다. 두 부채꼴은 반지름의 길이가 같아도 중심각의 크기가 다를 수 있다. 예를 들어 중심각이 $60^{\\circ}$인 부채꼴과 $120^{\\circ}$인 부채꼴은 닮은 도형이 아니다. 따라서 서로 닮지 않은 두 도형으로 짝을 지을 수도 있는 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-1",
+  "problemCode": "J20601-A19-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "6c492f741dfdab2358f83ee6e0f139094888a1656486574ca70ab2da9eac310c",
+  "dbContentSha256": "d651ebde6bcbf4a118f8fcaef350529d93c76eb734c0bdc3cae5291346d92aec",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation"
+  ],
+  "before": "도형 이름 다섯 쌍(반원·원·직각이등변삼각형·마름모·정사면체)에서 언제나 닮은 도형이라고는 할 수 없는 쌍 하나를 고른다.",
+  "after": "짝을 짓는 장면에서 '언제나 닮음이 아님'을 '닮지 않은 짝도 있을 수 있음'(반례가 있음)으로 바꿔 묻는다. 보기는 정오각형·구·정육면체·부채꼴·정팔면체이고, 반례가 있는 쌍 하나를 고른다.",
+  "sharedConcept": "닮은 도형의 뜻(모양이 같고 크기만 다를 수 있음) — 항상 닮은 도형인지 판별하기",
+  "sharedProcedure": "보기마다 모양을 정하는 조건(각·비)이 고정되는지 확인 → 고정되지 않는 쌍에서 반례 찾기 → 반례가 있는 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "닮은 도형"
+  },
+  "prerequisites": [
+   "닮은 도형의 뜻",
+   "정다각형의 성질",
+   "정다면체",
+   "부채꼴의 중심각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20601-A19-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "항상 닮은 도형인지 판별하기(반례가 있는 쌍 고르기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.015,
+   "longestRun": 4,
+   "residualChars": 70,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

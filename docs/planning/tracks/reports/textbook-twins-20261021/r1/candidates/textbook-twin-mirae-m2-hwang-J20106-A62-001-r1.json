@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 37,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$(3a^{4}b^{2})^{2}\\div\\frac{1}{2}a^{P}b^{3}\\times(-2ab^{Q})^{2}=Ra^{3}b^{7}$이 성립하도록 하는 자연수 $P$, $Q$, $R$에 대하여 $P+Q+R$의 값은?",
+ "choices": [
+  "$72$",
+  "$78$",
+  "$82$",
+  "$86$",
+  "$90$"
+ ],
+ "answer": "③",
+ "solution": "$(3a^{4}b^{2})^{2}=9a^{8}b^{4}$, $(-2ab^{Q})^{2}=4a^{2}b^{2Q}$이므로 좌변은 $9a^{8}b^{4}\\times\\frac{2}{a^{P}b^{3}}\\times 4a^{2}b^{2Q}=72a^{10-P}b^{2Q+1}$이다. $10-P=3$, $2Q+1=7$, $R=72$이므로 $P=7$, $Q=3$이고 $P+Q+R=82$이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-7",
+  "problemCode": "J20106-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "9eb2404e44530d7a2a3ba4d13ba6f87e5583a053f03287f884002e117547da80",
+  "dbContentSha256": "08fd93753477d41a0542b05329d88d9fac732124606a0ba104a23038c3063f43",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "혼합 계산의 첫 인수와 나누는 식에 미지 지수가 있고, 결과의 계수가 미지수일 때 세 수의 합을 고른다.",
+  "after": "미지 지수를 나누는 식과 마지막 곱하는 인수(제곱 안)에 두어 지수를 거꾸로 추적해야 하도록 짜임을 바꾸고 수를 새로 정했다.",
+  "sharedConcept": "단항식의 혼합 계산에서 지수 비교",
+  "sharedProcedure": "거듭제곱 전개 → 나눗셈을 역수 곱으로 → 계수·지수 정리 → 양변 비교해 미지수 결정 → 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈과 나눗셈의 혼합 계산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A62-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "혼합 계산의 등식에서 미지 지수·계수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.03,
+   "longestRun": 4,
+   "residualChars": 69,
+   "params": 10,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A56-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc2-a520-7452-a488-f199c22b2c31",
+ "startedAt": "2026-10-21T18:19:59+0900",
+ "elapsedSec": 24.2,
+ "studentSha256": {
+  "fig-1.png": "ffc660d7aa692fa02efd96d70fd23c7edb4b984a0f510aac287d83a68dbbb62d",
+  "student.json": "16dcccd77cab5b2c2fc6791fb32d171a390573823cde891e44159b48a7eb83e3"
+ },
+ "promptSha256": "bdf241b60d85da5b1aaf62746dccb0bc17283a9dd5bb5585e9b99103e6963cc4",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"글의 조건에 따라 $BF=CG=DH=AE=17-12=5\\\\,\\\\mathrm{cm}$이다. 네 모서리의 직각삼각형에서 피타고라스 정리를 적용하면 사각형 EFGH의 각 변은 $\\\\sqrt{12^2+5^2}=13\\\\,\\\\mathrm{cm}$이다. 따라서 둘레는 $4\\\\times13=52\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[\"그림의 같은 길이 표시는 BE=BF=DG=DH를 나타내어 글의 조건 BE=CF=DG=AH와 맞지 않는다. 글의 조건에 따라 풀었다.\"]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "글의 조건에 따라 $BF=CG=DH=AE=17-12=5\\,\\mathrm{cm}$이다. 네 모서리의 직각삼각형에서 피타고라스 정리를 적용하면 사각형 EFGH의 각 변은 $\\sqrt{12^2+5^2}=13\\,\\mathrm{cm}$이다. 따라서 둘레는 $4\\times13=52\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": [
+   "그림의 같은 길이 표시는 BE=BF=DG=DH를 나타내어 글의 조건 BE=CF=DG=AH와 맞지 않는다. 글의 조건에 따라 풀었다."
+  ]
+ },
+ "eventsSha256": "265dfa99870c5de3fbd0c2636283b88afd54a8193d344e69562cf1467fe9ee96"
+}

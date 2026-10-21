@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f13fa879-6304-4a6a-805d-a8c5dfb5070b",
+ "startedAt": "2026-10-21T16:26:40+0900",
+ "elapsedSec": 6.3,
+ "studentSha256": {
+  "student.json": "759645d4490dfb26f2c1d9a95609618d8323250f501238775d1dfa90f391e55e"
+ },
+ "promptSha256": "46235644dca1bb0621049fca2fd2ea3ad77aa12b55d754ce5a0256b2a9bd37a9",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"4-3a ≤ 4-3b의 양변에서 4를 빼면 -3a ≤ -3b이고, 양변을 -3으로 나누면 부등호 방향이 바뀌어 a ≥ b가 된다. ① a ≤ b는 틀리다. ② 양변에 3/4를 곱하면 3a/4 ≥ 3b/4이므로 옳다. ③은 a-5 ≥ b-5가 되어야 하므로 틀리다. ④는 -a ≤ -b에서 2-a ≤ 2-b가 되므로 틀리다. ⑤는 1+a/6 ≥ 1+b/6이 되어야 하므로 틀리다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "4-3a ≤ 4-3b의 양변에서 4를 빼면 -3a ≤ -3b이고, 양변을 -3으로 나누면 부등호 방향이 바뀌어 a ≥ b가 된다. ① a ≤ b는 틀리다. ② 양변에 3/4를 곱하면 3a/4 ≥ 3b/4이므로 옳다. ③은 a-5 ≥ b-5가 되어야 하므로 틀리다. ④는 -a ≤ -b에서 2-a ≤ 2-b가 되므로 틀리다. ⑤는 1+a/6 ≥ 1+b/6이 되어야 하므로 틀리다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a9077ee8b3d50c5e4f3a1a422df37953b4f091decafa3ed1d19ef1ef78529952"
+}

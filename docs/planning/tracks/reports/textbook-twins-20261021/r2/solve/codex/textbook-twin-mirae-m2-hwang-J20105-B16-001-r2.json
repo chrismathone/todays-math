@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B16-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd7-988e-73b2-b3e9-7628a505de05",
+ "startedAt": "2026-10-21T18:42:52+0900",
+ "elapsedSec": 9.9,
+ "studentSha256": {
+  "student.json": "971cb349ff08f24b63d578cd12c99d6a0b8dd37cee770a20680825da0a768c54"
+ },
+ "promptSha256": "c80d6216363dacdcd29f70a8143026b6435e9dd5b5c241cade6d2b08ffda4635",
+ "freezeCommit": "20ab188f613e7381c3d2af047383be4e041c300c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$2^{10}$\",\"work\":\"$2^7$이 8개이므로 $8\\\\times 2^7=2^3\\\\times 2^7=2^{10}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$2^{10}$",
+  "work": "$2^7$이 8개이므로 $8\\times 2^7=2^3\\times 2^7=2^{10}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "396cacc132d0b114a5fdae57521dde3269976619cf1e974c47749a23c67aef58"
+}

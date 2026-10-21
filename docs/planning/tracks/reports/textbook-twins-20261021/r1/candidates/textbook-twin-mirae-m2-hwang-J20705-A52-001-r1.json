@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 329,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A52-001-r1",
+ "authorId": "claude-fable-5-1:1ec3db6b-d38d-4527-8ada-83a3522196a6",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림에서 $\\overline{AD}$, $\\overline{BE}$는 $\\triangle ABC$의 두 중선이고 점 $G$는 그 교점이다. 점 $F$는 $\\overline{AD}$ 위의 점이고 $\\overline{EF}\\parallel\\overline{BC}$이다. $\\overline{AD}=18\\,\\mathrm{cm}$, $\\overline{BC}=16\\,\\mathrm{cm}$일 때, $\\overline{EF}+\\overline{FG}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$7\\,\\mathrm{cm}$",
+ "solution": "점 $G$는 $\\triangle ABC$의 무게중심이므로 $\\overline{GD}=\\frac{1}{3}\\overline{AD}=6\\,(\\mathrm{cm})$, $\\overline{EG}:\\overline{GB}=1:2$이다. 또 $D$는 $\\overline{BC}$의 중점이므로 $\\overline{BD}=8\\,\\mathrm{cm}$이다. $\\overline{EF}\\parallel\\overline{BD}$이므로 $\\triangle GEF\\sim\\triangle GBD$이고 닮음비는 $1:2$이다. $\\overline{FG}:6=1:2$에서 $\\overline{FG}=3\\,\\mathrm{cm}$, $\\overline{EF}:8=1:2$에서 $\\overline{EF}=4\\,\\mathrm{cm}$이다. 따라서 $\\overline{EF}+\\overline{FG}=7\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A52-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A52-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-17",
+  "problemCode": "J20705-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "ad772786a942233d77ad3e1996f700966fb7589b5b5b0d6df27489cdeb15eef0",
+  "dbContentSha256": "9d2cdc4209fa2be78d1a6d599c9e1d85e61e808b045839bb2f9f68e12085750f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "6185655b322956888b13025b45d833b845a16c0dc854ec28d95944acec702bdc"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "중선 AD와 (꼭짓점 C에서 나온) 중선 위의 무게중심을 두고, 중선 AD의 길이와 밑변의 절반 CD를 주어, 밑변에 평행한 선분과 중선 위의 짧은 조각의 길이의 합을 묻는다.",
+  "after": "중선 AD와 중선 BE의 교점을 무게중심으로 두고, 중선 AD의 길이와 밑변 BC 전체의 길이를 주어, 밑변에 평행한 선분 EF와 중선 위의 조각 FG의 길이의 합을 묻는다.",
+  "sharedConcept": "무게중심의 2:1 비 · 평행선으로 생기는 닮은 삼각형의 닮음비",
+  "sharedProcedure": "GD = 중선의 1/3 → 밑변의 절반 구하기 → 평행선에서 닮음비 1:2 → 두 길이 각각 구해 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 무게중심의 성질(2:1)",
+   "평행선과 삼각형의 닮음",
+   "중선의 정의"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A52-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "무게중심과 평행선의 닮음비로 두 선분의 길이의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'AD_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "eb55168f-a6c1-46fc-9153-194562146a56",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.213,
+   "longestRun": 12,
+   "residualChars": 64,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

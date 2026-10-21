@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da6-4895-7ed3-bb71-7f34a8bfeb5b",
+ "startedAt": "2026-10-21T17:49:01+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "712085e8622debbd43e34ac8ee46af48c97b69378c387f096b4a69ded614938c"
+ },
+ "promptSha256": "7a6b50d52145c965948352d824950bcbd31418c9d6e264024abef0c1b522726c",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"두 직선이 만나지 않으려면 기울기가 같고 y절편이 달라야 한다.\\n②를 정리하면 $y=-\\\\frac{2}{3}x+3$이므로 주어진 직선과 기울기는 같고 y절편은 다르다. 나머지 직선은 기울기가 달라 만난다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 직선이 만나지 않으려면 기울기가 같고 y절편이 달라야 한다.\n②를 정리하면 $y=-\\frac{2}{3}x+3$이므로 주어진 직선과 기울기는 같고 y절편은 다르다. 나머지 직선은 기울기가 달라 만난다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1df998a72df08a5045e86e3ca1a92d3338e4138b210545ae93667af01d4cd279"
+}

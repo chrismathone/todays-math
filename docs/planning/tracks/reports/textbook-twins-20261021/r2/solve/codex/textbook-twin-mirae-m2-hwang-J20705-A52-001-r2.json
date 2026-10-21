@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A52-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfa-697f-7a42-9266-215aea171d01",
+ "startedAt": "2026-10-21T19:20:54+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "fig-1.png": "0b5b574fd8930bb1bf022fbeb259d39d2bcbc50489a3297f4559aefbe8d87734",
+  "student.json": "2b469da5698923ec3e2828ee7b1c85cd305d92699b23691fa77a7342583003a5"
+ },
+ "promptSha256": "05cc29dff8a54323d17d2790cfe2f27a8861ebb62a0b44841e2269c71e23b697",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"9 cm\",\n  \"work\": \"D, E는 각각 BC, AC의 중점이고 EF∥DC이므로 F는 AD의 중점이다. 따라서 AF=12 cm, EF=DC÷2=5 cm이다.\\nG는 무게중심이므로 AG=24×2/3=16 cm이다.\\n따라서 FG=16−12=4 cm이므로 FG+EF=4+5=9 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "9 cm",
+  "work": "D, E는 각각 BC, AC의 중점이고 EF∥DC이므로 F는 AD의 중점이다. 따라서 AF=12 cm, EF=DC÷2=5 cm이다.\nG는 무게중심이므로 AG=24×2/3=16 cm이다.\n따라서 FG=16−12=4 cm이므로 FG+EF=4+5=9 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "49e0dd47b32f5f7ce39d2be4e560e19c2129f66b664cfaf7419e836cb47bc4be"
+}

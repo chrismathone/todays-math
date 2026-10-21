@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A81-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "53c2df06-b473-460a-b9d7-3041ce8172a3",
+ "startedAt": "2026-10-21T17:07:18+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "4b81054a8a79a0a79dcf6d649c9b1b229533583ee1f11ce7792810779a163e88"
+ },
+ "promptSha256": "a4cfa407f30b680d0791f56d24df275659882d401de6cb0a255c29a68f1e4cc5",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"8\", \"work\": \"94/111 = 846/999 = 0.846846…이므로 순환마디는 846(3자리)이다. 100 = 3×33 + 1이므로 소수점 아래 100번째 자리는 순환마디의 첫째 숫자인 8이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "94/111 = 846/999 = 0.846846…이므로 순환마디는 846(3자리)이다. 100 = 3×33 + 1이므로 소수점 아래 100번째 자리는 순환마디의 첫째 숫자인 8이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "887f92df252fcab3b6199d1b2ca8c2401f6bd37d4e4bb98be1a948cc8f741cb7"
+}

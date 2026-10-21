@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a4970f80-eaf7-4cff-b0b5-d9aa3008c60f",
+ "startedAt": "2026-10-21T16:30:31+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "1a2dec69d6f9a6ec78cb0301191cdbd9f8151999b8b039e700d89f0254c8fd8d"
+ },
+ "promptSha256": "b3f1c77409e87b7ef97cf2a2392c8704aeb4a6dffd9f9c8264270e39f8d7efe4",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"5x ≤ 28이므로 x = 0, 1, 2, 3, 4, 5만 가능하다. 3y = 28 − 5x가 3의 배수인 경우만 찾는다. x=0: 28(×), x=1: 23(×), x=2: 18 → y=6(○), x=3: 13(×), x=4: 8(×), x=5: 3 → y=1(○). 따라서 해는 (2, 6), (5, 1)의 2개이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "5x ≤ 28이므로 x = 0, 1, 2, 3, 4, 5만 가능하다. 3y = 28 − 5x가 3의 배수인 경우만 찾는다. x=0: 28(×), x=1: 23(×), x=2: 18 → y=6(○), x=3: 13(×), x=4: 8(×), x=5: 3 → y=1(○). 따라서 해는 (2, 6), (5, 1)의 2개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b8dea5d51a174d534245c39ac65fae74b1f5915cafeab97b4b0a6c8d33ff29a8"
+}

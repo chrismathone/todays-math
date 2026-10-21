@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df3-0eca-7fa3-a4a0-955a8066da03",
+ "startedAt": "2026-10-21T19:12:52+0900",
+ "elapsedSec": 14.0,
+ "studentSha256": {
+  "fig-1.png": "c84b00a66f59851d6d87fb908f65ef79b2e2a110fbdd1938724d0a3d8ed6f23b",
+  "student.json": "25d448324d40c95b479f74f0c561091a212075b03a95d5139231e08a53eeb92c"
+ },
+ "promptSha256": "2d321524f52abe25e36e1de18019d3a4ffc744903461dfa6930559111c0a7980",
+ "freezeCommit": "c18856649ffb5a0c84e2b6539b8cf3a4c25ec1d6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 꼭 포개어진다. $\\\\triangle ABC\\\\equiv\\\\triangle FED$ (RHS 합동) ⑵ 16 cm\",\n  \"work\": \"두 삼각형은 ∠A=∠F=90°인 직각삼각형이다. 빗변 BC=ED=20 cm이고 다른 한 변 AB=FE=12 cm이므로 RHS 합동이다. 대응변의 길이가 같으므로 DF=AC=16 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ 꼭 포개어진다. $\\triangle ABC\\equiv\\triangle FED$ (RHS 합동) ⑵ 16 cm",
+  "work": "두 삼각형은 ∠A=∠F=90°인 직각삼각형이다. 빗변 BC=ED=20 cm이고 다른 한 변 AB=FE=12 cm이므로 RHS 합동이다. 대응변의 길이가 같으므로 DF=AC=16 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "35585d45bab8b6462850e44f8f6a6744a1a1b7ce9abe0bbe8dd89a4d9ad083db"
+}

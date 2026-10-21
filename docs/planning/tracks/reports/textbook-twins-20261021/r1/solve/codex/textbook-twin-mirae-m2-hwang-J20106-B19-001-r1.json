@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5c-61bc-7f62-9183-df0c3ad08ef7",
+ "startedAt": "2026-10-21T16:28:17+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "fig-1.png": "12a141af029a357cc54493e7669feb559aa9982a16c607f40a81c4dd8176e054",
+  "student.json": "ecddb4b04530412fda4614de0024c9d477164bcf1ae48ddc1653caca67976c6a"
+ },
+ "promptSha256": "6d7200f2a4cee27358273f0dec5196b12e0776b691c633362de8f2f9f1527acb",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"밑면의 가로는 $30a^{8}/(3a^{2}\\\\times2a^{3})=5a^{3}$이다.\\n겉넓이는 $2(15a^{5}+6a^{5}+10a^{6})=20a^{6}+42a^{5}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "밑면의 가로는 $30a^{8}/(3a^{2}\\times2a^{3})=5a^{3}$이다.\n겉넓이는 $2(15a^{5}+6a^{5}+10a^{6})=20a^{6}+42a^{5}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "453571d9b08586ffc37dd493d0eb329e039de791fe78787d4132db504db177f6"
+}

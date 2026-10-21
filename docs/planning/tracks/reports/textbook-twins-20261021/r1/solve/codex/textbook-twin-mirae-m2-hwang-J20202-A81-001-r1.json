@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d71-b5dc-75b1-84b3-7adec6c24f30",
+ "startedAt": "2026-10-21T16:51:35+0900",
+ "elapsedSec": 15.1,
+ "studentSha256": {
+  "student.json": "f0226dcff9a4d284cffa8df743a4379255384ce82e1cb0d4a3b3a4e723fc9093"
+ },
+ "promptSha256": "782045395c007e9967c9ef92be5a83a8c2cc6628e825b444881432dbb02ab022",
+ "freezeCommit": "307b28f08225816913c35f8abdd62db987b95bfa",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"첫째 부등식에 12를 곱하면 8x+4-6x<9이므로 x<5/2, 따라서 a=5/2이다.\\n둘째 부등식에 10을 곱하면 8x-12≥x+16이므로 x≥4, 따라서 b=4이다.\\n그러므로 ab=(5/2)×4=10이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "첫째 부등식에 12를 곱하면 8x+4-6x<9이므로 x<5/2, 따라서 a=5/2이다.\n둘째 부등식에 10을 곱하면 8x-12≥x+16이므로 x≥4, 따라서 b=4이다.\n그러므로 ab=(5/2)×4=10이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fdb741d31adb085913141c22937411c595f5747a4664b1feed2721e0896f9756"
+}

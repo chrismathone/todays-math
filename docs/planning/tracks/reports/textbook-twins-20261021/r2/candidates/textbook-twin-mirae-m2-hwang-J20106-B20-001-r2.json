@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 48,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B20-001-r2",
+ "authorId": "claude-fable-5-1:a9617e99-9c28-403f-bdba-0fb266c15940",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "아래 그림의 평행사변형과 삼각형에서, 삼각형의 넓이는 평행사변형의 넓이에 $\\frac{5}{3y}$를 곱한 것과 같다. 이 삼각형의 높이를 구하고, 그 과정을 서술하시오.\n[그림]",
+ "choices": [],
+ "answer": "$5x^{3}y^{3}$",
+ "solution": "(평행사변형의 넓이)$=4x^{3}y^{2}\\times 3x^{2}y^{3}=12x^{5}y^{5}$\n(삼각형의 넓이)$=12x^{5}y^{5}\\times \\frac{5}{3y}=20x^{5}y^{4}$\n삼각형의 높이를 $h$라 하면 $\\frac{1}{2}\\times 8x^{2}y\\times h=20x^{5}y^{4}$, 즉 $4x^{2}y\\times h=20x^{5}y^{4}$\n$h=20x^{5}y^{4}\\div 4x^{2}y=\\frac{20x^{5}y^{4}}{4x^{2}y}=5x^{3}y^{3}$\n따라서 삼각형의 높이는 $5x^{3}y^{3}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B20-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B20-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-19",
+  "problemCode": "J20106-B20-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 19,
+  "sourceContentSha256": "42a7461ed03db497b06040103b37763096294448ceef1885081bf30e3bd23183",
+  "dbContentSha256": "39044936929886124019a0fca5fe5e6eec0235edac47c9559530f82d3e8f87ce",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [
+   "546b283345fbd406ac2dafcda078788dda696675b68b05f86a7dd4457dad8af3",
+   "17d0d151550fefda94fbaac0cbbec7f0c62b354524043b7d5acbe37ea4118022"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "가로·세로가 단항식으로 주어진 직사각형과 밑변이 단항식으로 주어진 삼각형이 각각 그림으로 있고, 삼각형 넓이가 직사각형 넓이의 (분모에 문자가 있는 분수)배라는 조건에서 삼각형의 높이를 서술형으로 구한다.",
+  "after": "밑변과 높이가 단항식으로 주어진 평행사변형과 밑변이 단항식으로 주어진 삼각형을 한 그림에 두고, 삼각형 넓이가 평행사변형 넓이에 (분모에 문자가 있는 분수)를 곱한 값이라는 조건에서 삼각형의 높이를 서술형으로 구한다. 문자도 a, b 에서 x, y 로 바꾸고 모든 계수·지수를 새로 정했다.",
+  "sharedConcept": "단항식의 곱셈과 나눗셈을 도형의 넓이 공식에 적용하기",
+  "sharedProcedure": "주어진 도형의 넓이를 단항식의 곱으로 계산 → 비(분수)를 곱해 삼각형의 넓이 구하기 → 삼각형 넓이 공식에 높이를 h 로 두고 식 세우기 → 단항식의 나눗셈으로 h 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈",
+   "단항식의 나눗셈",
+   "삼각형과 평행사변형의 넓이 공식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-B20-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "넓이의 비가 주어진 두 도형에서 단항식의 곱셈·나눗셈으로 높이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: scene SVG safety validation failed: viewBox dimensions exceed the allowed limit",
+     "session": "54c86cb6-daaa-49a7-acec-8597bcdb7eb1",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.13,
+   "longestRun": 9,
+   "residualChars": 59,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

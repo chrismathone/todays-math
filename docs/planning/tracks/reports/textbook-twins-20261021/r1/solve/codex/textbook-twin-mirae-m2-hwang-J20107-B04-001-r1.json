@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B04-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d58-788d-7142-a459-240152ac5cd8",
+ "startedAt": "2026-10-21T16:24:01+0900",
+ "elapsedSec": 10.2,
+ "studentSha256": {
+  "student.json": "52855f0e000f10d83cd8fc04fa813717f332b1b5f7344d984c4df1bc58b10fe3"
+ },
+ "promptSha256": "6b2ed5e224606f329b60c5302f828efea7a65b6c18544b6f4c709750e23d02d7",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$10x^{2}-9x+1$\",\"work\":\"어떤 식을 $A$라 하면 $A+(-2x^{2}+5x-4)=6x^{2}+x-7$이다.\\n따라서 $A=(6x^{2}+x-7)-(-2x^{2}+5x-4)=8x^{2}-4x-3$이다.\\n바르게 계산하면 $(8x^{2}-4x-3)-(-2x^{2}+5x-4)=10x^{2}-9x+1$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$10x^{2}-9x+1$",
+  "work": "어떤 식을 $A$라 하면 $A+(-2x^{2}+5x-4)=6x^{2}+x-7$이다.\n따라서 $A=(6x^{2}+x-7)-(-2x^{2}+5x-4)=8x^{2}-4x-3$이다.\n바르게 계산하면 $(8x^{2}-4x-3)-(-2x^{2}+5x-4)=10x^{2}-9x+1$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0c4609313cb39e08e346a01cbca8db0a4afa57fb68e65ea3de28cfc1812ad674"
+}

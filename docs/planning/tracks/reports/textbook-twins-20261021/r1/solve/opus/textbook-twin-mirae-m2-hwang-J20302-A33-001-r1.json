@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A33-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d71ebec0-6182-4bdf-bf6b-a4914dc64077",
+ "startedAt": "2026-10-21T17:01:29+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "11b2eb1a7f7aed4e5371ab93bc6cc3cad89812d1a4daeba441d4ef66f704e756"
+ },
+ "promptSha256": "504733c5916975388e5be9afbdc0f4930bdbc31047708e569e5ac5f636371ca5",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"y의 계수 5와 3의 최소공배수는 15이다. ㉠×3: 6x+15y=48, ㉡×5: 35x+15y=135. y의 계수 부호가 같으므로 두 식을 빼면 y가 소거된다. 따라서 ㉠×3−㉡×5이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "y의 계수 5와 3의 최소공배수는 15이다. ㉠×3: 6x+15y=48, ㉡×5: 35x+15y=135. y의 계수 부호가 같으므로 두 식을 빼면 y가 소거된다. 따라서 ㉠×3−㉡×5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "37fe9f1809e882ae5ab116abfb892cbd1f43ff786b55a36806bb8c41c1556d83"
+}

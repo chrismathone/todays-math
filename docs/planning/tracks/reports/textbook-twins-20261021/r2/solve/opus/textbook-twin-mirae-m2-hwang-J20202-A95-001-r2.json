@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A95-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8a943520-0e8d-4364-ba97-5bb043b5b52d",
+ "startedAt": "2026-10-21T17:55:29+0900",
+ "elapsedSec": 8.4,
+ "studentSha256": {
+  "fig-1.png": "693a243b6949e2e142fb8f5659c687e5b490677e33a94af7b022fae241e3b92f",
+  "student.json": "e171e38934d5271eabca7a0842f5e3df1f7338939816efdc6f70dd4176651e3f"
+ },
+ "promptSha256": "aa634c8fbc172b23df9c6a1f4c1f41022e2ace8170a1b608ccd3fbf0f0f49c0d",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"그림에서 3에 찬 점이 있고 왼쪽으로 뻗으므로 해는 x ≤ 3이다. 각 식에 5를 곱해 푼다. ① -3x+6 ≤ x-6 → x ≥ 3. ② -5x+6 ≥ 3x-18 → 24 ≥ 8x → x ≤ 3. ③ 3x+18 ≤ -5x-6 → x ≤ -3. ④ x-6 < -3x+6 → x < 3. ⑤ -5x-6 ≤ 3x+18 → x ≥ -3. 해가 x ≤ 3인 것은 ②뿐이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "그림에서 3에 찬 점이 있고 왼쪽으로 뻗으므로 해는 x ≤ 3이다. 각 식에 5를 곱해 푼다. ① -3x+6 ≤ x-6 → x ≥ 3. ② -5x+6 ≥ 3x-18 → 24 ≥ 8x → x ≤ 3. ③ 3x+18 ≤ -5x-6 → x ≤ -3. ④ x-6 < -3x+6 → x < 3. ⑤ -5x-6 ≤ 3x+18 → x ≥ -3. 해가 x ≤ 3인 것은 ②뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e35d84c33690f5e29edf17279e0062f966e910433def6ed40687f25caf78ea68"
+}

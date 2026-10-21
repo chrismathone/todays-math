@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A44-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c254820b-e590-4dc8-b1e8-0daf6ab7c717",
+ "startedAt": "2026-10-21T17:04:04+0900",
+ "elapsedSec": 4.8,
+ "studentSha256": {
+  "student.json": "f51f92653f6084c1d6d42e72ae2fde279e6f7ab443f10cb5c4f1eb7c153f7886"
+ },
+ "promptSha256": "8759dae1da1fb0ab17b7cbb9de2535bbdaf2a198e89ab1af951d39b525a10873",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"a=4, b=-7\", \"work\": \"점 (2, -1)을 대입하면 -1 = 3·2 + b이므로 b = -7이다. 따라서 y = 3x - 7이다. y = 5일 때 5 = 3a - 7이므로 3a = 12, a = 4이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "a=4, b=-7",
+  "work": "점 (2, -1)을 대입하면 -1 = 3·2 + b이므로 b = -7이다. 따라서 y = 3x - 7이다. y = 5일 때 5 = 3a - 7이므로 3a = 12, a = 4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "655a52b5cad0a6b155e42834c47df0b307c301408a6f438b3594b2344a6b0a49"
+}

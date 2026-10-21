@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "94c5163b-43af-4da0-9116-be85f14a60d8",
+ "startedAt": "2026-10-21T18:35:34+0900",
+ "elapsedSec": 20.4,
+ "studentSha256": {
+  "fig-1.png": "7cfdc8ddebe985086f8ddb1d2cd7c172f0ab585918df44d105e5b917d8425e59",
+  "student.json": "5795c19a34d46af4baa6b86bd83de809859dfd5613ec445e7b36ea65bc520d01"
+ },
+ "promptSha256": "4b023d66791ff9b9164c4528526298b1564108e329789f4a0f06c44f385f6b8c",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"두 사각형의 닮음비는 $\\\\overline{CD}:\\\\overline{GH} = 6:8 = 3:4$이다.\\n$\\\\overline{BC}:\\\\overline{FG} = x:14 = 3:4$에서 $4x = 42$, 즉 $2x = 21$이다.\\n$\\\\overline{AB}:\\\\overline{EF} = 12:y = 3:4$에서 $3y = 48$, 즉 $y = 16$이다.\\n따라서 $2x+y = 21+16 = 37$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "두 사각형의 닮음비는 $\\overline{CD}:\\overline{GH} = 6:8 = 3:4$이다.\n$\\overline{BC}:\\overline{FG} = x:14 = 3:4$에서 $4x = 42$, 즉 $2x = 21$이다.\n$\\overline{AB}:\\overline{EF} = 12:y = 3:4$에서 $3y = 48$, 즉 $y = 16$이다.\n따라서 $2x+y = 21+16 = 37$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0d19dfbb5b5446e6b36bd51f1b168eb1f8cc1f1cd7ae416041c248ebd1e2dafe"
+}

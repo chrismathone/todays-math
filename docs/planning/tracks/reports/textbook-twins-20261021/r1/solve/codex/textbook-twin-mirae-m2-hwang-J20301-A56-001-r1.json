@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A56-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-b4a4-7aa1-b226-6158fc7f36ae",
+ "startedAt": "2026-10-21T16:54:51+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "student.json": "f7248cab83f1726064ab875eae4a81adf628e7842fd1c45485b7dbae0226e009"
+ },
+ "promptSha256": "01ae6b78d133eadd7884fd27b3bc4c372c06305f30517f799955925096ee3910",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-5\",\"work\":\"x=-1, y=-4를 대입하면 -a+4=9이다.\\n따라서 -a=5이므로 a=-5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-5",
+  "work": "x=-1, y=-4를 대입하면 -a+4=9이다.\n따라서 -a=5이므로 a=-5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9bce68472946d459fd98fac8f027b77deee38e13af81c3e6e343e24a63fc9809"
+}

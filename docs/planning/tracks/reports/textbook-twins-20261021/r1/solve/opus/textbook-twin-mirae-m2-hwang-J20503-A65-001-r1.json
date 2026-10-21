@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A65-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2234e6b1-3ee2-4511-a12b-0bf7fec66110",
+ "startedAt": "2026-10-21T17:04:46+0900",
+ "elapsedSec": 8.7,
+ "studentSha256": {
+  "fig-1.png": "6530b483d23ce189dc9718dbc3d9d1afeee5e7cd29446852c4e9d30662a226cf",
+  "student.json": "258d9a049e03e63f9ab7084b940c81ecb05b69e03e93dc5b63c9abe6d63f916d"
+ },
+ "promptSha256": "f50d616409f09e8f4d84edc7380b590ee4e669d9ea176a7e9d49dfc45a01adb1",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"41\", \"work\": \"O는 외심이므로 OA = OB = OC이다. 그래서 x = OC = OA = 7이다. △OAB는 OA = OB인 이등변삼각형이므로 ∠OAB = ∠OBA = 34°, 즉 y = 34이다. 따라서 x + y = 7 + 34 = 41이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "41",
+  "work": "O는 외심이므로 OA = OB = OC이다. 그래서 x = OC = OA = 7이다. △OAB는 OA = OB인 이등변삼각형이므로 ∠OAB = ∠OBA = 34°, 즉 y = 34이다. 따라서 x + y = 7 + 34 = 41이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f347b4ade02124ab3c91b9f72bc6ab7375865276f4fb6e75163f15bfcb2de33b"
+}
