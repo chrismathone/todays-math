@@ -17,6 +17,7 @@ import {
 } from "../problem/choiceCountRule";
 
 import { tidySolution } from "./solutionText";
+import { middleStudentInputIdentity } from "./studentInputIdentity";
 import { resolveMiddleTier } from "./tier";
 import { wrapDanClause } from "../problemText";
 
@@ -205,7 +206,8 @@ export function generateMiddleProblem(
 }
 
 /**
- * 한 유형에서 n 문항 — 발문이 같은 것은 버리고 다시 뽑는다.
+ * 한 유형에서 n 문항 — 학생에게 주어진 발문·자료가 같은 것은 다시 뽑는다.
+ * 산점도 아홉 유형은 점 자료도 비교한다(그 밖의 유형은 기존 발문 비교).
  * 변형 공간이 좁아 n 을 못 채우면 던진다 (조용히 모자란 세트를 내지 않는다).
  */
 export function generateMiddleSet(
@@ -224,8 +226,9 @@ export function generateMiddleSet(
     }
     const p = generateMiddleProblem(key, seed, variant);
     variant += 1;
-    if (seen.has(p.content)) continue;
-    seen.add(p.content);
+    const identity = middleStudentInputIdentity(key, p);
+    if (seen.has(identity)) continue;
+    seen.add(identity);
     out.push(p);
   }
   return out;
