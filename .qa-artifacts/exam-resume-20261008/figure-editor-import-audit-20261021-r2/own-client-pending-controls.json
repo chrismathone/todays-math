@@ -1,0 +1,76 @@
+{
+  "executed": false,
+  "reason": "Node/DOM/browser prohibited while parent may run heavy checks",
+  "cases": [
+    {
+      "id": "strip-only-metadata",
+      "fixture": "nested/transformed/duplicate/late/empty data-grid groups with ordinary line, path and text",
+      "expected": "bad metadata removed; actual shapes and labels retained and editable; good single background excluded only"
+    },
+    {
+      "id": "finite-parser",
+      "values": [
+        "0 0 0 10 2 2",
+        "0 0 10 10 61 2",
+        "0 0 NaN 10 2 2",
+        "0 0 10 11 2 2",
+        "0 0 10 10 1.5 2"
+      ],
+      "expected": null
+    },
+    {
+      "id": "finite-setter",
+      "fields": [
+        "x",
+        "y",
+        "cellW",
+        "cellH",
+        "width",
+        "cols",
+        "rows"
+      ],
+      "values": [
+        "NaN",
+        "Infinity",
+        "-Infinity"
+      ],
+      "expected": "reject before SVG output; preserve input"
+    },
+    {
+      "id": "resize-ownership",
+      "expected": "every non-grid geometry attribute and label byte retained across resize, set, cover and center; viewBox change separately recorded"
+    },
+    {
+      "id": "cover-limit",
+      "grid": "x=0,y=0,cellW=cellH=10,cols=60,rows=10",
+      "box": "x=0,y=0,width=610,height=100",
+      "expected": "cover button disabled; visible 60-cell limit and remaining shortage"
+    },
+    {
+      "id": "root2-no-enter",
+      "input": "$root2$",
+      "expected": "$\\sqrt{2}$ on canvas click"
+    },
+    {
+      "id": "warning-unchanged",
+      "expected": "warning survives blur and second unchanged commit; explicit edit may clear it"
+    },
+    {
+      "id": "chip-import-rejection",
+      "expected": "original text, no unhandled rejection"
+    },
+    {
+      "id": "vector-case",
+      "inputs": [
+        "\\vec{AB}",
+        "\\overparen{ABC}",
+        "\\vec{a}"
+      ],
+      "expected": [
+        "\\overrightarrow{\\mathrm{AB}}",
+        "\\overparen{\\mathrm{ABC}}",
+        "\\vec{a}"
+      ]
+    }
+  ]
+}

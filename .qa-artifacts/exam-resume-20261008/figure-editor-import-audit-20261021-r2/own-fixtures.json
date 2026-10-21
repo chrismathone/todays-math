@@ -1,0 +1,317 @@
+[
+  {
+    "id": "actual-default-grid",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "grid": {
+        "step": 1
+      },
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "0169c4545cea1ea703f38138eb13b4bd0811f3c41250e87887221d085c1bfa60",
+    "sanitizedSHA256": "a225469f18c7511c47af4c2bf87c4a69d30191d77ac5430f9eb952799152007a"
+  },
+  {
+    "id": "grid-0",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "grid": {
+        "step": [
+          1,
+          1
+        ]
+      },
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "0169c4545cea1ea703f38138eb13b4bd0811f3c41250e87887221d085c1bfa60"
+  },
+  {
+    "id": "grid-1",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        9
+      ],
+      "axes": false,
+      "grid": {
+        "step": [
+          2,
+          3
+        ]
+      },
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "2b1237044408c94798411f79e837a3546fd4edfd7380d0e2a0eb966ccf7a5b60"
+  },
+  {
+    "id": "grid-2",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8.0
+      ],
+      "yRange": [
+        0,
+        8
+      ],
+      "axes": false,
+      "grid": {
+        "step": [
+          0.5,
+          2
+        ]
+      },
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "ab7f9ff9f7bf945d08bd32c5fbb6f24773a51eb5037b90084bb80ecd9ad0c296"
+  },
+  {
+    "id": "grid-3",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        60
+      ],
+      "yRange": [
+        0,
+        60
+      ],
+      "axes": false,
+      "grid": {
+        "step": [
+          1,
+          1
+        ]
+      },
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "24c6d16243e5faa5d67e7989ef8a3c492f460cc1e0640c64e32abb2f439b63c3"
+  },
+  {
+    "id": "nongrid-0",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "f95bef36885b238b16b0da11a2358447bdf1b9695885ad1a65a1c10453bd4b5d"
+  },
+  {
+    "id": "nongrid-1",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": true,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svgSHA256": "ce76c499e69ff4c3a76eb5bb1f38b33f907a49adfeb6f15aec99673b27892f3c"
+  },
+  {
+    "id": "nongrid-2",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    "svgSHA256": "98915f31f32a1741d94b1988c8f963df5f1895b3b78b075fdd4dae29dbef1424"
+  },
+  {
+    "id": "nongrid-3",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              1,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        }
+      ]
+    },
+    "svgSHA256": "d3e8ac5f854c1e11c9aecd2a306c80e45944ea54e3f39c087defe3b3e230d091"
+  }
+]
