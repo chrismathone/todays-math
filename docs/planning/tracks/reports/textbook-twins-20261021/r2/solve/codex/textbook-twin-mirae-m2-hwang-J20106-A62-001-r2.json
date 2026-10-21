@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A62-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dce-a47f-7881-b101-5b065b41f1ab",
+ "startedAt": "2026-10-21T18:33:06+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "7d060eaaaff8d69b551c76882f39e69b0f2a7684d71060d2886e06bd13cf2528"
+ },
+ "promptSha256": "70d49d8e8eb95e79d8bcf263127104f1ad442aacd8a95d79fe77c8bcd37bbd8e",
+ "freezeCommit": "fd14b9eaa54898615b95e3f05074dac06183f2fb",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"좌변을 정리하면 $144x^{8-Q}y^{3P+4}$이다.\\n양변의 계수와 지수를 비교하면 $R=144$, $8-Q=4$, $3P+4=13$이므로 $Q=4$, $P=3$이다.\\n따라서 $P+Q+R=3+4+144=151$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "좌변을 정리하면 $144x^{8-Q}y^{3P+4}$이다.\n양변의 계수와 지수를 비교하면 $R=144$, $8-Q=4$, $3P+4=13$이므로 $Q=4$, $P=3$이다.\n따라서 $P+Q+R=3+4+144=151$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "18ccfcabb2641f33f2377c28fdb9537e6a7dac3c0213323febfbdfac92f32cf9"
+}

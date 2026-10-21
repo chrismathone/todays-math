@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcf-952f-71c0-9989-f0c126ce48eb",
+ "startedAt": "2026-10-21T18:34:07+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "fig-1.png": "da5f78c33e98011d26b620f2bd26e8fdf8c0657613e2f9cab7b7cbcc998df705",
+  "student.json": "acbfb8dd0a70818d6474d1dbcbdae28408959b4583a1095b1efa5f659cfc361f"
+ },
+ "promptSha256": "e6ab47209c443a8ae1f3f94b316da7b502b75a37c7f91fa02e015ce16b01daf7",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"밑면의 세로 길이는 $84a^{5}\\\\div(3a^{2}\\\\times8a^{2})=\\\\frac{7}{2}a$이다.\\n겉넓이는 $2\\\\left(3a^{2}\\\\times8a^{2}+3a^{2}\\\\times\\\\frac{7}{2}a+8a^{2}\\\\times\\\\frac{7}{2}a\\\\right)=48a^{4}+77a^{3}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "밑면의 세로 길이는 $84a^{5}\\div(3a^{2}\\times8a^{2})=\\frac{7}{2}a$이다.\n겉넓이는 $2\\left(3a^{2}\\times8a^{2}+3a^{2}\\times\\frac{7}{2}a+8a^{2}\\times\\frac{7}{2}a\\right)=48a^{4}+77a^{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d92f1ef6f7a503f7f434e5ccfb2b7f0e8872ceac5a87c57a14ce8f665f4001b"
+}
