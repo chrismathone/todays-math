@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A15-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da4-d441-7770-bfe6-f7374eb7c32e",
+ "startedAt": "2026-10-21T17:47:25+0900",
+ "elapsedSec": 14.4,
+ "studentSha256": {
+  "student.json": "7eacb5bdb6a8f051c196a05c133b5f130c8708285f65cf1b5cb10ae695ba5710"
+ },
+ "promptSha256": "7363d19f4886a2cfc3b7381ffce87dae7dba5a5766a6a1480519ca86eb529304",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"갈 때 거리를 x km라 하면 x/4+(x+2)/6=3이다.\\n양변에 12를 곱하면 3x+2(x+2)=36이므로 x=32/5이다.\\n따라서 돌아올 때 걸은 거리는 x+2=42/5 km이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "갈 때 거리를 x km라 하면 x/4+(x+2)/6=3이다.\n양변에 12를 곱하면 3x+2(x+2)=36이므로 x=32/5이다.\n따라서 돌아올 때 걸은 거리는 x+2=42/5 km이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea6e560b59eae22a2a61d7c9ac2c6f7fd6efe24d64091218596ca4a3389a5680"
+}

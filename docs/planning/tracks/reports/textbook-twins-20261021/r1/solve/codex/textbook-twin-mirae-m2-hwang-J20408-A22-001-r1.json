@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A22-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-bc3c-7233-9faa-77e4d89531c5",
+ "startedAt": "2026-10-21T17:48:25+0900",
+ "elapsedSec": 9.0,
+ "studentSha256": {
+  "student.json": "cd4395b3646dbdaba260e8a05ecf6329428b2a05be14b9e2f98c1931d29815cf"
+ },
+ "promptSha256": "a01961d4a09ad1c9fadd5c1eb69c9d0f7ec80b4ca2dd6aa1715f53a9b658fa7a",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"18\",\"work\":\"두 직선이 x축과 만나는 점은 각각 (-4, 0), (2, 0)이므로 밑변의 길이는 6이다.\\n2x+8=-2x+4를 풀면 x=-1, y=6이므로 높이는 6이다.\\n따라서 삼각형의 넓이는 6×6÷2=18이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "18",
+  "work": "두 직선이 x축과 만나는 점은 각각 (-4, 0), (2, 0)이므로 밑변의 길이는 6이다.\n2x+8=-2x+4를 풀면 x=-1, y=6이므로 높이는 6이다.\n따라서 삼각형의 넓이는 6×6÷2=18이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "674d02eaeb77636277596314290f87445c52eb63d0942c70a16965307539d80a"
+}

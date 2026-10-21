@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20308-A22-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "163ff1b2-9de0-4a09-b958-b185fcdcf939",
+ "startedAt": "2026-10-21T17:02:17+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "6bc8738f81d3e5272cd7ba176bb49a831361330f295870ad2b6b0d2796714faa"
+ },
+ "promptSha256": "944ca03f145e701114fa0afc2c13f6dd76a95f83d615a018d614d11f8acb300d",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"시속 4 km\", \"work\": \"배의 속력 x, 강물의 속력 y (km/h)\\n거슬러 올라갈 때: 3(x−y)=6 → x−y=2\\n내려올 때: 1(x+y)=6 → x+y=6\\n두 식을 더하면 2x=8 → x=4, y=2\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "시속 4 km",
+  "work": "배의 속력 x, 강물의 속력 y (km/h)\n거슬러 올라갈 때: 3(x−y)=6 → x−y=2\n내려올 때: 1(x+y)=6 → x+y=6\n두 식을 더하면 2x=8 → x=4, y=2",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8fba6f9d329df8066024f2e37ff2276b92cfa064800bb0b0ce73e68c8d7fc86c"
+}

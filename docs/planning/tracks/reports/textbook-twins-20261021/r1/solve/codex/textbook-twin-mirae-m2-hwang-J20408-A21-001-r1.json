@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da5-97d6-78b3-a26e-32bcd65f38b3",
+ "startedAt": "2026-10-21T17:48:15+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "778161ebeb55608cda5c4bc419bd4a32bb4cab8bfff17dd39168573df8dc93d4"
+ },
+ "promptSha256": "46d4dfc1cc2e9025906ee3213baee3af5ec57a5915556e52210d152045b13d9d",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"y축에 수직인 직선은 x축과 평행하므로 y좌표가 일정하다.\\n점 (-2, 5)를 지나므로 y=5이고, 이는 ③의 3y-15=0과 같다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "y축에 수직인 직선은 x축과 평행하므로 y좌표가 일정하다.\n점 (-2, 5)를 지나므로 y=5이고, 이는 ③의 3y-15=0과 같다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "10bf7258146f84ec9e0cecce9c6aac5595122cb62cb4a007dc874aa83ec73d79"
+}
