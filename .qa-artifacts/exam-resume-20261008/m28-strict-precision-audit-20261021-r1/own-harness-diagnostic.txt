@@ -1,0 +1,3 @@
+﻿Own harness first attempt: LookupError unknown encoding utf8-sig; corrected to utf-8-sig, no production failure.
+
+Finalize raw-byte equality assertion failed: 0/64 raw,64/64 CRLF-to-LF matches. Changed report to explicit raw inequality and normalized equality; render results not rerun or modified.

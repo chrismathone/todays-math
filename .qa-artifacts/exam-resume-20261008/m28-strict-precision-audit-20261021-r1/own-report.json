@@ -1,0 +1,104 @@
+{
+  "scope": "M28 serialized angle arc centerline precision, Python-only, no current API/Node replay",
+  "status": "current strict containment technical HOLD; precision-only candidate insufficient; inward-trim candidate bounded geometry pass, integration pending",
+  "executed": {
+    "uniqueHistoricalSpecs": 64,
+    "actualCurrentPythonRenderCalls": 192,
+    "variantsPerSpec": 3,
+    "newAPIOrStudentSolves": 0,
+    "zeroTolerance": true
+  },
+  "summary": {
+    "current": {
+      "count": 64,
+      "strictCountZeroTolerance": 4,
+      "minimumSignedDistance": -0.060781752466689855
+    },
+    "precision6Only": {
+      "count": 64,
+      "strictCountZeroTolerance": 0,
+      "minimumSignedDistance": -0.0005379802490440363
+    },
+    "serializedRaysInset6": {
+      "count": 64,
+      "strictCountZeroTolerance": 64,
+      "minimumSignedDistance": 7.499999999538431e-05
+    }
+  },
+  "historicalBinding": {
+    "rawByteMatches": 0,
+    "LFNormalizedMatches": 64,
+    "reason": "Historical copied SVGs are CRLF; current render strings are LF. Raw inequality retained; no geometry/text differences after LF normalization."
+  },
+  "worstCurrentSerializedArc": {
+    "specSHA256": "9acb3c8e2e4684519d4bd5214092f8031a903ca8b0ba30eee1f5922e3b271e63",
+    "vertex": "A",
+    "path": "M 63.8 46.8 A 18.0 18.0 0 0 0 90.3 30.9",
+    "circle": [
+      72.30003095985322,
+      30.93338493308869,
+      18.0,
+      2.06260837261692,
+      -2.064463092185215
+    ],
+    "centerError": 0.016889261857735,
+    "margins": {
+      "AB": -0.060781752466689855,
+      "BC": 64.70661506691131,
+      "CD": 105.64244938532694,
+      "DA": -0.05000000000000071
+    },
+    "strict": false,
+    "minimum": -0.060781752466689855
+  },
+  "cause": [
+    "figure_scene renders polygon line endpoints through _fmt (3 decimal digits), but calls imported figure_svg.angle_arc with unrounded vertex/ray floats.",
+    "figure_svg.arc serializes M and A endpoint coordinates with .1f while retaining an unrounded radius. SVG reconstructs a different circle from these rounded endpoints and radius; its center need not equal the polygon vertex.",
+    "The discrepancy affects incident boundaries. More endpoint precision reduces but does not remove disagreement with separately rounded line vertices. No pixel measurements or generator answers were used."
+  ],
+  "candidate": {
+    "precisionOnly": "QA in-memory arc formatter .1f to .6f; 0/64 strict, worst -0.0005379802490440363. Do not adopt as a complete repair.",
+    "boundedOptIn": "QA-only align center/rays to the same rounded3 boundary coordinates; trim minor arc by 1e-5 radians at each end; output endpoints6 decimals. All actual serialized circles/extrema remain strictly inside all four halfplanes (positive minimum about0.000075).",
+    "notTolerance": "The positive geometric angular gap changes mark endpoints. Checker uses signed distance>=0, not a relaxed acceptance tolerance. Stationary-angle membership uses existing numerical inclusion guard; it cannot turn negative distances into pass.",
+    "limits": "Six-decimal endpoint rounding still perturbs circle center. This is a bounded64-case witness, not a proof for arbitrary scale/angles or stroke envelopes. Arc no longer touches the two rays; parent must explicitly accept mark semantics and visual impact.",
+    "integrationRecommendation": "Do not globally replace figure_svg.arc formatting. If adopted, introduce an explicit opt-in angle-mark policy at the M28 scene boundary, preserving the existing default and coordinate collision/sample policy. Keep A/C equal marks, labels, radius and statement untouched. Renderer collision sampling should reflect any changed mark geometry.",
+    "productionApplied": false
+  },
+  "boundaries": {
+    "mathRNG": "No TypeScript handler, stem, answer, solution, parameters, RNG call or student method changed. Current m2Quad/adapters bytes bound before/after; no new TypeScript/API execution in this scope.",
+    "08Default": "Not replayed in Python-only scope. A global arc formatter changes shared bytes and risks08/default callers. Proposed opt-in must default to existing behavior; actual08 byte regression remains required after integration.",
+    "sixExactFixtures": "Not independently rerun here. A global .6f formatter can change exact SVG bytes; keep six fixtures on old default branch and run actual six raw-byte checks before any merge. No fixture approval inferred from M28 geometry.",
+    "circleBoundary": "Actual SVG endpoint-to-center circular-arc reconstruction and analytic endpoint/stationary extrema against each serialized polygon line; positive nonincident clearance distinct from incident endpoint errors.",
+    "strokeAndVisual": "Centerline only. Stroke thickness, raster/print, readability and tiny-angle label layout not approved.",
+    "gradeUnitRightsNativeOperational": false
+  },
+  "sourceHashesBeforeAfterUnchanged": true,
+  "boundFileCount": 78,
+  "importedClosure": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "0d07cf01760c904daeab8c87d8df859d006f53b83116d30ed9e08c9a8a90ee97",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "17bdf31e4527da32d62a911854fc83a62615335f83801f59f6a7d60983d4dc7b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "88e8583f7567bd866a265ecea3eb6db832f9d46ffc2460d006c1479969130a8b"
+  },
+  "harnessDiagnostic": "Initial own spelling utf8-sig failed before cohort; corrected to utf-8-sig. Preserved in own-harness-diagnostic.txt, not a production failure.",
+  "environment": {
+    "sourceDExecution": 0,
+    "rootWrites": 0,
+    "node": 0,
+    "browser": 0,
+    "DB": 0,
+    "API": 0,
+    "network": 0
+  },
+  "artifacts": {
+    "own-after.json": "4be510bd8b23c9c4fef4d9e205caa5dc605be61911a0328895728135d907d215",
+    "own-audit.py": "10367e85b1afda9ba88278397d8a5c7070cb45dcf8d8770b04f10a541afe8d5c",
+    "own-before.json": "4be510bd8b23c9c4fef4d9e205caa5dc605be61911a0328895728135d907d215",
+    "own-finalize.py": "515f8f09bc95648c79a711bedb85544c4cafb85dc75eb534725a8706f6dffd57",
+    "own-first-import-closure.json": "14924acfb075026cd1f7933eb970e4596a50f23b294fc872da3f20ddfa2f9b2a",
+    "own-harness-diagnostic.txt": "d79bf2d3821d404c51c91b1c353ef5e0fc5334ce506f259f1a607b8f88a3566c",
+    "own-opt-in-candidate.py.txt": "00eea0bddcb383252c6e2b584ba0d190adf88db706471ce788055036cf8d6569",
+    "own-probe.txt": "04f0e78bce64eb34dfd1249683b1be106e1541a0524ce42cc1fd04efdf3da994",
+    "own-results.json": "7c0d723d715f1f8c84116f21bef7a5cc0db7015de77748778719c70d17f8a182"
+  }
+}
