@@ -1,0 +1,15 @@
+def precision(vx,vy,p1,p2,r=26):
+    a0=svgmod.ray_angle(vx,vy,*p1);a1=svgmod.ray_angle(vx,vy,*p2)
+    da=(a1-a0+180)%360-180
+    return arc6(vx,vy,r,a0,a0+da)
+
+def inset(vx,vy,p1,p2,r=26):
+    # QA-only opt-in: use the serialized line vertices, then trim BOTH arc ends
+    # by a fixed positive angular gap. This changes the mark, not the angle given.
+    vx,vy=round(vx,3),round(vy,3)
+    p1=tuple(round(x,3) for x in p1);p2=tuple(round(x,3) for x in p2)
+    a0=svgmod.ray_angle(vx,vy,*p1);a1=svgmod.ray_angle(vx,vy,*p2)
+    da=(a1-a0+180)%360-180;gap=math.degrees(1e-5)
+    assert abs(da)>2*gap
+    sign=1 if da>0 else -1
+    return arc6(vx,vy,r,a0+sign*gap,a0+da-sign*gap)
