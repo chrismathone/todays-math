@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 381,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B25-001-r1",
+ "authorId": "middle-engine:2-2|확률|02",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "서로 다른 두 개의 주사위를 동시에 던져 나오는 눈의 수를 각각 $a$, $b$ 라 할 때, $3a-b=5$ 일 확률을 구하시오.",
+ "choices": [
+  "$18$",
+  "$\\dfrac{1}{18}$",
+  "$\\frac{1}{19}$",
+  "$\\frac{5}{9}$",
+  "$\\frac{1}{9}$"
+ ],
+ "answer": "②",
+ "solution": "모든 경우의 수는 $6\\times6=36$ 이다.\n$b=3a-5$ 가 $1$ 이상 $6$ 이하가 되는 $a$ 를 찾으면 순서쌍 $(a,\\,b)$ 는 $2$가지이다.\n따라서 구하는 확률은 $\\dfrac{2}{36}=\\dfrac{1}{18}$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-8",
+  "problemCode": "J20903-B25-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "4d5c5955a490f2797d4f45293e3cbc651dbaee41bb4c1ac724fcce54cbb06aa3",
+  "dbContentSha256": "cd8dc1d4a415036fadfa956fdf14f845c12863cadfa5acad567278f8e7bf95e2",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "주사위 하나를 두 번 던진 눈 x, y 가 일차방정식을 만족하는 순서쌍을 세어 확률을 구한다",
+  "after": "엔진이 새 계수의 일차방정식과 두 주사위 장면을 정해 같은 절차로 확률을 구하는 객관식을 낸다",
+  "sharedConcept": "방정식을 만족하는 경우의 확률",
+  "sharedProcedure": "전체 경우 36 → 방정식을 만족하는 순서쌍 나열 → 개수/36 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "두 사건이 동시에 일어나는 경우의 수",
+   "일차방정식의 해",
+   "확률의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B25-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위 눈이 방정식을 만족할 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|확률|02",
+   "seed": 640142861,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+   "authorRationale": "두 주사위 눈을 미지수로 둔 일차방정식을 만족하는 순서쌍을 세어 36으로 나누는 절차 · 값을 묻는 객관식 형태가 그대로 일치",
+   "facts": {
+    "c": 3,
+    "k": 5,
+    "num": 1,
+    "den": 18
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.04,
+   "longestRun": 4,
+   "residualChars": 55,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

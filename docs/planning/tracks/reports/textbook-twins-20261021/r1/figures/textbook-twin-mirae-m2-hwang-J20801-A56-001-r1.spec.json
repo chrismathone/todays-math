@@ -1,0 +1,185 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   0,
+   0
+  ],
+  "B": [
+   0,
+   200
+  ],
+  "C": [
+   200,
+   200
+  ],
+  "D": [
+   200,
+   0
+  ],
+  "E": [
+   0,
+   59
+  ],
+  "F": [
+   141,
+   200
+  ],
+  "G": [
+   200,
+   141
+  ],
+  "H": [
+   59,
+   0
+  ],
+  "len17": [
+   100,
+   200
+  ],
+  "len12": [
+   0,
+   130
+  ]
+ },
+ "segments": {
+  "AE": [
+   "A",
+   "E"
+  ],
+  "EB": {
+   "points": [
+    "E",
+    "B"
+   ],
+   "ticks": 1
+  },
+  "BF": {
+   "points": [
+    "B",
+    "F"
+   ],
+   "ticks": 1
+  },
+  "FC": [
+   "F",
+   "C"
+  ],
+  "CG": [
+   "C",
+   "G"
+  ],
+  "GD": {
+   "points": [
+    "G",
+    "D"
+   ],
+   "ticks": 1
+  },
+  "DH": {
+   "points": [
+    "D",
+    "H"
+   ],
+   "ticks": 1
+  },
+  "HA": [
+   "H",
+   "A"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FG": [
+   "F",
+   "G"
+  ],
+  "GH": [
+   "G",
+   "H"
+  ],
+  "HE": [
+   "H",
+   "E"
+  ]
+ },
+ "angles": {
+  "rA": {
+   "vertex": "A",
+   "points": [
+    "E",
+    "H"
+   ],
+   "right": true
+  },
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "F",
+    "E"
+   ],
+   "right": true
+  },
+  "rC": {
+   "vertex": "C",
+   "points": [
+    "G",
+    "F"
+   ],
+   "right": true
+  },
+  "rD": {
+   "vertex": "D",
+   "points": [
+    "H",
+    "G"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "NW"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "NE"
+  },
+  "E": {
+   "text": "E",
+   "position": "W"
+  },
+  "F": {
+   "text": "F",
+   "position": "S"
+  },
+  "G": {
+   "text": "G",
+   "position": "E"
+  },
+  "H": {
+   "text": "H",
+   "position": "N"
+  },
+  "len17": {
+   "text": "17 cm",
+   "dx": 0,
+   "dy": 24
+  },
+  "len12": {
+   "text": "12 cm",
+   "dx": -28,
+   "dy": 0
+  }
+ }
+}

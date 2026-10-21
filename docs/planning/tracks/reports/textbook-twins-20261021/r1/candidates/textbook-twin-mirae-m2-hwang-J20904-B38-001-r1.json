@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 375,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B38-001-r1",
+ "authorId": "claude-fable-5-1:9b0a36b7-c371-475d-ae44-b6996be08521",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 그림과 같이 원판 $\\mathrm{A}$는 $6$등분하여 $1$부터 $6$까지의 자연수가, 원판 $\\mathrm{B}$는 $8$등분하여 $1$부터 $8$까지의 자연수가 각각 하나씩 적혀 있다. 두 원판을 각각 돌린 뒤 멈추었을 때, 두 바늘이 가리키는 수가 모두 $4$의 약수일 확률은? (단, 바늘이 경계선 위에 멈추는 경우는 생각하지 않는다.)\n[그림]",
+ "choices": [
+  "$\\frac{1}{8}$",
+  "$\\frac{1}{4}$",
+  "$\\frac{3}{16}$",
+  "$\\frac{3}{8}$",
+  "$\\frac{1}{2}$"
+ ],
+ "answer": "③",
+ "solution": "원판 $\\mathrm{A}$에서 $4$의 약수는 $1,\\,2,\\,4$의 $3$가지이므로 그 확률은 $\\frac{3}{6}=\\frac{1}{2}$이다. 원판 $\\mathrm{B}$에서 $4$의 약수는 $1,\\,2,\\,4$의 $3$가지이므로 그 확률은 $\\frac{3}{8}$이다. 두 사건은 서로 영향을 주지 않으므로 구하는 확률은 $\\frac{1}{2}\\times\\frac{3}{8}=\\frac{3}{16}$이고, 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20904-B38-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20904-B38-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-9",
+  "problemCode": "J20904-B38-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "33dcf5867271bd1cd1573d6b586e0651d843927c3fb7a669151fe6598e31ec2c",
+  "dbContentSha256": "691bd16831f421bbc9614db11cdd83d9de91093f063807dfa06ede0f2ea9d721",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [
+   "80424ec32232683e6dba85405ec981a9706e457554f9ad663d6153bab70d80e9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "5등분·7등분 원판 두 개에서 두 바늘이 모두 소수를 가리킬 확률을 고르는 객관식",
+  "after": "6등분·8등분 원판 두 개에서 두 바늘이 모두 4의 약수를 가리킬 확률을 고르는 객관식",
+  "sharedConcept": "서로 영향을 주지 않는 두 사건이 동시에 일어날 확률",
+  "sharedProcedure": "각 원판에서 조건에 맞는 수의 개수를 세어 확률 구함 → 두 확률을 곱함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "확률의 뜻",
+   "두 사건이 동시에 일어날 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-B38-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 원판을 돌려 각각 조건을 만족할 확률(그림)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.40"
+   ],
+   "overlap4": 0.396,
+   "longestRun": 16,
+   "residualChars": 123,
+   "params": 8,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

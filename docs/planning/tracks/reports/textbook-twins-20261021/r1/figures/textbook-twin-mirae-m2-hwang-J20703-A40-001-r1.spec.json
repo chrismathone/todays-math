@@ -1,0 +1,194 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 470,
+  "height": 240
+ },
+ "points": {
+  "lA": [
+   20,
+   50
+  ],
+  "lB": [
+   360,
+   50
+  ],
+  "mA": [
+   20,
+   110
+  ],
+  "mB": [
+   360,
+   110
+  ],
+  "nA": [
+   20,
+   194
+  ],
+  "nB": [
+   360,
+   194
+  ],
+  "A0": [
+   42.7,
+   35
+  ],
+  "A1": [
+   50,
+   50
+  ],
+  "A2": [
+   79.17,
+   110
+  ],
+  "V": [
+   120,
+   194
+  ],
+  "A4": [
+   127.3,
+   209
+  ],
+  "B0": [
+   197.3,
+   35
+  ],
+  "B1": [
+   190,
+   50
+  ],
+  "B2": [
+   160.83,
+   110
+  ],
+  "B4": [
+   112.7,
+   209
+  ],
+  "C0": [
+   300.8,
+   35
+  ],
+  "C1": [
+   305,
+   50
+  ],
+  "C2": [
+   321.67,
+   110
+  ],
+  "C3": [
+   345,
+   194
+  ],
+  "C4": [
+   349.2,
+   209
+  ],
+  "yLbl": [
+   311,
+   152
+  ]
+ },
+ "segments": {
+  "lineL": {
+   "points": [
+    "lA",
+    "lB"
+   ],
+   "parallel": 1
+  },
+  "lineM": {
+   "points": [
+    "mA",
+    "mB"
+   ],
+   "parallel": 1
+  },
+  "lineN": {
+   "points": [
+    "nA",
+    "nB"
+   ],
+   "parallel": 1
+  },
+  "cutA": [
+   "A0",
+   "A4"
+  ],
+  "cutB": [
+   "B0",
+   "B4"
+  ],
+  "cutC": [
+   "C0",
+   "C4"
+  ]
+ },
+ "labels": {
+  "lA": {
+   "text": "l",
+   "italic": true,
+   "position": "W"
+  },
+  "mA": {
+   "text": "m",
+   "italic": true,
+   "position": "W"
+  },
+  "nA": {
+   "text": "n",
+   "italic": true,
+   "position": "W"
+  },
+  "yLbl": {
+   "text": "y cm",
+   "position": "W",
+   "dx": -2,
+   "dy": 0
+  }
+ },
+ "dimensions": {
+  "d_A1A2": {
+   "points": [
+    "A1",
+    "A2"
+   ],
+   "label": "5 cm",
+   "side": "auto"
+  },
+  "d_A2V": {
+   "points": [
+    "A2",
+    "V"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  },
+  "d_B1B2": {
+   "points": [
+    "B1",
+    "B2"
+   ],
+   "label": "x cm",
+   "side": "auto"
+  },
+  "d_B2V": {
+   "points": [
+    "B2",
+    "V"
+   ],
+   "label": "14 cm",
+   "side": "auto"
+  },
+  "d_C1C3": {
+   "points": [
+    "C1",
+    "C3"
+   ],
+   "label": "36 cm",
+   "side": "auto",
+   "offset": 70
+  }
+ }
+}

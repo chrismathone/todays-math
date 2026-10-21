@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 364,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A46-001-r1",
+ "authorId": "claude-fable-5-1:d3e66adf-9d79-45e3-9c14-3d3c4d1c28a4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "숫자 $0$, $5$, $7$, $8$, $9$가 각각 하나씩 적힌 $5$장의 카드 중에서 $2$장을 뽑아 나란히 놓아 두 자리 자연수를 만들려고 한다. 만들 수 있는 두 자리 자연수는 모두 몇 개인지 구하시오.",
+ "choices": [],
+ "answer": "$16$개",
+ "solution": "십의 자리에는 $0$이 올 수 없으므로 십의 자리에 올 수 있는 숫자는 $5$, $7$, $8$, $9$의 $4$가지이다.\n그 각각에 대하여 일의 자리에는 십의 자리에 놓은 카드를 뺀 $4$가지가 올 수 있다.\n따라서 만들 수 있는 두 자리 자연수는 $4\\times 4=16$(개)이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-15",
+  "problemCode": "J20902-A46-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 15,
+  "sourceContentSha256": "e50347b5f6173898f3e383c6e5704686da0c88926cd486d2891aab9810ae3363",
+  "dbContentSha256": "e50347b5f6173898f3e383c6e5704686da0c88926cd486d2891aab9810ae3363",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "0을 포함한 네 개의 숫자를 한 번씩만 써서 만들 수 있는 두 자리 자연수의 개수를 센다.",
+  "after": "0을 포함한 다섯 장의 숫자 카드에서 두 장을 뽑아 만들 수 있는 두 자리 자연수의 개수를 센다.",
+  "sharedConcept": "0이 포함된 숫자로 자연수 만들기(맨 앞자리에 0 제외)",
+  "sharedProcedure": "십의 자리에 0을 뺀 숫자의 가짓수 세기 → 일의 자리에 십의 자리 숫자를 뺀 가짓수 세기 → 두 수를 곱하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "여러 가지 경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수",
+   "곱의 법칙"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20902-A46-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "0을 포함한 숫자 카드로 만드는 두 자리 자연수의 개수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.259,
+   "longestRun": 18,
+   "residualChars": 64,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,113 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   160,
+   30
+  ],
+  "B": [
+   40,
+   250
+  ],
+  "C": [
+   320,
+   250
+  ],
+  "D": [
+   180,
+   250
+  ],
+  "E": [
+   240,
+   140
+  ],
+  "F": [
+   170,
+   140
+  ],
+  "G": [
+   173.33,
+   176.67
+  ],
+  "AD_len": [
+   205,
+   213
+  ],
+  "BC_len": [
+   250,
+   274
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "parallel": 1
+  },
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AD": [
+   "A",
+   "D"
+  ],
+  "BE": [
+   "B",
+   "E"
+  ],
+  "EF": {
+   "points": [
+    "F",
+    "E"
+   ],
+   "parallel": 1
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "E": {
+   "text": "E",
+   "position": "E"
+  },
+  "F": {
+   "text": "F",
+   "position": "W"
+  },
+  "G": {
+   "text": "G",
+   "position": "SE"
+  },
+  "AD_len": {
+   "text": "18 cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "BC_len": {
+   "text": "16 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

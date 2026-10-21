@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 351,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A48-001-r1",
+ "authorId": "middle-engine:2-2|경우의 수|03",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "$1$부터 $19$까지의 자연수가 각각 하나씩 적힌 $19$장의 카드 중에서 한 장을 뽑을 때, $8$의 배수 또는 $6$의 배수가 적힌 카드가 나오는 경우의 수를 구하시오.",
+ "choices": [
+  "$3$",
+  "$5$",
+  "$10$",
+  "$8$",
+  "$7$"
+ ],
+ "answer": "②",
+ "solution": "$8$의 배수는 $2$개, $6$의 배수는 $3$개이고, 두 사건은 동시에 일어나지 않는다.\n따라서 구하는 경우의 수는 $2+3=5$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-3",
+  "problemCode": "J20901-A48-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "18421589b3a42a15fc1699d3ed3931042a25a3212a5b94f17724c35262709a24",
+  "dbContentSha256": "7fa193233177f2a29e0c0aab84a6f03abbbe52ccb2c28079319219fa5587c798",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "1~20 구슬 중 한 개를 꺼낼 때 3의 배수인 경우와 20의 약수인 경우를 각각 세어 합을 고른다(두 사건이 겹치지 않음).",
+  "after": "엔진이 새로 정한 범위의 수 카드에서 한 장을 뽑을 때 두 조건의 경우의 수를 각각 세어 더한 값을 보기에서 고른다.",
+  "sharedConcept": "동시에 일어나지 않는 두 사건의 경우의 수의 합",
+  "sharedProcedure": "첫 조건의 수 나열·세기 → 둘째 조건의 수 나열·세기 → 겹침 없음 확인 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "배수 · 약수",
+   "경우의 수의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A48-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "수 뽑기에서 두 조건의 경우의 수의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-2|경우의 수|03",
+   "seed": 1031600546,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+   "authorRationale": "1~n 카드(구슬)에서 한 개를 뽑아 '배수 또는 약수' 두 사건의 경우의 수를 각각 세어 더하는 절차가 같고, 원본도 값을 묻는 객관식이라 파생기로 보기 다섯을 만들면 물음 꼴이 같다.",
+   "facts": {
+    "kind": 0,
+    "N": 19,
+    "a": 8,
+    "b": 6,
+    "ans": 5
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.214,
+   "longestRun": 11,
+   "residualChars": 59,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 368,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r1",
+ "authorId": "claude-fable-5-1:9b0a36b7-c371-475d-ae44-b6996be08521",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "지우와 하루가 탁구 시합을 한다. 먼저 두 세트를 이기는 사람이 승리하며, 최대 세 세트까지 치른다. 한 세트에서 하루가 이길 확률이 $\\frac{1}{4}$일 때, 세 번째 세트에서 하루가 승리할 확률을 구하시오. (단, 비기는 세트는 없다.)",
+ "choices": [],
+ "answer": "$\\frac{3}{32}$",
+ "solution": "세 번째 세트에서 하루가 승리하려면 앞의 두 세트에서 한 번 이기고 한 번 진 뒤 세 번째 세트를 이겨야 한다. 하루가 한 세트를 질 확률은 $1-\\frac{1}{4}=\\frac{3}{4}$이다. (이김, 짐, 이김)일 확률은 $\\frac{1}{4}\\times\\frac{3}{4}\\times\\frac{1}{4}=\\frac{3}{64}$, (짐, 이김, 이김)일 확률은 $\\frac{3}{4}\\times\\frac{1}{4}\\times\\frac{1}{4}=\\frac{3}{64}$이다. 따라서 구하는 확률은 $\\frac{3}{64}+\\frac{3}{64}=\\frac{3}{32}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-13",
+  "problemCode": "J20904-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "c79a0b086354bacce806a16f18933d3f8dc83ec5cc3152ebcdbbb4d84051f7b9",
+  "dbContentSha256": "b94075194e3f8f965d9f70ace615e46a4a99d59ffe79afebd8c7765ca8f5c90f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "세 경기 중 두 번 이기면 우승하는 대회에서 한 선수가 세 번째 경기에서 우승할 확률",
+  "after": "세 세트 중 두 세트를 먼저 이기면 승리하는 시합에서 한 사람이 세 번째 세트에서 승리할 확률",
+  "sharedConcept": "확률의 곱셈과 덧셈을 함께 쓰는 승패 확률",
+  "sharedProcedure": "질 확률 구함 → 세 번째에 결정되는 승·패 순서 두 가지를 찾음 → 각 순서의 확률을 곱셈으로 구함 → 더함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "어떤 사건이 일어나지 않을 확률",
+   "확률의 덧셈과 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-A74-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "특정 회차에서 승부가 결정될 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.096,
+   "longestRun": 7,
+   "residualChars": 80,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

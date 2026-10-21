@@ -1,0 +1,173 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 320,
+  "height": 260
+ },
+ "points": {
+  "lA": [
+   20,
+   40
+  ],
+  "lB": [
+   300,
+   40
+  ],
+  "mA": [
+   20,
+   100
+  ],
+  "mB": [
+   300,
+   100
+  ],
+  "nA": [
+   20,
+   130
+  ],
+  "nB": [
+   300,
+   130
+  ],
+  "pA": [
+   20,
+   220
+  ],
+  "pB": [
+   300,
+   220
+  ],
+  "T1": [
+   156.25,
+   25
+  ],
+  "T2": [
+   68.75,
+   235
+  ],
+  "S1": [
+   248.5,
+   25
+  ],
+  "S2": [
+   269.5,
+   235
+  ],
+  "v10": [
+   118,
+   70
+  ],
+  "v5": [
+   102,
+   115
+  ],
+  "vx": [
+   78,
+   175
+  ],
+  "vy": [
+   275,
+   70
+  ],
+  "v3": [
+   278,
+   115
+  ],
+  "v9": [
+   286,
+   175
+  ]
+ },
+ "segments": {
+  "lineL": {
+   "points": [
+    "lA",
+    "lB"
+   ],
+   "parallel": 1
+  },
+  "lineM": {
+   "points": [
+    "mA",
+    "mB"
+   ],
+   "parallel": 1
+  },
+  "lineN": {
+   "points": [
+    "nA",
+    "nB"
+   ],
+   "parallel": 1
+  },
+  "lineP": {
+   "points": [
+    "pA",
+    "pB"
+   ],
+   "parallel": 1
+  },
+  "cutL": [
+   "T1",
+   "T2"
+  ],
+  "cutR": [
+   "S1",
+   "S2"
+  ]
+ },
+ "labels": {
+  "lA": {
+   "text": "l",
+   "italic": true,
+   "position": "W"
+  },
+  "mA": {
+   "text": "m",
+   "italic": true,
+   "position": "W"
+  },
+  "nA": {
+   "text": "n",
+   "italic": true,
+   "position": "W"
+  },
+  "pA": {
+   "text": "p",
+   "italic": true,
+   "position": "W"
+  },
+  "v10": {
+   "text": "10",
+   "dx": 0,
+   "dy": 0
+  },
+  "v5": {
+   "text": "5",
+   "dx": 0,
+   "dy": 0
+  },
+  "vx": {
+   "text": "x",
+   "italic": true,
+   "dx": 0,
+   "dy": 0
+  },
+  "vy": {
+   "text": "y",
+   "italic": true,
+   "dx": 0,
+   "dy": 0
+  },
+  "v3": {
+   "text": "3",
+   "dx": 0,
+   "dy": 0
+  },
+  "v9": {
+   "text": "9",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

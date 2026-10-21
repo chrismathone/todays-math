@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 385,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$1$부터 $9$까지의 자연수가 각각 하나씩 적힌 $9$장의 카드가 있다. 이 가운데 한 장을 뽑아 적힌 수를 확인한 뒤 다시 넣고, 다시 한 장을 뽑는다. 두 번 뽑은 카드에 적힌 수의 합이 $9$의 배수일 확률은?",
+ "choices": [
+  "$\\frac{1}{27}$",
+  "$\\frac{2}{27}$",
+  "$\\frac{1}{9}$",
+  "$\\frac{4}{27}$",
+  "$\\frac{5}{27}$"
+ ],
+ "answer": "③",
+ "solution": "뽑은 카드를 다시 넣으므로 모든 경우의 수는 $9\\times 9=81$이다.\n합이 $9$인 경우는 $(1,\\,8)$, $(2,\\,7)$, $(3,\\,6)$, $(4,\\,5)$, $(5,\\,4)$, $(6,\\,3)$, $(7,\\,2)$, $(8,\\,1)$의 $8$가지이므로 확률은 $\\frac{8}{81}$이다.\n합이 $18$인 경우는 $(9,\\,9)$의 $1$가지이므로 확률은 $\\frac{1}{81}$이다.\n두 사건은 동시에 일어날 수 없으므로 구하는 확률은 $\\frac{8}{81}+\\frac{1}{81}=\\frac{9}{81}=\\frac{1}{9}$이다. 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-13",
+  "problemCode": "J20903-B29-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "db4038816efbeb98b500cd256387ecbc10414c2416c981ec1cd7aac713c2457f",
+  "dbContentSha256": "84e0187a01f25c102d2ac66245742ecf8605b3faa61230e5aeae9c044513abd7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "1~8 정팔면체 주사위를 두 번 던져 합이 8의 배수(8 또는 16)가 되는 확률을 두 경우로 나눠 더한다",
+  "after": "1~9 카드를 다시 넣고 두 번 뽑아 합이 9의 배수(9 또는 18)가 되는 확률을 두 경우로 나눠 더한다",
+  "sharedConcept": "사건 A 또는 B가 일어날 확률",
+  "sharedProcedure": "전체 경우 n×n → 합이 n인 순서쌍(n−1개) → 합이 2n인 순서쌍(1개) → 두 확률을 더함 → 약분"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "두 사건이 동시에 일어나는 경우의 수",
+   "확률의 뜻",
+   "사건 A 또는 B가 일어날 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B29-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 수의 합이 배수일 확률(또는)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.141,
+   "longestRun": 10,
+   "residualChars": 96,
+   "params": 6,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

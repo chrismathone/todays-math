@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 357,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A54-001-r1",
+ "authorId": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "미나가 서로 다른 두 개의 주사위 $\\mathrm{A}$, $\\mathrm{B}$를 동시에 던져서, 큰 눈의 수에서 작은 눈의 수를 뺀 값이 $3$ 또는 $5$가 되는 경우의 수를 구하시오.",
+ "choices": [],
+ "answer": "$8$",
+ "solution": "($\\mathrm{A}$의 눈, $\\mathrm{B}$의 눈)의 순서쌍으로 나타낸다.\n두 눈의 차가 $3$인 경우는 $(1,\\,4)$, $(2,\\,5)$, $(3,\\,6)$, $(4,\\,1)$, $(5,\\,2)$, $(6,\\,3)$의 $6$가지이다.\n두 눈의 차가 $5$인 경우는 $(1,\\,6)$, $(6,\\,1)$의 $2$가지이다.\n두 사건은 동시에 일어날 수 없으므로 구하는 경우의 수는 $6+2=8$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4b711e3205872379-0-2",
+  "problemCode": "J20901-A54-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "e9924b8ca8ec9daebd0af2ebe9d05c0cba2e250a3893424f050c9d2dc197cdfe",
+  "dbContentSha256": "d4fb4164387c704f8782b8aa7ede36b56db7d85ea05f9cc5dbb48fd455226bc7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_8-1_사건과경우의수.hwp",
+    "sha256": "a3939f7fc42141fa86d0ef7bf2edb1ffdaee2f28bb3fec21b62e74857092dc5d",
+    "bytes": 79872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "context"
+  ],
+  "before": "주사위 하나를 두 번 던져 눈의 차가 4인 순서쌍과 5인 순서쌍을 각각 나열해 개수를 더한다.",
+  "after": "서로 다른 두 주사위를 동시에 던져 '큰 눈에서 작은 눈을 뺀 값'이 3인 순서쌍과 5인 순서쌍을 각각 나열해 개수를 더한다.",
+  "sharedConcept": "두 주사위 눈의 차에 대한 두 사건의 경우의 수의 합",
+  "sharedProcedure": "첫 차가 되는 순서쌍 나열·세기 → 둘째 차가 되는 순서쌍 나열·세기 → 겹침 없음 확인 → 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "순서쌍으로 경우 나열하기",
+   "경우의 수의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A54-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 주사위 눈의 차가 두 값 중 하나인 경우의 수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 44,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

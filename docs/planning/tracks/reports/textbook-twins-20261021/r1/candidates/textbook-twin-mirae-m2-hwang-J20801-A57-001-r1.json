@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 340,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A57-001-r1",
+ "authorId": "claude-fable-5-1:2d32f50e-2f3f-4dd3-8158-ff0ecdd32c72",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림] 다음 그림과 같이 $\\angle B=90^{\\circ}$이고 $\\overline{AC}=12\\,\\mathrm{cm}$인 직각삼각형 $ABC$의 두 변 $\\overline{AB}$, $\\overline{BC}$를 각각 지름으로 하는 반원 모양의 색유리를 붙였다. 두 색유리의 넓이를 각각 $S_{1}$, $S_{2}$라 할 때, $S_{1}+S_{2}$의 값은?",
+ "choices": [
+  "$9\\pi\\,\\mathrm{cm}^{2}$",
+  "$12\\pi\\,\\mathrm{cm}^{2}$",
+  "$18\\pi\\,\\mathrm{cm}^{2}$",
+  "$24\\pi\\,\\mathrm{cm}^{2}$",
+  "$36\\pi\\,\\mathrm{cm}^{2}$"
+ ],
+ "answer": "③",
+ "solution": "직각삼각형에서 두 직각변을 지름으로 하는 반원의 넓이의 합은 빗변을 지름으로 하는 반원의 넓이와 같다. 빗변 $\\overline{AC}=12\\,\\mathrm{cm}$를 지름으로 하는 반원의 반지름은 $6\\,\\mathrm{cm}$이므로 $S_{1}+S_{2}=\\frac{1}{2}\\times\\pi\\times 6^{2}=18\\pi\\,(\\mathrm{cm}^{2})$ 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A57-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20801-A57-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-14",
+  "problemCode": "J20801-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "047682e71c1d42487bfeee70e8735ace33a1ea902107a91a32616b9bab4954e6",
+  "dbContentSha256": "27708497126d4b1356778702132bc8bf96b4e3858932d53362974fa6dec5cd5b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "b1c72db78c4eb6ea68948e09f301dc179a3d82b15039f5d8fcb04b39cba622c0"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "빗변이 아래에 놓인 직각삼각형에서 빗변의 길이를 주고 두 직각변 위 반원의 넓이의 합을 고르게 한다.",
+  "after": "직각이 아래 왼쪽에 놓인 창문 장면으로 바꾸고 빗변의 길이를 새로 주어 두 직각변 위 반원(색유리) 넓이의 합을 고르게 한다.",
+  "sharedConcept": "직각삼각형의 세 변 위 반원 넓이의 관계(피타고라스 정리의 활용)",
+  "sharedProcedure": "두 직각변 위 반원의 합 = 빗변 위 반원임을 알기 → 빗변의 반지름 구하기 → 반원 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "원의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20801-A57-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형의 변을 지름으로 하는 반원의 넓이 관계",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "678ac423-22c4-43ea-9d77-95fc8bc94416",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.41",
+    "이어진 같은 글 23자"
+   ],
+   "overlap4": 0.412,
+   "longestRun": 23,
+   "residualChars": 114,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,144 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 346,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r1",
+ "authorId": "claude-fable-5-1:b2d1e78a-9f70-4924-8672-3d56d5f0ab0f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "다음 그림은 직사각형 $ABCD$를 대각선 $BD$를 따라 접은 것이다. 꼭짓점 $A$가 옮겨 간 점을 $A'$이라 하고, $\\overline{A'D}$와 $\\overline{BC}$가 만나는 점을 $E$, 점 $E$에서 $\\overline{BD}$에 내린 수선의 발을 $F$라 하자. $\\overline{AB}=6\\,\\mathrm{cm}$, $\\overline{AD}=8\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 풀이 과정과 함께 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$\\dfrac{25}{4}\\,\\mathrm{cm}$",
+ "solution": "[1단계] $\\triangle ABD$에서 $\\overline{BD}^{2}=6^{2}+8^{2}=100$이므로 $\\overline{BD}=10\\,\\mathrm{cm}$이다.\n[2단계] 접었으므로 $\\angle ADB=\\angle EDB$이고, $\\overline{AD}/\\!/\\overline{BC}$이므로 $\\angle ADB=\\angle EBD$(엇각)이다. 따라서 $\\angle EBD=\\angle EDB$이므로 $\\triangle EBD$는 $\\overline{EB}=\\overline{ED}$인 이등변삼각형이고, $\\overline{DF}=\\dfrac{1}{2}\\times10=5\\,\\mathrm{cm}$이다.\n[3단계] $\\triangle DFE$와 $\\triangle DAB$에서 $\\angle DFE=\\angle DAB=90^{\\circ}$, $\\angle EDF=\\angle BDA$이므로 $\\triangle DFE\\backsim\\triangle DAB$(AA 닮음)이다. $\\overline{DE}:\\overline{DB}=\\overline{DF}:\\overline{DA}$에서 $\\overline{DE}:10=5:8$이므로 $\\overline{DE}=\\dfrac{25}{4}\\,\\mathrm{cm}$이다.\n[4단계] 따라서 $\\overline{BE}=\\overline{DE}=\\dfrac{25}{4}\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A36-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20802-A36-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-20",
+  "problemCode": "J20802-A36-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "194cf4662ac21db4ed468e07e899cab801e18d423682b9b0110e9fe65813bbbb",
+  "dbContentSha256": "8ce1ffb0150c4b25ceb1d7f3dd5db9438ad2fc21394018a2295d16f5b80f044b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "de07a69ac3055016add01799eb83b8d0385117e9bbd41927528b7dc4348d8fab"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "직사각형을 대각선으로 접어 옮겨 간 꼭짓점과 마주 보는 변이 만나는 점까지의 길이를, 이등변삼각형과 닮음으로 구하는 서술형",
+  "after": "접혀 옮겨 가는 꼭짓점을 A로 바꾸어 교점이 아래 변 BC 위에 생기게 하고, 변 두 개의 길이를 6과 8로 주어 BE를 구하게 한다",
+  "sharedConcept": "접은 도형의 각의 보존 · 엇각 · 이등변삼각형 · 직각삼각형의 닮음 · 피타고라스 정리",
+  "sharedProcedure": "대각선 길이(피타고라스) → 접은 각과 엇각으로 이등변삼각형 확인 → 수선의 발이 중점 → AA 닮음 비례식 → 길이"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "semester": 2,
+   "chapter": "8. 피타고라스 정리",
+   "section": "피타고라스 정리의 활용"
+  },
+  "prerequisites": [
+   "피타고라스 정리",
+   "이등변삼각형의 성질",
+   "평행선의 엇각",
+   "삼각형의 닮음"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20802-A36-001",
+  "difficultyProposal": "심화하",
+  "sourceDifficulty": "심화하",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직사각형을 대각선으로 접었을 때 생기는 이등변삼각형의 변의 길이(서술형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "31631fad-5ef1-4a52-bec8-a0bd50178454",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.35",
+    "이어진 같은 글 20자"
+   ],
+   "overlap4": 0.35,
+   "longestRun": 20,
+   "residualChars": 103,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

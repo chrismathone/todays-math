@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 378,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B22-001-r1",
+ "authorId": "claude-fable-5-1:1bd0d572-486f-404f-8150-c46ab4cf28b2",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다섯 개의 알파벳 $\\mathrm{P}$, $\\mathrm{L}$, $\\mathrm{A}$, $\\mathrm{N}$, $\\mathrm{E}$를 한 글자씩 적은 카드 $5$장이 있다. 이 카드를 모두 한 줄로 늘어놓을 때, 맨 뒤 자리에 $\\mathrm{P}$ 또는 $\\mathrm{E}$가 놓일 확률은?",
+ "choices": [
+  "$\\frac{1}{5}$",
+  "$\\frac{3}{10}$",
+  "$\\frac{2}{5}$",
+  "$\\frac{1}{2}$",
+  "$\\frac{3}{5}$"
+ ],
+ "answer": "③",
+ "solution": "모든 경우의 수는 $5\\times 4\\times 3\\times 2\\times 1=120$이다.\n$\\mathrm{P}$가 맨 뒤에 놓이는 경우의 수는 나머지 $4$장을 나열하는 $4\\times 3\\times 2\\times 1=24$이므로 그 확률은 $\\frac{24}{120}=\\frac{1}{5}$이다.\n$\\mathrm{E}$가 맨 뒤에 놓일 확률도 같은 방법으로 $\\frac{1}{5}$이다.\n두 사건은 동시에 일어날 수 없으므로 구하는 확률은 $\\frac{1}{5}+\\frac{1}{5}=\\frac{2}{5}$이다. 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-8",
+  "problemCode": "J20903-B22-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "6b00a89a86399b0d05835c4c057901b4f435e6456c67383fed14f081c977d8b8",
+  "dbContentSha256": "a69b464dcfcccc819dab7784163f1e43fed84d321c7f57fc0831af857f58fffc",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "서로 다른 알파벳 6장을 한 줄로 세울 때 특정 두 글자 가운데 하나가 맨 앞에 오는 확률을 덧셈으로 구한다",
+  "after": "서로 다른 알파벳 5장을 한 줄로 세울 때 특정 두 글자 가운데 하나가 맨 뒤에 오는 확률을 덧셈으로 구한다",
+  "sharedConcept": "사건 A 또는 B가 일어날 확률(확률의 덧셈)",
+  "sharedProcedure": "전체 나열 수 n! → 한 글자를 고정한 나열 수 (n−1)! 로 각 확률 → 두 확률을 더함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 뜻과 성질"
+  },
+  "prerequisites": [
+   "한 줄로 세우는 경우의 수",
+   "확률의 뜻",
+   "사건 A 또는 B가 일어날 확률"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20903-B22-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "한 줄로 나열하기에서 또는의 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ea8994f1-9bdf-4359-afe2-dc576221d500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.014,
+   "longestRun": 4,
+   "residualChars": 72,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,125 @@
+{
+ "version": 2,
+ "theme": "exam-thin",
+ "points": {
+  "A": [
+   133.1,
+   26
+  ],
+  "B": [
+   20,
+   210
+  ],
+  "C": [
+   188,
+   210
+  ],
+  "D": [
+   123.6,
+   186.6
+  ],
+  "E": [
+   127.3,
+   125
+  ],
+  "F": [
+   72.9,
+   168.1
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AD": [
+   "A",
+   "D"
+  ],
+  "BE": [
+   "B",
+   "E"
+  ],
+  "CF": [
+   "C",
+   "F"
+  ]
+ },
+ "angles": {
+  "angA": {
+   "vertex": "A",
+   "points": [
+    "D",
+    "C"
+   ],
+   "arcs": 1
+  },
+  "angB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "E"
+   ],
+   "arcs": 1
+  },
+  "angC": {
+   "vertex": "C",
+   "points": [
+    "B",
+    "F"
+   ],
+   "arcs": 1
+  }
+ },
+ "dimensions": {
+  "d_AB": {
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  },
+  "d_BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  },
+  "d_CA": {
+   "points": [
+    "C",
+    "A"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": {
+   "text": "D",
+   "position": "SW"
+  },
+  "E": {
+   "text": "E",
+   "position": "E"
+  },
+  "F": {
+   "text": "F",
+   "position": "S"
+  }
+ }
+}

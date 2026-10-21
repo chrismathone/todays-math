@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 338,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A40-001-r1",
+ "authorId": "claude-fable-5-1:cd0d7971-de7a-438c-82f8-4224b60554f0",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "그림에서 세 직선 $l$, $m$, $n$이 서로 평행할 때, $x$, $y$의 값을 각각 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$x=10$, $y=21$",
+ "solution": "$l\\parallel m\\parallel n$이므로 평행선 사이의 선분의 길이의 비는 같다.\n왼쪽에서 만나는 두 직선에서 $5:7=x:14$이므로 $7x=70$, $x=10$이다.\n오른쪽 직선에서 $l$과 $n$ 사이의 길이가 $36\\,\\mathrm{cm}$이고 $m$과 $n$ 사이의 길이가 $y\\,\\mathrm{cm}$이므로 $(5+7):7=36:y$, 즉 $12:7=36:y$에서 $12y=252$, $y=21$이다.\n따라서 $x=10$, $y=21$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20703-A40-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20703-A40-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-e07b6dbebddb2e1f-1-3",
+  "problemCode": "J20703-A40-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "657e0589e5b85102e0c15a00870000201440c27ca372660e9992e755350ba430",
+  "dbContentSha256": "932f6e8aeea65a7354c767919775c25729d7d5af63913dc8091ce3b2c60636c7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-3_평행선사이의선분의길이의비.hwp",
+    "sha256": "3c3540da486426fa51435b688bc6ab7f49964cc103d9f365f62c56e36b4d7007",
+    "bytes": 821248
+   }
+  ],
+  "originalFigureSha256": [
+   "97d8e2f1dc09d94d27af087a98b424eb318408d12d67e2ac3f689af8b40c669a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "세 평행선을 세 직선이 자르며 두 직선이 맨 위 평행선 위의 한 점에서 갈라지고 다른 두 직선이 가운데 평행선 위에서 엇갈린다. 한 직선의 두 토막, 다른 직선의 위 토막과 아래 미지수, 또 다른 직선의 위 미지수와 전체 길이로 두 미지수를 구하는 단답형",
+  "after": "세 평행선을 세 직선이 자르며 두 직선이 맨 아래 평행선 위의 한 점에서 만나 V 꼴을 이루고 셋째 직선은 따로 떨어져 있다. 한 직선의 두 토막, 다른 직선의 아래 토막과 위 미지수, 셋째 직선의 전체 길이와 아래 미지수로 두 미지수를 구하는 단답형",
+  "sharedConcept": "평행선 사이의 선분의 길이의 비",
+  "sharedProcedure": "토막이 둘 다 주어진 직선에서 비 읽기 → 그 비로 다른 직선의 미지수 토막 구하기 → 전체 길이가 주어진 직선에서 부분:전체 비로 나머지 미지수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0acbc409-9301-40fe-a511-4c87e4c2983f",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "평행선 사이의 선분의 길이의 비"
+  },
+  "prerequisites": [
+   "비례식의 성질",
+   "삼각형에서 평행선과 선분의 길이의 비"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20703-A40-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "세 평행선 사이의 토막 길이와 전체 길이로 두 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0acbc409-9301-40fe-a511-4c87e4c2983f",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'd_C2C3' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 0, 0, 1))",
+     "session": "c6925029-a67f-4437-a871-21969df304dd",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: dimension 'd_C1C3' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "6229f372-015d-4d17-98da-0767544fb691",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 24자"
+   ],
+   "overlap4": 0.143,
+   "longestRun": 6,
+   "residualChars": 24,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

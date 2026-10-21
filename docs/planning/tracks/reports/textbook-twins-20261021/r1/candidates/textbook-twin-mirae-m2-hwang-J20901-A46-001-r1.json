@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 349,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A46-001-r1",
+ "authorId": "claude-fable-5-1:445e1d94-a04e-410c-826a-c764b748c3bc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$1$부터 $16$까지의 자연수가 각각 하나씩 적힌 카드 $16$장이 상자에 들어 있다. 서아가 이 상자에서 카드 한 장을 꺼낼 때, 다음 중 그 경우의 수가 가장 큰 사건은?",
+ "choices": [
+  "꺼낸 카드의 수가 홀수가 아니다.",
+  "꺼낸 카드의 수가 소수이다.",
+  "꺼낸 카드의 수가 $10$ 초과이다.",
+  "꺼낸 카드의 수가 $7$의 배수이다.",
+  "꺼낸 카드의 수가 $16$의 약수이다."
+ ],
+ "answer": "①",
+ "solution": "① 홀수가 아닌 수, 즉 짝수는 $2,\\,4,\\,6,\\,8,\\,10,\\,12,\\,14,\\,16$이므로 경우의 수는 $8$이다.\n② 소수는 $2,\\,3,\\,5,\\,7,\\,11,\\,13$이므로 경우의 수는 $6$이다.\n③ $10$ 초과인 수는 $11,\\,12,\\,13,\\,14,\\,15,\\,16$이므로 경우의 수는 $6$이다.\n④ $7$의 배수는 $7,\\,14$이므로 경우의 수는 $2$이다.\n⑤ $16$의 약수는 $1,\\,2,\\,4,\\,8,\\,16$이므로 경우의 수는 $5$이다.\n따라서 경우의 수가 가장 큰 사건은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-1",
+  "problemCode": "J20901-A46-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "94603d0815faf2f870cc773d3c4958314e8b7cf42130c829c145c1ed20b8096f",
+  "dbContentSha256": "c9c56076d35567adc0f2853ca59b5f99a5377c5cc39a089b0b4a72a4c546ffa1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "1~12가 적힌 정십이면체 주사위를 한 번 던질 때 다섯 사건(짝수 아님·소수·6 미만·5의 배수·12의 약수)의 경우의 수를 각각 세어 가장 작은 것을 고른다.",
+  "after": "1~16이 적힌 카드 상자에서 한 장을 꺼낼 때 다섯 사건(홀수 아님·소수·10 초과·7의 배수·16의 약수)의 경우의 수를 각각 세어 가장 큰 것을 고른다.",
+  "sharedConcept": "사건과 경우의 수 — 조건을 만족하는 원소를 빠짐없이 나열해 세기",
+  "sharedProcedure": "보기마다 조건에 맞는 수를 나열 → 각각의 개수 세기 → 다섯 값을 비교해 극값인 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수의 뜻",
+   "소수 · 배수 · 약수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A46-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 사건의 경우의 수를 각각 세어 크기를 비교하는 문항",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.194,
+   "longestRun": 10,
+   "residualChars": 120,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
