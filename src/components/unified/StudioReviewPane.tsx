@@ -14,6 +14,7 @@ import {
 } from "./studioHelpers";
 import StudioPageEmpty from "./StudioPageEmpty";
 import { SourceEditorDisplay } from "@/components/math/editor/SourceEditorDisplay";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import { repositionScore } from "./nativeProblemLayout";
 import {
   editedScoreMetadata,
@@ -444,7 +445,8 @@ function ReviewCard({
           />
         </div>
       ) : crop.content.trim() || crop.figures?.length ? (
-        <div className={styles.content}>
+        // 원본 문항 미리보기도 한글은 어절 단위로(D-164 ② — `mathTextWrap.ts`). 고치는 칸(`MathTextEditor`)은 그대로다.
+        <div className={`${styles.content} ${MATH_TEXT_WRAP}`}>
           <SourceEditorDisplay
             value={readContent}
             figures={visualFigures}

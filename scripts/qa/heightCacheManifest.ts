@@ -43,6 +43,11 @@ const PAGE_INPUT_FILES = [
   // D-164(2026-10-21): 식 뒤 조사 잇기의 목록 · 그림 자리 `[그림:n]` 의 파서 — 둘 다 줄바꿈 · 그림 배치를 바꾼다
   "src/lib/math/mathParticles.ts",
   "src/lib/problem/figureSlots.ts",
+  // D-164 ②(2026-10-21): 한글 어절 줄바꿈(keep-all)의 자리 · 그것을 다는 `MathText`(지면 캡션이 지난다) ·
+  // 통합 인쇄의 문항 본문 틀(영어 분기를 가른다)
+  "src/components/math/mathTextWrap.ts",
+  "src/components/math/MathText.tsx",
+  "src/components/unified/print/templates/ProblemBody.tsx",
   "src/lib/math/formulaLine.ts",
   "src/app/globals.css",
   "src/lib/math/displayWidth.ts",
@@ -161,6 +166,17 @@ export interface DigestRow {
   figureSourceMm?: readonly number[] | null;
   choiceFigureIndex?: readonly number[] | null;
   questionType?: string | null;
+  /** 엔진이 그린 인라인 SVG(`Problem.figureSvg`) — 파일이 아니라 마크업이라 그림 파일 지문이 못 본다. */
+  figureSvg?: string | null;
+}
+
+/**
+ * 엔진 SVG 그림의 지문(D-164 ② · 2026-10-21). 1만 9천여 행의 그림은 `figure_svg` 한 컬럼에만 있다 — 엔진을 고쳐 SVG 가
+ * 바뀌어도 본문 · 그림 파일은 그대로라 예전 지문은 «싱싱함»으로 통과했다. 🔴 **SVG 가 없으면 아무것도 덧붙이지 않는다** —
+ * 없는 행의 지문이 바뀌면 10만 행의 캐시가 이유 없이 전부 낡는다(보기 그림 짝과 같은 규칙).
+ */
+function figureSvgBasis(row: DigestRow): string {
+  return row.figureSvg ? `|svg${sha256([row.figureSvg]).slice(0, 16)}` : "";
 }
 
 export function measuredRowsHash(
@@ -169,7 +185,7 @@ export function measuredRowsHash(
   const parts: string[] = [];
   for (const row of [...rows].sort((a, b) => (a.id < b.id ? -1 : 1))) {
     parts.push(
-      `${row.id}\u0000${row.content ?? ""}\u0000${figureFilesFingerprint(row.figureUrls)}\u0000${figureSizeBasis(row)}\u0000${row.questionType ?? ""}\u0001`,
+      `${row.id}\u0000${row.content ?? ""}\u0000${figureFilesFingerprint(row.figureUrls)}\u0000${figureSizeBasis(row)}${figureSvgBasis(row)}\u0000${row.questionType ?? ""}\u0001`,
     );
   }
   return sha256(parts);
@@ -178,7 +194,7 @@ export function measuredRowsHash(
 /** 문항 하나의 본문 지문 — 짧게 자른다(4만 건 × 12자 ≈ 1MB). */
 export function rowDigest(row: DigestRow): string {
   return sha256([
-    `${row.content ?? ""} ${figureFilesFingerprint(row.figureUrls)} ${figureSizeBasis(row)} ${row.questionType ?? ""}`,
+    `${row.content ?? ""} ${figureFilesFingerprint(row.figureUrls)} ${figureSizeBasis(row)}${figureSvgBasis(row)} ${row.questionType ?? ""}`,
   ]).slice(0, 12);
 }
 

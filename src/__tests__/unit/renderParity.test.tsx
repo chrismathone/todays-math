@@ -9,6 +9,11 @@
  * 대상이 아니다 — 화면·지면이 실제로 달라졌다는 뜻이다.
  *
  * ── 변경 이력 ─────────────────────────────────────────────────────────────
+ * 2026-10-21 **한글은 어절 단위로 줄을 바꾼다** (D-164 ② · 합의 C — `src/components/math/mathTextWrap.ts`).
+ *   `ProblemContent` · `NativeProblem` · `MathText`(정답 · 해설 — `SolutionText` 가 이것을 지난다)의 뿌리에
+ *   `[word-break:keep-all] [overflow-wrap:anywhere]` 를 단다. 바뀐 키 20 — 전부(지면 문항은 `ProblemContent` 를,
+ *   `math:*` 는 `MathText` 를 지난다). 근거(탐침으로 확인): 렌더 결과에서 **그 두 클래스만 지우고** 뽑은 해시가
+ *   20키 전부 이 변경 전 기준(4b21d2983)과 같다 — 마크업은 그 밖에 한 글자도 안 바뀌었다.
  * 2026-10-21 **식 뒤 조사 · 서술격은 식과 한 줄에 선다** (D-164 ⑴ · 리드 · Codex 합의).
  *   `rehypeMathNowrap` 의 `joinParticles` 가 식 바로 뒤 조사 글 마디 맨 앞에 U+2060 을 넣고, 긴 식이면 마지막 조각
  *   (`.katex-base`)만 nowrap 상자에 넣는다(조각이 하나뿐인 긴 식은 `.katex` 에 nowrap). Chrome 은 U+2060 하나로는

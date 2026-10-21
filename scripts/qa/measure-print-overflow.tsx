@@ -12,6 +12,8 @@
  *   npx tsx scripts/qa/measure-print-overflow.tsx --verify out.json --repair
  *   npx tsx scripts/qa/measure-print-overflow.tsx --only ids.json --json probe.json
  *
+ * 🔴 2026-09-26 부터는 `--require ./scripts/qa/css-module-stub.cjs` 를 붙여야 돈다(CSS 모듈 — 그 파일 주석).
+ *
  * `--json` 은 높이 캐시와 함께 **지문**(`out.manifest.json`)을 남긴다. 지면 CSS·
  * `displayWidth`·본문이 바뀌면 캐시는 거짓이 되는데, 채점기가 그걸 볼 방법이
  * 그것뿐이다(적대적 리뷰 ④ F — 지문이 없을 때 실제로 조용히 통과했다).
@@ -27,7 +29,7 @@ import { chromium, type Page } from "@playwright/test";
 
 import { displayWidth } from "../../src/lib/math/displayWidth";
 import {
-  assessOverflowRisk,
+  assessSeat,
   estimateProblemLines,
   parseFigureDimensions,
 } from "../../src/lib/printOverflow";
@@ -64,6 +66,8 @@ interface Row {
   /** 보기 그림의 짝 — 알면 제품이 그림을 번호 칸 안에 넣는다(탐침 · 판정이 같이 받아야 한다). */
   choiceFigureIndex: number[] | null;
   questionType: string | null;
+  /** 엔진 SVG 그림 — 제품 지면이 그린다(`PaperProblemView`). 탐침 · 판정 · 지문이 같이 받는다. */
+  figureSvg: string | null;
 }
 
 interface Measured {
@@ -75,6 +79,35 @@ interface Measured {
   figurePx: number;
   choicePx: number;
   boxPx: number;
+  /**
+   * 가로로 새는 너비(px · 0 이면 안 샌다) — 문항 칸(`[data-paper-view]`) 안의 **상자마다** «제 폭보다 넓게 그려진 내용»
+   * (`scrollWidth − clientWidth`)의 최댓값. 높이만 재면 가로로 새는 것을 못 본다 — 한글을 어절째 넘기면(D-164 ②
+   * `keep-all`) 좁은 보기 칸 · 표의 칸 · 상자 칸이 넓어질 수 있다. 칸 하나의 `scrollWidth` 만 보면 옆 칸을 침범하되 문항
+   * 폭 안에 머무는 것과 잘려 안 보이는 것을 놓친다(2026-10-21 Codex 검토) — 그래서 상자마다 잰다.
+   * KaTeX 속 · SVG 속은 뺀다 — 늘어나는 SVG(`\overline` 따위)는 400em 너비를 제 상자로 잘라 그린다.
+   * 2026-10-21 전에 잰 캐시에는 이 칸이 없다.
+   */
+  overflowXPx?: number;
+}
+
+/**
+ * 탐침 지면을 연다 — 기계가 바쁘면 넉넉히 기다리고 두 번 더 연다.
+ * 2026-10-21: 다른 세션의 빌드 · 시험으로 부하가 99 까지 오른 1분에 전수 측정 넷이 **같이** 죽었다(로컬 파일 하나를
+ * 30초 안에 못 열었다 — 행은 넷이 다 달랐다). 한 묶음의 일시 지연이 15분짜리 전수를 버리게 하지 않는다.
+ * 같은 파일을 다시 열 뿐이라 잰 값은 바뀌지 않는다.
+ */
+async function gotoPatiently(page: Page, url: string): Promise<void> {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      await page.goto(url, { waitUntil: "load", timeout: 120_000 });
+      return;
+    } catch (error) {
+      if (attempt >= 3) throw error;
+      console.warn(
+        `\n탐침 지면 열기 ${attempt}번째 실패 — 다시 연다: ${String(error).split("\n")[0]}`,
+      );
+    }
+  }
 }
 
 /**
@@ -103,6 +136,7 @@ async function measureRows(
             figureDims: row.figureDims ?? undefined,
             figureSourceMm: row.figureSourceMm ?? undefined,
             choiceFigureIndex: row.choiceFigureIndex ?? undefined,
+            figureSvg: row.figureSvg,
             essayNumber: row.questionType === "서술형" ? 1 : null,
           },
           i + j + 1,
@@ -111,7 +145,7 @@ async function measureRows(
       pages.push(renderPage(kind, slots, kind === "first" ? 1 : 2));
     }
     const url = writeProbe("probe-overflow.html", await paperDocument(pages));
-    await page.goto(url, { waitUntil: "load" });
+    await gotoPatiently(page, url);
     await page.evaluate(() => document.fonts.ready);
     assertPaperSane(await page.evaluate(GUARD_SCRIPT));
 
@@ -133,6 +167,14 @@ async function measureRows(
         const choices = view.querySelector(
           "div[class*='mt-4']",
         ) as HTMLElement | null;
+        let overflowXPx = Math.max(0, view.scrollWidth - view.clientWidth);
+        view.querySelectorAll("*:not(.katex *, svg, svg *)").forEach((el) => {
+          if (
+            el.clientWidth > 0 &&
+            el.scrollWidth - el.clientWidth > overflowXPx
+          )
+            overflowXPx = el.scrollWidth - el.clientWidth;
+        });
         out.push({
           pid: item.dataset.pid,
           // ⚠️ grid row 가 아니라 article 의 content box 로 잰다(paperProbe 주석 (4)).
@@ -146,6 +188,7 @@ async function measureRows(
           figurePx: figures ? figures.getBoundingClientRect().height : 0,
           choicePx: choices ? choices.getBoundingClientRect().height : 0,
           boxPx,
+          overflowXPx,
         });
       });
       return out;
@@ -184,14 +227,14 @@ async function fetchRows(
     return (await prisma.$queryRawUnsafe(
       `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
               figure_source_mm AS "figureSourceMm", choice_figure_index AS "choiceFigureIndex",
-              question_type AS "questionType"
+              question_type AS "questionType", figure_svg AS "figureSvg"
          FROM problem WHERE id = ANY($1::uuid[]) ORDER BY id`,
       only as string[],
     )) as Row[];
   return (await prisma.$queryRawUnsafe(
     `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
             figure_source_mm AS "figureSourceMm", choice_figure_index AS "choiceFigureIndex",
-              question_type AS "questionType"
+              question_type AS "questionType", figure_svg AS "figureSvg"
        FROM problem ORDER BY id ${take > 0 ? `LIMIT ${take}` : ""}`,
   )) as Row[];
 }
@@ -301,6 +344,8 @@ async function main() {
   let over = 0;
   let missed = 0;
   let falseAlarm = 0;
+  // 분할은 `tooTall` 만 보고 혼자 앉힌다 — 경고(`risky`)와 따로, 넘치는데 둘이 앉은(겹쳐 찍힌) 문항을 센다.
+  let overlapped = 0;
   const missedRows: Array<{ pid: string; excess: number; lines: number }> = [];
   for (const m of all) {
     const row = byId.get(m.pid)!;
@@ -317,22 +362,16 @@ async function main() {
       // ⚠️ mm 를 안 넘기면 판정만 «모른다»로 재서 지면과 갈린다.
       figureSourceMm: row.figureSourceMm ?? undefined,
       choiceFigureIndex: row.choiceFigureIndex ?? undefined,
+      figureSvg: row.figureSvg,
     };
-    // ⚠️ 판정은 «그 장에 몇 개인가»로 칸을 고른다. 지면은 두 문항으로 그렸으므로
-    //    판정에도 짝을 채워 넣어야 같은 칸을 본다(혼자면 칸이 두 배다).
-    const filler: TestPrintProblem = {
-      id: "filler",
-      orderIndex: 0,
-      content: "",
-      answer: "",
-      solution: null,
-    };
-    const placed =
-      kind === "first" ? [problem, filler] : [filler, filler, problem, filler];
-    const at = kind === "first" ? 1 : 3;
-    const warned = assessOverflowRisk(placed).some((r) => r.number === at);
+    // ⚠️ 판정은 제품의 **자리 판단**(`assessSeat`)을 잰 칸 그대로 부른다 — 분할(`packProblems`)은 이것이 «높다»고 한
+    //    문항을 장에 혼자 앉히고, 경고도 같은 것을 본다. 예전처럼 `assessOverflowRisk([채움, 채움, 문항, 채움])` 의 경고로
+    //    재면 높은 문항은 혼자 앉은 칸(997px)에서 판정돼 «넘치는데 경고 없음»이 거의 전부가 된다(2026-10-21 · 재현율 0.2%).
+    const seat = assessSeat(problem, m.availPx);
+    const warned = seat.risky;
     const overflows = m.neededPx > m.availPx;
     if (overflows) over += 1;
+    if (overflows && !seat.tooTall) overlapped += 1;
     if (overflows && !warned) {
       missed += 1;
       missedRows.push({
@@ -345,7 +384,7 @@ async function main() {
             row.figureDims ?? undefined,
             row.figureSourceMm ?? undefined,
           ),
-          null,
+          row.figureSvg,
           row.choiceFigureIndex ?? undefined,
         ),
       });
@@ -356,6 +395,7 @@ async function main() {
   console.log(`문항 칸 ${slot}px (실측)`);
   console.log(`실측 넘침            ${over} (${pct(over)})`);
   console.log(`★ 넘치는데 경고 없음 ${missed} (${pct(missed)})`);
+  console.log(`★ 겹쳐 찍힘(둘이 앉음) ${overlapped} (${pct(overlapped)})`);
   console.log(`  경고인데 안 넘침   ${falseAlarm} (${pct(falseAlarm)})`);
   console.log(
     `  경고 재현율        ${((100 * (over - missed)) / Math.max(1, over)).toFixed(1)}%`,

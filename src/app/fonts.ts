@@ -50,9 +50,10 @@ export const pretendard = localFont({
  * `public/fonts/NotoSerifKR-OFL.txt` 에 **글꼴 자신의 name 테이블에서 뽑아** 두었다.
  *
  * ⚠️ **절대 규칙 6 — 아직 종이로 검수하지 않았다.** `/dev/print-check` 에 항목을 세웠다.
- * ⚠️ 자(`paperProbe`)는 Next 밖에서 그리므로 이 CSS 변수를 못 본다 — 거기서는 스택의
- *    다음 이름으로 떨어져 **시스템에 깔린 같은 글꼴**을 쓴다. 자형이 같으니 지면과
- *    안 갈리지만, 이 PC 에 그것이 없어지면 자와 지면이 갈릴 수 있다.
+ * ⚠️ 자(`paperProbe`)는 Next 밖에서 그리므로 이 변수를 **직접 정의하고 같은 파일을 싣는다**
+ *    (`scripts/qa/paperProbe.tsx` 의 `PAPER_FONT_CSS`). 🔴 2026-10-21 까지는 안 그랬다 — 정의 안 된
+ *    `var()` 는 선언 전체를 무효로 만들어 스택의 다음 이름으로 넘어가지 않으므로, 자는 브라우저 기본
+ *    서체로 쟀다(«시스템에 깔린 같은 글꼴로 떨어진다»는 이 자리의 옛 가정은 틀렸다).
  */
 export const notoSerifKR = localFont({
   src: "../../public/fonts/NotoSerifKR-subset.woff2",

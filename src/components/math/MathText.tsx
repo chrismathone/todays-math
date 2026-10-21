@@ -1,11 +1,14 @@
 /**
  * 정답·해설 등 단문 수식 렌더러 — mathgen MarkdownRenderer 경로를 그대로 탄다.
  * 검수(S-05)·문제은행(S-08)·인쇄(S-06)가 이 경로만 쓴다 — 렌더 경로 분기 금지.
+ * 한글은 어절 단위로 줄을 바꾼다(D-164 ② — `mathTextWrap.ts`): 정답 · 해설 · 따로 그리는 보기 · 연산 발문이
+ * 화면마다 이 컴포넌트를 바로 부르므로(2026-10-21 Codex 검토 — 열 곳 넘게) 부르는 쪽이 아니라 여기서 단다.
  *
  * 문제 본문(지문 + 보기)은 `ProblemContent`를 쓴다 (mathgen ProblemDisplay 구조).
  * 해설은 `SolutionText` 를 쓴다 — 아래 주석.
  */
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import { normalizeOcrText } from "@/lib/problem/parseProblemContent";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 
@@ -25,7 +28,7 @@ export function MathText({
   return (
     <MarkdownRenderer
       content={normalizeOcrText(text)}
-      className={className}
+      className={className ? `${MATH_TEXT_WRAP} ${className}` : MATH_TEXT_WRAP}
       inline={as === "span"}
       staticLayout={staticLayout}
     />

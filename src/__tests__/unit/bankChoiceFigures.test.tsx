@@ -2,6 +2,7 @@ import { render, within } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { ProblemBody } from "@/components/print/templates/ProblemBody";
@@ -124,11 +125,14 @@ describe("B1 — 그림과 보기 번호의 대응", () => {
         // 붙일 뿐이라, 그 이름만 되돌려 같은 지문과 견준다.
         // 2026-10-20 짧은 인라인 식의 `style="white-space:nowrap"`(rehypeMathNowrap)도 되돌린다 — 그 속성뿐이다.
         // 2026-10-21 식 뒤 조사 앞의 U+2060(D-164 ⑴ · `joinParticles`)도 걷는다 — 폭 없는 그 글자뿐이다.
+        // 2026-10-21 뿌리의 한글 어절 줄바꿈 클래스(D-164 ② · `mathTextWrap.ts`)도 걷는다 — 그 두 클래스뿐이다
+        // (`className` 기본값이 빈 글이라 수정 전 뿌리는 `class=""` 였다).
         const katex016 = html
           .replace(notice, "")
           .replace(/\bkatex-(base|strut|sizing)\b/g, "$1")
           .replace(/ style="white-space:nowrap"/g, "")
-          .replaceAll("\u2060", "");
+          .replaceAll("\u2060", "")
+          .replaceAll(` class="${MATH_TEXT_WRAP}"`, ' class=""');
         return createHash("sha256")
           .update(JSON.stringify(katex016))
           .digest("hex");
