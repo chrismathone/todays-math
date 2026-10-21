@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1965573f-df0a-4acf-886d-c8343626432d",
+ "startedAt": "2026-10-21T17:07:55+0900",
+ "elapsedSec": 7.4,
+ "studentSha256": {
+  "student.json": "91b208ee6203c089ae52b61ad1536e2505be0f5b79aae55b014a18ffaa1ca557"
+ },
+ "promptSha256": "35879e1a001c89c8a7fcb783b1a66d0d0ddbd8971e1a404dff6ba9fb76fddfe0",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"66\", \"work\": \"330 = 2×3×5×11이므로 n/330이 유한소수가 되려면 n이 3×11 = 33의 배수여야 한다. n은 6의 배수이기도 하므로 6과 33의 최소공배수인 66의 배수이다. 66의 배수 중 두 자리 수는 66 하나뿐이므로 n = 66이다. 확인: 66/330 = 1/5 = 0.2\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "66",
+  "work": "330 = 2×3×5×11이므로 n/330이 유한소수가 되려면 n이 3×11 = 33의 배수여야 한다. n은 6의 배수이기도 하므로 6과 33의 최소공배수인 66의 배수이다. 66의 배수 중 두 자리 수는 66 하나뿐이므로 n = 66이다. 확인: 66/330 = 1/5 = 0.2",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6a803d664fc000e5e0427777694143f9325b866df152ab1fcee7bcb9631105ff"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A75-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "52fb0245-79e4-456d-a079-a86274dce556",
+ "startedAt": "2026-10-21T17:07:50+0900",
+ "elapsedSec": 4.5,
+ "studentSha256": {
+  "student.json": "4da534282b20894fac70dbe6a54dabcb4c47a656f0c116f366f85b5df3aa0085"
+ },
+ "promptSha256": "da79fdc6bcddb72b21d22c6cacf01877b64d2762ffc1d9fe1189cb76344259c6",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"0.4\\\\dot{2}\\\\dot{7} = (427-4)/990 = 423/990 = 47/110 = 47/(2·5·11). 유한소수가 되려면 분모의 소인수 11이 약분되어야 하므로 a는 11의 배수여야 한다. 두 자리 자연수인 11의 배수는 11, 22, …, 99로 9개이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "0.4\\dot{2}\\dot{7} = (427-4)/990 = 423/990 = 47/110 = 47/(2·5·11). 유한소수가 되려면 분모의 소인수 11이 약분되어야 하므로 a는 11의 배수여야 한다. 두 자리 자연수인 11의 배수는 11, 22, …, 99로 9개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ef6eccea6b032d00767212d14a37c16b0dd378a3e098814cdf867b924556881b"
+}

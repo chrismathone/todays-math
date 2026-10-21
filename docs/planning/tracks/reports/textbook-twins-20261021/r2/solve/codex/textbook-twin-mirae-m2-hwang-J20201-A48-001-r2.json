@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A48-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd4-8638-7482-a74c-49ec76310a14",
+ "startedAt": "2026-10-21T18:39:31+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "student.json": "1ee93921a7cc511dacfb322d23bc2ebd025ec6baddace737ef7d97cec48e58c3"
+ },
+ "promptSha256": "f05f4906c714fd92a55917b7689f30af4a6d9b6aebed310b784a02f1f88804b2",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"각 부등식에 $x=10$을 대입하면\\n① $62<60$ (거짓), ② $96\\\\le 95$ (거짓)\\n③ $51\\\\ge 50$ (참), ④ $-54>-53$ (거짓), ⑤ $28<28$ (거짓)\\n따라서 정답은 ③이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "각 부등식에 $x=10$을 대입하면\n① $62<60$ (거짓), ② $96\\le 95$ (거짓)\n③ $51\\ge 50$ (참), ④ $-54>-53$ (거짓), ⑤ $28<28$ (거짓)\n따라서 정답은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3f921ee22f4d66a37f1e18183fe406f7b5b4bf11e1261570ea0b84d6589d7580"
+}

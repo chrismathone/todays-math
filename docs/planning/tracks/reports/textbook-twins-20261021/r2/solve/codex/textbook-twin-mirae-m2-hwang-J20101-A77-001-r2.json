@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd3-6a1f-7a62-bb21-832b1538f2e4",
+ "startedAt": "2026-10-21T18:38:18+0900",
+ "elapsedSec": 13.2,
+ "studentSha256": {
+  "student.json": "91b208ee6203c089ae52b61ad1536e2505be0f5b79aae55b014a18ffaa1ca557"
+ },
+ "promptSha256": "9d6a1652769aa13ba362b88b74d0fe7eca5e215f3c250dd6c7a4e871296cd632",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"66\",\"work\":\"330 = 2 × 3 × 5 × 11이다. 유한소수가 되려면 기약분수의 분모에 2와 5 이외의 소인수가 없어야 하므로 n은 33의 배수이다. 또한 6의 배수이므로 n은 33과 6의 최소공배수인 66의 배수이다. 두 자리 자연수는 66뿐이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "66",
+  "work": "330 = 2 × 3 × 5 × 11이다. 유한소수가 되려면 기약분수의 분모에 2와 5 이외의 소인수가 없어야 하므로 n은 33의 배수이다. 또한 6의 배수이므로 n은 33과 6의 최소공배수인 66의 배수이다. 두 자리 자연수는 66뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ad100cc762ecfd419e3d63665d81be279ca01ea4b35dd2a72a8214db2a1d7074"
+}

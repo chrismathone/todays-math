@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B67-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd4-055c-7a93-b47a-6eaad140fb7f",
+ "startedAt": "2026-10-21T18:38:58+0900",
+ "elapsedSec": 22.4,
+ "studentSha256": {
+  "student.json": "25fadf98d02dc86c2d0114ccc31b80f80b1edc7e77ae1a91b0179fac2e8e6303"
+ },
+ "promptSha256": "a771b0b821e42598e148ca995782bfd1c7d4de660fdbd8cf8a8595894b598d69",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\frac{1}{6^{6}}$ ⑵ $b^{3}$ ⑶ $m^{6}$ ⑷ $\\\\frac{1}{y^{3}}$\",\n  \"work\": \"같은 밑의 거듭제곱은 공통 인수를 약분한다.\\n⑴ 분모에 $6^{14-8}=6^6$이 남는다. ⑵ $b^{9-6}=b^3$, ⑶ $m^{20-6-8}=m^6$이다.\\n⑷ $(y^8)^3=y^{24}$, $(y^9)^3=y^{27}$이므로 약분하면 $\\\\frac{1}{y^3}$이다. (단, $b,m,y\\\\ne0$)\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\frac{1}{6^{6}}$ ⑵ $b^{3}$ ⑶ $m^{6}$ ⑷ $\\frac{1}{y^{3}}$",
+  "work": "같은 밑의 거듭제곱은 공통 인수를 약분한다.\n⑴ 분모에 $6^{14-8}=6^6$이 남는다. ⑵ $b^{9-6}=b^3$, ⑶ $m^{20-6-8}=m^6$이다.\n⑷ $(y^8)^3=y^{24}$, $(y^9)^3=y^{27}$이므로 약분하면 $\\frac{1}{y^3}$이다. (단, $b,m,y\\ne0$)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cc342afa247f495cead41d2437e56e3c05dd7b44571782050fba4b54c66f3f97"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A52-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "0d12b398-c009-450a-bb83-e2137547914b",
+ "startedAt": "2026-10-21T17:08:14+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "296fe584f974639fd862467cd1ca6398ac51962f6604db5e929f35082d57cc49"
+ },
+ "promptSha256": "2e21ff963063a2339e5114da7102af42d295fc3790b6144b75d0ddbcdf9cf26a",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $\\\\frac{x}{6}+9\\\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\\\le 18000$ ⑷ $x+(x+18)<50$\", \"work\": \"⑴ x÷6+9 ≥ 12 (이상 → ≥)\\n⑵ 평행사변형 넓이 = 밑변×높이 = 8x, 초과 → 8x>56\\n⑶ 요금 1500x, 이하 → 1500x≤18000\\n⑷ 삼촌 나이 x+18, 합 x+(x+18)<50 (즉 2x+18<50)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $\\frac{x}{6}+9\\ge 12$ ⑵ $8x>56$ ⑶ $1500x\\le 18000$ ⑷ $x+(x+18)<50$",
+  "work": "⑴ x÷6+9 ≥ 12 (이상 → ≥)\n⑵ 평행사변형 넓이 = 밑변×높이 = 8x, 초과 → 8x>56\n⑶ 요금 1500x, 이하 → 1500x≤18000\n⑷ 삼촌 나이 x+18, 합 x+(x+18)<50 (즉 2x+18<50)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f87a426430dc4d0f6d8b2bc24e7d3f410f7475e48586262ca24c6117e83149de"
+}

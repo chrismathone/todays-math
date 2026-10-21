@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A48-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "da899ed5-8ff2-4333-a30a-0bff49bfcc9d",
+ "startedAt": "2026-10-21T17:08:13+0900",
+ "elapsedSec": 4.2,
+ "studentSha256": {
+  "student.json": "1ee93921a7cc511dacfb322d23bc2ebd025ec6baddace737ef7d97cec48e58c3"
+ },
+ "promptSha256": "ca884c55458a4c25aaf7736c6ac121127bc58106406b3d94da28a154856bc268",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"x=10 대입: ① 62<60 거짓, ② 96≤95 거짓, ③ 51≥50 참, ④ -54>-53 거짓, ⑤ 28<28 거짓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x=10 대입: ① 62<60 거짓, ② 96≤95 거짓, ③ 51≥50 참, ④ -54>-53 거짓, ⑤ 28<28 거짓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c4973c1b814009f4d65a570c3f538cb6f45bcdbd7771677af3b895b9ccaed9d6"
+}
