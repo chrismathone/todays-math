@@ -102,9 +102,22 @@ it("figure hides reading/comparison chip only for students", () => {
     svg: "",
     tags: [],
   };
-  const view = render(<FadingFigureView figure={figure} answers student />);
+  const view = render(
+    <FadingFigureView
+      figure={figure}
+      proposition={concept.propositions[0]}
+      answers
+      student
+    />,
+  );
   expect(screen.queryByText("정독 · 대조")).not.toBeInTheDocument();
-  view.rerender(<FadingFigureView figure={figure} answers />);
+  view.rerender(
+    <FadingFigureView
+      figure={figure}
+      proposition={concept.propositions[0]}
+      answers
+    />,
+  );
   expect(screen.getByText("정독 · 대조")).toBeInTheDocument();
 });
 it("typed comparison keeps the same judgment actions with child wording", () => {

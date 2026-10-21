@@ -1001,6 +1001,7 @@ export function FadingSessionScreen({
             <FadingFigureView
               student={student}
               figure={content.figure}
+              proposition={concept.propositions[cardIndex]!}
               answers={local.phase === "reading"}
             />
             <section className={s.propositions} aria-label="개념 문장">

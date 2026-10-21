@@ -143,7 +143,12 @@ export function FadingComparisonSheet({
                 : "일치"}
           </span>
         </p>
-        <FadingFigureView student={student} figure={figure} answers />
+        <FadingFigureView
+          student={student}
+          figure={figure}
+          proposition={concept.propositions[index]!}
+          answers
+        />
         <div className={s.sectionTitle}>
           <h3>{student ? "문장 살펴보기" : "개념별 대조"}</h3>
           <span className={s.code}>

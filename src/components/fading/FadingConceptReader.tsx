@@ -122,6 +122,7 @@ export function FadingConceptReader({
       <FadingFigureView
         student={student}
         figure={detail.content.figure}
+        proposition={proposition}
         answers
       />
       <article
