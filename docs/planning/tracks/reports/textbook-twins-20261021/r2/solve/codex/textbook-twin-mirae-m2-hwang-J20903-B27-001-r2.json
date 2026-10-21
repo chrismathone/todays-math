@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfe-08df-7ff2-9c95-77dbf44fc41e",
+ "startedAt": "2026-10-21T19:24:51+0900",
+ "elapsedSec": 10.2,
+ "studentSha256": {
+  "student.json": "f348408e477c91622f68fde46efa37f3a3b86f890b0ae422f6d0bd15609667c8"
+ },
+ "promptSha256": "6df32df9ef448ee41634ecf2f82bbe551a0e2e21a1f143f9417e1aa470a53f49",
+ "freezeCommit": "de40914d9974004bfc395043cf9e1e24c24de4d4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"ㄱ. 세 개 모두 뒷면일 확률은 $\\\\frac{1}{8}$이므로 틀리다.\\nㄴ. 같은 눈이 나오는 경우는 6가지이므로 확률은 $\\\\frac{6}{36}=\\\\frac{1}{6}$로 옳다.\\nㄷ. 사건이 일어날 확률은 $1-\\\\frac{2}{7}=\\\\frac{5}{7}$이므로 틀리다.\\nㄹ. 두 눈의 합은 최소 2이므로 합이 1일 확률은 0으로 옳다.\\n따라서 옳은 것은 ㄴ, ㄹ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ. 세 개 모두 뒷면일 확률은 $\\frac{1}{8}$이므로 틀리다.\nㄴ. 같은 눈이 나오는 경우는 6가지이므로 확률은 $\\frac{6}{36}=\\frac{1}{6}$로 옳다.\nㄷ. 사건이 일어날 확률은 $1-\\frac{2}{7}=\\frac{5}{7}$이므로 틀리다.\nㄹ. 두 눈의 합은 최소 2이므로 합이 1일 확률은 0으로 옳다.\n따라서 옳은 것은 ㄴ, ㄹ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d2655930d48108ff20497b36c9b5c18946c5c2ca6abe4a4b2d6a4be6b5ce977b"
+}

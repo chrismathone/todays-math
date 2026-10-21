@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B45-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfd-b6b8-7813-b7de-8691ace35e5d",
+ "startedAt": "2026-10-21T19:24:30+0900",
+ "elapsedSec": 8.5,
+ "studentSha256": {
+  "fig-1.png": "8e83892a7b6a7fe029cd033bb8a1168730f41cf8f99d800b159ea52d32649583",
+  "student.json": "d52b93b3248d12b6d072b0bb21e0b1dda2d489ac76b2364ee726367b88721857"
+ },
+ "promptSha256": "ffce516a3534635684b2850b23112e6a5aed9530f80c7bc87967fb1d080e1401",
+ "freezeCommit": "1019310864b26d84c0426015f40929d2a659c129",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{7}{15}$\",\"work\":\"전체 회원 수는 8+10+6+6=30명이다.\\n봄 또는 가을을 가장 좋아하는 회원은 8+6=14명이므로, 구하는 확률은 14/30=7/15이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{7}{15}$",
+  "work": "전체 회원 수는 8+10+6+6=30명이다.\n봄 또는 가을을 가장 좋아하는 회원은 8+6=14명이므로, 구하는 확률은 14/30=7/15이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "60a45da4b821a31fa675c2fdb1785694df7f261230c75c50d22a078a1602bef6"
+}

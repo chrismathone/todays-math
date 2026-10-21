@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B27-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0fb93f91-48d4-40ad-b1ea-b6c72439e857",
+ "startedAt": "2026-10-21T18:49:47+0900",
+ "elapsedSec": 14.0,
+ "studentSha256": {
+  "student.json": "f348408e477c91622f68fde46efa37f3a3b86f890b0ae422f6d0bd15609667c8"
+ },
+ "promptSha256": "6df32df9ef448ee41634ecf2f82bbe551a0e2e21a1f143f9417e1aa470a53f49",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"ㄱ. 동전 3개를 던질 때 모두 뒷면이 나올 확률은 $\\\\frac{1}{2^3} = \\\\frac{1}{8}$이므로 거짓입니다.\\nㄴ. 주사위 2개의 눈이 서로 같을 확률은 $\\\\frac{6}{36} = \\\\frac{1}{6}$이므로 참입니다.\\nㄷ. 어떤 사건이 일어날 확률은 $1 - \\\\frac{2}{7} = \\\\frac{5}{7}$이므로 거짓입니다.\\nㄹ. 두 주사위 눈의 합의 최솟값은 $1 + 1 = 2$이므로 합이 $1$일 확률은 $0$입니다. (참)\\n따라서 옳은 것은 ㄴ, ㄹ입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ. 동전 3개를 던질 때 모두 뒷면이 나올 확률은 $\\frac{1}{2^3} = \\frac{1}{8}$이므로 거짓입니다.\nㄴ. 주사위 2개의 눈이 서로 같을 확률은 $\\frac{6}{36} = \\frac{1}{6}$이므로 참입니다.\nㄷ. 어떤 사건이 일어날 확률은 $1 - \\frac{2}{7} = \\frac{5}{7}$이므로 거짓입니다.\nㄹ. 두 주사위 눈의 합의 최솟값은 $1 + 1 = 2$이므로 합이 $1$일 확률은 $0$입니다. (참)\n따라서 옳은 것은 ㄴ, ㄹ입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "91f9cb89fa582c90eac3d33b919fe84a18398f65f4fd9e519fd81a6b59b4f329"
+}

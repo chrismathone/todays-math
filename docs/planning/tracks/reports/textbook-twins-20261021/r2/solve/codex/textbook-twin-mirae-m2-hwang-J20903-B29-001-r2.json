@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfe-3107-7a92-abfd-29d246583e2d",
+ "startedAt": "2026-10-21T19:25:02+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "b5a3271bcd5354cd770489b57e5408100a7171a151a0d075aaa112dfae9d3797"
+ },
+ "promptSha256": "dab4cc036c583a674a8ee5b89450dd71359658e6063d482e11f14a26a5e098b3",
+ "freezeCommit": "de40914d9974004bfc395043cf9e1e24c24de4d4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"공을 다시 넣고 뽑으므로 전체 경우의 수는 $12\\\\times12=144$이다. 합이 10의 배수이면 10 또는 20이다. 합이 10인 순서쌍은 $(1,9)$부터 $(9,1)$까지 9개, 합이 20인 순서쌍은 $(8,12)$부터 $(12,8)$까지 5개이다. 따라서 확률은 $\\\\frac{9+5}{144}=\\\\frac{7}{72}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "공을 다시 넣고 뽑으므로 전체 경우의 수는 $12\\times12=144$이다. 합이 10의 배수이면 10 또는 20이다. 합이 10인 순서쌍은 $(1,9)$부터 $(9,1)$까지 9개, 합이 20인 순서쌍은 $(8,12)$부터 $(12,8)$까지 5개이다. 따라서 확률은 $\\frac{9+5}{144}=\\frac{7}{72}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3addc6148f32d24a34354fa5feb48d7cc0514155ddd77d7e9a34d8b985d3dd0a"
+}
