@@ -489,6 +489,72 @@ describe("개념을 고르고 풀이 한 벌을 돈다", () => {
     expect(f.writes).toBe(writes);
   });
 
+  it.each(["2026-10-21", "2026-10-25", "2026-10-26"])(
+    "10/25 이력이 있는 새 개념 평가: %s — 역행만 409, 성공한 영수증은 역행 재시도에도 보존",
+    async (today) => {
+      const [first, second] = await someConcepts();
+      vi.setSystemTime(new Date("2026-10-25T09:45:34.076Z"));
+      const initial = await toRating(first!);
+      const firstRate: FadingAction = {
+        action: "rate",
+        conceptId: first!,
+        sessionId: initial.sessionId,
+        rating: "good",
+        requestId: uuid(81),
+      };
+      const firstDone = await act(firstRate);
+      vi.setSystemTime(new Date(`${today}T09:45:34.076Z`));
+      const pending = await toRating(second!);
+      const before = structuredClone(f.rows.get(f.studentId)!);
+      const writesBefore = f.writes;
+      const secondRate: FadingAction = {
+        action: "rate",
+        conceptId: second!,
+        sessionId: pending.sessionId,
+        rating: "good",
+        requestId: uuid(82),
+      };
+      const response = await postRaw(secondRate);
+      if (today === "2026-10-21") {
+        expect(response.status).toBe(409);
+        expect((await response.json()).error).toEqual({
+          code: "CONFLICT",
+          message:
+            "마지막 학습 날짜보다 이전 날짜에는 평가를 저장할 수 없습니다. 선생님께 확인해 주세요.",
+        });
+        expect(f.writes).toBe(writesBefore);
+        expect(f.rows.get(f.studentId)).toEqual(before);
+        const restored = await state(await read());
+        expect(restored.session).toEqual(pending.view.session);
+        expect(restored.session?.phase).toBe("rating");
+        // 다른 평가가 대기 중이어도 먼저 성공한 요청은 같은 영수증으로 응답한다.
+        const repeated = await act(firstRate);
+        expect(repeated.receipt).toEqual(firstDone.receipt);
+        expect(f.writes).toBe(writesBefore);
+        expect(f.rows.get(f.studentId)).toEqual(before);
+      } else {
+        const done = await state(response);
+        expect(f.writes).toBe(writesBefore + 1);
+        expect(done.revision).toBe(before.revision + 1);
+        expect(done.session).toBeNull();
+        const stored = structuredClone(f.rows.get(f.studentId)!);
+        const saved = parseSrsState(stored.payload);
+        const original = parseSrsState(before.payload);
+        expect({ ...saved, fading: undefined }).toEqual({
+          ...original,
+          fading: undefined,
+        });
+        expect(saved.fading!.concepts[second!].reviews).toBe(1);
+        vi.setSystemTime(new Date("2026-10-21T09:45:34.076Z"));
+        const repeated = await act(secondRate);
+        expect(repeated.receipt).toEqual(done.receipt);
+        expect(repeated.revision).toBe(done.revision);
+        expect(f.writes).toBe(writesBefore + 1);
+        expect(f.rows.get(f.studentId)).toEqual(stored);
+      }
+    },
+  );
+
   it("복습일이 되면 대기열에 오르고 4단계에서 시작한다 — 그 전에는 풀이가 열리지 않는다", async () => {
     const [first] = await someConcepts();
     const { sessionId } = await toRating(first!);

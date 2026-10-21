@@ -554,6 +554,10 @@ export function rateFadingSession(
         ? "4단계에서 틀린 풀이는 «다시»로만 닫을 수 있습니다."
         : "4단계를 마친 뒤에 평가할 수 있습니다.",
     );
+  if (state.streak.lastOn !== null && state.streak.lastOn > today)
+    throw conflict(
+      "마지막 학습 날짜보다 이전 날짜에는 평가를 저장할 수 없습니다. 선생님께 확인해 주세요.",
+    );
   const day = fadingDayOfDate(today);
   const next = applyFadingRating(
     fadingProgressOf(stored),

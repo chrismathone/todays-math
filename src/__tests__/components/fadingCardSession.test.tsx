@@ -18,6 +18,7 @@ import { fadingCardBlanks } from "@/lib/fading/cards";
 import { chipTray } from "@/lib/fading/chips";
 import { FadingFillCard } from "@/components/fading/FadingFillCard";
 import { FadingSourceError } from "@/lib/fading/source";
+import { createApiFadingSource } from "@/components/fading/apiSource";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -168,6 +169,64 @@ function finishComparison() {
 }
 
 describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
+  it("평가 날짜 충돌은 API 문구를 표시하고 한 번 읽어 평가 대기를 복원하며 자동으로 다시 쓰지 않는다", async () => {
+    const { local, ref } = await atFour();
+    const state = await local.act({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: fadingTargets(concept).map((target) => ({
+        targetId: target.id,
+        text: target.text,
+      })),
+    });
+    expect(state.session?.phase).toBe("rating");
+    const message =
+      "마지막 학습 날짜보다 이전 날짜에는 평가를 저장할 수 없습니다. 선생님께 확인해 주세요.";
+    const fetcher = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async (_url, init) =>
+        init?.method === "POST"
+          ? new Response(
+              JSON.stringify({ error: { code: "CONFLICT", message } }),
+              { status: 409 },
+            )
+          : new Response(JSON.stringify({ data: state })),
+      );
+    try {
+      const api = createApiFadingSource();
+      const screenView = render(
+        <FadingApp source={api} initialState={state} initialSession />,
+      );
+      finishComparison();
+      fireEvent.click(screen.getByRole("button", { name: /알맞음/ }));
+      await screen.findByText(message);
+      expect(fetcher).toHaveBeenCalledTimes(2);
+      expect(
+        fetcher.mock.calls.map(([, init]) => init?.method ?? "GET"),
+      ).toEqual(["POST", "GET"]);
+      expect(
+        JSON.parse(fetcher.mock.calls[0]![1]!.body as string),
+      ).toMatchObject({ action: "rate", ...ref, rating: "good" });
+      expect(
+        screen.queryByRole("button", { name: "저장 다시 시도" }),
+      ).not.toBeInTheDocument();
+      // 재동기화로 같은 평가 대기의 대조 화면이 복원된다. 렌더·대조 이동은 쓰기가 아니다.
+      finishComparison();
+      expect(screen.getByRole("button", { name: /알맞음/ })).toBeEnabled();
+      screenView.rerender(
+        <FadingApp source={api} initialState={state} initialSession />,
+      );
+      await waitFor(() =>
+        expect(screen.getByRole("button", { name: /알맞음/ })).toBeEnabled(),
+      );
+      expect(fetcher).toHaveBeenCalledTimes(2);
+      expect((await local.state()).session).toEqual(state.session);
+    } finally {
+      fetcher.mockRestore();
+    }
+  });
+
   it.each([
     [true, 2],
     [false, 2],
