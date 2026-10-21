@@ -1,0 +1,114 @@
+{
+  "status": "STATIC_OUTLINE_GRAPH_PASS;FUTURE_VERSION_AND_RUNTIME_PENDING",
+  "counts": {
+    "assertions": 30,
+    "passed": 30,
+    "failed": 0,
+    "nCases": 8,
+    "literalModeNCases": 16,
+    "actualSeedOutputs": 0
+  },
+  "actualInputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\proposal.json": "4bdbf8514fbecbbff8d930c1381480486aff6987f383220e07319691d671097b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\src\\lib\\middle\\m1Geo2.ts": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\proposal.json": "4bdbf8514fbecbbff8d930c1381480486aff6987f383220e07319691d671097b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\src\\lib\\middle\\m1Geo2.ts": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87"
+  },
+  "finding": "For n5..12, candidatehelper builds exactlynboundarysegments s0..s(n-1) connecting cyclicsuccessors andallvertexlabels; degree2simplecycle with0nonadjacentconnections. Available n-3connectionsfromA existonlyinownmathevidence, notinpromptfigure. This removesoldpredrawnanswerfan.",
+  "preservedFields": {
+    "polygon04": "AfterCRLFnormalization, blockexactlyidentical except figPolygonDiagonalsFromA(n)->figPolygonOutline(n). Stem,answer,solution,facts,mode/nranges unchanged; mode1stillfigureSpec:null.",
+    "regularPolygon": "Exactsourcecontentunchanged afterCRLFnormalization. Sameorderedregularvertices, no newgeometrydegree/valueencoded.",
+    "polygon05": "All-diagonalshelper andwhole05definition unchanged afterCRLFnormalization; no scopeexpansionto05.",
+    "changedSourceRegions": [
+      {
+        "tag": "replace",
+        "originalLines": [
+          7,
+          8
+        ],
+        "candidateLines": [
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "replace",
+        "originalLines": [
+          811,
+          811
+        ],
+        "candidateLines": [
+          811,
+          811
+        ]
+      },
+      {
+        "tag": "replace",
+        "originalLines": [
+          817,
+          819
+        ],
+        "candidateLines": [
+          817,
+          817
+        ]
+      },
+      {
+        "tag": "replace",
+        "originalLines": [
+          908,
+          908
+        ],
+        "candidateLines": [
+          906,
+          906
+        ]
+      }
+    ]
+  },
+  "byteCaveat": {
+    "sourceEOL": {
+      "originalCRLF": 1662,
+      "candidateCRLF": 0,
+      "originalLF": 1662,
+      "candidateLF": 1660
+    },
+    "statement": "WholecandidatefilehasLFwhereproductionhasCRLF; thereforeunrelatedsourcebyteidentityfails evenwhere sourcecontent is unchanged. Own3initialbyteassertionfailures preserved; comparisons explicitlynormalizeCRLFonly, notsourceformulas/text. No silentclaimallunrelatedbytesidentical.",
+    "recommendation": "PreserveproductionlineendingswhenapplyingminimalpatchorrecordintentionalEOLnormalization separately to avoid broadmechanicaldiff. No math/graphdefectinferredfromEOLalone."
+  },
+  "curriculumMethodConstraint": "M1polygon/diagonaldefinition afterlearningadjacency:fromnverticesexcludechosenvertexitselfandtwoadjacentvertices, leavingn-3. Outlineprovidesonlyalreadyprintedn/vertexpositions, studentmustidentifypossibleconnectionsratherthancountdrawnfan. Mode1reverse n=(givenconnections)+3 nofiguremaintained. Noofficialwholegrade/source/rights/nativeapproval.",
+  "futureAdapterVersion": {
+    "required": "1-2|다각형|04:20261021-outline-before-student-diagonals-r1",
+    "currentProductionEntryPresent": false,
+    "interpretation": "Expectedunappliedproposal currentlyhasnooverridefor1-2|다각형|04. Addfutureversionwithintegrationbeforeissuingnewrecipes; absencehereisexplicitintegrationhold, notcandidategraphfailure. PreservefamilyIDandoldseedoutputs/evidence. NoDBrefresh/issuedrowmutation."
+  },
+  "harnessDiagnostics": [
+    "InitialownPythoncomparisonexpressionhadunmatchedparenthesis; originalown-initial-harness.py retained, correctedonlyownscript.",
+    "Strict3byte-preservationexpectationsfailedbecausecandidatefileEOLnormalizesCRLF->LF; initialscript/resultsretained. Normalizedsourcecomparisonsnow30pass. No productionself-fix."
+  ],
+  "limits": {
+    "actualNodeCalls": 0,
+    "RAMProbes": 0,
+    "actualSeedOutputs": 0,
+    "DBAPIModelNetworkRendererCalls": 0,
+    "actualTSCompileOrRender": "notrun",
+    "staticNotRuntime": "Pythonreconstructionofsimpleactualsourceforloop andunchangedregularpolygonhelper; not actualAPI/renderer/fullcatalogueproof.",
+    "gradeRightsNativeSourceIdentityLoadablePublicReleaseApproved": false,
+    "questionCountsOrNewBlindCredit": 0
+  },
+  "preservation": "Onlynewownauditprefixwritten; productionandprovidedcandidate/proposalbytesunchanged. Oldraw/private/evidence/dirtyfourfilespreserved.",
+  "artifacts": {
+    "own-review.py": "d2d76f4243a55c0465c9923ede66013f54299a0f1b3ee5b13b9a9ea9095e0ba6",
+    "own-results.json": "e9e3bf7aff0fce05f3f5927d8ead7e2122f131dbcf72dbdde76b59ec285d0e9b",
+    "own-byte-comparison-harness.py": "f9810443e31caad739a51f07d19a27c6819e6e26ce20422cfc52e10f8b38296b",
+    "own-byte-comparison-initial-results.json": "ea05dac7e060484e4324066439f4bd3faebf500f4cbe7d6d27b3a08d8572de3c",
+    "own-initial-harness.py": "20755c51aebe8faf69ce24c67c9622f1bae9cb34a774d298b73f09f6d7ba8e14",
+    "own-utf8-probe.txt": "b73991c5833c5b2ad4a165a7017e96a06a7ded24939e3c395cf939d171372abd"
+  }
+}
