@@ -4,7 +4,7 @@ import type { FormatInput } from "./provenance";
 /** Same transitive source fingerprint as the DB backfill. A test locks this to
  * formatRuleVersion(); update it and backfill after changing the classifier. */
 export const ACTUAL_FORMAT_VERSION =
-  "format-v1:1c653f6c01b41e1c9e9a78edab82a2e3373923af6d6c88aa9f21233aafa0e42a";
+  "format-v1:c2f3c1cde46aea4199bda8ead78a0d557f6d9ed733e5821b8407a7701c3b0fc8";
 
 // Fallback scope belongs to one read transaction and its request-local map. It never
 // becomes a process cache, nor survives into another transaction/client.

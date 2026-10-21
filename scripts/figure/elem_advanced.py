@@ -1583,7 +1583,9 @@ def _pictograph(spec: Mapping[str, Any]) -> str:
         raise ValueError("items 는 1~6개여야 합니다")
     # viewBox 폭을 240으로 고정 — 칸 수가 달라도 화면 크기가 안 변한다.
     icon_w, icon_h, pad = 22.0, 24.0, 10.0
-    parts: list[str] = [_text(pad, 14, f"□ = {unit}", size=13, anchor="start")]
+    # `hideUnit` — 「□ 한 칸은 몇 …?」 을 묻는 문항은 범례가 곧 답이다 → «□ = ?» (2026-10-20 지면 검사).
+    legend = "?" if spec.get("hideUnit") is True else str(unit)
+    parts: list[str] = [_text(pad, 14, f"□ = {legend}", size=13, anchor="start")]
     y = 32.0
     for i, item in enumerate(items):
         if not isinstance(item, Mapping):
@@ -1771,6 +1773,9 @@ def _rotate_flip(spec: Mapping[str, Any]) -> str:
     size, pad = 16.0, 8.0
     g = n * size
     parts = [_draw_cell_grid(pad, pad, n, set(cells), size)]
+    # showAfter=false — 처음 도형만(뒤집은 결과를 보여 주면 답을 세어 버린다)
+    if spec.get("showAfter", True) is False:
+        return _svg(pad * 2 + g, pad * 2 + g, "".join(parts))
     parts.append(_arrow_right(pad + g + 4, pad + g + 28, pad + g / 2))
     parts.append(_draw_cell_grid(pad + g + 36, pad, n, set(after), size))
     w = pad * 2 + g * 2 + 36
@@ -4904,7 +4909,8 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "lineChart": frozenset({"yMax", "yStep", "yLabel", "title"}),
     "stripChart": frozenset(),
     "pieChart": frozenset(),
-    "rotateFlip": frozenset({"n"}),
+    "pictograph": frozenset({"hideUnit"}),
+    "rotateFlip": frozenset({"n", "showAfter"}),
     "symmetry": frozenset({"n", "cells", "motif"}),
     "stackCubes": frozenset({"views"}),
     "netCylinder": frozenset({"pi", "layout"}),

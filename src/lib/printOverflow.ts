@@ -34,6 +34,8 @@
  *    `scripts/qa/measure-print-overflow.tsx` 가 그걸 하고,
  *    `scripts/qa/eval-overflow-rules.ts` 가 이 판정을 그 실측과 대조해 채점한다.
  */
+import { formulaGapLines } from "@/lib/math/formulaLine";
+import { preprocessMarkdown } from "@/lib/math/markdownPreprocess";
 import type { TestPrintProblem } from "@/components/print/types";
 import { descriptiveWritingLayout } from "@/lib/print/descriptive";
 import {
@@ -60,16 +62,10 @@ import {
 } from "@/lib/math/boxHeader";
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
 import { EXAM_MEASURED_PX, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
-import { hideFigureMarker } from "@/lib/problem/figureMarker";
-import {
-  choiceFigureMode,
-  type ChoiceFigurePlan,
-} from "@/lib/problem/choiceFigureIndex";
+import { type ChoiceFigurePlan } from "@/lib/problem/choiceFigureIndex";
+import { captionLines, slottedProblem } from "@/lib/problem/figureSlots";
 import { paginateAnswerKey } from "@/lib/printLayout";
-import {
-  normalizeOcrText,
-  parseProblemContent,
-} from "@/lib/problem/parseProblemContent";
+import { normalizeOcrText } from "@/lib/problem/parseProblemContent";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 
 /**
@@ -193,6 +189,66 @@ export function estimateFigureBlockPx(
   rows += 1;
   // 줄 사이 간격 — `gap-4` 는 가로·세로 모두에 붙는다.
   return total + figureGap * (rows - 1);
+}
+
+/** 그림 자리 캡션의 위 여백 — `ProblemContent` 의 `mt-1`(4px). */
+const FIGURE_CAPTION_GAP_PX = 4;
+
+/**
+ * **그림 자리 묶음**(`[그림:n]` — `figureSlots.ts`, D-164 ③④)이 먹는 세로 픽셀.
+ *
+ * 지면 그대로의 모형이다(`ProblemContent` 의 `slotGroup`): 발문 뒤 그림 묶음과 같은 줄 채우기
+ * (`mt-3 flex flex-wrap gap-4`)인데, 칸 하나가 «그림 + 바로 아래 캡션»이다. 칸 폭은 그림과 캡션 가운데 넓은 쪽,
+ * 칸 높이는 그림 높이 + 캡션(`mt-1` + 줄 수). 한 줄의 높이는 그 줄에서 가장 높은 칸이다(`items-start`).
+ */
+export function estimateFigureSlotGroupPx(
+  items: readonly {
+    figure: FigureDimensionType | null;
+    caption: string | null;
+  }[],
+  ruler: RulerMetrics = JASEUP_RULER,
+): number {
+  if (items.length === 0) return 0;
+  const { problemColumn, figureGap, figureBlockTop, line, unit } = ruler;
+  let total = figureBlockTop;
+  let rowWidth = 0;
+  let rowHeight = 0;
+  let rows = 0;
+  for (const { figure, caption } of items) {
+    const figureWidth = figure
+      ? figurePrintWidthPx(figure)
+      : UNKNOWN_FIGURE_WIDTH_PX;
+    const figureHeight = figure
+      ? figure.height * (figureWidth / figure.width)
+      : UNKNOWN_FIGURE_HEIGHT_PX;
+    // 캡션은 조판과 같은 전처리를 거친 줄로 센다(`captionLines` — 렌더러의 엔티티 풀기 · 줄바꿈까지).
+    const captionWidths = caption
+      ? captionLines(caption).map((text) => displayWidth(text) * unit)
+      : [];
+    const captionWidth = Math.max(0, ...captionWidths);
+    const width = Math.min(problemColumn, Math.max(figureWidth, captionWidth));
+    const height =
+      figureHeight +
+      (caption
+        ? FIGURE_CAPTION_GAP_PX +
+          captionWidths.reduce(
+            (sum, w) => sum + Math.max(1, Math.ceil(w / problemColumn)),
+            0,
+          ) *
+            line
+        : 0);
+    const wouldBe = rowWidth === 0 ? width : rowWidth + figureGap + width;
+    if (rowWidth > 0 && wouldBe > problemColumn) {
+      total += rowHeight;
+      rows += 1;
+      rowWidth = width;
+      rowHeight = height;
+      continue;
+    }
+    rowWidth = wouldBe;
+    rowHeight = Math.max(rowHeight, height);
+  }
+  return total + rowHeight + figureGap * rows;
 }
 
 /** Explicitly mapped pictures live in different stem/choice boxes. A conservative
@@ -447,22 +503,19 @@ export function estimateProblemPx(
   ruler: RulerMetrics = JASEUP_RULER,
   choiceFigureIndex?: readonly (number | null)[],
 ): number {
-  const { question: rawQuestion, choices } = parseProblemContent(content);
-  // 짝을 읽는 갈래 — 지면(`ProblemContent`)과 **같은 함수**로 가른다. 한쪽만 고치면 그 갈래에서만 높이가 어긋난다.
-  const figureMode = choiceFigureMode(
+  /**
+   * 읽는 차례는 지면(`ProblemContent`)과 **같은 함수**다(`slottedProblem`) — 그림 자리 `[그림:n]` 뽑기 → 파서 →
+   * `[그림]` 자국 가리기 → 보기 그림 짝의 갈래 → 발문 자리 배치. 한쪽만 고치면 그 갈래에서만 높이가 어긋난다.
+   * 🔴 `[그림]` 자국을 가리는 조건도 지면과 **같아야** 한다: `ProblemContent` 는 인라인 SVG 가 있어도
+   *    자국을 지운다. 자만 `figures.length > 0` 를 보면 그 문항만 한 줄 더 높다(2026-08-18).
+   */
+  const { choices, figureMode, slots } = slottedProblem(
+    content,
     figures.length,
     choiceFigureIndex,
-    choices,
-  );
-  const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
-  // 조판이 안 그리는 `[그림]` 자국을 자도 안 센다 — **같은 함수**를 부른다.
-  // 한쪽만 고치면 높이가 갈라지고, 갈라진 것은 아무도 못 본다(2026-08-18).
-  // 🔴 조건도 지면과 **같아야** 한다: `ProblemContent` 는 인라인 SVG 가 있어도
-  //    자국을 지운다. 자만 `figures.length > 0` 를 보면 그 문항만 한 줄 더 높다.
-  const question = hideFigureMarker(
-    rawQuestion,
     figures.length > 0 || Boolean(figureSvg),
   );
+  const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
   const { line, boxChrome, fixedChrome } = ruler;
 
   // 문항번호와 정답란은 본문과 무관하게 늘 붙는다 — 실측 62.5px = 3.08줄.
@@ -535,29 +588,46 @@ export function estimateProblemPx(
     box = null;
   };
 
-  for (const rawLine of question.split(/\r?\n/)) {
-    const trimmed = rawLine.trimStart();
-    if (trimmed.startsWith(">")) {
-      flushPlain();
-      if (box === null) box = [];
-      box.push(trimmed.replace(/^>\s?/, ""));
+  // 발문의 글 조각마다 — 그림 자리가 없으면 조각은 발문 하나다(오늘 그대로). 조각 사이의 그림 묶음은 따로 센다.
+  for (const part of slots.parts) {
+    if (part.kind === "figures") {
+      px += estimateFigureSlotGroupPx(
+        part.items.map((item) => ({
+          figure: figures[item.index] ?? null,
+          caption: item.caption,
+        })),
+        ruler,
+      );
       continue;
     }
+    for (const rawLine of part.text.split(/\r?\n/)) {
+      const trimmed = rawLine.trimStart();
+      if (trimmed.startsWith(">")) {
+        flushPlain();
+        if (box === null) box = [];
+        box.push(trimmed.replace(/^>\s?/, ""));
+        continue;
+      }
+      flushBox();
+      if (trimmed) plain.push(trimmed);
+    }
+    flushPlain();
     flushBox();
-    if (trimmed) plain.push(trimmed);
   }
-  flushPlain();
-  flushBox();
 
   // ㉠ 온전한 짝(발문 그림 + 2열 그림 격자) · ㉡ 덜 된 짝(그림마다 한 줄 — 넉넉히) · ㉢ 그 밖(예전 식).
+  // 제자리에 그린 그림(`slots.used`)은 뒤 모음에 없다 — 지면과 같이 뺀다.
+  const unplaced = (index: number) => !slots.used.has(index);
   px += choiceFigures
     ? estimateFigureBlockPx(
-        choiceFigures.stem.map((index) => figures[index]!),
+        choiceFigures.stem.filter(unplaced).map((index) => figures[index]!),
         ruler,
       )
     : estimateMappedFigurePx(
-        figures,
-        figureMode.mode === "loose" ? choiceFigureIndex : undefined,
+        figures.filter((_, index) => unplaced(index)),
+        figureMode.mode === "loose"
+          ? choiceFigureIndex?.filter((_, index) => unplaced(index))
+          : undefined,
         ruler,
       );
   px += estimateFigureSvgPx(figureSvg, ruler);
@@ -574,6 +644,11 @@ export function estimateProblemPx(
    * 있든 그 줄이 높아지기 때문이다 — 자리를 가리지 않는다.
    */
   px += countTallMath(content) * TALL_MATH_EXTRA_PX;
+  // 발문의 «글 뒤 식만 있는 문단»은 지면이 위에 한 줄 띄운다 — 같은 규칙 함수로, 지면과 같은 전처리를 거친 글로 센다(`formulaLine.ts`).
+  // 그림 자리가 있으면 지면은 글 조각마다 따로 그린다 — 조각마다 센다.
+  for (const part of slots.parts)
+    if (part.kind === "text")
+      px += formulaGapLines(preprocessMarkdown(part.text)) * line;
   return px;
 }
 
@@ -877,13 +952,28 @@ export function assessSeat(
     problem.choiceFigureIndex,
   );
   const lines = Math.ceil(px / JASEUP_MEASURED_PX.line);
-  const { choices } = parseProblemContent(problem.content);
-  const figureMode = choiceFigureMode(
+  // 그림이 먹는 세로도 지면과 같은 차례로 읽는다 — 제자리 그림(`[그림:n]`)은 그 묶음으로, 뒤 모음에서는 뺀다.
+  const { choices, figureMode, slots } = slottedProblem(
+    problem.content,
     figureCount,
     problem.choiceFigureIndex,
-    choices,
+    figureCount > 0 || Boolean(svg),
   );
   const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
+  const unplaced = (index: number) => !slots.used.has(index);
+  const slotFigurePx = slots.parts.reduce(
+    (sum, part) =>
+      part.kind === "figures"
+        ? sum +
+          estimateFigureSlotGroupPx(
+            part.items.map((item) => ({
+              figure: figures[item.index] ?? null,
+              caption: item.caption,
+            })),
+          )
+        : sum,
+    0,
+  );
   const limit = lineLimitFor(slotPx);
   /**
    * 🔴 **px 를 직접 견준다.** 줄 수로 견주면 `ceil` 이 최대 한 줄을 삼켜, 칸을
@@ -902,9 +992,10 @@ export function assessSeat(
     lines,
     limit,
     figurePx:
+      slotFigurePx +
       (choiceFigures
         ? estimateFigureBlockPx(
-            choiceFigures.stem.map((index) => figures[index]!),
+            choiceFigures.stem.filter(unplaced).map((index) => figures[index]!),
           ) +
           choiceFigureGridPx(
             choices,
@@ -914,9 +1005,12 @@ export function assessSeat(
             true,
           )
         : estimateMappedFigurePx(
-            figures,
-            figureMode.mode === "loose" ? problem.choiceFigureIndex : undefined,
-          )) + estimateFigureSvgPx(svg),
+            figures.filter((_, index) => unplaced(index)),
+            figureMode.mode === "loose"
+              ? problem.choiceFigureIndex?.filter((_, index) => unplaced(index))
+              : undefined,
+          )) +
+      estimateFigureSvgPx(svg),
     manyFigures,
     risky: tooTall || manyFigures,
   };

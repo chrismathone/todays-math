@@ -133,7 +133,7 @@ function midOf(code: Code, content: string): Mid {
     };
   }
   if (code === "1-3-2") {
-    const a = num(/^\$(\d+)\\times\\square\$ 의 곱이/);
+    const a = num(/^\$(\d+)\\times\\square\$의 곱이/);
     const want = content.includes("다섯 자리") ? 5 : 4;
     const small = content.includes("가장 작은");
     return {
@@ -181,7 +181,7 @@ function midOf(code: Code, content: string): Mid {
       answer: (r) => `$${Math.floor((b * q + r + 1) / b)}$`,
     };
   }
-  const a = num(/^\$(\d+)\\div\\square\$ 에서/);
+  const a = num(/^\$(\d+)\\div\\square\$에서/);
   const k = num(/몫을 어림했더니 \$(\d+)\$[이가] 되었습니다/);
   expect(a % k, `어림한 몫이 자연수가 아니다: ${content}`).toBe(0);
   const bb = a / k;
@@ -207,7 +207,7 @@ function topOf(code: Code, content: string): Top {
     return { pool: TENS, keep: (t) => a * t > low && a * t < high, answer: id };
   }
   if (code === "1-3-2") {
-    const a = num(/^\$(\d+)\\times\\square\$ 의 곱이/);
+    const a = num(/^\$(\d+)\\times\\square\$의 곱이/);
     const low = num(/의 곱이 \$(\d+)\$보다 크고/);
     const high = num(/크고 \$(\d+)\$보다 작습니다/);
     return { pool: TWO, keep: (k) => a * k > low && a * k < high, answer: id };

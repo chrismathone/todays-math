@@ -7,8 +7,9 @@ import { ACTUAL_FORMAT_VERSION, verifyFormatScope } from "@/lib/problem/actualFo
 import { bankReadFingerprintSql, bankRevisionFingerprintSql, bankFormatsCurrent, currentBankReadClient, currentBankReadFingerprint, withBankReadClient, withBankReadFingerprint } from "@/lib/bankReadFingerprint";
 import { cachedBankRead, invalidateBankReadCache } from "@/lib/bankReadCache";
 import { questionCountsSql, questionPageSql } from "@/lib/problem/questionCountSql";
-import { BANK_REVISION_PATH, BANK_REVISION_MIGRATION, bankRevisionCatalog, bankRevisionRollbackStatements, validateBankRevisionCatalog, verifyBankRevisionCounter } from "../../../scripts/db/apply-bank-read-revision-migration";
-import { sha256, splitMigration, type SqlClient } from "../../../scripts/db/problem-actual-format";
+import { BANK_REVISION_BAKED_VERSION, BANK_REVISION_PATH, BANK_REVISION_MIGRATION, FORMAT_TRANSITION_MIGRATION, bankRevisionCatalog, bankRevisionRollbackStatements, validateBankRevisionCatalog, verifyBankRevisionCounter } from "../../../scripts/db/apply-bank-read-revision-migration";
+import { FORMAT_TRANSITION_FROM, FORMAT_TRANSITION_TO, assertTransitionSafe, readTransitionMigration, scanTransition, transitionStatus } from "../../../scripts/db/apply-bank-format-version-migration";
+import { classifyFact, readPage, sha256, splitMigration, type SqlClient } from "../../../scripts/db/problem-actual-format";
 
 let pg: Db, world: World, id: string;
 const migration = readFileSync(BANK_REVISION_PATH, "utf8");
@@ -70,12 +71,96 @@ describe.sequential("bank revision DB first and opt-in reader", () => {
     await pg.query("INSERT INTO _prisma_migrations VALUES ($1,$2,now(),NULL)", [BANK_REVISION_MIGRATION, checksum]);
     await pg.exec("COMMIT");
     const installed = await bankRevisionCatalog(client);
-    expect(validateBankRevisionCatalog(installed, checksum)).toBe("applied");
+    // 20261019160000 은 그때의 분류기 판을 singleton 에 박았다 — 그 사실은 그대로다.
+    expect(migration).toContain(`'${BANK_REVISION_BAKED_VERSION}'`);
+    expect(installed.rows[0].formatVersion).toBe(BANK_REVISION_BAKED_VERSION);
+    expect(validateBankRevisionCatalog(installed, checksum, BANK_REVISION_BAKED_VERSION)).toBe("applied");
+    await verifyBankRevisionCounter(client);
+    // 지금 판은 검토된 판 옮기기 마이그레이션이 맞춘다(잠금 · 재집계 = 옛 수).
+    expect(FORMAT_TRANSITION_FROM).toBe(BANK_REVISION_BAKED_VERSION);
+    expect(FORMAT_TRANSITION_TO).toBe(ACTUAL_FORMAT_VERSION);
+    const transition = readTransitionMigration();
+    expect(await transitionStatus(client, transition.checksum, checksum)).toBe("pending");
+    assertTransitionSafe(await scanTransition(client));
+    const counted = (await revision()).invalid;
+    await pg.exec("BEGIN");
+    for (const statement of transition.statements) await pg.exec(statement);
+    await pg.query("INSERT INTO _prisma_migrations VALUES ($1,$2,now(),NULL)", [FORMAT_TRANSITION_MIGRATION, transition.checksum]);
+    await pg.exec("COMMIT");
+    expect(await transitionStatus(client, transition.checksum, checksum)).toBe("applied");
+    expect(validateBankRevisionCatalog(await bankRevisionCatalog(client), checksum)).toBe("applied");
+    expect((await revision()).invalid).toBe(counted);
     await verifyBankRevisionCounter(client);
     for (let i = 0; i < sql.length; i++) expect(Buffer.from(JSON.stringify((await pg.query(sql[i].text, sql[i].values)).rows)).equals(before[i])).toBe(true);
     expect((await pg.query("SELECT indexname FROM pg_indexes WHERE tablename='bank_read_revision'")).rows).toEqual([{ indexname: "bank_read_revision_pkey" }]);
     expect(migration).not.toMatch(/CREATE (?:UNIQUE )?INDEX/);
   });
+
+  it("moves stamped facts to the new classifier version only when they agree; drift rolls everything back", async () => {
+    const local = await openTextbookDb({ until: "20261019120000_problem_actual_format" });
+    const localClient = {
+      $queryRaw: async (query: Prisma.Sql | TemplateStringsArray, ...values: unknown[]) => {
+        const sql = Array.isArray(query) ? Prisma.sql(query as TemplateStringsArray, ...values) : query as Prisma.Sql;
+        return (await local.query(sql.text, sql.values)).rows;
+      },
+    } as unknown as SqlClient;
+    try {
+      await local.exec(readFileSync("supabase/migrations/20261018063016_question_group_identity.sql", "utf8"));
+      const w = await seedWorld(local);
+      const ids = [(await insertProblem(local, w.unitId)).id, (await insertProblem(local, w.unitId)).id, (await insertProblem(local, w.unitId)).id];
+      await local.exec("CREATE TABLE _prisma_migrations (migration_name text,checksum text,finished_at timestamptz,rolled_back_at timestamptz)");
+      // 두 행은 옛 판으로 «올바른» 사실, 한 행은 미계산(NULL) — 옛 수 = 미계산 + 다른 판
+      for (const row of (await readPage(localClient, null, 500, true)).filter((r) => ids.slice(0, 2).includes(r.id))) {
+        const fact = classifyFact(row, FORMAT_TRANSITION_FROM);
+        await local.query("UPDATE problem SET actual_format=$2,actual_format_version=$3,actual_format_digest=$4 WHERE id=$1", [row.id, fact.actualFormat, fact.actualFormatVersion, fact.actualFormatDigest]);
+      }
+      await local.exec("BEGIN");
+      for (const statement of splitMigration(migration)) await local.exec(statement);
+      await local.query("INSERT INTO _prisma_migrations VALUES ($1,$2,now(),NULL)", [BANK_REVISION_MIGRATION, checksum]);
+      await local.exec("COMMIT");
+      const counter = async () => (await local.query<{ v: string; invalid: string }>("SELECT format_version AS v,invalid_format_count::text AS invalid FROM bank_read_revision")).rows[0];
+      const versions = async () => (await local.query<{ v: string | null }>("SELECT actual_format_version AS v FROM problem WHERE id = ANY($1::uuid[]) ORDER BY id", [ids])).rows.map((r) => r.v);
+      const previous = await counter();
+      const transition = readTransitionMigration();
+      const scan = await scanTransition(localClient);
+      expect(scan.atFrom).toBe(2);
+      expect(scan.agree).toBe(2);
+      // 입력 지문이 저장값과 다르면(판정기가 다른 사실을 낼 수 있으면) 옮기지 않는다
+      await local.query("UPDATE problem SET actual_format_digest=$2 WHERE id=$1", [ids[0], "f".repeat(64)]);
+      const tampered = await scanTransition(localClient);
+      expect(tampered.digestChanged).toBe(1);
+      expect(() => assertTransitionSafe(tampered)).toThrow("FORMAT_TRANSITION_FACT_CHANGED");
+      const fixed = classifyFact((await readPage(localClient, null, 500, true)).find((r) => r.id === ids[0])!, FORMAT_TRANSITION_FROM);
+      await local.query("UPDATE problem SET actual_format_digest=$2 WHERE id=$1", [ids[0], fixed.actualFormatDigest]);
+      // 카운터가 실제와 어긋나 있으면 DO 블록이 RAISE — 거래 전체가 되돌아간다
+      await local.exec("UPDATE bank_read_revision SET invalid_format_count=invalid_format_count+1");
+      const before = await versions();
+      await local.exec("BEGIN");
+      await expect((async () => { for (const statement of transition.statements) await local.exec(statement); })()).rejects.toThrow("BANK_FORMAT_TRANSITION_COUNTER_DRIFT");
+      await local.exec("ROLLBACK");
+      expect((await counter()).v).toBe(FORMAT_TRANSITION_FROM);
+      expect(await versions()).toEqual(before);
+      await local.exec("UPDATE bank_read_revision SET invalid_format_count=invalid_format_count-1");
+      // 정상: 옛 판 두 행이 새 판으로 · 재집계 수 = 옛 수 · singleton 판이 새 판
+      const ready = await counter();
+      expect(ready.invalid).toBe(previous.invalid);
+      await local.exec("BEGIN");
+      for (const statement of transition.statements) await local.exec(statement);
+      await local.query("INSERT INTO _prisma_migrations VALUES ($1,$2,now(),NULL)", [FORMAT_TRANSITION_MIGRATION, transition.checksum]);
+      await local.exec("COMMIT");
+      const after = await counter();
+      expect(after.v).toBe(FORMAT_TRANSITION_TO);
+      expect(after.invalid).toBe(previous.invalid);
+      expect((await versions()).filter((v) => v === FORMAT_TRANSITION_TO)).toHaveLength(2);
+      expect((await versions()).filter((v) => v === null)).toHaveLength(1);
+      expect(await transitionStatus(localClient, transition.checksum, checksum)).toBe("applied");
+      await verifyBankRevisionCounter(localClient);
+      // 두 번 돌리면 판 확인에서 멈춘다(이미 옮김)
+      await local.exec("BEGIN");
+      await expect((async () => { for (const statement of transition.statements) await local.exec(statement); })()).rejects.toThrow("BANK_FORMAT_TRANSITION_FROM_MISMATCH");
+      await local.exec("ROLLBACK");
+    } finally { await local.close(); }
+  }, 120_000);
 
   it("increments once per bulk statement and accounts for NULL/current/other-version format facts", async () => {
     const before = await revision();

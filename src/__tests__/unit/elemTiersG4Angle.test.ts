@@ -254,7 +254,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
 
       const apply = gen("1-2-1", seed, "응용");
       const chain = apply.content.match(
-        /가 각은 나 각보다 (크|작)고, 나 각은 다 각보다 (큽니다|작습니다)\. 세 각 중 가장 (큰|작은) 각은/,
+        /각 가는 각 나보다 (크|작)고, 각 나는 각 다보다 (큽니다|작습니다)\. 세 각 중 가장 (큰|작은) 각은/,
       );
       if (chain) {
         applyKinds.add("사슬");
@@ -268,7 +268,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
       } else {
         applyKinds.add("고르기");
         const am = apply.content.match(
-          /가 각의 크기는 \$(\d+)\^\\circ\$입니다\. 나 각은 가 각보다 더 (큽니다|작습니다)\. \$(\d+)\^\\circ\$와 \$(\d+)\^\\circ\$ 중/,
+          /각 가의 크기는 \$(\d+)\^\\circ\$입니다\. 각 나는 각 가보다 더 (큽니다|작습니다)\. \$(\d+)\^\\circ\$와 \$(\d+)\^\\circ\$ 중/,
         );
         expect(am, apply.content).toBeTruthy();
         const x = Number(am![1]);
@@ -311,7 +311,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(answerDeg(calc.answer)).toBe(Number(m[1]));
       } else {
         expect(
-          /직각은 .*몇 개 모인 각인가/.test(calc.content),
+          /직각은 .*몇 개 모인 각입니까/.test(calc.content),
           calc.content,
         ).toBe(true);
         expect(answerNum(calc.answer)).toBe(90);

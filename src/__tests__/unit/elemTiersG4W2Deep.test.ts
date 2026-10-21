@@ -330,7 +330,7 @@ describe("초4 2-1 분수 — 심화중의 마디", () => {
       const sum = sumFromMixed(p.content, den);
       const cut = grab(
         p.content,
-        /작은 분수가 \$\\frac\{(\d+)\}\{\d+\}\$ 보다/,
+        /작은 분수가 \$\\frac\{(\d+)\}\{\d+\}\$보다/,
       );
       const over = /보다 클 때/.test(p.content);
       const askSmall = /때 작은 분수를/.test(p.content);
@@ -355,9 +355,9 @@ describe("초4 2-1 분수 — 심화중의 마디", () => {
       const den = grab(p.content, /\\frac\{\d+\}\{(\d+)\}/);
       const base = grab(
         p.content,
-        /어떤 진분수와 \$\\frac\{(\d+)\}\{\d+\}\$ 의 차가/,
+        /어떤 진분수와 \$\\frac\{(\d+)\}\{\d+\}\$의 차가/,
       );
-      const gap = grab(p.content, /의 차가 \$\\frac\{(\d+)\}\{\d+\}\$ 입니다/);
+      const gap = grab(p.content, /의 차가 \$\\frac\{(\d+)\}\{\d+\}\$입니다/);
       const minus = grab(
         p.content,
         /어떤 진분수에서 \$\\frac\{(\d+)\}\{\d+\}\$[을를] 뺀/,
@@ -396,8 +396,8 @@ describe("초4 2-1 분수 — 심화중의 마디", () => {
 
       const p4 = gen("2-1-4", seed, "심화중");
       const den4 = grab(p4.content, /\\frac\{\d+\}\{(\d+)\}/);
-      const top = grab(p4.content, /^\$(\d+)\\frac\{\d+\}\{\d+\}\$ 에서/);
-      const topNum = grab(p4.content, /^\$\d+\\frac\{(\d+)\}\{\d+\}\$ 에서/);
+      const top = grab(p4.content, /^\$(\d+)\\frac\{\d+\}\{\d+\}\$에서/);
+      const topNum = grab(p4.content, /^\$\d+\\frac\{(\d+)\}\{\d+\}\$에서/);
       const sub = grab(p4.content, /자연수 부분이 \$(\d+)\$인 대분수/);
       const diffWhole = grab(
         p4.content,
@@ -456,11 +456,11 @@ describe("초4 물결2 — 심화상 셋", () => {
       const sum = sumFromMixed(p.content, den);
       const lo = grab(
         p.content,
-        /뺀 값이 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 크고/,
+        /뺀 값이 \$\\frac\{(\d+)\}\{\d+\}\$보다 크고/,
       );
       const hi = grab(
         p.content,
-        /보다 크고 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 작을 때/,
+        /보다 크고 \$\\frac\{(\d+)\}\{\d+\}\$보다 작을 때/,
       );
       const pairs = pairsOf(den, sum);
       expect(pairs.length, `2-1-2상 seed=${seed} 후보`).toBeGreaterThanOrEqual(

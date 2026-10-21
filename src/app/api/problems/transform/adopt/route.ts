@@ -37,6 +37,7 @@ import {
 import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
+import { checkFigureSlots } from "@/lib/problem/figureSlots";
 import { serializeProblem } from "@/lib/serializers";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
@@ -113,6 +114,24 @@ async function handlePost(request: NextRequest) {
     return jsonError(
       "VALIDATION_ERROR",
       `원본 재현 검사를 통과하지 못한 변형 ${failed.length}건은 저장할 수 없습니다.`,
+      400,
+    );
+  }
+
+  /**
+   * 그림 자리 `[그림:n]`(D-164 ③④) — 변형본은 원본의 스캔 그림(`figureUrls`)을 물려받지 않는다. 원본의 자리 표기가 후보에
+   * 남으면 그 번호의 그림이 없어 지면에 날 글자로 찍힌다. 저장할 그림 배열(없음)로 같은 검사(`checkFigureSlots`)를 하고,
+   * 틀린 후보는 저장하지 않는다 — 표기나 캡션을 조용히 지우지 않는다(2026-10-21 Codex 검토).
+   */
+  const slotted = parsed.data.items.filter(
+    (item) =>
+      checkFigureSlots(item.content, 0, []).length > 0 ||
+      /\[그림:\d+\]/.test(item.solution ?? ""),
+  );
+  if (slotted.length > 0) {
+    return jsonError(
+      "VALIDATION_ERROR",
+      `그림 자리 표기([그림:n])가 남은 변형 ${slotted.length}건은 저장할 수 없습니다.`,
       400,
     );
   }

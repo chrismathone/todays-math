@@ -5,6 +5,8 @@
  *   npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --families <목록.json>  # 드라이런 — 무엇을 덮게 되나
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --families <목록.json> --label <이름> --apply
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --revert <원장.json.gz>
+ *   … --replay <목록.json>   # 계획 폴더 밖에서 승인된 행을 그 승인 계획 · 고정 씨앗으로 되만들어 같이 견준다(`refreshReplay.ts`)
+ *     `--all-plans` 는 `scripts/import/replays/*.json` 을 기본으로 같이 읽는다(`--no-replays` 로 끈다)
  *
  * ## 왜 있나 — 「엔진을 고친 것과 적재본을 고친 것은 다른 일이다」
  *
@@ -52,25 +54,34 @@ import type { JudgeRegistry } from "../../src/lib/middle/judge/registry";
 import { parseNativeExternalId } from "../../src/contracts/nativeDescriptive.contract";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { deadBackslashHits } from "./probe-middle-raw-latex";
+import { readReplayManifest, replayRequestedIds, replayRows } from "./refreshReplay";
 import {
   appendLedger,
   brokenChoiceReason,
+  choicesRisk,
   classifyDiff,
   decideApply,
   identityRisk,
   norm,
+  figureSourceAfter,
+  revertStep,
   sameSnapshot,
+  writeSnapshotsCas,
   type BrokenReason,
   type DiffClass,
   type Ledger,
   type LedgerRow,
   type Scope,
   type Snapshot,
+  figureLabelBag,
+  wantsFigureRedraw,
 } from "./refreshEngineContentCore";
 
 const prisma = new PrismaClient();
 const REPO = process.cwd();
 const PLANS = path.join(REPO, "scripts", "import", "plans");
+/** 계획 폴더 밖에서 승인된 행의 되만들기 목록(`refreshReplay.ts`) — `--all-plans` 가 같이 읽는다(`--no-replays` 로 끈다). */
+const REPLAYS = path.join(REPO, "scripts", "import", "replays");
 const REPORTS = path.join(
   REPO,
   "scripts",
@@ -275,6 +286,35 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   console.log(
     `되만든 행 ${made.size} · 던진 대상 ${failures.length} · 계획끼리 어긋난 열쇠 ${conflicts.length}`,
   );
+  // 계획 폴더 밖에서 승인된 행(D-164 3회차) — 승인된 계획 · 고정한 씨앗으로 되만들어 같은 문지기에 세운다.
+  // `--all-plans` 면 `scripts/import/replays/` 의 목록도 기본으로 읽는다 — 계획 밖 씨앗은 여기 없으면 갱신 도구에 영영 안 보인다.
+  const replayFile = arg("--replay");
+  const replayFiles = [
+    ...(has("--all-plans") && !has("--no-replays") && existsSync(REPLAYS)
+      ? readdirSync(REPLAYS).filter((f) => f.endsWith(".json")).sort().map((f) => path.join(REPLAYS, f))
+      : []),
+    ...(replayFile ? [replayFile] : []),
+  ];
+  const replayIds = new Set<string>();
+  let replayMissing: ReturnType<typeof replayRows>["missing"] = [];
+  if (replayFiles.length) {
+    const manifest = { version: 1 as const, label: replayFiles.map((f) => path.basename(f)).join(" + "), entries: replayFiles.flatMap((f) => readReplayManifest(f).entries) };
+    console.log(`되만들기 목록 ${replayFiles.map((f) => path.basename(f)).join(" · ")}`);
+    const replay = replayRows(manifest);
+    replayMissing = replay.missing;
+    // 겹침은 목록의 **요청 열쇠 전부**로 본다 — 못 되만든 열쇠가 계획 쪽으로 조용히 넘어가지 않게.
+    for (const id of replayRequestedIds(manifest))
+      if (made.has(id)) throw new Error(`되만들기 목록의 열쇠를 계획도 낸다 — 어느 쪽이 적재본인지 모른다: ${id}`);
+    for (const [id, r] of replay.made) {
+      made.set(id, r);
+      replayIds.add(id);
+    }
+    // 🔴 승인된 행을 하나라도 못 되만들면 적용하지 않는다 — 그 행이 «못 맞댐»으로 떨어져 잠금 쪽으로 가면 결정(④ 잠그지 않는다)과 어긋난다.
+    if (doApply && replayMissing.length)
+      throw new Error(`되만들기 목록 가운데 ${replayMissing.length}행을 못 되만들었다 — 확정 목록과 다르다. 적용하지 않는다`);
+    console.log(`계획 밖 승인 행 되만듦 ${replayIds.size} · 못 되만듦 ${replayMissing.length}`);
+    for (const m of replayMissing.slice(0, 10)) console.log(`   🔴 ${m.externalId} — ${m.reason}`);
+  }
   for (const f of failures.slice(0, 20)) console.log(`   🔴 ${f}`);
   if (failures.length > 20) console.log(`   … ${failures.length - 20}건 더`);
   if (conflicts.length)
@@ -339,6 +379,15 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     console.log(`사람이 «같은 문제»라고 짚은 행 ${confirmedSame.size}`);
   const refusedBy = new Map<string, number>();
   const refused: { externalId: string; risk: string; familyKey: string }[] = [];
+
+  // 적재본 가운데 그림이 붙은 행 — 엔진이 그림을 뺀 행을 «same» 으로 흘리지 않으려고(그림 본문은 안 읽는다).
+  const withFigure = new Set(
+    (
+      await prisma.$queryRawUnsafe<{ id: string }[]>(
+        `select id::text id from problem where external_id like 'engine-%' and figure_svg is not null`,
+      )
+    ).map((r) => r.id),
+  );
 
   // ── 갈래 세기 ─────────────────────────────────────────────────────────────
   let figureOnly = 0;
@@ -407,14 +456,16 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     }
     if (!inFamily && cls === "solution")
       bump(solutionOutside, row.familyKey ?? "?");
-    const risk = cls === "same" ? null : identityRisk(row, m);
+    // 되만든 행은 보기 다섯까지 견준다 — 이 까닭은 «같은 문제» 목록으로도 지나가지 않는다.
+    const choiceRisk = replayIds.has(ext) ? choicesRisk(row, m) : null;
+    const risk = choiceRisk ?? (cls === "same" ? null : identityRisk(row, m));
     const decision = decideApply(
       row.familyKey,
-      cls,
+      cls === "same" && choiceRisk ? "stem" : cls,
       broken,
       scope,
       risk,
-      confirmedSame.has(ext),
+      choiceRisk ? false : confirmedSame.has(ext),
     );
     if (decision === "apply") todo.push({ db: row, made: m, cls, broken });
     else if (decision === "refuse") {
@@ -426,9 +477,11 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       });
     } else if (
       cls === "same" &&
-      !!row.familyKey &&
-      figureFamilies.has(row.familyKey) &&
-      m.figureSpec
+      wantsFigureRedraw({
+        inFigureFamily: !!row.familyKey && figureFamilies.has(row.familyKey),
+        madeHasFigure: !!m.figureSpec,
+        dbHasFigure: withFigure.has(row.id),
+      })
     ) {
       figureOnly += 1;
       todo.push({ db: row, made: m, cls, broken });
@@ -513,6 +566,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
@@ -523,6 +577,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         solution: p.solution,
         figureSvg: p.figureSvg,
         directUseAllowed: p.directUseAllowed,
+        figureSource: p.figureSource,
       });
   }
 
@@ -558,6 +613,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       solution: t.made.solution,
       figureSvg,
       directUseAllowed: b.directUseAllowed,
+      figureSource: figureSourceAfter(b, figureSvg),
     };
     const dead = [
       ...deadBackslashHits(after.content),
@@ -572,8 +628,10 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     }
     if (sameSnapshot(b, after)) return null;
     // 그림만 다시 그린 행도 문지기를 지난다 — 라벨이 달라지면 그림이 주는 정보가 바뀐 것이다.
-    const figureRisk = identityRisk(b, after);
-    if (figureRisk !== null && !confirmedSame.has(t.db.externalId!)) {
+    // 되만든 행은 **다시 읽은 앞 값**으로 보기 다섯을 한 번 더 본다 — 처음 읽은 뒤 오답 보기만 바뀌어도 막는다(«같은 문제» 목록으로 못 지나간다).
+    const replayChoice = replayIds.has(t.db.externalId!) ? choicesRisk(b, after) : null;
+    const figureRisk = replayChoice ?? identityRisk(b, after);
+    if (figureRisk !== null && (replayChoice !== null || !confirmedSame.has(t.db.externalId!))) {
       bump(refusedBy, figureRisk);
       refused.push({
         externalId: t.db.externalId!,
@@ -615,6 +673,30 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   for (const s of skipped.slice(0, 20)) console.log(`   ⚠️ ${s}`);
   if (skipped.length > 20) console.log(`   … ${skipped.length - 20}건 더`);
 
+  // 바뀌는 행 전부의 전후(글 · 그림 유무 · 그림 라벨) — 드라이런 묶음을 사람이 행마다 읽게(그림 본문은 안 쓴다).
+  const dumpFile = arg("--dump-changes");
+  if (dumpFile) {
+    const fig = (svg: string | null) => (svg ? figureLabelBag(svg) : null);
+    const refusedSet = new Map(refused.map((r) => [r.externalId, r.risk]));
+    const famById = new Map(db.map((r) => [r.id, r.familyKey ?? "?"]));
+    const famOfId = (id: string) => famById.get(id) ?? "?";
+    writeFileSync(
+      dumpFile,
+      JSON.stringify(
+        changes.map((c) => ({
+          externalId: c.externalId,
+          problemCode: c.problemCode,
+          familyKey: famOfId(c.problemId),
+          confirmedSame: confirmedSame.has(c.externalId),
+          wouldRefuse: refusedSet.get(c.externalId) ?? null,
+          before: { ...c.before, figureSvg: undefined, figureLabels: fig(c.before.figureSvg) },
+          after: { ...c.after, figureSvg: undefined, figureLabels: fig(c.after.figureSvg) },
+        })),
+      ),
+    );
+    console.log(`전후 ${changes.length}행 → ${dumpFile}`);
+  }
+
   // ── 보고(눈으로 볼 표본) ──────────────────────────────────────────────────
   mkdirSync(REPORTS, { recursive: true });
   const perFamily = new Map<string, LedgerRow[]>();
@@ -653,6 +735,9 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         })),
         fresh: top(fresh, 500),
         buildFailures: failures,
+        replay: replayFiles.length
+          ? { files: replayFiles.map((f) => path.basename(f)), made: replayIds.size, missing: replayMissing }
+          : null,
         changes: changes.length,
         skipped,
         identityRefused: refused,
@@ -714,25 +799,20 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     `원장 ${path.relative(REPO, ledgerFile)} (누적 ${prev.rows.length + changes.length}행)`,
   );
 
+  // 쓰는 순간 «앞» 값인 행만 쓴다 — 한 행이라도 어긋나면 그 100행 거래를 되돌리고 멈춘다(앞 거래들은 원장으로 되돌린다).
+  let written = 0;
   for (let i = 0; i < changes.length; i += 100) {
     const part = changes.slice(i, i + 100);
-    await prisma.$transaction(
-      part.map((c) =>
-        prisma.problem.update({
-          where: { id: c.problemId },
-          data: {
-            content: c.after.content,
-            answer: c.after.answer,
-            solution: c.after.solution,
-            figureSvg: c.after.figureSvg,
-            figureSource: c.after.figureSvg ? "engine" : null,
-            directUseAllowed: c.after.directUseAllowed,
-          },
-        }),
-      ),
+    written += await prisma.$transaction(
+      (tx) =>
+        writeSnapshotsCas(
+          tx,
+          part.map((c) => ({ problemId: c.problemId, from: c.before, to: c.after })),
+        ),
+      { timeout: 120_000, maxWait: 20_000 },
     );
   }
-  console.log(`덮음 ${changes.length}행`);
+  console.log(`덮음 ${written}행`);
 
   // ── 🔴 믿지 않고 다시 읽는다 ──────────────────────────────────────────────
   let wrong = 0;
@@ -746,6 +826,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
@@ -767,14 +848,11 @@ async function revert(ledgerFile: string): Promise<void> {
     );
   const led = readLedger(ledgerFile);
   console.log(`원장 ${led.rows.length}행 · 회차 ${led.runs.length}`);
-  // 같은 행이 여러 회차에 걸치면 **처음의 before** 로 되돌리고, **마지막 after** 와 견준다.
-  const first = new Map<string, LedgerRow>();
-  const last = new Map<string, LedgerRow>();
-  for (const r of led.rows) {
-    if (!first.has(r.problemId)) first.set(r.problemId, r);
-    last.set(r.problemId, r);
-  }
-  const ids = [...first.keys()];
+  // 같은 행이 여러 회차에 걸치면 **처음의 before** 로 되돌린다. 지금 값을 기록의 «뒤» 가운데 어느 것과 같은지로 읽는다 —
+  // 원장은 쓰기 **전에** 적으니, 거래가 실패한 회차의 «뒤»는 DB 에 없다(`revertStep`).
+  const entries = new Map<string, LedgerRow[]>();
+  for (const r of led.rows) entries.set(r.problemId, [...(entries.get(r.problemId) ?? []), r]);
+  const ids = [...entries.keys()];
   let restored = 0;
   let skipped = 0;
   for (let i = 0; i < ids.length; i += 200) {
@@ -786,28 +864,21 @@ async function revert(ledgerFile: string): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
     for (const p of now) {
       // 🔴 지금 값이 내가 쓴 값일 때만 되돌린다 — 그 사이 남이 고쳤으면 둔다.
-      if (!sameSnapshot(p, last.get(p.id)!.after)) {
+      const step = revertStep(entries.get(p.id)!, p);
+      if (!step) {
         skipped += 1;
         continue;
       }
-      const b = first.get(p.id)!.before;
-      await prisma.problem.update({
-        where: { id: p.id },
-        data: {
-          content: b.content,
-          answer: b.answer,
-          solution: b.solution,
-          figureSvg: b.figureSvg,
-          figureSource: b.figureSvg ? "engine" : null,
-          directUseAllowed: b.directUseAllowed,
-        },
-      });
-      restored += 1;
+      // 읽은 뒤 쓰기 전에 남이 고쳤을 수 있다 — 쓰는 순간에도 «지금 값»일 때만 되돌린다.
+      restored += await prisma.$transaction((tx) =>
+        writeSnapshotsCas(tx, [{ problemId: p.id, from: step.from, to: step.to }]),
+      );
     }
   }
   console.log(`되돌림 ${restored} · 남이 고쳐서 건너뜀 ${skipped}`);

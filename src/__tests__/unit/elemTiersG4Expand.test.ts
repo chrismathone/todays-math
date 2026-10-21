@@ -148,7 +148,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(unitOf("1-5-1"), seed, "기본");
       const m = p.content.match(
-        /막대그래프입니다\. ([가-힣]+)[과와] ([가-힣]+)[을를] 좋아하는 학생은 모두 몇 명인가/,
+        /막대그래프입니다\. ([가-힣]+)[과와] ([가-힣]+)[을를] 좋아하는 학생은 모두 몇 명입니까/,
       );
       expect(m, `2단 발문 꼴이 아니다: ${p.content}`).toBeTruthy();
       const spec = p.figureSpec as BarSpec;
@@ -174,7 +174,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
       } else {
         kinds.add("지목한둘");
         const m = p.content.match(
-          /([가-힣]+)의 막대는 ([가-힣]+)의 막대보다 눈금 몇 칸 더 긴가/,
+          /([가-힣]+)의 막대는 ([가-힣]+)의 막대보다 눈금 몇 칸 더 깁니까/,
         );
         expect(m, `3단 발문 꼴이 아니다: ${p.content}`).toBeTruthy();
         const big = barValue(spec, m![1]!);
@@ -233,7 +233,7 @@ describe("[초4 4단] 1-5 막대그래프 — 파일럿 밖 두 소단원", () =
     for (const seed of SEEDS) {
       const p = generateElementaryProblem(unitOf("1-5-2"), seed, "연산");
       const m = p.content.match(
-        /세로 눈금 한 칸을 \$(\d+)\$명으로 하면 ([가-힣]+)의 막대는 몇 칸으로 그려야 하는가/,
+        /세로 눈금 한 칸을 \$(\d+)\$명으로 하면 ([가-힣]+)의 막대는 몇 칸으로 그려야 합니까/,
       );
       expect(m, `1단 발문 꼴이 아니다: ${p.content}`).toBeTruthy();
       const s = Number(m![1]);

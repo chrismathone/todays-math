@@ -56,15 +56,15 @@ function gen(code: string, seed: number, tier?: ElemTier) {
 
 /* ─────────────────────── 도구 (제품을 안 쓴다) ─────────────────────── */
 
-/** `$12\,\mathrm{cm}$` 에서 $12$ 를 나온 차례대로. */
+/** `$12\,\mathrm{cm}$` 에서 $12$를 나온 차례대로. */
 const cmsIn = (t: string): number[] =>
   [...t.matchAll(/\$(\d+)\\,\\mathrm\{cm\}\$/g)].map((m) => Number(m[1]));
 
-/** `$46^\circ$` 에서 $46$ 을 나온 차례대로. */
+/** `$46^\circ$` 에서 $46$을 나온 차례대로. */
 const degsIn = (t: string): number[] =>
   [...t.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) => Number(m[1]));
 
-/** `$3$가지` 에서 $3$ 을. */
+/** `$3$가지` 에서 $3$을. */
 const countIn = (t: string): number | null => {
   const m = t.match(/\$(\d+)\$가지/);
   return m ? Number(m[1]) : null;
@@ -154,7 +154,7 @@ describe("[초4 2-4] 등록", () => {
         for (const s of SWEEP) {
           const c = gen(code, s, tier).content;
           expect(c, `${code} «${tier}»`).not.toContain("아니요");
-          expect(c, `${code} «${tier}»`).not.toContain("할 수 있는가? 맞으면");
+          expect(c, `${code} «${tier}»`).not.toContain("할 수 있습니까? 맞으면");
           looked += 1;
         }
       }
@@ -412,12 +412,12 @@ describe("[초4 2-4-5] 평행사변형", () => {
       expect(four.length, `씨앗 ${s}: ${p.answer}`).toBe(4);
       expect(four[0], `씨앗 ${s}`).toBe(given);
       expect(four[2], `씨앗 ${s}: 마주 보는 각이 다르다`).toBe(given);
-      expect(four[1], `씨앗 ${s}: 이웃한 각의 합이 $180^\circ$ 가 아니다`).toBe(
+      expect(four[1], `씨앗 ${s}: 이웃한 각의 합이 $180^\circ$가 아니다`).toBe(
         180 - given,
       );
       expect(four[3], `씨앗 ${s}`).toBe(180 - given);
       // 직각이면 직사각형이라 「평행사변형」이라 부르는 것이 흔들린다.
-      expect(given, `씨앗 ${s}: $90^\circ$ 는 직사각형이다`).not.toBe(90);
+      expect(given, `씨앗 ${s}: $90^\circ$는 직사각형이다`).not.toBe(90);
       looked += 1;
     }
     counted(looked, "2단 전량");
@@ -495,7 +495,7 @@ describe("[초4 2-4-5] 평행사변형", () => {
  * 대신 그림이 있든 없든 참이어야 하는 것(배치 낱말·값·사다리)만 잠근다.
  */
 describe("[초4 2-4-3] 평행선 사이의 거리", () => {
-  /** `$3$개` 에서 $3$ 을. */
+  /** `$3$개` 에서 $3$을. */
   const perpCountIn = (t: string): number | null => {
     const m = t.match(/\$(\d+)\$개/);
     return m ? Number(m[1]) : null;
@@ -512,7 +512,7 @@ describe("[초4 2-4-3] 평행선 사이의 거리", () => {
       expect(ans, `씨앗 ${seed} 답이 길이 하나여야`).toHaveLength(1);
       // 성질을 한 번 적용하면 **답이 준 값 그대로**다 — 산술이 없다(D-72 ⑶).
       expect(ans[0], `씨앗 ${seed}`).toBe(asked[0]);
-      dirs.add(/거리는 몇 cm인가/.test(p.content) ? "수선→거리" : "거리→수선");
+      dirs.add(/거리는 몇 cm입니까/.test(p.content) ? "수선→거리" : "거리→수선");
       counted += 1;
     }
     expect(counted, "분모가 0이면 위의 100% 는 아무것도 아니다").toBe(
@@ -1015,7 +1015,7 @@ describe("[초4 2-4-1] 수직과 수선", () => {
     const answers = new Set<string>();
     for (const seed of SWEEP) {
       const p = gen("2-4-1", seed, "연산");
-      if (/직각은 몇 개인가/.test(p.content)) {
+      if (/직각은 몇 개입니까/.test(p.content)) {
         expect(p.answer, `씨앗 ${seed}`).toBe("$4$개");
         kinds.직각수 += 1;
       } else if (/만나서 이루는 각이 직각입니다/.test(p.content)) {
@@ -1092,7 +1092,7 @@ describe("[초4 2-4-1] 수직과 수선", () => {
       expect(had, `씨앗 ${seed} 되짚을 직각 수를 못 읽음`).toBeTruthy();
       expect(
         had! % 4,
-        `씨앗 ${seed} 직각 ${had}개가 $4$ 로 안 나누어떨어진다`,
+        `씨앗 ${seed} 직각 ${had}개가 $4$로 안 나누어떨어진다`,
       ).toBe(0);
       // 🔴 ㉡ — 묻는 단위가 «직각»이면 $\div4$ 없이도 답이 나온다.
       expect(p.content, `씨앗 ${seed} 4단이 직각 수를 묻고 있다`).not.toMatch(

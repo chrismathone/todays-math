@@ -38,6 +38,12 @@ const PAGE_INPUT_FILES = [
   "src/components/print/tokens.ts",
   "src/components/math/ProblemContent.tsx",
   "src/components/math/MarkdownRenderer.tsx",
+  "src/components/math/remarkFormulaLines.ts",
+  "src/components/math/rehypeMathNowrap.ts",
+  // D-164(2026-10-21): 식 뒤 조사 잇기의 목록 · 그림 자리 `[그림:n]` 의 파서 — 둘 다 줄바꿈 · 그림 배치를 바꾼다
+  "src/lib/math/mathParticles.ts",
+  "src/lib/problem/figureSlots.ts",
+  "src/lib/math/formulaLine.ts",
   "src/app/globals.css",
   "src/lib/math/displayWidth.ts",
   "src/lib/problem/parseProblemContent.ts",

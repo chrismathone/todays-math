@@ -33,7 +33,8 @@ function foldedChoices() {
   let folded = 0;
   for (const katex of document.querySelectorAll(".katex-html")) {
     const rects = [
-      ...katex.querySelectorAll(":scope > .katex-base, :scope > .base"),
+      // 조사가 붙은 긴 식은 마지막 조각이 nowrap 상자 안에 있다(`rehypeMathNowrap` 의 `pinLastPiece`).
+      ...katex.querySelectorAll(":scope > .katex-base, :scope > span > .katex-base, :scope > .base"),
     ].map((b) => b.getBoundingClientRect());
     if (rects.some((r, i) => i > 0 && r.left < rects[i - 1].right - 1))
       folded += 1;

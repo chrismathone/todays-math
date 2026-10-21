@@ -26,6 +26,13 @@ function katexInts(text: string): number[] {
   );
 }
 
+/** 발문의 수 — «세로셈으로 계산하시오»는 두 수가 세로셈 그림에 있다(D-164 ⑥). */
+function stemInts(p: { content: string; figureSpec: Record<string, unknown> | null }): number[] {
+  if (p.figureSpec?.kind === "columnOp")
+    return [Number(p.figureSpec.top), Number(p.figureSpec.bottom)];
+  return katexInts(p.content);
+}
+
 function answerInt(answer: string): number {
   const m = /^\$(\d+)\$$/.exec(answer);
   expect(m, `수 답이 아님: ${answer}`).toBeTruthy();
@@ -42,11 +49,11 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("01·02 두 수의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "01");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(nums.length).toBeGreaterThanOrEqual(2);
       expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]!);
       const w = generateElementaryForm(unit, seed, "02");
-      const wn = katexInts(w.content);
+      const wn = stemInts(w);
       expect(answerInt(w.answer)).toBe(wn[0]! + wn[1]!);
     }
   });
@@ -54,7 +61,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("03 세 수의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(nums).toHaveLength(3);
       expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]! + nums[2]!);
     }
@@ -63,7 +70,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("04 역산 — 상자 셋이거나 잘못 더한 식", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "04");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       if (p.content.includes("상자")) {
         expect(nums).toHaveLength(3);
         expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]! - nums[2]!);
@@ -80,9 +87,10 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("05 합의 백의 자리", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.floor((a! + b!) / 100));
-      expect(p.figureSpec).toBeTruthy();
+      // 발문의 덧셈식을 세로셈으로 한 번 더 그리지 않는다(2026-10-20)
+      expect(p.figureSpec).toBeNull();
     }
   });
 
@@ -103,7 +111,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("07 일의 자리 숫자끼리의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe((a! % 10) + (b! % 10));
     }
   });
@@ -111,7 +119,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("08 합이 어떤 수보다 얼마 큰가", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! + b! - c!);
     }
   });
@@ -119,7 +127,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
   it("09 합보다 100 큰 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(nums[2]).toBe(100);
       expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]! + 100);
     }
@@ -129,7 +137,7 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
     const answers = new Set<string>();
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(p.answer).toBe((a! + b!) % 2 === 0 ? "짝수" : "홀수");
       answers.add(p.answer);
     }
@@ -171,10 +179,10 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("01·02 두 수의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "01");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]!);
       const w = generateElementaryForm(unit, seed, "02");
-      const wn = katexInts(w.content);
+      const wn = stemInts(w);
       expect(answerInt(w.answer)).toBe(wn[0]! + wn[1]!);
     }
   });
@@ -182,7 +190,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("03 더 많은 쪽을 구한 뒤 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [base, more] = katexInts(p.content);
+      const [base, more] = stemInts(p);
       expect(answerInt(p.answer)).toBe(base! + (base! + more!));
     }
   });
@@ -190,7 +198,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("04 잘못 더한 식에서 바른 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "04");
-      const [right, wrong, wrongSum] = katexInts(p.content);
+      const [right, wrong, wrongSum] = stemInts(p);
       expect(answerInt(p.answer)).toBe(wrongSum! - wrong! + right!);
     }
   });
@@ -198,7 +206,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("05 합의 자리 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(String(a! + b!).length);
     }
   });
@@ -206,7 +214,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("06 어떤 수 + a = s", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const [a, s] = katexInts(p.content);
+      const [a, s] = stemInts(p);
       expect(answerInt(p.answer)).toBe(s! - a!);
     }
   });
@@ -214,7 +222,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("07 받아올림 횟수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(carriesOf(a!, b!));
     }
   });
@@ -222,7 +230,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("08 합과 1000의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [a, b, k] = katexInts(p.content);
+      const [a, b, k] = stemInts(p);
       expect(k).toBe(1000);
       expect(answerInt(p.answer)).toBe(Math.abs(1000 - (a! + b!)));
     }
@@ -231,7 +239,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("09 합보다 10 작은 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(nums[2]).toBe(10);
       expect(answerInt(p.answer)).toBe(nums[0]! + nums[1]! - 10);
     }
@@ -240,7 +248,7 @@ describe("초3 1-1-2 받아올림 두·세 번 — 자리 수와 횟수를 묻�
   it("10 두 합 가운데 더 큰 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b, c, d] = katexInts(p.content);
+      const [a, b, c, d] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.max(a! + b!, c! + d!));
     }
   });
@@ -256,10 +264,10 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("01·02 두 수의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "01");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]!);
       const w = generateElementaryForm(unit, seed, "02");
-      const wn = katexInts(w.content);
+      const wn = stemInts(w);
       expect(answerInt(w.answer)).toBe(wn[0]! - wn[1]!);
     }
   });
@@ -267,7 +275,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("03 두 번 덜어낸 나머지", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! - b! - c!);
     }
   });
@@ -275,7 +283,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("04 역산 — 처음 수이거나 바른 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "04");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       if (p.content.includes("잘못")) {
         expect(answerInt(p.answer)).toBe(nums[2]! + nums[1]! - nums[0]!);
       } else {
@@ -288,7 +296,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("05 차의 백의 자리", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.floor((a! - b!) / 100));
     }
   });
@@ -305,7 +313,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("07 일의 자리끼리 뺀 값", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe((a! - b!) % 10);
     }
   });
@@ -313,7 +321,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("08 차보다 10 큰 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(nums[2]).toBe(10);
       expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]! + 10);
     }
@@ -322,7 +330,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("09 차가 어떤 수보다 얼마 큰가", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! - b! - c!);
     }
   });
@@ -330,7 +338,7 @@ describe("초3 1-1-3 세 자리 뺄셈 — 차의 자리와 빈칸 피감수", (
   it("10 차의 각 자리 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       const d = a! - b!;
       const sum = [...String(d)].reduce((s, ch) => s + Number(ch), 0);
       expect(answerInt(p.answer)).toBe(sum);
@@ -348,10 +356,10 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("01·02 두 수의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "01");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(answerInt(p.answer)).toBe(nums[0]! - nums[1]!);
       const w = generateElementaryForm(unit, seed, "02");
-      const wn = katexInts(w.content);
+      const wn = stemInts(w);
       expect(answerInt(w.answer)).toBe(wn[0]! - wn[1]!);
     }
   });
@@ -359,7 +367,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("03 두 번 덜어낸 나머지", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! - b! - c!);
     }
   });
@@ -367,7 +375,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("05 차의 십의 자리", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.floor((a! - b!) / 10) % 10);
     }
   });
@@ -384,7 +392,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("07 백의 자리 숫자끼리의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(
         Math.floor(a! / 100) - Math.floor(b! / 100),
       );
@@ -394,7 +402,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("08 차에 100을 더한 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [a, b, k] = katexInts(p.content);
+      const [a, b, k] = stemInts(p);
       expect(k).toBe(100);
       expect(answerInt(p.answer)).toBe(a! - b! + 100);
     }
@@ -403,7 +411,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("09 차와 100의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [a, b, k] = katexInts(p.content);
+      const [a, b, k] = stemInts(p);
       expect(k).toBe(100);
       expect(answerInt(p.answer)).toBe(Math.abs(a! - b! - 100));
     }
@@ -412,7 +420,7 @@ describe("초3 1-1-4 받아내림 두 번 — 십의 자리·빈칸 감수", () 
   it("10 두 차 가운데 더 작은 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b, c, d] = katexInts(p.content);
+      const [a, b, c, d] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.min(a! - b!, c! - d!));
     }
   });
@@ -443,7 +451,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("08 반직선 수는 k(k-1)", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const k = katexInts(p.content)[0]!;
+      const k = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(k * (k - 1));
       expect(p.figureSpec).toBeTruthy();
     }
@@ -452,7 +460,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("09 점 하나를 지운 선분 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const k = katexInts(p.content)[0]!;
+      const k = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(((k - 1) * (k - 2)) / 2);
     }
   });
@@ -460,7 +468,7 @@ describe("초3 1-2-1 선분·반직선·직선 — 정의와 세는 대상이 �
   it("10 반직선 수와 선분 수의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const k = katexInts(p.content)[0]!;
+      const k = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(k * (k - 1) + (k * (k - 1)) / 2);
     }
   });
@@ -572,7 +580,7 @@ describe("초3 1-2-3 직각삼각형 — 세는 대상이 답이다", () => {
   it("10 꼭짓점은 삼각형 수×3", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const count = katexInts(p.content)[0]!;
+      const count = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(3 * count);
     }
   });
@@ -588,7 +596,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   it("03 네 변의 합 = 2(가로+세로)", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [w, h] = katexInts(p.content);
+      const [w, h] = stemInts(p);
       expect(answerInt(p.answer)).toBe(2 * (w! + h!));
     }
   });
@@ -596,7 +604,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   it("04 세로 = 합÷2 − 가로", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "04");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       const total = nums[0]!;
       const w = nums[1]!;
       expect(answerInt(p.answer)).toBe(total / 2 - w);
@@ -612,7 +620,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   it("08 가로 두 변의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [w] = katexInts(p.content);
+      const [w] = stemInts(p);
       expect(answerInt(p.answer)).toBe(2 * w!);
     }
   });
@@ -620,7 +628,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   it("09 세로를 두 번 더한 값", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [, h] = katexInts(p.content);
+      const [, h] = stemInts(p);
       expect(answerInt(p.answer)).toBe(2 * h!);
     }
   });
@@ -628,7 +636,7 @@ describe("초3 1-2-4 직사각형 — 두 변과 직각 수를 묻는다", () =>
   it("10 직각은 직사각형 수×4", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const many = katexInts(p.content)[0]!;
+      const many = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(4 * many);
     }
   });
@@ -644,7 +652,7 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
   it("03 네 변의 합 = 4×한 변", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const side = katexInts(p.content)[0]!;
+      const side = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(4 * side);
     }
   });
@@ -658,7 +666,7 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
   it("08 마주 보는 두 변의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const side = katexInts(p.content)[0]!;
+      const side = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(2 * side);
     }
   });
@@ -666,7 +674,7 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
   it("09 변의 수는 정사각형 수×4", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const many = katexInts(p.content)[0]!;
+      const many = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(4 * many);
     }
   });
@@ -674,7 +682,7 @@ describe("초3 1-2-5 정사각형 — 두 변·변의 수·합에서 빼기", ()
   it("10 네 변의 합에서 한 변을 뺀 값", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const side = katexInts(p.content)[0]!;
+      const side = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(3 * side);
     }
   });
@@ -690,10 +698,10 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("01·02 몫 = 나뉘는 수÷나누는 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "01");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(answerInt(p.answer)).toBe(nums[0]! / nums[1]!);
       const w = generateElementaryForm(unit, seed, "02");
-      const [x, y] = katexInts(w.content);
+      const [x, y] = stemInts(w);
       const q = answerInt(w.answer);
       expect(q * x! === y! || q * y! === x!).toBe(true);
     }
@@ -702,7 +710,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("03 두 수를 합친 뒤 나눈 몫", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [x, y, b] = katexInts(p.content);
+      const [x, y, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe((x! + y!) / b!);
     }
   });
@@ -710,7 +718,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("05 곱셈 검산은 나뉘는 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [, b, q] = katexInts(p.content);
+      const [, b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(b! * q!);
     }
   });
@@ -736,7 +744,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("08 몇 묶음 = 전체÷한 묶음", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [a, q] = katexInts(p.content);
+      const [a, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! / q!);
     }
   });
@@ -744,7 +752,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("09 몫이 나누는 수보다 큰가 작은가", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       const q = a! / b!;
       expect(p.answer).toBe(q > b! ? "큽니다" : "작습니다");
     }
@@ -753,7 +761,7 @@ describe("초3 1-3-1 똑같이 나누기 — 등분·포함·검산이 답이다
   it("10 한 명 몫×인원 = 처음 개수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [b, q] = katexInts(p.content);
+      const [b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(b! * q!);
     }
   });
@@ -769,7 +777,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   it("03 두 몫의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
-      const [b, q] = katexInts(p.content);
+      const [b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(b! + q!);
     }
   });
@@ -785,7 +793,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   it("06 두 몫의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const [b, q] = katexInts(p.content);
+      const [b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.abs(q! - b!));
     }
   });
@@ -802,7 +810,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   it("08 세 수 가운데 곱", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const nums = katexInts(p.content);
+      const nums = stemInts(p);
       expect(answerInt(p.answer)).toBe(Math.max(...nums));
       expect(nums[0]! * nums[1]!).toBe(nums[2]);
     }
@@ -811,7 +819,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   it("09 a÷q 의 몫은 b", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [b, q, a] = katexInts(p.content);
+      const [b, q, a] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! / q!);
       expect(a! / q!).toBe(b);
     }
@@ -820,7 +828,7 @@ describe("초3 1-3-2 곱셈과 나눗셈의 관계", () => {
   it("10 몫×나누는 수 = 나뉘는 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b, q] = katexInts(p.content);
+      const [a, b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(q! * b!);
       expect(q! * b!).toBe(a);
     }
@@ -846,7 +854,7 @@ describe("초3 1-3-3 몫을 곱셈식으로", () => {
   it("06 남은 개수 = 한 봉지×남은 봉지", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       const q = a! / b!;
       expect(answerInt(p.answer)).toBe(b! * (q - c!));
     }
@@ -855,7 +863,7 @@ describe("초3 1-3-3 몫을 곱셈식으로", () => {
   it("08 한 봉지 개수 = 전체÷봉지 수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [a, q] = katexInts(p.content);
+      const [a, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! / q!);
     }
   });
@@ -863,7 +871,7 @@ describe("초3 1-3-3 몫을 곱셈식으로", () => {
   it("09 준 개수 = 한 봉지×준 봉지", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(a! % b!).toBe(0);
       expect(answerInt(p.answer)).toBe(b! * c!);
     }
@@ -872,7 +880,7 @@ describe("초3 1-3-3 몫을 곱셈식으로", () => {
   it("10 전체에 한 봉지를 더하면", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! + b!);
     }
   });
@@ -888,7 +896,7 @@ describe("초3 1-3-4 몫을 곱셈구구로", () => {
   it("05 이용하는 구구는 나누는 수 단", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const [, b] = katexInts(p.content);
+      const [, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(b);
     }
   });
@@ -896,7 +904,7 @@ describe("초3 1-3-4 몫을 곱셈구구로", () => {
   it("08 하루 쪽수×날수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const [b, q] = katexInts(p.content);
+      const [b, q] = stemInts(p);
       expect(answerInt(p.answer)).toBe(b! * q!);
     }
   });
@@ -904,7 +912,7 @@ describe("초3 1-3-4 몫을 곱셈구구로", () => {
   it("09 날수에서 며칠을 빼면", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const [a, b, c] = katexInts(p.content);
+      const [a, b, c] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! / b! - c!);
     }
   });
@@ -944,7 +952,7 @@ describe("초3 1-4-1 곱셈 빈칸·일의 자리", () => {
   it("06 곱의 일의 자리", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe((a! * b!) % 10);
     }
   });
@@ -952,7 +960,7 @@ describe("초3 1-4-1 곱셈 빈칸·일의 자리", () => {
   it("10 한 묶음 더", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       expect(answerInt(p.answer)).toBe(a! * b! + a!);
     }
   });
@@ -972,7 +980,7 @@ describe("초3 2-3-2 원의 성질", () => {
   it("07 지름−반지름 = 반지름", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const dia = katexInts(p.content)[0]!;
+      const dia = stemInts(p)[0]!;
       expect(answerInt(p.answer)).toBe(dia / 2);
     }
   });
@@ -984,7 +992,7 @@ describe("초3 양자택일 — 변형 셋이 양쪽을 낸다", () => {
     const answers = new Set<string>();
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, formId);
-      const [a, b] = katexInts(p.content);
+      const [a, b] = stemInts(p);
       const even = op === "+" ? (a! + b!) % 2 === 0 : (a! * b!) % 2 === 0;
       expect(p.answer).toBe(even ? "짝수" : "홀수");
       answers.add(p.answer);

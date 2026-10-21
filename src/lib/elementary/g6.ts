@@ -46,7 +46,9 @@ import { lazyTable } from "./lazyTable";
  */
 function josa(word: string, withFinal: string, withoutFinal: string): string {
   const code = word.charCodeAt(word.length - 1) - 0xac00;
-  const hasFinal = code >= 0 && code <= 11171 && code % 28 !== 0;
+  const final = code >= 0 && code <= 11171 ? code % 28 : 0;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다(«꿀로») — `format.ts` `josa` 와 같은 규칙.
+  const hasFinal = final !== 0 && !(final === 8 && withFinal === "으로");
   return hasFinal ? withFinal : withoutFinal;
 }
 
@@ -153,7 +155,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "꼭짓점") {
       return make(
         unit,
-        `${pyrName}의 꼭짓점은 모두 몇 개인가?`,
+        `${pyrName}의 꼭짓점은 모두 몇 개입니까?`,
         num(sides + 1),
         `밑면의 꼭짓점 ${num(sides)}개에 각뿔의 꼭짓점 ${num(1)}개를 더합니다. ` +
           `${expr(`${sides}+1=${sides + 1}`)}`,
@@ -163,7 +165,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "모서리") {
       return make(
         unit,
-        `${pyrName}의 모서리는 모두 몇 개인가?`,
+        `${pyrName}의 모서리는 모두 몇 개입니까?`,
         num(2 * sides),
         `밑면의 모서리 ${num(sides)}개와 옆면의 모서리 ${num(sides)}개를 더합니다. ` +
           `${expr(`${sides}+${sides}=${2 * sides}`)}`,
@@ -172,7 +174,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${pyrName}의 면은 모두 몇 개인가?`,
+      `${pyrName}의 면은 모두 몇 개입니까?`,
       num(sides + 1),
       `밑면 ${num(1)}개와 옆면 ${num(sides)}개를 더합니다. ${expr(`1+${sides}=${sides + 1}`)}`,
       pyrFig,
@@ -183,7 +185,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (rng() < 0.5) {
       return make(
         unit,
-        `각뿔의 옆면은 어떤 도형인가?`,
+        `각뿔의 옆면은 어떤 도형입니까?`,
         "삼각형",
         `각뿔의 옆면은 밑면의 한 변과 각뿔의 꼭짓점을 이은 삼각형입니다.`,
         pyrFig,
@@ -191,7 +193,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `밑면이 ${base}인 각뿔의 옆면은 모두 몇 개인가?`,
+      `밑면이 ${base}인 각뿔의 옆면은 모두 몇 개입니까?`,
       num(sides),
       `옆면의 수는 밑면의 변의 수와 같습니다. ${base}의 변은 ${num(sides)}개이므로 옆면도 ${num(sides)}개입니다.`,
       pyrFig,
@@ -202,7 +204,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (rng() < 0.5) {
       return make(
         unit,
-        `밑면이 ${base}인 각기둥의 전개도입니다. 이 전개도를 접으면 어떤 입체도형이 되는가?`,
+        `밑면이 ${base}인 각기둥의 전개도입니다. 이 전개도를 접으면 어떤 입체도형이 됩니까?`,
         prismName,
         `두 밑면이 ${base}이고 옆면이 직사각형이므로 ${prismName}이 됩니다.`,
         fig("prism", { sides, h: 3, net: true }),
@@ -210,7 +212,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `밑면이 ${base}인 각기둥의 전개도에서 옆면인 직사각형은 모두 몇 개인가?`,
+      `밑면이 ${base}인 각기둥의 전개도에서 옆면인 직사각형은 모두 몇 개입니까?`,
       num(sides),
       `옆면의 수는 밑면의 변의 수와 같습니다. ${base}의 변이 ${num(sides)}개이므로 직사각형도 ${num(sides)}개입니다.`,
       fig("prism", { sides, h: 3, net: true }),
@@ -231,7 +233,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "꼭짓점") {
       return make(
         unit,
-        `${prismName}의 꼭짓점은 모두 몇 개인가?`,
+        `${prismName}의 꼭짓점은 모두 몇 개입니까?`,
         num(2 * sides),
         `두 밑면의 꼭짓점을 더합니다. ${expr(`${sides}\\times2=${2 * sides}`)}`,
         prismFig,
@@ -240,7 +242,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "모서리") {
       return make(
         unit,
-        `${prismName}의 모서리는 모두 몇 개인가?`,
+        `${prismName}의 모서리는 모두 몇 개입니까?`,
         num(3 * sides),
         `두 밑면의 모서리 ${num(2 * sides)}개와 옆면의 모서리 ${num(sides)}개를 더합니다. ` +
           `${expr(`${2 * sides}+${sides}=${3 * sides}`)}`,
@@ -249,7 +251,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${prismName}의 면은 모두 몇 개인가?`,
+      `${prismName}의 면은 모두 몇 개입니까?`,
       num(sides + 2),
       `밑면 ${num(2)}개와 옆면 ${num(sides)}개를 더합니다. ${expr(`2+${sides}=${sides + 2}`)}`,
       prismFig,
@@ -260,7 +262,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
   if (rng() < 0.4) {
     return make(
       unit,
-      `각기둥에서 서로 평행하고 합동인 두 면을 무엇이라고 하는가?`,
+      `각기둥에서 서로 평행하고 합동인 두 면을 무엇이라고 합니까?`,
       "밑면",
       `각기둥의 두 밑면은 서로 평행하고 합동입니다. 나머지 면은 옆면입니다.`,
       prismFig,
@@ -268,7 +270,7 @@ function prismPyr(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `밑면이 ${base}인 각기둥의 옆면은 모두 몇 개인가?`,
+    `밑면이 ${base}인 각기둥의 옆면은 모두 몇 개입니까?`,
     num(sides),
     `옆면의 수는 밑면의 변의 수와 같습니다. ${base}의 변이 ${num(sides)}개이므로 옆면도 ${num(sides)}개입니다.`,
     prismFig,
@@ -405,7 +407,7 @@ function ratio(unit: UnitSeed, rng: Rng): ElemProblem {
       const cut = (before * rate) / 100;
       return make(
         unit,
-        `${num(before)}원짜리 물건을 ${num(before - cut)}원에 샀습니다. 할인율은 몇 %인가?`,
+        `${num(before)}원짜리 물건을 ${num(before - cut)}원에 샀습니다. 할인율은 몇 %입니까?`,
         num(rate),
         `할인 금액은 ${expr(`${before}-${before - cut}=${cut}`)} 원입니다. ` +
           `${expr(`\\frac{${cut}}{${before}}\\times100=${rate}`)} 이므로 ${expr(`${rate}\\%`)} 입니다.`,
@@ -417,7 +419,7 @@ function ratio(unit: UnitSeed, rng: Rng): ElemProblem {
       const yes = (total * rate) / 100;
       return make(
         unit,
-        `전체 ${num(total)}명 중 ${num(yes)}명이 찬성했습니다. 찬성률은 몇 %인가?`,
+        `전체 ${num(total)}명 중 ${num(yes)}명이 찬성했습니다. 찬성률은 몇 %입니까?`,
         num(rate),
         `${expr(`\\frac{${yes}}{${total}}\\times100=${rate}`)} 이므로 ${expr(`${rate}\\%`)} 입니다.`,
       );
@@ -427,7 +429,7 @@ function ratio(unit: UnitSeed, rng: Rng): ElemProblem {
     const hit = (tries * rate) / 100;
     return make(
       unit,
-      `공을 ${num(tries)}번 던져 ${num(hit)}번 성공했습니다. 성공률은 몇 %인가?`,
+      `공을 ${num(tries)}번 던져 ${num(hit)}번 성공했습니다. 성공률은 몇 %입니까?`,
       num(rate),
       `${expr(`\\frac{${hit}}{${tries}}\\times100=${rate}`)} 이므로 ${expr(`${rate}\\%`)} 입니다.`,
     );
@@ -615,7 +617,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const min = Math.min(...pcts);
     return make(
       unit,
-      `학생들의 ${subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목과 가장 낮은 항목의 비율의 차는 몇 %인가?`,
+      `학생들이 ${subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목과 가장 낮은 항목의 비율의 차는 몇 %입니까?`,
       num(max - min),
       `가장 높은 비율은 ${expr(`${max}\\%`)}, 가장 낮은 비율은 ${expr(`${min}\\%`)} 입니다. ` +
         `${expr(`${max}-${min}=${max - min}`)}`,
@@ -634,7 +636,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `학생 ${num(total)}명의 ${subject}을 조사하여 나타낸 원그래프입니다. ` +
-        `${one.label}${josa(one.label, "과", "와")} ${two.label}${josa(two.label, "을", "를")} 고른 학생은 모두 몇 명인가?`,
+        `${one.label}${josa(one.label, "과", "와")} ${two.label}${josa(two.label, "을", "를")} 고른 학생은 모두 몇 명입니까?`,
       num(people),
       `두 항목의 비율은 ${expr(`${one.pct}+${two.pct}=${sum}`)} 이므로 ${expr(`${sum}\\%`)} 입니다. ` +
         `${expr(`${total}\\times\\frac{${sum}}{100}=${people}`)}`,
@@ -648,8 +650,8 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const sum = one.pct + two.pct;
     return make(
       unit,
-      `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ` +
-        `${one.label}${josa(one.label, "과", "와")} ${two.label}의 비율의 합은 몇 %인가?`,
+      `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ` +
+        `${one.label}${josa(one.label, "과", "와")} ${two.label}의 비율의 합은 몇 %입니까?`,
       num(sum),
       `${one.label}${josa(one.label, "은", "는")} ${expr(`${one.pct}\\%`)}, ` +
         `${two.label}${josa(two.label, "은", "는")} ${expr(`${two.pct}\\%`)} 이므로 ` +
@@ -665,8 +667,8 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const len = (width * one.pct) / 100;
     return make(
       unit,
-      `학생들의 ${subject}을 조사한 결과입니다. 이 자료를 전체 길이가 ${unitNum(width, "cm")} 인 띠그래프로 나타낼 때, ` +
-        `${one.label}${josa(one.label, "이", "가")} 차지하는 부분의 길이는 몇 cm인가?`,
+      `학생들이 ${subject}을 조사한 결과입니다. 이 자료를 전체 길이가 ${unitNum(width, "cm")} 인 띠그래프로 나타낼 때, ` +
+        `${one.label}${josa(one.label, "이", "가")} 차지하는 부분의 길이는 몇 cm입니까?`,
       num(len),
       `${one.label}${josa(one.label, "은", "는")} 전체의 ${expr(`${one.pct}\\%`)} 입니다. ` +
         `${expr(`${width}\\times\\frac{${one.pct}}{100}=${len}`)}`,
@@ -681,7 +683,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `학생 ${num(total)}명의 ${subject}을 조사하여 나타낸 띠그래프입니다. ` +
-      `${one.label}${josa(one.label, "을", "를")} 고른 학생은 몇 명인가?`,
+      `${one.label}${josa(one.label, "을", "를")} 고른 학생은 몇 명입니까?`,
     num(people),
     `${one.label}${josa(one.label, "은", "는")} 전체의 ${expr(`${one.pct}\\%`)} 입니다. ` +
       `${expr(`${total}\\times\\frac{${one.pct}}{100}=${people}`)}`,
@@ -720,7 +722,7 @@ function volume(unit: UnitSeed, rng: Rng): ElemProblem {
     const h = intBetween(rng, 2, 4);
     return make(
       unit,
-      `가로 ${unitNum(w, "m")}, 세로 ${unitNum(d, "m")}, 높이 ${unitNum(h, "m")} 인 직육면체의 부피는 몇 m³인가?`,
+      `가로 ${unitNum(w, "m")}, 세로 ${unitNum(d, "m")}, 높이 ${unitNum(h, "m")} 인 직육면체의 부피는 몇 m³입니까?`,
       num(w * d * h),
       `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)}`,
       fig("cuboid", { w, d, h }),
@@ -732,7 +734,7 @@ function volume(unit: UnitSeed, rng: Rng): ElemProblem {
       const a = intBetween(rng, 2, 8);
       return make(
         unit,
-        `한 모서리의 길이가 ${unitNum(a, "cm")} 인 정육면체의 겉넓이는 몇 cm²인가?`,
+        `한 모서리의 길이가 ${unitNum(a, "cm")} 인 정육면체의 겉넓이는 몇 cm²입니까?`,
         num(6 * a * a),
         `정육면체의 면은 모두 합동인 정사각형 ${num(6)}개입니다. ${expr(`${a}\\times${a}\\times6=${6 * a * a}`)}`,
         fig("cuboid", { w: a, d: a, h: a }),
@@ -744,7 +746,7 @@ function volume(unit: UnitSeed, rng: Rng): ElemProblem {
     const area = 2 * (w * d + d * h + h * w);
     return make(
       unit,
-      `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체의 겉넓이는 몇 cm²인가?`,
+      `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체의 겉넓이는 몇 cm²입니까?`,
       num(area),
       `마주 보는 면끼리 합동이므로 세 종류의 면을 더해 ${num(2)}배 합니다. ` +
         `${expr(`(${w}\\times${d}+${d}\\times${h}+${h}\\times${w})\\times2=${area}`)}`,
@@ -757,7 +759,7 @@ function volume(unit: UnitSeed, rng: Rng): ElemProblem {
   const h = intBetween(rng, 2, 7);
   return make(
     unit,
-    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체의 부피는 몇 cm³인가?`,
+    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체의 부피는 몇 cm³입니까?`,
     num(w * d * h),
     `(직육면체의 부피)=(가로)×(세로)×(높이)입니다. ${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)}`,
     fig("cuboid", { w, d, h }),
@@ -1092,7 +1094,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("어느 방향")) {
     return make(
       unit,
-      `${grid} 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보면 몇 칸이 보이는가?`,
+      `${grid} 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보면 몇 칸이 보입니까?`,
       num(floorCells),
       `위에서 보면 쌓기나무가 놓인 자리가 한 칸씩 보입니다. 놓인 자리가 ${num(floorCells)}곳이므로 ${num(floorCells)}칸입니다.`,
       fig("stackCubes", { voxels, views: ["iso"] }),
@@ -1102,7 +1104,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("(1)")) {
     return make(
       unit,
-      `${grid} 바닥에 쌓은 모양과 위에서 본 모양입니다. 사용한 쌓기나무는 모두 몇 개인가?`,
+      `${grid} 바닥에 쌓은 모양과 위에서 본 모양입니다. 사용한 쌓기나무는 모두 몇 개입니까?`,
       num(total),
       `위에서 본 모양의 각 칸에 적힌 층수를 모두 더합니다. ${expr(`${flat.filter((v) => v > 0).join("+")}=${total}`)}`,
       fig("stackCubes", { voxels, views: ["iso", "top"] }),
@@ -1112,7 +1114,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("(2)")) {
     return make(
       unit,
-      `${grid} 바닥에 쌓은 모양을 위에서 본 것입니다. 각 칸의 수는 그 자리에 쌓은 층수입니다. 사용한 쌓기나무는 모두 몇 개인가?`,
+      `${grid} 바닥에 쌓은 모양을 위에서 본 것입니다. 각 칸의 수는 그 자리에 쌓은 층수입니다. 사용한 쌓기나무는 모두 몇 개입니까?`,
       num(total),
       `칸에 적힌 수가 그 자리에 쌓은 쌓기나무의 개수입니다. ${expr(`${flat.filter((v) => v > 0).join("+")}=${total}`)}`,
       fig("stackCubes", { voxels, views: ["top"] }),
@@ -1124,7 +1126,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
     const count = flat.filter((v) => v >= layer).length;
     return make(
       unit,
-      `${grid} 바닥에 쌓은 모양입니다. ${num(layer)}층에 놓인 쌓기나무는 몇 개인가?`,
+      `${grid} 바닥에 쌓은 모양입니다. ${num(layer)}층에 놓인 쌓기나무는 몇 개입니까?`,
       num(count),
       `${num(layer)}층에 쌓기나무가 있으려면 그 자리가 ${num(layer)}층 이상이어야 합니다. 그런 자리는 ${num(count)}곳입니다.`,
       fig("stackCubes", { voxels, views: ["iso", "top"] }),
@@ -1137,7 +1139,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
     const need = cols * rows * target - total;
     return make(
       unit,
-      `${grid} 바닥에 쌓은 모양입니다. 여기에 쌓기나무를 더 쌓아 ${grid}, 높이 ${num(target)}층인 직육면체 모양을 만들려면 쌓기나무가 몇 개 더 필요한가?`,
+      `${grid} 바닥에 쌓은 모양입니다. 여기에 쌓기나무를 더 쌓아 ${grid}, 높이 ${num(target)}층인 직육면체 모양을 만들려면 쌓기나무가 몇 개 더 필요합니까?`,
       num(need),
       `직육면체 모양에 필요한 쌓기나무는 ${expr(`${cols}\\times${rows}\\times${target}=${cols * rows * target}`)} 개입니다. ` +
         `지금 ${num(total)}개를 썼으므로 ${expr(`${cols * rows * target}-${total}=${need}`)} 개가 더 필요합니다.`,
@@ -1148,7 +1150,7 @@ function stacking(unit: UnitSeed, rng: Rng): ElemProblem {
   const copies = pick(rng, [2, 3]);
   return make(
     unit,
-    `${grid} 바닥에 쌓기나무로 만든 모양입니다. 이와 똑같은 모양 ${num(copies)}개를 붙여 새로운 모양을 만들었습니다. 새로 만든 모양에 사용한 쌓기나무는 모두 몇 개인가?`,
+    `${grid} 바닥에 쌓기나무로 만든 모양입니다. 이와 똑같은 모양 ${num(copies)}개를 붙여 새로운 모양을 만들었습니다. 새로 만든 모양에 사용한 쌓기나무는 모두 몇 개입니까?`,
     num(copies * total),
     `한 모양에 쓴 쌓기나무는 ${num(total)}개입니다. ${expr(`${total}\\times${copies}=${copies * total}`)}`,
     fig("stackCubes", { voxels, views: ["iso", "top"] }),
@@ -1184,7 +1186,7 @@ function proportion(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${goods} ${num(total)}개를 ${pair.one}${josa(pair.one, "과", "와")} ${pair.two}${josa(pair.two, "이", "가")} ` +
-        `${expr(`${a}:${b}`)} 의 비로 나누어 가지려고 합니다. ${pair.one}${josa(pair.one, "이", "가")} 갖는 ${goods}${josa(goods, "은", "는")} 몇 개인가?`,
+        `${expr(`${a}:${b}`)} 의 비로 나누어 가지려고 합니다. ${pair.one}${josa(pair.one, "이", "가")} 갖는 ${goods}${josa(goods, "은", "는")} 몇 개입니까?`,
       num(mine),
       `전체를 ${expr(`${a}+${b}=${a + b}`)} 묶음으로 나누면 한 묶음은 ${expr(`${total}\\div${a + b}=${k}`)} 개입니다. ` +
         `${pair.one}${josa(pair.one, "은", "는")} ${num(a)}묶음이므로 ${expr(`${k}\\times${a}=${mine}`)} 개입니다.`,
@@ -1279,7 +1281,7 @@ function proportion(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 7);
   return make(
     unit,
-    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}배를 하면 어떤 비가 되는가?`,
+    `비 ${expr(`${a}:${b}`)} 의 전항과 후항에 각각 ${num(k)}배를 하면 어떤 비가 됩니까?`,
     expr(`${a * k}:${b * k}`),
     `비의 전항과 후항에 ${num(0)}이 아닌 같은 수를 곱해도 비율은 같습니다. ` +
       `${expr(`${a}\\times${k}:${b}\\times${k}=${a * k}:${b * k}`)}`,
@@ -1296,7 +1298,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "이름") {
       return make(
         unit,
-        "원의 둘레를 무엇이라고 하는가?",
+        "원의 둘레를 무엇이라고 합니까?",
         "원주",
         "원의 둘레를 원주라고 합니다.",
       );
@@ -1304,7 +1306,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "나눗셈") {
       return make(
         unit,
-        "원주율은 원주를 무엇으로 나눈 값인가?",
+        "원주율은 원주를 무엇으로 나눈 값입니까?",
         "지름",
         "(원주율)=(원주)÷(지름)입니다.",
       );
@@ -1312,7 +1314,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "일정") {
       return make(
         unit,
-        "원의 크기가 달라지면 (원주)÷(지름)의 값은 어떻게 되는가?",
+        "원의 크기가 달라지면 (원주)÷(지름)의 값은 어떻게 됩니까?",
         "항상 일정하다",
         "원의 크기와 상관없이 (원주)÷(지름)의 값은 항상 일정하며, 이 값을 원주율이라고 합니다.",
       );
@@ -1333,7 +1335,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
       const d = intBetween(rng, 3, 12);
       return make(
         unit,
-        `지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm인가? (원주율: ${num("3.14")})`,
+        `지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm입니까? (원주율: ${num("3.14")})`,
         num(fromCents(314 * d)),
         `(원주)=(지름)×(원주율)입니다. ${expr(`${d}\\times3.14=${fromCents(314 * d)}`)}`,
       );
@@ -1342,7 +1344,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
       const r = intBetween(rng, 2, 9);
       return make(
         unit,
-        `반지름이 ${unitNum(r, "cm")} 인 원의 원주는 몇 cm인가? (원주율: ${num(3)})`,
+        `반지름이 ${unitNum(r, "cm")} 인 원의 원주는 몇 cm입니까? (원주율: ${num(3)})`,
         num(2 * r * 3),
         `지름은 ${expr(`${r}\\times2=${2 * r}`)} 이므로 원주는 ${expr(`${2 * r}\\times3=${2 * r * 3}`)} 입니다.`,
       );
@@ -1350,7 +1352,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     const d = intBetween(rng, 4, 15);
     return make(
       unit,
-      `원주가 ${unitNum(3 * d, "cm")} 인 원의 지름은 몇 cm인가? (원주율: ${num(3)})`,
+      `원주가 ${unitNum(3 * d, "cm")} 인 원의 지름은 몇 cm입니까? (원주율: ${num(3)})`,
       num(d),
       `(지름)=(원주)÷(원주율)입니다. ${expr(`${3 * d}\\div3=${d}`)}`,
     );
@@ -1374,7 +1376,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 어림하려고 합니다. ` +
-          `원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²인가? ` +
+          `원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²입니까? ` +
           `단, 정사각형의 네 변은 모두 원에 닿습니다.`,
         num(4 * r * r),
         `네 변이 모두 원에 닿으므로 정사각형의 한 변은 원의 지름과 같은 ${unitNum(2 * r, "cm")} 입니다. ` +
@@ -1384,7 +1386,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `반지름이 ${unitNum(r, "cm")} 인 원의 넓이를 어림하려고 합니다. ` +
-        `원 안에 꼭 맞게 그린 마름모의 넓이는 몇 cm²인가? ` +
+        `원 안에 꼭 맞게 그린 마름모의 넓이는 몇 cm²입니까? ` +
         `단, 마름모의 네 꼭짓점은 모두 원 위에 있습니다.`,
       num(2 * r * r),
       `네 꼭짓점이 모두 원 위에 있으므로 마름모의 두 대각선은 모두 원의 지름과 같은 ${unitNum(2 * r, "cm")} 입니다. ` +
@@ -1396,7 +1398,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
     const r = intBetween(rng, 2, 9);
     return make(
       unit,
-      `반지름이 ${unitNum(r, "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num(3)})`,
+      `반지름이 ${unitNum(r, "cm")} 인 원의 넓이는 몇 cm²입니까? (원주율: ${num(3)})`,
       num(r * r * 3),
       `(원의 넓이)=(반지름)×(반지름)×(원주율)입니다. ${expr(`${r}\\times${r}\\times3=${r * r * 3}`)}`,
     );
@@ -1404,7 +1406,7 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 8);
   return make(
     unit,
-    `지름이 ${unitNum(2 * r, "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num("3.14")})`,
+    `지름이 ${unitNum(2 * r, "cm")} 인 원의 넓이는 몇 cm²입니까? (원주율: ${num("3.14")})`,
     num(fromCents(314 * r * r)),
     `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. ${expr(`${r}\\times${r}\\times3.14=${fromCents(314 * r * r)}`)}`,
   );
@@ -1435,7 +1437,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "모양") {
       return make(
         unit,
-        "원기둥의 전개도에서 옆면은 어떤 도형인가?",
+        "원기둥의 전개도에서 옆면은 어떤 도형입니까?",
         "직사각형",
         "원기둥의 옆면을 잘라 펼치면 직사각형이 됩니다. 두 밑면은 원입니다.",
         net,
@@ -1444,7 +1446,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "넓이") {
       return make(
         unit,
-        `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면의 넓이는 몇 cm²인가? (원주율: ${num(3)})`,
+        `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 옆면의 넓이는 몇 cm²입니까? (원주율: ${num(3)})`,
         num(2 * r * 3 * h),
         `옆면의 가로는 밑면의 둘레와 같은 ${expr(`2\\times${r}\\times3=${2 * r * 3}`)} 이고, 세로는 높이와 같습니다. ` +
           `${expr(`${2 * r * 3}\\times${h}=${2 * r * 3 * h}`)}`,
@@ -1453,7 +1455,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 가로는 몇 cm인가? (원주율: ${num(3)})`,
+      `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 전개도에서 옆면인 직사각형의 가로는 몇 cm입니까? (원주율: ${num(3)})`,
       num(2 * r * 3),
       `옆면의 가로는 밑면의 둘레와 같습니다. ${expr(`2\\times${r}\\times3=${2 * r * 3}`)}`,
       net,
@@ -1466,7 +1468,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "밑면") {
       return make(
         unit,
-        "원뿔의 밑면은 어떤 도형인가?",
+        "원뿔의 밑면은 어떤 도형입니까?",
         "원",
         "원뿔의 밑면은 원 하나입니다.",
         cone,
@@ -1475,7 +1477,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "꼭짓점") {
       return make(
         unit,
-        "원뿔에서 뾰족한 부분의 점을 무엇이라고 하는가?",
+        "원뿔에서 뾰족한 부분의 점을 무엇이라고 합니까?",
         "원뿔의 꼭짓점",
         "원뿔에서 뾰족한 부분의 점을 원뿔의 꼭짓점이라고 합니다.",
         cone,
@@ -1484,7 +1486,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "앞") {
       return make(
         unit,
-        "원뿔을 앞에서 본 모양은 어떤 도형인가?",
+        "원뿔을 앞에서 본 모양은 어떤 도형입니까?",
         "삼각형",
         "원뿔을 앞에서 보면 삼각형으로 보이고, 위에서 보면 원으로 보입니다.",
         cone,
@@ -1493,7 +1495,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "모선") {
       return make(
         unit,
-        "원뿔의 꼭짓점과 밑면인 원의 둘레의 한 점을 이은 선분을 무엇이라고 하는가?",
+        "원뿔의 꼭짓점과 밑면인 원의 둘레의 한 점을 이은 선분을 무엇이라고 합니까?",
         "모선",
         "원뿔의 꼭짓점과 밑면인 원의 둘레의 한 점을 이은 선분을 모선이라고 합니다.",
         cone,
@@ -1501,7 +1503,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `밑면의 지름이 ${unitNum(2 * r, "cm")} 인 원뿔의 밑면의 반지름은 몇 cm인가?`,
+      `밑면의 지름이 ${unitNum(2 * r, "cm")} 인 원뿔의 밑면의 반지름은 몇 cm입니까?`,
       num(r),
       `반지름은 지름의 반입니다. ${expr(`${2 * r}\\div2=${r}`)}`,
       cone,
@@ -1514,7 +1516,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "단면") {
       return make(
         unit,
-        "구를 어느 방향에서 잘라도 잘린 면은 어떤 도형인가?",
+        "구를 어느 방향에서 잘라도 잘린 면은 어떤 도형입니까?",
         "원",
         "구는 어느 방향에서 잘라도 잘린 면이 원입니다.",
         ball,
@@ -1523,7 +1525,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "위") {
       return make(
         unit,
-        "구를 위에서 본 모양과 앞에서 본 모양은 어떤 도형인가?",
+        "구를 위에서 본 모양과 앞에서 본 모양은 어떤 도형입니까?",
         "원",
         "구는 어느 방향에서 보아도 원으로 보입니다.",
         ball,
@@ -1532,7 +1534,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     if (which === "이름") {
       return make(
         unit,
-        "구에서 가장 안쪽에 있는 점을 무엇이라고 하는가?",
+        "구에서 가장 안쪽에 있는 점을 무엇이라고 합니까?",
         "구의 중심",
         "구에서 가장 안쪽에 있는 점을 구의 중심, 구의 중심에서 겉면의 한 점을 이은 선분을 구의 반지름이라고 합니다.",
         ball,
@@ -1540,7 +1542,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `반지름이 ${unitNum(r, "cm")} 인 구의 지름은 몇 cm인가?`,
+      `반지름이 ${unitNum(r, "cm")} 인 구의 지름은 몇 cm입니까?`,
       num(2 * r),
       `지름은 반지름의 ${num(2)}배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
       ball,
@@ -1553,7 +1555,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
   if (which === "밑면") {
     return make(
       unit,
-      "원기둥에서 서로 평행하고 합동인 두 면을 무엇이라고 하는가?",
+      "원기둥에서 서로 평행하고 합동인 두 면을 무엇이라고 합니까?",
       "밑면",
       "원기둥의 두 밑면은 서로 평행하고 합동인 원입니다.",
       cyl,
@@ -1562,7 +1564,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
   if (which === "옆") {
     return make(
       unit,
-      "원기둥을 앞에서 본 모양은 어떤 도형인가?",
+      "원기둥을 앞에서 본 모양은 어떤 도형입니까?",
       "직사각형",
       "원기둥을 앞에서 보면 직사각형으로, 위에서 보면 원으로 보입니다.",
       cyl,
@@ -1571,7 +1573,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
   if (which === "높이") {
     return make(
       unit,
-      "원기둥에서 두 밑면에 수직인 선분의 길이를 무엇이라고 하는가?",
+      "원기둥에서 두 밑면에 수직인 선분의 길이를 무엇이라고 합니까?",
       "높이",
       "두 밑면에 수직인 선분의 길이를 원기둥의 높이라고 합니다.",
       cyl,
@@ -1580,7 +1582,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
   if (which === "옆면") {
     return make(
       unit,
-      "원기둥에서 두 밑면과 만나는 굽은 면을 무엇이라고 하는가?",
+      "원기둥에서 두 밑면과 만나는 굽은 면을 무엇이라고 합니까?",
       "옆면",
       "원기둥에서 두 밑면과 만나는 굽은 면을 옆면이라고 합니다.",
       cyl,
@@ -1588,7 +1590,7 @@ function cylCone(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 밑면의 지름은 몇 cm인가?`,
+    `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥의 밑면의 지름은 몇 cm입니까?`,
     num(2 * r),
     `지름은 반지름의 ${num(2)}배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
     cyl,
@@ -3259,7 +3261,7 @@ function biDeep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${bigger ? "큽니다" : "작습니다"}. 이 비를 쓰시오.`,
     expr(`${first}:${b0}`),
     [
-      `합에서 차를 ${bigger ? "빼면" : "더하면"} 기준량의 ${num(2)}배입니다. ` +
+      `합${bigger ? "에서" : "에"} 차를 ${bigger ? "빼면" : "더하면"} 기준량의 ${num(2)}배입니다. ` +
         `${expr(`${sum}${bigger ? "-" : "+"}${d}=${2 * b0}`)} 이고 ${expr(`${2 * b0}\\div2=${b0}`)} 이므로 기준량은 ${num(b0)}입니다.`,
       `비교하는 양은 ${expr(`${b0}${bigger ? "+" : "-"}${d}=${first}`)} 입니다.`,
       `비는 (비교하는 양):(기준량)이므로 ${expr(`${first}:${b0}`)} 입니다.`,
@@ -3660,7 +3662,7 @@ function stripReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
     num(one.pct),
     `띠그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
     fig("stripChart", { segments: items }),
@@ -3673,7 +3675,7 @@ function stripReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 많은 학생이 고른 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 많은 학생이 고른 항목을 쓰시오.`,
     top.label,
     `띠그래프에서 가장 넓은 부분을 찾습니다. 비율이 ${expr(`${top.pct}\\%`)} 로 가장 큰 ${top.label}입니다.`,
     fig("stripChart", { segments: d.items }),
@@ -3708,7 +3710,7 @@ function stripReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const n = (total * one.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
       `조사한 전체 학생은 몇 명입니까?`,
     num(total),
     // 「백분의 (pct)」 — 분수는 **분자를 마지막에 읽으므로** 조사는 pct 가 정한다(R-조사).
@@ -3812,7 +3814,7 @@ function pieReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
     num(one.pct),
     `원그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
     fig("pieChart", { slices: items }),
@@ -3826,7 +3828,7 @@ function pieReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const [big, small] = p.pct > q.pct ? [p, q] : [q, p];
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ` +
       `${big.label}의 비율은 ${small.label}의 비율보다 몇 % 더 높습니까?`,
     num(big.pct - small.pct),
     `${big.label}${josa(big.label, "은", "는")} ${expr(`${big.pct}\\%`)}, ${small.label}${josa(small.label, "은", "는")} ${expr(`${small.pct}\\%`)} 입니다. ` +
@@ -3853,7 +3855,7 @@ function pieReadApply(unit: UnitSeed, rng: Rng): ElemProblem {
   ];
   return make(
     unit,
-    `학생들의 ${theme.subject}을 조사하여 나타낸 원그래프입니다. ` +
+    `학생들이 ${theme.subject}을 조사하여 나타낸 원그래프입니다. ` +
       `${labels[0]}의 비율은 ${labels[1]}의 비율의 몇 배입니까?`,
     num(k),
     `${labels[0]}${josa(labels[0]!, "은", "는")} ${expr(`${xPct}\\%`)}, ${labels[1]}${josa(labels[1]!, "은", "는")} ${expr(`${yPct}\\%`)} 입니다. ` +
@@ -3871,7 +3873,7 @@ function pieReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const nY = (total * y.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${x.label}${josa(x.label, "을", "를")} 고른 학생이 ${num(nX)}명일 때, ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${x.label}${josa(x.label, "을", "를")} 고른 학생이 ${num(nX)}명일 때, ` +
       `${y.label}${josa(y.label, "을", "를")} 고른 학생은 몇 명입니까?`,
     num(nY),
     `${x.label}의 비율이 ${expr(`${x.pct}\\%`)} 이므로 전체는 ${expr(`${nX}\\div\\frac{${x.pct}}{100}=${total}`)} 명입니다. ` +
@@ -3989,7 +3991,7 @@ function cmpChartCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목의 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목의 비율은 몇 %입니까?`,
     num(top.pct),
     `${kindName}에서 가장 넓은 부분은 ${top.label}입니다. 비율은 ${expr(`${top.pct}\\%`)} 입니다.`,
     figure,
@@ -4006,7 +4008,7 @@ function cmpChartWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = d.items.filter((i) => i.pct > base.pct).length;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `${base.label}보다 비율이 높은 항목은 모두 몇 개입니까?`,
     num(count),
     `${base.label}의 비율은 ${expr(`${base.pct}\\%`)} 입니다. 이보다 비율이 높은 항목은 ` +
@@ -4028,7 +4030,7 @@ function cmpChartApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = sorted[0]!.pct + sorted[1]!.pct;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `비율이 가장 높은 항목과 두 번째로 높은 항목의 비율의 합은 전체의 절반보다 몇 % 더 많습니까?`,
     num(sum - 50),
     `두 항목은 ${sorted[0]!.label}${josa(sorted[0]!.label, "과", "와")} ${sorted[1]!.label}이고 비율의 합은 ` +
@@ -4050,7 +4052,7 @@ function cmpChartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const nLow = (total * low.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `비율이 가장 높은 항목을 고른 학생이 ${num(nTop)}명일 때, 비율이 가장 낮은 항목을 고른 학생은 몇 명입니까?`,
     num(nLow),
     `가장 높은 ${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 이므로 전체는 ${expr(`${nTop}\\div\\frac{${top.pct}}{100}=${total}`)} 명입니다. ` +
@@ -6709,7 +6711,7 @@ function circPiCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   if (rng() < 0.5) {
     return make(
       unit,
-      `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_HEX}`,
+      `반지름이 ${unitNum(r, "cm")} 인 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm입니까? ${FIT_HEX}`,
       num(6 * r),
       `여섯 꼭짓점이 모두 원 위에 있으므로 정육각형의 한 변은 반지름과 같은 ${unitNum(r, "cm")} 입니다. ` +
         `${expr(`${r}\\times6=${6 * r}`)}`,
@@ -6717,7 +6719,7 @@ function circPiCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm인가? ${FIT_SQUARE}`,
+    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm입니까? ${FIT_SQUARE}`,
     num(4 * d),
     `네 변이 모두 원에 닿으므로 정사각형의 한 변은 원의 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
       `${expr(`${d}\\times4=${4 * d}`)}`,
@@ -6766,7 +6768,7 @@ function circPiDeep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `어떤 원 안에 꼭 맞게 그린 정육각형의 둘레가 ${unitNum(6 * r, "cm")} 입니다. ` +
-        `같은 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm인가? ${FIT_HEX} ${ALSO_SQUARE}`,
+        `같은 원 밖에 꼭 맞게 그린 정사각형의 둘레는 몇 cm입니까? ${FIT_HEX} ${ALSO_SQUARE}`,
       num(8 * r),
       `정육각형의 한 변은 원의 반지름이므로 반지름은 ${expr(`${6 * r}\\div6=${r}`)} 이고 ` +
         `지름은 ${expr(`${r}\\times2=${2 * r}`)} 입니다. 정사각형의 한 변은 지름과 같으므로 ` +
@@ -6776,7 +6778,7 @@ function circPiDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 원 밖에 꼭 맞게 그린 정사각형의 둘레가 ${unitNum(8 * r, "cm")} 입니다. ` +
-      `같은 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm인가? ${FIT_SQUARE} ${ALSO_HEX}`,
+      `같은 원 안에 꼭 맞게 그린 정육각형의 둘레는 몇 cm입니까? ${FIT_SQUARE} ${ALSO_HEX}`,
     num(6 * r),
     `정사각형의 한 변은 원의 지름이므로 지름은 ${expr(`${8 * r}\\div4=${2 * r}`)} 이고 ` +
       `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. 정육각형의 한 변은 반지름과 같으므로 ` +
@@ -6810,7 +6812,7 @@ function circLenCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 3, 24);
   return make(
     unit,
-    `지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm인가? (원주율: ${num(3)})`,
+    `지름이 ${unitNum(d, "cm")} 인 원의 원주는 몇 cm입니까? (원주율: ${num(3)})`,
     num(3 * d),
     `(원주)=(지름)×(원주율)입니다. ${expr(`${d}\\times3=${3 * d}`)}`,
   );
@@ -6823,7 +6825,7 @@ function circLenWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `지름이 ${unitNum(d, "cm")} 인 원 모양 ${thing}의 둘레에 테두리를 두르려고 합니다. ` +
-      `테두리는 몇 cm가 필요한가? (원주율: ${num(3)})`,
+      `테두리는 몇 cm가 필요합니까? (원주율: ${num(3)})`,
     num(3 * d),
     `필요한 테두리의 길이는 원주와 같습니다. ${expr(`${d}\\times3=${3 * d}`)}`,
   );
@@ -6837,7 +6839,7 @@ function circLenApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `반지름이 ${unitNum(r, "cm")} 인 ${roller}${josa(roller, "을", "를")} ${num(turns)}바퀴 굴렸습니다. ` +
-      `굴러간 거리는 몇 cm인가? (원주율: ${num("3.1")})`,
+      `굴러간 거리는 몇 cm입니까? (원주율: ${num("3.1")})`,
     num(fromTenths(62 * r * turns)),
     `지름은 ${expr(`${r}\\times2=${2 * r}`)} 이고 원주는 ` +
       `${expr(`${2 * r}\\times3.1=${fromTenths(62 * r)}`)} 입니다. ` +
@@ -6858,7 +6860,7 @@ function circLenDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${roller}${josa(roller, "을", "를")} ${num(turns)}바퀴 굴렸더니 ${unitNum(fromCents(total), "cm")} 를 갔습니다. ` +
-      `이 ${roller}의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+      `이 ${roller}의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`,
     num(r),
     `원주는 ${expr(`${fromCents(total)}\\div${turns}=${fromCents(perTurn)}`)} 입니다. ` +
       `지름은 ${expr(`${fromCents(perTurn)}\\div3.14=${2 * r}`)} 이고 ` +
@@ -6875,7 +6877,7 @@ function circAppCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   if (rng() < 0.5) {
     return make(
       unit,
-      `지름이 ${unitNum(d, "cm")} 인 원 안에 꼭 맞게 그린 마름모의 넓이는 몇 cm²인가? ${FIT_RHOMBUS}`,
+      `지름이 ${unitNum(d, "cm")} 인 원 안에 꼭 맞게 그린 마름모의 넓이는 몇 cm²입니까? ${FIT_RHOMBUS}`,
       num(2 * r * r),
       `네 꼭짓점이 모두 원 위에 있으므로 두 대각선은 모두 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
         `${expr(`${d}\\times${d}\\div2=${2 * r * r}`)}`,
@@ -6883,7 +6885,7 @@ function circAppCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²인가? ${FIT_SQUARE}`,
+    `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 그린 정사각형의 넓이는 몇 cm²입니까? ${FIT_SQUARE}`,
     num(4 * r * r),
     `네 변이 모두 원에 닿으므로 한 변은 지름과 같은 ${unitNum(d, "cm")} 입니다. ` +
       `${expr(`${d}\\times${d}=${4 * r * r}`)}`,
@@ -6896,7 +6898,7 @@ function circAppWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `반지름이 ${unitNum(r, "cm")} 인 원 모양 색종이 안에 꼭 맞게 마름모를 그려 오렸습니다. ` +
-      `오려 낸 마름모의 넓이는 몇 cm²인가? ${FIT_RHOMBUS}`,
+      `오려 낸 마름모의 넓이는 몇 cm²입니까? ${FIT_RHOMBUS}`,
     num(2 * r * r),
     `네 꼭짓점이 모두 원 위에 있으므로 두 대각선은 모두 지름과 같은 ${unitNum(2 * r, "cm")} 입니다. ` +
       `${expr(`${2 * r}\\times${2 * r}\\div2=${2 * r * r}`)}`,
@@ -6928,7 +6930,7 @@ function circAppDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 원 안에 꼭 맞게 그린 마름모의 넓이가 ${num(2 * r * r)} cm²입니다. ` +
-      `이 원의 지름은 몇 cm인가? ${FIT_RHOMBUS}`,
+      `이 원의 지름은 몇 cm입니까? ${FIT_RHOMBUS}`,
     num(2 * r),
     `마름모의 두 대각선은 모두 지름과 같으므로 (지름)×(지름)은 ` +
       `${expr(`${2 * r * r}\\times2=${4 * r * r}`)} 입니다. ` +
@@ -6946,7 +6948,7 @@ function circAreaCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   // 두 문장으로 갈라 R5(발문 중복)를 피한다.
   return make(
     unit,
-    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 이 원의 넓이는 몇 cm²인가? (원주율: ${num(3)})`,
+    `반지름이 ${unitNum(r, "cm")} 인 원이 있습니다. 이 원의 넓이는 몇 cm²입니까? (원주율: ${num(3)})`,
     num(3 * r * r),
     `(원의 넓이)=(반지름)×(반지름)×(원주율)입니다. ` +
       `${expr(`${r}\\times${r}\\times3=${3 * r * r}`)}`,
@@ -6961,7 +6963,7 @@ function circAreaWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `지름이 ${unitNum(2 * r, "m")} 인 원 모양 ${place}${josa(place, "이", "가")} 있습니다. ` +
-      `이 ${place}의 넓이는 몇 m²인가? ` +
+      `이 ${place}의 넓이는 몇 m²입니까? ` +
       `(원주율: ${num(3)})`,
     num(3 * r * r),
     `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. ` +
@@ -6978,7 +6980,7 @@ function circAreaApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = 62 * r; // 원주(십분의 일) = 지름 × 3.1
   return make(
     unit,
-    `원주가 ${unitNum(fromTenths(c), "cm")} 인 원의 넓이는 몇 cm²인가? (원주율: ${num("3.1")})`,
+    `원주가 ${unitNum(fromTenths(c), "cm")} 인 원의 넓이는 몇 cm²입니까? (원주율: ${num("3.1")})`,
     num(fromTenths(31 * r * r)),
     `지름은 ${expr(`${fromTenths(c)}\\div3.1=${2 * r}`)} 이고 반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다. ` +
       `넓이는 ${expr(`${r}\\times${r}\\times3.1=${fromTenths(31 * r * r)}`)} 입니다.`,
@@ -6993,7 +6995,7 @@ function circAreaDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 1) === 0) {
     return make(
       unit,
-      `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+      `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`,
       num(r),
       `(반지름)×(반지름)은 ${expr(`${area}\\div3.14=${r * r}`)} 입니다. ` +
         `${expr(`${r}\\times${r}=${r * r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다.`,
@@ -7001,7 +7003,7 @@ function circAreaDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+    `넓이가 ${num(area)} cm²인 원이 있습니다. 이 원의 지름은 몇 cm입니까? (원주율: ${num("3.14")})`,
     num(2 * r),
     `(반지름)×(반지름)은 ${expr(`${area}\\div3.14=${r * r}`)} 이므로 반지름은 ${unitNum(r, "cm")} 입니다. ` +
       `지름은 ${expr(`${r}\\times2=${2 * r}`)} 입니다.`,
@@ -7082,13 +7084,15 @@ function viewCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const empty = b.cols * b.rows - filled;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 ` +
-      `쌓기나무가 놓이지 않은 칸은 몇 칸인가?`,
+    // 겨냥도만 주면 뒤에 가린 칸을 못 정하고(5차), 겨냥도와 위에서 본 모양을 함께 주면 답이 그대로 보인다(4차) —
+    // 위에서 본 모양을 읽는 1단 문항으로 묻는다
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양을 위에서 본 그림입니다. ` +
+      `쌓기나무가 놓이지 않은 칸은 몇 칸입니까?`,
     num(empty),
     `바닥은 모두 ${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다. ` +
       `쌓기나무가 놓인 칸이 ${num(filled)}칸이므로 ` +
       `${expr(`${b.cols * b.rows}-${filled}=${empty}`)} 칸이 비어 있습니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["iso", "top"] }),
+    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["top"] }),
   );
 }
 
@@ -7100,7 +7104,7 @@ function viewWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${place}에 상자를 ${b.grid} 바닥 위에 쌓아 두었습니다. 쌓은 모양이 다음과 같을 때 ` +
-      `위에서 내려다보면 상자가 보이는 칸은 몇 칸인가?`,
+      `위에서 내려다보면 상자가 보이는 칸은 몇 칸입니까?`,
     num(filled),
     `위에서 내려다보면 상자가 놓인 자리마다 한 칸씩 보입니다. ` +
       `놓인 자리가 ${num(filled)}곳이므로 ${num(filled)}칸입니다.`,
@@ -7118,7 +7122,7 @@ function viewApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${b.grid} 바닥에 쌓은 모양을 위에서 본 것입니다. 각 칸의 수는 그 자리에 쌓은 층수입니다. ` +
-      `두 층 이상인 칸의 수와 한 층뿐인 칸의 수의 차는 몇 칸인가?`,
+      `두 층 이상인 칸의 수와 한 층뿐인 칸의 수의 차는 몇 칸입니까?`,
     num(gap),
     `두 층 이상인 칸은 ${num(tall)}칸, 한 층뿐인 칸은 ${num(one)}칸입니다. ` +
       `${expr(`${Math.max(tall, one)}-${Math.min(tall, one)}=${gap}`)} 칸입니다.`,
@@ -7136,7 +7140,7 @@ function viewDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `쌓기나무로 만든 모양을 위에서 보니 쌓기나무가 놓인 칸이 ${num(cells)}칸이고, ` +
-      `그중 ${num(tall)}칸은 두 층 이상입니다. 이 모양에 쓴 쌓기나무는 적어도 몇 개인가?`,
+      `그중 ${num(tall)}칸은 두 층 이상입니다. 이 모양에 쓴 쌓기나무는 적어도 몇 개입니까?`,
     num(cells + tall),
     `놓인 칸은 적어도 한 층씩이므로 ${num(cells)}개가 필요합니다. ` +
       `두 층 이상인 ${num(tall)}칸에는 한 개씩 더 있어야 하므로 ` +
@@ -7153,7 +7157,7 @@ function cubeOneCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const total = flat.reduce((s, v) => s + v, 0);
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 쌓기나무를 모두 몇 개 사용했는가?`,
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 쌓기나무를 모두 몇 개 사용했습니까?`,
     num(total),
     `자리마다 쌓은 층수를 모두 더합니다. ${expr(`${flat.join("+")}=${total}`)}`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
@@ -7169,7 +7173,7 @@ function cubeOneWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${place}에 똑같은 상자를 ${b.grid} 바닥 위에 다음과 같이 쌓았습니다. ` +
-      `쌓아 둔 상자는 모두 몇 개인가?`,
+      `쌓아 둔 상자는 모두 몇 개입니까?`,
     num(total),
     `위에서 본 모양의 각 칸에 적힌 층수를 모두 더합니다. ${expr(`${flat.join("+")}=${total}`)}`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso", "top"] }),
@@ -7210,7 +7214,7 @@ function cubeOneDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(
     unit,
     `쌓기나무 ${num(used + left)}개로 똑같은 모양 ${num(copies)}개를 만들었더니 ${num(left)}개가 남았습니다. ` +
-      `한 모양에 사용한 쌓기나무는 몇 개인가?`,
+      `한 모양에 사용한 쌓기나무는 몇 개입니까?`,
     num(one),
     [
       `쓴 쌓기나무는 ${expr(`${used + left}-${left}=${used}`)} 개입니다.`,
@@ -7229,7 +7233,7 @@ function cubeTwoCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${b.grid} 바닥에 쌓은 모양을 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
-      `쌓기나무는 모두 몇 개인가?`,
+      `쌓기나무는 모두 몇 개입니까?`,
     num(total),
     `칸에 적힌 수가 그 자리에 쌓은 쌓기나무의 개수입니다. ${expr(`${flat.join("+")}=${total}`)}`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
@@ -7282,7 +7286,7 @@ function cubeTwoWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${place}에 상자를 ${b.grid} 바닥 위에 쌓고, 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
-      `가장 높이 쌓은 자리는 몇 층인가?`,
+      `가장 높이 쌓은 자리는 몇 층입니까?`,
     num(maxH),
     `칸에 적힌 수 중 가장 큰 수가 가장 높이 쌓은 층수입니다. ${num(maxH)}층입니다.`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["top"] }),
@@ -7297,7 +7301,7 @@ function cubeTwoApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${b.grid} 바닥에 쌓은 모양을 위에서 보고 각 칸에 쌓은 층수를 적었습니다. ` +
-      `두 층 이상 쌓은 자리에 놓인 쌓기나무는 모두 몇 개인가?`,
+      `두 층 이상 쌓은 자리에 놓인 쌓기나무는 모두 몇 개입니까?`,
     num(sum),
     `두 층 이상인 자리는 ${num(tallCells.length)}곳입니다. ` +
       `그 자리에 놓인 쌓기나무를 모두 더하면 ${expr(`${tallCells.join("+")}=${sum}`)} 개입니다.`,
@@ -7312,7 +7316,7 @@ function cubeTwoDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `위에서 본 모양의 칸이 ${num(cells)}칸이고, 칸에 적힌 수를 모두 더하니 ` +
-      `${num(cells + extra)}이었습니다. 두 층 이상인 칸은 많아야 몇 칸인가?`,
+      `${num(cells + extra)}이었습니다. 두 층 이상인 칸은 많아야 몇 칸입니까?`,
     num(extra),
     `모든 칸이 적어도 한 층이므로 ${num(cells)}개는 반드시 쓰입니다. ` +
       `남는 것은 ${expr(`${cells + extra}-${cells}=${extra}`)} 개이고, ` +
@@ -7328,7 +7332,7 @@ function cubeLayerCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const first = b.h.flat().filter((v) => v >= 1).length;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓은 모양입니다. ${num(1)}층에 놓인 쌓기나무는 몇 개인가?`,
+    `${b.grid} 바닥에 쌓은 모양입니다. ${num(1)}층에 놓인 쌓기나무는 몇 개입니까?`,
     num(first),
     `${num(1)}층에는 쌓기나무가 놓인 자리마다 하나씩 있습니다. ` +
       `놓인 자리가 ${num(first)}곳이므로 ${num(first)}개입니다.`,
@@ -7343,7 +7347,7 @@ function cubeLayerWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const second = b.h.flat().filter((v) => v >= 2).length;
   return make(
     unit,
-    `${place}에 상자를 쌓았습니다. 쌓은 모양이 다음과 같을 때 ${num(2)}층에 놓인 상자는 몇 개인가?`,
+    `${place}에 상자를 쌓았습니다. 쌓은 모양이 다음과 같을 때 ${num(2)}층에 놓인 상자는 몇 개입니까?`,
     num(second),
     `${num(2)}층에 상자가 있으려면 그 자리가 ${num(2)}층 이상이어야 합니다. ` +
       `그런 자리가 ${num(second)}곳이므로 ${num(second)}개입니다.`,
@@ -7360,7 +7364,7 @@ function cubeLayerApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${b.grid} 바닥에 쌓은 모양입니다. ${num(1)}층에 놓인 쌓기나무는 ` +
-      `${num(2)}층에 놓인 쌓기나무보다 몇 개 더 많은가?`,
+      `${num(2)}층에 놓인 쌓기나무보다 몇 개 더 많습니까?`,
     num(first - second),
     `${num(1)}층은 ${num(first)}개, ${num(2)}층은 ${num(second)}개입니다. ` +
       `${expr(`${first}-${second}=${first - second}`)} 개 더 많습니다.`,
@@ -7379,7 +7383,7 @@ function cubeLayerDeep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `쌓기나무로 만든 모양의 ${num(1)}층에는 ${num(first)}개가 놓여 있고, ` +
       `${num(2)}층은 ${num(1)}층보다 ${num(gap)}개 적습니다. ` +
-      `사용한 쌓기나무가 모두 ${num(total)}개일 때 ${num(3)}층에 놓인 쌓기나무는 몇 개인가?`,
+      `사용한 쌓기나무가 모두 ${num(total)}개일 때 ${num(3)}층에 놓인 쌓기나무는 몇 개입니까?`,
     num(third),
     [
       `${num(2)}층은 ${expr(`${first}-${gap}=${second}`)} 개입니다.`,
@@ -7399,7 +7403,7 @@ function cubeBoxCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `쌓기나무를 쌓아 가로 ${num(c)}칸, 세로 ${num(r)}칸, 높이 ${num(t)}층인 ` +
-      `직육면체 모양을 만들려고 합니다. 쌓기나무는 모두 몇 개 필요한가?`,
+      `직육면체 모양을 만들려고 합니다. 쌓기나무는 모두 몇 개 필요합니까?`,
     num(c * r * t),
     `가로·세로·높이의 칸 수를 모두 곱합니다. ${expr(`${c}\\times${r}\\times${t}=${c * r * t}`)}`,
   );
@@ -7417,7 +7421,7 @@ function cubeBoxWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${place}에 상자를 ${b.grid} 바닥 위에 쌓았습니다. 여기에 상자를 더 쌓아 ` +
-      `${b.grid}, 높이 ${num(target)}층인 직육면체 모양을 만들려면 상자가 몇 개 더 필요한가?`,
+      `${b.grid}, 높이 ${num(target)}층인 직육면체 모양을 만들려면 상자가 몇 개 더 필요합니까?`,
     num(box - total),
     `직육면체 모양에는 ${expr(`${b.cols}\\times${b.rows}\\times${target}=${box}`)} 개가 듭니다. ` +
       `지금 ${num(total)}개를 썼으므로 ${expr(`${box}-${total}=${box - total}`)} 개가 더 필요합니다.`,
@@ -7455,7 +7459,7 @@ function cubeBoxDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `쌓기나무를 ${num(added)}개 더 쌓았더니 가로 ${num(c)}칸, 세로 ${num(r)}칸, ` +
-      `높이 ${num(t)}층인 직육면체 모양이 되었습니다. 처음에 쌓여 있던 쌓기나무는 몇 개인가?`,
+      `높이 ${num(t)}층인 직육면체 모양이 되었습니다. 처음에 쌓여 있던 쌓기나무는 몇 개입니까?`,
     num(box - added),
     `직육면체 모양에는 ${expr(`${c}\\times${r}\\times${t}=${box}`)} 개가 듭니다. ` +
       `그중 ${num(added)}개를 나중에 넣었으므로 처음에는 ` +
@@ -7472,7 +7476,7 @@ function cubeMakeCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `쌓기나무 ${num(one)}개로 만든 모양이 있습니다. 똑같은 모양 ${num(copies)}개를 만들려면 ` +
-      `쌓기나무는 모두 몇 개 필요한가?`,
+      `쌓기나무는 모두 몇 개 필요합니까?`,
     num(one * copies),
     `한 모양에 드는 쌓기나무에 모양의 수를 곱합니다. ` +
       `${expr(`${one}\\times${copies}=${one * copies}`)}`,
@@ -7488,7 +7492,7 @@ function cubeMakeWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${place}에서 ${b.grid} 바닥 위에 상자를 쌓아 만든 모양입니다. ` +
-      `이와 똑같은 모양을 ${num(copies)}개 만들려면 상자는 모두 몇 개 필요한가?`,
+      `이와 똑같은 모양을 ${num(copies)}개 만들려면 상자는 모두 몇 개 필요합니까?`,
     num(total * copies),
     `한 모양에 쓴 쌓기나무는 ${num(total)}개입니다. ` +
       `${expr(`${total}\\times${copies}=${total * copies}`)}`,
@@ -7506,7 +7510,7 @@ function cubeMakeApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${b.grid} 바닥에 쌓기나무로 만든 모양입니다. 이와 똑같은 모양을 ${num(copies)}개 만들려고 하는데 ` +
-      `쌓기나무가 ${num(have)}개 있습니다. 쌓기나무는 몇 개 더 필요한가?`,
+      `쌓기나무가 ${num(have)}개 있습니다. 쌓기나무는 몇 개 더 필요합니까?`,
     num(need - have),
     `한 모양에 ${num(total)}개가 드므로 ${num(copies)}개에는 ` +
       `${expr(`${total}\\times${copies}=${need}`)} 개가 필요합니다. ` +
@@ -7523,7 +7527,7 @@ function cubeMakeDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `쌓기나무 ${num(one)}개로 만드는 모양을 여러 개 만들었더니 쌓기나무 ` +
-      `${num(one * copies + rest)}개 중 ${num(rest)}개가 남았습니다. 만든 모양은 몇 개인가?`,
+      `${num(one * copies + rest)}개 중 ${num(rest)}개가 남았습니다. 만든 모양은 몇 개입니까?`,
     num(copies),
     `모양을 만드는 데 쓴 쌓기나무는 ${expr(`${one * copies + rest}-${rest}=${one * copies}`)} 개입니다. ` +
       `한 모양에 ${num(one)}개가 드므로 ${expr(`${one * copies}\\div${one}=${copies}`)} 개를 만들었습니다.`,
@@ -7571,7 +7575,7 @@ function cylKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
     // 처럼 **글자로 찍는다**(실제로 그려 보고 알았다 — 원문 grep 으로는 안 보였다).
     // 발문이 그 값을 말하지 않으면 지면에 **본문에 없는 수**가 하나 떠 있게 된다.
     `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥입니다. ` +
-      `이 원기둥의 밑면의 지름은 몇 cm인가?`,
+      `이 원기둥의 밑면의 지름은 몇 cm입니까?`,
     num(2 * r),
     `지름은 반지름의 두 배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
     fig("cylinder", { r, h }),
@@ -7587,7 +7591,7 @@ function cylKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
-      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²인가?`,
+      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²입니까?`,
     num(d * h),
     `원기둥을 앞에서 보면 가로가 밑면의 지름과 같고 세로가 높이와 같은 직사각형입니다. ` +
       `${expr(`${d}\\times${h}=${d * h}`)}`,
@@ -7603,7 +7607,7 @@ function cylKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥을 ` +
-      `앞에서 본 모양의 둘레는 몇 cm인가?`,
+      `앞에서 본 모양의 둘레는 몇 cm입니까?`,
     num(2 * (d + h)),
     `앞에서 본 모양은 직사각형입니다. 가로는 밑면의 지름이므로 ${expr(`${r}\\times2=${d}`)} 이고 ` +
       `세로는 높이인 ${num(h)} 입니다. 둘레는 ${expr(`(${d}+${h})\\times2=${2 * (d + h)}`)} 입니다.`,
@@ -7619,7 +7623,7 @@ function cylKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 원기둥을 앞에서 본 모양은 둘레가 ${unitNum(2 * half, "cm")} 인 직사각형입니다. ` +
-      `이 원기둥의 높이가 ${unitNum(h, "cm")} 일 때 밑면의 반지름은 몇 cm인가?`,
+      `이 원기둥의 높이가 ${unitNum(h, "cm")} 일 때 밑면의 반지름은 몇 cm입니까?`,
     num(r),
     `직사각형의 가로와 세로의 합은 ${expr(`${2 * half}\\div2=${half}`)} 입니다. ` +
       `세로가 높이 ${num(h)} 이므로 가로는 ${expr(`${half}-${h}=${2 * r}`)} 이고, 이것이 밑면의 지름입니다. ` +
@@ -7656,7 +7660,7 @@ function cylNetCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도입니다. ` +
-      `옆면인 직사각형의 둘레는 몇 cm인가? (원주율: ${num(3)})`,
+      `옆면인 직사각형의 둘레는 몇 cm입니까? (원주율: ${num(3)})`,
     num(2 * (side + h)),
     `옆면의 가로는 밑면의 둘레와 같으므로 ${expr(`${d}\\times3=${side}`)} 이고, 세로는 높이인 ${num(h)} 입니다. ` +
       `직사각형의 둘레는 ${expr(`(${side}+${h})\\times2=${2 * (side + h)}`)} 입니다.`,
@@ -7672,7 +7676,7 @@ function cylNetWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 인 원기둥 모양 ${thing}의 옆면에 색종이를 빈틈없이 두르려고 합니다. ` +
-      `색종이의 가로는 몇 cm여야 하는가? (원주율: ${num(3)})`,
+      `색종이의 가로는 몇 cm여야 합니까? (원주율: ${num(3)})`,
     num(2 * r * 3),
     `옆면을 펼치면 직사각형이고, 그 가로는 밑면의 둘레와 같습니다. ` +
       `${expr(`2\\times${r}\\times3=${2 * r * 3}`)}`,
@@ -7690,7 +7694,7 @@ function cylNetApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원기둥의 전개도에서 ` +
-      `옆면의 둘레는 몇 cm인가? (원주율: ${num("3.1")})`,
+      `옆면의 둘레는 몇 cm입니까? (원주율: ${num("3.1")})`,
     num(fromTenths(perimT)),
     `옆면의 가로는 밑면의 둘레와 같으므로 ${expr(`2\\times${r}\\times3.1=${fromTenths(latT)}`)} 이고, ` +
       `세로는 높이인 ${num(h)} 입니다. ` +
@@ -7715,7 +7719,7 @@ function cylNetDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 원기둥의 전개도에서 옆면의 둘레가 ${num(fromCents(perimC))} cm이고 ` +
-      `이 원기둥의 높이가 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+      `이 원기둥의 높이가 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`,
     num(r),
     `직사각형의 둘레는 (가로)+(세로)의 두 배이므로 가로와 세로의 합은 ` +
       `${expr(`${fromCents(perimC)}\\div2=${fromCents(halfC)}`)} 입니다. ` +
@@ -7735,7 +7739,7 @@ function coneKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 인 원뿔입니다. ` +
-      `이 원뿔을 앞에서 본 모양은 삼각형인데, 그 삼각형의 밑변은 몇 cm인가?`,
+      `이 원뿔을 앞에서 본 모양은 삼각형인데, 그 삼각형의 밑변은 몇 cm입니까?`,
     num(2 * r),
     `원뿔을 앞에서 보면 이등변삼각형이고, 그 밑변은 밑면의 지름과 같습니다. ` +
       `${expr(`${r}\\times2=${2 * r}`)}`,
@@ -7752,7 +7756,7 @@ function coneKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 지름이 ${unitNum(d, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
-      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²인가?`,
+      `이 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양의 넓이는 몇 cm²입니까?`,
     num(r * h),
     `앞에서 본 모양은 밑변이 ${num(d)} 이고 높이가 ${num(h)} 인 삼각형입니다. ` +
       `${expr(`${d}\\times${h}\\div2=${r * h}`)}`,
@@ -7768,7 +7772,7 @@ function coneKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `밑면의 반지름이 ${unitNum(r, "cm")} 이고 높이가 ${unitNum(h, "cm")} 인 원뿔을 ` +
-      `앞에서 본 모양의 넓이는 몇 cm²인가?`,
+      `앞에서 본 모양의 넓이는 몇 cm²입니까?`,
     num(r * h),
     `앞에서 본 모양은 이등변삼각형이고 밑변은 밑면의 지름이므로 ${expr(`${r}\\times2=${d}`)} 입니다. ` +
       `넓이는 ${expr(`${d}\\times${h}\\div2=${r * h}`)} 입니다.`,
@@ -7784,7 +7788,7 @@ function coneKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 원뿔을 앞에서 본 모양은 넓이가 ${num(area)} cm²인 삼각형이고, ` +
-      `이 원뿔의 높이는 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm인가?`,
+      `이 원뿔의 높이는 ${unitNum(h, "cm")} 입니다. 밑면의 반지름은 몇 cm입니까?`,
     num(r),
     `삼각형의 밑변은 ${expr(`${area}\\times2\\div${h}=${2 * r}`)} 이고, 이것이 밑면의 지름입니다. ` +
       `반지름은 ${expr(`${2 * r}\\div2=${r}`)} 입니다.`,
@@ -7800,7 +7804,7 @@ function ballKnowCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = intBetween(rng, 2, 20);
   return make(
     unit,
-    `지름이 ${unitNum(2 * r, "cm")} 인 구입니다. 이 구의 반지름은 몇 cm인가?`,
+    `지름이 ${unitNum(2 * r, "cm")} 인 구입니다. 이 구의 반지름은 몇 cm입니까?`,
     num(r),
     `반지름은 지름의 반입니다. ${expr(`${2 * r}\\div2=${r}`)}`,
     fig("sphere", { r }),
@@ -7814,7 +7818,7 @@ function ballKnowWord(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `반지름이 ${unitNum(r, "cm")} 인 구 모양 ${thing}${josa(thing, "이", "가")} 있습니다. ` +
-      `이 ${thing}의 지름은 몇 cm인가?`,
+      `이 ${thing}의 지름은 몇 cm입니까?`,
     num(2 * r),
     `지름은 반지름의 두 배입니다. ${expr(`${r}\\times2=${2 * r}`)}`,
     fig("sphere", { r }),
@@ -7831,7 +7835,7 @@ function ballKnowApply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `반지름이 ${unitNum(r, "cm")} 인 구를 중심을 지나게 잘랐습니다. ` +
-      `잘린 면의 둘레는 몇 cm인가? (원주율: ${num("3.1")})`,
+      `잘린 면의 둘레는 몇 cm입니까? (원주율: ${num("3.1")})`,
     num(fromTenths(circT)),
     `구를 중심을 지나게 자르면 잘린 면은 구와 반지름이 같은 원입니다. ` +
       `지름은 ${expr(`${r}\\times2=${d}`)} 이므로 둘레는 ${expr(`${d}\\times3.1=${fromTenths(circT)}`)} 입니다.`,
@@ -7846,7 +7850,7 @@ function ballKnowDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 구를 중심을 지나게 잘랐더니 잘린 면의 둘레가 ${unitNum(fromCents(circC), "cm")} 였습니다. ` +
-      `이 구의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`,
+      `이 구의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`,
     num(r),
     `잘린 면은 구와 반지름이 같은 원입니다. 그 원의 지름은 ` +
       `${expr(`${fromCents(circC)}\\div3.14=${2 * r}`)} 이므로 ` +
@@ -8952,7 +8956,7 @@ type AreaRangeCase = { lo: number; up: number; r: number };
 const areaRangeStem = (c: AreaRangeCase): string =>
   `어떤 원의 넓이가 ${num(fromCents(c.lo * 314))} cm²보다 넓고 ` +
   `${num(fromCents(c.up * 314))} cm²보다 좁습니다. ` +
-  `반지름이 자연수 cm일 때, 이 원의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
+  `반지름이 자연수 cm일 때, 이 원의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`;
 
 const AREA_RANGE_MID = lazyTable("g6.AREA_RANGE_MID", () => {
   const table: AreaRangeCase[] = [];
@@ -9356,7 +9360,7 @@ type CylSquareCase = { r: number; area: number };
 
 const cylSquareStem = (c: CylSquareCase, thing: string): string =>
   `원기둥 모양 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양이 정사각형이고 ` +
-  `그 넓이가 ${num(c.area)} cm²입니다. 이 ${thing}의 밑면의 반지름은 몇 cm인가?`;
+  `그 넓이가 ${num(c.area)} cm²입니다. 이 ${thing}의 밑면의 반지름은 몇 cm입니까?`;
 
 const CYL_SQUARE_MID = lazyTable("g6.CYL_SQUARE_MID", () => {
   const table: CylSquareCase[] = [];
@@ -9397,7 +9401,7 @@ type NetSquareCase = { r: number; side: number; perim: number };
 
 const netSquareStem = (c: NetSquareCase): string =>
   `어떤 원기둥의 전개도에서 옆면이 정사각형이고 그 둘레가 ${unitNum(fromCents(c.perim), "cm")} 입니다. ` +
-  `이 원기둥의 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
+  `이 원기둥의 밑면의 반지름은 몇 cm입니까? (원주율: ${num("3.14")})`;
 
 const NET_SQUARE_MID = lazyTable("g6.NET_SQUARE_MID", () => {
   const table: NetSquareCase[] = [];
@@ -9461,7 +9465,7 @@ type ConePairCase = {
 const conePairStem = (c: ConePairCase): string =>
   `어떤 원뿔을 앞에서 본 모양은 넓이가 ${num(c.area)} cm²인 삼각형입니다. ` +
   `이 원뿔의 밑면의 반지름과 높이가 모두 자연수 cm이고 높이가 밑면의 반지름보다 길며, ` +
-  `높이와 반지름의 차가 ${num(c.diff)} cm일 때, 밑면의 반지름은 몇 cm인가?`;
+  `높이와 반지름의 차가 ${num(c.diff)} cm일 때, 밑면의 반지름은 몇 cm입니까?`;
 
 const CONE_PAIR_TOP = lazyTable("g6.CONE_PAIR_TOP", () => {
   const table: ConePairCase[] = [];
@@ -10059,19 +10063,24 @@ type PctWindowCase = {
  */
 const PCT_GROUPS = [
   { who: "안경을 쓴", unit: "학생", lo: 8, hi: 45 },
-  { who: "여학생인", unit: "학생", lo: 35, hi: 65 },
+  // «여학생인 학생» 은 같은 말이 겹친다(2026-10-20 교차 검수 — 세 모델 중 둘) — 지면에는 «여학생».
+  { who: "여학생인", unit: "학생", lo: 35, hi: 65, phrase: "여학생" },
   { who: "버스로 통학하는", unit: "학생", lo: 10, hi: 60 },
   { who: "강아지를 기르는", unit: "학생", lo: 5, hi: 40 },
 ] as const;
+
+/** 지면에 찍는 소재 이름 — «안경을 쓴 학생» · «여학생». */
+const pctPhrase = (g: (typeof PCT_GROUPS)[number]): string =>
+  "phrase" in g ? g.phrase : `${g.who} ${g.unit}`;
 
 /** 그 백분율에 어울리는 소재들. 없으면 그 자리는 안 만든다. */
 const pctGroupsFor = (p: number) =>
   PCT_GROUPS.filter((g) => p >= g.lo && p <= g.hi);
 
 const pctWindowStem = (c: PctWindowCase, g: (typeof PCT_GROUPS)[number]) =>
-  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${g.who} ${g.unit}입니다. ` +
-  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
-  `${num(c.hi)}명보다 적을 때, ${g.who} ${g.unit}은 몇 명입니까?`;
+  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${pctPhrase(g)}입니다. ` +
+  `${pctPhrase(g)} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
+  `${num(c.hi)}명보다 적을 때, ${pctPhrase(g)}은 몇 명입니까?`;
 
 const PCT_WINDOW_MID = lazyTable("g6.PCT_WINDOW_MID", () => {
   const table: PctWindowCase[] = [];
@@ -10121,11 +10130,11 @@ function pctWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, pctWindowStem(c, g), num(c.ans), [
     `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
       `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ` +
-      `${g.who} ${g.unit} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
+      `${pctPhrase(g)} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
     `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
       `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 ${g.unit}은 ${num(c.total)}명입니다.`,
     `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
-      `${g.who} ${g.unit}은 ${num(c.ans)}명입니다.`,
+      `${pctPhrase(g)}은 ${num(c.ans)}명입니다.`,
   ]);
 }
 
@@ -11659,7 +11668,7 @@ function decUnderFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = fromCents(c.a);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}`)}에서 ${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
     "예",
     `나누어지는 수가 더 작으면 몫의 자연수 부분에 ${num(0)}을 씁니다.`,
   );
@@ -11672,9 +11681,9 @@ function decUnderFormOverTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const q = fromCents(c.q);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 크다.`,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}`)} 의 몫은 ${num(1)}보다 크다.`,
     "아니요",
-    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
+    `${expr(`${a}\\div${c.b}=${q}`)} 이므로 몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
   );
 }
 
@@ -12467,7 +12476,7 @@ function stripReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
     num(items.length),
     `띠그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
     stripFig(items),
@@ -12480,7 +12489,7 @@ function stripReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
     low.label,
     `가장 좁은 부분은 비율 ${expr(`${low.pct}\\%`)} 인 ${low.label}입니다.`,
     stripFig(d.items),
@@ -12492,7 +12501,7 @@ function stripReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `띠그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     stripFig(items),
@@ -12505,7 +12514,7 @@ function stripReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = twoLabels(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
     num(a.pct + b.pct),
     `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
     stripFig(d.items),
@@ -12518,7 +12527,7 @@ function stripReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
     num(top.pct),
     `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
     stripFig(d.items),
@@ -12531,7 +12540,7 @@ function stripReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}을 고르지 않은 학생의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고르지 않은 학생의 비율은 몇 %입니까?`,
     num(100 - one.pct),
     `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
     stripFig(items),
@@ -12545,8 +12554,8 @@ function stripDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const p = pick(rng, DRAW_PCTS);
   return make(
     unit,
-    `학생들의 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
-      `띠그래프로 나타낼 때 ${item}이 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `띠그래프로 나타낼 때 ${item}${josa(item, "이", "가")} 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
     num(100 - p),
     `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
   );
@@ -12581,9 +12590,9 @@ function stripDrawFormLenRest(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
-      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}이 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
+      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}${josa(item, "이", "가")} 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
     num(w - len),
-    `${item}은 ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
+    `${item}${josa(item, "은", "는")} ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
   );
 }
 
@@ -12598,7 +12607,7 @@ function stripDrawFormPctDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `띠그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+    `${theme.subject}을 조사하여 띠그래프로 나타내려고 합니다. ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
       `두 비율의 차는 몇 %입니까?`,
     num(Math.abs(pa - pb)),
     `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 이므로 ${expr(`${Math.abs(pa - pb)}\\%`)} 입니다.`,
@@ -12644,7 +12653,7 @@ function pieReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
     num(items.length),
     `원그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
     pieFig(items),
@@ -12657,7 +12666,7 @@ function pieReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
     low.label,
     `가장 좁은 부채꼴은 ${low.label}입니다.`,
     pieFig(d.items),
@@ -12669,7 +12678,7 @@ function pieReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `원그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     pieFig(items),
@@ -12682,7 +12691,7 @@ function pieReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = twoLabels(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
     num(a.pct + b.pct),
     `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
     pieFig(d.items),
@@ -12695,7 +12704,7 @@ function pieReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
     num(top.pct),
     `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
     pieFig(d.items),
@@ -12708,7 +12717,7 @@ function pieReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}이 아닌 나머지 부분의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}${josa(one.label, "이", "가")} 아닌 나머지 부분의 비율은 몇 %입니까?`,
     num(100 - one.pct),
     `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
     pieFig(items),
@@ -12821,7 +12830,7 @@ function cmpChartFormLowPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
     num(low.pct),
     `가장 좁은 부분은 ${low.label}이고 비율은 ${expr(`${low.pct}\\%`)} 입니다.`,
     figure,
@@ -12834,7 +12843,7 @@ function cmpChartFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { kindName, figure } = cmpChartFig(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
     num(d.items.length),
     `나타난 항목은 ${num(d.items.length)}개입니다.`,
     figure,
@@ -12847,7 +12856,7 @@ function cmpChartFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { kindName, figure } = cmpChartFig(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     figure,
@@ -12861,7 +12870,7 @@ function cmpChartFormTopName(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
     top.label,
     `가장 넓은 부분은 ${top.label}입니다.`,
     figure,
@@ -12876,7 +12885,7 @@ function cmpChartFormSpread(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
     num(top.pct - low.pct),
     `${expr(`${top.pct}-${low.pct}=${top.pct - low.pct}`)} 이므로 ${expr(`${top.pct - low.pct}\\%`)} 입니다.`,
     figure,
@@ -12891,7 +12900,7 @@ function cmpChartFormSecond(unit: UnitSeed, rng: Rng): ElemProblem {
   const second = sorted[1]!;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
     num(second.pct),
     `두 번째로 넓은 부분은 ${second.label}이고 비율은 ${expr(`${second.pct}\\%`)} 입니다.`,
     figure,
@@ -13040,7 +13049,7 @@ function volFormCubes(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = cuboid3(rng);
   return make(
     unit,
-    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
+    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리의 길이가 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
     num(w * d * h),
     `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 개입니다.`,
     fig("cuboid", { w, d, h }),
@@ -13063,7 +13072,7 @@ function cubicFormFactTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 9);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(1)} m³는 ${num(1000000)} cm³이다. (참고: ${num(k)} m³를 바꾸어 확인하여도 된다.)`,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(1)} m³는 ${num(1000000)} cm³이다. (참고: ${num(k)} m³를 바꾸어 확인하여도 됩니다.)`,
     "예",
     `${expr("1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3")} 입니다.`,
   );
@@ -13127,7 +13136,7 @@ function cubicFormDiffM(unit: UnitSeed, rng: Rng): ElemProblem {
   const thing = pick(rng, BIG_THINGS);
   return make(
     unit,
-    `부피가 ${num(a)} m³인 ${thing}과 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
+    `부피가 ${num(a)} m³인 ${thing}${josa(thing, "과", "와")} 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
     num(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
   );
@@ -13890,9 +13899,9 @@ function cubeOneFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?`,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높게 쌓은 곳은 몇 층입니까?`,
     num(Math.max(...b.h.flat())),
-    `가장 높은 층은 ${num(Math.max(...b.h.flat()))}입니다.`,
+    `가장 높게 쌓은 곳은 ${num(Math.max(...b.h.flat()))}층입니다.`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
   );
 }
@@ -14326,7 +14335,8 @@ function propEqFormIsTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} 는 비례식이다.`,
+    // 비례식은 마지막 수를 끝으로 읽는다(«$21:6$» → «육은») — 5차 교차 검수
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} ${"2459".includes(String(b * k).at(-1)!) ? "는" : "은"} 비례식이다.`,
     "예",
     `두 비의 비율이 같으므로 비례식입니다.`,
   );
@@ -14616,7 +14626,7 @@ function circAppFormSqSide(unit: UnitSeed, rng: Rng): ElemProblem {
     `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? ${FIT_SQUARE}`,
     num(d),
     `한 변은 지름과 같은 ${unitNum(d, "cm")} 입니다.`,
-    circShow("diameter"),
+    // 원과 지름만 그린 그림은 «정사각형을 그렸습니다» 와 어긋난다(5차 교차 검수) — 그림 없이
   );
 }
 function circAppFormDiag(unit: UnitSeed, rng: Rng): ElemProblem {

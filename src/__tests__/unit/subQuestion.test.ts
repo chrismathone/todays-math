@@ -184,3 +184,23 @@ describe("findSubQuestionMarkers — 손상된 입력", () => {
     expect(numbers(`\n${text}`)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   });
 });
+
+describe("findSubQuestionMarkers — 문장 속에서 가리키는 번호 (2026-10-20 지면 검사)", () => {
+  it("«⑴, ⑵에 이용한» 은 소문항이 아니라 참조다 — 쉼표 · 조사가 번호에 바로 붙는다", () => {
+    // 교과서 J10203-D15-001 — 렌더가 «중 / ⑴, / ⑵에 이용한» 세 줄로 갈랐다.
+    expect(numbers("다음 계산 과정 중 ⑴, ⑵에 이용한 계산 법칙을 나타낸 것으로 옳은 것은?")).toEqual([]);
+    expect(numbers("⑴과 ⑵의 결과를 비교하시오.")).toEqual([]);
+    // 식 번호 «$$…\tag*{⑴}$$» — 수식 안의 번호
+    expect(numbers("다음 중 ⑴, ⑵에 이용한 법칙은?\n$$\n=b+a \\tag*{⑴}\n$$\n$$\n=(b+a)+c \\tag*{⑵}\n$$")).toEqual([]);
+    // 계산 줄 끝의 이름표 «⋯⋯ ⑴»
+    expect(numbers("다음 계산 과정 중 ⑴, ⑵에 이용한 법칙은?\n$a+b$\n$=b+a$  ⋯⋯ ⑴\n$=(b+a)+c$  ⋯⋯ ⑵")).toEqual([]);
+  });
+
+  it("번호 뒤에 띄우고 글이 오는 진짜 소문항은 그대로", () => {
+    expect(numbers("다음을 구하시오.\n⑴ 넓이\n⑵ 둘레")).toEqual([1, 2]);
+    expect(numbers("다음을 구하시오. ⑴ $x$의 값 ⑵ $y$의 값")).toEqual([1, 2]);
+    expect(numbers("[그림] ⑴ ⑵")).toEqual([1, 2]);
+    // 띄어쓰기가 빠진 지시어 «이» — 조사가 아니다(교과서 tb-8d695dfcf967f116-4-6)
+    expect(numbers("물음에 답하시오.\n(1)$x$와 $y$ 사이의 관계\n(2)이 풍력 발전기가 돌아간다고 할 때")).toEqual([1, 2]);
+  });
+});

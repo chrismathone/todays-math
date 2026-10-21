@@ -23,6 +23,7 @@ import { projectEditorialSection } from "./editorialProjection";
 import { frozenConceptGroups } from "../conceptRows";
 import { memoryRowMarkdown } from "../conceptRows";
 import { recallDisplayRows, type RecallDisplayRow } from "./blocks/recall";
+import { renumberSnapshotSlots } from "../snapshotSlots";
 
 export {
   TEXTBOOK_RENDERER_VERSION,
@@ -560,7 +561,13 @@ export function createTextbookRenderModel(
                         kind: "problem",
                         itemId: item.itemId,
                         displayNumber: item.displayNumber,
-                        content: payload.content,
+                        // 그림 자리 `[그림:n]` 은 은행 `figureUrls` 차례다 — 엔진 SVG 가 맨 앞인 이 배열의 차례로 옮긴다(`snapshotSlots.ts`).
+                        content: renumberSnapshotSlots(
+                          payload.content,
+                          payload.figures,
+                          snapshot.rawSource?.figureSvgAssetId,
+                          payload.figures.map((_, index) => index),
+                        ),
                         figures: payload.figures,
                         questionType: payload.questionType,
                         learningStage: item.learningStage,

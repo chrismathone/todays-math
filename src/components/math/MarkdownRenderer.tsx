@@ -37,11 +37,14 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown";
 import type { PluggableList } from "unified";
 import rehypeKatex from "rehype-katex";
+
+import { rehypeMathNowrap } from "./rehypeMathNowrap";
 import remarkMath from "remark-math";
 import {
   remarkEmptyBlockquotes,
   remarkNativeContent,
 } from "./remarkNativeContent";
+import { remarkFormulaLines } from "./remarkFormulaLines";
 import { figureWidthStyle } from "@/lib/figurePrintSize";
 import { BoxQuoteCard } from "./BoxQuoteCard";
 import { StaticBoxQuoteCard } from "./StaticBoxQuoteCard";
@@ -71,10 +74,16 @@ export interface MarkdownRendererProps {
   emphasizeNegation?: boolean;
   /** 서버/인쇄 공통 고정 지면에서는 상자 열 수를 DOM으로 다시 재지 않는다. */
   staticLayout?: boolean;
+  /**
+   * 발문의 «글 뒤 식만 있는 문단»을 가운데 + 한 줄 여백으로(원장님 2026-10-20 — `lib/math/formulaLine.ts`).
+   * 발문(`ProblemContent`)만 켠다. 보기 · 상자 · 정답 · 해설은 끈 채다.
+   */
+  formulaLines?: boolean;
 }
 
 /** 렌더마다 새 배열을 넘기면 react-markdown 이 프로세서를 새로 조립한다. */
 const REMARK_PLUGINS = [remarkMath, remarkEmptyBlockquotes];
+const REMARK_PLUGINS_FORMULA = [...REMARK_PLUGINS, remarkFormulaLines];
 /**
  * ⚠️ **옵션을 반드시 넘긴다.** 안 넘기면 `trust` 가 없어 KaTeX 가 `\htmlClass` 를
  * 거부하는데, 예외가 아니라 **붉은 날문자**(`color:#cc0000`)로 그린다.
@@ -82,7 +91,12 @@ const REMARK_PLUGINS = [remarkMath, remarkEmptyBlockquotes];
  * 즉 우리가 만든 글자를 우리 렌더가 거부하고 있었다. 실측 320행 · 수식 787곳.
  * 근거와 옵션 내용은 `katexRender.ts` 의 `UI_KATEX_OPTIONS` 주석.
  */
-const REHYPE_PLUGINS: PluggableList = [[rehypeKatex, UI_KATEX_OPTIONS]];
+const REHYPE_PLUGINS: PluggableList = [
+  [rehypeKatex, UI_KATEX_OPTIONS],
+  // 짧은 인라인 식은 안에서 줄을 안 바꾸고, 식 뒤에 붙은 조사 · 서술격과도 안 떨어진다(단위 · 의존명사는 그대로) —
+  // 근거는 `rehypeMathNowrap.ts`.
+  rehypeMathNowrap,
+];
 
 /* ──────────────────────────────────────────────────────────────────────────
  * `<보기>` · `<조건>` 상자 카드 — mathgen MarkdownRenderer 1011~1028행 이식.
@@ -258,8 +272,25 @@ function BoxQuote({
   );
 }
 
+/**
+ * 식 문단의 여백은 **인라인 스타일**이다 — 인쇄 지면의 `.document p{margin:0}`(WorksheetPrint.module.css)를 이겨야 한다.
+ * 한 줄 = `1lh`(그 문단의 줄 높이). 높이 자는 같은 규칙으로 `line` 한 줄씩 더한다(`formulaGapLines`).
+ */
+const FORMULA_LINE_STYLE: CSSProperties = {
+  textAlign: "center",
+  marginBlockStart: "1lh",
+};
+
 const BLOCK_COMPONENTS: Components = {
-  p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+  p: ({ children, node }) => {
+    return node?.properties?.dataFormulaLine !== undefined ? (
+      <p className="leading-relaxed" data-formula-line="" style={FORMULA_LINE_STYLE}>
+        {children}
+      </p>
+    ) : (
+      <p className="leading-relaxed">{children}</p>
+    );
+  },
   blockquote: ({ children }) => <BoxQuote>{children}</BoxQuote>,
 };
 
@@ -301,6 +332,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
   renderNativeFigure,
   emphasizeNegation = false,
   staticLayout = false,
+  formulaLines = false,
 }: MarkdownRendererProps) {
   const processed = preprocess(content ?? "");
   const components = staticLayout
@@ -347,7 +379,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
         remarkPlugins={
           nativeFigures || emphasizeNegation
             ? [
-                ...REMARK_PLUGINS,
+                ...(formulaLines ? REMARK_PLUGINS_FORMULA : REMARK_PLUGINS),
                 [
                   remarkNativeContent,
                   {
@@ -356,7 +388,9 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
                   },
                 ],
               ]
-            : REMARK_PLUGINS
+            : formulaLines
+              ? REMARK_PLUGINS_FORMULA
+              : REMARK_PLUGINS
         }
         rehypePlugins={REHYPE_PLUGINS}
         components={nativeComponents}
