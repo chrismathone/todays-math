@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B08-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b48ebf61-def9-47bd-80f4-410b7fd6ec19",
+ "startedAt": "2026-10-21T16:23:26+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "a43a32622b66b566aa8c4c9467fceb9491e86128caed7e82155c86093e878dae"
+ },
+ "promptSha256": "b3f6364b1a1146e5961eb710b46042044fb533f94e7473eef2ffb45b06afcefc",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"ㄱ: x^5×x^2 = x^(5+2) = x^7 ≠ x^10이므로 틀리다.\\nㄴ: (x^5)^2÷(x^3)^2 = x^10÷x^6 = x^4이므로 옳다.\\nㄷ: (2x^3)^3×(5x^2)^2 = 8x^9×25x^4 = 200x^13이므로 옳다.\\n따라서 옳은 것은 ㄴ, ㄷ이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "ㄱ: x^5×x^2 = x^(5+2) = x^7 ≠ x^10이므로 틀리다.\nㄴ: (x^5)^2÷(x^3)^2 = x^10÷x^6 = x^4이므로 옳다.\nㄷ: (2x^3)^3×(5x^2)^2 = 8x^9×25x^4 = 200x^13이므로 옳다.\n따라서 옳은 것은 ㄴ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ab8c1130f91a479c6fcf23a87c0a9d520839da90ccbc5cc24116e8333cd71bf5"
+}

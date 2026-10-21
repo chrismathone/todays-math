@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B05-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d67-43d0-75d0-a27e-19f83f1cb22b",
+ "startedAt": "2026-10-21T16:40:11+0900",
+ "elapsedSec": 20.7,
+ "studentSha256": {
+  "student.json": "b62208a658047ec8c2d196003ced256e6ecac60cce5375d09a954bcb15519483"
+ },
+ "promptSha256": "21d537485d1e7b8969f716ee535d14d6205bd66369393c67661ae22ded1eeabd",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"17\",\"work\":\"np=14, nq=35, nr=21이므로 n의 최댓값은 14, 35, 21의 최대공약수인 7이다.\\n이때 p=2, q=5, r=3이므로 n+p+q+r=7+2+5+3=17이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "17",
+  "work": "np=14, nq=35, nr=21이므로 n의 최댓값은 14, 35, 21의 최대공약수인 7이다.\n이때 p=2, q=5, r=3이므로 n+p+q+r=7+2+5+3=17이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f2ec29d3b919a1dfedffdf1a6df502d57a58d7fc8c81f5540c28c41fc6391904"
+}

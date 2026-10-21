@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B06-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d67-94e3-75a2-b92a-fe7d57a246b5",
+ "startedAt": "2026-10-21T16:40:31+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "497a090222abc74a2b00beb478e9105186351a63b662717e21ffcf7698879fde"
+ },
+ "promptSha256": "56442861e19edac59862c8743a531bf4a1d4df6dd67725f732578950dede68e9",
+ "freezeCommit": "a4ef92fcbd745bc3fb9c2bf5639b0bc52273da01",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$8^{7}=(2^{3})^{7}=2^{21}=2\\\\cdot(2^{5})^{4}$이다. $2^{5}=a$이므로 $8^{7}=2a^{4}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$8^{7}=(2^{3})^{7}=2^{21}=2\\cdot(2^{5})^{4}$이다. $2^{5}=a$이므로 $8^{7}=2a^{4}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "eadacad0c6ebe20cda38a20c104ba5bfd7e198f484e85e98db39d38b22783b4e"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B04-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c3b74db3-e643-40c5-bb66-b0f1724fb88d",
+ "startedAt": "2026-10-21T16:23:10+0900",
+ "elapsedSec": 3.9,
+ "studentSha256": {
+  "student.json": "0db2453fddd53fecddbd4908a008be29bd35a6c4c545a48a5fdfdfe17e3285f3"
+ },
+ "promptSha256": "62ae11276f349cddcc08d5b52bd5ae8aa3499df3e72b6617899d04bfdaeb643a",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "3시간=180분, 12번. 9×3^12=3^14.\n\n```json\n{\"answer\": \"14\", \"work\": \"3시간 = 180분 = 15분 × 12 → 3배가 12번\\n9 × 3^{12} = 3^2 × 3^{12} = 3^{14}\\n∴ k = 14\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "14",
+  "work": "3시간 = 180분 = 15분 × 12 → 3배가 12번\n9 × 3^{12} = 3^2 × 3^{12} = 3^{14}\n∴ k = 14",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a0bfb8ae5f0b0e17f0544debc1f9e875b9d114e5bbdcdc9021285aba7cfb7739"
+}

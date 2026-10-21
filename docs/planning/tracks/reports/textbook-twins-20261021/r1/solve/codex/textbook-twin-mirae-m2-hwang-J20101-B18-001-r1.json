@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d66-09d0-7d03-8c29-9e856226038b",
+ "startedAt": "2026-10-21T16:38:50+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "50b5a1ebd828e01d7e74fc99dbe40e6a87d8f6aff4863634cb6e6f0aeb4c7ab8"
+ },
+ "promptSha256": "5514d84605b4a59a7136995aac904cc33cf7af4da744fdee5cb078064f21ff27",
+ "freezeCommit": "071106f71d44e457a0e9e74c6368f6c74a056a4f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"63\",\"work\":\"기약분수가 유한소수가 되려면 분모의 소인수가 2와 5뿐이어야 한다.\\n18=2×3², 42=2×3×7이고 각 분수는 기약분수이므로 A는 9와 21의 공배수여야 한다.\\n따라서 가장 작은 A는 9와 21의 최소공배수인 63이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "63",
+  "work": "기약분수가 유한소수가 되려면 분모의 소인수가 2와 5뿐이어야 한다.\n18=2×3², 42=2×3×7이고 각 분수는 기약분수이므로 A는 9와 21의 공배수여야 한다.\n따라서 가장 작은 A는 9와 21의 최소공배수인 63이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fdce9199da863b8678b6f4a40fd9b323318a01c52b3cdb34ee12d7bf4598193e"
+}
