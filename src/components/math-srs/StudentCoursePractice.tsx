@@ -24,6 +24,7 @@ import type {
 import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
 import type { PrerequisiteContext } from "@/contracts/mathPrerequisite.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import { courseChoiceLabel } from "@/lib/math-srs/elementary/choiceLabel";
 import { previewCardFor } from "@/lib/math-srs/preview";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
@@ -57,8 +58,8 @@ interface Props {
   prerequisiteContext?: PrerequisiteContext;
   feedbackId: string | null;
   busy: boolean;
-  onAnswer: (input: CourseAttemptInput) => void;
-  onFollowUp?: (input: CourseFollowUpInput) => void;
+  onAnswer: (input: CourseAttemptInput) => void | Promise<string | void>;
+  onFollowUp?: (input: CourseFollowUpInput) => void | Promise<string | void>;
   onHint: (problemId: string) => void;
   onNext: () => void;
   onContinue: () => void;
@@ -113,6 +114,20 @@ export default function StudentCoursePractice(props: Props) {
     ? `${paperKey}:${pendingFollowUp?.followUp?.state ?? "initial"}`
     : null;
   const turnPage = useQuestionPageTurn(paperKey);
+  const shownPaper = useRef<string | null>(null);
+  const focusQuestionHeading = useCallback(
+    (heading: HTMLHeadingElement | null) => {
+      if (!heading) return;
+      heading.focus({ preventScroll: true });
+      // The book scrolls as a document. Reveal a new paper, while an inline
+      // retry or validation correction keeps the student's current scroll.
+      if (shownPaper.current !== paperKey) {
+        shownPaper.current = paperKey;
+        heading.scrollIntoView?.({ block: "center", behavior: "instant" });
+      }
+    },
+    [paperKey],
+  );
   if (!problem) return <CourseComplete {...props} />;
   const preview =
     session.mode === "learn" &&
@@ -132,6 +147,7 @@ export default function StudentCoursePractice(props: Props) {
         journeyTheme={props.journeyTheme}
         busy={props.busy}
         onStart={() => {
+          shownPaper.current = null;
           setPreviewDismissedFor(session.id);
           setPreviewOpenedFor(null);
         }}
@@ -151,7 +167,7 @@ export default function StudentCoursePractice(props: Props) {
   ).length;
   return (
     <div
-      className={`${s.practice} ${s.studentPractice} ${s.fixedPractice} ${pendingFollowUp ? f.practice : ""}`}
+      className={`${s.practice} ${s.studentPractice} ${s.fixedPractice} ${f.practice}`}
       style={
         props.journeyTheme && JOURNEY_THEMES[props.journeyTheme].boardImage
           ? ({
@@ -225,6 +241,7 @@ export default function StudentCoursePractice(props: Props) {
         key={questionKey}
         {...props}
         problem={problem}
+        focusQuestionHeading={focusQuestionHeading}
         title={section?.title ?? "오늘 수학"}
         turnPage={turnPage}
         last={
@@ -308,6 +325,7 @@ function useProblemFigure(
 
 function CourseQuestion({
   problem,
+  focusQuestionHeading,
   title,
   last,
   nextIsRetry,
@@ -325,6 +343,7 @@ function CourseQuestion({
   onAuthFailure,
 }: Props & {
   problem: CoursePublicProblem;
+  focusQuestionHeading: (heading: HTMLHeadingElement | null) => void;
   title: string;
   last: boolean;
   nextIsRetry: boolean;
@@ -459,8 +478,12 @@ function CourseQuestion({
   useEffect(() => {
     if (hasFeedback || (followUp && !awaiting))
       nextButton.current?.focus({ preventScroll: true });
-    else questionHeading.current?.focus({ preventScroll: true });
-  }, [hasFeedback, followUp, awaiting]);
+    else focusQuestionHeading(questionHeading.current);
+  }, [hasFeedback, followUp, awaiting, focusQuestionHeading]);
+
+  useEffect(() => {
+    if (validation && !locked) input.current?.focus();
+  }, [validation, locked]);
 
   useEffect(() => {
     const dialog = explanationDialog.current;
@@ -506,16 +529,23 @@ function CourseQuestion({
       ...payload,
       ...(retryIndex === null ? {} : { retryIndex }),
     };
-    if (awaiting)
-      onFollowUp?.({
-        sessionId: session.id,
-        problemId: problem.id,
-        action: "answer",
-        ...(payload.giveUp
-          ? { giveUp: true }
-          : { submittedAnswer: payload.submittedAnswer }),
-      });
-    else onAnswer(request);
+    const response = awaiting
+      ? onFollowUp?.({
+          sessionId: session.id,
+          problemId: problem.id,
+          action: "answer",
+          ...(payload.giveUp
+            ? { giveUp: true }
+            : { submittedAnswer: payload.submittedAnswer }),
+        })
+      : onAnswer(request);
+    // Only the real validation boundary can reject a format without grading it.
+    // Keep the answer editable; service failures remain with the parent retry UI.
+    void Promise.resolve(response).then((message) => {
+      if (!message) return;
+      submitted.current = false;
+      setValidation(message);
+    });
   }
 
   function submit(event: FormEvent) {
@@ -563,7 +593,7 @@ function CourseQuestion({
   return (
     <section
       ref={questionRoot}
-      className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion} ${followUp ? f.question : ""}`}
+      className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion} ${f.question}`}
       data-answer-mode={
         useChoices ? "choices" : useInteractive ? "fraction" : "written"
       }
@@ -571,7 +601,7 @@ function CourseQuestion({
       aria-busy={busy}
     >
       <div
-        className={`${s.problemPane} ${pageTurn.page} ${followUp ? f.problem : ""}`}
+        className={`${s.problemPane} ${pageTurn.page} ${f.problem}`}
         data-page-turn="true"
         data-question-transition={turnPage}
       >
@@ -620,7 +650,7 @@ function CourseQuestion({
           ) : null}
         </div>
       </div>
-      <div className={`${s.responsePane} ${followUp ? f.response : ""}`}>
+      <div className={`${s.responsePane} ${f.response}`}>
         {followUp && !awaiting ? (
           followUp.state === "correct" ? (
             <div className={f.correct}>
@@ -876,6 +906,7 @@ function CourseQuestion({
                         key={`${choiceIndex}-${choice}`}
                         type="button"
                         className={s.answerChoice}
+                        aria-label={`${choiceIndex + 1}번 ${courseChoiceLabel(choice)}${awaiting && attempt?.submittedAnswer === choice ? " 앞에서 고른 답" : ""}`}
                         aria-keyshortcuts={answerKey(choiceIndex)}
                         aria-pressed={selectedAnswer === choice}
                         data-answer-control=""

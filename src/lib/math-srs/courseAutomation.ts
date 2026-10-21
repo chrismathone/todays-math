@@ -459,6 +459,21 @@ export function startRecommendedCourse(
         startedAt,
         next.mode,
         bankCandidates,
+        // A new supply can revisit the section without accidentally asking the
+        // exact task already answered today. Saved sessions/retries and supplied
+        // prerequisite checks keep their own identities and schedules.
+        [
+          ...state.history.map((entry) => entry.session),
+          ...(previous ? [previous] : []),
+        ].flatMap((session) =>
+          session.problems.filter((problem) =>
+            session.attempts.some(
+              (attempt) =>
+                attempt.problemId === problem.id &&
+                kstDateOf(new Date(attempt.answeredAt)) === kstDateOf(now),
+            ),
+          ),
+        ),
       );
   const session = sessionSchema.parse({
     ...generated,

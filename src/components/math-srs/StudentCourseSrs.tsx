@@ -32,7 +32,8 @@ const StudentCoursePractice = dynamic(() => import("./StudentCoursePractice"), {
 });
 type Failure = { status: number; message: string };
 type Action = {
-  run: () => Promise<Submitted<CourseStudentState>>;
+  run: () => Promise<Submitted<CourseStudentState> & { code?: string }>;
+  answerValidation?: boolean;
   after?: (data: CourseStudentState) => void;
   gesture?: boolean;
 };
@@ -162,6 +163,12 @@ export default function StudentCourseSrs({
       } else {
         if (result.status === 400 || result.status === 409)
           setRetryAction(null);
+        if (
+          action.answerValidation &&
+          result.status === 400 &&
+          result.code === "VALIDATION_ERROR"
+        )
+          return result.message;
         handleFailure(result);
       }
     } finally {
@@ -326,7 +333,8 @@ export default function StudentCourseSrs({
             onContinue={start}
             onNext={() => nextProblem(state)}
             onFollowUp={(input) => {
-              void mutate({
+              return mutate({
+                answerValidation: input.action === "answer",
                 run: () => followUpCourse(input),
                 after: (next) => {
                   setFeedbackId(null);
@@ -347,7 +355,8 @@ export default function StudentCourseSrs({
             onAnswer={(input) => {
               const studentId = state.student.id;
               const soundTurn = soundEpoch.current;
-              void mutate({
+              return mutate({
+                answerValidation: true,
                 run: () => answerCourse(input),
                 gesture: true,
                 after: (next) => {

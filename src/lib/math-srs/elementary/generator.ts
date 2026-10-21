@@ -10,6 +10,7 @@ import { getCourseSection } from "./catalog";
 import type { CourseProblem, CourseSession } from "./types";
 import type { BankCourseCandidate } from "../courseBank";
 import { generateCourseEngineRedraw } from "./engineFrames";
+import { courseFigureFingerprint } from "./figureFingerprint";
 
 const SESSION_TIERS: readonly ElemTier[] = [
   "연산",
@@ -31,12 +32,29 @@ export function courseProblemFrame(content: string): string {
     .trim();
 }
 
+/** Same visible task and expected answer, independent of bank row/session IDs. */
+export function courseProblemIdentity(
+  problem: Pick<CourseProblem, "content" | "answer" | "figureSpec"> &
+    Partial<Pick<CourseProblem, "input">>,
+): string {
+  return JSON.stringify([
+    problem.content.replace(/\s+/g, " ").trim(),
+    problem.answer.replace(/\s+/g, " ").trim(),
+    problem.input?.mode ?? getCourseProblemInput(problem).mode,
+    problem.figureSpec ? courseFigureFingerprint(problem.figureSpec) : null,
+  ]);
+}
+
+/** Bounded supply fallback: a mandatory five-question session remains available if exhausted. */
+export const COURSE_CONTENT_REDRAWS = 32;
+
 export function generateCourseSession(
   sectionId: string,
   seed: number,
   now = new Date(),
   mode: CourseSession["mode"] = "learn",
   bankCandidates: readonly BankCourseCandidate[] = [],
+  previousProblems: readonly CourseProblem[] = [],
 ): CourseSession {
   const section = getCourseSection(sectionId);
   if (!section) throw new Error(`초등 소단원을 찾을 수 없습니다: ${sectionId}`);
@@ -44,7 +62,7 @@ export function generateCourseSession(
     throw new Error("출제 seed는 안전한 정수여야 합니다.");
   const startedAt = now.toISOString();
   const available = supportedTiers(section.unit);
-  const usedBank = new Set<number>();
+  const usedContent = new Set(previousProblems.map(courseProblemIdentity));
   const frames = new Set<string>();
   const problems: CourseProblem[] = SESSION_TIERS.map((tier, index) => {
     if (!available.includes(tier)) {
@@ -53,34 +71,52 @@ export function generateCourseSession(
     // The student figure route regenerates candidates by seed and selects the saved spec's fingerprint.
     const slotSeed = ((seed >>> 0) + Math.imul(index + 1, 104729)) >>> 0;
     let problemSeed = slotSeed;
-    const eligibleBank = bankCandidates
-      .map((candidate, candidateIndex) => ({ candidate, candidateIndex }))
-      .filter(
-        ({ candidate, candidateIndex }) =>
-          candidate.tier === tier && !usedBank.has(candidateIndex),
-      );
-    const chosen = eligibleBank.length
-      ? eligibleBank[slotSeed % eligibleBank.length]
-      : null;
-    if (chosen) usedBank.add(chosen.candidateIndex);
+    const eligibleBank = bankCandidates.filter(
+      (candidate) =>
+        candidate.tier === tier &&
+        !usedContent.has(
+          courseProblemIdentity({ ...candidate, figureSpec: null }),
+        ),
+    );
+    const distinctBank = eligibleBank.filter(
+      (candidate, index) =>
+        eligibleBank.findIndex(
+          (other) =>
+            courseProblemIdentity({ ...other, figureSpec: null }) ===
+            courseProblemIdentity({ ...candidate, figureSpec: null }),
+        ) === index,
+    );
+    const freshFrames = distinctBank.filter(
+      (candidate) => !frames.has(courseProblemFrame(candidate.content)),
+    );
+    const pool = freshFrames.length ? freshFrames : distinctBank;
+    const chosen = pool.length ? pool[slotSeed % pool.length] : null;
     let source = chosen
-      ? { ...chosen.candidate, figureSpec: null }
+      ? { ...chosen, figureSpec: null }
       : generateElementaryProblem(section.unit, slotSeed, tier);
     // Plan §3.5: the same frame twice in five problems reads as one problem.
     for (
       let k = 1;
       !chosen &&
-      k <= COURSE_FRAME_REDRAWS &&
-      frames.has(courseProblemFrame(source.content));
+      k <= COURSE_CONTENT_REDRAWS &&
+      (usedContent.has(courseProblemIdentity(source)) ||
+        (k <= COURSE_FRAME_REDRAWS &&
+          frames.has(courseProblemFrame(source.content))));
       k++
     ) {
       const next = (slotSeed + k * 7919) >>> 0;
       const other = generateCourseEngineRedraw(section.unit, next, tier);
-      if (frames.has(courseProblemFrame(other.content))) continue;
+      if (usedContent.has(courseProblemIdentity(other))) continue;
+      if (
+        !usedContent.has(courseProblemIdentity(source)) &&
+        frames.has(courseProblemFrame(other.content))
+      )
+        continue;
       problemSeed = next;
       source = other;
     }
     frames.add(courseProblemFrame(source.content));
+    usedContent.add(courseProblemIdentity(source));
     return {
       id: `${sectionId}:${problemSeed}:${tier}`,
       sectionId,
