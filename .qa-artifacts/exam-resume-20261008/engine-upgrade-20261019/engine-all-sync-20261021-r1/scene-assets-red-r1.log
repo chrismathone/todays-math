@@ -1,0 +1,13 @@
+.....F...
+======================================================================
+FAIL: test_null_assets_is_not_silently_removed (__main__.SceneAssetsTests.test_null_assets_is_not_silently_removed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_scene_assets.py", line 37, in test_null_assets_is_not_silently_removed
+    self.assertIn('error',render(dict(SCENE,assets=None)))
+AssertionError: 'error' not found in {'svg': '<svg viewBox="0 0 397.116 244.183" xmlns="http://www.w3.org/2000/svg">\n  <g>\n    <line x1="28.789" y1="139.224" x2="228.789" y2="219.224" stroke="#111111" stroke-width="1.9" />\n    <line x1="228.789" y1="219.224" x2="368.789" y2="19.224" stroke="#111111" stroke-width="1.9" />\n    <line x1="28.789" y1="139.224" x2="368.789" y2="19.224" stroke="#111111" stroke-width="1.9" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x="18.065" y="144.6" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="28.789" data-py="139.224" data-mj="A"><tspan font-style="normal">A</tspan></text>\n    <text x="236.372" y="232.183" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="228.789" data-py="219.224" data-mj="B"><tspan font-style="normal">B</tspan></text>\n    <text x="379.513" y="24.6" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="368.789" data-py="19.224" data-mj="C"><tspan font-style="normal">C</tspan></text>\n  </g>\n</svg>'}
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.062s
+
+FAILED (failures=1)

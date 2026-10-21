@@ -1,0 +1,34 @@
+{
+  "utc": "2026-10-21T09:53:40.760612+00:00",
+  "actualGenerator": true,
+  "diffs": [
+    {
+      "path": "/v2_fields/angles",
+      "before": [
+        "arcs",
+        "label",
+        "label_distance",
+        "p1",
+        "p2",
+        "points",
+        "radius",
+        "right",
+        "vertex"
+      ],
+      "after": [
+        "arcs",
+        "label",
+        "label_distance",
+        "p1",
+        "p2",
+        "perspective",
+        "points",
+        "radius",
+        "right",
+        "vertex"
+      ]
+    }
+  ],
+  "beforeSHA256": "54a665d1d3c1d96873e73241ed2a48f87356b22b2891507e6d992c4314642f36",
+  "afterSHA256": "3f2afd7e984dba4317aaaeb58e04aed841ac280b2e3a371d193d15e3e7ff8914"
+}

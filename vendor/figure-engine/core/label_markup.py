@@ -198,6 +198,31 @@ def _romanize_word_runs(pieces: list[Piece]) -> list[Piece]:
     return out
 
 
+#: 한 글자 단위 — 두 글자 이상(cm·km·kg·mL)은 위 `_romanize_word_runs` 가 이미 정자로 짠다.
+_UNIT_LETTERS = frozenset({"m", "g", "L"})
+_NUMBER_THEN_SPACE = re.compile(r"\d[   ]+$")
+
+
+def _romanize_unit_letters(pieces: list[Piece]) -> list[Piece]:
+    """숫자 뒤에 **띄어 쓴** 한 글자 단위(`30 m`·`5 g`·`2 L`)는 정자체 — math-figure-editor 2026-10-21.
+
+    낱글자는 변수(이탤릭)라는 규칙에 걸려 `30 m` 의 m 이 기울었다(제일고 기하 10번 재작도 실측).
+    붙여 쓴 `2m` 은 2×m 일 수 있어 그대로 둔다. 뒤에 글자가 바로 이어지면(낱말의 머리) 건드리지 않는다.
+    """
+    out = list(pieces)
+    for i, piece in enumerate(out):
+        if not (piece.italic and piece.shift is None and i > 0 and not out[i - 1].italic
+                and _NUMBER_THEN_SPACE.search(out[i - 1].text)):
+            continue
+        after = out[i + 1].text if i + 1 < len(out) else ""
+        single = piece.text in _UNIT_LETTERS and not after[:1].isalpha()
+        # mL·dL·kL — 대문자 L 이 붙어 낱말 규칙(소문자 둘 이상)에 안 걸린다
+        litre = piece.text in ("m", "d", "k") and after[:1] == "L" and not after[1:2].isalpha()
+        if single or litre:
+            out[i] = Piece(piece.text, False, piece.shift, piece.overline)
+    return out
+
+
 def parse_label(label: str) -> list[Piece]:
     """라벨 글을 조각으로 나눈다.  **모르는 명령은 던진다.**"""
 
@@ -293,6 +318,7 @@ def parse_label(label: str) -> list[Piece]:
         pending = None
 
     out = _romanize_word_runs(out)
+    out = _romanize_unit_letters(out)
 
     if stack:
         raise LabelMarkupError(f"라벨의 중괄호가 안 닫혔다: {label!r}")

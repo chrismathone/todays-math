@@ -1,0 +1,402 @@
+{
+  "utc": "2026-10-21T09:58:59.361341+00:00",
+  "six": [
+    {
+      "name": "grid",
+      "byteIdentical": true,
+      "expectedSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "actualSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176"
+    },
+    {
+      "name": "assets",
+      "byteIdentical": true,
+      "expectedSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+      "actualSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229"
+    },
+    {
+      "name": "perspective",
+      "byteIdentical": true,
+      "expectedSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "actualSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514"
+    },
+    {
+      "name": "units",
+      "byteIdentical": true,
+      "expectedSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "actualSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60"
+    },
+    {
+      "name": "right-refused",
+      "byteIdentical": true,
+      "expectedSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "actualSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d"
+    },
+    {
+      "name": "solid-object-refused",
+      "byteIdentical": true,
+      "expectedSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "actualSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54"
+    }
+  ],
+  "exactByteMatches": 6,
+  "assets": [
+    {
+      "slug": "airplane",
+      "svgSHA256": "4507bc2edcf06189b6f51325fcc110ea87c5e40ce504462a1b7d4840da5fed14",
+      "pngSHA256": "b99c8ce3b9179eaef93da35deb3a41fcbfdf5045c68a5d91a6f8eefc0f851512",
+      "assetFileSHA256": "6d58a9b5c8f4b9c3e776a9940bc38f94416c33dff9d8cd3299d9849915fa3659",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "baduk-black",
+      "svgSHA256": "2c006ab469057472397d9a3a45d0a65e9c03d88f2c0802293fa04744166ad6c8",
+      "pngSHA256": "ef370f1a40b3a555b6f1de4362b23f57deae2bfbafb2fc9dea9fcc727849d517",
+      "assetFileSHA256": "1eaf181567108031b23cbd28a55d34145d0c41794be40271279e4f957d5e4825",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "baduk-white",
+      "svgSHA256": "b433dc74fd16b809522c1f660f7832777fd8973cf42477a9186dfe660c7d599f",
+      "pngSHA256": "a8b78b2236f780f88de1dc562babb194652d3514470bec3f3065da00a25d621d",
+      "assetFileSHA256": "a22347efb0ce723d584b26ea50c38d00aa4837e39d01a215de8fb20ca83166f0",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "balance-scale",
+      "svgSHA256": "426469c7b63049b67e93b579a8b9828d5191686077ce26220c2db902fbfa6d3a",
+      "pngSHA256": "d84858564d42cf60503ac4405bcfbb3b8063350750948fb05f5732db5bd51ff0",
+      "assetFileSHA256": "a40d3eb73e2bdb8751067944248f52476c2985d51951a6e158b05f5082470499",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "bicycle",
+      "svgSHA256": "98ccfedc1cf883432704d840918db1b5406421da12c92d4af5c102ddc99ddefa",
+      "pngSHA256": "4c7c1972af6981f003f3673b554613b5aa2cac61b38203b264c5a198f0db734a",
+      "assetFileSHA256": "41bba2be06e1031b472a5428b3740983fa29b372e9a950c3222b1983af168ad8",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "boat",
+      "svgSHA256": "08ba58f3ea901c295d9186e88768c55f00df177ceb5fe3834310378738218adb",
+      "pngSHA256": "fd43306ce103fd76dc7be447204d73e700ce04b39a58c6822d86e6355be2c20f",
+      "assetFileSHA256": "c8b477c9d45c06bb8c5dd5837d2880314de6756e58431444a1a34298b3620aaa",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "bowl",
+      "svgSHA256": "1d56db6c112bdc6c8cf6d8e036d90b21e7b273ba0ff049a839ed6a2cce2f7136",
+      "pngSHA256": "b7453c763ea9166cac53dcf68d1c4b505c059bf1b145177778ca0363f560433a",
+      "assetFileSHA256": "9cfde448aca3907743bcb0f2f7d3abf1b39510a4339c704aaa754db95fadd6a1",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "bridge",
+      "svgSHA256": "befea3f0ea0352d7948623cbf5325ff1eb55f4e8f8fe4d15d857052c484fc7fc",
+      "pngSHA256": "bb062e26894cb53fa794547d9a466083e7b2ec4764fb2605991e50ddc9e3d996",
+      "assetFileSHA256": "f8665a0feb50e22fda07807c213cdcadf70a058768cacd8989cfbdf13ed39b04",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "building",
+      "svgSHA256": "6659643cc77279bd79cdb1119b017316e4c5073eba80ce31530e56bdfd933005",
+      "pngSHA256": "d90dd1efa34202de4d8fa73ebb5eb6602116581339c1711b4ebf9c0a72d463cf",
+      "assetFileSHA256": "73f04149bc26e991fd1728eb1ead8f1d2079740e185c135f4618660cbe824e40",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "cake-roll",
+      "svgSHA256": "f04ad6571324b436fa16099775ddda4e992e6b1ebd1cdc45372d826a997f87be",
+      "pngSHA256": "3cfb06a627780f00acad5dba0a94839663905024e359c61ad49b880e6366b9a9",
+      "assetFileSHA256": "c19061b96f1342f3bf12390783f227d61d5bafc2975cc87c12c41220e1ad9395",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "can",
+      "svgSHA256": "6c7e22cf059fe8e667f30a7b1d67ba9788714afff682d0245d28474902a9027b",
+      "pngSHA256": "fa3385b9352ebd6758c08eefa9dfceb564bd9932b63983877ef451579f898c48",
+      "assetFileSHA256": "fe6e5fdb05dbe4f5e8b17a1de7e39ad7f2809db183285b03df2b839a1a0e5be0",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "car-side",
+      "svgSHA256": "2b08d953757dccd27228b67f4f45938c4dde40488a7319372b8f59d09371c193",
+      "pngSHA256": "38ce4427828332457bb32709bbd7fe3a1fa7d3f75b53d3c841e7a80b8d064f86",
+      "assetFileSHA256": "d4b515ecf52c6bd2681a483b1442f9d2fcbcf7240ded955bfbebc285bad66050",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "cup-cone",
+      "svgSHA256": "5c4a7f83140eec4c8c1cce4fda9f6106451987c22a7fa22888e9ad60d17d6cce",
+      "pngSHA256": "7ea839a0463a5023fab31b4259c0c6b19f15577bd37943f56a64fbaeca2fdf01",
+      "assetFileSHA256": "1b973d68e0b5b0b054c8e781b518401c5eac422d226af965b4149f12163d01d9",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "cup-cylinder",
+      "svgSHA256": "7d8c9fcf2f96479e11376538c8beca28bc4947a2e1a7a0351e3db62bf00d82d8",
+      "pngSHA256": "8b56109018345eaacc5dbe23673a665fa3c0779a7c2cfd4bf990721ee8ecb707",
+      "assetFileSHA256": "0e757b18f93f46e7a3d79dbce9922ce44bb202621624f7d735b3b27f1df03d21",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "dice",
+      "svgSHA256": "ac5145df61ccad4832c5c1c4cc6ced939c9fb9bbb4022f3de06e0b440090a4d1",
+      "pngSHA256": "1680f3bf89e600cca358a9d84d46989d7d63964810b7f59e9b616146be66a2e6",
+      "assetFileSHA256": "37ab4eea560a96c562769b29f3c95ec4219d6020681ec2e7949c5ee61bb39e6e",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "ferris-wheel",
+      "svgSHA256": "47e1f72f03ec49e9c3c73550837ed29f11d103f3d738799207f13076f7bcca03",
+      "pngSHA256": "d781044a4e5b8326bd75e9f76ba56787b1eb2a34a959269a55b427d391220175",
+      "assetFileSHA256": "14f0b906cc3d41783f1c2690a61f924e0903bbd818381a9a7a142389614d4d57",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "flagpole",
+      "svgSHA256": "fd9d0d5eb66c07320a7112f518c6d0a0e2818a7bff4bf29a223a36120bfbf2a2",
+      "pngSHA256": "8e04e253627b7b43230cb6bbf3230d98688f82053d6c3298d73ddf47557417ff",
+      "assetFileSHA256": "f23f23de7eec4fca3ae4ccca995d96e1ca87964a420b66fd290ea495e758d2d2",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "hot-air-balloon",
+      "svgSHA256": "89c56b6dc8c0512cf360497a220bd2c3c590aac73900d7c76af25d4037ad58f9",
+      "pngSHA256": "b4a599ef0b57f8c1b800b6786d34bacbecddc603c21df42af018ab8bd9b2167e",
+      "assetFileSHA256": "ba3c54d6674589e609ffac8ae376b27d6eb950b83ff552895bf54c064540aacc",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "house",
+      "svgSHA256": "5414ca87faa4f88a9910a44f46267126e8188c3c4052e51adbec7d31f091df4f",
+      "pngSHA256": "abd3258c0e68445348f9dc94156f722a47efb8f270095b970328635372036f98",
+      "assetFileSHA256": "b83a1c549f910fa957bbb2e5aabfb59bfcce2453657f62b3750a0770cd3c3141",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "ice-cream-cone",
+      "svgSHA256": "ef9590a8300bb891e2d0ac90808b4099e5cb16d437bf378aa1cb36f3be40eac3",
+      "pngSHA256": "6c59711baa3068158021bef069844b7765cc32b779f761565f6c7c1becf7a402",
+      "assetFileSHA256": "7e14744a242404ae7e077a0067199dc70f033aa9d55235601b27cdbf65eef68c",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "kite",
+      "svgSHA256": "9ad8eb8d418b4249163494b1381eb88752055b4aa6c2e3b875346fe8fd30c37c",
+      "pngSHA256": "22ac0f34c9d781a9182659ca259248f7092492b7f8af7406b91bed20fa2eed07",
+      "assetFileSHA256": "0a0467f2ee6d276d3e8792720fbdc01716d4e00fcd393cf55195293eaf941c90",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "ladder",
+      "svgSHA256": "36c6d27c6751ef13d39c298875f3ff00480678d6fe2554cc602096808be2e8e0",
+      "pngSHA256": "799c209b70ad00f1449012c62c904b19849f8ac2b259c7683931af42ede2bc32",
+      "assetFileSHA256": "ee2f2db7e1c714cdf4b104503af8457e51b288d803eb2d30a7f4bd88711621b1",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "lighthouse",
+      "svgSHA256": "3c09ad15267bf4ad493211d4ac4cc37e9577bec61b0be95d116965cb15333175",
+      "pngSHA256": "e35905cb32e23a7297f424f7f59fef8fb83a5e09ec0d0ca7545377523863a230",
+      "assetFileSHA256": "c660c4e7740e2de9c28c2a805918c0eeba99425d2af29010c76deb09d489e0ab",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "matchstick",
+      "svgSHA256": "f6688d0e56d91cd19c0b64f1b8264e9e90678603b3b36a47762da02edf794fff",
+      "pngSHA256": "1f7327e04a9f41ee735d4b2967320b446d949d6830352ac0dac2080888d1ad9d",
+      "assetFileSHA256": "0ac104838067e8cd2faeac208fb5415f84dfc077537e82cc80b43a5b0691ac63",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "mountain",
+      "svgSHA256": "8d387e0033c726c41a5f021534ddc811028d16049ee598d0d03d8f46a0d5b11c",
+      "pngSHA256": "0140eea205a39ea7d2aaf3621789baebf44ce0a75e4968d3e26a7c14966d069e",
+      "assetFileSHA256": "a49113b5bdcc37a67341d29e3f3ece14a7ea530e41b04f3172e23f6749b17df0",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "person-standing",
+      "svgSHA256": "0000af6cc309b99172ef0e3382bd4c5a0d9331f62c3d17f04bdfbd6537958934",
+      "pngSHA256": "f4e376f148bf36f2dee514fef6c36a4e8afe713b8088202e9f99dd349cc10fdd",
+      "assetFileSHA256": "526058772cc7ae168621a3f17b433f971a993b656cae9ad6adb780d4c8e596d3",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "person-walking",
+      "svgSHA256": "12410473fba6418228d062e7d74f1619ad74dcb84d809e48c3f0851e98dca1ba",
+      "pngSHA256": "4725c1a83f71218e9ec9c4b167b4762cf4e78197db7525ffaee5fe6584871547",
+      "assetFileSHA256": "9b6563f579744d7705beb7f6d786619f9741a2b5e6699979a41608497f51507f",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "picture-frame",
+      "svgSHA256": "37011aca39f5d0d3c35372eb2362b9499b09d395f840a7ffd016e8016a051477",
+      "pngSHA256": "a5137cc67de657f75c05119cf6ac93a4e2e2d85d3b249f0a0a94bef3d4e7481c",
+      "assetFileSHA256": "3c36910444ee911ab3b6e7c1e0690fff9b1be781968ffad4c6ad427ac528745f",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "pizza",
+      "svgSHA256": "b26edc74df477bda4e27ddd3aca637df84930e3d436a7480ddeaf35750d1558d",
+      "pngSHA256": "b959dd2b5642034b47fec6cbeb8eff5dc489a8b46895a1af763204bbedb00c2a",
+      "assetFileSHA256": "34cb8153b714b63a1b4d7f307bdd3ecfd965bb1851db0143f924fadfe946ebb8",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "slide",
+      "svgSHA256": "db42f116ad36ec75fa541594e2466128ff42a572e113591c6014498d61fba751",
+      "pngSHA256": "1d9b807dbaffc3701581ea3472bf66b10639c79ea6eff01cc040c96044693a08",
+      "assetFileSHA256": "b9cc45d2c80596111b38246d575daa7a3129839acb62eebbdcf03740d574fb30",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "streetlamp",
+      "svgSHA256": "2c202cf01f7f59822bd20eecdf180b3ffc2e7dc0d7b9c643f6883ba79014d3c9",
+      "pngSHA256": "acac1849f4471773aeeddcc1a6dbe50a0cb14d178ac9b10e6f02111944189e6f",
+      "assetFileSHA256": "3d21656054a9b2f62e9728ab4153e3878269ba04de12c3c3024ece65dc537a5a",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "sun",
+      "svgSHA256": "794ae338c07e6bfc43b44b5010b18937a38adadd79f07e84745e30a32d579553",
+      "pngSHA256": "633602c64818270e68106a3be33bea7a8690490bda9de1c424842ef58ad7e124",
+      "assetFileSHA256": "5747673195f7cacff4492ab0f195be41e88046edf3aba420213c0e7007fd99cd",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "thermometer",
+      "svgSHA256": "3df6f7a29de9fb7a0133f330aa04d396bdb8b6b9384ec4246f1b7e4c56ce98dd",
+      "pngSHA256": "91cf1ce838493602d79b5896122a78d7872ebb57f76795c4f66273e3090cf04a",
+      "assetFileSHA256": "ad5a1982e18545f2b47d919e5a017751d46ed70093c586b434c083ebe060f604",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "tower",
+      "svgSHA256": "419da0131034d30684c0929608b122527f7ba5ba418ff8fdb4602f8c7a6fa40c",
+      "pngSHA256": "2d47373ec3777578cea4f8249950e9d4d6ec4da365373764e11b512bccd22908",
+      "assetFileSHA256": "7bfe81460ab7a029ddcdc6b0a1eee8997d9eda3d435d2235987f1a77d3c3276d",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "train-side",
+      "svgSHA256": "e06905c5fa41b951dc17f4631be4925d92b12651d605d1c7888989c4b8b7e00c",
+      "pngSHA256": "a2cbe00f1f1269a5a0e4f8af4986b1901b08d7e2c098b2ff6a0b936d225b62fb",
+      "assetFileSHA256": "3d5ae0fe52d8d976092900b2233c5534405861fd9bda04c0ed269cf28f47bd10",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "tree",
+      "svgSHA256": "dc8b71a2dd3e86fef9cdba4cffa46f05bf08e667df5d78171de32fa5d728e815",
+      "pngSHA256": "abb1d08e43aac64e989395c8b2279744b04c3129d46902f15cdb25d07f451907",
+      "assetFileSHA256": "effaa07a0e81229e02befc93576494c973d216453aa8633be76d7c68f408b1e9",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "tunnel",
+      "svgSHA256": "9fcaeb89181b10365f4fb266599f6d42b862ff0b71090badb3fb19298c98b08f",
+      "pngSHA256": "426f732dc36481c9b4e634ee524a1e72e460dfd5ee673c01b43b716997362236",
+      "assetFileSHA256": "d7261a76ebc1efe5c4552b528dc8de63fa6e39341ee0d893941e560451d20a8c",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "utility-pole",
+      "svgSHA256": "fb9d93b724fe019e66245544bb9a22d6cf14279e7a79ef2ee0fb325d973c7ca9",
+      "pngSHA256": "514c6b97a692887b5d9975c8ca5cebe397abd08b97b0dd32fc18181067578665",
+      "assetFileSHA256": "929571031efa6a3f5c77e475bf9fdf082dccbe18544890d75c14b432be8173c3",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    },
+    {
+      "slug": "water-tank",
+      "svgSHA256": "67d14cb67f646627863fd9fc8bdbd623ba0cbf0367d00412b342f626c970ed9a",
+      "pngSHA256": "0d70183de684fc54e492ba5def722c7d5b54172ee6433df8e0f96bcd1bbb2eec",
+      "assetFileSHA256": "65a9362802f17e348ab95ea9eb05f5846bc0502f5a9224e20241fd59ed18686a",
+      "sourceIdentity": "imported project asset at captured sourceHead; not an original exam crop",
+      "rights": "UNKNOWN_REQUIRES_REVIEW",
+      "gradeApproval": false
+    }
+  ],
+  "actualAssetRenders": 39,
+  "actualRasterizations": 39,
+  "contactSheetSHA256": "ce0e1788717beba7d4cca73aa93f17b5d465fa2a3595be82a7c5816ddce60b91",
+  "sourceDWrites": 0,
+  "dbWrites": 0,
+  "newQuestionOrApprovedFigureCredits": 0,
+  "pixelMathOracle": false
+}

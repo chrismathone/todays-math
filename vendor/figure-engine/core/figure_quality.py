@@ -204,7 +204,8 @@ _TAG_ATTRS = {
     "svg": frozenset({"viewBox", "preserveAspectRatio"}),
     # math-figure-editor: `data-grid` — 모눈 배경 층(scripts/figure/graph_scene.py `grid_svg`)의 칸 정보.
     # todays-math 상류에는 없는 한 줄(2026-10-21). 값은 수 여섯 개만 받는다(아래 `_validate_attr`).
-    "g": _COMMON_ATTRS | {"transform", "data-grid"},
+    # math-figure-editor: `data-asset` — 실물 그림 조각 층(scripts/figure/scene_assets.py)의 에셋 이름(kebab-case 만).
+    "g": _COMMON_ATTRS | {"transform", "data-grid", "data-asset"},
     "circle": _COMMON_ATTRS | {"cx", "cy", "r"},
     "ellipse": _COMMON_ATTRS | {"cx", "cy", "rx", "ry"},
     "line": _COMMON_ATTRS | {"x1", "y1", "x2", "y2"},
@@ -526,6 +527,9 @@ def _validate_attr(tag: str, name: str, value: str) -> None:
                 or not cols.is_integer() or not rows.is_integer()
                 or abs(x + cw * cols) > MAX_COORDINATE or abs(y + ch * rows) > MAX_COORDINATE):
             raise SvgSecurityError("data-grid requires square positive cells and 1..60 integer counts")
+    elif name == "data-asset":
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", value):
+            raise SvgSecurityError("invalid data-asset (kebab-case slug)")
     elif name == "transform":
         if not _TRANSFORM_RE.match(value):
             raise SvgSecurityError("invalid transform (translate/scale/rotate with numeric args only)")
