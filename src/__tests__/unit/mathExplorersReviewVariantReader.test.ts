@@ -76,6 +76,26 @@ function independentTruth(cardId: string, statement: string) {
   return includesBoundary !== statement.includes("포함되지 않는다");
 }
 describe("review variant reader floor", () => {
+  it.each(ids)(
+    "changes the numeric choice set for adjacent seeds: %s",
+    (id) => {
+      const card = definitionCard(id);
+      for (let seed = 0; seed < 640; seed++) {
+        const labels = (value: number) =>
+          reviewVariantCard(card, {
+            version: 1,
+            seed: value,
+            cardIds: [...ids],
+          })
+            .examples.map((example) => example.text)
+            .sort();
+        expect(labels(seed), `${id} seed ${seed}`).not.toEqual(
+          labels(seed + 1),
+        );
+      }
+    },
+  );
+
   it("does not emit identities when the reader alone starts a new memory session", () => {
     const state = createExplorerState("reader-only", 5);
     state.profile.definitions = {

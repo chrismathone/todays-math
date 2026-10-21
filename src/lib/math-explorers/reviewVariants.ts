@@ -66,7 +66,7 @@ export function reviewVariantCard(
             ? value > n
             : value < n;
       const values = inclusive
-        ? [n, n + direction * 2, n - direction, n - direction * 3]
+        ? [n, n + direction * 2, n - direction, n - direction * 4]
         : [n + direction, n + direction * 3, n, n - direction];
       content = {
         exampleTitle: `${n} ${term}인 수를 모두 골라봐.`,

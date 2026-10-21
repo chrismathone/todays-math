@@ -61,3 +61,9 @@ Reader 검증 결과: 관련 6파일 94시험 + 새 API 1파일 5시험 통과, 
 전체 `tsc --noEmit --incremental false`는 기존 공용 node_modules 중복 타입 오류 3건으로
 실패했다: `arithmetic-angle-presentation-verify.ts:36` Playwright 타입,
 `paperProbe.tsx:174` PostCSS 타입/비교 깊이. 이번 변경 파일 진단은 없다(`reader-types.log`).
+
+
+Reader 발행 뒤 local writer RED→GREEN에서 이상/이하의 인접 씨앗 1/2가 기준·정답은
+다르지만 네 숫자 집합이 같음을 발견했다. 활성 전 reader 보정에서 한 오답 거리(3→4)를
+고쳐, 5카드 × 인접 640쌍의 보기 집합이 모두 달라지는 시험을 추가한다. 새 데이터가
+아직 공유 환경에 없을 때의 보정이며, 이 보정 커밋까지 포함한 reader가 운영 성공해야 한다.
