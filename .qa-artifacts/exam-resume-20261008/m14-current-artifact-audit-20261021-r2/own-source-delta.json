@@ -1,0 +1,19 @@
+{
+  "oldCommit": "90cb60fcd",
+  "oldSourceSHA": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+  "currentSourceSHA": "554be24f7bf01f7694e66280fa635335fa71ddf7a689b49549dace4e276dead4",
+  "diff": [
+    "--- ",
+    "+++ ",
+    "@@ -1222,6 +1222,9 @@",
+    "   if (opts.diag) {",
+    "     segments.AC = [\"A\", \"C\"];",
+    "     segments.BD = [\"B\", \"D\"];",
+    "+    // AO:OC = AD:BC; compute the intersection before fitting/rounding.",
+    "+    pts.O = lerp(A, C, ad / (ad + bc));",
+    "+    out.O = \"O\";",
+    "   }",
+    "   const anchors: Record<string, XY> = {",
+    "     ad: [(A[0] + D[0]) / 2, h + 16],"
+  ]
+}
