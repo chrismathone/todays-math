@@ -1,0 +1,78 @@
+{
+  "studentDigest": "c88cd731bf312fda476d10de14029371b870b20fe28f45232ff66ce15e5dea4e",
+  "solverId": "independent-retained-helper-gachang-group5-r2",
+  "answer": "③",
+  "solution": "정사각형 A의 한 변을 a cm라 하자. 둘레 차가 4 cm이므로 B의 한 변은 (a+1) cm이다. 따라서 a²+(a+1)²=221, 즉 2a²+2a-220=0이다. 2(a+11)(a-10)=0이므로 a=-11 또는 a=10이다. 길이는 양수이므로 a=10만 가능하고 B의 한 변은 11 cm이다. 두 넓이의 차는 11²-10²=21 cm²이므로 ③이다. 실제 둘레 차는 44-40=4 cm, 넓이의 합은 121+100=221 cm²이다. 보기 17,19,21,23,25 cm²를 차로 가정하면 변의 쌍은 각각 (8,9),(9,10),(10,11),(11,12),(12,13)이고, 넓이의 합은 145,181,221,265,313 cm²이다. 따라서 ③만 조건을 만족한다.",
+  "evidence": {
+    "ownCalculationReceipt": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "ownCalculationSHA256": "e50ae20147dff3fe4581f6e33a9b692f2c8486b5526eefc10b4a06cf8f076853",
+    "exposure": {
+      "currentAuthorAnswersOrSolutionsExposed": false,
+      "declarationBeforeStudentRead": true,
+      "priorExposure": "以前に原本9コンポーネント、Gachang原本最初のページ1〜6（以前のraw封印後）、関連手動問題・公開/内部エンジン・メタデータ/code監査を閲覧。今回q09/q10の現行author答/解説・source/package/privateは未閲覧。全コーパス未見とは主張しない。",
+      "group4PrivateStillUnexposed": true,
+      "noOriginalAnswerOracle": true
+    },
+    "exactChecks": {
+      "choices": [
+        {
+          "areaDifferenceCm2": 17,
+          "impliedSidesCm": [
+            "8",
+            "9"
+          ],
+          "areaSumCm2": "145",
+          "valid": false
+        },
+        {
+          "areaDifferenceCm2": 19,
+          "impliedSidesCm": [
+            "9",
+            "10"
+          ],
+          "areaSumCm2": "181",
+          "valid": false
+        },
+        {
+          "areaDifferenceCm2": 21,
+          "impliedSidesCm": [
+            "10",
+            "11"
+          ],
+          "areaSumCm2": "221",
+          "valid": true
+        },
+        {
+          "areaDifferenceCm2": 23,
+          "impliedSidesCm": [
+            "11",
+            "12"
+          ],
+          "areaSumCm2": "265",
+          "valid": false
+        },
+        {
+          "areaDifferenceCm2": 25,
+          "impliedSidesCm": [
+            "12",
+            "13"
+          ],
+          "areaSumCm2": "313",
+          "valid": false
+        }
+      ],
+      "allAlgebraicSidesA": [
+        "-11",
+        "10"
+      ],
+      "uniquePositiveSidesCm": [
+        10,
+        11
+      ],
+      "areaDifferenceCm2": 21
+    },
+    "methodGrade": "인수분해와 곱이 0인 경우, 정수·음수 조건을 차례로 사용. 일반 이차연립방정식 풀이·판별식·근과 계수의 관계는 사용하지 않음.",
+    "visualLimitation": "학생 PNG만 실제 확인. 그림 좌표·픽셀은 수치 근거로 사용하지 않음. 네이티브/인쇄 승인 아님."
+  },
+  "status": "solved"
+}

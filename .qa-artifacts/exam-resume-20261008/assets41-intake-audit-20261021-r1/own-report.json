@@ -1,0 +1,413 @@
+{
+  "status": "intake compatibility HOLD; bounded existing Root renderer can consume pinned41 data; no synchronization applied",
+  "sourceVersions": {
+    "auditedEngineCommit": "5990a0dbff75640cd93eecb49d3469f6e190f66c",
+    "observedResumeLiveHEAD": "e90f66d376f550f7fc4647b91cc3bb9e7c689ae5",
+    "initialSourceStatus": " M docs/export/todays-math/engine-check/check_engine.py\n?? docs/export/todays-math/engine-check/expected/assets-3d.json\n?? docs/export/todays-math/patches/07-engine-all.patch\n",
+    "finalSourceStatus": " M docs/export/todays-math/engine-check/check_engine.py\n?? docs/export/todays-math/engine-check/expected/assets-3d.json\n?? docs/export/todays-math/patches/07-engine-all.patch\n?? docs/export/todays-math/patches/08-editor-all.patch\n",
+    "warning": "SourceD live working export checker and untracked07/08 are separate versions, not the pinned5990 engine. No execution of SourceD code. Initial clean-HEAD claim contradicted by observed dirty status; preserved."
+  },
+  "executedDistinctFinalInputs": {
+    "RootLoaderSanitize": 41,
+    "RootElementaryAssetScene": 41,
+    "RootNativePicture": 25,
+    "RootNativeSolidRejected": 3,
+    "totalFinalCallsNotIncludingRetries": 110,
+    "anchorsMetadataEntries": 41,
+    "Node": 0,
+    "browser": 0,
+    "modelOrAPI": 0,
+    "DB": 0
+  },
+  "runtimeMethod": "Read exact5990 Git blobs into ignored owned data-only snapshot. Import current ROOT figure_assets/scene_assets/render_spec and current ROOT sanitizer. Point in-process asset data directory/caches at QA snapshot only. JSON-string input; require actual svg field, error envelope counts rejection. This is NOT execution of candidate scene_assets or build_catalog code.",
+  "findings": [
+    {
+      "id": "AI41-LEGACY",
+      "status": "technical integration hold",
+      "evidence": "39/39 old editor geometry signatures mismatch new stock bodies;39/39 old viewBoxes mismatch. Unchanged slug is not identity. New-only registry would demote old assets from atomic/size-locked recognized groups. Current build_asset_editor_registry also asserts len39, so it cannot simply be run unchanged for41.",
+      "proposal": "Version registry by slug AND exact canonical body fingerprint. Retain old39 signatures and their original viewBoxes/sourceLF hashes alongside new41 entries; look up actual matched body to select its own frame. Do not map old body to new viewBox. Retain old marker recognition only for exact known signatures, never arbitrary marked groups. Preserve IDs/transform/raw SVG/undo state; unknown or modified groups retain conservative normal editing. Explicit asset/artwork revision for new producer output, no silent existing-row rewrite. Add direct DOM old39+new41 transformed-frame tests after separate GO."
+    },
+    {
+      "id": "AI41-EXPECTED",
+      "status": "version hold",
+      "evidence": "Old6 expected metadata hashes:5 identical, assets.json4929->21670 bytes. Old expected remains authoritative for old revision. Checker/patch06/README saved-vs5990 bindings supplied separately; working checker is newer dirty version.",
+      "proposal": "New versioned fixture suite/manifest and explicit migration evidence. Do not overwrite old assets expected to label prior output matched. No live checker executable run here."
+    },
+    {
+      "id": "AI41-ANCHORS",
+      "status": "bounded metadata observed",
+      "evidence": "41 current pinned anchor maps finite pairs within each manifest viewBox; no out-of-bounds cases. from/to changes from base/top to optional edgeBase/edgeTop; building-3d and house-3d added to picture whitelist (23->25). New scene logic only shrinks free-at objects when fixed geometry/from-to layout fits.",
+      "limits": "Anchor metadata geometric membership does not establish semantic ground/top/front edge or image measurement accuracy. README numeric prose must not override actual JSON. New candidate edge-anchor and shrink runtime NOT executed; current Root native25 uses old scene logic with new data. Need candidate-specific edge endpoint alignment/shrink/no-label-clipping tests before adoption."
+    },
+    {
+      "id": "AI41-SEMANTICS",
+      "status": "hold",
+      "evidence": "can/dice/bowl rejected as v2 picture assets; all41 still available in elementary assetScene. building-3d/house-3d are context artwork, not solid mathematical verification. No right-angle/radius/length theorem evidence comes from rendered artwork."
+    }
+  ],
+  "contracts": {
+    "changed51CommitFileHashes": {
+      "scripts/figure/assets/README.md": {
+        "oldSHA256": "21d43a1b541dee71e5806a300dd01ef70b0cefa176b7820f9e3345c98e4dbdce",
+        "pinned5990SHA256": "0b1c26918a81c97ba8aad7eb8838c06451b0a28ef268a45e93073844073402d0"
+      },
+      "scripts/figure/assets/airplane.svg": {
+        "oldSHA256": "a2ba7dce3a979e09114be43164ff022851cca48f957cc6599c2435b02da4f9d3",
+        "pinned5990SHA256": "b80a83d6b054a09c5b9ee4e6e5116d794c5d76f39b45d8c4452e5504c02b4619"
+      },
+      "scripts/figure/assets/anchors.json": {
+        "oldSHA256": "98d481a855ba62fd87ea5c7eb04b04c8a400040e1b99da46acc32cb111368b8a",
+        "pinned5990SHA256": "8aaf980e09b2ff39e219c9cd8bae4cb1030f4f15597e01e0c5a8555dd9ef8ab0"
+      },
+      "scripts/figure/assets/baduk-black.svg": {
+        "oldSHA256": "2e2416861dc93b441cce5d2679fb892287168576c66e75e2dce9b0d4b6619d8d",
+        "pinned5990SHA256": "948d7faeb41851b064b917f94d5dab90b60617f11169cee6f64477fdec55ef66"
+      },
+      "scripts/figure/assets/baduk-white.svg": {
+        "oldSHA256": "f86cfcf54aa9a44c0bfa2eaed9623f9b7675cd74b3e55d525fd003d4845bd3a8",
+        "pinned5990SHA256": "2f14735c3b9009d9afa2c433b59faedb198546626db17c83982404eec67f90d6"
+      },
+      "scripts/figure/assets/balance-scale.svg": {
+        "oldSHA256": "78832b37488748503deeb924b0c05a85f4992083143166c479947f775a76102d",
+        "pinned5990SHA256": "a4117c9da16cebb48a21411ca7672100e7bf0fba9dd1e0c946fe3b2576630a3b"
+      },
+      "scripts/figure/assets/bicycle.svg": {
+        "oldSHA256": "e1e4bcec7ddce0ac154619f8b86e0227bea23e02964925b02a66aa763a8e5038",
+        "pinned5990SHA256": "6956d53ee333b4cb303af1486b2203817e5f90e2727f53a853baba107c6458da"
+      },
+      "scripts/figure/assets/boat.svg": {
+        "oldSHA256": "464d7fc90fe750bdff14eb0f657a215995be38eb62f501a278c77d44b6360b21",
+        "pinned5990SHA256": "9db6592ec3e62d9550aaad2e27bda8287862aa37c604bc8f26790aea3a7946aa"
+      },
+      "scripts/figure/assets/bowl.svg": {
+        "oldSHA256": "17291dbf87952238266dd8e4f28d330fa0d9b3cb8af2f6db93c568f496c1b40f",
+        "pinned5990SHA256": "bb1b0daf08ee9aa9430c5d55f0d58e5a0cbeb35b97b8054cdfc7850e8dd53f71"
+      },
+      "scripts/figure/assets/bridge.svg": {
+        "oldSHA256": "6ae73e77e12ab276e8ddd34a17c32482257ae041e59cab828cb5891fd06638c9",
+        "pinned5990SHA256": "9d01c83b09fe90e20f200cc3011db35286e674c1dbf89850214a7a8cdf5b9da3"
+      },
+      "scripts/figure/assets/building-3d.svg": {
+        "oldSHA256": null,
+        "pinned5990SHA256": "38344abbd14bff1544ebe26e47e2022c98976e00de3517f764aa29fb508a72db"
+      },
+      "scripts/figure/assets/building.svg": {
+        "oldSHA256": "45512b3d8d6402b470686ceb6fd5ac481c8dbaafac858630e6010bf55aea0bb7",
+        "pinned5990SHA256": "17cf57367e05e9252599d024b845d47021c594a2e2877641f2449bfb2d7da54a"
+      },
+      "scripts/figure/assets/cake-roll.svg": {
+        "oldSHA256": "5d979060746ecaadadad99408091347aa0cff7732ee9d70dced4168203d31895",
+        "pinned5990SHA256": "3f322959463130a2853fdd2a61db8cc276d7aac752f7b0075767560d6cfb6468"
+      },
+      "scripts/figure/assets/can.svg": {
+        "oldSHA256": "c9ceee3275d7ce60147986fbe0fccbdc01973a8b30102807a840ebceb014b41c",
+        "pinned5990SHA256": "3c9ac2770ac717eef12ee1ecfafa6633123073d9a30682b075a085e0b01846bf"
+      },
+      "scripts/figure/assets/car-side.svg": {
+        "oldSHA256": "c42b22160fd2a53c4faeec70ae852032c8bb510e7a3fd599f5428542c31966e1",
+        "pinned5990SHA256": "88af34aaa1be7282cd73af9d7595ea17d473d9ed3484211595cf834998d3d392"
+      },
+      "scripts/figure/assets/cup-cone.svg": {
+        "oldSHA256": "7017a84244730f58282bc0dc85ee2800e5ef7d3820a697cb02371822eb7de446",
+        "pinned5990SHA256": "b51df2a00fd9404736dc5a5171197c8eebbb788cf4ecb5048f91bb1dcb8198f5"
+      },
+      "scripts/figure/assets/cup-cylinder.svg": {
+        "oldSHA256": "987cb17281e9a6f40273dd713ffcfe764918a1c8279d2614e81a9ff2ee364a82",
+        "pinned5990SHA256": "d6067357e50929e31c24ad7ce2f8616530429c7e8456083fc4268103baa3b929"
+      },
+      "scripts/figure/assets/dice.svg": {
+        "oldSHA256": "44e461523a1cd0bad62b43fc82a3cade22b2fde464f83abe3727ac0d6b576a8b",
+        "pinned5990SHA256": "f0ef2cbdbe0a1a295f06f243113ae1d8542bc7b0ab3623f8d0e58bc3ccd23edb"
+      },
+      "scripts/figure/assets/ferris-wheel.svg": {
+        "oldSHA256": "dedce4d6b5ec64c4a907163328269713d65f7717c442993e84af9dd337129ace",
+        "pinned5990SHA256": "199a8426be57db428edb9bffc5589537f5f1c45bfa0735cdf008a0950b1ffef0"
+      },
+      "scripts/figure/assets/flagpole.svg": {
+        "oldSHA256": "8965879db5def251aadf6c7a89c6ac82450bb61d716fdfec0fdde042b1c55571",
+        "pinned5990SHA256": "77c577c04dda7dd6702b33d31ab3f70d057d93162aa15294b916efabc7b8eae1"
+      },
+      "scripts/figure/assets/hot-air-balloon.svg": {
+        "oldSHA256": "69cbda27d14118893caa92e11cd46918a048bb0791d59cf4ccc8692de0df917a",
+        "pinned5990SHA256": "8b362feb12cb536c6fd482b0ee1b97018a7073c324bf5f323018dfc4aae60769"
+      },
+      "scripts/figure/assets/house-3d.svg": {
+        "oldSHA256": null,
+        "pinned5990SHA256": "d37600df502fb23200cf860948bc4f6ec529b1c99cf1aebb6b15291133da47f9"
+      },
+      "scripts/figure/assets/house.svg": {
+        "oldSHA256": "2c4102cc01212b89351fff15ed3b310042df5792cad3967f6d9a7aaa983ba61d",
+        "pinned5990SHA256": "e0292f1458cc77d8f8f29788cd4401fa0bdd2354bea171f6bf99fe746da5536b"
+      },
+      "scripts/figure/assets/ice-cream-cone.svg": {
+        "oldSHA256": "9245a0069757e97dee296b88cde27207650683ff396ef066df1049fb17109ce7",
+        "pinned5990SHA256": "ffe66a03657b88b0f8737408ffd53c8e98bebe11c96da50120ebb217b750713d"
+      },
+      "scripts/figure/assets/kite.svg": {
+        "oldSHA256": "efd9ca470183ed5ce30a45a9dc81715cf04f4b08adb4b9d8e622e0b346ec78e4",
+        "pinned5990SHA256": "e2790815b775aef1c0260c3cfb19229d573b2f64d63efcfebac224b5b8f9f817"
+      },
+      "scripts/figure/assets/ladder.svg": {
+        "oldSHA256": "b7f86737568c151eb9090f298dea07669af97aedf27b9b6d9411c5ea00817669",
+        "pinned5990SHA256": "cceabdfb08e68d6ccc2b5109f8e4f04347642ca9f6638dccb7fdc72ab8ee91b8"
+      },
+      "scripts/figure/assets/lighthouse.svg": {
+        "oldSHA256": "5f5f28ed9bbf3f9fa0d3a76420b70f2335cbd2f950b254dbc353f2f6ae814de0",
+        "pinned5990SHA256": "39d95cb17054f704062b7b19dd189ee82e06ee8a4ef9ef917b2b09165e72d66d"
+      },
+      "scripts/figure/assets/manifest-core.json": {
+        "oldSHA256": "83e8542e6cf7924317368d06cacce6f5a997f039aaa10c7881602281def743ee",
+        "pinned5990SHA256": "7cde2d7d996ab1b14c32c9561ba866acfb937ae857bead798468271b8bf313f7"
+      },
+      "scripts/figure/assets/manifest-exam.json": {
+        "oldSHA256": "ce03b8835f449a63a4f6495867bba6fd6cac00000c6eb8bdb679be1be76fdd4d",
+        "pinned5990SHA256": "055f58d6c4365342f117989a3e391b3477d4c99e690b08626758c14b94af865d"
+      },
+      "scripts/figure/assets/manifest-objects.json": {
+        "oldSHA256": "41c10918a9bfc830c5a56dc390d05d6eb039fae8360daa37e336ef904ed79e1a",
+        "pinned5990SHA256": "2a0b26cdcabff96856405b186402e853842e00671db3d7f53ff0e19aa80cdd15"
+      },
+      "scripts/figure/assets/manifest-outdoor.json": {
+        "oldSHA256": "28955ae254820bce054510ec28ef34b8a678c699b62e877e252eba7d8c40a701",
+        "pinned5990SHA256": "bff8589c37fdf6b9da91a16642349b769712a62387e5365704a021c2134ef27b"
+      },
+      "scripts/figure/assets/matchstick.svg": {
+        "oldSHA256": "fcbb86aa5b8315d039d4689e67dedcbd2e122530e445d6ff8645f26c021d60d4",
+        "pinned5990SHA256": "d60e467dd308019f3c298b6a25d974e3b5c04e74e97c1d1f30d05a6856d15e5b"
+      },
+      "scripts/figure/assets/mountain.svg": {
+        "oldSHA256": "76e68c344a515d5aff56acd8e9d10284825e7862a2c56497c97a6b97860bd158",
+        "pinned5990SHA256": "76f82d50d4044ec75356b35fa7c1dcfe2927e7b4497c496509ee2c7a32f2bab2"
+      },
+      "scripts/figure/assets/person-standing.svg": {
+        "oldSHA256": "2f17aafd45b83b0b953518ccde62c4bf6e38c9cb7932941625afc17c721fa3ec",
+        "pinned5990SHA256": "40b6f3c07dd44aedcc52b4a1909999e376772006a4e708cb5266b02fc2c2d5be"
+      },
+      "scripts/figure/assets/person-walking.svg": {
+        "oldSHA256": "a405bb950850056ee6525d9fa949461de6694526b7a1ef3bfea928dfd761fd29",
+        "pinned5990SHA256": "56e0316f36ba684405ef63b0842d5404676608d5f17d5f255ace5986bbba0eed"
+      },
+      "scripts/figure/assets/picture-assets.json": {
+        "oldSHA256": "cceff51a0e9f469ea59f763721227aca20a69a05a71e117c11576833f5e0373d",
+        "pinned5990SHA256": "e4a52f597cc1726b18285859d13e3923be8a392893dfe5cd58c0f5a2b8fece1e"
+      },
+      "scripts/figure/assets/picture-frame.svg": {
+        "oldSHA256": "79a34f5ea6eba9b77a777e03aa3d825df011d283a09b8bbbbce03162c6a1b1d6",
+        "pinned5990SHA256": "90d4457d6f9c76da3a5048d5aa0ffb925d706dc4ccebf92d07d16737fba44d4f"
+      },
+      "scripts/figure/assets/pizza.svg": {
+        "oldSHA256": "a2c848e49827f0d665b95f7e6c92c7a94d31402959a65d77c220540be1219c61",
+        "pinned5990SHA256": "0b8d092de015b9ca1c8e9e547db1d4b94be65183ea174bef6eedd5fca633f737"
+      },
+      "scripts/figure/assets/slide.svg": {
+        "oldSHA256": "2fdebf7edb429a9d86409af50702586dc36dcb5e98eb77ad85db63eaf0b08dbc",
+        "pinned5990SHA256": "9d736b3658eea2e46cfe0e200d4e3489bba80586d2c5a83927f596e6d49f1e89"
+      },
+      "scripts/figure/assets/streetlamp.svg": {
+        "oldSHA256": "0415638b5e2afcc5e52c8ad3380ff06a6bbfaf112660492c760b466e8ce5f0fa",
+        "pinned5990SHA256": "4755b0ec1c9f0780efc0d563cd6d7d3b9149861f081c8a8472e14907bd64f8ed"
+      },
+      "scripts/figure/assets/sun.svg": {
+        "oldSHA256": "31d7e4c53bd0579899c1d1577bea39ebcd2801a08830003ae774f79ed0fb2e18",
+        "pinned5990SHA256": "8e120e96f6ff6429d23eef38b1e6025c6d5ff0a25dc8fd482c7563992e9b766e"
+      },
+      "scripts/figure/assets/thermometer.svg": {
+        "oldSHA256": "a164faba45e10471934590aa1b7d003760042e50f57a87fdcb35c2de391fcaa1",
+        "pinned5990SHA256": "708a87d603dc7e652147bce4ba3dc67ca277e396bfc9ebc5378aab57579d15a9"
+      },
+      "scripts/figure/assets/tower.svg": {
+        "oldSHA256": "00642509e92de1ddcba6dcc1bad581f0bf87446f1ab751238b19dab4c9ab24f5",
+        "pinned5990SHA256": "07ffe5dbdf1097a943d71bd8568034a5f459b5de4b7b1c5e091ff6492a87d998"
+      },
+      "scripts/figure/assets/train-side.svg": {
+        "oldSHA256": "835817abb65bca6d75041d6e97ac5a758f2a19ce2e80fd9afeafff09adf002fd",
+        "pinned5990SHA256": "c69883506005ea9d83831e8a848545434e0848e2e096de4eaaaf6c61a60aa057"
+      },
+      "scripts/figure/assets/tree.svg": {
+        "oldSHA256": "a8490cddf1d5a58e124d48e4ec8cbc2d22b6ed0e3934b98133fccbb9c0689386",
+        "pinned5990SHA256": "f9a4c530b3e5e980960bb824225cc0774630174b561111c24f7831b57eac3be6"
+      },
+      "scripts/figure/assets/tunnel.svg": {
+        "oldSHA256": "12a1f6cb5525004d68d3791500ad6e109f8b50ee437e06ba40cd075e1a60db66",
+        "pinned5990SHA256": "544a48f5d9c7a5a3f4b51985a6fb7e4cf389441d87a024e3a994c8a8f786ac9c"
+      },
+      "scripts/figure/assets/utility-pole.svg": {
+        "oldSHA256": "0ab5ee91a99a68d6b6f04cda682ffa37112dd3b419176f944543fad2de19cc4d",
+        "pinned5990SHA256": "e69a0fda3324751b4320f9932c660190a2a7e2b5f5e4a50b5ceddd70504ee8ae"
+      },
+      "scripts/figure/assets/water-tank.svg": {
+        "oldSHA256": "912f25a2d17d9439cdb0e7c1e13ee5ba92bb67f74bca397436837b9ac463d0b7",
+        "pinned5990SHA256": "f6be1d8e766c2c22b030294ae036aace20cc0600c1a5f3f43dc2cc4ecf2123a5"
+      },
+      "scripts/figure/build_catalog.py": {
+        "oldSHA256": null,
+        "pinned5990SHA256": "fe342960195f59a9149c917dab736eff3464ebbb183cb63b812991b29a60d2f5"
+      },
+      "scripts/figure/engine-catalog.json": {
+        "oldSHA256": "ccf666b112a5c96be6dac56bbae3d0ac75dcc54944b1f1aa4150821105c33ecd",
+        "pinned5990SHA256": "2fa780e89f1c1141bbffa51f5b6c4942bfe503362ae3c55f563313f50f65ed4e"
+      },
+      "scripts/figure/scene_assets.py": {
+        "oldSHA256": "5f33519982d04cee2d487150f4a1b074eec7daaa91bd54c791fbd2da9b15317a",
+        "pinned5990SHA256": "07f8ea778733efe43b3a6c1b96b48cc2f60355949a3563ef55c64ad2e53f2ae6"
+      }
+    },
+    "exportBindings": {
+      "README.md": {
+        "savedSHA": "96fdd10f49b7460c59389b50c0bee0fc8d000ef237299aa62aad2d4c0caaedeb",
+        "pinned5990SHA": "06f2e87e42ca8f7702ea881d3b50e83883255dd92a7f11dd57c30282863f72c0",
+        "savedEqualsPinned": false,
+        "liveSHA": "96fdd10f49b7460c59389b50c0bee0fc8d000ef237299aa62aad2d4c0caaedeb",
+        "liveEqualsPinned": false
+      },
+      "patches/06-engine-all.patch": {
+        "savedSHA": "80ea37d0792aa1879abc443781eaaba5e673bf838eb13f99ce1a90e733311644",
+        "pinned5990SHA": "80ea37d0792aa1879abc443781eaaba5e673bf838eb13f99ce1a90e733311644",
+        "savedEqualsPinned": true,
+        "liveSHA": "80ea37d0792aa1879abc443781eaaba5e673bf838eb13f99ce1a90e733311644",
+        "liveEqualsPinned": true
+      },
+      "engine-check/check_engine.py": {
+        "savedSHA": "e2681422c9fdde283be626b54531ee89f2bdef2a6ae937e0d1ac4abefb4faa9e",
+        "pinned5990SHA": "e2681422c9fdde283be626b54531ee89f2bdef2a6ae937e0d1ac4abefb4faa9e",
+        "savedEqualsPinned": true,
+        "liveSHA": "9e1f6662af93ec3658e21457f4d5a36682c415f465ac01fbf887b1204996ff08",
+        "liveEqualsPinned": false
+      }
+    },
+    "sixOriginalExpectedMetadata": [
+      {
+        "name": "assets.json",
+        "savedBytes": 4929,
+        "commitBytes": 21670,
+        "savedRawSHA": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+        "commitRawSHA": "94b4049dfa4803bed3b6cfbebf1c0da8f32895fa3f17e51e9eb11a3dd8dc02e1",
+        "rawSame": false,
+        "LFNormalizedSame": false
+      },
+      {
+        "name": "grid.json",
+        "savedBytes": 1617,
+        "commitBytes": 1617,
+        "savedRawSHA": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+        "commitRawSHA": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+        "rawSame": true,
+        "LFNormalizedSame": true
+      },
+      {
+        "name": "perspective.json",
+        "savedBytes": 1612,
+        "commitBytes": 1612,
+        "savedRawSHA": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+        "commitRawSHA": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+        "rawSame": true,
+        "LFNormalizedSame": true
+      },
+      {
+        "name": "right-refused.json",
+        "savedBytes": 220,
+        "commitBytes": 220,
+        "savedRawSHA": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+        "commitRawSHA": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+        "rawSame": true,
+        "LFNormalizedSame": true
+      },
+      {
+        "name": "solid-object-refused.json",
+        "savedBytes": 223,
+        "commitBytes": 223,
+        "savedRawSHA": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+        "commitRawSHA": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+        "rawSame": true,
+        "LFNormalizedSame": true
+      },
+      {
+        "name": "units.json",
+        "savedBytes": 844,
+        "commitBytes": 844,
+        "savedRawSHA": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+        "commitRawSHA": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+        "rawSame": true,
+        "LFNormalizedSame": true
+      }
+    ],
+    "allowedPictureSlugs": [
+      "house",
+      "building",
+      "lighthouse",
+      "tower",
+      "utility-pole",
+      "streetlamp",
+      "flagpole",
+      "tree",
+      "mountain",
+      "tunnel",
+      "bridge",
+      "person-standing",
+      "person-walking",
+      "bicycle",
+      "car-side",
+      "train-side",
+      "boat",
+      "airplane",
+      "hot-air-balloon",
+      "kite",
+      "sun",
+      "ladder",
+      "slide",
+      "building-3d",
+      "house-3d"
+    ],
+    "newSlugs": [
+      "building-3d",
+      "house-3d"
+    ]
+  },
+  "harnessHistory": "Initial dict-vs-string invocation failed; second invocation returned envelopes but counted completion, not svg success. Both evidence files preserved. Final necessary envelope-aware replay validates same inputs, no source changes or expectation relaxation. Resume HEAD guard stopped before runtime when SourceD advanced; final pinned5990 blobs audited separately from liveHEAD. Counts110 represent final distinct inputs, not sum of attempts.",
+  "hashes": {
+    "rootBeforeAfterUnchanged": true,
+    "rootAlsoMatchesInitialPreRestart": true,
+    "sourceWorkingDuringFinalUnchanged": true,
+    "exactCommitted51Bound": true,
+    "RootImportClosure": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\figure_assets.py": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\scene_assets.py": "2e2af817f5edc808f676c4d9ad9e289a0d063db808a481090a62ca10122c9f95",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "590a4ad6c208795038b1bc7cafd4f32227272c549d50dc0d2d13e026062899b5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "0d07cf01760c904daeab8c87d8df859d006f53b83116d30ed9e08c9a8a90ee97",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "17bdf31e4527da32d62a911854fc83a62615335f83801f59f6a7d60983d4dc7b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "88e8583f7567bd866a265ecea3eb6db832f9d46ffc2460d006c1479969130a8b"
+    }
+  },
+  "preparedNotExecuted": [
+    "Dual legacy/current registry and all80-body DOM recognition/frame tests",
+    "Candidate edge_anchor and from-to/shrink branches",
+    "Live/new checker07/08 versioned integration",
+    "Units regression: existing Root implementation unchanged, not replayed in this asset-only task",
+    "No semantic image/pixel fidelity/licence validation"
+  ],
+  "approvals": {
+    "sourceIdentity": false,
+    "licenceRights": false,
+    "grade": false,
+    "math": false,
+    "nativeUI": false,
+    "operationalRelease": false
+  },
+  "staging": "Own scripts/reports/hash receipts only. QA snapshot contains inert committed source SVG data and remains local ignored, not staged. No originalPNG manipulation; Root/SourceD production writes0.",
+  "artifactSHA256": {
+    "own-after.json": "28dfff875ef08025d8d547f606992e940317df31ab0d9ef951dfd15f302530c0",
+    "own-audit-final.py": "d4d546c044ec43cc039f14273b1725f4af33e15f1f60af59a994cfdad8e72e77",
+    "own-audit.py": "2b9631ad52519e055b264847ca0a2c7c036edb5164d96167bd24d7a1ee2ef02e",
+    "own-before.json": "ad8f9c5e6ab57de92829298dceb9cd834937000117faf12de68d2dbba45c3463",
+    "own-final-after.json": "28dfff875ef08025d8d547f606992e940317df31ab0d9ef951dfd15f302530c0",
+    "own-final-before.json": "b79ee0e0e1e287c22a22ddd7a8dc5d30bf0d26be924c208c6d035b666554e89f",
+    "own-final-results.json": "3a20df7afb37b450a8b482eb2644028a57f831211048039ac5d4e05c193476c7",
+    "own-finalize.py": "e37ad3feda5f03cb09a1910d2f404baa117c055a82d6ef40f742e626b4a47f7d",
+    "own-harness-diagnostics.txt": "7cd96ba153bf149ea122e8338598e5dbd29bf5319d2ee178c4de52cb988feaa7",
+    "own-initial-harness-results.json": "c8a5d9ee93435e0160770409a5357e6b97fc24db4c6a7c40dbb5ca0c9486fe30",
+    "own-probe.txt": "978204e7fd29153b56be32f51fd75a7c92f59ad6d3b385c5ae6cb70762fecef0",
+    "own-results.json": "66f4b82aa8a097d2d6e1329ab266ab607e3bf0f5f3a80d31a5310f01b19269c3",
+    "own-resume-r1.txt": "943ebc81ae5561a6aca4854f0ddb0b33f25bf911d68e64d2a7f488e1f6373822"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "solverId": "independent-retained-helper-gachang-group5-r2",
+  "exposure": {
+    "currentAuthorAnswersOrSolutionsExposed": false,
+    "declarationBeforeStudentRead": true,
+    "priorExposure": "以前に原本9コンポーネント、Gachang原本最初のページ1〜6（以前のraw封印後）、関連手動問題・公開/内部エンジン・メタデータ/code監査を閲覧。今回q09/q10の現行author答/解説・source/package/privateは未閲覧。全コーパス未見とは主張しない。",
+    "group4PrivateStillUnexposed": true,
+    "noOriginalAnswerOracle": true
+  },
+  "method": "Exact Fraction/integer polynomial identities and factored zero-product branches only; no Vieta/discriminant/generalquadraticsystem method.",
+  "q09": {
+    "choices": [
+      {
+        "areaDifferenceCm2": 17,
+        "impliedSidesCm": [
+          "8",
+          "9"
+        ],
+        "areaSumCm2": "145",
+        "valid": false
+      },
+      {
+        "areaDifferenceCm2": 19,
+        "impliedSidesCm": [
+          "9",
+          "10"
+        ],
+        "areaSumCm2": "181",
+        "valid": false
+      },
+      {
+        "areaDifferenceCm2": 21,
+        "impliedSidesCm": [
+          "10",
+          "11"
+        ],
+        "areaSumCm2": "221",
+        "valid": true
+      },
+      {
+        "areaDifferenceCm2": 23,
+        "impliedSidesCm": [
+          "11",
+          "12"
+        ],
+        "areaSumCm2": "265",
+        "valid": false
+      },
+      {
+        "areaDifferenceCm2": 25,
+        "impliedSidesCm": [
+          "12",
+          "13"
+        ],
+        "areaSumCm2": "313",
+        "valid": false
+      }
+    ],
+    "allAlgebraicSidesA": [
+      "-11",
+      "10"
+    ],
+    "uniquePositiveSidesCm": [
+      10,
+      11
+    ],
+    "areaDifferenceCm2": 21
+  },
+  "q10": {
+    "Aroots": [
+      "2/3",
+      "4"
+    ],
+    "uniqueIntegerX": 4,
+    "kRoots": [
+      6,
+      -2
+    ],
+    "uniqueNegativeK": -2,
+    "choices": [
+      {
+        "k": -6,
+        "negative": true,
+        "B_at_unique_integer_x4": -48,
+        "valid": false
+      },
+      {
+        "k": -4,
+        "negative": true,
+        "B_at_unique_integer_x4": -20,
+        "valid": false
+      },
+      {
+        "k": -2,
+        "negative": true,
+        "B_at_unique_integer_x4": 0,
+        "valid": true
+      },
+      {
+        "k": 2,
+        "negative": false,
+        "B_at_unique_integer_x4": 16,
+        "valid": false
+      },
+      {
+        "k": 6,
+        "negative": false,
+        "B_at_unique_integer_x4": 0,
+        "valid": false
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "q09-factor-identity/-11",
+      "pass": true
+    },
+    {
+      "name": "q09-factor-identity/-3",
+      "pass": true
+    },
+    {
+      "name": "q09-factor-identity/0",
+      "pass": true
+    },
+    {
+      "name": "q09-factor-identity/1",
+      "pass": true
+    },
+    {
+      "name": "q09-factor-identity/10",
+      "pass": true
+    },
+    {
+      "name": "q09-factor-identity/11",
+      "pass": true
+    },
+    {
+      "name": "q09-unique-positive-pair",
+      "pass": true
+    },
+    {
+      "name": "q09-existence-perimeter-area",
+      "pass": true
+    },
+    {
+      "name": "q09-all-five-unique",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/-2",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/0",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/2/3",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/1",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/4",
+      "pass": true
+    },
+    {
+      "name": "q10-A-factor-identity/5",
+      "pass": true
+    },
+    {
+      "name": "q10-A-integer-root-unique",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/-6",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/-4",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/-2",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/2",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/6",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/0",
+      "pass": true
+    },
+    {
+      "name": "q10-k-factor-identity/1",
+      "pass": true
+    },
+    {
+      "name": "q10-all-five-unique",
+      "pass": true
+    },
+    {
+      "name": "q10-existence-both-equations",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0
+  },
+  "visual": {
+    "actualPNGsViewed": [
+      "blind/student-preview/q09.png",
+      "blind/student-preview/q10.png"
+    ],
+    "svgLabels": "A,B squares read; no coordinates/pixels used for lengths",
+    "pathDiagnostics": "Sibling preview lookup q9.png and q09.png failed; authorized blind-only listing located actual blind/student-preview. No author/source reads.",
+    "noPhysicalNativePrintApproval": true
+  },
+  "gradeLimits": "2015M3 after polynomial factorization/quadratic solving and <=M2 area/perimeter/signed rational prerequisites. No whole-template/student learning/2022/rights/family/native/release approval.",
+  "inputs": {
+    "blind\\SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "blind\\student-problems.json": "2e9c22f5043e0eb261bb97f1d52fb148abe8a81317ce223893334d3823522bcf",
+    "blind\\blind-manifest.json": "caca1a584934431ed001a23928822458ba46876848044686e69bb862cbdef938",
+    "blind\\figures\\q09-1.svg": "161213e31eb526fe6bb94ae767e43e71703ccbce00846b8c606fc5de4651bfa1",
+    "blind\\student-preview\\q09.png": "a64f6c0af83e6fb4cf91fdbe960fbcba1bedc634dd3c81431cfd6025c5495059",
+    "blind\\student-preview\\q10.png": "526c6c5826945626ade725d0e9ebc449c1b53e835ffde17071a447490ce9e739"
+  }
+}
