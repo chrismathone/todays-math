@@ -144,35 +144,6 @@ describe("review variant reader floor", () => {
     },
   );
 
-  it("does not emit identities when the reader alone starts a new memory session", () => {
-    const state = createExplorerState("reader-only", 5);
-    state.profile.definitions = {
-      runs: 0,
-      history: [],
-      cards: Object.fromEntries(
-        ids.map((id) => [
-          id,
-          {
-            level: 1,
-            due: date,
-            lastDate: "2026-10-21",
-            attemptedAt: "2026-10-21",
-            missed: 0,
-          },
-        ]),
-      ),
-    };
-    const started = applyExplorerAction(
-      state,
-      { type: "start", route: "memory" },
-      date,
-      randomUUID(),
-    ).state;
-    expect(started.profile.definitions!.session).not.toHaveProperty(
-      "reviewVariant",
-    );
-  });
-
   it.each(ids)(
     "independently checks all choices and truth for 640 seeds: %s",
     (id) => {

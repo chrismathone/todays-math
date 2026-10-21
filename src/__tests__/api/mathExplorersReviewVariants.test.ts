@@ -166,6 +166,51 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 describe("actual explorer route with in-memory storage: variant reader", () => {
+  it("starts a versioned new memory session through the route and resumes an old one without marking it", async () => {
+    const explorer = createExplorerState(f.studentId, 5);
+    explorer.profile.definitions = {
+      runs: 12,
+      courseGrade: 5,
+      history: [],
+      cards: Object.fromEntries(
+        ids.map((id) => [
+          id,
+          {
+            level: 1,
+            due: date,
+            lastDate: "2026-10-21",
+            attemptedAt: "2026-10-21",
+            missed: 0,
+          },
+        ]),
+      ),
+    };
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 1,
+      payload: { ...emptySrsState(), explorers: explorer },
+    });
+    const started = await act(await read(), { type: "start", route: "memory" });
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(
+      saved.explorers!.profile.definitions!.session!.reviewVariant,
+    ).toEqual({ version: 1, seed: 13, cardIds: [...ids] });
+    expect((await read()).currentActivity).toEqual(started.currentActivity);
+    delete saved.explorers!.profile.definitions!.session!.reviewVariant;
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 8,
+      payload: saved,
+    });
+    const before = await read();
+    const resumed = await act(before, { type: "start", route: "memory" });
+    expect(resumed.currentActivity).toEqual(before.currentActivity);
+    expect(
+      parseSrsState(f.rows.get(f.studentId)!.payload).explorers!.profile
+        .definitions!.session,
+    ).not.toHaveProperty("reviewVariant");
+  });
+
   it.each(ids)(
     "aligns GET, choices, POST grading, retry, solution reload and receipts: %s",
     async (id) => {

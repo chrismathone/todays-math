@@ -1,4 +1,7 @@
-import type { ExplorerReviewVariant } from "@/contracts/mathExplorers.contract";
+import {
+  EXPLORER_REVIEW_VARIANT_CARD_IDS,
+  type ExplorerReviewVariant,
+} from "@/contracts/mathExplorers.contract";
 import { reviewVariantCard } from "./reviewVariants";
 import type {
   DefinitionAction as Action,
@@ -763,6 +766,20 @@ export function applyDefinitionAction(
         )
         .map((c) => c.id),
     };
+    // Reader floor must be live before this writer. Only a new memory session
+    // varies cards already studied; fresh filler cards keep their authored first view.
+    const variantCardIds = EXPLORER_REVIEW_VARIANT_CARD_IDS.filter(
+      (id) =>
+        route === "memory" &&
+        !!record.cards[id] &&
+        cards.some((card) => card.id === id),
+    );
+    if (variantCardIds.length)
+      record.session.reviewVariant = {
+        version: 1,
+        seed: record.runs,
+        cardIds: variantCardIds,
+      };
     return { message: "개념 5개, 15문항을 시작해요." };
   }
   const s = record.session;
