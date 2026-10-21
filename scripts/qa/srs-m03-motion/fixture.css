@@ -1,0 +1,25 @@
+@font-face {
+  font-family: M03Pretendard;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+}
+:root {
+  --font-pretendard: M03Pretendard;
+}
+
+.fixtureControls {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  background: white;
+  padding: 4px;
+}
+.fixtureControls button {
+  cursor: pointer;
+  border: 1px solid;
+  padding: 4px 8px;
+}
+.fixtureControls button:hover {
+  background: #eee;
+}
