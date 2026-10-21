@@ -75,7 +75,11 @@ function StudentEvidence({
               [401, 403, 404, 422].includes(caught.status))
           )
             setData(null);
-          setError(integrationMessage(caught));
+          setError(
+            caught instanceof TextbookIntegrationError && caught.status === 404
+              ? "교재 활동을 확인할 수 없습니다. 학생의 재원 상태와 교재 담당 권한을 확인해 주세요."
+              : integrationMessage(caught),
+          );
         }
       });
     return () => controller.abort();

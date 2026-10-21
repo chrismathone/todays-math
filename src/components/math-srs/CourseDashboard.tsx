@@ -1,5 +1,7 @@
 "use client";
 
+import ExplorerTeacherActivity from "./ExplorerTeacherActivity";
+
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
@@ -1460,51 +1462,60 @@ function StudentDetail({
             ) : null}
 
             {view === "activity" ? (
-              <section aria-label="일별 학습 활동">
-                <h3>일별 학습 활동</h3>
-                <p className={s.muted}>
-                  서버가 제공한 {detail.activity.length}일의 기록입니다. 독립
-                  정답은 힌트 없이 맞힌 풀이이며, 힌트 사용은 정오와 관계없이
-                  집계됩니다.
-                </p>
-                {detail.activity.length ? (
-                  <div
-                    className={s.tableScroll}
-                    tabIndex={0}
-                    role="region"
-                    aria-label="일별 활동 표"
-                  >
-                    <table className={s.reportTable}>
-                      <thead>
-                        <tr>
-                          <th scope="col">날짜 (한국 시간)</th>
-                          <th scope="col">풀이</th>
-                          <th scope="col">정답</th>
-                          <th scope="col">독립 정답</th>
-                          <th scope="col">힌트 사용</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {[...detail.activity]
-                          .sort((a, b) => b.date.localeCompare(a.date))
-                          .map((day) => (
-                            <tr key={day.date}>
-                              <th scope="row">{day.date}</th>
-                              <td>{day.answered}</td>
-                              <td>{day.correct}</td>
-                              <td>{day.unaidedCorrect}</td>
-                              <td>{day.hinted}</td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  <p className={s.emptyReport}>
-                    표시할 일별 활동 기록이 없습니다.
+              <>
+                <section aria-label="일별 학습 활동">
+                  <h3>일별 학습 활동</h3>
+                  <p className={s.muted}>
+                    서버가 제공한 {detail.activity.length}일의 기록입니다. 독립
+                    정답은 힌트 없이 맞힌 풀이이며, 힌트 사용은 정오와 관계없이
+                    집계됩니다.
                   </p>
-                )}
-              </section>
+                  {detail.activity.length ? (
+                    <div
+                      className={s.tableScroll}
+                      tabIndex={0}
+                      role="region"
+                      aria-label="일별 활동 표"
+                    >
+                      <table className={s.reportTable}>
+                        <thead>
+                          <tr>
+                            <th scope="col">날짜 (한국 시간)</th>
+                            <th scope="col">풀이</th>
+                            <th scope="col">정답</th>
+                            <th scope="col">독립 정답</th>
+                            <th scope="col">힌트 사용</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[...detail.activity]
+                            .sort((a, b) => b.date.localeCompare(a.date))
+                            .map((day) => (
+                              <tr key={day.date}>
+                                <th scope="row">{day.date}</th>
+                                <td>{day.answered}</td>
+                                <td>{day.correct}</td>
+                                <td>{day.unaidedCorrect}</td>
+                                <td>{day.hinted}</td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <p className={s.emptyReport}>
+                      표시할 일별 활동 기록이 없습니다.
+                    </p>
+                  )}
+                </section>
+                <ExplorerTeacherActivity
+                  key={enrollmentKey(student)}
+                  studentId={student.id}
+                  classId={student.classId}
+                  branchId={branchId}
+                  refreshKey={reload}
+                />
+              </>
             ) : null}
 
             {view === "attempts" ? (

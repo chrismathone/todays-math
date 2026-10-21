@@ -105,6 +105,18 @@ export const getCourseStudentDetail = (
     async (value) =>
       (await contract()).courseStudentDetailResponseSchema.parse(value).data,
   );
+export const getExplorerTeacherDetail = (
+  studentId: string,
+  classId?: string,
+  branchId?: string,
+) =>
+  request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/explorers${teacherQuery(classId, branchId)}`,
+    async (value) =>
+      (
+        await import("@/contracts/mathExplorersTeacher.contract")
+      ).explorerTeacherStudentResponseSchema.parse(value).data,
+  );
 export const saveCourseStudentPlan = (
   studentId: string,
   input: CoursePlanInput,

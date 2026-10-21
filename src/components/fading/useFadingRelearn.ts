@@ -12,6 +12,16 @@ import {
   type FadingRelearnSource,
 } from "@/lib/fading/relearnSource";
 
+// A close is local UI state, not a snooze, answer, or server schedule change.
+const checkIdentity = (item: FadingRelearnItem) =>
+  JSON.stringify([
+    item.key,
+    item.token,
+    item.stage,
+    item.state,
+    item.pending?.attemptId,
+  ]);
+
 /**
  * The deadline is relative to server now; changing the device clock cannot make a check ready.
  * Evidence of a main action is registered by the server inside that action's save (D3); `wrap` only re-reads the queue
@@ -34,6 +44,7 @@ export function useFadingRelearn(
   const stamp = useRef(0);
   const latest = useRef<FadingRelearnQueue | null>(null);
   const sourceOwner = useRef(source);
+  const dismissed = useRef(new Set<string>());
   const access = useRef(onAccessFailure);
   useEffect(() => {
     access.current = onAccessFailure;
@@ -141,6 +152,7 @@ export function useFadingRelearn(
     reading.current = null;
     sending.current = null;
     outbox.current = [];
+    dismissed.current.clear();
     void refresh();
     const focus = () => {
       void flush().then(refresh);
@@ -169,18 +181,33 @@ export function useFadingRelearn(
     return () => window.clearTimeout(timer);
   }, [queue, refresh]);
 
-  const boundary = useCallback(() => {
-    if (!source || active) return;
-    const next = latest.current?.items.find(
-      (item) => item.state === "judging" || item.state === "ready",
-    );
-    const content = next && latest.current?.contents[next.conceptId];
-    if (next && content) setActive({ ...next, content });
-    else void flush().then(refresh); // Read at a safe boundary; a later reply never interrupts typing.
-  }, [source, active, flush, refresh]);
+  const open = useCallback(
+    (explicit: boolean) => {
+      if (!source || active) return;
+      const next = latest.current?.items.find(
+        (item) =>
+          (item.state === "judging" || item.state === "ready") &&
+          (explicit || !dismissed.current.has(checkIdentity(item))),
+      );
+      const content = next && latest.current?.contents[next.conceptId];
+      if (next && content) setActive({ ...next, content });
+      else void flush().then(refresh); // Read at a safe boundary; a later reply never interrupts typing.
+    },
+    [source, active, flush, refresh],
+  );
+  const boundary = useCallback(() => open(false), [open]);
+  const resume = useCallback(() => open(true), [open]);
   const dismiss = useCallback(() => {
+    if (active) {
+      dismissed.current.add(checkIdentity(active));
+      // A grade may have moved this open check to judging without replacing its modal.
+      const current = latest.current?.items.find(
+        (item) => item.key === active.key && item.token === active.token,
+      );
+      if (current) dismissed.current.add(checkIdentity(current));
+    }
     setActive(null);
-  }, []);
+  }, [active]);
   const conflict = useCallback(async () => {
     setActive(null);
     await refresh();
@@ -211,6 +238,7 @@ export function useFadingRelearn(
       refresh,
       record,
       boundary,
+      resume,
       dismiss,
       conflict,
       wrap,
@@ -225,6 +253,7 @@ export function useFadingRelearn(
       refresh,
       record,
       boundary,
+      resume,
       dismiss,
       conflict,
       wrap,

@@ -5,6 +5,7 @@ import type {
   ExplorerFeedback,
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
+import { studentDateLabel } from "@/components/fading/labels";
 import { gradeLabel, type ExplorerCard } from "./ExplorerHome";
 import { ConceptKindTag, conceptHeadingLabel } from "./ExplorerConceptHead";
 import { ExplorerMath } from "./ExplorerMath";
@@ -96,7 +97,9 @@ export default function ExplorerCardDialog({
       <div className={s.dialogBody}>
         <p className={s.memoryBadge}>
           {card.progress?.level
-            ? `기억 ${card.progress.level}단계 · 다음 복습 ${card.progress.due.slice(5).replace("-", "/")}`
+            ? state.dueCardIds.includes(card.id)
+              ? "다시 기억할 때"
+              : `${studentDateLabel(card.progress.due, state.today)} 복습`
             : "아직 수집 전"}
         </p>
         {solution?.cardId === card.id ? (
@@ -159,7 +162,7 @@ export default function ExplorerCardDialog({
         ) : null}
         {card.prerequisiteIds.length ? (
           <section className={s.prerequisites}>
-            <h3>연결된 앞개념</h3>
+            <h3>먼저 알아둘 개념</h3>
             <div>
               {card.prerequisiteIds.map((id) => {
                 const prerequisite = cards.find((item) => item.id === id);
