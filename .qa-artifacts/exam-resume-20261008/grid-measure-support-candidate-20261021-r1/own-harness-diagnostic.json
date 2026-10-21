@@ -1,0 +1,6 @@
+{
+  "firstFinalize": "StopIteration locating package.json with forward-slash suffix on Windows Path strings",
+  "classification": "own reporting harness failure, not candidate or production execution",
+  "correction": "Path(s).name comparison; source bytes and fixtures unchanged",
+  "candidateRuntimeExecuted": false
+}
