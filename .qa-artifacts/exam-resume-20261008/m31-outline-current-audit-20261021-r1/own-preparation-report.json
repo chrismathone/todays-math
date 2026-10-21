@@ -1,0 +1,50 @@
+{
+  "status": "PREPARED_AWAIT_PARENT_GO",
+  "actualNodeExecuted": false,
+  "actualSeedOutputs": 0,
+  "RAMProbes": 0,
+  "rendererExecuted": false,
+  "staticChecks": [
+    {
+      "name": "currentNormalizedSourceEqualsReviewedCandidate",
+      "pass": true
+    },
+    {
+      "name": "reviewedCandidateSHAUnchanged",
+      "pass": true
+    },
+    {
+      "name": "04NormalizedBodyMatchesSealedCandidate",
+      "pass": true
+    },
+    {
+      "name": "05NormalizedWholeDefinitionMatchesCandidate",
+      "pass": true
+    },
+    {
+      "name": "05NormalizedAllDiagonalHelperMatchesCandidate",
+      "pass": true
+    },
+    {
+      "name": "requiredCurrentAdapterVersion",
+      "pass": true
+    }
+  ],
+  "inventoryFiles": 17,
+  "currentAdapterVersion": "20261021-outline-before-student-diagonals-r1",
+  "plannedCohorts": {
+    "actualAPI100": "20261020+s*7919,s0..99,variant0,type1-2|다각형|04only",
+    "forced16": "ActualM1_GEO2handler for exacttype, forced2drawRNG for n5..12/mode0..1; not actualAPIseed outputs"
+  },
+  "checksPrepared": "Graphboundaryadjacency,closedcycle,allverticeslabelled,nointernalfan/extraanswers,mode1null,answercount개vsunitlessinverse;ownPython usesprintedstem/topology,notfactsoracle.",
+  "staticComparison": "Currentnormalizedm1Geo2matchessealedcandidate;04bodymatchessealednew04hash,05helper+whole05definitionunchangedafterCRLFnormalization. ByteEOLcaveatremainspriorreport.",
+  "limits": "No runtime/typecheck/render/readability/physicalnativeclaim; parenttestsnotownruns. No grade/rights/sourceidentity/native/publicreleaseapproval.",
+  "sourceOrBankDBEdits": 0,
+  "artifacts": {
+    "own-before-execution.json": "ba623578977e12cca054880448d204ed0d315fe9c7d52820a7525d0bfe238de5",
+    "own-runner.ts": "dc535d8411c8b20ebc53ac43b94439a25a9e7ecc2ce70328580babd87200aeee",
+    "own-check-outputs.py": "fde92b957640694b376444331eda6eee8f1a0f356dfbaee7aad3fb5dc8d361dd",
+    "own-run-after-GO.ps1": "e02d1ee029c4cd5d731d2282faa5b6bfdd403b27c2ac60aca3073a4b19ea9dda",
+    "own-preflight.py": "531cc8bc27ff05687c1a17d715d13a051055c83f8539d0f15dccf0140209f04d"
+  }
+}

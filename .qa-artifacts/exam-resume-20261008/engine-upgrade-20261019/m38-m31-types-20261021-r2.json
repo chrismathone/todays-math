@@ -1,0 +1,54 @@
+{
+  "utc": "2026-10-21T05:08:00.926Z",
+  "typescript": "5.9.3",
+  "rootFiles": [
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "sha256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "sha256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "sha256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5",
+      "diagnostics": []
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "sha256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd",
+      "diagnostics": []
+    },
+    {
+      "path": "src/__tests__/unit/middleM2FeasibleConditions.test.ts",
+      "sha256": "d141a86eb43aff6158a2440e704f3f734c859d2a1c8a08762008032068ca222d",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/middle/m1Geo2.ts",
+      "sha256": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+      "diagnostics": []
+    },
+    {
+      "path": "src/__tests__/unit/middleM1PolygonQuestionFigure.test.ts",
+      "sha256": "125f5ae37eaa44db782eb81bb590aacf10866720237c85d9cc0ddfa2f74af6ac",
+      "diagnostics": []
+    }
+  ],
+  "rootErrors": 0,
+  "globalDiagnostics": [],
+  "projectConfigurationDiagnostics": [],
+  "actualProjectCompilerOptionsAndImports": true,
+  "otherImportedBodiesNotCertified": true,
+  "wholeProjectTypecheckClaim": false,
+  "compilerOrTsBuildInfoWrites": 0,
+  "dbWrites": 0
+}

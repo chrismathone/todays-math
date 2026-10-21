@@ -1,0 +1,7 @@
+﻿import fs from 'node:fs';import path from 'node:path';import v8 from 'node:v8';
+import {generateMiddleProblem} from 'C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/generate.ts';
+import {M1_GEO2} from 'C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m1Geo2.ts';
+const P=path.dirname(process.argv[1]);const key='1-2|다각형|04';const rows:any[]=[];let apiCalls=0,forcedCalls=0;
+for(let s=0;s<100;s++){const seed=20261020+s*7919;apiCalls++;rows.push({cohort:'actualAPI100',key,seed,variant:0,problem:generateMiddleProblem(key,seed,0)})}
+const entry=M1_GEO2.find(e=>e.key===key);if(!entry)throw Error('exacttype missing');for(let n=5;n<=12;n++)for(let mode=0;mode<2;mode++){let draws=0;const rng=()=>{draws++;if(draws===1)return mode===0?0.125:0.875;if(draws===2)return(n-5+0.25)/8;throw Error('unexpected RNG call')};forcedCalls++;rows.push({cohort:'forcedHandler16',key,forcedN:n,forcedMode:mode,problem:entry.handler(rng),rngDrawCount:draws})}
+const out={counts:{actualAPICalls:apiCalls,forcedTypeHandlerCalls:forcedCalls,total:rows.length},rows,heapLimit:v8.getHeapStatistics().heap_size_limit,moduleHashesAtFirstImport:(globalThis as any).__auditModules,DBImports:(globalThis as any).__auditDB,networkCalls:(globalThis as any).__auditNetwork};fs.writeFileSync(path.join(P,'own-actual-outputs.json'),JSON.stringify(out,null,2));console.log(JSON.stringify(out.counts));

@@ -33,6 +33,7 @@ import {
 const LEGACY_VERSION = "9cfbb8683-r1";
 // Changed question targets must invalidate old recipe manifests, with family IDs preserved.
 const LEGACY_FAMILY_VERSIONS: Readonly<Record<string, string>> = {
+  "1-2|다각형|04": "20261021-outline-before-student-diagonals-r1",
   // Mathematical condition/role changes are future revisions, never DB refreshes.
   "2-2|평행선 사이의 선분의 길이의 비|60": "20261021-strict-triangle-perimeter-r1",
   "2-2|평행선 사이의 선분의 길이의 비|17": "20261021-feasible-external-bisector-r1",

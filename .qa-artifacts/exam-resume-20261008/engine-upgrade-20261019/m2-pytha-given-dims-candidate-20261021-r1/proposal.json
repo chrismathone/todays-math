@@ -1,0 +1,17 @@
+{
+  "kind": "m2-pytha-given-only-figure-label-candidate/v1",
+  "status": "unapplied-static-review-and-runtime-pending",
+  "handoff": "M2",
+  "typeKey": "2-2|피타고라스 정리|10",
+  "path": "src/lib/middle/m2Pytha.ts",
+  "originalSha256": "6c0ebb07e1e546e1faacc0554ca67a40fc5ac0229e6eecd996e6684e13976ca9",
+  "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m2-pytha-given-dims-candidate-20261021-r1/src/lib/middle/m2Pytha.ts",
+  "candidateSha256": "032376812b8ba86e60068dcc5387daaf768e9aaaa6c53b5fe4e02793c1fe1d39",
+  "changed": "Only dimension attachment: CB=a and AB=c; derived CA=b unlabelled. Geometry and numeric text stay unchanged.",
+  "helperOtherConsumer": "09 keeps its given CA and CB labels; no hypotenuse label",
+  "futureFamilyVersionRequired": "20261021-given-only-altitude-dimensions-r1",
+  "actualSeedOrRendererExecutions": 0,
+  "productionChanged": false,
+  "DBWrites": 0,
+  "officialWholeGradeRightsNativeOrReleaseApproved": false
+}

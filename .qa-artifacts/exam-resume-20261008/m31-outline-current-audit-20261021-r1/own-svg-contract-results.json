@@ -1,0 +1,1325 @@
+{
+  "counts": {
+    "figures": 8,
+    "assertions": 58,
+    "passed": 58,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "n5/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n5/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n5/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n5/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n5/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n5/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n5/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n6/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n6/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n6/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n6/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n6/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n6/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n6/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n7/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n7/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n7/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n7/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n7/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n7/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n7/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n8/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n8/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n8/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n8/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n8/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n8/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n8/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n9/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n9/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n9/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n9/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n9/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n9/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n9/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n10/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n10/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n10/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n10/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n10/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n10/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n10/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n11/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n11/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n11/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n11/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n11/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n11/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n11/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "n12/strictRender",
+      "pass": true
+    },
+    {
+      "name": "n12/hashBinding",
+      "pass": true
+    },
+    {
+      "name": "n12/allLabelsExactlyOnce",
+      "pass": true
+    },
+    {
+      "name": "n12/labelBoxesInViewport",
+      "pass": true
+    },
+    {
+      "name": "n12/labelBoxesDisjoint",
+      "pass": true
+    },
+    {
+      "name": "n12/renderedBoundaryNoInternalFan",
+      "pass": true
+    },
+    {
+      "name": "n12/noUnresolvedOrUnsafeMarkup",
+      "pass": true
+    },
+    {
+      "name": "exact8SequentialRenders",
+      "pass": true
+    },
+    {
+      "name": "heapAndCalls",
+      "pass": true
+    }
+  ],
+  "figures": [
+    {
+      "n": 5,
+      "specSHA256": "c673e142407545d25814247a34bb2c04e3fc926180a129ae6a0a83a6c9cbdc02",
+      "svgSHA256": "37ac31143f19ecc883200cb0e86d66f7199184f88762325b81ddcb2c4a0d0660",
+      "viewBox": [
+        0.0,
+        0.0,
+        205.476,
+        195.789
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            96.551,
+            12.0,
+            109.151,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            12.0,
+            77.179,
+            23.894,
+            88.653
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            43.353,
+            171.592,
+            55.483,
+            183.78900000000002
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            149.8665,
+            171.96200000000002,
+            162.70149999999998,
+            183.436
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            182.0345,
+            77.22900000000001,
+            193.47549999999998,
+            88.653
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 6,
+      "specSHA256": "8eac893a2120d1096dea190c81999e79013f39832409606f4e94969e03d97a01",
+      "svgSHA256": "825021837639c24a4f0332ef8fff86d9d79d54b37a980bde7fa54aa9a2b546ff",
+      "viewBox": [
+        0.0,
+        0.0,
+        192.333,
+        213.477
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            90.039,
+            12.0,
+            102.639,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            12.118000000000002,
+            62.278999999999996,
+            24.012,
+            73.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            12.0,
+            139.909,
+            24.130000000000003,
+            152.106
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            89.9215,
+            190.00300000000001,
+            102.7565,
+            201.477
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            168.8925,
+            140.32899999999998,
+            180.3335,
+            151.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            169.128,
+            62.329,
+            180.098,
+            73.753
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 7,
+      "specSHA256": "68d65fdfdb2a994f8588e3625208c18bba3d09e59de0c6966df4a2b88cd46029",
+      "svgSHA256": "818e56b36f6dd52935c97670c6c92e65103d8f1cd1191476fe6a074dcec0f16b",
+      "viewBox": [
+        0.0,
+        0.0,
+        209.078,
+        202.616
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            98.529,
+            12.0,
+            111.12899999999999,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            27.178,
+            52.649,
+            39.072,
+            64.123
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            12.0,
+            118.269,
+            24.130000000000003,
+            130.466
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            56.9885,
+            179.14200000000002,
+            69.8235,
+            190.616
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            140.53150000000002,
+            179.192,
+            151.9725,
+            190.616
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            186.10799999999998,
+            118.689,
+            197.078,
+            130.113
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            169.939,
+            52.279,
+            183.12699999999998,
+            64.49300000000001
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 8,
+      "specSHA256": "62ec446d5b163ce6e8655f23a03bf6c28f015598197f69ccd8ed3124f7fba027",
+      "svgSHA256": "d9ee9ea734cabd08cdbc112a3fcb0462c17bd3a768fc58f316917e0566074845",
+      "viewBox": [
+        0.0,
+        0.0,
+        214.107,
+        213.477
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            100.489,
+            12.0,
+            113.089,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            34.967999999999996,
+            46.129000000000005,
+            46.862,
+            57.603
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            12.0,
+            100.909,
+            24.130000000000003,
+            113.106
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            34.4975,
+            156.429,
+            47.332499999999996,
+            167.903
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            101.0685,
+            190.053,
+            112.5095,
+            201.477
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            167.178,
+            156.47899999999998,
+            178.14800000000002,
+            167.903
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            188.919,
+            100.909,
+            202.107,
+            113.123
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "H",
+          "box": [
+            166.363,
+            46.129000000000005,
+            178.96300000000002,
+            57.603
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 9,
+      "specSHA256": "20d2f3623dd506df3da07f2a0e2136e883c322b328dcfabf07473f6fea2189d1",
+      "svgSHA256": "28799098be889d3de29756ef536c94b76f6dc7c89c9958088f5e75bee0f7f154",
+      "viewBox": [
+        0.0,
+        0.0,
+        211.453,
+        205.636
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            99.309,
+            12.0,
+            111.90899999999999,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            41.939,
+            33.946,
+            53.833000000000006,
+            45.42
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            12.0,
+            87.369,
+            24.130000000000003,
+            99.56599999999999
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            20.9175,
+            140.279,
+            33.7525,
+            151.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            65.6255,
+            182.212,
+            77.0665,
+            193.636
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            134.387,
+            182.212,
+            145.35700000000003,
+            193.636
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            177.28900000000002,
+            139.909,
+            190.477,
+            152.123
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "H",
+          "box": [
+            186.85299999999998,
+            87.73899999999999,
+            199.453,
+            99.213
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "I",
+          "box": [
+            160.2995,
+            33.946,
+            166.3645,
+            45.42
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 10,
+      "specSHA256": "ce39bdbe226d32adad340d5a369b74417e266a84fb834fbbb9616e7c7ea60e26",
+      "svgSHA256": "fb54f0d266f98001f9cbdce55d8448fd9bbe4a892470ac37f3bf053c71556502",
+      "viewBox": [
+        0.0,
+        0.0,
+        206.526,
+        213.477
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            97.022,
+            12.0,
+            109.622,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            43.942,
+            30.596,
+            55.836000000000006,
+            42.07
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            12.352999999999998,
+            76.80900000000001,
+            24.483,
+            89.006
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            12.000499999999999,
+            125.379,
+            24.8355,
+            136.853
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            44.1685,
+            172.012,
+            55.609500000000004,
+            183.436
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            97.837,
+            190.053,
+            108.807,
+            201.477
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            150.161,
+            171.592,
+            163.349,
+            183.806
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "H",
+          "box": [
+            181.926,
+            125.379,
+            194.526,
+            136.853
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "I",
+          "box": [
+            185.1935,
+            77.179,
+            191.2585,
+            88.653
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "J",
+          "box": [
+            152.4375,
+            30.596,
+            161.0725,
+            42.44
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 11,
+      "specSHA256": "9c96ac26094c72094f4587f9f0ada119d8c01d3ee367b912b958e6ed88fede05",
+      "svgSHA256": "9b6f2bd91deb4f741e8bc2fd489a465ba0bdff83a5fa61a0d3627951ae2001cd",
+      "viewBox": [
+        0.0,
+        0.0,
+        211.494,
+        207.545
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            100.052,
+            12.0,
+            112.652,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            50.651999999999994,
+            28.075999999999997,
+            62.546,
+            39.55
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            18.613,
+            68.509,
+            30.743000000000002,
+            80.70599999999999
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            12.000499999999999,
+            112.37899999999999,
+            24.8355,
+            123.853
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            30.957499999999996,
+            152.409,
+            42.3985,
+            163.833
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            71.304,
+            183.75199999999998,
+            82.274,
+            195.176
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            129.321,
+            183.332,
+            142.509,
+            195.546
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "H",
+          "box": [
+            169.726,
+            152.359,
+            182.32600000000002,
+            163.833
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "I",
+          "box": [
+            191.2535,
+            112.37899999999999,
+            197.3185,
+            123.853
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "J",
+          "box": [
+            183.70850000000002,
+            68.87899999999999,
+            192.3435,
+            80.723
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "K",
+          "box": [
+            149.57,
+            28.075999999999997,
+            162.64,
+            39.55
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "K"
+        ],
+        [
+          "K",
+          "A"
+        ]
+      ]
+    },
+    {
+      "n": 12,
+      "specSHA256": "7bef6e5b8aa2ed21fa8ff49f46cabb4e6b5fe38774907d961f4a9cb93e870164",
+      "svgSHA256": "228ce48f9f9ce5dab9857c5df38bf688bf77a770bfbf7957bba84a532b1004b8",
+      "viewBox": [
+        0.0,
+        0.0,
+        213.074,
+        213.846
+      ],
+      "labelBoxes": [
+        {
+          "label": "A",
+          "box": [
+            100.842,
+            12.0,
+            113.442,
+            24.029
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "B",
+          "box": [
+            54.611999999999995,
+            26.145999999999997,
+            66.506,
+            37.62
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "C",
+          "box": [
+            22.802999999999997,
+            61.909,
+            34.933,
+            74.106
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "D",
+          "box": [
+            12.000499999999999,
+            101.279,
+            24.8355,
+            112.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "E",
+          "box": [
+            23.147499999999997,
+            140.32899999999998,
+            34.588499999999996,
+            151.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "F",
+          "box": [
+            55.074,
+            176.462,
+            66.044,
+            187.886
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "G",
+          "box": [
+            100.548,
+            189.633,
+            113.73599999999999,
+            201.847
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "H",
+          "box": [
+            147.42499999999998,
+            176.412,
+            160.025,
+            187.886
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "I",
+          "box": [
+            182.3835,
+            140.279,
+            188.4485,
+            151.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "J",
+          "box": [
+            191.54850000000002,
+            101.279,
+            200.1835,
+            113.123
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "K",
+          "box": [
+            178.881,
+            62.278999999999996,
+            191.951,
+            73.753
+          ],
+          "fontSize": 16.8
+        },
+        {
+          "label": "L",
+          "box": [
+            148.475,
+            26.145999999999997,
+            158.975,
+            37.62
+          ],
+          "fontSize": 16.8
+        }
+      ],
+      "overlapPairs": [],
+      "renderedEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "K"
+        ],
+        [
+          "K",
+          "L"
+        ],
+        [
+          "L",
+          "A"
+        ]
+      ]
+    }
+  ],
+  "limits": "SVGcontract only: labels/metricboxes/viewport/edgeincidence, no browser/pixelmath/nativeprint/physicalsize or comprehensive readability approval. Glyph outlines notusedasmathoracle."
+}

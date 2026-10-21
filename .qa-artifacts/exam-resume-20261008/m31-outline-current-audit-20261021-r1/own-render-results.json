@@ -1,0 +1,94 @@
+{
+  "exactUniqueSequentialRenders": 8,
+  "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "options": {
+    "strict": true,
+    "typeset": true
+  },
+  "result": [
+    {
+      "n": 5,
+      "specSHA256": "c673e142407545d25814247a34bb2c04e3fc926180a129ae6a0a83a6c9cbdc02",
+      "svgSHA256": "37ac31143f19ecc883200cb0e86d66f7199184f88762325b81ddcb2c4a0d0660",
+      "bytes": 5123,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 497
+    },
+    {
+      "n": 6,
+      "specSHA256": "8eac893a2120d1096dea190c81999e79013f39832409606f4e94969e03d97a01",
+      "svgSHA256": "825021837639c24a4f0332ef8fff86d9d79d54b37a980bde7fa54aa9a2b546ff",
+      "bytes": 6139,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 366
+    },
+    {
+      "n": 7,
+      "specSHA256": "68d65fdfdb2a994f8588e3625208c18bba3d09e59de0c6966df4a2b88cd46029",
+      "svgSHA256": "818e56b36f6dd52935c97670c6c92e65103d8f1cd1191476fe6a074dcec0f16b",
+      "bytes": 7320,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 369
+    },
+    {
+      "n": 8,
+      "specSHA256": "62ec446d5b163ce6e8655f23a03bf6c28f015598197f69ccd8ed3124f7fba027",
+      "svgSHA256": "d9ee9ea734cabd08cdbc112a3fcb0462c17bd3a768fc58f316917e0566074845",
+      "bytes": 8323,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 364
+    },
+    {
+      "n": 9,
+      "specSHA256": "20d2f3623dd506df3da07f2a0e2136e883c322b328dcfabf07473f6fea2189d1",
+      "svgSHA256": "28799098be889d3de29756ef536c94b76f6dc7c89c9958088f5e75bee0f7f154",
+      "bytes": 9112,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 365
+    },
+    {
+      "n": 10,
+      "specSHA256": "ce39bdbe226d32adad340d5a369b74417e266a84fb834fbbb9616e7c7ea60e26",
+      "svgSHA256": "fb54f0d266f98001f9cbdce55d8448fd9bbe4a892470ac37f3bf053c71556502",
+      "bytes": 10113,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 374
+    },
+    {
+      "n": 11,
+      "specSHA256": "9c96ac26094c72094f4587f9f0ada119d8c01d3ee367b912b958e6ed88fede05",
+      "svgSHA256": "9b6f2bd91deb4f741e8bc2fd489a465ba0bdff83a5fa61a0d3627951ae2001cd",
+      "bytes": 11227,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 382
+    },
+    {
+      "n": 12,
+      "specSHA256": "7bef6e5b8aa2ed21fa8ff49f46cabb4e6b5fe38774907d961f4a9cb93e870164",
+      "svgSHA256": "228ce48f9f9ce5dab9857c5df38bf688bf77a770bfbf7957bba84a532b1004b8",
+      "bytes": 12084,
+      "ok": true,
+      "droppedDimensions": [],
+      "elapsedMs": 390
+    }
+  ],
+  "moduleHashesAtFirstImport": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\engine\\authoredImage.ts": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd"
+  },
+  "heapLimit": 226492416,
+  "DBImports": 0,
+  "networkCalls": 0,
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "FIGURE_ENGINE_PATH": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/vendor/figure-engine",
+  "localTransport": true
+}

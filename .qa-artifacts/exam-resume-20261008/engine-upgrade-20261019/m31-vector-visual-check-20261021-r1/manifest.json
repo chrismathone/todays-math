@@ -1,0 +1,66 @@
+{
+  "kind": "engine-vector-preview-visual-check/v1",
+  "rasterizer": "PyMuPDF",
+  "sourceNativeRenderer": "project strict renderFigureSpec",
+  "previews": [
+    {
+      "n": 5,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n5.svg",
+      "sourceSha256": "37ac31143f19ecc883200cb0e86d66f7199184f88762325b81ddcb2c4a0d0660",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n5.png",
+      "previewSha256": "85778e0e15df10a9dde943d1250e21b6d2db950a8457dff3a23e19df82b8d6ac"
+    },
+    {
+      "n": 6,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n6.svg",
+      "sourceSha256": "825021837639c24a4f0332ef8fff86d9d79d54b37a980bde7fa54aa9a2b546ff",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n6.png",
+      "previewSha256": "1e3d56ac4f9267b5d21b0fcdeeef4324d92c2f03bad8638ce0d8b45af1bed7cf"
+    },
+    {
+      "n": 7,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n7.svg",
+      "sourceSha256": "818e56b36f6dd52935c97670c6c92e65103d8f1cd1191476fe6a074dcec0f16b",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n7.png",
+      "previewSha256": "529125e76ee2fe4d4947b2323f2f65f6ea6f045331f664d70c4800e98e86d2fc"
+    },
+    {
+      "n": 8,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n8.svg",
+      "sourceSha256": "d9ee9ea734cabd08cdbc112a3fcb0462c17bd3a768fc58f316917e0566074845",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n8.png",
+      "previewSha256": "2f18039659a0ae803cc71f4e84c39c7e2cdd4f239a7ab4fba0b7960ae1fd021c"
+    },
+    {
+      "n": 9,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n9.svg",
+      "sourceSha256": "28799098be889d3de29756ef536c94b76f6dc7c89c9958088f5e75bee0f7f154",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n9.png",
+      "previewSha256": "a2976e0f6eb231876238d36da4b9262965d6546f27ff58771196fcf17440c86a"
+    },
+    {
+      "n": 10,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n10.svg",
+      "sourceSha256": "fb54f0d266f98001f9cbdce55d8448fd9bbe4a892470ac37f3bf053c71556502",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n10.png",
+      "previewSha256": "b636179ace732ce13d8f627d6ae5da1f35ba7e3ce50a2ab529041819a9c94f99"
+    },
+    {
+      "n": 11,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n11.svg",
+      "sourceSha256": "9b6f2bd91deb4f741e8bc2fd489a465ba0bdff83a5fa61a0d3627951ae2001cd",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n11.png",
+      "previewSha256": "ccbb2006171c2ea55507471a6b454869a565cee92c814a6b838e7884f85dbd1f"
+    },
+    {
+      "n": 12,
+      "source": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-rendered/n12.svg",
+      "sourceSha256": "228ce48f9f9ce5dab9857c5df38bf688bf77a770bfbf7957bba84a532b1004b8",
+      "preview": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-vector-visual-check-20261021-r1/n12.png",
+      "previewSha256": "2e26d64558ae8c6e83be4b8cf36d691d72d23a36859c35bfa9488594030bd7eb"
+    }
+  ],
+  "pixelMathOracle": false,
+  "physicalPrintReview": false,
+  "nativeGradeRightsOrReleaseApproval": false
+}

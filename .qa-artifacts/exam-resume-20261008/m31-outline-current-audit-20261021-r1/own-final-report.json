@@ -1,0 +1,157 @@
+{
+  "status": "BOUNDED_CURRENT_M31_GRAPH_AND_LOCAL_SVG_CONTRACT_PASS",
+  "executionFinished": true,
+  "allNodeEnded": true,
+  "scope": "CurrentM31polygon04only; noquestionblind/fullgrade/rights/native/publicapprovalcredit",
+  "runtime": {
+    "actualGenerateMiddleProblemCalls": 100,
+    "forcedExactTypeHandlerCalls": 16,
+    "actualAPIBranchCounts": {
+      "1": 42,
+      "0": 58
+    },
+    "forcedModesAndN": "Alln5..12andmode0,1 with2RNGdraws. ForcedhandlercasesnotcountedasextraactualseedAPIcalls.",
+    "graphAssertions": {
+      "assertions": 383,
+      "passed": 383,
+      "failed": 0
+    },
+    "rendererCalls": 8,
+    "rendererMode": "ActualROOT renderFigureSpec strict:true typeset:true; oneextraNodeprocess,8Pythonlocalchildren sequential.8unique outlines only, not116renders.",
+    "SVGContractAssertions": {
+      "figures": 8,
+      "assertions": 58,
+      "passed": 58,
+      "failed": 0
+    },
+    "NodeProcesses": 2,
+    "concurrentOwnNodeProcesses": 0,
+    "networkCalls": 0,
+    "DBImports": 0,
+    "actualNodeHeapLimitsBytes": [
+      226492416,
+      226492416
+    ],
+    "freshMemoryProbe": {
+      "maxSemiSpaceMiB": 8,
+      "maxOldSpaceMiB": 192,
+      "minimumBytes": 1610612736,
+      "availablePhysicalMemoryBytes": 4068327424,
+      "ParentGO": true
+    },
+    "additionalMemoryProbes": 0,
+    "parentHeavyTests": "Parent789/200/type/lint numbers external, not ownruns."
+  },
+  "graphMath": "Actualstemn/given count parsed independently, producerfacts ignored. nboundaryedges formclosedcyclicadjacencygraph, nlabelledvertices,0nonadjacentfanconnections. Forwardanswern-3with개, inverseanswergiven+3unitlessandfigureSpec:null. Actual100seedbranchesbothobserved; forced16covereverybranch/ncase.",
+  "SVGContract": "Actual8localstrict renders success,0droppedDimensions; spec/SVG hashespern. All labelsA..last exactlyonce; MathJaxmetricboxespositivefontsize/inviewBox/pairwisedisjoint; no unresolvedtext/data-mj,unsafeimage/script/foreignObject. Renderedlinegraph mapped to labelledvertexcoordinates hasexactlyncyclicboundaryedges andnointernalfan. Thisisvectorcontract verification,notpixelsasmathoracle.",
+  "readabilityLimits": "No native/fullstudentor solutionpage/browser/physicalprint/size/dpi inspection. Metricboxandlabelcontractpassed; comprehensivehumanreadability/nativeprovenance remainpending. No crops/tokens/newrenderassetsbeyondexact8ownSVG+specoutputs.",
+  "staticBindingAndVersion": {
+    "setupSixChecks": [
+      {
+        "name": "currentNormalizedSourceEqualsReviewedCandidate",
+        "pass": true
+      },
+      {
+        "name": "reviewedCandidateSHAUnchanged",
+        "pass": true
+      },
+      {
+        "name": "04NormalizedBodyMatchesSealedCandidate",
+        "pass": true
+      },
+      {
+        "name": "05NormalizedWholeDefinitionMatchesCandidate",
+        "pass": true
+      },
+      {
+        "name": "05NormalizedAllDiagonalHelperMatchesCandidate",
+        "pass": true
+      },
+      {
+        "name": "requiredCurrentAdapterVersion",
+        "pass": true
+      }
+    ],
+    "adapterRevision": "20261021-outline-before-student-diagonals-r1",
+    "bodyPreservation": "Forward/inversebodyanswer/solution/factsandunrelated05normalizedsource matchedsealedcandidate insetup. PriorCRLF->LF sourceEOLcaveatremains; notclaimunrelatedrawsourcebyteidentity.",
+    "representationRevision": "NewfutureversiondoesnotmigrateDB/issuedquestionrows. Existingoldseedoutputs/evidencepreserved."
+  },
+  "rendererOwnership": {
+    "CWD": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "scriptResolution": "ROOTscripts/figure/render_spec.py viaactualhelperprocess.cwd, FIGURE_ENGINE_PATH explicitlyROOTvendor. Hostedtransportdisabledinownprocess,networkguard0.",
+    "pythonBytecodeWritesDisabled": "1",
+    "rendererSourceHashFiles": 11,
+    "sourceHashCoverage": "TSrenderer/MathJax firstimporthashes +Pythonentry/engine_path +all6vendorrendererPythonfiles; no claimallinstalledPythonstdlib/node_modules transitivebytessealed.",
+    "initialPathDiagnostic": "Firstguessed src/lib/renderFigureSpec.ts absent; actual rgresolved src/lib/figure/renderFigureSpec.ts. No parentfilefallbackorproductionfaultinferred."
+  },
+  "sourceHashes": {
+    "beforeAfterUniqueFiles": 130,
+    "changed": [],
+    "receipt": "own-final-source-hashes.json"
+  },
+  "sealedPreparationPreserved": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-before-execution.json",
+      "sha256": "ba623578977e12cca054880448d204ed0d315fe9c7d52820a7525d0bfe238de5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-check-outputs.py",
+      "sha256": "fde92b957640694b376444331eda6eee8f1a0f356dfbaee7aad3fb5dc8d361dd"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-guard.cjs",
+      "sha256": "ca763fdc220401cf5d269b9e879420d1cf6e75f58038e165bc52f2395aeafa1b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-preflight.py",
+      "sha256": "531cc8bc27ff05687c1a17d715d13a051055c83f8539d0f15dccf0140209f04d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-preparation-report.json",
+      "sha256": "8599be99eedb1851ca0e89bc555326f93c3442b971b74ba62a94bcd63a9b3110"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-prepare.py",
+      "sha256": "a315546dc20bf895d39b896d6a43763652a91494b479f782c0824bf9512562e2"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-run-after-GO.ps1",
+      "sha256": "e02d1ee029c4cd5d731d2282faa5b6bfdd403b27c2ac60aca3073a4b19ea9dda"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-runner.ts",
+      "sha256": "dc535d8411c8b20ebc53ac43b94439a25a9e7ecc2ce70328580babd87200aeee"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-seal-preparation.py",
+      "sha256": "940dcf7a41a98e5ed3d186c6fe06bc90a7b4c2e65f8dab19faf6958fcca34d0e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-tsconfig.json",
+      "sha256": "ce969bc9120ea598f7cece33df8237bf7ee1fdd8728e50a87684482b20456963"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m31-outline-current-audit-20261021-r1/own-utf8-probe.txt",
+      "sha256": "68ef4b585cca36b7cf30f11e9c30b7d573cb2922d7abea50f494f2bd51edfc11"
+    }
+  ],
+  "approvalHolds": {
+    "officialWholeGrade": true,
+    "rights": true,
+    "sourceIdentity": true,
+    "nativeProvenance": true,
+    "physicalPrint": true,
+    "wholeEngine": true,
+    "publicRelease": true
+  },
+  "productionDBBankEdits": 0,
+  "artifacts": {
+    "own-actual-outputs.json": "816c15d1f7d29b049b4387c64819da2959b34567510803098de72380bf21cdd4",
+    "own-calculations.json": "fab4a942985a0d83bfc4dec3941f8be73df108f7a0d7df7109e2f923ad9e7851",
+    "own-render-results.json": "259f0b059d42b9761d3ec7a361d3d0fd3ce7ab36d6339fe597d2c9711e9a85a2",
+    "own-svg-contract-results.json": "8d80abd6937357bb86442fb23633ebb79bdd3f97524a73ccb85cd912f97ab586",
+    "own-final-source-hashes.json": "402bc6994417e8f63c24e5533dace2c7dcfd312a120e66a09d6e1c6fe006acc4",
+    "own-render-eight.ts": "6eba3e1f19616512bcea7ba3fa6c885732bdc2e71e49ce2330d29bd1839c1e67",
+    "own-check-svg-contract.py": "8f973b77d16da92a5a227bb3a0fb743e71891883804be67759d4043917f30dbe"
+  }
+}

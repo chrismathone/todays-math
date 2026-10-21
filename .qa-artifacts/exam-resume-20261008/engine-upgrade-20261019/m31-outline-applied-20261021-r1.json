@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-21T05:01:52.111639+00:00",
+  "proposal": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-outline-candidate-20261021-r1/proposal.json",
+    "sha256": "4bdbf8514fbecbbff8d930c1381480486aff6987f383220e07319691d671097b"
+  },
+  "source": {
+    "path": "src/lib/middle/m1Geo2.ts",
+    "sha256": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942"
+  },
+  "adapter": {
+    "path": "src/lib/examStudy/adapters.ts",
+    "beforeSha256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+    "sha256": "e186379c50a3ca56d33b3c5b550b055ad93823b1f4494ac4c620fac9d45373a5"
+  },
+  "regression": {
+    "path": "src/__tests__/unit/middleM1PolygonQuestionFigure.test.ts",
+    "sha256": "125f5ae37eaa44db782eb81bb590aacf10866720237c85d9cc0ddfa2f74af6ac"
+  },
+  "independentStaticReviewCommit": "02535a0c0b58a3f7041ce89359a79952c951c395",
+  "staticGraphAssertions": 30,
+  "runtimeAndRendererPending": true,
+  "numericalStemAnswerOrSolutionChanged": false,
+  "existingQuestionOrBankOrDBWrites": 0,
+  "gradeRightsNativeOrPublicReleaseApproval": false
+}

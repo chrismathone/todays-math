@@ -4,8 +4,8 @@
  *
  * ## 그림이 처음 실사용된다 (물결 6 공통 계약)
  *
- * 작도 02·03·04 는 실제 컴퍼스 자국(`arcs`)·각 표시를 그린다. 다각형 04·05 는
- * 정다각형 꼭짓점에 이름을 붙이고 대각선을 긋는다(오각형 예시는
+ * 작도 02·03·04 는 실제 컴퍼스 자국(`arcs`)·각 표시를 그린다. 다각형 04는
+ * 경계와 꼭짓점만, 05는 대각선도 그린다(오각형 예시는
  * `docs/planning/tracks/wave6-geometry-sheet/index.html` 참고 — v2 에
  * `midpoint` 점 종류가 없어 중점은 좌표로 직접 계산하고, 호 끝점은 반드시
  * `on_circle` 로 만든다). 나머지 유형은 「삼각형 ABC에서 …」 식 텍스트만으로
@@ -808,15 +808,13 @@ const BANK_POLY03: readonly (readonly [string, boolean])[] = [
   ["평행사변형", false],
 ];
 
-function figPolygonDiagonalsFromA(n: number): Fig {
+function figPolygonOutline(n: number): Fig {
   const { pts, names } = regularPolygon(n, 120, 105, 78);
   const segments: Record<string, unknown> = {};
   for (let i = 0; i < n; i += 1) {
     segments[`s${i}`] = [names[i], names[(i + 1) % n]];
   }
-  for (let i = 2; i < n - 1; i += 1) {
-    segments[`d${i}`] = ["A", names[i]];
-  }
+  // Do not pre-draw the connections whose number the student must find.
   return {
     version: 2,
     points: pts,
@@ -905,7 +903,7 @@ const M1_POLY_BASIC: TypeEntry[] = [
       const mode = intBetween(rng, 0, 1);
       const n = intBetween(rng, 5, 12);
       const v = n - 3;
-      const fig = figPolygonDiagonalsFromA(n);
+      const fig = figPolygonOutline(n);
       if (mode === 0) {
         return {
           content: `그림과 같은 $${n}$각형의 한 꼭짓점에서 그을 수 있는 대각선의 개수를 구하시오.`,
