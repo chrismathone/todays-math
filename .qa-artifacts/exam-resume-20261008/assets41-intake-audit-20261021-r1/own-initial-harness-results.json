@@ -1,0 +1,1355 @@
+{
+  "sourceCommit": "5990a0dbff75640cd93eecb49d3469f6e190f66c",
+  "sourceStatus": " M docs/export/todays-math/engine-check/check_engine.py\n?? docs/export/todays-math/engine-check/expected/assets-3d.json\n?? docs/export/todays-math/patches/07-engine-all.patch\n",
+  "sourceClean": false,
+  "diffPaths51": [
+    "scripts/figure/assets/README.md",
+    "scripts/figure/assets/airplane.svg",
+    "scripts/figure/assets/anchors.json",
+    "scripts/figure/assets/baduk-black.svg",
+    "scripts/figure/assets/baduk-white.svg",
+    "scripts/figure/assets/balance-scale.svg",
+    "scripts/figure/assets/bicycle.svg",
+    "scripts/figure/assets/boat.svg",
+    "scripts/figure/assets/bowl.svg",
+    "scripts/figure/assets/bridge.svg",
+    "scripts/figure/assets/building-3d.svg",
+    "scripts/figure/assets/building.svg",
+    "scripts/figure/assets/cake-roll.svg",
+    "scripts/figure/assets/can.svg",
+    "scripts/figure/assets/car-side.svg",
+    "scripts/figure/assets/cup-cone.svg",
+    "scripts/figure/assets/cup-cylinder.svg",
+    "scripts/figure/assets/dice.svg",
+    "scripts/figure/assets/ferris-wheel.svg",
+    "scripts/figure/assets/flagpole.svg",
+    "scripts/figure/assets/hot-air-balloon.svg",
+    "scripts/figure/assets/house-3d.svg",
+    "scripts/figure/assets/house.svg",
+    "scripts/figure/assets/ice-cream-cone.svg",
+    "scripts/figure/assets/kite.svg",
+    "scripts/figure/assets/ladder.svg",
+    "scripts/figure/assets/lighthouse.svg",
+    "scripts/figure/assets/manifest-core.json",
+    "scripts/figure/assets/manifest-exam.json",
+    "scripts/figure/assets/manifest-objects.json",
+    "scripts/figure/assets/manifest-outdoor.json",
+    "scripts/figure/assets/matchstick.svg",
+    "scripts/figure/assets/mountain.svg",
+    "scripts/figure/assets/person-standing.svg",
+    "scripts/figure/assets/person-walking.svg",
+    "scripts/figure/assets/picture-assets.json",
+    "scripts/figure/assets/picture-frame.svg",
+    "scripts/figure/assets/pizza.svg",
+    "scripts/figure/assets/slide.svg",
+    "scripts/figure/assets/streetlamp.svg",
+    "scripts/figure/assets/sun.svg",
+    "scripts/figure/assets/thermometer.svg",
+    "scripts/figure/assets/tower.svg",
+    "scripts/figure/assets/train-side.svg",
+    "scripts/figure/assets/tree.svg",
+    "scripts/figure/assets/tunnel.svg",
+    "scripts/figure/assets/utility-pole.svg",
+    "scripts/figure/assets/water-tank.svg",
+    "scripts/figure/build_catalog.py",
+    "scripts/figure/engine-catalog.json",
+    "scripts/figure/scene_assets.py"
+  ],
+  "assetCount": 41,
+  "oldRegistryCount": 39,
+  "newSlugs": [
+    "building-3d",
+    "house-3d"
+  ],
+  "pictureAllowed": [
+    "house",
+    "building",
+    "lighthouse",
+    "tower",
+    "utility-pole",
+    "streetlamp",
+    "flagpole",
+    "tree",
+    "mountain",
+    "tunnel",
+    "bridge",
+    "person-standing",
+    "person-walking",
+    "bicycle",
+    "car-side",
+    "train-side",
+    "boat",
+    "airplane",
+    "hot-air-balloon",
+    "kite",
+    "sun",
+    "ladder",
+    "slide",
+    "building-3d",
+    "house-3d"
+  ],
+  "identity": [
+    {
+      "slug": "tree",
+      "newViewBox": [
+        112.5,
+        140.0
+      ],
+      "newSignatureSHA": "7a4c1543e4dd1c2a13fcea5da504b7ed9798f0a17b4034b43b7d8064cd6fc2ad",
+      "newSourceLF_SHA": "f9a4c530b3e5e980960bb824225cc0774630174b561111c24f7831b57eac3be6",
+      "oldViewBox": [
+        60,
+        90
+      ],
+      "oldSignatureSHA": "26ecd95e96897f3fb94a0f2d1a2128d0105f9915f033b0790a2a8885da5a0981",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "house",
+      "newViewBox": [
+        140.0,
+        124.8
+      ],
+      "newSignatureSHA": "d2615a018048df1620525e94749ac20dbe1788e0f4083108e08f08d645e049bd",
+      "newSourceLF_SHA": "e0292f1458cc77d8f8f29788cd4401fa0bdd2354bea171f6bf99fe746da5536b",
+      "oldViewBox": [
+        100,
+        100
+      ],
+      "oldSignatureSHA": "f67e0f264776218a0ff26e81b7b2b48148e5e2d000ddbbe7064ada80ee42f512",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "lighthouse",
+      "newViewBox": [
+        44.8,
+        140.0
+      ],
+      "newSignatureSHA": "4d5556d93a7d21853e800e2477d50fe4ce500e9f34942b90e86242b8c0df9fb4",
+      "newSourceLF_SHA": "39d95cb17054f704062b7b19dd189ee82e06ee8a4ef9ef917b2b09165e72d66d",
+      "oldViewBox": [
+        64,
+        140
+      ],
+      "oldSignatureSHA": "59f69135da8e849ed2910626f5fe5f41014356db27fca7b3cf771aa224217647",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "airplane",
+      "newViewBox": [
+        140.0,
+        38.0
+      ],
+      "newSignatureSHA": "b0600bf68677d1fb48c280e4e8c679ee186fb40432f407888e9895340952bd7a",
+      "newSourceLF_SHA": "b80a83d6b054a09c5b9ee4e6e5116d794c5d76f39b45d8c4452e5504c02b4619",
+      "oldViewBox": [
+        160,
+        60
+      ],
+      "oldSignatureSHA": "a9e0fd613fb579e3cec67a45562af6d8f942bfdee75ab46418607976c6d10014",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "tower",
+      "newViewBox": [
+        62.8,
+        140.0
+      ],
+      "newSignatureSHA": "ebf8a3ab4dc7b0566d16a9cc5ebe91924d96eb643b5aa449c2ad09989a5f5102",
+      "newSourceLF_SHA": "07ffe5dbdf1097a943d71bd8568034a5f459b5de4b7b1c5e091ff6492a87d998",
+      "oldViewBox": [
+        70,
+        150
+      ],
+      "oldSignatureSHA": "940614a33d528e8210f52f5c5800115ee1bf22d514cac2988c6ebbe9c958c802",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "ladder",
+      "newViewBox": [
+        39.5,
+        140.0
+      ],
+      "newSignatureSHA": "84f7990e5043603a39cb791de50b4f4efc77fe1e491d3e81a9a50ed0d4a93df2",
+      "newSourceLF_SHA": "cceabdfb08e68d6ccc2b5109f8e4f04347642ca9f6638dccb7fdc72ab8ee91b8",
+      "oldViewBox": [
+        44,
+        120
+      ],
+      "oldSignatureSHA": "b7250f84aba944d8ad414cca12824adb69014d039a158f3d607d4c59c8432c06",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "utility-pole",
+      "newViewBox": [
+        96.8,
+        140.0
+      ],
+      "newSignatureSHA": "34cf564a7f8cdabcc468a1b1a8cba0aedbb173251ad875e79d15afd32054a7ec",
+      "newSourceLF_SHA": "e69a0fda3324751b4320f9932c660190a2a7e2b5f5e4a50b5ceddd70504ee8ae",
+      "oldViewBox": [
+        70,
+        140
+      ],
+      "oldSignatureSHA": "ae9d522ef069f07f1d03104dd5aaebe1ccaabb8749dc5704e71aa931c82781a4",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "hot-air-balloon",
+      "newViewBox": [
+        96.9,
+        140.0
+      ],
+      "newSignatureSHA": "3b788dce23c8a8dbac99403d6d90655a22d4c0d5b4c7f7f0d33221d70ba7b2f3",
+      "newSourceLF_SHA": "8b362feb12cb536c6fd482b0ee1b97018a7073c324bf5f323018dfc4aae60769",
+      "oldViewBox": [
+        90,
+        130
+      ],
+      "oldSignatureSHA": "8942d692657c380211373086d20ebfb3428e2ba02e6b950fe8ed6db84488fad7",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "kite",
+      "newViewBox": [
+        74.2,
+        140.0
+      ],
+      "newSignatureSHA": "213dbd6cdfe1467161dee9e6f583460876e131745c2beea5b389062b0dd95ca7",
+      "newSourceLF_SHA": "e2790815b775aef1c0260c3cfb19229d573b2f64d63efcfebac224b5b8f9f817",
+      "oldViewBox": [
+        80,
+        110
+      ],
+      "oldSignatureSHA": "fdc0527618f495cde0603016a0a9fe60a2fe7c5bfefb111cab8d43bc42772083",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "sun",
+      "newViewBox": [
+        140.0,
+        138.1
+      ],
+      "newSignatureSHA": "42ac3eb1a48e6493cdfa3fe377b8fa3f45427cc7358fe9c72420d5b5fbc7e71b",
+      "newSourceLF_SHA": "8e120e96f6ff6429d23eef38b1e6025c6d5ff0a25dc8fd482c7563992e9b766e",
+      "oldViewBox": [
+        80,
+        80
+      ],
+      "oldSignatureSHA": "bbf99c401dc9eae15847f41ea65dadeab7884041d0e5f75d331d845c1e830880",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "slide",
+      "newViewBox": [
+        140.0,
+        82.1
+      ],
+      "newSignatureSHA": "c5104e79522150ba4fdd703267e1bf0b1586fce99894a4bc0ea7dc1fe2c40241",
+      "newSourceLF_SHA": "9d736b3658eea2e46cfe0e200d4e3489bba80586d2c5a83927f596e6d49f1e89",
+      "oldViewBox": [
+        140,
+        100
+      ],
+      "oldSignatureSHA": "0f18aedd64c93ce8eb00d12be7ff5d14df23b5db2ef02ed459cffe60e076316a",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "ferris-wheel",
+      "newViewBox": [
+        133.7,
+        140.0
+      ],
+      "newSignatureSHA": "92a743e8d96e7b8f2ec5a7c16b046031146baaa702a154ace435b026854c2995",
+      "newSourceLF_SHA": "199a8426be57db428edb9bffc5589537f5f1c45bfa0735cdf008a0950b1ffef0",
+      "oldViewBox": [
+        140,
+        150
+      ],
+      "oldSignatureSHA": "97929a81fa722853feb5289ace1b64c0d73e2456eb1cb2d2860469016217ed0a",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "bowl",
+      "newViewBox": [
+        140.0,
+        80.7
+      ],
+      "newSignatureSHA": "815e07e3b881f25ca1b4f3124300dcf832025231e3f4b21031538925653d7f70",
+      "newSourceLF_SHA": "bb1b0daf08ee9aa9430c5d55f0d58e5a0cbeb35b97b8054cdfc7850e8dd53f71",
+      "oldViewBox": [
+        100,
+        62
+      ],
+      "oldSignatureSHA": "0cbfd5c5e4f1c9816a9ba11b391d8ef3f8b0aa0d77966dbd977f3c724712aecd",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "building-3d",
+      "newViewBox": [
+        53.9,
+        140.0
+      ],
+      "newSignatureSHA": "998a2460fc856688075057051bd2339d60286f600f2400081fc6c7356deabfc1",
+      "newSourceLF_SHA": "38344abbd14bff1544ebe26e47e2022c98976e00de3517f764aa29fb508a72db"
+    },
+    {
+      "slug": "house-3d",
+      "newViewBox": [
+        140.0,
+        106.2
+      ],
+      "newSignatureSHA": "6f4ce1de074c1d2cf8fac64c1f6f4c3a89ce1af4521def2c71a3ca24a9ac3c56",
+      "newSourceLF_SHA": "d37600df502fb23200cf860948bc4f6ec529b1c99cf1aebb6b15291133da47f9"
+    },
+    {
+      "slug": "water-tank",
+      "newViewBox": [
+        140.0,
+        73.8
+      ],
+      "newSignatureSHA": "0eae7c5c16c3e5ad0a910750f58b52241d0b354e7370cc6220b573fa9e3b48c9",
+      "newSourceLF_SHA": "f6be1d8e766c2c22b030294ae036aace20cc0600c1a5f3f43dc2cc4ecf2123a5",
+      "oldViewBox": [
+        97.4,
+        77.4
+      ],
+      "oldSignatureSHA": "7a35a59d75609dd709028a5b52f77963f1d4d529fbfad5981ad5f91d6fc01d90",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "cup-cylinder",
+      "newViewBox": [
+        110.8,
+        140.0
+      ],
+      "newSignatureSHA": "449c6eb26fab513cf8e9cbf3214c5030d0ac70c4436e442494d868b062ee642c",
+      "newSourceLF_SHA": "d6067357e50929e31c24ad7ce2f8616530429c7e8456083fc4268103baa3b929",
+      "oldViewBox": [
+        57.4,
+        79.4
+      ],
+      "oldSignatureSHA": "da46d288780f3a8bdf909623c8c1b64b1c9984d8c40bb59ed9e84c1cb39ef520",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "cup-cone",
+      "newViewBox": [
+        105.3,
+        140.0
+      ],
+      "newSignatureSHA": "8a5e022882fb9d33d10db7da19a8202a6347c1c545b6d35769174d0c61716bac",
+      "newSourceLF_SHA": "b51df2a00fd9404736dc5a5171197c8eebbb788cf4ecb5048f91bb1dcb8198f5",
+      "oldViewBox": [
+        57.4,
+        81.4
+      ],
+      "oldSignatureSHA": "d905a6469ed5766607675eb1bdda79e5fe7abc3d961ae56c62cdec7739077ef8",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "can",
+      "newViewBox": [
+        73.1,
+        140.0
+      ],
+      "newSignatureSHA": "dc59793fe10a5ffe5d257359d70a0a120aff0069d4075e958f86897678a4d42f",
+      "newSourceLF_SHA": "3c9ac2770ac717eef12ee1ecfafa6633123073d9a30682b075a085e0b01846bf",
+      "oldViewBox": [
+        47.4,
+        82.2
+      ],
+      "oldSignatureSHA": "cc8062a26a1e977558bdb88f882ec2e999804121dd7ebc1e531ea7f569c7bbdf",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "cake-roll",
+      "newViewBox": [
+        140.0,
+        116.4
+      ],
+      "newSignatureSHA": "192a22a355197566e61850630df0934fde4c521e07fb82df5c677751799cc646",
+      "newSourceLF_SHA": "3f322959463130a2853fdd2a61db8cc276d7aac752f7b0075767560d6cfb6468",
+      "oldViewBox": [
+        103.4,
+        57.4
+      ],
+      "oldSignatureSHA": "8b8e598e8d54bc11255d8052120c7a99b71b0a53e4fe2389ad803383679e9124",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "pizza",
+      "newViewBox": [
+        139.7,
+        140.0
+      ],
+      "newSignatureSHA": "5347bae4b7c6b6a2961deaa64018f42c3d5b0278557702088cf52b882003ad82",
+      "newSourceLF_SHA": "0b8d092de015b9ca1c8e9e547db1d4b94be65183ea174bef6eedd5fca633f737",
+      "oldViewBox": [
+        100,
+        100
+      ],
+      "oldSignatureSHA": "d33c064317bfaea87618b18b9d8c0c040581058db4b6624c0a305f8a083518e7",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "ice-cream-cone",
+      "newViewBox": [
+        68.9,
+        140.0
+      ],
+      "newSignatureSHA": "3c84cd101ad21d809b21560c4cd9812f48593fbdaf231389d81478226c92aa0d",
+      "newSourceLF_SHA": "ffe66a03657b88b0f8737408ffd53c8e98bebe11c96da50120ebb217b750713d",
+      "oldViewBox": [
+        56.2,
+        97.4
+      ],
+      "oldSignatureSHA": "ce3eac096e1a2073ec6a801f451526ae59b40edd0117d90853bf1f91b0c5decc",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "baduk-black",
+      "newViewBox": [
+        140.0,
+        67.0
+      ],
+      "newSignatureSHA": "c63dbf0b043907f3e0e93d0530d479ddc7f40496d51f52d0b322b59fb60cd2d0",
+      "newSourceLF_SHA": "948d7faeb41851b064b917f94d5dab90b60617f11169cee6f64477fdec55ef66",
+      "oldViewBox": [
+        61.4,
+        34.7
+      ],
+      "oldSignatureSHA": "a27c96ba9fd4600c1e52542944cea51f6da5faca99f30d2eb06e92e46493ae8c",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "baduk-white",
+      "newViewBox": [
+        140.0,
+        70.5
+      ],
+      "newSignatureSHA": "85048b0d450eb997ecf2cdfc762db31073d16ac13e09db382dba1494b55d7eba",
+      "newSourceLF_SHA": "2f14735c3b9009d9afa2c433b59faedb198546626db17c83982404eec67f90d6",
+      "oldViewBox": [
+        61.4,
+        38.4
+      ],
+      "oldSignatureSHA": "f6c8d08ad87b1d8992d8fd422c3c7c81123270ca23bd45dff9a07ceb7ec17d09",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "matchstick",
+      "newViewBox": [
+        140.0,
+        13.6
+      ],
+      "newSignatureSHA": "0016562c822bf97cafc81ef9511e88a93aded70804b4887db68afb15f23c322f",
+      "newSourceLF_SHA": "d60e467dd308019f3c298b6a25d974e3b5c04e74e97c1d1f30d05a6856d15e5b",
+      "oldViewBox": [
+        80,
+        110
+      ],
+      "oldSignatureSHA": "6f28a52620e0cbf555206319b1d93395c5bd390febfba644af1e49928396dd39",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "picture-frame",
+      "newViewBox": [
+        140.0,
+        98.5
+      ],
+      "newSignatureSHA": "f3acf814695ea8806316954aaa1ef25595b3fa0e3dbbad9cd8eba21b5c6b87ef",
+      "newSourceLF_SHA": "90d4457d6f9c76da3a5048d5aa0ffb925d706dc4ccebf92d07d16737fba44d4f",
+      "oldViewBox": [
+        110,
+        90
+      ],
+      "oldSignatureSHA": "3a63ca2cccdf0e71d82e006933bdd9c97da979d01ae2f3280d3b8caefc0578e3",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "balance-scale",
+      "newViewBox": [
+        140.0,
+        63.9
+      ],
+      "newSignatureSHA": "3af209ca071f4ffff9f1a98eff9ba0a06c23348d2abb2cd880799abc4d06015b",
+      "newSourceLF_SHA": "a4117c9da16cebb48a21411ca7672100e7bf0fba9dd1e0c946fe3b2576630a3b",
+      "oldViewBox": [
+        140,
+        110
+      ],
+      "oldSignatureSHA": "707fc0f4a04587db686cc6e64b4d8044b6fefe48345bdc767e23db1305fcc6e0",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "thermometer",
+      "newViewBox": [
+        21.5,
+        140.0
+      ],
+      "newSignatureSHA": "2c714b0d0cdd1052330dfcf179fd9eb707f6ec4aacb5444cd2bd52e697594942",
+      "newSourceLF_SHA": "708a87d603dc7e652147bce4ba3dc67ca277e396bfc9ebc5378aab57579d15a9",
+      "oldViewBox": [
+        80,
+        110
+      ],
+      "oldSignatureSHA": "ccb048160a02e87cc99254298987f2ae500a280adbd45b7bfea5fa8c777b4eb8",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "dice",
+      "newViewBox": [
+        140.0,
+        134.5
+      ],
+      "newSignatureSHA": "939564730fb50ed70eb92b1ddb3c26e45ac17f92a7a6c8cbbd32ab5efb2357d1",
+      "newSourceLF_SHA": "f0ef2cbdbe0a1a295f06f243113ae1d8542bc7b0ab3623f8d0e58bc3ccd23edb",
+      "oldViewBox": [
+        71.4,
+        77.4
+      ],
+      "oldSignatureSHA": "a7fb8e9a6acba48b7069d198ad986d6e618a2797c60d74a29abb494d7dd3b0eb",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "train-side",
+      "newViewBox": [
+        140.0,
+        20.5
+      ],
+      "newSignatureSHA": "f5d22a3ea598522c9f4ce11112d25f2e1eed340a7c5046a75102cf453c8d02c1",
+      "newSourceLF_SHA": "c69883506005ea9d83831e8a848545434e0848e2e096de4eaaaf6c61a60aa057",
+      "oldViewBox": [
+        157.4,
+        50.4
+      ],
+      "oldSignatureSHA": "aa934a04c5317b00f3bf716a3820619fd33428fcec91ac94aff9aaaa8c4efae3",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "tunnel",
+      "newViewBox": [
+        140.0,
+        81.7
+      ],
+      "newSignatureSHA": "0b4f21ceda9bea161ad2e2dab2d4709b93f58b8433e4923938f8e790974940dc",
+      "newSourceLF_SHA": "544a48f5d9c7a5a3f4b51985a6fb7e4cf389441d87a024e3a994c8a8f786ac9c",
+      "oldViewBox": [
+        125.4,
+        70.8
+      ],
+      "oldSignatureSHA": "92a421723d8abaef8c59fd935570fa520e7c95560f7ba1a757316decaab03856",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "bridge",
+      "newViewBox": [
+        140.0,
+        36.0
+      ],
+      "newSignatureSHA": "e564a1d4f4c2a7122b612823ed83c03ad1e3d3e2e434ae7b81b130d69cb3b579",
+      "newSourceLF_SHA": "9d01c83b09fe90e20f200cc3011db35286e674c1dbf89850214a7a8cdf5b9da3",
+      "oldViewBox": [
+        155.4,
+        58.4
+      ],
+      "oldSignatureSHA": "3189a24b85afa3f34fc36ff12bc26e4e9f39be37667333f4df38f301ceab42f8",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "streetlamp",
+      "newViewBox": [
+        27.8,
+        140.0
+      ],
+      "newSignatureSHA": "47cae0b6d79b51d59d5f0856d49563df627556ff5c5f04625a65b86fa0bc3ad0",
+      "newSourceLF_SHA": "4755b0ec1c9f0780efc0d563cd6d7d3b9149861f081c8a8472e14907bd64f8ed",
+      "oldViewBox": [
+        29.4,
+        109.4
+      ],
+      "oldSignatureSHA": "00a7066faa3e184442357d3229c9ed23f42f88fd2ca8859b26f482a63300532a",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "building",
+      "newViewBox": [
+        40.1,
+        140.0
+      ],
+      "newSignatureSHA": "6bbb941c54b51a51939bfb2e8bcbf32df30bbbcc92e194ee55966bc902d377a0",
+      "newSourceLF_SHA": "17cf57367e05e9252599d024b845d47021c594a2e2877641f2449bfb2d7da54a",
+      "oldViewBox": [
+        79.4,
+        109.4
+      ],
+      "oldSignatureSHA": "1bba29409c3cac4dba4cdaeea3f092f8c78b63f8a0c3cd62f6eac7133fd500ca",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "flagpole",
+      "newViewBox": [
+        42.7,
+        140.0
+      ],
+      "newSignatureSHA": "132178a41fedc02b9d52f6b4faef8d92bbfdfef7676b4a9ac032cea3b594216e",
+      "newSourceLF_SHA": "77c577c04dda7dd6702b33d31ab3f70d057d93162aa15294b916efabc7b8eae1",
+      "oldViewBox": [
+        61.4,
+        124.4
+      ],
+      "oldSignatureSHA": "d42179450c1dbcf10ee289a1997cae4cc2a39b774f2cbe7de7ae7cc18281ac8e",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "mountain",
+      "newViewBox": [
+        140.0,
+        63.3
+      ],
+      "newSignatureSHA": "48309d837afb796af909a1438f9b2f1c43a1417e58f2eccbc251b41d317a03ed",
+      "newSourceLF_SHA": "76f82d50d4044ec75356b35fa7c1dcfe2927e7b4497c496509ee2c7a32f2bab2",
+      "oldViewBox": [
+        145.4,
+        71.4
+      ],
+      "oldSignatureSHA": "d12735393745b37b6c9732fa0c6d128ba93c9a03bcda4218a5bd82d93b7d0a24",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "person-standing",
+      "newViewBox": [
+        40.9,
+        140.0
+      ],
+      "newSignatureSHA": "d00b9a4b2b6d32d9b144d48ed519119aba07e397a9b2b2901cfe336dd3c8fec5",
+      "newSourceLF_SHA": "40b6f3c07dd44aedcc52b4a1909999e376772006a4e708cb5266b02fc2c2d5be",
+      "oldViewBox": [
+        37,
+        92.4
+      ],
+      "oldSignatureSHA": "7442c5f7cb96051dc9d991e92f64137a2e69241862ba4350ac2567063adfda73",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "person-walking",
+      "newViewBox": [
+        71.9,
+        140.0
+      ],
+      "newSignatureSHA": "bd6a2c878b04824e57e5b71d3b5ca98d7c6d0e37037f793281725c7b6b7ead2d",
+      "newSourceLF_SHA": "56e0316f36ba684405ef63b0842d5404676608d5f17d5f255ace5986bbba0eed",
+      "oldViewBox": [
+        57.4,
+        92.5
+      ],
+      "oldSignatureSHA": "25b4da087299d82dff6ff5620f595b738c7f045902dd241f482e4ffeecba9988",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "bicycle",
+      "newViewBox": [
+        140.0,
+        73.7
+      ],
+      "newSignatureSHA": "49cd79408c833751af1720bb04a3b3fb72552d2a1828382df2f30139dc73702c",
+      "newSourceLF_SHA": "6956d53ee333b4cb303af1486b2203817e5f90e2727f53a853baba107c6458da",
+      "oldViewBox": [
+        110.4,
+        61.2
+      ],
+      "oldSignatureSHA": "98cdd2782819e1776c2b1a105b60cac79a0f7211bce75a1a328b2ec226dc10c1",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "car-side",
+      "newViewBox": [
+        140.0,
+        65.3
+      ],
+      "newSignatureSHA": "a5e1f565dfafa57084465ff214655b5e7e569ae0cff59f13852f9ec65dc98e5d",
+      "newSourceLF_SHA": "88af34aaa1be7282cd73af9d7595ea17d473d9ed3484211595cf834998d3d392",
+      "oldViewBox": [
+        134,
+        56.4
+      ],
+      "oldSignatureSHA": "ad47826946bd8b51f9d639542f7887e748f0963c752fdacd6971981d646805ad",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    },
+    {
+      "slug": "boat",
+      "newViewBox": [
+        140.0,
+        29.6
+      ],
+      "newSignatureSHA": "e7a354b3931c9ad2b6463135c795b185011465ec6f8f2021507af91e35b6cf03",
+      "newSourceLF_SHA": "9db6592ec3e62d9550aaad2e27bda8287862aa37c604bc8f26790aea3a7946aa",
+      "oldViewBox": [
+        127.4,
+        54.9
+      ],
+      "oldSignatureSHA": "66b3c0f5c8e1c71f4ea35b97640a150104f472f820d4c334a0cae846110d251a",
+      "signatureMatches": false,
+      "viewBoxMatches": false
+    }
+  ],
+  "anchorsOutsideViewBox": [],
+  "actualRootLoaderSanitize": [
+    {
+      "slug": "airplane",
+      "ok": true,
+      "sanitizedSHA": "1f7686dd544f14ddf39270a4225e46dfddceec83649a5faa7c3f26fe1f7acc94"
+    },
+    {
+      "slug": "baduk-black",
+      "ok": true,
+      "sanitizedSHA": "8173de022f7f5b7bdd996395abed6d3e130fd042dbaf3690c28fdbdb52c480df"
+    },
+    {
+      "slug": "baduk-white",
+      "ok": true,
+      "sanitizedSHA": "a370246a09fcb447e77fe049615743a5ce21a75c100c3cb1a667b82cc0e24605"
+    },
+    {
+      "slug": "balance-scale",
+      "ok": true,
+      "sanitizedSHA": "f006dde22cab5e2a06b843f871ffc9e21553dbbafae5216b5ae88f3da28875cb"
+    },
+    {
+      "slug": "bicycle",
+      "ok": true,
+      "sanitizedSHA": "a686c81fa45711d3dc3bc37029d2fc2a9222a02abd01afa7c07e9b3df3f0da9e"
+    },
+    {
+      "slug": "boat",
+      "ok": true,
+      "sanitizedSHA": "f4773a3bfda64215b3c60e81fb914baf5d7fbca10cd45d832875f90285ab2143"
+    },
+    {
+      "slug": "bowl",
+      "ok": true,
+      "sanitizedSHA": "76b3d215a3518565280bd2304fa7ad8b78c5bb57e08d491151804147415a973a"
+    },
+    {
+      "slug": "bridge",
+      "ok": true,
+      "sanitizedSHA": "c24ad1a5687e93a03f4b5c83e8f9707d030189c86baf42f209a1dc6744231ef4"
+    },
+    {
+      "slug": "building",
+      "ok": true,
+      "sanitizedSHA": "5bd6a22a772cff5686b8d5ebba9ab25b09c5ea4089ec6b2c90560d36b5cd2e1d"
+    },
+    {
+      "slug": "building-3d",
+      "ok": true,
+      "sanitizedSHA": "9d0a1d9594d7634e9a4ede1b9a2048df8b56d16723f5ad056dbb10e54c93c6c9"
+    },
+    {
+      "slug": "cake-roll",
+      "ok": true,
+      "sanitizedSHA": "2ff1ecfc3b26e3bc7f74277a3250cafbaa01da666285c2691aa9373f4a31a073"
+    },
+    {
+      "slug": "can",
+      "ok": true,
+      "sanitizedSHA": "9fb0f2409550f929f9508d55476b0d55f21f7354177d9fc8e82452a0250207fc"
+    },
+    {
+      "slug": "car-side",
+      "ok": true,
+      "sanitizedSHA": "a27f2fb30d278b6c97a41b8c48fcb14834a0949135b6fbf1ef5c98f367115e33"
+    },
+    {
+      "slug": "cup-cone",
+      "ok": true,
+      "sanitizedSHA": "a975bfdaddeaf28c08b99939ed92a73d526c5e7160b66651e39c5132e8671663"
+    },
+    {
+      "slug": "cup-cylinder",
+      "ok": true,
+      "sanitizedSHA": "ccc3013cb5b1a53d8a8e8fb7d5b4e7c5b70fdc85df51dd60c1bb459fb22d4466"
+    },
+    {
+      "slug": "dice",
+      "ok": true,
+      "sanitizedSHA": "dde99c52c0818332b9c529b933d9ee993ee3f964064e2640f57cf2293153dbca"
+    },
+    {
+      "slug": "ferris-wheel",
+      "ok": true,
+      "sanitizedSHA": "cb8e93fee1d7d243b5938e054381130cb4a22944f45022982c6132102015465c"
+    },
+    {
+      "slug": "flagpole",
+      "ok": true,
+      "sanitizedSHA": "a4563ffe0833ebb2eeff79fdf1a987095e0f71cb3d87ab44fc9c3c788cecf46b"
+    },
+    {
+      "slug": "hot-air-balloon",
+      "ok": true,
+      "sanitizedSHA": "b6410529ccd28fb3f71b0ef82c9d5857a145b63c4f8aa3061bd467a3ed65f98a"
+    },
+    {
+      "slug": "house",
+      "ok": true,
+      "sanitizedSHA": "af2ba700ba634d9650152ec70962ed507b726cd4f28dda78553e73749b439fe0"
+    },
+    {
+      "slug": "house-3d",
+      "ok": true,
+      "sanitizedSHA": "e63f5a131e4514762202716d51ee46b56463409dcbb4a0fccd20e79c6ac14ab3"
+    },
+    {
+      "slug": "ice-cream-cone",
+      "ok": true,
+      "sanitizedSHA": "75aff1b16efc1a5d3ca62493b8b7848221b3aac2d8a03933469c5d766fe265ab"
+    },
+    {
+      "slug": "kite",
+      "ok": true,
+      "sanitizedSHA": "833b3df25231e64802d791d03194cf7de9b1760ba4668b01559e7feff09fbf64"
+    },
+    {
+      "slug": "ladder",
+      "ok": true,
+      "sanitizedSHA": "7dc819ba9423c10856ac23adb9b23c3f0343d3dec508cb6c082f5f2519bef5db"
+    },
+    {
+      "slug": "lighthouse",
+      "ok": true,
+      "sanitizedSHA": "daa79409e78c3d94b8510bdfa21e5eece5082fe2017f336dece4b57189f4336f"
+    },
+    {
+      "slug": "matchstick",
+      "ok": true,
+      "sanitizedSHA": "0e55d4615e55f8174e9f56dfab62ca334f45d115427dae5edc582779a434dd20"
+    },
+    {
+      "slug": "mountain",
+      "ok": true,
+      "sanitizedSHA": "c96e6b9c90423f17b96b34c6409d316396ec177c0cf38a59d81666ce06269eb3"
+    },
+    {
+      "slug": "person-standing",
+      "ok": true,
+      "sanitizedSHA": "0b3f9f58d2bc6b9dc21521fd0b16b317e804acd9b66a54ecfece721fb9a9bb00"
+    },
+    {
+      "slug": "person-walking",
+      "ok": true,
+      "sanitizedSHA": "de4a450320ea9bbb4af6d4119c381a2c1d7e49ff1e590450e90150218bbd1cc5"
+    },
+    {
+      "slug": "picture-frame",
+      "ok": true,
+      "sanitizedSHA": "5df4fc60e3d00d9e8356bbeacbc4ebbe3dfc95c034be1ba85f1cb4685421c1ce"
+    },
+    {
+      "slug": "pizza",
+      "ok": true,
+      "sanitizedSHA": "446cba40b6d0c748e16115c2d2aae93d8af3fa042144993c6fc046e155fcc468"
+    },
+    {
+      "slug": "slide",
+      "ok": true,
+      "sanitizedSHA": "86887b70704ff36cdba3df4fabae459772ba81e8bba14b38c221e545af17a22f"
+    },
+    {
+      "slug": "streetlamp",
+      "ok": true,
+      "sanitizedSHA": "eff97b97b0004433829fcc68cff29980402bf768d637f4d23f367accf3c298c0"
+    },
+    {
+      "slug": "sun",
+      "ok": true,
+      "sanitizedSHA": "289499b9e2826f4787210e3fac3498ea88f3cc161c1a8867e9252c520d6564f6"
+    },
+    {
+      "slug": "thermometer",
+      "ok": true,
+      "sanitizedSHA": "2d38be06eef1d249d6aa65779b6264d58258fc2c5ae067afcde83c4d1d09c782"
+    },
+    {
+      "slug": "tower",
+      "ok": true,
+      "sanitizedSHA": "cdbaddabf717b49ed7de34f3fb06cb3aca37ed57bc63cf10e8015fa6cbb87eff"
+    },
+    {
+      "slug": "train-side",
+      "ok": true,
+      "sanitizedSHA": "4ca34ead2396caade728cdaa504710410f1faddb053517bcc809987a1c098ba8"
+    },
+    {
+      "slug": "tree",
+      "ok": true,
+      "sanitizedSHA": "1b704e8b815c822fa92d3ed8a52771b6c2c50cef7342802e5ea013ec00cc9928"
+    },
+    {
+      "slug": "tunnel",
+      "ok": true,
+      "sanitizedSHA": "d5598e9c90bbfeed46916b869369a1f3c79d99fc6c74b04eb857d9df8db67779"
+    },
+    {
+      "slug": "utility-pole",
+      "ok": true,
+      "sanitizedSHA": "ea1ef882d66ad38d8b2c5a63f3ff12374f75b90b8583fb39a7eecb77348ce7d7"
+    },
+    {
+      "slug": "water-tank",
+      "ok": true,
+      "sanitizedSHA": "aaab3911851b6c7c981814f98b79482a0c0954dbad94b576bd890984d931dfc1"
+    }
+  ],
+  "actualRootElementaryRender": [
+    {
+      "slug": "airplane",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "baduk-black",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "baduk-white",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "balance-scale",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bicycle",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "boat",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bowl",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bridge",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "building",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "building-3d",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "cake-roll",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "can",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "car-side",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "cup-cone",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "cup-cylinder",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "dice",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "ferris-wheel",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "flagpole",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "hot-air-balloon",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "house",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "house-3d",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "ice-cream-cone",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "kite",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "ladder",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "lighthouse",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "matchstick",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "mountain",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "person-standing",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "person-walking",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "picture-frame",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "pizza",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "slide",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "streetlamp",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "sun",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "thermometer",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tower",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "train-side",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tree",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tunnel",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "utility-pole",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "water-tank",
+      "ok": false,
+      "error": "'dict' object has no attribute 'encode'"
+    }
+  ],
+  "actualRootNativePictureRenderAndSolidRejections": [
+    {
+      "slug": "house",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "building",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "lighthouse",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tower",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "utility-pole",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "streetlamp",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "flagpole",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tree",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "mountain",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "tunnel",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bridge",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "person-standing",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "person-walking",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bicycle",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "car-side",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "train-side",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "boat",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "airplane",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "hot-air-balloon",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "kite",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "sun",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "ladder",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "slide",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "building-3d",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "house-3d",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "can",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "dice",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    },
+    {
+      "slug": "bowl",
+      "accepted": false,
+      "error": "'dict' object has no attribute 'encode'"
+    }
+  ],
+  "sixExpectedMetadataNotRuntime": [
+    {
+      "name": "assets.json",
+      "savedBytes": 4929,
+      "commitBytes": 21670,
+      "savedRawSHA": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+      "commitRawSHA": "94b4049dfa4803bed3b6cfbebf1c0da8f32895fa3f17e51e9eb11a3dd8dc02e1",
+      "rawSame": false,
+      "LFNormalizedSame": false
+    },
+    {
+      "name": "grid.json",
+      "savedBytes": 1617,
+      "commitBytes": 1617,
+      "savedRawSHA": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "commitRawSHA": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "rawSame": true,
+      "LFNormalizedSame": true
+    },
+    {
+      "name": "perspective.json",
+      "savedBytes": 1612,
+      "commitBytes": 1612,
+      "savedRawSHA": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "commitRawSHA": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "rawSame": true,
+      "LFNormalizedSame": true
+    },
+    {
+      "name": "right-refused.json",
+      "savedBytes": 220,
+      "commitBytes": 220,
+      "savedRawSHA": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "commitRawSHA": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "rawSame": true,
+      "LFNormalizedSame": true
+    },
+    {
+      "name": "solid-object-refused.json",
+      "savedBytes": 223,
+      "commitBytes": 223,
+      "savedRawSHA": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "commitRawSHA": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "rawSame": true,
+      "LFNormalizedSame": true
+    },
+    {
+      "name": "units.json",
+      "savedBytes": 844,
+      "commitBytes": 844,
+      "savedRawSHA": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "commitRawSHA": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "rawSame": true,
+      "LFNormalizedSame": true
+    }
+  ],
+  "actualRootImportClosure": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\figure_assets.py": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\scene_assets.py": "2e2af817f5edc808f676c4d9ad9e289a0d063db808a481090a62ca10122c9f95",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "590a4ad6c208795038b1bc7cafd4f32227272c549d50dc0d2d13e026062899b5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "0d07cf01760c904daeab8c87d8df859d006f53b83116d30ed9e08c9a8a90ee97"
+  },
+  "unchangedAfter": true
+}
