@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddc-901a-7490-bcae-6bd1942b0035",
+ "startedAt": "2026-10-21T18:48:18+0900",
+ "elapsedSec": 7.5,
+ "studentSha256": {
+  "student.json": "eb0b13e7fc46a46a540199ca1344badbf48c9ee375423b121c5782d7b2a5c28e"
+ },
+ "promptSha256": "23bfbfc9fc97c55c6de7b33716c2751499f0de6ff2927621d4a4b16870d129df",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7가지\",\"work\":\"여객선을 타는 경우는 4가지, 비행기를 타는 경우는 3가지이다. 둘 중 하나를 골라 타므로 합의 법칙에 따라 4+3=7가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7가지",
+  "work": "여객선을 타는 경우는 4가지, 비행기를 타는 경우는 3가지이다. 둘 중 하나를 골라 타므로 합의 법칙에 따라 4+3=7가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea71000ccf24371246aa226c50799836a247b5202b701e9585f8a1c4d75deecb"
+}

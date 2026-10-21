@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A47-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddc-47a9-7411-998f-eb00975a2ddc",
+ "startedAt": "2026-10-21T18:47:59+0900",
+ "elapsedSec": 8.5,
+ "studentSha256": {
+  "student.json": "d5dea2ec7975f37a5bf3efb5855d680383758aa44eac2516395744481fe0ec71"
+ },
+ "promptSha256": "4104320d0b162c23bdbfa5a663a6da0ec784f48a495f9e5ac79db58772a998ae",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$a=2b-7$이고 $a$, $b$는 각각 1 이상 6 이하의 정수이다. 이를 만족하는 $(a,b)$는 $(1,4)$, $(3,5)$, $(5,6)$이므로 경우의 수는 3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$a=2b-7$이고 $a$, $b$는 각각 1 이상 6 이하의 정수이다. 이를 만족하는 $(a,b)$는 $(1,4)$, $(3,5)$, $(5,6)$이므로 경우의 수는 3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "43970f5c2c994ff3dc000d740b32fc67c89bd28c404c5790c9a9e8085f996d77"
+}

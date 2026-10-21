@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A51-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "fbcff38f-6713-4661-872b-179d8f1e33f5",
+ "startedAt": "2026-10-21T17:56:31+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "8ea8a8305ff83e5dc71c2a35193f11df2ba2bd83e5bbe84ed98a33a08914db6e"
+ },
+ "promptSha256": "4e9e506801ec7385c59c052682bfb7582c2f2c8c3a5e78ecbb0973adda6074b1",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"곱이 3인 경우: (1,3), (3,1) → 2가지\\n곱이 12인 경우: (2,6), (6,2), (3,4), (4,3) → 4가지\\n두 사건은 동시에 일어나지 않으므로 2 + 4 = 6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "곱이 3인 경우: (1,3), (3,1) → 2가지\n곱이 12인 경우: (2,6), (6,2), (3,4), (4,3) → 4가지\n두 사건은 동시에 일어나지 않으므로 2 + 4 = 6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "eb5ef0b03b2427257509a1854b080082f75e8829e3043ab693d667c3eff488b7"
+}

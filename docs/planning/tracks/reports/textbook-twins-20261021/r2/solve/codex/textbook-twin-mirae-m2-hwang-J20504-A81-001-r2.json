@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dda-81cb-76e1-9e10-e612512f8e91",
+ "startedAt": "2026-10-21T18:46:03+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "fig-1.png": "37dcb0f815a7fc0acdc4d83a19af228c8dc83066fae5f246435de5892358f69f",
+  "student.json": "6fb2f8a4bda1f3cb3a6ea1278b4402b587235eb4a43f5d09aec79f4740a39d12"
+ },
+ "promptSha256": "603d2193ff7ddbe193770fbabf7368bb578c39e2c18b3f2a56519c923d8f718f",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"16°\",\"work\":\"CA=CB이므로 ∠CAB=(180°−52°)÷2=64°이다.\\nI는 △ABC의 내심이므로 ∠IAB=64°÷2=32°이다.\\nJ는 △IAB의 내심이므로 ∠x=∠JAB=32°÷2=16°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "16°",
+  "work": "CA=CB이므로 ∠CAB=(180°−52°)÷2=64°이다.\nI는 △ABC의 내심이므로 ∠IAB=64°÷2=32°이다.\nJ는 △IAB의 내심이므로 ∠x=∠JAB=32°÷2=16°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "71f60825a138ee037c3780d62cfcc6b510976ce790c7799b34f27a08c0ab973f"
+}

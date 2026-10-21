@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d92f1e50-820d-4230-9f99-27a7f040fccb",
+ "startedAt": "2026-10-21T17:56:35+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "eb0b13e7fc46a46a540199ca1344badbf48c9ee375423b121c5782d7b2a5c28e"
+ },
+ "promptSha256": "99137341656ac0b4e6dcb6a63730df25786107e7b428d4e90706bfc236bb32fd",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"7\", \"work\": \"여객선을 타는 경우 4가지, 비행기를 타는 경우 3가지이다. 두 사건은 동시에 일어나지 않으므로 합의 법칙에 따라 4 + 3 = 7이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "여객선을 타는 경우 4가지, 비행기를 타는 경우 3가지이다. 두 사건은 동시에 일어나지 않으므로 합의 법칙에 따라 4 + 3 = 7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cc12a5b520fea6fe3b8d2f9d9c70c127db6d6084cd23504239bb17d683bc3e8c"
+}

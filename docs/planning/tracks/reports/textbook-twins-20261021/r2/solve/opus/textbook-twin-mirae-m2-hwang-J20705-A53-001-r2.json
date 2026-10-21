@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A53-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "492423cc-180c-4576-b145-6affc8eb84d9",
+ "startedAt": "2026-10-21T17:56:09+0900",
+ "elapsedSec": 8.1,
+ "studentSha256": {
+  "fig-1.png": "792d0dab19903abae88b976a168f52fe89690e3a9bb223d98a7bf62d35340ca2",
+  "student.json": "301dc4f666dfaec4a364f9cd4262b09e40c8e7f44ac4961725e11cd522919f67"
+ },
+ "promptSha256": "82febbb633f5e789f1170ff39bfdf1086fa6f187563e438edab3429bda846049",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"4 cm\", \"work\": \"G는 △ABC의 무게중심이므로 AG:GM = 2:1이고, GM = 24 × 1/2 = 12 cm이다. △GBC에서 GM은 변 BC의 중점 M으로 가는 중선이다. H는 △GBC의 무게중심이므로 GH:HM = 2:1이고, HM = 12 × 1/3 = 4 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "4 cm",
+  "work": "G는 △ABC의 무게중심이므로 AG:GM = 2:1이고, GM = 24 × 1/2 = 12 cm이다. △GBC에서 GM은 변 BC의 중점 M으로 가는 중선이다. H는 △GBC의 무게중심이므로 GH:HM = 2:1이고, HM = 12 × 1/3 = 4 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "99f0c85d31e8e070940c0a7c7b29244fb89b7b57e3e0f2bb6341cce42b0d6120"
+}

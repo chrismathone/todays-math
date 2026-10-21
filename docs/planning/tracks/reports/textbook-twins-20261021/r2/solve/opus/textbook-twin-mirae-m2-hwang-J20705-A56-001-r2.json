@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "28355437-5076-4e11-8906-f3ba0cc69ca6",
+ "startedAt": "2026-10-21T17:56:13+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "b3b52f291e4af494da2be0bd5cb52e0593819debc0d35b2da5260ad34c64165f",
+  "student.json": "7484baf172656f0f0451f787f412d666555f405b80e33e0372338c6c8b07cd9a"
+ },
+ "promptSha256": "69a709a4a96ed43aab698087aac136d09e30d49f1db9f764c54ed59c0e2c6178",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"63 cm²\", \"work\": \"G가 △PQR의 무게중심이므로 △GQR = (1/3)△PQR이다. H가 △GQR의 무게중심이므로 △HQG = (1/3)△GQR = (1/9)△PQR이다. 따라서 △PQR = 9 × 7 = 63 (cm²)이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "63 cm²",
+  "work": "G가 △PQR의 무게중심이므로 △GQR = (1/3)△PQR이다. H가 △GQR의 무게중심이므로 △HQG = (1/3)△GQR = (1/9)△PQR이다. 따라서 △PQR = 9 × 7 = 63 (cm²)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "daca28319b1d74542d9a2ccd10cc4868385423196f6c2637e60f58ed3030ffed"
+}

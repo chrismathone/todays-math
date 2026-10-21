@@ -1,0 +1,34 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5830096b-6b68-43fc-a7f7-cab551b450d4",
+ "startedAt": "2026-10-21T17:56:26+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "fig-1.png": "ca023067af26f6165f1f39adab1270298150b3ccabf1920c7cc9e6cbacc6d55b",
+  "student.json": "1e83ae0dce226a7bcabcfa1b9e2721596f6dad4c3ec4da9935dc6122b8d22ffa"
+ },
+ "promptSha256": "6f7dbe0b7443f5808fc03bc297262036b8c92f9ba197a8eb924539e28b816875",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{289}{30}$ cm\", \"work\": \"직각삼각형 PQS에서 PS=√(17²−8²)=15. 접었으므로 ∠R'QS=∠RQS이고, PS∥QR이므로 엇각에 의해 ∠RQS=∠QSP. 따라서 ∠TQS=∠TSQ이므로 △TQS는 TQ=TS인 이등변삼각형이다(그러므로 H는 QS의 중점). QT=x라 하면 PT=15−x. 직각삼각형 PQT에서 x²=8²+(15−x)², 30x=289, x=289/30 cm.\", \"confidence\": \"high\", \"issues\": [\"점 H는 QT의 길이를 구하는 데 필요하지 않은 정보이다(이등변삼각형이므로 H는 QS의 중점일 뿐이다).\"]}\n```",
+ "parsed": {
+  "answer": "$\\frac{289}{30}$ cm",
+  "work": "직각삼각형 PQS에서 PS=√(17²−8²)=15. 접었으므로 ∠R'QS=∠RQS이고, PS∥QR이므로 엇각에 의해 ∠RQS=∠QSP. 따라서 ∠TQS=∠TSQ이므로 △TQS는 TQ=TS인 이등변삼각형이다(그러므로 H는 QS의 중점). QT=x라 하면 PT=15−x. 직각삼각형 PQT에서 x²=8²+(15−x)², 30x=289, x=289/30 cm.",
+  "confidence": "high",
+  "issues": [
+   "점 H는 QT의 길이를 구하는 데 필요하지 않은 정보이다(이등변삼각형이므로 H는 QS의 중점일 뿐이다)."
+  ]
+ },
+ "eventsSha256": "14043635f923fe92a0ea0d2003896dbc8c5192da892ee1bf91e3671f1d74c356"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e48e6c61-7add-493e-879b-414c8842265e",
+ "startedAt": "2026-10-21T17:56:00+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "fig-1.png": "37dcb0f815a7fc0acdc4d83a19af228c8dc83066fae5f246435de5892358f69f",
+  "student.json": "6fb2f8a4bda1f3cb3a6ea1278b4402b587235eb4a43f5d09aec79f4740a39d12"
+ },
+ "promptSha256": "3ab175f39f4db6838119351d054dcb88788d5556ce3f7e9f7d038f8794d724c7",
+ "freezeCommit": "c03e686ba4729baf3df63e9731c0663e35cdde02",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"16°\", \"work\": \"CA=CB이므로 ∠CAB=∠CBA=(180°−52°)/2=64°. I는 △ABC의 내심이므로 AI가 ∠CAB를 이등분하고, ∠IAB=32°. J는 △IAB의 내심이므로 AJ가 ∠IAB를 이등분하고, ∠x=∠JAB=32°/2=16°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "16°",
+  "work": "CA=CB이므로 ∠CAB=∠CBA=(180°−52°)/2=64°. I는 △ABC의 내심이므로 AI가 ∠CAB를 이등분하고, ∠IAB=32°. J는 △IAB의 내심이므로 AJ가 ∠IAB를 이등분하고, ∠x=∠JAB=32°/2=16°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c066d575b4f90f23bab70887018d39a83fb3d3f3e285988a235f71b260dd6153"
+}

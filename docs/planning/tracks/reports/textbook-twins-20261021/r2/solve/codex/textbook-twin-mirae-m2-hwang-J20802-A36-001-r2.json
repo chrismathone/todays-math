@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A36-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddb-d091-7302-8aa2-7ccf8a0fa9ad",
+ "startedAt": "2026-10-21T18:47:29+0900",
+ "elapsedSec": 30.4,
+ "studentSha256": {
+  "fig-1.png": "ca023067af26f6165f1f39adab1270298150b3ccabf1920c7cc9e6cbacc6d55b",
+  "student.json": "1e83ae0dce226a7bcabcfa1b9e2721596f6dad4c3ec4da9935dc6122b8d22ffa"
+ },
+ "promptSha256": "fce2ee238819fdab0aca8093bb9c79780d6b249b5c6f2a72a62531030757c15a",
+ "freezeCommit": "6f4046312a959aab3417f139d1fb6bdd3dd0acc4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{289}{30}\\\\,\\\\mathrm{cm}$\",\n  \"work\": \"직사각형 PQRS에서 피타고라스 정리에 의해 $PS=QR=\\\\sqrt{17^2-8^2}=15\\\\,\\\\mathrm{cm}$이다.\\n접기에 의해 $\\\\angle TQS=\\\\angle RQS$이고, $PS\\\\parallel QR$이므로 $\\\\angle QST=\\\\angle RQS$이다. 따라서 삼각형 QTS는 이등변삼각형이므로 $QT=TS$이다.\\n$QT=TS=x\\\\,\\\\mathrm{cm}$라 하면 $PT=(15-x)\\\\,\\\\mathrm{cm}$이다. 직각삼각형 PQT에서 $x^2=8^2+(15-x)^2$이다.\\n이를 정리하면 $30x=289$이므로 $QT=\\\\frac{289}{30}\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$\\frac{289}{30}\\,\\mathrm{cm}$",
+  "work": "직사각형 PQRS에서 피타고라스 정리에 의해 $PS=QR=\\sqrt{17^2-8^2}=15\\,\\mathrm{cm}$이다.\n접기에 의해 $\\angle TQS=\\angle RQS$이고, $PS\\parallel QR$이므로 $\\angle QST=\\angle RQS$이다. 따라서 삼각형 QTS는 이등변삼각형이므로 $QT=TS$이다.\n$QT=TS=x\\,\\mathrm{cm}$라 하면 $PT=(15-x)\\,\\mathrm{cm}$이다. 직각삼각형 PQT에서 $x^2=8^2+(15-x)^2$이다.\n이를 정리하면 $30x=289$이므로 $QT=\\frac{289}{30}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b8baee84c242cad9d67bc319e33a6111c7ce67fa6cdf99698a165172d6907f7b"
+}
