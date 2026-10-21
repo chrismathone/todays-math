@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df6-b453-74e2-ac00-b6d768a0607d",
+ "startedAt": "2026-10-21T19:16:51+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "fig-1.png": "7cfdc8ddebe985086f8ddb1d2cd7c172f0ab585918df44d105e5b917d8425e59",
+  "student.json": "5795c19a34d46af4baa6b86bd83de809859dfd5613ec445e7b36ea65bc520d01"
+ },
+ "promptSha256": "c40b26a985fee2a0aa12738c01c1ca35c2953443175fd1846a537c37b2c18a1e",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"두 사각형의 닮음비는 $CD:GH=6:8=3:4$이다.\\n따라서 $x=14\\\\times\\\\frac{3}{4}=\\\\frac{21}{2}$, $y=12\\\\times\\\\frac{4}{3}=16$이다.\\n그러므로 $2x+y=21+16=37$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 사각형의 닮음비는 $CD:GH=6:8=3:4$이다.\n따라서 $x=14\\times\\frac{3}{4}=\\frac{21}{2}$, $y=12\\times\\frac{4}{3}=16$이다.\n그러므로 $2x+y=21+16=37$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "28f01b4d0e39458cced654f479b4866956db50bd34f09c986bddb06a6cfb0837"
+}

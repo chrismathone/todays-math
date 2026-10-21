@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "a5eba146-fd17-4d6c-a663-b59baa13d4b7",
+ "startedAt": "2026-10-21T18:35:55+0900",
+ "elapsedSec": 29.6,
+ "studentSha256": {
+  "fig-1.png": "344ee19df38ee5c7a0df6f5fa675cac9199111f5ba48006aa9e76216155d6b37",
+  "student.json": "b671bd7c307231cfbbc1134b8b8a593770cba87cb8bee74023af40dbe3d1ce19"
+ },
+ "promptSha256": "e9650f101f5b13a6182e7e6454be7df0271894bffe7181e6f06b0be3302a0670",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③, ⑤\",\n  \"work\": \"직각삼각형의 닮음에 의해 $\\\\triangle ABC \\\\backsim \\\\triangle AEB \\\\backsim \\\\triangle BEC$ (AA 닮음)가 성립하므로 ②, ④는 옳다.\\n또한 닮음비에 의해 다음이 성립한다:\\n① $\\\\overline{BE}^2 = \\\\overline{AE} \\\\times \\\\overline{CE}$ (참)\\n③ $\\\\overline{BC}^2 = \\\\overline{CE} \\\\times \\\\overline{AC}$이므로 $\\\\overline{CE} \\\\times \\\\overline{AE}$는 옳지 않다.\\n⑤ $\\\\overline{AB}^2 = \\\\overline{AE} \\\\times \\\\overline{AC}$이므로 $\\\\overline{AE} \\\\times \\\\overline{BC}$는 옳지 않다.\\n따라서 옳지 않은 것은 ③, ⑤이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③, ⑤",
+  "work": "직각삼각형의 닮음에 의해 $\\triangle ABC \\backsim \\triangle AEB \\backsim \\triangle BEC$ (AA 닮음)가 성립하므로 ②, ④는 옳다.\n또한 닮음비에 의해 다음이 성립한다:\n① $\\overline{BE}^2 = \\overline{AE} \\times \\overline{CE}$ (참)\n③ $\\overline{BC}^2 = \\overline{CE} \\times \\overline{AC}$이므로 $\\overline{CE} \\times \\overline{AE}$는 옳지 않다.\n⑤ $\\overline{AB}^2 = \\overline{AE} \\times \\overline{AC}$이므로 $\\overline{AE} \\times \\overline{BC}$는 옳지 않다.\n따라서 옳지 않은 것은 ③, ⑤이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d0afe0209f9c444eb43eeb336501c213304289e497854a9ddcea0880e1084df4"
+}

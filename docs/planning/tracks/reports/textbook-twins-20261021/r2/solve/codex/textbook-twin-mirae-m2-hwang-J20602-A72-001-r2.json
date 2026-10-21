@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A72-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df6-df4a-7a50-8b6b-e8921eb699a0",
+ "startedAt": "2026-10-21T19:17:02+0900",
+ "elapsedSec": 14.5,
+ "studentSha256": {
+  "fig-1.png": "344ee19df38ee5c7a0df6f5fa675cac9199111f5ba48006aa9e76216155d6b37",
+  "student.json": "b671bd7c307231cfbbc1134b8b8a593770cba87cb8bee74023af40dbe3d1ce19"
+ },
+ "promptSha256": "2df9ea8f889e2abd085a6be48d4837b7a8a13d1fc9d4dae7287ff5471b47bf3a",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③, ⑤\",\"work\":\"직각삼각형의 닮음에 의해 $BE^2=AE\\\\cdot CE$, $BC^2=CE\\\\cdot AC$, $AB^2=AE\\\\cdot AC$이다.\\n또한 대응각이 같으므로 $\\\\triangle ABC\\\\sim\\\\triangle AEB$, $\\\\triangle AEB\\\\sim\\\\triangle BEC$이다.\\n따라서 ①, ②, ④는 옳고, 옳지 않은 것은 ③, ⑤이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③, ⑤",
+  "work": "직각삼각형의 닮음에 의해 $BE^2=AE\\cdot CE$, $BC^2=CE\\cdot AC$, $AB^2=AE\\cdot AC$이다.\n또한 대응각이 같으므로 $\\triangle ABC\\sim\\triangle AEB$, $\\triangle AEB\\sim\\triangle BEC$이다.\n따라서 ①, ②, ④는 옳고, 옳지 않은 것은 ③, ⑤이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5607e129ee13551b79f03ceea12ad753a559db0f48b3c63d946c432ec9610371"
+}

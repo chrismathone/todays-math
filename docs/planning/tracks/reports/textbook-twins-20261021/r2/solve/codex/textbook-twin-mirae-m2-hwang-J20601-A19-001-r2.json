@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df6-5fa0-7ac3-b62d-2f3485ae84a3",
+ "startedAt": "2026-10-21T19:16:29+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "c4d1f178d729100372e70da996007610423f213a8af594048e7f11749ba7a976"
+ },
+ "promptSha256": "56455511422feb99b4f9ee1d0e71f70277ef57cc3d9284af4cf3a6a17593c1ce",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"두 부채꼴은 중심각이 다르면 서로 닮지 않는다.\\n두 정오각형, 두 구, 두 정육면체, 두 정팔면체는 각각 크기에 관계없이 항상 닮음이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "두 부채꼴은 중심각이 다르면 서로 닮지 않는다.\n두 정오각형, 두 구, 두 정육면체, 두 정팔면체는 각각 크기에 관계없이 항상 닮음이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "393789e454758adedd49d7776637c6c754c146c00d4e468a8fe3e3fab6c7263c"
+}

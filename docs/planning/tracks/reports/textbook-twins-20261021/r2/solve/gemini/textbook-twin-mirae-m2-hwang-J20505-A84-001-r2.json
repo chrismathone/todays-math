@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "2af17634-c450-4355-b65b-e19eb59940a5",
+ "startedAt": "2026-10-21T18:34:18+0900",
+ "elapsedSec": 96.3,
+ "studentSha256": {
+  "fig-1.png": "295f9e27899791a3913abab52ecc57cca8d0ca3f044985f12350016d5b796560",
+  "student.json": "47b0bfb7e577bb991b60d936d5d4585f3900ff4fb75e300058a0d50e76962522"
+ },
+ "promptSha256": "6551df4c19e9840e9dfe9ab45501a435274027707027b57b46814cc41e6c248e",
+ "freezeCommit": "ab5df758cd1ae6e171f41174e0d3da7f97849822",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"18°\",\n  \"work\": \"1. 정오각형 $ABFEG$의 한 내각의 크기는 $\\\\frac{(5-2) \\\\times 180^\\\\circ}{5} = 108^\\\\circ$이다.\\n2. 이등변삼각형 $GAE$에서 $GA = GE$이므로 $\\\\angle GEA = \\\\frac{180^\\\\circ - 108^\\\\circ}{2} = 36^\\\\circ$이고, $\\\\angle AEF = \\\\angle GEF - \\\\angle GEA = 108^\\\\circ - 36^\\\\circ = 72^\\\\circ$이다.\\n3. 종이를 접었을 때 점 $C$가 점 $A$와 겹치므로 접는 선 $\\\\overline{EF}$는 선분 $AC$의 수직이등분선이다. 즉 $\\\\overline{AC} \\\\perp \\\\overline{EF}$이다. (또는 접은 각과 변의 성질에 의해 $\\\\angle CEF = \\\\angle AEF = 72^\\\\circ$, $\\\\overline{EC} = \\\\overline{EA}$)\\n4. $\\\\overline{AC}$와 $\\\\overline{EF}$의 교점을 $M$이라 하면 직각삼각형 $AEM$에서 $\\\\angle EAM = 90^\\\\circ - \\\\angle AEM = 90^\\\\circ - 72^\\\\circ = 18^\\\\circ$이다. (또는 이등변삼각형 $AEC$에서 $\\\\angle AEC = 144^\\\\circ$이므로 $\\\\angle EAC = \\\\frac{180^\\\\circ - 144^\\\\circ}{2} = 18^\\\\circ$)\\n5. 점 $E$는 변 $AD$ 위의 점이므로 $\\\\angle DAC = \\\\angle EAC = 18^\\\\circ$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "18°",
+  "work": "1. 정오각형 $ABFEG$의 한 내각의 크기는 $\\frac{(5-2) \\times 180^\\circ}{5} = 108^\\circ$이다.\n2. 이등변삼각형 $GAE$에서 $GA = GE$이므로 $\\angle GEA = \\frac{180^\\circ - 108^\\circ}{2} = 36^\\circ$이고, $\\angle AEF = \\angle GEF - \\angle GEA = 108^\\circ - 36^\\circ = 72^\\circ$이다.\n3. 종이를 접었을 때 점 $C$가 점 $A$와 겹치므로 접는 선 $\\overline{EF}$는 선분 $AC$의 수직이등분선이다. 즉 $\\overline{AC} \\perp \\overline{EF}$이다. (또는 접은 각과 변의 성질에 의해 $\\angle CEF = \\angle AEF = 72^\\circ$, $\\overline{EC} = \\overline{EA}$)\n4. $\\overline{AC}$와 $\\overline{EF}$의 교점을 $M$이라 하면 직각삼각형 $AEM$에서 $\\angle EAM = 90^\\circ - \\angle AEM = 90^\\circ - 72^\\circ = 18^\\circ$이다. (또는 이등변삼각형 $AEC$에서 $\\angle AEC = 144^\\circ$이므로 $\\angle EAC = \\frac{180^\\circ - 144^\\circ}{2} = 18^\\circ$)\n5. 점 $E$는 변 $AD$ 위의 점이므로 $\\angle DAC = \\angle EAC = 18^\\circ$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a635e23f47dbd17c1bb83b72dad2018285f8a66f6420aacfb64b9e12a97d191c"
+}

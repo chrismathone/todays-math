@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A73-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "70d30ddc-60cd-42e3-9832-5d81518084e9",
+ "startedAt": "2026-10-21T18:35:55+0900",
+ "elapsedSec": 23.0,
+ "studentSha256": {
+  "fig-1.png": "b9d5679800006a935c6cab2c2460df4195ac86e987b90dc2cce4d6f5df362df6",
+  "student.json": "d469eca1f41b67a36d4fa14b3248e4688049a914c6a7c31343a090cf23c96074"
+ },
+ "promptSha256": "1e39829963d7024321488d0ef1eb08bd99bdf6e32156b4d6aa7acefbfe82a8d3",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"$\\\\overline{AB} = \\\\overline{AD} + \\\\overline{DB} = 6 + 5 = 11\\\\,\\\\mathrm{cm}$이다. $\\\\triangle ABC \\\\backsim \\\\triangle ADE$에서 대응변의 길이의 비는 같으므로 $\\\\overline{AB} : \\\\overline{AD} = \\\\overline{BC} : \\\\overline{DE}$이다. 따라서 $11 : 6 = \\\\overline{BC} : 9$가 성립하며, $\\\\overline{BC} = \\\\frac{11 \\\\times 9}{6} = \\\\frac{33}{2}\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "$\\overline{AB} = \\overline{AD} + \\overline{DB} = 6 + 5 = 11\\,\\mathrm{cm}$이다. $\\triangle ABC \\backsim \\triangle ADE$에서 대응변의 길이의 비는 같으므로 $\\overline{AB} : \\overline{AD} = \\overline{BC} : \\overline{DE}$이다. 따라서 $11 : 6 = \\overline{BC} : 9$가 성립하며, $\\overline{BC} = \\frac{11 \\times 9}{6} = \\frac{33}{2}\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2c54ebc3aeaa92626c325b5533b219b488696805673b186861806abe33b9c0b1"
+}

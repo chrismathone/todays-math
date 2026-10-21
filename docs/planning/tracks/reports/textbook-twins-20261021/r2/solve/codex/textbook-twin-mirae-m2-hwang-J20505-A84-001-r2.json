@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A84-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df5-b89b-7fd0-8655-8cf0cce50dbe",
+ "startedAt": "2026-10-21T19:15:47+0900",
+ "elapsedSec": 42.7,
+ "studentSha256": {
+  "fig-1.png": "295f9e27899791a3913abab52ecc57cca8d0ca3f044985f12350016d5b796560",
+  "student.json": "47b0bfb7e577bb991b60d936d5d4585f3900ff4fb75e300058a0d50e76962522"
+ },
+ "promptSha256": "a7d2a74e3b7aa9f857331a2159ece5e758eeab3a0684e48acf1f3998d5306b6e",
+ "freezeCommit": "ab7b443fa05289bfdde8e41769f3f322194f0253",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"18°\",\n  \"work\": \"정오각형의 한 내각은 $108^\\\\circ$이고 $AB=BF$이므로, 삼각형 $ABF$에서 $\\\\angle AFB=(180^\\\\circ-108^\\\\circ)/2=36^\\\\circ$이다.\\n$B,F,C$가 한 직선 위에 있으므로 $\\\\angle AFC=180^\\\\circ-36^\\\\circ=144^\\\\circ$이다.\\n접었을 때 $C$가 $A$와 겹치고 $F$는 그대로이므로 $AF=CF$이다. 따라서 이등변삼각형 $AFC$에서 $\\\\angle ACF=(180^\\\\circ-144^\\\\circ)/2=18^\\\\circ$이다.\\n$AD\\\\parallel BC$이므로 엇각인 $\\\\angle DAC=\\\\angle ACF=18^\\\\circ$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "18°",
+  "work": "정오각형의 한 내각은 $108^\\circ$이고 $AB=BF$이므로, 삼각형 $ABF$에서 $\\angle AFB=(180^\\circ-108^\\circ)/2=36^\\circ$이다.\n$B,F,C$가 한 직선 위에 있으므로 $\\angle AFC=180^\\circ-36^\\circ=144^\\circ$이다.\n접었을 때 $C$가 $A$와 겹치고 $F$는 그대로이므로 $AF=CF$이다. 따라서 이등변삼각형 $AFC$에서 $\\angle ACF=(180^\\circ-144^\\circ)/2=18^\\circ$이다.\n$AD\\parallel BC$이므로 엇각인 $\\angle DAC=\\angle ACF=18^\\circ$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d97b3c5c363e67bd070e70c3d096b8aa4b136413c7bccf6b3ea7a09d40254875"
+}
