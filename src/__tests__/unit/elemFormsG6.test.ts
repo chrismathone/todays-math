@@ -87,7 +87,7 @@ describe("초6 1-1-1 (자연수)÷(자연수) — 묻는 대상이 답이다", (
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "03");
       const poly = p.content.match(
-        /둘레가 \$(\d+)\\,\\mathrm\{m\}\$ 인 정(삼|사|오|육|팔)각형/,
+        /둘레가 \$(\d+)\\,\\mathrm\{m\}\$인 정(삼|사|오|육|팔)각형/,
       );
       if (poly) {
         expectFracEq(p.answer, Number(poly[1]), sidesOf[poly[2]!]!, p.content);
@@ -1312,7 +1312,7 @@ describe("초6 2-6 원기둥·원뿔·구", () => {
       expect(answerInt(b.answer)).toBe(1);
       const s = generateElementaryForm(unit, seed, "07");
       const rm = s.content.match(
-        /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$ 이고 높이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
+        /반지름이 \$(\d+)\\,\\mathrm\{cm\}\$이고 높이가 \$(\d+)\\,\\mathrm\{cm\}\$/,
       );
       expect(rm, s.content).toBeTruthy();
       expect(answerInt(s.answer)).toBe(Number(rm![1]) + Number(rm![2]));

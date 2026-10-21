@@ -54,8 +54,25 @@ export function unitNum(value: number | string, unit: string): string {
   return `$${value}\\,\\mathrm{${unit}}$`;
 }
 
-/** 수 하나를 읽은 끝소리의 받침. 연산식·문자·단위는 읽는 법을 추측하지 않는다. */
+/**
+ * 단위로 끝나는 식의 끝소리 받침 — 단위는 우리말로 읽는다(«밀리리터» · «그램» · «톤» · «퍼센트» · «도»).
+ * 제곱 · 세제곱(«제곱센티미터»)도 끝은 단위 이름이다. 표에 없는 단위는 모른다고 둔다.
+ */
+const UNIT_FINAL: Readonly<Record<string, number>> = {
+  mm: 0, cm: 0, m: 0, km: 0, mL: 0, L: 0, kL: 0, g: 16, kg: 16, mg: 16, t: 4,
+};
+
+/** 수 하나를 읽은 끝소리의 받침. 연산식·문자는 읽는 법을 추측하지 않는다. */
 export function mathFinal(latex: string): number | null {
+  const unit = /[\d}]\s*\\,\s*\\mathrm\{([A-Za-z]+)\}(?:\^\{?[23]\}?)?$/.exec(latex);
+  if (unit) return UNIT_FINAL[unit[1]!] ?? null;
+  if (/\d\s*\\%$/.test(latex) || /\d\s*\^\{?\\circ\}?$/.test(latex)) return 0;
+  // 빈칸 «□»은 «네모»로 읽는다 — «$8\times\square$가»
+  if (/\\square$/.test(latex)) return 0;
+  // 식이 연산 기호 뒤의 수 · 분수로 끝나면 읽는 끝소리는 그 토막이다 — «$\frac16\times\frac38$» 은 «… 8분의 3» → «을»
+  // (2026-10-20 교차 검수). 지수 · 문자로 끝나는 식은 여전히 모른다고 둔다.
+  const tail = /(?:\\times|\\div|\\le|\\ge|\\leq|\\geq|[-+=<>:])\s*((?:\d+)?\\frac\{\d+\}\{\d+\}|\d+(?:\.\d+)?)$/.exec(latex);
+  if (tail) return mathFinal(tail[1]!);
   const fraction = /^-?(?:\d+)?\\frac\{(\d+)\}\{\d+\}$/.exec(latex);
   const value = fraction?.[1] ?? latex;
   if (!/^-?\d+(?:\.\d+)?$/.test(value)) return null;
@@ -80,6 +97,43 @@ export function mathFinal(latex: string): number | null {
     }
   }
   return ending ? (ending.charCodeAt(0) - 0xac00) % 28 : null;
+}
+
+/**
+ * 식 뒤에 **붙여 쓰는** 낱말 — 조사와 서술격 조사 «이다»의 활용(D-164 ①, 2026-10-21 리드 · Codex 합의).
+ * «$x$ 의» → «$x$의» · «$25$ 입니다» → «$25$입니다». 확인한 낱말 전체가 같을 때만 붙인다 —
+ * 단위 · 의존 명사(«$3$ 개» · «$2$ 배»)와 독립 낱말(«$3$ 이상» · «$5$ 이하» · «$4$ 더»)은 띄운 그대로다.
+ * 첫 글자로 가르지 않는다: «이»는 붙이고 «이상»은 안 붙인다.
+ */
+export const MATH_ATTACHED_WORDS: ReadonlySet<string> = new Set([
+  // 조사
+  "은", "는", "이", "가", "을", "를", "의", "에", "와", "과", "로", "으로", "만", "에서", "에는",
+  "까지", "보다", "부터", "만큼", "처럼",
+  // 조사 + 조사
+  "만큼은", "만큼을", "만큼이", "만큼의", "만큼과", "만큼씩", "까지가", "까지의", "부터는",
+  // 서술격 조사 «이다»의 활용
+  "입니다", "입니까", "이므로", "이고", "이며", "인", "인데", "인지", "일", "이면", "이라", "라",
+  "이라면", "라면", "이라고", "이어야", "여야", "였습니다", "이었습니다",
+  // 조사 + «이다»
+  "만큼입니다", "만큼이고", "만큼이므로", "까지입니다", "까지이므로", "까지인", "부터이고",
+  "뿐입니다", "뿐이므로", "뿐인",
+]);
+
+const MATH_SPAN = /\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g;
+
+/** 인라인 식 뒤 «공백 + 붙여 쓰는 낱말»에서 공백을 뺀다. 식은 짝지어 차례로 읽는다(식과 식 사이를 식으로 읽지 않게). */
+export function attachMathWords(text: string): string {
+  let out = "";
+  let last = 0;
+  for (const m of text.matchAll(MATH_SPAN)) {
+    const end = m.index + m[0].length;
+    out += text.slice(last, end);
+    last = end;
+    if (m[0].startsWith("$$")) continue;
+    const word = /^ ([가-힣]+)(?![가-힣])/.exec(text.slice(end));
+    if (word && MATH_ATTACHED_WORDS.has(word[1]!)) last = end + 1;
+  }
+  return out + text.slice(last);
 }
 
 /** 손으로 붙인 조사까지 공통 출구에서 교정한다. 답과 그림은 건드리지 않는다. */
@@ -111,7 +165,10 @@ export function josa(
   const trimmed = word.trim();
   const code = trimmed.charCodeAt(trimmed.length - 1);
   if (!(code >= 0xac00 && code <= 0xd7a3)) return withoutBatchim;
-  return (code - 0xac00) % 28 === 0 ? withoutBatchim : withBatchim;
+  const final = (code - 0xac00) % 28;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다 — «꿀로» · «길로» (2026-10-20 «꿀으로» 실측).
+  if (final === 8 && withBatchim === "으로") return withoutBatchim;
+  return final === 0 ? withoutBatchim : withBatchim;
 }
 
 /**

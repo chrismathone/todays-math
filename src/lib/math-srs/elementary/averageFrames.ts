@@ -60,10 +60,14 @@ export function extraAverageFrames(
       shownBlue = kind === 1 ? 0 : red;
     const chance = kind === 0 ? 0 : kind === 1 ? 1 : 0.5;
     const top = intBetween(rng, 4, 9);
-    const cutoffs = Array.from(
-      { length: 3 },
-      () => [0, top, top + 1][intBetween(rng, 0, 2)],
-    );
+    // 세 문장의 기준 수는 서로 다르다 — 겹쳐 뽑으면 «① $0$ 이하 ② $0$ 이하» 처럼 같은 문장이 둘 나온다(2026-10-21 리드).
+    // 불가능(0) · 가능(1 ~ top−1) · 확실(top 이상)에서 겹치지 않게 셋을 뽑는다. 답은 0 ~ 3개.
+    const pool = [0, ...Array.from({ length: top - 1 }, (_, i) => i + 1), top, top + 1, top + 2];
+    const cutoffs: number[] = [];
+    while (cutoffs.length < 3) {
+      const k = pool.splice(intBetween(rng, 0, pool.length - 1), 1)[0]!;
+      cutoffs.push(k);
+    }
     const certain = cutoffs.filter((k) => k >= top).length;
     return [
       make(
@@ -82,7 +86,7 @@ export function extraAverageFrames(
         unit,
         `${n(1)}부터 ${n(top)}까지의 자연수가 하나씩 적힌 카드를 섞어 한 장 뽑습니다. 다음 세 가지 일 중 확실하게 일어나는 일은 모두 몇 개입니까? ① 뽑은 수가 ${n(cutoffs[0])} 이하이다. ② 뽑은 수가 ${n(cutoffs[1])} 이하이다. ③ 뽑은 수가 ${n(cutoffs[2])} 이하이다.`,
         n(certain),
-        `가장 큰 수는 ${n(top)}입니다. 따라서 ${n(top)} 이상의 수 이하인 일은 확실합니다. 세 문장 중 ${n(certain)}개입니다.`,
+        `카드에 적힌 수는 모두 ${n(top)} 이하입니다. 따라서 «뽑은 수가 $\\square$ 이하이다»에서 $\\square$가 ${n(top)} 이상이면 확실하게 일어납니다. 세 문장 중 이에 해당하는 것은 ${n(certain)}개입니다.`,
       ),
     ];
   }

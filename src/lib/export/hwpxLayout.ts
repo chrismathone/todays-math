@@ -48,16 +48,24 @@ export function gridCellMarks(root: Element) {
     const children = [...grid.children].filter(
       (child) => child.getBoundingClientRect().width > 0,
     );
+    /**
+     * 그림 자리 묶음(`data-hwpx-grid="top"` — `ProblemContent` 의 `slotGroup`)은 가운데 맞춤에 폭이 다른 칸이 줄을 바꾼다 —
+     * 다음 줄의 첫 칸이 앞 줄 끝 칸보다 **오른쪽**일 수 있어 «왼쪽으로 돌아오면 새 행»이 안 맞는다(2026-10-21 Codex 검토:
+     * 70mm · 40mm 두 칸이 두 줄인데 한 행으로 묶였다). 그 칸들은 위쪽 맞춤이라 같은 줄의 칸은 위쪽 끝이 같다 — 위쪽 끝이 내려가면 새 행.
+     */
+    const byTop = grid.getAttribute("data-hwpx-grid") === "top";
     let gridRow = -1;
     let gridCol = 0;
     let previousLeft = Infinity;
+    let previousTop = -Infinity;
     for (const child of children) {
-      const left = child.getBoundingClientRect().left;
-      if (left <= previousLeft + 1) {
+      const { left, top } = child.getBoundingClientRect();
+      if (byTop ? top > previousTop + 1 : left <= previousLeft + 1) {
         gridRow += 1;
         gridCol = 0;
       } else gridCol += 1;
       previousLeft = left;
+      previousTop = top;
       cells.set(child, { gridId, gridRow, gridCol });
     }
   };
@@ -364,8 +372,17 @@ export async function collectHwpxLayout(
           if (start < 0) return;
           range.setStart(node!, start);
           range.setEnd(node!, end);
+          // 그림 자리 캡션(`data-figure-caption`)의 전각 공백(U+3000)은 접지 않는다 — 응답칸 «(　　　　)» 이 «( )» 로 줄었다
+          // (2026-10-21 Codex 검토). 캡션 밖은 예전 그대로 접는다 — 자리 없는 문항의 HWPX 는 바이트 그대로(Codex 7차).
           const rect = range.getBoundingClientRect(),
-            value = text.slice(start, end).replace(/\s+/g, " ");
+            value = text
+              .slice(start, end)
+              .replace(
+                parent.closest("[data-figure-caption]")
+                  ? /[^\S\u3000]+/g
+                  : /\s+/g,
+                " ",
+              );
           if (value.trim() && rect.width > 0)
             contents.push({
               type: "text",

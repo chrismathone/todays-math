@@ -23,6 +23,7 @@ import { SrsUnavailable } from "@/lib/math-srs/serverState";
 import { TextbookError, notFound } from "./server/errors";
 import { isoColumn, type TextbookSql } from "./server/sql";
 import { readConceptContent } from "./server/conceptRows";
+import { renumberSnapshotSlots } from "./snapshotSlots";
 
 /** Every student consumer (JSON, assets, submissions and review) enters through this same gate. */
 export async function requireStudentQr(
@@ -270,7 +271,15 @@ export async function readStudentQr(
     itemId: target.itemId,
     title: config.title,
     displayNumber: item.displayNumber,
-    content: shown(snapshot.payload.content),
+    // 학생 화면은 스냅샷 그림을 전부 그 차례로 받는다(엔진 SVG 가 맨 앞) — 그림 자리 번호를 그 차례로(`snapshotSlots.ts`).
+    content: shown(
+      renumberSnapshotSlots(
+        snapshot.payload.content,
+        snapshot.payload.figures,
+        snapshot.rawSource?.figureSvgAssetId,
+        snapshot.payload.figures.map((_, index) => index),
+      ),
+    ),
     textSolutionAvailable: available,
     answer: available ? shown(snapshot.payload.answer) : null,
     solution:

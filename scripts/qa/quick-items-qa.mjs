@@ -37,7 +37,8 @@ const launchers = { chromium, webkit };
 const MEASURE = `
 window.__qaLines = (root) => {
   const rects = [];
-  for (const base of root.querySelectorAll('.katex-html > .katex-base')) {
+  // 조사가 붙은 긴 식은 마지막 조각이 nowrap 상자 안에 있다(rehypeMathNowrap 의 pinLastPiece).
+  for (const base of root.querySelectorAll('.katex-html > .katex-base, .katex-html > span > .katex-base')) {
     for (const r of base.getClientRects()) if (r.width > 0.5 && r.height > 0.5) rects.push(r);
   }
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -67,7 +68,7 @@ window.__qaCard = (card) => {
     const b = btn.getBoundingClientRect();
     // 🔴 인라인 span 의 상자는 글꼴 높이뿐이라 큰 분수(\dfrac)가 삐져나와도 안 보인다 —
     //    KaTeX 조각(.katex-base, inline-block)의 상자를 합쳐 잰다
-    const bases = [...math.querySelectorAll('.katex-html > .katex-base')].map((e) => e.getBoundingClientRect());
+    const bases = [...math.querySelectorAll('.katex-html > .katex-base, .katex-html > span > .katex-base')].map((e) => e.getBoundingClientRect());
     const m = bases.length
       ? { top: Math.min(...bases.map((r) => r.top)), bottom: Math.max(...bases.map((r) => r.bottom)), width: Math.max(...bases.map((r) => r.right)) - Math.min(...bases.map((r) => r.left)) }
       : math.getBoundingClientRect();
@@ -87,7 +88,7 @@ window.__qaCard = (card) => {
     promptOverflowX: Math.max(0, prompt.scrollWidth - prompt.clientWidth),
     equationLines: eq ? window.__qaLines(eq) : 0,
     equationOverflowX: eq ? Math.max(0, eq.scrollWidth - eq.clientWidth) : 0,
-    equationWidth: eq ? Math.round(Math.max(0, ...[...eq.querySelectorAll('.katex-html > .katex-base')].map((e) => e.getBoundingClientRect().right)) - eq.getBoundingClientRect().left) : 0,
+    equationWidth: eq ? Math.round(Math.max(0, ...[...eq.querySelectorAll('.katex-html > .katex-base, .katex-html > span > .katex-base')].map((e) => e.getBoundingClientRect().right)) - eq.getBoundingClientRect().left) : 0,
     scrollOverflowY: Math.max(0, scroll.scrollHeight - scroll.clientHeight),
     choices,
   };

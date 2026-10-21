@@ -28,7 +28,9 @@ describe("[파서] 홑 개행은 살아서 렌더러까지 간다", () => {
   it("원장님이 지목한 문항의 발문이 두 줄로 남는다 (J30101-A15-002)", () => {
     const content = `다음 세 수를 작은 것부터 차례로 나열하시오.\n$${BS}sqrt{5}$, $5$, $${BS}sqrt{3}$`;
     const { question } = parseProblemContent(content);
-    expect(question.split("\n")).toHaveLength(2);
+    // 2026-10-20 — 물음 뒤 쉼표 나열 식 줄은 따로 선 식 문단(가운데 · 한 줄 띄움)이 된다(`markStandaloneFormula`).
+    //   빈 줄 하나가 끼어도 «한 줄로 합쳐지지 않는다» 는 그대로다.
+    expect(question.split(/\n+/)).toHaveLength(2);
     expect(question.startsWith("다음 세 수를 작은 것부터 차례로 나열하시오.\n")).toBe(
       true,
     );

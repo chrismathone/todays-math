@@ -3698,6 +3698,215 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-08",
   },
+  {
+    id: "formula-line-center-gap",
+    title: "글 다음 식만 있는 줄 — 한 줄 띄우고 가운데",
+    changed:
+      "발문에서 글 다음 문단이 식(`$…$`)뿐이면 그 식을 **가운데**에 두고 글과 식 사이를 **한 줄** 띄운다(원장님 2026-10-20 «글과 식 사이에 한 줄 정도 여백을 두고, 식만 가운데 정렬»). " +
+      "«…구하시오.» 다음 **홑 줄바꿈**으로 이어진 쉼표 나열(«$2$, $3$, $x$»)도 같은 식 줄로 세운다(전에는 글 아래 왼쪽 줄로 붙었다). " +
+      "물음 바로 뒤 **같은 줄**에 식만 이어지는 꼴(«계산하시오. $3\\frac45+2\\frac3{10}$» · «쓰시오. $9000$, $10000$»)도 같다 — <보기> 항목 «ㄹ. $식$» · 답 칸 «$(~~~~)$» 는 그대로. " +
+      "전에는 문단 사이 여백이 0 이라 식이 글 바로 아래 왼쪽에 붙어 나갔다. 식 문단이 잇달거나 식 여럿을 공백으로만 이은 줄(번호 없는 보기)와 식만 있는 단독 문항(«$141\\times90=\\square$»)은 그대로다. " +
+      "보기 · 상자 · 정답지 해설은 안 바뀐다. 높이 자(`estimateProblemPx`)도 같은 규칙으로 한 줄씩 더 센다.",
+    look:
+      "원장님 말씀 그대로: ① «다음 곱셈을 어림하려고 합니다. … 합을 구하시오.» 다음 줄의 «563 × 42» 가 칸 **가운데**에 있고 글과 **한 줄쯤** 떨어져 있는가. " +
+      "(제안) ② 중등 «다음 등식이 성립할 때 … 구하시오.» 다음 식 줄 · 중1 «다음 자료의 평균을 구하시오.» 다음 «24, 10, 28, 30» 나열도 같은가. ③ 보기 ①~⑤ 는 전처럼 왼쪽 정렬인가. ④ 한 줄 늘어서 문항이 다음 단 · 쪽으로 밀릴 때 잘리거나 겹치지 않는가.",
+    lookFromSource: true,
+    evidence: [
+      "src/lib/math/formulaLine.ts · src/components/math/remarkFormulaLines.ts · MarkdownRenderer `formulaLines` · ProblemContent 발문",
+      "src/__tests__/unit/formulaLine.test.tsx",
+      "전수 집계(저장소 밖 보고서 report.md) — 공유 DB 에서 이 규칙이 표지를 다는 행 11,786(출제 가능 11,491): 엔진초등 6,028 · 엔진중등 3,926 · 교과서 810 · 변형 1,022 — 그 가운데 쉼표 나열 갈래 1,105 · 같은 줄 갈래 2,882(`parse-census` 전후 비교 · 보기 개수 변화 0)",
+    ],
+    scale:
+      "엔진 초등 · 중등 문항의 «…구하시오.» + 식 줄 꼴 전부(초4 1-3-3 곱셈의 어림셈 문형05 가 원장님이 보신 문항)",
+    needs:
+      "초4 1-3-3 «다음 곱셈을 어림하려고 합니다» 문항(예: E40303-A05-001) + 중2 «다음 등식이 성립할 때» 문항(예: J20106-A04-001) + 보기가 있는 객관식 하나",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "elem-columnop-dedup",
+    title: "초등 — 발문의 식을 다시 그린 세로셈 · 정답을 보여 준 그림을 걷었다",
+    changed:
+      "초3 · 초4 덧셈 · 뺄셈 · 곱셈 · 나눗셈 · 소수 문형에서 발문에 이미 있는 식을 세로셈 그림(빈 답 상자 포함)으로 한 번 더 그리던 것을 뺐다. " +
+      "그림이 정답을 보여 주던 셋(초4 2-3-6 리본 테이프 «9.5 m» · 초5 2-3-2 이등변삼각형 «7 cm · 7 cm» · 초4 1-3-6 몫을 그린 세로셈)도 고쳤다. " +
+      "어림한 수로 그린 세로셈(초4 1-3-3 문형06 «300 × 20»)은 원장님이 «판단하지 말고 표시만» 하셔서 그대로 두고, 그 문항의 중복 식 줄만 뺐다. 🔴 공유 DB 적재본은 아직 옛 그림이다(엔진만 고침).",
+    look:
+      "(제안) ① 엔진을 새로 돌린 시험지에서 «230 × 57 의 곱에서 일의 자리 숫자를 쓰시오.» 아래에 세로셈 그림 · 빈 상자가 없는가. " +
+      "② 리본 테이프 위 라벨이 «? m» 이고 가운데 금이 없는가. ③ 이등변삼각형 그림이 밑변에만 길이를 적고 두 빗변은 같은 길이 표시만 있는가. ④ 그림이 빠져 문항 칸이 비어 보이지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/elementary/g3.ts · g4.ts · g5.ts",
+      "src/__tests__/unit/elemDisplayDupes.test.ts",
+      "docs/planning/tracks/reports/problem-display-dupes-20261020/elem-display-repair-baseline.json",
+    ],
+    scale:
+      "공유 DB 적재본 기준 세로셈 3a 1,040행 · 정답 노출 그림 94행 · 그림이 빠지는 행 1,088 — 적재본은 `refresh-engine-content.ts` 적용(원장님 승인) 전까지 그대로",
+    needs:
+      "적재본 갱신 뒤의 시험지, 또는 개발 서버 `/dev/elem-engine` 로 뽑은 초4 1-3-1 · 1-3-2 · 2-3-6 · 초5 2-3-2 문항",
+    blockedBy:
+      "공유 DB 적재본 갱신(원장님 승인) 전에는 시험지 만들기로 출제한 지면에 옛 그림이 그대로 나온다",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "sheet-second-pass-josa-legend-subq",
+    title: "지면 2차 — 초등 조사 · 그림그래프 범례 «□ = ?» · 문장 속 «⑴, ⑵»",
+    changed:
+      "초등 발문 · 해설의 조사를 받침에 맞췄다(«학생들이 좋아하는 계절» · «배구를» · «역사가 아닌» · «꿀로» · «직선 라가» · «가, 나, 다에서» · «$36$분과»). " +
+      "초3 2-6-1 «□ 한 칸은 몇 …을 나타냅니까?» 의 그림그래프는 범례가 답이라 «□ = ?» 로 그린다. " +
+      "문장 속에서 가리키는 «⑴, ⑵에 이용한»(교과서 J10203-D15-001)을 소문항 머리로 읽어 세 줄로 가르던 것을 한 줄로 되돌렸다.",
+    look:
+      "(제안) ① 초6 띠그래프 · 원그래프 문항 첫 문장이 «학생들이 좋아하는 …» 인가. ② 초3 그림그래프 «□ 한 칸은 몇 권을 나타냅니까?» 그림의 범례가 «□ = ?» 인가. " +
+      "③ J10203-D15-001 의 발문 «다음 계산 과정 중 ⑴, ⑵에 이용한 …» 이 한 줄로 이어지는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/elementary/format.ts · g3.ts · g4.ts · g6.ts · scripts/figure/elem_advanced.py(pictograph hideUnit) · src/lib/math/subQuestion.ts",
+      "src/__tests__/unit/elemJosaDisplay.test.ts · src/__tests__/unit/subQuestion.test.ts",
+    ],
+    scale:
+      "초등 엔진 문형 · 난이도 전부(조사 — 고치기 전 10씨앗에서 642건) · 그림그래프 1문형 · 은행 파싱이 바뀐 행 1(`parse-census`)",
+    needs:
+      "엔진으로 새로 뽑은 초6 1-5-1 · 초3 2-6-1 문항, 교과서 J10203-D15-001",
+    blockedBy: "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 글이다",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "sheet-third-pass-nowrap-symbols-figures",
+    title:
+      "지면 3차 — 짧은 식 한 줄 · 지수 속 분수 · 기호 · <보기> 간격 · 초등 그림 넷",
+    changed:
+      "표시 폭 24단위 이하의 짧은 인라인 식은 줄을 바꾸지 않는다(`rehypeMathNowrap` — 긴 식은 전처럼 등호 · 부호 뒤에서 바뀐다). " +
+      "지수 · 첨자 속 분수(«$8^{\\frac14}$» · «$2^{\\frac{x}{4}}$»)는 작은 분수로 둔다(전에는 큰 분수로 떠서 거듭제곱으로 안 읽혔다). " +
+      "글리프 없는 기호 «⫽» · «ﾟ» 를 «∥» · «°» 로 그린다. 한 줄에 놓인 <보기> 항목 «ㄱ. … ㄴ. …» 사이를 넓혔다. 식 안의 «⋯ ⑴» 뒤 번호는 소문항으로 안 가른다. " +
+      "초등 그림: 시계 바늘이 숫자를 덮지 않는다 · 뒤집기 «색칠한 칸은 몇 개» 는 처음 도형만 그린다 · 라벨 없는 도형(«정사각형의 대칭축») 위아래 빈 여백을 줄였다 · 합동 둘레의 이등변삼각형이 납작하지 않다. " +
+      "교과서 계산 과정의 단계 이름표 «⑴ ⑵ · ㉠ ㉡» 는 그 단계 등호 위에 얹는다(J10203-D15 · D23 · D42 — 공유 DB 묶음).",
+    look:
+      "(제안) ① 고등 «$y=-2(x^2+2x+2)^2+8(x^2+2x+2)+k$» 문항이 칸 오른쪽으로 넘치지 않는가(넘치면 이 항목이 틀렸다). ② «$8^{\\frac14}$» 의 1/4 이 작은 지수인가. " +
+      "③ 교과서 «∠A=40°» 보기의 도 기호가 네모로 안 찍히는가. ④ 초4 시계 «2시» 그림의 «12» 가 바늘에 안 가려지는가. ⑤ J10203-D15-001 의 «⑴» «⑵» 가 등호 위 작은 글자로 찍히고 식과 안 겹치는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts · src/lib/math/textPreprocess.ts(`upgradeFracOutsideScripts`) · src/lib/math/markdownPreprocess.ts(기호 · <보기> 간격) · src/lib/math/subQuestion.ts · src/lib/problem/parseProblemContent.ts",
+      "scripts/figure/elementary.py(`_clock_face` · `_marked_shape`) · scripts/figure/elem_advanced.py(`_rotate_flip` showAfter) · src/lib/elementary/g4.ts · g5.ts",
+      "교차 검수 3회차(세 모델 · 지면 222문항) — 저장소 밖 보고서 report.md",
+    ],
+    scale:
+      "짧은 식 묶음은 지면의 모든 인라인 식(24단위 이하) · 지수 속 분수 · 기호는 은행 전수에서 해당 행 · 초등 그림은 문형 넷",
+    needs:
+      "고등 공통수학1 이차함수의 최대·최소 문항 하나 · 지수 분수가 든 대수 문항 하나 · 교과서 J20502-A50-001 · J10203-D15-001 · 초4 각의 크기 시계 문항",
+    blockedBy:
+      "교과서 이름표 · 초등 그림은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "sheet-fourth-fifth-pass-marks-grids",
+    title:
+      "지면 4 · 5차 — 기호 보기 «㉠ 식» 붙임 · 점 옮기기 모눈 · 답을 보여 주던 초등 그림",
+    changed:
+      "한 줄에 늘어놓은 기호 보기 «㉠ $식$  ㉡ $식$» 에서 «㉠» 이 줄 끝에 홀로 남던 것을 기호와 식을 한 덩어리로 묶어 막았다(`rehypeMathNowrap`). " +
+      "초4 점의 이동 모눈은 발문의 움직임이 다 들어가게 크기와 출발점을 정한다(전에는 6×6 의 정한 자리에서 «위쪽으로 5칸» 이 모눈 밖으로 나갔다). " +
+      "초6 «놓이지 않은 칸» 은 위에서 본 그림 하나로 · «원 밖 정사각형» · «반지름 n개» 는 맞지 않던 그림을 뺐다 · 정삼각형 둘레는 이름표 «가» 대신 한 변 길이와 같은 변 표시.",
+    look:
+      "(제안) ① 초5 «값이 더 큰 식을 찾아 기호를 쓰시오. ㉠ … ㉡ …» 에서 ㉠ 과 식이 한 줄에 같이 있는가(줄이 바뀌면 둘이 함께 내려가는가). " +
+      "② 초4 «모눈에서 점 ㄴ을 위쪽으로 … 옮겼습니다» 의 모눈이 옮긴 칸 수를 다 담는가 · 점과 이름이 칸 안에 있는가. ③ 초6 위에서 본 쌓기나무 그림이 칸 크기에 맞는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts(`glueItemMarks`) · src/lib/elementary/g4.ts(`gridDot`) · g6.ts · g3.ts",
+      "src/__tests__/unit/mathNowrap.test.tsx · src/__tests__/unit/elemDisplayDupes.test.ts(4 · 5차)",
+      "교차 검수 4 · 5회차(세 모델 · 지면 227 · 231문항) — 저장소 밖 보고서 report.md",
+    ],
+    scale:
+      "기호 보기는 초5 문형 9곳(엔진 출력 약 220건) · 점의 이동 5문형 · 초등 그림 넷",
+    needs:
+      "엔진으로 새로 뽑은 초5 1-1-1 응용 · 초4 1-4-1 · 초6 2-3-1 연산 문항",
+    blockedBy:
+      "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
+  {
+    id: "math-particle-join-20261021",
+    title: "식 뒤 조사 · 서술격 — 식과 한 줄에 (D-164 ⑴)",
+    changed:
+      "인라인 식 바로 뒤에 붙은 조사 · 서술격(«$x$의» · «$25$입니다» · «$a=3$이므로» · «$\\overline{AB}$에서는» …)은 식과 같은 줄에 선다. " +
+      "렌더러가 조사 글 맨 앞에 폭 없는 글자(U+2060)를 넣고, 긴 식은 마지막 조각만 nowrap 상자에 넣는다(`rehypeMathNowrap` 의 `joinParticles`) — " +
+      "Chrome 은 U+2060 하나로는 식 뒤에서 줄을 안 막는다(실측). 줄이 모자라면 식(의 마지막 조각)과 조사가 함께 다음 줄로 내려간다. " +
+      "단위 · 의존명사(«$3$개» · «$3$가지») · 독립 낱말(«이상» · «이하»)과 띄어 쓴 조사는 그대로다. 보이는 글자는 한 자도 안 바뀐다.",
+    look:
+      "(제안) ① 식이 줄 끝에 걸리는 문항에서 식만 윗줄에 남고 «의» · «입니다» 가 다음 줄 머리에 찍히는 일이 없는가. " +
+      "② 긴 식 «$y=-2(x^2+2x+2)^2+8(x^2+2x+2)+k$이므로» 의 «이므로» 가 식의 마지막 조각과 한 줄인가 · 칸 오른쪽으로 넘치지 않는가. " +
+      "③ 식과 조사 사이에 빈칸이나 네모(□) 같은 글자가 안 찍히는가(U+2060 은 보이면 안 된다). ④ HWPX 로 내보낸 파일에서도 ③.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts · src/lib/math/mathParticles.ts",
+      "src/__tests__/unit/mathParticleBreakChrome.test.tsx(대조군은 갈리고 제품은 0 · 화면 · 인쇄 · keep-all) · src/__tests__/unit/mathNowrap.test.tsx · src/__tests__/unit/mathParticles.test.ts",
+      "docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md(①)",
+    ],
+    scale:
+      "식 바로 뒤에 조사가 붙은 자리 — 공유 DB 문항 118,246행에서 521,169곳(«이다» 111,228 · «의» 76,669 · «이므로» 47,524 …). 초등은 생성기 붙임(초등 갈래) 뒤에 늘어난다",
+    needs:
+      "식 뒤 조사가 줄 끝에 걸리는 문항 여럿(중등 · 교과서) · 고등 공통수학1 이차함수의 최대·최소 문항 하나(긴 식)",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
+  {
+    id: "figure-slots-20261021",
+    title:
+      "그림 자리 `[그림:n]` — 설명과 물음 사이의 그림 · 그림마다 아래 번호 (D-164 ③④)",
+    changed:
+      "본문의 독립된 줄 `[그림:1]` · `[그림:1] ⑴ (　　　　)` 자리에 그 그림을 그리고, 뒤 글을 그 그림 **바로 아래** 캡션으로 단다(본문 글씨 · 가운데). " +
+      "이어진 자리는 한 묶음으로 가로로 늘어서고(발문 뒤 그림 묶음과 같은 꼴) 쪽 사이에서 안 갈린다. 제자리에 그린 그림은 발문 뒤 그림 모음에서 빠진다. " +
+      "잘못 적힌 자리(번호가 범위 밖 · 같은 그림 두 번 · 보기 그림 · 상자 안 · 보기 안 · 수식 안 · 한 줄에 둘)는 원문 그대로 글로 찍힌다. 넘침 자도 같은 함수(`slottedProblem`)로 센다. " +
+      "같은 판정으로 HWPX(묶음을 격자로 — 그림들 한 문단 · 캡션들 한 문단, 줄은 칸의 위쪽 끝으로 가른다 · 캡션 응답칸의 전각 공백을 이제 안 접는다) · 교재 지면(인라인 스타일 — 자리 없는 교재는 바이트 그대로) · " +
+      "학생 QR · 교재 인쇄본(엔진 SVG 가 그림 배열 맨 앞이면 번호를 옮긴다)까지. AI 변형 채택은 자리 표기가 남은 후보를 저장하지 않는다.",
+    look:
+      "(제안) 은행 지면 ① 캡션 «⑴ (　　　　)» 이 제 그림 바로 아래 가운데에 붙어 있는가 · 다른 그림 아래로 가지 않는가. ② 그림과 캡션이 쪽 사이에서 갈리지 않는가. " +
+      "③ «다음은 상용로그표의 일부이다 ⏎ (표) ⏎ 이 표를 이용하여 …» 처럼 그림이 설명과 물음 사이에 서는가 · 같은 그림이 문항 아래에 또 찍히지 않는가. ④ 캡션 응답칸의 괄호가 손으로 쓸 만한 폭인가. " +
+      "HWPX ⑤ 한글에서 그림들이 한 줄 · 그 아래 캡션들이 한 줄이고 캡션 응답칸 괄호가 «( )» 로 줄지 않았는가(캡션 밖의 «(　　)» 응답칸은 예전처럼 접힌다 — 자리 없는 문항의 HWPX 는 그대로다). " +
+      "교재 ⑥ 자리 없는 교재 문항이 예전과 같은가 · 자리 문항의 그림 · 캡션이 은행 지면과 같은 자리인가 · 엔진 SVG 와 스캔 그림이 같이 있는 문항에서 캡션이 SVG 가 아니라 제 스캔 그림 아래에 붙는가 · 분수 보기의 줄 간격이 그대로인가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/problem/figureSlots.ts(지면 글은 자리 줄을 뺀 같은 문항의 것 · 자리표는 그림이 설 자리만 · 판정이나 마크다운 마디를 바꾸는 자리는 하나도 안 세운다) · src/components/math/ProblemContent.tsx · src/lib/printOverflow.ts(`estimateFigureSlotGroupPx`)",
+      "src/lib/export/hwpxLayout.ts(전각 공백) · src/lib/textbook/render/blocks/problem.ts · src/lib/textbook/render/slotCut.ts(교재 GFM · 쓰기 검사 `checkFigureSlotsForWrite`) · src/lib/textbook/snapshotSlots.ts · src/app/api/problems/transform/adopt/route.ts",
+      "src/__tests__/unit/figureSlots.test.tsx · src/__tests__/unit/figureSlotsChrome.test.tsx(자와 지면 0.03px · 캡션 4px · 쪽 끝 조각 나눔: 대조군 12높이 갈림 / 제품 0) · src/__tests__/unit/figureSlotsHwpx.test.tsx · src/__tests__/unit/textbookFigureSlots.test.ts · src/__tests__/unit/figureSlotsInvariant.test.ts",
+      "docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md(③④)",
+    ],
+    scale:
+      "교과서 행별 확인 목록 — 제자리 배치 행 · 그림별 번호(합의 약 25행 · 실측 후보 155행 — 범위는 2단계에서 정한다) · HWPX 의 전각 공백 보존은 그림 자리 캡션 안만",
+    needs:
+      "2단계 교과서 묶음(1,671행)이 공유 DB 에 들어간 뒤의 해당 행 — ④ 번호 캡션 J20602-B02-001 · 표지가 밀렸던 J10505-B30-001 · ③ 설명 뒤 J10403-A15-001 · 자료 제목 그림 J10801-A72-001 · 소문항마다 J10405-C47-001 · «아래 그림» J10404-C21-001 · 그 문항을 담은 교재 한 권과 HWPX 내보내기",
+    blockedBy:
+      "공유 DB 에 `[그림:n]` 표기가 들어가기 전(2단계 · 리드 적용)에는 지면에 나오지 않는다(자리 없는 문항은 HWPX 까지 그대로다)",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
+  {
+    id: "elem-consensus-josa-hapsho-column",
+    title:
+      "초등 엔진 D-164 — 식 뒤 조사 붙임 · 합쇼체 물음 · «세로셈으로 계산하시오» 세로셈",
+    changed:
+      "초등 발문 · 해설에서 식 뒤 조사와 «이다» 활용을 붙인다(«$x$ 의» → «$x$의» · «$25$ 입니다» → «$25$입니다»). 단위 · 의존 명사 · «이상 · 이하» 는 띄운 그대로. " +
+      "붙이면서 받침이 틀려 있던 조사도 읽는 소리로 고쳤다(«$1030$ 가» → «이» · «$10\\,\\mathrm{mm}$ 이» → «가» · «$8\\times\\square$ 이» → «가»). " +
+      "물음은 합쇼체로(«몇 개인가?» → «몇 개입니까?» · «더 긴가?» → «더 깁니까?» — 활용 표). 참거짓 문항의 판단 대상 문장(«…같다.»)은 그대로. " +
+      "초3 «세로셈으로 계산하시오» 는 가로식을 빼고 두 수 · 연산 기호를 놓은 세로셈과 빈 답 칸으로 낸다.",
+    look:
+      "(제안) ① 식과 바로 뒤 조사(«$\\frac{3}{4}$을» · «$25$입니다»)가 붙어 보이고 그 사이에서 줄이 갈리지 않는가(렌더 갈래의 이음과 함께). " +
+      "② «세로셈으로 계산하시오.» 아래 세로셈의 두 수 · 기호가 자리에 맞고, 빈 답 칸에 학생이 숫자를 쓸 만한가. ③ 합쇼체 물음이 긴 줄 끝에서 어색하게 갈리지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/elementary/format.ts(`MATH_ATTACHED_WORDS` · `attachMathWords` · `mathFinal` 단위 · □) · make.ts · g3.ts(`calcForm`) · g3~g6.ts 물음",
+      "src/__tests__/unit/elemConsensus20261021.test.ts · elementaryMathJosa.test.ts",
+      "합의 docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md ①⑥⑨",
+    ],
+    scale:
+      "초등 출력 128,310 중 발문 · 해설이 바뀐 것 약 7만(문형 30씨앗 · 난이도 경로 · SRS) · 세로셈 3문형",
+    needs:
+      "엔진으로 새로 뽑은 초3 1-1 연산 · 초4 큰 수 · 초6 비례식 문항이 든 일일테스트",
+    blockedBy: "공유 DB 적재본 갱신(리드 적용) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

@@ -25,6 +25,9 @@ interface MarkdownNode {
   position?: { start: { offset: number }; end: { offset: number } };
 }
 const parser = unified().use(remarkParse).use(remarkMath).use(remarkGfm);
+/** 교재 렌더러가 읽는 마크다운 나무(GFM 포함) — 그림 자리가 마디를 가르는지 볼 때 쓴다(`slotCut.ts`). */
+export const parseTextbookMarkdown = (markdown: string): unknown =>
+  parser.parse(markdown);
 
 function renderMath(tex: string, displayMode: boolean): string {
   if (

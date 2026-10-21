@@ -691,6 +691,7 @@ function breakDisplayMath(text: string): string {
  *   ㉠ 앞부분이 **문장으로 끝난다**(`.` `?` `!`) — 「…하시오.」 「…것은?」
  *   ㉡ 그 수식이 **글의 마지막**이다 — 뒤에 이어지는 말이 없다
  *   ㉢ 홑수식 줄이 **하나뿐**이다 — 여럿이면 «표시 없는 보기»라 갈라선 안 된다
+ *      (한 줄의 쉼표 나열 «$2$, $3$, $x$» 는 줄 하나다 — 2026-10-20)
  *
  * ㉠ 이 「자연수 / $m,n$」 를 막고, ㉡ 가 「$m,n$ / 의 개수는?」 를 막고,
  * ㉢ 이 「…아닌 것은? / $5-3x\ge x+9$ / $6x…$ / …」(보기 넷)를 막는다.
@@ -698,17 +699,38 @@ function breakDisplayMath(text: string): string {
  * ⚠️ **지면 높이가 바뀐다** — 한 줄이 늘어난다. 자(`estimateProblemPx`)도 이 함수를
  *    거치는 같은 파서를 부르므로 갈라지지 않는다. 종이 검수는 따로 남긴다(절대 규칙 6).
  */
-const TRAILING_FORMULA = /^([\s\S]*[.?!])\n\s*(\$[^$\n]+\$)$/;
+// 식 하나, 또는 쉼표로 가른 식 나열 한 줄(«$2$, $3$, $x$» — 2026-10-20 넓힘 · `isFormulaOnlyParagraph` 와 같은 꼴).
+const TRAILING_FORMULA =
+  /^([\s\S]*[.?!])\n\s*(\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*)$/;
 /** 글 **중간**에 있는 홑수식 줄 — 하나라도 있으면 표시 없는 보기로 보고 손대지 않는다. */
-const MIDDLE_FORMULA_LINE = /\n[ \t]*\$[^$\n]+\$[ \t]*(?=\n)/;
+const MIDDLE_FORMULA_LINE =
+  /\n[ \t]*\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*[ \t]*(?=\n)/;
+
+/**
+ * 물음 바로 뒤 **같은 줄**에 식만 이어지는 꼴 — «…쓰시오. $9000$, $10000$, $2000$» (2026-10-20 교차 검수).
+ * 엔진이 줄바꿈 대신 공백으로 이어 쓴 문항이 초등 · 중등 출력에 약 5,700건이었다. ㉠ ㉡ 을 그대로 요구하고
+ * (문장 끝 뒤 · 글의 마지막), 문장 끝의 부호가 **수식 밖**인지 센다(`$0.5.$` 같은 수식 속 마침표가 아님).
+ */
+// 문장 끝은 «한글 음절 둘 이상 + 부호» — <보기> 항목 이름(«ㄹ.» 는 자모 · «가.» 는 홀로 선 한 음절)과 «$23$.» 은 문장 끝이 아니다.
+const SAME_LINE_TRAILING_FORMULA =
+  /^([\s\S]*[가-힣]{2}[.?!])[ \t]+(\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*)$/;
+/** 글자 없는 답 칸 괄호 «$(~~~~~~)$» · «$(\,)$» — 식이 아니다. */
+const BLANK_PAREN_FORMULA = /^\$\s*\((?:~|\\[,;:!]|\\q?quad|\s)*\)\s*\$$/;
 
 function markStandaloneFormula(text: string): string {
-  if (!text.includes("\n")) return text;
   const trimmed = text.replace(/\s+$/, "");
-  const m = TRAILING_FORMULA.exec(trimmed);
-  if (!m) return text;
+  const m = text.includes("\n") ? TRAILING_FORMULA.exec(trimmed) : null;
+  if (m) {
+    if (MIDDLE_FORMULA_LINE.test(trimmed)) return text;
+    return `${m[1]}${SUBQ_SENTINEL}${m[2]}${text.slice(trimmed.length)}`;
+  }
+  const same = SAME_LINE_TRAILING_FORMULA.exec(trimmed);
+  if (!same) return text;
+  const head = same[1]!;
+  if ((head.match(/\$/g) ?? []).length % 2 === 1) return text;
   if (MIDDLE_FORMULA_LINE.test(trimmed)) return text;
-  return `${m[1]}${SUBQ_SENTINEL}${m[2]}${text.slice(trimmed.length)}`;
+  if (BLANK_PAREN_FORMULA.test(same[2]!)) return text;
+  return `${head}${SUBQ_SENTINEL}${same[2]}${text.slice(trimmed.length)}`;
 }
 
 function markSubQuestions(text: string): string {

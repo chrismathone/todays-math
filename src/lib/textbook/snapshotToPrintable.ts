@@ -2,6 +2,7 @@ import type { TestPrintProblem } from "@/components/print/types";
 import type { ProblemSnapshot } from "@/contracts/textbookExchange.contract";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import { assertSafeSvg } from "./assets";
+import { renumberSnapshotSlots } from "./snapshotSlots";
 
 export interface PrintableSnapshotAsset {
   url: string;
@@ -41,6 +42,14 @@ export function snapshotToPrintable(
     ? figures.findIndex((f) => f.figure.assetId === svgId)
     : -1;
   const raster = figures.filter((_, i) => i !== inlineIndex);
+  // 그림 자리 `[그림:n]` 은 은행 `figureUrls` 차례다 — SVG 원문을 못 받아 SVG 가 그림 배열에 남으면 번호가 하나 밀린다.
+  // 이 투영이 넘기는 배열(raster)의 차례로 옮긴다(`snapshotSlots.ts`). 자리가 없으면 본문 그대로다.
+  const slotted = renumberSnapshotSlots(
+    payload.content,
+    payload.figures,
+    svgId,
+    figures.map((_, i) => i).filter((i) => i !== inlineIndex),
+  );
   // Keep exact per-figure unknowns. The shared sizing rule treats only that index as unknown.
   return {
     id:
@@ -52,7 +61,7 @@ export function snapshotToPrintable(
       snapshot.source.system === "todays-math"
         ? snapshot.source.problemCode
         : null,
-    content: shown(payload.content),
+    content: shown(slotted),
     answer: shown(payload.answer),
     solution: payload.solution === null ? null : shown(payload.solution),
     questionType: payload.questionType,

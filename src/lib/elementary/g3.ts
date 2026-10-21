@@ -19,7 +19,10 @@ function josa(word: string, withBatchim: string, without: string): string {
   const w = word.trim();
   const code = w.charCodeAt(w.length - 1);
   if (!(code >= 0xac00 && code <= 0xd7a3)) return without;
-  return (code - 0xac00) % 28 !== 0 ? withBatchim : without;
+  const final = (code - 0xac00) % 28;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다 — `format.ts` `josa` 와 같은 규칙.
+  if (final === 8 && withBatchim === "으로") return without;
+  return final !== 0 ? withBatchim : without;
 }
 
 /**
@@ -109,7 +112,6 @@ function addSub(unit: UnitSeed, rng: Rng): ElemProblem {
       `다음을 계산하시오.\n\n$${a}+${b}=\\square$`,
       n(a + b),
       expr(`${a}+${b}=${a + b}`),
-      fig("columnOp", { top: String(a), op: "+", bottom: String(b) }),
     );
   }
   const [a, b] = subWithBorrows(rng, heavy ? 2 : 0, heavy ? 3 : 1);
@@ -118,7 +120,6 @@ function addSub(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}-${b}=\\square$`,
     n(a - b),
     expr(`${a}-${b}=${a - b}`),
-    fig("columnOp", { top: String(a), op: "−", bottom: String(b) }),
   );
 }
 
@@ -505,7 +506,7 @@ function rightTriPick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     answer,
-    `한 각이 직각인 삼각형을 직각삼각형이라고 합니다. 삼각자의 직각 부분을 대어 보면 ${answer} 의 한 각이 꼭 맞습니다.`,
+    `한 각이 직각인 삼각형을 직각삼각형이라고 합니다. 삼각자의 직각 부분을 대어 보면 ${answer}의 한 각이 꼭 맞습니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -518,7 +519,7 @@ function rightTriCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const ask = pick(rng, [
     `${list} 중에서 직각삼각형은 모두 몇 개인지 쓰시오.`,
     `${list} 중에서 직각삼각형의 수를 쓰시오.`,
-    `다음 삼각형 ${list} 가운데 직각삼각형은 모두 몇 개인가?`,
+    `다음 삼각형 ${list} 가운데 직각삼각형은 모두 몇 개입니까?`,
   ]);
   return make(
     unit,
@@ -571,7 +572,7 @@ function squarePick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     answer,
-    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${answer} 는 가로와 세로가 모두 ${n(side)}칸으로 같습니다.`,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${answer}는 가로와 세로가 모두 ${n(side)}칸으로 같습니다.`,
     pointGridSpec(cols, rows, shapes),
   );
 }
@@ -699,7 +700,7 @@ function rectPick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     row.answer,
-    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer}는 네 각이 모두 직각입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -730,7 +731,7 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("똑같이")) {
     return make(
       unit,
-      `사탕 ${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 몇 개인가?`,
+      `사탕 ${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 몇 개입니까?`,
       n(q),
       `${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 ${n(q)}개입니다. 식으로 쓰면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
       fig("groupDots", { groups: b, each: q }),
@@ -855,7 +856,6 @@ function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
     n(a * b),
     expr(`${a}\\times${b}=${a * b}`),
-    fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
   );
 }
 
@@ -947,10 +947,6 @@ function lengthTime(unit: UnitSeed, rng: Rng): ElemProblem {
       `${n(h1)}시간 ${n(m1)}분과 ${n(h2)}시간 ${n(m2)}분을 더하면 몇 시간 몇 분인지 쓰시오.`,
       `${n(hh)}시간 ${n(mm)}분`,
       `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 분이고, $60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${n(1)}시간 ${n(mm)}분입니다. 시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 시간이므로 모두 ${n(hh)}시간 ${n(mm)}분입니다.`,
-      fig("timeAdd", {
-        start: { h: h1, m: m1, s: 0 },
-        add: { h: h2, m: m2, s: 0 },
-      }),
     );
   }
   const h = intBetween(rng, 4, 8);
@@ -1101,7 +1097,6 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
       n(a * b),
       expr(`${a}\\times${b}=${a * b}`),
-      fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
     );
   }
   if (s.includes("(몇십)×(몇십)")) {
@@ -1149,7 +1144,6 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
     n(a * b),
     expr(`${a}\\times${b}=${a * b}`),
-    fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
   );
 }
 
@@ -1716,7 +1710,6 @@ function add3Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}+${b}=\\square$`,
     n(a + b),
     expr(`${a}+${b}=${a + b}`),
-    fig("columnOp", { top: String(a), op: "+", bottom: String(b) }),
   );
 }
 
@@ -1809,31 +1802,23 @@ function calcForm(
   result: number,
 ): ElemProblem {
   const sign = op === "+" ? "+" : "-";
-  const figSpec = fig("columnOp", {
-    top: String(a),
-    op: op === "+" ? "+" : "−",
-    bottom: String(b),
-  });
   const eq = `$${a}${sign}${b}=\\square$`;
   const solution = expr(`${a}${sign}${b}=${result}`);
   const word = op === "+" ? "합" : "차";
   const wordJosa = josa(word, "을", "를");
   switch (form % CALC_FORM_COUNT) {
+    // 식과 세로셈을 같이 내지 않는다 — 같은 계산이 두 번, 답 칸도 둘이 된다(원장님 2026-10-20 지면 전수 검사).
     case 0:
-      return make(
-        unit,
-        `다음을 계산하시오.\n\n${eq}`,
-        n(result),
-        solution,
-        figSpec,
-      );
+      return make(unit, `다음을 계산하시오.\n\n${eq}`, n(result), solution);
+    // «세로셈으로 계산하시오»는 세로셈 하나로 — 두 수와 연산 기호를 놓고 답 칸은 비운다(D-164 ⑥). 발문 글자는
+    // 씨앗마다 같아지지만 다름의 열쇠가 그림까지 본다(`distinctKey`). 세 자리 ± 세 자리라 네 칸 안에 든다.
     case 1:
       return make(
         unit,
-        `세로셈으로 계산하시오.\n\n${eq}`,
+        "세로셈으로 계산하시오.",
         n(result),
         solution,
-        figSpec,
+        fig("columnOp", { top: String(a), op: op === "+" ? "+" : "−", bottom: String(b) }),
       );
     case 2:
       return make(unit, eq, n(result), solution);
@@ -1854,18 +1839,13 @@ function calcForm(
     case 5:
       return make(
         unit,
-        `$${a}$ 에서 $${b}$ 만큼 ${op === "+" ? "더한" : "뺀"} 값을 구하시오.`,
+        // «에서 … 더한» 은 말이 안 된다 — 더할 때는 «에», 뺄 때는 «에서»(2026-10-20 3차 교차 검수 중 발견)
+        `$${a}$ ${op === "+" ? "에" : "에서"} $${b}$ 만큼 ${op === "+" ? "더한" : "뺀"} 값을 구하시오.`,
         n(result),
         solution,
       );
     case 6:
-      return make(
-        unit,
-        `계산 결과를 구하시오.\n\n${eq}`,
-        n(result),
-        solution,
-        figSpec,
-      );
+      return make(unit, `계산 결과를 구하시오.\n\n${eq}`, n(result), solution);
     default:
       return make(unit, `다음 식을 계산하시오.\n\n${eq}`, n(result), solution);
   }
@@ -2471,13 +2451,13 @@ function angle122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     pick(rng, [
       `${row.labels.join(", ")} 중에서 직각인 각의 수와 직각이 아닌 각의 수의 차는 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 를 보고 직각인 각과 직각이 아닌 각을 각각 센 뒤, 그 차를 쓰시오.`,
-      `${row.labels.join(", ")} 에서 직각인 것의 수와 그렇지 않은 것의 수가 몇 개 차이 나는지 쓰시오.`,
+      `${row.labels.join(", ")}를 보고 직각인 각과 직각이 아닌 각을 각각 센 뒤, 그 차를 쓰시오.`,
+      `${row.labels.join(", ")}에서 직각인 것의 수와 그렇지 않은 것의 수가 몇 개 차이 나는지 쓰시오.`,
       `${row.labels.join(", ")} 중 직각을 세고, 남은 각의 수와의 차를 쓰시오.`,
-      `${row.labels.join(", ")} 를 두 무리로 나누었습니다. 직각인 무리와 아닌 무리의 개수 차를 쓰시오.`,
-      `${row.labels.join(", ")} 를 직각인 것과 아닌 것으로 나누었습니다. 두 무리의 개수의 차는 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}를 두 무리로 나누었습니다. 직각인 무리와 아닌 무리의 개수 차를 쓰시오.`,
+      `${row.labels.join(", ")}를 직각인 것과 아닌 것으로 나누었습니다. 두 무리의 개수의 차는 몇 개인지 쓰시오.`,
       `${row.labels.join(", ")} 중 직각은 몇 개이고 직각이 아닌 각은 몇 개인지 세어, 그 차를 쓰시오.`,
-      `${row.labels.join(", ")} 에서 직각의 수가 직각이 아닌 각의 수보다 몇 개 많고 적은지 그 차를 쓰시오.`,
+      `${row.labels.join(", ")}에서 직각의 수가 직각이 아닌 각의 수보다 몇 개 많고 적은지 그 차를 쓰시오.`,
     ]),
     n(Math.abs(rightCount - other)),
     `직각인 각은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개이고, ${
@@ -2518,14 +2498,14 @@ function angle122Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(
     unit,
     pick(rng, [
-      `${row.labels.join(", ")} 는 각이고 라는 직사각형입니다. 여기에 직사각형을 ${n(addRects)}개 더 그리면 그림의 직각은 모두 몇 개가 되는지 쓰시오.`,
-      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직사각형 ${n(addRects)}개를 더 그린다면 직각은 통틀어 몇 개인지 쓰시오.`,
-      `그림에는 각 ${row.labels.join(", ")} 와 직사각형 라 가 있습니다. 라와 같은 직사각형 ${n(addRects)}개를 더 그리면 직각은 모두 몇 개인지 쓰시오.`,
-      `그림의 각 ${row.labels.join(", ")} 와 직사각형 라 옆에 직사각형 ${n(addRects)}개를 더 그렸습니다. 이제 직각은 모두 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 직사각형을 ${n(addRects)}개 더 붙여 그리면 그림에 있는 직각의 수는 몇 개인지 쓰시오.`,
-      `각 ${row.labels.join(", ")} 와 직사각형 라 가 그려져 있습니다. 직사각형 ${n(addRects)}개를 더 그린 뒤 직각을 모두 세면 몇 개인지 쓰시오.`,
-      `그림에서 ${row.labels.join(", ")} 는 각, 라는 직사각형입니다. 같은 직사각형 ${n(addRects)}개를 더 그렸을 때 직각은 통틀어 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 와 직사각형 라 에 직사각형 ${n(addRects)}개를 더 보태 그리면 직각은 모두 몇 개가 되는지 쓰시오.`,
+      `${row.labels.join(", ")}는 각이고 라는 직사각형입니다. 여기에 직사각형을 ${n(addRects)}개 더 그리면 그림의 직각은 모두 몇 개가 되는지 쓰시오.`,
+      `${row.labels.join(", ")}는 각, 라는 직사각형입니다. 직사각형 ${n(addRects)}개를 더 그린다면 직각은 통틀어 몇 개인지 쓰시오.`,
+      `그림에는 각 ${row.labels.join(", ")}와 직사각형 라가 있습니다. 라와 같은 직사각형 ${n(addRects)}개를 더 그리면 직각은 모두 몇 개인지 쓰시오.`,
+      `그림의 각 ${row.labels.join(", ")}와 직사각형 라 옆에 직사각형 ${n(addRects)}개를 더 그렸습니다. 이제 직각은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}는 각, 라는 직사각형입니다. 직사각형을 ${n(addRects)}개 더 붙여 그리면 그림에 있는 직각의 수는 몇 개인지 쓰시오.`,
+      `각 ${row.labels.join(", ")}와 직사각형 라가 그려져 있습니다. 직사각형 ${n(addRects)}개를 더 그린 뒤 직각을 모두 세면 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")}는 각, 라는 직사각형입니다. 같은 직사각형 ${n(addRects)}개를 더 그렸을 때 직각은 통틀어 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}와 직사각형 라에 직사각형 ${n(addRects)}개를 더 보태 그리면 직각은 모두 몇 개가 되는지 쓰시오.`,
     ]),
     n(after),
     [
@@ -2551,7 +2531,7 @@ function tri123Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.rightLabels[0]!,
-    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!} 의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
+    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!}의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -2589,11 +2569,11 @@ function tri123Apply(unit: UnitSeed, rng: Rng): ElemProblem {
       `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형은 모두 몇 개인지 쓰시오.`,
       `${row.labels.join(", ")} 가운데 직각삼각형을 빼면 삼각형이 몇 개 남는지 쓰시오.`,
       `${row.labels.join(", ")} 중 직각이 없는 삼각형의 개수를 쓰시오.`,
-      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 갈랐습니다. 아닌 쪽은 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 에서 삼각자의 직각 부분과 꼭 맞는 각이 없는 삼각형은 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 를 직각삼각형과 아닌 것으로 나눌 때, 직각삼각형이 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}를 직각삼각형과 아닌 것으로 갈랐습니다. 아닌 쪽은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}에서 삼각자의 직각 부분과 꼭 맞는 각이 없는 삼각형은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}를 직각삼각형과 아닌 것으로 나눌 때, 직각삼각형이 아닌 쪽은 몇 개인지 쓰시오.`,
       `${row.labels.join(", ")} 중 직각이 하나도 없는 삼각형은 모두 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 에서 직각삼각형을 뺀 나머지 삼각형은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}에서 직각삼각형을 뺀 나머지 삼각형은 몇 개인지 쓰시오.`,
     ]),
     n(other),
     `직각삼각형은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다. 전체 ${n(count)}개에서 빼면 ${expr(`${count}-${rightCount}=${other}`)} 이므로 ${otherLabels.join(", ")} 로 ${n(other)}개입니다.`,
@@ -2621,18 +2601,18 @@ function tri123Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     pick(rng, [
-      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 이 중에서 변이 셋이면서 직각이 있는 도형은 모두 몇 개인지 쓰시오.`,
-      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 가진 도형의 수를 쓰시오.`,
-      `${row.labels.join(", ")} 와 라 중에서 「변이 셋」과 「직각이 있다」를 함께 만족하는 도형은 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}는 삼각형이고 라는 사각형입니다. 이 중에서 변이 셋이면서 직각이 있는 도형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 가진 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")}와 라 중에서 「변이 셋」과 「직각이 있다」를 함께 만족하는 도형은 몇 개인지 쓰시오.`,
       `그림의 도형 ${row.labels.join(", ")}, 라 가운데 삼각형이면서 직각을 가진 것은 몇 개인지 쓰시오.`,
       // ⚠️ 이 표현은 오래 「**두 조건**을 모두 채우는」이었다 — 그 두 조건이 발문에도
       // 그림에도 없고 **해설에만** 있었다(그림은 pointGrid 라 글자가 없다). 값은 맞는데
       // **학생이 풀 수 없는 문항**이라, 40씨앗 중 3건이 그렇게 나갔다.
       // 조건을 부르려면 **그 자리에서 이름을 대야 한다**. 아래 시험이 잠근다.
-      `${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」·「직각이 있다」를 모두 채우는 도형의 개수를 쓰시오.`,
-      `${row.labels.join(", ")} 는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 있는 도형은 몇 개인지 쓰시오.`,
-      `그림에서 ${row.labels.join(", ")} 는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」과 「직각이 있다」를 모두 만족하는 도형의 수를 쓰시오.`,
-      `${row.labels.join(", ")} 와 사각형 라 중에서, 변이 셋이면서 직각을 가진 도형은 모두 몇 개인지 쓰시오.`,
+      `${row.labels.join(", ")}는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」·「직각이 있다」를 모두 채우는 도형의 개수를 쓰시오.`,
+      `${row.labels.join(", ")}는 삼각형, 라는 사각형입니다. 변이 셋이고 직각도 있는 도형은 몇 개인지 쓰시오.`,
+      `그림에서 ${row.labels.join(", ")}는 삼각형이고 라는 사각형입니다. 두 조건 「변이 셋」과 「직각이 있다」를 모두 만족하는 도형의 수를 쓰시오.`,
+      `${row.labels.join(", ")}와 사각형 라 중에서, 변이 셋이면서 직각을 가진 도형은 모두 몇 개인지 쓰시오.`,
     ]),
     n(rightCount),
     `변이 셋인 도형은 삼각형 ${row.labels.join(", ")} 입니다. 라는 변이 넷이라 조건에 맞지 않습니다. 그중 직각이 있는 것은 ${row.rightLabels.join(", ")} 로 ${n(rightCount)}개입니다.`,
@@ -2657,7 +2637,7 @@ function rect124Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.answer,
-    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer} 가 그렇습니다.`,
+    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer}가 그렇습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2677,7 +2657,7 @@ function rect124Word(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
     row.answer,
-    `문장이 가리키는 것은 직사각형입니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    `문장이 가리키는 것은 직사각형입니다. ${row.answer}는 네 각이 모두 직각입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2758,7 +2738,7 @@ function sq125Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.answer,
-    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer}는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2821,7 +2801,7 @@ function sq125Word(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
     row.answer,
-    `문장이 가리키는 것은 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    `문장이 가리키는 것은 정사각형입니다. ${row.answer}는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -3525,9 +3505,11 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     ["상자", "담았더니", "담으면", "담았더니"],
   ] as const);
   const w이가 = josa(w, "이", "가");
+  // «한 봉지의 수» 는 봉지 개수로도 읽힌다(2026-10-20 교차 검수) — «한 봉지에 든 사탕 수».
+  const 한개수 = `한 ${w}에 든 ${thing} 수`;
   const cmp = f.more
-    ? `${w} 수가 한 ${w}의 수보다 많았습니다`
-    : `${w} 수가 한 ${w}의 수보다 적었습니다`;
+    ? `${w} 수가 ${한개수}보다 많았습니다`
+    : `${w} 수가 ${한개수}보다 적었습니다`;
   const 묶기 = vAgain === "묶었더니";
   // 「한 묶음에 $6$개씩 묶으면」은 겹말이다 — 묶기에서는 그릇 말을 안 붙인다.
   const 그릇 = 묶기 ? "" : `한 ${w}에 `;
@@ -3535,7 +3517,7 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     ? `다시 ${묶기 ? "묶은" : "담은"} ${w}${josa(w, "은", "는")} 몇 ${w}인지 쓰시오.`
     : `다시 ${묶기 ? "묶을" : "담을"} 때 한 ${w}에 넣은 수는 몇 개인지 쓰시오.`;
   const ans = f.askGroups ? f.q : f.k;
-  const 다시 = `같은 ${thing}${을를} 처음과 다른 수씩 남김없이 다시 ${vAgain} 한 ${w}의 수와 ${w} 수가 모두 한 자리 수였고, ${cmp}.`;
+  const 다시 = `같은 ${thing}${을를} 처음과 다른 수씩 남김없이 다시 ${vAgain} ${한개수}와 ${w} 수가 모두 한 자리 수였고, ${cmp}.`;
   const stem = pick(rng, [
     `${thing}${이가} 있습니다. 이 ${thing}${을를} ${그릇}${n(f.b0)}개씩 ${vPast} 남는 것 없이 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
     `${thing} 몇 개를 ${그릇}${n(f.b0)}개씩 ${vPast} 꼭 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
@@ -3543,8 +3525,8 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `${thing} 몇 개가 있습니다. ${그릇}${n(f.b0)}개씩 ${vIf} 남는 것 없이 ${n(f.q0)}${w}입니다. ${다시} ${ask}`,
   ]);
   const why = f.more
-    ? `${w} 수가 한 ${w}의 수보다 많은 것`
-    : `${w} 수가 한 ${w}의 수보다 적은 것`;
+    ? `${w} 수가 ${한개수}보다 많은 것`
+    : `${w} 수가 ${한개수}보다 적은 것`;
   // 🔴 마지막 나눗셈은 **답이 몫이 되는 쪽**으로 적는다 — 그러지 않으면 해설이
   //    답과 다른 수로 끝나 「정답은 마지막 걸음의 값」이라는 이 대단원의 읽는 법이 깨진다.
   const lastDiv = f.askGroups
@@ -4430,7 +4412,7 @@ function time155Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const stem = pick(rng, [
     `다음 두 시간의 합은 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
     `${A}에 ${B}을 더한 시간은 몇 시간 몇 분인지 쓰시오.`,
-    `두 시간 ${A}과 ${B}의 합을 구하시오.`,
+    `${A}과 ${B}의 합을 구하시오.`,
     `합이 몇 시간 몇 분인지 쓰시오.\n\n${A} $+$ ${B}`,
     `${A}보다 ${B} 더 긴 시간은 몇 시간 몇 분인지 쓰시오.`,
     `다음 시간을 모두 더하면 몇 시간 몇 분인지 구하시오.\n\n${A}, ${B}`,
@@ -6438,18 +6420,22 @@ function mul21High(unit: UnitSeed, rng: Rng): ElemProblem {
       ? expr(`${k}\\times${f.a}=${f.a * k}`)
       : expr(`${f.a}\\times${k}=${f.a * k}`);
   const { decl, adj } = range21(f);
+  // 곱의 일의 자리가 $0$ 이고 «…보다 작습니다» 면 $0$ 도 맞는다(2026-10-20 교차 검수 — 답이 둘) — 그때는 $0$ 을 뺀다고 적는다.
+  // 초3 은 수 뒤에 조사를 아예 안 붙인다(`elemTiersG3` 이 문다) — 그래서 «단» 절로 적는다.
+  const one = "한 자리 수";
+  const unlessZero = f.r === 0 ? " (단, $0$ 제외)" : "";
   const stem = pick(rng, [
-    `어떤 한 자리 수와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이고 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱한 값의 일의 자리 숫자가 ${n(f.r)} 이고, 그 값이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+    `어떤 ${one}와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이고 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱한 값의 일의 자리 숫자가 ${n(f.r)} 이고, 그 값이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
     // ⚠️ 마지막을 「그 수를 구하시오」로 두면 **자리수 조건 판정기가 문다** — 곱의
     //    일의 자리가 $0$ 인 씨앗에서는 발문에 한 자리 수가 한 번도 안 서고,
     //    「어떤 수」가 없으면 그것을 갈음할 미지수도 없다(실측 7/40). 「어떤 수」로 적는다.
-    `${n(f.a)} 에 곱해서 ${adj} 곱이 나오게 하는 한 자리 수가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수인지 구하시오.`,
-    `어떤 한 자리 수와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 그 곱이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+    `${n(f.a)} 에 곱해서 ${adj} 곱이 나오게 하는 ${one}가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수인지 구하시오.`,
+    `어떤 ${one}와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 그 곱이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
   ]);
-  return makeDeep(unit, stem, n(ans), [
+  return makeDeep(unit, `${stem}${unlessZero}`, n(ans), [
     `${n(f.a)} 의 일의 자리 숫자가 ${n(f.a % 10)} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 경우를 곱셈구구에서 찾으면 곱하는 수는 ${list21(f.ks)} 입니다.`,
     `${f.ks.map((k) => step(k)).join(", ")} 이므로 ${adj} 것은 ${step(ans)} 뿐입니다.`,
     `따라서 어떤 수는 ${n(ans)} 입니다.`,
@@ -6707,7 +6693,7 @@ function rem223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const stem = pick(rng, [
     `${eq} 에서 나누어떨어지게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 구하시오.`,
     `나눗셈 ${eq} 에서 나누어떨어지도록 나뉘는 수를 늘리려고 합니다. 적어도 얼마를 더해야 하는지 쓰시오.`,
-    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.\n\n${eq}`,
+    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.`,
     `${eq} 에서 나머지가 없게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 쓰시오.`,
   ]);
   return make(
@@ -8050,6 +8036,11 @@ type CapCfg = {
   jGa: string;
   jReul: string;
   jRo: string;
+  /** 작은 단위(`mL`·`g`)를 읽은 소리 뒤 «과/와» — 밀리리터 «와» · 그램 «과»(5차 교차 검수 «$200\,\mathrm{mL}$ 과»). */
+  smallGwa: string;
+  /** 작은 단위 뒤 «을/를» — 밀리리터 «를» · 그램 «을». */
+  smallReul: string;
+  smallNun: string;
   /** 관형형 「많이 담기는」·「무거운」 */
   moreAdj: string;
   /** 연결형 「많이 담기고」·「무겁고」 */
@@ -8074,6 +8065,9 @@ const CAP_L: CapCfg = {
   jGa: "가",
   jReul: "를",
   jRo: "로",
+  smallGwa: "와",
+  smallReul: "를",
+  smallNun: "는",
   moreAdj: "많이 담기는",
   moreConn: "많이 담기고",
   moreVerb: "많이 담깁니다",
@@ -8087,7 +8081,6 @@ const CAP_L: CapCfg = {
     "물병",
     "양동이",
     "수조",
-    "물뿌리개",
   ],
   stuff: ["물", "우유", "주스", "보리차", "식용유", "간장", "매실청", "포도즙"],
 };
@@ -8100,6 +8093,9 @@ const CAP_KG: CapCfg = {
   jGa: "이",
   jReul: "을",
   jRo: "으로",
+  smallGwa: "과",
+  smallReul: "을",
+  smallNun: "은",
   moreAdj: "무거운",
   moreConn: "무겁고",
   moreVerb: "무겁습니다",
@@ -8887,6 +8883,8 @@ const GRAPH_LABELS = ["가", "나", "다", "라"] as const;
 function graphSpec(
   step: number,
   rows: readonly { label: string; count: number }[],
+  /** 「□ 한 칸은 몇 …?」 처럼 범례의 수를 묻는 문항 — 범례를 «□ = ?» 로 그린다. */
+  hideUnit = false,
 ): Record<string, unknown> {
   for (const r of rows) {
     if (r.count < 1 || r.count > GRAPH_MAX_COUNT) {
@@ -8898,6 +8896,7 @@ function graphSpec(
   return fig("pictograph", {
     unit: step,
     items: rows.map((r) => ({ label: r.label, count: r.count })),
+    ...(hideUnit ? { hideUnit: true } : {}),
   });
 }
 
@@ -9370,10 +9369,11 @@ function circ231NameVar(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 05 — 정의: 중심과 원 위 한 점. */
 function circ231DefRadius(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  // «한 원에 이런 선분을 $n$개 그을 수 있습니다» 는 틀린 말이다 — 셀 수 없이 많이 그을 수 있다(2026-10-20 교차 검수).
+  const [p] = defPoints(rng);
   return make(
     unit,
-    `원의 중심과 원 위의 한 점을 이은 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    `원의 중심 ㅇ과 원 위의 한 점 ${p === "ㅇ" ? "ㅅ" : p}을 이은 선분을 무엇이라고 합니까?`,
     "반지름",
     `원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.`,
   );
@@ -9381,10 +9381,11 @@ function circ231DefRadius(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 06 — 정의: 원 위 두 점 + 중심을 지남. */
 function circ231DefDiameter(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  // 문형 05 와 같은 까닭으로 개수 문장을 빼고 점 이름으로 가른다.
+  const [p, q] = defPoints(rng).map((x) => (x === "ㅇ" ? "ㅈ" : x)) as [string, string];
   return make(
     unit,
-    `원 위의 두 점을 잇고 원의 중심을 지나는 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    `원 위의 두 점 ${p}, ${q}을 잇고 원의 중심 ㅇ을 지나는 선분을 무엇이라고 합니까?`,
     "지름",
     `원 위의 두 점을 잇고 원의 중심을 지나는 선분이 지름입니다.`,
   );
@@ -9436,13 +9437,7 @@ function circ231FoldHalf(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /* ── 문형 10 (기존 4단은 01–04 로만 감싼다. 핸들러 본체는 안 고친다.) ── */
 
-function addCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "+", bottom: String(b) });
-}
-
-function subCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "−", bottom: String(b) });
-}
+// 문형 05~09 에 붙던 세로셈(`addCol`·`subCol`)은 걷었다 — 발문의 식을 그대로 한 번 더 그렸다(원장님 2026-10-20 지면 전수 검사).
 
 /** 문형 05 — 합의 백의 자리. 합 전체가 아니라 자리 하나를 묻는다. */
 function add111Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -9454,7 +9449,6 @@ function add111Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합에서 백의 자리 숫자를 쓰시오.`,
     n(h),
     `${expr(`${a}+${b}=${s}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9487,7 +9481,6 @@ function add111OnesSum(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}$ 의 일의 자리 숫자와 $${b}$ 의 일의 자리 숫자를 더한 값을 쓰시오.`,
     n(ones),
     `일의 자리 숫자는 ${n(a % 10)} 과 ${n(b % 10)} 이므로 ${expr(`${a % 10}+${b % 10}=${ones}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9501,7 +9494,6 @@ function add111HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합은 $${c}$ 보다 얼마 더 큽니까?`,
     n(s - c),
     `먼저 합을 구합니다. ${expr(`${a}+${b}=${s}`)} 입니다. 차는 ${expr(`${s}-${c}=${s - c}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9549,7 +9541,6 @@ function add112Digits(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합은 몇 자리 수입니까?`,
     n(digitsN),
     `${expr(`${a}+${b}=${s}`)} 이므로 ${n(digitsN)} 자리 수입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9574,7 +9565,6 @@ function add112CarryCount(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 를 계산할 때 받아올림은 몇 번 있습니까?`,
     n(c),
     `일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 ${n(c)} 번입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9588,7 +9578,6 @@ function add112From1000(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합과 $${1000}$ 의 차는 얼마입니까?`,
     n(gap),
     `${expr(`${a}+${b}=${s}`)} 이고, ${s >= 1000 ? expr(`${s}-1000=${gap}`) : expr(`1000-${s}=${gap}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9638,7 +9627,6 @@ function sub113Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차에서 백의 자리 숫자를 쓰시오.`,
     n(h),
     `${expr(`${a}-${b}=${d}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9658,12 +9646,13 @@ function sub113MissingMinuend(unit: UnitSeed, rng: Rng): ElemProblem {
 function sub113OnesDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = subWithBorrows(rng, 0, 1);
   const ones = (a - b) % 10;
+  // 받아내림이 없는 씨앗에는 «받아내림하여»를 쓰지 않는다 — `7-7` 인데 받아내림을 시켰다(Codex 검토 2026-10-20).
+  const borrow = a % 10 < b % 10 ? "받아내림하여 " : "";
   return make(
     unit,
-    `$${a}$ 의 일의 자리 숫자에서 $${b}$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.`,
+    `$${a}$ 의 일의 자리 숫자에서 $${b}$ 의 일의 자리 숫자를 ${borrow}뺀 값을 쓰시오.`,
     n(ones),
     `차 ${expr(`${a}-${b}=${a - b}`)} 의 일의 자리와 같습니다. 값은 ${n(ones)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9691,7 +9680,6 @@ function sub113HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차는 $${c}$ 보다 얼마 더 큽니까?`,
     n(d - c),
     `먼저 차를 구합니다. ${expr(`${a}-${b}=${d}`)} 입니다. 차는 ${expr(`${d}-${c}=${d - c}`)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9718,7 +9706,6 @@ function sub114Tens(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차에서 십의 자리 숫자를 쓰시오.`,
     n(t),
     `${expr(`${a}-${b}=${d}`)} 이므로 십의 자리 숫자는 ${n(t)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9749,7 +9736,6 @@ function sub114HundredsBare(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}$ 의 백의 자리 숫자에서 $${b}$ 의 백의 자리 숫자를 뺀 값을 쓰시오.`,
     n(ha - hb),
     `백의 자리 숫자는 ${n(ha)} 과 ${n(hb)} 이므로 ${expr(`${ha}-${hb}=${ha - hb}`)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9814,12 +9800,23 @@ function line121Dots(rng: Rng): { layout: Pt[]; k: number; letters: string[] } {
   return { layout, k, letters: LINE_LETTERS.slice(0, k).map(String) };
 }
 
+/**
+ * 정의 문형의 점 이름 — «점 ㄱ과 점 ㄴ». 수가 없는 정의 문형은 씨앗마다 발문이 달라야 하는데,
+ * 예전에는 «그런 선을 $n$개 그을 수 있습니다» 같은 **틀린 문장**으로 갈랐다(2026-10-20 교차 검수).
+ * 자모 이름(기역 · 니은 · …)은 모두 받침으로 끝나 «과 · 을» 이 맞다.
+ */
+const DEF_POINT_NAMES = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ"] as const;
+function defPoints(rng: Rng): [string, string] {
+  const i = intBetween(rng, 0, DEF_POINT_NAMES.length - 2);
+  return [DEF_POINT_NAMES[i]!, DEF_POINT_NAMES[i + 1]!];
+}
+
 /** 문형 05 — 정의: 두 점을 곧게 이은 선. */
 function line121DefSeg(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `두 점을 곧게 이은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    `점 ${p}과 점 ${q}을 곧게 이은 선을 무엇이라고 합니까?`,
     "선분",
     `두 점을 곧게 이은 선이 선분입니다.`,
   );
@@ -9827,10 +9824,10 @@ function line121DefSeg(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 06 — 정의: 한쪽으로만 끝없이. */
 function line121DefRay(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `한 점에서 출발하여 한쪽으로만 끝없이 늘인 곧은 선을 무엇이라고 합니까? 출발점을 ${n(many)}개 고를 수 있습니다.`,
+    `점 ${p}에서 출발하여 점 ${q}을 지나 한쪽으로만 끝없이 늘인 곧은 선을 무엇이라고 합니까?`,
     "반직선",
     `한쪽으로만 끝없이 늘인 곧은 선이 반직선입니다.`,
   );
@@ -9838,10 +9835,10 @@ function line121DefRay(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 정의: 양쪽으로 끝없이. */
 function line121DefLine(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `양쪽으로 끝없이 늘인 곧은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    `점 ${p}과 점 ${q}을 지나도록 양쪽으로 끝없이 늘인 곧은 선을 무엇이라고 합니까?`,
     "직선",
     `양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`,
   );
@@ -9881,7 +9878,8 @@ function line121RayPlusSeg(unit: UnitSeed, rng: Rng): ElemProblem {
   const segs = (k * (k - 1)) / 2;
   return make(
     unit,
-    `그림에 점이 ${n(k)}개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
+    // 무엇을 잇는지 밝힌다 — «그을 수 있는» 만으로는 셀 범위가 열려 있었다(2026-10-20 교차 검수 2회차).
+    `그림에 점이 ${n(k)}개 있습니다. 이 점들 가운데 두 점을 골라 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
     n(rays + segs),
     `반직선은 ${expr(`${k}\\times${k - 1}=${rays}`)} 개, 선분은 ${expr(`${k}\\times${k - 1}\\div2=${segs}`)} 개이므로 합은 ${expr(`${rays}+${segs}=${rays + segs}`)} 입니다.`,
     dotsOnly(layout, letters),
@@ -9913,19 +9911,23 @@ function ang122NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직각이 아닌 각의 기호를 쓰시오.`,
     ans,
-    `직각이 아닌 각은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    `직각이 아닌 각은 ${other.join(", ")} 입니다. 그중 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
 
 /** 문형 07 — 정의: 두 변이 반듯하게 만나는 각. */
 function ang122Def(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
   return make(
     unit,
-    `두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 ${n(many)}개 그릴 수 있습니다.`,
+    // 교과서 정의 그대로 — «반듯하게 만나» 만으로는 직각이 정해지지 않는다 · 끝에 붙던 «그런 각을 n개 그릴 수 있습니다» 는 물음과 무관했다(4차 교차 검수)
+    pick(rng, [
+      `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각을 무엇이라고 합니까?`,
+      `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각의 이름을 쓰시오.`,
+      `종이를 반듯하게 두 번 접었다 펼치면 생기는 각을 무엇이라고 하는지 쓰시오.`,
+    ]),
     "직각",
-    `두 반직선이 반듯하게 만나 이루는 각이 직각입니다.`,
+    `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각을 직각이라고 합니다.`,
   );
 }
 
@@ -9963,9 +9965,9 @@ function ang122Rays(unit: UnitSeed, rng: Rng): ElemProblem {
   const row = angleRow(rng, count, rightCount);
   return make(
     unit,
-    `${row.labels.join(", ")} 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.`,
+    `${row.labels.map((l) => `각 ${l}`).join(", ")}를 이루는 변은 모두 몇 개인지 쓰시오.`,
     n(2 * count),
-    `각 ${n(count)}개에 변이 각각 2개이므로 ${expr(`${count}\\times2=${2 * count}`)} 개입니다.`,
+    `각 하나는 변이 ${n(2)}개입니다. 각 ${n(count)}개에 변이 각각 ${n(2)}개이므로 ${expr(`${count}\\times2=${2 * count}`)} 개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -9995,7 +9997,7 @@ function tri123NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형의 기호를 쓰시오.`,
     ans,
-    `직각삼각형이 아닌 것은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    `직각삼각형이 아닌 것은 ${other.join(", ")} 입니다. 그중 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -10093,7 +10095,7 @@ function rect124NotRect(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직사각형이 아닌 도형의 기호를 쓰시오.`,
     ans,
-    `직사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    `직사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -10177,7 +10179,7 @@ function sq125NotSq(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 정사각형이 아닌 도형의 기호를 쓰시오.`,
     ans,
-    `정사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    `정사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -10530,9 +10532,7 @@ function ten(
   ];
 }
 
-function mulCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "×", bottom: String(b) });
-}
+// 1-4 · 2-1 문형에 붙던 세로셈(`mulCol`)은 걷었다 — 발문의 곱셈식을 그대로 한 번 더 그렸다(2026-10-20).
 
 /** 1-4 공유 — 빈칸 곱하는 수. */
 function mul14Missing(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10554,7 +10554,6 @@ function mul14Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱에서 일의 자리 숫자를 쓰시오.`,
     n(p % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -10583,7 +10582,6 @@ function mul14From100(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱과 $${100}$ 의 차는 얼마입니까?`,
     n(Math.abs(p - 100)),
     `${expr(`${a}\\times${b}=${p}`)} 이고, 차는 ${n(Math.abs(p - 100))} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -10795,7 +10793,7 @@ function secMissingMin(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = m * 60 + s;
   return make(
     unit,
-    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 ${n(s)}초 $=${n(t)}$초`,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 ${n(s)}초 $=$ ${n(t)}초`,
     n(m),
     `$60$ 초는 $1$ 분이므로 ${n(m)}분입니다.`,
   );
@@ -10806,7 +10804,7 @@ function secOnlySec(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 1, 59);
   return make(
     unit,
-    `${msStr(m, s)} 에서 초 단위의 수만큼만 쓰시오.`,
+    `${msStr(m, s)}에서 초 단위의 수만큼만 쓰시오.`,
     n(s),
     `초 단위 부분은 ${n(s)}초입니다.`,
   );
@@ -10859,7 +10857,7 @@ function time155MinutesOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, h2, m2 } = addHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 에서 분끼리만 더한 값은 몇 분입니까?`,
+    `${hmStr(h1, m1)}과 ${hmStr(h2, m2)}에서 분끼리만 더한 값은 몇 분입니까?`,
     n(m1 + m2),
     `${expr(`${m1}+${m2}=${m1 + m2}`)} 입니다.`,
   );
@@ -10869,7 +10867,7 @@ function time155HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, h2, m2 } = addHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 에서 시간끼리만 더한 값은 몇 시간입니까?`,
+    `${hmStr(h1, m1)}과 ${hmStr(h2, m2)}에서 시간끼리만 더한 값은 몇 시간입니까?`,
     n(h1 + h2),
     `${expr(`${h1}+${h2}=${h1 + h2}`)} 입니다.`,
   );
@@ -10880,7 +10878,7 @@ function time155CarryQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const yes = m1 + m2 >= 60;
   return make(
     unit,
-    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 을 더할 때 분에서 시간으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    `${hmStr(h1, m1)}과 ${hmStr(h2, m2)}을 더할 때 분에서 시간으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     `분끼리 더하면 ${n(m1 + m2)}분이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
   );
@@ -10890,7 +10888,7 @@ function time155TotalMin(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1 } = addHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 은 모두 몇 분입니까?`,
+    `${hmStr(h1, m1)}은 모두 몇 분입니까?`,
     n(h1 * 60 + m1),
     `${expr(`60\\times${h1}=${h1 * 60}`)} 이고 ${expr(`${h1 * 60}+${m1}=${h1 * 60 + m1}`)} 입니다.`,
   );
@@ -10900,7 +10898,7 @@ function time155AddOneHour(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1 } = addHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 에 $1$시간을 더하면 몇 시간 몇 분입니까?`,
+    `${hmStr(h1, m1)}에 $1$시간을 더하면 몇 시간 몇 분입니까?`,
     hmStr(h1 + 1, m1),
     `시간에 $1$을 더하면 ${hmStr(h1 + 1, m1)}입니다.`,
   );
@@ -10910,9 +10908,9 @@ function time155SumHours(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, h2, m2, hh, mm } = addHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 과 ${hmStr(h2, m2)} 의 합에서 시간 부분만 쓰시오.`,
+    `${hmStr(h1, m1)}과 ${hmStr(h2, m2)}의 합에서 시간 부분만 쓰시오.`,
     n(hh),
-    `합은 ${hmStr(hh, mm)} 이므로 시간은 ${n(hh)}시간입니다.`,
+    `합은 ${hmStr(hh, mm)}이므로 시간은 ${n(hh)}시간입니다.`,
   );
 }
 
@@ -10920,9 +10918,9 @@ function time156MinutesOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, sh, sm, hh, mm } = subHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺀 결과의 분 부분만 쓰시오.`,
+    `${hmStr(h1, m1)}에서 ${hmStr(sh, sm)}을 뺀 결과의 분 부분만 쓰시오.`,
     n(mm),
-    `차는 ${hmStr(hh, mm)} 이므로 분은 ${n(mm)}분입니다.`,
+    `차는 ${hmStr(hh, mm)}이므로 분은 ${n(mm)}분입니다.`,
   );
 }
 
@@ -10930,7 +10928,7 @@ function time156HoursOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, sh, sm } = subHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때, 받아내림 전 시간끼리만 빼면 몇 시간입니까?`,
+    `${hmStr(h1, m1)}에서 ${hmStr(sh, sm)}을 뺄 때, 받아내림 전 시간끼리만 빼면 몇 시간입니까?`,
     n(h1 - sh),
     `${expr(`${h1}-${sh}=${h1 - sh}`)} 입니다.`,
   );
@@ -10941,7 +10939,7 @@ function time156BorrowQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const yes = m1 < sm;
   return make(
     unit,
-    `${hmStr(h1, m1)} 에서 ${hmStr(sh, sm)} 을 뺄 때 분에서 받아내림이 있습니까? 예 또는 아니요로 쓰시오.`,
+    `${hmStr(h1, m1)}에서 ${hmStr(sh, sm)}을 뺄 때 분에서 받아내림이 있습니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     `${n(m1)}분에서 ${n(sm)}분을 빼므로 ${yes ? "받아내림이 있습니다" : "받아내림이 없습니다"}.`,
   );
@@ -10951,7 +10949,7 @@ function time156TotalMin(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1 } = subHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 은 모두 몇 분입니까?`,
+    `${hmStr(h1, m1)}은 모두 몇 분입니까?`,
     n(h1 * 60 + m1),
     `${expr(`60\\times${h1}+${m1}=${h1 * 60 + m1}`)} 입니다.`,
   );
@@ -10961,7 +10959,7 @@ function time156MinusHour(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1 } = subHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 에서 $1$시간을 빼면 몇 시간 몇 분입니까?`,
+    `${hmStr(h1, m1)}에서 $1$시간을 빼면 몇 시간 몇 분입니까?`,
     hmStr(h1 - 1, m1),
     `시간에서 $1$을 빼면 ${hmStr(h1 - 1, m1)}입니다.`,
   );
@@ -10971,9 +10969,9 @@ function time156DiffHours(unit: UnitSeed, rng: Rng): ElemProblem {
   const { h1, m1, sh, sm, hh, mm } = subHm(rng);
   return make(
     unit,
-    `${hmStr(h1, m1)} 과 ${hmStr(sh, sm)} 의 차에서 시간 부분만 쓰시오.`,
+    `${hmStr(h1, m1)}과 ${hmStr(sh, sm)}의 차에서 시간 부분만 쓰시오.`,
     n(hh),
-    `차는 ${hmStr(hh, mm)} 이므로 시간은 ${n(hh)}시간입니다.`,
+    `차는 ${hmStr(hh, mm)}이므로 시간은 ${n(hh)}시간입니다.`,
   );
 }
 
@@ -11005,8 +11003,10 @@ function part161Empty(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
-  const filled = intBetween(rng, 1, parts - 1);
-  const spec = fracSpec(rng, parts, filled);
+  // 여러 칸을 칠하면 «한 조각» 이 아니라 칠한 부분을 묻는 것처럼 보인다(4차 교차 검수) — 한 조각만 칠한다.
+  const filled = 1;
+  // 떨어진 삼각형 줄(triRow)은 «전체를 나눈» 모양이 아니다(5차 교차 검수) — 띠 · 원만
+  const spec = fracSpec(rng, parts, filled, ["fracBars", "fracPie"]);
   return make(
     unit,
     `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.`,
@@ -11018,7 +11018,7 @@ function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function part161TwoFrac(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 4, 8);
-  const spec = fracSpec(rng, parts, 2);
+  const spec = fracSpec(rng, parts, 2, ["fracBars", "fracPie"]);
   return make(
     unit,
     `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 두 조각은 전체의 얼마인지 분수로 쓰시오.`,
@@ -11519,7 +11519,6 @@ function mul21Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱에서 백의 자리 숫자를 쓰시오.`,
     n(Math.floor(p / 100) % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(Math.floor(p / 100) % 10)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -11949,7 +11948,7 @@ function circ232ThreeR(unit: UnitSeed, rng: Rng): ElemProblem {
     `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?`,
     n(3 * r),
     `${expr(`${r}\\times3=${3 * r}`)} 입니다.`,
-    circleFig("radius", r),
+    // 반지름 하나만 그린 그림은 «$3$개 그었습니다» 와 어긋난다(4차 교차 검수) — 그림 없이.
   );
 }
 
@@ -11983,7 +11982,7 @@ function circ232ManyR(unit: UnitSeed, rng: Rng): ElemProblem {
     `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 ${n(k)}개 그었습니다. 길이의 합은 몇 cm입니까?`,
     n(r * k),
     `${expr(`${r}\\times${k}=${r * k}`)} 입니다.`,
-    circleFig("radius", r),
+    // 그림은 반지름을 하나만 그려 «${k}개 그었습니다» 와 어긋났다(4차 교차 검수) — 발문이 반지름을 주므로 그림 없이 낸다.
   );
 }
 
@@ -12266,7 +12265,8 @@ function kind244WholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const yes = num >= den;
   return make(
     unit,
-    `${expr(`\\frac{${num}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
+    // 분수는 분자를 끝으로 읽는다(«삼분의 이» → «는») — 5차 교차 검수
+    `${expr(`\\frac{${num}}{${den}}`)} ${"2459".includes(String(num).at(-1)!) ? "는" : "은"} 가분수입니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     yes
       ? `분자가 분모 이상이므로 가분수입니다.`
@@ -12448,7 +12448,7 @@ function capCmpToSmallOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 900);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallNun} 몇 ${cfg.small}입니까?`,
       n(b * 1000 + s),
       `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${n(b * 1000 + s)} ${cfg.small}입니다.`,
     );
@@ -12502,7 +12502,7 @@ function capCmpGapOf(cfg: CapCfg): ChapterHandler {
     const right = left + gap;
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 의 차는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${unitNum(right, cfg.small)} 의 차는 몇 ${cfg.small}입니까?`,
       n(gap),
       `${expr(`${right}-${left}=${gap}`)} 입니다.`,
     );
@@ -12518,7 +12518,7 @@ function capCmpBiggerOf(cfg: CapCfg): ChapterHandler {
     const right = left + gap * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 가운데 더 큰 값은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${unitNum(right, cfg.small)} 가운데 더 큰 값은 몇 ${cfg.small}입니까?`,
       n(Math.max(left, right)),
       `둘을 ${cfg.small} ${cfg.jRo} 고치면 ${n(left)} 과 ${n(right)} 이므로 더 큰 값은 ${n(Math.max(left, right))} ${cfg.small}입니다.`,
     );
@@ -12562,7 +12562,7 @@ function capUnitSumOf(cfg: CapCfg): ChapterHandler {
     const t2 = j * 1000 + f;
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${mixedCap(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
       n(t1 + t2),
       `${expr(`${t1}+${t2}=${t1 + t2}`)} 입니다.`,
     );
@@ -12581,7 +12581,7 @@ function capUnitDiffOf(cfg: CapCfg): ChapterHandler {
     const lo = Math.min(t1, t2);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${mixedCap(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
       n(hi - lo),
       `${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
     );
@@ -12621,7 +12621,7 @@ function capSumBigOnlyOf(cfg: CapCfg): ChapterHandler {
     const s2 = intBetween(rng, 50, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.big}끼리만 더한 값은 몇 ${cfg.big}입니까?`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} 에서 ${cfg.big}끼리만 더한 값은 몇 ${cfg.big}입니까?`,
       n(b1 + b2),
       `${expr(`${b1}+${b2}=${b1 + b2}`)} 입니다.`,
     );
@@ -12636,7 +12636,7 @@ function capSumSmallOnlyOf(cfg: CapCfg): ChapterHandler {
     const s2 = intBetween(rng, 50, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.small}끼리만 더한 값은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} 에서 ${cfg.small}끼리만 더한 값은 몇 ${cfg.small}입니까?`,
       n(s1 + s2),
       `${expr(`${s1}+${s2}=${s1 + s2}`)} 입니다.`,
     );
@@ -12652,7 +12652,7 @@ function capSumCarryQOf(cfg: CapCfg): ChapterHandler {
     const yes = s1 + s2 >= 1000;
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 을 더할 때 ${cfg.small}에서 ${cfg.big}으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} ${cfg.smallReul} 더할 때 ${cfg.small}에서 ${cfg.big}${cfg.jRo} 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
       yes ? "예" : "아니요",
       `${cfg.small}끼리 더하면 ${n(s1 + s2)} 이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
     );
@@ -12665,7 +12665,7 @@ function capSumToSmallOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 800);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallNun} 몇 ${cfg.small}입니까?`,
       n(b * 1000 + s),
       `${expr(`1000\\times${b}+${s}=${b * 1000 + s}`)} 입니다.`,
     );
@@ -12692,7 +12692,7 @@ function capSumDiffBigOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s)} 에서 ${mixedCap(cfg, b2, s)} 을 뺄 때 ${cfg.big}끼리만 빼면 몇 ${cfg.big}입니까?`,
+      `${mixedCap(cfg, b1, s)} 에서 ${mixedCap(cfg, b2, s)} ${cfg.smallReul} 뺄 때 ${cfg.big}끼리만 빼면 몇 ${cfg.big}입니까?`,
       n(b1 - b2),
       `${expr(`${b1}-${b2}=${b1 - b2}`)} 입니다.`,
     );
@@ -12746,7 +12746,7 @@ function graph261Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const lo = Math.min(...shown);
   return make(
     unit,
-    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}입니다. 가장 많은 ${place}와 가장 적은 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
+    `그림그래프에서 □ 한 칸은 ${stuff.name} ${n(step)}${stuff.unit}입니다. 가장 많은 ${place}${josa(place, "과", "와")} 가장 적은 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
     n((hi - lo) * step),
     `칸 수의 차는 ${n(hi - lo)}칸이므로 ${expr(`${step}\\times${hi - lo}=${(hi - lo) * step}`)} 입니다.`,
     graphSpec(
@@ -12799,10 +12799,10 @@ function graph261Step(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = intBetween(rng, 2, GRAPH_MAX_COUNT);
   return make(
     unit,
-    `그림그래프에서 □가 ${n(count)}칸이고 ${stuff.name} 수가 ${n(count * step)}${stuff.unit}일 때, □ 한 칸은 몇 ${stuff.unit}을 나타냅니까?`,
+    `그림그래프에서 □가 ${n(count)}칸이고 ${stuff.name} 수가 ${n(count * step)}${stuff.unit}일 때, □ 한 칸은 몇 ${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니까?`,
     n(step),
     `${expr(`${count * step}\\div${count}=${step}`)} 입니다.`,
-    graphSpec(step, [{ label: GRAPH_LABELS[0]!, count }]),
+    graphSpec(step, [{ label: GRAPH_LABELS[0]!, count }], true),
   );
 }
 
@@ -12824,7 +12824,8 @@ function graph262Ones(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9);
   return make(
     unit,
-    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 작은 그림 한 개가 ${n(1)}${stuff.unit}일 때 작은 그림은 몇 개 그려야 합니까?`,
+    // 큰 그림이 몇인지 없으면 작은 그림만으로 ${value}개를 다 그릴 수도 있다(5차 교차 검수 — 세 모델)
+    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 큰 그림 한 개가 ${n(10)}${stuff.unit}, 작은 그림 한 개가 ${n(1)}${stuff.unit}일 때 작은 그림은 몇 개 그려야 합니까?`,
     n(value % 10),
     `일의 자리가 ${n(value % 10)} 이므로 작은 그림은 ${n(value % 10)}개입니다.`,
   );
@@ -12863,7 +12864,8 @@ function graph262Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 11, a - 5);
   return make(
     unit,
-    `가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
+    // 무엇의 개수인지가 뒤 문장에야 나왔다(2026-10-20 교차 검수 2회차) — 첫 문장에 «사과 수» 를 적는다.
+    `${stuff.name} 수가 가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
     n(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
   );
@@ -13483,10 +13485,9 @@ function circ232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 2단 — 소재를 얹어 문장으로. 그림은 여전히 **준 쪽만**. */
 function circ232Word(unit: UnitSeed, rng: Rng): ElemProblem {
   const thing = pick(rng, [
+    // 동전 · 단추는 반지름 2~9 cm 에 안 맞는다(«반지름 8 cm 동전» — 4차 교차 검수)
     "접시",
     "시계",
-    "동전",
-    "단추",
     "쟁반",
     "탬버린",
     "거울",

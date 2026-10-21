@@ -89,6 +89,14 @@ const BARE_PAREN_DIGIT = /[⑴-⒇]/g;
 const REJECT_BEFORE = /[A-Za-z0-9′'’]/;
 
 /**
+ * 마커 **뒤**에 쉼표나 조사가 바로 붙으면 문장 속에서 **가리키는** 번호다 — «⑴, ⑵에 이용한 계산 법칙» ·
+ * «⑴과 ⑵의 결과». 진짜 소문항은 번호 뒤에 띄우고 글 · 수식이 오거나(«⑴ 넓이») 줄이 끝난다.
+ * 실측: 교과서 J10203-D15-001 이 «중 / ⑴, / ⑵에 이용한» 세 줄로 갈렸다(2026-10-20 지면 검사).
+ */
+// ⚠️ «이 · 가 · 도 · 만» 은 넣지 않는다 — 띄어쓰기가 빠진 «(2)이 풍력 발전기가»(지시어)를 참조로 읽었다(실측 tb-8d695dfcf967f116-4-6).
+const REFERENCE_AFTER = /^(?:[,，、]|(?:에서|에게|에|의|와|과|를|을|은|는|으로|로)(?![가-힣]))/;
+
+/**
  * 마커 바로 앞 글자(공백·비줄바꿈 공백 무시). 없으면 빈 문자열.
  *
  * **줄바꿈에서 멈춘다** — 줄머리는 언제나 안전한 자리다.
@@ -153,6 +161,9 @@ function collect(text: string): Candidate[] {
   ) => {
     if (num < 1) return;
     if (checkBefore && REJECT_BEFORE.test(charBefore(text, index))) return;
+    if (REFERENCE_AFTER.test(text.slice(index + length))) return;
+    // 계산 줄 끝의 «⋯⋯ ⑴» 은 그 줄에 붙인 이름표다(교과서 계산 과정 — 2026-10-20 교차 검수).
+    if (/[⋯…]\s*$/.test(text.slice(Math.max(0, index - 4), index))) return;
     // `(1)(2)(3)` 처럼 붙어 있으면 표의 칸이지 하위 문항이 아니다(실측 33786c96).
     if (text[index + length] === "(") return;
     found.push({ index, length, number: num, priority });
@@ -176,8 +187,11 @@ function collect(text: string): Candidate[] {
       true,
     );
   }
+  // 수식 **안**의 괄호원문자(식 번호 «$$…\tag*{⑴}$$» 등)는 소문항 머리가 아니다(2026-10-20 교차 검수 2회차).
+  const mathRanges = [...text.matchAll(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g)].map((m) => [m.index, m.index + m[0].length] as const);
+  const insideMath = (i: number) => mathRanges.some(([a, b]) => i > a && i < b - 1);
   for (const m of text.matchAll(BARE_PAREN_DIGIT))
-    push(m.index, 1, parenDigitNumber(m[0]) ?? 0, 1, false);
+    if (!insideMath(m.index)) push(m.index, 1, parenDigitNumber(m[0]) ?? 0, 1, false);
 
   found.sort((a, b) => a.index - b.index || b.priority - a.priority);
 

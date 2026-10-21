@@ -19,6 +19,8 @@ export function fracSpec(
   rng: Rng,
   parts: number,
   filled: number,
+  /** 고를 그림 갈래를 좁힌다(«전체를 똑같이 나눈» 문항은 띠 · 원만). */
+  only?: readonly string[],
 ): Record<string, unknown> {
   if (!Number.isInteger(parts) || parts < 2 || parts > FRAC_FIG_MAX) {
     throw new Error(`분수 그림 등분은 2 이상 ${FRAC_FIG_MAX} 이하여야 합니다`);
@@ -30,7 +32,7 @@ export function fracSpec(
   const kinds: string[] = ["fracBars", "fracPie"];
   if (parts <= 8) kinds.push("triRow");
   if (parts === 4) kinds.push("trapFour");
-  const kind = pick(rng, kinds);
+  const kind = pick(rng, only ? kinds.filter((k) => only.includes(k)) : kinds);
   if (kind === "fracBars") {
     return fig("fracBars", { cols: parts, rows: 1, filled, fill });
   }

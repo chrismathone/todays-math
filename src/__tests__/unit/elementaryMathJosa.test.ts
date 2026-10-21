@@ -11,6 +11,15 @@ import {
 
 // 독립 검산: 숫자를 한국어 끝 음절로 옮긴 뒤 유니코드 받침을 검사한다.
 function finalSound(latex: string): string | null {
+  // 단위로 끝나면 단위를 읽는 끝 음절 — «밀리리터» → «터» · «킬로그램» → «램» · «톤» · «퍼센트» → «트» · «도»
+  const unit = /[\d}]\s*\\,\s*\\mathrm\{([A-Za-z]+)\}(?:\^\{?[23]\}?)?$/.exec(latex);
+  if (unit) return ({ mm: "터", cm: "터", m: "터", km: "터", mL: "터", L: "터", kL: "터", g: "램", kg: "램", mg: "램", t: "톤" } as Record<string, string>)[unit[1]!] ?? null;
+  if (/\d\s*\\%$/.test(latex)) return "트";
+  if (/\d\s*\^\{?\\circ\}?$/.test(latex)) return "도";
+  if (/\\square$/.test(latex)) return "모";
+  // 연산 기호 뒤 끝 토막(수 · 분수)이 끝소리다 — «$\frac16\times\frac38$» → «3»
+  const tail = /(?:\\times|\\div|\\le|\\ge|\\leq|\\geq|[-+=<>:])\s*((?:\d+)?\\frac\{\d+\}\{\d+\}|\d+(?:\.\d+)?)$/.exec(latex);
+  if (tail) return finalSound(tail[1]!);
   const fraction = /^-?(?:\d+)?\\frac\{(\d+)\}\{\d+\}$/.exec(latex);
   let number = fraction?.[1] ?? latex;
   if (!/^-?\d+(?:\.\d+)?$/.test(number)) return null;
@@ -37,9 +46,11 @@ it("정수·소수·분수·대분수의 조사와 ㄹ 받침을 구별하고 �
       "$24$을 $12$으로 $\\frac{3}{10}$를 $3\\frac{3}{4}$를 $7$으로 $0.2$을",
     ),
   ).toBe("$24$를 $12$로 $\\frac{3}{10}$을 $3\\frac{3}{4}$을 $7$로 $0.2$를");
-  expect(mathJosa("$x$를 $2+3$을 $\\frac{1}{2}\\times3$를")).toBe(
-    "$x$를 $2+3$을 $\\frac{1}{2}\\times3$를",
+  expect(mathJosa("$x$를 $2+3$을 $\\frac{1}{2}\\times3$를 $x^{2}$를")).toBe(
+    "$x$를 $2+3$을 $\\frac{1}{2}\\times3$을 $x^{2}$를",
   );
+  // 2026-10-20 교차 검수 — 분수의 곱은 끝 분수의 분자로 읽는다(«8분의 3» → «을»)
+  expect(mathJosa("$\\frac{1}{6}\\times\\frac{3}{8}$를")).toBe("$\\frac{1}{6}\\times\\frac{3}{8}$을");
   expect(mathJosa("$10000$로 $1000000000000$은")).toBe(
     "$10000$으로 $1000000000000$는",
   );

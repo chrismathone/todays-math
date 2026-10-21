@@ -1146,10 +1146,12 @@ def _clock_face(cx: float, cy: float, r: float, hour: int, minute: int, second: 
 
     h = hour % 12
     m = minute
-    parts.append(hand(30 * h + 0.5 * m, r * 0.45, 2.4, INK))
-    parts.append(hand(6 * m, r * 0.68, 1.8, INK))
+    # 바늘은 숫자 고리(r - 14) 안에서 멈춘다 — 긴바늘이 숫자를 덮으면 «12» 가 뭉개진다
+    reach = r - 20
+    parts.append(hand(30 * h + 0.5 * m, reach * 0.64, 2.4, INK))
+    parts.append(hand(6 * m, reach, 1.8, INK))
     if second is not None:
-        parts.append(hand(6 * second, r * 0.72, 1.0, "#c04545"))
+        parts.append(hand(6 * second, reach + 1, 1.0, "#c04545"))
     parts.append(f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="2.2" fill="{INK}"/>')
     return "".join(parts)
 
@@ -1587,7 +1589,8 @@ def _frac_pie(spec: Mapping[str, Any]) -> str:
     r, pad = 48.0, 8.0
     cx = cy = pad + r
     step = 360.0 / n
-    leftover, eaten = str(spec.get("fill") or "#e2b48a"), "#f4efe6"
+    # 칠하지 않은 조각은 흰색 — 옅은 베이지였을 때 «색칠하지 않은 부분» 도 칠한 것처럼 보였다(2026-10-20 교차 검수 2회차).
+    leftover, eaten = str(spec.get("fill") or "#e2b48a"), "#ffffff"
     parts: list[str] = []
     for i in range(n):
         a0 = math.radians(start + i * step)
@@ -2158,6 +2161,20 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
             f"«{kind}» 는 아직 sides·angles 를 그림에 반영하지 못합니다 — "
             f"값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
         )
+    # 납작한 도형(밑변이 긴 이등변삼각형 · 낮은 평행사변형)은 정사각 틀의 위아래가 비었다 — 시험지 칸이
+    # 쓸데없이 길어졌다(2026-10-20 교차 검수). 꼭짓점을 위 여백에 붙이고 틀 높이를 도형 높이에 맞춘다.
+    # 너비는 그대로라 그림 크기 등급(figureSvgFrame)은 안 바뀐다. 라벨이 넘치면 `_svg` 가 다시 넓힌다.
+    top = min(p[1] for p in pts)
+    shape_h = max(p[1] for p in pts) - top
+    pts = [(x, y - top + pad) for x, y in pts]
+    frame_h = pad * 2 + max(shape_h, size * 0.25)
+    # 바깥 라벨(변 길이 · 각)이 하나도 없으면 위아래 40px 은 빈 여백뿐이다 — 「정사각형의 대칭축은 몇 개」의
+    # 빈 정사각형이 칸을 크게 차지했다(2026-10-20 3차 교차 검수). 너비는 그대로 둔다(크기 등급 유지).
+    if all(v is None for v in sides) and all(v is None for v in angles):
+        lean = 10.0
+        pts = [(x, y - pad + lean) for x, y in pts]
+        frame_h = lean * 2 + max(shape_h, size * 0.25)
+
     cxr = sum(p[0] for p in pts) / n
     cyr = sum(p[1] for p in pts) / n
 
@@ -2234,7 +2251,7 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
         hyp = math.hypot(dx, dy) or 1.0
         parts.append(_text(px + dx / hyp * 22, py + dy / hyp * 22 + 4, str(label), size=12))
 
-    return _svg(pad * 2 + size, pad * 2 + size, "".join(parts))
+    return _svg(pad * 2 + size, frame_h, "".join(parts))
 
 
 def _seg(

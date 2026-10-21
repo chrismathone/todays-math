@@ -152,7 +152,7 @@ export function shouldApply(
  *    (`--same-problem <목록.json>`). 기계가 «같다»고 믿는 것은 공백 · 조사 · 정답의 끝자리 0 뿐이다.
  */
 export type IdentityRisk =
-  "발문의 수" | "발문의 글" | "정답의 값" | "그림의 라벨";
+  "발문의 수" | "발문의 글" | "정답의 값" | "그림의 라벨" | "보기";
 
 /** 조사 — 받침에 따라 갈리는 짝. 문구 수리(을/를 · 이/가 …)는 문제를 바꾸지 않는다. */
 const PARTICLES = /[은는이가을를와과으로]/g;
@@ -218,6 +218,20 @@ export function identityRisk(
 }
 
 /**
+ * 객관식 보기 다섯이 **하나하나** 글자 그대로 같은가(공백만 뺀다 — 정답 보기만 보는 `identityRisk` 보다 좁다).
+ * 계획 밖에서 되만든 행(`--replay`)에 건다 — 보기 섞기 번호를 잘못 되살리면 정답 보기는 같아도 오답 보기 · 번호가 달라진다.
+ */
+export function choicesRisk(db: Cols, made: Cols): "보기" | null {
+  const a = parseProblemContent(db.content).choices;
+  const b = parseProblemContent(made.content).choices;
+  if (a.length !== b.length) return "보기";
+  // 보기는 수의 자리 · 차례가 뜻이다(«3-2» 와 «2-3» · «\frac{2}{3}» 과 «\frac{3}{2}») — 정렬하거나 수를 지우지 않고, 공백만 뺀 글자 그대로 견준다.
+  const plain = (c: string) => c.replace(/\s+/g, "");
+  for (let i = 0; i < a.length; i++) if (plain(a[i]!) !== plain(b[i]!)) return "보기";
+  return db.answer.trim() === made.answer.trim() || a.length === 0 ? null : "보기";
+}
+
+/**
  * 덮는가(`apply`) · 문지기가 막는가(`refuse`) · 애초에 덮을 행이 아닌가(`skip`).
  * `confirmed` — 사람이 «같은 문제»라고 짚어 준 행(`--same-problem`).
  */
@@ -233,12 +247,27 @@ export function decideApply(
   return risk !== null && !confirmed ? "refuse" : "apply";
 }
 
+/**
+ * 글은 같은(«same») 행을 그림 때문에 덮을 목록에 넣는가 — `--figure-families` 문항류에서만.
+ * 🔴 엔진이 그림을 **뺀** 행도 넣는다: 예전에는 «엔진 사양이 있을 때만» 넣어서, 발문의 식을 다시 그린 세로셈을
+ *    걷은 초등 1,088행(2026-10-20 지면 전수 검사)이 «same» 으로 지나가 적재본에 옛 그림이 남았다.
+ */
+export function wantsFigureRedraw(o: {
+  inFigureFamily: boolean;
+  madeHasFigure: boolean;
+  dbHasFigure: boolean;
+}): boolean {
+  return o.inFigureFamily && (o.madeHasFigure || o.dbHasFigure);
+}
+
 export type Snapshot = {
   content: string;
   answer: string;
   solution: string | null;
   figureSvg: string | null;
   directUseAllowed: boolean;
+  /** 그림 출처 — 2026-10-21 전 원장에는 없다(그때는 그림 유무에서 정했다). */
+  figureSource?: string | null;
 };
 
 export type LedgerRow = {
@@ -274,6 +303,84 @@ export function sameSnapshot(a: Snapshot, b: Snapshot): boolean {
     a.answer === b.answer &&
     a.solution === b.solution &&
     a.figureSvg === b.figureSvg &&
-    a.directUseAllowed === b.directUseAllowed
+    a.directUseAllowed === b.directUseAllowed &&
+    (a.figureSource === undefined || b.figureSource === undefined || a.figureSource === b.figureSource)
   );
+}
+
+/** 쓰는 칸 — 그림 출처가 없는 옛 원장은 그림 유무에서 정한다. */
+export function snapshotData(s: Snapshot) {
+  return {
+    content: s.content,
+    answer: s.answer,
+    solution: s.solution,
+    figureSvg: s.figureSvg,
+    figureSource: s.figureSource !== undefined ? s.figureSource : s.figureSvg ? "engine" : null,
+    directUseAllowed: s.directUseAllowed,
+  };
+}
+
+/** 쓰는 칸이 전부 `s` 와 같은 행만 고르는 조건(그림 출처는 원장에 있을 때). */
+export function snapshotWhere(id: string, s: Snapshot) {
+  return {
+    id,
+    content: s.content,
+    answer: s.answer,
+    solution: s.solution,
+    figureSvg: s.figureSvg,
+    directUseAllowed: s.directUseAllowed,
+    ...(s.figureSource !== undefined ? { figureSource: s.figureSource } : {}),
+  };
+}
+
+/** 덮은 뒤의 그림 출처 — 그림을 다시 그렸으면 엔진, 그대로면 앞의 출처를 둔다. */
+export function figureSourceAfter(before: Snapshot, figureSvg: string | null): string | null {
+  if (figureSvg === before.figureSvg && before.figureSource !== undefined) return before.figureSource;
+  return figureSvg ? "engine" : null;
+}
+
+/**
+ * 되돌림의 앞 · 뒤 — 한 행의 원장 기록(오래된 차례)에서 **지금 값과 같은 «뒤»** 를 찾아, 거기서 처음의 «앞»으로.
+ * 마지막 기록만 견주면 «쓰기 전에 원장에 적고 거래가 실패한» 회차 때문에 앞 회차의 값을 «남이 고쳤다»로 읽는다
+ * (Codex 2026-10-21). 어느 «뒤»와도 다르면 그 사이 남이 고친 것이다 — null.
+ */
+export function revertStep(entries: readonly LedgerRow[], now: Snapshot): { from: Snapshot; to: Snapshot } | null {
+  for (let i = entries.length - 1; i >= 0; i--)
+    if (sameSnapshot(now, entries[i]!.after)) return { from: { ...entries[i]!.after, figureSource: now.figureSource }, to: entries[0]!.before };
+  return null;
+}
+
+export type CasClient = {
+  problem: {
+    updateMany(args: {
+      where: ReturnType<typeof snapshotWhere>;
+      data: ReturnType<typeof snapshotData>;
+    }): Promise<{ count: number }>;
+  };
+};
+
+/**
+ * 🔴 **쓰는 순간에 «앞» 값일 때만 쓴다**(compare-and-set · D-164 §4 · Codex 2회차 H).
+ * 드라이런과 적용 사이에 남이 그 행을 고쳤으면 그 행은 0행이 갱신된다 — 그러면 던져서 **그 거래 전체**를 되돌린다.
+ * 반드시 한 거래(`$transaction(async tx => …)`) 안에서 부른다. 되돌림도 같은 함수로(앞 = 쓴 값, 뒤 = 처음 값).
+ */
+export async function writeSnapshotsCas(
+  tx: CasClient,
+  rows: readonly { problemId: string; from: Snapshot; to: Snapshot }[],
+): Promise<number> {
+  let written = 0;
+  for (const r of rows) {
+    const { count } = await tx.problem.updateMany({
+      where: snapshotWhere(r.problemId, r.from),
+      data: snapshotData(r.to),
+    });
+    if (count !== 1)
+      throw new Error(
+        `CAS_MISMATCH ${r.problemId} — 쓰는 순간 칸이 «앞» 값과 다르다(갱신 ${count}행) · 이 거래를 되돌린다`,
+      );
+    written += count;
+  }
+  if (written !== rows.length)
+    throw new Error(`CAS_COUNT ${written}/${rows.length} — 기대 갱신 수와 다르다`);
+  return written;
 }

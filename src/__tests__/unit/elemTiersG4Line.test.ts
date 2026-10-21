@@ -244,7 +244,7 @@ describe("값 — 그림에 실린 수로 다시 세운다", () => {
     for (const seed of SEEDS) {
       const p = gen("2-5-2", seed, "연산");
       const s = spec(p);
-      const asked = Number(/값이 \$(\d+)\$/.exec(p.content)![1]);
+      const asked = Number(/(?:값이|[이가]) \$(\d+)\$/.exec(p.content)![1]);
       const at = figureNums(s).indexOf(asked);
       expect(at, `s${seed}: 그림에 없는 값을 물었다`).toBeGreaterThanOrEqual(0);
       expect(p.answer).toContain(

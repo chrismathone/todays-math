@@ -299,10 +299,9 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
           if (RO_FORM[m[1]!.slice(-1)] !== m[2])
             bad.push(`${where} ${label}: $${m[1]}$${m[2]} — (으)로 소리`);
         }
-        // 수식 바로 뒤에는 조사를 붙이지 않는다(a42ba6bb 곁들이와 같은 규칙) —
-        // 닫는 $ 앞이 수가 아닌 것(=식)이면 조사 금지.
-        if (/[^$\d]\$(을|를|은|는|이|가)(?![가-힣])/.test(text))
-          bad.push(`${where} ${label}: 수식 뒤 조사`);
+        // 식 뒤 조사는 붙인다(D-164 ①) — 끝을 «□(네모)»로 읽는 식은 받침 없는 조사다.
+        if (/\\square\$(을|은|이|과|으로)(?![가-힣])/.test(text))
+          bad.push(`${where} ${label}: «□» 뒤 조사 소리`);
       }
     };
     for (const code of CODES) {
@@ -404,7 +403,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
     const deepKinds = new Set<string>();
     for (const seed of SEEDS) {
       const calc = gen("1-3-3", seed, "연산");
-      let m = calc.content.match(/^\$(\d+)\$[은는] 몇백에 가장 가까운가/);
+      let m = calc.content.match(/^\$(\d+)\$[은는] 몇백에 가장 가깝습니까/);
       expect(m, calc.content).toBeTruthy();
       const a = Number(m![1]);
       expect(a % 100, "경계(…50)면 «가장 가까운»이 안 선다").not.toBe(50);
@@ -612,7 +611,7 @@ describe("[초4 4단] 1-3 곱셈과 나눗셈 — 일곱 소단원", () => {
         // **한 걸음 판정이고 찍어도 절반이 맞는다.** 이제 어림한 몫과 실제 몫을 둘 다 구한다.
         deepKinds.add("어림몫과 실제몫의 차");
         m = deep.content.match(
-          /^\$(\d+)\\div(\d+)\$ 에서 나누는 수를 몇십으로 어림하여 몫을 어림했습니다/,
+          /^\$(\d+)\\div(\d+)\$에서 나누는 수를 몇십으로 어림하여 몫을 어림했습니다/,
         );
         expect(m, deep.content).toBeTruthy();
         const a = Number(m![1]);

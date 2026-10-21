@@ -256,13 +256,19 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 142: 선택한 A · T2의 여섯 제품 양식 묶음 검수 대기 추가.
     // 143: 서술형 B — 일일·확인·기출 답안지·교사용, 실제 프린터 검수 대기.
     // 144: 개념 백지 공용 WritingArea 적용 뒤 실물 회귀 검수 대기.
-    expect(ITEMS.length).toBe(144);
+    // 145~148: 지면 전수 검사(2026-10-20) — 글 다음 식 줄 가운데 · 한 줄 띄움, 초등 중복 세로셈 · 정답 노출 그림 걷음, 2차(조사 · 범례 · 문장 속 ⑴⑵), 3차(짧은 식 한 줄 · 지수 분수 · 기호 · 초등 그림), 4 · 5차(기호 보기 붙임 · 점 옮기기 모눈).
+    // 150: D-164(2026-10-21) — 식 뒤 조사 잇기(①).
+    // 151: 초등 엔진 D-164 — 식 뒤 조사 붙임 · 합쇼체 · 세로셈 틀(2026-10-21).
+    // 152: D-164(2026-10-21) — 그림 자리 `[그림:n]`(③④).
+    expect(ITEMS.length).toBe(152);
     for (const id of [
       "question-smart-spacing-20261020",
       "answer-quick-key-h2",
       "template-a-t2-20261020",
       "descriptive-paper-b-20261020",
       "concept-blank-writing-area-20261020",
+      "formula-line-center-gap",
+      "elem-columnop-dedup",
     ])
       expect(ITEMS).toContainEqual(
         expect.objectContaining({

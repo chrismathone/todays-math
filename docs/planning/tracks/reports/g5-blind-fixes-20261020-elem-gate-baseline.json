@@ -1,0 +1,4911 @@
+{
+ "purpose": "초5 블라인드 검토 고침(main a31ad5254 · e18eafa3a · 7e16fc4c0 · c2af166d2 · f58176310 · 20d57f65e — 2026-10-20)이 바꾼 문지기 7,428행의 승인 목록. 그 고침은 이 층 없이 main 에 들어가 elementaryReinforcement20261018 문지기를 빨갛게 했다. 이 층은 그 고침이 낸 출력을 행마다 해시로 고정하고 «그 전 출력»으로 되돌려 r3 승인 · 원래 기준과 견준다.",
+ "baseCommit": "740ff82b0",
+ "agreedWith": "고침의 결정은 docs/planning/tracks/reports/g5-blind-fixes-20261020.md · 37c6362bc(리드 · Codex · Gemini 합의). 이 목록은 기계로 뽑았다(740ff82b0 ↔ 1b3f05e54).",
+ "sourceSha256": {
+  "src/lib/elementary/g5.ts": "0d8b354184977f4da8161462ab256a954ba2571977edc669c6a90f675b005bec"
+ },
+ "changes": [
+  {
+   "familyKey": "elem:초3|2-4-2 분수만큼은 얼마인지 알아보기 (1)|05",
+   "beforeRow": [
+    "초3",
+    "2-4-2 분수만큼은 얼마인지 알아보기 (1)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-4 분수",
+     "section": "2-4-2 분수만큼은 얼마인지 알아보기 (1)",
+     "orderIndex": 174,
+     "content": "$24$을 똑같이 $4$묶음으로 나누면 한 묶음은 얼마입니까?",
+     "answer": "$6$",
+     "solution": "$24\\div4=6$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "ed01931713702b7f7a37d43c54eb3b37a8cb523ba6d6f0b0c39ad8b6a1689e05"
+  },
+  {
+   "familyKey": "elem:초3|2-4-3 분수만큼은 얼마인지 알아보기 (2)|05",
+   "beforeRow": [
+    "초3",
+    "2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-4 분수",
+     "section": "2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+     "orderIndex": 175,
+     "content": "$24$을 똑같이 $6$묶음으로 나누면 한 묶음은 얼마입니까?",
+     "answer": "$4$",
+     "solution": "$24\\div6=4$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "82f43fbfe944c772809e39fbbb5e316f42e01d275c841a3c9d9f72eccdc4a391"
+  },
+  {
+   "familyKey": "elem:초4|1-1-2 다섯 자리 수 알아보기|07",
+   "beforeRow": [
+    "초4",
+    "1-1-2 다섯 자리 수 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-2 다섯 자리 수 알아보기",
+     "orderIndex": 188,
+     "content": "다음 수 중 다섯 자리 수를 쓰시오. $1099$, $14469$, $5873$",
+     "answer": "$14469$",
+     "solution": "$14469$은 숫자가 $5$개인 다섯 자리 수입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "5356f4bf65725f92441672c177af4d95b33db60d0fba37ce1700deeb21bb95f4"
+  },
+  {
+   "familyKey": "elem:초4|1-1-2 다섯 자리 수 알아보기|07",
+   "beforeRow": [
+    "초4",
+    "1-1-2 다섯 자리 수 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-2 다섯 자리 수 알아보기",
+     "orderIndex": 188,
+     "content": "다음 수 중 다섯 자리 수를 쓰시오. $7014$, $4425$, $43789$",
+     "answer": "$43789$",
+     "solution": "$43789$은 숫자가 $5$개인 다섯 자리 수입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "5a76cf3541bb476fd33768c13e605394cb32612cef7e6c0bda4e9168c75dff54"
+  },
+  {
+   "familyKey": "elem:초4|1-1-7 수의 크기 비교|05",
+   "beforeRow": [
+    "초4",
+    "1-1-7 수의 크기 비교",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-7 수의 크기 비교",
+     "orderIndex": 193,
+     "content": "$75081$과 $75790$는 모두 다섯 자리 수입니다. 더 작은 수를 쓰시오.",
+     "answer": "$75081$",
+     "solution": "높은 자리부터 비교하면 $75790$이 더 큽니다. 더 작은 수는 $75081$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "df22842e3ede7f26aca1f616946a45a39dbd9ed9fe4adac8a9b60baef35e327b"
+  },
+  {
+   "familyKey": "elem:초4|1-1-7 수의 크기 비교|05",
+   "beforeRow": [
+    "초4",
+    "1-1-7 수의 크기 비교",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-7 수의 크기 비교",
+     "orderIndex": 193,
+     "content": "$34088$과 $34307$는 모두 다섯 자리 수입니다. 더 큰 수를 쓰시오.",
+     "answer": "$34307$",
+     "solution": "높은 자리부터 비교하면 $34307$이 더 큽니다. 더 큰 수는 $34307$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "1a920de484b0b17e9beadd8d525649d34ac0b2636460de9c901c85791dc58d59"
+  },
+  {
+   "familyKey": "elem:초4|1-1-7 수의 크기 비교|07",
+   "beforeRow": [
+    "초4",
+    "1-1-7 수의 크기 비교",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-7 수의 크기 비교",
+     "orderIndex": 193,
+     "content": "세 수 $25735$, $26020$, $25112$을 작은 수부터 차례로 쓰시오.",
+     "answer": "$25112$, $25735$, $26020$",
+     "solution": "작은 수부터 쓰면 $25112$, $25735$, $26020$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "0eb8fd110c25f9383b7a7edebe47d16194542665a6afb95140644a8fc04dd457"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|10",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$215\\times66$ 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "예",
+     "solution": "$215\\times66=14190$ 이고 $14190$는 짝수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "215",
+      "op": "×",
+      "bottom": "66"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "55ea87abaa3ff536b3c8483815306d49bb4267d4c889febf0836cf9fd266878f"
+  },
+  {
+   "familyKey": "elem:초4|1-3-3 곱셈의 어림셈|10",
+   "beforeRow": [
+    "초4",
+    "1-3-3 곱셈의 어림셈",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-3 곱셈의 어림셈",
+     "orderIndex": 202,
+     "content": "다음 곱셈에서 어림한 곱에서 실제 곱을 뺀 값은 양수인가? '예' 또는 '아니요'로 답하시오.\n\n$731\\times88$",
+     "answer": "아니요",
+     "solution": "어림한 곱 $63000$에서 실제 곱 $64328$를 빼면 $-1328$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "87eef1f45083b75ffa0375e6284bc2200b3b3ef453510dc8ae02fd0b3cc48662"
+  },
+  {
+   "familyKey": "elem:초4|1-3-3 곱셈의 어림셈|10",
+   "beforeRow": [
+    "초4",
+    "1-3-3 곱셈의 어림셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-3 곱셈의 어림셈",
+     "orderIndex": 202,
+     "content": "다음 곱셈에서 어림한 곱에서 실제 곱을 뺀 값은 양수인가? '예' 또는 '아니요'로 답하시오.\n\n$417\\times44$",
+     "answer": "아니요",
+     "solution": "어림한 곱 $16000$에서 실제 곱 $18348$를 빼면 $-2348$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "57148235de9f81c9cf832dceafe36c8484cbc0069ed7a65f5869a938faaeae60"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|09",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$80\\div16$ 의 몫에 $16$를 곱한 값을 쓰시오.",
+     "answer": "$80$",
+     "solution": "몫은 $5$이고 $5\\times16=80$ 입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "9707ffbb514bc4bec6c954b12427c97314cca53f20e653aebdc07fd6c288245b"
+  },
+  {
+   "familyKey": "elem:초4|1-3-7 나눗셈의 어림셈|09",
+   "beforeRow": [
+    "초4",
+    "1-3-7 나눗셈의 어림셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-7 나눗셈의 어림셈",
+     "orderIndex": 206,
+     "content": "$19$에 더 가까운 몇십은 $20$과 $10$ 중 어느 것인가?",
+     "answer": "$20$",
+     "solution": "$19$은 $20$에 더 가깝습니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "91a0c81e9bc80790bfa55b8133e0fd0e6cc91a0afe9e2a144dfa9b65f94cdff5"
+  },
+  {
+   "familyKey": "elem:초4|1-6-4 규칙적인 계산식 찾기|08",
+   "beforeRow": [
+    "초4",
+    "1-6-4 규칙적인 계산식 찾기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-6 규칙 찾기",
+     "section": "1-6-4 규칙적인 계산식 찾기",
+     "orderIndex": 217,
+     "content": "계산식의 배열에서 곱하는 수는 얼마인가? $14\\times8=112$, $140\\times8=1120$, $1400\\times8=11200$",
+     "answer": "$8$",
+     "solution": "세 식 모두 $8$를 곱하고 있습니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "7fd360524a3988c6cbe231d97af1794b760cd6e5411b5712b2d4501fc63a7b49"
+  },
+  {
+   "familyKey": "elem:초4|1-6-4 규칙적인 계산식 찾기|08",
+   "beforeRow": [
+    "초4",
+    "1-6-4 규칙적인 계산식 찾기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-6 규칙 찾기",
+     "section": "1-6-4 규칙적인 계산식 찾기",
+     "orderIndex": 217,
+     "content": "계산식의 배열에서 곱하는 수는 얼마인가? $15\\times3=45$, $150\\times3=450$, $1500\\times3=4500$",
+     "answer": "$3$",
+     "solution": "세 식 모두 $3$를 곱하고 있습니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "cae01391a561856bae7c51a28f53f2c48a8fff8b8a7239f769a33dd2a2cfb87b"
+  },
+  {
+   "familyKey": "elem:초4|1-6-4 규칙적인 계산식 찾기|08",
+   "beforeRow": [
+    "초4",
+    "1-6-4 규칙적인 계산식 찾기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-6 규칙 찾기",
+     "section": "1-6-4 규칙적인 계산식 찾기",
+     "orderIndex": 217,
+     "content": "계산식의 배열에서 곱하는 수는 얼마인가? $17\\times7=119$, $170\\times7=1190$, $1700\\times7=11900$",
+     "answer": "$7$",
+     "solution": "세 식 모두 $7$를 곱하고 있습니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "403a9c2569d0d16dd1031b69ecdfcaf3abced3a9eba842a4f28be7a4d88dde1f"
+  },
+  {
+   "familyKey": "elem:초4|1-6-4 규칙적인 계산식 찾기|09",
+   "beforeRow": [
+    "초4",
+    "1-6-4 규칙적인 계산식 찾기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-6 규칙 찾기",
+     "section": "1-6-4 규칙적인 계산식 찾기",
+     "orderIndex": 217,
+     "content": "계산식의 배열에서 $\\square$ 에 알맞은 수를 쓰시오. $22+34=56$, $32+\\square=56$, $42+14=56$",
+     "answer": "$24$",
+     "solution": "합이 $56$로 같으므로 $56-32=24$ 입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "3bbd691ccef531838abf9348a2f80cb4513770e2803426bf42c33343829323a7"
+  },
+  {
+   "familyKey": "elem:초4|2-3-1 소수 두 자리 수, 세 자리 수 알아보기|10",
+   "beforeRow": [
+    "초4",
+    "2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+     "orderIndex": 228,
+     "content": "$9.32$은 소수 몇 자리 수인가?",
+     "answer": "$2$자리",
+     "solution": "소수점 아래가 $2$자리이므로 소수 $2$자리 수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "9.32"
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "baa0e805e21f18638427908d192d6009096a351d30edaf5cbe05b18d6a31a695"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|08",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$5.65$과 $4.71$ 가운데 더 큰 수를 쓰시오.",
+     "answer": "$5.65$",
+     "solution": "$5.65$이 더 큽니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "5.65",
+       "4.71"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5dba4896413a4e9cc3d9424ee0346c0d53241531600479580a53dcd1cac1d415"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|08",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$1.86$과 $5.25$ 가운데 더 큰 수를 쓰시오.",
+     "answer": "$5.25$",
+     "solution": "$5.25$이 더 큽니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "1.86",
+       "5.25"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "997ba4f2f5786c1bfd9b9a0035905aaa1d47b31858e068a0859a93deb9c9bc38"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|08",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$4.08$과 $5.85$ 가운데 더 큰 수를 쓰시오.",
+     "answer": "$5.85$",
+     "solution": "$5.85$이 더 큽니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "4.08",
+       "5.85"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "a85e8c854bd67aede5609f73a8765a5cb61055e5656cc30321652e415bd9f271"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|10",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$1.69$은 소수 몇 자리 수인가?",
+     "answer": "$2$자리",
+     "solution": "소수점 아래가 $2$자리입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "1.69"
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "34f7d5df435559a2d9b2c60680df16399605af78ac921afcb07cf35dd157c719"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|10",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$0.34$은 소수 몇 자리 수인가?",
+     "answer": "$2$자리",
+     "solution": "소수점 아래가 $2$자리입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "0.34"
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "9f08881b4f8901bda51c02767759584a7181c50f2d9fc9c50ff7a3119a2f024c"
+  },
+  {
+   "familyKey": "elem:초4|2-3-2 소수의 크기 비교하기|10",
+   "beforeRow": [
+    "초4",
+    "2-3-2 소수의 크기 비교하기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-2 소수의 크기 비교하기",
+     "orderIndex": 229,
+     "content": "$3.35$은 소수 몇 자리 수인가?",
+     "answer": "$2$자리",
+     "solution": "소수점 아래가 $2$자리입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "3.35"
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "5426c8891b968fe8e489c3b916e42c531d17e316e4d187e2569f940af48e2280"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|08",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$5.5$과 $2.9$ 가운데 더 큰 수를 쓰시오.",
+     "answer": "$5.5$",
+     "solution": "$5.5$이 더 큽니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "numberCards",
+      "cards": [
+       "5.5",
+       "2.9"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "03be35c7484752b061f22766303e3394fecb5c74d961089dced07f42d16c6a3f"
+  },
+  {
+   "familyKey": "elem:초4|2-3-6 소수 두 자리 수의 덧셈|10",
+   "beforeRow": [
+    "초4",
+    "2-3-6 소수 두 자리 수의 덧셈",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-6 소수 두 자리 수의 덧셈",
+     "orderIndex": 233,
+     "content": "$7.3+6.6$ 의 합과 $1.2+4.4$ 의 합 가운데 더 큰 수를 쓰시오.",
+     "answer": "$13.9$",
+     "solution": "$13.9$과 $5.6$ 중 더 큰 수는 $13.9$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "e286ad94f5d864d1bb572cbd03908b00b37e689ce20039163a8ad4652f527ff7"
+  },
+  {
+   "familyKey": "elem:초4|2-3-6 소수 두 자리 수의 덧셈|10",
+   "beforeRow": [
+    "초4",
+    "2-3-6 소수 두 자리 수의 덧셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-6 소수 두 자리 수의 덧셈",
+     "orderIndex": 233,
+     "content": "$4.3+8.9$ 의 합과 $6.1+1.2$ 의 합 가운데 더 큰 수를 쓰시오.",
+     "answer": "$13.2$",
+     "solution": "$13.2$과 $7.3$ 중 더 큰 수는 $13.2$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "637102dd006438804a6f92fb4f51a76ca0c1fe6697245e770d068dbe867b194a"
+  },
+  {
+   "familyKey": "elem:초4|2-3-7 소수 두 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-7 소수 두 자리 수의 뺄셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-7 소수 두 자리 수의 뺄셈",
+     "orderIndex": 234,
+     "content": "$7.2$과 $4.9$의 차는 얼마인가?",
+     "answer": "$2.3$",
+     "solution": "$7.2-4.9=2.3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.2",
+      "op": "−",
+      "bottom": "4.9"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "57ee3e8630a444476ac774ea582651276eeae848fe0e8390778a6c0a352e44ff"
+  },
+  {
+   "familyKey": "elem:초5|1-2-1 약수와 배수|09",
+   "beforeRow": [
+    "초5",
+    "1-2-1 약수와 배수",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-1 약수와 배수",
+     "orderIndex": 252,
+     "content": "$20$의 약수 중에서 $1$과 자기 자신을 뺀 수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$20$의 약수는 $1,\\ 2,\\ 4,\\ 5,\\ 10,\\ 20$입니다. $1$과 $20$을 빼면 $2,\\ 4,\\ 5,\\ 10$이므로 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "acca5d236bea3684f28998e1cb0c13cddbcb0e66dc16fbb4f5ab9da64a42dc20"
+  },
+  {
+   "familyKey": "elem:초5|1-2-1 약수와 배수|09",
+   "beforeRow": [
+    "초5",
+    "1-2-1 약수와 배수",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-1 약수와 배수",
+     "orderIndex": 252,
+     "content": "$20$의 약수 중에서 $1$과 자기 자신을 뺀 수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$20$의 약수는 $1,\\ 2,\\ 4,\\ 5,\\ 10,\\ 20$입니다. $1$과 $20$을 빼면 $2,\\ 4,\\ 5,\\ 10$이므로 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "8346cc7b5901e5e976b975a438bdfdcc82628f203a3fb060412f827b10997c91"
+  },
+  {
+   "familyKey": "elem:초5|1-2-1 약수와 배수|09",
+   "beforeRow": [
+    "초5",
+    "1-2-1 약수와 배수",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-1 약수와 배수",
+     "orderIndex": 252,
+     "content": "$28$의 약수 중에서 $1$과 자기 자신을 뺀 수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$28$의 약수는 $1,\\ 2,\\ 4,\\ 7,\\ 14,\\ 28$입니다. $1$과 $28$을 빼면 $2,\\ 4,\\ 7,\\ 14$이므로 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "eaf3082d99645798d349ae0b702c5c357be7e940bb048dd576d811208787c88f"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|03",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "다음 곱셈식에서 알 수 있는 $12$의 약수를 모두 쓰시오.  $4\\times3=12$",
+     "answer": "$1,\\ 3,\\ 4,\\ 12$",
+     "solution": "$1\\times12=12$, $4\\times3=12$이므로 이 식에서 알 수 있는 약수는 $1,\\ 3,\\ 4,\\ 12$입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "3f33943e6164707ca6f9c390ec05cdbe438279c0a25563c1151640b00ebfebd4"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|03",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "다음 곱셈식에서 알 수 있는 $24$의 약수를 모두 쓰시오.  $8\\times3=24$",
+     "answer": "$1,\\ 3,\\ 8,\\ 24$",
+     "solution": "$1\\times24=24$, $8\\times3=24$이므로 이 식에서 알 수 있는 약수는 $1,\\ 3,\\ 8,\\ 24$입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "e07345905c5baab8dc13fc288569681302209b8ea1fe2cb6d579a2e7ce036657"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|10",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "$6\\times2=12$에서 알 수 있는 $12$의 약수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$1\\times12=12$, $6\\times2=12$이므로 약수는 $1,\\ 2,\\ 6,\\ 12$의 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "91d78d8b03d83c003f9156766d78ab66055271fb6906567f76bcb93a969e040b"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|10",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "$2\\times4=8$에서 알 수 있는 $8$의 약수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$1\\times8=8$, $2\\times4=8$이므로 약수는 $1,\\ 2,\\ 4,\\ 8$의 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "449be3992121717066917f21c0ebf4066d6696e1e069f46c647d487140598435"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|10",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "$7\\times6=42$에서 알 수 있는 $42$의 약수는 모두 몇 개입니까?",
+     "answer": "$4$",
+     "solution": "$1\\times42=42$, $7\\times6=42$이므로 약수는 $1,\\ 6,\\ 7,\\ 42$의 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "6ea15e0d9ee5fc8b18169dc5bd006bcefb9f503ba1a0b8266ff6b0e9df122b27"
+  },
+  {
+   "familyKey": "elem:초5|1-2-3 공약수와 최대공약수|08",
+   "beforeRow": [
+    "초5",
+    "1-2-3 공약수와 최대공약수",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-3 공약수와 최대공약수",
+     "orderIndex": 254,
+     "content": "$45$와 $18$를 최대공약수로 각각 나누면 몫이 나옵니다. 두 몫의 합은 얼마입니까?",
+     "answer": "$7$",
+     "solution": "최대공약수는 $9$이므로 몫은 $5$, $2$입니다. 합은 $5+2=7$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4652aa1e365c1665333c8fbe39a50c6516abb69a8375c2a19fc523e89ef1f9ba"
+  },
+  {
+   "familyKey": "elem:초5|1-2-3 공약수와 최대공약수|08",
+   "beforeRow": [
+    "초5",
+    "1-2-3 공약수와 최대공약수",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-3 공약수와 최대공약수",
+     "orderIndex": 254,
+     "content": "$32$와 $16$를 최대공약수로 각각 나누면 몫이 나옵니다. 두 몫의 합은 얼마입니까?",
+     "answer": "$3$",
+     "solution": "최대공약수는 $16$이므로 몫은 $2$, $1$입니다. 합은 $2+1=3$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3b11d44f49a9c320520afaa20145a954aa33ccc73b08640c729b19251d7d6d4f"
+  },
+  {
+   "familyKey": "elem:초5|1-2-3 공약수와 최대공약수|08",
+   "beforeRow": [
+    "초5",
+    "1-2-3 공약수와 최대공약수",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-3 공약수와 최대공약수",
+     "orderIndex": 254,
+     "content": "$12$와 $18$를 최대공약수로 각각 나누면 몫이 나옵니다. 두 몫의 합은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "최대공약수는 $6$이므로 몫은 $2$, $3$입니다. 합은 $2+3=5$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "8ecba8869b522baab70d351337db4f86fbac9d62bd7743a5d11afba830a20b37"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|05",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $16$, $20$를 최대공약수로 나누면 몫이 둘 나옵니다. 더 큰 몫은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "최대공약수는 $4$이므로 몫은 $4$, $5$입니다. 더 큰 몫은 $5$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "5abf357d858f922d049567271323a9bd047bc957a15a204ff86405fe1e7357ab"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|06",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $18$, $24$의 최대공약수로 $18$을 나누면 나머지는 얼마입니까?",
+     "answer": "$0$",
+     "solution": "최대공약수는 $6$이고 $18\\div6=3$이므로 나머지는 $0$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "84fe97ab8d0fe8d7a8f1af579639fc328da7d961d3e2fc95c64e91bff4f825c2"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|06",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $32$, $40$의 최대공약수로 $32$를 나누면 나머지는 얼마입니까?",
+     "answer": "$0$",
+     "solution": "최대공약수는 $8$이고 $32\\div8=4$이므로 나머지는 $0$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "05fee96b7995a147f1011055c69d570633108f0a07450d69a3353c0ad5ab5d19"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|06",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $20$, $30$의 최대공약수로 $20$을 나누면 나머지는 얼마입니까?",
+     "answer": "$0$",
+     "solution": "최대공약수는 $10$이고 $20\\div10=2$이므로 나머지는 $0$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "37bde1b1f3e3db129043ba42cbee600155f53846225dd742b4fdab8212c4d489"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|08",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "$6$은 $18$와 $24$를 모두 나누어떨어지게 합니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "$6$은 두 수의 공약수입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4050c677b5d4157d7bba5c6dbd0af3042c2a50eb60646e89d2971e10c4bcc593"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|08",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "$5$는 $16$와 $20$를 모두 나누어떨어지게 합니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "$5$는 두 수를 모두 나누지 못합니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "038e2cfd167115105b4a33fa2ad01ef051c944fc32a836d16ef4c0f46b34f51f"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|08",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "$9$는 $24$와 $40$를 모두 나누어떨어지게 합니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "$9$는 두 수를 모두 나누지 못합니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5e07d45fdbaca152bbf3bdaa45ef9d1f97e4ba8424cc422e1f62d72270a691d2"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|09",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $24$, $40$를 최대공약수로 나눈 두 몫의 차는 얼마입니까?",
+     "answer": "$2$",
+     "solution": "몫은 $3$, $5$이므로 차는 $2$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "1215833df27cf64cae5936299cb767058ef16e37a5773d5bcfaebdcf4b6ca976"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|09",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $24$, $36$를 최대공약수로 나눈 두 몫의 차는 얼마입니까?",
+     "answer": "$1$",
+     "solution": "몫은 $2$, $3$이므로 차는 $1$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "097a9ec4e0fc0ff51fc704cf98a6957e8e8db360bd42419e21dbdda0b46d505b"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|10",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $18$, $24$의 최대공약수와, $18$을 최대공약수로 나눈 몫을 곱하면 얼마입니까?",
+     "answer": "$18$",
+     "solution": "최대공약수는 $6$, 몫은 $3$이므로 $6\\times3=18$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "e1a51d0830695aa11e1a96dd595dc5a7795093a59533fb4fbc1959595413f1c4"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|10",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $30$, $45$의 최대공약수와, $30$을 최대공약수로 나눈 몫을 곱하면 얼마입니까?",
+     "answer": "$30$",
+     "solution": "최대공약수는 $15$, 몫은 $2$이므로 $15\\times2=30$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "d9cf835d13a4157daa3a02b16df8a3360b8c5659ba42cef2b9af75b6066408eb"
+  },
+  {
+   "familyKey": "elem:초5|1-2-4 최대공약수 구하는 방법|10",
+   "beforeRow": [
+    "초5",
+    "1-2-4 최대공약수 구하는 방법",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-4 최대공약수 구하는 방법",
+     "orderIndex": 255,
+     "content": "두 수 $36$, $45$의 최대공약수와, $36$을 최대공약수로 나눈 몫을 곱하면 얼마입니까?",
+     "answer": "$36$",
+     "solution": "최대공약수는 $9$, 몫은 $4$이므로 $9\\times4=36$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "0b4e941c6718a8d8f9da453a341389beaef53d96bfc52b96c46ef0573bdfd889"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|07",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$12$와 $18$의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.",
+     "answer": "$36$",
+     "solution": "최소공배수는 $36$입니다. 짝수인 공배수 중 가장 작은 수는 $36$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "8774888feb764b19b5897d0d0f543ac8a5b045c00a20eb074063d23791829026"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|07",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$6$과 $8$의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.",
+     "answer": "$24$",
+     "solution": "최소공배수는 $24$입니다. 짝수인 공배수 중 가장 작은 수는 $24$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "283eb865f5eb556caf798f50b029b0550fc716cce8b7e5e72d48165722a239aa"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|07",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$10$과 $15$의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.",
+     "answer": "$30$",
+     "solution": "최소공배수는 $30$입니다. 짝수인 공배수 중 가장 작은 수는 $30$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "52c4985f50a9bd8bcb525eb0a7f549cbac13e2f88f221b1c84e61d18dd577e89"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|09",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$72$는 $6$와 $8$의 공배수입니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "$72$는 두 수의 공배수입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "10d8bf7290b4108d7f3f48aeabed46376c2ab3c374164d7e38b91240730b6d18"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|10",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$6$과 $8$의 공배수 $72$은 최소공배수의 몇 배입니까?",
+     "answer": "$3$",
+     "solution": "최소공배수는 $24$이므로 $72\\div24=3$배입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "31c3dc661efa6dac3fb28e9e6c195106c0362f6367d9562ddd87cba06ffd6d14"
+  },
+  {
+   "familyKey": "elem:초5|1-2-5 공배수와 최소공배수|10",
+   "beforeRow": [
+    "초5",
+    "1-2-5 공배수와 최소공배수",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-5 공배수와 최소공배수",
+     "orderIndex": 256,
+     "content": "$4$와 $6$의 공배수 $24$은 최소공배수의 몇 배입니까?",
+     "answer": "$2$",
+     "solution": "최소공배수는 $12$이므로 $24\\div12=2$배입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "a266033ede5c94e506309a096737244aa32f6a636dca72b87bd57492ed5d7e88"
+  },
+  {
+   "familyKey": "elem:초5|1-2-6 최소공배수 구하는 방법|09",
+   "beforeRow": [
+    "초5",
+    "1-2-6 최소공배수 구하는 방법",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-6 최소공배수 구하는 방법",
+     "orderIndex": 257,
+     "content": "두 수 $8$, $9$의 최소공배수는 두 수의 곱 $72$과 같습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "최소공배수는 $72$이고 두 수의 곱은 $72$입니다. 따라서 같습니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "393bc6d52bc566b28a41cdd6edec55243a3c712a3f9534de59ac0294ba7fc347"
+  },
+  {
+   "familyKey": "elem:초5|1-2-6 최소공배수 구하는 방법|09",
+   "beforeRow": [
+    "초5",
+    "1-2-6 최소공배수 구하는 방법",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-6 최소공배수 구하는 방법",
+     "orderIndex": 257,
+     "content": "두 수 $5$, $9$의 최소공배수는 두 수의 곱 $45$과 같습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "최소공배수는 $45$이고 두 수의 곱은 $45$입니다. 따라서 같습니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "b9ef832486fe76ea5d05fada876dd6c10ddc2d5d022874f5d72693b42e05d2ed"
+  },
+  {
+   "familyKey": "elem:초5|1-4-1 크기가 같은 분수 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "1-4-1 크기가 같은 분수 알아보기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-1 크기가 같은 분수 알아보기",
+     "orderIndex": 261,
+     "content": "$\\frac{1}{3}$과 $\\frac{5}{15}$은 크기가 같습니다. 분모는 몇 배가 되었습니까?",
+     "answer": "$5$",
+     "solution": "$15\\div3=5$이므로 $5$배입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "c500908904ac7929c5dccf26d5a0bcfc0c89e04750b39a4fc14db1f7f8f96c9a"
+  },
+  {
+   "familyKey": "elem:초5|1-4-1 크기가 같은 분수 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "1-4-1 크기가 같은 분수 알아보기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-1 크기가 같은 분수 알아보기",
+     "orderIndex": 261,
+     "content": "$\\frac{1}{7}$과 $\\frac{2}{14}$은 크기가 같습니다. 분모는 몇 배가 되었습니까?",
+     "answer": "$2$",
+     "solution": "$14\\div7=2$이므로 $2$배입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "4ed21e24c148711c7e8c8405d147ead5d85ca384e3af18bd385419d69dc90d71"
+  },
+  {
+   "familyKey": "elem:초5|1-4-1 크기가 같은 분수 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "1-4-1 크기가 같은 분수 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-1 크기가 같은 분수 알아보기",
+     "orderIndex": 261,
+     "content": "$\\frac{1}{6}$과 $\\frac{4}{24}$은 크기가 같습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "분모와 분자가 모두 $4$배가 되었으므로 크기가 같습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "eef71ca9c4dd4c04385ec1b98554230779714a2105a313ebb180c10f285bf0bc"
+  },
+  {
+   "familyKey": "elem:초5|1-4-2 분수를 간단하게 나타내기|08",
+   "beforeRow": [
+    "초5",
+    "1-4-2 분수를 간단하게 나타내기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-2 분수를 간단하게 나타내기",
+     "orderIndex": 262,
+     "content": "$\\frac{9}{12}$은 기약분수입니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "분모와 분자를 $3$으로 더 나눌 수 있으므로 기약분수가 아닙니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4240b8151b9e766ed63e1030c19b6df1bf69dc966194b3139cf8446b5610bd67"
+  },
+  {
+   "familyKey": "elem:초5|1-4-2 분수를 간단하게 나타내기|08",
+   "beforeRow": [
+    "초5",
+    "1-4-2 분수를 간단하게 나타내기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-2 분수를 간단하게 나타내기",
+     "orderIndex": 262,
+     "content": "$\\frac{2}{4}$은 기약분수입니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "분모와 분자를 $2$로 더 나눌 수 있으므로 기약분수가 아닙니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3ece807a65728933ee40af2c6dc89d83547dfdccfd9c1de7bf8131bae1631a22"
+  },
+  {
+   "familyKey": "elem:초5|1-4-2 분수를 간단하게 나타내기|10",
+   "beforeRow": [
+    "초5",
+    "1-4-2 분수를 간단하게 나타내기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-2 분수를 간단하게 나타내기",
+     "orderIndex": 262,
+     "content": "$\\frac{4}{12}$은 약분할 수 있습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "분모와 분자를 $4$로 나눌 수 있으므로 약분할 수 있습니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "8d8d5e3e48789832d4f28f259e21e60077db00c133480a98d7465516388a5195"
+  },
+  {
+   "familyKey": "elem:초5|1-4-2 분수를 간단하게 나타내기|10",
+   "beforeRow": [
+    "초5",
+    "1-4-2 분수를 간단하게 나타내기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-2 분수를 간단하게 나타내기",
+     "orderIndex": 262,
+     "content": "$\\frac{2}{5}$은 약분할 수 있습니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "분모와 분자의 공약수가 $1$뿐이므로 약분할 수 없습니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "15c0ff9d8519a1f38bdc1845d04dba3e1aa7c9e1886cdc12491ba15149047450"
+  },
+  {
+   "familyKey": "elem:초5|1-4-3 통분|07",
+   "beforeRow": [
+    "초5",
+    "1-4-3 통분",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-3 통분",
+     "orderIndex": 263,
+     "content": "$\\frac{3}{10}$과 $\\frac{7}{15}$를 두 분모의 최소공배수를 공통분모로 하여 통분할 때, $\\frac{3}{10}$을 통분한 분수의 분자를 구하시오.",
+     "answer": "$9$",
+     "solution": "공통분모는 $30$이므로 분자는 $3\\times3=9$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "f9efcd4230e38ec8001349b81196b25924eefaf353ed76275956c40163424c78"
+  },
+  {
+   "familyKey": "elem:초5|1-4-3 통분|07",
+   "beforeRow": [
+    "초5",
+    "1-4-3 통분",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-3 통분",
+     "orderIndex": 263,
+     "content": "$\\frac{5}{6}$와 $\\frac{1}{10}$를 두 분모의 최소공배수를 공통분모로 하여 통분할 때, $\\frac{5}{6}$을 통분한 분수의 분자를 구하시오.",
+     "answer": "$25$",
+     "solution": "공통분모는 $30$이므로 분자는 $5\\times5=25$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "ff168bb40379e3cdea22df8b8ffca77094ea50fb8651c06ec9ed04d295dadb5f"
+  },
+  {
+   "familyKey": "elem:초5|1-4-3 통분|07",
+   "beforeRow": [
+    "초5",
+    "1-4-3 통분",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-3 통분",
+     "orderIndex": 263,
+     "content": "$\\frac{7}{10}$과 $\\frac{1}{15}$를 두 분모의 최소공배수를 공통분모로 하여 통분할 때, $\\frac{7}{10}$을 통분한 분수의 분자를 구하시오.",
+     "answer": "$21$",
+     "solution": "공통분모는 $30$이므로 분자는 $7\\times3=21$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "8643119516156c0abe3eca0e0c1392332520925933dcde1081cedf76b8160175"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|06",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "분모가 $7$으로 같은 $\\frac{3}{7}$과 $\\frac{6}{7}$ 중에서 더 작은 분수의 분자를 구하시오.",
+     "answer": "$3$",
+     "solution": "분모가 같으므로 분자가 작은 $3$ 쪽이 더 작습니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "4243d8b58cbc636404c92bf849c1dc9724de21c00dcb5931fe255933894a1d95"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|06",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "분모가 $5$으로 같은 $\\frac{2}{5}$와 $\\frac{4}{5}$ 중에서 더 작은 분수의 분자를 구하시오.",
+     "answer": "$2$",
+     "solution": "분모가 같으므로 분자가 작은 $2$ 쪽이 더 작습니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "22cfbd11d8107e86beeb1bec78e9af895643e1d2d480ba5a95357a04ddc18ebf"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|08",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "$\\frac{5}{6}$와 $\\frac{2}{9}$을 두 분모의 곱으로 통분했을 때, 두 분자의 차는 얼마입니까?",
+     "answer": "$33$",
+     "solution": "통분한 분자는 $45$, $12$이므로 차는 $33$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "547626a98b351ed52dcf03af68a2c6f5f83a2e439149ea23b8480f2e7f1150e2"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|08",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "$\\frac{5}{8}$와 $\\frac{4}{7}$을 두 분모의 곱으로 통분했을 때, 두 분자의 차는 얼마입니까?",
+     "answer": "$3$",
+     "solution": "통분한 분자는 $35$, $32$이므로 차는 $3$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1a7ef9f4067c131cee643f5398922197a15b1643886dd00c791ff0d0eb69c336"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|10",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "분자가 $1$인 $\\frac{1}{2}$과 $\\frac{1}{7}$ 중에서 분모가 더 작은 분수의 분모를 구하시오.",
+     "answer": "$2$",
+     "solution": "분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 $2$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "560cf2d88f878d053437550e2c8d9764850616f761e5d53de971ee9abcf335ee"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|10",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "분자가 $1$인 $\\frac{1}{12}$과 $\\frac{1}{8}$ 중에서 분모가 더 작은 분수의 분모를 구하시오.",
+     "answer": "$8$",
+     "solution": "분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 $8$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "b7d9ae89fbfc52b247ef879b07596a7f7f33286fac78a00235607f7a4338466f"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|10",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "분자가 $1$인 $\\frac{1}{12}$과 $\\frac{1}{5}$ 중에서 분모가 더 작은 분수의 분모를 구하시오.",
+     "answer": "$5$",
+     "solution": "분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 $5$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "9eab6129927314620e3108bccadd135c55b0acf87333685bc9c70ea606a44565"
+  },
+  {
+   "familyKey": "elem:초5|1-4-5 분수와 소수의 크기 비교|05",
+   "beforeRow": [
+    "초5",
+    "1-4-5 분수와 소수의 크기 비교",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-5 분수와 소수의 크기 비교",
+     "orderIndex": 265,
+     "content": "소수 $0.9$을 분수로 나타내시오.",
+     "answer": "$\\frac{9}{10}$",
+     "solution": "$0.9=\\frac{9}{10}$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "05720364b696a569659017d680e7530b4ffc78efc6cfa4c82e6e39031d583517"
+  },
+  {
+   "familyKey": "elem:초5|1-4-5 분수와 소수의 크기 비교|05",
+   "beforeRow": [
+    "초5",
+    "1-4-5 분수와 소수의 크기 비교",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-5 분수와 소수의 크기 비교",
+     "orderIndex": 265,
+     "content": "소수 $0.75$을 분수로 나타내시오.",
+     "answer": "$\\frac{3}{4}$",
+     "solution": "$0.75=\\frac{3}{4}$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "99d9afc9775ddbdecfad96b6a5941c5ffef2361cb6a2ddf07cb5e82da74e1dd0"
+  },
+  {
+   "familyKey": "elem:초5|1-4-5 분수와 소수의 크기 비교|07",
+   "beforeRow": [
+    "초5",
+    "1-4-5 분수와 소수의 크기 비교",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-5 분수와 소수의 크기 비교",
+     "orderIndex": 265,
+     "content": "$\\frac{1}{4}$과 소수 $0.85$은 크기가 같습니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "$\\frac{1}{4}=0.25$이므로 다릅니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "6c74a48c7500fad456d459c3dffe1d73ea29babc77bcccbf526fca8e4f89b8ad"
+  },
+  {
+   "familyKey": "elem:초5|1-4-5 분수와 소수의 크기 비교|07",
+   "beforeRow": [
+    "초5",
+    "1-4-5 분수와 소수의 크기 비교",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-5 분수와 소수의 크기 비교",
+     "orderIndex": 265,
+     "content": "$\\frac{3}{25}$과 소수 $0.12$은 크기가 같습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "$\\frac{3}{25}=0.12$이므로 같습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "edddb322c02254f4c6d83b7f8af9de34a570f8b31540867bedae72d14b45edf5"
+  },
+  {
+   "familyKey": "elem:초5|1-4-5 분수와 소수의 크기 비교|07",
+   "beforeRow": [
+    "초5",
+    "1-4-5 분수와 소수의 크기 비교",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-5 분수와 소수의 크기 비교",
+     "orderIndex": 265,
+     "content": "$\\frac{3}{25}$과 소수 $0.12$은 크기가 같습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "$\\frac{3}{25}=0.12$이므로 같습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "d4484e7287c5fe2e4e53d77224b1eaccaa56fc6194e67ec0628382bf120971c1"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{7}{8}$과 $\\frac{3}{10}$를 더할 때 공통분모는 얼마입니까?",
+     "answer": "$40$",
+     "solution": "두 분모의 최소공배수는 $40$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "52ef02e0fd9c3ac868627197050289f2c9cc415aa441fab0ecebb13fdf67f20d"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{1}{10}$과 $\\frac{1}{3}$를 더할 때 공통분모는 얼마입니까?",
+     "answer": "$30$",
+     "solution": "두 분모의 최소공배수는 $30$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "bb653a78895421add2228af2ffd048428c50f6fc885c367d2f958bb1c0c8ba56"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{3}{4}$과 $\\frac{3}{5}$를 최소공배수로 통분하여 더할 때, 약분하기 전 분자의 합은 얼마입니까?",
+     "answer": "$27$",
+     "solution": "통분한 분자는 $15$, $12$이므로 합은 $27$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "1ae1876fc5ae3478f7bf8e596a818bd69fe4ca3dcf9f093f5c5ef1709991b9eb"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{3}{4}$과 $\\frac{1}{6}$를 최소공배수로 통분하여 더할 때, 약분하기 전 분자의 합은 얼마입니까?",
+     "answer": "$11$",
+     "solution": "통분한 분자는 $9$, $2$이므로 합은 $11$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a8558e87bea8eb0a0709469570cc0a3eaafa684cc98155fc8dc523639a7e827c"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{1}{4}$과 $\\frac{1}{5}$를 더한 뒤 $\\frac{1}{5}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{1}{4}$",
+     "solution": "더했다가 같은 수를 빼면 처음 큰 쪽 $\\frac{1}{4}$이 됩니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "8176be9c063ad94e565d79d1be23eb027663012071cfd64f2e13383889f9ce55"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{5}{8}$와 $\\frac{1}{5}$를 더한 뒤 $\\frac{1}{5}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{5}{8}$",
+     "solution": "더했다가 같은 수를 빼면 처음 큰 쪽 $\\frac{5}{8}$이 됩니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "ed7f4c3c926e68de4164644934120e4865b8af309e003b86213bd35d78981ac5"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{5}{6}$와 $\\frac{1}{4}$를 더한 뒤 $\\frac{1}{4}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{5}{6}$",
+     "solution": "더했다가 같은 수를 빼면 처음 큰 쪽 $\\frac{5}{6}$이 됩니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "e3fca5a44095b86ac8602fd8887869da0f8b560aa5223c67a50c5f2cca22fd93"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{3}{10}$과 $\\frac{5}{12}$의 합에 얼마를 더해야 $1$이 됩니까?",
+     "answer": "$\\frac{17}{60}$",
+     "solution": "합은 $\\frac{43}{60}$이므로 $1$이 되려면 $\\frac{17}{60}$를 더합니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "ce00e2ecb58a2178111322c0b325c408f1bd66b27eba47fac2c3d71991d95ac1"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{5}{6}$와 $\\frac{1}{10}$의 합에 얼마를 더해야 $1$이 됩니까?",
+     "answer": "$\\frac{1}{15}$",
+     "solution": "합은 $\\frac{14}{15}$이므로 $1$이 되려면 $\\frac{1}{15}$를 더합니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "158d94e2608c39d8f4b00b019e0a376536d278bd8e04d0e119e0cc4123611d12"
+  },
+  {
+   "familyKey": "elem:초5|1-5-1 진분수의 덧셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-1 진분수의 덧셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-1 진분수의 덧셈",
+     "orderIndex": 266,
+     "content": "$\\frac{1}{12}$과 $\\frac{1}{6}$의 합에 얼마를 더해야 $1$이 됩니까?",
+     "answer": "$\\frac{3}{4}$",
+     "solution": "합은 $\\frac{1}{4}$이므로 $1$이 되려면 $\\frac{3}{4}$를 더합니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "815a0f3eaf474b49d75e30c808d40f8bf35b4fa2324a2fca837912aa0b6516ba"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$1\\frac{1}{8}$과 $4\\frac{1}{6}$를 더할 때, 자연수부끼리 더한 값은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "$1+4=5$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "a8b42be0af90e3a9d1f2239fc164bca7168e9fc6dde97275beabb1315f2ed5e8"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$2\\frac{2}{5}$와 $1\\frac{7}{8}$를 더할 때, 자연수부끼리 더한 값은 얼마입니까?",
+     "answer": "$3$",
+     "solution": "$2+1=3$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "155992a71b0f71b4ed2c7a0e1ebbc2b883f8add0343fa711c5055ddb2fa6386a"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$2\\frac{1}{6}$과 $1\\frac{3}{4}$를 더할 때, 분수부끼리 더한 값은 얼마입니까?",
+     "answer": "$\\frac{11}{12}$",
+     "solution": "$\\frac{1}{6}+\\frac{3}{4}=\\frac{11}{12}$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b7a7edaccffc6f5f1b9f5e92a844b47572ea988010835a05a2638f09be9d0b4b"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$1\\frac{1}{9}$과 $2\\frac{1}{3}$를 더할 때, 분수부끼리 더한 값은 얼마입니까?",
+     "answer": "$\\frac{4}{9}$",
+     "solution": "$\\frac{1}{9}+\\frac{1}{3}=\\frac{4}{9}$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "ac41860f2b63abbefdcd29ce39111ba01a045a55332b24235ff1af08dfbde939"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|08",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$4\\frac{5}{6}$와 $2\\frac{3}{5}$를 더할 때 분수부의 합이 $1$ 이상입니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "분수부의 합은 $1\\frac{13}{30}$이므로 1 이상입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "20f68c618e071bdb50101c6f1b901d5933720c30bee2599cf0dd9c954ba970fb"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|08",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$1\\frac{1}{3}$과 $1\\frac{3}{10}$를 더할 때 분수부의 합이 $1$ 이상입니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "분수부의 합은 $\\frac{19}{30}$이므로 1보다 작습니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5794a1f91831e47bda388e66df2ca43b54b1829c3acdc68ebe5a0d08093d9779"
+  },
+  {
+   "familyKey": "elem:초5|1-5-2 대분수의 덧셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-2 대분수의 덧셈",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-2 대분수의 덧셈",
+     "orderIndex": 267,
+     "content": "$3\\frac{1}{3}$과 $2\\frac{1}{8}$를 각각 가분수로 바꿀 때, 두 분자의 합은 얼마입니까?",
+     "answer": "$27$",
+     "solution": "분자는 $10$, $17$이므로 합은 $27$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "f8a4ed7fb57b3dbf21eab976b70ee8cbb42f22ca983e33322eb7b74a342b612e"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{5}{8}$에서 $\\frac{1}{5}$를 뺄 때 공통분모는 얼마입니까?",
+     "answer": "$40$",
+     "solution": "두 분모의 최소공배수는 $40$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "6ca245e8219210918c80c45dc081ee238aed7c0b9f03c9783b3da6b5bd109bd6"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{3}{4}$에서 $\\frac{1}{6}$를 뺄 때 공통분모는 얼마입니까?",
+     "answer": "$12$",
+     "solution": "두 분모의 최소공배수는 $12$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "a345c1995056de12a33f980008351ca78b744f7498bb1733e794a57a577b45a4"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{7}{8}$에서 $\\frac{1}{5}$를 뺄 때 공통분모는 얼마입니까?",
+     "answer": "$40$",
+     "solution": "두 분모의 최소공배수는 $40$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "e82729b86e2610787ce095121610bf0e59e68a0eec5327fdf6109fe33cfe00c4"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{5}{9}$에서 $\\frac{1}{4}$를 최소공배수로 통분하여 뺄 때, 약분하기 전 분자의 차는 얼마입니까?",
+     "answer": "$11$",
+     "solution": "통분한 분자는 $20$, $9$이므로 차는 $11$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "44d1d67e1a4cf3a71e80aa7663949fcd562a6d24b16cbc9bb6a361408d5d1eca"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{9}{10}$에서 $\\frac{3}{4}$를 최소공배수로 통분하여 뺄 때, 약분하기 전 분자의 차는 얼마입니까?",
+     "answer": "$3$",
+     "solution": "통분한 분자는 $18$, $15$이므로 차는 $3$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "d585d813855729c0c97f5237c09015bf08f1572bea838ef29b6c483bef878276"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{9}{10}$에서 $\\frac{1}{3}$를 최소공배수로 통분하여 뺄 때, 약분하기 전 분자의 차는 얼마입니까?",
+     "answer": "$17$",
+     "solution": "통분한 분자는 $27$, $10$이므로 차는 $17$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a6e75ec0b0d56ce4ae412ee64c9e1418d6ee8e54b42e5b0e727bafba367bf0ef"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|07",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{2}{5}$에서 $\\frac{1}{4}$를 뺀 값은 $\\frac{1}{2}$보다 큽니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "차는 $\\frac{3}{20}$이므로 1/2보다 크지 않습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "a44d44d4b921ab687c4011a2a2c7ac43dae853eb41f45eb97c43d71388ce5d8f"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|07",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{7}{9}$에서 $\\frac{3}{10}$를 뺀 값은 $\\frac{1}{2}$보다 큽니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "차는 $\\frac{43}{90}$이므로 1/2보다 크지 않습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "0e88700b663ea9314ea695fb9101865821b414a5ab599fed5c1ac21eccbd4634"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{5}{6}$에서 $\\frac{7}{9}$를 뺄 때, 큰 쪽을 통분한 분자는 얼마입니까?",
+     "answer": "$15$",
+     "solution": "공통분모는 $18$이므로 큰 쪽 분자는 $15$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "414f0796ca84f2e340f8abb6b384ec857ad5d763cd8a8e7f8d6ffdc8052823f3"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{11}{12}$에서 $\\frac{7}{10}$를 뺄 때, 큰 쪽을 통분한 분자는 얼마입니까?",
+     "answer": "$55$",
+     "solution": "공통분모는 $60$이므로 큰 쪽 분자는 $55$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "29dded95281acbb0a3244712d3b2ceccff6c1171cdb2c3d3098ddfcbad94635e"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|09",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{3}{5}$에서 $\\frac{1}{4}$를 뺄 때, 큰 쪽을 통분한 분자는 얼마입니까?",
+     "answer": "$12$",
+     "solution": "공통분모는 $20$이므로 큰 쪽 분자는 $12$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "0be3513f5913e1df00a979b80c05ab7ac5a20e7d64e12928cb221aafb2798508"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{8}{9}$에서 $\\frac{3}{4}$를 뺀 값에 $\\frac{3}{4}$를 다시 더하면 얼마입니까?",
+     "answer": "$\\frac{8}{9}$",
+     "solution": "뺀 값을 도로 더하면 처음 큰 쪽 $\\frac{8}{9}$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "de1cef5aed4b0a6904b1e07d79f233da77ec8442db8b28eb73aada1d6fa10fc7"
+  },
+  {
+   "familyKey": "elem:초5|1-5-3 진분수의 뺄셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-3 진분수의 뺄셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-3 진분수의 뺄셈",
+     "orderIndex": 268,
+     "content": "$\\frac{7}{8}$에서 $\\frac{3}{4}$를 뺀 값에 $\\frac{3}{4}$를 다시 더하면 얼마입니까?",
+     "answer": "$\\frac{7}{8}$",
+     "solution": "뺀 값을 도로 더하면 처음 큰 쪽 $\\frac{7}{8}$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "c4c7477e8a1c1bd1663b919ef93747316527ce2f62dab6f78276736057780691"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$6\\frac{1}{5}$에서 $1\\frac{3}{4}$를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "$6-1=5$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f75b72f999d1c575a78e2be8724f0d33b1ce070988faf2cfcf32dda92c4e8c58"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$5\\frac{1}{6}$에서 $3\\frac{1}{3}$를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?",
+     "answer": "$2$",
+     "solution": "$5-3=2$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "64e941dda787b5e40d3f73d0b3e7391a58c11c674db446cdf69f00b6335768c8"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|05",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$3\\frac{5}{9}$에서 $1\\frac{2}{5}$를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?",
+     "answer": "$2$",
+     "solution": "$3-1=2$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "2bf29a91274047d1cf6a0b5f241812bbccc2c91884dcb36c7210c58317b4ebdc"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$5\\frac{1}{3}$과 $2\\frac{1}{8}$를 각각 가분수로 바꿀 때, 두 분자의 차는 얼마입니까?",
+     "answer": "$-1$",
+     "solution": "분자는 $16$, $17$이므로 차는 $-1$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "be2829f0c870089c1392693dea6ac5ac9d3b2e4d83e70001db29b91bf6b30bef"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$5\\frac{1}{9}$과 $1\\frac{3}{8}$를 각각 가분수로 바꿀 때, 두 분자의 차는 얼마입니까?",
+     "answer": "$35$",
+     "solution": "분자는 $46$, $11$이므로 차는 $35$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "719d33ae4e9b0b5b2d0f1608311fcfcd73c858e6ed889b889e1f215a5c0ea058"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|06",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$3\\frac{2}{5}$와 $1\\frac{1}{9}$를 각각 가분수로 바꿀 때, 두 분자의 차는 얼마입니까?",
+     "answer": "$7$",
+     "solution": "분자는 $17$, $10$이므로 차는 $7$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "f9edc14f19b06779e08b28450bd774126edd365bedb78ef49454092cbc8da5cc"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|07",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$5\\frac{2}{3}$에서 $2\\frac{3}{10}$를 뺀 값을 대분수로 나타낼 때 자연수 부분은 얼마입니까?",
+     "answer": "$3$",
+     "solution": "차는 $3\\frac{11}{30}$이므로 자연수 부분은 $3$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "e90e3884920af768b2dae70c9d7180a4078ee2066ad2a981c1202451abb27549"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|07",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$6\\frac{7}{10}$에서 $1\\frac{1}{4}$를 뺀 값을 대분수로 나타낼 때 자연수 부분은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "차는 $5\\frac{9}{20}$이므로 자연수 부분은 $5$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "752fbd89687431fa6497e14103d6061b4f0fb4b4cf67d6201ebc9ee579ca6104"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|08",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$3\\frac{5}{6}$에서 $1\\frac{3}{10}$를 뺄 때 자연수에서 $1$을 받아내려야 합니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "분수부를 통분하면 그대로 뺄 수 있습니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "d267e570e084226218fc4a584fed24e93b80dd7be4ab62cac4251e889ae9ef7d"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|08",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$3\\frac{1}{8}$에서 $1\\frac{1}{4}$를 뺄 때 자연수에서 $1$을 받아내려야 합니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "분수부를 통분하면 빼는 쪽이 더 커서 받아내립니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3bdbb8c9b7beaeb5100240ce28aa8c0f208f5484df623ab0917dddf1da6c41c7"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$4\\frac{9}{10}$에서 $1\\frac{1}{3}$를 뺀 값에 $1\\frac{1}{3}$를 다시 더하면 얼마입니까?",
+     "answer": "$4\\frac{9}{10}$",
+     "solution": "뺀 값을 도로 더하면 처음 수 $4\\frac{9}{10}$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "c89b9007a7e7d49d568166ec131acdb6d2d1d94f92621d9994a64446c82f3891"
+  },
+  {
+   "familyKey": "elem:초5|1-5-4 대분수의 뺄셈|10",
+   "beforeRow": [
+    "초5",
+    "1-5-4 대분수의 뺄셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-5 분수의 덧셈과 뺄셈",
+     "section": "1-5-4 대분수의 뺄셈",
+     "orderIndex": 269,
+     "content": "$3\\frac{3}{8}$에서 $1\\frac{1}{9}$를 뺀 값에 $1\\frac{1}{9}$를 다시 더하면 얼마입니까?",
+     "answer": "$3\\frac{3}{8}$",
+     "solution": "뺀 값을 도로 더하면 처음 수 $3\\frac{3}{8}$입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "efd15361198770c8bab677a029d94e7bc68a53a04f2fbf1165a5ed35a1e264e6"
+  },
+  {
+   "familyKey": "elem:초5|2-1-3 수의 범위를 알고 문제 해결하기|07",
+   "beforeRow": [
+    "초5",
+    "2-1-3 수의 범위를 알고 문제 해결하기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-3 수의 범위를 알고 문제 해결하기",
+     "orderIndex": 277,
+     "content": "수영장에서 어린이 요금을 내려면 나이가 $8$ 살 이상이어야 합니다. 어린이의 나이가 $8,\\ 4,\\ 3,\\ 12,\\ 1$ 살일 때, 조건에 맞는 나이중 가장 작은 값은 얼마입니까?",
+     "answer": "$8$",
+     "solution": "$8$ 이상인 값 중 가장 작은 것은 $8$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "cdf84041e4ff40a6b88aa0d82469078b5e87f597410277e2c31f366b12d1d6ee"
+  },
+  {
+   "familyKey": "elem:초5|2-1-3 수의 범위를 알고 문제 해결하기|07",
+   "beforeRow": [
+    "초5",
+    "2-1-3 수의 범위를 알고 문제 해결하기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-3 수의 범위를 알고 문제 해결하기",
+     "orderIndex": 277,
+     "content": "택배 회사에서 보통 요금으로 부치려면 무게가 $5$ kg 이상이어야 합니다. 상자의 무게가 $4,\\ 22,\\ 5,\\ 2,\\ 20$ kg일 때, 조건에 맞는 무게중 가장 작은 값은 얼마입니까?",
+     "answer": "$5$",
+     "solution": "$5$ 이상인 값 중 가장 작은 것은 $5$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "0389c429102c48ba18ef96e879c423877938b91a740dbf01e7030f373d2c8b48"
+  },
+  {
+   "familyKey": "elem:초5|2-1-3 수의 범위를 알고 문제 해결하기|07",
+   "beforeRow": [
+    "초5",
+    "2-1-3 수의 범위를 알고 문제 해결하기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-3 수의 범위를 알고 문제 해결하기",
+     "orderIndex": 277,
+     "content": "수영장에서 어린이 요금을 내려면 나이가 $9$ 살 이상이어야 합니다. 어린이의 나이가 $9,\\ 4,\\ 8,\\ 2,\\ 21,\\ 16$ 살일 때, 조건에 맞는 나이중 가장 작은 값은 얼마입니까?",
+     "answer": "$9$",
+     "solution": "$9$ 이상인 값 중 가장 작은 것은 $9$입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "250ec65063c5d01a2540fd130e050370b765813e72ebea1c16cb8bb67a126ce1"
+  },
+  {
+   "familyKey": "elem:초5|2-1-4 올림 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "2-1-4 올림 알아보기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-4 올림 알아보기",
+     "orderIndex": 278,
+     "content": "$2780$을 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?",
+     "answer": "$20$",
+     "solution": "올림하면 $2800$이므로 $2800-2780=20$만큼 더해집니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "218bc602a0ba764771ce12ea821962034031f4db42daee2ba213a536e9f0ab5b"
+  },
+  {
+   "familyKey": "elem:초5|2-1-4 올림 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "2-1-4 올림 알아보기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-4 올림 알아보기",
+     "orderIndex": 278,
+     "content": "$7570$을 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?",
+     "answer": "$30$",
+     "solution": "올림하면 $7600$이므로 $7600-7570=30$만큼 더해집니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "2b97052c0d018996c1a6b156a015c29c64e043d435b112fbb50fe1822888481a"
+  },
+  {
+   "familyKey": "elem:초5|2-1-4 올림 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "2-1-4 올림 알아보기",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-1 수의 범위와 어림하기",
+     "section": "2-1-4 올림 알아보기",
+     "orderIndex": 278,
+     "content": "$2608$을 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?",
+     "answer": "$92$",
+     "solution": "올림하면 $2700$이므로 $2700-2608=92$만큼 더해집니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "817d108ed000c4779618f6f4235e5b6738db8b1c46f8cb7c27575cbec31ceaa8"
+  },
+  {
+   "familyKey": "elem:초5|2-2-1 (분수)×(자연수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-1 (분수)×(자연수)의 계산",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-1 (분수)×(자연수)의 계산",
+     "orderIndex": 281,
+     "content": "$\\frac{1}{8}$과 $8$을 곱한 값에서 $\\frac{1}{8}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{7}{8}$",
+     "solution": "곱은 $1$입니다. 여기서 $\\frac{1}{8}$를 빼면 $1-\\frac{1}{8}=\\frac{7}{8}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "44b47395b3304016535e69bf1ac4ec58c7a94d1070c728ccf3e13b52a3bd2ddc"
+  },
+  {
+   "familyKey": "elem:초5|2-2-1 (분수)×(자연수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-1 (분수)×(자연수)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-1 (분수)×(자연수)의 계산",
+     "orderIndex": 281,
+     "content": "$\\frac{1}{4}$과 $2$를 곱한 값에서 $\\frac{1}{4}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{1}{4}$",
+     "solution": "곱은 $\\frac{1}{2}$입니다. 여기서 $\\frac{1}{4}$를 빼면 $\\frac{1}{2}-\\frac{1}{4}=\\frac{1}{4}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "6a7480d07cc9f8b3281b7cda60317f5ee4c64ed9f8d72eac1db9cd07ebe2bf1c"
+  },
+  {
+   "familyKey": "elem:초5|2-2-1 (분수)×(자연수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-1 (분수)×(자연수)의 계산",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-1 (분수)×(자연수)의 계산",
+     "orderIndex": 281,
+     "content": "$\\frac{3}{4}$과 $2$를 곱한 값에서 $\\frac{3}{4}$를 빼면 얼마입니까?",
+     "answer": "$\\frac{3}{4}$",
+     "solution": "곱은 $1\\frac{1}{2}$입니다. 여기서 $\\frac{3}{4}$를 빼면 $1\\frac{1}{2}-\\frac{3}{4}=\\frac{3}{4}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "88f893053f82db41bf13d59c4da4477b34e3c90613e51ec14076ba4e8cfd3e6f"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|05",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$2$와 $\\frac{3}{4}$를 곱할 때, 약분하기 전 분자는 얼마입니까?",
+     "answer": "$6$",
+     "solution": "자연수를 분자에 곱하므로 약분하기 전 분자는 $2\\times3=6$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "6b6a259d56e0657aaa59e9038d87b4bc70b68db04bbbf44c8352514f37a21f95"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|05",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$4$와 $\\frac{1}{6}$를 곱할 때, 약분하기 전 분자는 얼마입니까?",
+     "answer": "$4$",
+     "solution": "자연수를 분자에 곱하므로 약분하기 전 분자는 $4\\times1=4$입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "15cdc6b7d54195f3d12bca159ff6530543037ba8be2e6c3047ee0bd2a4779f56"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|06",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$4\\times\\frac{1}{8}$를 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?",
+     "answer": "$2$",
+     "solution": "$\\frac{4\\times1}{8}=\\frac{1}{2}$이므로 분모는 $2$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "d5358ef362996f33f70cd7a3d6b9090a4def92ca5513c08aafac9831b86d4c2e"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|06",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$2\\times\\frac{7}{12}$를 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?",
+     "answer": "$6$",
+     "solution": "$\\frac{2\\times7}{12}=1\\frac{1}{6}$이므로 분모는 $6$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "335521d188fcd0b3b23784cb5cd430e674abf51fc21d2a39a7442bf86244721f"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|06",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$6\\times\\frac{11}{12}$를 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?",
+     "answer": "$2$",
+     "solution": "$\\frac{6\\times11}{12}=5\\frac{1}{2}$이므로 분모는 $2$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "7dc9e1aea48630bfe3523509d58599081747a81e68d12e966ca35609cb0a8e62"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$8\\times\\frac{7}{8}$의 값에 $\\frac{7}{8}$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$6\\frac{1}{8}$",
+     "solution": "먼저 $8\\times\\frac{7}{8}=7$이고, 여기에 $\\frac{7}{8}$를 곱하면 $6\\frac{1}{8}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "aa042df491dec8f68997cb8d64c9d5fc5c1e7184c28c848be0ec0ae6292699dd"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$10\\times\\frac{3}{10}$의 값에 $\\frac{3}{10}$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$\\frac{9}{10}$",
+     "solution": "먼저 $10\\times\\frac{3}{10}=3$이고, 여기에 $\\frac{3}{10}$를 곱하면 $\\frac{9}{10}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "95102a6bec23b829361464ee14efc4c835de8e32b1769f323d914696f72eb4d6"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "$4\\times\\frac{1}{4}$의 값에 $\\frac{1}{4}$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$\\frac{1}{4}$",
+     "solution": "먼저 $4\\times\\frac{1}{4}=1$이고, 여기에 $\\frac{1}{4}$를 곱하면 $\\frac{1}{4}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "191324b23460f9c99c80e6da900d9b52aaaf4c9a950ca09da8156e800f1b3769"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|05",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{1}{4}$과 $\\frac{8}{9}$를 곱할 때, 약분하기 전 분자는 얼마입니까?",
+     "answer": "$8$",
+     "solution": "분자끼리 곱하므로 $1\\times8=8$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 4,
+      "filled": 1,
+      "fill": "#d4a0c8"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "cbc4a8a36c703b99be9b99580677cc6043d82c015eda2203114025b90283a5d4"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|05",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{8}{9}$과 $\\frac{3}{10}$를 곱할 때, 약분하기 전 분자는 얼마입니까?",
+     "answer": "$24$",
+     "solution": "분자끼리 곱하므로 $8\\times3=24$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 9,
+      "filled": 8,
+      "fill": "#e0a87a"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "d9bddb479925e4e666fa82fd1297a5a10d27c4f70f9f816abf0055bba03564d4"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|05",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{1}{8}$과 $\\frac{1}{4}$를 곱할 때, 약분하기 전 분자는 얼마입니까?",
+     "answer": "$1$",
+     "solution": "분자끼리 곱하므로 $1\\times1=1$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "triRow",
+      "n": 8,
+      "filled": 1,
+      "fill": "#d4a0c8"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "7bb03a3438df1e7d8a90e6bb43cf06ad850841361074fe479c0852a47a166f31"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|06",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{1}{6}$과 $\\frac{3}{4}$를 곱할 때, 약분하기 전 분모는 얼마입니까?",
+     "answer": "$24$",
+     "solution": "분모끼리 곱하므로 $6\\times4=24$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a904c0e9d8fb47b6f673fc8be6b0cea9788b525b6d41c0a59fb561470fd0cd4b"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|06",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{3}{4}$과 $\\frac{7}{10}$를 곱할 때, 약분하기 전 분모는 얼마입니까?",
+     "answer": "$40$",
+     "solution": "분모끼리 곱하므로 $4\\times10=40$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "70122799231437ed213ac0f0dc4674a11b4d89caa154c25104c26bde58cb06f4"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|08",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "□ 안에 알맞은 진분수를 구하시오.  $\\square\\times\\frac{5}{6}=\\frac{3}{4}$",
+     "answer": "$\\frac{9}{10}$",
+     "solution": "□는 결과를 $\\frac{5}{6}$로 나눈 수입니다. $\\frac{9}{10}\\times\\frac{5}{6}=\\frac{3}{4}$이므로 □는 $\\frac{9}{10}$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "de0672a15946596182292414fffc8cd44881f7e4f7ee6cbeda001917a5ca6e17"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|08",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "□ 안에 알맞은 진분수를 구하시오.  $\\square\\times\\frac{2}{9}=\\frac{1}{45}$",
+     "answer": "$\\frac{1}{10}$",
+     "solution": "□는 결과를 $\\frac{2}{9}$로 나눈 수입니다. $\\frac{1}{10}\\times\\frac{2}{9}=\\frac{1}{45}$이므로 □는 $\\frac{1}{10}$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "8429ae926196c3b911eab4d009be4becc3bb5a2128db83e2a83a12beb3248a42"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|08",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "□ 안에 알맞은 진분수를 구하시오.  $\\square\\times\\frac{3}{10}=\\frac{4}{15}$",
+     "answer": "$\\frac{8}{9}$",
+     "solution": "□는 결과를 $\\frac{3}{10}$으로 나눈 수입니다. $\\frac{8}{9}\\times\\frac{3}{10}=\\frac{4}{15}$이므로 □는 $\\frac{8}{9}$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "d68f84631f56b693219207a5e13acb86fff46f73c2203273d0c79f4482667f9a"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|09",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{3}{4}$과 $\\frac{7}{8}$를 곱한 값을 $1$에서 빼면 얼마입니까?",
+     "answer": "$\\frac{11}{32}$",
+     "solution": "곱은 $\\frac{21}{32}$입니다. $1-\\frac{21}{32}=\\frac{11}{32}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "5d61835f03f0f997394fe4f45ee2cffef626fda0ab5ca512b35b247bd6b1e162"
+  },
+  {
+   "familyKey": "elem:초5|2-2-3 진분수의 곱셈|09",
+   "beforeRow": [
+    "초5",
+    "2-2-3 진분수의 곱셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-3 진분수의 곱셈",
+     "orderIndex": 283,
+     "content": "$\\frac{1}{6}$과 $\\frac{3}{4}$를 곱한 값을 $1$에서 빼면 얼마입니까?",
+     "answer": "$\\frac{7}{8}$",
+     "solution": "곱은 $\\frac{1}{8}$입니다. $1-\\frac{1}{8}=\\frac{7}{8}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "bdbcf1d6dea580e948f0d279568d49a3c9a1eae5f31906676df376438dc91d8d"
+  },
+  {
+   "familyKey": "elem:초5|2-2-4 여러 가지 분수의 곱셈|06",
+   "beforeRow": [
+    "초5",
+    "2-2-4 여러 가지 분수의 곱셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-4 여러 가지 분수의 곱셈",
+     "orderIndex": 284,
+     "content": "$3\\frac{11}{12}\\times4$를 계산할 때, 잘못하여 자연수 부분만 곱하면 얼마가 됩니까?",
+     "answer": "$12$",
+     "solution": "자연수 부분만 곱하면 $3\\times4=12$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "bf64b81084a9573240824cf00fa9abad907c3220f8a865a0f335d546d585f997"
+  },
+  {
+   "familyKey": "elem:초5|2-2-4 여러 가지 분수의 곱셈|06",
+   "beforeRow": [
+    "초5",
+    "2-2-4 여러 가지 분수의 곱셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-4 여러 가지 분수의 곱셈",
+     "orderIndex": 284,
+     "content": "$1\\frac{7}{8}\\times4$를 계산할 때, 잘못하여 자연수 부분만 곱하면 얼마가 됩니까?",
+     "answer": "$4$",
+     "solution": "자연수 부분만 곱하면 $1\\times4=4$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "875e8e5adfa361533eb0f41738fdc2fe8bb3408ed3d99ff6b0a6b93f542156ae"
+  },
+  {
+   "familyKey": "elem:초5|2-2-4 여러 가지 분수의 곱셈|06",
+   "beforeRow": [
+    "초5",
+    "2-2-4 여러 가지 분수의 곱셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-4 여러 가지 분수의 곱셈",
+     "orderIndex": 284,
+     "content": "$1\\frac{7}{12}\\times4$를 계산할 때, 잘못하여 자연수 부분만 곱하면 얼마가 됩니까?",
+     "answer": "$4$",
+     "solution": "자연수 부분만 곱하면 $1\\times4=4$입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a123a4311788453bfa7ad761fa3bef821b36ae9ad6a5ddc2820dcbbed9e0e55f"
+  },
+  {
+   "familyKey": "elem:초5|2-2-4 여러 가지 분수의 곱셈|09",
+   "beforeRow": [
+    "초5",
+    "2-2-4 여러 가지 분수의 곱셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-4 여러 가지 분수의 곱셈",
+     "orderIndex": 284,
+     "content": "$1\\frac{7}{9}$과 $2\\frac{3}{4}$를 곱하면 얼마입니까?",
+     "answer": "$4\\frac{8}{9}$",
+     "solution": "가분수로 고치면 $\\frac{16}{9}\\times\\frac{11}{4}=4\\frac{8}{9}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "292b8090810b992ad138b09ef9a6c2ed49c5e83f8989934ab3a0517f793da9ad"
+  },
+  {
+   "familyKey": "elem:초5|2-2-4 여러 가지 분수의 곱셈|09",
+   "beforeRow": [
+    "초5",
+    "2-2-4 여러 가지 분수의 곱셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-4 여러 가지 분수의 곱셈",
+     "orderIndex": 284,
+     "content": "$1\\frac{5}{6}$와 $3\\frac{3}{10}$를 곱하면 얼마입니까?",
+     "answer": "$6\\frac{1}{20}$",
+     "solution": "가분수로 고치면 $\\frac{11}{6}\\times\\frac{33}{10}=6\\frac{1}{20}$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "5fa0fd7360c3ba86bda8cc0931256c7cfbe7fedce509c3bbab33d048ba1a7fbc"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|02",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 더 칠할 칸의 수를 구하시오.",
+     "answer": "$4$",
+     "solution": "대칭축 위에 있는 칸은 그대로 겹치지만, 대칭축에서 떨어진 칸은 반대쪽에도 하나씩 있어야 합니다. 떨어진 칸이 $4$칸이므로 $4$칸을 더 색칠해야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        4
+       ],
+       [
+        0,
+        3
+       ]
+      ]
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "f924605066306ac58fb28fbe42c9cf6f417a86b6bd1a45a6f703f8dfcf327717"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|02",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 몇 칸을 더 색칠해야 합니까?",
+     "answer": "$2$",
+     "solution": "대칭축 위에 있는 칸은 그대로 겹치지만, 대칭축에서 떨어진 칸은 반대쪽에도 하나씩 있어야 합니다. 떨어진 칸이 $2$칸이므로 $2$칸을 더 색칠해야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        1
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        2,
+        4
+       ]
+      ]
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "338fa24978579a9fb1cb89214e41fdf834d4f43a19e83e1baddd953bdc9c3ce3"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|02",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 몇 칸을 더 색칠해야 합니까?",
+     "answer": "$3$",
+     "solution": "대칭축 위에 있는 칸은 그대로 겹치지만, 대칭축에서 떨어진 칸은 반대쪽에도 하나씩 있어야 합니다. 떨어진 칸이 $3$칸이므로 $3$칸을 더 색칠해야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        4
+       ]
+      ]
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "8a577b0fad70feee72789c776ff0f0f7d7164fca8d87cb5bee2d0e24b0291421"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. 완성했을 때 색칠된 칸은 모두 몇 칸입니까?",
+     "answer": "$6$",
+     "solution": "지금 색칠된 칸은 $4$칸이고, 그중 대칭축에서 떨어진 $2$칸은 반대쪽에도 하나씩 필요합니다. 따라서 $4+2=6$이므로 $6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        4
+       ],
+       [
+        2,
+        1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        3
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "22ff15bf9c9c39e6e905fbc339b35800c59b58b6ca3a12371c739c6fcb1c4af7"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. 완성한 도형의 색칠된 칸 수를 구하시오.",
+     "answer": "$7$",
+     "solution": "지금 색칠된 칸은 $4$칸이고, 그중 대칭축에서 떨어진 $3$칸은 반대쪽에도 하나씩 필요합니다. 따라서 $4+3=7$이므로 $7$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        0
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        0,
+        3
+       ],
+       [
+        1,
+        4
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "e4bd0a1d9909e25d922765af8104d6480536a739f5150efa65982418da8de740"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. 다 칠하고 나면 색칠된 칸은 모두 몇 칸입니까?",
+     "answer": "$10$",
+     "solution": "지금 색칠된 칸은 $5$칸이고, 그중 대칭축에서 떨어진 $5$칸은 반대쪽에도 하나씩 필요합니다. 따라서 $5+5=10$이므로 $10$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        0
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        0,
+        4
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "2a39267ac2c2f2d52c4ed5bc52730f5ae1244676b5007eaa9d5373bbba7e402d"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "04",
+    "심화하",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "선대칭도형을 완성했더니 색칠된 칸이 모두 $5$칸이었고, 그중 대칭축 위에 있는 칸이 $1$칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?",
+     "answer": "$3$",
+     "solution": "대칭축 위의 $1$칸을 빼면 $5-1=4$칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 $4\\div2=2$칸입니다. 완성 전에는 한쪽 $2$칸과 대칭축 위 $1$칸이 색칠되어 있었으므로 $2+1=3$칸입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "072c125183295bef5fb63865de1d52d03ab7c2b62222a980cd8da44972f6ef64"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "04",
+    "심화하",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "선대칭도형을 완성했더니 색칠된 칸이 모두 $11$칸이었고, 그중 대칭축 위에 있는 칸이 $3$칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?",
+     "answer": "$7$",
+     "solution": "대칭축 위의 $3$칸을 빼면 $11-3=8$칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 $8\\div2=4$칸입니다. 완성 전에는 한쪽 $4$칸과 대칭축 위 $3$칸이 색칠되어 있었으므로 $4+3=7$칸입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "c0e8452307191596871e4860c65c6914d4c4462127edc40b060b626b4b48333b"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "선대칭도형을 완성했더니 색칠된 칸이 모두 $7$칸이었고, 그중 대칭축 위에 있는 칸이 $1$칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?",
+     "answer": "$4$",
+     "solution": "대칭축 위의 $1$칸을 빼면 $7-1=6$칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 $6\\div2=3$칸입니다. 완성 전에는 한쪽 $3$칸과 대칭축 위 $1$칸이 색칠되어 있었으므로 $3+1=4$칸입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "35b96ddb0c1e9a29f4a275978a3e8af3dd32df7e6e69a6c7c48a91bc132317ac"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?",
+     "answer": "$1$",
+     "solution": "대칭축 위에 있는 칸은 $1$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        4
+       ]
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "94da27993122b2cbefd0cde3a74422025a3ba2c6f7503be6389ab95a16fa976f"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?",
+     "answer": "$0$",
+     "solution": "대칭축 위에 있는 칸은 $0$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        1
+       ],
+       [
+        0,
+        0
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        0,
+        3
+       ]
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "50fed9bc07708b69d5a3997d8eb8e6f0f5dd43bff9c2a0f369198c44c1afecf8"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?",
+     "answer": "$2$",
+     "solution": "대칭축 위에 있는 칸은 $2$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        0
+       ],
+       [
+        0,
+        2
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        4
+       ],
+       [
+        2,
+        1
+       ]
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "c302fdf05654f0a8b80a3be01fdff6c69589dc7eb8ffaa278ac4b883bbc456ad"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?",
+     "answer": "$8$",
+     "solution": "떨어진 칸은 양쪽에 $4$칸씩이므로 $4\\times2=8$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        4
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        0,
+        2
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3620d3781676721823adb15fc0e4c9665e590875ca434093be7431e41ea0174b"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?",
+     "answer": "$6$",
+     "solution": "떨어진 칸은 양쪽에 $3$칸씩이므로 $3\\times2=6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        1,
+        4
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "26a8e91696e3a41fd3b1d94e299f6a8828bc68ad302627f11cdaf3f5498cc606"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?",
+     "answer": "$6$",
+     "solution": "떨어진 칸은 양쪽에 $3$칸씩이므로 $3\\times2=6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        2,
+        2
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3ee2affdf2a486b282745c26ff35c5fe5f348eac2aa775a29309734abadcabb5"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?",
+     "answer": "$3$",
+     "solution": "지금 색칠된 칸은 $3$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        2,
+        3
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "2985cca73c2ce7b5edf787a750afa04fe1f10de28010503abfd25e647a324d40"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?",
+     "answer": "$3$",
+     "solution": "지금 색칠된 칸은 $3$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        0,
+        3
+       ],
+       [
+        2,
+        0
+       ],
+       [
+        1,
+        4
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "3257553cefad13d5e60969c81d1d62aa8c0cd6e0cf96bd93dc1dd6fb4096903a"
+  },
+  {
+   "familyKey": "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-3 선대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-3 선대칭도형과 그 성질 알아보기",
+     "orderIndex": 287,
+     "content": "점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?",
+     "answer": "$3$",
+     "solution": "지금 색칠된 칸은 $3$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "symmetry",
+      "axis": "v",
+      "n": 5,
+      "cells": [
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        4
+       ],
+       [
+        0,
+        1
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "400cb23a74b74e2089e5f6529442cf64b05765cb7a3c94acc7e5ae6df781fc0c"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $6$ cm, $8$ cm, $12$ cm일 때, 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$6$",
+     "solution": "이웃한 세 변 중 가장 짧은 변은 $6$ cm입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "1bbf2dc61d2a506f5e4e77815c3ef95f01fc259e3e6bd329c4450912811a36b5"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $7$ cm, $7$ cm, $5$ cm일 때, 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$5$",
+     "solution": "이웃한 세 변 중 가장 짧은 변은 $5$ cm입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "2fda18b452f83dae852501ab4ef70a9a04d9989a4c8c29980f752ff612764612"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $9$ cm, $7$ cm, $8$ cm일 때, 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$7$",
+     "solution": "이웃한 세 변 중 가장 짧은 변은 $7$ cm입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "5d28cb357e1ffed34ef19bb408143798d191bacda51a008825c5a2394305d803"
+  },
+  {
+   "familyKey": "elem:초5|2-4-1 (1보다 작은 소수)×(자연수)의 계산|08",
+   "beforeRow": [
+    "초5",
+    "2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+     "orderIndex": 289,
+     "content": "$0.8$과 $9$를 곱한 값에서 $0.8$를 빼면 얼마입니까?",
+     "answer": "$6.4$",
+     "solution": "곱은 $7.2$입니다. $7.2-0.8=6.4$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "6e387c8ef9e0144f5fd832ecf05913ef6426bc1bb4a8f3637fe40e298e883920"
+  },
+  {
+   "familyKey": "elem:초5|2-4-1 (1보다 작은 소수)×(자연수)의 계산|08",
+   "beforeRow": [
+    "초5",
+    "2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+     "orderIndex": 289,
+     "content": "$0.8$과 $7$을 곱한 값에서 $0.8$를 빼면 얼마입니까?",
+     "answer": "$4.8$",
+     "solution": "곱은 $5.6$입니다. $5.6-0.8=4.8$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "bec7895cd6f56d3076e40311c00e68f69e692af699b4f95ad42a52d66f50955c"
+  },
+  {
+   "familyKey": "elem:초5|2-4-2 (1보다 큰 소수)×(자연수)의 계산|08",
+   "beforeRow": [
+    "초5",
+    "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+     "orderIndex": 290,
+     "content": "$2.1$과 $9$를 곱한 값에서 $2.1$를 빼면 얼마입니까?",
+     "answer": "$16.8$",
+     "solution": "곱은 $18.9$입니다. $18.9-2.1=16.8$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4e3d284b6c7e6998831ffad0f040df698596f85051bd249a7d6f50087b491119"
+  },
+  {
+   "familyKey": "elem:초5|2-4-2 (1보다 큰 소수)×(자연수)의 계산|08",
+   "beforeRow": [
+    "초5",
+    "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+     "orderIndex": 290,
+     "content": "$4.3$과 $6$을 곱한 값에서 $4.3$를 빼면 얼마입니까?",
+     "answer": "$21.5$",
+     "solution": "곱은 $25.8$입니다. $25.8-4.3=21.5$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "50ce62c13634c32381e4f3b8c9b3e1dc38212745b46e9cc806baefc30066dba9"
+  },
+  {
+   "familyKey": "elem:초5|2-4-2 (1보다 큰 소수)×(자연수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+     "orderIndex": 290,
+     "content": "$3.1\\times8$의 값은 $29$보다 큽니까? (예, 아니요)",
+     "answer": "아니요",
+     "solution": "값은 $24.8$이고 $29$과 견주면 더 크지 않습니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "fb9d205569f76581e0a720e6f2c17194ac2b118ad6164f9af316a6e7f1d35849"
+  },
+  {
+   "familyKey": "elem:초5|2-4-3 (자연수)×(1보다 작은 소수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+     "orderIndex": 291,
+     "content": "$7\\times0.6$의 값에 $0.6$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$2.52$",
+     "solution": "먼저 $7\\times0.6=4.2$이고, 여기에 $0.6$를 곱하면 $2.52$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "e453b924c97f02107ddd0e1f592f48a7a503e7f696580dd2cd48085393d80c54"
+  },
+  {
+   "familyKey": "elem:초5|2-4-3 (자연수)×(1보다 작은 소수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+     "orderIndex": 291,
+     "content": "$7\\times0.7$의 값에 $0.7$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$3.43$",
+     "solution": "먼저 $7\\times0.7=4.9$이고, 여기에 $0.7$를 곱하면 $3.43$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "8355c62d67b8819cb2ada39a9800bafb94d17b06559c13992ba96deb9f4c67c0"
+  },
+  {
+   "familyKey": "elem:초5|2-4-3 (자연수)×(1보다 작은 소수)의 계산|09",
+   "beforeRow": [
+    "초5",
+    "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+     "orderIndex": 291,
+     "content": "$6\\times0.8$의 값에 $0.8$를 한 번 더 곱하면 얼마입니까?",
+     "answer": "$3.84$",
+     "solution": "먼저 $6\\times0.8=4.8$이고, 여기에 $0.8$를 곱하면 $3.84$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "0ac961641505c3cd09c668c768c7bc0d638d7ed88376ae90967e57a3971f99f1"
+  },
+  {
+   "familyKey": "elem:초5|2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산|10",
+   "beforeRow": [
+    "초5",
+    "2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+     "orderIndex": 293,
+     "content": "$0.3$과 $0.9$중 더 큰 수는 무엇입니까?",
+     "answer": "$0.9$",
+     "solution": "$0.9$이 더 큽니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "f34496a0973c92f12704fd8996c1db06c7cf8122fd3e76a794da7665b55f9bdb"
+  },
+  {
+   "familyKey": "elem:초5|2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산|10",
+   "beforeRow": [
+    "초5",
+    "2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+     "orderIndex": 293,
+     "content": "$0.3$과 $0.9$중 더 큰 수는 무엇입니까?",
+     "answer": "$0.9$",
+     "solution": "$0.9$이 더 큽니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "8d0b55b10c96101147795a3af2f961a69c75a770eddc807536a3b3df04271852"
+  },
+  {
+   "familyKey": "elem:초5|2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산|10",
+   "beforeRow": [
+    "초5",
+    "2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+     "orderIndex": 294,
+     "content": "$2.1$과 $3.5$중 더 큰 수는 무엇입니까?",
+     "answer": "$3.5$",
+     "solution": "$3.5$이 더 큽니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "57a0d24b65809674a8144426c908c9c58be79d409b7a9739a41258e7c0ef9073"
+  },
+  {
+   "familyKey": "elem:초5|2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산|10",
+   "beforeRow": [
+    "초5",
+    "2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+     "orderIndex": 294,
+     "content": "$2.8$과 $3.2$중 더 큰 수는 무엇입니까?",
+     "answer": "$3.2$",
+     "solution": "$3.2$이 더 큽니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "88be913e6969fab916df2cb4df48db91bdfbb32702587135fda21fd1de0f872f"
+  },
+  {
+   "familyKey": "elem:초5|2-4-7 곱의 소수점의 위치|05",
+   "beforeRow": [
+    "초5",
+    "2-4-7 곱의 소수점의 위치",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-7 곱의 소수점의 위치",
+     "orderIndex": 295,
+     "content": "$2.09$에 $100$을 곱하면 소수점이 오른쪽으로 몇 칸 옮겨집니까?",
+     "answer": "$2$",
+     "solution": "$100$을 곱하면 소수점이 오른쪽으로 $2$칸 옮겨져 $209$이 됩니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b3748294971a16bc30e3105561c697e1ea92ba7eaff557be187dd432376ba616"
+  },
+  {
+   "familyKey": "elem:초5|2-4-7 곱의 소수점의 위치|05",
+   "beforeRow": [
+    "초5",
+    "2-4-7 곱의 소수점의 위치",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-7 곱의 소수점의 위치",
+     "orderIndex": 295,
+     "content": "$2.49$에 $100$을 곱하면 소수점이 오른쪽으로 몇 칸 옮겨집니까?",
+     "answer": "$2$",
+     "solution": "$100$을 곱하면 소수점이 오른쪽으로 $2$칸 옮겨져 $249$이 됩니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "20e2ed2dd285a10e92b1f22cfd6cf143145a5d6aeaad691854fd4e0397ac984b"
+  },
+  {
+   "familyKey": "elem:초5|2-4-7 곱의 소수점의 위치|05",
+   "beforeRow": [
+    "초5",
+    "2-4-7 곱의 소수점의 위치",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-4 소수의 곱셈",
+     "section": "2-4-7 곱의 소수점의 위치",
+     "orderIndex": 295,
+     "content": "$6.22$에 $10$을 곱하면 소수점이 오른쪽으로 몇 칸 옮겨집니까?",
+     "answer": "$1$",
+     "solution": "$10$을 곱하면 소수점이 오른쪽으로 $1$칸 옮겨져 $62.2$이 됩니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "c9b5f06509712213103a475a3c7c06ca826d42eac6621870e7f9ecc4756229d0"
+  },
+  {
+   "familyKey": "elem:초6|1-4-1 두 수 비교하기|07",
+   "beforeRow": [
+    "초6",
+    "1-4-1 두 수 비교하기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-1 두 수 비교하기",
+     "orderIndex": 318,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$3$은 $9$의 $3$배이다.",
+     "answer": "아니요",
+     "solution": "큰 수를 작은 수로 나눕니다. $9\\div3=3$ 이므로 $9$이 $3$의 $3$배입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "f3f843d29ad7aff3b5e92d02aaaed396cf76474086fd3a06e8fa3803110f88b9"
+  },
+  {
+   "familyKey": "elem:초6|1-4-1 두 수 비교하기|10",
+   "beforeRow": [
+    "초6",
+    "1-4-1 두 수 비교하기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-1 두 수 비교하기",
+     "orderIndex": 318,
+     "content": "$48$는 $8$의 몇 배이고, $20$는 $4$의 몇 배입니까? 그 두 배수를 더하시오.",
+     "answer": "$11$",
+     "solution": "$48\\div8=6$, $20\\div4=5$ 이므로 합은 $6+5=11$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "3a6dd88ac667b65cd576fbc4e0b964f8bc9f3fa8d03d38362a306f496ed81b15"
+  },
+  {
+   "familyKey": "elem:초6|1-4-1 두 수 비교하기|10",
+   "beforeRow": [
+    "초6",
+    "1-4-1 두 수 비교하기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-1 두 수 비교하기",
+     "orderIndex": 318,
+     "content": "$16$는 $8$의 몇 배이고, $12$는 $2$의 몇 배입니까? 그 두 배수를 더하시오.",
+     "answer": "$8$",
+     "solution": "$16\\div8=2$, $12\\div2=6$ 이므로 합은 $2+6=8$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "d31e8dc44964022ea428bfeec95996ad8dd8bb6597d0cf14aa000835990157bd"
+  },
+  {
+   "familyKey": "elem:초6|1-4-1 두 수 비교하기|10",
+   "beforeRow": [
+    "초6",
+    "1-4-1 두 수 비교하기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-1 두 수 비교하기",
+     "orderIndex": 318,
+     "content": "$12$는 $4$의 몇 배이고, $21$는 $7$의 몇 배입니까? 그 두 배수를 더하시오.",
+     "answer": "$6$",
+     "solution": "$12\\div4=3$, $21\\div7=3$ 이므로 합은 $3+3=6$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "8f7288bc042e5ce8e60791aada64d513bb1924927b76f7016461d9f409c1f87e"
+  },
+  {
+   "familyKey": "elem:초6|2-1-2 분모가 다른 (분수)÷(분수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-1 분수의 나눗셈",
+     "section": "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+     "orderIndex": 333,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$\\frac{3}{4}\\div\\frac{5}{6}$ 에서 두 분수의 분모는 다르다.",
+     "answer": "예",
+     "solution": "분모가 $4$과 $6$로 다릅니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "50da1d096815d0fc6ffa6dfa433a30e37840698a4f8c4e6ec792634ba6c8afc2"
+  },
+  {
+   "familyKey": "elem:초6|2-1-2 분모가 다른 (분수)÷(분수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-1 분수의 나눗셈",
+     "section": "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+     "orderIndex": 333,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$\\frac{1}{2}\\div\\frac{5}{6}$ 에서 두 분수의 분모는 다르다.",
+     "answer": "예",
+     "solution": "분모가 $2$과 $6$로 다릅니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "d9a24a666c7bbf6ef4f6dcd82c9ee3d099597e19e7bdbef9e837500968139e83"
+  },
+  {
+   "familyKey": "elem:초6|2-1-3 (자연수)÷(분수) 알아보기|08",
+   "beforeRow": [
+    "초6",
+    "2-1-3 (자연수)÷(분수) 알아보기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-1 분수의 나눗셈",
+     "section": "2-1-3 (자연수)÷(분수) 알아보기",
+     "orderIndex": 334,
+     "content": "$2\\div\\frac{5}{6}$ 를 계산할 때 먼저 $2$와 $6$를 곱합니다. 그 곱은 얼마입니까?",
+     "answer": "$12$",
+     "solution": "$2\\times6=12$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5feafa0a8bd400ddc77b2874b5173c2135eb7f1a7f8fe96adf0760c818596957"
+  },
+  {
+   "familyKey": "elem:초6|2-1-3 (자연수)÷(분수) 알아보기|08",
+   "beforeRow": [
+    "초6",
+    "2-1-3 (자연수)÷(분수) 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-1 분수의 나눗셈",
+     "section": "2-1-3 (자연수)÷(분수) 알아보기",
+     "orderIndex": 334,
+     "content": "$4\\div\\frac{5}{8}$ 를 계산할 때 먼저 $4$와 $8$를 곱합니다. 그 곱은 얼마입니까?",
+     "answer": "$32$",
+     "solution": "$4\\times8=32$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "e58da6ee0e84adeb00905ab617004b652d4ba8f3787ed5ac7fcdc047d26ebfc4"
+  },
+  {
+   "familyKey": "elem:초6|2-2-3 (자연수)÷(소수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-2-3 (자연수)÷(소수) 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-2 소수의 나눗셈",
+     "section": "2-2-3 (자연수)÷(소수) 알아보기",
+     "orderIndex": 339,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$13\\div2.6$ 에서 나누어지는 수는 자연수이다.",
+     "answer": "예",
+     "solution": "나누어지는 수 $13$는 자연수입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "398b68a3a3846b9e5d2debf8a5f2f425030435b59bf0789cb3140bc02a52c308"
+  },
+  {
+   "familyKey": "elem:초6|2-2-3 (자연수)÷(소수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-2-3 (자연수)÷(소수) 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-2 소수의 나눗셈",
+     "section": "2-2-3 (자연수)÷(소수) 알아보기",
+     "orderIndex": 339,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$16\\div1.6$ 에서 나누어지는 수는 자연수이다.",
+     "answer": "예",
+     "solution": "나누어지는 수 $16$는 자연수입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "78271d48366997c6bb1f9b020491da4f00c8788b9544a6caf630f502f79d7fbb"
+  },
+  {
+   "familyKey": "elem:초6|2-2-5 나누어 주고 남는 양 알아보기|10",
+   "beforeRow": [
+    "초6",
+    "2-2-5 나누어 주고 남는 양 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-2 소수의 나눗셈",
+     "section": "2-2-5 나누어 주고 남는 양 알아보기",
+     "orderIndex": 341,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$11.7\\div3$ 에서 남는 수는 나누는 수보다 작다.",
+     "answer": "예",
+     "solution": "남는 수 $2.7$는 나누는 수 $3$보다 작습니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "27d48737a8b43bcc9c9365b8b846482f4dfa1f8d5d77584e4d35d86a85a5d3e4"
+  },
+  {
+   "familyKey": "elem:초6|2-2-5 나누어 주고 남는 양 알아보기|10",
+   "beforeRow": [
+    "초6",
+    "2-2-5 나누어 주고 남는 양 알아보기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-2 소수의 나눗셈",
+     "section": "2-2-5 나누어 주고 남는 양 알아보기",
+     "orderIndex": 341,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$21.8\\div4$ 에서 남는 수는 나누는 수보다 작다.",
+     "answer": "예",
+     "solution": "남는 수 $1.8$는 나누는 수 $4$보다 작습니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "8e944d6b119efaeeacf232da19515a9eeecec4fc7f74b73c7868085d9e6be0d1"
+  },
+  {
+   "familyKey": "elem:초6|2-4-4 비례식의 성질 알아보기|05",
+   "beforeRow": [
+    "초6",
+    "2-4-4 비례식의 성질 알아보기",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-4 비례식과 비례배분",
+     "section": "2-4-4 비례식의 성질 알아보기",
+     "orderIndex": 351,
+     "content": "$6:7=24:\\square$ 에서 내항의 합은 얼마입니까?",
+     "answer": "$31$",
+     "solution": "내항은 $7$와 $24$이므로 합은 $7+24=31$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "5a2cc7957268f465817b6ee63b1beb49519279c931778f5e7a3387fd2cb9a3e4"
+  }
+ ]
+}

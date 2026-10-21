@@ -249,7 +249,7 @@ const REDERIVE: Record<string, (content: string) => string> = {
     const den = Number(c.match(/분모가 \$(\d+)\$인/)![1]);
     const sum = sumNumerators(c, den);
     const cut = Number(
-      c.match(/작은 분수가 \$\\frac\{(\d+)\}\{\d+\}\$ 보다/)![1],
+      c.match(/작은 분수가 \$\\frac\{(\d+)\}\{\d+\}\$보다/)![1],
     );
     const over = c.includes("보다 클 때");
     const alive = numeratorPairsIn(den, sum).filter(([p]) =>
@@ -267,10 +267,10 @@ const REDERIVE: Record<string, (content: string) => string> = {
     //    (「…와 $A$ 의 차가 $B$」·「어떤 진분수는 $A$ 보다 큽니다」). 이름으로 읽는다.
     const den = Number(c.match(/\\frac\{\d+\}\{(\d+)\}/)![1]);
     const base = Number(
-      c.match(/어떤 진분수와 \$\\frac\{(\d+)\}\{\d+\}\$ 의 차가/)![1],
+      c.match(/어떤 진분수와 \$\\frac\{(\d+)\}\{\d+\}\$의 차가/)![1],
     );
     const gap = Number(
-      c.match(/의 차가 \$\\frac\{(\d+)\}\{\d+\}\$ 입니다/)![1],
+      c.match(/의 차가 \$\\frac\{(\d+)\}\{\d+\}\$입니다/)![1],
     );
     const minus = Number(
       c.match(/어떤 진분수에서 \$\\frac\{(\d+)\}\{\d+\}\$[을를] 뺀/)![1],
@@ -283,10 +283,10 @@ const REDERIVE: Record<string, (content: string) => string> = {
     const den = Number(c.match(/분모가 \$(\d+)\$인/)![1]);
     const sum = sumNumerators(c, den);
     const lo = Number(
-      c.match(/뺀 값이 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 크고/)![1],
+      c.match(/뺀 값이 \$\\frac\{(\d+)\}\{\d+\}\$보다 크고/)![1],
     );
     const hi = Number(
-      c.match(/보다 크고 \$\\frac\{(\d+)\}\{\d+\}\$ 보다 작을 때/)![1],
+      c.match(/보다 크고 \$\\frac\{(\d+)\}\{\d+\}\$보다 작을 때/)![1],
     );
     const alive = numeratorPairsIn(den, sum).filter(
       ([p, q]) => q - p > lo && q - p < hi,

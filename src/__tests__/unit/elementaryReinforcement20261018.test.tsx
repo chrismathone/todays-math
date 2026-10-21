@@ -60,6 +60,42 @@ const approvedRepairs = JSON.parse(
     afterRowSha256: string;
   }[];
 };
+/**
+ * 둘째 승인 층 — 원장님 2026-10-20 지면 전수 검사(세로셈 중복 · 정답 노출 그림 · 중복 식 줄 · 깨진 TeX).
+ * 이 층이 바꾼 행은 «그 전 출력»으로 되돌린 뒤 원래 기준과 견준다. 목록은 기계로 뽑았다(기준 1b3f05e54 ↔ 고친 엔진).
+ */
+const displayRepairs = JSON.parse(
+  readFileSync(
+    "docs/planning/tracks/reports/problem-display-dupes-20261020/elem-display-repair-baseline.json",
+    "utf8",
+  ),
+) as {
+  sourceSha256: Record<string, string>;
+  changes: { familyKey: string; beforeRow: LegacyOutputRow; afterRowSha256: string }[];
+};
+/**
+ * 맨 위 층 — D-164 초등 엔진 고침(2026-10-21: 식 뒤 조사 붙임 · 합쇼체 · 세로셈). 지면 검사 층의 «이후»가 이 층의 «이전»이다.
+ * 목록은 기계로 뽑았다(c3283aa9a ↔ fix/elem-consensus) — 바뀐 행마다 ①⑥⑨ 로만 설명됨을 확인한 뒤.
+ */
+const decisionRepairs = JSON.parse(
+  readFileSync(
+    "docs/planning/tracks/reports/problem-display-decisions-20261021/elem-gate-layer.json",
+    "utf8",
+  ),
+) as {
+  sourceSha256: Record<string, string>;
+  changes: { familyKey: string; beforeRow: LegacyOutputRow; afterRowSha256: string }[];
+};
+/**
+ * 그 아래 층 — 초5 블라인드 검토 고침(main 2026-10-20). 지면 검사 층을 되돌린 행이 이 층의 «이후»다.
+ * 목록은 기계로 뽑았다(740ff82b0 ↔ 1b3f05e54).
+ */
+const blindRepairs = JSON.parse(
+  readFileSync(
+    "docs/planning/tracks/reports/g5-blind-fixes-20261020-elem-gate-baseline.json",
+    "utf8",
+  ),
+) as typeof displayRepairs;
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 const UNITS = elementaryUnits();
 const FORMS = UNITS.flatMap((unit) =>
@@ -387,9 +423,30 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     );
     expect(changes.size).toBe(15);
     let repaired = 0;
+    const display = new Map(
+      displayRepairs.changes.map((change) => [key(change.beforeRow), change]),
+    );
+    expect(display.size).toBe(displayRepairs.changes.length);
+    const blind = new Map(
+      blindRepairs.changes.map((change) => [key(change.beforeRow), change]),
+    );
+    expect(blind.size).toBe(blindRepairs.changes.length);
+    const decided = new Map(
+      decisionRepairs.changes.map((change) => [key(change.beforeRow), change]),
+    );
+    expect(decided.size).toBe(decisionRepairs.changes.length);
     // Restore exactly the approved historical outputs for the original digest;
     // the current corrected outputs must match independently pinned digests.
-    const originalRows = rows.map((row) => {
+    const originalRows = rows.map((latest) => {
+      const decision = decided.get(key(latest));
+      if (decision) expect(sha(JSON.stringify(latest)), key(latest)).toBe(decision.afterRowSha256);
+      const current = decision ? decision.beforeRow : latest;
+      const shown = display.get(key(current));
+      if (shown) expect(sha(JSON.stringify(current)), key(current)).toBe(shown.afterRowSha256);
+      const middle = shown ? shown.beforeRow : current;
+      const fixed = blind.get(key(middle));
+      if (fixed) expect(sha(JSON.stringify(middle)), key(middle)).toBe(fixed.afterRowSha256);
+      const row = fixed ? fixed.beforeRow : middle;
       const change = changes.get(key(row));
       if (!change) return row;
       repaired += 1;
@@ -401,9 +458,12 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     expect(sha(JSON.stringify(originalRows))).toBe(legacy.outputSha256);
     for (const [file, hash] of Object.entries(legacy.sourceSha256)) {
       const expected =
-        file === "src/lib/elementary/g4.ts"
+        decisionRepairs.sourceSha256[file] ??
+        displayRepairs.sourceSha256[file] ??
+        blindRepairs.sourceSha256[file] ??
+        (file === "src/lib/elementary/g4.ts"
           ? approvedRepairs.approvedG4SourceSha256
-          : hash;
+          : hash);
       expect(sha(readFileSync(file, "utf8")), file).toBe(expected);
     }
   });
