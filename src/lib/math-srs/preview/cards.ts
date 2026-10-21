@@ -5,8 +5,9 @@
  * The meaning is the explorer concept card's own sentence (`definitionCard(...).definition`,
  * already corrected — D-143); worked examples and practice are written here and checked by
  * `previewCards.test.ts`, which recomputes every practice answer from its numbers.
- * Pilot scope (plan §4): 초5 2학기 1~2단원, the first sections a pilot student meets.
+ * Pilot scope (plan §4): 초5 2학기 1~3단원, the first sections a pilot student meets.
  */
+import { GEOMETRY_PREVIEW_CARDS } from "./geometryCards";
 import { FRACTION_PREVIEW_CARDS } from "./fractionCards";
 import type { NumberLineSpec } from "./numberLine";
 import type { PreviewEngineFigureId } from "./figureSpecs";
@@ -277,4 +278,5 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     },
   },
   ...FRACTION_PREVIEW_CARDS,
+  ...GEOMETRY_PREVIEW_CARDS,
 ];

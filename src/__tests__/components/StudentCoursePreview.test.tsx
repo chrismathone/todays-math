@@ -86,6 +86,10 @@ describe("course learn preview", () => {
     "5-2-2-2",
     "5-2-2-3",
     "5-2-2-4",
+    "5-2-3-1",
+    "5-2-3-2",
+    "5-2-3-3",
+    "5-2-3-4",
   ])(
     "shows the authored two-page card before the first question of %s without writing",
     async (sectionId) => {

@@ -206,3 +206,118 @@ it("counts the fraction pieces and their exact value in the rendered SVG", () =>
     ]);
   }
 });
+
+const numbers = (text: string) =>
+  [...text.matchAll(/\d+/g)].map((m) => Number(m[0]));
+const matchingRectangles = (text: string) => {
+  const [a, b, ...sizes] = numbers(text);
+  let count = 0;
+  for (let i = 0; i < sizes.length; i += 2)
+    if (
+      (sizes[i] === a && sizes[i + 1] === b) ||
+      (sizes[i] === b && sizes[i + 1] === a)
+    )
+      count++;
+  return count;
+};
+
+describe("congruence and symmetry previews", () => {
+  it.each([
+    ["5-2-3-1", "g5-congruence"],
+    ["5-2-3-2", "g5-congruence"],
+    ["5-2-3-3", "g5-line-symmetry"],
+    ["5-2-3-4", "g5-point-symmetry"],
+  ])("links %s to the unchanged explorer definition", (id, meaningId) => {
+    const c = card(id);
+    expect(c).not.toBeNull();
+    expect(c.meaning).toEqual({ cardId: meaningId });
+    expect(previewMeaning(c)).toBe(definitionCard(meaningId).definition);
+    expect(c.worked).toHaveLength(2);
+    for (const example of c.worked)
+      expect(example.steps.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("recomputes all twelve answers from lengths, angles, cells and midpoint distances", () => {
+    const congruent = card("5-2-3-1");
+    for (const q of [congruent.worked[0], congruent.practice])
+      expect(Number(q.answer)).toBe(matchingRectangles(q.prompt));
+    const [side, ...options] = numbers(congruent.worked[1].prompt);
+    expect(Number(congruent.worked[1].answer)).toBe(
+      options.filter((n) => n === side).length,
+    );
+
+    const properties = card("5-2-3-2");
+    const [a, b] = numbers(properties.worked[0].prompt);
+    expect(Number(properties.worked[0].answer)).toBe(2 * (a + b));
+    const [angleA, angleB] = numbers(properties.worked[1].prompt);
+    expect(Number(properties.worked[1].answer)).toBe(180 - angleA - angleB);
+    expect(Number(properties.practice.answer)).toBe(
+      numbers(properties.practice.prompt).reduce((a, b) => a + b, 0),
+    );
+
+    const line = card("5-2-3-3");
+    for (const q of [...line.worked, line.practice])
+      expect(Number(q.answer)).toBe(numbers(q.prompt)[0] * 2);
+
+    const point = card("5-2-3-4");
+    expect(Number(point.worked[0].answer)).toBe(
+      numbers(point.worked[0].prompt)[0] * 2,
+    );
+    expect(Number(point.worked[1].answer)).toBe(
+      numbers(point.worked[1].prompt)[0],
+    );
+    expect(Number(point.practice.answer)).toBe(
+      numbers(point.practice.prompt)[0] / 2,
+    );
+  });
+
+  it("renders exact quarter-turn congruent cells on equal-sized grids", () => {
+    for (const id of ["5-2-3-1", "5-2-3-2"]) {
+      const rects = rectangles(previewFigureSvg(card(id)));
+      expect(rects).toHaveLength(32);
+      expect(rects.every((r) => r.width === 16 && r.height === 16)).toBe(true);
+      const before = rects
+        .slice(0, 16)
+        .filter((r) => r.filled)
+        .map((r) => [(r.x - 8) / 16, (r.y - 8) / 16]);
+      const after = rects
+        .slice(16)
+        .filter((r) => r.filled)
+        .map((r) => [(r.x - 108) / 16, (r.y - 8) / 16].join(","))
+        .sort();
+      expect(after).toEqual(
+        before.map(([x, y]) => [3 - y, x].join(",")).sort(),
+      );
+      expect(before).toHaveLength(id.endsWith("-1") ? 4 : 6);
+      if (id.endsWith("-2")) {
+        expect(new Set(before.map(([x]) => x)).size).toBe(3);
+        expect(new Set(before.map(([, y]) => y)).size).toBe(2);
+      }
+    }
+  });
+
+  it("places every reflected/half-turned cell and the axis/centre at exact coordinates", () => {
+    for (const id of ["5-2-3-3", "5-2-3-4"]) {
+      const svg = previewFigureSvg(card(id));
+      const rects = rectangles(svg);
+      expect(rects).toHaveLength(36);
+      expect(rects.every((r) => r.width === 16 && r.height === 16)).toBe(true);
+      const cells = rects
+        .filter((r) => r.filled)
+        .map((r) => [(r.x - 10) / 16, (r.y - 10) / 16]);
+      const reflected = cells
+        .map(([x, y]) => [5 - x, id.endsWith("-3") ? y : 5 - y].join(","))
+        .sort();
+      expect(reflected).toEqual(cells.map((c) => c.join(",")).sort());
+      if (id.endsWith("-3")) {
+        expect(cells.filter(([x]) => x < 3)).toHaveLength(4);
+        expect(svg).toMatch(
+          /<line x1="58" y1="8" x2="58" y2="108"[^>]*stroke-dasharray="5 4"/,
+        );
+      } else {
+        expect(cells).toHaveLength(6);
+        expect(svg).toMatch(/<circle cx="58" cy="58" r="2.6"/);
+      }
+    }
+  });
+});
