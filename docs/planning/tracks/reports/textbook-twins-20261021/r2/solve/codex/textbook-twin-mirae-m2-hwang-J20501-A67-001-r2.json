@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A67-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df1-a15d-7bd3-9d45-db648338a677",
+ "startedAt": "2026-10-21T19:11:18+0900",
+ "elapsedSec": 13.2,
+ "studentSha256": {
+  "fig-1.png": "7bfda8ebe83ea4e865277a721599040a825b5290e4380b4b270b0718c38ecbcc",
+  "student.json": "d03963934ec016f91353d7ad6ab78a46a0ab379af1c07cb6a58eead23b7efcdc"
+ },
+ "promptSha256": "06069e619e554cacf6891e74c88dc92a11edbe894d1dfa0c18dee7b96046c137",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"32°\",\"work\":\"접는 선 PQ는 접기 전후의 아래쪽 변이 이루는 각을 이등분하므로, PQ와 접기 전 아래쪽 변이 이루는 각은 x이다. 직사각형의 위아래 변은 평행하므로 엇각인 ∠PQR도 x이다. 삼각형 PQR에서 x+x+116°=180°이므로 x=32°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "32°",
+  "work": "접는 선 PQ는 접기 전후의 아래쪽 변이 이루는 각을 이등분하므로, PQ와 접기 전 아래쪽 변이 이루는 각은 x이다. 직사각형의 위아래 변은 평행하므로 엇각인 ∠PQR도 x이다. 삼각형 PQR에서 x+x+116°=180°이므로 x=32°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2459899d23d027c7fe3e185f79bb2bcf1b0977d07360a570c540935159831cd9"
+}

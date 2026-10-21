@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df2-4c54-71d2-a566-72c643cc3226",
+ "startedAt": "2026-10-21T19:12:02+0900",
+ "elapsedSec": 18.7,
+ "studentSha256": {
+  "fig-1.png": "2a53ea8de024e3da754729e090c8efcdf870f78db9eb3bde9fa9ce7347f826e9",
+  "student.json": "57f9d89a52d2686feadadda8d599ba7247654441d92243ca749c0f6033844810"
+ },
+ "promptSha256": "3a25989e1c72be8b7f63d76fca439845e5509b959857b5f12f4f276a17e89c74",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"30°\",\n  \"work\": \"N은 AC의 수직이등분선 위에 있으므로 NA=NC이다. 따라서 ∠ACN=∠NAC=x이다.\\n직각삼각형 ABN과 AMN은 빗변 AN이 공통이고 BN=MN이므로 합동이다. 따라서 ∠BAN=∠MAN=x이다.\\n삼각형 ABC의 내각의 합에서 2x+x+90°=180°이므로 x=30°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "30°",
+  "work": "N은 AC의 수직이등분선 위에 있으므로 NA=NC이다. 따라서 ∠ACN=∠NAC=x이다.\n직각삼각형 ABN과 AMN은 빗변 AN이 공통이고 BN=MN이므로 합동이다. 따라서 ∠BAN=∠MAN=x이다.\n삼각형 ABC의 내각의 합에서 2x+x+90°=180°이므로 x=30°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0de412a9d5e1d2cbc177ce178058b4415c7ff210e2c9c4091357bbf50772abcf"
+}

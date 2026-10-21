@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df1-693e-7c42-9d8f-24bf9d2a1366",
+ "startedAt": "2026-10-21T19:11:04+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "fig-1.png": "18593c86ded25ae3021d55d100f002f066c9693f112614f865cb4dfd34280916",
+  "student.json": "a95163eb998b630c0cbe01c13b4c812e763deb84459eb9035909ca6af476c388"
+ },
+ "promptSha256": "8994ef5cffc70c76c2b1b462dd55f25a3feb51010cf532da0ea88a34b668a369",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"BD=CD이므로 ∠DCB=∠DBC=28°이고, ∠BDC=180°−56°=124°이다.\\nA, D, B가 한 직선 위에 있으므로 ∠ADC=56°이다. CA=CD이므로 ∠CAD=∠ADC=56°, 따라서 ∠ACD=68°이다.\\n∠ACB=68°+28°=96°이므로 ∠ACE=180°−96°=84°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "BD=CD이므로 ∠DCB=∠DBC=28°이고, ∠BDC=180°−56°=124°이다.\nA, D, B가 한 직선 위에 있으므로 ∠ADC=56°이다. CA=CD이므로 ∠CAD=∠ADC=56°, 따라서 ∠ACD=68°이다.\n∠ACB=68°+28°=96°이므로 ∠ACE=180°−96°=84°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "80c3f7f7c89f017d2a2e25412f4c7a568c410ed5e7995720bd3c92ccac7e1191"
+}

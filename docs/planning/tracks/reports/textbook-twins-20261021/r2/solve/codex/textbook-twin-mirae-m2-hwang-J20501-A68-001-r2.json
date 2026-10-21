@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df1-d50e-7c90-861b-3cc1b1dc0c05",
+ "startedAt": "2026-10-21T19:11:32+0900",
+ "elapsedSec": 15.6,
+ "studentSha256": {
+  "fig-1.png": "c3b5228ffcf5a056b2fd7d97fe6a3ccc26ee3a90b8d123580cd0e9927ca6a530",
+  "student.json": "67a2c1cbd2adab61e9fd7bf0bbd6f9a914417b7b7daa3c1d66526a8c30b49c0f"
+ },
+ "promptSha256": "23c2b376e533936ff53a818c4baa3de4c6553ac6d3dacec7ff2b386fcd914e6f",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7 cm\",\"work\":\"∠R=180°−90°−60°=30°이다. MQ=MR이므로 ∠MQR=30°이고, ∠PQM=90°−30°=60°이다.\\n∠QPM도 60°이므로 삼각형 PQM은 정삼각형이다. 따라서 PQ=PM=MQ=MR이다.\\nPR=PM+MR=2PQ=14 cm이므로 PQ=7 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7 cm",
+  "work": "∠R=180°−90°−60°=30°이다. MQ=MR이므로 ∠MQR=30°이고, ∠PQM=90°−30°=60°이다.\n∠QPM도 60°이므로 삼각형 PQM은 정삼각형이다. 따라서 PQ=PM=MQ=MR이다.\nPR=PM+MR=2PQ=14 cm이므로 PQ=7 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2247d64ba0f9b14005ad0af838e0fe5557452729c38899f6fbc3ed5d6b183ea0"
+}

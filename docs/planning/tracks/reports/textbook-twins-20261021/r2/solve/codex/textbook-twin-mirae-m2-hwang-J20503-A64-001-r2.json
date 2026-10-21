@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df0-64aa-74a0-ab8e-291acbfef504",
+ "startedAt": "2026-10-21T19:09:57+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "fig-1.png": "2b82b1e3db29ca9682017184a3cf527cfb7d8b03a4837120f80f0cebb7335b7f",
+  "student.json": "c859a6ae5ed0d14288ab6307a429d2ed462ed4e98d9cd69232a07e64821ddd18"
+ },
+ "promptSha256": "28499a62ecf21bec2e791b482105b1b2b17519c5e4d36e90876126d9183ea5fb",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"OB=OC이므로 ∠OBC=∠OCB=19°이고, ∠BOC=180°−38°=142°이다.\\n따라서 ∠AOB=360°−104°−142°=114°이다.\\nOA=OB이므로 x=(180°−114°)÷2=33°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "OB=OC이므로 ∠OBC=∠OCB=19°이고, ∠BOC=180°−38°=142°이다.\n따라서 ∠AOB=360°−104°−142°=114°이다.\nOA=OB이므로 x=(180°−114°)÷2=33°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d378b9d03625866f65b6009806110828d816a9bc6932c48f2f9b1a0be1fc22b"
+}
