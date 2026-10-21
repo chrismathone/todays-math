@@ -1,0 +1,34 @@
+[
+  {
+    "finding": "M8",
+    "sourcePath": "src/lib/middle/m2GeoSim.ts",
+    "lineAtAudit": 2474,
+    "sha256": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "lastSourceCommit": "124ae10ca304ff37ae36803c38a664e94b9cf798",
+    "blame": "6e99307f8d (SUN 2026-08-27 19:00:36 +0900 2474)         content: `삼각형 $ABC$에서 점 $D$는 $\\\\overline{AB}$ 위, 점 $E$는 $\\\\overline{AC}$ 위에 있고 $\\\\overline{DE}$와 $\\\\overline{BC}$는 평행하다. $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{AB}=${a * k}\\\\,\\\\mathrm{cm}$이고 삼각형 $ADE$의 둘레의 길이가 $${per}\\\\,\\\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,"
+  },
+  {
+    "finding": "M9",
+    "sourcePath": "src/lib/middle/m2GeoSim.ts",
+    "lineAtAudit": 2617,
+    "sha256": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "lastSourceCommit": "124ae10ca304ff37ae36803c38a664e94b9cf798",
+    "blame": "d679279eca (SUN 2026-08-27 15:55:24 +0900 2617)         content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{AC}=${ac}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${bc}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{CD}$의 길이를 구하시오.`,"
+  },
+  {
+    "finding": "M19",
+    "sourcePath": "src/lib/middle/m2Center.ts",
+    "lineAtAudit": 1678,
+    "sha256": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+    "lastSourceCommit": "610f9865f529ebb0132dae876247bf78b1c95f00",
+    "blame": "66f21638c4 (SUN 2026-08-27 17:30:22 +0900 1678)         content: `점 $I$가 $\\\\triangle ABC$의 내심이고 내접원의 반지름의 길이가 $${r}\\\\,\\\\mathrm{cm}$이다. $\\\\overline{BC}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{CA}=${b}\\\\,\\\\mathrm{cm}$, $\\\\overline{AB}=${c}\\\\,\\\\mathrm{cm}$일 때, $\\\\triangle IBC$의 넓이를 구하시오.`,"
+  },
+  {
+    "finding": "M20",
+    "sourcePath": "src/lib/middle/m2Mono.ts",
+    "lineAtAudit": 527,
+    "sha256": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+    "lastSourceCommit": "0477ce3848033bd8c949bca483ae6f2b532ded9b",
+    "blame": "28e8bf1766 (SUN 2026-08-24 02:24:12 +0900 527)   // 04 ─────────────────────────────────────────────"
+  }
+]
