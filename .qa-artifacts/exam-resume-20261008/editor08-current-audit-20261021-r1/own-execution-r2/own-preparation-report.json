@@ -1,0 +1,15 @@
+{
+  "status": "prepared only, no Node/browser; separate explicit GO required",
+  "old114ExpectationsKept": true,
+  "newControlsPrepared": 22,
+  "sourceDeltaFiles": 1,
+  "rejectionChecks": "Both mutators reject malformed/oversize/invalid existing stack; original SVG cachedDOM/coords/numbers unchanged after throw. Exact8128->8259 reproduction remains explicit. Absent stack remains valid.",
+  "potentialResidualBoundary": "parseGroupStack if(!value) returns[] for both absent and empty attribute. Prepared empty-existing-attribute rejection controls intentionally expose whether empty unparseable existing metadata is still silently accepted. This is source observation, not runtime finding; do not relax expectations after run.",
+  "go": false,
+  "Node": 0,
+  "browser": 0,
+  "DB": 0,
+  "API": 0,
+  "RootOrSourceDWrites": 0,
+  "limits": "No current repair runtime pass claimed. R1 one failure unchanged, no new question/grade/rights/native approval."
+}
