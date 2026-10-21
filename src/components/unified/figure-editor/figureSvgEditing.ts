@@ -1,3 +1,5 @@
+import { isFigureGridLayer } from './figureGridMetadata';
+
 export const SVG_NS = "http://www.w3.org/2000/svg";
 const SHAPES = "path,line,polyline,polygon,circle,ellipse,rect,text";
 const ALLOWED = new Set(
@@ -16,7 +18,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -211,6 +213,10 @@ export function prepareFigureSvg(source?: string) {
       if (reference && !ids.has(reference)) node.removeAttribute(attr.name);
     }
   const root = doc.documentElement;
+  // Invalid/nested/transformed metadata must never hide ordinary figure objects.
+  for (const node of doc.querySelectorAll('[data-grid]')) {
+    if (!isFigureGridLayer(node)) node.removeAttribute('data-grid');
+  }
   // 번호를 매기기 전에, viewBox 를 채워 넣기 전에(원래 캔버스와 견준다)
   engineBackgroundRect(root)?.remove();
   root.setAttribute("xmlns", SVG_NS);
@@ -237,7 +243,8 @@ export function prepareFigureSvg(source?: string) {
   }
   let index = 0;
   for (const node of doc.querySelectorAll(SHAPES)) {
-    if (!node.closest("defs,clipPath,mask,marker,pattern")) {
+    // `[data-grid]` — 모눈 배경 층(figureGrid.ts)은 요소가 아니다(math-figure-editor 추가).
+    if (!node.closest("defs,clipPath,mask,marker,pattern,[data-grid]")) {
       node.setAttribute("data-object-id", `obj-${index++}`);
       // 번호는 요소에 붙은 값 — 틀리게 적힌 것은 지우고 아래 writeNumbers 가 새로 준다
       if (!validNumber(node.getAttribute(NUMBER_ATTR)))

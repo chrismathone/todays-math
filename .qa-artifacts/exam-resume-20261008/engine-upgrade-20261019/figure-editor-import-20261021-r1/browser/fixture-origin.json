@@ -1,0 +1,64 @@
+{
+  "globalCSSSHA256": "1b6c17d6128d0ac527c8f67286181aefd9efc2b40974ac73f154c9db654f7917",
+  "onlyCSSAdaptation": "Disable automatic repository scan; scan actual figure-editor sources only",
+  "sourceSpec": {
+    "version": "graph-1",
+    "xRange": [
+      0,
+      8
+    ],
+    "yRange": [
+      0,
+      5
+    ],
+    "axes": false,
+    "grid": {
+      "step": 1
+    },
+    "segments": [
+      {
+        "from": [
+          1,
+          1
+        ],
+        "to": [
+          4,
+          4
+        ],
+        "arrow": true
+      },
+      {
+        "from": [
+          5,
+          4
+        ],
+        "to": [
+          7,
+          1
+        ],
+        "arrow": true
+      }
+    ],
+    "labels": [
+      {
+        "at": [
+          2.5,
+          2.5
+        ],
+        "text": "$\\vec{AB}$",
+        "dx": -18
+      },
+      {
+        "at": [
+          6,
+          2.5
+        ],
+        "text": "$\\vec{a}$",
+        "dx": 18
+      }
+    ]
+  },
+  "sourceSVGSHA256": "4194ba7189af6b1bb1535ca9ff4adc79d9216badc449998f923826f7943e86ee",
+  "sourceRepositoryWrites": 0,
+  "dbWrites": 0
+}

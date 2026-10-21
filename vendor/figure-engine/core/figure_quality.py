@@ -152,6 +152,7 @@ _TRANSFORM_RE = re.compile(
     r"^\s*(?:(?:translate|scale|rotate)\(\s*-?\d+(?:\.\d+)?"
     r"(?:[\s,]+-?\d+(?:\.\d+)?){0,2}\s*\)\s*)+$"
 )
+_DATA_GRID_RE = re.compile(r"^\s*-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?\s+\d{1,3}\s+\d{1,3}\s*$")
 def mj_attr(text: str) -> str:
     """`data-mj="…"` 한 조각. **못 실을 글이면 빈 문자열**을 낸다.
 
@@ -201,7 +202,9 @@ def add_mj_marks(svg: str) -> str:
 
 _TAG_ATTRS = {
     "svg": frozenset({"viewBox", "preserveAspectRatio"}),
-    "g": _COMMON_ATTRS | {"transform"},
+    # math-figure-editor: `data-grid` — 모눈 배경 층(scripts/figure/graph_scene.py `grid_svg`)의 칸 정보.
+    # todays-math 상류에는 없는 한 줄(2026-10-21). 값은 수 여섯 개만 받는다(아래 `_validate_attr`).
+    "g": _COMMON_ATTRS | {"transform", "data-grid"},
     "circle": _COMMON_ATTRS | {"cx", "cy", "r"},
     "ellipse": _COMMON_ATTRS | {"cx", "cy", "rx", "ry"},
     "line": _COMMON_ATTRS | {"x1", "y1", "x2", "y2"},
@@ -514,6 +517,15 @@ def _validate_attr(tag: str, name: str, value: str) -> None:
     if name == "id":
         if not _ID_RE.match(value.strip()):
             raise SvgSecurityError("invalid id")
+    elif name == "data-grid":
+        if not _DATA_GRID_RE.match(value):
+            raise SvgSecurityError("invalid data-grid (six numbers)")
+        x, y, cw, ch, cols, rows = [_parse_number(v, label="data-grid") for v in value.split()]
+        if (cw <= 0 or ch <= 0 or abs(cw - ch) > 0.002
+                or not (1 <= cols <= 60 and 1 <= rows <= 60)
+                or not cols.is_integer() or not rows.is_integer()
+                or abs(x + cw * cols) > MAX_COORDINATE or abs(y + ch * rows) > MAX_COORDINATE):
+            raise SvgSecurityError("data-grid requires square positive cells and 1..60 integer counts")
     elif name == "transform":
         if not _TRANSFORM_RE.match(value):
             raise SvgSecurityError("invalid transform (translate/scale/rotate with numeric args only)")
@@ -619,6 +631,15 @@ def _safe_text(value: str | None, *, context: str) -> str | None:
 
 
 def _check_limits_and_shape(root: ET.Element) -> None:
+    grids = [e for e in root.iter() if "data-grid" in e.attrib]
+    if grids:
+        first = next((e for e in root if _local_tag(e.tag)[0] not in {"defs", "title", "desc"}), None)
+        grid = grids[0]
+        children = list(grid)
+        if (len(grids) != 1 or grid is not first or _local_tag(grid.tag)[0] != "g"
+                or "transform" in grid.attrib or len(children) != 1
+                or _local_tag(children[0].tag)[0] != "path" or "transform" in children[0].attrib):
+            raise SvgSecurityError("data-grid must be one untransformed root background path layer")
     elements = 0
     attributes = 0
     text_chars = 0

@@ -1,0 +1,124 @@
+{
+  "utc": "2026-10-21T08:35:48.676017+00:00",
+  "sourceRoot": "D:\\math-figure-editor\\docs\\export\\todays-math",
+  "sourceRepositoryWrites": 0,
+  "sourceHead": "30a5285f76d63c950ab7754d7a9327e85ecf71ff",
+  "sourceFiles": [
+    {
+      "path": "patches/01-editor-grid-labels.patch",
+      "bytes": 45324,
+      "sha256": "60c620a2824918f188bde2ec44af348e1303d99d7c8e48af6b3a40698ba45784"
+    },
+    {
+      "path": "patches/02-engine-grid.patch",
+      "bytes": 15475,
+      "sha256": "d783a932015d1862a828300e441b18ca37714a8dcd3cde4d6a33d6629c9c49bd"
+    },
+    {
+      "path": "patches/03-engine-label-markup-escape.patch",
+      "bytes": 1157,
+      "sha256": "2ad3cfa18889d5eb44ecaf0b5530e75280cf5be7e2b9672c134145fe67a98a54"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12879,
+      "sha256": "7692a0961e9fa11fdac522fc7bbe7d77dc6356dbafa8a8efb9c5bb5acad9a0b8"
+    },
+    {
+      "path": "reference/comparison.ts",
+      "bytes": 5882,
+      "sha256": "764fb1b58cde9e33a1383aadc0e5296bde807bc96e032ad272c83bb5964a80f4"
+    },
+    {
+      "path": "reference/detect.ts",
+      "bytes": 3518,
+      "sha256": "39e0db1d939c464e32f3177506974a1e01873a746bbaa28c23df1d01f08a5670"
+    },
+    {
+      "path": "reference/figureGridLabels.test.ts",
+      "bytes": 4147,
+      "sha256": "b899b31e36d3dba443513e5a233bbda2f1e891514f6fa2cb0c446842aa9d6689"
+    },
+    {
+      "path": "reference/gridMeasure.ts",
+      "bytes": 15883,
+      "sha256": "14c9ee8b41235f5cd9b3fc7a00dacd29f25a58dcaaf768a606f3923910a1ab4b"
+    },
+    {
+      "path": "reference/gridSnap.ts",
+      "bytes": 2943,
+      "sha256": "eb3f1cc9ee21bbb7100ff4c36b3022a991b09484382cbdb5a3587ff18db9ed91"
+    },
+    {
+      "path": "reference/redrawFigure.ts",
+      "bytes": 7947,
+      "sha256": "ef3b8a6eb0989057d4def7bc0ca6f7ad95ca76a10298808153f97c99341f3a83"
+    },
+    {
+      "path": "reference/reviewFilter.test.ts",
+      "bytes": 2725,
+      "sha256": "429d06fe43abbd551bc6914e63bc1ce4519eba88ac1691dedefb628e6a917f88"
+    },
+    {
+      "path": "reference/reviewFilter.ts",
+      "bytes": 3074,
+      "sha256": "11d6b875f951f2224053ddc6ec3fd1374b7ae4a3f595b905a02222ee479508fc"
+    },
+    {
+      "path": "reference/tasks.ts",
+      "bytes": 2836,
+      "sha256": "b24fc058bd3dc42ab86eba5d33fdbee7050b67ca83424192f5fe3b5d3df8d0a3"
+    }
+  ],
+  "preservedFiles": {
+    "vendor/figure-engine/core/figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "vendor/figure-engine/core/figure_solid.py": "cf20e6c8af66a3de7405e4a25e4ac1c8ab9979a3719603e958b735c1b8126a09",
+    "src/lib/middle/m2Quad.ts": "794c8428bd24f4c714bd32a58511db4bd81126b6c3bd5a17749866a3a273b0bf",
+    "src/lib/middle/m2Pytha.ts": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb"
+  },
+  "patches": [
+    {
+      "name": "01-editor-grid-labels.patch",
+      "checkOnly": true,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "01-editor-grid-labels.patch",
+      "checkOnly": false,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "02-engine-grid.patch",
+      "checkOnly": true,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "02-engine-grid.patch",
+      "checkOnly": false,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "03-engine-label-markup-escape.patch",
+      "checkOnly": true,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "03-engine-label-markup-escape.patch",
+      "checkOnly": false,
+      "exitcode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "protectedFilesUnchanged": true
+}

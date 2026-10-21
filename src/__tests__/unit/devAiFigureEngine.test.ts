@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import catalog from "../../../scripts/figure/engine-catalog.json";
 import { runSubscriptionCli } from "@/lib/dev-ai/cli";
 import { abortError } from "@/lib/dev-ai/cli-process";
-import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
+import { redrawDevAiFigure, type FigureInference } from "@/lib/dev-ai/figure-engine";
 import {
   parseFigureSpecResult,
   withTransparentBackground,
@@ -38,6 +38,19 @@ beforeEach(() => vi.clearAllMocks());
 afterEach(() => vi.useRealTimers());
 
 describe("real local Python subscription figure pipeline", () => {
+  it.each([
+    { passed: false, issues: ["벡터의 시작점 화살촉이 있는지 확인이 불가하다"] },
+    { passed: true, issues: ["수정 불필요. 선분 CD가 빠졌으므로 추가할 것"] },
+    { passed: false, issues: ["수정 불필요"] },
+  ])('never promotes ambiguous or mixed review text to a match: %j', async (review) => {
+    const infer = vi.fn<FigureInference>(async ({ phase }) => phase === 'review'
+      ? JSON.stringify(review) : JSON.stringify({ spec: triangle }));
+    const result = await redrawDevAiFigure(input, undefined, infer);
+    expect(result.figureReview).toEqual({ mode: 'source-and-rendered-images', passed: false, issues: review.issues });
+    expect(infer.mock.calls.filter(([call]) => call.phase === 'review')).toHaveLength(3);
+    expect(infer.mock.calls.filter(([call]) => call.phase === 'generate')).toHaveLength(3);
+  });
+
   it("renders the actual v2 engine, keeps source/labels, and returns the public SVG contract", async () => {
     const before = structuredClone(input);
     run

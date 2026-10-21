@@ -38,9 +38,20 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from xml.sax.saxutils import escape
 
 __all__ = ["LabelMarkupError", "parse_label", "label_pieces_svg", "label_width_em"]
+
+
+def escape(data: str, entities: dict[str, str] | None = None) -> str:
+    """`xml.sax.saxutils.escape` 와 같은 결과.
+
+    math-figure-editor 2026-10-21: 그 모듈 하나가 urllib·http·email 까지 불러와 엔진 기동이 150ms 늦었다
+    (도형 한 번 그리는 데 2.5ms, 프로세스를 새로 띄우는 개발 서버·서버 첫 호출에서는 그 몇십 배).
+    """
+    data = data.replace("&", "&amp;").replace(">", "&gt;").replace("<", "&lt;")
+    for key, value in (entities or {}).items():
+        data = data.replace(key, value)
+    return data
 
 
 class LabelMarkupError(ValueError):

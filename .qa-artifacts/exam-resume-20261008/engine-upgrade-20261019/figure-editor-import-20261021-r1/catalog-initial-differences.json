@@ -1,0 +1,19 @@
+[
+  {
+    "path": "/elementary/pictograph/optional",
+    "before": [],
+    "after": [
+      "hideUnit"
+    ]
+  },
+  {
+    "path": "/elementary/rotateFlip/optional",
+    "before": [
+      "n"
+    ],
+    "after": [
+      "n",
+      "showAfter"
+    ]
+  }
+]

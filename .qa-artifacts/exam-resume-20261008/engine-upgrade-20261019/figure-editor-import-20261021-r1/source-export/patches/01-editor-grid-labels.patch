@@ -1,0 +1,962 @@
+diff --git a/src/components/unified/figure-editor/FigureChipText.tsx b/src/components/unified/figure-editor/FigureChipText.tsx
+new file mode 100644
+index 0000000..da31bff
+--- /dev/null
++++ b/src/components/unified/figure-editor/FigureChipText.tsx
+@@ -0,0 +1,48 @@
++import { useEffect, useState } from "react";
++import { figureLabelSummary } from "./FigureLabelInput";
++import type { TypesetLabel } from "./mathjaxLabel";
++
++/**
++ * 요소 목록 칩의 글 — 수식 글자(`$\vec{a}$`·`\frac{1}{2}`)는 **조판한 모양**으로 보인다(math-figure-editor 2026-10-21,
++ * «요소 목록이 카텍스 처리가 덜 됐다»). 상류(todays-math)는 TeX 원문을 그대로 적는다.
++ *
++ * 캔버스와 같은 조판기(`mathjaxLabel.typesetLabel`)를 쓰고, MathJax 는 처음 쓸 때만 불러온다(캔버스 조판과 같은 방식).
++ * 조판을 못 하면(한글 섞임 등) 원문 글자 그대로다.
++ */
++export function FigureChipText({ text, raw }: { text: string; raw?: string }) {
++  const summary = raw ? figureLabelSummary(raw) : "";
++  const math = !!raw && /[\\^_]/.test(summary) && text.endsWith(summary);
++  const [laid, setLaid] = useState<TypesetLabel | null>(null);
++  useEffect(() => {
++    setLaid(null);
++    if (!math || !raw) return;
++    let alive = true;
++    void import("./mathjaxLabel").then((m) => {
++      const result = m.typesetLabel(raw);
++      if (alive && result && m.isSafeFragment(result.inner)) setLaid(result);
++    });
++    return () => {
++      alive = false;
++    };
++  }, [math, raw]);
++  if (!math || !laid) return <>{text}</>;
++  const height = laid.ascentEm + laid.descentEm;
++  return (
++    <>
++      {text.slice(0, text.length - summary.length)}
++      <svg
++        role="img"
++        aria-label={summary}
++        viewBox={`0 ${-laid.ascentEm * 1000} ${laid.widthEm * 1000} ${height * 1000}`}
++        style={{
++          display: "inline-block",
++          width: `${laid.widthEm * 1.15}em`,
++          height: `${height * 1.15}em`,
++          verticalAlign: `${-laid.descentEm * 1.15}em`,
++          overflow: "visible",
++        }}
++        dangerouslySetInnerHTML={{ __html: laid.inner }}
++      />
++    </>
++  );
++}
+diff --git a/src/components/unified/figure-editor/FigureEditor.tsx b/src/components/unified/figure-editor/FigureEditor.tsx
+index 45c5b7b..b7999c3 100644
+--- a/src/components/unified/figure-editor/FigureEditor.tsx
++++ b/src/components/unified/figure-editor/FigureEditor.tsx
+@@ -52,6 +52,16 @@ import {
+ import { modKey } from "./platform";
+ import { carryTypeset, typesetFigureSvg } from "./figureTypeset";
+ import { fitFrameToContent, renderFittedFigure } from "./figureFrame";
++import {
++  centerFigureGrid,
++  defaultFigureGrid,
++  figureGridSummary,
++  measureFigureContent,
++  readFigureGrid,
++  setFigureGrid,
++  type FigureBox,
++} from "./figureGrid";
++import { FigureGridPanel } from "./FigureGridPanel";
+ import { previewFigureObjects } from "./figureDragPreview";
+ import {
+   figureHandles,
+@@ -59,7 +69,7 @@ import {
+   moveFigureHandle,
+   snapFigurePoint,
+ } from "./figureHandles";
+-import { FigureLabelInput } from "./FigureLabelInput";
++import { FigureLabelInput, hwpLabelToTex } from "./FigureLabelInput";
+ import { addMidLabel, midLabelTarget } from "./figureMidLabel";
+ import { isTextInputEvent } from "./keyboard";
+ import {
+@@ -210,6 +220,8 @@ export function FigureEditor({
+   image,
+   originalImage,
+   initialSvg,
++  initialNotice,
++  redrawStage,
+   index,
+   label: figureLabel,
+   onSave,
+@@ -337,7 +349,7 @@ export function FigureEditor({
+     redrawController.current?.abort();
+     onClose();
+   };
+-  const [error, setError] = useState(initial.error);
++  const [error, setError] = useState(initial.error || initialNotice || "");
+   const [sourceOverlay, setSourceOverlay] = useState(false);
+   const [sourceOverlayScale, setSourceOverlayScale] = useState(1);
+   const [showNumbers, setShowNumbers] = useState(true);
+@@ -345,6 +357,16 @@ export function FigureEditor({
+   const [folds, setFolds] = useState(FIGURE_PANEL_FOLDS_OPEN);
+   const toggleFold = (name: FigurePanelFoldName) =>
+     setFolds((open) => ({ ...open, [name]: !open[name] }));
++  // 배경 모눈(math-figure-editor) — 요소가 아니라 그림 맨 뒤 층. 오른쪽 «모눈» 무리에서만 고친다.
++  const grid = useMemo(() => readFigureGrid(svg), [svg]);
++  // 그림의 선·도형 상자 — 모눈이 그보다 작으면 «모눈» 칸이 경고한다. 끄는 동안 매 걸음 재지 않게 잠깐 미룬다.
++  const [gridContent, setGridContent] = useState<FigureBox | null>(null);
++  const hasGrid = !!grid;
++  useEffect(() => {
++    if (!hasGrid) return;
++    const timer = window.setTimeout(() => setGridContent(measureFigureContent(svg)), 150);
++    return () => window.clearTimeout(timer);
++  }, [svg, hasGrid]);
+   const [showSourcePanel, setShowSourcePanel] = useState(
+     () =>
+       !!(
+@@ -1151,7 +1173,10 @@ export function FigureEditor({
+         drag.current.multiple = selectionDrag(root, dragIds, e);
+       }
+     } else if (tool === "text") {
+-      const result = addFigureObject(svg, "text", start, start, label);
++      // 수식 칸에 친 한글 수식이 아직 안 바뀌었으면(Enter 없이 바로 누름) 여기서 바꿔 놓는다(math-figure-editor).
++      const placed = hwpLabelToTex(label);
++      if (placed !== label) setLabel(placed);
++      const result = addFigureObject(svg, "text", start, start, placed);
+       commit(result.svg);
+       setSelected(result.id);
+       setTool("select");
+@@ -1690,7 +1715,7 @@ export function FigureEditor({
+                       className="mt-2 w-full rounded border border-control px-2 py-1 text-xs hover:bg-slate-50 disabled:opacity-50"
+                     >
+                       {redrawing && !editing
+-                        ? "처리 중…"
++                        ? redrawStage || "처리 중…"
+                         : "원본으로 다시 그리기"}
+                     </button>
+                   ) : (
+@@ -1700,7 +1725,9 @@ export function FigureEditor({
+                       disabled={busy || !original || !onRedraw}
+                       className="mt-2 w-full"
+                     >
+-                      {busy ? "처리 중…" : "원본으로 다시 그리기"}
++                      {busy
++                        ? (redrawing && !editing && redrawStage) || "처리 중…"
++                        : "원본으로 다시 그리기"}
+                     </Btn>
+                   ))}
+                 <p className="text-xs text-muted mt-3">
+@@ -2565,6 +2592,23 @@ export function FigureEditor({
+                 />
+               </FigurePanelFold>
+             ) : null}
++            <FigurePanelFold
++              name="모눈"
++              summary={figureGridSummary(grid, gridContent)}
++              open={folds.모눈}
++              onToggle={() => toggleFold("모눈")}
++            >
++              <FigureGridPanel
++                grid={grid}
++                content={gridContent}
++                onAdd={() => commit(setFigureGrid(svg, defaultFigureGrid(svg)))}
++                onChange={(next) => commit(setFigureGrid(svg, next))}
++                onCenter={() =>
++                  grid && commit(setFigureGrid(svg, centerFigureGrid(svg, grid)))
++                }
++                onRemove={() => commit(setFigureGrid(svg, null))}
++              />
++            </FigurePanelFold>
+             <FigurePanelFold
+               name="틀 · 세부"
+               summary={detailSummary(!!current)}
+diff --git a/src/components/unified/figure-editor/FigureGridPanel.tsx b/src/components/unified/figure-editor/FigureGridPanel.tsx
+new file mode 100644
+index 0000000..1d0f8df
+--- /dev/null
++++ b/src/components/unified/figure-editor/FigureGridPanel.tsx
+@@ -0,0 +1,203 @@
++import {
++  coverFigureGrid,
++  GRID_COLORS,
++  GRID_MAX_CELLS,
++  GRID_WIDTHS,
++  gridShortfall,
++  resizeFigureGrid,
++  type FigureBox,
++  type FigureGrid,
++} from "./figureGrid";
++
++/**
++ * 오른쪽 칸 «모눈» — 배경 모눈의 칸 수·칸 크기·자리·선 모양(math-figure-editor 2026-10-21).
++ * 모눈은 요소가 아니라서 캔버스에서 골라 옮길 수 없다 — 여기서만 고친다.
++ * 칸 수를 바꿔도 그림은 그대로다(찌그러지지 않는다). 모눈이 그림보다 작아지면 경고하고 늘리는 단추를 준다.
++ */
++export function FigureGridPanel({
++  grid,
++  content,
++  onChange,
++  onAdd,
++  onCenter,
++  onRemove,
++}: {
++  grid: FigureGrid | null;
++  /** 선·도형이 차지한 상자(그림 좌표) — 모눈보다 크면 경고. 못 재면 null. */
++  content: FigureBox | null;
++  onChange: (grid: FigureGrid) => void;
++  onAdd: () => void;
++  onCenter: () => void;
++  onRemove: () => void;
++}) {
++  if (!grid)
++    return (
++      <div className="space-y-2 text-xs">
++        <p className="leading-relaxed text-muted">
++          그림 뒤에 모눈종이를 깝니다. 둘레 여백은 남기고, 칸은 정사각형입니다.
++        </p>
++        <button
++          type="button"
++          onClick={onAdd}
++          className="w-full rounded border border-control bg-surface px-2 py-1.5"
++        >
++          모눈 깔기
++        </button>
++      </div>
++    );
++  const cell = Math.round(grid.cellW * 10) / 10;
++  const number = (
++    name: string,
++    value: number,
++    min: number,
++    max: number,
++    step: number,
++    set: (v: number) => FigureGrid,
++  ) => (
++    <label className="block">
++      {name}
++      <input
++        type="number"
++        min={min}
++        max={max}
++        step={step}
++        value={value}
++        aria-label={`모눈 ${name}`}
++        onChange={(e) => {
++          const v = Number(e.target.value);
++          if (e.target.value === "" || !Number.isFinite(v)) return;
++          onChange(set(Math.min(max, Math.max(min, v))));
++        }}
++        className="mt-1 w-full rounded border border-control px-1 py-1"
++      />
++    </label>
++  );
++  const short = content ? gridShortfall(grid, content) : null;
++  const missing = short
++    ? (
++        [
++          ["왼쪽", short.left],
++          ["오른쪽", short.right],
++          ["위", short.top],
++          ["아래", short.bottom],
++        ] as const
++      ).filter(([, n]) => n > 0)
++    : [];
++  const move = (dx: number, dy: number) =>
++    onChange({ ...grid, x: grid.x + dx * grid.cellW, y: grid.y + dy * grid.cellH });
++  return (
++    <div className="space-y-3 text-xs">
++      {missing.length > 0 && content && (
++        <div
++          role="alert"
++          className="space-y-1.5 rounded border border-[var(--red)] bg-[#fdf0ec] p-2 text-g-red-text"
++        >
++          <p className="leading-relaxed">
++            모눈이 그림보다 작습니다 — 선·도형이 모눈 밖으로 나갑니다(
++            {missing.map(([side, n]) => `${side} ${n}칸`).join(" · ")} 더 필요).
++          </p>
++          <button
++            type="button"
++            onClick={() => onChange(coverFigureGrid(grid, content))}
++            className="w-full rounded border border-[var(--red)] bg-surface px-2 py-1"
++          >
++            그림이 다 들어가게 늘리기
++          </button>
++        </div>
++      )}
++      <div className="grid grid-cols-3 gap-2">
++        {number("가로 칸", grid.cols, 1, GRID_MAX_CELLS, 1, (v) =>
++          resizeFigureGrid(grid, "x", v),
++        )}
++        {number("세로 칸", grid.rows, 1, GRID_MAX_CELLS, 1, (v) =>
++          resizeFigureGrid(grid, "y", v),
++        )}
++        {number("칸 크기", cell, 4, 200, 1, (v) => ({
++          ...grid,
++          cellW: v,
++          cellH: v,
++        }))}
++      </div>
++      <div className="flex flex-wrap items-center gap-1">
++        <span className="mr-1 text-muted">자리</span>
++        {(
++          [
++            ["←", -1, 0],
++            ["↑", 0, -1],
++            ["↓", 0, 1],
++            ["→", 1, 0],
++          ] as const
++        ).map(([name, dx, dy]) => (
++          <button
++            type="button"
++            key={name}
++            aria-label={`모눈 한 칸 ${name}`}
++            onClick={() => move(dx, dy)}
++            className="rounded border border-control px-2 py-1"
++          >
++            {name}
++          </button>
++        ))}
++        <button
++          type="button"
++          onClick={onCenter}
++          className="rounded border border-control px-2 py-1"
++        >
++          가운데로
++        </button>
++      </div>
++      <div className="flex flex-wrap items-center gap-1">
++        <span className="mr-1 text-muted">선</span>
++        {GRID_COLORS.map(([name, color]) => (
++          <button
++            type="button"
++            key={color}
++            aria-pressed={grid.color.toLowerCase() === color}
++            onClick={() => onChange({ ...grid, color })}
++            className={`flex items-center gap-1 rounded border px-2 py-1 ${grid.color.toLowerCase() === color ? "border-ink" : "border-control"}`}
++          >
++            <span
++              aria-hidden="true"
++              className="inline-block h-3 w-3 rounded-sm border border-control"
++              style={{ background: color }}
++            />
++            {name}
++          </button>
++        ))}
++      </div>
++      <div className="flex flex-wrap items-center gap-1">
++        <span className="mr-1 text-muted">굵기</span>
++        {GRID_WIDTHS.map((width) => (
++          <button
++            type="button"
++            key={width}
++            aria-pressed={grid.width === width}
++            onClick={() => onChange({ ...grid, width })}
++            className={`rounded border px-2 py-1 ${grid.width === width ? "border-ink" : "border-control"}`}
++          >
++            {width}
++          </button>
++        ))}
++        <label className="ml-2 flex items-center gap-1">
++          <input
++            type="checkbox"
++            checked={grid.dashed}
++            onChange={(e) => onChange({ ...grid, dashed: e.target.checked })}
++          />
++          점선
++        </label>
++      </div>
++      <p className="leading-relaxed text-muted">
++        모눈은 그림 맨 뒤 배경이라 캔버스에서 고르지 않습니다. 칸 수를 바꿔도 그림은 그대로이고, 칸은 양쪽으로 반씩
++        늘고 줍니다. 둘레 여백은 «틀 · 세부»의 «다 보이게»로 맞춥니다.
++      </p>
++      <button
++        type="button"
++        onClick={onRemove}
++        className="w-full rounded border border-control px-2 py-1.5 text-g-red-text"
++      >
++        모눈 지우기
++      </button>
++    </div>
++  );
++}
+diff --git a/src/components/unified/figure-editor/FigureLabelInput.tsx b/src/components/unified/figure-editor/FigureLabelInput.tsx
+index ccb7426..b8f3162 100644
+--- a/src/components/unified/figure-editor/FigureLabelInput.tsx
++++ b/src/components/unified/figure-editor/FigureLabelInput.tsx
+@@ -3,11 +3,16 @@ import { hwpToLatex } from "@/lib/math/hwpEquation";
+ import { FIGURE_SYMBOL_GROUPS, figureSymbolInput } from "./figureSymbols";
+ 
+ // Local adapter for Mathgen's label editor. TeX metadata is unchanged; no MathLive assets are required.
++// math-figure-editor: 벡터·선분·호 틀을 더했다(2026-10-21 — 벡터 그림을 손으로 고칠 방법이 없었다).
++// todays-math 상류에는 아직 없는 세 줄이다.
+ const MATH_TEMPLATES = [
+   ["분수", "\\frac{}{}"],
+   ["제곱", "^{2}"],
+   ["아래첨자", "_{}"],
+   ["루트", "\\sqrt{}"],
++  ["벡터", "\\vec{}"],
++  ["선분", "\\overline{}"],
++  ["호", "\\overparen{}"],
+   ["π", "\\pi"],
+   ["θ", "\\theta"],
+ ] as const;
+@@ -17,6 +22,16 @@ export const isFigureMathLabel = (value: string) =>
+   value.trim().endsWith("$");
+ const unwrap = (value: string) =>
+   isFigureMathLabel(value) ? value.trim().slice(1, -1) : value;
++/**
++ * 수식 라벨의 한글(HWP) 수식 문법을 TeX 로 — 입력칸 확정(commit)과 **새 글자를 놓는 순간**이 같이 쓴다.
++ * math-figure-editor(2026-10-21): 수식을 치고 Enter 없이 캔버스를 누르면, 입력칸이 바꾸기 전 값으로 글자가
++ * 놓여 `root2` 가 그대로 남았다(상류 공통 결함). 그래서 놓는 쪽도 같은 변환을 거친다. 일반 글자는 그대로.
++ */
++export function hwpLabelToTex(value: string): string {
++  if (!isFigureMathLabel(value)) return value;
++  const result = hwpToLatex(unwrap(value));
++  return result.changed ? `$${result.latex}$` : value;
++}
+ export const figureLabelSummary = (value: string) =>
+   unwrap(value).replace(/\\(?:left|right)\b/g, "");
+ 
+@@ -41,6 +56,8 @@ export function FigureLabelInput({
+     isFigureMathLabel(value) ? "math" : "text",
+   );
+   const input = useRef<HTMLInputElement>(null);
++  // math-figure-editor: 한글 수식 변환 경고(«중괄호 짝이 맞지 않습니다» 등) — 상류는 버렸다. 다시 치면 지운다.
++  const [warning, setWarning] = useState("");
+   /** 자판·도구로 넣은 뒤 둘 커서 자리 — 그 값이 그려진 같은 커밋에서 놓는다(한 프레임 늦으면 그새 친 글자가 갈라진다). */
+   const pendingCursor = useRef<number | null>(null);
+   useLayoutEffect(() => {
+@@ -59,6 +76,7 @@ export function FigureLabelInput({
+     if (mode !== "math") return;
+     const result = hwpToLatex(unwrap(value));
+     if (result.changed) update(result.latex);
++    setWarning(result.changed && result.warnings.length ? result.warnings.join(" · ") : "");
+   };
+   const insert = (latex: string) => {
+     const plain = unwrap(value),
+@@ -97,7 +115,10 @@ export function FigureLabelInput({
+         ref={input}
+         aria-label={mode === "math" ? `${idPrefix} 수식` : idPrefix}
+         value={unwrap(value)}
+-        onChange={(event) => update(event.target.value)}
++        onChange={(event) => {
++          setWarning("");
++          update(event.target.value);
++        }}
+         onKeyDown={(event) => {
+           if (event.key === "Enter" && !event.nativeEvent.isComposing) commit();
+         }}
+@@ -108,6 +129,11 @@ export function FigureLabelInput({
+         }
+         spellCheck={false}
+       />
++      {warning && (
++        <p role="status" className="text-xs leading-relaxed text-g-red-text">
++          한글 수식을 TeX 로 바꿨습니다 — {warning}. 결과를 확인해 주세요.
++        </p>
++      )}
+       {/* 특수문자 자판 — 휴대폰 자판의 기호 쪽처럼 무리 탭 + 문자 격자. 누르면 입력칸의 커서 자리에 넣는다
+           (누를 때 입력칸 초점·선택을 뺏지 않는다). 모양은 «일반 글자 | 수식» 전환과 수식 도구 단추의 것. */}
+       <div className="space-y-1.5">
+diff --git a/src/components/unified/figure-editor/FigureObjectList.tsx b/src/components/unified/figure-editor/FigureObjectList.tsx
+index fa9f53e..165611f 100644
+--- a/src/components/unified/figure-editor/FigureObjectList.tsx
++++ b/src/components/unified/figure-editor/FigureObjectList.tsx
+@@ -1,6 +1,7 @@
+ import { memo, useRef, useState, type DragEvent } from "react";
+ import type { figureObjects } from "./figureSvgEditing";
+ import { figureLabelSummary } from "./FigureLabelInput";
++import { FigureChipText } from "./FigureChipText";
+ import {
+   isAngleKind,
+   objectName,
+@@ -103,7 +104,15 @@ export const FigureObjectList = memo(
+           >
+             {numberOf.get(o.id)}
+           </span>
+-          {short && <span className="max-w-28 truncate">{short}</span>}
++          {short && (
++            <span className="max-w-28 truncate">
++              {/* math-figure-editor: 수식 글자는 조판한 모양으로(FigureChipText) */}
++              <FigureChipText
++                text={short}
++                raw={o.type === "text" ? (o.attrs["data-mj"] ?? o.text) : undefined}
++              />
++            </span>
++          )}
+         </button>
+       );
+     };
+diff --git a/src/components/unified/figure-editor/FigurePanelFold.tsx b/src/components/unified/figure-editor/FigurePanelFold.tsx
+index 3a03b35..da6a26e 100644
+--- a/src/components/unified/figure-editor/FigurePanelFold.tsx
++++ b/src/components/unified/figure-editor/FigurePanelFold.tsx
+@@ -5,12 +5,13 @@ import { isFaceObject } from "./figureFaceSources";
+ type FigureObject = ReturnType<typeof figureObjects>[number];
+ 
+ /** 오른쪽 칸의 무리 셋 — 시안 D 의 차례. */
+-export type FigurePanelFoldName = "배치" | "모양" | "틀 · 세부";
++// math-figure-editor: «모눈»(배경 모눈, figureGrid.ts)을 더했다 — 상류에는 없는 무리.
++export type FigurePanelFoldName = "배치" | "모양" | "모눈" | "틀 · 세부";
+ 
+ /** 처음 펼침 — 배치·모양은 펼쳐 두고 틀·세부만 접는다(원장님 2026-09-21 확정). */
+ export const FIGURE_PANEL_FOLDS_OPEN: Readonly<
+   Record<FigurePanelFoldName, boolean>
+-> = { 배치: true, 모양: true, "틀 · 세부": false };
++> = { 배치: true, 모양: true, 모눈: false, "틀 · 세부": false };
+ 
+ /**
+  * 오른쪽 칸 접는 무리 — 원장님 2026-09-21 확정 «안 D — 접는 무리»(시안 docs/design/mockups/wire-t43-figure-panel.html D).
+diff --git a/src/components/unified/figure-editor/figureGrid.ts b/src/components/unified/figure-editor/figureGrid.ts
+new file mode 100644
+index 0000000..eacf3b6
+--- /dev/null
++++ b/src/components/unified/figure-editor/figureGrid.ts
+@@ -0,0 +1,310 @@
++/**
++ * 모눈 배경 — math-figure-editor 2026-10-21 «배경을 모눈으로 만들고 그 위에 그린다. 배경 전체가 모눈이면 안 되고
++ * 원본처럼 여백은 남겨서(복사·붙여넣기에 좋게). 가로세로 선을 조절할 수 있게».
++ *
++ * 모눈은 **요소가 아니라 배경 층 하나**다 — `<g data-grid="x y 칸폭 칸높이 열 행">` 안의 `<path>` 한 줄.
++ * - 엔진(`scripts/figure/graph_scene.py` 의 `grid_svg`)이 graph-1 `grid` 칸으로 같은 모양을 낸다. 두 곳이 같은
++ *   속성을 읽고 쓴다 — 엔진이 그린 모눈도 여기서 칸 수·간격을 고친다.
++ * - 편집기는 `[data-grid]` 안을 요소로 세지 않는다(`prepareFigureSvg` 의 번호 매기기). 그래서 고르기·옮기기·
++ *   AI «요청대로 고치기»의 요소 목록에 안 걸리고, 모눈 위를 눌러도 빈 곳을 누른 것과 같다.
++ * - 칸은 화면에서 정사각형이 기본이다(인쇄 모눈종이). 엔진이 낸 모눈도 칸폭 = 칸높이다.
++ *
++ * todays-math 상류에는 없는 파일이다(이 저장소에서 처음 생겼다).
++ */
++import {
++  editableFigureDoc,
++  readFigureSvg,
++  serializeFigureSvg,
++  SVG_NS,
++} from "./figureSvgEditing";
++
++export interface FigureGrid {
++  /** 왼쪽 위 모서리(그림 좌표) */
++  x: number;
++  y: number;
++  /** 칸 한 변(그림 좌표) — 가로·세로 */
++  cellW: number;
++  cellH: number;
++  cols: number;
++  rows: number;
++  color: string;
++  width: number;
++  dashed: boolean;
++}
++
++export const GRID_MAX_CELLS = 60;
++export const GRID_COLORS = [
++  ["연하게", "#cccccc"],
++  ["보통", "#aaaaaa"],
++  ["진하게", "#777777"],
++] as const;
++export const GRID_WIDTHS = [0.5, 0.8, 1.2] as const;
++const DEFAULT_COLOR = "#aaaaaa";
++const DEFAULT_WIDTH = 0.8;
++const DASH = "3 3";
++const NON_RENDERING = new Set(
++  "defs title desc clipPath mask marker pattern linearGradient radialGradient".split(
++    " ",
++  ),
++);
++
++const round = (v: number) => Math.round(v * 100) / 100;
++const clampInt = (v: number, lo: number, hi: number) =>
++  Math.min(hi, Math.max(lo, Math.round(v)));
++
++/** 모눈 선 — 바깥 테두리까지 열+1·행+1 줄. 엔진 `grid_svg` 와 같은 꼴(M x y V y1 · M x y H x1). */
++export function figureGridPath(g: FigureGrid): string {
++  const x1 = g.x + g.cellW * g.cols;
++  const y1 = g.y + g.cellH * g.rows;
++  let d = "";
++  for (let i = 0; i <= g.cols; i++)
++    d += `M${round(g.x + g.cellW * i)} ${round(g.y)}V${round(y1)}`;
++  for (let j = 0; j <= g.rows; j++)
++    d += `M${round(g.x)} ${round(g.y + g.cellH * j)}H${round(x1)}`;
++  return d;
++}
++
++function gridElement(doc: Document) {
++  return doc.documentElement.querySelector(":scope > g[data-grid]");
++}
++
++function parseGrid(node: Element): FigureGrid | null {
++  const values = (node.getAttribute("data-grid") ?? "")
++    .trim()
++    .split(/\s+/)
++    .map(Number);
++  if (values.length !== 6 || !values.every(Number.isFinite)) return null;
++  const [x, y, cellW, cellH, cols, rows] = values;
++  if (cellW <= 0 || cellH <= 0 || cols < 1 || rows < 1) return null;
++  const dash = node.getAttribute("stroke-dasharray");
++  return {
++    x,
++    y,
++    cellW,
++    cellH,
++    cols: clampInt(cols, 1, GRID_MAX_CELLS),
++    rows: clampInt(rows, 1, GRID_MAX_CELLS),
++    color: node.getAttribute("stroke") ?? DEFAULT_COLOR,
++    width: Number(node.getAttribute("stroke-width")) || DEFAULT_WIDTH,
++    dashed: !!dash && dash !== "none",
++  };
++}
++
++/** 그림의 모눈 — 없으면 null. */
++export function readFigureGrid(svg: string): FigureGrid | null {
++  const doc = readFigureSvg(svg);
++  const node = gridElement(doc);
++  return node ? parseGrid(node) : null;
++}
++
++const viewBoxOf = (root: Element) => {
++  const v = (root.getAttribute("viewBox") ?? "")
++    .trim()
++    .split(/[\s,]+/)
++    .map(Number);
++  return v.length === 4 && v.every(Number.isFinite) && v[2] > 0 && v[3] > 0
++    ? v
++    : null;
++};
++
++/**
++ * 새로 깔 모눈 — 지금 틀 안에 **여백을 남기고** 정사각형 칸으로 채운다. 칸 크기는 짧은 변을 12칸쯤으로.
++ * 이미 그려 둔 것은 그대로다(모눈은 맨 뒤 층).
++ */
++export function defaultFigureGrid(svg: string): FigureGrid {
++  const root = readFigureSvg(svg).documentElement;
++  const [vx, vy, vw, vh] = viewBoxOf(root) ?? [0, 0, 480, 360];
++  const margin = Math.max(8, Math.min(vw, vh) * 0.08);
++  const cell = Math.max(6, Math.round((Math.min(vw, vh) - margin * 2) / 12));
++  const cols = clampInt((vw - margin * 2) / cell, 1, GRID_MAX_CELLS);
++  const rows = clampInt((vh - margin * 2) / cell, 1, GRID_MAX_CELLS);
++  return {
++    x: round(vx + (vw - cols * cell) / 2),
++    y: round(vy + (vh - rows * cell) / 2),
++    cellW: cell,
++    cellH: cell,
++    cols,
++    rows,
++    color: DEFAULT_COLOR,
++    width: DEFAULT_WIDTH,
++    dashed: false,
++  };
++}
++
++/**
++ * 모눈을 깔거나 고치거나(grid) 걷는다(null). 모눈이 틀 밖으로 나가면 **틀을 넓혀** 여백까지 들인다
++ * (줄이지는 않는다 — 줄이기는 «다 보이게»). 모눈은 늘 맨 뒤 층이다.
++ */
++export function setFigureGrid(svg: string, grid: FigureGrid | null): string {
++  const doc = editableFigureDoc(svg);
++  const root = doc.documentElement;
++  const old = gridElement(doc);
++  if (!grid) {
++    if (!old) return svg;
++    old.remove();
++    return serializeFigureSvg(doc);
++  }
++  const g: FigureGrid = {
++    ...grid,
++    cols: clampInt(grid.cols, 1, GRID_MAX_CELLS),
++    rows: clampInt(grid.rows, 1, GRID_MAX_CELLS),
++    cellW: Math.max(1, grid.cellW),
++    cellH: Math.max(1, grid.cellH),
++  };
++  const node = doc.createElementNS(SVG_NS, "g");
++  node.setAttribute(
++    "data-grid",
++    [g.x, g.y, g.cellW, g.cellH, g.cols, g.rows].map(round).join(" "),
++  );
++  node.setAttribute("fill", "none");
++  node.setAttribute("stroke", /^#[0-9a-f]{6}$/i.test(g.color) ? g.color : DEFAULT_COLOR);
++  node.setAttribute("stroke-width", String(g.width > 0 ? g.width : DEFAULT_WIDTH));
++  if (g.dashed) node.setAttribute("stroke-dasharray", DASH);
++  const path = doc.createElementNS(SVG_NS, "path");
++  path.setAttribute("d", figureGridPath(g));
++  node.append(path);
++  if (old) old.replaceWith(node);
++  else {
++    const first = [...root.children].find(
++      (child) => !NON_RENDERING.has(child.localName),
++    );
++    root.insertBefore(node, first ?? null);
++  }
++  growFrame(root, g);
++  return serializeFigureSvg(doc);
++}
++
++function growFrame(root: Element, g: FigureGrid) {
++  const view = viewBoxOf(root);
++  if (!view) return;
++  const [vx, vy, vw, vh] = view;
++  const margin = Math.max(8, Math.min(g.cellW * g.cols, g.cellH * g.rows) * 0.05);
++  const left = Math.min(vx, g.x - margin);
++  const top = Math.min(vy, g.y - margin);
++  const right = Math.max(vx + vw, g.x + g.cellW * g.cols + margin);
++  const bottom = Math.max(vy + vh, g.y + g.cellH * g.rows + margin);
++  if (left === vx && top === vy && right === vx + vw && bottom === vy + vh)
++    return;
++  const w = right - left;
++  const h = bottom - top;
++  root.setAttribute("viewBox", [left, top, w, h].map(round).join(" "));
++  // width·height 는 원문에 있을 때만 — 틀과 같은 비로 늘린다.
++  if (root.hasAttribute("width")) root.setAttribute("width", String(round(w)));
++  if (root.hasAttribute("height")) root.setAttribute("height", String(round(h)));
++}
++
++/**
++ * 모눈을 틀 가운데로 — 칸 수·크기는 그대로. **칸 단위로만** 옮긴다: 그림의 끝점이 격자점에 놓여 있으므로
++ * 반 칸이라도 밀면 모든 끝점이 격자에서 벗어난다.
++ */
++export function centerFigureGrid(svg: string, grid: FigureGrid): FigureGrid {
++  const root = readFigureSvg(svg).documentElement;
++  const view = viewBoxOf(root);
++  if (!view) return grid;
++  const [vx, vy, vw, vh] = view;
++  const shiftX = Math.round((vx + (vw - grid.cellW * grid.cols) / 2 - grid.x) / grid.cellW);
++  const shiftY = Math.round((vy + (vh - grid.cellH * grid.rows) / 2 - grid.y) / grid.cellH);
++  return {
++    ...grid,
++    x: round(grid.x + shiftX * grid.cellW),
++    y: round(grid.y + shiftY * grid.cellH),
++  };
++}
++
++/**
++ * 칸 수 바꾸기 — 2026-10-21 «칸수를 늘리더라도 그림이 찌그러지지 않게». 그림은 손대지 않고 모눈만 늘고 준다.
++ * 늘거나 준 칸은 **양쪽에 반씩**(홀수면 오른쪽·아래가 한 칸 더), 그리고 칸 단위라 격자점이 그대로다.
++ */
++export function resizeFigureGrid(grid: FigureGrid, axis: "x" | "y", count: number): FigureGrid {
++  const n = Math.min(GRID_MAX_CELLS, Math.max(1, Math.round(count)));
++  const current = axis === "x" ? grid.cols : grid.rows;
++  const lead = Math.trunc((n - current) / 2);
++  return axis === "x"
++    ? { ...grid, cols: n, x: round(grid.x - lead * grid.cellW) }
++    : { ...grid, rows: n, y: round(grid.y - lead * grid.cellH) };
++}
++
++export interface FigureBox {
++  x: number;
++  y: number;
++  width: number;
++  height: number;
++}
++
++/**
++ * 그림의 선·도형이 차지한 상자(그림 좌표). 글자는 뺀다 — 축 이름처럼 모눈 밖에 두는 글자가 흔하다.
++ * 화면에 몰래 그려 잰다(`fitFigureViewport` 와 같은 방식). 잴 수 없는 환경이면 null.
++ */
++export function measureFigureContent(svg: string): FigureBox | null {
++  if (typeof document === "undefined") return null;
++  const host = document.createElement("div");
++  host.style.cssText =
++    "position:fixed;left:-20000px;top:0;width:800px;visibility:hidden;pointer-events:none";
++  host.innerHTML = svg;
++  document.body.append(host);
++  try {
++    const root = host.querySelector("svg");
++    const toUser = root?.getScreenCTM?.()?.inverse();
++    if (!root || !toUser) return null;
++    let left = Infinity;
++    let top = Infinity;
++    let right = -Infinity;
++    let bottom = -Infinity;
++    for (const el of root.querySelectorAll<SVGGraphicsElement>("[data-object-id]")) {
++      if (el.localName === "text" || el.closest("text,[data-grid]")) continue;
++      const b = el.getBBox?.();
++      const m = el.getScreenCTM?.();
++      if (!b || !m || (b.width === 0 && b.height === 0)) continue;
++      for (const [px, py] of [
++        [b.x, b.y],
++        [b.x + b.width, b.y],
++        [b.x, b.y + b.height],
++        [b.x + b.width, b.y + b.height],
++      ] as const) {
++        const p = new DOMPoint(px, py).matrixTransform(m).matrixTransform(toUser);
++        left = Math.min(left, p.x);
++        top = Math.min(top, p.y);
++        right = Math.max(right, p.x);
++        bottom = Math.max(bottom, p.y);
++      }
++    }
++    return Number.isFinite(left)
++      ? { x: left, y: top, width: right - left, height: bottom - top }
++      : null;
++  } catch {
++    return null;
++  } finally {
++    host.remove();
++  }
++}
++
++/** 그림이 모눈 밖으로 나간 칸 수(쪽마다). 선 굵기만큼은 봐준다(칸의 0.15). */
++export function gridShortfall(grid: FigureGrid, box: FigureBox) {
++  const need = (overflow: number, cell: number) =>
++    overflow > cell * 0.15 ? Math.ceil(overflow / cell - 0.15) : 0;
++  return {
++    left: need(grid.x - box.x, grid.cellW),
++    right: need(box.x + box.width - (grid.x + grid.cellW * grid.cols), grid.cellW),
++    top: need(grid.y - box.y, grid.cellH),
++    bottom: need(box.y + box.height - (grid.y + grid.cellH * grid.rows), grid.cellH),
++  };
++}
++
++/** 모자란 칸만큼 늘려 그림이 다 들어가게 — 칸 단위라 격자점이 그대로다. */
++export function coverFigureGrid(grid: FigureGrid, box: FigureBox): FigureGrid {
++  const s = gridShortfall(grid, box);
++  return {
++    ...grid,
++    x: round(grid.x - s.left * grid.cellW),
++    y: round(grid.y - s.top * grid.cellH),
++    cols: Math.min(GRID_MAX_CELLS, grid.cols + s.left + s.right),
++    rows: Math.min(GRID_MAX_CELLS, grid.rows + s.top + s.bottom),
++  };
++}
++
++export function figureGridSummary(grid: FigureGrid | null, content?: FigureBox | null) {
++  if (!grid) return "없음 · 깔기";
++  const s = content ? gridShortfall(grid, content) : null;
++  const short = s && s.left + s.right + s.top + s.bottom > 0;
++  return `${grid.cols} × ${grid.rows} 칸${short ? " · ⚠ 그림이 모눈 밖" : ""}`;
++}
+diff --git a/src/components/unified/figure-editor/figureSvgEditing.ts b/src/components/unified/figure-editor/figureSvgEditing.ts
+index 5960593..32cf39e 100644
+--- a/src/components/unified/figure-editor/figureSvgEditing.ts
++++ b/src/components/unified/figure-editor/figureSvgEditing.ts
+@@ -16,7 +16,7 @@ const STYLE_PROPERTIES = new Set(
+   ),
+ );
+ const METADATA =
+-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last)$/;
++  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid)$/;
+ const safeValue = (value: string) =>
+   !/[\\<>@\u0000-\u001f]/.test(value) &&
+   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
+@@ -237,7 +237,8 @@ export function prepareFigureSvg(source?: string) {
+   }
+   let index = 0;
+   for (const node of doc.querySelectorAll(SHAPES)) {
+-    if (!node.closest("defs,clipPath,mask,marker,pattern")) {
++    // `[data-grid]` — 모눈 배경 층(figureGrid.ts)은 요소가 아니다(math-figure-editor 추가).
++    if (!node.closest("defs,clipPath,mask,marker,pattern,[data-grid]")) {
+       node.setAttribute("data-object-id", `obj-${index++}`);
+       // 번호는 요소에 붙은 값 — 틀리게 적힌 것은 지우고 아래 writeNumbers 가 새로 준다
+       if (!validNumber(node.getAttribute(NUMBER_ATTR)))
+diff --git a/src/components/unified/figure-editor/mathjaxLabel.ts b/src/components/unified/figure-editor/mathjaxLabel.ts
+index cf98ec7..17d6dec 100644
+--- a/src/components/unified/figure-editor/mathjaxLabel.ts
++++ b/src/components/unified/figure-editor/mathjaxLabel.ts
+@@ -27,6 +27,7 @@ import { TeX } from "mathjax-full/js/input/tex.js";
+ import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
+ import { mathjax } from "mathjax-full/js/mathjax.js";
+ import { SVG } from "mathjax-full/js/output/svg.js";
++import { promoteVectorLabels } from "@/lib/figure/vectorLabel";
+ 
+ /** MathJax 내부 좌표: **1 em = 1000 단위**. */
+ const EM_UNITS = 1000;
+@@ -114,7 +115,8 @@ function toTex(label: string): string {
+   if (wasMath) {
+     text = text.slice(1, -1);
+   }
+-  if (/\\[a-zA-Z]/.test(text)) return text.replace(/°/g, "^\\circ ");
++  // math-figure-editor(2026-10-21): 벡터 라벨은 todays-math 본문 조판과 같게(`lib/figure/vectorLabel.ts`).
++  if (/\\[a-zA-Z]/.test(text)) return promoteVectorLabels(text).replace(/°/g, "^\\circ ");
+   // ⚠️ **낱말 → `\mathrm` 을 먼저** 하고 `°` 를 나중에 옮긴다. 순서를 바꾸면 방금
+   //    넣은 `\circ` 의 `circ` 가 낱말로 잡혀 `\mathrm{circ}` 가 되고, 지면에
+   //    `125^\mathrm{circ}` 같은 날 글자가 그대로 나간다(실측으로 그랬다).
+diff --git a/src/components/unified/figure-editor/types.ts b/src/components/unified/figure-editor/types.ts
+index 1c44ac8..e5172ba 100644
+--- a/src/components/unified/figure-editor/types.ts
++++ b/src/components/unified/figure-editor/types.ts
+@@ -42,6 +42,10 @@ export interface StudioFigureEditorProps {
+   image: string;
+   originalImage?: string;
+   initialSvg?: string;
++  /** math-figure-editor: 열 때 위 띠에 띄울 안내(자동 작도의 경고 등) — 상류에는 없는 칸. */
++  initialNotice?: string;
++  /** math-figure-editor: «원본으로 다시 그리기» 진행 단계(«원본과 대조하는 중» 등) — 단추 글자로 보인다. */
++  redrawStage?: string;
+   index: number;
+   /** 편집기 머리의 도형 번호(작업실 «도형 9-1») — 없으면 «도형 {index + 1}». */
+   label?: string;
+diff --git a/src/lib/dev-ai/figure-prompt.ts b/src/lib/dev-ai/figure-prompt.ts
+index 878e0aa..6847968 100644
+--- a/src/lib/dev-ai/figure-prompt.ts
++++ b/src/lib/dev-ai/figure-prompt.ts
+@@ -6,6 +6,7 @@ const dataBlock = (value: unknown) =>
+   JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
+ 
+ /** Ported from Mathgen's active api/_ai-figure.ts, not its retired OCR prompts. */
++// math-figure-editor: 모눈종이 한 줄(graph-1 grid, 2026-10-21)을 더했다 — todays-math 상류에는 없다.
+ export function buildFigureSpecPrompt(
+   request: DevAiRequest,
+   repair?: { spec: DevAiFigureSpec; error: string },
+@@ -17,7 +18,7 @@ Reproduce visible labels exactly; do not invent dimensions, points, extra constr
+ FigureSpec v2 uses screen y downward. graph-1 uses mathematical y UP. Prefer FigureSpec v2 for geometry; graph-1 for function graphs with any annotations, finite/horizontal segments, inscribed polygons or custom axis labels; elem-1 for supported charts, solids and elementary figures.
+ IMPORTANT: v2 on_circle angle/angle_deg uses mathematical degrees even though raw coordinates have y downward: x = cx + r*cos(angle), y = cy - r*sin(angle). Zero is right, +90 is above, -90 is below; a point above and to the right of its center needs a positive acute angle, not a negative one. Arc dir:"ccw" is counter-clockwise on screen and dir:"cw" is clockwise. Check constructed point positions and the intended short/long arc against the original crop; never assume angle signs follow the raw y axis.
+ Concept maps, flowcharts and relation diagrams made of shape boxes, arrows and Korean words (e.g. 사다리꼴 → 평행사변형 → 직사각형 with ㉠, ㉡ beside the arrows) ARE supported: draw them with graph-1 axes:false — polygons for the boxes (each box in its printed shape: trapezoid, parallelogram, rhombus, square), segments with arrow:true for the arrows, and plain-text labels for the words. Write Korean words and circled letters (㉠, ①) as plain text without $. For undistorted geometric shapes, account for graph-1 padding: the drawing area is (width - 96) by (height - 96), so (width - 96)/(height - 96) must equal (xMax - xMin)/(yMax - yMin). Keep width within 240..640 and height within 200..640 because the engine clamps them. Prefer equal coordinate spans and equal canvas dimensions for concept maps so squares stay square. Return spec:null ONLY when the image cannot be expressed as geometric elements at all (a photo, an illustration, a freehand drawing) - never because you judge a label, character or shape unsupported.
+-A wavy axis-break mark (물결선 ∿) printed on an axis where the scale skips values (e.g. between O and the first tick of a scatter plot) is graph-1 axisBreaks: put its at ON the axis line and set axis to the axis it cuts; never imitate it with short segments. graph-1 axes:true draws the axes through data 0 only - when the printed O is not at data (0,0), set axes:false and draw both axes as segments with arrow:true.
++A figure printed on 모눈종이 (graph paper: vectors, polygons or points drawn on a square grid) uses graph-1 with grid — count the printed cells exactly, set axes:false unless printed axes exist, put every vector as a segment with arrow:true, and never draw grid lines as segments. A wavy axis-break mark (물결선 ∿) printed on an axis where the scale skips values (e.g. between O and the first tick of a scatter plot) is graph-1 axisBreaks: put its at ON the axis line and set axis to the axis it cuts; never imitate it with short segments. graph-1 axes:true draws the axes through data 0 only - when the printed O is not at data (0,0), set axes:false and draw both axes as segments with arrow:true.
+ Use the graph-1 contract exactly, including polynomial coefficients in descending power order. For elem-1, use version:"elem-1" and kind with exactly the catalog's required/optional fields. A right:true marker REQUIRES perpendicular coordinates. A construction circle must be visible only if drawn in the crop. Engine validation is authoritative and is the ONLY judge of what the engine can draw: never decide yourself that it cannot render something. Korean words, circled letters (㉠, ①), other special characters, arrows and shape boxes ARE drawn - write them as plain text without $. Only content the engine itself rejects remains the original crop.
+ A graph-1 curve's domain is where the PRINTED curve actually starts and ends: read both end x-values from the original crop, never choose them yourself or run one side further. When the original's two ends sit at the same height on a symmetric curve such as a parabola, make the domain symmetric about the vertex so both ends reach that same height.
+ For v2, points, segments, circles, angles, dimensions and labels MUST be named OBJECT maps, never anonymous arrays. Example: segments:{"AB":["A","B"]}, labels:{"A":"A"}. A dashed v2 segment is {"points":["A","B"],"dashed":"5 3"}.
+diff --git a/src/lib/figure/mathjaxLabel.ts b/src/lib/figure/mathjaxLabel.ts
+index f0d841a..976f6ce 100644
+--- a/src/lib/figure/mathjaxLabel.ts
++++ b/src/lib/figure/mathjaxLabel.ts
+@@ -26,6 +26,7 @@ import "@/components/unified/figure-editor/mathjaxBrowserVersion";
+ import { liteAdaptor } from "mathjax-full/js/adaptors/liteAdaptor.js";
+ import { RegisterHTMLHandler } from "mathjax-full/js/handlers/html.js";
+ import { TeX } from "mathjax-full/js/input/tex.js";
++import { promoteVectorLabels } from "./vectorLabel";
+ import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
+ import { mathjax } from "mathjax-full/js/mathjax.js";
+ import { SVG } from "mathjax-full/js/output/svg.js";
+@@ -95,7 +96,8 @@ function toTex(label: string): string {
+   if (wasMath) {
+     text = text.slice(1, -1);
+   }
+-  if (/\\[a-zA-Z]/.test(text)) return text.replace(/°/g, "^\\circ ");
++  // math-figure-editor(2026-10-21): 벡터 라벨은 todays-math 본문 조판과 같게(`vectorLabel.ts`).
++  if (/\\[a-zA-Z]/.test(text)) return promoteVectorLabels(text).replace(/°/g, "^\\circ ");
+   // ⚠️ **낱말 → `\mathrm` 을 먼저** 하고 `°` 를 나중에 옮긴다. 순서를 바꾸면 방금
+   //    넣은 `\circ` 의 `circ` 가 낱말로 잡혀 `\mathrm{circ}` 가 되고, 지면에
+   //    `125^\mathrm{circ}` 같은 날 글자가 그대로 나간다(실측으로 그랬다).
+diff --git a/src/lib/figure/vectorLabel.ts b/src/lib/figure/vectorLabel.ts
+new file mode 100644
+index 0000000..0c36b7c
+--- /dev/null
++++ b/src/lib/figure/vectorLabel.ts
+@@ -0,0 +1,25 @@
++/**
++ * 도형 라벨 표기 규칙 — math-figure-editor(2026-10-21). 도형 라벨 조판 두 곳(엔진 라벨 `lib/figure/mathjaxLabel`,
++ * 편집기 캔버스 `figure-editor/mathjaxLabel`)이 같이 쓴다. 한 곳만 고치면 캔버스와 저장본이 다른 모양을 그린다.
++ *
++ * todays-math 본문 조판(`components/math/editor/textPreprocess.ts` 의 VEC_MULTI_REGEX·VEC_SINGLE_UPPER_REGEX·
++ * PURE_LABEL_REGEX)과 같게:
++ * - 두 글자 이상 대문자 `\vec{AB}` → `\overrightarrow{\mathrm{AB}}` — `\vec` 의 짧은 화살은 가운데만 덮는다.
++ * - 한글 수식 `arch AB` 가 바뀐 `\overset{\frown}{AB}` → `\overparen{AB}` — 작은 ⌒ 대신 글자 폭만큼 긴 호.
++ * - 선분·화살·호·각 위의 **순수 대문자 이름**(`AB`·`A'`)은 점 이름이라 정자 — `\overline{\mathrm{AB}}`.
++ * - 소문자 `\vec{a}` 는 그대로(변수라 이탤릭).
++ */
++const OVERLAY = "overline|overrightarrow|overparen|widehat|vec";
++
++export function figureLabelMarks(tex: string): string {
++  return tex
++    .replace(/\\overset\{\s*\\frown\s*\}\s*\{/g, "\\overparen{")
++    .replace(/\\vec\{\s*([A-Z][A-Z']+)\s*\}/g, (_m, l: string) => `\\overrightarrow{${l}}`)
++    .replace(
++      new RegExp(`\\\\(${OVERLAY})\\{\\s*([A-Z][A-Z']*)\\s*\\}`, "g"),
++      (_m, command: string, l: string) => `\\${command}{\\mathrm{${l}}}`,
++    );
++}
++
++/** 예전 이름 — 같은 함수. */
++export const promoteVectorLabels = figureLabelMarks;

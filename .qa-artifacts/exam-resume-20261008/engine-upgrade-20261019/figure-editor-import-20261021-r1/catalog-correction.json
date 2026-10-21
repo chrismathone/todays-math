@@ -1,0 +1,26 @@
+{
+  "beforeSHA256": "2231afad6fc09d83b268157ea52c64e93e161fc41f7711b93ac75a0a4213a867",
+  "afterSHA256": "54a665d1d3c1d96873e73241ed2a48f87356b22b2891507e6d992c4314642f36",
+  "changes": [
+    {
+      "path": "/elementary/pictograph/optional",
+      "before": [],
+      "after": [
+        "hideUnit"
+      ]
+    },
+    {
+      "path": "/elementary/rotateFlip/optional",
+      "before": [
+        "n"
+      ],
+      "after": [
+        "n",
+        "showAfter"
+      ]
+    }
+  ],
+  "generatedFromActualOwnedEngine": true,
+  "newEngineRenderCapabilitiesClaim": false,
+  "existingQuestionOrDBWrites": 0
+}

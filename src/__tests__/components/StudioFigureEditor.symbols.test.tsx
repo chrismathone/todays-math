@@ -156,6 +156,20 @@ describe("특수문자 자판 — 무리 탭과 문자 격자", () => {
 });
 
 describe("특수문자 자판 — 넣기", () => {
+  it('places converted root2 on the canvas without Enter', async () => {
+    open();
+    await waitFor(() => expect(screen.getByLabelText('도형 편집 캔버스')).toHaveAttribute('aria-busy','false'));
+    fireEvent.click(screen.getByRole('button',{name:'글자'}));
+    fireEvent.click(within(screen.getByRole('group',{name:'추가할 도형 글자 종류'})).getByRole('button',{name:'수식'}));
+    const input=screen.getByLabelText('추가할 도형 글자 수식');
+    fireEvent.change(input,{target:{value:'root2'}});
+    expect(input).toHaveValue('root2');
+    const canvas=document.querySelector('#figure-editor-canvas svg')!;
+    fireEvent.pointerDown(canvas,{button:0,clientX:320,clientY:220,pointerId:1,isPrimary:true});
+    await waitFor(()=>expect(document.querySelectorAll('#figure-editor-canvas text')).toHaveLength(3));
+    expect(document.querySelectorAll('#figure-editor-canvas text')[2]).toHaveAttribute('data-mj','$\\sqrt{2}$');
+  });
+
   it("커서 자리에 넣고, 커서는 넣은 글자 뒤·입력칸에 초점", async () => {
     open();
     pickNumber(1);

@@ -1,0 +1,261 @@
+{
+  "utc": "2026-10-21T09:37:35.757Z",
+  "results": [
+    {
+      "width": 1920,
+      "height": 900,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 160,
+        "right": 1760,
+        "top": 16,
+        "bottom": 884,
+        "documentWidth": 1920,
+        "viewport": 1920,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-1920-900-r3.png",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 1263,
+        "top": 16,
+        "bottom": 784,
+        "documentWidth": 1280,
+        "viewport": 1280,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-1280-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 1050,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 1033,
+        "top": 16,
+        "bottom": 784,
+        "documentWidth": 1050,
+        "viewport": 1050,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-1050-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 751,
+        "top": 16,
+        "bottom": 784,
+        "documentWidth": 768,
+        "viewport": 768,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-768-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 760,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 743,
+        "top": 30,
+        "bottom": 770,
+        "documentWidth": 760,
+        "viewport": 760,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-760-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 373,
+        "top": 30,
+        "bottom": 770,
+        "documentWidth": 390,
+        "viewport": 390,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-390-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "height": 800,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 303,
+        "top": 30,
+        "bottom": 770,
+        "documentWidth": 320,
+        "viewport": 320,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-320-800-r3.png",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 600,
+      "nonGridGeometryUnchanged": true,
+      "dialogAndDocumentFit": true,
+      "box": {
+        "left": 17,
+        "right": 1263,
+        "top": 16,
+        "bottom": 584,
+        "documentWidth": 1280,
+        "viewport": 1280,
+        "grid": "-58 48 53 53 12 5",
+        "rawMathLabels": 0,
+        "vectorChips": 2,
+        "hiddenControls": 1
+      },
+      "screenshot": "viewport-1280-600-r3.png",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "blocked": [],
+  "code": [
+    {
+      "path": "src/__tests__/components/FigureGridPanel.test.tsx",
+      "sha256": "714278e15893361791a01c6e5bc42ce59705c9cfba105d4a4105e9bc30152898"
+    },
+    {
+      "path": "src/__tests__/components/FigureLabelInput.test.tsx",
+      "sha256": "5343313cd97db5821de05d6df9894746a016a02c50737a8bc4fe2144eeef2579"
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.symbols.test.tsx",
+      "sha256": "76108836fe9297c5529c87db86bd84fc8a50e7facf4af09d4f4f8e536759f852"
+    },
+    {
+      "path": "src/__tests__/unit/devAiFigureEngine.test.ts",
+      "sha256": "e1139643cee3fc996abc53f38d809ea313f787fe3e1ba957d1549f0fc81790fb"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridBoundaries.test.ts",
+      "sha256": "309f6424f5a4504faac4bf87301ba3d9d6400167eb15a50597094355ef41483b"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridLabels.test.ts",
+      "sha256": "4b1f5392d6ec3cb10aeb4795fff9149a41d2db91953a1cff4872d495acdd84fb"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureChipText.tsx",
+      "sha256": "3f33d1d7bf32ec80bd9f061f5f764bc50889a27b614a25ca355377e3e71c8087"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "sha256": "f9bf7e185e9ec7ff0ae1ea11311903146886013b0b12132e5737ce869491dce8"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGridPanel.tsx",
+      "sha256": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "sha256": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureObjectList.tsx",
+      "sha256": "e3ee5af5a6af462550fe99e773989c8cb564980caafcff3709ee36f73d973582"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigurePanelFold.tsx",
+      "sha256": "a9fe571b36f29804316304c6083672e24581e4a12b1657fc03f0f6d27cfd33b8"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGrid.ts",
+      "sha256": "a6cbdd2939c74c2b3b9fbd590491f709fc246e4d0c0261cde1c9090e72ac3136"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGridMetadata.ts",
+      "sha256": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "sha256": "287eea446899a7b5acf4aa2bad4734bac59e469cdb16f5c67cfff758dc04143f"
+    },
+    {
+      "path": "src/components/unified/figure-editor/mathjaxLabel.ts",
+      "sha256": "8935c6216c6d9dc632a66a88af1c78e8f3cc3e9e472433880811e6a5bab3bc61"
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "sha256": "8684850718da1452615eb7eae5714bad2c5cf6810ba34c9a139a29fc81a8efef"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "sha256": "d97c5eeb3322469892c5b182f1613ef1b9379ccbd61d8b2710112097e96b54b6"
+    },
+    {
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "sha256": "b1a5be21da5e6eebed9d140a042aedb415750daafa31058990577b0beeda2659"
+    },
+    {
+      "path": "src/lib/figure/vectorLabel.ts",
+      "sha256": "f4f003091d49fd84304a29835bf2533f13f6d5a933984a9087beb9880867acd5"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "actualRootComponent": true,
+  "privateViteFixture": true,
+  "boundedTailwindScan": true,
+  "operationalAPIOrDBCalls": 0,
+  "newAuthoredOrApprovedQuestions": 0,
+  "pixelMathOracle": false,
+  "fullWorkspaceOrPrintReview": false,
+  "success": true
+}

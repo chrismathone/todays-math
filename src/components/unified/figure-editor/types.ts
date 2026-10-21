@@ -42,6 +42,10 @@ export interface StudioFigureEditorProps {
   image: string;
   originalImage?: string;
   initialSvg?: string;
+  /** math-figure-editor: 열 때 위 띠에 띄울 안내(자동 작도의 경고 등) — 상류에는 없는 칸. */
+  initialNotice?: string;
+  /** math-figure-editor: «원본으로 다시 그리기» 진행 단계(«원본과 대조하는 중» 등) — 단추 글자로 보인다. */
+  redrawStage?: string;
   index: number;
   /** 편집기 머리의 도형 번호(작업실 «도형 9-1») — 없으면 «도형 {index + 1}». */
   label?: string;

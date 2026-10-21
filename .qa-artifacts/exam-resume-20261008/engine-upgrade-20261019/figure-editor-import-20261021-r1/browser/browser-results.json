@@ -1,0 +1,102 @@
+{
+  "utc": "2026-10-21T09:23:51.695Z",
+  "results": [],
+  "errors": [
+    "TimeoutError: Waiting failed: 30000ms exceeded\n    at new WaitTask (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/common/WaitTask.js:46:34)\n    at IsolatedWorld.waitForFunction (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/api/Realm.js:49:26)\n    at CdpFrame.waitForFunction (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/api/Frame.js:580:43)\n    at CdpFrame.<anonymous> (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/util/decorators.js:101:27)\n    at CdpPage.waitForFunction (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:1447:37)\n    at file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/figure-editor-import-20261021-r1/browser/verify.mjs:43:15"
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "blocked": [],
+  "code": [
+    {
+      "path": "src/__tests__/components/FigureGridPanel.test.tsx",
+      "sha256": "714278e15893361791a01c6e5bc42ce59705c9cfba105d4a4105e9bc30152898"
+    },
+    {
+      "path": "src/__tests__/components/FigureLabelInput.test.tsx",
+      "sha256": "5343313cd97db5821de05d6df9894746a016a02c50737a8bc4fe2144eeef2579"
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.symbols.test.tsx",
+      "sha256": "76108836fe9297c5529c87db86bd84fc8a50e7facf4af09d4f4f8e536759f852"
+    },
+    {
+      "path": "src/__tests__/unit/devAiFigureEngine.test.ts",
+      "sha256": "e1139643cee3fc996abc53f38d809ea313f787fe3e1ba957d1549f0fc81790fb"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridBoundaries.test.ts",
+      "sha256": "309f6424f5a4504faac4bf87301ba3d9d6400167eb15a50597094355ef41483b"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridLabels.test.ts",
+      "sha256": "b899b31e36d3dba443513e5a233bbda2f1e891514f6fa2cb0c446842aa9d6689"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureChipText.tsx",
+      "sha256": "3f33d1d7bf32ec80bd9f061f5f764bc50889a27b614a25ca355377e3e71c8087"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "sha256": "f9bf7e185e9ec7ff0ae1ea11311903146886013b0b12132e5737ce869491dce8"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGridPanel.tsx",
+      "sha256": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "sha256": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureObjectList.tsx",
+      "sha256": "e3ee5af5a6af462550fe99e773989c8cb564980caafcff3709ee36f73d973582"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigurePanelFold.tsx",
+      "sha256": "a9fe571b36f29804316304c6083672e24581e4a12b1657fc03f0f6d27cfd33b8"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGrid.ts",
+      "sha256": "a6cbdd2939c74c2b3b9fbd590491f709fc246e4d0c0261cde1c9090e72ac3136"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGridMetadata.ts",
+      "sha256": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "sha256": "287eea446899a7b5acf4aa2bad4734bac59e469cdb16f5c67cfff758dc04143f"
+    },
+    {
+      "path": "src/components/unified/figure-editor/mathjaxLabel.ts",
+      "sha256": "efa07de9fe38b09d943f43b09a1fb87dcf581d61acb3deb38eddc07126b7a5b5"
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "sha256": "8684850718da1452615eb7eae5714bad2c5cf6810ba34c9a139a29fc81a8efef"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "sha256": "d97c5eeb3322469892c5b182f1613ef1b9379ccbd61d8b2710112097e96b54b6"
+    },
+    {
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "sha256": "a1e06d4d3bd696f2516d8e7bea456775ee069aa0048cb4af791f316981131678"
+    },
+    {
+      "path": "src/lib/figure/vectorLabel.ts",
+      "sha256": "f4f003091d49fd84304a29835bf2533f13f6d5a933984a9087beb9880867acd5"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "actualRootComponent": true,
+  "privateViteFixture": true,
+  "boundedTailwindScan": true,
+  "operationalAPIOrDBCalls": 0,
+  "newAuthoredOrApprovedQuestions": 0,
+  "pixelMathOracle": false,
+  "fullWorkspaceOrPrintReview": false,
+  "success": false
+}

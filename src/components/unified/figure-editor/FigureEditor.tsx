@@ -52,6 +52,16 @@ import {
 import { modKey } from "./platform";
 import { carryTypeset, typesetFigureSvg } from "./figureTypeset";
 import { fitFrameToContent, renderFittedFigure } from "./figureFrame";
+import {
+  centerFigureGrid,
+  defaultFigureGrid,
+  figureGridSummary,
+  measureFigureContent,
+  readFigureGrid,
+  setFigureGrid,
+  type FigureBox,
+} from "./figureGrid";
+import { FigureGridPanel } from "./FigureGridPanel";
 import { previewFigureObjects } from "./figureDragPreview";
 import {
   figureHandles,
@@ -59,7 +69,7 @@ import {
   moveFigureHandle,
   snapFigurePoint,
 } from "./figureHandles";
-import { FigureLabelInput } from "./FigureLabelInput";
+import { FigureLabelInput, hwpLabelToTex } from "./FigureLabelInput";
 import { addMidLabel, midLabelTarget } from "./figureMidLabel";
 import { isTextInputEvent } from "./keyboard";
 import {
@@ -210,6 +220,8 @@ export function FigureEditor({
   image,
   originalImage,
   initialSvg,
+  initialNotice,
+  redrawStage,
   index,
   label: figureLabel,
   onSave,
@@ -337,7 +349,7 @@ export function FigureEditor({
     redrawController.current?.abort();
     onClose();
   };
-  const [error, setError] = useState(initial.error);
+  const [error, setError] = useState(initial.error || initialNotice || "");
   const [sourceOverlay, setSourceOverlay] = useState(false);
   const [sourceOverlayScale, setSourceOverlayScale] = useState(1);
   const [showNumbers, setShowNumbers] = useState(true);
@@ -345,6 +357,16 @@ export function FigureEditor({
   const [folds, setFolds] = useState(FIGURE_PANEL_FOLDS_OPEN);
   const toggleFold = (name: FigurePanelFoldName) =>
     setFolds((open) => ({ ...open, [name]: !open[name] }));
+  // 배경 모눈(math-figure-editor) — 요소가 아니라 그림 맨 뒤 층. 오른쪽 «모눈» 무리에서만 고친다.
+  const grid = useMemo(() => readFigureGrid(svg), [svg]);
+  // 그림의 선·도형 상자 — 모눈이 그보다 작으면 «모눈» 칸이 경고한다. 끄는 동안 매 걸음 재지 않게 잠깐 미룬다.
+  const [gridContent, setGridContent] = useState<FigureBox | null>(null);
+  const hasGrid = !!grid;
+  useEffect(() => {
+    if (!hasGrid) return;
+    const timer = window.setTimeout(() => setGridContent(measureFigureContent(svg)), 150);
+    return () => window.clearTimeout(timer);
+  }, [svg, hasGrid]);
   const [showSourcePanel, setShowSourcePanel] = useState(
     () =>
       !!(
@@ -1151,7 +1173,10 @@ export function FigureEditor({
         drag.current.multiple = selectionDrag(root, dragIds, e);
       }
     } else if (tool === "text") {
-      const result = addFigureObject(svg, "text", start, start, label);
+      // 수식 칸에 친 한글 수식이 아직 안 바뀌었으면(Enter 없이 바로 누름) 여기서 바꿔 놓는다(math-figure-editor).
+      const placed = hwpLabelToTex(label);
+      if (placed !== label) setLabel(placed);
+      const result = addFigureObject(svg, "text", start, start, placed);
       commit(result.svg);
       setSelected(result.id);
       setTool("select");
@@ -1690,7 +1715,7 @@ export function FigureEditor({
                       className="mt-2 w-full rounded border border-control px-2 py-1 text-xs hover:bg-slate-50 disabled:opacity-50"
                     >
                       {redrawing && !editing
-                        ? "처리 중…"
+                        ? redrawStage || "처리 중…"
                         : "원본으로 다시 그리기"}
                     </button>
                   ) : (
@@ -1700,7 +1725,9 @@ export function FigureEditor({
                       disabled={busy || !original || !onRedraw}
                       className="mt-2 w-full"
                     >
-                      {busy ? "처리 중…" : "원본으로 다시 그리기"}
+                      {busy
+                        ? (redrawing && !editing && redrawStage) || "처리 중…"
+                        : "원본으로 다시 그리기"}
                     </Btn>
                   ))}
                 <p className="text-xs text-muted mt-3">
@@ -2565,6 +2592,23 @@ export function FigureEditor({
                 />
               </FigurePanelFold>
             ) : null}
+            <FigurePanelFold
+              name="모눈"
+              summary={figureGridSummary(grid, gridContent)}
+              open={folds.모눈}
+              onToggle={() => toggleFold("모눈")}
+            >
+              <FigureGridPanel
+                grid={grid}
+                content={gridContent}
+                onAdd={() => commit(setFigureGrid(svg, defaultFigureGrid(svg)))}
+                onChange={(next) => commit(setFigureGrid(svg, next))}
+                onCenter={() =>
+                  grid && commit(setFigureGrid(svg, centerFigureGrid(svg, grid)))
+                }
+                onRemove={() => commit(setFigureGrid(svg, null))}
+              />
+            </FigurePanelFold>
             <FigurePanelFold
               name="틀 · 세부"
               summary={detailSummary(!!current)}

@@ -5,12 +5,13 @@ import { isFaceObject } from "./figureFaceSources";
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
 /** 오른쪽 칸의 무리 셋 — 시안 D 의 차례. */
-export type FigurePanelFoldName = "배치" | "모양" | "틀 · 세부";
+// math-figure-editor: «모눈»(배경 모눈, figureGrid.ts)을 더했다 — 상류에는 없는 무리.
+export type FigurePanelFoldName = "배치" | "모양" | "모눈" | "틀 · 세부";
 
 /** 처음 펼침 — 배치·모양은 펼쳐 두고 틀·세부만 접는다(원장님 2026-09-21 확정). */
 export const FIGURE_PANEL_FOLDS_OPEN: Readonly<
   Record<FigurePanelFoldName, boolean>
-> = { 배치: true, 모양: true, "틀 · 세부": false };
+> = { 배치: true, 모양: true, 모눈: false, "틀 · 세부": false };
 
 /**
  * 오른쪽 칸 접는 무리 — 원장님 2026-09-21 확정 «안 D — 접는 무리»(시안 docs/design/mockups/wire-t43-figure-panel.html D).

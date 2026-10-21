@@ -1,6 +1,7 @@
 import { memo, useRef, useState, type DragEvent } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { figureLabelSummary } from "./FigureLabelInput";
+import { FigureChipText } from "./FigureChipText";
 import {
   isAngleKind,
   objectName,
@@ -103,7 +104,15 @@ export const FigureObjectList = memo(
           >
             {numberOf.get(o.id)}
           </span>
-          {short && <span className="max-w-28 truncate">{short}</span>}
+          {short && (
+            <span className="max-w-28 truncate">
+              {/* math-figure-editor: 수식 글자는 조판한 모양으로(FigureChipText) */}
+              <FigureChipText
+                text={short}
+                raw={o.type === "text" ? (o.attrs["data-mj"] ?? o.text) : undefined}
+              />
+            </span>
+          )}
         </button>
       );
     };

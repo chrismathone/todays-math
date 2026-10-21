@@ -55,6 +55,17 @@ function renderLabel(initial = "$$") {
 }
 
 describe("[도형 글자 칸] 수식 탭 — 한글 수식 입력", () => {
+  it('keeps a conversion warning across an unchanged blur and Enter', async () => {
+    const {user}=renderLabel();
+    const field=screen.getByLabelText('라벨 수식');
+    await user.click(field);await user.paste('root{2');await user.keyboard('{Enter}');
+    expect(screen.getByRole('status')).toHaveTextContent('중괄호 짝이 맞지 않습니다');
+    await user.click(screen.getByRole('button',{name:'다른 곳'}));
+    expect(screen.getByRole('status')).toHaveTextContent('중괄호 짝이 맞지 않습니다');
+    await user.click(field);await user.keyboard('{Enter}');
+    expect(screen.getByRole('status')).toHaveTextContent('중괄호 짝이 맞지 않습니다');
+  });
+
   it("Enter 로 확정하면 한글 수식이 TeX 로 바뀐다 — root2 → √2", async () => {
     const { user, last } = renderLabel();
     const field = screen.getByLabelText("라벨 수식");

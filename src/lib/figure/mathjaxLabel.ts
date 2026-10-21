@@ -23,6 +23,7 @@
 import { liteAdaptor } from "mathjax-full/js/adaptors/liteAdaptor.js";
 import { RegisterHTMLHandler } from "mathjax-full/js/handlers/html.js";
 import { TeX } from "mathjax-full/js/input/tex.js";
+import { promoteVectorLabels } from "./vectorLabel";
 import { AllPackages } from "mathjax-full/js/input/tex/AllPackages.js";
 import { mathjax } from "mathjax-full/js/mathjax.js";
 import { SVG } from "mathjax-full/js/output/svg.js";
@@ -92,7 +93,8 @@ function toTex(label: string): string {
   if (wasMath) {
     text = text.slice(1, -1);
   }
-  if (/\\[a-zA-Z]/.test(text)) return text.replace(/°/g, "^\\circ ");
+  // math-figure-editor(2026-10-21): 벡터 라벨은 todays-math 본문 조판과 같게(`vectorLabel.ts`).
+  if (/\\[a-zA-Z]/.test(text)) return promoteVectorLabels(text).replace(/°/g, "^\\circ ");
   // ⚠️ **낱말 → `\mathrm` 을 먼저** 하고 `°` 를 나중에 옮긴다. 순서를 바꾸면 방금
   //    넣은 `\circ` 의 `circ` 가 낱말로 잡혀 `\mathrm{circ}` 가 되고, 지면에
   //    `125^\mathrm{circ}` 같은 날 글자가 그대로 나간다(실측으로 그랬다).
@@ -302,6 +304,9 @@ export function isSafeFragment(fragment: string): boolean {
 }
 
 const SAFE_TAGS = new Set([
+  // MathJax stretches long arrows/bars/arcs with a nested SVG viewport.
+  // The same event, URL and non-drawing-element checks still apply inside it.
+  "svg",
   "g",
   "path",
   "rect",
