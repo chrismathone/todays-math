@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db8-b6dc-7cb0-92aa-45b333c8b2ae",
+ "startedAt": "2026-10-21T18:09:08+0900",
+ "elapsedSec": 15.9,
+ "studentSha256": {
+  "fig-1.png": "8bf00203feafe234e4d284deb0e34c6421a80012a65d3d147ff803691c34e963",
+  "student.json": "b7be8c029f8193cde8c9a0d24f347396e550dd29a09595d57dd65a98b6aeeacc"
+ },
+ "promptSha256": "3a0ede35d7d33bc9892f638ddaad25dbc33cb5a4b0c44921310317225f71e5be",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"닮음비는 AB:EF=4:10=2:5이다. 대응변의 비에서 x:9=2:5이므로 x=18/5, 6:y=2:5이므로 y=15이다. 따라서 5x+y=18+15=33이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "닮음비는 AB:EF=4:10=2:5이다. 대응변의 비에서 x:9=2:5이므로 x=18/5, 6:y=2:5이므로 y=15이다. 따라서 5x+y=18+15=33이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e2d50b95ab7714b0561b171b318c9c9a4c5bf1144c8b59e027fbbd76732497df"
+}

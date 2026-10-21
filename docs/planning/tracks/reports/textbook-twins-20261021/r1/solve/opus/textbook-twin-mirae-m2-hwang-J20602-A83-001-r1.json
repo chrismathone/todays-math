@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A83-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "4d21de16-e243-4c97-bb45-17c670986665",
+ "startedAt": "2026-10-21T17:07:20+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "fig-1.png": "36424a4e9d891eb644bf54322fc36e5bc73b9fc2a5f4509519180a2e0c234a5c",
+  "student.json": "f4652348b9f283ce277b44a8b964946efa229ea7d01fbab5f069187fa2be98a1"
+ },
+ "promptSha256": "ce3224b786c014d86f34dbc3911d321dfe207f535e081f2bef14479cf2ebbea6",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ④\", \"work\": \"그림에서 AB=6 cm, BC=9 cm, ∠B=35°이고 EF=6 cm, ∠E=35°, ∠F=50°이다. 두 삼각형은 ∠B=∠E를 이미 공유한다. ② SAS 닮음: AB:DE=BC:EF=9:6=3:2이면 DE=6×2/3=4 cm이다. 따라서 DE=4 cm이면 △ABC∽△DEF이다. ④ AA 닮음: ∠C=50°=∠F이고 ∠B=∠E이므로 △ABC∽△DEF이다. ①은 성립하지 않는다. ∠D=180°−35°−50°=95°인데 ∠A=85°라서 닮음이 되지 않는다. ⑤ DE=5 cm이면 6:5와 9:6의 비가 같지 않다. ③ AC는 ∠B 사이에 끼인 변이 아니어서 대응하는 조건을 만들지 못한다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ④",
+  "work": "그림에서 AB=6 cm, BC=9 cm, ∠B=35°이고 EF=6 cm, ∠E=35°, ∠F=50°이다. 두 삼각형은 ∠B=∠E를 이미 공유한다. ② SAS 닮음: AB:DE=BC:EF=9:6=3:2이면 DE=6×2/3=4 cm이다. 따라서 DE=4 cm이면 △ABC∽△DEF이다. ④ AA 닮음: ∠C=50°=∠F이고 ∠B=∠E이므로 △ABC∽△DEF이다. ①은 성립하지 않는다. ∠D=180°−35°−50°=95°인데 ∠A=85°라서 닮음이 되지 않는다. ⑤ DE=5 cm이면 6:5와 9:6의 비가 같지 않다. ③ AC는 ∠B 사이에 끼인 변이 아니어서 대응하는 조건을 만들지 못한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d1984c327d0eae6c308b89fd74a01e64a2a427f79b96ec13e50f6e6bffe73b1"
+}

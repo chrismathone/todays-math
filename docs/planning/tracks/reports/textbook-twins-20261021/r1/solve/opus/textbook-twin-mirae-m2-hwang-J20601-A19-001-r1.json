@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A19-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d6e1dabb-5c5c-4f1e-803e-a2942c5d39bf",
+ "startedAt": "2026-10-21T17:07:08+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "3616f87157ccd06fd3d22f8f109fd2033b322914800d381f906d0293ba516ff3"
+ },
+ "promptSha256": "8794424c8314bb53fc5b524093d5a1c2f6602498cc4488b2b0a7478f2f8d370c",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"정다각형, 구, 정다면체는 모양이 하나로 정해져 크기만 다를 수 있으므로 항상 닮음이다. 정오각형, 구, 정육면체, 정팔면체가 여기에 해당한다. 부채꼴은 중심각이 다르면 모양이 달라지므로 항상 닮음이라고 할 수 없다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "정다각형, 구, 정다면체는 모양이 하나로 정해져 크기만 다를 수 있으므로 항상 닮음이다. 정오각형, 구, 정육면체, 정팔면체가 여기에 해당한다. 부채꼴은 중심각이 다르면 모양이 달라지므로 항상 닮음이라고 할 수 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7afe9141e6fe89d7edf7c513b9c48d8037dfb7a556950a7edc719d4d14680e54"
+}

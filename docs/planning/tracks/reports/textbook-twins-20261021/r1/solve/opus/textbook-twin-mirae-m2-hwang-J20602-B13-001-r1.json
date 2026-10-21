@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B13-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "533162e2-22a3-47a0-8302-202c5f3d97de",
+ "startedAt": "2026-10-21T17:07:38+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "4ef24e1e76201b9f92dcd90a0bcf545d760f6209637b37fbe1b351b7f5cc9422",
+  "student.json": "10e8a648b04591fe328dab0c748823dbce8550f29fff307cbb22e012fd1a6213"
+ },
+ "promptSha256": "fad7dd724ada1988e9917e5d969b2843b60049eb62559c283357a0936314d018",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"4 m\", \"work\": \"△ABC ∽ △ADE (AA 닮음: ∠A 공통, ∠ABC = ∠ADE = 90°). AB : AD = BC : DE에서 4 : (4+6) = 1.6 : DE, 따라서 DE = 1.6 × 10/4 = 4 (m)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "4 m",
+  "work": "△ABC ∽ △ADE (AA 닮음: ∠A 공통, ∠ABC = ∠ADE = 90°). AB : AD = BC : DE에서 4 : (4+6) = 1.6 : DE, 따라서 DE = 1.6 × 10/4 = 4 (m)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "277cdbe50b2f1596bf9d5b168a68aaf8cbeef3ada38118b54119047fd4dafc7f"
+}

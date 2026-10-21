@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A86-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dba-cb01-7cd0-a992-bc497021a501",
+ "startedAt": "2026-10-21T18:11:25+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "c8df77c242740aad41e67e944252ae19c9b81dfbbb0d5669236d7099974a860c",
+  "student.json": "3c6a869dee39b0ae48a869152a4e344aee484a67a391b32d9062c6611cca5a09"
+ },
+ "promptSha256": "e8aa086a9a69895f3964cccf739d8e93f6bfb60e09d3539f54658dff1370100e",
+ "freezeCommit": "88900ddb669ee1feb5d70023f2035f6b19f826da",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12 m\",\"work\":\"같은 시각에 막대와 나무가 만드는 직각삼각형은 서로 닮음이다. 나무의 높이를 x m라 하면 x:20=3:5이므로 x=20×3÷5=12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12 m",
+  "work": "같은 시각에 막대와 나무가 만드는 직각삼각형은 서로 닮음이다. 나무의 높이를 x m라 하면 x:20=3:5이므로 x=20×3÷5=12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7aa3c48346951e5fa42e5d7f88e8cfcc2d273fa02ae7987d6a7b5cfe32327fbc"
+}

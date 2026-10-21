@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db8-1987-7b12-b503-c07b71e7e1f8",
+ "startedAt": "2026-10-21T18:08:28+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "fig-1.png": "06d4c6c6d3eaf005ed60a06e6d051c2910dc43397e3f0adec046c8dfda05da6e",
+  "student.json": "b449846f01499e796e5bda05ccfb6df6ba83d9d769b2bbb33cb5401439df4951"
+ },
+ "promptSha256": "59d34561550db0d0524ba20d4b7245558a7b8a278139a32ebef2e4bcf6718399",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"AD∥CE이므로 ∠AEC=∠DAE=33°이다.\\nAC=CE이므로 ∠CAE=33°, 따라서 ∠ACE=180°−66°=114°이다.\\nB, C, E가 한 직선 위에 있으므로 ∠BCA=66°이다. AB=AC이므로 ∠ABC=∠BCA=66°이다.\\n평행사변형의 마주 보는 각은 같으므로 ∠ADC=∠ABC=66°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "AD∥CE이므로 ∠AEC=∠DAE=33°이다.\nAC=CE이므로 ∠CAE=33°, 따라서 ∠ACE=180°−66°=114°이다.\nB, C, E가 한 직선 위에 있으므로 ∠BCA=66°이다. AB=AC이므로 ∠ABC=∠BCA=66°이다.\n평행사변형의 마주 보는 각은 같으므로 ∠ADC=∠ABC=66°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5190ace3fe98a16eb1b8594a0737a631a9b6673c595680bb79c5bc6c9d76558c"
+}
