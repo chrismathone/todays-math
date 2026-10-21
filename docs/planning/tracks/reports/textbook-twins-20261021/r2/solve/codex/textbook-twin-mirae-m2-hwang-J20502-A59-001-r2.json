@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df2-9634-7d13-b0c7-cd3ba4093577",
+ "startedAt": "2026-10-21T19:12:21+0900",
+ "elapsedSec": 17.0,
+ "studentSha256": {
+  "fig-1.png": "0e660211bfaab908f7f6e0214d9fdc5c1527e2af95413a96346aa5a402a37332",
+  "student.json": "bfb3d42443629445bb019be68f6229390d743405665330c24dce3afb9f6ec010"
+ },
+ "promptSha256": "5e43e443f4a1cc1b91414c0442932ff7d2d391b6bd39675d7d199af9d46c4180",
+ "freezeCommit": "ecdcf189224c9fd6ba4dacca5b2b060180ff297a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"두 직각삼각형 ABE와 DBE는 빗변 BE가 공통이고 BA=BD이므로 합동이다.\\n따라서 ∠ABE=∠DBE=26°이므로 ∠ABC=52°, ∠ACB=38°이다.\\n직각삼각형 EDC에서 ∠x=90°−38°=52°이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "두 직각삼각형 ABE와 DBE는 빗변 BE가 공통이고 BA=BD이므로 합동이다.\n따라서 ∠ABE=∠DBE=26°이므로 ∠ABC=52°, ∠ACB=38°이다.\n직각삼각형 EDC에서 ∠x=90°−38°=52°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "77ae06798afc7a28897370fe86edc024e633c8513213f4908b312642c90a43b2"
+}

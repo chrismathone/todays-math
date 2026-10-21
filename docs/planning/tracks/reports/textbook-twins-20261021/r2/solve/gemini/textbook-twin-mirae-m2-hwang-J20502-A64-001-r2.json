@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A64-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "e5c3d39d-8588-4216-844c-257d65ce7263",
+ "startedAt": "2026-10-21T18:30:12+0900",
+ "elapsedSec": 110.9,
+ "studentSha256": {
+  "fig-1.png": "a1d3f0584f952f9b0e98193496b683ae4546ae077648da8dcb92e45481706cbf",
+  "student.json": "b5cae5eee2268b7d647b065f1e4023329623701c27dd4d5f49e82fb76dcaa3c6"
+ },
+ "promptSha256": "da3107219bea69e0cb4d175cd5f0655bb880e306c3349cbcb3534f6d0e00baa0",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"32 cm²\",\n  \"work\": \"\\\\triangle ABD와 \\\\triangle CAE에서 \\\\angle BDA = \\\\angle AEC = 90^\\\\circ, \\\\overline{AB} = \\\\overline{AC}, \\\\angle DBA = 90^\\\\circ - \\\\angle DAB = \\\\angle EAC이므로 \\\\triangle ABD \\\\equiv \\\\triangle CAE (RHA 합동)이다. 따라서 \\\\overline{DA} = \\\\overline{CE} = 2\\\\text{ cm}, \\\\overline{AE} = \\\\overline{BD} = 6\\\\text{ cm}이 되어 \\\\overline{DE} = 2 + 6 = 8\\\\text{ cm}이다. 사각형 DBCE는 \\\\overline{BD} \\\\parallel \\\\overline{CE}인 사다리꼴이므로 넓이는 \\\\frac{1}{2} \\\\times (6 + 2) \\\\times 8 = 32\\\\text{ cm}^2이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "32 cm²",
+  "work": "\\triangle ABD와 \\triangle CAE에서 \\angle BDA = \\angle AEC = 90^\\circ, \\overline{AB} = \\overline{AC}, \\angle DBA = 90^\\circ - \\angle DAB = \\angle EAC이므로 \\triangle ABD \\equiv \\triangle CAE (RHA 합동)이다. 따라서 \\overline{DA} = \\overline{CE} = 2\\text{ cm}, \\overline{AE} = \\overline{BD} = 6\\text{ cm}이 되어 \\overline{DE} = 2 + 6 = 8\\text{ cm}이다. 사각형 DBCE는 \\overline{BD} \\parallel \\overline{CE}인 사다리꼴이므로 넓이는 \\frac{1}{2} \\times (6 + 2) \\times 8 = 32\\text{ cm}^2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "35ad74a207cfb8a9b21906792feff8255cc783f8e2e0239d2aaf4547c78f8bf4"
+}

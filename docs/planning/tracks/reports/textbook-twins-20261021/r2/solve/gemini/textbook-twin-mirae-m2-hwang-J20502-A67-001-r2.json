@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A67-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "67b65023-fb7c-49e9-a18c-ee2e27c26d4b",
+ "startedAt": "2026-10-21T18:30:43+0900",
+ "elapsedSec": 24.1,
+ "studentSha256": {
+  "fig-1.png": "e2efe42a4fc37ee11b62b066c99c3b763ab0b5d9fb8c5e084fb3b44a2f1bb8fd",
+  "student.json": "1516b61965265dd2f9028fc0cc3fe79567d96f13b2d123e669e12627d46e5bb5"
+ },
+ "promptSha256": "30457953c5e161df92ea250defca55d0e2d2a9ae675ea6862c51662ecc07502e",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"52°\",\n  \"work\": \"직각삼각형의 합동(RHS 합동)에 의해 $\\\\triangle AED \\\\equiv \\\\triangle AFD$이므로 $\\\\angle FAD = \\\\frac{1}{2} \\\\angle BAC = \\\\frac{76^{\\\\circ}}{2} = 38^{\\\\circ}$이다. 따라서 직각삼각형 $AFD$에서 $\\\\angle ADF = 90^{\\\\circ} - 38^{\\\\circ} = 52^{\\\\circ}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "52°",
+  "work": "직각삼각형의 합동(RHS 합동)에 의해 $\\triangle AED \\equiv \\triangle AFD$이므로 $\\angle FAD = \\frac{1}{2} \\angle BAC = \\frac{76^{\\circ}}{2} = 38^{\\circ}$이다. 따라서 직각삼각형 $AFD$에서 $\\angle ADF = 90^{\\circ} - 38^{\\circ} = 52^{\\circ}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3e478d923c0657818db3251139ea94c3b12fe98acee6cb58e903a1f6d3f10e15"
+}
