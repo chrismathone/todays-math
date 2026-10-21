@@ -1,0 +1,63 @@
+{
+  "scope": "Read-only implementation plan review and own Python QA experiment; NOT current production opt-in implementation validation",
+  "status": "bounded64-case centerline design supported, general safety/default compatibility awaits implementation + regressions",
+  "executed": {
+    "actualDefaultRootNativeRenders": 64,
+    "ownQASharedIntervalNativeRenders": 64,
+    "ownAngleSampleComparisons": 128,
+    "smallAnalyticCases": 5,
+    "Node": 0,
+    "API": 0,
+    "DB": 0,
+    "productionEdits": 0
+  },
+  "ownResults": {
+    "strictZeroTolerance": 64,
+    "minimumSignedMargin": 0.00750192547521064,
+    "nonArcMarkupUnchanged64": 64,
+    "maximumSampleRadialDeviationFromSerializedCircle": 2.926374767397988e-06,
+    "maximumSerializedCenterDeviationFromTranslatedUnroundedVertex": 2.928925502805915e-06,
+    "maximumIntervalTranslationRoundoff": 4.440892098500626e-16,
+    "maximum17SamplePolylineSagitta": 0.06670129908644373
+  },
+  "independence": "Own complex dot/cross atan2 interval and own normal-dot halfplane extrema analysis, no copied parent counts/expected successes. Actual Root compile/resolve/sanitize with QA-only in-memory replacement of angle mark sampling+emit. Parent files read and hashed but not imported or executed.",
+  "sharedHelperRecommendation": [
+    "Expose a single unrounded SVG-y-down radians interval calculation with explicit default-false inset flag. Compute minor signed sweep once, trim1e-3rad symmetrically only when opted in. Sampling and emit must consume this interval; label bisector remains unchanged because symmetric trimming preserves midpoint.",
+    "Keep existing default angle_arc byte path literally unchanged. Inset helper can return interval to separate6-decimal endpoint serializer; do not globally change arc output precision or quantize ray/vertex coordinates.",
+    "Retain translation as additive endpoint position only; same interval in source coordinate space avoids independent recomputation. Observed translation recomputation error <=4.45e-16rad here, not a generic proof at arbitrary huge coordinate magnitudes.",
+    "The current `_angle_mark_polylines`17 samples are a collision heuristic with chords. Shared interval removes endpoint policy disagreement but does not make polyline equal actual circle: sagitta reaches~0.0667 here. Endpoint6-decimal rounding adds another small actual-circle perturbation. Keep analytic extrema/circle certificate for strict serialized boundary claims."
+  ],
+  "schemaAndFailureRequirements": [
+    "serialized_inset strict boolean, defaultfalse. Explicit true with right or perspective must reject, no coercion or silent flag removal. Preserve all existing arcs1/2/finite/radius/degenerate-ray checks.",
+    "Reject abs(minorSweep)<=2e-3rad (trim cannot leave positive sweep); reject nonfinite center/ray/radius, zero ray lengths, nonpositive effective radius for any requested inner mark. Verify tiny-angle/radius behavior rather than silently dropping same-angle marks.",
+    "Reject or fail validation if6-decimal serialized endpoints coincide, circle data invalid/nonfinite, or intended minor arc changes. Tiny-radius witness emits coincident endpoints before own analyzer rejects; QA candidate itself is not sufficient generic production guard.",
+    "Near-straight chord center reconstruction is sensitive; outside bounded M28 domain do not infer positive containment. Require actual serialized circular-arc halfplane checks or conservative certified numeric bounds if a general guarantee is intended."
+  ],
+  "tinyRadiusDisambiguation": {
+    "emittedPath": "M 0.000000 0.000000 A 1e-08 1e-08 0 0 1 0.000000 0.000000",
+    "meaning": "own-results smallCases acceptedByQAFormula=false records full emit+circle-analysis attempt, NOT an emitter guard. Emission succeeds; independent circle reconstruction rejects zero chord. No native rerender performed for this clarification."
+  },
+  "meaningAndLimits": [
+    "Only mark endpoints shorten: each gap1e-3rad about0.0572958degrees; true ray angle/labels remain original. Equal arcs retain count/radius but no longer touch rays; visual convention needs explicit review, not a changed mathematical angle.",
+    "Current minimum positive centerline clearance~.0075 is far below half mark stroke width; no entire-ink/stroke-envelope containment approval.",
+    "Own64 specs represent existing observed M28 finite conditions; no new actualAPI/432 RNG executions or student/blind counts.",
+    "No screenshot/pixel/physical print/readability oracle or grade/rights/source/native/operational approval."
+  ],
+  "mandatoryIntegrationGates": [
+    "Actual8 default exact output bytes preserved, including assets-only/new version fixtures; not run in this plan scope",
+    "Actual08 default outputs byte unchanged; no new opt-in there",
+    "Only new15A angle entries opt in; A/C given marks, labels, count, radius semantics and all other outputs protected",
+    "Stem/answer/solution/params/RNG consumption byte/call order unchanged; new adapter revision and policy/fingerprint binding for changed SVG spec",
+    "Run actual shared sampling+emit implementation with64 serializations, malformedflag/right/perspective/tiny/small/nonfinite negatives, and default snapshots; this QA monkeypatch is not that implementation"
+  ],
+  "sourceHashesUnchanged": true,
+  "boundFiles": 13,
+  "artifactSHA256": {
+    "own-after.json": "8dcd9f49c530ff33e261cdef4436f952a2d545723e5819cc6d4f404c85b95366",
+    "own-audit.py": "58eb462220ff4fb0bc5abd05d61ca043d46e31caf24210375831c370286e5b76",
+    "own-before.json": "8dcd9f49c530ff33e261cdef4436f952a2d545723e5819cc6d4f404c85b95366",
+    "own-finalize.py": "ff341fef6665cff8da2d0914c2201faa268e5f49463dd1c3a3e02fee3d9ec82a",
+    "own-probe.txt": "405486490aa93c457b3cd35634885f74290c7aca96fb22ce1ca9c766779bacd7",
+    "own-results.json": "17655687625a1c0395e68156d8efe2b537e0f84505fc1032477e40f4a49ee78e"
+  }
+}
