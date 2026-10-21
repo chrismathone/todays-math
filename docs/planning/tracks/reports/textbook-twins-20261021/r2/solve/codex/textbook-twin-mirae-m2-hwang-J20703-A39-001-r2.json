@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A39-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de2-6630-75e0-85fe-c777cb42500e",
+ "startedAt": "2026-10-21T18:54:40+0900",
+ "elapsedSec": 14.1,
+ "studentSha256": {
+  "fig-1.png": "1846e09bf54459b0de5d4040f0fc9c88befc43b447cebbf04bf7ebd70fcd5a5c",
+  "student.json": "0d038d38c649507c6cb14b472224acf6bf90d2781ff99713227ac8104763d836"
+ },
+ "promptSha256": "a9241d1257ceaf05a74b7b8b8688162d34e59d980050895ec0bfed8bd3ff3728",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"4.8 cm\",\n  \"work\": \"$\\\\triangle PQM\\\\sim\\\\triangle SRM$이므로 $QM:MR=PQ:RS=8:12=2:3$이다.\\n또한 $MN\\\\parallel RS$이므로 $\\\\triangle QMN\\\\sim\\\\triangle QRS$이다.\\n따라서 $MN=RS\\\\times\\\\frac{QM}{QR}=12\\\\times\\\\frac{2}{5}=4.8\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "4.8 cm",
+  "work": "$\\triangle PQM\\sim\\triangle SRM$이므로 $QM:MR=PQ:RS=8:12=2:3$이다.\n또한 $MN\\parallel RS$이므로 $\\triangle QMN\\sim\\triangle QRS$이다.\n따라서 $MN=RS\\times\\frac{QM}{QR}=12\\times\\frac{2}{5}=4.8\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b837f4a38f47f7470b5b63c3886cd6ff00412e6dd119c08c8231f7a2379db9d2"
+}

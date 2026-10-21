@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A39-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "348604d8-bb64-4f17-b199-6ca5c83553ed",
+ "startedAt": "2026-10-21T17:59:42+0900",
+ "elapsedSec": 7.3,
+ "studentSha256": {
+  "fig-1.png": "1846e09bf54459b0de5d4040f0fc9c88befc43b447cebbf04bf7ebd70fcd5a5c",
+  "student.json": "0d038d38c649507c6cb14b472224acf6bf90d2781ff99713227ac8104763d836"
+ },
+ "promptSha256": "7f03bd5d7d6eb2a533ac6132dc9d49b70c6e10e900c7a21b6610a7bbacb8313a",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"24/5 cm\", \"work\": \"PQ∥RS이므로 △MPQ∽△MSR(엇각)이고, QM:MR = PQ:RS = 8:12 = 2:3이다. △QRS에서 MN∥RS이므로 MN:RS = QM:QR = 2:5이다. 따라서 MN = 12×2/5 = 24/5 cm (4.8 cm)이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "24/5 cm",
+  "work": "PQ∥RS이므로 △MPQ∽△MSR(엇각)이고, QM:MR = PQ:RS = 8:12 = 2:3이다. △QRS에서 MN∥RS이므로 MN:RS = QM:QR = 2:5이다. 따라서 MN = 12×2/5 = 24/5 cm (4.8 cm)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b319233d8abd5b1720b1b63ab5cfe2190a37619c6da08734f5b7b6e85ec3fd6a"
+}

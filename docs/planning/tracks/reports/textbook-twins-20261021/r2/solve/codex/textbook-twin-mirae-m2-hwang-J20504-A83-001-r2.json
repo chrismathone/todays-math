@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A83-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de0-d763-7843-954c-d9dc92973beb",
+ "startedAt": "2026-10-21T18:52:58+0900",
+ "elapsedSec": 16.8,
+ "studentSha256": {
+  "fig-1.png": "7f74a4948fa52d1c62cfc08620d05c33d1539409bb9027f41a004f749af4d1c7",
+  "student.json": "cec7105dfd040c8732e0964abf9e452f5640826d8f52349b55a669a7b40bd267"
+ },
+ "promptSha256": "afabf7a6da2ed59beab64684a7b6c64abc6d76b6be808f48c259665addbe9025",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"∠B=2b, ∠C=2c라 하면 삼각형의 내각의 합에서 b+c=62°이다.\\nI가 내심이므로 BD, CE는 각각 ∠B, ∠C의 이등분선이다. 따라서 삼각형 BDC와 BEC에서 x=180°−b−2c, y=180°−2b−c이다.\\n그러므로 x+y=360°−3(b+c)=360°−186°=174°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "∠B=2b, ∠C=2c라 하면 삼각형의 내각의 합에서 b+c=62°이다.\nI가 내심이므로 BD, CE는 각각 ∠B, ∠C의 이등분선이다. 따라서 삼각형 BDC와 BEC에서 x=180°−b−2c, y=180°−2b−c이다.\n그러므로 x+y=360°−3(b+c)=360°−186°=174°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f143904d0678ddf3e7158ca1cc921386f09bb421a7a7290e2bf592f0f8acc3e0"
+}

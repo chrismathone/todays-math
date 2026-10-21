@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "beeca53b-69e8-46ec-bae3-046e630ca748",
+ "startedAt": "2026-10-21T18:02:02+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "9cead57e9b7a3f3f5b403b7c8f0abd422025851ad95996ac01d1eeaf7b5e2f44"
+ },
+ "promptSha256": "5902bb724d1f40769e45a2845a20320a75f1e7dcaeda8f1377146bae283b70d3",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"경험자의 수를 $x$명, 초보자의 수를 $y$명이라 하면 전체 참가자 수는 $x + y = 37$이다. 경험자 한 명과 초보자 한 명이 짝을 지었을 때 초보자가 $5$명 남았으므로 초보자의 수는 경험자보다 $5$명 더 많은 $y = x + 5$이다. $x + (x + 5) = 37$에서 $2x = 32$, $x = 16$이므로 초보자의 수는 $y = 16 + 5 = 21$(명)이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "경험자의 수를 $x$명, 초보자의 수를 $y$명이라 하면 전체 참가자 수는 $x + y = 37$이다. 경험자 한 명과 초보자 한 명이 짝을 지었을 때 초보자가 $5$명 남았으므로 초보자의 수는 경험자보다 $5$명 더 많은 $y = x + 5$이다. $x + (x + 5) = 37$에서 $2x = 32$, $x = 16$이므로 초보자의 수는 $y = 16 + 5 = 21$(명)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dc581bb285042d53a56c5c215dffdce642aa7132bef478d91257939c676312cd"
+}

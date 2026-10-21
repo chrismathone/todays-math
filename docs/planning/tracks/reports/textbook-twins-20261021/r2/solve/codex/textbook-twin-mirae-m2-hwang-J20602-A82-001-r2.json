@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A82-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de2-14d9-7103-b69f-bab517931b9d",
+ "startedAt": "2026-10-21T18:54:19+0900",
+ "elapsedSec": 20.7,
+ "studentSha256": {
+  "fig-1.png": "cbfda5e79a4317d92eef14d26add65778fc5ca150d20267cf6b5e46096d59776",
+  "student.json": "7be24dbfcf8993b529a289b0fec238ebd075e52a5ffe29ff34777ad29ba30f6e"
+ },
+ "promptSha256": "0b04f0ac72cfe84d3092ddb7e6f8f2210c229657b5094d425449e5758b1eee63",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 4 cm ⑵ 5 cm\",\n  \"work\": \"⑴ ∠ABC=∠CDE이고 C의 각이 공통이므로 △ABC∼△EDC이다. BC=12+3=15 cm이므로 AC:EC=BC:DC=15:5=3:1. 따라서 AC=9 cm, x=9−5=4이다.\\n⑵ AC=3+9=12 cm이고 AB:AC=AD:AB=1:2이다. A의 각이 공통이므로 △ABD∼△ACB이다. 따라서 BD:CB=1:2이므로 x=10÷2=5이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ 4 cm ⑵ 5 cm",
+  "work": "⑴ ∠ABC=∠CDE이고 C의 각이 공통이므로 △ABC∼△EDC이다. BC=12+3=15 cm이므로 AC:EC=BC:DC=15:5=3:1. 따라서 AC=9 cm, x=9−5=4이다.\n⑵ AC=3+9=12 cm이고 AB:AC=AD:AB=1:2이다. A의 각이 공통이므로 △ABD∼△ACB이다. 따라서 BD:CB=1:2이므로 x=10÷2=5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5865c59d4db92d1e9b6da102ecebdeee22ae8fa142b23b7d08b3d14fa60b8c49"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A86-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "ad8e3659-fce9-4586-a389-67eea8f2e69c",
+ "startedAt": "2026-10-21T18:02:35+0900",
+ "elapsedSec": 56.4,
+ "studentSha256": {
+  "fig-1.png": "4b25e88053e4d62e12d3be285cd0beeca27af85db40573d2110e9e5edc5bb18f",
+  "student.json": "902c57c92499c39f085f231783cf7882f05bb8cf8de2ee8528c41629d85a34be"
+ },
+ "promptSha256": "700a46312f9d969e1c85ec467ff4a7e631eef695c992d32437d933162c37dd0f",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ x = 28, y = 37 ⑵ x = 4, y = 27\",\n  \"work\": \"⑴ 점 I는 △ABC의 내심이므로 세 내각의 이등분선의 교점이다. 따라서 ∠BAI = ∠CAI에서 x = 28, ∠CBI = ∠ABI에서 y = 37이다.\\n⑵ 내심에서 세 변에 이르는 거리는 같으므로 ID = IF에서 x = 4이다. 또한 선분 BI는 ∠ABC의 이등분선이므로 y = 54 / 2 = 27이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ x = 28, y = 37 ⑵ x = 4, y = 27",
+  "work": "⑴ 점 I는 △ABC의 내심이므로 세 내각의 이등분선의 교점이다. 따라서 ∠BAI = ∠CAI에서 x = 28, ∠CBI = ∠ABI에서 y = 37이다.\n⑵ 내심에서 세 변에 이르는 거리는 같으므로 ID = IF에서 x = 4이다. 또한 선분 BI는 ∠ABC의 이등분선이므로 y = 54 / 2 = 27이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0d04f0d122c5c755b79c4bef5d3473a93a29415449e13eb42851fec247b2decf"
+}
