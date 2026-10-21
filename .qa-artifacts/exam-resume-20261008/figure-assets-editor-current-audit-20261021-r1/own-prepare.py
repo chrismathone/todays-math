@@ -1,0 +1,11 @@
+﻿from pathlib import Path
+import json,hashlib
+P=Path(__file__).resolve().parent;R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();files=[*list((R/'src/components/unified/figure-editor').glob('*.ts')),*list((R/'src/components/unified/figure-editor').glob('*.tsx')),R/'src/lib/figure/asset-editor-geometry.json',R/'src/lib/figure/assetCatalog.ts',R/'scripts/figure/build_asset_editor_registry.py',*list((R/'scripts/figure/assets').glob('*.svg')),*list((R/'scripts/figure/assets').glob('*.json')),R/'scripts/figure/render_spec.py',R/'scripts/figure/scene_assets.py',R/'scripts/figure/figure_assets.py',R/'vendor/figure-engine/core/label_markup.py']
+# Preparation snapshot only, NOT the later production-freeze identity.
+(P/'own-preparation-hashes.json').write_text(json.dumps({str(f):sha(f) for f in files},indent=2),encoding='utf-8');(P/'own-write-probe.txt').write_text('직접함수 DOM 러너 준비 — GO 전 미실행\n',encoding='utf-8')
+manifest=[]
+for f in sorted((R/'scripts/figure/assets').glob('manifest*.json')):manifest+=json.loads(f.read_text(encoding='utf-8'))['assets']
+pictures=json.loads((R/'scripts/figure/assets/picture-assets.json').read_text(encoding='utf-8'))['picture'];assert len(manifest)==39 and len(set(x['slug'] for x in manifest))==39 and len(pictures)==23
+(P/'own-cohort-inputs.json').write_text(json.dumps({'registeredSlugs':[x['slug'] for x in manifest],'nativePictureSlugs':pictures,'units':['30 m','5 g','2m','g/h','$30 m$','2 L','$2 L$','3 mL','$3 mL$','3 dL','3 kL','3\u2009m','3\u00a0m'],'prototypeKeys':['__proto__','constructor','toString','prototype'],'badTransforms':['rotate(NaN)','matrix(1 0 0 1 Infinity 0)','skewX(90)','scale(0)','bogus(10)'],'expected':'prepared only; Root freeze/hash and explicit GO required'},ensure_ascii=False,indent=2),encoding='utf-8')
+(P/'own-go-freeze.example.json').write_text(json.dumps({'go':False,'root':str(R),'availablePhysicalMemoryBytes':0,'memoryMeasuredUTC':'REPLACE_AFTER_EXPLICIT_GO','expectedHashes':{},'note':'Populate current exact source/dependency/asset hashes AFTER parent freeze. Do not use preparation snapshot as approval.'},indent=2),encoding='utf-8')
+print('prepared39registered/23native; no runtime')
