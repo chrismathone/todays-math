@@ -1,0 +1,12 @@
+﻿from pathlib import Path
+import json,importlib.util,copy,itertools,hashlib
+P=Path(__file__).resolve().parent;s=importlib.util.spec_from_file_location('checkv2',P/'own-check-v2.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);j=json.loads((P/'own-actual-outputs.json').read_text(encoding='utf-8'));c=json.loads((P/'own-calculations.json').read_text(encoding='utf-8'));expected={(str(x),p,q) for x,p,q in itertools.product(range(4,16),range(2,5),range(1,13))};observed={(r['independentlySolvedX'],r['printedCoefficients']['p'],r['printedCoefficients']['q']) for r in c['calculations'] if r['cohort']=='forced432ViaActualAPI'};assert observed==expected
+for raw,checked in zip(j['rows'],c['calculations']):
+ if 'forcedTuple' in raw:assert (checked['independentlySolvedX'],checked['printedCoefficients']['p'],checked['printedCoefficients']['q'])==(str(raw['forcedTuple']['x']),raw['forcedTuple']['p'],raw['forcedTuple']['q'])
+neg=[]
+for name,mutate,svg in [('wronganswer',lambda r:r.update(answer='$999$'),False),('distortedpoint',lambda r:r['figureSpec']['points']['C'].__setitem__(1,r['figureSpec']['points']['C'][1]+5),False),('missingAgivenarc',lambda r:r['figureSpec']['angles'].pop('angA'),False),('evaluatedanglelabel',lambda r:r['figureSpec']['angles']['angA'].update(label='164°'),False),('oversizedarcradius',lambda r:r['figureSpec']['angles']['angA'].update(radius=100),True)]:
+ row=copy.deepcopy(j['rows'][0]);mutate(row)
+ try:m.svg_check(row['figureSpec']) if svg else m.math_check(row);rejected=False
+ except Exception:rejected=True
+ assert rejected;neg.append({'name':name,'ownSyntheticInput':True,'rejected':rejected,'productionInputChanged':False})
+worst=min(((min(a['halfplaneMinDistances'].values()),h,a) for h,v in c['specToNativeSVG'].items() for a in v['arcs']),key=lambda x:x[0]);example=next(r for r in c['calculations'] if r['seed']==20403562);result={'wholeForcedDomainExactSetMatches':True,'perForcedInputBridgeMatchesPrintedData':True,'syntheticCheckerNegatives':neg,'seed20403562OwnMath':example,'worstSerializedArc':{'minimumSignedDistance':worst[0],'specSHA256':worst[1],'arc':worst[2],'boundOutputs':[r['outputSHA256'] for r in c['calculations'] if r['specSHA256']==worst[1]]}};(P/'own-cross-controls.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps({'checkerNegatives':len(neg),'seed20403562X':example['independentlySolvedX'],'seed20403562BD':example['printedBD'],'worstSignedDistance':worst[0]}))
