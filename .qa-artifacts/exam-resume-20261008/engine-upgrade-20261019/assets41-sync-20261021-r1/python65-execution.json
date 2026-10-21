@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-21T12:22:52.854346+00:00",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/figure",
+    "-p",
+    "test_*.py"
+  ],
+  "exitcode": 0,
+  "logSHA256": "516824d8f8ec0c40cbd6f54c57eac78c59714392b717139fab48ecf72eefcf6c",
+  "testFiles": {
+    "scripts\\figure\\test_graph_native.py": "95806a5218f571879ebd271b598e3852d778ead4a94ffffdf4c0f086bd64e23e",
+    "scripts\\figure\\test_grid.py": "a0f1bf52fc8227195d635f484a82ccb42dcc59379f792533aaef060efc168eba",
+    "scripts\\figure\\test_scene_assets.py": "ef8583583804c22dcdd24ef92998637bc0558e8d707723ccd42e084c43f4c845",
+    "scripts\\figure\\test_solid_verification.py": "4862f93ed09123fe2be39199cbf6cc42ec385eba13b9e0b30a535229243bed3f",
+    "scripts\\figure\\test_vendor_tools.py": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989"
+  },
+  "counts": "65 tests from actual unittest log; no question approvals",
+  "dbWrites": 0
+}

@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "cc0895f308a8f77e547abd8896747ecd49a4c9c9",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "965a639f27489aa26b8f66c946ffa1a5f68e4f6a2420fe710629d7b5df94b33a",
+      "bytes": 26236
+    },
+    {
+      "path": "patches/07-engine-all.patch",
+      "sha256": "7c7917db2e36703b2105dcbe5f33593244e274f49ea3d1447e7badde2e60d529",
+      "bytes": 466932
+    },
+    {
+      "path": "patches/08-editor-all.patch",
+      "sha256": "842d962c018f7e5548908fa7e329740c69211fbfdbc6395bc9bc7dc4981e2a1f",
+      "bytes": 119592
+    },
+    {
+      "path": "engine-check/check_engine.py",
+      "sha256": "0a444a35ce776d7ba7d429d5def7a92cd623e03054cf2f3cdb0fd140f1c4a8de",
+      "bytes": 3551
+    },
+    {
+      "path": "engine-check/expected/grid.json",
+      "sha256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "bytes": 1617
+    },
+    {
+      "path": "engine-check/expected/assets.json",
+      "sha256": "94b4049dfa4803bed3b6cfbebf1c0da8f32895fa3f17e51e9eb11a3dd8dc02e1",
+      "bytes": 21670
+    },
+    {
+      "path": "engine-check/expected/assets-3d.json",
+      "sha256": "dadf0618beecf168092cbc9261cff0f7b8a48dc570817b4e88a9ad316326ff19",
+      "bytes": 19495
+    },
+    {
+      "path": "engine-check/expected/perspective.json",
+      "sha256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "bytes": 1612
+    },
+    {
+      "path": "engine-check/expected/units.json",
+      "sha256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "bytes": 844
+    },
+    {
+      "path": "engine-check/expected/right-refused.json",
+      "sha256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "bytes": 220
+    },
+    {
+      "path": "engine-check/expected/solid-object-refused.json",
+      "sha256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "bytes": 223
+    }
+  ],
+  "sourceWrites": 0
+}

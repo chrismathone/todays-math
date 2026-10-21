@@ -6,13 +6,15 @@ import { FIGURE_ASSETS, PICTURE_ASSETS, ASSET_PROMPT_LIST } from "@/lib/figure/a
 import { buildFigureSpecPrompt } from "@/lib/dev-ai/figure-prompt";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 import { describeFigureForEdit } from "@/components/unified/figure-editor/figureEditElements";
-import { figureAssetRootFrame } from "@/components/unified/figure-editor/figureAssetGeometry";
+import { figureAssetLocalFrame, figureAssetRootFrame } from "@/components/unified/figure-editor/figureAssetGeometry";
 import { mirrorFigureSelection } from "@/components/unified/figure-editor/figureMirror";
 import { rotateFigureSelection } from "@/components/unified/figure-editor/figureRotate";
 import { editFigureObject, figureNumbers, figureObjects, prepareFigureSvg, readFigureSvg, removeFigureObject } from "@/components/unified/figure-editor/figureSvgEditing";
 import * as client from "@/components/unified/figure-editor/mathjaxLabel";
 import * as server from "@/lib/figure/mathjaxLabel";
 import registry from "@/lib/figure/asset-editor-geometry.json";
+import legacyRegistry from "@/lib/figure/asset-editor-geometry-legacy-20261021.json";
+import legacyFixtures from "../fixtures/figure-assets-legacy-20261021.json";
 
 const body = (slug: string) => fs.readFileSync(`scripts/figure/assets/${slug}.svg`, "utf8").replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
 const source = (slug = "house", transform = "translate(100 200)") =>
@@ -63,7 +65,7 @@ describe("registered picture geometry stays one editable object", () => {
     const leaf = prepareFigureSvg('<svg viewBox="0 0 500 500"><line data-asset="house" x1="1" y1="1" x2="90" y2="90"/></svg>');
     expect(picture(leaf)).toBeUndefined();
     const doc = readFigureSvg(source());
-    doc.querySelector("[data-asset] polygon")!.setAttribute("points", "0,0 300,0 0,300");
+    doc.querySelector("[data-asset] path")!.setAttribute("d", "M0 0L300 0L0 300Z");
     expect(picture(prepareFigureSvg(new XMLSerializer().serializeToString(doc)))).toBeUndefined();
   });
 
@@ -71,7 +73,7 @@ describe("registered picture geometry stays one editable object", () => {
     "does not use identity fallback as a certified frame for %s", (transform) => {
       const svg = prepareFigureSvg(source("house", transform));
       expect(picture(svg)).toBeUndefined();
-      expect(figureObjects(svg).some((o) => o.type === "polygon")).toBe(true);
+      expect(figureObjects(svg).some((o) => o.type === "path")).toBe(true);
     },
   );
 
@@ -85,7 +87,7 @@ describe("registered picture geometry stays one editable object", () => {
     const doc = readFigureSvg(svg);
     expect(figureAssetRootFrame(doc.querySelector("[data-asset]")!)).toHaveLength(4);
     const described = describeFigureForEdit(svg).elements.find((e) => e.kind === "집");
-    expect(described?.box).toEqual([29.3, 200, 170.7, 341.4]);
+    expect(described?.box).toEqual([11.8, 200, 199, 387.2]);
     expect(described?.points).toBeUndefined();
   });
 
@@ -111,6 +113,31 @@ describe("registered picture geometry stays one editable object", () => {
   });
 });
 
+describe("older stock SVGs retain their own geometry and frame", () => {
+  it.each(Object.entries(legacyFixtures.assets))("keeps legacy %s atomic, including its original viewBox", (slug, stock) => {
+    const inner = stock.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+    const raw = `<svg viewBox="0 0 500 500"><g data-asset="${slug}" transform="translate(100 200) rotate(90)">${inner}</g><line x1="0" y1="0" x2="20" y2="30"/></svg>`;
+    const svg = prepareFigureSvg(raw);
+    expect(figureObjects(svg)).toHaveLength(2);
+    const asset = readFigureSvg(svg).querySelector("[data-asset]")!;
+    expect(asset).not.toBeNull();
+    const [w, h] = (legacyRegistry.assets as Record<string, { viewBox: number[] }>)[slug].viewBox;
+    expect(figureAssetLocalFrame(asset)).toEqual([[0, 0], [w, 0], [w, h], [0, h]]);
+    const corners = figureAssetRootFrame(asset)!;
+    for (const [i, [x, y]] of [[100, 200], [100, 200 + w], [100 - h, 200 + w], [100 - h, 200]].entries()) {
+      expect(corners[i][0]).toBeCloseTo(x, 8);expect(corners[i][1]).toBeCloseTo(y, 8);
+    }
+    const id = picture(svg)!.id;
+    const rotated = rotateFigureSelection(svg, [id], "cw");
+    expect(picture(rotated)?.id).toBe(id);
+    expect(readFigureSvg(rotated).querySelector("[data-asset]")!.innerHTML).toBe(asset.innerHTML);
+    expect(otherObjects(rotated)).toEqual(otherObjects(svg));
+    const locked = editFigureObject(svg, id, { "data-size-locked": "true" });
+    expect(mirrorFigureSelection(locked, [id], "vertical")).toBe(locked);
+    expect(removeFigureObject(svg, id)).not.toContain("data-asset");
+  });
+});
+
 describe.each([["canvas", client], ["stored", server]] as const)("%s unit labels", (_name, labels) => {
   it.each(["30 m", "5 g", "2 mL"])("typesets %s upright without changing adjacent algebra", (raw) => {
     const laid = labels.typesetLabel(raw);expect(laid).not.toBeNull();
@@ -121,7 +148,9 @@ describe.each([["canvas", client], ["stored", server]] as const)("%s unit labels
 });
 
 it("shares the allowed picture catalog and keeps planar/projection validation distinct", () => {
-  expect(FIGURE_ASSETS).toHaveLength(39);expect(new Set(FIGURE_ASSETS.map((a) => a.slug)).size).toBe(39);
+  expect(FIGURE_ASSETS).toHaveLength(41);expect(new Set(FIGURE_ASSETS.map((a) => a.slug)).size).toBe(41);
+  expect(PICTURE_ASSETS).toHaveLength(25);
+  expect(PICTURE_ASSETS.map((a) => a.slug)).toEqual(expect.arrayContaining(["building-3d", "house-3d"]));
   expect(PICTURE_ASSETS.some((a) => a.slug === "house")).toBe(true);
   expect(PICTURE_ASSETS.some((a) => a.slug === "can")).toBe(false);
   expect(ASSET_PROMPT_LIST).toContain("house=집");expect(ASSET_PROMPT_LIST).not.toContain("can=");

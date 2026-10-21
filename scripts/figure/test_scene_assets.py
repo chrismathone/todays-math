@@ -7,6 +7,7 @@ import copy
 import json
 import sys
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from engine_path import ensure_on_path
@@ -15,6 +16,7 @@ from render_spec import render_json
 from core.figure_quality import sanitize_svg, SvgSecurityError
 from core.figure_scene import render_figure_spec
 from core.label_markup import parse_label
+import scene_assets
 
 SCENE=dict(version=2,points=dict(A=[0,0],B=[200,80],C=[340,-120]),
            segments=dict(AB=['A','B'],BC=['B','C'],AC=['A','C']),labels=dict(A='A',B='B',C='C'),background='transparent')
@@ -35,6 +37,37 @@ class SceneAssetsTests(unittest.TestCase):
 
     def test_null_assets_is_not_silently_removed(self):
         self.assertIn('error',render(dict(SCENE,assets=None)))
+
+    def test_asset_only_scene_has_no_fixed_extent_to_shrink(self):
+        result=render(dict(version=2,points={},assets=[dict(asset='house',at=[0,0],width=30)]))
+        self.assertIn('svg',result,result)
+        self.assertEqual([e.attrib['data-asset'] for e in ET.fromstring(result['svg']).iter() if 'data-asset' in e.attrib],['house'])
+
+    def test_front_building_edge_not_its_centre_is_the_measured_segment(self):
+        item=dict(asset='building-3d',**{'from':[80,200],'to':[80,30]})
+        placed=scene_assets.plan_assets([item],lambda p:tuple(p),lambda n:n)[0]
+        w,h,_=scene_assets.figure_assets._asset_body('building-3d')
+        base=scene_assets.edge_anchor('building-3d','base',w,h)
+        top=scene_assets.edge_anchor('building-3d','top',w,h)
+        self.assertNotEqual(base,scene_assets.asset_anchor('building-3d','base',w,h))
+        self.assertEqual(placed.anchor,base)
+        self.assertAlmostEqual(placed.at[0]+(top[0]-base[0])*placed.scale,80)
+        self.assertAlmostEqual(placed.at[1]+(top[1]-base[1])*placed.scale,30)
+
+    def test_oversize_fixed_geometry_does_not_shrink_an_unrelated_at_picture(self):
+        spec=dict(version=2,points=dict(A=[0,0],B=[700,0]),segments=dict(AB=['A','B']))
+        with patch.object(scene_assets,'plan_assets',wraps=scene_assets.plan_assets) as plan:
+            # The unchanged whole scene may be refused by the final frame gate.
+            render(dict(spec,assets=[dict(asset='house',at='A',width=44)]))
+        self.assertEqual(plan.call_count,1)
+
+    def test_free_picture_can_shrink_while_fixed_geometry_stays_unchanged(self):
+        spec=dict(version=2,points=dict(A=[0,0],B=[100,0]),segments=dict(AB=['A','B']))
+        with patch.object(scene_assets,'plan_assets',wraps=scene_assets.plan_assets) as plan:
+            result=render(dict(spec,assets=[dict(asset='house',at='A',width=900)]))
+        self.assertIn('svg',result,result)
+        self.assertGreater(plan.call_count,1)
+        self.assertEqual(spec['points'],dict(A=[0,0],B=[100,0]))
 
     def test_invalid_asset_parameters_do_not_render_a_partial_figure(self):
         items=[[],False,'house',{},[dict(asset='house',at='A',width=0)],

@@ -1,7 +1,9 @@
 import registry from "@/lib/figure/asset-editor-geometry.json";
+import legacyRegistry from "@/lib/figure/asset-editor-geometry-legacy-20261021.json";
 import { applyPoint, elementMatrix, type Point } from "./figureEditGeometry";
 
-const ASSETS: Readonly<Record<string, { viewBox: number[]; signature: string }>> = registry.assets;
+type AssetIdentity = { viewBox: number[]; signature: string };
+const REGISTRIES: ReadonlyArray<Readonly<Record<string, AssetIdentity>>> = [registry.assets, legacyRegistry.assets];
 const ATTRS = new Set("x y x1 y1 x2 y2 cx cy r rx ry width height d points transform".split(" "));
 const TAGS = new Set("g path rect line circle ellipse polygon polyline".split(" "));
 const NUMBER = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
@@ -45,21 +47,30 @@ function signature(node: Element, depth = 0): unknown[] | null {
   return [node.localName, attrs, children];
 }
 
+function matchedIdentity(node: Element): AssetIdentity | null {
+  if (node.localName !== "g") return null;
+  if (!validFrameTransform(node)) return null;
+  if ([...node.childNodes].some((n) => n.nodeType === 3 && n.textContent?.trim())) return null;
+  const slug = node.getAttribute("data-asset") ?? "";
+  const candidates = REGISTRIES.filter((assets) => Object.hasOwn(assets, slug)).map((assets) => assets[slug]);
+  if (!candidates.length) return null;
+  const children = [...node.children].map((child) => signature(child));
+  if (children.some((child) => child === null)) return null;
+  const actual = JSON.stringify(children);
+  return candidates.find((entry) => entry.signature === actual) ?? null;
+}
+
 /** A stock picture identity, never a source licence, question or grade approval. */
 export function isFigureAssetLayer(node: Element): boolean {
-  if (node.localName !== "g") return false;
-  if (!validFrameTransform(node)) return false;
-  if ([...node.childNodes].some((n) => n.nodeType === 3 && n.textContent?.trim())) return false;
-  const slug = node.getAttribute("data-asset") ?? "";
-  if (!Object.hasOwn(ASSETS, slug)) return false;
-  const children = [...node.children].map((child) => signature(child));
-  return !children.some((child) => child === null) && JSON.stringify(children) === ASSETS[slug].signature;
+  return matchedIdentity(node) !== null;
 }
 
 /** The verified stock viewBox is a conservative container, not sampled ink bounds. */
 export function figureAssetLocalFrame(node: Element): Point[] | null {
-  if (!isFigureAssetLayer(node)) return null;
-  const [width, height] = ASSETS[node.getAttribute("data-asset")!].viewBox;
+  const identity = matchedIdentity(node);
+  if (!identity) return null;
+  // A reused slug does not make a new artwork's frame valid for an older SVG.
+  const [width, height] = identity.viewBox;
   if (!(typeof width === "number" && typeof height === "number" && Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0)) return null;
   return [[0, 0], [width, 0], [width, height], [0, height]];
 }
