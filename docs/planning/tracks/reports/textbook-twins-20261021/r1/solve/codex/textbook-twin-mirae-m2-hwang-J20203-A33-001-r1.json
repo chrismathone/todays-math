@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A33-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6f-28d4-72e2-9c37-1295f2ec4ada",
+ "startedAt": "2026-10-21T16:48:48+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "27f850d41705b4003474501eefeef5e52206a8b9d7061893ab8e7e7711113e55"
+ },
+ "promptSha256": "834ffe5751a593232016e38ef467a95737f4c2ef394e44562b393d25748555d7",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-4\",\"work\":\"양변에 5/2를 곱하면 x-3 ≥ x/2+a이므로 x ≥ 6+2a이다. 주어진 해가 x ≥ -2이므로 6+2a=-2를 풀면 a=-4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-4",
+  "work": "양변에 5/2를 곱하면 x-3 ≥ x/2+a이므로 x ≥ 6+2a이다. 주어진 해가 x ≥ -2이므로 6+2a=-2를 풀면 a=-4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9f16e17ea070f75567298064e84fe13eaba21406ffdc15c49e9de326e6e6111c"
+}

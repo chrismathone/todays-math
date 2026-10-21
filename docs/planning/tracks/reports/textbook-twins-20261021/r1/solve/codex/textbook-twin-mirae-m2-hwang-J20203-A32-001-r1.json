@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A32-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6e-f746-7560-b1b9-f492b4d4ef50",
+ "startedAt": "2026-10-21T16:48:35+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "student.json": "54c2874ff23ef93f5c3cfd07ea825129c901b0ca219215aed9d28974cdb99974"
+ },
+ "promptSha256": "d6295fe444fb0cdfb3886224064507603d654ef5bffb50bec5ba51ee227fa834",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"첫째 부등식의 양변에 15를 곱하면 5x+25≥9x−15이므로 x≤10이다.\\n둘째 부등식은 2x≤a+8이므로 x≤(a+8)/2이다.\\n두 해가 같으므로 (a+8)/2=10, 따라서 a=12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "첫째 부등식의 양변에 15를 곱하면 5x+25≥9x−15이므로 x≤10이다.\n둘째 부등식은 2x≤a+8이므로 x≤(a+8)/2이다.\n두 해가 같으므로 (a+8)/2=10, 따라서 a=12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cd2b0a7a051d2cb5df9f7203a17d43506870d21f1cb6196bdd5c68c794b2a641"
+}

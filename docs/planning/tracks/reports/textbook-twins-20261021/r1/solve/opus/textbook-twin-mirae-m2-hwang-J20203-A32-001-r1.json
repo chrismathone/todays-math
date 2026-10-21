@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A32-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "0c99c4e4-ad6f-42b8-8bd1-53e805a824d8",
+ "startedAt": "2026-10-21T16:26:51+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "54c2874ff23ef93f5c3cfd07ea825129c901b0ca219215aed9d28974cdb99974"
+ },
+ "promptSha256": "d6295fe444fb0cdfb3886224064507603d654ef5bffb50bec5ba51ee227fa834",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"양변에 15를 곱하면 5(x+5) ≥ 3(3x-5), 즉 5x+25 ≥ 9x-15이므로 40 ≥ 4x, x ≤ 10\\n5x-8 ≤ 3x+a에서 2x ≤ a+8이므로 x ≤ (a+8)/2\\n두 해가 같으므로 (a+8)/2 = 10, 따라서 a = 12\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "양변에 15를 곱하면 5(x+5) ≥ 3(3x-5), 즉 5x+25 ≥ 9x-15이므로 40 ≥ 4x, x ≤ 10\n5x-8 ≤ 3x+a에서 2x ≤ a+8이므로 x ≤ (a+8)/2\n두 해가 같으므로 (a+8)/2 = 10, 따라서 a = 12",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "87929ad72b918d9e5f42fe54fe1ff5b11475acab39bcfc74f7075d2ab1b2e8dc"
+}

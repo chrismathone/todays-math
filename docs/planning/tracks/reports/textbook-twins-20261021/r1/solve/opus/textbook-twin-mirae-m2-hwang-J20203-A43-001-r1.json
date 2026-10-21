@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A43-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "50f3799d-532d-4089-9d30-873b8093a4dc",
+ "startedAt": "2026-10-21T16:27:17+0900",
+ "elapsedSec": 8.4,
+ "studentSha256": {
+  "fig-1.png": "99ecb5af9f57023e3ee56f91630879bb6b7b4cdfd530a534cef894ff46bea992",
+  "student.json": "7f1db8decfc304539f2fa04c819dfb10cf42c91fc78c024b7625f5ca6d0b9c09"
+ },
+ "promptSha256": "b6bbeba42c183bfaeadddbf8533251bdd2429a2c4ad08e07bce69a8f874d729b",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"8\", \"work\": \"양변에 12를 곱하면 3(x+a)-2(5x-1)<12 → 3x+3a-10x+2<12 → -7x<10-3a → x>(3a-10)/7. 그림의 해가 x>2이므로 (3a-10)/7=2 → 3a-10=14 → a=8. (확인: a=8이면 -7x<-14 → x>2)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "양변에 12를 곱하면 3(x+a)-2(5x-1)<12 → 3x+3a-10x+2<12 → -7x<10-3a → x>(3a-10)/7. 그림의 해가 x>2이므로 (3a-10)/7=2 → 3a-10=14 → a=8. (확인: a=8이면 -7x<-14 → x>2)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2d260318019721fd171db31b8e945053232e37f5de7e984f7738a219a7370642"
+}

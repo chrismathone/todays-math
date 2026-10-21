@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A92-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d6e-a653-7073-9073-c4166a98216f",
+ "startedAt": "2026-10-21T16:48:14+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "759645d4490dfb26f2c1d9a95609618d8323250f501238775d1dfa90f391e55e"
+ },
+ "promptSha256": "46235644dca1bb0621049fca2fd2ea3ad77aa12b55d754ce5a0256b2a9bd37a9",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"양변에서 4를 빼면 $-3a\\\\le -3b$이다.\\n음수인 $-3$으로 나누면 부등호 방향이 바뀌므로 $a\\\\ge b$이다.\\n양수인 $\\\\frac34$을 곱하면 $\\\\frac{3a}{4}\\\\ge\\\\frac{3b}{4}$이므로 ②가 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "양변에서 4를 빼면 $-3a\\le -3b$이다.\n음수인 $-3$으로 나누면 부등호 방향이 바뀌므로 $a\\ge b$이다.\n양수인 $\\frac34$을 곱하면 $\\frac{3a}{4}\\ge\\frac{3b}{4}$이므로 ②가 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea86209dfc245e52282e45eb0862c40e61ebbe9783ae3ebec9de037ba1a379de"
+}

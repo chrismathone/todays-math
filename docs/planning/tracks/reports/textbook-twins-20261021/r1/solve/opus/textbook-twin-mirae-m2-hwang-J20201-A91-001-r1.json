@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A91-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "01cda5ac-e72f-4f9f-9166-21da8e154c6c",
+ "startedAt": "2026-10-21T16:26:35+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "8e189448d5af4471215885a041cfc91c6f82a350bb2dbbfb42c741d87774ded8"
+ },
+ "promptSha256": "56c6b924258e7d1cb28f4997c003710b5bd8c6f5b8e451786423ec0e283a6978",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $a\\\\le b$ ⑵ $a>b$\", \"work\": \"⑴ 양변에서 1을 빼면 $-5a\\\\ge -5b$입니다. 양변을 $-5$로 나누면 부등호 방향이 바뀌어 $a\\\\le b$입니다. ⑵ 양변에 3을 더하면 $\\\\frac{a}{4}>\\\\frac{b}{4}$입니다. 양변에 4를 곱하면 부등호 방향은 그대로이므로 $a>b$입니다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $a\\le b$ ⑵ $a>b$",
+  "work": "⑴ 양변에서 1을 빼면 $-5a\\ge -5b$입니다. 양변을 $-5$로 나누면 부등호 방향이 바뀌어 $a\\le b$입니다. ⑵ 양변에 3을 더하면 $\\frac{a}{4}>\\frac{b}{4}$입니다. 양변에 4를 곱하면 부등호 방향은 그대로이므로 $a>b$입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "54a762ddbba89957568c526df6cd9613b6982103f015b166806131c88df0579b"
+}

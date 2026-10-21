@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A33-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d24bf06c-d33b-47d2-9cdf-027e11e18a57",
+ "startedAt": "2026-10-21T16:26:56+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "27f850d41705b4003474501eefeef5e52206a8b9d7061893ab8e7e7711113e55"
+ },
+ "promptSha256": "834ffe5751a593232016e38ef467a95737f4c2ef394e44562b393d25748555d7",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$-4$\", \"work\": \"0.4 = 2/5이므로 양변을 2/5로 나누면 x-3 ≥ x/2 + a. 정리하면 x/2 ≥ a+3, 즉 x ≥ 2a+6. 해가 x ≥ -2이므로 2a+6 = -2, 따라서 a = -4.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$-4$",
+  "work": "0.4 = 2/5이므로 양변을 2/5로 나누면 x-3 ≥ x/2 + a. 정리하면 x/2 ≥ a+3, 즉 x ≥ 2a+6. 해가 x ≥ -2이므로 2a+6 = -2, 따라서 a = -4.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dac395fb5e3e42e59c2470dd1da4e8714e5161cbd3970a7b9f573e4dcaa8c5f3"
+}
