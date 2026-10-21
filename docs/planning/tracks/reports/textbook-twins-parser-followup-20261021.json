@@ -1,0 +1,89 @@
+{
+ "baseline": "3581407e6f109596f935ed1cc8cd13945596db5b",
+ "candidateCount": 672,
+ "statusChanges": [],
+ "finalTally": {
+  "통과": 200,
+  "보류 — 답 표기(값은 같음)": 14,
+  "보류 — 너무 닮음": 42,
+  "보류 — 검수": 107,
+  "보류 — 수학": 27,
+  "보류 — 형식": 2,
+  "보류 — 그림": 3
+ },
+ "solverEvidence": {
+  "verified-retained-evidence": 1344
+ },
+ "reviewStates": {
+  "legacy-unverified-paths": 672
+ },
+ "legacyActualAccessVerified": 0,
+ "opusSuccessfulReadResults": 137,
+ "historicalExternalPreservation": {
+  "files": 7436,
+  "aggregateSha256": "844d5461edbf5e2ed82922025db11886cb32bb1d8c163d56eacc16193dea5687",
+  "matchesIndependent": true
+ },
+ "preservation": {
+  "baseline": "662b7c10c2d7e9168b0ede49050e262ec99439ac",
+  "externalFiles": 6613,
+  "externalChanged": [],
+  "pilotFiles": 4009,
+  "pilotChanged": [],
+  "history75Count": 75,
+  "historicalBaseIsAncestor": true,
+  "beforeManifestSha256": "f54d5857865d77eac0872c00e9bd9adbbd3c5a2370996848dfed03f39a0a1a38"
+ },
+ "sourceCodeSha256": {
+  "execution_evidence.py": "0af36cfebb88d53a371551783b83bb83fc868aa4df8dc1c6752fd6d5b13665e9",
+  "review.py": "5f97fc4cfd6eba371a185f07b6f4fd9c7edaeb18fd53c49244aa2c40dc4d4378",
+  "test_event_parser.py": "baab9b6dd29145e3d393cc123c71b0df29328212176484113b567d3b220de731"
+ },
+ "priorFollowupEvidenceHashesUnchanged": true,
+ "scope": "events parser + explicit caller rejection + synthetic regression + source-free report",
+ "syntheticRegression": {
+  "baseline": "3581407e6f109596f935ed1cc8cd13945596db5b",
+  "newCases": 47,
+  "redFailed": 38,
+  "redPassed": 9,
+  "greenPassed": 210,
+  "existingCases": 163,
+  "fullPathCases": 24,
+  "fullPathPreconditions": "real prepare, Git commit, load of original+twin inputs; one fake CLI call; collector mutations rehash events and pointer"
+ },
+ "newModelCalls": 0,
+ "historicalSealChanges": 0,
+ "productionWrites": false,
+ "loadable": false,
+ "limits": [
+  "672 historical reviewer tool paths remain unverified",
+  "historical 36 remain comparison-only; 164 not fully approved",
+  "no source answer, SSD identity, standards or rights approval"
+ ],
+ "externalEvidence": [
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-red-358-20261021.log",
+   "sha256": "4dd8c5446b8949379b73725e38e672621d21fa2febbd13c518caf2d76175e315"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-green-20261021.log",
+   "sha256": "10acc992137c67eadf611d2897becc585edb85ec6cf29190c4a4ac70feda943d"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-replay-20261021.json",
+   "sha256": "f6bb4e0c64b7502bbb9f0ee0e784a538da87b63fa3e89b4f47507634c074ac12"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-preservation-20261021.json",
+   "sha256": "dabb4b99ce4ad2988f7e12d41e5217aa087c0becacf04c0147f639bbe60212a2"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-collect-r1-20261021.json",
+   "sha256": "510d6a91d7113a13c29c58a597213f6b8d8c78a83fed84dd3b09d90fd12e794a"
+  },
+  {
+   "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/parser-followup-collect-r2-20261021.json",
+   "sha256": "f78181917003fb9fa67743f031fd9b356588527ae53206994742cdb8b5fde604"
+  }
+ ]
+}

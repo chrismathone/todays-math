@@ -11,11 +11,33 @@ from subscription_cli import claude_model_matches, gemini_tool_policy
 
 
 def events_from(text: str) -> list[dict]:
+    """단일 객체 봉투 또는 객체 JSONL 전체를 소비한다. JSON 공백 외에는 버리지 않는다."""
+    def reject_constant(_):
+        raise ValueError("CLI 사건에 JSON 비표준 숫자가 있다")
+
+    def event(payload):
+        value = json.loads(payload, parse_constant=reject_constant)
+        if not isinstance(value, dict):
+            raise ValueError("CLI 사건은 JSON 객체여야 한다")
+        return value
+
     try:
-        value = json.loads(text)
-        return [value] if isinstance(value, dict) else []
-    except ValueError:
-        return [json.loads(line) for line in text.splitlines() if line.startswith("{")]
+        return [event(text)]
+    except json.JSONDecodeError:
+        # 여러 객체면 JSONL로만 읽는다. pretty 객체와 JSONL의 혼합도 실패한다.
+        pass
+    events = []
+    for number, line in enumerate(text.split("\n"), 1):
+        if not line.strip(" \t\r"):
+            continue
+        try:
+            events.append(event(line))
+        except ValueError as error:
+            # 원응답 내용은 오류 메시지에 재인용하지 않는다.
+            raise ValueError(f"CLI 사건 {number}행이 온전한 JSON 객체가 아니다") from error
+    if not events:
+        raise ValueError("CLI 사건 입력이 비어 있다")
+    return events
 
 
 def codex_trace(events: list[dict]) -> dict:
@@ -206,7 +228,11 @@ def solver_evidence(record: dict, run_root: Path | None) -> dict:
     for path in paths:
         if not path.is_file():
             continue
-        events = events_from(path.read_text())
+        try:
+            events = events_from(path.read_text())
+        except ValueError as error:
+            return {"errors": errors + ["풀이 CLI 사건 파싱 실패"], "status": "rejected",
+                    "eventsPath": str(path), "parseError": str(error)}
         if solver == "codex":
             trace = codex_trace(events)
             if trace["raw"] != (path.parent / "last.txt").read_text():
@@ -258,7 +284,12 @@ def review_evidence(record: dict, external: Path | None, legacy_allowed: bool = 
     path = Path(tracing["eventsPath"]) if tracing.get("eventsPath") else external.parent / "review-envelope.json" if external else None
     if path is None or not path.is_file():
         return {"errors": errors + ["검수 원봉투 없음"], "toolTraceStatus": "unverified", "actualAccessVerified": False}
-    events = events_from(path.read_text())
+    try:
+        events = events_from(path.read_text())
+    except ValueError as error:
+        return {"errors": errors + ["검수 CLI 사건 파싱 실패"], "toolTraceStatus": "rejected",
+                "envelopeSha256": digest(path.read_bytes()), "actualAccessVerified": False,
+                "traceErrors": [str(error)]}
     declared = sorted(p.name for p in path.parent.iterdir() if re.fullmatch(r"(?:original-fig-\d+|twin-fig-1)\.(?:png|jpg|jpeg|webp|svg)", p.name))
     if not tracing:
         # 과거 최종 봉투에는 요청/반환 stream이 없다. 경로를 만들어 채우지 않는다.
