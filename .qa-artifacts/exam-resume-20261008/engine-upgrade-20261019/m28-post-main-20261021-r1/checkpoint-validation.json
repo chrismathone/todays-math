@@ -1,0 +1,3523 @@
+{
+  "utc": "2026-10-21T08:33:38.091565+00:00",
+  "head": "aa678c386f74b226fd5994ab067a217135024af8",
+  "main": "a4494fe0f7f00b397860f16a4fa6755f0e1d2245",
+  "currentMainRelatedPassed": 64,
+  "currentMainRelatedFailed": 0,
+  "code": [
+    {
+      "path": "src/lib/math/exactChoiceValue.ts",
+      "sha256": "413f130acfc79fcc0cc1e06576debb6636b636eb9fc4ea62cc22a99cddd7adbd"
+    },
+    {
+      "path": "src/lib/engine/deriveFormats.ts",
+      "sha256": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50"
+    },
+    {
+      "path": "src/lib/engine/expandEngine.ts",
+      "sha256": "4ec4dcaa8857685c755928912f927c5ba7bda9c6fcabb031a147b6295e9f8330"
+    },
+    {
+      "path": "src/lib/engine/authoredImage.ts",
+      "sha256": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324"
+    },
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df"
+    },
+    {
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "sha256": "e046dd44d99006c8fdff0eedf138058239b1f62c5d791a3c71d66e4e80ff8de5"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f"
+    },
+    {
+      "path": "scripts/import/exam-twin/sourceIdentity.mjs",
+      "sha256": "b5933369ff1063b6cdc96de53510047008e728a83adc402af90d8515730096c3"
+    },
+    {
+      "path": "scripts/qa/scan-choice-exact-values.ts",
+      "sha256": "470e4c9b02e350c16626e12e8fbd869f054851aadcff17b6f7c1eaf6289f44a8"
+    },
+    {
+      "path": "scripts/qa/audit-past-exam-closure.mjs",
+      "sha256": "fe8ca8de4cacdb80a6c60e4093f90986500c313ee41f65c4319b1feefc7ce44e"
+    },
+    {
+      "path": "scripts/qa/verify-authored-image-support.ts",
+      "sha256": "57c4701a427de3fcef492e0ec6e7aff72c71222e2d1ea43dea09ced935a8f108"
+    },
+    {
+      "path": "scripts/db/problem-actual-format.ts",
+      "sha256": "4be3e863e61ac082b1ee90b234b4b83158c26bd3aa3102e83ca7d17c9c94cc1a"
+    },
+    {
+      "path": "scripts/qa/capture-exam-family-snapshot.mjs",
+      "sha256": "b0fdd3fb404b52aa9deaffa72d136c3a17900e9ef3a458cc362e112d23d97c58"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_region_ownership.py",
+      "sha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1"
+    },
+    {
+      "path": "scripts/import/exam-twin/extract-fresh-sources-20261019.py",
+      "sha256": "d82fa32da80f7c0902a2b1c0bae983bcdcd5598581d4d689fb97dd1715ae153a"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.mjs",
+      "sha256": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1"
+    },
+    {
+      "path": "scripts/import/exam-twin/constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7"
+    },
+    {
+      "path": "scripts/import/exam-twin/prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "scripts/import/exam-twin/rebind-identical-review.mjs",
+      "sha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e"
+    },
+    {
+      "path": "scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "sha256": "e1992a23e5730a8fc7b302df7c00fc9054a5d2b53edeffab35bd6be1ff5e62d0"
+    },
+    {
+      "path": "src/lib/examStudyRoutes.ts",
+      "sha256": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "76cd41af6b30e13603a763e9b9d552ad4956e8f45fc8105ee26a1f48fae54bf1"
+    },
+    {
+      "path": "src/lib/examStudy/evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "src/lib/examStudy/generate.ts",
+      "sha256": "29df46ff324fd38c8a15d70961b45b9e0fe8030496f48519607e26c7cfa34657"
+    },
+    {
+      "path": "src/lib/examStudy/identity.ts",
+      "sha256": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5"
+    },
+    {
+      "path": "src/lib/examStudy/index.ts",
+      "sha256": "7c8a75923289e66dbd7d345e7047a2c43c9b1f5a176466a52bc6211426151e77"
+    },
+    {
+      "path": "src/lib/examStudy/legacyVerification.ts",
+      "sha256": "82275b3cac3d776b4682ccb3d3f8ac330d7608d6037c6278f1e16792d4866e4f"
+    },
+    {
+      "path": "src/lib/examStudy/planner.ts",
+      "sha256": "1446df2e9e71d0e1e6e548fc97aa1234b0bb6f82e6357ae4368ea07e6e3961e6"
+    },
+    {
+      "path": "src/lib/examStudy/profiles.ts",
+      "sha256": "8f0ea98553bd6d3ffc2ad2d44414035a7b12cb917ffe3c9f270e5ec113ec2e76"
+    },
+    {
+      "path": "src/lib/examStudy/registry.ts",
+      "sha256": "1f873f97f26fecadb95aa87276f86b9dc0aa9aff0cb77f4f20b617327b43bca3"
+    },
+    {
+      "path": "src/lib/examStudy/requirements.ts",
+      "sha256": "62984cd03bfbbc6a1a2a716fad7bfc89f40e8ce693f417d013deb5e9745df934"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/continuous.ts",
+      "sha256": "a3047e8f290694451f950fe587589c7851900c3ab8c43645fdf86d992234d9b1"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/finite.ts",
+      "sha256": "31a4703d421ba5043ac374d3d0c598df4965f871c547f4f8ce936881e574813e"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/geometry.ts",
+      "sha256": "b8c6c2710ec1e5ffa5f8c0106aa80d7068ba25eb8de8989733f9f853876a9798"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/graph.ts",
+      "sha256": "97a41ec61c8baa9ea2f8de7660c61f3bb5fa599781b800ae92de13af0219672a"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/incircle.ts",
+      "sha256": "01471c5d6e592c9684d33b689fdbf7cc8205491e36736ec55e4c9be048c2f674"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/index.ts",
+      "sha256": "7a7245e0b8842b4ab76d1c1f87078fd41f085b7ff619706573d57718d72adf8f"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/logic.ts",
+      "sha256": "4b496eadc02b28d834553e1b955ce5e56776c0fffbcf2f5b5381fb6e7565692c"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/shared.ts",
+      "sha256": "3176e56702bbf468f8da2590246a49819e4135b494e4328c0bde0f6a7b3b4ba7"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/algebra.ts",
+      "sha256": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/graphs.ts",
+      "sha256": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/index.ts",
+      "sha256": "50fa02d0d4865c6f46c7715f9ceb2f49fb83021d2ea1a4e1fbd4ef0e65a6d457"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/signedTrapezoid.ts",
+      "sha256": "f3f48bca7564f5240affabc41cc70bd26368773c151a2d5802360fc0cd392f85"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/support.ts",
+      "sha256": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/written.ts",
+      "sha256": "6ae8d2dd21c563bb8e6f40ab8857ec276be118d8a97ef3b717834957df20195d"
+    },
+    {
+      "path": "src/lib/examStudy/curriculumEligibility.ts",
+      "sha256": "d962ba000211422cb9073632ee134c631dfa8803b036af9b744a223f00f99a9a"
+    },
+    {
+      "path": "src/lib/examStudy/legacyReinforcement.ts",
+      "sha256": "1ce2ac49a74e9e77a93aed428519468977ea63995f3e7654fe65dafb141a5915"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementMath.ts",
+      "sha256": "c13ca232218fd3a39b25ddfaa908ce553b0246ce2afdff4152223c9fe65fc612"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementVerification.ts",
+      "sha256": "063478f94b4ba8165889e5ceb456a13067f8a406742015c7aedd229aa21bad62"
+    },
+    {
+      "path": "src/lib/examStudy/studyChoiceBounds.ts",
+      "sha256": "552dfd4c086e12f237dd878e1dc75c933891c1d093f0ad7b617010e994b4abad"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remaining.ts",
+      "sha256": "e58de3e8ee9a1acacde479952bfef7ec9b9f0d523a6ee60d340541683f47bb5b"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remainingExact.ts",
+      "sha256": "b00ad980a7c34134f8dc1d053077024ccd7627e258cfcc250ecfd0ccd2f9a159"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/remaining.ts",
+      "sha256": "edf091c50462e1bd9d99b7a793a9dcbc2bcdd9220b02c8ea85bbdf7df92e4a5e"
+    },
+    {
+      "path": "src/lib/examStudyAccess.ts",
+      "sha256": "047188ef81c127a018c635acd4a38920bb546575e6e2d26cffac898a1c4f2605"
+    },
+    {
+      "path": "src/lib/accountRouteAccess.ts",
+      "sha256": "15dca89fa1f3d2abf7bb35ce70640d78239394e6a54e85d694a68a35d56b201b"
+    },
+    {
+      "path": "src/lib/middle/m3.ts",
+      "sha256": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80"
+    },
+    {
+      "path": "src/lib/middle/m3Figures.ts",
+      "sha256": "56cd9f00f752b2145ce2b0e0edc731aed02649a37259b53678f743bec9c07051"
+    },
+    {
+      "path": "src/lib/middle/m3Root.ts",
+      "sha256": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM1StudentMethods.test.ts",
+      "sha256": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+      "sha256": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "7e83611c376eafa7f1fb9c23dd846adc05cac850d61b156b8b04c716b597bdd4"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseCoefficient.ts",
+      "sha256": "d55bc535c275c3c16e94b9a7afc781dd1f6c84845061e850aa7ace099edc4f4b"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseCoefficient.test.ts",
+      "sha256": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.test.mjs",
+      "sha256": "28023b10404214dfcdecbfd712ab25be6ba6d5a55ef5b6e9dddbe59adf75ceed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseRootTable.ts",
+      "sha256": "3de1646b7373c9528d86f3b01cb92e4fa8d95597fdf5b61d406e76090b580a51"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseRootTable.test.ts",
+      "sha256": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.mjs",
+      "sha256": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs",
+      "sha256": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e"
+    },
+    {
+      "path": "src/contracts/difficulty.ts",
+      "sha256": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseMinimum.ts",
+      "sha256": "b1fc51f29efa75f1c54ea02cba81bf29c29655f8a49a742350de2aabf664284e"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a"
+    },
+    {
+      "path": "scripts/import/exam-twin/replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.test.mjs",
+      "sha256": "27c99e5766511b4658ba74bb56b8ccf7004183be4c39e2e07142374f05f6d5b6"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+      "sha256": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "sha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts",
+      "sha256": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.test.mjs",
+      "sha256": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.test.mjs",
+      "sha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+      "sha256": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.test.mjs",
+      "sha256": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.mjs",
+      "sha256": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.test.mjs",
+      "sha256": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.mjs",
+      "sha256": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.test.mjs",
+      "sha256": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope.py",
+      "sha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope.py",
+      "sha256": "b75433eafd7ea7e50005fd490ce1c0cc8f17d56d6ec73b36d69c0159a2d58569"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope_v2.py",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": "scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "f904e83a8b57d4a117084b912cde46f31555c2497ec9209391981732c43306ee"
+    },
+    {
+      "path": "scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b58a18be5a6e5467a5615c24f3b1ca5b2e7a10edd3252977aba7784b1fe74dfa"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+      "sha256": "5b5e94235553c2182db537e974e7fdad185f9710bc8a516c99afddc1bfd63590"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "sha256": "2d9b15fee1650f3e34b7ffd18df41b4eaef68e957063dfd2f3ce68a151f62076"
+    },
+    {
+      "path": "src/components/exam-builder/ExamBuilder.demand.test.tsx",
+      "sha256": "38376a9671de8026ab4fc33828d7577e8c36afa752cd860c8b62ee9cfca701a8"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM3MethodGradeGates.test.ts",
+      "sha256": "d038168218adf236b4745b31e8e4b7078f4d2f72d09613ee90f2c856d0404957"
+    },
+    {
+      "path": "src/lib/examStudy/draftSnapshot.ts",
+      "sha256": "2dfcfcf8670f22bf1cf1e1dfd552058962b673a8b9834522b16279d5f51bc0df"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyDraftSnapshots.test.ts",
+      "sha256": "fbcb62ad0378f78e7935d1a0019b3c3b35b72710b34d4a6eb99ab9825e2f7147"
+    },
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "sha256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567"
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "sha256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3"
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "sha256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "sha256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2FeasibleConditions.test.ts",
+      "sha256": "d141a86eb43aff6158a2440e704f3f734c859d2a1c8a08762008032068ca222d"
+    },
+    {
+      "path": "src/lib/middle/m1Geo2.ts",
+      "sha256": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942"
+    },
+    {
+      "path": "src/__tests__/unit/middleM1PolygonQuestionFigure.test.ts",
+      "sha256": "125f5ae37eaa44db782eb81bb590aacf10866720237c85d9cc0ddfa2f74af6ac"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_svg.py",
+      "sha256": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_exam.py",
+      "sha256": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_spec_repair.py",
+      "sha256": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b"
+    },
+    {
+      "path": "vendor/hwpx/latex_to_hwpeq.py",
+      "sha256": "9fd1d1b58795914de46cdefd54a301f7ea07f3ae85e0a4e04e9a9ac731014c0f"
+    },
+    {
+      "path": "scripts/figure/example_exam_tools.py",
+      "sha256": "d7a143f661769086e9a1960a725a5a94b75abaef1a1276cc926736ea956cc483"
+    },
+    {
+      "path": "scripts/figure/test_vendor_tools.py",
+      "sha256": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989"
+    },
+    {
+      "path": "src/__tests__/unit/vendoredFigureEngine.test.ts",
+      "sha256": "c0ad7ad2729ada3e7c86a01bdb9a2a8eaed49509b865bd45f480f3cf7aa737d2"
+    },
+    {
+      "path": "src/__tests__/unit/latex_to_hwpeq_regression_test.py",
+      "sha256": "f5be360eb2829b1b435aa159315ade791a69361d221ea3c27da30f0be586ef7b"
+    },
+    {
+      "path": "src/lib/middle/m2Pytha.ts",
+      "sha256": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2PythaGivenFigure.test.ts",
+      "sha256": "d4cca6a2965f1e58c3d2a739e25a598f32f96994e4c98779bdf821453259e5f5"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_solid.py",
+      "sha256": "cf20e6c8af66a3de7405e4a25e4ac1c8ab9979a3719603e958b735c1b8126a09"
+    },
+    {
+      "path": "scripts/figure/test_solid_verification.py",
+      "sha256": "4862f93ed09123fe2be39199cbf6cc42ec385eba13b9e0b30a535229243bed3f"
+    },
+    {
+      "path": "src/lib/middle/m2Quad.ts",
+      "sha256": "794c8428bd24f4c714bd32a58511db4bd81126b6c3bd5a17749866a3a273b0bf"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2QuadAngleFigure.test.ts",
+      "sha256": "8307af69176d9a38dd9f10bcf38bbfc642f91c7be2f445addd2f3dfcc6aa0274"
+    }
+  ],
+  "parentRelated": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/hangul-engine-import-20261021-r1/m28-green-tests.json",
+    "sha256": "1ae9440c84258e25a4222dccfcfccfdf327559d34e8c39bebf47e7c0835cb139"
+  },
+  "parentFiles": 4,
+  "scopedTypes": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-figure-preview-20261021-r2/types.json",
+    "sha256": "fb8930f8d396e0da10baef62fb0543f1007c08fb2629689e0221ca041a18cfc4"
+  },
+  "eslint": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-figure-preview-20261021-r2/eslint.json",
+    "sha256": "601614de8da591351afeedcf1d134cc9668ad87361c4c53227f30cdf56844660"
+  },
+  "independent": {
+    "path": ".qa-artifacts/exam-resume-20261008/m28-current-api-audit-20261021-r1/own-report.json",
+    "sha256": "e8ad7c3643f075e8625e2a4e7ee03c9a7fd41938abe47ad6b3e7928934458611"
+  },
+  "independentAPICalls": 532,
+  "independentDistinctTasks": 432,
+  "independentNativeSVGs": 64,
+  "matrix": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-figure-preview-20261021-r2/matrix-native-results.json",
+    "sha256": "d3619026b2a5538795cc7eb39aff1d94a519742341a4fc006d8e0bbd48e3ebd2"
+  },
+  "tolerantVectorContainment": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-figure-preview-20261021-r2/vector-containment-results.json",
+    "sha256": "23ddac386579c69956bed5e36714fc23836ead7a60a5d5cd210edfee27620079"
+  },
+  "strictSerializedArcPrecisionHold": {
+    "passedDistinctSpecs": 4,
+    "notStrictlyContainedDistinctSpecs": 60,
+    "minimumIncidentSignedMarginSVGUnits": -0.060781752466689855
+  },
+  "gradeRightsOrReleaseApproval": false,
+  "existingQuestionOrDBWrites": 0,
+  "unrelatedIncomingPythonTest": "Not run successfully: optional rapidfuzz missing; retained incoming code without altering its audit scope",
+  "currentMainRelatedScope": "Actually recompiled/sanitized 64 native SVGs after main; 532 captured printed tasks rechecked with exact identical104Node/5Python source closure. No fresh API calls.",
+  "previousPublicVitest139BeforeLatestUnrelatedMain": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/hangul-engine-import-20261021-r1/m28-green-tests.json",
+    "sha256": "1ae9440c84258e25a4222dccfcfccfdf327559d34e8c39bebf47e7c0835cb139"
+  },
+  "latestMainVitest": "Not run: 3GiB preflight floor not met. Incoming SRS unit was included in prepared config but never executed.",
+  "codeClosureUnchanged": true,
+  "nativeOutputByteEquality": true,
+  "currentNative": {
+    "ffc6e113543fc6a6b74c16bf03c43957117c0a9df22b55e20f2ed38480a58b85": {
+      "svgSHA256": "09907c666f53427fffd0efc147c4dd317d8ac56855d46e78058205b47a9217c4",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 87.4 33.6 A 13.422500000000005 13.422500000000005 0 0 0 113.7 29.9",
+          "actualSVGCircleCenter": [
+            100.27776942147801,
+            29.814955617532835
+          ],
+          "centerErrorFromVertex": 0.14186069775550514,
+          "sweepAngleDeg": 163.25781435552588,
+          "halfplaneMinDistances": {
+            "AB": -0.05338321766159506,
+            "BC": 7.360544382467161,
+            "CD": 17.59633034556987,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 7.360544382467161,
+          "incidentMinMargin": -0.05338321766159506,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 126.9 50.6 A 13.422500000000005 13.422500000000005 0 0 1 153.2 46.9",
+          "actualSVGCircleCenter": [
+            140.322230578522,
+            50.68504438246721
+          ],
+          "centerErrorFromVertex": 0.08717494995887878,
+          "sweepAngleDeg": 163.25781435552548,
+          "halfplaneMinDistances": {
+            "AB": 17.537225709411892,
+            "BC": -0.0020000000000024443,
+            "CD": 0.005721418496427901,
+            "DA": 7.314544382467204
+          },
+          "nonincidentMinMargin": 7.314544382467204,
+          "incidentMinMargin": -0.0020000000000024443,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "9ec79c808d51072f5e23edb52371f4044d6c5329726861b5f09216266478c9bb": {
+      "svgSHA256": "219f78e1cf974ae4390157e98a9d4810e422b8f4775356f07028bf4059a687b3",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 78.7 41.3 A 18.0 18.0 0 0 0 111.5 31.0",
+          "actualSVGCircleCenter": [
+            93.50008440469725,
+            31.055123152822325
+          ],
+          "centerErrorFromVertex": 0.11360960869320384,
+          "sweepAngleDeg": 145.48380417514483,
+          "halfplaneMinDistances": {
+            "AB": 0.014795024532763889,
+            "BC": 27.49487684717767,
+            "CD": 50.06567417035099,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 27.49487684717767,
+          "incidentMinMargin": 0.014795024532763889,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 129.2 76.5 A 18.0 18.0 0 0 1 161.9 66.2",
+          "actualSVGCircleCenter": [
+            147.19978648978986,
+            76.58767167146878
+          ],
+          "centerErrorFromVertex": 0.03777458612084462,
+          "sweepAngleDeg": 144.47460195826406,
+          "halfplaneMinDistances": {
+            "AB": 50.208957369584795,
+            "BC": 0.04999999999999716,
+            "CD": 0.04576609348580891,
+            "DA": 27.637671671468784
+          },
+          "nonincidentMinMargin": 27.637671671468784,
+          "incidentMinMargin": 0.04576609348580891,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": true,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "07cd84083a37baa90788991f46d87ca1f76c94eb98d9a3e1ffd4dba2d7677064": {
+      "svgSHA256": "5904885ba4f9b2138949f2f4ea135f74ee8152c546eb16a11a64b26c2e5ad9d2",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 79.9 40.2 A 18.0 18.0 0 0 0 113.4 30.9",
+          "actualSVGCircleCenter": [
+            95.40062126397277,
+            31.049549714310466
+          ],
+          "centerErrorFromVertex": 0.1023137807480831,
+          "sweepAngleDeg": 149.92149505289242,
+          "halfplaneMinDistances": {
+            "AB": -0.04290028734720649,
+            "BC": 22.19045028568953,
+            "CD": 42.13872856349719,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 22.19045028568953,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 127.3 71.2 A 18.0 18.0 0 0 1 160.7 62.0",
+          "actualSVGCircleCenter": [
+            145.2996121862672,
+            71.31815728492658
+          ],
+          "centerErrorFromVertex": 0.08136259678058345,
+          "sweepAngleDeg": 148.44743996036686,
+          "halfplaneMinDistances": {
+            "AB": 42.31486387412278,
+            "BC": 0.03999999999999204,
+            "CD": -0.023658610473366922,
+            "DA": 22.368157284926586
+          },
+          "nonincidentMinMargin": 22.368157284926586,
+          "incidentMinMargin": -0.023658610473366922,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "4c92cb26fe9a901360dd987cfee8f398475620495519086104621f503eaa1fa5": {
+      "svgSHA256": "cb7a4f8b966690596ca586adb188d4dfce3e0a7be127a08f79f0aefab6180ea1",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 86.5 34.1 A 14.261 14.261 0 0 0 114.4 29.9",
+          "actualSVGCircleCenter": [
+            100.13904135970338,
+            29.934346175172426
+          ],
+          "centerErrorFromVertex": 0.034829235766289685,
+          "sweepAngleDeg": 163.15420329680165,
+          "halfplaneMinDistances": {
+            "AB": -0.00675502559911751,
+            "BC": 7.692653824827573,
+            "CD": 18.54533145053697,
+            "DA": -0.047999999999998266
+          },
+          "nonincidentMinMargin": 7.692653824827573,
+          "incidentMinMargin": -0.047999999999998266,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 126.3 51.9 A 14.261 14.261 0 0 1 154.2 47.7",
+          "actualSVGCircleCenter": [
+            140.56095864029663,
+            51.86565382482762
+          ],
+          "centerErrorFromVertex": 0.026347584021415973,
+          "sweepAngleDeg": 163.1542032968013,
+          "halfplaneMinDistances": {
+            "AB": 18.524349862997052,
+            "BC": -0.012000000000000453,
+            "CD": 0.014226561940852518,
+            "DA": 7.656653824827622
+          },
+          "nonincidentMinMargin": 7.656653824827622,
+          "incidentMinMargin": -0.012000000000000453,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "6d82ceb53de1f68fe3cb03d4dd565e516e5890d304553e41f3660ba3c8fbb8f5": {
+      "svgSHA256": "6d62c5731fc3b1218c1dd06478505ed348b3cb2f718541fda0574c6e9a96ee84",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 74.2 43.9 A 18.0 18.0 0 0 0 104.7 31.0",
+          "actualSVGCircleCenter": [
+            86.70007442533354,
+            30.94823798237775
+          ],
+          "centerErrorFromVertex": 0.0035435571439736665,
+          "sweepAngleDeg": 133.81852852447645,
+          "halfplaneMinDistances": {
+            "AB": 0.006817329249550167,
+            "BC": 42.44176201762225,
+            "CD": 72.3668546150943,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 42.44176201762225,
+          "incidentMinMargin": 0.006817329249550167,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 136.0 91.4 A 18.0 18.0 0 0 1 166.5 78.4",
+          "actualSVGCircleCenter": [
+            153.9999353890729,
+            91.35177148974796
+          ],
+          "centerErrorFromVertex": 0.0574879694452012,
+          "sweepAngleDeg": 134.13676525393046,
+          "halfplaneMinDistances": {
+            "AB": 72.37216959062282,
+            "BC": -0.010000000000005116,
+            "CD": 0.0015159935054708238,
+            "DA": 42.40177148974796
+          },
+          "nonincidentMinMargin": 42.40177148974796,
+          "incidentMinMargin": -0.010000000000005116,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "3ed281603d5b1cff9d704e51701aa25735be5d8045a0c2312b8f2bd4cb0bb0cd": {
+      "svgSHA256": "fb481e7aedc28ed2089675f72e30d91a1df2b555d1b9aa6ce9723163cff3d8fb",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 81.5 38.6 A 18.0 18.0 0 0 0 115.8 31.0",
+          "actualSVGCircleCenter": [
+            97.80003604313333,
+            30.963978457825398
+          ],
+          "centerErrorFromVertex": 0.03587168004267564,
+          "sweepAngleDeg": 154.78382152880283,
+          "halfplaneMinDistances": {
+            "AB": 0.05860916524056913,
+            "BC": 14.3660215421746,
+            "CD": 30.388021853760158,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 14.3660215421746,
+          "incidentMinMargin": 0.04999999999999716,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 124.9 63.3 A 18.0 18.0 0 0 1 159.2 55.7",
+          "actualSVGCircleCenter": [
+            142.89996395686669,
+            63.33602154217463
+          ],
+          "centerErrorFromVertex": 0.014294164816529079,
+          "sweepAngleDeg": 154.7838215288026,
+          "halfplaneMinDistances": {
+            "AB": 30.425588290787502,
+            "BC": 0.030000000000001137,
+            "CD": 0.021042728213266484,
+            "DA": 14.386021542174628
+          },
+          "nonincidentMinMargin": 14.386021542174628,
+          "incidentMinMargin": 0.021042728213266484,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": true,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "f98ca8b4f3259c88fd273752a171fa00c09e64ae263b35161cb71c14183e1610": {
+      "svgSHA256": "fcf1ae4485b7e754bd4fd36f96111b28eca98462ddfdc1a31acdd59341c1b361",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 69.0 45.7 A 18.0 18.0 0 0 0 97.3 30.9",
+          "actualSVGCircleCenter": [
+            79.30004064789846,
+            30.938253401049057
+          ],
+          "centerErrorFromVertex": 0.03878113323099837,
+          "sweepAngleDeg": 125.0272561142283,
+          "halfplaneMinDistances": {
+            "AB": -0.00850356196471417,
+            "BC": 54.87174659895095,
+            "CD": 90.98104673680096,
+            "DA": -0.04999999999999716
+          },
+          "nonincidentMinMargin": 54.87174659895095,
+          "incidentMinMargin": -0.04999999999999716,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 143.3 103.8 A 18.0 18.0 0 0 1 171.6 89.1",
+          "actualSVGCircleCenter": [
+            161.29989424872505,
+            103.8617011727156
+          ],
+          "centerErrorFromVertex": 0.0544574878859509,
+          "sweepAngleDeg": 124.70934303855074,
+          "halfplaneMinDistances": {
+            "AB": 90.95967201848109,
+            "BC": 0.010000000000005116,
+            "CD": 0.01279177136462629,
+            "DA": 54.911701172715595
+          },
+          "nonincidentMinMargin": 54.911701172715595,
+          "incidentMinMargin": 0.010000000000005116,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "e3c10ce173e9ca5d733ab68a70383afa6c9169c26112f0fde7039475c0515c19": {
+      "svgSHA256": "683287b7507ad8f82d9b1f3af59f72c5fbedf50b2a8cf289d1b2c182675ba75b",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 73.7 44.1 A 18.0 18.0 0 0 0 104.0 31.0",
+          "actualSVGCircleCenter": [
+            86.00004870205458,
+            30.958127913912517
+          ],
+          "centerErrorFromVertex": 0.034033508371340254,
+          "sweepAngleDeg": 132.97160304039855,
+          "halfplaneMinDistances": {
+            "AB": -0.0030440621298861753,
+            "BC": 43.801872086087485,
+            "CD": 74.3832137996128,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 43.801872086087485,
+          "incidentMinMargin": -0.0030440621298861753,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 136.7 92.8 A 18.0 18.0 0 0 1 167.0 79.6",
+          "actualSVGCircleCenter": [
+            154.6999060057439,
+            92.7418296950031
+          ],
+          "centerErrorFromVertex": 0.02228732751906272,
+          "sweepAngleDeg": 133.2902457688276,
+          "halfplaneMinDistances": {
+            "AB": 74.40997363506091,
+            "BC": -0.03999999999999204,
+            "CD": -0.029865932848437627,
+            "DA": 43.7918296950031
+          },
+          "nonincidentMinMargin": 43.7918296950031,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "f7c70d76d89ff48e751825dece51b225b4ca40305b586b4b2c33f1baf8c1b69e": {
+      "svgSHA256": "6d3084db08fe6dfb6cc6199761925c79dbb768fa73f877e7a63c639f94ae4712",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 80.7 39.4 A 18.0 18.0 0 0 0 114.6 31.0",
+          "actualSVGCircleCenter": [
+            96.60003873752561,
+            30.96265633358547
+          ],
+          "centerErrorFromVertex": 0.03906811620142006,
+          "sweepAngleDeg": 151.92850779873194,
+          "halfplaneMinDistances": {
+            "AB": -0.020840594002767616,
+            "BC": 18.307343666414525,
+            "CD": 36.31809312501339,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 18.307343666414525,
+          "incidentMinMargin": -0.020840594002767616,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 126.0 67.3 A 18.0 18.0 0 0 1 159.9 58.8",
+          "actualSVGCircleCenter": [
+            143.99989048443595,
+            67.23721028498578
+          ],
+          "centerErrorFromVertex": 0.03698514476854047,
+          "sweepAngleDeg": 152.24772338062792,
+          "halfplaneMinDistances": {
+            "AB": 36.274932179816204,
+            "BC": -0.030000000000001137,
+            "CD": 0.022169354105139333,
+            "DA": 18.28721028498578
+          },
+          "nonincidentMinMargin": 18.28721028498578,
+          "incidentMinMargin": -0.030000000000001137,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ba156413de9071c2dc9f416227134e7c3e7c205f390fee114032f44e6b4c925b": {
+      "svgSHA256": "b20a19cbdcc6ce556f125b6f3d90560f727f4fc3d4e8b38a3a8ce1975e74f030",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 76.5 42.8 A 18.0 18.0 0 0 0 108.0 31.0",
+          "actualSVGCircleCenter": [
+            90.00030935281652,
+            30.894469882518678
+          ],
+          "centerErrorFromVertex": 0.07255074418571984,
+          "sweepAngleDeg": 138.25595191881112,
+          "halfplaneMinDistances": {
+            "AB": 0.056071760357329005,
+            "BC": 35.70553011748132,
+            "CD": 62.293414166312125,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 35.70553011748132,
+          "incidentMinMargin": 0.04999999999999716,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 132.6 84.6 A 18.0 18.0 0 0 1 164.2 72.8",
+          "actualSVGCircleCenter": [
+            150.59999800252388,
+            84.59152007455553
+          ],
+          "centerErrorFromVertex": 0.010997140728356381,
+          "sweepAngleDeg": 139.1009388382928,
+          "halfplaneMinDistances": {
+            "AB": 62.20987959708902,
+            "BC": -0.0,
+            "CD": -0.011842391982908075,
+            "DA": 35.64152007455553
+          },
+          "nonincidentMinMargin": 35.64152007455553,
+          "incidentMinMargin": -0.011842391982908075,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "2b52d7ae5dc6ba04d50690b33d6141e9c3182fe338407d785b79da5473c7e300": {
+      "svgSHA256": "ba2cd11ee5d00246796d47b74b2b39cd4feb78125df6af9d8c0091085754d4cc",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 81.7 38.3 A 18.0 18.0 0 0 0 116.1 30.9",
+          "actualSVGCircleCenter": [
+            98.10000989409407,
+            30.881127075248095
+          ],
+          "centerErrorFromVertex": 0.06922673865247116,
+          "sweepAngleDeg": 155.59935528683474,
+          "halfplaneMinDistances": {
+            "AB": 0.040813379808956364,
+            "BC": 13.138872924751906,
+            "CD": 28.525644479106717,
+            "DA": -0.05000000000000426
+          },
+          "nonincidentMinMargin": 13.138872924751906,
+          "incidentMinMargin": -0.05000000000000426,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 124.5 62.0 A 18.0 18.0 0 0 1 159.0 54.7",
+          "actualSVGCircleCenter": [
+            142.49968207660328,
+            61.89301803326202
+          ],
+          "centerErrorFromVertex": 0.13551164433813356,
+          "sweepAngleDeg": 156.78660415372073,
+          "halfplaneMinDistances": {
+            "AB": 28.32463376518066,
+            "BC": 0.020000000000003126,
+            "CD": -0.005303562232169492,
+            "DA": 12.943018033262017
+          },
+          "nonincidentMinMargin": 12.943018033262017,
+          "incidentMinMargin": -0.005303562232169492,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "950b3a44f8da62bd32b296e78a089aa66375730a02e7d8b0af4c9385b09d58a5": {
+      "svgSHA256": "859c437432da445d5b2966fe068f6cc53fce6a8bd5d4fb7abf022a0cc68bf16f",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 60.4 47.4 A 18.0 18.0 0 0 0 85.7 31.0",
+          "actualSVGCircleCenter": [
+            67.70007871323327,
+            30.94676777102449
+          ],
+          "centerErrorFromVertex": 0.023303954785684138,
+          "sweepAngleDeg": 113.75677620540475,
+          "halfplaneMinDistances": {
+            "AB": 0.04306447845220987,
+            "BC": 70.38323222897552,
+            "CD": 114.12419906712019,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 70.38323222897552,
+          "incidentMinMargin": 0.04306447845220987,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 155.0 119.3 A 18.0 18.0 0 0 1 180.3 102.9",
+          "actualSVGCircleCenter": [
+            172.99992128676675,
+            119.35323222897551
+          ],
+          "centerErrorFromVertex": 0.03263620459266359,
+          "sweepAngleDeg": 113.75677620540469,
+          "halfplaneMinDistances": {
+            "AB": 114.174356888177,
+            "BC": 0.030000000000001137,
+            "CD": -0.0070933426046245005,
+            "DA": 70.40323222897551
+          },
+          "nonincidentMinMargin": 70.40323222897551,
+          "incidentMinMargin": -0.0070933426046245005,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "56ba51b24c12eba9fbbff212db73d1470aeecf1eb11c8aa8bc0ac3f69245de86": {
+      "svgSHA256": "987cf237736ed33a6acd51069e3c2c7d286fa45c333795a4859bfdca090ba169",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 75.6 43.2 A 18.0 18.0 0 0 0 106.8 31.0",
+          "actualSVGCircleCenter": [
+            88.8000392804773,
+            30.962395536958404
+          ],
+          "centerErrorFromVertex": 0.035288006332826596,
+          "sweepAngleDeg": 137.04705703203322,
+          "halfplaneMinDistances": {
+            "AB": -0.020596694436298517,
+            "BC": 38.3476044630416,
+            "CD": 66.2351501654326,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 38.3476044630416,
+          "incidentMinMargin": -0.020596694436298517,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 133.9 87.3 A 18.0 18.0 0 0 1 165.1 75.0",
+          "actualSVGCircleCenter": [
+            151.89989159653558,
+            87.2375299034073
+          ],
+          "centerErrorFromVertex": 0.07360779959617633,
+          "sweepAngleDeg": 137.36592836610322,
+          "halfplaneMinDistances": {
+            "AB": 66.2225383970422,
+            "BC": 0.010000000000005116,
+            "CD": -0.008086597277427728,
+            "DA": 38.287529903407304
+          },
+          "nonincidentMinMargin": 38.287529903407304,
+          "incidentMinMargin": -0.008086597277427728,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "957b4bd1c565ef79b950392d0116406871fd1a92e2b7010768c2c6ff6869bd7c": {
+      "svgSHA256": "7dd060d160c7eeced771118ae017812279a4c6329f01f38043ac06d32d45f050",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 70.3 45.3 A 18.0 18.0 0 0 0 99.1 31.0",
+          "actualSVGCircleCenter": [
+            81.1002766284575,
+            30.900207475494845
+          ],
+          "centerErrorFromVertex": 0.05651047764083205,
+          "sweepAngleDeg": 126.55334722501269,
+          "halfplaneMinDistances": {
+            "AB": -0.011031817444051224,
+            "BC": 52.11979252450515,
+            "CD": 86.83338800566233,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 52.11979252450515,
+          "incidentMinMargin": -0.011031817444051224,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 141.5 101.0 A 18.0 18.0 0 0 1 170.4 86.6",
+          "actualSVGCircleCenter": [
+            159.49984096026915,
+            100.92433359387354
+          ],
+          "centerErrorFromVertex": 0.0994468435912007,
+          "sweepAngleDeg": 127.51032033618915,
+          "halfplaneMinDistances": {
+            "AB": 86.70281739698184,
+            "BC": 0.01999999999999602,
+            "CD": -0.005643165168291954,
+            "DA": 51.97433359387354
+          },
+          "nonincidentMinMargin": 51.97433359387354,
+          "incidentMinMargin": -0.005643165168291954,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "a95125dbf14f659c97fd90096f8c2377bd821a7ba09a1767c64d90273fe6e2c1": {
+      "svgSHA256": "61e6a1d013a207e13b546bdf173a1cded59f4247866137c48d62575db476f76c",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 78.0 41.8 A 18.0 18.0 0 0 0 110.4 31.0",
+          "actualSVGCircleCenter": [
+            92.4,
+            31.000000000000007
+          ],
+          "centerErrorFromVertex": 0.05166236541236684,
+          "sweepAngleDeg": 143.13010235415604,
+          "halfplaneMinDistances": {
+            "AB": 0.0073620310820808705,
+            "BC": 30.21999999999999,
+            "CD": 54.131389124223915,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 30.21999999999999,
+          "incidentMinMargin": 0.0073620310820808705,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 130.3 79.2 A 18.0 18.0 0 0 1 162.6 68.4",
+          "actualSVGCircleCenter": [
+            148.29952012665564,
+            79.331435193609
+          ],
+          "centerErrorFromVertex": 0.11608342264239821,
+          "sweepAngleDeg": 142.18695367079107,
+          "halfplaneMinDistances": {
+            "AB": 54.28771331626393,
+            "BC": 0.01999999999999602,
+            "CD": 0.015899349068882192,
+            "DA": 30.381435193608997
+          },
+          "nonincidentMinMargin": 30.381435193608997,
+          "incidentMinMargin": 0.015899349068882192,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": true,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "27353b02527624b4e0bb763d105af7707fcd607ac3ccdd83bd25bab265ffb847": {
+      "svgSHA256": "849c38b41edc8a53fe38b84b5bb22d827a0519591559ed1f61828017b6aa58e4",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 79.4 40.8 A 18.0 18.0 0 0 0 112.4 31.0",
+          "actualSVGCircleCenter": [
+            94.40061625206424,
+            30.851054726338763
+          ],
+          "centerErrorFromVertex": 0.10927771617519015,
+          "sweepAngleDeg": 145.97212611415785,
+          "halfplaneMinDistances": {
+            "AB": 0.06549771400692807,
+            "BC": 25.03894527366124,
+            "CD": 46.31152452882076,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 25.03894527366124,
+          "incidentMinMargin": 0.05000000000000071,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 128.2 73.9 A 18.0 18.0 0 0 1 161.3 64.1",
+          "actualSVGCircleCenter": [
+            146.1999998191438,
+            73.89744836874085
+          ],
+          "centerErrorFromVertex": 0.010221581527286467,
+          "sweepAngleDeg": 147.03109750988997,
+          "halfplaneMinDistances": {
+            "AB": 46.20571385914098,
+            "BC": -0.010000000000005116,
+            "CD": -0.009875989108854835,
+            "DA": 24.947448368740854
+          },
+          "nonincidentMinMargin": 24.947448368740854,
+          "incidentMinMargin": -0.010000000000005116,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "50874ccc516c62d38b4dbcecd3bc4f7ebaab92a2d515ae1684244a23d857e617": {
+      "svgSHA256": "69a5356e16bb524580db5db90c98e5b9d8874712a2d8613de3a04f1036c2f39e",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 74.7 43.7 A 18.0 18.0 0 0 0 105.4 31.0",
+          "actualSVGCircleCenter": [
+            87.40008617184041,
+            30.944302793346495
+          ],
+          "centerErrorFromVertex": 0.008958748990398984,
+          "sweepAngleDeg": 134.69754109741535,
+          "halfplaneMinDistances": {
+            "AB": 0.030405591591028222,
+            "BC": 41.085697206653506,
+            "CD": 70.34069645405765,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 41.085697206653506,
+          "incidentMinMargin": 0.030405591591028222,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 135.2 90.0 A 18.0 18.0 0 0 1 166.0 77.3",
+          "actualSVGCircleCenter": [
+            153.19994469013716,
+            89.95537767371847
+          ],
+          "centerErrorFromVertex": 0.08821957699941749,
+          "sweepAngleDeg": 135.46767826564292,
+          "halfplaneMinDistances": {
+            "AB": 70.24574002418709,
+            "BC": 0.030000000000001137,
+            "CD": -0.016263455967280908,
+            "DA": 41.00537767371847
+          },
+          "nonincidentMinMargin": 41.00537767371847,
+          "incidentMinMargin": -0.016263455967280908,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ac7c4bf42d77fa517effa1f869df4ceddd9fbffe655b826c10874a94750bcc2e": {
+      "svgSHA256": "cfed98376c270f9c40d6fb400a4802ead2e1f826575c6b6d1029077a3618f0ea",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 65.4 46.5 A 18.0 18.0 0 0 0 92.4 31.0",
+          "actualSVGCircleCenter": [
+            74.40021673923496,
+            30.911667868344775
+          ],
+          "centerErrorFromVertex": 0.053125893778288004,
+          "sweepAngleDeg": 119.71962559761457,
+          "halfplaneMinDistances": {
+            "AB": -0.05177249688023315,
+            "BC": 61.90833213165521,
+            "CD": 101.46918402649383,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 61.90833213165521,
+          "incidentMinMargin": -0.05177249688023315,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 148.2 110.8 A 18.0 18.0 0 0 1 175.2 95.2",
+          "actualSVGCircleCenter": [
+            166.199996297666,
+            110.78845513057578
+          ],
+          "centerErrorFromVertex": 0.035835801652181136,
+          "sweepAngleDeg": 120.0367620712695,
+          "halfplaneMinDistances": {
+            "AB": 101.38766558598186,
+            "BC": 0.01999999999999602,
+            "CD": 0.029991938460056603,
+            "DA": 61.83845513057579
+          },
+          "nonincidentMinMargin": 61.83845513057579,
+          "incidentMinMargin": 0.01999999999999602,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "30f913521f133810834c8352ca5ca46b80066c763149413f0c354c691be97d4b": {
+      "svgSHA256": "cb609f9b0c5c0e5347d1fbad9ea7c89a80973b78d55febd9535523dd2d083bab",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 79.7 40.5 A 18.0 18.0 0 0 0 112.9 31.0",
+          "actualSVGCircleCenter": [
+            94.90054998535749,
+            30.85929047514402
+          ],
+          "centerErrorFromVertex": 0.0921890496823577,
+          "sweepAngleDeg": 147.1678330521695,
+          "halfplaneMinDistances": {
+            "AB": 0.03508760387206866,
+            "BC": 23.70070952485598,
+            "CD": 44.3034101286641,
+            "DA": 0.05000000000000426
+          },
+          "nonincidentMinMargin": 23.70070952485598,
+          "incidentMinMargin": 0.03508760387206866,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 127.7 72.6 A 18.0 18.0 0 0 1 161.0 63.0",
+          "actualSVGCircleCenter": [
+            145.69960966006647,
+            72.48145850835563
+          ],
+          "centerErrorFromVertex": 0.0869873751188499,
+          "sweepAngleDeg": 148.59136011575,
+          "halfplaneMinDistances": {
+            "AB": 44.13134606142042,
+            "BC": -0.03999999999999204,
+            "CD": 0.0191918226751836,
+            "DA": 23.53145850835563
+          },
+          "nonincidentMinMargin": 23.53145850835563,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "4ded417ce6f86c7173ce507319887fd91b5c52688b9ff221392bbde1118eb1c0": {
+      "svgSHA256": "19e63b2e1315dda32c872289143ec5aa90a5b2c940c821a4006ca8be68247fe1",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 81.2 38.8 A 18.0 18.0 0 0 0 115.4 30.9",
+          "actualSVGCircleCenter": [
+            97.40008145104761,
+            30.95415007921873
+          ],
+          "centerErrorFromVertex": 0.008067804975846577,
+          "sweepAngleDeg": 154.33102735741218,
+          "halfplaneMinDistances": {
+            "AB": -0.04860728035071729,
+            "BC": 15.685849920781266,
+            "CD": 32.37381381347956,
+            "DA": -0.05000000000000426
+          },
+          "nonincidentMinMargin": 15.685849920781266,
+          "incidentMinMargin": -0.05000000000000426,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 125.2 64.6 A 18.0 18.0 0 0 1 159.4 56.7",
+          "actualSVGCircleCenter": [
+            143.1999185489524,
+            64.54584992078127
+          ],
+          "centerErrorFromVertex": 0.1052658560485879,
+          "sweepAngleDeg": 154.33102735741215,
+          "halfplaneMinDistances": {
+            "AB": 32.269250580075656,
+            "BC": 0.04000000000000625,
+            "CD": 0.05595595305319228,
+            "DA": 15.595849920781266
+          },
+          "nonincidentMinMargin": 15.595849920781266,
+          "incidentMinMargin": 0.04000000000000625,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "157f0c178748cf1451c59ed69bee951f19631fe8f4e577ce256ffd75878ed5d3": {
+      "svgSHA256": "9a89f97024230b8edb5eea7382458bcdb7b91ef22c51a79d1cae4398d6446a59",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 81.0 39.1 A 18.0 18.0 0 0 0 115.0 31.0",
+          "actualSVGCircleCenter": [
+            97.00058465573038,
+            30.85492324627565
+          ],
+          "centerErrorFromVertex": 0.09867805993047928,
+          "sweepAngleDeg": 152.2762194454492,
+          "halfplaneMinDistances": {
+            "AB": -0.01556642105604219,
+            "BC": 17.105076753724347,
+            "CD": 34.448459453732156,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 17.105076753724347,
+          "incidentMinMargin": -0.01556642105604219,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 125.6 66.0 A 18.0 18.0 0 0 1 159.7 57.8",
+          "actualSVGCircleCenter": [
+            143.59935769300463,
+            65.84793869895834
+          ],
+          "centerErrorFromVertex": 0.11542024227653343,
+          "sweepAngleDeg": 153.92576370219018,
+          "halfplaneMinDistances": {
+            "AB": 34.23935940520334,
+            "BC": -0.04000000000000625,
+            "CD": -0.027542865679671475,
+            "DA": 16.897938698958345
+          },
+          "nonincidentMinMargin": 16.897938698958345,
+          "incidentMinMargin": -0.04000000000000625,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "9acb3c8e2e4684519d4bd5214092f8031a903ca8b0ba30eee1f5922e3b271e63": {
+      "svgSHA256": "e828f548e0638cb112a35084f3ad0d5dee8dd4743ffaed4238ddd7a95c9bf5d8",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 63.8 46.8 A 18.0 18.0 0 0 0 90.3 30.9",
+          "actualSVGCircleCenter": [
+            72.30003095985322,
+            30.93338493308869
+          ],
+          "centerErrorFromVertex": 0.016889261857735,
+          "sweepAngleDeg": 118.28502214274022,
+          "halfplaneMinDistances": {
+            "AB": -0.060781752466689855,
+            "BC": 64.70661506691131,
+            "CD": 105.64244938532694,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 64.70661506691131,
+          "incidentMinMargin": -0.060781752466689855,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 150.4 113.6 A 18.0 18.0 0 0 1 176.8 97.7",
+          "actualSVGCircleCenter": [
+            168.39998911741876,
+            113.61979325156318
+          ],
+          "centerErrorFromVertex": 0.04750133575840282,
+          "sweepAngleDeg": 117.75517456214007,
+          "halfplaneMinDistances": {
+            "AB": 105.6657944029553,
+            "BC": 0.04000000000000625,
+            "CD": 0.029151361696469102,
+            "DA": 64.66979325156318
+          },
+          "nonincidentMinMargin": 64.66979325156318,
+          "incidentMinMargin": 0.029151361696469102,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "b35e2073340b2a41756fab208a2b668cd8e62364079ad987cf4e4b162c4d8924": {
+      "svgSHA256": "d70ea5b1e32e6fd32ab9e5c1fce1393a87fcb0091e08200aa9bff1274b4e8e48",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 80.2 40.0 A 18.0 18.0 0 0 0 113.8 31.0",
+          "actualSVGCircleCenter": [
+            95.8000111574455,
+            31.0200416544632
+          ],
+          "centerErrorFromVertex": 0.07038946853183337,
+          "sweepAngleDeg": 150.1374309030327,
+          "halfplaneMinDistances": {
+            "AB": 0.03394892921748672,
+            "BC": 20.889958345536797,
+            "CD": 40.203289671620006,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 20.889958345536797,
+          "incidentMinMargin": 0.03394892921748672,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 126.8 69.9 A 18.0 18.0 0 0 1 160.4 60.9",
+          "actualSVGCircleCenter": [
+            144.79998884255448,
+            69.87995834553678
+          ],
+          "centerErrorFromVertex": 0.05579023146802056,
+          "sweepAngleDeg": 150.1374309030329,
+          "halfplaneMinDistances": {
+            "AB": 40.21093038810325,
+            "BC": 0.009999999999990905,
+            "CD": 0.026308212734207945,
+            "DA": 20.92995834553678
+          },
+          "nonincidentMinMargin": 20.92995834553678,
+          "incidentMinMargin": 0.009999999999990905,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": true,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "6eb6a31768edb6793169afff78b8d95bd714265ce6c994f233173ca80de569c7": {
+      "svgSHA256": "4eb77b4cedc66db5337a3ee3fa67f5a2f169030ad08b5ca20f72ee4a71dc976b",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 85.5 34.6 A 15.106000000000007 15.106000000000007 0 0 0 115.0 29.9",
+          "actualSVGCircleCenter": [
+            99.89446437908498,
+            30.0184466346823
+          ],
+          "centerErrorFromVertex": 0.07978914737158366,
+          "sweepAngleDeg": 162.79372948145968,
+          "halfplaneMinDistances": {
+            "AB": -0.011954693492235961,
+            "BC": 8.063553365317695,
+            "CD": 19.568528908864607,
+            "DA": -0.04800000000000181
+          },
+          "nonincidentMinMargin": 8.063553365317695,
+          "incidentMinMargin": -0.04800000000000181,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 125.7 53.2 A 15.106000000000007 15.106000000000007 0 0 1 155.2 48.5",
+          "actualSVGCircleCenter": [
+            140.805535620915,
+            53.081553365317745
+          ],
+          "centerErrorFromVertex": 0.10678830862778319,
+          "sweepAngleDeg": 162.79372948145937,
+          "halfplaneMinDistances": {
+            "AB": 19.548504611121235,
+            "BC": -0.012000000000000453,
+            "CD": 0.008069604251163851,
+            "DA": 8.027553365317736
+          },
+          "nonincidentMinMargin": 8.027553365317736,
+          "incidentMinMargin": -0.012000000000000453,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "3a728771608e1e44ccefec323386c36e91666230bcf4d1f10e14a9cd47cbfd07": {
+      "svgSHA256": "8b401cbe7c2ffcd83016d33ae1c482994ef724c9fb5c274a235e175d8b7f08a2",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 78.4 41.5 A 18.0 18.0 0 0 0 110.9 30.9",
+          "actualSVGCircleCenter": [
+            92.90011809910898,
+            30.834796058588832
+          ],
+          "centerErrorFromVertex": 0.1182987096809707,
+          "sweepAngleDeg": 143.45702588892414,
+          "halfplaneMinDistances": {
+            "AB": -0.004600695859886397,
+            "BC": 29.055203941411165,
+            "CD": 52.295797672563346,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 29.055203941411165,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 129.7 77.9 A 18.0 18.0 0 0 1 162.3 67.3",
+          "actualSVGCircleCenter": [
+            147.6998554278909,
+            77.82785725936252
+          ],
+          "centerErrorFromVertex": 0.06781259476619461,
+          "sweepAngleDeg": 144.43505734432603,
+          "halfplaneMinDistances": {
+            "AB": 52.12056851179919,
+            "BC": -0.010000000000005116,
+            "CD": 0.0007185691339862044,
+            "DA": 28.877857259362518
+          },
+          "nonincidentMinMargin": 28.877857259362518,
+          "incidentMinMargin": -0.010000000000005116,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "2bd26045e3b059fa1fb37716c7a613073a76ce409556c27e1aec2f33f74da332": {
+      "svgSHA256": "4c03bfbebdbd3a4cfecc7ab18be7dd68c28036c105fbffc9fd7b8e0c27f42cc0",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 83.5 35.5 A 16.8025 16.8025 0 0 0 116.1 29.8",
+          "actualSVGCircleCenter": [
+            99.29751692751837,
+            29.776149445105133
+          ],
+          "centerErrorFromVertex": 0.046282920299777625,
+          "sweepAngleDeg": 160.00190384814852,
+          "halfplaneMinDistances": {
+            "AB": -0.016157066140887105,
+            "BC": 9.023350554894868,
+            "CD": 21.839075941138983,
+            "DA": 0.04800000000000182
+          },
+          "nonincidentMinMargin": 9.023350554894868,
+          "incidentMinMargin": -0.016157066140887105,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 124.5 55.6 A 16.8025 16.8025 0 0 1 157.1 49.9",
+          "actualSVGCircleCenter": [
+            141.30248307248164,
+            55.623850554894865
+          ],
+          "centerErrorFromVertex": 0.026233336306831438,
+          "sweepAngleDeg": 160.00190384814852,
+          "halfplaneMinDistances": {
+            "AB": 21.86382901585867,
+            "BC": 0.001999999999995339,
+            "CD": -0.040910140860578884,
+            "DA": 9.069350554894864
+          },
+          "nonincidentMinMargin": 9.069350554894864,
+          "incidentMinMargin": -0.040910140860578884,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "9a2fabb6578b0125fd11707640a01961dfb561264344ad4d4b1c6d4823d55d4d": {
+      "svgSHA256": "d3151ff910d53199e056d5af74ebd85e9030cdb781df580a645d3d444633be90",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 82.1 37.7 A 18.0 18.0 0 0 0 116.8 31.0",
+          "actualSVGCircleCenter": [
+            98.80000745227758,
+            30.983620685676485
+          ],
+          "centerErrorFromVertex": 0.054589298005792326,
+          "sweepAngleDeg": 158.03894564683628,
+          "halfplaneMinDistances": {
+            "AB": 0.019890305034166965,
+            "BC": 10.416379314323516,
+            "CD": 24.48963358263765,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 10.416379314323516,
+          "incidentMinMargin": 0.019890305034166965,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 123.9 59.4 A 18.0 18.0 0 0 1 158.6 52.7",
+          "actualSVGCircleCenter": [
+            141.8999925477224,
+            59.41637931432356
+          ],
+          "centerErrorFromVertex": 0.016650443825341026,
+          "sweepAngleDeg": 158.03894564683603,
+          "halfplaneMinDistances": {
+            "AB": 24.553223053052378,
+            "BC": -0.0,
+            "CD": -0.043699165380526456,
+            "DA": 10.466379314323557
+          },
+          "nonincidentMinMargin": 10.466379314323557,
+          "incidentMinMargin": -0.043699165380526456,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "9e9615c18b13b20606f221caf91e24c550bebb13994285db2c71f56a8b6bbd24": {
+      "svgSHA256": "fabfcab980815d0f39e43b5015ba18f8b4f6f15c2cce1e1a3198934fc4381a96",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 79.0 41.0 A 18.0 18.0 0 0 0 112.0 31.0",
+          "actualSVGCircleCenter": [
+            94.00007008854523,
+            31.05023129219927
+          ],
+          "centerErrorFromVertex": 0.10909328330942389,
+          "sweepAngleDeg": 146.6029852176374,
+          "halfplaneMinDistances": {
+            "AB": -0.032399208414793816,
+            "BC": 26.169768707800728,
+            "CD": 48.086545958027095,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 26.169768707800728,
+          "incidentMinMargin": -0.032399208414793816,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 128.7 75.2 A 18.0 18.0 0 0 1 161.6 65.2",
+          "actualSVGCircleCenter": [
+            146.69972988156954,
+            75.29861131036387
+          ],
+          "centerErrorFromVertex": 0.07865869545389201,
+          "sweepAngleDeg": 145.5587755996701,
+          "halfplaneMinDistances": {
+            "AB": 48.260422910084166,
+            "BC": 0.01999999999999602,
+            "CD": -0.02707262590857075,
+            "DA": 26.348611310363868
+          },
+          "nonincidentMinMargin": 26.348611310363868,
+          "incidentMinMargin": -0.02707262590857075,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "02706f141198287879cd58eb7d8499c352f09ff03f79396e53ad1cf73e680896": {
+      "svgSHA256": "72b4df73cf665bb5c1d872e67c00aba7315e42f99a50cf4d87277d8e54e82484",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 90.3 32.4 A 10.893999999999995 10.893999999999995 0 0 0 111.8 29.9",
+          "actualSVGCircleCenter": [
+            100.90600623308877,
+            29.911653604563487
+          ],
+          "centerErrorFromVertex": 0.041973785990193586,
+          "sweepAngleDeg": 166.85755246330598,
+          "halfplaneMinDistances": {
+            "AB": -0.0012524586415942594,
+            "BC": 5.902346395436517,
+            "CD": 14.204221697692201,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 5.902346395436517,
+          "incidentMinMargin": -0.04800000000000182,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 128.8 46.7 A 10.893999999999995 10.893999999999995 0 0 1 150.3 44.3",
+          "actualSVGCircleCenter": [
+            139.69365343651455,
+            46.78689536877612
+          ],
+          "centerErrorFromVertex": 0.08565321074314618,
+          "sweepAngleDeg": 166.3470788696085,
+          "halfplaneMinDistances": {
+            "AB": 14.233457071632158,
+            "BC": 0.007999999999995566,
+            "CD": -0.031978227134006415,
+            "DA": 5.944895368776123
+          },
+          "nonincidentMinMargin": 5.944895368776123,
+          "incidentMinMargin": -0.031978227134006415,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "fdbee2ee08d311635c83a87c8d4a00f5082f2d4db82949d0780cf9b4c320092f": {
+      "svgSHA256": "730760cdfe2a98f314bb55a670c9226c41fa391c2c3071380115eaa116c4dd04",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 80.5 39.7 A 18.0 18.0 0 0 0 114.2 30.9",
+          "actualSVGCircleCenter": [
+            96.20000043903687,
+            30.89602440858438
+          ],
+          "centerErrorFromVertex": 0.0654395291863391,
+          "sweepAngleDeg": 150.70526015821858,
+          "halfplaneMinDistances": {
+            "AB": 0.024107828468924175,
+            "BC": 19.693975591415622,
+            "CD": 38.343117162592975,
+            "DA": -0.04999999999999716
+          },
+          "nonincidentMinMargin": 19.693975591415622,
+          "incidentMinMargin": -0.04999999999999716,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 126.4 68.6 A 18.0 18.0 0 0 1 160.2 59.9",
+          "actualSVGCircleCenter": [
+            144.399834971273,
+            68.52292207230195
+          ],
+          "centerErrorFromVertex": 0.06923934282951748,
+          "sweepAngleDeg": 151.62189298926643,
+          "halfplaneMinDistances": {
+            "AB": 38.21098145644994,
+            "BC": -0.009999999999990905,
+            "CD": -0.0506702038224759,
+            "DA": 19.572922072301953
+          },
+          "nonincidentMinMargin": 19.572922072301953,
+          "incidentMinMargin": -0.0506702038224759,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "9f0522f7e05d199d66abec919b802d54d7a4b8276906b467e0428052624c7685": {
+      "svgSHA256": "98b5260507ea214b016c48d0a643c10ee934b1a4e072607b813b2b9214b6686d",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 73.2 44.3 A 18.0 18.0 0 0 0 103.2 31.0",
+          "actualSVGCircleCenter": [
+            85.20037425299317,
+            30.883926886450766
+          ],
+          "centerErrorFromVertex": 0.06813275128471563,
+          "sweepAngleDeg": 131.44243843497387,
+          "halfplaneMinDistances": {
+            "AB": 0.0029104174945721716,
+            "BC": 45.24607311354923,
+            "CD": 76.51586828908054,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 45.24607311354923,
+          "incidentMinMargin": 0.0029104174945721716,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 137.4 94.1 A 18.0 18.0 0 0 1 167.5 80.8",
+          "actualSVGCircleCenter": [
+            155.3999808266882,
+            94.12627239724173
+          ],
+          "centerErrorFromVertex": 0.03720637331175785,
+          "sweepAngleDeg": 132.15526429875482,
+          "halfplaneMinDistances": {
+            "AB": 76.42929620324226,
+            "BC": 0.030000000000001137,
+            "CD": -0.04465651259531127,
+            "DA": 45.17627239724173
+          },
+          "nonincidentMinMargin": 45.17627239724173,
+          "incidentMinMargin": -0.04465651259531127,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "d165f8f29fea531f032cb98f675e69ee6dd16866845fcac8c7f5e6f546054560": {
+      "svgSHA256": "051e66edeb3324e25207f193fc32b3e68de40e2c7e8fc47059ed8ee84ef698ac",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 72.1 44.7 A 18.0 18.0 0 0 0 101.6 30.9",
+          "actualSVGCircleCenter": [
+            83.60006222786869,
+            30.852669255226562
+          ],
+          "centerErrorFromVertex": 0.10805752324943974,
+          "sweepAngleDeg": 129.55861541796563,
+          "halfplaneMinDistances": {
+            "AB": -0.00747940603793008,
+            "BC": 48.02733074477344,
+            "CD": 80.67447129823684,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 48.02733074477344,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 139.0 96.9 A 18.0 18.0 0 0 1 168.6 83.1",
+          "actualSVGCircleCenter": [
+            156.99996337640772,
+            96.86368956099045
+          ],
+          "centerErrorFromVertex": 0.017763572058106896,
+          "sweepAngleDeg": 130.23976684628605,
+          "halfplaneMinDistances": {
+            "AB": 80.56007822436803,
+            "BC": -0.020000000000010232,
+            "CD": -0.023434682145421062,
+            "DA": 47.91368956099045
+          },
+          "nonincidentMinMargin": 47.91368956099045,
+          "incidentMinMargin": -0.023434682145421062,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "15333a18154071a8b6a1f231da7018de21b038f587fa2afacb6d3a76b1c37694": {
+      "svgSHA256": "ad0c5ca0b5e5abf77810c718bbb201f9227fc454fc446dbebab3930004bf9dcb",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 75.1 43.5 A 18.0 18.0 0 0 0 106.1 31.0",
+          "actualSVGCircleCenter": [
+            88.10006992713593,
+            31.050173419297128
+          ],
+          "centerErrorFromVertex": 0.10022044894280946,
+          "sweepAngleDeg": 136.39828628115018,
+          "halfplaneMinDistances": {
+            "AB": -0.0008826507625953778,
+            "BC": 39.61982658070288,
+            "CD": 68.22382347560693,
+            "DA": 0.05000000000000427
+          },
+          "nonincidentMinMargin": 39.61982658070288,
+          "incidentMinMargin": -0.0008826507625953778,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 134.6 88.7 A 18.0 18.0 0 0 1 165.5 76.2",
+          "actualSVGCircleCenter": [
+            152.59992077747813,
+            88.75340416192594
+          ],
+          "centerErrorFromVertex": 0.09380003926383494,
+          "sweepAngleDeg": 135.61032617919156,
+          "halfplaneMinDistances": {
+            "AB": 68.38782532484355,
+            "BC": -0.030000000000001137,
+            "CD": -0.020917643638381344,
+            "DA": 39.80340416192594
+          },
+          "nonincidentMinMargin": 39.80340416192594,
+          "incidentMinMargin": -0.030000000000001137,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "c55c72c7139baf3f419e2f2a0d73c495f5368bfdda0427c19d7d16db908f076b": {
+      "svgSHA256": "1c7c4dae528b5352e89992e8eeb70e1fb0ce7991cbacb5fb35093157fb3f51d6",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 71.5 44.9 A 18.0 18.0 0 0 0 100.8 31.0",
+          "actualSVGCircleCenter": [
+            82.80034097208255,
+            30.88920794834665
+          ],
+          "centerErrorFromVertex": 0.06638054921229918,
+          "sweepAngleDeg": 128.5350907223917,
+          "halfplaneMinDistances": {
+            "AB": -0.024771135669896083,
+            "BC": 49.37079205165335,
+            "CD": 82.70417531085123,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 49.37079205165335,
+          "incidentMinMargin": -0.024771135669896083,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 139.8 98.3 A 18.0 18.0 0 0 1 169.2 84.3",
+          "actualSVGCircleCenter": [
+            157.7998627653087,
+            98.22971180714823
+          ],
+          "centerErrorFromVertex": 0.04066699070397602,
+          "sweepAngleDeg": 129.5207795467834,
+          "halfplaneMinDistances": {
+            "AB": 82.60505128249712,
+            "BC": -0.03999999999999204,
+            "CD": -0.05422880851380276,
+            "DA": 49.27971180714823
+          },
+          "nonincidentMinMargin": 49.27971180714823,
+          "incidentMinMargin": -0.05422880851380276,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "db03b414849c5f4664909a82d713976ff48c3e0a3b552a84dc1b85bdae522465": {
+      "svgSHA256": "a2909eae5aa0d8609cf8b48d9a82b8f1e6f7b4201dafbf9449ec744c826d1fca",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 88.4 33.2 A 12.577499999999997 12.577499999999997 0 0 0 113.1 29.9",
+          "actualSVGCircleCenter": [
+            100.52260748779958,
+            29.848001499590776
+          ],
+          "centerErrorFromVertex": 0.10102892898340167,
+          "sweepAngleDeg": 164.30657444632845,
+          "halfplaneMinDistances": {
+            "AB": -0.0003214386649655309,
+            "BC": 6.872498500409229,
+            "CD": 16.458134689644186,
+            "DA": -0.04800000000000537
+          },
+          "nonincidentMinMargin": 6.872498500409229,
+          "incidentMinMargin": -0.04800000000000537,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 127.5 49.3 A 12.577499999999997 12.577499999999997 0 0 1 152.3 46.0",
+          "actualSVGCircleCenter": [
+            140.07253485938435,
+            48.94662560991869
+          ],
+          "centerErrorFromVertex": 0.3541766659945037,
+          "sweepAngleDeg": 168.06094082029588,
+          "halfplaneMinDistances": {
+            "AB": 16.00690955217247,
+            "BC": -0.001999999999995339,
+            "CD": 0.03220446230002213,
+            "DA": 6.421125609918697
+          },
+          "nonincidentMinMargin": 6.421125609918697,
+          "incidentMinMargin": -0.001999999999995339,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "172f5957c3f99894971a854541a0b508382428d212e437ad586a7b91e16a9a7a": {
+      "svgSHA256": "50171be1e9968cd3e8e13c58ff419b29d68ab67b65b29877af1fc0872f0fd9cb",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 77.3 42.3 A 18.0 18.0 0 0 0 109.3 31.0",
+          "actualSVGCircleCenter": [
+            91.30000521516887,
+            30.986297954460504
+          ],
+          "centerErrorFromVertex": 0.05627601647004639,
+          "sweepAngleDeg": 141.01397017232395,
+          "halfplaneMinDistances": {
+            "AB": 0.037131759942242167,
+            "BC": 32.92370204553949,
+            "CD": 58.13680943005512,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 32.92370204553949,
+          "incidentMinMargin": 0.037131759942242167,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 131.4 81.9 A 18.0 18.0 0 0 1 163.4 70.6",
+          "actualSVGCircleCenter": [
+            149.39999478483114,
+            81.9137020455395
+          ],
+          "centerErrorFromVertex": 0.0047617094998933214,
+          "sweepAngleDeg": 141.01397017232395,
+          "halfplaneMinDistances": {
+            "AB": 58.196844036016614,
+            "BC": 0.009999999999990905,
+            "CD": -0.022902846019231503,
+            "DA": 32.96370204553949
+          },
+          "nonincidentMinMargin": 32.96370204553949,
+          "incidentMinMargin": -0.022902846019231503,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "de75c68620143282279b1909bb10588b8b5b989a155f3959531e777298a144db": {
+      "svgSHA256": "27b0816a9cb0f6d2a482044bede84d80298656ea2a875ce00f2b5e51a8d1c2fd",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 84.5 34.1 A 15.950999999999995 15.950999999999995 0 0 0 115.6 28.9",
+          "actualSVGCircleCenter": [
+            99.65038212489291,
+            29.109977708494167
+          ],
+          "centerErrorFromVertex": 0.2134331075716643,
+          "sweepAngleDeg": 162.52412808482822,
+          "halfplaneMinDistances": {
+            "AB": -0.0018711695479225934,
+            "BC": 8.380022291505838,
+            "CD": 20.530416027666767,
+            "DA": -0.0010000000000012221
+          },
+          "nonincidentMinMargin": 8.380022291505838,
+          "incidentMinMargin": -0.0018711695479225934,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 125.1 53.4 A 15.950999999999995 15.950999999999995 0 0 1 156.1 48.2",
+          "actualSVGCircleCenter": [
+            141.0507614740431,
+            53.487231864487754
+          ],
+          "centerErrorFromVertex": 0.0463846308704805,
+          "sweepAngleDeg": 160.32881546604347,
+          "halfplaneMinDistances": {
+            "AB": 20.78707164768847,
+            "BC": 0.04100000000000392,
+            "CD": 0.05541956903082423,
+            "DA": 8.63523186448776
+          },
+          "nonincidentMinMargin": 8.63523186448776,
+          "incidentMinMargin": 0.04100000000000392,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "4825231c25f52e198107c9b805a7f9f4fb4d46a378a0f2a636fc52f8f9aa3055": {
+      "svgSHA256": "49d10090d30e2668fa3addea82416d5cb187ba08d57f058bb9888a2aa1be7382",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 89.4 32.8 A 11.732500000000007 11.732500000000007 0 0 0 112.5 29.9",
+          "actualSVGCircleCenter": [
+            100.7675005841299,
+            29.896297756345092
+          ],
+          "centerErrorFromVertex": 0.06002839021011034,
+          "sweepAngleDeg": 165.6527570427915,
+          "halfplaneMinDistances": {
+            "AB": 0.025198656537401914,
+            "BC": 6.369202243654897,
+            "CD": 15.300947144118892,
+            "DA": -0.04800000000000537
+          },
+          "nonincidentMinMargin": 6.369202243654897,
+          "incidentMinMargin": -0.04800000000000537,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 128.2 48.0 A 11.732500000000007 11.732500000000007 0 0 1 151.3 45.2",
+          "actualSVGCircleCenter": [
+            139.93205687540532,
+            48.10196922209396
+          ],
+          "centerErrorFromVertex": 0.10505383686375151,
+          "sweepAngleDeg": 165.1815978188457,
+          "halfplaneMinDistances": {
+            "AB": 15.36268134081512,
+            "BC": -0.0020000000000024443,
+            "CD": -0.038324143292521,
+            "DA": 6.421469222093954
+          },
+          "nonincidentMinMargin": 6.421469222093954,
+          "incidentMinMargin": -0.038324143292521,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "64705cfdd289b2dcdcea127767e635baae1b0c797e069b524b4d8d6c3c9dec7d": {
+      "svgSHA256": "97793884f9d04ea70dd13ee1914106b68716f64a9bed7240a54791c1bd3e21a3",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 76.9 42.5 A 18.0 18.0 0 0 0 108.7 31.0",
+          "actualSVGCircleCenter": [
+            90.70008933264153,
+            30.943290502434785
+          ],
+          "centerErrorFromVertex": 0.043608576508181646,
+          "sweepAngleDeg": 139.8754254651545,
+          "halfplaneMinDistances": {
+            "AB": 0.005166819053344477,
+            "BC": 34.306709497565215,
+            "CD": 60.18446360969533,
+            "DA": 0.05000000000000426
+          },
+          "nonincidentMinMargin": 34.306709497565215,
+          "incidentMinMargin": 0.005166819053344477,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 132.0 83.2 A 18.0 18.0 0 0 1 163.8 71.7",
+          "actualSVGCircleCenter": [
+            149.99991066735848,
+            83.2567094975652
+          ],
+          "centerErrorFromVertex": 0.007313640820344434,
+          "sweepAngleDeg": 139.87542546515465,
+          "halfplaneMinDistances": {
+            "AB": 60.214031481432926,
+            "BC": 0.04999999999999716,
+            "CD": -0.02440105268429787,
+            "DA": 34.306709497565194
+          },
+          "nonincidentMinMargin": 34.306709497565194,
+          "incidentMinMargin": -0.02440105268429787,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ded8ce9ad5e3de5dc45e42aee5dabe6248c104b5752f3faf2df0aafcaea1264e": {
+      "svgSHA256": "fff8d41a74482fad18a445396353473df0beadef0a4885b207c9988ff47c3074",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 66.2 46.4 A 18.0 18.0 0 0 0 93.5 31.0",
+          "actualSVGCircleCenter": [
+            75.500003582998,
+            30.98864271531465
+          ],
+          "centerErrorFromVertex": 0.050818263819177006,
+          "sweepAngleDeg": 121.07278446891209,
+          "halfplaneMinDistances": {
+            "AB": 0.013374303769079481,
+            "BC": 60.42135728468535,
+            "CD": 99.26605147178309,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 60.42135728468535,
+          "incidentMinMargin": 0.013374303769079481,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 147.2 109.4 A 18.0 18.0 0 0 1 174.5 94.0",
+          "actualSVGCircleCenter": [
+            165.19999641700198,
+            109.41135728468534
+          ],
+          "centerErrorFromVertex": 0.013067099012642528,
+          "sweepAngleDeg": 121.07278446891219,
+          "halfplaneMinDistances": {
+            "AB": 99.32608234091846,
+            "BC": 0.009999999999990905,
+            "CD": -0.04665656536629727,
+            "DA": 60.46135728468533
+          },
+          "nonincidentMinMargin": 60.46135728468533,
+          "incidentMinMargin": -0.04665656536629727,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "0c52d1bd066c86e9f7743157a577964602ff4da0a185a54b68b015ec316a005e": {
+      "svgSHA256": "6855d627ff4351e334da7ec6bcd95134547840b47520629f9af40759b701f8f5",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 66.9 46.2 A 18.0 18.0 0 0 0 94.5 31.0",
+          "actualSVGCircleCenter": [
+            76.50001918580031,
+            30.973719047900573
+          ],
+          "centerErrorFromVertex": 0.03305262694883467,
+          "sweepAngleDeg": 122.14736993230049,
+          "halfplaneMinDistances": {
+            "AB": -0.039846367069157465,
+            "BC": 59.02628095209943,
+            "CD": 97.17267854976524,
+            "DA": 0.05000000000000426
+          },
+          "nonincidentMinMargin": 59.02628095209943,
+          "incidentMinMargin": -0.039846367069157465,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 146.2 108.0 A 18.0 18.0 0 0 1 173.7 92.7",
+          "actualSVGCircleCenter": [
+            164.19999656683424,
+            107.98888271816612
+          ],
+          "centerErrorFromVertex": 0.02554282759476766,
+          "sweepAngleDeg": 121.89083109937091,
+          "halfplaneMinDistances": {
+            "AB": 97.21837955181469,
+            "BC": -0.0,
+            "CD": 0.032444684399261535,
+            "DA": 59.03888271816612
+          },
+          "nonincidentMinMargin": 59.03888271816612,
+          "incidentMinMargin": -0.0,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "3c807c1c3b359564f1f421d8f4fc553cf2a36b7d1947c036b9210be3bfcf8335": {
+      "svgSHA256": "ba45b024e663ade9a8f115684f7c84259b1ba583c466707057b7bee702dea778",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 57.4 47.8 A 18.0 18.0 0 0 0 81.9 30.9",
+          "actualSVGCircleCenter": [
+            63.90036564992991,
+            31.01473126764985
+          ],
+          "centerErrorFromVertex": 0.0648187057183907,
+          "sweepAngleDeg": 111.53490041096279,
+          "halfplaneMinDistances": {
+            "AB": -0.027427300830564823,
+            "BC": 74.60526873235015,
+            "CD": 120.54634527033205,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 74.60526873235015,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 158.8 123.6 A 18.0 18.0 0 0 1 183.2 106.8",
+          "actualSVGCircleCenter": [
+            176.7999842831334,
+            123.62378669693183
+          ],
+          "centerErrorFromVertex": 0.043150755151505536,
+          "sweepAngleDeg": 110.75183502804171,
+          "halfplaneMinDistances": {
+            "AB": 120.61417010933431,
+            "BC": 0.020000000000010232,
+            "CD": 0.012236197494145102,
+            "DA": 74.67378669693183
+          },
+          "nonincidentMinMargin": 74.67378669693183,
+          "incidentMinMargin": 0.012236197494145102,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "5db77515ae88dbc9f05b751e5a5756a6841ad2f637fa72d00b58fd17ff175d26": {
+      "svgSHA256": "46397955399e4668183f6449ee76829fda0c23187485d3b8a344356475d09a76",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 81.9 38.0 A 18.0 18.0 0 0 0 116.4 31.0",
+          "actualSVGCircleCenter": [
+            98.40101777079485,
+            30.808587584631745
+          ],
+          "centerErrorFromVertex": 0.1459184431072898,
+          "sweepAngleDeg": 155.84234708363076,
+          "halfplaneMinDistances": {
+            "AB": 0.028023198362124482,
+            "BC": 11.901412415368256,
+            "CD": 26.6446878931394,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 11.901412415368256,
+          "incidentMinMargin": 0.028023198362124482,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 124.2 60.7 A 18.0 18.0 0 0 1 158.8 53.7",
+          "actualSVGCircleCenter": [
+            142.19995506050776,
+            60.65977787050982
+          ],
+          "centerErrorFromVertex": 0.05303576390345416,
+          "sweepAngleDeg": 157.38154980448493,
+          "halfplaneMinDistances": {
+            "AB": 26.44756802129428,
+            "BC": 0.00999999999999801,
+            "CD": -0.026770650491648878,
+            "DA": 11.709777870509823
+          },
+          "nonincidentMinMargin": 11.709777870509823,
+          "incidentMinMargin": -0.026770650491648878,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "e6349c4bff6dad54a8b3b0d4fb249181c68ded536ae050a4e1358d89cfcf97f9": {
+      "svgSHA256": "d1a62bd3720fdc9d82134c3e7f21e8cce6ca6601459b24d7049c83ddff934097",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 94.1 31.1 A 7.533500000000003 7.533500000000003 0 0 0 109.1 29.9",
+          "actualSVGCircleCenter": [
+            101.56977853340875,
+            30.122231667609476
+          ],
+          "centerErrorFromVertex": 0.1820501238306583,
+          "sweepAngleDeg": 174.2329988019347,
+          "halfplaneMinDistances": {
+            "AB": -0.022241644365390868,
+            "BC": 3.8822683323905167,
+            "CD": 9.617513955155829,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 3.8822683323905167,
+          "incidentMinMargin": -0.04800000000000182,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 131.6 41.5 A 7.533500000000003 7.533500000000003 0 0 1 146.6 40.4",
+          "actualSVGCircleCenter": [
+            139.13279947140882,
+            41.39726551921129
+          ],
+          "centerErrorFromVertex": 0.14079715381822436,
+          "sweepAngleDeg": 173.17437010188806,
+          "halfplaneMinDistances": {
+            "AB": 9.658196781317844,
+            "BC": 0.0379999999999967,
+            "CD": -0.04326402314911756,
+            "DA": 3.915765519211284
+          },
+          "nonincidentMinMargin": 3.915765519211284,
+          "incidentMinMargin": -0.04326402314911756,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "a72e6630b8cc45b8e558a9096b58a9ee4eb111528c7f4ecb0f98d2276b4bbba7": {
+      "svgSHA256": "f0b565dc41621d1ab2d5b25f9fbd3f46cdc969a2c5376eae34d7d5498985d655",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 93.2 31.4 A 8.371999999999998 8.371999999999998 0 0 0 109.8 29.9",
+          "actualSVGCircleCenter": [
+            101.42812329227273,
+            29.854564434484914
+          ],
+          "centerErrorFromVertex": 0.09848281182530014,
+          "sweepAngleDeg": 169.05148505183385,
+          "halfplaneMinDistances": {
+            "AB": 0.007012191437724789,
+            "BC": 4.601435565515089,
+            "CD": 10.971298401163237,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 4.601435565515089,
+          "incidentMinMargin": -0.04800000000000182,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 130.9 42.8 A 8.371999999999998 8.371999999999998 0 0 1 147.5 41.4",
+          "actualSVGCircleCenter": [
+            139.27083166944502,
+            42.93986122341946
+          ],
+          "centerErrorFromVertex": 0.11271312427811771,
+          "sweepAngleDeg": 168.44403148324236,
+          "halfplaneMinDistances": {
+            "AB": 10.997248182614825,
+            "BC": 0.028000000000005798,
+            "CD": -0.024608710890894597,
+            "DA": 4.619861223419463
+          },
+          "nonincidentMinMargin": 4.619861223419463,
+          "incidentMinMargin": -0.024608710890894597,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "8bedec8e99f5113987aaebabee09152fe975d5d9e771dd40fd655c9ffc3cd304": {
+      "svgSHA256": "a816e6d41b2ae750310f4d7ade32fc63900d8b7fede79d73eb3d6782d096de7b",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 92.2 31.7 A 9.210499999999993 9.210499999999993 0 0 0 110.5 29.9",
+          "actualSVGCircleCenter": [
+            101.29631203185187,
+            30.25417232382736
+          ],
+          "centerErrorFromVertex": 0.31011799103438725,
+          "sweepAngleDeg": 173.1723267115519,
+          "halfplaneMinDistances": {
+            "AB": -0.005925231470451751,
+            "BC": 4.653327676172651,
+            "CD": 11.668537088472384,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 4.653327676172651,
+          "incidentMinMargin": -0.04800000000000182,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 130.2 44.1 A 9.210499999999993 9.210499999999993 0 0 1 148.4 42.4",
+          "actualSVGCircleCenter": [
+            139.40607136586127,
+            44.385587563926286
+          ],
+          "centerErrorFromVertex": 0.26758917528436543,
+          "sweepAngleDeg": 165.77367972922292,
+          "halfplaneMinDistances": {
+            "AB": 12.240990827809004,
+            "BC": 0.018000000000000682,
+            "CD": -0.029000181518174205,
+            "DA": 5.227087563926297
+          },
+          "nonincidentMinMargin": 5.227087563926297,
+          "incidentMinMargin": -0.029000181518174205,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "c206d9331357523a65a3006bb4f6e21dd3692e35ca9edc594fb0c92558666c27": {
+      "svgSHA256": "504f6b0875ff8dc202383a56b387e7cd7e5bdcef11e813a0ca9acab4580c9c07",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 91.3 32.0 A 10.0555 10.0555 0 0 0 111.2 29.9",
+          "actualSVGCircleCenter": [
+            101.14463194408322,
+            29.951512232026715
+          ],
+          "centerErrorFromVertex": 0.04776125910145804,
+          "sweepAngleDeg": 168.53904509142117,
+          "halfplaneMinDistances": {
+            "AB": -0.030049251929552673,
+            "BC": 5.410987767973282,
+            "CD": 13.06040872941038,
+            "DA": -0.04800000000000182
+          },
+          "nonincidentMinMargin": 5.410987767973282,
+          "incidentMinMargin": -0.04800000000000182,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 129.5 45.4 A 10.0555 10.0555 0 0 1 149.4 43.3",
+          "actualSVGCircleCenter": [
+            139.55536805591677,
+            45.348487767973275
+          ],
+          "centerErrorFromVertex": 0.06953138602694416,
+          "sweepAngleDeg": 168.53904509142123,
+          "halfplaneMinDistances": {
+            "AB": 13.005416669517189,
+            "BC": 0.018000000000000682,
+            "CD": 0.024942807963620917,
+            "DA": 5.344987767973271
+          },
+          "nonincidentMinMargin": 5.344987767973271,
+          "incidentMinMargin": 0.018000000000000682,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "d5d1d396e5d16a6160082f349740e3df0798568f1a814eb578530202f8cefaf7": {
+      "svgSHA256": "bdc370ee91bdc84c09b7a03d80ba63ceb080d5f1c5aee661e2660ced419cdd06",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 82.6 36.9 A 17.647500000000004 17.647500000000004 0 0 0 116.7 30.6",
+          "actualSVGCircleCenter": [
+            99.05269532594443,
+            30.516969938841996
+          ],
+          "centerErrorFromVertex": 0.08114432222894274,
+          "sweepAngleDeg": 158.52603756084784,
+          "halfplaneMinDistances": {
+            "AB": -0.014084796422203017,
+            "BC": 9.583530061157994,
+            "CD": 23.02111227992712,
+            "DA": 0.002000000000005997
+          },
+          "nonincidentMinMargin": 9.583530061157994,
+          "incidentMinMargin": -0.014084796422203017,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 123.9 57.7 A 17.647500000000004 17.647500000000004 0 0 1 158.1 51.4",
+          "actualSVGCircleCenter": [
+            141.5465510544226,
+            57.516991438294
+          ],
+          "centerErrorFromVertex": 0.23645306445750913,
+          "sweepAngleDeg": 160.3134109523447,
+          "halfplaneMinDistances": {
+            "AB": 22.710176660878712,
+            "BC": 0.047999999999994714,
+            "CD": 0.01237549248659454,
+            "DA": 9.271491438293992
+          },
+          "nonincidentMinMargin": 9.271491438293992,
+          "incidentMinMargin": 0.01237549248659454,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "3e8467963bfd7fa13b9122aa98096acb8cb2b5a5ac3373dec511a1f094f3e158": {
+      "svgSHA256": "9e329fd460c77f0f0a5c3f5644dfa27d5bc10fbf117d8dad4f5fddb0d8d9a12b",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 77.6 42.0 A 18.0 18.0 0 0 0 109.8 31.0",
+          "actualSVGCircleCenter": [
+            91.80010509878403,
+            30.938489470986003
+          ],
+          "centerErrorFromVertex": 0.029254537931724972,
+          "sweepAngleDeg": 141.88654724893908,
+          "halfplaneMinDistances": {
+            "AB": -0.051208557641377106,
+            "BC": 31.621510529014003,
+            "CD": 56.21131578264444,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 31.621510529014003,
+          "incidentMinMargin": -0.051208557641377106,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 130.8 80.6 A 18.0 18.0 0 0 1 163.0 69.5",
+          "actualSVGCircleCenter": [
+            148.79995902469093,
+            80.56159284640073
+          ],
+          "centerErrorFromVertex": 0.027087847927099593,
+          "sweepAngleDeg": 142.20426344270717,
+          "halfplaneMinDistances": {
+            "AB": 56.17029488352518,
+            "BC": -0.03999999999999204,
+            "CD": -0.01008331318058683,
+            "DA": 31.61159284640073
+          },
+          "nonincidentMinMargin": 31.61159284640073,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "27c4ebf3e34eee8aeb7214f85eab3442e76552db29f469824112379588dd7e07": {
+      "svgSHA256": "f2d5270784d96e027a61dc7bb084b6bd98785b9ff95cd25e600a91589138da0a",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 76.0 43.0 A 18.0 18.0 0 0 0 107.4 31.0",
+          "actualSVGCircleCenter": [
+            89.40000931162204,
+            30.981691032077656
+          ],
+          "centerErrorFromVertex": 0.0359583787969363,
+          "sweepAngleDeg": 138.05316821192457,
+          "halfplaneMinDistances": {
+            "AB": -0.02190365289741742,
+            "BC": 36.96830896792235,
+            "CD": 64.22596605505466,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 36.96830896792235,
+          "incidentMinMargin": -0.02190365289741742,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 133.2 86.0 A 18.0 18.0 0 0 1 164.6 73.9",
+          "actualSVGCircleCenter": [
+            151.19981372959415,
+            85.91811166192207
+          ],
+          "centerErrorFromVertex": 0.048986577876688586,
+          "sweepAngleDeg": 138.37295068751166,
+          "halfplaneMinDistances": {
+            "AB": 64.18957002866259,
+            "BC": -0.04999999999999716,
+            "CD": 0.014227337996961872,
+            "DA": 36.968111661922066
+          },
+          "nonincidentMinMargin": 36.968111661922066,
+          "incidentMinMargin": -0.04999999999999716,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "3e01193f66a22bc177091ba2113a6a05299baba9091d80e81829796fda6a8c61": {
+      "svgSHA256": "27395ddb46520c52e6df3376abd96a1d0158c9d59f576bce1bdb0a3dc52452fb",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 72.6 44.5 A 18.0 18.0 0 0 0 102.4 31.0",
+          "actualSVGCircleCenter": [
+            84.40023736185171,
+            30.90756099134674
+          ],
+          "centerErrorFromVertex": 0.05614767153759205,
+          "sweepAngleDeg": 130.6685452920838,
+          "halfplaneMinDistances": {
+            "AB": -0.044287848228339026,
+            "BC": 46.59243900865326,
+            "CD": 78.5772161552971,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 46.59243900865326,
+          "incidentMinMargin": -0.044287848228339026,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 138.2 95.5 A 18.0 18.0 0 0 1 168.0 81.9",
+          "actualSVGCircleCenter": [
+            156.19999849682793,
+            95.49264376510828
+          ],
+          "centerErrorFromVertex": 0.01852472137151946,
+          "sweepAngleDeg": 130.98521051209045,
+          "halfplaneMinDistances": {
+            "AB": 78.50397127374842,
+            "BC": -0.0,
+            "CD": 0.029269370450894533,
+            "DA": 46.54264376510828
+          },
+          "nonincidentMinMargin": 46.54264376510828,
+          "incidentMinMargin": -0.0,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "b409679e4dc77f28d58c1363ae2ef0fcad853eaac6fd1c70b2bc9597e6061db8": {
+      "svgSHA256": "e94a37a270001cea8fe06ccb4505ec5700b9d607aacfa9295dbe370e8a4bd0a1",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 70.9 45.1 A 18.0 18.0 0 0 0 100.0 30.9",
+          "actualSVGCircleCenter": [
+            82.00002496793454,
+            30.929980744147517
+          ],
+          "centerErrorFromVertex": 0.020246506757761962,
+          "sweepAngleDeg": 128.16865599617324,
+          "halfplaneMinDistances": {
+            "AB": -0.032378080707179964,
+            "BC": 50.71001925585249,
+            "CD": 84.70885170695747,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 50.71001925585249,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 140.7 99.6 A 18.0 18.0 0 0 1 169.7 85.5",
+          "actualSVGCircleCenter": [
+            158.6993969498346,
+            99.74734124434072
+          ],
+          "centerErrorFromVertex": 0.11541076246126578,
+          "sweepAngleDeg": 127.20330511018079,
+          "halfplaneMinDistances": {
+            "AB": 84.79840673959644,
+            "BC": 0.04000000000000625,
+            "CD": 0.004016587620614485,
+            "DA": 50.797341244340714
+          },
+          "nonincidentMinMargin": 50.797341244340714,
+          "incidentMinMargin": 0.004016587620614485,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "f2b05f8f511203911cefa1a7fa6b779a742a3576a63bd59e7faf399462f98909": {
+      "svgSHA256": "4c4bd9bfa951424ed8f8cecb083a98a9428b88a2168717f273d7f321d48c0eb0",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 69.7 45.5 A 18.0 18.0 0 0 0 98.2 30.9",
+          "actualSVGCircleCenter": [
+            80.20001131581596,
+            30.87981660964074
+          ],
+          "centerErrorFromVertex": 0.08446090648144709,
+          "sweepAngleDeg": 125.6211333184224,
+          "halfplaneMinDistances": {
+            "AB": 0.019782369991941235,
+            "BC": 53.530183390359255,
+            "CD": 88.93332863824182,
+            "DA": -0.04999999999999716
+          },
+          "nonincidentMinMargin": 53.530183390359255,
+          "incidentMinMargin": -0.04999999999999716,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 142.4 102.4 A 18.0 18.0 0 0 1 171.0 87.8",
+          "actualSVGCircleCenter": [
+            160.39992430090336,
+            102.34779691820795
+          ],
+          "centerErrorFromVertex": 0.06260422431541343,
+          "sweepAngleDeg": 126.24466591160675,
+          "halfplaneMinDistances": {
+            "AB": 88.8117739406252,
+            "BC": 0.009999999999990905,
+            "CD": 0.017835583177505186,
+            "DA": 53.397796918207945
+          },
+          "nonincidentMinMargin": 53.397796918207945,
+          "incidentMinMargin": 0.009999999999990905,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ee3d372f971fb43d00a8c03a4f7e19e775e2c274f0d529c2164ca8aac5f23e9f": {
+      "svgSHA256": "1c84c61ddbbfe9b3b14ae81117d8886aed6fcb361954ee024e1694a8993ec732",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 68.3 45.9 A 18.0 18.0 0 0 0 96.4 30.9",
+          "actualSVGCircleCenter": [
+            78.40028259358941,
+            31.000862725324176
+          ],
+          "centerErrorFromVertex": 0.05130438944464299,
+          "sweepAngleDeg": 124.45481779073285,
+          "halfplaneMinDistances": {
+            "AB": -0.019525924425453717,
+            "BC": 56.19913727467583,
+            "CD": 93.00340439581556,
+            "DA": -0.05000000000000426
+          },
+          "nonincidentMinMargin": 56.19913727467583,
+          "incidentMinMargin": -0.05000000000000426,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 144.2 105.2 A 18.0 18.0 0 0 1 172.3 90.3",
+          "actualSVGCircleCenter": [
+            162.19999998748716,
+            105.19932883546237
+          ],
+          "centerErrorFromVertex": 0.04700480441449546,
+          "sweepAngleDeg": 124.13480978716156,
+          "halfplaneMinDistances": {
+            "AB": 92.98693590466185,
+            "BC": -0.0,
+            "CD": -0.0027160435262259647,
+            "DA": 56.249328835462364
+          },
+          "nonincidentMinMargin": 56.249328835462364,
+          "incidentMinMargin": -0.0027160435262259647,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "1a3825cf7d56a75baf9601502b10b6320c7088fd6a76df7f73553402881ac320": {
+      "svgSHA256": "7b2549dbf4e4deb0a372db089066df880ed1e190baacfa6349664fe839fd5bb4",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 67.7 46.0 A 18.0 18.0 0 0 0 95.5 30.9",
+          "actualSVGCircleCenter": [
+            77.50000007615478,
+            30.901655769344565
+          ],
+          "centerErrorFromVertex": 0.06470062740795482,
+          "sweepAngleDeg": 122.9919778489976,
+          "halfplaneMinDistances": {
+            "AB": 0.014294892848683413,
+            "BC": 57.69834423065543,
+            "CD": 95.10018667387872,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 57.69834423065543,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 145.2 106.6 A 18.0 18.0 0 0 1 173.0 91.5",
+          "actualSVGCircleCenter": [
+            163.1999999238452,
+            106.59834423065543
+          ],
+          "centerErrorFromVertex": 0.0034265310737625065,
+          "sweepAngleDeg": 122.99197784899766,
+          "halfplaneMinDistances": {
+            "AB": 95.11153212608029,
+            "BC": -0.0,
+            "CD": 0.002949440647088222,
+            "DA": 57.648344230655425
+          },
+          "nonincidentMinMargin": 57.648344230655425,
+          "incidentMinMargin": -0.0,
+          "strictCenterlineContainment": true
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "b6b4b023673c6aaf6bd2cf067b989c9d2531611919263b483468413785665e5e": {
+      "svgSHA256": "e8657e3864d77d343295b973aba2f27b9ab912ed239a960af33d226b63403553",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 64.7 46.7 A 18.0 18.0 0 0 0 91.4 31.0",
+          "actualSVGCircleCenter": [
+            73.40009281400428,
+            30.942196059484964
+          ],
+          "centerErrorFromVertex": 0.02437579837048987,
+          "sweepAngleDeg": 118.71967603988851,
+          "halfplaneMinDistances": {
+            "AB": 0.04595879565454476,
+            "BC": 63.28780394051504,
+            "CD": 103.51468148817095,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 63.28780394051504,
+          "incidentMinMargin": 0.04595879565454476,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 149.3 112.2 A 18.0 18.0 0 0 1 176.0 96.5",
+          "actualSVGCircleCenter": [
+            167.29990718599575,
+            112.25780394051505
+          ],
+          "centerErrorFromVertex": 0.03602496743105374,
+          "sweepAngleDeg": 118.71967603988838,
+          "halfplaneMinDistances": {
+            "AB": 103.56461037894952,
+            "BC": 0.03000000000000114,
+            "CD": -0.0039700951239809296,
+            "DA": 63.30780394051504
+          },
+          "nonincidentMinMargin": 63.30780394051504,
+          "incidentMinMargin": -0.0039700951239809296,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ea50e84cecc06d7422188f1d6950f94d7a2c6ed8f0b9b7d27a21a93906e01e48": {
+      "svgSHA256": "e424235d4fedb8a203bb796145cb44841c9c7290a6d04333ace22badfff0946a",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 63.0 47.0 A 18.0 18.0 0 0 0 89.2 30.9",
+          "actualSVGCircleCenter": [
+            71.20016192833519,
+            30.9763504672287
+          ],
+          "centerErrorFromVertex": 0.029454770083494557,
+          "sweepAngleDeg": 117.34429616816146,
+          "halfplaneMinDistances": {
+            "AB": -0.007474211631733403,
+            "BC": 66.0836495327713,
+            "CD": 107.73066295776268,
+            "DA": -0.05000000000000426
+          },
+          "nonincidentMinMargin": 66.0836495327713,
+          "incidentMinMargin": -0.05000000000000426,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 151.5 115.1 A 18.0 18.0 0 0 1 177.6 99.0",
+          "actualSVGCircleCenter": [
+            169.49998194441957,
+            115.07450489126403
+          ],
+          "centerErrorFromVertex": 0.036030549930249144,
+          "sweepAngleDeg": 116.82490178622159,
+          "halfplaneMinDistances": {
+            "AB": 107.79032595038996,
+            "BC": -0.03999999999999204,
+            "CD": 0.04517948379754571,
+            "DA": 66.12450489126402
+          },
+          "nonincidentMinMargin": 66.12450489126402,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "e094b82ad709ab45a8cb9c53e441c84b21f7a8972c6661bc2070729035725c35": {
+      "svgSHA256": "51873dfac6a79a49573ae6470353d4e0bad16f36c0d25c975780e0de7763daea",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 62.2 47.1 A 18.0 18.0 0 0 0 88.0 31.0",
+          "actualSVGCircleCenter": [
+            70.00041350458912,
+            30.877991827229785
+          ],
+          "centerErrorFromVertex": 0.08576408630873891,
+          "sweepAngleDeg": 115.29238204990601,
+          "halfplaneMinDistances": {
+            "AB": 0.02757477483107732,
+            "BC": 67.60200817277021,
+            "CD": 109.95136370736404,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 67.60200817277021,
+          "incidentMinMargin": 0.02757477483107732,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 152.6 116.5 A 18.0 18.0 0 0 1 178.5 100.3",
+          "actualSVGCircleCenter": [
+            170.5999808371848,
+            116.47373479525223
+          ],
+          "centerErrorFromVertex": 0.009408583164207925,
+          "sweepAngleDeg": 116.11668200756154,
+          "halfplaneMinDistances": {
+            "AB": 109.86886859812093,
+            "BC": -0.01999999999999602,
+            "CD": -0.0006167332426907895,
+            "DA": 67.52373479525222
+          },
+          "nonincidentMinMargin": 67.52373479525222,
+          "incidentMinMargin": -0.01999999999999602,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "ea0d50f59236e1e02cfbb73b944cff4d2409340ce168126b5c8443f38d0f2f89": {
+      "svgSHA256": "d505cea3af5274c1995cc9d45c3a7336702ffaaa83b8ab54a1ae5dab3a6e7fe3",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 61.3 47.3 A 18.0 18.0 0 0 0 86.9 31.0",
+          "actualSVGCircleCenter": [
+            68.90000789494613,
+            30.98314123378043
+          ],
+          "centerErrorFromVertex": 0.04034482130759064,
+          "sweepAngleDeg": 114.92132996292803,
+          "halfplaneMinDistances": {
+            "AB": 0.04348887310028412,
+            "BC": 68.91685876621958,
+            "CD": 111.9723874809607,
+            "DA": 0.04999999999999716
+          },
+          "nonincidentMinMargin": 68.91685876621958,
+          "incidentMinMargin": 0.04348887310028412,
+          "strictCenterlineContainment": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 153.8 117.9 A 18.0 18.0 0 0 1 179.4 101.6",
+          "actualSVGCircleCenter": [
+            171.7999921050539,
+            117.91685876621956
+          ],
+          "centerErrorFromVertex": 0.028510610187355068,
+          "sweepAngleDeg": 114.92132996292801,
+          "halfplaneMinDistances": {
+            "AB": 112.03520966413087,
+            "BC": -0.0,
+            "CD": -0.01933331006988781,
+            "DA": 68.96685876621956
+          },
+          "nonincidentMinMargin": 68.96685876621956,
+          "incidentMinMargin": -0.01933331006988781,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "a1e419a2a7b15aa5af12a3df54513ac79877451aec03f32a046f4520250b9c21": {
+      "svgSHA256": "b7912ca903fb9ce371214e295ed508053fab51c50458b0950fa5bd9e97e9cd6f",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 59.4 47.5 A 18.0 18.0 0 0 0 84.4 31.0",
+          "actualSVGCircleCenter": [
+            66.40019156087288,
+            30.916956910413454
+          ],
+          "centerErrorFromVertex": 0.05729638507743468,
+          "sweepAngleDeg": 112.62170703147964,
+          "halfplaneMinDistances": {
+            "AB": -0.02055107521063345,
+            "BC": 71.84304308958656,
+            "CD": 116.3403664438126,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 71.84304308958656,
+          "incidentMinMargin": -0.02055107521063345,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 156.2 120.8 A 18.0 18.0 0 0 1 181.2 104.2",
+          "actualSVGCircleCenter": [
+            174.19999208572682,
+            120.78312061103438
+          ],
+          "centerErrorFromVertex": 0.024159336022806684,
+          "sweepAngleDeg": 112.93913659217301,
+          "halfplaneMinDistances": {
+            "AB": 116.28695097430447,
+            "BC": -0.03999999999999204,
+            "CD": 0.03306373193441051,
+            "DA": 71.83312061103437
+          },
+          "nonincidentMinMargin": 71.83312061103437,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "85be633f97f328c91be8a422fac406f1c6883fd33bd38f1d9cb6fde7bce1ad1e": {
+      "svgSHA256": "989f20f2cf9e836978b4bf2d6adb6d734b01b8ffb391d91da6a3cb045562ac76",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 58.4 47.6 A 18.0 18.0 0 0 0 83.2 31.0",
+          "actualSVGCircleCenter": [
+            65.20012130797714,
+            30.9339161709538
+          ],
+          "centerErrorFromVertex": 0.020757126000928397,
+          "sweepAngleDeg": 111.98616606332531,
+          "halfplaneMinDistances": {
+            "AB": -0.056165051579084115,
+            "BC": 73.25608382904619,
+            "CD": 118.42143220221135,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 73.25608382904619,
+          "incidentMinMargin": -0.056165051579084115,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 157.5 122.2 A 18.0 18.0 0 0 1 182.2 105.5",
+          "actualSVGCircleCenter": [
+            175.49999879547732,
+            122.20658504480777
+          ],
+          "centerErrorFromVertex": 0.036932156912765794,
+          "sweepAngleDeg": 111.83177620221223,
+          "halfplaneMinDistances": {
+            "AB": 118.4643823073289,
+            "BC": -0.010000000000005116,
+            "CD": 0.008886607689145613,
+            "DA": 73.25658504480776
+          },
+          "nonincidentMinMargin": 73.25658504480776,
+          "incidentMinMargin": -0.010000000000005116,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "a364c40852c02d70c0b616921441f58ace48c8471a69c235a0adc89a4273342a": {
+      "svgSHA256": "9e2041ca615c93371244752933aea48e87b927033fcfb56c4b75e062202bd786",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 56.4 47.9 A 18.0 18.0 0 0 0 80.6 31.0",
+          "actualSVGCircleCenter": [
+            62.60000006079323,
+            31.001479376993856
+          ],
+          "centerErrorFromVertex": 0.0563837658565648,
+          "sweepAngleDeg": 110.15259549660206,
+          "halfplaneMinDistances": {
+            "AB": -0.007788121983365369,
+            "BC": 76.05852062300615,
+            "CD": 122.6813076110249,
+            "DA": 0.05000000000000071
+          },
+          "nonincidentMinMargin": 76.05852062300615,
+          "incidentMinMargin": -0.007788121983365369,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 160.1 125.1 A 18.0 18.0 0 0 1 184.2 108.1",
+          "actualSVGCircleCenter": [
+            178.09988203382343,
+            125.03483276559678
+          ],
+          "centerErrorFromVertex": 0.034014366955800276,
+          "sweepAngleDeg": 110.01702695513067,
+          "halfplaneMinDistances": {
+            "AB": 122.7334216850221,
+            "BC": -0.03999999999999204,
+            "CD": 0.0463757566420407,
+            "DA": 76.08483276559677
+          },
+          "nonincidentMinMargin": 76.08483276559677,
+          "incidentMinMargin": -0.03999999999999204,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "fd22c5bb5c774df83be2eb05a5dc790a669e1de5fb9190cfff65b140772d0a46": {
+      "svgSHA256": "c454f49861d75d17d2e9426c05fbc5d040caadd96015b27995c5295d9adb2be1",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 55.4 48.0 A 18.0 18.0 0 0 0 79.2 30.9",
+          "actualSVGCircleCenter": [
+            61.20010027072372,
+            30.960081078551152
+          ],
+          "centerErrorFromVertex": 0.02872670499537512,
+          "sweepAngleDeg": 108.9889503466691,
+          "halfplaneMinDistances": {
+            "AB": 0.041315418982973466,
+            "BC": 77.53991892144884,
+            "CD": 124.89024069810473,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 77.53991892144884,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 161.4 126.5 A 18.0 18.0 0 0 1 185.3 109.5",
+          "actualSVGCircleCenter": [
+            179.3999991329236,
+            126.50558701628665
+          ],
+          "centerErrorFromVertex": 0.02757284123670477,
+          "sweepAngleDeg": 109.11616992240822,
+          "halfplaneMinDistances": {
+            "AB": 124.84437756329342,
+            "BC": -0.0,
+            "CD": -0.018456691068862597,
+            "DA": 77.55558701628665
+          },
+          "nonincidentMinMargin": 77.55558701628665,
+          "incidentMinMargin": -0.018456691068862597,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    },
+    "617ffeb855c184b3adfdb19bb21722130ba5809c5004dc4e7c3dacf2bec8e81f": {
+      "svgSHA256": "6828c04c26571ba23d3063bc5c4a6641a375fa1514f310dfd8e579cc9e7bf604",
+      "arcs": [
+        {
+          "vertex": "A",
+          "actualSVGPath": "M 54.3 48.1 A 18.0 18.0 0 0 0 77.8 30.9",
+          "actualSVGCircleCenter": [
+            59.80010301114262,
+            30.960896555921607
+          ],
+          "centerErrorFromVertex": 0.03847236303757262,
+          "sweepAngleDeg": 107.98577506507915,
+          "halfplaneMinDistances": {
+            "AB": 0.032975748174014385,
+            "BC": 78.97910344407839,
+            "CD": 127.06007360617382,
+            "DA": -0.05000000000000071
+          },
+          "nonincidentMinMargin": 78.97910344407839,
+          "incidentMinMargin": -0.05000000000000071,
+          "strictCenterlineContainment": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGPath": "M 162.8 127.9 A 18.0 18.0 0 0 1 186.4 110.8",
+          "actualSVGCircleCenter": [
+            180.7999987443254,
+            127.90672341322096
+          ],
+          "centerErrorFromVertex": 0.03736808694831048,
+          "sweepAngleDeg": 108.10480687673571,
+          "halfplaneMinDistances": {
+            "AB": 127.00189769068172,
+            "BC": 0.03999999999999204,
+            "CD": -0.01386319527545477,
+            "DA": 78.95672341322096
+          },
+          "nonincidentMinMargin": 78.95672341322096,
+          "incidentMinMargin": -0.01386319527545477,
+          "strictCenterlineContainment": false
+        }
+      ],
+      "allNonincidentSidesContained": true,
+      "strictWholeArcCenterlineContainment": false,
+      "roundedSVGPrecision": "Boundary lines serialized3decimals; arc endpoints1decimal; endpoint-to-center SVG algorithm reconstructed independently, stationary halfplane distances checked analytically, not sampled pixels."
+    }
+  },
+  "strictArcPrecisionStillHeld": true,
+  "freshAPICalls": 0,
+  "newNativeAuthoredOrApprovedFigures": 0,
+  "dbWrites": 0
+}
