@@ -1,0 +1,64 @@
+test_all_seven_positive_condition_groups_and_scaled_equation (__main__.SolidVerificationTests.test_all_seven_positive_condition_groups_and_scaled_equation) ... ok
+test_failing_retry_or_failing_iterable_clears_previous_success (__main__.SolidVerificationTests.test_failing_retry_or_failing_iterable_clears_previous_success) ... FAIL
+test_list_and_generator_preserve_all_negative_conditions (__main__.SolidVerificationTests.test_list_and_generator_preserve_all_negative_conditions) ... ok
+test_nan_infinity_negative_and_degenerate_inputs_do_not_register (__main__.SolidVerificationTests.test_nan_infinity_negative_and_degenerate_inputs_do_not_register) ... 
+  test_nan_infinity_negative_and_degenerate_inputs_do_not_register (__main__.SolidVerificationTests.test_nan_infinity_negative_and_degenerate_inputs_do_not_register) (kwargs={'angles': [(nan, 'dihedral', Plane(point=(0, 0, 0), normal=(0, 0, 1)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]}) ... FAIL
+test_nan_infinity_negative_and_degenerate_inputs_do_not_register (__main__.SolidVerificationTests.test_nan_infinity_negative_and_degenerate_inputs_do_not_register) ... FAIL
+test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) ... 
+  test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) (normal=(0, 0, 2)) ... FAIL
+  test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) (normal=(0, 0, 0)) ... FAIL
+test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) ... FAIL
+test_zero_projected_area_is_a_valid_boundary (__main__.SolidVerificationTests.test_zero_projected_area_is_a_valid_boundary) ... ok
+
+======================================================================
+FAIL: test_failing_retry_or_failing_iterable_clears_previous_success (__main__.SolidVerificationTests.test_failing_retry_or_failing_iterable_clears_previous_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 84, in test_failing_retry_or_failing_iterable_clears_previous_success
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nan_infinity_negative_and_degenerate_inputs_do_not_register (__main__.SolidVerificationTests.test_nan_infinity_negative_and_degenerate_inputs_do_not_register) (kwargs={'angles': [(nan, 'dihedral', Plane(point=(0, 0, 0), normal=(0, 0, 1)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 57, in test_nan_infinity_negative_and_degenerate_inputs_do_not_register
+    with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nan_infinity_negative_and_degenerate_inputs_do_not_register (__main__.SolidVerificationTests.test_nan_infinity_negative_and_degenerate_inputs_do_not_register)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 59, in test_nan_infinity_negative_and_degenerate_inputs_do_not_register
+    self.assertNotIn((__file__, key), _VERIFIED)
+AssertionError: ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'invalid-solid-0') unexpectedly found in {('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'positive-list'): 9, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'positive-generator'): 9, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'solid-retry'): 1, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'invalid-solid-0'): 1}
+
+======================================================================
+FAIL: test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) (normal=(0, 0, 2))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 63, in test_nonunit_plane_is_rejected_without_silent_normalization
+    with self.subTest(normal=normal), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization) (normal=(0, 0, 0))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 63, in test_nonunit_plane_is_rejected_without_silent_normalization
+    with self.subTest(normal=normal), self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonunit_plane_is_rejected_without_silent_normalization (__main__.SolidVerificationTests.test_nonunit_plane_is_rejected_without_silent_normalization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\scripts\figure\test_solid_verification.py", line 65, in test_nonunit_plane_is_rejected_without_silent_normalization
+    self.assertNotIn((__file__, 'invalid-normal'), _VERIFIED)
+AssertionError: ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'invalid-normal') unexpectedly found in {('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'positive-list'): 9, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'positive-generator'): 9, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'solid-retry'): 1, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'invalid-solid-0'): 1, ('C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_solid_verification.py', 'invalid-normal'): 1}
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.008s
+
+FAILED (failures=6)

@@ -436,6 +436,96 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
     ⚠️ ``lengths`` 는 **한 척도 풀**이다 — 단위가 다르면 이름을 나눠 따로 부른다
     (`verify_figure` 와 같은 규칙).
     """
+    # Invalidate earlier success before any validation/calculation can fail.
+    registry_key = (_fs._caller_scope(2), str(name))
+    _fs._VERIFIED.pop(registry_key, None)
+
+    # Capture one-shot condition iterables exactly once, after invalidation.
+    feet, angles, areas, lengths, equations, perpendicular, on_plane = (
+        tuple(values) for values in
+        (feet, angles, areas, lengths, equations, perpendicular, on_plane))
+
+    def finite(*values):
+        try:
+            ok = all(not isinstance(v, bool) and math.isfinite(float(v)) for v in values)
+        except (TypeError, ValueError, OverflowError):
+            ok = False
+        if not ok:
+            raise SolidGeometryError("검산 값은 유한한 수여야 함")
+
+    def point(p):
+        q = _v(p)
+        finite(*q)
+        return q
+
+    def segment(p, q):
+        point(p); point(q)
+        length = dist(p, q)
+        finite(length)
+        if length <= _EPS:
+            raise SolidGeometryError("검산 선분은 비퇴화여야 함")
+
+    def plane_ok(pl):
+        if not isinstance(pl, Plane):
+            raise SolidGeometryError("검산 평면은 Plane 이어야 함")
+        point(pl.point); point(pl.normal)
+        n = norm(pl.normal)
+        finite(n)
+        if not math.isclose(n, 1.0, rel_tol=1e-9, abs_tol=1e-9):
+            raise SolidGeometryError("검산 평면 법선은 단위벡터여야 함")
+
+    finite(tol, tol_deg, tol_abs)
+    if min(tol, tol_deg, tol_abs) < 0:
+        raise SolidGeometryError("검산 허용오차는 음수가 될 수 없음")
+    for f2, p, pl in feet:
+        point(f2); point(p); plane_ok(pl)
+    for item in angles:
+        finite(item[0])
+        if not 0 <= float(item[0]) <= 90:
+            raise SolidGeometryError("공간 각 라벨은 0~90도여야 함")
+        if item[1] == "dihedral":
+            plane_ok(item[2]); plane_ok(item[3])
+        elif item[1] == "line":
+            segment(item[2], item[3]); plane_ok(item[4])
+        else:
+            raise SolidGeometryError("angles kind 는 dihedral|line")
+    for label, poly, pl in areas:
+        plane_ok(pl)
+        for p in poly: point(p)
+        if label is not None:
+            finite(label)
+            if float(label) < 0:
+                raise SolidGeometryError("정사영 넓이 라벨은 음수가 될 수 없음")
+        measured = area(poly)
+        finite(measured)
+        if measured <= _EPS:
+            raise SolidGeometryError("원래 다각형은 비퇴화여야 함")
+    for value, p, q in lengths:
+        finite(value)
+        if float(value) <= 0:
+            raise SolidGeometryError("길이 라벨은 양수여야 함")
+        segment(p, q)
+    for coeffs, pl in equations:
+        finite(*coeffs); plane_ok(pl)
+        if len(coeffs) != 4:
+            raise SolidGeometryError("평면 방정식은 계수 4개여야 함")
+        normal_length = norm(coeffs[:3])
+        finite(normal_length)
+        if normal_length <= _EPS:
+            raise SolidGeometryError("평면 방정식 법선은 비퇴화여야 함")
+    for (p, q), (r, t) in perpendicular:
+        segment(p, q); segment(r, t)
+    for p, pl in on_plane:
+        point(p); plane_ok(pl)
+    if view is not None:
+        finite(view.scale, *view.origin)
+        if view.scale <= 0:
+            raise SolidGeometryError("View.scale 은 양수여야 함")
+        for field in ("depth_ratio", "depth_deg", "elev", "azim"):
+            if hasattr(view, field): finite(getattr(view, field))
+        if hasattr(view, "depth_ratio") and view.depth_ratio < 0:
+            raise SolidGeometryError("View.depth_ratio 는 음수가 될 수 없음")
+
     problems: list[str] = []
     checks = 0
 
@@ -443,7 +533,12 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
         checks += 1
         want = foot(p, plane)
         d = dist(_v(f2), want)
-        if d > max(tol_abs, tol * max(1.0, norm(sub(p, plane.point)))):
+        finite(d)
+        reference_norm = norm(sub(p, plane.point))
+        finite(reference_norm)
+        threshold = max(tol_abs, tol * max(1.0, reference_norm))
+        finite(threshold)
+        if d > threshold:
             problems.append(
                 f"  정사영 발: 적어 둔 {tuple(round(c, 4) for c in _v(f2))} 이"
                 f" 실제 발 {tuple(round(c, 4) for c in want)} 과 {d:.4f} 어긋남")
@@ -453,8 +548,10 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
         value, kind = float(item[0]), str(item[1])
         if kind == "dihedral":
             drawn = dihedral_angle(item[2], item[3])
+            finite(drawn)
         elif kind == "line":
             drawn = line_plane_angle(item[2], item[3], item[4])
+            finite(drawn)
         else:
             raise SolidGeometryError(f"angles kind 는 dihedral|line: {kind!r}")
         if abs(drawn - value) > tol_deg:
@@ -471,26 +568,37 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
         s2 = projected_area(poly, plane)
         theta = dihedral_angle(Plane.through(poly[0], poly[1], poly[2]), plane)
         want = s * math.cos(math.radians(theta))
-        if abs(s2 - want) > max(tol_abs, tol * max(want, _EPS)):
+        finite(s, s2, theta, want)
+        threshold = max(tol_abs, tol * max(want, _EPS))
+        finite(threshold)
+        if abs(s2 - want) > threshold:
             problems.append(
                 f"  정사영 넓이: S′={s2:.6f} 인데 S·cosθ={want:.6f}"
                 f" (S={s:.6f}, θ={theta:.2f}°)")
-        if label is not None and abs(s2 - float(label)) > tol * max(abs(float(label)), _EPS):
+        label_threshold = tol * max(abs(float(label)), _EPS) if label is not None else 0.0
+        finite(label_threshold)
+        if label is not None and abs(s2 - float(label)) > label_threshold:
             problems.append(
                 f"  정사영 넓이 라벨 {label}: 실제 S′={s2:.6f}")
 
     items = [(f"길이 {value}", float(value), dist(p, q)) for value, p, q in lengths]
     if items:
-        ratios = sorted(m / v for _, v, m in items if v > _EPS)
+        ratios = sorted(m / v for _, v, m in items if v > 0)
+        finite(*ratios)
         if not ratios:
             raise SolidGeometryError(f"{name} 검산: 라벨값은 양수여야 함")
         mid = len(ratios) // 2
         k = ratios[mid] if len(ratios) % 2 else 0.5 * (ratios[mid - 1] + ratios[mid])
+        finite(k)
+        if k <= 0:
+            raise SolidGeometryError("길이 척도는 양수여야 함")
         for desc, value, measured in items:
             want = k * value
-            if want <= _EPS:
-                continue
+            finite(want)
+            if want <= 0:
+                raise SolidGeometryError("예상 길이는 양수여야 함")
             err = abs(measured - want) / want
+            finite(err)
             if err > tol:
                 problems.append(
                     f"  {desc}: 실제 길이가 라벨 대비 {measured / want:.2f}배"
@@ -504,6 +612,7 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
             problems.append("  수직 검사: 길이가 0 인 선분")
             continue
         c = abs(dot(unit(u), unit(w)))
+        finite(c)
         if c > math.sin(math.radians(tol_deg)):
             problems.append(
                 f"  수직 검사: 두 선분이 이루는 각 "
@@ -515,7 +624,9 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
         want = plane_from_equation(a_, b_, c_, d_)
         # 법선은 부호가 반대라도 같은 평면이다.
         aligned = abs(dot(want.normal, plane.normal))
+        finite(aligned)
         off = abs(want.signed_distance(plane.point))
+        finite(off)
         if aligned < math.cos(math.radians(tol_deg)) or off > max(tol_abs, 1e-4):
             problems.append(
                 f"  방정식 라벨 {equation_text(a_, b_, c_, d_)}: 실제 평면과 다름"
@@ -525,11 +636,16 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
     for p, plane in on_plane:
         checks += 1
         d = abs(plane.signed_distance(p))
+        finite(d)
         if d > max(tol_abs, 1e-4):
             problems.append(f"  평면 위 검사: 점이 평면에서 {d:.6f} 떨어져 있음")
 
     if view is not None:
         for _, poly, _ in areas:
+            projected = view.many(poly)
+            for projected_point in projected: finite(*projected_point)
+            view_scale_squared = view.scale ** 2
+            finite(view_scale_squared)
             if view.collapses(poly):
                 problems.append("  시점: 이 View 에서 도형이 선으로 뭉갠다(퇴화)")
                 break
@@ -540,4 +656,4 @@ def verify_solid(name, *, feet=(), angles=(), areas=(), lengths=(), equations=()
             f"좌표를 조건에서 유도할 것:\n" + "\n".join(problems))
 
     # figure_svg 와 **같은 등록부**에 남긴다 — unverified() 가 한 그물로 본다.
-    _fs._VERIFIED[(_fs._caller_scope(2), str(name))] = checks
+    _fs._VERIFIED[registry_key] = checks

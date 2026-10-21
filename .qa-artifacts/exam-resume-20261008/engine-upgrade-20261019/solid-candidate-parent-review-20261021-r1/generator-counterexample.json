@@ -1,0 +1,22 @@
+{
+  "candidate": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r1\\own-shadow\\core\\figure_solid.py",
+  "candidateSHA256": "a99f66a9af0abe5b46e290aae972dd35c8380126c3a81b671cc97dabab0c9689",
+  "controls": [
+    {
+      "mode": "list",
+      "accepted": false,
+      "expectedAccepted": false,
+      "error": "SolidGeometryError: [bad-lengths-list] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  길이 1: 실제 길이가 라벨 대비 0.67배 (오차 33% > 허용 6%)\n  길이 1: 실제 길이가 라벨 대비 1.33배 (오차 33% > 허용 6%)",
+      "successfulChecks": 0
+    },
+    {
+      "mode": "generator",
+      "accepted": true,
+      "expectedAccepted": false,
+      "error": null,
+      "successfulChecks": 1
+    }
+  ],
+  "productionChanged": false,
+  "dbWrites": 0
+}

@@ -285,10 +285,11 @@ function figAltitude(opts: {
   legA: number; // A 에서 만나는 다리(=CA)
   legB: number; // B 에서 만나는 다리(=CB)
   hyp: number;
-  dimA: string;
-  dimB: string;
+  dimA?: string;
+  dimB?: string;
+  dimHyp?: string;
 }): Record<string, unknown> {
-  const { legA, legB, hyp, dimA, dimB } = opts;
+  const { legA, legB, hyp, dimA, dimB, dimHyp } = opts;
   const s = drawScale(Math.max(legA, legB, hyp), 170);
   // 직각은 C. A=(0,0), B=(hyp,0) 로 두고 C 를 legA=CA, legB=CB 를 만족하게 배치.
   const cx = (legA * legA - legB * legB + hyp * hyp) / (2 * hyp);
@@ -312,8 +313,9 @@ function figAltitude(opts: {
       d: { vertex: "D", points: ["C", "A"], right: true },
     },
     dimensions: {
-      ca: { points: ["C", "A"], label: dimA, side: "auto" },
-      cb: { points: ["C", "B"], label: dimB, side: "auto" },
+      ...(dimA ? { ca: { points: ["C", "A"], label: dimA, side: "auto" } } : {}),
+      ...(dimB ? { cb: { points: ["C", "B"], label: dimB, side: "auto" } } : {}),
+      ...(dimHyp ? { ab: { points: ["A", "B"], label: dimHyp, side: "auto" } } : {}),
     },
     labels: { A: "A", B: "B", C: "C", D: "D" },
   };
@@ -593,7 +595,8 @@ export const M2_PYTHA: TypeEntry[] = [
           legA: b,
           legB: a,
           hyp: c,
-          dimA: `${b} cm`,
+          // CA is a derived length; show only the CB and AB given in the stem.
+          dimHyp: `${c} cm`,
           dimB: `${a} cm`,
         }),
       };
