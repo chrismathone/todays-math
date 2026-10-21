@@ -1,0 +1,26 @@
+[
+  {
+    "input": "(2+\\sqrt{5})\\mathrm{cm}",
+    "expected": "LEFT ( 2+sqrt {5} RIGHT ) rm`cm",
+    "actual": "LEFT ( 2+sqrt {5} RIGHT )rm cm",
+    "passed": false
+  },
+  {
+    "input": "x\\mathrm{km/h}",
+    "expected": "x rm`km/h",
+    "actual": "x rm`km/it {h}",
+    "passed": false
+  },
+  {
+    "input": "60\\mathrm{m/s}",
+    "expected": "60 rm {m/s}",
+    "actual": "60 rm it {m}/it {s}",
+    "passed": false
+  },
+  {
+    "input": "\\triangle AGG'\\sim\\triangle AEF",
+    "expected": "TRIANGLE rm {AGG'}∽ TRIANGLE rm {AEF}",
+    "actual": "TRIANGLE rm {AGG'}∼ TRIANGLE rm {AEF}",
+    "passed": false
+  }
+]

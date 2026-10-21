@@ -1,0 +1,56 @@
+{
+  "status": "bounded-python-regression-pass",
+  "scope": [
+    "vendor/hwpx/latex_to_hwpeq.py four patch02 fixes",
+    "src/__tests__/unit/latex_to_hwpeq_regression_test.py",
+    "own QA only"
+  ],
+  "baselineSHA256": "c19dc19997719b07d78a4334e84c0e357c7e85ef2f6b6d584d1cbec5d5fd07e6",
+  "patchedSHA256": "9fd1d1b58795914de46cdefd54a301f7ea07f3ae85e0a4e04e9a9ac731014c0f",
+  "normalizedSHA256": "22d127ae42b4e57a136644b2c05ef0e928575e604654f54460ace28f4c7809bd",
+  "red": {
+    "tests": 4,
+    "failed": 4
+  },
+  "green": {
+    "tests": 28,
+    "passed": 28
+  },
+  "reusedExternalO9": {
+    "tests": 14,
+    "passed": 14,
+    "overlapWithGreen": true,
+    "notAdditionalUniqueCoverageClaim": true
+  },
+  "reusedLocalTests": "hwpxReviewFindings direct converter delimiter/cfrac/dfrac expectations migrated; no Node suite run",
+  "bindings": {
+    "dropinNormalizedByteBinding": true,
+    "dropinRawByteBinding": false,
+    "externalAndParentUnchanged": true,
+    "mapIntegrity": true
+  },
+  "sourceExecution": "Only own copied modules with python -B; external checkout never executed",
+  "corpus": {
+    "imported": false,
+    "executed9870": false,
+    "reason": "Export documentation aggregate 9870 lacks an explicit replay input manifest in this bounded patch task; initial immediate canonical glob did not locate inputs. No broad personal corpus traversal/copy, no claim to independently reproduce its 9870/76 figures."
+  },
+  "diagnostics": [
+    "Initial copied O9 slice was empty because earlier O6 marker preceded O9; corrected bounded end search after O9 and actually executed14 assertions.",
+    "PowerShell default display decoding garbled one documentation search; source reads/hashes and copied tests use explicit UTF-8."
+  ],
+  "limits": [
+    "No HWP equation round-trip, COM/native/render/print verification",
+    "No general math semantic or arbitrary TeX correctness claim",
+    "No patch01/figure_scene/render_spec/writer edits or integration claim",
+    "No Node/TS/Vitest/DB/API/install/push",
+    "Skill mapping/API guidance used only within converter scope; full writer keyword synchronization not audited",
+    "External 9870 corpus aggregate remains external evidence only"
+  ],
+  "preserved": [
+    "Unrelated four dirty curriculum files",
+    "Previous Pytha proposal c459a9a01 and all prior evidence",
+    "Parent vendor baseline and external source/docs/test bytes"
+  ],
+  "regressionCommand": "python -B src/__tests__/unit/latex_to_hwpeq_regression_test.py --module <own copied converter> --output <own result JSON>"
+}

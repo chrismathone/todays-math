@@ -1,0 +1,108 @@
+[
+  {
+    "name": "baseline",
+    "outputs": [
+      {
+        "tex": "(2+\\sqrt{5})\\mathrm{cm}",
+        "result": "LEFT ( 2+sqrt {5} RIGHT )rm cm"
+      },
+      {
+        "tex": "x\\mathrm{km/h}",
+        "result": "x rm`km/it {h}"
+      },
+      {
+        "tex": "60\\mathrm{m/s}",
+        "result": "60 rm it {m}/it {s}"
+      },
+      {
+        "tex": "\\triangle AGG'\\sim\\triangle AEF",
+        "result": "TRIANGLE rm {AGG'}∼ TRIANGLE rm {AEF}"
+      },
+      {
+        "tex": "m+g+h",
+        "result": "m+g+h"
+      },
+      {
+        "tex": "g(x)/h",
+        "result": "g(x)/h"
+      },
+      {
+        "tex": "\\mathrm{A}/g",
+        "result": "rm A it /g"
+      },
+      {
+        "tex": "\\mathrm{A}+g/h",
+        "result": "rm A it +g/h"
+      },
+      {
+        "tex": "\\mathrm{A}x/g",
+        "result": "rm A it x/g"
+      },
+      {
+        "tex": "\\sim P",
+        "result": "∼P"
+      },
+      {
+        "tex": "P'\\sim Q",
+        "result": "P'∼Q"
+      },
+      {
+        "tex": "\\sim f'(x)",
+        "result": "∼f'(x)"
+      }
+    ]
+  },
+  {
+    "name": "dropin",
+    "outputs": [
+      {
+        "tex": "(2+\\sqrt{5})\\mathrm{cm}",
+        "result": "LEFT ( 2+sqrt {5} RIGHT ) rm`cm"
+      },
+      {
+        "tex": "x\\mathrm{km/h}",
+        "result": "x rm`km/h"
+      },
+      {
+        "tex": "60\\mathrm{m/s}",
+        "result": "60 rm {m/s}"
+      },
+      {
+        "tex": "\\triangle AGG'\\sim\\triangle AEF",
+        "result": "TRIANGLE rm {AGG'}∽ TRIANGLE rm {AEF}"
+      },
+      {
+        "tex": "m+g+h",
+        "result": "m+g+h"
+      },
+      {
+        "tex": "g(x)/h",
+        "result": "g(x)/h"
+      },
+      {
+        "tex": "\\mathrm{A}/g",
+        "result": "rm A it /g"
+      },
+      {
+        "tex": "\\mathrm{A}+g/h",
+        "result": "rm A it +g/h"
+      },
+      {
+        "tex": "\\mathrm{A}x/g",
+        "result": "rm A it x/g"
+      },
+      {
+        "tex": "\\sim P",
+        "result": "∼P"
+      },
+      {
+        "tex": "P'\\sim Q",
+        "result": "P'∽ Q"
+      },
+      {
+        "tex": "\\sim f'(x)",
+        "result": "∼f'(x)"
+      }
+    ]
+  }
+]
