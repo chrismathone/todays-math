@@ -1,4 +1,6 @@
 import type { FadingFigure } from "@/lib/fading/figures";
+import type { FadingProposition } from "@/lib/fading/concepts";
+import { fadingNumberLineForProposition } from "@/lib/fading/numberLineFigures";
 import { FadingIcon } from "./FadingIcon";
 import { FadingMath } from "./FadingMath";
 import s from "./fading.module.css";
@@ -6,13 +8,16 @@ import s from "./fading.module.css";
 /** 이름표의 답은 읽기·완료 뒤 대조에만 DOM으로 만든다. */
 export function FadingFigureView({
   student = false,
-  figure,
+  figure: sourceFigure,
+  proposition,
   answers = false,
 }: {
   student?: boolean;
   figure: FadingFigure | null;
+  proposition: FadingProposition;
   answers?: boolean;
 }) {
+  const figure = fadingNumberLineForProposition(sourceFigure, proposition);
   if (!figure) return null;
   return (
     <section className={s.figureCard} aria-label="개념 그림">

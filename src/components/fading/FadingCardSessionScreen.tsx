@@ -813,6 +813,7 @@ export function FadingCardSessionScreen({
                 <FadingFigureView
                   student={student}
                   figure={content.figure}
+                  proposition={comparisonCard}
                   answers
                 />
               )}
@@ -983,6 +984,7 @@ export function FadingCardSessionScreen({
             <FadingFigureView
               student={student}
               figure={content.figure}
+              proposition={proposition}
               answers={local.phase === "reading" && revealed}
             />
             <section className={s.propositions} aria-label="개념 문장">
