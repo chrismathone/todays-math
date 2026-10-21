@@ -1,0 +1,80 @@
+[
+  {
+    "name": "grid",
+    "inputCanonicalSHA256": "9664f8e777f0a01f72abaa2c4943d60d1718d00ebac3954deca14feea0bf4cb0",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\grid.json",
+    "expectedRawSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+    "expectedBytes": 1617,
+    "expectedKeys": [
+      "svg"
+    ],
+    "error": null,
+    "svgBytes": 1516,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  },
+  {
+    "name": "assets",
+    "inputCanonicalSHA256": "cfbb144588ed8fb126ce499c0ade070b5b669092a04b2698c2518ce640f2d43d",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\assets.json",
+    "expectedRawSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+    "expectedBytes": 4929,
+    "expectedKeys": [
+      "svg"
+    ],
+    "error": null,
+    "svgBytes": 4411,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  },
+  {
+    "name": "perspective",
+    "inputCanonicalSHA256": "8a0249c68209b5cfd2f445d567c3439907b43a390342d0bf39e2f8b17301470f",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\perspective.json",
+    "expectedRawSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+    "expectedBytes": 1612,
+    "expectedKeys": [
+      "svg"
+    ],
+    "error": null,
+    "svgBytes": 1453,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  },
+  {
+    "name": "units",
+    "inputCanonicalSHA256": "af7e4bc12fe6129c4c35cfee1502986cc02c9194c96711877e845540924ce318",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\units.json",
+    "expectedRawSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+    "expectedBytes": 844,
+    "expectedKeys": [
+      "svg"
+    ],
+    "error": null,
+    "svgBytes": 762,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  },
+  {
+    "name": "right-refused",
+    "inputCanonicalSHA256": "59af310443e41fe6c9f766127308f6aa1423aeca4d9c336ab37a2fb14c826e66",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\right-refused.json",
+    "expectedRawSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+    "expectedBytes": 220,
+    "expectedKeys": [
+      "error"
+    ],
+    "error": "도형을 그리지 못했습니다: angle 'rB' is marked right but measures 119.60° — fix the geometry, not the mark (only in a perspective/3D drawing whose printed mark is slanted, add perspective:true)",
+    "svgBytes": 0,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  },
+  {
+    "name": "solid-object-refused",
+    "inputCanonicalSHA256": "a6fd1dda32a273225708a1e94494013ea6a008ff48d456528e18f8915fc324e8",
+    "expectedPath": "D:\\math-figure-editor\\docs\\export\\todays-math\\engine-check\\expected\\solid-object-refused.json",
+    "expectedRawSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+    "expectedBytes": 223,
+    "expectedKeys": [
+      "error"
+    ],
+    "error": "도형을 그리지 못했습니다: assets: can 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요",
+    "svgBytes": 0,
+    "contract": "exact JSON stdout bytes including SVG serialization or exact refusal wording; not all-engine equivalence"
+  }
+]

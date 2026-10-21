@@ -1,0 +1,2 @@
+﻿from pathlib import Path
+P=Path(__file__).resolve().parent;s=(P/'own-object-check.py').read_text(encoding='utf-8-sig');s=s.replace("data=('\\n'.join(out)+'\\n').encode();blob=", "data=('\\n'.join(out)+('\\n' if not base or base.endswith(b'\\n') else '')).encode();blob=");s=s.replace('own-incoming-object-checks.json','own-incoming-object-checks-corrected.json');(P/'own-object-check-corrected.py').write_text(s,encoding='utf-8')
