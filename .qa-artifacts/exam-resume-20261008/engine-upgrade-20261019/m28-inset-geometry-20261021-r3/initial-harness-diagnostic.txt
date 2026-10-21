@@ -1,0 +1,2 @@
+Initial experiment stopped before imports/renders: Python ast.parse rejected the preserved prior UTF-8 BOM (U+FEFF).
+Only this new QA reader was changed to utf-8-sig. Original evidence bytes were not edited. This was not a production geometry failure or a passed run.

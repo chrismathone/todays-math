@@ -23,7 +23,7 @@ from typing import Any, Iterable, Mapping, Sequence
 # `mj_attr` — 「이 라벨을 `data-mj` 로 실을 수 있나」의 규칙은 검사기와 **한 곳**에
 # 있어야 한다. 못 실을 글에 붙이면 안전 검사가 그림 전체를 죽인다.
 from core.figure_quality import mj_attr
-from core.figure_svg import angle_arc, circle_pt, isect
+from core.figure_svg import angle_arc, circle_pt, inset_angle_arc, inset_angle_interval, isect
 from core.label_markup import (LabelMarkupError, label_pieces_svg,
                                label_width_em)
 
@@ -351,6 +351,8 @@ class AngleMark:
     perspective/oblique 3D picture: the printed mark is slanted (a parallelogram along the
     two rays) because the rays are not perpendicular on paper, so the 90° check is skipped.
     It is valid only together with ``right=True``.
+    ``serialized_inset=True`` opts a generated circular mark into a shared
+    shortened interval and six-decimal endpoints. The actual rays stay fixed.
     """
 
     name: str
@@ -363,6 +365,7 @@ class AngleMark:
     arcs: int = 1
     right: bool = False
     perspective: bool = False
+    serialized_inset: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -1324,7 +1327,8 @@ class FigureScene:
     def add_angle(self, name: str, vertex: str, p1: str, p2: str,
                   *, radius: Number | None = None, label: str | None = None,
                   label_distance: Number | None = None, arcs: int = 1,
-                  right: bool = False, perspective: bool = False) -> "FigureScene":
+                  right: bool = False, perspective: bool = False,
+                  serialized_inset: bool = False) -> "FigureScene":
         """Add a small-angle arc between rays ``vertex->p1`` and ``vertex->p2``.
 
         ``arcs=2`` draws a double arc; ``right=True`` draws the square
@@ -1342,6 +1346,10 @@ class FigureScene:
             raise GeometryValidationError(f"angle {name!r} perspective must be boolean")
         if perspective and not right:
             raise GeometryValidationError(f"angle {name!r}: perspective needs right=True")
+        if not isinstance(serialized_inset, bool):
+            raise GeometryValidationError(f"angle {name!r} serialized_inset must be boolean")
+        if serialized_inset and (right or perspective):
+            raise GeometryValidationError(f"angle {name!r}: serialized_inset is only for circular angle marks")
         arcs_value = _mark_count(arcs, 2, f"angle {name!r} arcs")
         if arcs_value == 0:
             raise GeometryValidationError(f"angle {name!r} arcs must be 1 or 2")
@@ -1352,7 +1360,7 @@ class FigureScene:
             name, _name(vertex, "angle vertex"), _name(p1, "angle ray ref"),
             _name(p2, "angle ray ref"), None if radius is None else float(radius),
             label, None if label_distance is None else float(label_distance),
-            arcs_value, right, perspective)
+            arcs_value, right, perspective, serialized_inset)
         return self
 
     def add_dimension(self, name: str, p1: str, p2: str, label: str,
@@ -1613,6 +1621,10 @@ class FigureScene:
                             f"point {point.name!r} lies outside finite segment {ref!r}")
 
         for angle in self.angles.values():
+            if not isinstance(angle.serialized_inset, bool):
+                raise GeometryValidationError(f"angle {angle.name!r} serialized_inset must be boolean")
+            if angle.serialized_inset and (angle.right or angle.perspective):
+                raise GeometryValidationError(f"angle {angle.name!r}: serialized_inset is only for circular angle marks")
             for ref in (angle.vertex, angle.p1, angle.p2):
                 if ref not in self.points:
                     raise GeometryValidationError(
@@ -1769,10 +1781,14 @@ class FigureScene:
         a0 = math.atan2(p1.y - vertex.y, p1.x - vertex.x)
         a1 = math.atan2(p2.y - vertex.y, p2.x - vertex.x)
         delta = (a1 - a0 + math.pi) % (2.0 * math.pi) - math.pi
+        if angle.serialized_inset:
+            a0, delta = inset_angle_interval(vertex.x, vertex.y, (p1.x, p1.y), (p2.x, p2.y))
         out: list[tuple[Point, ...]] = []
         for arc_index in range(angle.arcs):
             r = radius - arc_index * _MARK_GAP
             if r <= 0:
+                if angle.serialized_inset:
+                    raise GeometryValidationError(f"angle {angle.name!r}: inset radius must be positive")
                 continue
             out.append(tuple(
                 Point(f"{angle.name}@{arc_index}:{i}",
@@ -2878,10 +2894,15 @@ class FigureScene:
                     f'stroke-width="{_fmt(style.mark_width)}"/>')
                 continue
             for arc_index in range(angle.arcs):
-                path_data = angle_arc(
-                    vertex.x + tx, vertex.y + ty,
-                    (p1.x + tx, p1.y + ty), (p2.x + tx, p2.y + ty),
-                    radius - arc_index * _MARK_GAP)
+                if angle.serialized_inset:
+                    path_data = inset_angle_arc(vertex.x, vertex.y,
+                        (p1.x, p1.y), (p2.x, p2.y), radius - arc_index * _MARK_GAP,
+                        offset=(tx, ty))
+                else:
+                    path_data = angle_arc(
+                        vertex.x + tx, vertex.y + ty,
+                        (p1.x + tx, p1.y + ty), (p2.x + tx, p2.y + ty),
+                        radius - arc_index * _MARK_GAP)
                 marks.append(
                     f'<path d="{path_data}" fill="none" '
                     f'stroke="{escape(style.stroke, quote=True)}" '
@@ -3333,7 +3354,7 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
             if not isinstance(item, Mapping):
                 raise FigureSpecError(f"angles.{name} must be an object")
             _strict_keys(item, {"vertex", "points", "p1", "p2", "radius", "label",
-                                "label_distance", "arcs", "right", "perspective"}, f"angles.{name}")
+                                "label_distance", "arcs", "right", "perspective", "serialized_inset"}, f"angles.{name}")
             if "vertex" not in item:
                 raise FigureSpecError(f"angles.{name} requires vertex")
             if "points" in item:
@@ -3361,7 +3382,8 @@ def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:
                 label_distance=None if item.get("label_distance") is None else _spec_number(
                     item["label_distance"], f"angles.{name}.label_distance"),
                 arcs=item.get("arcs", 1),
-                right=right_value, perspective=perspective_value)
+                right=right_value, perspective=perspective_value,
+                serialized_inset=item.get("serialized_inset", False))
 
         for name, item in dimension_records:
             if not isinstance(item, Mapping):

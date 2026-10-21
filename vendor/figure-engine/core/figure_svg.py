@@ -16,7 +16,8 @@ tkz-euclide(LaTeX) 관행을 파이썬-SVG 로 옮긴 것 — 의존성 0, 렌�
 5. **같음 표시(eq_tick)** 는 변에 수직인 짧은 선분(사선 금지, q7).
 6. 본선 2px 검정 / 보조선·축·점선 1px / 배경 투명 / 라벨 Times+Batang serif.
 7. 축은 원점을 지나 튀어나가지 않는다(q3). 라벨은 선·호·직각표시와 겹침 금지.
-8. 사진 문항은 재작도하지 않는다 — 원본 크롭 + 노이즈/채점기호 정리(s2).
+8. 새 쌍둥이의 코드 불가 이미지는 내장 imagegen으로 새로 제작한다.
+   원본 크롭은 완료가 아니며 제작 자산의 수학 조건·검수·권리 상태를 별도로 연결한다.
 9. **각 라벨 = halo_angle**(이등분선 위 halo) — 좁은 각은 어디 놓아도 두 변에
    닿는다(오성중 q4 54°·왕선중 q5 20°). **호·지름 길이 라벨 = 곡선 위 halo_text**.
 10. **직각 표시 = rangle_at**(두 참조점에서 방향 계산) — 단위벡터 눈대중 하드코딩이
@@ -179,6 +180,51 @@ def angle_arc(vx, vy, p1, p2, r=26) -> str:
     a1 = ray_angle(vx, vy, *p2)
     da = (a1 - a0 + 180.0) % 360.0 - 180.0
     return arc(vx, vy, r, a0, a0 + da)
+
+
+# Explicit opt-in for generated angle marks; legacy arc/angle_arc bytes stay fixed.
+ANGLE_MARK_INSET_RADIANS = 1e-3
+
+
+def inset_angle_interval(vx, vy, p1, p2) -> tuple[float, float]:
+    """Unrounded SVG-y-down minor interval, shortened symmetrically at both ends.
+
+    Sampling and emission share this interval. It changes the decorative mark,
+    never the two rays, their actual angle, labels or a mathematical condition.
+    """
+    lengths = (_nonzero_segment(vx, vy, p1[0], p1[1], "inset angle"),
+               _nonzero_segment(vx, vy, p2[0], p2[1], "inset angle"))
+    if not all(math.isfinite(length) for length in lengths):
+        raise ValueError("inset angle: ray length must be finite")
+    a0 = math.atan2(p1[1] - vy, p1[0] - vx)
+    delta = (math.atan2(p2[1] - vy, p2[0] - vx) - a0 + math.pi) % (2 * math.pi) - math.pi
+    if abs(delta) <= 2 * ANGLE_MARK_INSET_RADIANS or abs(delta) >= math.pi - 1e-8:
+        raise ValueError("inset angle: rays leave no valid shortened minor arc")
+    sign = 1 if delta > 0 else -1
+    return a0 + sign * ANGLE_MARK_INSET_RADIANS, delta - 2 * sign * ANGLE_MARK_INSET_RADIANS
+
+
+def inset_angle_arc(vx, vy, p1, p2, r=26, *, offset=(0.0, 0.0)) -> str:
+    """Serialize the shared inset interval at six decimal places, or refuse it.
+
+    Offset is applied after computing the source interval, as for collision
+    samples. Coincident endpoints or SVG's implicit radius enlargement are not
+    accepted. This is not a universal polygon/stroke-containment certificate.
+    """
+    _finite(r, offset[0], offset[1], what="inset angle")
+    if r <= 0:
+        raise ValueError("inset angle: radius must be positive")
+    a0, delta = inset_angle_interval(vx, vy, p1, p2)
+    cx, cy = vx + offset[0], vy + offset[1]
+    raw = (cx + r * math.cos(a0), cy + r * math.sin(a0),
+           cx + r * math.cos(a0 + delta), cy + r * math.sin(a0 + delta))
+    values = tuple(float(f"{v:.6f}") for v in raw)
+    _finite(*values, what="inset angle endpoints")
+    chord = math.hypot(values[2] - values[0], values[3] - values[1])
+    if chord <= 0 or chord > 2 * r:
+        raise ValueError("inset angle: serialized endpoints cannot preserve the minor circle")
+    return (f"M {values[0]:.6f} {values[1]:.6f} A {r} {r} 0 0 "
+            f"{1 if delta > 0 else 0} {values[2]:.6f} {values[3]:.6f}")
 
 
 # 🔴 **치수 점선 굵기** — 원장님 확정 2026-08-28 (D-07 · 시안 ②).

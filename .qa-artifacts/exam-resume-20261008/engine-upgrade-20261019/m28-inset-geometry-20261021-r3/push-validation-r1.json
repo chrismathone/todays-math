@@ -1,0 +1,1175 @@
+{
+  "utc": "2026-10-21T13:55:34.009850+00:00",
+  "head": "2dc085e2a984f1f8f8fbad084d9a7e3c7e525ee4",
+  "main": "7266c9b2808ff6690b34853b3fb46dbc9576ac62",
+  "code": [
+    {
+      "path": "src/lib/math/exactChoiceValue.ts",
+      "sha256": "413f130acfc79fcc0cc1e06576debb6636b636eb9fc4ea62cc22a99cddd7adbd"
+    },
+    {
+      "path": "src/lib/engine/deriveFormats.ts",
+      "sha256": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50"
+    },
+    {
+      "path": "src/lib/engine/expandEngine.ts",
+      "sha256": "4ec4dcaa8857685c755928912f927c5ba7bda9c6fcabb031a147b6295e9f8330"
+    },
+    {
+      "path": "src/lib/engine/authoredImage.ts",
+      "sha256": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324"
+    },
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df"
+    },
+    {
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "sha256": "e046dd44d99006c8fdff0eedf138058239b1f62c5d791a3c71d66e4e80ff8de5"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f"
+    },
+    {
+      "path": "scripts/import/exam-twin/sourceIdentity.mjs",
+      "sha256": "b5933369ff1063b6cdc96de53510047008e728a83adc402af90d8515730096c3"
+    },
+    {
+      "path": "scripts/qa/scan-choice-exact-values.ts",
+      "sha256": "470e4c9b02e350c16626e12e8fbd869f054851aadcff17b6f7c1eaf6289f44a8"
+    },
+    {
+      "path": "scripts/qa/audit-past-exam-closure.mjs",
+      "sha256": "fe8ca8de4cacdb80a6c60e4093f90986500c313ee41f65c4319b1feefc7ce44e"
+    },
+    {
+      "path": "scripts/qa/verify-authored-image-support.ts",
+      "sha256": "57c4701a427de3fcef492e0ec6e7aff72c71222e2d1ea43dea09ced935a8f108"
+    },
+    {
+      "path": "scripts/db/problem-actual-format.ts",
+      "sha256": "4be3e863e61ac082b1ee90b234b4b83158c26bd3aa3102e83ca7d17c9c94cc1a"
+    },
+    {
+      "path": "scripts/qa/capture-exam-family-snapshot.mjs",
+      "sha256": "b0fdd3fb404b52aa9deaffa72d136c3a17900e9ef3a458cc362e112d23d97c58"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_region_ownership.py",
+      "sha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1"
+    },
+    {
+      "path": "scripts/import/exam-twin/extract-fresh-sources-20261019.py",
+      "sha256": "d82fa32da80f7c0902a2b1c0bae983bcdcd5598581d4d689fb97dd1715ae153a"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.mjs",
+      "sha256": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1"
+    },
+    {
+      "path": "scripts/import/exam-twin/constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7"
+    },
+    {
+      "path": "scripts/import/exam-twin/prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "scripts/import/exam-twin/rebind-identical-review.mjs",
+      "sha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e"
+    },
+    {
+      "path": "scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "sha256": "e1992a23e5730a8fc7b302df7c00fc9054a5d2b53edeffab35bd6be1ff5e62d0"
+    },
+    {
+      "path": "src/lib/examStudyRoutes.ts",
+      "sha256": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "1476f947a03d9b261db456cfc1b1ef8399c022224c0b98742d52c5cb9a0e82d3"
+    },
+    {
+      "path": "src/lib/examStudy/evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "src/lib/examStudy/generate.ts",
+      "sha256": "29df46ff324fd38c8a15d70961b45b9e0fe8030496f48519607e26c7cfa34657"
+    },
+    {
+      "path": "src/lib/examStudy/identity.ts",
+      "sha256": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5"
+    },
+    {
+      "path": "src/lib/examStudy/index.ts",
+      "sha256": "7c8a75923289e66dbd7d345e7047a2c43c9b1f5a176466a52bc6211426151e77"
+    },
+    {
+      "path": "src/lib/examStudy/legacyVerification.ts",
+      "sha256": "82275b3cac3d776b4682ccb3d3f8ac330d7608d6037c6278f1e16792d4866e4f"
+    },
+    {
+      "path": "src/lib/examStudy/planner.ts",
+      "sha256": "1446df2e9e71d0e1e6e548fc97aa1234b0bb6f82e6357ae4368ea07e6e3961e6"
+    },
+    {
+      "path": "src/lib/examStudy/profiles.ts",
+      "sha256": "8f0ea98553bd6d3ffc2ad2d44414035a7b12cb917ffe3c9f270e5ec113ec2e76"
+    },
+    {
+      "path": "src/lib/examStudy/registry.ts",
+      "sha256": "1f873f97f26fecadb95aa87276f86b9dc0aa9aff0cb77f4f20b617327b43bca3"
+    },
+    {
+      "path": "src/lib/examStudy/requirements.ts",
+      "sha256": "62984cd03bfbbc6a1a2a716fad7bfc89f40e8ce693f417d013deb5e9745df934"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/continuous.ts",
+      "sha256": "a3047e8f290694451f950fe587589c7851900c3ab8c43645fdf86d992234d9b1"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/finite.ts",
+      "sha256": "31a4703d421ba5043ac374d3d0c598df4965f871c547f4f8ce936881e574813e"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/geometry.ts",
+      "sha256": "b8c6c2710ec1e5ffa5f8c0106aa80d7068ba25eb8de8989733f9f853876a9798"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/graph.ts",
+      "sha256": "97a41ec61c8baa9ea2f8de7660c61f3bb5fa599781b800ae92de13af0219672a"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/incircle.ts",
+      "sha256": "01471c5d6e592c9684d33b689fdbf7cc8205491e36736ec55e4c9be048c2f674"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/index.ts",
+      "sha256": "7a7245e0b8842b4ab76d1c1f87078fd41f085b7ff619706573d57718d72adf8f"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/logic.ts",
+      "sha256": "4b496eadc02b28d834553e1b955ce5e56776c0fffbcf2f5b5381fb6e7565692c"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/shared.ts",
+      "sha256": "3176e56702bbf468f8da2590246a49819e4135b494e4328c0bde0f6a7b3b4ba7"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/algebra.ts",
+      "sha256": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/graphs.ts",
+      "sha256": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/index.ts",
+      "sha256": "50fa02d0d4865c6f46c7715f9ceb2f49fb83021d2ea1a4e1fbd4ef0e65a6d457"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/signedTrapezoid.ts",
+      "sha256": "f3f48bca7564f5240affabc41cc70bd26368773c151a2d5802360fc0cd392f85"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/support.ts",
+      "sha256": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/written.ts",
+      "sha256": "6ae8d2dd21c563bb8e6f40ab8857ec276be118d8a97ef3b717834957df20195d"
+    },
+    {
+      "path": "src/lib/examStudy/curriculumEligibility.ts",
+      "sha256": "d962ba000211422cb9073632ee134c631dfa8803b036af9b744a223f00f99a9a"
+    },
+    {
+      "path": "src/lib/examStudy/legacyReinforcement.ts",
+      "sha256": "1ce2ac49a74e9e77a93aed428519468977ea63995f3e7654fe65dafb141a5915"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementMath.ts",
+      "sha256": "c13ca232218fd3a39b25ddfaa908ce553b0246ce2afdff4152223c9fe65fc612"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementVerification.ts",
+      "sha256": "063478f94b4ba8165889e5ceb456a13067f8a406742015c7aedd229aa21bad62"
+    },
+    {
+      "path": "src/lib/examStudy/studyChoiceBounds.ts",
+      "sha256": "552dfd4c086e12f237dd878e1dc75c933891c1d093f0ad7b617010e994b4abad"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remaining.ts",
+      "sha256": "e58de3e8ee9a1acacde479952bfef7ec9b9f0d523a6ee60d340541683f47bb5b"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remainingExact.ts",
+      "sha256": "b00ad980a7c34134f8dc1d053077024ccd7627e258cfcc250ecfd0ccd2f9a159"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/remaining.ts",
+      "sha256": "edf091c50462e1bd9d99b7a793a9dcbc2bcdd9220b02c8ea85bbdf7df92e4a5e"
+    },
+    {
+      "path": "src/lib/examStudyAccess.ts",
+      "sha256": "047188ef81c127a018c635acd4a38920bb546575e6e2d26cffac898a1c4f2605"
+    },
+    {
+      "path": "src/lib/accountRouteAccess.ts",
+      "sha256": "15dca89fa1f3d2abf7bb35ce70640d78239394e6a54e85d694a68a35d56b201b"
+    },
+    {
+      "path": "src/lib/middle/m3.ts",
+      "sha256": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80"
+    },
+    {
+      "path": "src/lib/middle/m3Figures.ts",
+      "sha256": "56cd9f00f752b2145ce2b0e0edc731aed02649a37259b53678f743bec9c07051"
+    },
+    {
+      "path": "src/lib/middle/m3Root.ts",
+      "sha256": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM1StudentMethods.test.ts",
+      "sha256": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+      "sha256": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "7e83611c376eafa7f1fb9c23dd846adc05cac850d61b156b8b04c716b597bdd4"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseCoefficient.ts",
+      "sha256": "d55bc535c275c3c16e94b9a7afc781dd1f6c84845061e850aa7ace099edc4f4b"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseCoefficient.test.ts",
+      "sha256": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.test.mjs",
+      "sha256": "28023b10404214dfcdecbfd712ab25be6ba6d5a55ef5b6e9dddbe59adf75ceed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseRootTable.ts",
+      "sha256": "3de1646b7373c9528d86f3b01cb92e4fa8d95597fdf5b61d406e76090b580a51"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseRootTable.test.ts",
+      "sha256": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.mjs",
+      "sha256": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs",
+      "sha256": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e"
+    },
+    {
+      "path": "src/contracts/difficulty.ts",
+      "sha256": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseMinimum.ts",
+      "sha256": "b1fc51f29efa75f1c54ea02cba81bf29c29655f8a49a742350de2aabf664284e"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a"
+    },
+    {
+      "path": "scripts/import/exam-twin/replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.test.mjs",
+      "sha256": "27c99e5766511b4658ba74bb56b8ccf7004183be4c39e2e07142374f05f6d5b6"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+      "sha256": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "sha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts",
+      "sha256": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.test.mjs",
+      "sha256": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.test.mjs",
+      "sha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+      "sha256": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.test.mjs",
+      "sha256": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.mjs",
+      "sha256": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.test.mjs",
+      "sha256": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.mjs",
+      "sha256": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.test.mjs",
+      "sha256": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope.py",
+      "sha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope.py",
+      "sha256": "b75433eafd7ea7e50005fd490ce1c0cc8f17d56d6ec73b36d69c0159a2d58569"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope_v2.py",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": "scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "f904e83a8b57d4a117084b912cde46f31555c2497ec9209391981732c43306ee"
+    },
+    {
+      "path": "scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b58a18be5a6e5467a5615c24f3b1ca5b2e7a10edd3252977aba7784b1fe74dfa"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+      "sha256": "5b5e94235553c2182db537e974e7fdad185f9710bc8a516c99afddc1bfd63590"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "sha256": "2d9b15fee1650f3e34b7ffd18df41b4eaef68e957063dfd2f3ce68a151f62076"
+    },
+    {
+      "path": "src/components/exam-builder/ExamBuilder.demand.test.tsx",
+      "sha256": "38376a9671de8026ab4fc33828d7577e8c36afa752cd860c8b62ee9cfca701a8"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM3MethodGradeGates.test.ts",
+      "sha256": "d038168218adf236b4745b31e8e4b7078f4d2f72d09613ee90f2c856d0404957"
+    },
+    {
+      "path": "src/lib/examStudy/draftSnapshot.ts",
+      "sha256": "2dfcfcf8670f22bf1cf1e1dfd552058962b673a8b9834522b16279d5f51bc0df"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyDraftSnapshots.test.ts",
+      "sha256": "fbcb62ad0378f78e7935d1a0019b3c3b35b72710b34d4a6eb99ab9825e2f7147"
+    },
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "sha256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567"
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "sha256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3"
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "sha256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "sha256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2FeasibleConditions.test.ts",
+      "sha256": "d141a86eb43aff6158a2440e704f3f734c859d2a1c8a08762008032068ca222d"
+    },
+    {
+      "path": "src/lib/middle/m1Geo2.ts",
+      "sha256": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942"
+    },
+    {
+      "path": "src/__tests__/unit/middleM1PolygonQuestionFigure.test.ts",
+      "sha256": "125f5ae37eaa44db782eb81bb590aacf10866720237c85d9cc0ddfa2f74af6ac"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_svg.py",
+      "sha256": "1ee04c3c9b5c81acc10045f4ea4ce17e8a2a5ea9a8d76964abd8a283a34cad39"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "0d07cf01760c904daeab8c87d8df859d006f53b83116d30ed9e08c9a8a90ee97"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_exam.py",
+      "sha256": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_spec_repair.py",
+      "sha256": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b"
+    },
+    {
+      "path": "vendor/hwpx/latex_to_hwpeq.py",
+      "sha256": "9fd1d1b58795914de46cdefd54a301f7ea07f3ae85e0a4e04e9a9ac731014c0f"
+    },
+    {
+      "path": "scripts/figure/example_exam_tools.py",
+      "sha256": "d7a143f661769086e9a1960a725a5a94b75abaef1a1276cc926736ea956cc483"
+    },
+    {
+      "path": "scripts/figure/test_vendor_tools.py",
+      "sha256": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989"
+    },
+    {
+      "path": "src/__tests__/unit/vendoredFigureEngine.test.ts",
+      "sha256": "c0ad7ad2729ada3e7c86a01bdb9a2a8eaed49509b865bd45f480f3cf7aa737d2"
+    },
+    {
+      "path": "src/__tests__/unit/latex_to_hwpeq_regression_test.py",
+      "sha256": "f5be360eb2829b1b435aa159315ade791a69361d221ea3c27da30f0be586ef7b"
+    },
+    {
+      "path": "src/lib/middle/m2Pytha.ts",
+      "sha256": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2PythaGivenFigure.test.ts",
+      "sha256": "d4cca6a2965f1e58c3d2a739e25a598f32f96994e4c98779bdf821453259e5f5"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_solid.py",
+      "sha256": "cf20e6c8af66a3de7405e4a25e4ac1c8ab9979a3719603e958b735c1b8126a09"
+    },
+    {
+      "path": "scripts/figure/test_solid_verification.py",
+      "sha256": "4862f93ed09123fe2be39199cbf6cc42ec385eba13b9e0b30a535229243bed3f"
+    },
+    {
+      "path": "src/lib/middle/m2Quad.ts",
+      "sha256": "72be18d7ad3a0a9e2a6a2ffe27b621af92dccb7947b9651016f2e7dcc98d1ad7"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2QuadAngleFigure.test.ts",
+      "sha256": "d5099f913d1d19f8bc3f8aa337041307237f28f16070bb064e893b0544cb6f16"
+    },
+    {
+      "path": "src/__tests__/components/FigureGridPanel.test.tsx",
+      "sha256": "714278e15893361791a01c6e5bc42ce59705c9cfba105d4a4105e9bc30152898"
+    },
+    {
+      "path": "src/__tests__/components/FigureLabelInput.test.tsx",
+      "sha256": "5343313cd97db5821de05d6df9894746a016a02c50737a8bc4fe2144eeef2579"
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.symbols.test.tsx",
+      "sha256": "76108836fe9297c5529c87db86bd84fc8a50e7facf4af09d4f4f8e536759f852"
+    },
+    {
+      "path": "src/__tests__/unit/devAiFigureEngine.test.ts",
+      "sha256": "e1139643cee3fc996abc53f38d809ea313f787fe3e1ba957d1549f0fc81790fb"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridBoundaries.test.ts",
+      "sha256": "309f6424f5a4504faac4bf87301ba3d9d6400167eb15a50597094355ef41483b"
+    },
+    {
+      "path": "src/__tests__/unit/figureGridLabels.test.ts",
+      "sha256": "4b1f5392d6ec3cb10aeb4795fff9149a41d2db91953a1cff4872d495acdd84fb"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureChipText.tsx",
+      "sha256": "3f33d1d7bf32ec80bd9f061f5f764bc50889a27b614a25ca355377e3e71c8087"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "sha256": "a8c11bcc155af3c727de45d6b43a341b87c5026b846594185a690fc2a995b6bc"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGridPanel.tsx",
+      "sha256": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "sha256": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureObjectList.tsx",
+      "sha256": "e3ee5af5a6af462550fe99e773989c8cb564980caafcff3709ee36f73d973582"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigurePanelFold.tsx",
+      "sha256": "a9fe571b36f29804316304c6083672e24581e4a12b1657fc03f0f6d27cfd33b8"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGrid.ts",
+      "sha256": "a6cbdd2939c74c2b3b9fbd590491f709fc246e4d0c0261cde1c9090e72ac3136"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGridMetadata.ts",
+      "sha256": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "sha256": "6cfe098e2399e68eb2521cd3a925075d072f504d1dd5ad4135788e5a6ff7f8df"
+    },
+    {
+      "path": "src/components/unified/figure-editor/mathjaxLabel.ts",
+      "sha256": "0a443691ae392f35254228ced9dff173f28fae18be6d28bb49d24bc4d467f3dc"
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "sha256": "8684850718da1452615eb7eae5714bad2c5cf6810ba34c9a139a29fc81a8efef"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "sha256": "6fa1ac74c4fd8d4b294675bf56b7c5e5c3b5d521420d796502ee5bc176a9345e"
+    },
+    {
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "sha256": "2a0eb96aaaa3dfa8e353f0de22d84c043f7d5e75c5ec0c34796229a767148d4e"
+    },
+    {
+      "path": "src/lib/figure/vectorLabel.ts",
+      "sha256": "f4f003091d49fd84304a29835bf2533f13f6d5a933984a9087beb9880867acd5"
+    },
+    {
+      "path": "scripts/figure/graph_scene.py",
+      "sha256": "6d70bf137f9e5cd5117a882af9cd72592da1c1b7851f02d015831f536c2527a2"
+    },
+    {
+      "path": "scripts/figure/engine-catalog.json",
+      "sha256": "b7dbbbadd4e7a3cda553b6c8ede1be64c366629625f1a3388d3d24040a7bec86"
+    },
+    {
+      "path": "scripts/figure/test_grid.py",
+      "sha256": "a0f1bf52fc8227195d635f484a82ccb42dcc59379f792533aaef060efc168eba"
+    },
+    {
+      "path": "vendor/figure-engine/core/label_markup.py",
+      "sha256": "17bdf31e4527da32d62a911854fc83a62615335f83801f59f6a7d60983d4dc7b"
+    },
+    {
+      "path": "scripts/figure/assets/README.md",
+      "sha256": "0b1c26918a81c97ba8aad7eb8838c06451b0a28ef268a45e93073844073402d0"
+    },
+    {
+      "path": "scripts/figure/assets/airplane.svg",
+      "sha256": "b80a83d6b054a09c5b9ee4e6e5116d794c5d76f39b45d8c4452e5504c02b4619"
+    },
+    {
+      "path": "scripts/figure/assets/anchors.json",
+      "sha256": "8aaf980e09b2ff39e219c9cd8bae4cb1030f4f15597e01e0c5a8555dd9ef8ab0"
+    },
+    {
+      "path": "scripts/figure/assets/baduk-black.svg",
+      "sha256": "948d7faeb41851b064b917f94d5dab90b60617f11169cee6f64477fdec55ef66"
+    },
+    {
+      "path": "scripts/figure/assets/baduk-white.svg",
+      "sha256": "2f14735c3b9009d9afa2c433b59faedb198546626db17c83982404eec67f90d6"
+    },
+    {
+      "path": "scripts/figure/assets/balance-scale.svg",
+      "sha256": "a4117c9da16cebb48a21411ca7672100e7bf0fba9dd1e0c946fe3b2576630a3b"
+    },
+    {
+      "path": "scripts/figure/assets/bicycle.svg",
+      "sha256": "6956d53ee333b4cb303af1486b2203817e5f90e2727f53a853baba107c6458da"
+    },
+    {
+      "path": "scripts/figure/assets/boat.svg",
+      "sha256": "9db6592ec3e62d9550aaad2e27bda8287862aa37c604bc8f26790aea3a7946aa"
+    },
+    {
+      "path": "scripts/figure/assets/bowl.svg",
+      "sha256": "bb1b0daf08ee9aa9430c5d55f0d58e5a0cbeb35b97b8054cdfc7850e8dd53f71"
+    },
+    {
+      "path": "scripts/figure/assets/bridge.svg",
+      "sha256": "9d01c83b09fe90e20f200cc3011db35286e674c1dbf89850214a7a8cdf5b9da3"
+    },
+    {
+      "path": "scripts/figure/assets/building.svg",
+      "sha256": "17cf57367e05e9252599d024b845d47021c594a2e2877641f2449bfb2d7da54a"
+    },
+    {
+      "path": "scripts/figure/assets/cake-roll.svg",
+      "sha256": "3f322959463130a2853fdd2a61db8cc276d7aac752f7b0075767560d6cfb6468"
+    },
+    {
+      "path": "scripts/figure/assets/can.svg",
+      "sha256": "3c9ac2770ac717eef12ee1ecfafa6633123073d9a30682b075a085e0b01846bf"
+    },
+    {
+      "path": "scripts/figure/assets/car-side.svg",
+      "sha256": "88af34aaa1be7282cd73af9d7595ea17d473d9ed3484211595cf834998d3d392"
+    },
+    {
+      "path": "scripts/figure/assets/cup-cone.svg",
+      "sha256": "b51df2a00fd9404736dc5a5171197c8eebbb788cf4ecb5048f91bb1dcb8198f5"
+    },
+    {
+      "path": "scripts/figure/assets/cup-cylinder.svg",
+      "sha256": "d6067357e50929e31c24ad7ce2f8616530429c7e8456083fc4268103baa3b929"
+    },
+    {
+      "path": "scripts/figure/assets/dice.svg",
+      "sha256": "f0ef2cbdbe0a1a295f06f243113ae1d8542bc7b0ab3623f8d0e58bc3ccd23edb"
+    },
+    {
+      "path": "scripts/figure/assets/ferris-wheel.svg",
+      "sha256": "199a8426be57db428edb9bffc5589537f5f1c45bfa0735cdf008a0950b1ffef0"
+    },
+    {
+      "path": "scripts/figure/assets/flagpole.svg",
+      "sha256": "77c577c04dda7dd6702b33d31ab3f70d057d93162aa15294b916efabc7b8eae1"
+    },
+    {
+      "path": "scripts/figure/assets/hot-air-balloon.svg",
+      "sha256": "8b362feb12cb536c6fd482b0ee1b97018a7073c324bf5f323018dfc4aae60769"
+    },
+    {
+      "path": "scripts/figure/assets/house.svg",
+      "sha256": "e0292f1458cc77d8f8f29788cd4401fa0bdd2354bea171f6bf99fe746da5536b"
+    },
+    {
+      "path": "scripts/figure/assets/ice-cream-cone.svg",
+      "sha256": "ffe66a03657b88b0f8737408ffd53c8e98bebe11c96da50120ebb217b750713d"
+    },
+    {
+      "path": "scripts/figure/assets/kite.svg",
+      "sha256": "e2790815b775aef1c0260c3cfb19229d573b2f64d63efcfebac224b5b8f9f817"
+    },
+    {
+      "path": "scripts/figure/assets/ladder.svg",
+      "sha256": "cceabdfb08e68d6ccc2b5109f8e4f04347642ca9f6638dccb7fdc72ab8ee91b8"
+    },
+    {
+      "path": "scripts/figure/assets/lighthouse.svg",
+      "sha256": "39d95cb17054f704062b7b19dd189ee82e06ee8a4ef9ef917b2b09165e72d66d"
+    },
+    {
+      "path": "scripts/figure/assets/manifest-exam.json",
+      "sha256": "055f58d6c4365342f117989a3e391b3477d4c99e690b08626758c14b94af865d"
+    },
+    {
+      "path": "scripts/figure/assets/manifest-objects.json",
+      "sha256": "2a0b26cdcabff96856405b186402e853842e00671db3d7f53ff0e19aa80cdd15"
+    },
+    {
+      "path": "scripts/figure/assets/manifest-outdoor.json",
+      "sha256": "bff8589c37fdf6b9da91a16642349b769712a62387e5365704a021c2134ef27b"
+    },
+    {
+      "path": "scripts/figure/assets/matchstick.svg",
+      "sha256": "d60e467dd308019f3c298b6a25d974e3b5c04e74e97c1d1f30d05a6856d15e5b"
+    },
+    {
+      "path": "scripts/figure/assets/mountain.svg",
+      "sha256": "76f82d50d4044ec75356b35fa7c1dcfe2927e7b4497c496509ee2c7a32f2bab2"
+    },
+    {
+      "path": "scripts/figure/assets/person-standing.svg",
+      "sha256": "40b6f3c07dd44aedcc52b4a1909999e376772006a4e708cb5266b02fc2c2d5be"
+    },
+    {
+      "path": "scripts/figure/assets/person-walking.svg",
+      "sha256": "56e0316f36ba684405ef63b0842d5404676608d5f17d5f255ace5986bbba0eed"
+    },
+    {
+      "path": "scripts/figure/assets/picture-assets.json",
+      "sha256": "e4a52f597cc1726b18285859d13e3923be8a392893dfe5cd58c0f5a2b8fece1e"
+    },
+    {
+      "path": "scripts/figure/assets/picture-frame.svg",
+      "sha256": "90d4457d6f9c76da3a5048d5aa0ffb925d706dc4ccebf92d07d16737fba44d4f"
+    },
+    {
+      "path": "scripts/figure/assets/pizza.svg",
+      "sha256": "0b8d092de015b9ca1c8e9e547db1d4b94be65183ea174bef6eedd5fca633f737"
+    },
+    {
+      "path": "scripts/figure/assets/slide.svg",
+      "sha256": "9d736b3658eea2e46cfe0e200d4e3489bba80586d2c5a83927f596e6d49f1e89"
+    },
+    {
+      "path": "scripts/figure/assets/streetlamp.svg",
+      "sha256": "4755b0ec1c9f0780efc0d563cd6d7d3b9149861f081c8a8472e14907bd64f8ed"
+    },
+    {
+      "path": "scripts/figure/assets/sun.svg",
+      "sha256": "8e120e96f6ff6429d23eef38b1e6025c6d5ff0a25dc8fd482c7563992e9b766e"
+    },
+    {
+      "path": "scripts/figure/assets/thermometer.svg",
+      "sha256": "708a87d603dc7e652147bce4ba3dc67ca277e396bfc9ebc5378aab57579d15a9"
+    },
+    {
+      "path": "scripts/figure/assets/tower.svg",
+      "sha256": "07ffe5dbdf1097a943d71bd8568034a5f459b5de4b7b1c5e091ff6492a87d998"
+    },
+    {
+      "path": "scripts/figure/assets/train-side.svg",
+      "sha256": "c69883506005ea9d83831e8a848545434e0848e2e096de4eaaaf6c61a60aa057"
+    },
+    {
+      "path": "scripts/figure/assets/tree.svg",
+      "sha256": "f9a4c530b3e5e980960bb824225cc0774630174b561111c24f7831b57eac3be6"
+    },
+    {
+      "path": "scripts/figure/assets/tunnel.svg",
+      "sha256": "544a48f5d9c7a5a3f4b51985a6fb7e4cf389441d87a024e3a994c8a8f786ac9c"
+    },
+    {
+      "path": "scripts/figure/assets/utility-pole.svg",
+      "sha256": "e69a0fda3324751b4320f9932c660190a2a7e2b5f5e4a50b5ceddd70504ee8ae"
+    },
+    {
+      "path": "scripts/figure/assets/water-tank.svg",
+      "sha256": "f6be1d8e766c2c22b030294ae036aace20cc0600c1a5f3f43dc2cc4ecf2123a5"
+    },
+    {
+      "path": "scripts/figure/render_spec.py",
+      "sha256": "590a4ad6c208795038b1bc7cafd4f32227272c549d50dc0d2d13e026062899b5"
+    },
+    {
+      "path": "scripts/figure/scene_assets.py",
+      "sha256": "e367b37d2ed5ddf1254ee0c746f0dcd2baf0efd3756fee87a28c52e1b608191f"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_scene.py",
+      "sha256": "5d50a0a35e4ebf43dd566947094e3b7a09af05c66f7e1e0b8930cd1276b0309b"
+    },
+    {
+      "path": "scripts/figure/test_scene_assets.py",
+      "sha256": "ef8583583804c22dcdd24ef92998637bc0558e8d707723ccd42e084c43f4c845"
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.rotate.test.tsx",
+      "sha256": "5c5dfebdc8ab37a5b87f94948232c8fc7646671bf775940cf56ba5c3ec5399a3"
+    },
+    {
+      "path": "src/__tests__/unit/figureAssetEditor.test.ts",
+      "sha256": "ecb603c69b8b39c4575a092fc0d1d9494d3661a7f2d7a53af297d88d592c673d"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureAssetGeometry.ts",
+      "sha256": "0a8905bf82001a2877856bb95b8202e6b6d3ab022a42ee98a573dd00a254f679"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureBake.ts",
+      "sha256": "d4558484409c8a22f451dd15a909a71ba075cfa3de5cf6b3c10b18a4e8745445"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureEditElements.ts",
+      "sha256": "96205f545a70906d1002766e329bf2c236cd3c67da9f4e1552e8ed7991f07279"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureObjectNames.ts",
+      "sha256": "b0fb5d7b4128a45968c18009cb05b4efa007febecedd67a2a051b734a9a81ff4"
+    },
+    {
+      "path": "src/lib/figure/assetCatalog.ts",
+      "sha256": "12b0cfba1551fb0e6cd5b2918a05256e007ed6591e575441b66cd4347f8be867"
+    },
+    {
+      "path": "src/lib/figure/asset-editor-geometry.json",
+      "sha256": "918ddc47b9e204c63309f8257bc13e94bf9a21568dd70653f79c74f5fe480a9b"
+    },
+    {
+      "path": "scripts/figure/build_asset_editor_registry.py",
+      "sha256": "deae19c1a21f2d38c1df136725c6cf150c274994dc9911b3f5be8ac2cdf6e2d1"
+    },
+    {
+      "path": "src/lib/figure/gridMeasure.ts",
+      "sha256": "fc2ba00a23c29188f51186a412d283153961c3179805426e9f36955aecab9238"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-comparison.ts",
+      "sha256": "a19493fd6359498b16d0aab87a69cbd231fa863057e84495e46e7192f257a8e9"
+    },
+    {
+      "path": "src/__tests__/unit/gridMeasure.test.ts",
+      "sha256": "886a82af7a0470b7309a7b1ee89f66d92edcfe8649ce5950c18d3d3a53d52e49"
+    },
+    {
+      "path": "src/__tests__/unit/figureComparisonBrowser.test.ts",
+      "sha256": "ad35a0313070a72572c00ad358e896482af3f6a9926179d05f0af526c736d481"
+    },
+    {
+      "path": "scripts/figure/assets/manifest-core.json",
+      "sha256": "7cde2d7d996ab1b14c32c9561ba866acfb937ae857bead798468271b8bf313f7"
+    },
+    {
+      "path": "src/lib/figure/asset-editor-geometry-legacy-20261021.json",
+      "sha256": "ebaa87fb68464fba6dcace09e77fc8f9f42fd0e8b4943fafc2868bac7ae63ba8"
+    },
+    {
+      "path": "src/__tests__/fixtures/figure-assets-legacy-20261021.json",
+      "sha256": "28a76b9585da12a424d083ae15b5a81d6ad8fb4239373477dbbf50d75b3bd165"
+    },
+    {
+      "path": "scripts/figure/assets/building-3d.svg",
+      "sha256": "38344abbd14bff1544ebe26e47e2022c98976e00de3517f764aa29fb508a72db"
+    },
+    {
+      "path": "scripts/figure/assets/house-3d.svg",
+      "sha256": "d37600df502fb23200cf860948bc4f6ec529b1c99cf1aebb6b15291133da47f9"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureAssetMenu.tsx",
+      "sha256": "d9be1d8b0f49cc1eb04c6ad0e11d050354aa4432f3396142dd4d13b50b2fcb57"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGroupRow.tsx",
+      "sha256": "e47a9a2700f0681996abb923b13b448411fc311729ab8becd05621be4d786db3"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureSelectionOverlay.tsx",
+      "sha256": "bdc10362c741b770717e23fb3fa07af4f7ad9e4b816096492ef18f99ce849565"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureAngleMark.ts",
+      "sha256": "6c98717fd33cac2a55b4aff49cb9975b54646f734e39c05a61539164577494f4"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureAssetLibrary.ts",
+      "sha256": "4c381b1790b772c1bd7ba0fa5e7f19b782aba19be2e3ad449e25e7534bbaf5bc"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureEditApply.ts",
+      "sha256": "1849440c6c4613c86c87a0174cf4f3fa95fb4f798e3e8d9b324d9b2159bf7380"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureObjectGroups.ts",
+      "sha256": "724880c56eedd210d2e49d53a6bfd3ed128bb08fe1b05f65382e1b7c89ca7171"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-edit-contract.ts",
+      "sha256": "35e39851d716799440ab2c3bbea702348165862eb2a9647c676c38eb7291eee7"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-edit-prompt.ts",
+      "sha256": "c1db3cc82357ee7e5944f4a0d296e4147b7f052365099e57e9556ad10a7ec1c6"
+    },
+    {
+      "path": "src/__tests__/unit/figureEditorAssetsAndGroups.test.ts",
+      "sha256": "e6827ff9c4825184f31c8efcac2c477d0eaed76ff4c905bb81d0e80122e986d0"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "sha256": "ddf1a5ced14cfd701bbeb412a943f1f0c7cd7960ef929a925521fcbb75013c2a"
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.groups.test.tsx",
+      "sha256": "574f926d30c3504cf6b07387827137519d659704f6291b36ea08a8a68b743879"
+    },
+    {
+      "path": "src/__tests__/components/FigureAssetMenu.integration.test.tsx",
+      "sha256": "fe3e7ba072a94f1640c87b57693997adb40dbdfc9fd5dbd24f9b5f618210f28c"
+    },
+    {
+      "path": "scripts/figure/build_asset_editor_library.py",
+      "sha256": "8143635ac51227e8bce79c5b13ea4ce48aa1bcbf9fd2fbb097ec5c57a9ca5c71"
+    },
+    {
+      "path": "public/figure-assets/07ffe5dbdf1097a9-tower.svg",
+      "sha256": "07ffe5dbdf1097a943d71bd8568034a5f459b5de4b7b1c5e091ff6492a87d998"
+    },
+    {
+      "path": "public/figure-assets/0b8d092de015b9ca-pizza.svg",
+      "sha256": "0b8d092de015b9ca1c8e9e547db1d4b94be65183ea174bef6eedd5fca633f737"
+    },
+    {
+      "path": "public/figure-assets/17cf57367e05e925-building.svg",
+      "sha256": "17cf57367e05e9252599d024b845d47021c594a2e2877641f2449bfb2d7da54a"
+    },
+    {
+      "path": "public/figure-assets/199a8426be57db42-ferris-wheel.svg",
+      "sha256": "199a8426be57db428edb9bffc5589537f5f1c45bfa0735cdf008a0950b1ffef0"
+    },
+    {
+      "path": "public/figure-assets/2f14735c3b9009d9-baduk-white.svg",
+      "sha256": "2f14735c3b9009d9afa2c433b59faedb198546626db17c83982404eec67f90d6"
+    },
+    {
+      "path": "public/figure-assets/38344abbd14bff15-building-3d.svg",
+      "sha256": "38344abbd14bff1544ebe26e47e2022c98976e00de3517f764aa29fb508a72db"
+    },
+    {
+      "path": "public/figure-assets/39d95cb17054f704-lighthouse.svg",
+      "sha256": "39d95cb17054f704062b7b19dd189ee82e06ee8a4ef9ef917b2b09165e72d66d"
+    },
+    {
+      "path": "public/figure-assets/3c9ac2770ac717ee-can.svg",
+      "sha256": "3c9ac2770ac717eef12ee1ecfafa6633123073d9a30682b075a085e0b01846bf"
+    },
+    {
+      "path": "public/figure-assets/3f322959463130a2-cake-roll.svg",
+      "sha256": "3f322959463130a2853fdd2a61db8cc276d7aac752f7b0075767560d6cfb6468"
+    },
+    {
+      "path": "public/figure-assets/40b6f3c07dd44aed-person-standing.svg",
+      "sha256": "40b6f3c07dd44aedcc52b4a1909999e376772006a4e708cb5266b02fc2c2d5be"
+    },
+    {
+      "path": "public/figure-assets/4755b0ec1c9f0780-streetlamp.svg",
+      "sha256": "4755b0ec1c9f0780efc0d563cd6d7d3b9149861f081c8a8472e14907bd64f8ed"
+    },
+    {
+      "path": "public/figure-assets/544a48f5d9c7a5a3-tunnel.svg",
+      "sha256": "544a48f5d9c7a5a3f4b51985a6fb7e4cf389441d87a024e3a994c8a8f786ac9c"
+    },
+    {
+      "path": "public/figure-assets/56e0316f36ba6844-person-walking.svg",
+      "sha256": "56e0316f36ba684405ef63b0842d5404676608d5f17d5f255ace5986bbba0eed"
+    },
+    {
+      "path": "public/figure-assets/6956d53ee333b4cb-bicycle.svg",
+      "sha256": "6956d53ee333b4cb303af1486b2203817e5f90e2727f53a853baba107c6458da"
+    },
+    {
+      "path": "public/figure-assets/708a87d603dc7e65-thermometer.svg",
+      "sha256": "708a87d603dc7e652147bce4ba3dc67ca277e396bfc9ebc5378aab57579d15a9"
+    },
+    {
+      "path": "public/figure-assets/76f82d50d4044ec7-mountain.svg",
+      "sha256": "76f82d50d4044ec75356b35fa7c1dcfe2927e7b4497c496509ee2c7a32f2bab2"
+    },
+    {
+      "path": "public/figure-assets/77c577c04dda7dd6-flagpole.svg",
+      "sha256": "77c577c04dda7dd6702b33d31ab3f70d057d93162aa15294b916efabc7b8eae1"
+    },
+    {
+      "path": "public/figure-assets/88af34aaa1be7282-car-side.svg",
+      "sha256": "88af34aaa1be7282cd73af9d7595ea17d473d9ed3484211595cf834998d3d392"
+    },
+    {
+      "path": "public/figure-assets/8b362feb12cb536c-hot-air-balloon.svg",
+      "sha256": "8b362feb12cb536c6fd482b0ee1b97018a7073c324bf5f323018dfc4aae60769"
+    },
+    {
+      "path": "public/figure-assets/8e120e96f6ff6429-sun.svg",
+      "sha256": "8e120e96f6ff6429d23eef38b1e6025c6d5ff0a25dc8fd482c7563992e9b766e"
+    },
+    {
+      "path": "public/figure-assets/90d4457d6f9c76da-picture-frame.svg",
+      "sha256": "90d4457d6f9c76da3a5048d5aa0ffb925d706dc4ccebf92d07d16737fba44d4f"
+    },
+    {
+      "path": "public/figure-assets/948d7faeb41851b0-baduk-black.svg",
+      "sha256": "948d7faeb41851b064b917f94d5dab90b60617f11169cee6f64477fdec55ef66"
+    },
+    {
+      "path": "public/figure-assets/9d01c83b09fe90e2-bridge.svg",
+      "sha256": "9d01c83b09fe90e20f200cc3011db35286e674c1dbf89850214a7a8cdf5b9da3"
+    },
+    {
+      "path": "public/figure-assets/9d736b3658eea2e4-slide.svg",
+      "sha256": "9d736b3658eea2e46cfe0e200d4e3489bba80586d2c5a83927f596e6d49f1e89"
+    },
+    {
+      "path": "public/figure-assets/9db6592ec3e62d95-boat.svg",
+      "sha256": "9db6592ec3e62d9550aaad2e27bda8287862aa37c604bc8f26790aea3a7946aa"
+    },
+    {
+      "path": "public/figure-assets/a4117c9da16cebb4-balance-scale.svg",
+      "sha256": "a4117c9da16cebb48a21411ca7672100e7bf0fba9dd1e0c946fe3b2576630a3b"
+    },
+    {
+      "path": "public/figure-assets/b51df2a00fd94047-cup-cone.svg",
+      "sha256": "b51df2a00fd9404736dc5a5171197c8eebbb788cf4ecb5048f91bb1dcb8198f5"
+    },
+    {
+      "path": "public/figure-assets/b80a83d6b054a09c-airplane.svg",
+      "sha256": "b80a83d6b054a09c5b9ee4e6e5116d794c5d76f39b45d8c4452e5504c02b4619"
+    },
+    {
+      "path": "public/figure-assets/bb1b0daf08ee9aa9-bowl.svg",
+      "sha256": "bb1b0daf08ee9aa9430c5d55f0d58e5a0cbeb35b97b8054cdfc7850e8dd53f71"
+    },
+    {
+      "path": "public/figure-assets/c69883506005ea9d-train-side.svg",
+      "sha256": "c69883506005ea9d83831e8a848545434e0848e2e096de4eaaaf6c61a60aa057"
+    },
+    {
+      "path": "public/figure-assets/cceabdfb08e68d6c-ladder.svg",
+      "sha256": "cceabdfb08e68d6ccc2b5109f8e4f04347642ca9f6638dccb7fdc72ab8ee91b8"
+    },
+    {
+      "path": "public/figure-assets/d37600df502fb232-house-3d.svg",
+      "sha256": "d37600df502fb23200cf860948bc4f6ec529b1c99cf1aebb6b15291133da47f9"
+    },
+    {
+      "path": "public/figure-assets/d6067357e50929e3-cup-cylinder.svg",
+      "sha256": "d6067357e50929e31c24ad7ce2f8616530429c7e8456083fc4268103baa3b929"
+    },
+    {
+      "path": "public/figure-assets/d60e467dd308019f-matchstick.svg",
+      "sha256": "d60e467dd308019f3c298b6a25d974e3b5c04e74e97c1d1f30d05a6856d15e5b"
+    },
+    {
+      "path": "public/figure-assets/e0292f1458cc77d8-house.svg",
+      "sha256": "e0292f1458cc77d8f8f29788cd4401fa0bdd2354bea171f6bf99fe746da5536b"
+    },
+    {
+      "path": "public/figure-assets/e2790815b775aef1-kite.svg",
+      "sha256": "e2790815b775aef1c0260c3cfb19229d573b2f64d63efcfebac224b5b8f9f817"
+    },
+    {
+      "path": "public/figure-assets/e69a0fda3324751b-utility-pole.svg",
+      "sha256": "e69a0fda3324751b4320f9932c660190a2a7e2b5f5e4a50b5ceddd70504ee8ae"
+    },
+    {
+      "path": "public/figure-assets/f0ef2cbdbe0a1a29-dice.svg",
+      "sha256": "f0ef2cbdbe0a1a295f06f243113ae1d8542bc7b0ab3623f8d0e58bc3ccd23edb"
+    },
+    {
+      "path": "public/figure-assets/f6be1d8e766c2c22-water-tank.svg",
+      "sha256": "f6be1d8e766c2c22b030294ae036aace20cc0600c1a5f3f43dc2cc4ecf2123a5"
+    },
+    {
+      "path": "public/figure-assets/f9a4c530b3e5e980-tree.svg",
+      "sha256": "f9a4c530b3e5e980960bb824225cc0774630174b561111c24f7831b57eac3be6"
+    },
+    {
+      "path": "public/figure-assets/ffe66a03657b88b0-ice-cream-cone.svg",
+      "sha256": "ffe66a03657b88b0f8737408ffd53c8e98bebe11c96da50120ebb217b750713d"
+    },
+    {
+      "path": "scripts/figure/test_inset_angle.py",
+      "sha256": "bb58d226b23a6b4e7448b3aa77ce88d6ce1826e0e3fef6d52559a067983d2cda"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2QuadInsetRegression.test.ts",
+      "sha256": "83b0c0f61e35bb9d834acbfae7eb254c7bb61df89513ca5a9d3324092f5938e6"
+    },
+    {
+      "path": "src/__tests__/fixtures/m2Quad-before-inset-20261021.json",
+      "sha256": "744ac4c70108b9b734f8b3f1c5a1b50392487450d83305ed0bb38d0a52f3ea0c"
+    }
+  ],
+  "currentMainRelatedPassed": 230,
+  "currentMainRelatedFailed": 0,
+  "actualTestFiles": 10,
+  "tests": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/m28-inset-r2-results.json",
+    "sha256": "b9e75ca5d9ba272fa63ebb1550b4e181a8ace81e37ea46d16607589f84cb5238"
+  },
+  "execution": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/m28-inset-r2-execution.json",
+    "sha256": "a259b0595160ebcd9593df82ac2c5f05f8105978ad5e0dafd59a9066ef09eb0a"
+  },
+  "python": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/python71-execution.json",
+    "sha256": "e40e1f2bf6057a8178069b2d9e0488c9a4030a8749c74918ac3a7b6391bccdcc"
+  },
+  "pythonTests": 71,
+  "types": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/types-m28-inset-r3.json",
+    "sha256": "a604fbed4719aa7f3415b001e940f542fd625a6942d71ab99f86ecb87c049a9f"
+  },
+  "typeRoots": 4,
+  "lint": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/m28-inset-lint-r1-results.json",
+    "sha256": "f15b9a84a1879f76a5f126dd938bcaab689a1343aecc3a2176b63fe7cef3d8a4"
+  },
+  "lintRoots": 4,
+  "independent": {
+    "path": ".qa-artifacts/exam-resume-20261008/m28-inset-current-audit-20261021-r3/own-report.json",
+    "sha256": "cddd595dfe2856181e177b93277f49a1142771c962e39036a6f89ad1464ce11e"
+  },
+  "native64": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/current-production-results.json",
+    "sha256": "4a3020c5a81fc320914bee8c51fc9507122b0d90456e0c66ad2e51a49d9db3c1"
+  },
+  "default08": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/default08-native-comparison.json",
+    "sha256": "1e2f146a744b42d0db32737650f73f3ce6d0d878a2a83a303bc27e7aa0080616"
+  },
+  "firstFailure": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/m28-inset-r1-results.json",
+    "sha256": "843bda2605a68f12971b9f1f1b534d33ed309dc9b09214ede20475fec2092b56"
+  },
+  "firstFailureCause": "UNDETERMINED_NOT_REPRODUCED_NOT_CLAIMED_FIXED",
+  "exactInputDiagnostic": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m28-inset-geometry-20261021-r3/default12-diagnostic-tests.json",
+    "sha256": "b4e533b198c31ef5463c9d5c0073d38f8da5ab971ce7e2d103fd1ecc6fe7eeac"
+  },
+  "canonicalIndexUnchanged": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v50.json",
+    "sha256": "857ec44b0fe7b22232d32ee7138987d57e14fdd71a81c4f84caec3ea32cb2481"
+  },
+  "existingQuestionOrDBWrites": 0
+}

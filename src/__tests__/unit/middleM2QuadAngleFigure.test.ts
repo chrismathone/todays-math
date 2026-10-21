@@ -32,7 +32,7 @@ function check(task: MidProblem) {
   expect(Math.abs(angle(C!, B!, D!) - (180 - beta))).toBeLessThan(0.01);
   expect(figure.segments).toEqual({ AB: ["A", "B"], DC: ["D", "C"], AD: ["A", "D"], BC: ["B", "C"] });
   expect(figure.labels).toEqual({ A: "A", B: "B", C: "C", D: "D" });
-  const marks = figure.angles as Record<string, { vertex: string; points: string[]; arcs: number; radius: number; label?: string }>;
+  const marks = figure.angles as Record<string, { vertex: string; points: string[]; arcs: number; radius: number; label?: string; serialized_inset?: boolean }>;
   expect(Object.keys(marks).sort()).toEqual(["angA", "angC"]);
   const clearance = Math.min(distanceToLine(A!, B!, C!), distanceToLine(A!, C!, D!),
     distanceToLine(C!, A!, B!), distanceToLine(C!, D!, A!));
@@ -41,6 +41,7 @@ function check(task: MidProblem) {
     expect(mark.vertex).toBe(vertex);
     expect(mark.points).toEqual(["B", "D"]);
     expect(mark.arcs).toBe(1);
+    expect(mark.serialized_inset).toBe(true);
     expect(mark.label).toBeUndefined();
     expect(mark.radius).toBeGreaterThan(0);
     expect(mark.radius + 1).toBeLessThan(clearance);

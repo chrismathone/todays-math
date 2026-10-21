@@ -289,8 +289,8 @@ function figCondAngles(w: number, h: number, slant: number, angleBDeg?: number):
       BC: ["B", "C"],
     },
     angles: {
-      angA: { vertex: "A", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },
-      angC: { vertex: "C", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },
+      angA: { vertex: "A", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius, serialized_inset: true }) },
+      angC: { vertex: "C", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius, serialized_inset: true }) },
     },
     labels: { A: "A", B: "B", C: "C", D: "D" },
   };
