@@ -465,6 +465,30 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
   }
   const actual = mathViewProblems.find((row) => path === `${base}/${row.id}`);
   if (actual) return Response.json({ data: actual });
+  const usable = (unitId: string, recent = false) =>
+    mathViewProblems.filter(
+      (row) =>
+        row.unitId === unitId &&
+        row.questionFormats[0].state === "available" &&
+        !(recent && mathRecent.has(row.id)),
+    );
+  // 1단계에서 고른 차시의 출제 가능 수 — 운영 `view=scope-counts` 와 같은 모양.
+  if (path === `${base}/sources` && body.view === "scope-counts") {
+    const ids = String(body.unitIds ?? "")
+      .split(",")
+      .filter(Boolean);
+    const recent = body.recent === "1";
+    return Response.json({
+      ...mathViewMetadata,
+      view: "scope-counts",
+      unitCounts: Object.fromEntries(
+        ids.map((id) => [id, usable(id, recent).length]),
+      ),
+      unitFamilies: Object.fromEntries(
+        ids.map((id) => [id, new Set(usable(id, recent).map(mathFamily)).size]),
+      ),
+    });
+  }
   if (path === `${base}/sources` && body.view === "available") {
     const tally = (rows: typeof mathViewProblems) => ({
       held: rows.length,
@@ -567,6 +591,44 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
             })[row.questionFormats[0].format ?? "short_answer"] === format,
         ).length,
       })),
+    });
+  }
+  // 1단계 «출제할 범위»의 학년 → 대단원 → 소단원 — 운영 `view=curriculum` 과 같은 모양.
+  if (path === base && query.get("view") === "curriculum") {
+    const grade = query.get("grade");
+    const chapter = query.get("chapter");
+    const unitIds = query.get("unitIds")?.split(",");
+    if (unitIds || chapter)
+      return Response.json({
+        view: "curriculum",
+        grades: [],
+        chapters: [],
+        units: mathUnits.filter((unit) =>
+          unitIds
+            ? unitIds.includes(unit.id)
+            : unit.grade === grade && unit.chapter === chapter,
+        ),
+      });
+    const field = grade ? "chapter" : "grade";
+    const units = mathUnits.filter((unit) => !grade || unit.grade === grade);
+    const labels = [...new Set(units.map((unit) => unit[field]))];
+    return Response.json({
+      view: "curriculum",
+      grades: grade ? [] : labels,
+      chapters: grade ? labels : [],
+      units: [],
+      ...(query.get("availability") === "1"
+        ? {
+            [grade ? "chapterCounts" : "gradeCounts"]: Object.fromEntries(
+              labels.map((label) => [
+                label,
+                units
+                  .filter((unit) => unit[field] === label)
+                  .reduce((sum, unit) => sum + usable(unit.id).length, 0),
+              ]),
+            ),
+          }
+        : {}),
     });
   }
   if (path === base) {
