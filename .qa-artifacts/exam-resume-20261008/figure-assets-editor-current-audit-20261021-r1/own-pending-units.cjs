@@ -1,0 +1,12 @@
+// OPTIONAL separate Node cohort, prepared NOT RUN. Never concurrent with DOM cohort.
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),v8=require('v8'),P=__dirname;
+const c=JSON.parse(fs.readFileSync(P+'/own-go-freeze.json','utf8').replace(/^\uFEFF/,''));
+if(c.go!==true||c.allowUnitTypeset!==true||c.availablePhysicalMemoryBytes<1610612736||!Number.isFinite(Date.parse(c.memoryMeasuredUTC))||Date.now()-Date.parse(c.memoryMeasuredUTC)<0||Date.now()-Date.parse(c.memoryMeasuredUTC)>120000)throw Error('NOT RUN: separate unit GO/fresh memory required');
+if(v8.getHeapStatistics().heap_size_limit>256*1048576||!process.execArgv.includes('--max-old-space-size=192')||!process.execArgv.includes('--max-semi-space-size=8'))throw Error('NOT RUN: heap budget');
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),read=fs.readFileSync,R=c.root.replaceAll('\\','/'),first={};
+for(const [f,h]of Object.entries(c.expectedHashes))if(hash(read(f))!==h)throw Error('HOLD source drift '+f);
+fs.readFileSync=function(f,...a){const d=read.call(this,f,...a);if(typeof f==='string'&&f.replaceAll('\\','/').startsWith(R+'/src/')&&/\.[jt]sx?$/.test(f)){const h=hash(Buffer.isBuffer(d)?d:Buffer.from(d)),key=Object.keys(c.expectedHashes).find(k=>k.replaceAll('\\','/')===f.replaceAll('\\','/'));if(!key||c.expectedHashes[key]!==h)throw Error('HOLD unbound import '+f);first[f]=h}return d};
+const lib=require(R+'/src/lib/figure/mathjaxLabel.ts'),editor=require(R+'/src/components/unified/figure-editor/mathjaxLabel.ts'),native=JSON.parse(read(P+'/own-native-and-units.json','utf8')),rows=[];
+for(const item of native.units){const a=lib.typesetLabel(item.input),b=editor.typesetLabel(item.input);rows.push({input:item.input,pythonPieces:item.pieces,lib:a,editor:b,libStable:JSON.stringify(a)===JSON.stringify(lib.typesetLabel(item.input)),editorStable:JSON.stringify(b)===JSON.stringify(editor.typesetLabel(item.input)),sameInner:a?.inner===b?.inner,interpretation:'observations only: typography/glyph identity needs comparison; no semantic unit or grade approval'})}
+const after={};for(const f of Object.keys(c.expectedHashes))after[f]=hash(read(f));
+fs.writeFileSync(P+'/own-unit-observations.json',JSON.stringify({actuallyExecuted:true,rows,firstImportSHA256:first,after,changed:Object.keys(after).filter(f=>after[f]!==c.expectedHashes[f]),heapLimitMiB:v8.getHeapStatistics().heap_size_limit/1048576},null,2));
