@@ -1,0 +1,7 @@
+import {defineConfig} from 'vitest/config';
+import path from 'node:path';
+export default defineConfig({envDir:false,cacheDir:path.resolve('.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/.vite-local-cache'),resolve:{tsconfigPaths:true,alias:{'@':path.resolve('src')}},test:{
+ include:['src/__tests__/unit/gridMeasure.test.ts','src/__tests__/unit/figureComparisonBrowser.test.ts','.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grid-advisory-integration-20261021-r1/comparison-grid-real-final-r7.test.mjs','src/__tests__/unit/devAiFigureEngine.test.ts','src/__tests__/unit/figureEngineCatalog.test.ts','src/__tests__/unit/vendoredFigureEngine.test.ts','src/__tests__/unit/graphScenePoints.test.ts','src/__tests__/unit/graphSceneAxisBreaks.test.ts','src/__tests__/unit/middleM2QuadAngleFigure.test.ts','src/__tests__/unit/examStudyDraftSnapshots.test.ts'],
+ environment:'node',globals:false,testTimeout:60000,css:false,setupFiles:['./vitest.setup.ts'],
+ env:{DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test',AUTH_URL:'http://localhost',NEXTAUTH_URL:''}
+}});

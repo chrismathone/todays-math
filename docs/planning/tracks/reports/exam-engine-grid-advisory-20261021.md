@@ -12,7 +12,7 @@
 
 실제 첫 화면 r1은 한글 대체 글꼴에서 안내문과 위쪽 번호 상자가 겹쳐 3사례가 실패했다. 여백을 48, 이미지 영역을 804로 조정하고 줄 높이를 명시했다. 같은 검사의 r2는 네 사례 모두 통과했고 칸 수 불일치 화면을 직접 확인했다. 초기 숫자 비교의 부동소수점 단정 오류와 없는 Node 래스터 패키지·JS 테스트 별칭 오류도 각각 보존했다. 래스터 준비는 이미 설치된 엔진의 `svg_to_png_bytes`를 사용하며 새 패키지를 설치하지 않았다. 메모리 기준에 못 미쳐 시작하지 않은 실행을 통과로 세지 않는다.
 
-QA는 `.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grid-advisory-integration-20261021-r1/`, 현재 실행은 `grid-advisory-r6-execution.json`, 화면은 `actual-browser-results-r2.json`이다. TypeSafe 프로젝트 스킬과 [최신 confidence 문서](https://docs.typesafe.ai/confidence), [근거 확인 예제](https://docs.typesafe.ai/cookbooks/citation_check)를 읽고, 수치 계산은 코드에 두며 불명을 승인으로 바꾸지 않는 설계를 유지했다. 새로운 TypeSafe·모델 API나 라우팅은 추가하지 않았다. 학년·권리·최종 검수/적재 가능 0과 기존 v50 문항 원장을 유지한다.
+QA는 `.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grid-advisory-integration-20261021-r1/`, 최종 현재 실행은 `grid-advisory-r7-execution.json`, 화면은 `actual-browser-results-r3.json`이다. 테스트의 타입 주석 보완 후 최신 main `7266c9b28`에서 10파일 151개를 다시 통과했고 실행 전후 코드·검사 설정·실제 화면 하네스·네이티브 입력 해시를 묶었다. 앞선 r6/r2도 보존했다. TypeSafe 프로젝트 스킬과 [최신 confidence 문서](https://docs.typesafe.ai/confidence), [근거 확인 예제](https://docs.typesafe.ai/cookbooks/citation_check)를 읽고, 수치 계산은 코드에 두며 불명을 승인으로 바꾸지 않는 설계를 유지했다. 새로운 TypeSafe·모델 API나 라우팅은 추가하지 않았다. 학년·권리·최종 검수/적재 가능 0과 기존 v50 문항 원장을 유지한다.
 
 변경 5파일의 프로젝트 옵션/선언 기반 TypeScript 오류 0·전역 진단 0, ESLint 오류 0을 확인했다. 첫 타입 검사에서 테스트 자료 factory의 추론 오류 3개를 찾아 명시적 타입을 추가했다. 검사 자료나 생산 동작을 완화하지 않았다. 별도 작업자는 현재 Root 모듈을 직접 불러 독립 회색 입력·유리수 좌표·위조/불명 입력 42개를 통과했고 관련 8파일의 실행 전후 해시가 같다. 부모의 151개나 화면 4사례를 자기 검수 수로 복사하지 않았으며, 실제 캔버스·브라우저·취소·시간 초과 동작은 그 별도 직접 함수 검수의 범위가 아니다. 독립 원장은 `grid-advisory-current-audit-20261021-r1/own-execution-r1/own-report.json`이다. 전체 프로젝트 타입 검사·전체 엔진 개선·전수 문항 검증 완료는 아니다.
 
