@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A71-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d63-8d26-7d93-97ac-4075a030ddb8",
+ "startedAt": "2026-10-21T16:36:07+0900",
+ "elapsedSec": 12.2,
+ "studentSha256": {
+  "student.json": "81e8551f9d9d7913299f1c22bbd5d763108e276ddc5ba8688ebbaaa3d6b02ea0"
+ },
+ "promptSha256": "d2ab8a1c399fcb09eae1104513f3f5108f33bfecff873fc37f2c13ad17aa2e00",
+ "freezeCommit": "1f022fa5fa99b8553458e0290369a75de543769a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\\nㄴ은 분모가 40=2³×5이고, ㄷ은 -14/35=-2/5이므로 유한소수이다.\\nㄱ과 ㄹ은 기약분수의 분모에 3이 있으므로 유한소수가 아니다. 따라서 ㄴ, ㄷ이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "기약분수의 분모의 소인수가 2와 5뿐이면 유한소수이다.\nㄴ은 분모가 40=2³×5이고, ㄷ은 -14/35=-2/5이므로 유한소수이다.\nㄱ과 ㄹ은 기약분수의 분모에 3이 있으므로 유한소수가 아니다. 따라서 ㄴ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4b5a1fcb788a82fc5e659f7bcc590424b23736365fc05ed2471ffa339051cc54"
+}
