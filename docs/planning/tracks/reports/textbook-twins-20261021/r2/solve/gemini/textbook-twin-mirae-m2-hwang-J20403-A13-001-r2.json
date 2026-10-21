@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A13-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "00338b07-d0f1-4525-a440-66d43766b717",
+ "startedAt": "2026-10-21T18:14:48+0900",
+ "elapsedSec": 13.9,
+ "studentSha256": {
+  "student.json": "84a145c49537193107cc54aa6a883fa1ea5b2514e2618dd923a160a7b2dafecc"
+ },
+ "promptSha256": "318a3350111e3e1ac1bfcdc901903a08aeb3d3f9466784e9388bd1495341e325",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"5\",\n  \"work\": \"두 점 $\\\\mathrm{A}(-2, 7)$, $\\\\mathrm{B}(1, -2)$를 지나는 직선의 기울기는 $\\\\frac{-2 - 7}{1 - (-2)} = -3$이므로 직선의 방정식은 $y = -3x + 1$이다. 점 $\\\\mathrm{C}(k, -14)$가 이 직선 위에 있으므로 $-14 = -3k + 1$, $3k = 15$에서 $k = 5$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "5",
+  "work": "두 점 $\\mathrm{A}(-2, 7)$, $\\mathrm{B}(1, -2)$를 지나는 직선의 기울기는 $\\frac{-2 - 7}{1 - (-2)} = -3$이므로 직선의 방정식은 $y = -3x + 1$이다. 점 $\\mathrm{C}(k, -14)$가 이 직선 위에 있으므로 $-14 = -3k + 1$, $3k = 15$에서 $k = 5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "77c84f198e029a7462dd44a9fd59e86c62704dabdafb7bf4e913fe86379938bb"
+}

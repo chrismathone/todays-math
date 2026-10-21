@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A13-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-8377-7931-9e4e-31d7dc86f113",
+ "startedAt": "2026-10-21T19:00:15+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "84a145c49537193107cc54aa6a883fa1ea5b2514e2618dd923a160a7b2dafecc"
+ },
+ "promptSha256": "484395ae3ee1fded607800213eb642cb7fa3ade7c50d471a7bf2739759288311",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5\",\"work\":\"직선 AB의 기울기는 $\\\\frac{-2-7}{1-(-2)}=-3$이므로 직선의 식은 $y=-3x+1$이다.\\n점 C(k, -14)를 대입하면 $-14=-3k+1$이므로 $k=5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "직선 AB의 기울기는 $\\frac{-2-7}{1-(-2)}=-3$이므로 직선의 식은 $y=-3x+1$이다.\n점 C(k, -14)를 대입하면 $-14=-3k+1$이므로 $k=5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bdb7532b214aee5e7d5d6bc2a1518387a6e3966de995cdc35a6c272e24dd6bee"
+}

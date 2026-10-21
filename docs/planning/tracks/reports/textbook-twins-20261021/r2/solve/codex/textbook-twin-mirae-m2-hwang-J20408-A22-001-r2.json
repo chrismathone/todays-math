@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A22-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-bb6b-71d3-91bd-d64eaea93645",
+ "startedAt": "2026-10-21T18:59:24+0900",
+ "elapsedSec": 12.4,
+ "studentSha256": {
+  "student.json": "1ccca37c3ab78efc96944d0948fa1c7b0f2ad47d6fe645d131d4ce77edca0ec9"
+ },
+ "promptSha256": "75869d0a831007ee423ca2087e29671975c3eb1d23257a8bc0ea169d6c214ded",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"54\",\"work\":\"두 직선이 y축과 만나는 점은 (0, 3), (0, -9)이므로 밑변의 길이는 12이다.\\n두 직선의 교점은 $-\\\\frac{1}{3}x+3=x-9$를 풀어 (9, 0)이므로 높이는 9이다.\\n따라서 삼각형의 넓이는 $\\\\frac{1}{2}\\\\times12\\\\times9=54$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "54",
+  "work": "두 직선이 y축과 만나는 점은 (0, 3), (0, -9)이므로 밑변의 길이는 12이다.\n두 직선의 교점은 $-\\frac{1}{3}x+3=x-9$를 풀어 (9, 0)이므로 높이는 9이다.\n따라서 삼각형의 넓이는 $\\frac{1}{2}\\times12\\times9=54$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a37a3c2e081d392f99c0b822627417a977f49ab62ed4da21b6cbdd96c3277893"
+}

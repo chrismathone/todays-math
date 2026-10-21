@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A14-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-a7f8-7a73-bf21-76885c78c6c9",
+ "startedAt": "2026-10-21T19:00:25+0900",
+ "elapsedSec": 13.2,
+ "studentSha256": {
+  "student.json": "e7d06620786586bc2bbb847a8d99f6ea93d4a16876f490648cea0329e3b598be"
+ },
+ "promptSha256": "cc0030f8b798e3545354d25ff63add0fcf0b26166479c3f09392c5cf1a77ae2a",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5\",\"work\":\"직선 PQ의 기울기는 $\\\\frac{2-(-4)}{1-(-3)}=\\\\frac{3}{2}$이다.\\nR도 같은 직선 위에 있으므로 $8-2=\\\\frac{3}{2}(a-1)$이다. 따라서 $a-1=4$이므로 $a=5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5",
+  "work": "직선 PQ의 기울기는 $\\frac{2-(-4)}{1-(-3)}=\\frac{3}{2}$이다.\nR도 같은 직선 위에 있으므로 $8-2=\\frac{3}{2}(a-1)$이다. 따라서 $a-1=4$이므로 $a=5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e14f6be65bffd09ff90cc2f02ede0b1502c104e7d3a3ea96af4946c6872d3be7"
+}

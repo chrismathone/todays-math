@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de7-dc0f-7fb3-9ab1-142a5928ed6c",
+ "startedAt": "2026-10-21T19:00:38+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "fig-1.png": "ddc525829820421ef080384379f87f489412d7650a25509c07133a677fc882f0",
+  "student.json": "a16db171cc74755271372ca0a6e27c57392974920ab4712e7ec2d8570eb91956"
+ },
+ "promptSha256": "82dd984b6021ea2ba784a5486c84e8a74beba7208b5f4939877d44a5edb3fb20",
+ "freezeCommit": "5966907a0972d51439ce5eb65d6f953dc3784a21",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"직선 $y=ax+6$은 항상 점 $(0,6)$을 지난다.\\nP를 지날 때 $a=\\\\frac{-10-6}{8}=-2$, Q를 지날 때 $a=\\\\frac{0-6}{9}=-\\\\frac{2}{3}$이다.\\n따라서 선분 PQ와 만나려면 $-2\\\\le a\\\\le-\\\\frac{2}{3}$이어야 한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "직선 $y=ax+6$은 항상 점 $(0,6)$을 지난다.\nP를 지날 때 $a=\\frac{-10-6}{8}=-2$, Q를 지날 때 $a=\\frac{0-6}{9}=-\\frac{2}{3}$이다.\n따라서 선분 PQ와 만나려면 $-2\\le a\\le-\\frac{2}{3}$이어야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d1cee074e4e68149527f0c6229c91612b78e8737c90dc23ed751dabe11255091"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "9c900f7b-1d89-4b24-8bb7-56d5d47654e8",
+ "startedAt": "2026-10-21T18:14:07+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "74de9f3dfb598e4964f0a4f82ff8c87002bb43ae12e1f43128eef5261cd3dfc7"
+ },
+ "promptSha256": "5cff6e6aba2f8330ecaa4dfb5c7bcf4962479eb693542e8da0fe79ced76ae2c9",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"점 $(-8, 11)$을 $ax+8y=40$에 대입하면 $-8a+88=40$에서 $a=6$이다. 따라서 직선의 방정식은 $6x+8y=40$, 즉 $3x+4y=20$이다. 각 보기를 대입하면 ③의 경우 $3(24)+4(-12)=72-48=24\\\\neq 20$이므로 그래프가 지나지 않는 점은 ③이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "점 $(-8, 11)$을 $ax+8y=40$에 대입하면 $-8a+88=40$에서 $a=6$이다. 따라서 직선의 방정식은 $6x+8y=40$, 즉 $3x+4y=20$이다. 각 보기를 대입하면 ③의 경우 $3(24)+4(-12)=72-48=24\\neq 20$이므로 그래프가 지나지 않는 점은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "43a9e22a40358dca8bb63273fbbb42b5eed044baac48f20cd79f86becf763ff2"
+}
