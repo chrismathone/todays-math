@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-21T14:20:00.782Z",
+  "typescript": "5.9.3",
+  "rootFiles": [
+    {
+      "path": "src/lib/middle/m2GeoTri.ts",
+      "sha256": "01e3e45c6f1b3bc801ff3dd78ac58625d6cb9a500a5ae3907b18ff89ec241a2c",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "2167a9cbfa3c0f7aa8bbba33e6d53be0efbe0d2b38178b8d0921ebc45c102409",
+      "diagnostics": []
+    },
+    {
+      "path": "src/__tests__/unit/middleM2BisectorGivenAngle.test.ts",
+      "sha256": "c42297d14f2d44807c8e024923ac09cd416ffc88df861177cb2d199129d04d9f",
+      "diagnostics": []
+    }
+  ],
+  "rootErrors": 0,
+  "globalDiagnostics": [],
+  "projectConfigurationDiagnostics": [],
+  "actualProjectCompilerOptionsAndImports": true,
+  "projectAmbientDeclarations": [
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/qa/node-sqlite.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e3-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e3.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e4-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e4.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e5-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e5.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e6-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/e6.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m1-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m1.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m2-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m2.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m3-plus.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/concept-blank/bank/assessments/m3.data.d.ts",
+    "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lint/scanAffordance.d.ts"
+  ],
+  "testMatcherSetup": "vitest.setup.ts",
+  "installedNextGlobalAmbient": "node_modules/next/types/global.d.ts",
+  "otherImportedBodiesNotCertified": true,
+  "wholeProjectTypecheckClaim": false,
+  "compilerOrTsBuildInfoWrites": 0,
+  "dbWrites": 0
+}

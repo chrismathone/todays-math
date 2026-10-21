@@ -314,8 +314,10 @@ function figBisector09(w: number, mode: number, d?: number): Fig {
     dims.PD = "x cm";
   } else {
     angles = {
-      a1: { vertex: "O", points: ["A", "P"], label: `${w / 2}°` },
-      a2: { vertex: "O", points: ["P", "B"], label: `${w / 2}°` },
+      // The halves are equal; only the whole angle is given numerically.
+      a1: { vertex: "O", points: ["A", "P"], radius: 14, arcs: 1 },
+      a2: { vertex: "O", points: ["P", "B"], radius: 14, arcs: 1 },
+      givenAOB: { vertex: "O", points: ["A", "B"], radius: 38, label: `${w}°` },
       ax: { vertex: "P", points: ["C", "D"], label: "x" },
     };
   }
@@ -330,6 +332,7 @@ function figBisector09(w: number, mode: number, d?: number): Fig {
       PD: ["P", "D"],
     },
     ...(angles ? { angles } : {}),
+    ...(mode === 1 ? { style: { clear_angle_labels: true } } : {}),
     labels,
   };
   return withDims(shape, dims) as Fig;

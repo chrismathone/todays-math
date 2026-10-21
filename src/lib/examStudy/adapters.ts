@@ -37,6 +37,7 @@ const LEGACY_FAMILY_VERSIONS: Readonly<Record<string, string>> = {
   "2-2|피타고라스 정리|10": "20261021-given-only-altitude-dimensions-r1",
   "2-2|평행사변형|15A": "20261021-input-angle-and-inset-marks-r2",
   "2-2|평행선 사이의 선분의 길이의 비|10": "20261021-named-diagonal-intersection-r1",
+  "2-2|삼각형의 성질|09": "20261021-given-whole-angle-only-r1",
   // Mathematical condition/role changes are future revisions, never DB refreshes.
   "2-2|평행선 사이의 선분의 길이의 비|60": "20261021-strict-triangle-perimeter-r1",
   "2-2|평행선 사이의 선분의 길이의 비|17": "20261021-feasible-external-bisector-r1",

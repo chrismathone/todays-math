@@ -1,0 +1,6937 @@
+{
+  "QAOnly": true,
+  "productionChanged": false,
+  "newQuestionCredits": 0,
+  "results": [
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 40,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            158.95,
+            53.73
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            127.51,
+            132.14
+          ],
+          "C": [
+            101.89,
+            101.61
+          ],
+          "D": [
+            127.51,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "40°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w40.svg",
+      "svgSHA256": "68f192f20e5a1aef2dc477fb1a8b5de5b6c8fcad07e8bcf666c5de260158f2fc"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 42,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            154.74,
+            48.88
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.79,
+            130.24
+          ],
+          "C": [
+            98.85,
+            99.2
+          ],
+          "D": [
+            126.79,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "42°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w42.svg",
+      "svgSHA256": "79feea3647d0fcd6c16e3b862c9e8f52678b1f92ceb94ee89b101de7c1742f63"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 44,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            150.36,
+            44.18
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.05,
+            128.35
+          ],
+          "C": [
+            95.72,
+            96.94
+          ],
+          "D": [
+            126.05,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "44°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w44.svg",
+      "svgSHA256": "d9da85644b398cd9cd571acc876a4716adf104cfc3f8a8a3d7c5455306503b15"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 46,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            145.82,
+            39.64
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            125.27,
+            126.47
+          ],
+          "C": [
+            92.52,
+            94.84
+          ],
+          "D": [
+            125.27,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "46°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w46.svg",
+      "svgSHA256": "b7d58539e6d96d71c5714b8f57935458c436318a9dae5433ff2e1279e1363841"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 48,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            141.12,
+            35.26
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            124.46,
+            124.6
+          ],
+          "C": [
+            89.23,
+            92.89
+          ],
+          "D": [
+            124.46,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "48°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w48.svg",
+      "svgSHA256": "cd811cd53989b2919898d8970ededee36266fd5c092f1ce8e7c439786c49078c"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 50,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            136.27,
+            31.05
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            123.62,
+            122.75
+          ],
+          "C": [
+            85.89,
+            91.09
+          ],
+          "D": [
+            123.62,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "50°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w50.svg",
+      "svgSHA256": "f8ced3c224d1ba67717eb1c388b007fc5987bb29978af39b0a109415f7469520"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 52,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            131.28,
+            27.01
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            122.74,
+            120.92
+          ],
+          "C": [
+            82.48,
+            89.46
+          ],
+          "D": [
+            122.74,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "52°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w52.svg",
+      "svgSHA256": "dbb4e7a9bebbdc7fdfad0b4f1d2ffe5bd338751bb249d60bf8bf4906af6e731b"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 54,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            126.15,
+            23.14
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            121.83,
+            119.09
+          ],
+          "C": [
+            79.03,
+            88
+          ],
+          "D": [
+            121.83,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "54°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w54.svg",
+      "svgSHA256": "0671c512fa13836e7f24a7f4d4394aad2aea2a73742172ac9e2dad45801ecd94"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 56,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            120.89,
+            19.46
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            120.89,
+            117.29
+          ],
+          "C": [
+            75.54,
+            86.7
+          ],
+          "D": [
+            120.89,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "56°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w56.svg",
+      "svgSHA256": "83365ac8276548934b255c4ddd12c43aad0aa0a33c6dab37c685b65468bd2cab"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 58,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            114.23,
+            18
+          ],
+          "B": [
+            199.59,
+            172
+          ],
+          "P": [
+            118.59,
+            116.24
+          ],
+          "C": [
+            71.3,
+            86.7
+          ],
+          "D": [
+            118.59,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "58°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w58.svg",
+      "svgSHA256": "08cc44d23f7af5acfc24b02735ccc7d2b18bf33f96b8c9f2b1d36814ac3bd62e"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 60,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            106.91,
+            18
+          ],
+          "B": [
+            195.82,
+            172
+          ],
+          "P": [
+            115.53,
+            115.69
+          ],
+          "C": [
+            66.77,
+            87.53
+          ],
+          "D": [
+            115.53,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "60°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w60.svg",
+      "svgSHA256": "bf99c944007b388e94e67290a96f0e425d6e9cfbfd62025fa62e2e7f7d96121b"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 62,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            99.88,
+            18
+          ],
+          "B": [
+            192.42,
+            172
+          ],
+          "P": [
+            112.69,
+            115.11
+          ],
+          "C": [
+            62.45,
+            88.4
+          ],
+          "D": [
+            112.69,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "62°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w62.svg",
+      "svgSHA256": "fefd49bbc536764ac593c0325bacb5c12357753ad376c00c130f2cf133b4e950"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 64,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            93.11,
+            18
+          ],
+          "B": [
+            189.34,
+            172
+          ],
+          "P": [
+            110.03,
+            114.5
+          ],
+          "C": [
+            58.34,
+            89.29
+          ],
+          "D": [
+            110.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "64°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w64.svg",
+      "svgSHA256": "05f929d7a5848340481e72cb6cede57912640ca8aa59bcfacfc790deb161d44f"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 66,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            86.57,
+            18
+          ],
+          "B": [
+            186.57,
+            172
+          ],
+          "P": [
+            107.54,
+            113.85
+          ],
+          "C": [
+            54.42,
+            90.2
+          ],
+          "D": [
+            107.54,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "66°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w66.svg",
+      "svgSHA256": "811c2f2905f7cc6eafa5e210d7f55eda1fc3c2b366361e214992694a2cf2bc22"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 68,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            80.22,
+            18
+          ],
+          "B": [
+            184.09,
+            172
+          ],
+          "P": [
+            105.21,
+            113.18
+          ],
+          "C": [
+            50.67,
+            91.14
+          ],
+          "D": [
+            105.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "68°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w68.svg",
+      "svgSHA256": "a3a7109f1db7d9313fa76a28abee7880ffdc7acda94606910e23c122704803ba"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 70,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            74.05,
+            18
+          ],
+          "B": [
+            181.88,
+            172
+          ],
+          "P": [
+            103.02,
+            112.47
+          ],
+          "C": [
+            47.08,
+            92.11
+          ],
+          "D": [
+            103.02,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "70°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w70.svg",
+      "svgSHA256": "11607f7956c1bca2bef0d503fd31e9b1034cdd65ac752d5298b2d9fdfe40442a"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 72,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            68.04,
+            18
+          ],
+          "B": [
+            179.93,
+            172
+          ],
+          "P": [
+            100.97,
+            111.72
+          ],
+          "C": [
+            43.64,
+            93.09
+          ],
+          "D": [
+            100.97,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "72°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w72.svg",
+      "svgSHA256": "8793488e1be030790da5e2f928cd2696e7ffedb1869190e57bdd1a7ca8f855e2"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 74,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            62.16,
+            18
+          ],
+          "B": [
+            178.21,
+            172
+          ],
+          "P": [
+            99.03,
+            110.94
+          ],
+          "C": [
+            40.34,
+            94.11
+          ],
+          "D": [
+            99.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "74°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w74.svg",
+      "svgSHA256": "896decfba0c28124a0c7c22594b72a6560de93cbcf4b96f6b0b753750f8d3771"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 76,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            56.4,
+            18
+          ],
+          "B": [
+            176.71,
+            172
+          ],
+          "P": [
+            97.21,
+            110.11
+          ],
+          "C": [
+            37.16,
+            95.14
+          ],
+          "D": [
+            97.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "76°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w76.svg",
+      "svgSHA256": "6ce2da2f4403b160e321177c58c5af36111d2fca69aa11ccf5872a5b2f9fee19"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 78,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            50.73,
+            18
+          ],
+          "B": [
+            175.44,
+            172
+          ],
+          "P": [
+            95.49,
+            109.25
+          ],
+          "C": [
+            34.11,
+            96.2
+          ],
+          "D": [
+            95.49,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "78°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w78.svg",
+      "svgSHA256": "1cd11c75ba1de9c9b8022f0fb3c30f2b749837548d8308c85209e79e4ebdb721"
+    },
+    {
+      "candidate": {
+        "id": "plain38",
+        "radius": 38,
+        "half": 14,
+        "clear": false
+      },
+      "w": 80,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            45.15,
+            18
+          ],
+          "B": [
+            174.38,
+            172
+          ],
+          "P": [
+            93.87,
+            108.34
+          ],
+          "C": [
+            31.17,
+            97.29
+          ],
+          "D": [
+            93.87,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "80°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        }
+      },
+      "ok": true,
+      "svg": "experiment-plain38-w80.svg",
+      "svgSHA256": "7bf65681d336c5fab9b4a089f4fcd754a2b453addd0c364de058ba94680c0a2f"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 40,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            158.95,
+            53.73
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            127.51,
+            132.14
+          ],
+          "C": [
+            101.89,
+            101.61
+          ],
+          "D": [
+            127.51,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "40°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w40.svg",
+      "svgSHA256": "68f192f20e5a1aef2dc477fb1a8b5de5b6c8fcad07e8bcf666c5de260158f2fc"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 42,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            154.74,
+            48.88
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.79,
+            130.24
+          ],
+          "C": [
+            98.85,
+            99.2
+          ],
+          "D": [
+            126.79,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "42°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w42.svg",
+      "svgSHA256": "08740b61e87deab07074e5667fa5781a09beae38a072f0c997637a7b0861b92f"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 44,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            150.36,
+            44.18
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.05,
+            128.35
+          ],
+          "C": [
+            95.72,
+            96.94
+          ],
+          "D": [
+            126.05,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "44°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w44.svg",
+      "svgSHA256": "4c81210ace0ed3539c2977c9242d153c306601493fad8dd8a70649fad7dcfe2b"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 46,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            145.82,
+            39.64
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            125.27,
+            126.47
+          ],
+          "C": [
+            92.52,
+            94.84
+          ],
+          "D": [
+            125.27,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "46°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w46.svg",
+      "svgSHA256": "4f2aae6978328e94aab56c3b0b3bffed603383757abb7c5485aa708376376caf"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 48,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            141.12,
+            35.26
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            124.46,
+            124.6
+          ],
+          "C": [
+            89.23,
+            92.89
+          ],
+          "D": [
+            124.46,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "48°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w48.svg",
+      "svgSHA256": "cd811cd53989b2919898d8970ededee36266fd5c092f1ce8e7c439786c49078c"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 50,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            136.27,
+            31.05
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            123.62,
+            122.75
+          ],
+          "C": [
+            85.89,
+            91.09
+          ],
+          "D": [
+            123.62,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "50°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w50.svg",
+      "svgSHA256": "f8ced3c224d1ba67717eb1c388b007fc5987bb29978af39b0a109415f7469520"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 52,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            131.28,
+            27.01
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            122.74,
+            120.92
+          ],
+          "C": [
+            82.48,
+            89.46
+          ],
+          "D": [
+            122.74,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "52°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w52.svg",
+      "svgSHA256": "dbb4e7a9bebbdc7fdfad0b4f1d2ffe5bd338751bb249d60bf8bf4906af6e731b"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 54,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            126.15,
+            23.14
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            121.83,
+            119.09
+          ],
+          "C": [
+            79.03,
+            88
+          ],
+          "D": [
+            121.83,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "54°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w54.svg",
+      "svgSHA256": "0671c512fa13836e7f24a7f4d4394aad2aea2a73742172ac9e2dad45801ecd94"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 56,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            120.89,
+            19.46
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            120.89,
+            117.29
+          ],
+          "C": [
+            75.54,
+            86.7
+          ],
+          "D": [
+            120.89,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "56°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w56.svg",
+      "svgSHA256": "83365ac8276548934b255c4ddd12c43aad0aa0a33c6dab37c685b65468bd2cab"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 58,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            114.23,
+            18
+          ],
+          "B": [
+            199.59,
+            172
+          ],
+          "P": [
+            118.59,
+            116.24
+          ],
+          "C": [
+            71.3,
+            86.7
+          ],
+          "D": [
+            118.59,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "58°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w58.svg",
+      "svgSHA256": "08cc44d23f7af5acfc24b02735ccc7d2b18bf33f96b8c9f2b1d36814ac3bd62e"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 60,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            106.91,
+            18
+          ],
+          "B": [
+            195.82,
+            172
+          ],
+          "P": [
+            115.53,
+            115.69
+          ],
+          "C": [
+            66.77,
+            87.53
+          ],
+          "D": [
+            115.53,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "60°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w60.svg",
+      "svgSHA256": "bf99c944007b388e94e67290a96f0e425d6e9cfbfd62025fa62e2e7f7d96121b"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 62,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            99.88,
+            18
+          ],
+          "B": [
+            192.42,
+            172
+          ],
+          "P": [
+            112.69,
+            115.11
+          ],
+          "C": [
+            62.45,
+            88.4
+          ],
+          "D": [
+            112.69,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "62°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w62.svg",
+      "svgSHA256": "fefd49bbc536764ac593c0325bacb5c12357753ad376c00c130f2cf133b4e950"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 64,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            93.11,
+            18
+          ],
+          "B": [
+            189.34,
+            172
+          ],
+          "P": [
+            110.03,
+            114.5
+          ],
+          "C": [
+            58.34,
+            89.29
+          ],
+          "D": [
+            110.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "64°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w64.svg",
+      "svgSHA256": "05f929d7a5848340481e72cb6cede57912640ca8aa59bcfacfc790deb161d44f"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 66,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            86.57,
+            18
+          ],
+          "B": [
+            186.57,
+            172
+          ],
+          "P": [
+            107.54,
+            113.85
+          ],
+          "C": [
+            54.42,
+            90.2
+          ],
+          "D": [
+            107.54,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "66°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w66.svg",
+      "svgSHA256": "811c2f2905f7cc6eafa5e210d7f55eda1fc3c2b366361e214992694a2cf2bc22"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 68,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            80.22,
+            18
+          ],
+          "B": [
+            184.09,
+            172
+          ],
+          "P": [
+            105.21,
+            113.18
+          ],
+          "C": [
+            50.67,
+            91.14
+          ],
+          "D": [
+            105.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "68°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w68.svg",
+      "svgSHA256": "a3a7109f1db7d9313fa76a28abee7880ffdc7acda94606910e23c122704803ba"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 70,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            74.05,
+            18
+          ],
+          "B": [
+            181.88,
+            172
+          ],
+          "P": [
+            103.02,
+            112.47
+          ],
+          "C": [
+            47.08,
+            92.11
+          ],
+          "D": [
+            103.02,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "70°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w70.svg",
+      "svgSHA256": "11607f7956c1bca2bef0d503fd31e9b1034cdd65ac752d5298b2d9fdfe40442a"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 72,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            68.04,
+            18
+          ],
+          "B": [
+            179.93,
+            172
+          ],
+          "P": [
+            100.97,
+            111.72
+          ],
+          "C": [
+            43.64,
+            93.09
+          ],
+          "D": [
+            100.97,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "72°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w72.svg",
+      "svgSHA256": "8793488e1be030790da5e2f928cd2696e7ffedb1869190e57bdd1a7ca8f855e2"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 74,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            62.16,
+            18
+          ],
+          "B": [
+            178.21,
+            172
+          ],
+          "P": [
+            99.03,
+            110.94
+          ],
+          "C": [
+            40.34,
+            94.11
+          ],
+          "D": [
+            99.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "74°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w74.svg",
+      "svgSHA256": "896decfba0c28124a0c7c22594b72a6560de93cbcf4b96f6b0b753750f8d3771"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 76,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            56.4,
+            18
+          ],
+          "B": [
+            176.71,
+            172
+          ],
+          "P": [
+            97.21,
+            110.11
+          ],
+          "C": [
+            37.16,
+            95.14
+          ],
+          "D": [
+            97.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "76°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w76.svg",
+      "svgSHA256": "6ce2da2f4403b160e321177c58c5af36111d2fca69aa11ccf5872a5b2f9fee19"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 78,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            50.73,
+            18
+          ],
+          "B": [
+            175.44,
+            172
+          ],
+          "P": [
+            95.49,
+            109.25
+          ],
+          "C": [
+            34.11,
+            96.2
+          ],
+          "D": [
+            95.49,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "78°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w78.svg",
+      "svgSHA256": "1cd11c75ba1de9c9b8022f0fb3c30f2b749837548d8308c85209e79e4ebdb721"
+    },
+    {
+      "candidate": {
+        "id": "clear38",
+        "radius": 38,
+        "half": 14,
+        "clear": true
+      },
+      "w": 80,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            45.15,
+            18
+          ],
+          "B": [
+            174.38,
+            172
+          ],
+          "P": [
+            93.87,
+            108.34
+          ],
+          "C": [
+            31.17,
+            97.29
+          ],
+          "D": [
+            93.87,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 14,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 38,
+            "label": "80°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear38-w80.svg",
+      "svgSHA256": "7bf65681d336c5fab9b4a089f4fcd754a2b453addd0c364de058ba94680c0a2f"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 40,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            158.95,
+            53.73
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            127.51,
+            132.14
+          ],
+          "C": [
+            101.89,
+            101.61
+          ],
+          "D": [
+            127.51,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "40°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w40.svg",
+      "svgSHA256": "147ee862832812bf5edd93013504bdc4a41261ca660f1d815c5e1b7a04e28808"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 42,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            154.74,
+            48.88
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.79,
+            130.24
+          ],
+          "C": [
+            98.85,
+            99.2
+          ],
+          "D": [
+            126.79,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "42°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w42.svg",
+      "svgSHA256": "f0fe1b42361fac578d2519dab22b1544de25a7e6a0eca6f7e916c2dbd1cd1d01"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 44,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            150.36,
+            44.18
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            126.05,
+            128.35
+          ],
+          "C": [
+            95.72,
+            96.94
+          ],
+          "D": [
+            126.05,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "44°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w44.svg",
+      "svgSHA256": "2fe5f6d7ef7d6285bf7d5c994c6dde93612788aea559e28b008bd54ed266d5f8"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 46,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            145.82,
+            39.64
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            125.27,
+            126.47
+          ],
+          "C": [
+            92.52,
+            94.84
+          ],
+          "D": [
+            125.27,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "46°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w46.svg",
+      "svgSHA256": "6d8160af94b1441064209c6a4c9c5cea3381e915fc675f559b263c4669c6dcae"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 48,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            141.12,
+            35.26
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            124.46,
+            124.6
+          ],
+          "C": [
+            89.23,
+            92.89
+          ],
+          "D": [
+            124.46,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "48°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w48.svg",
+      "svgSHA256": "c5c81d03776e6719d141be5c979d89f1953f022bc8295affbac28dcd6891c2ba"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 50,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            136.27,
+            31.05
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            123.62,
+            122.75
+          ],
+          "C": [
+            85.89,
+            91.09
+          ],
+          "D": [
+            123.62,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "50°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w50.svg",
+      "svgSHA256": "f9fa57b20dfe07fc143477a9719124dc65d16679574c0c92d59568e8f6bcbad0"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 52,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            131.28,
+            27.01
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            122.74,
+            120.92
+          ],
+          "C": [
+            82.48,
+            89.46
+          ],
+          "D": [
+            122.74,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "52°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w52.svg",
+      "svgSHA256": "0141be7ed372bd8b655f4ee290c88af453b26156458b6009927c8ec83545d646"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 54,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            126.15,
+            23.14
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            121.83,
+            119.09
+          ],
+          "C": [
+            79.03,
+            88
+          ],
+          "D": [
+            121.83,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "54°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w54.svg",
+      "svgSHA256": "4a2e8731dff28305ac5f9f781ed0a7b40a6cf0c93912c1a7ce69d1a99e5c63b8"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 56,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            120.89,
+            19.46
+          ],
+          "B": [
+            202,
+            172
+          ],
+          "P": [
+            120.89,
+            117.29
+          ],
+          "C": [
+            75.54,
+            86.7
+          ],
+          "D": [
+            120.89,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "56°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w56.svg",
+      "svgSHA256": "3ff2a738aa77e2d71999169a9a07f02513d85090429bf4152a1fc85e313fd0ee"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 58,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            114.23,
+            18
+          ],
+          "B": [
+            199.59,
+            172
+          ],
+          "P": [
+            118.59,
+            116.24
+          ],
+          "C": [
+            71.3,
+            86.7
+          ],
+          "D": [
+            118.59,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "58°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w58.svg",
+      "svgSHA256": "e510103a6edcc92c355eb182bfffb4efaedd968602be155b8daa246ab470502b"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 60,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            106.91,
+            18
+          ],
+          "B": [
+            195.82,
+            172
+          ],
+          "P": [
+            115.53,
+            115.69
+          ],
+          "C": [
+            66.77,
+            87.53
+          ],
+          "D": [
+            115.53,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "60°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w60.svg",
+      "svgSHA256": "82371e86d5b3c2457d616429720c181eead4f85b82e7f6f1fd5edd77d3dc7ea8"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 62,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            99.88,
+            18
+          ],
+          "B": [
+            192.42,
+            172
+          ],
+          "P": [
+            112.69,
+            115.11
+          ],
+          "C": [
+            62.45,
+            88.4
+          ],
+          "D": [
+            112.69,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "62°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w62.svg",
+      "svgSHA256": "0f9afe7d0cb1c7c8c6695a5909e06ef2883f3a23f42f5b2189f53b9e00c4646a"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 64,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            93.11,
+            18
+          ],
+          "B": [
+            189.34,
+            172
+          ],
+          "P": [
+            110.03,
+            114.5
+          ],
+          "C": [
+            58.34,
+            89.29
+          ],
+          "D": [
+            110.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "64°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w64.svg",
+      "svgSHA256": "2fc7b03ba1c472fb9b98b9d58f991963c3f73fc48ceb4e337ca3aa4ec2da66d6"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 66,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            86.57,
+            18
+          ],
+          "B": [
+            186.57,
+            172
+          ],
+          "P": [
+            107.54,
+            113.85
+          ],
+          "C": [
+            54.42,
+            90.2
+          ],
+          "D": [
+            107.54,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "66°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w66.svg",
+      "svgSHA256": "5cb74e5db1d7187adfc7d8461ad36d94a2cd16f153a7e82c3cbcf69482611c53"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 68,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            80.22,
+            18
+          ],
+          "B": [
+            184.09,
+            172
+          ],
+          "P": [
+            105.21,
+            113.18
+          ],
+          "C": [
+            50.67,
+            91.14
+          ],
+          "D": [
+            105.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "68°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w68.svg",
+      "svgSHA256": "fcdbf9398cb3b250ac741abf0d0ed7c749641c33c65556298aa083ff3be61994"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 70,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            74.05,
+            18
+          ],
+          "B": [
+            181.88,
+            172
+          ],
+          "P": [
+            103.02,
+            112.47
+          ],
+          "C": [
+            47.08,
+            92.11
+          ],
+          "D": [
+            103.02,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "70°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w70.svg",
+      "svgSHA256": "9a00fe9dbf71b90e54bc8fba584da3afcc7ab2be8f912fa88e10b17fef4b8539"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 72,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            68.04,
+            18
+          ],
+          "B": [
+            179.93,
+            172
+          ],
+          "P": [
+            100.97,
+            111.72
+          ],
+          "C": [
+            43.64,
+            93.09
+          ],
+          "D": [
+            100.97,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "72°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w72.svg",
+      "svgSHA256": "3c33bd8b1d7244bf0ae6fe06f775b593fa827bc2ac6777690328dd878d897fdf"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 74,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            62.16,
+            18
+          ],
+          "B": [
+            178.21,
+            172
+          ],
+          "P": [
+            99.03,
+            110.94
+          ],
+          "C": [
+            40.34,
+            94.11
+          ],
+          "D": [
+            99.03,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "74°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w74.svg",
+      "svgSHA256": "8e397e14bdaf73cad944bbda38512c884e736702f0c21758191e966cc985bb70"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 76,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            56.4,
+            18
+          ],
+          "B": [
+            176.71,
+            172
+          ],
+          "P": [
+            97.21,
+            110.11
+          ],
+          "C": [
+            37.16,
+            95.14
+          ],
+          "D": [
+            97.21,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "76°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w76.svg",
+      "svgSHA256": "29a58276998a98b66de665908b0b75cd5f10682338fe80bef78ca1f0b83cc9cb"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 78,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            50.73,
+            18
+          ],
+          "B": [
+            175.44,
+            172
+          ],
+          "P": [
+            95.49,
+            109.25
+          ],
+          "C": [
+            34.11,
+            96.2
+          ],
+          "D": [
+            95.49,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "78°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w78.svg",
+      "svgSHA256": "7baf751dee230de6b9114e4f7b9c0345369ccba4efcd8123e67e0006d2636613"
+    },
+    {
+      "candidate": {
+        "id": "clear50",
+        "radius": 50,
+        "half": 22,
+        "clear": true
+      },
+      "w": 80,
+      "spec": {
+        "version": 2,
+        "points": {
+          "O": [
+            18,
+            172
+          ],
+          "A": [
+            45.15,
+            18
+          ],
+          "B": [
+            174.38,
+            172
+          ],
+          "P": [
+            93.87,
+            108.34
+          ],
+          "C": [
+            31.17,
+            97.29
+          ],
+          "D": [
+            93.87,
+            172
+          ]
+        },
+        "segments": {
+          "OA": [
+            "O",
+            "A"
+          ],
+          "OB": [
+            "O",
+            "B"
+          ],
+          "OP": [
+            "O",
+            "P"
+          ],
+          "PC": [
+            "P",
+            "C"
+          ],
+          "PD": [
+            "P",
+            "D"
+          ]
+        },
+        "angles": {
+          "a1": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "P"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "a2": {
+            "vertex": "O",
+            "points": [
+              "P",
+              "B"
+            ],
+            "radius": 22,
+            "arcs": 1
+          },
+          "givenAOB": {
+            "vertex": "O",
+            "points": [
+              "A",
+              "B"
+            ],
+            "radius": 50,
+            "label": "80°"
+          },
+          "ax": {
+            "vertex": "P",
+            "points": [
+              "C",
+              "D"
+            ],
+            "label": "x"
+          }
+        },
+        "labels": {
+          "O": "O",
+          "A": "A",
+          "B": "B",
+          "P": "P",
+          "C": "C",
+          "D": "D"
+        },
+        "style": {
+          "clear_angle_labels": true
+        }
+      },
+      "ok": true,
+      "svg": "experiment-clear50-w80.svg",
+      "svgSHA256": "9c1bbe6a666f7e630a6148bb8d309a30100840dcdbcdd26204c47c43fe305526"
+    }
+  ]
+}
