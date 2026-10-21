@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 50,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B22-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 밑면이 $\\angle B=90^{\\circ}$인 직각삼각형 $\\mathrm{ABC}$인 삼각기둥의 부피가 $30a^{6}b^{3}$이다. 이 삼각기둥의 높이를 구하시오.",
+ "choices": [],
+ "answer": "$5a^{2}b^{2}$",
+ "solution": "밑면의 넓이는 $\\frac{1}{2}\\times 6ab\\times 2a^{3}=6a^{4}b$이다. 높이를 $h$라 하면 $6a^{4}b\\times h=30a^{6}b^{3}$이므로 $h=30a^{6}b^{3}\\div 6a^{4}b=5a^{2}b^{2}$이다. 따라서 삼각기둥의 높이는 $5a^{2}b^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B22-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B22-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ce14b504524bdd49-1-5",
+  "problemCode": "J20106-B22-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "dbbe4112cd46a7d52eff27f76def1ec0b9f96f66fa50b599fc3b9cbf1838fe96",
+  "dbContentSha256": "7473ba404715a5193c8edfd8309e99e0345b1bea349c36891afaa8d5f98da9e0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "149462077a4603f021e5440bc1688a0f9c1b559711a7b009a0d8ac75d0402509",
+    "bytes": 335872
+   }
+  ],
+  "originalFigureSha256": [
+   "8044542e4c9c95eb656b4787aa86e63ad63a3d67ca9ab5aad197b59d69e9e80a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "밑면이 정사각형인 직육면체의 한 변과 부피에서 높이를 구한다.",
+  "after": "밑면이 직각삼각형인 삼각기둥의 두 변과 부피에서 높이를 구한다. 밑넓이 계산이 제곱에서 두 변의 곱의 절반으로 바뀌었다.",
+  "sharedConcept": "단항식의 곱셈·나눗셈의 활용(기둥의 부피)",
+  "sharedProcedure": "밑넓이 계산 → 부피 = 밑넓이 × 높이에 대입 → 부피를 밑넓이로 나누어 높이 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "기둥의 부피",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-B22-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부피가 주어진 기둥의 높이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.023,
+   "longestRun": 4,
+   "residualChars": 48,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

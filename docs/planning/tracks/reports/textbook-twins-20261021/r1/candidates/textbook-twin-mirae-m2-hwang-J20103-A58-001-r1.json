@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 64,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "순환소수 $0.7\\dot{a}$ 를 기약분수로 나타내면 $\\frac{11}{15}$ 이다. 한 자리 자연수 $a$ 의 값은?",
+ "choices": [
+  "$1$",
+  "$2$",
+  "$3$",
+  "$4$",
+  "$5$"
+ ],
+ "answer": "③",
+ "solution": "$0.7\\dot{a}=\\dfrac{(70+a)-7}{90}=\\dfrac{63+a}{90}$ 이다. $\\dfrac{11}{15}=\\dfrac{66}{90}$ 이므로 $63+a=66$, 즉 $a=3$ 이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-10",
+  "problemCode": "J20103-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "050ea06a4c49e5e6eeae242d418c23301e5a77fd1c0fa2638e00d430a65cbffe",
+  "dbContentSha256": "0964df7aabc367e6cf4a8dc6fc7a4d788751a596fe29ea54571ac969f5eaf9ce",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "순환하지 않는 자리의 숫자가 미지수인 순환소수와 그 분수값을 주고 미지수를 구한다.",
+  "after": "순환마디의 숫자가 미지수인 순환소수와 그 기약분수값을 주고 미지수를 구한다. 분모를 90으로 통일해 분자를 비교하는 절차는 같다.",
+  "sharedConcept": "순환하지 않는 자리가 있는 순환소수의 분수 공식",
+  "sharedProcedure": "공식으로 분자 식 세우기 → 주어진 분수를 분모 90 으로 통일 → 분자 비교해 미지수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내는 공식",
+   "분수의 통분과 약분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A58-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 분수값에서 모르는 숫자 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 35자"
+   ],
+   "overlap4": 0.375,
+   "longestRun": 9,
+   "residualChars": 35,
+   "params": 8,
+   "numberRetention": 0.125,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

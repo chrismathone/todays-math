@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 117,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A48-001-r1",
+ "authorId": "claude-fable-5-1:221cb2e5-943e-4776-8027-cde1ceef6354",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 부등식 중에서 $x=2$를 해로 갖지 않는 것은?",
+ "choices": [
+  "$3x-1\\le x+5$",
+  "$2-x<4x-3$",
+  "$x+6\\ge 5x-2$",
+  "$-2x+3>x-1$",
+  "$4x-7<x$"
+ ],
+ "answer": "④",
+ "solution": "각 부등식에 $x=2$를 대입한다.\n① $5\\le 7$ (참) ② $0<5$ (참) ③ $8\\ge 8$ (참) ⑤ $1<2$ (참)\n④ 좌변은 $-2\\times 2+3=-1$, 우변은 $2-1=1$이므로 $-1>1$은 거짓이다.\n따라서 $x=2$를 해로 갖지 않는 부등식은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-1",
+  "problemCode": "J20201-A48-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "3019ce776aec1b0e964bf36f0e09ba11d2eb8d58f2929c5ff52956a53efe0a22",
+  "dbContentSha256": "de007bffa2fa82fb60c5dd8a21c53a48d7850bfce823403244e30e33fd74fb4f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "음수 하나를 다섯 부등식에 각각 대입해 거짓이 되는 부등식 하나를 고른다. 각 보기는 양변에 일차식이 있는 꼴.",
+  "after": "양수 $2$를 다섯 부등식에 대입해 거짓이 되는 것 하나를 고른다. 보기의 식 짜임(양변의 항 배치 · 부등호 종류)과 정답 위치를 새로 짰다.",
+  "sharedConcept": "부등식의 해 — 대입하여 참이 되는 값",
+  "sharedProcedure": "값 대입 → 양변 계산 → 참·거짓 판정 → 거짓인 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "식의 값 대입",
+   "정수의 사칙연산"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A48-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 값이 해가 아닌 부등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.088,
+   "longestRun": 6,
+   "residualChars": 60,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

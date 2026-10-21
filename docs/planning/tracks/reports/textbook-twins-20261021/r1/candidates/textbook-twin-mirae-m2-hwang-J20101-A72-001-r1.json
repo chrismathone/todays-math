@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 78,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A72-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 분수를 소수로 나타내면 순환소수가 되는 것은?",
+ "choices": [
+  "$\\frac{15}{24}$",
+  "$-\\frac{8}{50}$",
+  "$\\frac{21}{2\\times 3\\times 7}$",
+  "$\\frac{6}{45}$",
+  "$\\frac{33}{2^{3}\\times 3\\times 5}$"
+ ],
+ "answer": "④",
+ "solution": "기약분수로 나타낸 뒤 분모의 소인수를 본다. ① $\\frac{15}{24}=\\frac{5}{2^{3}}$ ② $-\\frac{8}{50}=-\\frac{4}{5^{2}}$ ③ $\\frac{21}{2\\times 3\\times 7}=\\frac{1}{2}$ ⑤ $\\frac{33}{2^{3}\\times 3\\times 5}=\\frac{11}{2^{3}\\times 5}$ 은 모두 분모의 소인수가 $2$ 또는 $5$뿐이므로 유한소수이다. ④ $\\frac{6}{45}=\\frac{2}{15}=\\frac{2}{3\\times 5}$ 는 분모에 소인수 $3$이 남으므로 순환소수이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-6",
+  "problemCode": "J20101-A72-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "6af24d9f9e04522bc111a07cb84087608610b12cf392bce4341fc52ea76193fb",
+  "dbContentSha256": "49bea0824bf13a43052a337f462a345a79920a68e71b586156a32d62eb217940",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "분모가 모두 자연수로 적힌 다섯 분수 가운데 순환소수가 되는 것 하나를 고른다. 약분하면 하나만 분모에 3이 남는다.",
+  "after": "분모를 자연수로 적은 것과 소인수의 곱으로 적은 것을 섞어 두고, 분자와 약분되면 2·5만 남는 것들 사이에서 순환소수 하나를 찾게 했다.",
+  "sharedConcept": "순환소수가 되는 분수의 조건(기약분수 분모에 2, 5 이외의 소인수)",
+  "sharedProcedure": "약분해 기약분수로 → 분모 소인수분해 → 2, 5 이외의 소인수가 남는 하나 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "순환소수의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A72-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 분수 중 순환소수가 되는 것 하나 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.098,
+   "longestRun": 5,
+   "residualChars": 54,
+   "params": 10,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

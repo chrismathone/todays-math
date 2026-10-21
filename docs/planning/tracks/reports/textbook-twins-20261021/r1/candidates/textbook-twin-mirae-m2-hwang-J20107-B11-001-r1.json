@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 31,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B11-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 하였을 때, $x^{2}$의 계수와 상수항의 합을 구하시오.\n$5x-\\left[ 4x^{2}-9x+\\left\\{ x^{2}-\\left( 6x^{2}-8x+10\\right) \\right\\} +4\\right]$",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "소괄호부터 풀면 $x^{2}-(6x^{2}-8x+10)=-5x^{2}+8x-10$이다. 대괄호 안은 $4x^{2}-9x+(-5x^{2}+8x-10)+4=-x^{2}-x-6$이다. 따라서 (주어진 식)$=5x-(-x^{2}-x-6)=x^{2}+6x+6$이고, $x^{2}$의 계수와 상수항의 합은 $1+6=7$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2e15327a388749ce-0-4",
+  "problemCode": "J20107-B11-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "e7427bfbb953fda0fb484d46d6b1d5db09d5022258366d730848aeeb96fbe785",
+  "dbContentSha256": "4642e8c5e464ba117b286fdfa678f5f31d28df792ea094b77b3d3e9980b862d4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "343fbfc39f4a6c8695ea14751c15bec8c5cc8d6e82d14742c6da162ec6e98af2",
+    "bytes": 40960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "inverse-target"
+  ],
+  "before": "세 겹 괄호가 든 이차식을 안쪽부터 풀어 정리한 뒤 이차항과 일차항의 계수 합을 묻는 단답형",
+  "after": "중괄호를 덧셈으로 잇고 대괄호 끝에 상수항을 붙인 세 겹 괄호 식을 정리한 뒤 이차항 계수와 상수항의 합을 묻는 단답형",
+  "sharedConcept": "여러 겹 괄호가 있는 이차식의 덧셈과 뺄셈",
+  "sharedProcedure": "소괄호 풀기 → 중괄호 풀기 → 대괄호 풀기 → 동류항 정리 → 요구한 두 값의 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "괄호 앞 부호의 처리",
+   "이차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-B11-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 겹 괄호 풀기와 계수의 합(이차식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.18,
+   "longestRun": 9,
+   "residualChars": 55,
+   "params": 5,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

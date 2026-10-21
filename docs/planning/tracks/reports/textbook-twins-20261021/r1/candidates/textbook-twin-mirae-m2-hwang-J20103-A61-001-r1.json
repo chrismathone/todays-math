@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 67,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A61-001-r1",
+ "authorId": "claude-fable-5-1:0afee703-4520-45bc-a510-b2468dff283e",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "순환소수 $0.2\\dot{4}\\dot{5}$ 를 기약분수로 나타내었을 때, 분모에서 분자를 뺀 값을 구하시오.",
+ "choices": [],
+ "answer": "$83$",
+ "solution": "$x=0.2\\dot{4}\\dot{5}$ 라 하면 $1000x=245.4545\\cdots$, $10x=2.4545\\cdots$ 이므로 $990x=243$, $x=\\dfrac{243}{990}=\\dfrac{27}{110}$ 이다. 따라서 분모에서 분자를 뺀 값은 $110-27=83$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-18",
+  "problemCode": "J20103-A61-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "cb8a9e88f78864661c64738bd8b1342b71bcea6f0cd49fd0b5844ae50c81ffc9",
+  "dbContentSha256": "1d212c6c8b8a09ebc1db053fcc0cc7a155bfacb0e624c3f620ec54ba48a23e05",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "순환하지 않는 한 자리와 두 자리 순환마디를 가진 순환소수를 기약분수로 고쳐 분자와 분모의 합을 구한다.",
+  "after": "같은 꼴의 다른 순환소수를 기약분수로 고쳐 분모와 분자의 차를 구한다.",
+  "sharedConcept": "순환하지 않는 자리가 있는 순환소수의 분수 표현",
+  "sharedProcedure": "x 로 놓기 → 1000x 와 10x 의 차 → 약분 → 분자·분모로 요구된 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "분수의 약분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A61-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 기약분수로 고쳐 분자·분모의 관계값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 29자"
+   ],
+   "overlap4": 0.231,
+   "longestRun": 7,
+   "residualChars": 29,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

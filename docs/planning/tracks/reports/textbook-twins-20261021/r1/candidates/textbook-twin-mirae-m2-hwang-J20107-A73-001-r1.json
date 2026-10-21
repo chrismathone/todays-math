@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 23,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A73-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 계산하시오.\n⑴ $(3x^{2}-x+5)+(-x^{2}+6x-2)$ ⑵ $(a^{2}-7a)-(4a^{2}-2a+3)$\n⑶ $2(x^{2}-3x+1)+(x^{2}+8x-6)$ ⑷ $2(3a^{2}-a+4)-5(a^{2}-2a+1)$",
+ "choices": [],
+ "answer": "⑴ $2x^{2}+5x+3$ ⑵ $-3a^{2}-5a-3$\n⑶ $3x^{2}+2x-4$ ⑷ $a^{2}+8a+3$",
+ "solution": "⑴ $(3x^{2}-x^{2})+(-x+6x)+(5-2)=2x^{2}+5x+3$이다.\n⑵ $a^{2}-7a-4a^{2}+2a-3=-3a^{2}-5a-3$이다.\n⑶ $2x^{2}-6x+2+x^{2}+8x-6=3x^{2}+2x-4$이다.\n⑷ $6a^{2}-2a+8-5a^{2}+10a-5=a^{2}+8a+3$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-0-2",
+  "problemCode": "J20107-A73-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "280f1e4e8885b5a693c17cf4e982a1d3bafe3cf2bf4bf9ff1a09dbdd8794d96a",
+  "dbContentSha256": "d34f12121c25259a05cfed22af4173428adc81ac88d8c74a2437aa2652d0fc75",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "이차식의 덧셈, 뺄셈, 뒤 식에 상수배가 붙은 덧셈, 두 식 모두 상수배가 붙은 뺄셈 네 소문항",
+  "after": "같은 네 갈래에서 ⑵의 앞 식에 일차항만 두고 ⑶의 상수배를 앞 식에 옮기며 ⑷의 상수배를 2, 5로 바꾼 네 소문항",
+  "sharedConcept": "이차식의 덧셈과 뺄셈",
+  "sharedProcedure": "괄호 풀기(부호·상수배) → 차수별 동류항 모으기 → 내림차순 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항",
+   "분배법칙",
+   "이차식의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A73-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이차식의 덧셈과 뺄셈 기초 연산",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.305,
+   "longestRun": 13,
+   "residualChars": 108,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 134,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A40-001-r1",
+ "authorId": "claude-fable-5-1:5472cdb4-9a9c-4728-9d30-f8eff3dc949f",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "일차부등식 $\\frac{x+a}{2}-\\frac{x-3}{5}<4$ 를 만족시키는 자연수 $x$가 하나도 없을 때, 정수 $a$의 최솟값을 구하시오.",
+ "choices": [],
+ "answer": "$7$",
+ "solution": "양변에 $10$을 곱하면 $5(x+a)-2(x-3)<40$, $5x+5a-2x+6<40$ 이므로 $3x<34-5a$, 즉 $x<\\frac{34-5a}{3}$ 이다. 자연수 $x$가 하나도 없으려면 $\\frac{34-5a}{3}\\le1$ 이어야 하므로 $34-5a\\le3$, $a\\ge\\frac{31}{5}$ 이다. 따라서 정수 $a$의 최솟값은 $7$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-7",
+  "problemCode": "J20203-A40-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "c4630bfae3f24a684803b8f744f0bcf629b43f50d981965e1da2fde74c161c9e",
+  "dbContentSha256": "8d1a8e0b612e1225be4d801f13fa46c6f9a6dd7d9c7c6881ee4f1d52489ebe84",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분모가 같은 두 분수와 상수로 된 ≥ 꼴 부등식에서 자연수 해가 없도록 하는 가장 작은 정수 a를 구함(경계 조건은 1보다 작음)",
+  "after": "분모가 다른 두 분수로 된 < 꼴 부등식에서 자연수 해가 없도록 하는 정수 a의 최솟값을 구함(경계 조건은 1 이하, 등호 포함 여부가 달라짐)",
+  "sharedConcept": "일차부등식의 해에 자연수가 없을 조건",
+  "sharedProcedure": "분모 없애고 x에 대해 풀기 → 해의 경계를 1과 비교하는 조건 세우기 → a의 범위에서 가장 작은 정수 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 응용"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "분수 계수 일차부등식",
+   "수직선 위의 해와 자연수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20203-A40-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "자연수인 해가 없을 조건에서 정수 a의 최솟값",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "8c236b87-c017-4979-892d-9d161e5c6cd6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 36자",
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.182,
+   "longestRun": 5,
+   "residualChars": 36,
+   "params": 3,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

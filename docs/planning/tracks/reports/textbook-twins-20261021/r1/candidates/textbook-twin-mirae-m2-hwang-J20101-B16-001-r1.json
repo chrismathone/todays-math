@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 87,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B16-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 설명 중 옳은 것은?",
+ "choices": [
+  "$\\frac{15}{4}$는 유리수가 아니다.",
+  "$0.272727\\cdots$은 유한소수이다.",
+  "$\\frac{6}{15}$를 소수로 나타내면 소수점 아래 숫자가 끝없이 이어진다.",
+  "$\\frac{5}{12}$를 소수로 나타내면 유한소수이다.",
+  "$\\frac{9}{22}$를 소수로 나타내면 무한소수이다."
+ ],
+ "answer": "⑤",
+ "solution": "① $\\frac{15}{4}$는 분자, 분모가 정수인 분수이므로 유리수이다. ② $0.272727\\cdots$은 소수점 아래 숫자가 끝없이 이어지므로 무한소수이다. ③ $\\frac{6}{15}=\\frac{2}{5}=0.4$ 이므로 유한소수이다. ④ $\\frac{5}{12}=\\frac{5}{2^{2}\\times 3}$ 은 분모에 $3$이 있어 $0.4166\\cdots$ 인 무한소수이다. ⑤ $\\frac{9}{22}=\\frac{9}{2\\times 11}$ 은 분모에 $11$이 있어 $0.40909\\cdots$ 인 무한소수이다. 따라서 옳은 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-2",
+  "problemCode": "J20101-B16-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "02d55775bbdab562d3a5ffa20e57adc8fd3387c03296e85043c29154eb347322",
+  "dbContentSha256": "6a45e45ae8aa71b95e7ccc2f14f2c2e13c19daa296ce7271fb644c83b083e71e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "유리수 여부·유한소수·무한소수에 관한 다섯 진술 가운데 옳은 것 하나를 고른다. 참인 진술은 분모 6인 분수가 무한소수라는 것.",
+  "after": "진술 하나를 «약분하면 유한소수가 되는 분수»에 대한 거짓 진술로 바꾸어 약분 단계를 끼워 넣고, 참인 진술을 분모에 11이 있는 분수로 두었다.",
+  "sharedConcept": "유리수·유한소수·무한소수의 뜻과 판별",
+  "sharedProcedure": "각 진술의 수를 분류(유리수인가, 소수가 끝나는가) → 분수는 기약분수 분모의 소인수로 판별 → 참인 진술 하나 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "유리수의 뜻",
+   "유한소수와 무한소수의 뜻",
+   "유한소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B16-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "유리수·유한소수·무한소수에 관한 옳은 진술 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.269,
+   "longestRun": 12,
+   "residualChars": 94,
+   "params": 8,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

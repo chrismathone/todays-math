@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 85,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A79-001-r1",
+ "authorId": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우는 다음 다섯 분수를 각각 소수로 나타내는 숙제를 하다가, 하나만 나눗셈이 끝나지 않는 것을 알았다. 그 분수는?",
+ "choices": [
+  "$\\frac{11}{20}$",
+  "$-\\frac{15}{36}$",
+  "$\\frac{7}{8}$",
+  "$-\\frac{26}{65}$",
+  "$\\frac{42}{120}$"
+ ],
+ "answer": "②",
+ "solution": "기약분수로 나타내어 분모의 소인수를 살핀다. ① $\\frac{11}{2^{2}\\times 5}$ ③ $\\frac{7}{2^{3}}$ ④ $-\\frac{26}{65}=-\\frac{2}{5}$ ⑤ $\\frac{42}{120}=\\frac{7}{20}=\\frac{7}{2^{2}\\times 5}$ 는 분모의 소인수가 $2$ 또는 $5$뿐이므로 유한소수이다. ② $-\\frac{15}{36}=-\\frac{5}{12}=-\\frac{5}{2^{2}\\times 3}$ 은 분모에 $3$이 남아 나눗셈이 끝나지 않는 무한소수이다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b7ee44265f9df98b-1-1",
+  "problemCode": "J20101-A79-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "d5ced93bded680b3d04a9e262b0155f78d214e8acdf70fd74724ab6565fda192",
+  "dbContentSha256": "2194b406fcd96b880cb6d46e7c29bab8b593f3ae93ff0bd260ab917e57ea5792",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_1-1_유리수와소수.hwp",
+    "sha256": "48bc34ffa3ade47fcf4666310ce22f7aa35c07e50a06438c10b4a66e74317c71",
+    "bytes": 274432
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "음수를 포함한 다섯 분수 가운데 유한소수가 아닌 것 하나를 고른다. 약분하면 모두 분모가 5 또는 11.",
+  "after": "숙제를 하다 나눗셈이 끝나지 않는 분수를 찾는 장면으로 바꾸고, 약분해야 드러나는 음수 분수를 정답으로 두었다.",
+  "sharedConcept": "유한소수가 되지 않는 분수의 판별",
+  "sharedProcedure": "약분해 기약분수로 → 분모 소인수분해 → 2, 5 이외의 소인수가 남는 하나 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "약분과 기약분수",
+   "유한소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A79-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 분수 중 유한소수가 아닌 것 하나 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.029,
+   "longestRun": 5,
+   "residualChars": 73,
+   "params": 10,
+   "numberRetention": 0.3,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 166,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 ㄱ~ㅁ 가운데 미지수가 $2$개인 일차방정식은 모두 몇 개인가?\nㄱ. $x+y=xy$ ㄴ. $\\frac{x}{3}+\\frac{y}{2}=2$\nㄷ. $3x+y=3(x+1)$ ㄹ. $y=5-2x$\nㅁ. $x^{2}+y=x^{2}-x+4$",
+ "choices": [
+  "$1$",
+  "$2$",
+  "$3$",
+  "$4$",
+  "$5$"
+ ],
+ "answer": "③",
+ "solution": "모든 항을 좌변으로 옮겨 정리한다.\nㄱ. $x+y-xy=0$ → $xy$ 항이 있어 일차방정식이 아님\nㄴ. $\\frac{x}{3}+\\frac{y}{2}-2=0$ → 미지수가 $2$개인 일차방정식\nㄷ. $3x+y-3x-3=0$, 즉 $y-3=0$ → 미지수가 $1$개\nㄹ. $2x+y-5=0$ → 미지수가 $2$개인 일차방정식\nㅁ. $x^{2}+y-x^{2}+x-4=0$, 즉 $x+y-4=0$ → 미지수가 $2$개인 일차방정식\n따라서 ㄴ, ㄹ, ㅁ의 $3$개이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-447e2b2adaabb5e5-1-2",
+  "problemCode": "J20301-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "f443bc0dc43272cd912abf3de9c662a748eb9057515abc9774179fd935d819ea",
+  "dbContentSha256": "297a96d0692e7c274f17213c7b373ff2f27e811ca38c93230776088369f9600e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_4-1_연립일차방정식과그해.hwp",
+    "sha256": "7ddade8c6a99c39aa30dad5aa6276c913d32876abfa5ca35f2f942c439f75201",
+    "bytes": 276480
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "식 다섯을 정리해 미지수 둘인 일차방정식의 개수를 세며, 이차항이 남는 식 둘과 문자가 모두 사라지는 식 하나가 섞여 있다.",
+  "after": "식 다섯을 정리해 개수를 세되, 이차항이 서로 지워져 일차가 되는 식과 $xy$ 항이 있는 식을 넣어 정리해 봐야 판별되게 짰다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 뜻",
+  "sharedProcedure": "이항 → 동류항 정리 → 문자 개수·차수 확인 → 조건을 만족시키는 식의 개수 세기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 뜻(1학년)",
+   "이항과 동류항 정리",
+   "단항식의 차수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A58-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지수가 2개인 일차방정식의 개수 세기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.132,
+   "longestRun": 12,
+   "residualChars": 81,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 28,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B04-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "미나는 어떤 식에서 $-2x^{2}+5x-4$를 빼야 했는데 실수로 더하여 $6x^{2}+x-7$을 얻었다. 바르게 계산했을 때의 식을 구하고, 그 풀이 과정을 쓰시오.",
+ "choices": [],
+ "answer": "$10x^{2}-9x+1$",
+ "solution": "[1단계] 어떤 식을 $P$라 하면 잘못 계산한 식은 $P+(-2x^{2}+5x-4)=6x^{2}+x-7$이다.\n[2단계] $P=6x^{2}+x-7-(-2x^{2}+5x-4)=6x^{2}+x-7+2x^{2}-5x+4=8x^{2}-4x-3$이다.\n[3단계] 바르게 계산한 식은 $(8x^{2}-4x-3)-(-2x^{2}+5x-4)=8x^{2}-4x-3+2x^{2}-5x+4=10x^{2}-9x+1$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-20",
+  "problemCode": "J20107-B04-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "e9c46d579a249e5bd71d43833a5407c5c8d5a190397d0da47f3e6730a4cec733",
+  "dbContentSha256": "c92f5ae3287b8c794f30865bc371a033cd9b4072580c846f9fa203b6838e5cc5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "모르는 식에 알려진 이차식을 더해야 하는데 빼 버린 결과가 주어지고, 바른 결과를 풀이 과정과 함께 쓰는 서술형",
+  "after": "학생이 모르는 식에서 알려진 이차식을 빼야 하는데 더해 버린 결과가 주어지고, 바른 결과를 풀이 과정과 함께 쓰는 서술형(실수 방향을 뒤집음)",
+  "sharedConcept": "이차식의 덧셈과 뺄셈, 잘못된 계산에서 원래 식 되찾기",
+  "sharedProcedure": "모르는 식을 문자로 놓고 잘못된 식 세우기 → 이항하여 모르는 식 구하기 → 바른 연산으로 다시 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "이차식의 덧셈과 뺄셈",
+   "등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-B04-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "바르게 계산한 식 구하기(서술형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.115,
+   "longestRun": 7,
+   "residualChars": 65,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 255,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A85-001-r1",
+ "authorId": "claude-fable-5-1:d385ff22-b0d3-4a53-b290-3956d5f2c402",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림] 그림에서 원 $I$는 $\\triangle ABC$의 내접원이고, 점 $I$를 지나고 $\\overline{BC}$에 평행한 직선이 $\\overline{AB}$, $\\overline{AC}$와 만나는 점을 각각 $D$, $E$라 하자. $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{DB}=5\\,\\mathrm{cm}$, $\\overline{AE}=14\\,\\mathrm{cm}$, $\\overline{EC}=7\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$18\\,\\mathrm{cm}$",
+ "solution": "[1단계] $\\overline{DE}\\,/\\!/\\,\\overline{BC}$이므로 $\\angle DIB=\\angle IBC$(엇각)이고, 점 $I$가 내심이므로 $\\angle DBI=\\angle IBC$이다. 따라서 $\\angle DBI=\\angle DIB$이므로 $\\overline{DI}=\\overline{DB}=5\\,\\mathrm{cm}$이다. 같은 방법으로 $\\overline{EI}=\\overline{EC}=7\\,\\mathrm{cm}$이므로 $\\overline{DE}=5+7=12\\,\\mathrm{cm}$이다. [2단계] $\\overline{DE}\\,/\\!/\\,\\overline{BC}$이므로 $\\triangle ADE\\backsim\\triangle ABC$(AA 닮음)이고 닮음비는 $\\overline{AD}:\\overline{AB}=10:15=2:3$이다. [3단계] $\\overline{DE}:\\overline{BC}=2:3$이므로 $12:\\overline{BC}=2:3$, $\\overline{BC}=18\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A85-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A85-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-19",
+  "problemCode": "J20504-A85-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 19,
+  "sourceContentSha256": "69463c1819261e4f36974e0510c34c108fd51d832d20256a296e9150dbeb941e",
+  "dbContentSha256": "883e9c4e5137a326be9fbed9f1902bb7b24b8dc217a04c5af9495e0472b34de3",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "d29addfc81aaae005b99d072fe65538de8501107a864983f96a00b1cc2a5e889"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "내심을 지나 한 옆변에 평행한 선분이 나머지 두 변을 자르고, 잘린 조각들의 길이로 평행한 그 옆변의 길이를 구한다.",
+  "after": "내심을 지나 밑변에 평행한 선분이 두 옆변을 자르고, 꼭대기 쪽·밑변 쪽 네 조각의 길이로 밑변의 길이를 구한다.",
+  "sharedConcept": "평행선의 엇각 + 내심의 각의 이등분 → 이등변삼각형 · 평행선으로 생기는 닮은 삼각형",
+  "sharedProcedure": "엇각과 이등분으로 이등변삼각형 찾기 → 내심을 지나는 선분의 길이 구하기 → 닮음비 세우기 → 변의 길이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "평행선의 성질(엇각)",
+   "이등변삼각형이 되는 조건",
+   "삼각형의 내심의 성질",
+   "삼각형의 닮음 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A85-001",
+  "difficultyProposal": "심화하",
+  "sourceDifficulty": "심화하",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "내심을 지나는 평행선과 닮음으로 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.138,
+   "longestRun": 11,
+   "residualChars": 90,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

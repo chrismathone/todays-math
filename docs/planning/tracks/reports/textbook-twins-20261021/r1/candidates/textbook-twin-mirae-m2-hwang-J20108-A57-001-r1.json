@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 6,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A57-001-r1",
+ "authorId": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 계산하여 간단히 하시오.\n⑴ $5a(a+2)-3(4a-1)$ ⑵ $7x(x-2y)-6y(x+3y)$",
+ "choices": [],
+ "answer": "⑴ $5a^{2}-2a+3$ ⑵ $7x^{2}-20xy-18y^{2}$",
+ "solution": "⑴ $5a^{2}+10a-12a+3=5a^{2}-2a+3$이다.\n⑵ $7x^{2}-14xy-6xy-18y^{2}=7x^{2}-20xy-18y^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-e693179aa51c3231-0-2",
+  "problemCode": "J20108-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "6496fb5bda41614b1b0a5a5090340409dbff77fd6b1937b071e495d06744a7f8",
+  "dbContentSha256": "6496fb5bda41614b1b0a5a5090340409dbff77fd6b1937b071e495d06744a7f8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-5_단항식과다항식의곱셈과나눗셈.hwp",
+    "sha256": "cd5fdece8c2aaf7375b2b11cf26628221cb7985b0db94a0dd51eaf97bac2f67f",
+    "bytes": 296960
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "단항식×이항식 둘을 더하거나 빼서 동류항을 정리하는 소문항 둘.",
+  "after": "두 소문항 모두 뺄셈으로 두고, 상수 곱과 문자 곱의 계수를 새로 두어 정리한다.",
+  "sharedConcept": "단항식과 다항식의 곱셈 뒤 동류항 정리",
+  "sharedProcedure": "각 곱 전개 → 괄호 앞 부호 적용 → 동류항 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "분배법칙",
+   "동류항",
+   "다항식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A57-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식×다항식 두 개의 덧셈·뺄셈 계산",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.191,
+   "longestRun": 6,
+   "residualChars": 50,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

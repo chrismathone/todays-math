@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 96,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B06-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$2^{5}=a$라 할 때, $8^{7}$을 $a$를 사용하여 나타낸 것으로 옳은 것은?",
+ "choices": [
+  "$a^{4}$",
+  "$2a^{4}$",
+  "$4a^{4}$",
+  "$2a^{5}$",
+  "$4a^{5}$"
+ ],
+ "answer": "②",
+ "solution": "$8^{7}=(2^{3})^{7}=2^{21}$이다.\n$a^{4}=(2^{5})^{4}=2^{20}$이므로 $2^{21}=2\\times 2^{20}=2a^{4}$이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-1",
+  "problemCode": "J20105-B06-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "f926debac7b3fa897caac54e470a8bc3dcd9cc1029af697597782a5883fd78a5",
+  "dbContentSha256": "88e9fee3eb539d030e8d23c8b14d04403f4f4a73f89521617c01105f544b55c0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "작은 거듭제곱을 문자로 두고, 다른 밑으로 쓰인 큰 거듭제곱을 그 문자와 남는 수의 곱으로 나타낸 보기를 고른다.",
+  "after": "문자가 나타내는 지수와 바꿀 거듭제곱의 밑·지수를 새로 두어, 남는 인수가 $2$ 하나가 되도록 짰다.",
+  "sharedConcept": "밑 통일과 거듭제곱의 거듭제곱",
+  "sharedProcedure": "밑을 소인수로 통일 → 지수를 문자 지수의 배수와 나머지로 분리 → 문자 거듭제곱과 상수의 곱"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑴ 곱",
+   "지수법칙 ⑵ 거듭제곱의 거듭제곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B06-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "거듭제곱을 문자로 나타내기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.167,
+   "longestRun": 5,
+   "residualChars": 48,
+   "params": 6,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

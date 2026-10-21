@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 168,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r1",
+ "authorId": "claude-fable-5-1:90add9c6-c102-472e-9e3c-0e97eddb0efe",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 순서쌍 가운데 일차방정식 $x-2y=5$ 의 해가 아닌 것은?",
+ "choices": [
+  "$(1,\\ -2)$",
+  "$(3,\\ -1)$",
+  "$(5,\\ 0)$",
+  "$(7,\\ 1)$",
+  "$(9,\\ 3)$"
+ ],
+ "answer": "⑤",
+ "solution": "각 순서쌍을 $x-2y=5$ 에 대입한다.\n① $1-2\\times(-2)=5$\n② $3-2\\times(-1)=5$\n③ $5-2\\times 0=5$\n④ $7-2\\times 1=5$\n⑤ $9-2\\times 3=3\\neq 5$\n따라서 해가 아닌 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-2",
+  "problemCode": "J20301-A78-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "9d7d260aa00834514f62ccedf4d31c2189c5b986ee0c2d072d473972b731060b",
+  "dbContentSha256": "c024f73b22ee32812326d875d6630655f32b6ec3e236b8be648e11177766087c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "y 의 계수가 1인 일차방정식에 순서쌍 다섯을 대입해 성립하지 않는 하나를 찾는다.",
+  "after": "x 의 계수가 1이고 y 의 계수가 음수인 일차방정식에 음수·0을 포함한 순서쌍 다섯을 대입해 성립하지 않는 하나를 찾는다.",
+  "sharedConcept": "일차방정식의 해의 판별",
+  "sharedProcedure": "순서쌍 대입 → 좌변 값 계산 → 우변과 비교 → 등식이 성립하지 않는 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "문자에 수 대입하기",
+   "정수의 곱셈",
+   "일차방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A78-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "일차방정식의 해가 아닌 순서쌍 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 71% 그대로"
+   ],
+   "overlap4": 0.196,
+   "longestRun": 8,
+   "residualChars": 49,
+   "params": 7,
+   "numberRetention": 0.714,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

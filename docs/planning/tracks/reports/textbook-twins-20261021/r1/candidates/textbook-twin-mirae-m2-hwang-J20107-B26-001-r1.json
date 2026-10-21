@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 33,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B26-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "아래 표는 가로로는 왼쪽 칸의 식에서 가운데 칸의 식을 뺀 결과를 오른쪽 칸에, 세로로는 위의 두 칸의 식을 더한 결과를 맨 아래 칸에 적는 규칙으로 채운다. 다항식 $A$, $B$, $C$를 모두 구하시오.\n[그림]",
+ "choices": [],
+ "answer": "$A=3x+2y-5$, $B=x+5y-5$, $C=3x+10y-6$",
+ "solution": "첫째 줄에서 $A=(2x+5y-1)-(-x+3y+4)=2x+5y-1+x-3y-4=3x+2y-5$이다.\n둘째 줄에서 $B-(4x-y+2)=-3x+6y-7$이므로 $B=-3x+6y-7+4x-y+2=x+5y-5$이다.\n첫째 열에서 $C=(2x+5y-1)+B=(2x+5y-1)+(x+5y-5)=3x+10y-6$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20107-B26-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20107-B26-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-1-3",
+  "problemCode": "J20107-B26-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "99e79bb6afdd7f62e85684c4b736847c0f324623b53c6cb5eef14c90a03cda37",
+  "dbContentSha256": "0909a62eb9c77fffe3c17c46d276583605db7aa023a5e588608c1d2a407c9a57",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [
+   "8dfee64a130a78e772694c523eb2e44fcb1ff6e833bafaea4661652bdb8f8479"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "different",
+   "answer": "same"
+  },
+  "authorSawDbText": false,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "3×3 표에서 가로는 두 칸의 합, 세로는 위 칸에서 아래 칸을 뺀 값을 적는 규칙으로, 첫째 줄의 가운데 A, 둘째 열 맨 아래 B, 첫째 열 맨 아래 C(A에 의존)를 구하는 단답형",
+  "after": "가로는 왼쪽에서 가운데를 뺀 값, 세로는 위 두 칸의 합을 적는 규칙으로 바꾸고, 첫째 줄 오른쪽 A, 둘째 줄 왼쪽 B, 첫째 열 맨 아래 C(B에 의존)를 구하는 단답형",
+  "sharedConcept": "표의 연산 규칙 읽기와 다항식의 덧셈·뺄셈",
+  "sharedProcedure": "규칙대로 관계식 세우기 → 알려진 두 칸에서 미지 칸 구하기(이항) → 앞서 구한 식을 써서 남은 칸 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "등식의 성질",
+   "다항식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-B26-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "연산 규칙 표에서 다항식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.219,
+   "longestRun": 7,
+   "residualChars": 68,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

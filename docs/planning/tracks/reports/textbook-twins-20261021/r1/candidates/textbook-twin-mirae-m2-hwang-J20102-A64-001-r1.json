@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 56,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A64-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중에서 순환소수를 순환마디에 점을 찍어 옳게 나타낸 것은?",
+ "choices": [
+  "$0.2555\\cdots=0.\\dot{2}\\dot{5}$",
+  "$3.636363\\cdots=\\dot{3}.6\\dot{3}$",
+  "$0.814814814\\cdots=0.\\dot{8}\\dot{1}\\dot{4}$",
+  "$-2.173173173\\cdots=-2.\\dot{1}7\\dot{3}$",
+  "$0.45292929\\cdots=0.\\dot{4}52\\dot{9}$"
+ ],
+ "answer": "④",
+ "solution": "순환마디의 처음과 끝 숫자 위에만 점을 찍고, 정수 부분에는 점을 찍지 않는다. ①은 순환마디가 $5$이므로 $0.2\\dot{5}$, ②는 순환마디가 $63$이므로 $3.\\dot{6}\\dot{3}$, ③은 순환마디가 $814$이므로 $0.\\dot{8}1\\dot{4}$, ⑤는 순환마디가 $29$이므로 $0.45\\dot{2}\\dot{9}$로 나타내야 한다. ④는 순환마디가 $173$이므로 $-2.\\dot{1}7\\dot{3}$이 옳다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b7ee44265f9df98b-1-3",
+  "problemCode": "J20102-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "b6e658844c9a24183794bdda17165ce3df84d7c37b59d5ca94c2b8a9767b17b7",
+  "dbContentSha256": "f41d3b42f598f36ab78cee0f3ef110ef80868904883444a47a1c5c7ba0ec85d6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_1-1_유리수와소수.hwp",
+    "sha256": "48bc34ffa3ade47fcf4666310ce22f7aa35c07e50a06438c10b4a66e74317c71",
+    "bytes": 274432
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "서로 다른 순환소수 다섯 개에 점 표기를 붙여 놓고, 점이 바르게 찍힌 것 하나를 고른다. 오답은 정수 부분에 점을 찍거나 비순환 자리까지 순환마디로 본 것들이다.",
+  "after": "새 순환소수 다섯 개로 같은 오류 유형(정수 부분 점, 모든 숫자에 점, 비순환 자리 포함)을 배치하고, 음수 항목을 정답 자리로 옮겼다.",
+  "sharedConcept": "순환마디의 점 표기 규칙",
+  "sharedProcedure": "각 소수의 순환마디 찾기 → 올바른 점 표기 쓰기 → 주어진 표기와 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "순환소수와 순환마디",
+   "순환소수의 기호 표현"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A64-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수의 점 표기 옳은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "이어진 같은 글 24자"
+   ],
+   "overlap4": 0.256,
+   "longestRun": 24,
+   "residualChars": 99,
+   "params": 10,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,125 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 44,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r1",
+ "authorId": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 나눗셈을 하시오.\n⑴ $15p^{3}q\\div 5pq^{3}$ ⑵ $-32x^{4}y^{2}\\div 8x^{3}y$\n⑶ $(-a^{3}b)^{3}\\div(-2a^{2}b)^{2}$ ⑷ $(3ab)^{2}\\div\\left(\\frac{1}{3}a^{2}b\\right)^{2}$",
+ "choices": [],
+ "answer": "⑴ $\\frac{3p^{2}}{q^{2}}$ ⑵ $-4xy$ ⑶ $-\\frac{a^{5}b}{4}$ ⑷ $\\frac{81}{a^{2}}$",
+ "solution": "⑴ $\\frac{15p^{3}q}{5pq^{3}}=\\frac{3p^{2}}{q^{2}}$ ⑵ $\\frac{-32x^{4}y^{2}}{8x^{3}y}=-4xy$ ⑶ $(-a^{3}b)^{3}=-a^{9}b^{3}$, $(-2a^{2}b)^{2}=4a^{4}b^{2}$이므로 $-\\frac{a^{9}b^{3}}{4a^{4}b^{2}}=-\\frac{a^{5}b}{4}$ ⑷ $(3ab)^{2}=9a^{2}b^{2}$, $\\left(\\frac{1}{3}a^{2}b\\right)^{2}=\\frac{1}{9}a^{4}b^{2}$이므로 $9a^{2}b^{2}\\times\\frac{9}{a^{4}b^{2}}=\\frac{81}{a^{2}}$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-aea973a819cd3a31-0-2",
+  "problemCode": "J20106-A99-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "9a251a5b6c91d8140ead80e186fa5631f4760985ad6715a987e29f618a677de4",
+  "dbContentSha256": "7831cc0027a078cfc33cf4cd877188366ec354b2eb3382f95e750c9cc3ea4ca0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "f86c854db9405fb705444de6982bb4aa1c61cb2ecdfe8dd9bbfc6b1ac6a856fc",
+    "bytes": 94208
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소문항 넷: 분모에 문자가 남는 나눗셈, 음수 계수 나눗셈, 음수 세제곱을 음수 제곱으로 나누기, 제곱을 분수 계수 제곱으로 나누기.",
+  "after": "같은 네 단계를 두되 문자·계수·지수를 새로 정하고 어느 문자가 분모에 남는지를 바꿨다.",
+  "sharedConcept": "단항식의 나눗셈",
+  "sharedProcedure": "거듭제곱 전개 → 분수 꼴로 쓰기 → 계수·문자 약분(역수 곱)"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "역수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A99-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 나눗셈 소문항 연습",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.215,
+   "longestRun": 7,
+   "residualChars": 86,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

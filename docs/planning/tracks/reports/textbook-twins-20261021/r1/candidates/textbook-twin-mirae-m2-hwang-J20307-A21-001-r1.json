@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 193,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A21-001-r1",
+ "authorId": "claude-fable-5-1:f860984f-a5ee-40b9-9cf2-9ff181470ed7",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "서술형",
+ "content": "어느 수영장의 올해 회원 수는 작년에 비해 성인 회원은 $8\\,\\%$, 어린이 회원은 $4\\,\\%$ 줄어 전체 회원 수가 $28$명 줄어든 $422$명이 되었다고 한다. 올해 어린이 회원은 모두 몇 명인지 구하는 풀이 과정과 답을 쓰시오.",
+ "choices": [],
+ "answer": "$192$명",
+ "solution": "[1단계] 작년 성인 회원 수를 $x$명, 어린이 회원 수를 $y$명이라 하면 작년 전체 회원 수는 $422+28=450$이므로 $x+y=450$이다.\n[2단계] 줄어든 회원 수가 $28$명이므로 $\\dfrac{8}{100}x+\\dfrac{4}{100}y=28$, 즉 $2x+y=700$이다.\n[3단계] $2x+y=700$에서 $x+y=450$을 변끼리 빼면 $x=250$이고, $y=200$이다.\n[4단계] 따라서 올해 어린이 회원은 $200\\times 0.96=192$(명)이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-20",
+  "problemCode": "J20307-A21-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "259884b8a521af98222bcc0da5e465327f6dc0d288472fcf816bfc1e9dcbf352",
+  "dbContentSha256": "2eb454162ba500f8890e809f5eb13152992e9a46dfd49e2bdd0022534f45d5c5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "두 집단이 각각 다른 비율로 줄었을 때 올해 전체 인원과 줄어든 인원을 주고, 비율이 큰 쪽 집단의 올해 인원을 구하는 과정을 쓰게 한다.",
+  "after": "수영장 회원 두 집단이 각각 다른 비율로 줄었을 때 올해 전체 회원 수와 줄어든 회원 수를 주고, 비율이 작은 쪽 집단의 올해 회원 수를 구하는 과정을 쓰게 한다.",
+  "sharedConcept": "증가·감소 비율을 이용한 연립일차방정식의 활용",
+  "sharedProcedure": "작년 두 집단의 수를 미지수로 놓기 → 작년 전체 수를 역산해 합의 식 세우기 → 감소량으로 비율 식 세우기 → 가감법으로 풀기 → 작년 값에 감소 비율을 적용해 올해 값 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(가격, 개수, 증감, 도형)"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(가감법)",
+   "백분율과 증감의 표현"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20307-A21-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 집단의 증감 비율로 올해 인원 구하기(연립방정식의 활용 · 서술형)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5fce621a-7280-4e0b-9e53-2c52025fc1a1",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.294,
+   "longestRun": 10,
+   "residualChars": 74,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 93,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B03-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 옳은 것은?",
+ "choices": [
+  "$3^{3}\\times 3^{2}\\times 3^{5}=3^{30}$",
+  "$a^{6}\\div a^{2}\\times a^{5}=a^{9}$",
+  "$\\left\\{(5^{3})^{2}\\right\\}^{2}=5^{7}$",
+  "$b^{9}\\div b^{3}\\div b^{3}=1$",
+  "$\\left(-\\frac{a^{3}}{b^{2}}\\right)^{5}=\\frac{a^{15}}{b^{10}}$"
+ ],
+ "answer": "②",
+ "solution": "① $3^{3+2+5}=3^{10}$이다.\n② $a^{6}\\div a^{2}\\times a^{5}=a^{4}\\times a^{5}=a^{9}$이다.\n③ $5^{3\\times 2\\times 2}=5^{12}$이다.\n④ $b^{9-3-3}=b^{3}$이다.\n⑤ 홀수 번 거듭제곱이므로 $-\\frac{a^{15}}{b^{10}}$이다.\n따라서 옳은 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-1",
+  "problemCode": "J20105-B03-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "1f7a704bcb76c517260f852783bd460ef43b02211794ba32b39f57212abf800d",
+  "dbContentSha256": "84f66f7c8bc7ee1501a03ea5fbf866ba00d427aff44d3c99302c9ff5b4561160",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "지수의 합·곱·차·몫의 거듭제곱을 섞은 다섯 등식 가운데 참인 것 하나를 고른다. 참인 보기는 곱셈 둘 뒤 나눗셈 하나인 식이다.",
+  "after": "같은 다섯 갈래의 등식을 새 밑·새 지수로 두고, 참인 보기를 나눗셈 뒤 곱셈 꼴로 바꾸어 두 번째에 놓았다.",
+  "sharedConcept": "지수법칙 네 가지(곱·거듭제곱의 거듭제곱·나눗셈·몫의 거듭제곱)",
+  "sharedProcedure": "보기마다 해당 지수법칙 적용 → 계산 결과와 주어진 식 비교 → 참인 것 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴~⑷"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B03-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수법칙 종합 — 옳은 등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 9개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.013,
+   "longestRun": 4,
+   "residualChars": 82,
+   "params": 9,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

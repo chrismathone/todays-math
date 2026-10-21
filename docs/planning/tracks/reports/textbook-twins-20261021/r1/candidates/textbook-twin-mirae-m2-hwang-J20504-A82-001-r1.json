@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 252,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A82-001-r1",
+ "authorId": "claude-fable-5-1:d385ff22-b0d3-4a53-b290-3956d5f2c402",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림] 그림에서 점 $I$는 $\\triangle ABC$의 내심이다. $\\angle IAB=26^{\\circ}$, $\\angle IBA=34^{\\circ}$일 때, $\\angle x$의 크기는?",
+ "choices": [
+  "$56^{\\circ}$",
+  "$58^{\\circ}$",
+  "$60^{\\circ}$",
+  "$62^{\\circ}$",
+  "$64^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "점 $I$가 내심이므로 $\\angle IAC=\\angle IAB=26^{\\circ}$, $\\angle IBC=\\angle IBA=34^{\\circ}$이다. 따라서 $\\angle A=52^{\\circ}$, $\\angle B=68^{\\circ}$이고 $\\angle x=180^{\\circ}-52^{\\circ}-68^{\\circ}=60^{\\circ}$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A82-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A82-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-6",
+  "problemCode": "J20504-A82-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "694defbe0f15328aec50a12626a18534ba231b6e632dbdaa59cd83e510a7fbc6",
+  "dbContentSha256": "20c4ec1732195c9ea09ab5fed12f8da3387a25368833e4964378185166bb84ca",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "1642a353aad1c0e75515c1dad1cbd6ee76c28878726c1c5c95f203ba064a37e4"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "밑변의 두 꼭짓점에서 내심 쪽으로 나뉜 반각 둘이 주어지고 꼭대기 각 전체를 고른다.",
+  "after": "꼭대기 꼭짓점과 왼쪽 꼭짓점의 반각이 각의 한쪽(AB 쪽)에 주어지고, 남은 꼭짓점 C의 각 전체를 고른다.",
+  "sharedConcept": "내심은 각의 이등분선의 교점 · 삼각형 내각의 합",
+  "sharedProcedure": "반각을 두 배 하여 두 내각 구하기 → 180°에서 빼기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "삼각형의 내각의 크기의 합",
+   "삼각형의 내심의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A82-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "내심으로 나뉜 두 반각으로 남은 내각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.222,
+   "longestRun": 12,
+   "residualChars": 48,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

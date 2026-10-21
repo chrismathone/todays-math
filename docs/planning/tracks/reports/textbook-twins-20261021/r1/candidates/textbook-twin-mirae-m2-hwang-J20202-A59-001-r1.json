@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 140,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r1",
+ "authorId": "claude-fable-5-1:3a390bcf-c415-40bc-8a05-e76fc8150c6c",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차부등식 $\\frac{1}{2}(x+3)\\ge 0.7x-\\frac{1}{5}$를 만족시키는 자연수 $x$의 값을 모두 더하면?",
+ "choices": [
+  "$21$",
+  "$28$",
+  "$36$",
+  "$45$",
+  "$55$"
+ ],
+ "answer": "③",
+ "solution": "양변에 $10$을 곱하면 $5(x+3)\\ge 7x-2$, 괄호를 풀면 $5x+15\\ge 7x-2$이다. 이항하여 정리하면 $-2x\\ge -17$, 양변을 $-2$로 나누면 $x\\le \\frac{17}{2}$이다. $\\frac{17}{2}=8.5$이므로 이를 만족시키는 자연수 $x$는 $1, 2, \\cdots, 8$이고, 합은 $1+2+\\cdots+8=36$이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-9",
+  "problemCode": "J20202-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "ddee842799d82c1417b8234cdda7d05cf827d4e38c9dcf9876a30b699b95ad4e",
+  "dbContentSha256": "a3ff8f21cc701bb7486ff4d001acbf8772ffbde946deb9a981659908b1b80dd8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "소수항과 분수항이 섞인 > 부등식(괄호는 분수 쪽)을 풀어 자연수 해를 모두 찾아 합함",
+  "after": "괄호가 분수 계수 쪽에 붙고 ≥ 부등식이며 경계가 8.5 로 정수가 아니어서 자연수 범위를 직접 판단해야 함",
+  "sharedConcept": "계수가 소수·분수인 일차부등식의 풀이와 자연수 해",
+  "sharedProcedure": "양변에 10 곱하기 → 괄호 풀기 → 이항·정리 → 해 구하기 → 자연수 나열 → 합산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "소수·분수 계수를 정수로 고치기",
+   "분배법칙",
+   "일차부등식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A59-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "소수·분수 계수 일차부등식의 자연수 해의 합",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.122,
+   "longestRun": 6,
+   "residualChars": 44,
+   "params": 9,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

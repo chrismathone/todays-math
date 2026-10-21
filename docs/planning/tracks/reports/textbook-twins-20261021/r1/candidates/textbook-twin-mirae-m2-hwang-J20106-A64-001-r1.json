@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 39,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A64-001-r1",
+ "authorId": "middle-engine:2-1|단항식의 계산|14",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "밑넓이가 $4a^{2}b^{2}$ 이고 부피가 $8a^{4}b^{4}$ 인 각기둥의 높이를 구하시오.",
+ "choices": [],
+ "answer": "$2a^{2}b^{2}$",
+ "solution": "(기둥의 부피)$=$(밑넓이)$\\times$(높이) 이므로 (높이)$=$(부피)$\\div$(밑넓이) 이다.\n$8a^{4}b^{4}\\div 4a^{2}b^{2}=2a^{2}b^{2}$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-ce14b504524bdd49-1-2",
+  "problemCode": "J20106-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "d5cae598aa6a26dd84a17ac39fd2afbc26748bc4f8d63e6b528cdfc00f0e701c",
+  "dbContentSha256": "e6a141751ef645b06bf79f04f5e737bb4fd34dfcfc2fb981b643b1428cee1a75",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "149462077a4603f021e5440bc1688a0f9c1b559711a7b009a0d8ac75d0402509",
+    "bytes": 335872
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "가로·세로가 단항식인 직사각형의 넓이를 구한다.",
+  "after": "변의 길이가 단항식인 도형의 넓이를 공식에 넣어 곱셈으로 구하며, 도형과 수는 엔진이 새로 정한다.",
+  "sharedConcept": "단항식의 곱셈의 활용(넓이)",
+  "sharedProcedure": "넓이 공식에 대입 → 계수 곱 → 지수 합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈",
+   "평면도형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A64-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "변의 길이가 단항식인 도형의 넓이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|단항식의 계산|14",
+   "seed": 2595687821,
+   "variant": 1,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:b57ab835-e693-42e5-aad8-63f069d1597c",
+   "authorRationale": "두 변의 길이가 단항식인 도형의 넓이를 곱셈 한 단계로 구하는 활용 단답형으로 개념·절차·물음 꼴이 같다.",
+   "facts": {
+    "kind": 1,
+    "bottomNum": 4,
+    "bottomDen": 1,
+    "bottom_a": 2,
+    "bottom_b": 2,
+    "heightNum": 2,
+    "heightDen": 1,
+    "height_a": 2,
+    "height_b": 2
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 28자"
+   ],
+   "overlap4": 0.16,
+   "longestRun": 5,
+   "residualChars": 28,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

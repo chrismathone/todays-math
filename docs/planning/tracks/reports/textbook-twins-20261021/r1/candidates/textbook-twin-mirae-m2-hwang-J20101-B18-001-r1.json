@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 89,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-B18-001-r1",
+ "authorId": "middle-engine:2-1|유리수와 순환소수|08",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "두 분수 $\\dfrac{19}{18}$ 와 $\\dfrac{13}{42}$ 에 각각 자연수 $A$ 를 곱하면 두 분수를 모두 유한소수로 나타낼 수 있다고 한다. $A$ 의 값이 될 수 있는 가장 작은 자연수를 구하시오.",
+ "choices": [],
+ "answer": "$63$",
+ "solution": "$18=2\\times3^{2}$, $42=2\\times3\\times7$ 이므로 $A$ 는 $9$ 의 배수이면서 $21$ 의 배수이어야 한다.\n따라서 $A$ 의 값이 될 수 있는 가장 작은 자연수는 $9$ 와 $21$ 의 최소공배수인 $63$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-11",
+  "problemCode": "J20101-B18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "2d7d7f070146eee676fbdd883fa1cd41cc857e8d40469405888410824b802fcd",
+  "dbContentSha256": "bfd1fed478781c085317e2321f72531b0da69b4b336b451c7a3e2e1dc985609b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers"
+  ],
+  "before": "분모 6과 70인 두 분수에 자연수 A를 곱해 모두 유한소수가 되게 하는 가장 작은 A를 구한다.",
+  "after": "엔진이 새 두 분수를 정하고 같은 절차로 가장 작은 자연수를 묻는 단답형을 낸다.",
+  "sharedConcept": "두 분수를 동시에 유한소수로 만드는 자연수의 최소공배수 조건",
+  "sharedProcedure": "각 분수를 기약분수로 → 분모 소인수분해 → 2, 5 이외 소인수 모으기 → 최소공배수"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "최소공배수",
+   "유한소수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-B18-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 분수를 모두 유한소수로 만드는 가장 작은 자연수",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|유리수와 순환소수|08",
+   "seed": 81744377,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:4762bf0d-3da6-42c5-862d-80c8090908d4",
+   "authorRationale": "두 분수에 같은 자연수 A를 곱해 모두 유한소수가 되게 하는 가장 작은 A를 단답형으로 묻는 꼴·절차가 견본과 그대로 같다.",
+   "facts": {
+    "n1": 19,
+    "d1": 18,
+    "n2": 13,
+    "d2": 42,
+    "L": 63
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.40"
+   ],
+   "overlap4": 0.4,
+   "longestRun": 13,
+   "residualChars": 58,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

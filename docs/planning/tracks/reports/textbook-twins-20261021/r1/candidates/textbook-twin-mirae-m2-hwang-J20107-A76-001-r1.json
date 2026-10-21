@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 26,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A76-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 다항식 $A$, $B$가 아래 두 조건을 모두 만족시킬 때, $A-B$를 구하시오.\n(가) $A-(2x^{2}-x+4)=-x^{2}+5x-1$\n(나) $3x^{2}+2x-6+B=x^{2}-4x+2$",
+ "choices": [],
+ "answer": "$3x^{2}+10x-5$",
+ "solution": "(가)에서 $A=-x^{2}+5x-1+(2x^{2}-x+4)=x^{2}+4x+3$이다.\n(나)에서 $B=x^{2}-4x+2-(3x^{2}+2x-6)=-2x^{2}-6x+8$이다.\n따라서 $A-B=(x^{2}+4x+3)-(-2x^{2}-6x+8)=3x^{2}+10x-5$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-1-5",
+  "problemCode": "J20107-A76-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "de8d26c97f7d6a49ff07a5313c54b6121d6be7cd6ad7ce1607590e3696cf8961",
+  "dbContentSha256": "bc8bf27697bfa7d23540f119328afeb7fcbe1d5d6e09b3e47b2670f55a8cb525",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "덧셈 조건으로 A를, 뺄셈 조건으로 B를 각각 구한 뒤 두 식의 합을 묻는 단답형",
+  "after": "뺄셈 조건으로 A를, 덧셈 조건으로 B를 각각 구한 뒤 두 식의 차를 묻는 단답형",
+  "sharedConcept": "이차식의 덧셈과 뺄셈, 어떤 식 구하기",
+  "sharedProcedure": "조건 (가)에서 A 구하기 → 조건 (나)에서 B 구하기 → 두 식을 요구한 연산으로 결합"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "등식의 성질",
+   "이차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A76-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 조건에서 두 식을 구해 결합하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.152,
+   "longestRun": 6,
+   "residualChars": 71,
+   "params": 5,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

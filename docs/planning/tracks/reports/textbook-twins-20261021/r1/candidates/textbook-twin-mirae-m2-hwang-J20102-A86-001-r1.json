@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 60,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A86-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중에서 순환소수와 그 순환마디가 바르게 연결되지 않은 것은?",
+ "choices": [
+  "$0.888\\cdots$ ⇨ $8$",
+  "$0.353535\\cdots$ ⇨ $35$",
+  "$6.141414\\cdots$ ⇨ $14$",
+  "$2.907907907\\cdots$ ⇨ $907$",
+  "$73.737373\\cdots$ ⇨ $37$"
+ ],
+ "answer": "⑤",
+ "solution": "순환마디는 소수점 아래에서 되풀이되는 가장 짧은 숫자 묶음이다. ① $8$, ② $35$, ③ $14$, ④ $907$은 바르게 연결되었다. ⑤ $73.737373\\cdots$은 소수점 아래에서 $7$, $3$이 되풀이되므로 순환마디는 $73$이고 $37$이 아니다. 따라서 바르게 연결되지 않은 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-3",
+  "problemCode": "J20102-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "ff51d110f6f9bec9ddbcc52627e76f2e2c6a657fb23b7c26da6bdc59e96c39d9",
+  "dbContentSha256": "62b9068f9a3d0ee91bcbd6737c14c393e886f09f4db74f73a7a5aced748e65d6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "순환소수 다섯 개에 순환마디 후보를 짝지어 놓고, 바르게 짝지어진 것 하나를 고른다.",
+  "after": "새 순환소수 다섯 개에 순환마디를 짝지어 놓고, 잘못 짝지어진 것 하나를 고른다. 오답 항목은 정수 부분과 같은 숫자가 소수 부분에 나오는 경우로 두었다.",
+  "sharedConcept": "순환마디의 뜻(소수점 아래에서 되풀이되는 최소 묶음)",
+  "sharedProcedure": "각 소수의 소수점 아래 반복 묶음 찾기 → 주어진 순환마디와 대조 → 판정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "유한소수와 무한소수",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A86-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수와 순환마디의 짝 판별",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.162,
+   "longestRun": 10,
+   "residualChars": 79,
+   "params": 10,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

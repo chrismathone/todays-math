@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 153,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A19-001-r1",
+ "authorId": "middle-engine:2-1|일차부등식의 활용|04",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "한 개에 $800$원인 사과를 $3000$원짜리 상자에 담아 사려고 한다. 전체 금액이 $9300$원 이하가 되게 하려면 사과는 최대 몇 개까지 살 수 있는지 구하시오.",
+ "choices": [
+  "$5$개",
+  "$10$개",
+  "$6$개",
+  "$7$개",
+  "$9$개"
+ ],
+ "answer": "④",
+ "solution": "사과를 $x$개 산다고 하면 $800x+3000\\le9300$이다.\n$800x\\le6300$이므로 $x\\le\\dfrac{6300}{800}$이다.\n이를 만족시키는 자연수 $x$의 최댓값은 $7$이므로 최대 $7$개까지 살 수 있다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-391b843e9d9e8ef9-0-14",
+  "problemCode": "J20205-A19-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 14,
+  "sourceContentSha256": "5cbc3d06ebc557186aedbce9fd7320312710432d1b482ae69ae488163c446ccd",
+  "dbContentSha256": "991c6d8379507cc92035ba1ec800853ce258e49d64932e7d1c884b75ad5fdac4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_3_일차부등식.hwp",
+    "sha256": "9e4fc1a57e14ce895cbabb22e1253c657f7cbee94e86f354bcdf28426f931024",
+    "bytes": 467456
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "고정값이 있는 품목 하나와 단가가 있는 품목을 함께 사서 정해진 예산을 넘지 않게 할 때 단가 품목의 최대 개수를 보기 다섯 중에서 고른다.",
+  "after": "엔진이 새 장면(상자·포장 등 고정 비용)과 새 단가·예산을 정해 같은 짜임으로 최대 개수를 묻고, 파생기가 보기 다섯의 객관식으로 만든다.",
+  "sharedConcept": "일차부등식의 활용 — 최대 개수",
+  "sharedProcedure": "개수를 x로 놓기 → 고정 비용+단가×x ≤ 예산 부등식 세우기 → 부등식 풀기 → 해 가운데 가장 큰 자연수 택하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "dda70c48-94a2-4802-800f-4b09ceea0120",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(개수, 예금액, 유리한 방법)"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "부등식의 해 가운데 자연수 조건 다루기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20205-A19-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "고정 비용이 있을 때 예산 이하가 되게 하는 최대 개수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "dda70c48-94a2-4802-800f-4b09ceea0120",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|일차부등식의 활용|04",
+   "seed": 1080435398,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:da8b0f0d-f978-4779-b17b-5775ffec9863",
+   "authorRationale": "고정 비용 하나에 단가×개수를 더해 예산 이하가 되게 하는 최대 개수를 구하는 같은 개념·같은 절차(부등식 세우기 → 풀기 → 자연수 최댓값)이고, 원본도 값을 묻는 객관식이라 단답형→객관식 파생으로 물음 꼴이 같다.",
+   "facts": {
+    "p": 800,
+    "f": 3000,
+    "T": 9300,
+    "n": 7
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.118,
+   "longestRun": 7,
+   "residualChars": 71,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

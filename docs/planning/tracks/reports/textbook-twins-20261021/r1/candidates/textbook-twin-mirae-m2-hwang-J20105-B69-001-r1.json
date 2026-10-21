@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 115,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r1",
+ "authorId": "claude-fable-5-1:d5f75ff3-22ae-41ff-9085-37157bdceefb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 옳지 않은 것은?",
+ "choices": [
+  "$(-2a^{4})^{3}=-8a^{12}$",
+  "$(xy^{3})^{5}=x^{5}y^{15}$",
+  "$\\left(-\\frac{a}{b}\\right)^{4}=\\frac{a^{4}}{b^{4}}$",
+  "$(2a^{2}b)^{4}=8a^{8}b^{4}$",
+  "$\\left(\\frac{xy^{2}}{3}\\right)^{3}=\\frac{x^{3}y^{6}}{27}$"
+ ],
+ "answer": "④",
+ "solution": "④ $(2a^{2}b)^{4}=2^{4}a^{8}b^{4}=16a^{8}b^{4}$이므로 $8a^{8}b^{4}$은 옳지 않다.\n①, ②, ③, ⑤는 곱·몫의 거듭제곱대로 계산한 결과와 같다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-27e81b57b3302127-0-3",
+  "problemCode": "J20105-B69-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "ea42b317b4e520b5915c179314009107ce62129b374b2f7855f65c6e752be879",
+  "dbContentSha256": "68f94afdd51219a316afac8734a1c83d9e7ed796f82fe380cb04f1002a645551",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-2_지수법칙2.hwp",
+    "sha256": "dcf5b1bb29c0cbdadf4de1aacfab4483ca6979b10c143bf554eb044154b17ddc",
+    "bytes": 38400
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "곱·몫의 거듭제곱 등식 다섯 가운데 계수의 거듭제곱을 잘못 계산한 하나를 고른다. 틀린 보기는 세 번째, 홀수 제곱이다.",
+  "after": "틀린 보기를 짝수 제곱의 계수 오류로 바꾸어 네 번째에 두고, 음수 계수·음의 분수 보기의 지수 홀짝을 뒤바꾸었다.",
+  "sharedConcept": "지수법칙 ⑷ 곱·몫의 거듭제곱과 계수·부호",
+  "sharedProcedure": "보기마다 계수 거듭제곱과 문자 지수 곱 계산 → 주어진 식과 비교 → 어긋난 것 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑷",
+   "음수의 거듭제곱 부호"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B69-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱·몫의 거듭제곱 — 옳지 않은 등식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 7개 가운데 86% 그대로"
+   ],
+   "overlap4": 0.09,
+   "longestRun": 5,
+   "residualChars": 86,
+   "params": 7,
+   "numberRetention": 0.857,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

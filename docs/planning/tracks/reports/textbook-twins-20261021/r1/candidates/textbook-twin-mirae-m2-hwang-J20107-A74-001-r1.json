@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 24,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A74-001-r1",
+ "authorId": "claude-fable-5-1:d5185efb-7869-4ba6-b058-693b27f925fc",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$4x^{2}-x+6$에서 어떤 식 $A$를 뺐더니 $-x^{2}+3x+2$가 되었다. $A$를 구하시오.",
+ "choices": [],
+ "answer": "$5x^{2}-4x+4$",
+ "solution": "$(4x^{2}-x+6)-A=-x^{2}+3x+2$이므로 $A=(4x^{2}-x+6)-(-x^{2}+3x+2)=4x^{2}-x+6+x^{2}-3x-2$이다. 따라서 $A=5x^{2}-4x+4$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-0-3",
+  "problemCode": "J20107-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "e818085177993ec7d63a500e64d23dc6a1f846c583646290eef8bdd7d0aa627d",
+  "dbContentSha256": "bd768520314c2041709f5b33e87bd14cc625c36612352b6ea3233898cd0b0620",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "모르는 식 A에서 알려진 이차식을 뺀 결과가 주어지고 A를 구하는 단답형(A가 빼어지는 쪽)",
+  "after": "알려진 이차식에서 모르는 식 A를 뺀 결과가 주어지고 A를 구하는 단답형(A가 빼는 쪽)",
+  "sharedConcept": "이차식의 뺄셈, 어떤 식 구하기",
+  "sharedProcedure": "뺄셈 관계식 세우기 → A에 대해 정리 → 괄호 풀고 동류항 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "등식의 성질",
+   "이차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A74-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "뺄셈 관계에서 어떤 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 32자",
+    "원본 수 4개 가운데 75% 그대로"
+   ],
+   "overlap4": 0.207,
+   "longestRun": 6,
+   "residualChars": 32,
+   "params": 4,
+   "numberRetention": 0.75,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

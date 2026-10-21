@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 158,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A28-001-r1",
+ "authorId": "middle-engine:2-1|일차부등식의 활용|03",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "단답형",
+ "content": "세 번의 수학 시험에서 $94$점, $79$점, $67$점을 받았다. 네 번째 시험까지의 평균이 $84$점 이상이 되려면 네 번째 시험에서 최소 몇 점을 받아야 하는지 구하시오.",
+ "choices": [],
+ "answer": "$96$점",
+ "solution": "네 번째 시험 점수를 $x$점이라 하면 $\\dfrac{94+79+67+x}{4}\\ge84$이다.\n$240+x\\ge336$이므로 $x\\ge96$이다.\n따라서 최소 $96$점을 받아야 한다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-8",
+  "problemCode": "J20204-A28-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "ec33f52d11c13fc6cc5c90f68d9cfb2a1c6fca0a66be0ac85c53d724b59d2f1a",
+  "dbContentSha256": "ec33f52d11c13fc6cc5c90f68d9cfb2a1c6fca0a66be0ac85c53d724b59d2f1a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "세 번의 시험 점수가 각각 주어지고, 네 번째 점수를 x로 두어 네 번 평균이 기준 이상이 되는 x의 최솟값을 구한다",
+  "after": "엔진이 새 점수 셋과 새 기준 평균을 정해 같은 꼴로 네 번째 점수의 최솟값을 묻는다",
+  "sharedConcept": "일차부등식의 활용(평균 문제)",
+  "sharedProcedure": "마지막 점수를 x로 놓음 → 평균 조건을 부등식으로 세움 → 분모를 없애고 풂 → 최솟값을 답함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 활용(수, 평균, 정가)"
+  },
+  "prerequisites": [
+   "일차부등식의 풀이",
+   "평균의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20204-A28-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평균에 대한 일차부등식의 활용",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "cb30c90c-62f7-49ed-ada8-cda4c1735097",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|일차부등식의 활용|03",
+   "seed": 622809377,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:30db0e90-bc35-4ace-8159-852dfe5ea108",
+   "authorRationale": "세 번의 점수를 낱낱이 주고 네 번째 점수의 최솟값을 평균 조건의 부등식으로 구하는 단답형 — 개념·절차·물음 꼴이 같다(합을 주는 31과 달리 점수 셋을 더하는 단계까지 같음)",
+   "facts": {
+    "a": 94,
+    "b": 79,
+    "c": 67,
+    "m": 84,
+    "x0": 96
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.167,
+   "longestRun": 7,
+   "residualChars": 60,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

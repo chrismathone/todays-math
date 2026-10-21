@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 2,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A53-001-r1",
+ "authorId": "middle-engine:2-1|다항식의 계산|135X",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "어떤 식을 $3xy$로 나누어야 할 것을 잘못하여 곱하였더니 다음과 같은 식이 되었다. 바르게 계산한 식을 구하시오.\n$18x^{4}y^{3}+45x^{4}y^{2}$",
+ "choices": [
+  "$2x^{2}y+5x^{2}$",
+  "$5x^{2}y+5x^{2}$",
+  "$3x^{2}y+5x^{2}$",
+  "$1x^{2}y+5x^{2}$",
+  "$4x^{2}y+5x^{2}$"
+ ],
+ "answer": "①",
+ "solution": "어떤 식을 $A$라 하면 잘못 계산한 식이 $A\\times\\left(3xy\\right)$이므로, $A=\\left(18x^{4}y^{3}+45x^{4}y^{2}\\right)\\div\\left(3xy\\right)=6x^{3}y^{2}+15x^{3}y$이다.\n바르게 계산한 식은 $A\\div\\left(3xy\\right)$이므로 $\\left(6x^{3}y^{2}+15x^{3}y\\right)\\div\\left(3xy\\right)=2x^{2}y+5x^{2}$이다.\n곱셈과 나눗셈을 서로 바꾸어 계산했으므로, 바르게 계산한 식은 잘못 계산한 식을 $3xy$로 두 번 나눈 것과 같다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-13",
+  "problemCode": "J20108-A53-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "3cde40e992ace0e92908e2bc61dfec9af4362ba756f4d213be9809a81cbae683",
+  "dbContentSha256": "67c6987107413061c8fb69e1cddc382a94036dd8a0158258274cd7629b7131a6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "단항식을 곱해야 할 식을 잘못 나눈 결과가 주어지고, 바르게 곱한 결과를 보기에서 고른다.",
+  "after": "엔진이 새 단항식과 새 결과식으로 바꿔 계산한 상황을 내고, 바르게 계산한 식을 객관식 보기 다섯으로 낸다.",
+  "sharedConcept": "단항식과 다항식의 곱셈·나눗셈의 역연산",
+  "sharedProcedure": "잘못된 결과에 역연산 → 어떤 식 복원 → 바른 연산 적용 → 전개"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "다항식과 단항식의 곱셈",
+   "다항식을 단항식으로 나누기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A53-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱셈·나눗셈을 바꿔 계산한 결과에서 바르게 계산한 식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|다항식의 계산|135X",
+   "seed": 1796990676,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:242cbe23-d1fb-4baa-975f-80e1c2dd0fd3",
+   "authorRationale": "곱셈과 나눗셈을 바꿔 계산한 결과에서 원래 식을 되찾고 다시 바르게 계산하는 두 단계가 같고, 값(식)을 고르는 객관식으로 파생된다.",
+   "facts": {
+    "x": 2,
+    "mode": 0,
+    "monoC": 3,
+    "monoX": 1,
+    "monoY": 1,
+    "terms": 2,
+    "c0": 2,
+    "x0": 2,
+    "y0": 1,
+    "c1": 5,
+    "x1": 2,
+    "y1": 0
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.231,
+   "longestRun": 11,
+   "residualChars": 108,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

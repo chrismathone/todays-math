@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 57,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r1",
+ "authorId": "claude-fable-5-1:ac35d8c8-bc11-4e44-9bff-20d7edcba5bd",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "$73\\div 44$의 몫을 소수로 나타낼 때, 그 순환마디를 쓰시오.",
+ "choices": [],
+ "answer": "$90$",
+ "solution": "$73\\div 44=1.6590909\\cdots$이다. 소수점 아래 셋째 자리부터 $9$, $0$이 되풀이되므로 $1.65\\dot{9}\\dot{0}$으로 나타낼 수 있다. 따라서 순환마디는 $90$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b7ee44265f9df98b-1-4",
+  "problemCode": "J20102-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "b1c0319732bd34ff2ab09d4e397f9c90fc08820840c43a044817df938f707892",
+  "dbContentSha256": "5ab2ddc5e0729812b8058e1025b1203eb2de11d491c0da0e994bc8f09750a6ac",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_1-1_유리수와소수.hwp",
+    "sha256": "48bc34ffa3ade47fcf4666310ce22f7aa35c07e50a06438c10b4a66e74317c71",
+    "bytes": 274432
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "1보다 작은 분수를 소수로 고치면 비순환 자리 셋 뒤에 0이 들어간 두 자리 순환마디가 나오고, 그 순환마디를 묻는다.",
+  "after": "나눗셈식의 몫을 소수로 고치면 정수 부분과 비순환 자리 둘 뒤에 0이 들어간 두 자리 순환마디가 나오고, 그 순환마디를 묻는다.",
+  "sharedConcept": "분수(나눗셈)의 소수 전개에서 순환마디 찾기",
+  "sharedProcedure": "나눗셈을 여러 자리까지 계산 → 되풀이되는 묶음 확인 → 순환마디 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환소수와 순환마디"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A65-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수를 소수로 나타내어 순환마디 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 24자"
+   ],
+   "overlap4": 0.476,
+   "longestRun": 13,
+   "residualChars": 24,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

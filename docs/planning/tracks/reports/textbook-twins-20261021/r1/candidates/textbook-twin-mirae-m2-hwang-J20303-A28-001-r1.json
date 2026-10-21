@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 171,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r1",
+ "authorId": "claude-fable-5-1:0b40f689-a3c3-442e-8a0d-302c80bc0540",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} \\dfrac{x}{5}-\\dfrac{y}{2}=2 \\\\ 0.4x+0.5y=1 \\end{cases}$의 해는?",
+ "choices": [
+  "$x=-5$, $y=2$",
+  "$x=-2$, $y=5$",
+  "$x=2$, $y=-5$",
+  "$x=5$, $y=-2$",
+  "$x=5$, $y=2$"
+ ],
+ "answer": "④",
+ "solution": "첫째 식의 양변에 $10$을 곱하면 $2x-5y=20$ …㉠, 둘째 식의 양변에 $10$을 곱하면 $4x+5y=10$ …㉡이다. ㉠과 ㉡을 변끼리 더하면 $6x=30$, $x=5$이다. $x=5$를 ㉡에 대입하면 $20+5y=10$, $y=-2$이다. 따라서 해는 $x=5$, $y=-2$이므로 정답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-7",
+  "problemCode": "J20303-A28-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 7,
+  "sourceContentSha256": "03ec6b959aa869f963a96c8f63beffef59461fa27afd21dca6729f10c6bc00a9",
+  "dbContentSha256": "7e41c0ede4bf41dac0e92d414ede1a40076429675b98d052dd064f3a259e0282",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분모가 서로 다른 두 분수 계수 식과 소수 계수 식으로 된 연립방정식의 해를 다섯 쌍 가운데 고른다. 분수 식은 분모의 최소공배수 12 를, 소수 식은 10 을 곱해 정수 계수로 고치고, 두 식의 $y$ 항 계수가 같아 변끼리 빼서 소거한다.",
+  "after": "분모 5 · 2 인 분수 식(차의 꼴)과 소수 계수 식으로 된 연립방정식의 해를 다섯 쌍 가운데 고른다. 두 식 모두 10 을 곱해 정수 계수로 고치면 $y$ 항 계수가 부호만 반대가 되어 변끼리 더해 소거한다.",
+  "sharedConcept": "계수가 분수 · 소수인 연립일차방정식은 양변에 적당한 수를 곱해 정수 계수로 고친 뒤 가감법으로 푼다",
+  "sharedProcedure": "분수 식에 분모의 공배수 곱하기 → 소수 식에 10 곱하기 → 가감법으로 한 문자 소거 → 나머지 문자 대입 → 해 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "여러 가지 연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "연립일차방정식의 풀이(가감법 · 대입법)",
+   "일차방정식의 양변에 같은 수 곱하기",
+   "분수 · 소수 계수를 정수로 고치기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20303-A28-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "계수가 분수 · 소수인 연립방정식을 정수 계수로 고쳐 풀기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "761fad1c-913a-45e4-9639-93b4291390fd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.135,
+   "longestRun": 7,
+   "residualChars": 58,
+   "params": 11,
+   "numberRetention": 0.182,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
