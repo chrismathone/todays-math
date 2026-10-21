@@ -116,6 +116,8 @@ describe("course immediate follow-up", () => {
   });
   it("clears the first selected choice when its saved wrong answer opens the second try", async () => {
     const first = session("awaiting");
+    // Already-studied sessions do not auto-open the section's preview card.
+    first.relearn = true;
     first.attempts = [];
     first.problems[0].followUp = null;
     first.problems[0].feedback = null;
