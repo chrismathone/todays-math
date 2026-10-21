@@ -8,5 +8,20 @@
   "problemCode": "J20601-A52-001",
   "stage": "shape",
   "reason": "정답이 둘인데 «모두 고르시오» 꼴이 아니다"
+ },
+ {
+  "problemCode": "J20507-A90-001",
+  "stage": "figure",
+  "reason": "저자 그림 스펙 실패(고치기 2번 뒤): 도형을 그리지 못했습니다: dimension 'BC_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))"
+ },
+ {
+  "problemCode": "J20602-A74-001",
+  "stage": "figure",
+  "reason": "저자 그림 스펙 실패(고치기 2번 뒤): 도형을 그리지 못했습니다: dimension 'd_BC' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))"
+ },
+ {
+  "problemCode": "J20602-A84-001",
+  "stage": "figure",
+  "reason": "저자 그림 스펙 실패(고치기 2번 뒤): 도형을 그리지 못했습니다: dimension 'd_DE' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
  }
 ]

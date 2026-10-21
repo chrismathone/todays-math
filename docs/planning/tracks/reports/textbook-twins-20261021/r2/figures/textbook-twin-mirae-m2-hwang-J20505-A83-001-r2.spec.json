@@ -1,0 +1,187 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   100,
+   30
+  ],
+  "B": [
+   30,
+   174
+  ],
+  "C": [
+   286,
+   174
+  ],
+  "D": [
+   356,
+   30
+  ],
+  "O": [
+   193,
+   102
+  ],
+  "E": [
+   250,
+   30
+  ],
+  "F": [
+   136,
+   174
+  ],
+  "H": [
+   356,
+   174
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DA": [
+   "D",
+   "A"
+  ],
+  "AC": [
+   "A",
+   "C"
+  ],
+  "BD": [
+   "B",
+   "D"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "CH": {
+   "points": [
+    "C",
+    "H"
+   ],
+   "dashed": "5 3"
+  },
+  "DH": {
+   "points": [
+    "D",
+    "H"
+   ],
+   "dashed": "5 3"
+  }
+ },
+ "regions": {
+  "shadeODE": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "D"
+     ]
+    },
+    {
+     "seg": [
+      "D",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  },
+  "shadeOCF": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "F"
+     ]
+    },
+    {
+     "seg": [
+      "F",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "angles": {
+  "rightH": {
+   "vertex": "H",
+   "points": [
+    "D",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "BC_len": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "16 cm",
+   "side": "auto"
+  },
+  "DH_len": {
+   "points": [
+    "D",
+    "H"
+   ],
+   "label": "9 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "NW"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "S"
+  },
+  "D": {
+   "text": "D",
+   "position": "NE"
+  },
+  "O": {
+   "text": "O",
+   "position": "N"
+  },
+  "E": {
+   "text": "E",
+   "position": "N"
+  },
+  "F": {
+   "text": "F",
+   "position": "S"
+  }
+ }
+}

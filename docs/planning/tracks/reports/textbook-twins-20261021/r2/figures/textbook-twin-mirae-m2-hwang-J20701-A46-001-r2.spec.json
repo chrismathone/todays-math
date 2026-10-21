@@ -1,0 +1,93 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   150,
+   98
+  ],
+  "B": [
+   30,
+   200
+  ],
+  "C": [
+   250,
+   200
+  ],
+  "D": [
+   83.33,
+   30
+  ],
+  "E": [
+   230,
+   30
+  ]
+ },
+ "segments": {
+  "BE": [
+   "B",
+   "E"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "parallel": 1
+  },
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "parallel": 1
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "S"
+  },
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E"
+ },
+ "dimensions": {
+  "d_DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "label": "12",
+   "side": "auto"
+  },
+  "d_BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "18",
+   "side": "auto"
+  },
+  "d_AC": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "21",
+   "side": "auto"
+  },
+  "d_AD": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "x",
+   "side": "auto"
+  }
+ }
+}

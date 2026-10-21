@@ -1,0 +1,206 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   101,
+   95
+  ],
+  "B": [
+   25,
+   160
+  ],
+  "C": [
+   225,
+   160
+  ],
+  "D": [
+   75,
+   160
+  ],
+  "P": [
+   355.71,
+   76.02
+  ],
+  "Q": [
+   270,
+   160
+  ],
+  "R": [
+   480,
+   160
+  ],
+  "S": [
+   284.28,
+   146.0
+  ],
+  "T": [
+   422.0,
+   120.81
+  ],
+  "n1": [
+   20,
+   50
+  ],
+  "n2": [
+   265,
+   50
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BD": [
+   "B",
+   "D"
+  ],
+  "DC": [
+   "D",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AD": [
+   "A",
+   "D"
+  ],
+  "PS": [
+   "P",
+   "S"
+  ],
+  "SQ": [
+   "S",
+   "Q"
+  ],
+  "PT": [
+   "P",
+   "T"
+  ],
+  "TR": [
+   "T",
+   "R"
+  ],
+  "QR": [
+   "Q",
+   "R"
+  ],
+  "ST": [
+   "S",
+   "T"
+  ]
+ },
+ "dimensions": {
+  "d_AB": {
+   "points": [
+    "B",
+    "A"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  },
+  "d_BD": {
+   "points": [
+    "B",
+    "D"
+   ],
+   "label": "5 cm",
+   "side": "auto"
+  },
+  "d_DC": {
+   "points": [
+    "D",
+    "C"
+   ],
+   "label": "15 cm",
+   "side": "auto"
+  },
+  "d_AD": {
+   "points": [
+    "A",
+    "D"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  },
+  "d_CA": {
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "x cm",
+   "side": "auto"
+  },
+  "d_PS": {
+   "points": [
+    "P",
+    "S"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  },
+  "d_SQ": {
+   "points": [
+    "S",
+    "Q"
+   ],
+   "label": "2 cm",
+   "side": "auto"
+  },
+  "d_PT": {
+   "points": [
+    "P",
+    "T"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  },
+  "d_TR": {
+   "points": [
+    "T",
+    "R"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  },
+  "d_ST": {
+   "points": [
+    "S",
+    "T"
+   ],
+   "label": "14 cm",
+   "side": "auto"
+  },
+  "d_QR": {
+   "points": [
+    "Q",
+    "R"
+   ],
+   "label": "x cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "P": "P",
+  "Q": "Q",
+  "R": "R",
+  "S": "S",
+  "T": "T",
+  "n1": {
+   "text": "⑴",
+   "dx": 0,
+   "dy": 0
+  },
+  "n2": {
+   "text": "⑵",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

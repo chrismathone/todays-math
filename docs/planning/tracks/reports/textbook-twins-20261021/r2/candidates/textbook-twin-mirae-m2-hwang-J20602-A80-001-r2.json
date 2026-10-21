@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 310,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r2",
+ "authorId": "claude-opus-5-5:c50ed1b7-d7eb-40eb-a93a-d0d5017f40d4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "아래 그림의 여섯 삼각형을 서로 닮은 것끼리 두 개씩 묶고, 묶은 두 삼각형이 어떤 닮음 조건으로 닮았는지 쓰시오. (짝은 ㄱ~ㅂ의 기호로 나타낸다.)\n[그림]",
+ "choices": [],
+ "answer": "ㄱ과 ㅁ: $\\mathrm{SAS}$ 닮음, ㄴ과 ㅂ: $\\mathrm{SSS}$ 닮음, ㄷ과 ㄹ: $\\mathrm{AA}$ 닮음",
+ "solution": "ㄱ은 두 변 $6\\,\\mathrm{cm}$, $10\\,\\mathrm{cm}$와 그 끼인각 $70^{\\circ}$, ㅁ은 두 변 $9\\,\\mathrm{cm}$, $15\\,\\mathrm{cm}$와 그 끼인각 $70^{\\circ}$이다. $6:9=10:15=2:3$이고 끼인각의 크기가 같으므로 $\\mathrm{SAS}$ 닮음이다.\nㄴ의 세 변은 $4,\\,5,\\,7$이고 ㅂ의 세 변은 $12,\\,15,\\,21$이다. $4:12=5:15=7:21=1:3$이므로 $\\mathrm{SSS}$ 닮음이다.\nㄷ의 나머지 한 각은 $180^{\\circ}-40^{\\circ}-75^{\\circ}=65^{\\circ}$이다. 따라서 ㄷ과 ㄹ은 두 쌍의 대응각의 크기가 각각 $75^{\\circ}$, $65^{\\circ}$로 같으므로 $\\mathrm{AA}$ 닮음이다.\n그러므로 ㄱ과 ㅁ은 $\\mathrm{SAS}$ 닮음, ㄴ과 ㅂ은 $\\mathrm{SSS}$ 닮음, ㄷ과 ㄹ은 $\\mathrm{AA}$ 닮음이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A80-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20602-A80-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ada9546260b1b4d2-0-1",
+  "problemCode": "J20602-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "6930749dd71e2126b2d23177fd1ac7a94ced33f155228b882bb358b94c752570",
+  "dbContentSha256": "aec6c92828fe5e38db1c2bb6073c051d557a37757da9ced697a1de3e28430dae",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-2_삼각형의닮음조건.hwp",
+    "sha256": "31ceffc5d47e2ef900d5ffd9371a3a7d964428524443c7524211fdb0fcd69180",
+    "bytes": 963072
+   }
+  ],
+  "originalFigureSha256": [
+   "44c5a9e196a654c0f794f350c565f91594e2b4d9fd8b48ab5950f646f716e135",
+   "24a4d3934562315de307704ee38d870468a99ccca43295d10779e1043ff0b29f",
+   "1cadc30c3f7ec30da54aae331bb0894831d4aee92bceb55eda00e3d587e4da7b",
+   "4cae669c32a0546e66fc39b247adce04977b25eb9ac57a12b2497810d9dac6ba",
+   "b3c5c75815e5619e1addac5f399a50ead44a40574372e8f96b22b69db9428b03",
+   "7c0a980cf587e1b967e4b4d7efb60fec77d7872aab9586e97f340291ce222c48"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "꼭짓점 이름이 붙은 여섯 삼각형(세 변 · 두 변과 끼인각 · 두 각이 표시됨)을 닮은 것끼리 셋으로 짝 짓고 각 짝의 닮음 조건을 말하게 한다.",
+  "after": "꼭짓점 이름 없이 ㄱ~ㅂ 기호만 붙은 여섯 삼각형을 새 수(2:3 SAS, 1:3 SSS, 나머지 각을 구해야 하는 AA)로 주고, 짝을 기호로 나타내 닮음 조건과 함께 쓰게 한다. 답의 꼴이 기호 짝과 조건으로 하나로 정해진다.",
+  "sharedConcept": "삼각형의 닮음 조건(SSS · SAS · AA)",
+  "sharedProcedure": "표시된 변·각 정보 읽기 → 대응변의 비가 같은지 · 끼인각이 같은지 확인 → 나머지 한 각을 구해 대응각 비교 → 짝과 닮음 조건 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "삼각형의 닮음 조건"
+  },
+  "prerequisites": [
+   "삼각형의 세 내각의 크기의 합",
+   "비와 비례식",
+   "닮음의 뜻과 닮음비"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20602-A80-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 삼각형에서 닮은 짝을 찾고 SSS · SAS · AA 닮음 조건 판별하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "59f2ac80-14f8-4618-80d1-fbdbcb1b184d",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.07,
+   "longestRun": 5,
+   "residualChars": 60,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 299,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r2",
+ "authorId": "claude-opus-5-5:dedb6ff3-1db3-461e-929d-c43daed6aa07",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림의 두 삼각기둥은 서로 닮은 도형이며, 꼭짓점 $A$, $B$, $C$, $D$, $E$, $F$는 차례로 꼭짓점 $G$, $H$, $I$, $J$, $K$, $L$에 대응한다. 다음 중 옳지 않은 것은?\n[그림]",
+ "choices": [
+  "작은 삼각기둥과 큰 삼각기둥의 닮음비는 $5:7$이다.",
+  "$\\overline{BC}:\\overline{HI}=5:7$",
+  "$x+y-z=43$",
+  "면 $\\mathrm{ACFD}$에 대응하는 면은 면 $\\mathrm{GHKJ}$이다.",
+  "$\\triangle DEF\\backsim\\triangle JKL$"
+ ],
+ "answer": "④",
+ "solution": "$\\overline{EF}$의 대응변은 $\\overline{KL}$이므로 닮음비는 $10:14=5:7$이다. 따라서 ①이 옳고, $\\overline{BC}:\\overline{HI}=5:7$이므로 ②도 옳다.\n$\\angle HGI=\\angle BAC=40^{\\circ}$이므로 $x=40$이다.\n$\\overline{CF}:\\overline{IL}=5:7$에서 $20:y=5:7$, $5y=140$, $y=28$이다.\n$\\overline{AC}:\\overline{GI}=5:7$에서 $z:35=5:7$, $7z=175$, $z=25$이다.\n그러므로 $x+y-z=40+28-25=43$이고 ③은 옳다.\n$\\triangle DEF$와 $\\triangle JKL$은 대응하는 밑면이므로 ⑤도 옳다.\n면 $\\mathrm{ACFD}$의 꼭짓점 $A$, $C$, $F$, $D$는 각각 $G$, $I$, $L$, $J$에 대응하므로 대응하는 면은 면 $\\mathrm{GILJ}$이다. 따라서 옳지 않은 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A50-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A50-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-1a5ea8acdfea66b8-0-1",
+  "problemCode": "J20601-A50-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "f996b5a3e0ec466e2a7893df91d06027e46424a82e6de1be679006ca2bf9df4e",
+  "dbContentSha256": "f50420d4aa8fd7f09518f5a2fb8253ba07204b7611dceafbaa77c8688a47603f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "c63caf7d5101690b4dcc1d32ed1beb8790688bff5c3b95a32d8b34fac1227276",
+    "bytes": 2240512
+   }
+  ],
+  "originalFigureSha256": [
+   "69b262114d7334a5794a10fc5a6f0f1d9951347b28b4fdab09f84a82dcfd42f9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "닮은 두 삼각기둥에서 한 쌍의 대응 모서리로 대응을 정한다. 밑면 모서리 한 쌍에서 닮음비를 구하고, 각의 크기와 비례식으로 세 미지수를 구한다. 거짓인 보기는 미지수 계산식 보기이다.",
+  "after": "꼭짓점 대응을 차례대로 다 주고, 미지수 셋을 다른 모서리(윗면 뒤 모서리, 옆모서리)와 큰 기둥의 윗면 각에 둔다. 계산식 보기는 참이고, 거짓인 보기는 대응면을 잘못 짝지은 보기이다. 길이는 모두 해당 모서리에 붙은 치수 활로 나타낸다.",
+  "sharedConcept": "닮은 입체도형에서 대응 모서리의 길이의 비는 일정하고 대응각의 크기는 같다. 대응면은 서로 닮은 도형이다.",
+  "sharedProcedure": "대응 꼭짓점 확인 → 주어진 대응 모서리에서 닮음비 구하기 → 대응각으로 각의 미지수 구하기 → 비례식으로 길이 미지수 구하기 → 대응면 · 닮은 면 판정 → 보기마다 참 거짓 가리기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "닮은 도형"
+  },
+  "prerequisites": [
+   "닮은 도형의 대응점 · 대응변 · 대응각",
+   "입체도형에서 닮음의 성질",
+   "비례식의 성질",
+   "각기둥의 면과 모서리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20601-A50-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "닮은 두 삼각기둥에서 닮음비 · 대응면 · 대응각 · 비례식으로 옳지 않은 보기 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.192,
+   "longestRun": 12,
+   "residualChars": 109,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

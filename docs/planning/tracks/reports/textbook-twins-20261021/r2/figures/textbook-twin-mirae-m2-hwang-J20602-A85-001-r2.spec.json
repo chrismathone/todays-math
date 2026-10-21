@@ -1,0 +1,106 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   30,
+   180
+  ],
+  "H": [
+   174,
+   180
+  ],
+  "B": [
+   238,
+   180
+  ],
+  "C": [
+   174,
+   84
+  ],
+  "lenCH": [
+   150,
+   134
+  ],
+  "lenBH": [
+   206,
+   200
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "CH": [
+   "C",
+   "H"
+  ]
+ },
+ "angles": {
+  "rightC": {
+   "vertex": "C",
+   "points": [
+    "A",
+    "B"
+   ],
+   "right": true
+  },
+  "rightH": {
+   "vertex": "H",
+   "points": [
+    "C",
+    "B"
+   ],
+   "right": true
+  }
+ },
+ "regions": {
+  "shade": {
+   "boundary": [
+    {
+     "seg": [
+      "A",
+      "C"
+     ]
+    },
+    {
+     "seg": [
+      "C",
+      "H"
+     ]
+    },
+    {
+     "seg": [
+      "H",
+      "A"
+     ]
+    }
+   ],
+   "fill": "#eeeeee"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "H": "H",
+  "lenCH": {
+   "text": "6 cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "lenBH": {
+   "text": "4 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}
