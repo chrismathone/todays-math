@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A55-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da7-827d-78b0-95fc-48e01651939d",
+ "startedAt": "2026-10-21T17:50:21+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "8ae1faf53d4d3f44ba4620097a1482fea1264c35303c823e43b5e2f9363ad771"
+ },
+ "promptSha256": "435e4621589698d974b97b37bb6bc9dca8aaa7e5970940db04149710da2f1245",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"두 방정식을 더하면 4x=4이므로 교점은 (1, 4)이다.\\n두 점 (1, 3), (3, 7)을 지나는 직선의 기울기는 (7-3)/(3-1)=2이다.\\n따라서 구하는 직선은 y-4=2(x-1), 즉 2x-y+2=0이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "두 방정식을 더하면 4x=4이므로 교점은 (1, 4)이다.\n두 점 (1, 3), (3, 7)을 지나는 직선의 기울기는 (7-3)/(3-1)=2이다.\n따라서 구하는 직선은 y-4=2(x-1), 즉 2x-y+2=0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d5427b715a48c3d64e5a632f614d62c16c4e1674536518fd1a245c27b1d38dc4"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da8-04a6-7641-a1cb-690a935d224f",
+ "startedAt": "2026-10-21T17:50:54+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "fig-1.png": "27162c545fe30051ad53c0948d7c62bc01a1f286003ea35f5f905c6b88bc223f",
+  "student.json": "0536f3a396c0c2e98b7dbe6440cb34ebfa0aefa789750b967d02d8e115c49013"
+ },
+ "promptSha256": "d28e6ad5c6f98ca6ce5cfe7322dc51f5b4f50f458a3ab3fb02f8b600ff86223d",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12\",\"work\":\"직선 $m$은 $(-2,0)$, $(0,2)$를 지나므로 방정식은 $y=x+2$이다.\\n$-2x+8=x+2$를 풀면 $x=2$, $y=4$이므로 두 직선의 교점은 $(2,4)$이다.\\n직선 $l$에 $y=0$을 대입하면 $x=4$이므로 삼각형의 밑변의 길이는 $4-(-2)=6$, 높이는 $4$이다.\\n따라서 삼각형의 넓이는 $6\\\\times4\\\\div2=12$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12",
+  "work": "직선 $m$은 $(-2,0)$, $(0,2)$를 지나므로 방정식은 $y=x+2$이다.\n$-2x+8=x+2$를 풀면 $x=2$, $y=4$이므로 두 직선의 교점은 $(2,4)$이다.\n직선 $l$에 $y=0$을 대입하면 $x=4$이므로 삼각형의 밑변의 길이는 $4-(-2)=6$, 높이는 $4$이다.\n따라서 삼각형의 넓이는 $6\\times4\\div2=12$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1b82c77d5e6b7bebd58a79eb5dfd3a733f789a9f61b095e11c53244b0c93d0d5"
+}

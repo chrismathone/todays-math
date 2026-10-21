@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A56-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "80fc60ee-0544-45cd-888f-30c3ad241090",
+ "startedAt": "2026-10-21T17:03:05+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "41914b2eac1c749a830e01cbf8e0788ea58a7645bce107186d5a6305989b2da7"
+ },
+ "promptSha256": "e57835802d0a46dcdeacdf62a2034f04c072eb4250c53970fde67ddb88d79876",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "x=1: y=-2. -2=4+k → k=-6.\n\n```json\n{\"answer\": \"$-6$\", \"work\": \"교점의 x좌표가 1이므로 y=3·1-5=-2, 교점 (1, -2). 이 점이 y=4x+k 위에 있으므로 -2=4·1+k, k=-6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$-6$",
+  "work": "교점의 x좌표가 1이므로 y=3·1-5=-2, 교점 (1, -2). 이 점이 y=4x+k 위에 있으므로 -2=4·1+k, k=-6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ff97a4d805770e919b3250824b9aaaf122760f169fb33a9f2b9b033be44b32a1"
+}

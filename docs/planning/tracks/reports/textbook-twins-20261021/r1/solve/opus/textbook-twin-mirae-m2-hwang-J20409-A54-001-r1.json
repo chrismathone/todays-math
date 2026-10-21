@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "16664f6a-c5cf-4c23-bb98-dc51aa2b1ad4",
+ "startedAt": "2026-10-21T17:02:57+0900",
+ "elapsedSec": 7.4,
+ "studentSha256": {
+  "student.json": "41052cb0f69754e488202dd98b91fcc50036158654c934e76da6b4b1b4248f06"
+ },
+ "promptSha256": "042320bcdd174c1545980b042032167867547fda830941adf830034823753fdf",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"-2\", \"work\": \"연립방정식의 해가 없으면 두 일차방정식의 그래프는 서로 평행하고 만나지 않는다. 그러려면 x, y의 계수의 비는 같고 상수항의 비는 달라야 한다: 3/6 = k/(-4) ≠ (-1)/7.\\n3/6 = 1/2이므로 k/(-4) = 1/2이고, 따라서 k = -2이다.\\n확인: 1/2 ≠ -1/7이므로 두 직선은 겹치지 않고 평행하다. 두 직선의 기울기는 3/2로 같고, y절편은 -1/2와 7/4로 다르다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "-2",
+  "work": "연립방정식의 해가 없으면 두 일차방정식의 그래프는 서로 평행하고 만나지 않는다. 그러려면 x, y의 계수의 비는 같고 상수항의 비는 달라야 한다: 3/6 = k/(-4) ≠ (-1)/7.\n3/6 = 1/2이므로 k/(-4) = 1/2이고, 따라서 k = -2이다.\n확인: 1/2 ≠ -1/7이므로 두 직선은 겹치지 않고 평행하다. 두 직선의 기울기는 3/2로 같고, y절편은 -1/2와 7/4로 다르다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "06394081203bb8242d48184312d1795b2b3e1769b461c215f2824d5258c9b4e1"
+}

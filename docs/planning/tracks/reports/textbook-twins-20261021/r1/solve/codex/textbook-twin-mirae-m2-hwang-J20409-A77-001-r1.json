@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da8-397b-7272-b4d8-934a368b68ff",
+ "startedAt": "2026-10-21T17:51:08+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "fig-1.png": "8a80ee1a3e71c8aa321e87850878c0f041a101b1d89282a82e1a6a778ec2db11",
+  "student.json": "761bb62abf2ff86f8a261317ef28007ad87f02e9b6da374c9e6a33586b94e33f"
+ },
+ "promptSha256": "d4bd8c1b5bce64dfd14f758a12c2e184b50a0645c2d0eb4633223b99d85ce07d",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4\",\"work\":\"두 직선과 y축의 교점은 (0, -2), (0, 2)이므로 삼각형의 밑변의 길이는 4이다.\\n두 직선의 교점은 (2, 0)이므로 높이는 2이다.\\n따라서 넓이는 4×2÷2=4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "두 직선과 y축의 교점은 (0, -2), (0, 2)이므로 삼각형의 밑변의 길이는 4이다.\n두 직선의 교점은 (2, 0)이므로 높이는 2이다.\n따라서 넓이는 4×2÷2=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a2e6b44c12abcdcd3db7eb476e4189c2b9105e9cf905144b530daee4c98d2c45"
+}

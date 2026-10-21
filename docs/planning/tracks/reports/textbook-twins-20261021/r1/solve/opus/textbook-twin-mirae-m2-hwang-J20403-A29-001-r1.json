@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A29-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "130405fd-786d-4366-b374-de1920cb8aa1",
+ "startedAt": "2026-10-21T17:02:54+0900",
+ "elapsedSec": 8.3,
+ "studentSha256": {
+  "fig-1.png": "1b49d41d36c71f6c1811911e47b65f10236a56ce786b5559be793ffc361f5db0",
+  "student.json": "492ad5617fdaae436799dc89942daa79631042e94fa9e1b597824b56f2ba79ed"
+ },
+ "promptSha256": "377cd9e76876b654bb11e9aaaa286aae2fc76882e861587466fdbf6a8da20692",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"직선 y=ax+3은 a의 값과 관계없이 점 (0, 3)을 지난다. 점 A(2, -1)을 지날 때: -1=2a+3이므로 a=-2. 점 B(6, 1)을 지날 때: 1=6a+3이므로 a=-1/3. 점 (0, 3)은 직선 AB(y=x/2-2) 위에 있지 않다. 따라서 직선이 선분 AB와 만나려면 기울기 a가 두 끝점에서의 값 사이에 있어야 하므로 -2 ≤ a ≤ -1/3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "직선 y=ax+3은 a의 값과 관계없이 점 (0, 3)을 지난다. 점 A(2, -1)을 지날 때: -1=2a+3이므로 a=-2. 점 B(6, 1)을 지날 때: 1=6a+3이므로 a=-1/3. 점 (0, 3)은 직선 AB(y=x/2-2) 위에 있지 않다. 따라서 직선이 선분 AB와 만나려면 기울기 a가 두 끝점에서의 값 사이에 있어야 하므로 -2 ≤ a ≤ -1/3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "504cd5b4c674576f6f29c0440e4f9bc156999711536307c5f5b632e0f67b7bc2"
+}

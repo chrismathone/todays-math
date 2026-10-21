@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A77-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9569f12e-0984-48df-8bb9-b411e271ea99",
+ "startedAt": "2026-10-21T17:03:12+0900",
+ "elapsedSec": 6.4,
+ "studentSha256": {
+  "fig-1.png": "8a80ee1a3e71c8aa321e87850878c0f041a101b1d89282a82e1a6a778ec2db11",
+  "student.json": "761bb62abf2ff86f8a261317ef28007ad87f02e9b6da374c9e6a33586b94e33f"
+ },
+ "promptSha256": "5dbf0f83e88485a49189ce161fb13ba27c12605dcea27605b4594cd01465cc00",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "Triangle vertices (0,2),(0,-2),(2,0). Area = 4·2/2 = 4.\n\n```json\n{\"answer\": \"4\", \"work\": \"x-y-2=0의 y절편은 -2, -x-y+2=0의 y절편은 2이고, 두 직선의 교점은 (2, 0)이다. 세 꼭짓점이 (0,2), (0,-2), (2,0)인 삼각형이므로 밑변은 4, 높이는 2이다. 넓이는 1/2×4×2=4이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "x-y-2=0의 y절편은 -2, -x-y+2=0의 y절편은 2이고, 두 직선의 교점은 (2, 0)이다. 세 꼭짓점이 (0,2), (0,-2), (2,0)인 삼각형이므로 밑변은 4, 높이는 2이다. 넓이는 1/2×4×2=4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fafcb4ccd6e59a0f5b72b068e006349dc9f43f14380acc50e2fdde8c24e96d4d"
+}

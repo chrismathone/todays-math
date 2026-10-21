@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A25-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ddff55d0-e168-45a6-8a06-693dd700b447",
+ "startedAt": "2026-10-21T17:02:48+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "7206dc632abe6fe74d6d2bae62cfeab533982b6d513c38d45804fc671cef7e72"
+ },
+ "promptSha256": "8a4a72a526e1d0bef67e36fd2bca586c408be4387c2e7771fe2dfdc90873660a",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"a=2, b=4\", \"work\": \"(가) 평행 ⇒ 기울기 같고 y절편 다름: 3a-2=4 ⇒ a=2 (y절편 5≠-1 확인). (나) 일치 ⇒ 기울기·y절편 모두 같음: 2a+1=-b+9 ⇒ 5=-b+9 ⇒ b=4.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "a=2, b=4",
+  "work": "(가) 평행 ⇒ 기울기 같고 y절편 다름: 3a-2=4 ⇒ a=2 (y절편 5≠-1 확인). (나) 일치 ⇒ 기울기·y절편 모두 같음: 2a+1=-b+9 ⇒ 5=-b+9 ⇒ b=4.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3ae23a187895559c55b5d4ab6f44b639315c22a5ffca9a46139d5b6a929242a7"
+}

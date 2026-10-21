@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A64-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da7-d9e2-7d00-a729-3887a443eb1d",
+ "startedAt": "2026-10-21T17:50:43+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "9167131e45bca87bed4d25095178f8a1ca8d405441417868acf986963b9dcf6e"
+ },
+ "promptSha256": "f474dfeb6f0f103533db1fee60cd5de0769c6d05976e4bf791f3f8519822f005",
+ "freezeCommit": "dea9ede3b2cb770e35c882a110678820613d0794",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"9\",\"work\":\"첫째 식에서 y=7-2x이므로 둘째 식에 대입하면 x-3(7-2x)+7=0, 즉 7x=14이다.\\n따라서 교점은 (2, 3)이고, y=-3x+m에 대입하면 3=-6+m이므로 m=9이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "첫째 식에서 y=7-2x이므로 둘째 식에 대입하면 x-3(7-2x)+7=0, 즉 7x=14이다.\n따라서 교점은 (2, 3)이고, y=-3x+m에 대입하면 3=-6+m이므로 m=9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "65621e55b20bec8aed63b4066efc46f6177cf5c2861c6fe8428929f23a120a51"
+}

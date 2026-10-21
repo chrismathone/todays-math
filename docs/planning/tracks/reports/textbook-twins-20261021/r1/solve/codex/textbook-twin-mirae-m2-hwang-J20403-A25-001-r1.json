@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20403-A25-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da6-be55-73e0-9b96-188eda10a7e3",
+ "startedAt": "2026-10-21T17:49:31+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "student.json": "7206dc632abe6fe74d6d2bae62cfeab533982b6d513c38d45804fc671cef7e72"
+ },
+ "promptSha256": "8a4a72a526e1d0bef67e36fd2bca586c408be4387c2e7771fe2dfdc90873660a",
+ "freezeCommit": "7066436bff849c5da0788af53135aac6248b7b84",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$a=2$, $b=4$\",\"work\":\"(가) 평행한 두 직선의 기울기는 같으므로 $3a-2=4$, 따라서 $a=2$이다.\\n(나) 두 직선이 일치하려면 y절편도 같아야 하므로 $2a+1=-b+9$이다. $a=2$를 대입하면 $5=-b+9$, 따라서 $b=4$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$a=2$, $b=4$",
+  "work": "(가) 평행한 두 직선의 기울기는 같으므로 $3a-2=4$, 따라서 $a=2$이다.\n(나) 두 직선이 일치하려면 y절편도 같아야 하므로 $2a+1=-b+9$이다. $a=2$를 대입하면 $5=-b+9$, 따라서 $b=4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f9dfac747002e0eb845a89a4bf06c0d93fd7e96aae376155a1843a7a367ab63b"
+}
