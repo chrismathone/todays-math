@@ -1,0 +1,57 @@
+{
+  "verdict": "bounded FI1/FI2/FI3 repair recheck PASS; no remaining failure in43 controls",
+  "uniqueOwnControls": 43,
+  "passed": 43,
+  "failed": 0,
+  "notCountedAsOwn": "Parent29/96/background results not rerun or added. No sum with R1.",
+  "findingDisposition": {
+    "FI1": "ASCII and Unicode casefold aliases rejected, both typo-only and mixed selection rejected before lint/raster/output. Pure builder still returns exact SVG hash in mocked transport positive control.",
+    "FI2": "ticks1/2 converted preserving marks and caller data; ticks0/3/4/True/-1/string2 and arcs1+ticks2 rejected; matching arcs2+ticks2 retained.",
+    "FI3": "Original3bad cases and15additional malformed/degenerate/tolerance cases reject; each case first registers success then retries failure and asserts registry now missing. All6geometry condition positive controls pass."
+  },
+  "correctionToR1": "R1 description of strict angle arcs as0..2 was incomplete: _mark_count accepts range0..2, but add_angle immediately rejects0; strict angle arcs usable values are1/2. R1 report remains immutable.",
+  "currentCoreSHA256": {
+    "figure_exam.py": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1",
+    "figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "figure_spec_repair.py": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b",
+    "figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e"
+  },
+  "coreBindingSHA256": "c179b56a753bd56616420e38054c566d60c0b0c96293e841d43fe364e6513902",
+  "changedSinceR1": {
+    "figure_svg.py": {
+      "r1": "272f22b70c057a19eb4d665e9ea3a087f1536fd582f8454c9487a7ff4035d9f7",
+      "r2": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5"
+    },
+    "figure_exam.py": {
+      "r1": "963873b7c5ab42856432f0c0d5a3720c3383ac20c2f1f753ee224503ad1cd010",
+      "r2": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1"
+    },
+    "figure_spec_repair.py": {
+      "r1": "d53bcb4d5fde4036faa07bfbb66105b2c1e566aaf338028cf6dec27737bd2ad7",
+      "r2": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b"
+    },
+    "test_vendor_tools.py": {
+      "r1": "855513397061c95b9a1e8aed6eb878e4e987ce3b4f7a06119f9a5549578a2650",
+      "r2": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989"
+    }
+  },
+  "beforeAfterAllBoundInputsUnchanged": true,
+  "allSourceHashesAndR1Hashes": "own-results.json before/after; current dependency closure hashes recorded separately",
+  "solid": {
+    "unchangedNormalizedAgainstActualR1RootCommit": true,
+    "rawSHA256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "notImportedOrExecuted": true,
+    "limits": "No3D validation coverage or figure_solid repair assertion; byte/normalized binding only."
+  },
+  "method": "Current absolute Root module imports using python -B -S. Lightweight stdlib fixtures, no site packages; UTF8 command/read/write probe executed. Parent and external source read-only.",
+  "limits": [
+    "Builder orchestration lint/raster stubbed; not actual pixel/raster/native success",
+    "Registration is still scope/key history, not a direct SVG coordinate/hash mathematical certificate",
+    "No general arbitrary geometry/security proof, semantic text approval, official grade/rights/source identity/native/loadable/public release approval",
+    "No Node/heavy/API/DB/network/install/new worker/worktree; no source edits",
+    "Only audit-owned files committed; existing unrelated dirty curriculum and R1 remain untouched"
+  ],
+  "reproduce": "python -B -S .qa-artifacts/exam-resume-20261008/figure-import-independent-20261021-r2/own-controls.py"
+}
