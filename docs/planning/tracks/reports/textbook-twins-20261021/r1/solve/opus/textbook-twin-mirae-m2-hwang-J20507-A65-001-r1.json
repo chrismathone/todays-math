@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e1f62761-85af-4965-bca8-bdb4133d8d26",
+ "startedAt": "2026-10-21T17:06:16+0900",
+ "elapsedSec": 8.1,
+ "studentSha256": {
+  "fig-1.png": "06b52af6941c06bca03805c7a503482c9346082aba71970d242adc8b837ac9ca",
+  "student.json": "2747a3a39b2ecd88781a866150d1d769cd2a82897b7c652ce02f6faa19a200a2"
+ },
+ "promptSha256": "360ca9f5e24a38abd698a287be405f51f26cf2f561925b2225e842030c3c15ba",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"마름모, 40 cm\", \"work\": \"△POB ≡ △QOD (ASA: OB=OD, ∠POB=∠QOD=90°, AB∥DC이므로 엇각 ∠PBO=∠QDO)이므로 PO=QO이다. 따라서 대각선 PQ와 BD가 서로를 수직이등분하므로 □PBQD는 마름모이다. PB=16−6=10 cm이므로 둘레는 4×10=40 cm이다. (확인: PD=10이고 AD=√(100−36)=8이므로 그림과 맞는다.)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "마름모, 40 cm",
+  "work": "△POB ≡ △QOD (ASA: OB=OD, ∠POB=∠QOD=90°, AB∥DC이므로 엇각 ∠PBO=∠QDO)이므로 PO=QO이다. 따라서 대각선 PQ와 BD가 서로를 수직이등분하므로 □PBQD는 마름모이다. PB=16−6=10 cm이므로 둘레는 4×10=40 cm이다. (확인: PD=10이고 AD=√(100−36)=8이므로 그림과 맞는다.)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9e43e2e209096c5fc0923f15c78d3e78694b5438a4b532515cdf41568fade2c4"
+}

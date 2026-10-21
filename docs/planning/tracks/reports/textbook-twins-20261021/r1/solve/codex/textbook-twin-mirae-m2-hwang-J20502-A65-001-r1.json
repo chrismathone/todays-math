@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A65-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db1-df25-7772-bc81-1ffb2d526764",
+ "startedAt": "2026-10-21T18:01:40+0900",
+ "elapsedSec": 22.0,
+ "studentSha256": {
+  "fig-1.png": "cfa69bf4f4bdfd8ba69e1c2fd3418be56e56dfaf05df4260fe583a60ff09ad1e",
+  "student.json": "d0487dd64839192b273df24c6cd1cf677b99655a14dd960d555457ecbafd2870"
+ },
+ "promptSha256": "d861543057c81e90d9eadd330b4c00e982a4c2fe3e82eb253803b6b64e2c611a",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5 cm\",\"work\":\"D에서 AC에 내린 수선의 발을 H라 하자. 각의 이등분선 위의 점에서 각의 두 변에 이르는 거리는 같으므로 DH=DB이다.\\n삼각형 ACD의 넓이가 50 cm²이므로 20×DH÷2=50이다. 따라서 DH=5 cm이고, BD=5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5 cm",
+  "work": "D에서 AC에 내린 수선의 발을 H라 하자. 각의 이등분선 위의 점에서 각의 두 변에 이르는 거리는 같으므로 DH=DB이다.\n삼각형 ACD의 넓이가 50 cm²이므로 20×DH÷2=50이다. 따라서 DH=5 cm이고, BD=5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d8780856afeebe1431d58debe7e087f224a4ea99f5482e1c59e98d99c642182"
+}
