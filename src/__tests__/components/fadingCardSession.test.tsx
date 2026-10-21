@@ -248,6 +248,16 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
       const { local, state } = await atChipStep(cards, step);
       const send = vi.spyOn(local, "act");
       app(local, { ...state, mode: "cards" });
+      if (cards && !screen.queryByRole("textbox", { name: /빈칸 답 입력/ })) {
+        const first = erasedTargets(concept, step)[0]!;
+        const index = concept.propositions.findIndex((row) =>
+          row.pieces.some(
+            (piece) => piece.kind === "target" && piece.target.id === first.id,
+          ),
+        );
+        for (let page = 0; page < index; page += 1)
+          fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+      }
       const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
       expect(input).toHaveAttribute("placeholder", "빈칸 답을 쓰고 Enter");
       expect(
@@ -527,7 +537,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(send.mock.calls[0]![0]).not.toHaveProperty("judged");
   });
 
-  it("빈칸 없는 카드에서도 입력 초점의 Tab이 다른 카드의 남은 빈칸으로 돌아온다", async () => {
+  it("빈칸 없는 카드는 입력을 요구하지 않고 문장 이동으로 남은 빈칸에 돌아온다", async () => {
     const { local, state: opened } = await learning();
     const state = await local.act({
       action: "read",
@@ -541,23 +551,40 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     );
     for (let index = 0; index < emptyCard; index += 1)
       fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
-    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
-    expect(input).toBeEnabled();
-    input.focus();
-    fireEvent.change(input, { target: { value: "숨은 카드에 넣지 않음" } });
-    fireEvent.submit(input.closest("form")!);
+    expect(
+      screen.queryByRole("textbox", { name: /빈칸 답 입력/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "입력" }),
+    ).not.toBeInTheDocument();
     expect(local.snapshot().concepts[concept.id]!.step).toBe(2);
-    fireEvent.keyDown(input, { key: "Tab" });
     const target = erasedTargets(concept, 2)[0]!;
     const destination = concept.propositions.find((row) =>
       row.pieces.some(
         (piece) => piece.kind === "target" && piece.target.id === target.id,
       ),
     )!;
+    const destinationIndex = concept.propositions.indexOf(destination);
+    const user = userEvent.setup();
+    for (
+      let index = emptyCard;
+      index !== destinationIndex;
+      index += destinationIndex > emptyCard ? 1 : -1
+    ) {
+      const move = screen.getByRole("button", {
+        name: destinationIndex > emptyCard ? "다음 문장" : "이전 문장",
+      });
+      move.focus();
+      await user.keyboard("{Enter}");
+    }
     expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
       "data-fading-sentence",
       destination.id,
     );
+    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
+    expect(input).toBeEnabled();
+    input.focus();
+    fireEvent.keyDown(input, { key: "Tab" });
     expect(input).toHaveFocus();
     expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
       "aria-pressed",
@@ -857,6 +884,8 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
       send.mock.calls.filter(([action]) => action.action === "rate"),
     ).toHaveLength(1);
     expect(local.snapshot().concepts[concept.id]!.reviews).toBe(2);
+    // Three sentences contain four blanks; completion is neither sentences nor accuracy.
+    expect(screen.getByText("4 / 4 완료")).toBeInTheDocument();
   });
 
   it("한 카드의 포기는 저장된 뒤 다음 카드를 보여 주고 끝에 다시만 허용한다", async () => {

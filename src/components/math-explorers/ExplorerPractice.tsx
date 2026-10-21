@@ -66,6 +66,7 @@ export default function ExplorerPractice({
   feedbackMessage,
   onAction,
   onHome,
+  onNext,
   solution,
   journeyTheme,
 }: {
@@ -81,6 +82,7 @@ export default function ExplorerPractice({
   feedbackMessage?: string;
   onAction: (action: ExplorerAction) => void;
   onHome: () => void;
+  onNext?: () => void;
   solution?: ExplorerSolution;
   journeyTheme?: JourneyThemeId;
 }) {
@@ -116,6 +118,7 @@ export default function ExplorerPractice({
         turnPage={turnPage}
         onAction={onAction}
         solution={activity.solution ?? solution}
+        onNext={onNext}
       />
     </ExplorerPracticeFrame>
   );
@@ -206,6 +209,7 @@ function Activity({
   turnPage,
   onAction,
   solution,
+  onNext,
 }: {
   activity: ExplorerActivity;
   gradeLabel: string | null;
@@ -218,6 +222,7 @@ function Activity({
   turnPage: "true" | undefined;
   onAction: (action: ExplorerAction) => void;
   solution?: ExplorerSolution;
+  onNext?: () => void;
 }) {
   const [selected, setSelected] = useState<number[]>([]);
   const [submittedAction, setSubmittedAction] = useState<
@@ -253,6 +258,10 @@ function Activity({
       ? [...activity.choices.slice(1), activity.choices[0]!]
       : activity.choices;
   const understood = useRef<HTMLButtonElement>(null);
+  const nextButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (onNext) nextButton.current?.focus({ preventScroll: true });
+  }, [onNext]);
   useEffect(() => {
     if (showingSolution) understood.current?.focus({ preventScroll: true });
   }, [showingSolution]);
@@ -559,8 +568,19 @@ function Activity({
                 ))}
               </div>
               <div className={s.answerControls}>
-                {activity.kind === "examples" ||
-                activity.kind === "assemble" ? (
+                {onNext ? (
+                  <button
+                    ref={nextButton}
+                    type="button"
+                    className={s.confirm}
+                    aria-keyshortcuts="Enter"
+                    onClick={onNext}
+                    disabled={busy}
+                  >
+                    다음 문제 <EnterKey />
+                  </button>
+                ) : activity.kind === "examples" ||
+                  activity.kind === "assemble" ? (
                   <button
                     type="button"
                     className={s.confirm}

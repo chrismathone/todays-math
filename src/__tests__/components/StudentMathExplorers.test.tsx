@@ -309,7 +309,9 @@ describe("StudentMathExplorers", () => {
             mode === "unknown" ? "soft" : "correct",
             `${student.id}:${requests[1].requestId}`,
           );
-        await act(async () => vi.advanceTimersByTime(1200));
+        await act(async () =>
+          vi.advanceTimersByTime(mode === "workshop" ? 1200 : 2000),
+        );
         expect(sounds.play).toHaveBeenLastCalledWith(
           "complete",
           `complete:${student.id}:${mission().id}`,
@@ -492,13 +494,8 @@ describe("StudentMathExplorers", () => {
       expect(screen.queryByText("잘했어!")).not.toBeInTheDocument();
       if (mode === "duplicate") {
         const acceptedId = requests[0].requestId;
-        await waitFor(
-          () =>
-            expect(
-              screen.getByRole("button", { name: "1 맞아요" }),
-            ).toBeEnabled(),
-          { timeout: 2000 },
-        );
+        fireEvent.click(screen.getByRole("button", { name: /다음 문제/ }));
+        expect(screen.getByRole("button", { name: "1 맞아요" })).toBeEnabled();
         vi.spyOn(crypto, "randomUUID").mockReturnValue(
           acceptedId as `${string}-${string}-${string}-${string}-${string}`,
         );
