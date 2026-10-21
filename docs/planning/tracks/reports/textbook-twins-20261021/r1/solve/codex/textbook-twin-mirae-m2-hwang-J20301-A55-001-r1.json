@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A55-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-88aa-7da2-b245-207c848fb14c",
+ "startedAt": "2026-10-21T16:54:40+0900",
+ "elapsedSec": 11.2,
+ "studentSha256": {
+  "student.json": "fcc245b4c8f944b385b684b61f2ccebe9b803fffc640f83f6853b88bfb7b21eb"
+ },
+ "promptSha256": "1128dadd7aad09110bb578dc051e301944a184035df02a75b2ba8048a63836fc",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"x=3, y=-1을 ③에 대입하면 2x+3y=6-3=3, x-y=3-(-1)=4로 두 방정식을 모두 만족한다. 나머지 보기는 두 번째 방정식을 만족하지 않는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x=3, y=-1을 ③에 대입하면 2x+3y=6-3=3, x-y=3-(-1)=4로 두 방정식을 모두 만족한다. 나머지 보기는 두 번째 방정식을 만족하지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a2af2bbd62a655b9a452d6508b8355eba1c0fc9c1a57a268ca1d7053139775fc"
+}

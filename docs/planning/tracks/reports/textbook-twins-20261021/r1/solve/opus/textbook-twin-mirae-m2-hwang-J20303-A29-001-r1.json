@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A29-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "425e2c5d-69e1-442f-a6c9-7dea33c727be",
+ "startedAt": "2026-10-21T16:30:42+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "c9fe674b12a2af890c4d8f64b81dbb57bc6c69dc437608b5f37632a7347a1b1b"
+ },
+ "promptSha256": "b9fc873b9fd843f8df71d70e7822b1ba654f72fe4b8dce7ae661dbecaa00ad3e",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$x=3,\\\\ y=3$\", \"work\": \"① 0.2x+0.4y=1.8 의 양변에 5를 곱하면 x+2y=9\\n② x+0.9y=5.7 의 양변에 10을 곱하면 10x+9y=57\\n①에서 x=9-2y 를 ②에 대입: 90-20y+9y=57 → -11y=-33 → y=3\\nx=9-6=3\\n검산: 0.6+1.2=1.8, 3+2.7=5.7\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$x=3,\\ y=3$",
+  "work": "① 0.2x+0.4y=1.8 의 양변에 5를 곱하면 x+2y=9\n② x+0.9y=5.7 의 양변에 10을 곱하면 10x+9y=57\n①에서 x=9-2y 를 ②에 대입: 90-20y+9y=57 → -11y=-33 → y=3\nx=9-6=3\n검산: 0.6+1.2=1.8, 3+2.7=5.7",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bdb45bf1781fe0473c89379fd281f3d6f3e4335ae02e601d2065e61093bb1c72"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "99c74ad0-469f-40bf-9971-f782b284a34d",
+ "startedAt": "2026-10-21T16:29:45+0900",
+ "elapsedSec": 3.1,
+ "studentSha256": {
+  "student.json": "858c0d050aeae3105efb4b529346750001b9800feb5ffd87e0b8a08ac1fba9d0"
+ },
+ "promptSha256": "63c044e287bc9169cfc3286c7833df9251347fd965575fc2a4c9ed1dacfac95d",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "-4+4y=0 → y=1 → ④\n\n```json\n{\"answer\": \"④\", \"work\": \"x=2를 대입: -2(2)+4y=0 → -4+4y=0 → 4y=4 → y=1\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=2를 대입: -2(2)+4y=0 → -4+4y=0 → 4y=4 → y=1",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f570665d8449d5f4ae8fb93757b6b6bb6c3602ca909620f435f7639b46c9b35b"
+}
