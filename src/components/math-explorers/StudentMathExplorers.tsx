@@ -44,7 +44,10 @@ import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import { JourneyArtProvider } from "./JourneyArt";
 import { ExplorerGuideProvider } from "./ExplorerGuide";
-import { LearningMotionScope } from "@/components/math-srs/LearningMotion";
+import {
+  LearningMotionScope,
+  useLearningMotion,
+} from "@/components/math-srs/LearningMotion";
 import {
   LearningSoundsProvider,
   useLearningSounds,
@@ -193,6 +196,7 @@ function ExplorerGame({
 }) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
+  const { reduceMotion } = useLearningMotion();
   const soundEpoch = useRef(0);
   const tileSound = useRef({
     studentId: null as string | null,
@@ -284,11 +288,26 @@ function ExplorerGame({
   const pending = useRef(false);
   const alive = useRef(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // The reply is already saved. Hold only its screen transition, never a second answer.
+  const answerAdvance = useRef<(() => void) | null>(null);
+  const [answerTransition, setAnswerTransition] = useState<string | null>(null);
+  const advanceAnswer = useCallback(() => {
+    const advance = answerAdvance.current;
+    answerAdvance.current = null;
+    setAnswerTransition(null);
+    advance?.();
+  }, []);
+  useEffect(() => {
+    if (!answerTransition || correct !== true || reduceMotion) return;
+    const timeout = setTimeout(advanceAnswer, 2000);
+    return () => clearTimeout(timeout);
+  }, [answerTransition, correct, reduceMotion, advanceAnswer]);
 
   useEffect(() => {
     alive.current = true;
     return () => {
       alive.current = false;
+      answerAdvance.current = null;
       inFlight.current?.abort();
       if (timer.current) clearTimeout(timer.current);
       if (tileTimer.current) clearTimeout(tileTimer.current);
@@ -580,7 +599,7 @@ function ExplorerGame({
                 ? "맞았어요"
                 : undefined,
         );
-        timer.current = setTimeout(() => {
+        const advance = () => {
           if (!alive.current) return;
           setState(data);
           setCorrect(null);
@@ -601,7 +620,15 @@ function ExplorerGame({
             setReload((value) => value + 1);
             window.scrollTo({ top: 0, behavior: "instant" });
           }
-        }, EFFECT_MS);
+        };
+        if (action.type === "answer") {
+          answerAdvance.current = advance;
+          setAnswerTransition(input.requestId);
+          // Answers stay locked by `correct`; the saved-result next/home buttons are usable.
+          setBusy(false);
+        } else {
+          timer.current = setTimeout(advance, EFFECT_MS);
+        }
       } else {
         setState(data);
         if (action.type === "understood") {
@@ -967,6 +994,12 @@ function ExplorerGame({
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function exitPractice() {
+    if (answerAdvance.current) {
+      answerAdvance.current = null;
+      setAnswerTransition(null);
+      setCorrect(null);
+      pending.current = false;
+    }
     if (pending.current) return;
     setPracticing(false);
     refresh();
@@ -1224,6 +1257,7 @@ function ExplorerGame({
                   correct={correct}
                   eventKey={effectKey}
                   feedbackMessage={feedbackMessage}
+                  onNext={answerTransition ? advanceAnswer : undefined}
                   onAction={(action) => void send(action)}
                   onHome={exitPractice}
                 />

@@ -737,16 +737,14 @@ describe("one-screen student answers", () => {
     it("does not advance automatically with reduced motion", async () => {
       const run = session(1);
       Object.assign(run.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+      const media = window.matchMedia;
+      window.matchMedia = vi.fn().mockReturnValue({
+        matches: true,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      });
       const { rerender, props } = view(run);
       await screen.findByText("문제 2: 1 + 1");
-      const media = window.matchMedia;
-      window.matchMedia = vi
-        .fn()
-        .mockReturnValue({
-          matches: true,
-          addEventListener: vi.fn(),
-          removeEventListener: vi.fn(),
-        });
       vi.useFakeTimers();
       try {
         rerender(
