@@ -1,0 +1,100 @@
+{
+  "verdict": "BOUNDED CURRENT API MATH/GIVENS/VECTOR PASS; grade UNKNOWN/no release approval",
+  "actualAPICalls": 80,
+  "normalFreshSeedCalls": 60,
+  "forcedRNGActualAPICalls": 20,
+  "distinctPrintedTasks": 20,
+  "perTypeCoverage": [
+    {
+      "key": "2-2|피타고라스 정리|09",
+      "actualAPICalls": 40,
+      "seedCalls": 30,
+      "forcedCalls": 10,
+      "distinctPrintedContent": 10,
+      "distinctContentAnswerFigure": 10
+    },
+    {
+      "key": "2-2|피타고라스 정리|10",
+      "actualAPICalls": 40,
+      "seedCalls": 30,
+      "forcedCalls": 10,
+      "distinctPrintedContent": 10,
+      "distinctContentAnswerFigure": 10
+    }
+  ],
+  "nodeExecution": "FINISHED; one Node process max-old192/semi8, observed heap limit216MiB; parent no simultaneous heavy run authorized",
+  "memoryProbe": {
+    "maxOldMiB": 192,
+    "minimumBytes": 1610612736,
+    "singleProbe": true,
+    "availablePhysicalMemoryBytes": 4019671040,
+    "semiMiB": 8
+  },
+  "heapLimitBytes": 226492416,
+  "DBImports": 0,
+  "networkCalls": 0,
+  "sourceSHA256": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Pytha.ts": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\types.ts": "bd95a101d93599998fcffc441c738f7c32599774030cb99ba8e3874993091a3c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\elementary\\rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\drawScale.ts": "bd734b6ca221b95808b5dbf1821976d53473de1a214b24b2a7b83c790927626d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "0c19a3b4ee752f849885ff13fdc72ddb8f032dc39bba4c06f009e2f51d96d8ae",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\node_modules\\tsx\\dist\\loader.mjs": "0b1c5b86192772fe9257710e739959cee5947c11ae1f93b61abfaa9b80c6def1"
+  },
+  "sourceBeforeAfterUnchanged": true,
+  "actualImportedRootModuleCount": 104,
+  "actualModuleHashesBeforeAfter": "own-actual-outputs.json moduleHashesAtFirstImport and own-calculations.json importedModuleHashesAfter, all104match",
+  "entryAPI": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/generate.ts",
+    "signature": "generateMiddleProblem(key:string, seed:number, variant=0): MidProblem",
+    "keys": [
+      "2-2|피타고라스 정리|09",
+      "2-2|피타고라스 정리|10"
+    ],
+    "registeredTypeLookup": "Actual registeredTypes() filtered to exact2keys; no catalogue generation or other type output",
+    "forcedMechanism": "In-memory exact selected entry.handler wrapper supplies one deterministic RNG bucket, original handler and actual public API pipeline used; finally restores handler. No source edits."
+  },
+  "adapter10Version": "20261021-given-only-altitude-dimensions-r1",
+  "independentMethod": [
+    "Parse exactlyCA/CB for09 andCB/AB for10 from printed content, including C90 and cm units. Expected value computed before reading produced answer. Facts/params not collected or used.",
+    "09derive positiveAB by integer square bound/isqrt ofCA²+CB², then area equality CD=CA*CB/AB.",
+    "10derive positiveCA²=AB²-CB² then BD=CB²/AB by AA; cross-check BD=AB-CA²/AB. All roots square exactly on this10triple finite domain.",
+    "Compare produced fraction/integer numerator and denominator by exact integer cross multiplication.",
+    "Existence: positivelegs, hypotenuse, strict triangle inequality; 0<AD<AB and CD>0. Target unique despite congruence/reflection choices.",
+    "Check exact2dimension labels/endpoints equal only printed givens;09CA/CB,10CB/AB with no hiddenCA. CheckAB/BC/CA/CD topology, all4labels, both right-angle markers and positive uniform170/ABscale.",
+    "Use rational decimal readings of actual vector coords with explicit1e-10relative/absolute numerical tolerance for JS coordinate rounding. Not pixels; answer arithmetic fully exact."
+  ],
+  "syntheticCheckerControls": {
+    "count": 4,
+    "passed": 4,
+    "examples": [
+      "wronganswer",
+      "wronggivenlabel",
+      "hiddenCAon10",
+      "foot-offaxis"
+    ],
+    "notActualEngineFaults": true
+  },
+  "findings": [],
+  "observations": [
+    "09student solution still contains sqrt notation; official curriculum placement UNKNOWN and not changed here. No assertion of officialM2 exclusion or approval.",
+    "09fraction answer may repeat unreduced/reduced identical textual fraction in solution when already reduced; not a numerical/given defect found in this scope.",
+    "Initial signature path guesses middle/index.ts and middle.ts absent; found actual middle/generate.ts before execution. No stale/child API used."
+  ],
+  "limitations": [
+    "80outputs are20distinct content/answer/figure tasks,10pertype; repeated seeds not counted as unique authored/manual/blind questions.",
+    "Forced20executions use actual public API with in-memory original-handler RNG injection; distinguish from60ordinary seeded executions; handler restored in finally.",
+    "No native SVG/PNG renderer, pixel/layout/readability approval, DB/bank/issued/student changes.",
+    "No whole curriculum/rights/sourceidentity/native/loadability/release approval;09sqrt gradeUNKNOWN persists.",
+    "Parent122tests/20native results not counted or claimed as own.",
+    "No Node heavy test/catalog/browser, network/API/install/CIM/newworker/worktree; Node now ended.",
+    "Root sources/otherdirty/Pytha previous evidence preserved."
+  ],
+  "outputSHA256": "d33a028ca3ca0be7a3f6d3e18bfc6b4429a508535741c464fbf76cc64efded01",
+  "calculationsSHA256": "8e874b0438b05463264a05684667ddf54cdf02d2219bea7aab6fc6a1cd6dab99",
+  "reproduction": [
+    "own-run-once.ps1 (one fresh memory probe, no poll; only rerun with parent not heavy)",
+    "python -B own-check.py"
+  ]
+}
