@@ -291,16 +291,15 @@ describe("기기 설정 «효과음»", () => {
     expect(marker()).toBe("ready");
   });
 
-  it("미션이 진행 중이어서 학년 · 단원이 잠겨도, 저장 · 요청을 기다리는 중이어도 눌린다", async () => {
+  it("미션 진행 · 저장 · 요청 중에도 기기 설정은 눌리고 학년 · 목표는 바꾸지 않는다", async () => {
     const { onAction } = home(view({ mission: activeMission, next: null }), {
       busy: true,
       claims: ["chest-waiting"],
     });
     openSettings();
-    for (const grade of within(
-      within(sheet()).getByLabelText("학년 선택"),
-    ).getAllByRole("button"))
-      expect(grade).toBeDisabled();
+    expect(
+      within(sheet()).queryByLabelText("학년 선택"),
+    ).not.toBeInTheDocument();
 
     expect(soundSwitch()).toBeEnabled();
     fireEvent.click(soundSwitch());

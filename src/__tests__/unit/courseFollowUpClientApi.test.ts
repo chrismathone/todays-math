@@ -54,13 +54,11 @@ describe("course follow-up client requests", () => {
     const fetcher = stubFetch();
     await api.getCourseState();
     await api.startCourse();
-    await api.saveOwnCoursePlan(plan);
     await api.answerCourse({ ...ids, submittedAnswer: "2" });
     await api.hintCourse(ids);
     expect(fetcher.mock.calls.map(([url]) => url)).toEqual([
       "/api/learn/math-srs/course",
       "/api/learn/math-srs/course",
-      "/api/learn/math-srs/course/plan",
       "/api/learn/math-srs/course/attempts",
       "/api/learn/math-srs/course/hint",
     ]);

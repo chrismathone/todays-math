@@ -8,7 +8,6 @@ import type { CourseStudentState } from "@/contracts/mathSrsCourse.contract";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
-import CoursePlanForm from "./CoursePlanForm";
 import CourseProgressBoard from "./CourseProgressBoard";
 import {
   StudentReviewPage,
@@ -21,7 +20,6 @@ import {
   followUpCourse,
   getCourseState,
   hintCourse,
-  saveOwnCoursePlan,
   startCourse,
 } from "./courseApi";
 import s from "./student-course.module.css";
@@ -57,13 +55,10 @@ export default function StudentCourseSrs({
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<Failure | null>(null);
-  const [settings, setSettings] = useState(false);
   const [practicing, setPracticing] = useState(false);
   const [feedbackId, setFeedbackId] = useState<string | null>(null);
   const pending = useRef(false);
   const alive = useRef(true);
-  const settingsHeading = useRef<HTMLHeadingElement>(null);
-  const settingsOpener = useRef<HTMLElement | null>(null);
   const [retryAction, setRetryAction] = useState<Action | null>(null);
   const expeditionRef = useRef(expedition);
   useEffect(() => {
@@ -266,25 +261,10 @@ export default function StudentCourseSrs({
   const done = (summary?.status === "done" || goalReached) && !retryPending;
   const paused = summary?.status === "paused" || state?.plan?.enabled === false;
   const needsSetup = !!state && (!state.plan || summary?.status === "setup");
-  useEffect(() => {
-    if (settings && !needsSetup) {
-      settingsHeading.current?.focus({ preventScroll: true });
-      if (window.matchMedia?.("(max-width: 430px)").matches)
-        settingsHeading.current?.scrollIntoView({ block: "start" });
-    }
-    if (!settings && settingsOpener.current) {
-      settingsOpener.current.focus({ preventScroll: true });
-      settingsOpener.current = null;
-    }
-  }, [settings, needsSetup]);
-  function openSettings(opener: HTMLElement) {
-    settingsOpener.current = opener;
-    setSettings(true);
-  }
   const title = unavailable
     ? "지금은 새 문제를 열 수 없어요."
     : needsSetup
-      ? "시작 진도를 한 번 골라 주세요."
+      ? "지금은 예정된 학습이 없어요."
       : paused
         ? "지금은 학습을 쉬고 있어요."
         : goalReached
@@ -471,11 +451,6 @@ export default function StudentCourseSrs({
                     },
                   ]
                 : []),
-              {
-                label: paused ? "학습 설정 열기" : "학습 설정",
-                disabled: blocked,
-                onClick: (event) => openSettings(event.currentTarget),
-              },
             ]}
             recommendation={{
               id: "course-recommendation",
@@ -499,23 +474,15 @@ export default function StudentCourseSrs({
                 section && !needsSetup && !paused ? section.title : undefined,
               reason: unavailable
                 ? prerequisiteContext.reason
-                : needsSetup
-                  ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
-                  : paused
-                    ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
-                    : prerequisiteContext?.reason && !done
-                      ? prerequisiteContext.reason
-                      : done
-                        ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
-                        : (recommendation?.reason ??
-                          "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
+                : prerequisiteContext?.reason && !done
+                  ? prerequisiteContext.reason
+                  : done
+                    ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
+                    : (recommendation?.reason ??
+                      "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
               action:
                 needsSetup || paused
-                  ? {
-                      label: needsSetup ? "시작 진도 설정" : "학습 설정 열기",
-                      disabled: blocked,
-                      onClick: (event) => openSettings(event.currentTarget),
-                    }
+                  ? undefined
                   : unavailable
                     ? {
                         label: "오늘의 추천 학습 시작",
@@ -565,52 +532,6 @@ export default function StudentCourseSrs({
               ],
             }}
           />
-          {settings || needsSetup ? (
-            <section
-              id="course-settings"
-              className={s.settings}
-              aria-labelledby="course-settings-title"
-              onKeyDown={(event) => {
-                if (event.key === "Escape" && !needsSetup && !busy) {
-                  event.stopPropagation();
-                  setSettings(false);
-                }
-              }}
-            >
-              <h2
-                id="course-settings-title"
-                ref={settingsHeading}
-                tabIndex={-1}
-              >
-                {needsSetup ? "나의 시작 진도" : "학습 설정"}
-              </h2>
-              <CoursePlanForm
-                studentView
-                plan={state.plan}
-                revision={state.revision}
-                busy={blocked}
-                submitLabel={
-                  needsSetup ? "저장하고 학습 준비" : "변경 내용 저장"
-                }
-                onSave={(input) => {
-                  void mutate({
-                    run: () => saveOwnCoursePlan(input),
-                    after: () => setSettings(false),
-                  });
-                }}
-              />
-              {!needsSetup ? (
-                <button
-                  className={s.settingsButton}
-                  type="button"
-                  onClick={() => setSettings(false)}
-                  disabled={busy}
-                >
-                  설정 닫기
-                </button>
-              ) : null}
-            </section>
-          ) : null}
           <p className={s.note}>
             풀어 본 문제와 풀이를 참고한 기록에 따라 다음 복습을 정해요. 한 번의
             학습을 마치면 다음 추천 학습을 확인할 수 있어요.

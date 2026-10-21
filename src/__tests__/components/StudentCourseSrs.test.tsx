@@ -51,7 +51,6 @@ vi.mock("next/navigation", () => ({
 }));
 vi.mock("@/components/math-srs/courseApi", () => ({
   getCourseState: vi.fn(),
-  saveOwnCoursePlan: vi.fn(),
   startCourse: vi.fn(),
   answerCourse: vi.fn(),
   followUpCourse: vi.fn(),
@@ -790,18 +789,15 @@ describe("one-screen student answers", () => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("shared course plan", () => {
-  it("moves focus into settings and returns it to the opener on Escape", async () => {
+  it("M-07 reads the saved teacher plan without offering student settings", async () => {
     render(<StudentCourseSrs />);
-    const opener = (
-      await screen.findAllByRole("button", { name: "학습 설정" })
-    )[0];
-    await userEvent.click(opener);
-    expect(screen.getByRole("heading", { name: "학습 설정" })).toHaveFocus();
-    await userEvent.keyboard("{Escape}");
+    await screen.findByText("실제 학생 · 초등 A반");
     expect(
-      screen.queryByRole("heading", { name: "학습 설정" }),
+      screen.queryByRole("button", { name: /학습 설정|시작 진도 설정/ }),
     ).not.toBeInTheDocument();
-    expect(opener).toHaveFocus();
+    expect(screen.queryByLabelText("학년")).not.toBeInTheDocument();
+    expect(screen.getByText("이제 다음 소단원을 배울 차례예요.")).toBeVisible();
+    expect(api.startCourse).not.toHaveBeenCalled();
   });
 
   it("keeps the exact saved section when only the goal is changed", async () => {
@@ -903,12 +899,10 @@ describe("student course home", () => {
         screen.queryByRole("button", { name: "오늘의 추천 학습 시작" }),
       ).not.toBeInTheDocument();
       expect(api.startCourse).not.toHaveBeenCalled();
-      if (status === "setup")
-        expect(screen.getByLabelText("소단원")).toHaveValue("");
-      if (status === "paused")
-        expect(
-          screen.getByRole("button", { name: "학습 설정 열기" }),
-        ).toBeEnabled();
+      expect(screen.queryByLabelText("소단원")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /학습 설정|시작 진도 설정/ }),
+      ).not.toBeInTheDocument();
     },
   );
 
@@ -965,43 +959,18 @@ describe("student course home", () => {
     ).toHaveAttribute("max", "10");
   });
 
-  it("persists a setup plan before allowing automatic start", async () => {
+  it("M-07 leaves a missing plan to the teacher without a student save form", async () => {
     const saved = state();
     saved.plan = null;
     saved.summary.status = "setup";
     saved.summary.recommendation = null;
     vi.mocked(api.getCourseState).mockResolvedValue({ ok: true, data: saved });
-    vi.mocked(api.saveOwnCoursePlan).mockResolvedValue({
-      ok: true,
-      data: state(),
-    });
     render(<StudentCourseSrs />);
-    await screen.findByLabelText("학년");
-    await userEvent.selectOptions(
-      screen.getByLabelText("학년"),
-      String(section.grade),
-    );
-    await userEvent.selectOptions(
-      screen.getByLabelText("학기"),
-      String(section.semester),
-    );
-    await userEvent.selectOptions(
-      screen.getByLabelText("단원"),
-      section.chapterId,
-    );
-    await userEvent.selectOptions(screen.getByLabelText("소단원"), section.id);
-    await userEvent.click(
-      screen.getByRole("button", { name: "저장하고 학습 준비" }),
-    );
-    expect(api.saveOwnCoursePlan).toHaveBeenCalledWith({
-      startSectionId: section.id,
-      dailyQuestionCount: 10,
-      enabled: true,
-      expectedRevision: 7,
-    });
+    await screen.findByText("실제 학생 · 초등 A반");
+    expect(screen.queryByLabelText("학년")).not.toBeInTheDocument();
     expect(
-      await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
-    ).toBeEnabled();
+      screen.queryByRole("button", { name: /저장|시작 진도 설정/ }),
+    ).not.toBeInTheDocument();
     expect(api.startCourse).not.toHaveBeenCalled();
   });
 });

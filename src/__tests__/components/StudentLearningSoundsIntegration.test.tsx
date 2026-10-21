@@ -36,7 +36,6 @@ vi.mock("@/components/math-srs/courseApi", () => ({
   startCourse: vi.fn(),
   answerCourse: vi.fn(),
   hintCourse: vi.fn(),
-  saveOwnCoursePlan: vi.fn(),
 }));
 vi.mock("@/components/math-srs/StudentCoursePractice", () => ({
   default: ({

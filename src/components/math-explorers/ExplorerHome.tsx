@@ -469,12 +469,6 @@ export default function ExplorerHome({
   const goal = activeReview
     ? state.session!.total
     : (plan?.goal ?? journey.todayGoal);
-  const settingsLocked =
-    busy ||
-    active ||
-    pendingRetry ||
-    activeReview ||
-    (!!state.session && !state.session.done);
   const upgradeCost = baseUpgradeCost(state.profile.level);
   const closeSheet = () => {
     if (sheet === "base") onCloseBase?.();
@@ -777,46 +771,7 @@ export default function ExplorerHome({
           title={studyBook ? "이 기기 설정" : "학습 설정"}
           onClose={closeSheet}
         >
-          {/* 기기 설정은 맨 위 — 아래 학년 · 단원이 잠겨 있어도(미션 진행 중 · 저장 중) 눌린다. */}
           <DeviceSettings />
-          {!studyBook ? (
-            <>
-              <p className={`${s.quietNote} ${a.sheetNote}`}>
-                {settingsLocked
-                  ? "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요."
-                  : "지금 배우는 학년과 목표 단원을 정해 주세요."}
-              </p>
-              <h3 className={s.subheading}>학년</h3>
-              <div className={s.grades} aria-label="학년 선택">
-                {[3, 4, 5, 6, 7, 8, 9].map((grade) => (
-                  <button
-                    type="button"
-                    key={grade}
-                    aria-pressed={state.profile.courseGrade === grade}
-                    disabled={settingsLocked || saving}
-                    onClick={() => onAction({ type: "course", grade })}
-                  >
-                    {grade < 7 ? `초${grade}` : `중${grade - 6}`}
-                  </button>
-                ))}
-              </div>
-              <h3 className={s.subheading}>목표 단원</h3>
-              <div className={s.settingUnits}>
-                {units.map((unit) => (
-                  <button
-                    type="button"
-                    key={unit.id}
-                    aria-pressed={state.profile.goalUnitId === unit.id}
-                    disabled={settingsLocked || saving}
-                    onClick={() => onAction({ type: "goal", unitId: unit.id })}
-                  >
-                    <span>{unit.title}</span>
-                    <small>{unit.subtitle}</small>
-                  </button>
-                ))}
-              </div>
-            </>
-          ) : null}
         </ExplorerSheet>
       ) : null}
 

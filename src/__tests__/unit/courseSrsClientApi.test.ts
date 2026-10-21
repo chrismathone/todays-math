@@ -3,7 +3,6 @@ import {
   getCourseDashboard,
   getCourseState,
   getCourseStudentDetail,
-  saveOwnCoursePlan,
   saveCourseStudentPlan,
 } from "@/components/math-srs/courseApi";
 afterEach(() => {
@@ -75,7 +74,7 @@ describe("account-backed SRS client boundary", () => {
       expect(await getCourseState()).toMatchObject({ ok: false, status });
     },
   );
-  it("posts revision-guarded settings and preserves conflict guidance", async () => {
+  it("posts revision-guarded teacher settings and preserves conflict guidance", async () => {
     const input = {
       expectedRevision: 3,
       startSectionId: "3-1-1-1",
@@ -91,13 +90,13 @@ describe("account-backed SRS client boundary", () => {
         ),
       );
     vi.stubGlobal("fetch", fetcher);
-    expect(await saveOwnCoursePlan(input)).toEqual({
+    expect(await saveCourseStudentPlan("student", input)).toEqual({
       ok: false,
       status: 409,
       message: "최신 진도를 다시 불러와 주세요.",
     });
     expect(fetcher).toHaveBeenCalledWith(
-      "/api/learn/math-srs/course/plan",
+      "/api/students/student/math-srs/course",
       expect.objectContaining({ method: "POST", body: JSON.stringify(input) }),
     );
   });
