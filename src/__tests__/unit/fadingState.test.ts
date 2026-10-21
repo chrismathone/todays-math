@@ -622,6 +622,54 @@ describe("저장 칸 — 4단계 카드의 «아직 모르겠어요»는 그 자
 });
 
 describe("저장 칸 — 평가로 닫는다", () => {
+  it("마지막 학습 날짜보다 이전 평가는 거절하고 열린 풀이와 모든 기록을 보존한다", () => {
+    const prior = valid(
+      rateFadingSession(
+        learned(emptyFading(), A, "2026-10-25", S.a1),
+        A,
+        S.a1,
+        "good",
+        "2026-10-25",
+        R[0],
+      ),
+    );
+    const pending = learned(prior, B, "2026-10-21", S.b1);
+    const before = structuredClone(pending);
+    expect(() =>
+      rateFadingSession(pending, B, S.b1, "good", "2026-10-21", R[1]),
+    ).toThrow(
+      new FadingConflict(
+        "마지막 학습 날짜보다 이전 날짜에는 평가를 저장할 수 없습니다. 선생님께 확인해 주세요.",
+      ),
+    );
+    expect(pending).toEqual(before);
+    expect(pending.session?.phase).toBe("rating");
+    // 성공한 영수증은 날짜 검사와 현재 다른 풀이보다 먼저 반환한다.
+    expect(
+      rateFadingSession(pending, A, S.a1, "good", "2026-10-21", R[0]),
+    ).toBe(pending);
+  });
+
+  it("날짜가 역행해도 기존 세션과 평가 검증을 먼저 한다", () => {
+    const prior = valid(
+      rateFadingSession(
+        learned(emptyFading(), A, "2026-10-25", S.a1),
+        A,
+        S.a1,
+        "good",
+        "2026-10-25",
+        R[0],
+      ),
+    );
+    const pending = open(prior, B, "2026-10-21", S.b1);
+    expect(() =>
+      rateFadingSession(pending, B, S.b1, "good", "2026-10-21", R[1]),
+    ).toThrow("4단계를 마친 뒤에 평가할 수 있습니다.");
+    expect(() =>
+      rateFadingSession(pending, B, S.a1, "good", "2026-10-21", R[1]),
+    ).toThrow(FadingConflict);
+  });
+
   it("4단계를 마치기 전에는 평가할 수 없다", () => {
     const state = completeFadingReading(
       open(emptyFading(), A, DAY1, S.a1),
