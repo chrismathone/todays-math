@@ -254,11 +254,34 @@ function figCondSides(
 }
 
 /** 조건⑵(08) — 미확정 사각형, ∠A·∠C 에 이중 호(같은 각임을 표시, 숫자 없음). */
-function figCondAngles(w: number, h: number, slant: number): Fig {
-  const pts = quadPts(w, h, slant);
+function figCondAngles(w: number, h: number, slant: number, angleBDeg?: number): Fig {
+  // Engine-only coordinates; no evaluated angle/answer is added to student labels.
+  if (angleBDeg !== undefined && (!Number.isFinite(angleBDeg) || angleBDeg <= 0 || angleBDeg >= 180)) {
+    throw new Error("조건 각은 0도와 180도 사이여야 합니다");
+  }
+  const theta = angleBDeg === undefined ? undefined : angleBDeg * Math.PI / 180;
+  const leg = Math.hypot(h, slant);
+  const pts = theta === undefined
+    ? quadPts(w, h, slant)
+    : quadPts(w, leg * Math.sin(theta), leg * Math.cos(theta));
+  const points = fitPts(pts);
+  let angleRadius: number | undefined;
+  if (theta !== undefined) {
+    // Radius is in the fitted diagram's units. Keep the given A/C arcs inside
+    // both nonincident sides even when the supplementary B/D angle is small.
+    const A = points.A!;
+    const B = points.B!;
+    const C = points.C!;
+    const abX = A[0] - B[0], abY = A[1] - B[1];
+    const bcX = C[0] - B[0], bcY = C[1] - B[1];
+    const twiceArea = Math.abs(abX * bcY - abY * bcX);
+    const clearance = Math.min(twiceArea / Math.hypot(abX, abY), twiceArea / Math.hypot(bcX, bcY));
+    angleRadius = Math.min(18, 0.65 * clearance);
+    if (!Number.isFinite(angleRadius) || angleRadius <= 0) throw new Error("각 표시 여유가 없습니다");
+  }
   return {
     version: 2,
-    points: fitPts(pts),
+    points,
     segments: {
       AB: ["A", "B"],
       DC: ["D", "C"],
@@ -266,8 +289,8 @@ function figCondAngles(w: number, h: number, slant: number): Fig {
       BC: ["B", "C"],
     },
     angles: {
-      angA: { vertex: "A", points: ["B", "D"], arcs: 1 },
-      angC: { vertex: "C", points: ["B", "D"], arcs: 1 },
+      angA: { vertex: "A", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },
+      angC: { vertex: "C", points: ["B", "D"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },
     },
     labels: { A: "A", B: "B", C: "C", D: "D" },
   };
@@ -745,7 +768,8 @@ export const M2_QUAD: TypeEntry[] = [
       answer: `$${answer}$`,
       solution: `두 쌍의 대각의 크기가 각각 같으므로 이 사각형은 평행사변형이다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
       facts: { p, q, s, ans: answer },
-      figureSpec: figCondAngles(150, 92, 40),
+      // Solve the printed B=D relation for its angle, without changing the RNG or task.
+      figureSpec: figCondAngles(150, 92, 40, (p * s - q) / (p - 1)),
     };
   }),
   def(

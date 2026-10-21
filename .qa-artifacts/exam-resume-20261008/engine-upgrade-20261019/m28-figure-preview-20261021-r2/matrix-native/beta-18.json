@@ -1,0 +1,143 @@
+{
+  "beta": 18,
+  "ok": true,
+  "error": null,
+  "task": {
+    "grade": "중2",
+    "unitSection": "평행사변형이 되는 조건",
+    "rpmBook": "2-2",
+    "rpmMinor": "평행사변형",
+    "rpmType": "15A",
+    "rpmTitle": "두 쌍의 대각이 같은 조건",
+    "difficulty": "기본",
+    "content": "사각형 $ABCD$에서 $\\angle A=\\angle C$, $\\angle B=\\angle D$이다. $\\angle B=(2x+10)^\\circ$, $\\angle D=(x+14)^\\circ$일 때, $x$의 값을 구하시오.",
+    "answer": "$4$",
+    "solution": "두 쌍의 대각의 크기가 각각 같으므로 이 사각형은 평행사변형이다. $2x+10=x+14$에서 $x=4$이다.",
+    "facts": {
+      "p": 2,
+      "q": 10,
+      "s": 14,
+      "ans": 4
+    },
+    "figureSpec": {
+      "version": 2,
+      "points": {
+        "A": [
+          89.53,
+          148.76
+        ],
+        "B": [
+          18,
+          172
+        ],
+        "C": [
+          130.47,
+          172
+        ],
+        "D": [
+          202,
+          148.76
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ],
+        "DC": [
+          "D",
+          "C"
+        ],
+        "AD": [
+          "A",
+          "D"
+        ],
+        "BC": [
+          "B",
+          "C"
+        ]
+      },
+      "angles": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "D"
+          ],
+          "arcs": 1,
+          "radius": 15.106000000000007
+        },
+        "angC": {
+          "vertex": "C",
+          "points": [
+            "B",
+            "D"
+          ],
+          "arcs": 1,
+          "radius": 15.106000000000007
+        }
+      },
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      }
+    }
+  },
+  "labels": [
+    {
+      "text": "A",
+      "x": 100.201,
+      "y": 24.029,
+      "baseline": 24.029,
+      "fontSize": 16.8,
+      "anchor": "middle",
+      "width": 12.6,
+      "ascent": 12.029,
+      "descent": 0,
+      "halo": 0,
+      "typeset": true
+    },
+    {
+      "text": "B",
+      "x": 17.947,
+      "y": 57.993,
+      "baseline": 57.993,
+      "fontSize": 16.8,
+      "anchor": "middle",
+      "width": 11.894,
+      "ascent": 11.474,
+      "descent": 0,
+      "halo": 0,
+      "typeset": true
+    },
+    {
+      "text": "C",
+      "x": 141.141,
+      "y": 68.717,
+      "baseline": 68.717,
+      "fontSize": 16.8,
+      "anchor": "middle",
+      "width": 12.13,
+      "ascent": 11.844,
+      "descent": 0.353,
+      "halo": 0,
+      "typeset": true
+    },
+    {
+      "text": "D",
+      "x": 223.395,
+      "y": 34.753,
+      "baseline": 34.753,
+      "fontSize": 16.8,
+      "anchor": "middle",
+      "width": 12.835,
+      "ascent": 11.474,
+      "descent": 0,
+      "halo": 0,
+      "typeset": true
+    }
+  ],
+  "svgSha256": "d2b90917d1ed5a10b80d43219a8d0d7513e3b8cd2530bc33a4f527b793984198"
+}

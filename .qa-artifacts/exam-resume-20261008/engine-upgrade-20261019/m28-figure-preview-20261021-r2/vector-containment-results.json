@@ -1,0 +1,1822 @@
+{
+  "method": "actual SVG boundary lines and circular-arc endpoint conversion; whole-circle clearance to nonincident sides plus257 arc samples",
+  "initialRejected": [
+    {
+      "beta": 9,
+      "svgSha256": "71dfba81126c983441e227d815936324971dd89e0ba12f28ba97a5531a036ca2",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            -11.321489151421744,
+            -5.580731799965645
+          ],
+          "worstArcHalfplaneDistance": -10.961369484332835,
+          "passed": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            -4.8534826211176645,
+            -10.595499380519513
+          ],
+          "worstArcHalfplaneDistance": -10.235366424827927,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    {
+      "beta": 16,
+      "svgSha256": "d62e17fe236c7c53803f9e4e0a6920d77c796a925bf6c879df48c119289f6eca",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            -1.8824537326365065,
+            8.34350998638806
+          ],
+          "worstArcHalfplaneDistance": -1.522343883469432,
+          "passed": false
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            8.647266299544022,
+            -1.5830786330702016
+          ],
+          "worstArcHalfplaneDistance": -1.2228963187400694,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    {
+      "beta": 72,
+      "svgSha256": "3f174da9443733e6b9d3f0023a351af7d4f4ed1e604904b4d9bd677649c33e22",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            74.60267075854375,
+            122.64170511576098
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 22.0,
+          "nonincidentCircleMargins": [
+            122.70008745116401,
+            74.61271111907575
+          ],
+          "worstArcHalfplaneDistance": -0.034273452371134244,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "currentPassed": [
+    {
+      "beta": 9,
+      "svgSha256": "ccc2ce74291866835ada8798e1f8414e3e2a209fb12eab41913115e786f415ee",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 7.533500000000003,
+          "nonincidentCircleMargins": [
+            3.451268332390534,
+            9.194269630569039
+          ],
+          "worstArcHalfplaneDistance": 0.022999999999989033,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 7.533500000000003,
+          "nonincidentCircleMargins": [
+            9.243011374717053,
+            3.50726833239051
+          ],
+          "worstArcHalfplaneDistance": -0.03299999999998704,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 10,
+      "svgSha256": "902f6db8e4b9d9f567442ab9dbadf46576336c6cbae11dde73dde63011087fb1",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 8.371999999999998,
+          "nonincidentCircleMargins": [
+            4.264861223419477,
+            10.641825083687985
+          ],
+          "worstArcHalfplaneDistance": -0.029185611964059856,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 8.371999999999998,
+          "nonincidentCircleMargins": [
+            10.606721500089927,
+            4.236435565514932
+          ],
+          "worstArcHalfplaneDistance": -0.042999999999992156,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 11,
+      "svgSha256": "8658b1e53e724539d890d39d2a7426e218a89d6e57686754d665ff80ef86e4ed",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 9.210499999999993,
+          "nonincidentCircleMargins": [
+            4.346973947893395,
+            11.37034529018323
+          ],
+          "worstArcHalfplaneDistance": -0.042785919424884154,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 9.210499999999993,
+          "nonincidentCircleMargins": [
+            11.338774299954462,
+            4.322973947893277
+          ],
+          "worstArcHalfplaneDistance": -0.011214929196231026,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 12,
+      "svgSha256": "c2490b09b2ca3e0dd37a1100e3082a5820fb7fe0eb4c2fd15acc7e4d8fdef68d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 10.0555,
+          "nonincidentCircleMargins": [
+            4.979987767973278,
+            12.640110080906227
+          ],
+          "worstArcHalfplaneDistance": 0.02300000000000324,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 10.0555,
+          "nonincidentCircleMargins": [
+            12.705787465715217,
+            5.056058403303488
+          ],
+          "worstArcHalfplaneDistance": -0.03535584054052833,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 13,
+      "svgSha256": "fcf3f0da3c258ccc128509d0ff18d7d13618c09f1e84a1aa9b79f68689002843",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 10.893999999999995,
+          "nonincidentCircleMargins": [
+            5.569895368776119,
+            13.858391599339416
+          ],
+          "worstArcHalfplaneDistance": -0.016912754841262985,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 10.893999999999995,
+          "nonincidentCircleMargins": [
+            13.857796775432494,
+            5.555895368776144
+          ],
+          "worstArcHalfplaneDistance": -0.016317930934337695,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 14,
+      "svgSha256": "9f23d7cb936d8a9bb4f8f3d94cb5f58c5cc4de7251f6e3247c2a0e2240a00bc8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 11.732500000000007,
+          "nonincidentCircleMargins": [
+            6.036469222094067,
+            14.977939898783292
+          ],
+          "worstArcHalfplaneDistance": -0.013582701260552218,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 11.732500000000007,
+          "nonincidentCircleMargins": [
+            14.963899983017283,
+            6.032469222094066
+          ],
+          "worstArcHalfplaneDistance": 0.0004572145054556013,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 15,
+      "svgSha256": "9bbd30bacaa978fc80a58e7c74737bff749295b9335334b7ae022c40ef48a1a3",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 12.577499999999997,
+          "nonincidentCircleMargins": [
+            6.147006710494579,
+            15.730026293564173
+          ],
+          "worstArcHalfplaneDistance": -0.0397219535744716,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 12.577499999999997,
+          "nonincidentCircleMargins": [
+            16.119882579197256,
+            6.534686040183661
+          ],
+          "worstArcHalfplaneDistance": -0.024987140964895432,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 16,
+      "svgSha256": "5123bcf1fb6de0d97545b1c595524bd378fede456880d7aac44cbe92976354aa",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 13.422500000000005,
+          "nonincidentCircleMargins": [
+            6.929544382467161,
+            17.152643168570727
+          ],
+          "worstArcHalfplaneDistance": 0.02300000000000324,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 13.422500000000005,
+          "nonincidentCircleMargins": [
+            16.781867808107997,
+            6.5566502898694745
+          ],
+          "worstArcHalfplaneDistance": 0.018158878469059635,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 17,
+      "svgSha256": "2c78d3b9e727bbb71802f846601acfb78b3be0728e09b7b8c34ea5a27f693bd8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 14.261,
+          "nonincidentCircleMargins": [
+            7.361299734669568,
+            18.22555611822555
+          ],
+          "worstArcHalfplaneDistance": -0.04734992895599444,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 14.261,
+          "nonincidentCircleMargins": [
+            18.123754959640134,
+            7.267653824827579
+          ],
+          "worstArcHalfplaneDistance": 0.016999999999995907,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 18,
+      "svgSha256": "d2b90917d1ed5a10b80d43219a8d0d7513e3b8cd2530bc33a4f527b793984198",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 15.106000000000007,
+          "nonincidentCircleMargins": [
+            7.733982002807378,
+            19.25120492333778
+          ],
+          "worstArcHalfplaneDistance": -0.053131454010193986,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 15.106000000000007,
+          "nonincidentCircleMargins": [
+            19.14732785060324,
+            7.638553365317699
+          ],
+          "worstArcHalfplaneDistance": 0.017000000000003013,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 19,
+      "svgSha256": "c03e26c20c0b087b01690d697c57da8e292a1f225c0201c6ff2649eb5d1cf011",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 15.950999999999995,
+          "nonincidentCircleMargins": [
+            8.317231864487743,
+            20.466133008417067
+          ],
+          "worstArcHalfplaneDistance": -0.0009999999999976694,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 15.950999999999995,
+          "nonincidentCircleMargins": [
+            20.131354666938144,
+            7.978022291505842
+          ],
+          "worstArcHalfplaneDistance": 0.03719019118069422,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 20,
+      "svgSha256": "2986712637195d2cdfff65701ce8a32b3531678a7b3efa4e95b867c951c6b3d8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 16.8025,
+          "nonincidentCircleMargins": [
+            8.663350554894858,
+            21.45991988575223
+          ],
+          "worstArcHalfplaneDistance": 0.0029989892458615877,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 16.8025,
+          "nonincidentCircleMargins": [
+            21.52298507124541,
+            8.709350554894872
+          ],
+          "worstArcHalfplaneDistance": -0.06006619624732758,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 21,
+      "svgSha256": "61e9cd8c2c89c7b26b8f77bdac3ccfb320a6b30bed382baea65f7cea338f53cf",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 17.647500000000004,
+          "nonincidentCircleMargins": [
+            9.223530061158037,
+            22.67688011376121
+          ],
+          "worstArcHalfplaneDistance": -0.029852630256244017,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 17.647500000000004,
+          "nonincidentCircleMargins": [
+            22.618884157184308,
+            9.177530061157999
+          ],
+          "worstArcHalfplaneDistance": 0.028143326320614535,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 22,
+      "svgSha256": "84124464c459075099c835eb370e84cd148311531c089469ebacc93be48c9b8b",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            10.05637931432354,
+            24.14611350045994
+          ],
+          "worstArcHalfplaneDistance": 0.0034103872119132044,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            24.176743135230083,
+            10.106379314323519
+          ],
+          "worstArcHalfplaneDistance": -0.027219247558265214,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 23,
+      "svgSha256": "27ecf5406bceda6a971ec30ce4c2172a3c9c8f2a3fca3cfa9dd12108176ad15a",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            11.309777870509837,
+            26.049966376669985
+          ],
+          "worstArcHalfplaneDistance": 0.010830994132649405,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            26.322289537763695,
+            11.581412415368256
+          ],
+          "worstArcHalfplaneDistance": -0.00957844626220514,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 24,
+      "svgSha256": "19e7b685d2dd7bc8089bba63f9c92da3f339a218ac75f7dad593e42fe7ab617c",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            12.550962515206379,
+            27.93417195939037
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000071,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            28.19294899454509,
+            12.808039160109317
+          ],
+          "worstArcHalfplaneDistance": 0.012593783812966124,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 25,
+      "svgSha256": "c940a0dc467ddf462641e6c0776509fadae303a1c52516c488693c83aa263fe3",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            14.0060215421746,
+            30.04661686681017
+          ],
+          "worstArcHalfplaneDistance": 0.04001415219056675,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            30.04699327773747,
+            14.026021542174597
+          ],
+          "worstArcHalfplaneDistance": 0.030000000000001137,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 26,
+      "svgSha256": "66853865c9a1f95524c71b48db834b7190b91091bdead998349a21966a91fbfc",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            15.325849920781266,
+            31.989266540343237
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000007816,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            31.933797853211942,
+            15.235849920781234
+          ],
+          "worstArcHalfplaneDistance": 0.031408679916864794,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 27,
+      "svgSha256": "40bbf8ced01c8be6a9175f66fc7d63f03188610bdcdf89675382e66f7cd24b8c",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            16.549079499390807,
+            33.88863644277999
+          ],
+          "worstArcHalfplaneDistance": -0.03554454068877834,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            34.08160521070279,
+            16.736096724288217
+          ],
+          "worstArcHalfplaneDistance": -0.04000000000000625,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 28,
+      "svgSha256": "e2a2ffc081804626768cab55d967d9b15a1d8c826b41fe43077dfa2a82b4302b",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            17.947343666414497,
+            35.93180332202261
+          ],
+          "worstArcHalfplaneDistance": 0.005449208987981063,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            35.94122198280696,
+            17.927210284985776
+          ],
+          "worstArcHalfplaneDistance": -0.030000000000001137,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 29,
+      "svgSha256": "ee648242561833dce84bbd4b076a78d30cf6d9b046d6d6399f6b4fe7ca975381",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            19.151604449217345,
+            37.796032684320124
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000007816,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            38.03595806509026,
+            19.393446261101815
+          ],
+          "worstArcHalfplaneDistance": -0.029339936383793924,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 30,
+      "svgSha256": "b6ea5e03f61bb33fae624c3e32cc2a75761b5c1ec7262c508785287a128b453d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            20.529274375348045,
+            39.81450026877587
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000004256,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            39.87893060577758,
+            20.569958345536776
+          ],
+          "worstArcHalfplaneDistance": -0.0016920049401295113,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 31,
+      "svgSha256": "078f01f96371751b57cab6efeb1f85611f074fe2228f255f20689700cd29f6fe",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            21.998782012185778,
+            41.94599239921255
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            41.932201250152644,
+            22.00815728492657
+          ],
+          "worstArcHalfplaneDistance": -0.0009959865032702015,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 32,
+      "svgSha256": "04f3022fd14724ca629f33c780c56fd60357bb12b470beee4f5f09ebf885b933",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            23.182073974549176,
+            43.77949077107286
+          ],
+          "worstArcHalfplaneDistance": 0.011771176453710624,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            43.93692696366144,
+            23.331501209178057
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999997783,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 33,
+      "svgSha256": "85e4e10eff58ab01c76590dba52863fafd708063b19dbddb8b405df18f05f3ef",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            24.527448368740906,
+            45.79430473281843
+          ],
+          "worstArcHalfplaneDistance": 0.041533137213743174,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            46.00293365514335,
+            24.73894527366123
+          ],
+          "worstArcHalfplaneDistance": -0.010000000000005116,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 34,
+      "svgSha256": "acd7442f85b0c60847be8ea1ea1b94f0e296eb95693fb40a9f52fefeb39afe88",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            25.958611310363878,
+            47.87443371469533
+          ],
+          "worstArcHalfplaneDistance": -0.001083430519732414,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            47.75253515341595,
+            25.83976870780073
+          ],
+          "worstArcHalfplaneDistance": -0.0583884038036781,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 35,
+      "svgSha256": "fd6ee5af016de7c0922e61394a1a25db148cdfad723da6ac75fa5ff9627bd25d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            27.277671671468802,
+            49.84781029295691
+          ],
+          "worstArcHalfplaneDistance": 0.04691317011369634,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            49.70682124697886,
+            27.13487684717765
+          ],
+          "worstArcHalfplaneDistance": 0.013647947904870738,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 36,
+      "svgSha256": "c1355b75933d31466e40241b5dd4d42a3cc27399e023aac2b8ad19e14dfff502",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            28.55785725936257,
+            51.79175225825966
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            51.90461392610294,
+            28.65520394141116
+          ],
+          "worstArcHalfplaneDistance": -0.010000000000005116,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 37,
+      "svgSha256": "c0c902648c8ea22e83506938fa9c5f1b9125d9be40d1a0a777c6aaa5b42fa2bd",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            29.991435193608964,
+            53.90255018301602
+          ],
+          "worstArcHalfplaneDistance": 0.0410624823167716,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            53.7965522574718,
+            29.89
+          ],
+          "worstArcHalfplaneDistance": -0.01780110216581137,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 38,
+      "svgSha256": "2148f6b8632659fe9fd3e8dab40767c39d8b856bcf1ff8034c5d02eff580c32b",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            31.261510529014004,
+            55.81683944657584
+          ],
+          "worstArcHalfplaneDistance": -0.01673222157278844,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            55.84477121959377,
+            31.251592846400683
+          ],
+          "worstArcHalfplaneDistance": -0.044559649249174084,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 39,
+      "svgSha256": "963b82265b54235cb46f9c3599f0c177c7654d5e258a960a814bcb636876bea1",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            32.56370204553949,
+            57.80449962269074
+          ],
+          "worstArcHalfplaneDistance": 0.009441567306629718,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            57.809153843381,
+            32.60370204553949
+          ],
+          "worstArcHalfplaneDistance": 0.00478734661638516,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 40,
+      "svgSha256": "272b66f350100c7e230743e3bb63f89c097d060318eee455890dbafa7ae097ca",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            33.946709497565216,
+            59.85274592179219
+          ],
+          "worstArcHalfplaneDistance": -0.0231154930435316,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            59.82574916933612,
+            33.94670949756524
+          ],
+          "worstArcHalfplaneDistance": 0.0038812594125558525,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 41,
+      "svgSha256": "caa58d3d53ab5367aae610ccd0d83f0db7e6711af5d7e3f9c7f5dc2f1eff86c8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            35.23152007455553,
+            61.810831313420266
+          ],
+          "worstArcHalfplaneDistance": 0.027205891685864052,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            61.972462449980895,
+            35.3955301174813
+          ],
+          "worstArcHalfplaneDistance": 1.4210854715202004e-14,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 42,
+      "svgSha256": "1a87b0e844babf6947e57e0f3799ae2f9f5e14a46dd9ff085c9ad6f6903218f2",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            36.60830896792237,
+            63.82849687931237
+          ],
+          "worstArcHalfplaneDistance": 0.015565522844907583,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            63.867039204404946,
+            36.60811166192207
+          ],
+          "worstArcHalfplaneDistance": -0.04999999999999716,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 43,
+      "svgSha256": "c7af74f609cc9456b69716fbd69ad2707e5c0f828b29f52dbd7d7c9b36142e7c",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            37.98760446304162,
+            65.90515774817113
+          ],
+          "worstArcHalfplaneDistance": -0.05060427717480808,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            65.83253081430365,
+            37.927529903407276
+          ],
+          "worstArcHalfplaneDistance": 0.010000000000005116,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 44,
+      "svgSha256": "070c0fb0e81ea93b15979eaa0b2a5c9fbd01fb35493d6b035164bb04b153a517",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            39.36340416192595,
+            67.96888919053121
+          ],
+          "worstArcHalfplaneDistance": 0.038018490673939996,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            67.99726014228628,
+            39.44340416192594
+          ],
+          "worstArcHalfplaneDistance": -0.030000000000001137,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 45,
+      "svgSha256": "8f1dcfb4494d2e157a713931f7488ddf07209c5b7a1c1c11d13486506b08bfde",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            40.62537767371849,
+            69.87018367500099
+          ],
+          "worstArcHalfplaneDistance": -0.0007071067811946454,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            69.9962528032437,
+            40.74569720665348
+          ],
+          "worstArcHalfplaneDistance": 0.014849242404905224,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 46,
+      "svgSha256": "5f93b5ded3d4e36ee0a7ef58ac1d90d10092016e29447160313cbf9deb3e2cab",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            42.08176201762225,
+            72.03850457967843
+          ],
+          "worstArcHalfplaneDistance": -0.024832635334578797,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            71.98051962603871,
+            42.04177148974796
+          ],
+          "worstArcHalfplaneDistance": -0.010000000000005116,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 47,
+      "svgSha256": "9d618f3dc3d7e0df105a1cd48fde2a251fca8429dfee6d29c7229f5e359644cf",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            43.441872086087486,
+            74.055393039831
+          ],
+          "worstArcHalfplaneDistance": -0.035223302348090346,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            74.01779439484271,
+            43.4318296950031
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999999204,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 48,
+      "svgSha256": "9055452be0b9c704d40f814ca76c8fbbab63d8531ad993631ae81ab064f3d4f6",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            44.79627239724175,
+            76.0544270091753
+          ],
+          "worstArcHalfplaneDistance": -0.029787318528326376,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            76.1707374831475,
+            44.90607311354921
+          ],
+          "worstArcHalfplaneDistance": -0.011958776572406028,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 49,
+      "svgSha256": "636e969e0e38b7afbd2dc3ae3359f02c7931ed1578dc83db46874a09de5492b8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            46.23243900865327,
+            78.17495162164981
+          ],
+          "worstArcHalfplaneDistance": -0.002023314581078564,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            78.18623580739568,
+            46.18264376510828
+          ],
+          "worstArcHalfplaneDistance": -0.012995163196395168,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 50,
+      "svgSha256": "17dc49662978e7c2dc8b7df6405b664946e0c4cc7014cbfd59c4e294900240c4",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            47.583689560990464,
+            80.21782936662211
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000007816,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            80.29672015598273,
+            47.637330744773436
+          ],
+          "worstArcHalfplaneDistance": -0.01999999999999602,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 51,
+      "svgSha256": "2682e09e6510b5106061a9f777b9d3b7f25b888fa3de9a017437b6c50a4e4710",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            48.92980392631057,
+            82.24993511094263
+          ],
+          "worstArcHalfplaneDistance": -0.05896718867957584,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            82.33987061193729,
+            49.0010643117522
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999999204,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 52,
+      "svgSha256": "9b03d71ee0e665e8518fb73d30b845a186138abede115dfef264bef9cba894c6",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            50.427757934457716,
+            84.43135571811075
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000071,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            84.35644370201953,
+            50.35993239705354
+          ],
+          "worstArcHalfplaneDistance": -0.04011092674519778,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 53,
+      "svgSha256": "4a684ecd59e08003f396bca4b8e4519e30c59773c4ad2ef67d633a8c5bc11955",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            51.684441986834145,
+            86.38352537515684
+          ],
+          "worstArcHalfplaneDistance": -0.04617214922290087,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            86.43320480879757,
+            51.69
+          ],
+          "worstArcHalfplaneDistance": 0.01999999999999602,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 54,
+      "svgSha256": "28a38510c0006d65bf194c01b9db851862711c9481c9b21005547bc3dc83a0a1",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            53.0978058190604,
+            88.48543871504629
+          ],
+          "worstArcHalfplaneDistance": -0.01581407670165019,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            88.53967897836266,
+            53.11018339035925
+          ],
+          "worstArcHalfplaneDistance": 0.009999999999990905,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 55,
+      "svgSha256": "10640c556d0aab960a2d8e0fc971d8d298e74f2fbf63d57161f70bc1291ca1c7",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            54.51174659895095,
+            90.57517211575968
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000071,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            90.64554663952234,
+            54.55170117271557
+          ],
+          "worstArcHalfplaneDistance": -0.033082849676637174,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 56,
+      "svgSha256": "b77459cbe41f8661609f85b8bd48b483b668023b5a37de1510ed233255d8be1e",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            55.839137274675835,
+            92.59697763741036
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000007816,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            92.67336266306698,
+            55.88932883546238
+          ],
+          "worstArcHalfplaneDistance": -0.04914280193138638,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 57,
+      "svgSha256": "157c3cf76ca6d165fdb9ee54bdf8784609da387cc7ddc2b0e591e3092693b95c",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            57.33834423065544,
+            94.77708766293301
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            94.71463113702595,
+            57.288344230655426
+          ],
+          "worstArcHalfplaneDistance": 1.4210854715202004e-14,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 58,
+      "svgSha256": "2036d29018a88153752835e6231e80726264a075968631a9a1454d53bcd93c0c",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            58.72888271816613,
+            96.88318096702416
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            96.78772095409224,
+            58.61619765444591
+          ],
+          "worstArcHalfplaneDistance": -0.015044951859679356,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 59,
+      "svgSha256": "abb9399c9b6339664a5087ebba92765808ff4628ada5fb50e9e39e188d5a2357",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            60.06135728468534,
+            98.94376758088772
+          ],
+          "worstArcHalfplaneDistance": -0.024341805335597332,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            98.9283662318138,
+            60.101357284685335
+          ],
+          "worstArcHalfplaneDistance": -0.008940456261655226,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 60,
+      "svgSha256": "3d7bc462ac298bbbcade0084761e5b1d5ca3956ae4043b78a3b139b594308b7d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            61.54833213165523,
+            101.06068582404588
+          ],
+          "worstArcHalfplaneDistance": -0.003274294432302947,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            101.0761637884298,
+            61.47845513057578
+          ],
+          "worstArcHalfplaneDistance": -0.018506263987914284,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 61,
+      "svgSha256": "6b2f2d2995902d46b5f242d8947d80f26ed098e54c10e837183dcfc4eec20dee",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            62.927803940515034,
+            103.1931656064389
+          ],
+          "worstArcHalfplaneDistance": 0.007474677386603466,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            103.16612626068152,
+            62.94780394051503
+          ],
+          "worstArcHalfplaneDistance": 0.03000000000000114,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 62,
+      "svgSha256": "823231261dc937f336fc0cc7f4911c08b203fc2af9ef2fd5b200d1e44b0b01e0",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            64.39979325156318,
+            105.34628318240685
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            105.24196060587538,
+            64.25661506691131
+          ],
+          "worstArcHalfplaneDistance": -0.020292973015099733,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 63,
+      "svgSha256": "aa741d8c2d66dcdeb9202d663d91b85fae1e72ddeb0a3d461477400d4781f48d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            65.7744364322222,
+            107.43293206776917
+          ],
+          "worstArcHalfplaneDistance": 0.04242123837228561,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            107.36790471233745,
+            65.71364953277131
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999999204,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 64,
+      "svgSha256": "68f4374422a01497cfc9d7da9c55515f6e8959f7b2bbed33c5d50accc31c919a",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            67.19367051617844,
+            109.52007680009145
+          ],
+          "worstArcHalfplaneDistance": -0.011971392265820951,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            109.58045267385691,
+            67.21220041879872
+          ],
+          "worstArcHalfplaneDistance": -0.01999999999999602,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 65,
+      "svgSha256": "69b73f7e3c14275adf860354f0b95a26b290af60d4889a9a218e909e8181d515",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            68.55685876621958,
+            111.65226422445225
+          ],
+          "worstArcHalfplaneDistance": 0.0036121296087061397,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            111.63533292063927,
+            68.60685876621956
+          ],
+          "worstArcHalfplaneDistance": -0.0,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 66,
+      "svgSha256": "72fc6d47802e6dd394a3708d2bc8d3d8bd90d07783d966125cc41a353f39af4d",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            70.02323222897552,
+            113.8043949508539
+          ],
+          "worstArcHalfplaneDistance": 0.0028685947185164797,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            113.77416100444329,
+            70.04323222897551
+          ],
+          "worstArcHalfplaneDistance": 0.030000000000001137,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 67,
+      "svgSha256": "3e201db8691891067f2e7a6dd0299815b01cc6676aea963f55955924fb846920",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            71.48304308958656,
+            115.92881774196114
+          ],
+          "worstArcHalfplaneDistance": 0.030997626640842872,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            115.97849967615595,
+            71.47312061103437
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999999204,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 68,
+      "svgSha256": "dbc51861a27be0334760673872bcc0f8812742218dcc81c15ad4bd878603611a",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            72.93645926745961,
+            118.11717310780539
+          ],
+          "worstArcHalfplaneDistance": -0.004242093031011063,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            118.04840008177955,
+            72.85612031556212
+          ],
+          "worstArcHalfplaneDistance": -0.043036350858972484,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 69,
+      "svgSha256": "1a12e7123e3ec1d55198f3599ca8526022bf4d4669155e2f4fdd6754ad2e558b",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            74.28378669693184,
+            120.2415525979193
+          ],
+          "worstArcHalfplaneDistance": 0.024853708909125596,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            120.19934854742313,
+            74.27540804122063
+          ],
+          "worstArcHalfplaneDistance": -0.040044812245551044,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 70,
+      "svgSha256": "165390de4acaa66e66bd5168c430e0c37f9d9c58954f30ecb6ec7b81025c408f",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            75.73486309660889,
+            122.37505169460992
+          ],
+          "worstArcHalfplaneDistance": 0.04483524680242849,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            122.31946182869713,
+            75.68841547080136
+          ],
+          "worstArcHalfplaneDistance": -0.03999999999999204,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 71,
+      "svgSha256": "11b0d7e5003238df6c30ec9958f833caaa4e1561ad5d9a8effb044163430da0b",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            77.1455012527831,
+            124.46594669292044
+          ],
+          "worstArcHalfplaneDistance": -0.050000000000007816,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            124.54846904009362,
+            77.22993797053238
+          ],
+          "worstArcHalfplaneDistance": -0.0,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "beta": 72,
+      "svgSha256": "5124651a901352bc7f777b5aa08d386a634bad648136b7b8078ff2f9cf51cdc8",
+      "checks": [
+        {
+          "vertex": "A",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            78.58664457210789,
+            126.63665232450806
+          ],
+          "worstArcHalfplaneDistance": -0.05000000000000426,
+          "passed": true
+        },
+        {
+          "vertex": "C",
+          "actualSVGRadius": 18.0,
+          "nonincidentCircleMargins": [
+            126.70512909330087,
+            78.62912285722143
+          ],
+          "worstArcHalfplaneDistance": 0.027983793718337032,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "actualSVGsChecked": 64,
+  "actualAngleArcsChecked": 128,
+  "quantizationTolerance": 0.15,
+  "pixelMathOracle": false,
+  "gradeRightsOrQuestionApproval": false,
+  "dbWrites": 0
+}
