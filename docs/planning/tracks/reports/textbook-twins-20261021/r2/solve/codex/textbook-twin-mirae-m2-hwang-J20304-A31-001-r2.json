@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de4-4352-7952-9b63-d9d4a9a7ed43",
+ "startedAt": "2026-10-21T18:56:42+0900",
+ "elapsedSec": 9.7,
+ "studentSha256": {
+  "student.json": "40edfb117a3e37c4bf36a6889b4b48500e5f30d4c4d5ce5c8338f92a1673b192"
+ },
+ "promptSha256": "a878907579a55192b475b8e2f8d4555f5ec4d4d8e44ce227453e879ea6762f25",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"x=-1, y=4를 대입하면 -2+4a=10이므로 a=3이다.\\n-b-4=1이므로 b=-5이다.\\n따라서 ab=3×(-5)=-15이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "x=-1, y=4를 대입하면 -2+4a=10이므로 a=3이다.\n-b-4=1이므로 b=-5이다.\n따라서 ab=3×(-5)=-15이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "006dd05e4d5ff02cfb88f9f47ef882257c36aaeacb5762e9ba727915c8458b93"
+}

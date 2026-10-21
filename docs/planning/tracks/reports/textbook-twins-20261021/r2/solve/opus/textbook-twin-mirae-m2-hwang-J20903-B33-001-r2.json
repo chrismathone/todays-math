@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B33-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3f3b0575-0aac-4602-8143-34917b6f5d07",
+ "startedAt": "2026-10-21T18:00:06+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "5e4fc1f166c6d00933e5e86d4e03a438d7d94aa33bfd781ceb00fc5989d48132"
+ },
+ "promptSha256": "1c29a3a5e906bac1884631be9fa327bc0e3285bb3a49b11a5521fc4991e9160e",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 0 ⑵ 1\", \"work\": \"동전 3개를 던지면 앞면은 최대 3개이므로 앞면이 4개 나오는 경우는 없다 → 확률 0. 앞면의 개수는 항상 0~3개이므로 3개 이하로 나오는 것은 반드시 일어나는 사건 → 확률 1.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ 0 ⑵ 1",
+  "work": "동전 3개를 던지면 앞면은 최대 3개이므로 앞면이 4개 나오는 경우는 없다 → 확률 0. 앞면의 개수는 항상 0~3개이므로 3개 이하로 나오는 것은 반드시 일어나는 사건 → 확률 1.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d04e723f4b5bba095a2d46786a68daf9e8fa95f1741f8c8f8bafc3f9a339b5f"
+}

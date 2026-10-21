@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A44-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "681f0e23-de76-4b0b-9aa3-1abf0b0f71ed",
+ "startedAt": "2026-10-21T17:59:43+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "2e7ea965f8eff63c56f1acb3b98d7080ba2f8dedc200ee2a9b4952dd191d6ce8",
+  "student.json": "10b9632142dab773198a9789dc2bd6a830bdb85e30d3276e62aea0d99844aa41"
+ },
+ "promptSha256": "2581e256de95a027ed862a54b565a3cccbfad6090ec0f1cb17267f59e5eebc82",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"17 cm\", \"work\": \"AC, BC를 지름으로 하는 두 반원의 넓이 합은 AB를 지름으로 하는 반원의 넓이와 같다(피타고라스 정리). 그래서 색칠한 두 초승달 모양의 넓이 합은 △ABC의 넓이와 같다. ½·15·BC = 60이므로 BC = 8 cm이다. AB² = 15² + 8² = 289이므로 AB = 17 cm이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "17 cm",
+  "work": "AC, BC를 지름으로 하는 두 반원의 넓이 합은 AB를 지름으로 하는 반원의 넓이와 같다(피타고라스 정리). 그래서 색칠한 두 초승달 모양의 넓이 합은 △ABC의 넓이와 같다. ½·15·BC = 60이므로 BC = 8 cm이다. AB² = 15² + 8² = 289이므로 AB = 17 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b9bd66017b4da4d7950bef2b6d480a0e7d29807f2ade454ac6e8c33b866d6770"
+}

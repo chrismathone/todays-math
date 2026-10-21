@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A34-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-d9af-7522-b102-6c45aebf606e",
+ "startedAt": "2026-10-21T18:56:15+0900",
+ "elapsedSec": 18.0,
+ "studentSha256": {
+  "student.json": "1cf5e774492ede9d4fa3c57bd1f6962fbd0ce20e152bc56ac9cab5bda2f5bbbd"
+ },
+ "promptSha256": "3864c5e856ec4fca0d94e1538467c04ca297ccbc33cf7ef50cc659ec20efe43d",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"①~③은 모두 올바른 대입법이다. ⑤는 $11x=11$이 되어 $y$가 소거된다. 그러나 ④는 $6x-7y=-8$이 되어 어느 미지수도 소거되지 않으므로 가감법으로 미지수를 소거하는 방법으로 쓸 수 없다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "①~③은 모두 올바른 대입법이다. ⑤는 $11x=11$이 되어 $y$가 소거된다. 그러나 ④는 $6x-7y=-8$이 되어 어느 미지수도 소거되지 않으므로 가감법으로 미지수를 소거하는 방법으로 쓸 수 없다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "54149fd298f1bbdd2ac81333ba7e5598cd6a2ea9c40d59bbb96090fda61a23cf"
+}

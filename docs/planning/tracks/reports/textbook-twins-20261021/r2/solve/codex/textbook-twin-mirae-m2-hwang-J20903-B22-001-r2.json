@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B22-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de3-0072-7802-aa39-8354ba5d8185",
+ "startedAt": "2026-10-21T18:55:20+0900",
+ "elapsedSec": 8.7,
+ "studentSha256": {
+  "student.json": "b2a15b880ec5d69100ed63abefd9b7c364d3f1bc910947cb8a5498ff31de388f"
+ },
+ "promptSha256": "68b1b0aab4e313aff77bbcaa1ea937cb094ff4bd6627306e4b98d4587f89a7bc",
+ "freezeCommit": "1b7a59babbf9091111cb8ec02c9377b3599b0796",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"맨 오른쪽 끝에는 7장의 카드가 각각 같은 확률로 놓인다. 그중 G 또는 S인 카드는 2장이므로 구하는 확률은 $\\\\frac{2}{7}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "맨 오른쪽 끝에는 7장의 카드가 각각 같은 확률로 놓인다. 그중 G 또는 S인 카드는 2장이므로 구하는 확률은 $\\frac{2}{7}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "06b93c2b114f235b30d5f6a61f68bd3f238c1d177fa3e80a6b7a0de448640b88"
+}

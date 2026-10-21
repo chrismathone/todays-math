@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20802-A44-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de2-9d67-7c81-bd19-a1b907e57ab3",
+ "startedAt": "2026-10-21T18:54:54+0900",
+ "elapsedSec": 15.7,
+ "studentSha256": {
+  "fig-1.png": "2e7ea965f8eff63c56f1acb3b98d7080ba2f8dedc200ee2a9b4952dd191d6ce8",
+  "student.json": "10b9632142dab773198a9789dc2bd6a830bdb85e30d3276e62aea0d99844aa41"
+ },
+ "promptSha256": "29ea59abdbf531c6b0254594e08249ea69b7d4bdfa43731df8a0097ec0f466cc",
+ "freezeCommit": "d67fc7e1be9bd1462f7844a1b7e886c2dadeab6c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"17 cm\",\n  \"work\": \"피타고라스 정리에 의해 두 직각변을 지름으로 하는 반원의 넓이의 합은 빗변을 지름으로 하는 반원의 넓이와 같다. 공통 부분을 빼면 색칠한 두 부분의 넓이의 합은 삼각형 ABC의 넓이와 같다.\\n따라서 $\\\\frac12\\\\times15\\\\times BC=60$이므로 $BC=8$이다.\\n피타고라스 정리에 의해 $AB=\\\\sqrt{15^2+8^2}=17\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "17 cm",
+  "work": "피타고라스 정리에 의해 두 직각변을 지름으로 하는 반원의 넓이의 합은 빗변을 지름으로 하는 반원의 넓이와 같다. 공통 부분을 빼면 색칠한 두 부분의 넓이의 합은 삼각형 ABC의 넓이와 같다.\n따라서 $\\frac12\\times15\\times BC=60$이므로 $BC=8$이다.\n피타고라스 정리에 의해 $AB=\\sqrt{15^2+8^2}=17\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "509fba11b7e1711ec13ea70a856277e362f89a323175a6dd15b38df460259b8c"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B26-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "72b764ec-e115-43d4-9964-6ed191374b5e",
+ "startedAt": "2026-10-21T18:00:01+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "3decb99ada21f2f09dece67c58909501bb8333706c69a23719c0a20273d60d3f"
+ },
+ "promptSha256": "316e98e365a6f1e259c9f66b94f111ce1d55e36911e42d27d55f7162d7b1352d",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"두 자리 수의 개수: 4×3 = 12가지. 3의 배수는 각 자리 숫자의 합이 3의 배수여야 한다. 합이 3의 배수인 쌍은 (3,9)→12, (7,8)→15 두 쌍이다. 순서를 바꾸면 39, 93, 78, 87의 4가지이다. 따라서 확률은 4/12 = 1/3이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "두 자리 수의 개수: 4×3 = 12가지. 3의 배수는 각 자리 숫자의 합이 3의 배수여야 한다. 합이 3의 배수인 쌍은 (3,9)→12, (7,8)→15 두 쌍이다. 순서를 바꾸면 39, 93, 78, 87의 4가지이다. 따라서 확률은 4/12 = 1/3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c2f8f04e09c9578c7e986289b1762a776d5712f4dbef4538782106e2bcb664fd"
+}

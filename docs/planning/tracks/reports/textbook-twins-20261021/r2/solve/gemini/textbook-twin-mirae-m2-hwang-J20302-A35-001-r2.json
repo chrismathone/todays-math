@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "624b191c-3dbc-446d-8f66-e9810d11613a",
+ "startedAt": "2026-10-21T18:12:07+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "628e09087dce74a7e5795482b8c789a70d46e912465ad1444be338c65d617da1"
+ },
+ "promptSha256": "6257af50d1334609037200700e18e84179d60ca10ca6309624ab6b0a11740632",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"$2x+3y=-5$에 $x=b, y=-3$을 대입하면 $2b-9=-5$이므로 $2b=4$, 즉 $b=2$이다.\\n$3x-y=a$에 $x=2, y=-3$을 대입하면 $3\\\\times 2 - (-3) = a$이므로 $a=9$이다.\\n따라서 $a-b = 9 - 2 = 7$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "$2x+3y=-5$에 $x=b, y=-3$을 대입하면 $2b-9=-5$이므로 $2b=4$, 즉 $b=2$이다.\n$3x-y=a$에 $x=2, y=-3$을 대입하면 $3\\times 2 - (-3) = a$이므로 $a=9$이다.\n따라서 $a-b = 9 - 2 = 7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "45281fbfca40060db8443212720e471f383a7c4f6c5e031b8a19dbec67deb546"
+}
