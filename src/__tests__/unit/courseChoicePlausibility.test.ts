@@ -8,7 +8,12 @@ import { describe, expect, it } from "vitest";
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 import { generateCourseSession } from "@/lib/math-srs/elementary/generator";
 import { makeCourseAnswerChoices } from "@/lib/math-srs/elementary/choiceAnswers";
-import { parseCourseAnswerQuantity } from "@/lib/math-srs/elementary/answers";
+import { publicCourseSession } from "@/lib/math-srs/courseAutomation";
+import {
+  gradeCourseAnswer,
+  validateCourseAnswer,
+  parseCourseAnswerQuantity,
+} from "@/lib/math-srs/elementary/answers";
 
 const now = new Date("2026-10-19T10:00:00.000Z");
 const valueOf = (raw: string) => {
@@ -107,4 +112,101 @@ describe("plausible wrong choices", () => {
     expect(sets).toBeGreaterThan(100);
     expect(offenders).toEqual([]);
   });
+});
+
+describe("range choices stay in the supplied set (L-08)", () => {
+  it.each([
+    [
+      "$41,\\ 49,\\ 40,\\ 57,\\ 56$ 중에서 $41$ 이상인 수 중 가장 큰 수를 구하시오.",
+      "$57$",
+      [41, 49, 40, 57, 56],
+    ],
+    [
+      "$64,\\ 67,\\ 47,\\ 60,\\ 50$ 중에서 $50$ 이상인 수 중 가장 큰 수를 구하시오.",
+      "$67$",
+      [64, 67, 47, 60, 50],
+    ],
+    [
+      "$41$, $49$, $40$, $57$, $56$ 중에서 $49$ 미만인 수 중 가장 작은 수를 구하시오.",
+      "$40$",
+      [41, 49, 40, 57, 56],
+    ],
+  ] as const)("%s", (content, answer, numbers) => {
+    const p = {
+      ...generateCourseSession("5-2-1-1", 11, now).problems[1],
+      content,
+      answer,
+      input: {
+        mode: "number" as const,
+        label: "답",
+        placeholder: "",
+        help: "",
+      },
+    };
+    const result = makeCourseAnswerChoices(p, ["$74$", "$44$", "$58$"]);
+    expect(result.answerChoices).toHaveLength(4);
+    expect(new Set(result.answerChoices).size).toBe(4);
+    expect(result.answerChoices).toContain(answer);
+    expect(
+      result.answerChoices!.every((choice) =>
+        numbers.includes(valueOf(choice) as never),
+      ),
+    ).toBe(true);
+    expect(makeCourseAnswerChoices(p, ["$900$"])).toEqual(result);
+  });
+});
+
+it("keeps stored old choices while new exact range predicates round-trip through public values", () => {
+  for (const [predicate, direction, expected] of [
+    ["이상", "큰", 37],
+    ["이상", "작은", 22],
+    ["이하", "큰", 22],
+    ["이하", "작은", 18],
+    ["초과", "큰", 37],
+    ["초과", "작은", 33],
+    ["미만", "큰", 18],
+    ["미만", "작은", 18],
+  ] as const) {
+    const session = generateCourseSession("5-2-1-1", 11, now);
+    const p = session.problems[1];
+    Object.assign(p, {
+      content: `$33, 34, 37, 18, 22$ 중에서 $22$ ${predicate}인 수 중 가장 ${direction} 수를 구하시오.`,
+      answer: `$${expected}$`,
+      input: { ...p.input, mode: "number" },
+    });
+    Object.assign(p, makeCourseAnswerChoices(p, []));
+    const shown = publicCourseSession(session).problems[1];
+    expect(shown.answerChoices).toEqual(p.answerChoices);
+    expect(
+      shown.answerChoices!.every((c) =>
+        [18, 22, 33, 34, 37].includes(valueOf(c)!),
+      ),
+    ).toBe(true);
+    expect(shown.answerChoices!.filter((c) => gradeCourseAnswer(p, c))).toEqual(
+      [p.answer],
+    );
+    for (const value of shown.answerChoices!)
+      expect(validateCourseAnswer(p, value)).toBeNull();
+    p.answerChoices = [p.answer, "$74$", "$44$", "$58$"];
+    expect(publicCourseSession(session).problems[1].answerChoices).toEqual(
+      p.answerChoices,
+    );
+  }
+});
+
+it("does not apply the special range choices when the saved answer disagrees or numbers repeat", () => {
+  const p = generateCourseSession("5-2-1-1", 11, now).problems[1];
+  Object.assign(p, {
+    content: "$33,34,37,18,22$ 중에서 $22$ 이상인 수 중 가장 큰 수를 구하시오.",
+    answer: "$34$",
+    input: { ...p.input, mode: "number" },
+  });
+  const generic = makeCourseAnswerChoices({ ...p, content: "구하시오." }, []);
+  expect(makeCourseAnswerChoices(p, [])).toEqual(generic);
+  p.content =
+    "$33,34,37,22,22$ 중에서 $22$ 이상인 수 중 가장 큰 수를 구하시오.";
+  p.answer = "$37$";
+  expect(makeCourseAnswerChoices(p, [])).toEqual(
+    makeCourseAnswerChoices({ ...p, content: "구하시오." }, []),
+  );
 });

@@ -1377,3 +1377,138 @@ describe("persisted course practice", () => {
     expect(api.startCourse).toHaveBeenCalledTimes(2);
   });
 });
+
+describe("course input recovery (M-09)", () => {
+  it.each([false, true])(
+    "keeps server validation beside the input (follow-up %s)",
+    async (followUp) => {
+      const run = session(followUp ? 1 : 0);
+      run.problems[0].input = {
+        mode: "text",
+        label: "나의 답",
+        placeholder: "예: 1, 2, 3",
+        help: "답을 모두 쓰고 쉼표로 나눠 주세요.",
+      };
+      if (followUp) {
+        run.attempts[0].correct = false;
+        run.problems[0].feedback = { correct: false };
+        run.problems[0].followUp = { state: "awaiting", done: false };
+      }
+      vi.mocked(api.getCourseState).mockResolvedValue({
+        ok: true,
+        data: state(run),
+      });
+      const submit = vi.mocked(
+        followUp ? api.followUpCourse : api.answerCourse,
+      );
+      submit.mockResolvedValue({
+        ok: false,
+        status: 400,
+        code: "VALIDATION_ERROR",
+        message: "답을 모두 쓰고 쉼표(,)로 나눠 주세요. 예: 1, 2, 3",
+      });
+      render(
+        <StudentCourseSrs
+          expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+        />,
+      );
+      const input = await screen.findByRole("textbox", { name: "나의 답" });
+      for (const value of ["abc", "１２，１３"]) {
+        fireEvent.change(input, { target: { value } });
+        fireEvent.submit(input.closest("form")!);
+        await waitFor(() =>
+          expect(input).toHaveAttribute("aria-invalid", "true"),
+        );
+        expect(input).toHaveValue(value);
+        expect(input).toBeEnabled();
+        expect(input).toHaveFocus();
+        expect(input).toHaveAccessibleDescription(/쉼표/);
+        expect(screen.getByRole("alert")).toBe(
+          input.closest("form")!.querySelector('[role="alert"]'),
+        );
+        expect(
+          screen.queryByRole("button", { name: "다시 불러오기" }),
+        ).toBeNull();
+      }
+      fireEvent.change(input, { target: { value: "13, 12" } });
+      expect(input).toHaveAttribute("aria-invalid", "false");
+      const accepted = structuredClone(run);
+      if (followUp)
+        accepted.problems[0].followUp = { state: "correct", done: false };
+      else {
+        accepted.attempts.push({
+          problemId: run.problems[0].id,
+          submittedAnswer: "13, 12",
+          correct: true,
+          usedHint: false,
+          selfAssessed: false,
+          answeredAt: now,
+        });
+        accepted.problems[0].feedback = { correct: true };
+      }
+      submit.mockResolvedValue({ ok: true, data: state(accepted) });
+      fireEvent.submit(input.closest("form")!);
+      fireEvent.submit(input.closest("form")!);
+      await waitFor(() => expect(screen.queryByRole("alert")).toBeNull());
+      await waitFor(() => expect(submit).toHaveBeenCalledTimes(3));
+      expect(
+        screen.queryByRole("button", { name: "다시 불러오기" }),
+      ).toBeNull();
+    },
+  );
+
+  it("keeps a service failure in the retry banner", async () => {
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: state(session()),
+    });
+    vi.mocked(api.answerCourse).mockResolvedValue({
+      ok: false,
+      status: 503,
+      code: "SERVICE_UNAVAILABLE",
+      message: "연결을 확인해 주세요.",
+    });
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    const input = await screen.findByRole("textbox", { name: "나의 답" });
+    fireEvent.change(input, { target: { value: "2" } });
+    fireEvent.submit(input.closest("form")!);
+    expect(
+      await screen.findByRole("button", { name: "다시 불러오기" }),
+    ).toBeInTheDocument();
+    expect(input).toHaveAttribute("aria-invalid", "false");
+    expect(input).toHaveValue("2");
+  });
+});
+
+it("names course choices with the displayed value, retaining number shortcuts (L-14)", async () => {
+  const run = session();
+  run.problems[0].answerChoices = [
+    "$37$",
+    "$\\frac{1}{2}$",
+    "$1\\frac{1}{2}$",
+    "$0.5$",
+  ];
+  render(
+    <StudentCoursePractice
+      session={run}
+      summary={state(run).summary}
+      feedbackId={null}
+      busy={false}
+      onAnswer={vi.fn()}
+      onHint={vi.fn()}
+      onNext={vi.fn()}
+      onContinue={vi.fn()}
+      onExit={vi.fn()}
+      onAuthFailure={vi.fn()}
+    />,
+  );
+  for (const [i, label] of ["37", "2분의 1", "1과 2분의 1", "0.5"].entries()) {
+    expect(
+      await screen.findByRole("button", { name: `${i + 1}번 ${label}` }),
+    ).toHaveAttribute("aria-keyshortcuts", String(i + 1));
+  }
+});
