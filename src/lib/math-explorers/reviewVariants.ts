@@ -20,6 +20,9 @@ export function reviewVariantCard(
       /\.?0+$/,
       "",
     );
+  // Keep one decimal place on each operand, including 2.0/1.0, so the
+  // explanation's two-place calculation exactly matches the printed question.
+  const tenths = (value: number) => `${Math.floor(value / 10)}.${value % 10}`;
   const choice = (text: string, yes: boolean) => ({ text, yes });
   let content: Pick<
     CourseCard,
@@ -30,7 +33,7 @@ export function reviewVariantCard(
       const a = 11 + (seed % 79);
       const b = 2 + (Math.floor(seed / 79) % 8);
       const equation = (x: number, y: number, product: number) =>
-        `${decimal(x * 10)} × ${decimal(y * 10)} = ${decimal(product)}`;
+        `${tenths(x)} × ${tenths(y)} = ${decimal(product)}`;
       content = {
         exampleTitle: "계산이 맞는 것을 모두 골라봐.",
         examples: [
@@ -39,9 +42,9 @@ export function reviewVariantCard(
           choice(equation(a, b, a * b * 10), false),
           choice(equation(a + 1, b + 1, (a + 1) * (b + 1) * 10), false),
         ],
-        trap: `${decimal(a * 10)} × ${decimal(b * 10)}은 ${decimal(a * b * (truth ? 1 : 10))}이다.`,
+        trap: `${tenths(a)} × ${tenths(b)}은 ${decimal(a * b * (truth ? 1 : 10))}이다.`,
         truth,
-        explanation: `${a} × ${b} = ${a * b}에서 두 수의 소수 자릿수의 합이 2이므로 곱은 ${decimal(a * b)}이야. ${decimal((a + 1) * 10)} × ${decimal((b + 1) * 10)}도 같은 방법으로 계산하면 ${decimal((a + 1) * (b + 1))}이야.`,
+        explanation: `${a} × ${b} = ${a * b}에서 두 수의 소수 자릿수의 합이 2이므로 곱은 ${decimal(a * b)}이야. ${tenths(a + 1)} × ${tenths(b + 1)}도 같은 방법으로 계산하면 ${decimal((a + 1) * (b + 1))}이야.`,
       };
       break;
     }
