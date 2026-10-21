@@ -26,3 +26,7 @@
 QA는 `.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/assets-editor-integration-20261021-r1/`, 화면 결과는 `browser/browser-results-r4.json`이다. 1280·390 화면 PNG를 직접 확인했다. 전체 작업실·인쇄·실제 출제 문항의 전수 검증은 아니다. 기존 v50 집계·보호 잠금·원본·타 세션 파일은 그대로 유지하고 최종/적재 가능·운영 쓰기·배포는 0이다. 모눈 실측 보조와 남은 엔진 카드 등 전체 개선은 계속 미완료로 추적한다.
 
 독립 실행은 `figure-assets-editor-current-audit-20261021-r1/own-executed-report.json`(`c3c2b8359`), 그 준비는 `f282a0e50`, 이전 정적 반례는 `f0fb427c6`으로 보존했다. 준비·정적 감사·실제 실행과 과거 코드 스냅샷의 결과를 현재 전체 UI 검증으로 확장하지 않는다.
+
+최신 main `7266c9b28`의 SRS 11커밋을 `f81b1d3ac`에 보존 통합했다. 이후 현재 11파일 175개 회귀를 다시 실행하여 실패 0을 확인했고, 사용자 지정 원본 `check_engine.py`도 다시 실행해 6종 출력 모두 바이트 일치를 확인했다. 외부 확인 스크립트와 기대 파일의 해시도 그대로다. 독립 88개와 이전 화면·타입·린트 결과는 각 소스 해시에 묶인 별도 실행이며 새 회귀 수에 더하지 않는다. 최신 증거는 `assets-editor-after-main-r1-execution.json`과 `engine-all-sync-20261021-r1/check-after-main-r1.json`, 통합 원장은 `engine-upgrades-progress-r57.json`이다.
+
+재개 직후 이 작업트리의 Git 인덱스·참조·일부 검수 보조 파일에서 NUL만 남은 기록이 관측됐다. 원인은 확정하지 않았다. 손상 바이트를 외부 별도 폴더에 먼저 백업하고, 살아 있는 `cf392bde6` 커밋 객체에서 이 작업트리의 인덱스·참조와 검수 보조 파일 7개를 복원했다. 내용이 같은 줄바꿈 차이 2파일도 커밋 바이트로 되돌렸다. 실제 코드 144파일의 검수 해시는 모두 일치한다. 병합이 임시 참조에서 중단되며 남긴 새 main 파일 23개는 원격 내용과 비교·별도 보존한 뒤 정상 병합했다. 브랜치 reset/clean/force-push나 기존 문항·DB 쓰기는 없다. 재현 기록은 `engine-upgrade-20261019/git-recovery-20261021-r1/recovery-summary.json`, 원본 메타데이터 백업은 그 기록에 명시된 로컬 외부 폴더에 보존한다.

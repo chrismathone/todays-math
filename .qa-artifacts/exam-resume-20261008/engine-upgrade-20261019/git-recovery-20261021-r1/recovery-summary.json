@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-21T11:14:24.434041+00:00",
+  "observed": "NUL-only owned index, feature/origin-main refs, scratch AUTO_MERGE, seven working evidence files, and NUL reflog tails; root cause not established",
+  "externalRawMetadataBackup": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-git-recovery-20261021-r1",
+  "rawIndexConfigOrReflogsCommitted": false,
+  "lastVerifiedLocalCommit": "cf392bde6d41b49c1534a540d671cd63fb83236b",
+  "mainAfterPreservedMerge": "7266c9b2808ff6690b34853b3fb46dbc9576ac62",
+  "mergedHead": "f81b1d3acd9564c515c041b16df247b0b1314a70",
+  "verifiedCodeFilesUnchanged": 144,
+  "restoredNullOnlyEvidenceFiles": 7,
+  "restoredCommittedLineEndingsOnlyFiles": 2,
+  "preservedInterruptedMergeNewFiles": 23,
+  "branchResetOrCleanOrForcePush": false,
+  "existingQuestionOrDBChanges": 0,
+  "records": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/manifest.json",
+      "sha256": "d8c188d906567c0cf04aa438372204f1af7683b9319bb272e129b1293d3de26d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/recovery-actions.json",
+      "sha256": "581689ca5a15409caefa53d9b776f6fc6715850aaf6936eee73c7be34b804fa5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/verified-worktree-code.json",
+      "sha256": "9386f8b13da331853b13a6080980f0442ce529932f21bfbfc3039964d49a16db"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/dirty-worktree-inspection.json",
+      "sha256": "1ae8b1a0513a8ebac992cf0d7507a8a2e813a37de8abc909a4a7a39a50f8f1ae"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/worktree-recovery-actions.json",
+      "sha256": "eda0b9db27f0e4fe2e2531b83140baaec68d71e802129fc688136796be80bac5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/auto-merge-scratch-ref-recovery.json",
+      "sha256": "aedfc9b531efcb2eb96c286dbb5d3bbb47a6f18d4e81fd7c0cf7c4413b13c102"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/git-recovery-20261021-r1/incoming-main-preservation.json",
+      "sha256": "996c0715c379ed23a8d5dc181c288cc42d5b4ea9061b90588baf5ab7afa4a48f"
+    }
+  ]
+}

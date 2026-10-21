@@ -1,0 +1,43 @@
+{
+  "createdUTC": "2026-10-21T11:06:46.293052+00:00",
+  "actions": [
+    {
+      "path": "D:\\todays-math\\.git\\refs\\heads\\chrismathone\\exam-extraction-resume-20261008",
+      "kind": "restore verified owned feature head",
+      "bytes": 41,
+      "sha256": "bfa88092bd61a337fdb32fe7903b203e76a4f00e5cf3bc8d57b70c648b1d17be"
+    },
+    {
+      "path": "D:\\todays-math\\.git\\worktrees\\exam-extraction-resume-20261008\\index",
+      "kind": "rebuild owned index from verified commit; no worktree file change",
+      "bytes": 7901504,
+      "sha256": "2a09b99619550bd5aa253951cb9db65aaf9295dac0f24af86789ff35bdb667b0"
+    },
+    {
+      "path": "D:\\todays-math\\.git\\refs\\remotes\\origin\\main",
+      "kind": "restore last verified fetched main cache; fetch required",
+      "bytes": 41,
+      "sha256": "99b2fea3bb0ff1a36b5b1a70362754f478fb6f1be44d42d8240f753865716d75"
+    },
+    {
+      "path": "D:\\todays-math\\.git\\worktrees\\exam-extraction-resume-20261008\\logs\\HEAD",
+      "kind": "preserve all complete valid reflog lines; nul tail backed up",
+      "bytes": 65606,
+      "sha256": "d0cf8a61bea15e942e3368ae3b0a8f13c3845d4554ed4043052df817b821d24e"
+    },
+    {
+      "path": "D:\\todays-math\\.git\\logs\\refs\\heads\\chrismathone\\exam-extraction-resume-20261008",
+      "kind": "preserve all complete valid reflog lines; nul tail backed up",
+      "bytes": 65305,
+      "sha256": "da848e97162678d3db52afc129c239978632441acdacdfb50681ed6b947a2c95"
+    },
+    {
+      "path": "D:\\todays-math\\.git\\logs\\refs\\remotes\\origin\\main",
+      "kind": "preserve all complete valid reflog lines; nul tail backed up",
+      "bytes": 29259,
+      "sha256": "4055d3435a5359bf52ff7f84a33c8aff8735406febb39ab9df0a3f03b229c4c4"
+    }
+  ],
+  "noWorktreeFilesChanged": true,
+  "backup": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-git-recovery-20261021-r1"
+}
