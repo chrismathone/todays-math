@@ -1,0 +1,43 @@
+{
+  "status": "CURRENT_FILES_MATCH_SEALED_R3_STATIC_REVIEW",
+  "checks": [
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "currentSHA256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+      "reviewedR3CandidateSHA256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+      "matches": true
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "currentSHA256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+      "reviewedR3CandidateSHA256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+      "matches": true
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "currentSHA256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+      "reviewedR3CandidateSHA256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+      "matches": true
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "currentSHA256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+      "reviewedR3CandidateSHA256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+      "matches": true
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "currentSHA256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd",
+      "reviewedR3CandidateSHA256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd",
+      "matches": true
+    }
+  ],
+  "parentGOReceivedBeforeNode": true,
+  "staticProofReference": {
+    "commit": "a76e4ee55953088e35c389fe07412c076e05c2bf",
+    "reportSHA256": "c9572efefae88ac3c041bab33fa07ae2a677c1236f6f4e67555ed16cbfedea38"
+  },
+  "literalDomainProofs": "M8all120,M9all48bounds/171tuples,M19all18,M20all64kind1tuples in prior staticreview; not counted as actual120runtimeoutputs or newlyrerunstaticassertions.",
+  "fiveCandidateFilesUnchangedSinceSetup": true,
+  "noGradeRightsNativeReleaseApproval": true
+}

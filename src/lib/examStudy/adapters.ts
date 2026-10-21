@@ -33,6 +33,11 @@ import {
 const LEGACY_VERSION = "9cfbb8683-r1";
 // Changed question targets must invalidate old recipe manifests, with family IDs preserved.
 const LEGACY_FAMILY_VERSIONS: Readonly<Record<string, string>> = {
+  // Mathematical condition/role changes are future revisions, never DB refreshes.
+  "2-2|평행선 사이의 선분의 길이의 비|60": "20261021-strict-triangle-perimeter-r1",
+  "2-2|평행선 사이의 선분의 길이의 비|17": "20261021-feasible-external-bisector-r1",
+  "2-2|삼각형의 외심과 내심|75": "20261021-consistent-incenter-inputs-r1",
+  "2-1|단항식의 계산|04": "20261021-independent-exponent-symbols-r1",
   "3-2|원과 직선|06": "20261019-inverse-chord-angle-r1",
   "3-1|무리수와 실수|09": "20261019-root-table-approx-r1",
 };

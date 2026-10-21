@@ -1,0 +1,16 @@
+{
+  "kind": "m31-polygon-outline-engine-candidate/v1",
+  "status": "unapplied-static-review-pending",
+  "path": "src/lib/middle/m1Geo2.ts",
+  "originalSha256": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+  "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m31-outline-candidate-20261021-r1/src/lib/middle/m1Geo2.ts",
+  "candidateSha256": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+  "sourceFinding": "M31; actual owner m1Geo2.ts, not m1Book2.ts",
+  "changedScope": "polygon04 mode0 diagram only; mode1 stays figureSpec:null; polygon05 unchanged",
+  "futureFamilyVersionRequired": "1-2|다각형|04:20261021-outline-before-student-diagonals-r1",
+  "internalCountNotDrawn": "n-3 possible nonadjacent connections; no fan segments in the prompt",
+  "bodyAnswerSolutionOrNumericalParametersChanged": false,
+  "productionChanged": false,
+  "bankOrIssuedQuestionOrDBChanged": false,
+  "officialGradeOrRightsApproval": false
+}

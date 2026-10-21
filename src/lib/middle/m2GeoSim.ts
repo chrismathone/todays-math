@@ -2469,7 +2469,8 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
     (rng): Body => {
       const a = intBetween(rng, 2, 5);
       const k = intBetween(rng, 2, 4);
-      const per = intBetween(rng, 3, 12);
+      // A triangle with one side a exists iff its perimeter exceeds 2a.
+      const per = 2 * a + intBetween(rng, 1, 10);
       return {
         content: `삼각형 $ABC$에서 점 $D$는 $\\overline{AB}$ 위, 점 $E$는 $\\overline{AC}$ 위에 있고 $\\overline{DE}$와 $\\overline{BC}$는 평행하다. $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{AB}=${a * k}\\,\\mathrm{cm}$이고 삼각형 $ADE$의 둘레의 길이가 $${per}\\,\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,
         answer: `$${per * k}\\,\\mathrm{cm}$`,
@@ -2611,7 +2612,10 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
       const unit = intBetween(rng, 2, 5);
       const ab = p * unit;
       const ac = q * unit;
-      const bc = (p - q) * intBetween(rng, 2, 5);
+      // |AB-AC| < BC < AB+AC, retaining an integral external segment.
+      const maxBaseScale = Math.min(unit + 4, Math.floor(((p + q) * unit - 1) / (p - q)));
+      const baseScale = intBetween(rng, unit + 1, maxBaseScale);
+      const bc = (p - q) * baseScale;
       const x = (q * bc) / (p - q);
       return {
         content: `삼각형 $ABC$에서 $A$의 외각의 이등분선이 직선 $BC$와 점 $D$에서 만나고 점의 순서는 $B$, $C$, $D$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,

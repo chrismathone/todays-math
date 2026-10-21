@@ -549,7 +549,8 @@ export const M2_MONO_TYPES: TypeEntry[] = [
           };
         });
       }
-      // 지수가 문자로 적힌 등식에서 자연수 세 개를 찾는다.
+      // Exponent unknowns must not collide with either base-variable pair.
+      // "항등식" terminology is unnecessary: state the all-values condition directly.
       const kc = pick(rng, [-3, -2, 2, 3] as const);
       const b = intBetween(rng, 2, 3);
       const a = intBetween(rng, 2, 3);
@@ -557,13 +558,13 @@ export const M2_MONO_TYPES: TypeEntry[] = [
       const K = Math.pow(kc, b);
       const X = a * b;
       const c = ey * b;
-      const lhs = `\\left(${coefTex(kc)}${v0}^{a}${varTex(v1, ey)}\\right)^{b}`;
-      const rhs = `${coefTex(K)}${varTex(v0, X)}${v1}^{c}`;
+      const lhs = `\\left(${coefTex(kc)}${v0}^{m}${varTex(v1, ey)}\\right)^{n}`;
+      const rhs = `${coefTex(K)}${varTex(v0, X)}${v1}^{k}`;
       return {
-        content: `$${lhs}=${rhs}$ 일 때, 자연수 $a$, $b$, $c$ 에 대하여 $a+b+c$ 의 값을 구하시오.`,
+        content: `자연수 $m$, $n$, $k$에 대하여 다음 등식이 문자 $${v0}$, $${v1}$의 값에 관계없이 항상 성립한다.\n$${lhs}=${rhs}$\n$m+n+k$의 값을 구하시오.`,
         answer: `$${a + b + c}$`,
-        solution: `곱의 거듭제곱으로 좌변을 풀면 $${lhs}=\\left(${kc}\\right)^{b}${v0}^{ab}${v1}^{${coefTex(ey)}b}$ 이다.\n계수를 비교하면 $\\left(${kc}\\right)^{b}=${K}$ 에서 $b=${b}$, 지수를 비교하면 $ab=${X}$ 에서 $a=${a}$, $c=${coefTex(ey)}b=${c}$ 이다.\n따라서 $a+b+c=${a + b + c}$ 이다.`,
-        facts: { kind, kc, a, b, c, K, X, ey },
+        solution: `곱의 거듭제곱으로 좌변을 풀면 $${lhs}=\\left(${kc}\\right)^{n}${v0}^{mn}${v1}^{${coefTex(ey)}n}$이다.\n계수를 비교하면 $\\left(${kc}\\right)^{n}=${K}$에서 $n=${b}$이다. 두 문자의 지수를 각각 비교하면 $mn=${X}$에서 $m=${a}$이고, $k=${coefTex(ey)}n=${c}$이다.\n따라서 $m+n+k=${a}+${b}+${c}=${a + b + c}$이다.`,
+        facts: { kind, kc, a, b, c, K, X, ey, m: a, n: b, k: c },
       };
     },
   ),

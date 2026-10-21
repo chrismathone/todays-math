@@ -1,0 +1,901 @@
+{
+  "counts": {
+    "assertions": 30,
+    "passed": 30,
+    "failed": 0,
+    "nCases": 8,
+    "literalModeNCases": 16,
+    "actualSeedOutputs": 0
+  },
+  "checks": [
+    {
+      "name": "originalActualSHA",
+      "pass": true
+    },
+    {
+      "name": "candidateActualSHA",
+      "pass": true
+    },
+    {
+      "name": "outlineBoundaryOnlySourceLoop",
+      "pass": true
+    },
+    {
+      "name": "outlineNoFanConnections",
+      "pass": true
+    },
+    {
+      "name": "outlineReturnOnlyGeometryLabels",
+      "pass": true
+    },
+    {
+      "name": "04SourceTextOnlyFigureHelperCallChanged-EOLNormalized",
+      "pass": true
+    },
+    {
+      "name": "04Mode1NullUnchanged",
+      "pass": true
+    },
+    {
+      "name": "regularPolygonSourceTextUnchanged-EOLNormalized",
+      "pass": true
+    },
+    {
+      "name": "05AllDiagonalsHelperSourceTextUnchanged-EOLNormalized",
+      "pass": true
+    },
+    {
+      "name": "05WholeDefinitionUnchanged",
+      "pass": true
+    },
+    {
+      "name": "onlyDocumentHelperAnd04CallChanged",
+      "pass": true
+    },
+    {
+      "name": "n5BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n5NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n6BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n6NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n7BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n7NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n8BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n8NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n9BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n9NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n10BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n10NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n11BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n11NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "n12BoundaryOnlyClosedCycle",
+      "pass": true
+    },
+    {
+      "name": "n12NMinus3NotDrawn",
+      "pass": true
+    },
+    {
+      "name": "futureVersionDeclared",
+      "pass": true
+    },
+    {
+      "name": "UTF8Probe",
+      "pass": true
+    },
+    {
+      "name": "allInputAndProductionBytesUnchanged",
+      "pass": true
+    }
+  ],
+  "graphs": [
+    {
+      "n": 5,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "C"
+        ]
+      ],
+      "mode0Answer": 2,
+      "mode1Figure": null
+    },
+    {
+      "n": 6,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "C"
+        ]
+      ],
+      "mode0Answer": 3,
+      "mode1Figure": null
+    },
+    {
+      "n": 7,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "C"
+        ]
+      ],
+      "mode0Answer": 4,
+      "mode1Figure": null
+    },
+    {
+      "n": 8,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2,
+        "H": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "G"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "mode0Answer": 5,
+      "mode1Figure": null
+    },
+    {
+      "n": 9,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H",
+        "I": "I"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2,
+        "H": 2,
+        "I": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "G"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "H"
+        ]
+      ],
+      "mode0Answer": 6,
+      "mode1Figure": null
+    },
+    {
+      "n": 10,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H",
+        "I": "I",
+        "J": "J"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2,
+        "H": 2,
+        "I": 2,
+        "J": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "I"
+        ],
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "G"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "H"
+        ]
+      ],
+      "mode0Answer": 7,
+      "mode1Figure": null
+    },
+    {
+      "n": 11,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H",
+        "I": "I",
+        "J": "J",
+        "K": "K"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "K"
+        ],
+        [
+          "K",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2,
+        "H": 2,
+        "I": 2,
+        "J": 2,
+        "K": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "I"
+        ],
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "J"
+        ],
+        [
+          "A",
+          "G"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "H"
+        ]
+      ],
+      "mode0Answer": 8,
+      "mode1Figure": null
+    },
+    {
+      "n": 12,
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H",
+        "I": "I",
+        "J": "J",
+        "K": "K",
+        "L": "L"
+      },
+      "boundaryEdges": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "G"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "H",
+          "I"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "J",
+          "K"
+        ],
+        [
+          "K",
+          "L"
+        ],
+        [
+          "L",
+          "A"
+        ]
+      ],
+      "nonadjacentEdgesDrawn": 0,
+      "allDegrees": {
+        "A": 2,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 2,
+        "F": 2,
+        "G": 2,
+        "H": 2,
+        "I": 2,
+        "J": 2,
+        "K": 2,
+        "L": 2
+      },
+      "possibleConnectionsFromA_NOT_IN_FIGURE": [
+        [
+          "A",
+          "I"
+        ],
+        [
+          "A",
+          "K"
+        ],
+        [
+          "A",
+          "F"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "J"
+        ],
+        [
+          "A",
+          "G"
+        ],
+        [
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "E"
+        ],
+        [
+          "A",
+          "H"
+        ]
+      ],
+      "mode0Answer": 9,
+      "mode1Figure": null
+    }
+  ],
+  "diffLocations": [
+    {
+      "tag": "replace",
+      "originalLines": [
+        7,
+        8
+      ],
+      "candidateLines": [
+        7,
+        8
+      ]
+    },
+    {
+      "tag": "replace",
+      "originalLines": [
+        811,
+        811
+      ],
+      "candidateLines": [
+        811,
+        811
+      ]
+    },
+    {
+      "tag": "replace",
+      "originalLines": [
+        817,
+        819
+      ],
+      "candidateLines": [
+        817,
+        817
+      ]
+    },
+    {
+      "tag": "replace",
+      "originalLines": [
+        908,
+        908
+      ],
+      "candidateLines": [
+        906,
+        906
+      ]
+    }
+  ],
+  "sourceEOL": {
+    "originalCRLF": 1662,
+    "candidateCRLF": 0,
+    "originalLF": 1662,
+    "candidateLF": 1660
+  },
+  "sourceTextComparisonNormalizesCRLFOnly": true,
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\proposal.json": "4bdbf8514fbecbbff8d930c1381480486aff6987f383220e07319691d671097b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\src\\lib\\middle\\m1Geo2.ts": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\proposal.json": "4bdbf8514fbecbbff8d930c1381480486aff6987f383220e07319691d671097b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m31-outline-candidate-20261021-r1\\src\\lib\\middle\\m1Geo2.ts": "aa034b648572a388c703ed61c8c588a0b0de709c159abd4d52b58a659474b942",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87"
+  },
+  "byteFieldHashes": {
+    "old04": "e6574c5cc1018243c5e9c1591565726167a6f47cf0c86b6146c2b8f9edddb5ed",
+    "new04": "eeaf2e7de6abdcd9b6fccaf858559f3998edca39b6f6324fccc27e468b95803b"
+  },
+  "futureVersion": "1-2|다각형|04:20261021-outline-before-student-diagonals-r1",
+  "currentAdapterEntryPresent": false
+}

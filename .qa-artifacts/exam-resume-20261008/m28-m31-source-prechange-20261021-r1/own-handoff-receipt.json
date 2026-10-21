@@ -1,0 +1,9 @@
+{
+  "commit": "4b21d2983",
+  "path": "docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+  "sha256": "ae7b1d2009a3f3b54cccd8697d81ecc8b018ebbe7c8436fd34f59a94661effbe",
+  "scopedRows": [
+    "| M28 | `2-2\\|평행사변형\\|15A` (`s20403562`) | `src/lib/middle/m2GeoQuad.ts` | 🔴 **그림과 값이 어긋남** — 답 $x=7$ 이면 $\\angle B=\\angle D=16^\\circ$ 인데 그림은 $\\angle B$ 약 65° 인 보통 평행사변형 · 각 표시도 B · D 가 아니라 A · C 에(Claude) | 각을 값에 맞춰 그리거나 값 범위를 그림에 맞게 |",
+    "| M31 | `1-2\\|다각형\\|04` (`s20411481`) | `src/lib/middle/m1Geo2.ts` · `m1Book2.ts` | 🔴 **그림이 정답을 보여 줌** — 한 꼭짓점에서 그은 대각선 5개를 다 그려 놓고 개수를 물음(세 모델 중 둘 · 높음) | 대각선 없이 다각형만 |"
+  ]
+}

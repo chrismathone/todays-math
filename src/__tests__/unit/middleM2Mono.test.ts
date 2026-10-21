@@ -575,22 +575,22 @@ const CHECKS: Record<string, Check> = {
   },
   [`${R}|04`]: (p) => {
     if (p.facts.kind === 0) return checkSimplify(p);
-    // 자연수 a·b·c 를 넣으면 등식이 성립해야 한다 (지수가 문자인 갈래).
+    // Unknown exponents are independent of BOTH base-variable pairs.
     const ms = maths(p.content);
-    const [lhs, rhs] = splitEq(ms[0]!);
-    const sum = Number(toInt(evalTex(answerMath(p), {}), "a+b+c"));
-    const abc = {
-      a: fr(p.facts.a!),
-      b: fr(p.facts.b!),
-      c: fr(p.facts.c!),
-    };
-    for (let k = 0; k < 3; k += 1) {
-      const env = { ...abc, ...pointFor(k, ["x", "y"]) };
+    const equation = ms.find((s) => s.includes("="));
+    expect(equation).toBeDefined();
+    const [lhs, rhs] = splitEq(equation!);
+    const sum = Number(toInt(evalTex(answerMath(p), {}), "m+n+k"));
+    const mnk = { m: fr(p.facts.m!), n: fr(p.facts.n!), k: fr(p.facts.k!) };
+    expect(p.content).toContain("값에 관계없이 항상 성립");
+    for (let k = 0; k < POINTS.length; k += 1) {
+      const env = { ...pointFor(k, ["a", "b", "x", "y"]), ...mnk };
       expect(eqF(evalTex(lhs, env), evalTex(rhs, env)), `점 ${k}`).toBe(true);
     }
-    // 답은 세 자연수의 합 — 발문의 `a+b+c` 를 그대로 값 매겨 견준다.
-    expect(Number(toInt(evalTex(ms[4]!, abc), "a+b+c"))).toBe(sum);
-    for (const v of [p.facts.a!, p.facts.b!, p.facts.c!]) {
+    const sumExpression = ms.find((s) => s.replace(/\s+/g, "") === "m+n+k");
+    expect(sumExpression).toBeDefined();
+    expect(Number(toInt(evalTex(sumExpression!, mnk), "m+n+k"))).toBe(sum);
+    for (const v of [p.facts.m!, p.facts.n!, p.facts.k!]) {
       expect(Number.isInteger(v) && v > 0).toBe(true);
     }
   },

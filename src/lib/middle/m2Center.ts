@@ -25,6 +25,17 @@ const MINOR_CENTROID = "삼각형의 무게중심";
 const MINOR_SIMILAR = "도형의 닮음";
 const MINOR_PYTHA = "피타고라스 정리";
 
+// M19: exact feasible (BC, CA, AB, inradius), all within the original input ranges.
+// Internal consistency is checked independently with integer area identities.
+// Students still use only the GIVEN inradius as the height of triangle IBC.
+const INCENTER_SIDE_RADIUS_INPUTS = [
+  [8, 6, 10, 2], [8, 10, 6, 2], [10, 6, 8, 2], [10, 8, 6, 2],
+  [10, 10, 12, 3], [10, 12, 10, 3], [12, 5, 13, 2], [12, 9, 15, 3],
+  [12, 10, 10, 3], [12, 13, 5, 2], [12, 15, 9, 3], [14, 13, 15, 4],
+  [14, 15, 13, 4], [20, 7, 15, 2], [20, 11, 13, 3], [20, 13, 11, 3],
+  [20, 15, 7, 2], [24, 15, 15, 4],
+] as const;
+
 /** 우리 Unit.section 정확한 이름 */
 const SEC = {
   외심: "삼각형의 외심",
@@ -1670,10 +1681,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
     SEC.내심,
     "응용",
     (rng): Body => {
-      const a = 2 * intBetween(rng, 4, 12);
-      const r = intBetween(rng, 2, 7);
-      const b = intBetween(rng, 5, 15);
-      const c = intBetween(rng, 5, 15);
+      const [a, b, c, r] = pick(rng, INCENTER_SIDE_RADIUS_INPUTS);
       return {
         content: `점 $I$가 $\\triangle ABC$의 내심이고 내접원의 반지름의 길이가 $${r}\\,\\mathrm{cm}$이다. $\\overline{BC}=${a}\\,\\mathrm{cm}$, $\\overline{CA}=${b}\\,\\mathrm{cm}$, $\\overline{AB}=${c}\\,\\mathrm{cm}$일 때, $\\triangle IBC$의 넓이를 구하시오.`,
         answer: `$${(a * r) / 2}\\,\\mathrm{cm}^2$`,
