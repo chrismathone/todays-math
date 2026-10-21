@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "576c9307-a202-4ef2-aa6d-ced9a57ffc0e",
+ "startedAt": "2026-10-21T16:28:16+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "c712324154ba05f4c79c3239aa31e8c8df551f6ebd401c2d50cb17743ad32cf0"
+ },
+ "promptSha256": "e3b4f7b443ceb9a5e711b6c9b5b95cf83cd6d61ff6a45370d0c6776acad783d1",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"① 6x-3>6x+8 → 0·x-11>0 이므로 일차부등식이 아니다. ② x^2+7x>x^2-9 → 7x+9>0 이므로 일차부등식이다. ③ 미지수가 없다. ④ x^2-9≤0 이므로 이차식이다. ⑤ 등식(방정식)이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "① 6x-3>6x+8 → 0·x-11>0 이므로 일차부등식이 아니다. ② x^2+7x>x^2-9 → 7x+9>0 이므로 일차부등식이다. ③ 미지수가 없다. ④ x^2-9≤0 이므로 이차식이다. ⑤ 등식(방정식)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b708aa5dc69942aacf802c06d8cc06f9c177a6b4d8e83a96f06bbea1ac213ccf"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "1d5832e9-2826-4f49-8fe2-d50e8aa9a9b2",
+ "startedAt": "2026-10-21T16:27:47+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "cec8f1d2fa2dc29d826bf1c87725f82951bc7b27a1a70eb965369b0cca958d9b"
+ },
+ "promptSha256": "7541bb12b31d5ced6b3a4279adbe1bb3584b73fa57e5b8d215c0c84902ff329e",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"x가 있는 항을 한쪽으로, 상수항을 다른 쪽으로 옮긴다: 9x - 12x > -11 - 4 → -3x > -15. 양변을 -3으로 나누면 부등호 방향이 바뀌므로 x < 5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x가 있는 항을 한쪽으로, 상수항을 다른 쪽으로 옮긴다: 9x - 12x > -11 - 4 → -3x > -15. 양변을 -3으로 나누면 부등호 방향이 바뀌므로 x < 5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4e52519574d6b09f94f8e2315bf1bd8d1f32ae7c8b1a74f369ee1f0db760a134"
+}

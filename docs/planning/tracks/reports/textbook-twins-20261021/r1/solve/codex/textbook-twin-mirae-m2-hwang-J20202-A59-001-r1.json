@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d70-8fc4-7bf3-b977-222a87653f53",
+ "startedAt": "2026-10-21T16:50:20+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "ce63d37b95bbcd66f454359b280729948af0c84154c238144c415aa299badaf4"
+ },
+ "promptSha256": "280d6f3972c69824eb3fb1814079bb47e8d105dd41c455451fc85ba45718c189",
+ "freezeCommit": "42b2f1254ff82d119b65301ede77b00eb3decb1e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"양변에 10을 곱하면 5(x+3) ≥ 7x−2이므로 2x ≤ 17, 즉 x ≤ 8.5이다.\\n따라서 자연수 x는 1부터 8까지이고, 그 합은 8×9÷2=36이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "양변에 10을 곱하면 5(x+3) ≥ 7x−2이므로 2x ≤ 17, 즉 x ≤ 8.5이다.\n따라서 자연수 x는 1부터 8까지이고, 그 합은 8×9÷2=36이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7512b301e3dce4fd9004ace164e01d8e06cdf5258a3c0bbf9d15269bb2059a1d"
+}
