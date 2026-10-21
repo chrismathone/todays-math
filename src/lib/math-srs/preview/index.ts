@@ -1,6 +1,7 @@
 import { definitionCard } from "@/lib/math-explorers/definition-cards";
 import { PREVIEW_CARDS, type PreviewCard } from "./cards";
 import { numberLineSvg } from "./numberLine";
+import { PREVIEW_ENGINE_SVGS } from "./generatedFigures";
 
 export type { PreviewCard } from "./cards";
 
@@ -17,7 +18,15 @@ export function previewMeaning(card: PreviewCard): string {
 }
 
 export function previewFigureSvg(card: PreviewCard): string {
-  return numberLineSvg(card.figure);
+  if (card.figure.kind === "numberLine") return numberLineSvg(card.figure);
+  const title = card.figure.title
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+  return PREVIEW_ENGINE_SVGS[card.figure.id].replace(
+    /<svg([^>]*)>/,
+    `<svg$1 role="img"><title>${title}</title>`,
+  );
 }
 
 /**
