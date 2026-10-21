@@ -1,0 +1,188 @@
+{
+  "M8": {
+    "finding": "M8",
+    "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+    "seed": 20268939,
+    "variant": 0,
+    "matrixIndex": 1,
+    "printedContentSHA256": "1af6b568f7bc163fb226310228648ba487f4d4e939e2b68e2d4fa478edabbe62",
+    "printed": {
+      "AD": 5,
+      "AB": 20,
+      "ADEperimeter": 3
+    },
+    "own": {
+      "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+      "Pminus2AD": -7,
+      "scale": "4",
+      "equalOtherSidesWitness": "-1",
+      "largerPerimeterConditional": "12"
+    },
+    "exists": false,
+    "mathematicalDefect": true,
+    "answerMatchesConditionalAlgebra": true
+  },
+  "M9": {
+    "finding": "M9",
+    "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+    "seed": 20276858,
+    "variant": 0,
+    "matrixIndex": 2,
+    "printedContentSHA256": "1dd3f4c650af2d74ab4a1cb225fbe01c1b2a6e68a7d7c6a61e07925484bc5465",
+    "printed": {
+      "AB": 35,
+      "AC": 20,
+      "BC": 9,
+      "order": "B,C,D"
+    },
+    "own": {
+      "triangleStrictMargins": [
+        46,
+        24,
+        -6
+      ],
+      "CDconditional": "12",
+      "DCoordinateWhenB0Cbc": "21",
+      "externalRatioIdentity": true,
+      "altitudeSquared": "-11776/9",
+      "triangleRange": "15 < BC < 55"
+    },
+    "exists": false,
+    "externalPointConsistentConditional": true,
+    "mathematicalDefect": true,
+    "answerMatchesConditionalAlgebra": true
+  },
+  "M19": {
+    "finding": "M19",
+    "typeKey": "2-2|삼각형의 외심과 내심|75",
+    "seed": 20403562,
+    "variant": 0,
+    "matrixIndex": 18,
+    "printedContentSHA256": "400ce567f8c22c5889e2c0aecf4ec649e6371afd550b52cce631b996dbe526c2",
+    "printed": {
+      "BC": 12,
+      "CA": 13,
+      "AB": 5,
+      "radius": 4
+    },
+    "own": {
+      "triangleStrictMargins": [
+        20,
+        4,
+        6
+      ],
+      "semiperimeter": "15",
+      "altitudeProjection": "0",
+      "altitudeSquared": "25",
+      "areaSquared": "900",
+      "actualRadiusSquared": "4",
+      "printedRadiusSquared": 16,
+      "actualAreaIBCSquared": "144",
+      "printedFormulaAreaIBC": "24",
+      "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+    },
+    "rightTriangle": true,
+    "studentRouteForActualRightCase": {
+      "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+      "area": "30",
+      "semiperimeter": "15",
+      "actualRadius": "2",
+      "actualAreaIBC": "12",
+      "printedFormulaAreaIBC": "24"
+    },
+    "exists": true,
+    "radiusConsistent": false,
+    "mathematicalDefect": true,
+    "answerMatchesPrintedRadiusFormula": true
+  },
+  "M20": {
+    "finding": "M20",
+    "typeKey": "2-1|단항식의 계산|04",
+    "seed": 20363967,
+    "variant": 0,
+    "matrixIndex": 13,
+    "printedContentSHA256": "13690594d70afc71ada06497e03d92dac24829c3230849582401b6f78ef3fa5b",
+    "branch": "natural-exponent-inputs",
+    "printed": {
+      "coefficientBase": -2,
+      "baseLetters": [
+        "a",
+        "b"
+      ],
+      "secondBaseExponent": 1,
+      "rightCoefficient": 4,
+      "rightFirstExponent": 6
+    },
+    "own": {
+      "formalIdentityIntendedInputs": [
+        3,
+        2,
+        2
+      ],
+      "formalIdentityIntendedSum": 7,
+      "numericWitness": {
+        "a": 1,
+        "b": 2,
+        "c": 2,
+        "sum": 5,
+        "lhs": "16",
+        "rhs": "16"
+      },
+      "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+      "boundedSolutions": [
+        {
+          "a": 1,
+          "b": 2,
+          "c": 2,
+          "sum": 5,
+          "lhs": "16",
+          "rhs": "16"
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "c": 5,
+          "sum": 10,
+          "lhs": "4096",
+          "rhs": "4096"
+        },
+        {
+          "a": 1,
+          "b": 8,
+          "c": 10,
+          "sum": 19,
+          "lhs": "4294967296",
+          "rhs": "4294967296"
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "c": 6,
+          "sum": 12,
+          "lhs": "1048576",
+          "rhs": "1048576"
+        },
+        {
+          "a": 3,
+          "b": 2,
+          "c": 2,
+          "sum": 7,
+          "lhs": "11664",
+          "rhs": "11664"
+        },
+        {
+          "a": 4,
+          "b": 2,
+          "c": 6,
+          "sum": 12,
+          "lhs": "1048576",
+          "rhs": "1048576"
+        }
+      ],
+      "a1_b2_c2Valid": true
+    },
+    "letterBaseExponentCollision": true,
+    "mathematicalDefect": true,
+    "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+  }
+}

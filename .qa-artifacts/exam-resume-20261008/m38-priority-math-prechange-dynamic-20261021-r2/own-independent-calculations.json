@@ -1,0 +1,3958 @@
+{
+  "summary": {
+    "M8": {
+      "matrixCount": 30,
+      "mathematicalDefects": 21
+    },
+    "M9": {
+      "matrixCount": 30,
+      "mathematicalDefects": 17
+    },
+    "M19": {
+      "matrixCount": 30,
+      "mathematicalDefects": 30,
+      "rightTriangles": 1,
+      "triangleNonexistence": 7,
+      "radiusMismatchForExistingTriangles": 23
+    },
+    "M20": {
+      "matrixCount": 30,
+      "mathematicalDefects": 12,
+      "naturalInputBranch": 15,
+      "collisionCount": 12,
+      "simplifyBranch": 15
+    }
+  },
+  "cases": [
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "f8075e15523994ce6271992440127c7d534f0b6aac9d2f7db4561b4c5f67b80b",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 12
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "2",
+        "equalOtherSidesWitness": "7/2",
+        "largerPerimeterConditional": "24"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "1af6b568f7bc163fb226310228648ba487f4d4e939e2b68e2d4fa478edabbe62",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -7,
+        "scale": "4",
+        "equalOtherSidesWitness": "-1",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "de3b6bcd04fc0475b7e4e75653c7614632398f3574661ddcfae8acdeed461218",
+      "printed": {
+        "AD": 2,
+        "AB": 4,
+        "ADEperimeter": 6
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "2",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "5b057faa6254da7487848aece2674ef191691d7593e4d31210674c20d844e25d",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 10
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 0,
+        "scale": "4",
+        "equalOtherSidesWitness": "5/2",
+        "largerPerimeterConditional": "40"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "e002a1e3244d17a77af92bef5fdf21c7105498db203f9401835fb164cad94e1e",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 5
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -1,
+        "scale": "3",
+        "equalOtherSidesWitness": "1",
+        "largerPerimeterConditional": "15"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "c58c52421ba6608f0afbdf52680cc198df7b98e7cf92949ae59e98a592d616c1",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 6
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -4,
+        "scale": "3",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "18"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "1f17f399f26492a5a93ab1a2bdb7c0e968624e4ed0f4dabb6c5578f2c2679d1f",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -3,
+        "scale": "2",
+        "equalOtherSidesWitness": "0",
+        "largerPerimeterConditional": "6"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "4997676669f1e136b4d1d3ba2efbd6c6df4afe3057f52a279e8fb86d09ebe615",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 6
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 0,
+        "scale": "4",
+        "equalOtherSidesWitness": "3/2",
+        "largerPerimeterConditional": "24"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "2c5e27cc31a07a23a4a064ddac1195008eea5a9f96786ab775814510e8b5c7c7",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -3,
+        "scale": "3",
+        "equalOtherSidesWitness": "0",
+        "largerPerimeterConditional": "9"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "aa0cb38f77e4a5775ebaacb25aef40f839c4786b9875cbb2a06d38ab63115077",
+      "printed": {
+        "AD": 2,
+        "AB": 6,
+        "ADEperimeter": 12
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 8,
+        "scale": "3",
+        "equalOtherSidesWitness": "5",
+        "largerPerimeterConditional": "36"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "c58c52421ba6608f0afbdf52680cc198df7b98e7cf92949ae59e98a592d616c1",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 6
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -4,
+        "scale": "3",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "18"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "75e74dc8a80b05f4dd7de7b8a6d92bf65b3de7981f0d91f434dbe46864ae9e92",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 8
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -2,
+        "scale": "2",
+        "equalOtherSidesWitness": "3/2",
+        "largerPerimeterConditional": "16"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "46d43cb2ba6c5b151da76e8f231aa301defefe59c592f38f5e73a247f9ae53a9",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 4
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -2,
+        "scale": "3",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "6e4b3cde00436743f358da4be90da577e0de1d5eb484f29da35cfabd62a6489f",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 6
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 0,
+        "scale": "2",
+        "equalOtherSidesWitness": "3/2",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "8cc5b9378561e6ee08f215ced081ce77c682bda369a098694edf5b24b9566a18",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "2",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "14"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "46d43cb2ba6c5b151da76e8f231aa301defefe59c592f38f5e73a247f9ae53a9",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 4
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -2,
+        "scale": "3",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "f2ede3f18d447993ada83cee372e3151e59979a68bb3ed1bf716243b84bdbd94",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 4
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -2,
+        "scale": "4",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "16"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "bb7ddd68d1fc3f0b42c76833e73e3180e2bc14e3d6287e4e9bc2b0990859a7a6",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -7,
+        "scale": "2",
+        "equalOtherSidesWitness": "-1",
+        "largerPerimeterConditional": "6"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "cf5bb3ff18fc5721bcae737dea2f56d495bca8b348abb915ed57e3c1167fcfa3",
+      "printed": {
+        "AD": 4,
+        "AB": 12,
+        "ADEperimeter": 10
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "3",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "30"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "1751a0a5ceacc1966e9f972b27a5e620f083a0fb13330b2c6a3407bdc69fb4a4",
+      "printed": {
+        "AD": 2,
+        "AB": 8,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -1,
+        "scale": "4",
+        "equalOtherSidesWitness": "1/2",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "bb7ddd68d1fc3f0b42c76833e73e3180e2bc14e3d6287e4e9bc2b0990859a7a6",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -7,
+        "scale": "2",
+        "equalOtherSidesWitness": "-1",
+        "largerPerimeterConditional": "6"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "8c304fbe9e87017b4a889e71d0f38753c9cc6a818fbe9d6e219a3aeaba381403",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -3,
+        "scale": "4",
+        "equalOtherSidesWitness": "0",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "58680dd3a27c66630e8b712b7993344736ef932dbb12efab4a87bae57fb74a70",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 11
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 5,
+        "scale": "2",
+        "equalOtherSidesWitness": "4",
+        "largerPerimeterConditional": "22"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "f74cbf4e75d77d61e0ec2b2ff25555d5516bbc4b02517676434ce645669b4f70",
+      "printed": {
+        "AD": 4,
+        "AB": 12,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -1,
+        "scale": "3",
+        "equalOtherSidesWitness": "3/2",
+        "largerPerimeterConditional": "21"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "a064e8cf2233219086eb5ec1e2911969380d7617f65ca851dc40af14b5b4d91f",
+      "printed": {
+        "AD": 4,
+        "AB": 8,
+        "ADEperimeter": 9
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "2",
+        "equalOtherSidesWitness": "5/2",
+        "largerPerimeterConditional": "18"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "d622c34249d5db2a273b8b79c359efc192ffc387fac8461360bda42122d1142b",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 9
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 3,
+        "scale": "2",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "18"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "628a58665ed75838403c409d84290c8f6fd719650d25ed3371c12d00577927d6",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -3,
+        "scale": "3",
+        "equalOtherSidesWitness": "1",
+        "largerPerimeterConditional": "21"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "29b3baa73c7362973436ee333b167e14340a5e01e397ffad712cefec3cfacf1b",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 9
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -1,
+        "scale": "3",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "27"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "7c766c184db28f47a57fd48dea8da918decdb6785b19bc08f51b0394394ff5c6",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 5
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -5,
+        "scale": "4",
+        "equalOtherSidesWitness": "0",
+        "largerPerimeterConditional": "20"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "aa0cb38f77e4a5775ebaacb25aef40f839c4786b9875cbb2a06d38ab63115077",
+      "printed": {
+        "AD": 2,
+        "AB": 6,
+        "ADEperimeter": 12
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 8,
+        "scale": "3",
+        "equalOtherSidesWitness": "5",
+        "largerPerimeterConditional": "36"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "7b209077dae2343cc834fb6f4b13a19f0b8f288c67d3e2e183eede7d617d71ef",
+      "printed": {
+        "AB": 8,
+        "AC": 4,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          12,
+          4
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "16",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15",
+        "triangleRange": "4 < BC < 12"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "1805fbbcb8163678682be46e690f115e2aa20db25b876fdbb3d6e74f131b023b",
+      "printed": {
+        "AB": 9,
+        "AC": 3,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          14,
+          2
+        ],
+        "CDconditional": "4",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "35/4",
+        "triangleRange": "6 < BC < 12"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "1dd3f4c650af2d74ab4a1cb225fbe01c1b2a6e68a7d7c6a61e07925484bc5465",
+      "printed": {
+        "AB": 35,
+        "AC": 20,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          46,
+          24,
+          -6
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "21",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-11776/9",
+        "triangleRange": "15 < BC < 55"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "116bb1f88355f24d62156033c014b6508858b8406d052cf97509187fa203c2df",
+      "printed": {
+        "AB": 15,
+        "AC": 10,
+        "BC": 5,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          10,
+          0
+        ],
+        "CDconditional": "10",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "5 < BC < 25"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "db7e76300132fece27d6b5c29c1b2df32629c9330a168d2a24629b327b381e9f",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          12,
+          0
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "35e6f56c38f6c09c983b8d926a492a4fcd7f3f989eda700678590829f5cbb20f",
+      "printed": {
+        "AB": 4,
+        "AC": 2,
+        "BC": 3,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          3,
+          5,
+          1
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "6",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15/4",
+        "triangleRange": "2 < BC < 6"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "5a885ef82ee4820e1a60d30eab769018646dd4580255295a4c2e19330556edd4",
+      "printed": {
+        "AB": 18,
+        "AC": 12,
+        "BC": 4,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          26,
+          10,
+          -2
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-1105/4",
+        "triangleRange": "6 < BC < 30"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "6f74677d808e45002fdf47010bc62fc9a39ad61168e4d1ff615dcc85700b709a",
+      "printed": {
+        "AB": 9,
+        "AC": 6,
+        "BC": 4,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          11,
+          7,
+          1
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1463/64",
+        "triangleRange": "3 < BC < 15"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "3b5849ac8a5ca7ea15a62a19367767f2dab043456cd0c00abae8251d13389983",
+      "printed": {
+        "AB": 8,
+        "AC": 2,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          1,
+          15,
+          3
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "95/36",
+        "triangleRange": "6 < BC < 10"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "d5eac1e66a7d299fc501d9bf696ab6eaca0da7e5b5a90090856e0aff751196e1",
+      "printed": {
+        "AB": 20,
+        "AC": 16,
+        "BC": 3,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          33,
+          7,
+          -1
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-1001/4",
+        "triangleRange": "4 < BC < 36"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "3f7b069b1b1c96a91865aa2daa03ac2881a590435846c5ca6bd99660cd58757e",
+      "printed": {
+        "AB": 6,
+        "AC": 2,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          2,
+          10,
+          2
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "9",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "35/9",
+        "triangleRange": "4 < BC < 8"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "db7e76300132fece27d6b5c29c1b2df32629c9330a168d2a24629b327b381e9f",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          12,
+          0
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "3db1e3f8d74ece5df1929b2667124b4a852693c0a0a54f9fcd2f20ef3099bf53",
+      "printed": {
+        "AB": 4,
+        "AC": 2,
+        "BC": 2,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          4,
+          0
+        ],
+        "CDconditional": "2",
+        "DCoordinateWhenB0Cbc": "4",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "2 < BC < 6"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "15000e37d989aa8948adcf74f684387cdc3801ed573524a4380bf1554d7358b2",
+      "printed": {
+        "AB": 10,
+        "AC": 4,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          5,
+          15,
+          3
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "575/36",
+        "triangleRange": "6 < BC < 14"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "0af76628955077be8842d9e59f801a8ea54e03eb1ee9fffdc036b872ac8ddfb9",
+      "printed": {
+        "AB": 8,
+        "AC": 6,
+        "BC": 4,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          10,
+          6,
+          2
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "16",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "135/4",
+        "triangleRange": "2 < BC < 14"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "33dd297c6d25bddae88be5fdf37011dd65205ef6ee0f257563cea39e1192ce1b",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          24,
+          -6
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-2176/9",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "19d7602edea1d88596a09185b867e4b86e756688a5349c95b3b48542d31c6fc0",
+      "printed": {
+        "AB": 15,
+        "AC": 12,
+        "BC": 3,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          24,
+          6,
+          0
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "3 < BC < 27"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "186009d567392e61497b09fb076f6d0b8676fd6dab3425e4bee7ccac44ac4d80",
+      "printed": {
+        "AB": 20,
+        "AC": 16,
+        "BC": 5,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          31,
+          9,
+          1
+        ],
+        "CDconditional": "20",
+        "DCoordinateWhenB0Cbc": "25",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "11439/100",
+        "triangleRange": "4 < BC < 36"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "858544eec5fdd7a5349ac706da7d896a8fbbfd70bca87b330c2008886fe26914",
+      "printed": {
+        "AB": 15,
+        "AC": 6,
+        "BC": 12,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          9,
+          21,
+          3
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "2079/64",
+        "triangleRange": "9 < BC < 21"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "7e32986d60d9027842c955becff73ac598a313c4344dbd396f5546d0dd6493f1",
+      "printed": {
+        "AB": 15,
+        "AC": 9,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          14,
+          2
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "56",
+        "triangleRange": "6 < BC < 24"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "02a023ee51569eb3d7fc80b23c781a23281dc5c5f3f0871f5639b6c152eeb217",
+      "printed": {
+        "AB": 28,
+        "AC": 16,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          38,
+          18,
+          -6
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "14",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-1425",
+        "triangleRange": "12 < BC < 44"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "1105ffc1921d1c5f3661d8fdd4a110aaacb1204a13a4915d82e0ef7db554ff8f",
+      "printed": {
+        "AB": 9,
+        "AC": 6,
+        "BC": 5,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          10,
+          8,
+          2
+        ],
+        "CDconditional": "10",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "32",
+        "triangleRange": "3 < BC < 15"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "84f89be2c41c81281223b909d2b23564b710688a73d4a9dba3e1f4b846409b4f",
+      "printed": {
+        "AB": 15,
+        "AC": 10,
+        "BC": 2,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          23,
+          7,
+          -3
+        ],
+        "CDconditional": "4",
+        "DCoordinateWhenB0Cbc": "6",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-13041/16",
+        "triangleRange": "5 < BC < 25"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "db7e76300132fece27d6b5c29c1b2df32629c9330a168d2a24629b327b381e9f",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          12,
+          0
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "0",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "33dd297c6d25bddae88be5fdf37011dd65205ef6ee0f257563cea39e1192ce1b",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          24,
+          -6
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-2176/9",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "fcf51d3de8fd7f06381c491a05b5663b456dde3ac45f22d9520a255d010748fe",
+      "printed": {
+        "AB": 28,
+        "AC": 16,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          35,
+          21,
+          -3
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "21",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-12985/36",
+        "triangleRange": "12 < BC < 44"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "3590b96e3efb4f70b842ad5bd6f77159d05771063eab9d2a0cfc179287291c7f",
+      "printed": {
+        "AB": 16,
+        "AC": 4,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          11,
+          21,
+          -3
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-2233/36",
+        "triangleRange": "12 < BC < 20"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "f4552eef69b11865bc7cc1085dc5032a3ccc09b8aa3fc921339bfa5eb9962354",
+      "printed": {
+        "AB": 15,
+        "AC": 9,
+        "BC": 10,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          14,
+          16,
+          4
+        ],
+        "CDconditional": "15",
+        "DCoordinateWhenB0Cbc": "25",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1904/25",
+        "triangleRange": "6 < BC < 24"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "cc48401721369871980eca671b9c6ccbface8eb095d7d3414246a01ec72268d8",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 12,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          13,
+          27,
+          -3
+        ],
+        "CDconditional": "4",
+        "DCoordinateWhenB0Cbc": "16",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-4329/64",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "008c73e70c7ce8439319d543587dd10c0c26b6c7920a41fc7b23d60718d5c141",
+      "printed": {
+        "AB": 10,
+        "AC": 5,
+        "BC": 4,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          11,
+          9,
+          -1
+        ],
+        "CDconditional": "4",
+        "DCoordinateWhenB0Cbc": "8",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-1881/64",
+        "triangleRange": "5 < BC < 15"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "65515f325411cf6e677da5384436345b20afc28e19fb485a25c9d353bca0f1fd",
+      "printed": {
+        "BC": 16,
+        "CA": 6,
+        "AB": 11,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          11,
+          21,
+          1
+        ],
+        "semiperimeter": "33/2",
+        "altitudeProjection": "341/32",
+        "altitudeSquared": "7623/1024",
+        "areaSquared": "7623/16",
+        "actualRadiusSquared": "7/4",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "112",
+        "printedFormulaAreaIBC": "24",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "cbafe0789fd4fbe541403fdf0e17be8a2a6afb0db67c97d3be124e139ce47b0c",
+      "printed": {
+        "BC": 20,
+        "CA": 5,
+        "AB": 7,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          22,
+          -8
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "53/5",
+        "altitudeSquared": "-1584/25",
+        "areaSquared": "-6336",
+        "actualRadiusSquared": "-99/4",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "-2475",
+        "printedFormulaAreaIBC": "40",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "143f809f69c345b1e9a0fc871328d535143031378a107ba82cf1a6dc94020ab1",
+      "printed": {
+        "BC": 20,
+        "CA": 8,
+        "AB": 15,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          13,
+          27,
+          3
+        ],
+        "semiperimeter": "43/2",
+        "altitudeProjection": "561/40",
+        "altitudeSquared": "45279/1600",
+        "areaSquared": "45279/16",
+        "actualRadiusSquared": "1053/172",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "26325/43",
+        "printedFormulaAreaIBC": "30",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "4b5580863cc4a3223fa5b9230588278136d470cfb87cf3c7ccf999b596385ead",
+      "printed": {
+        "BC": 24,
+        "CA": 10,
+        "AB": 9,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          25,
+          23,
+          -5
+        ],
+        "semiperimeter": "43/2",
+        "altitudeProjection": "557/48",
+        "altitudeSquared": "-123625/2304",
+        "areaSquared": "-123625/16",
+        "actualRadiusSquared": "-2875/172",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "-103500/43",
+        "printedFormulaAreaIBC": "48",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "8292697b429b315857d507319ddf349fb972eed3075f51b71d744b6518e0ca00",
+      "printed": {
+        "BC": 20,
+        "CA": 8,
+        "AB": 11,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          17,
+          23,
+          -1
+        ],
+        "semiperimeter": "39/2",
+        "altitudeProjection": "457/40",
+        "altitudeSquared": "-15249/1600",
+        "areaSquared": "-15249/16",
+        "actualRadiusSquared": "-391/156",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "-9775/39",
+        "printedFormulaAreaIBC": "40",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "8b1b6b74cdd4a1ff427ef85ce043bb1183314f0abb50fc7375f5d12967aed87e",
+      "printed": {
+        "BC": 8,
+        "CA": 6,
+        "AB": 5,
+        "radius": 7
+      },
+      "own": {
+        "triangleStrictMargins": [
+          9,
+          7,
+          3
+        ],
+        "semiperimeter": "19/2",
+        "altitudeProjection": "53/16",
+        "altitudeSquared": "3591/256",
+        "areaSquared": "3591/16",
+        "actualRadiusSquared": "189/76",
+        "printedRadiusSquared": 49,
+        "actualAreaIBCSquared": "756/19",
+        "printedFormulaAreaIBC": "28",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "d177e4933d352f4a116745f0a5881f0d7cc738225d14634f213a14ff5d19f982",
+      "printed": {
+        "BC": 18,
+        "CA": 14,
+        "AB": 12,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          16,
+          8
+        ],
+        "semiperimeter": "22",
+        "altitudeProjection": "68/9",
+        "altitudeSquared": "7040/81",
+        "areaSquared": "7040",
+        "actualRadiusSquared": "160/11",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "12960/11",
+        "printedFormulaAreaIBC": "27",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "b2639c1c2308d852ba59fc8e519147056d16b643bdf83d846866d4392464e97c",
+      "printed": {
+        "BC": 10,
+        "CA": 9,
+        "AB": 13,
+        "radius": 6
+      },
+      "own": {
+        "triangleStrictMargins": [
+          6,
+          14,
+          12
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "47/5",
+        "altitudeSquared": "2016/25",
+        "areaSquared": "2016",
+        "actualRadiusSquared": "63/8",
+        "printedRadiusSquared": 36,
+        "actualAreaIBCSquared": "1575/8",
+        "printedFormulaAreaIBC": "30",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "730a683a904f4f81a61e4f7c681f9d04de34a968a10d7e5c84281e84e860ebe4",
+      "printed": {
+        "BC": 18,
+        "CA": 13,
+        "AB": 7,
+        "radius": 7
+      },
+      "own": {
+        "triangleStrictMargins": [
+          24,
+          12,
+          2
+        ],
+        "semiperimeter": "19",
+        "altitudeProjection": "17/3",
+        "altitudeSquared": "152/9",
+        "areaSquared": "1368",
+        "actualRadiusSquared": "72/19",
+        "printedRadiusSquared": 49,
+        "actualAreaIBCSquared": "5832/19",
+        "printedFormulaAreaIBC": "63",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "6332c7fc7f8c7962084f21461edecccdc0cbf95b0abe9fdb81438563fcf03e42",
+      "printed": {
+        "BC": 12,
+        "CA": 10,
+        "AB": 12,
+        "radius": 7
+      },
+      "own": {
+        "triangleStrictMargins": [
+          10,
+          14,
+          10
+        ],
+        "semiperimeter": "17",
+        "altitudeProjection": "47/6",
+        "altitudeSquared": "2975/36",
+        "areaSquared": "2975",
+        "actualRadiusSquared": "175/17",
+        "printedRadiusSquared": 49,
+        "actualAreaIBCSquared": "6300/17",
+        "printedFormulaAreaIBC": "42",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "a4d07022c3651754ff4c2accfebcc0e62db92c6e719faf54a4a88ccc54d653c4",
+      "printed": {
+        "BC": 24,
+        "CA": 10,
+        "AB": 5,
+        "radius": 6
+      },
+      "own": {
+        "triangleStrictMargins": [
+          29,
+          19,
+          -9
+        ],
+        "semiperimeter": "39/2",
+        "altitudeProjection": "167/16",
+        "altitudeSquared": "-21489/256",
+        "areaSquared": "-193401/16",
+        "actualRadiusSquared": "-1653/52",
+        "printedRadiusSquared": 36,
+        "actualAreaIBCSquared": "-59508/13",
+        "printedFormulaAreaIBC": "72",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "afacf6ed3a394d6e9ec74ef0e7796cb7c6b295f8ba2550b9769c3f5c134174db",
+      "printed": {
+        "BC": 20,
+        "CA": 12,
+        "AB": 9,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          23,
+          17,
+          1
+        ],
+        "semiperimeter": "41/2",
+        "altitudeProjection": "337/40",
+        "altitudeSquared": "16031/1600",
+        "areaSquared": "16031/16",
+        "actualRadiusSquared": "391/164",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "9775/41",
+        "printedFormulaAreaIBC": "30",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "e97c0dd08259ae9e49af1a8d7a23341aadb0a03df7cc811088522274427113aa",
+      "printed": {
+        "BC": 16,
+        "CA": 14,
+        "AB": 5,
+        "radius": 7
+      },
+      "own": {
+        "triangleStrictMargins": [
+          25,
+          7,
+          3
+        ],
+        "semiperimeter": "35/2",
+        "altitudeProjection": "85/32",
+        "altitudeSquared": "18375/1024",
+        "areaSquared": "18375/16",
+        "actualRadiusSquared": "15/4",
+        "printedRadiusSquared": 49,
+        "actualAreaIBCSquared": "240",
+        "printedFormulaAreaIBC": "56",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "16b28cef46002e80cd036bcc542a7394110c80947be8d5893b3b2f40b06184a4",
+      "printed": {
+        "BC": 22,
+        "CA": 11,
+        "AB": 8,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          25,
+          19,
+          -3
+        ],
+        "semiperimeter": "41/2",
+        "altitudeProjection": "427/44",
+        "altitudeSquared": "-58425/1936",
+        "areaSquared": "-58425/16",
+        "actualRadiusSquared": "-1425/164",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "-172425/164",
+        "printedFormulaAreaIBC": "33",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "e5f26d0df299c49e997dfa3f565e0b243a2da2347b356408bd16667f5e29a077",
+      "printed": {
+        "BC": 18,
+        "CA": 13,
+        "AB": 15,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          20,
+          10
+        ],
+        "semiperimeter": "23",
+        "altitudeProjection": "95/9",
+        "altitudeSquared": "9200/81",
+        "areaSquared": "9200",
+        "actualRadiusSquared": "400/23",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "32400/23",
+        "printedFormulaAreaIBC": "36",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "959457d1a75398a153373abf7c75a31f234f25750f09796237a5df7836d95987",
+      "printed": {
+        "BC": 24,
+        "CA": 12,
+        "AB": 13,
+        "radius": 6
+      },
+      "own": {
+        "triangleStrictMargins": [
+          23,
+          25,
+          1
+        ],
+        "semiperimeter": "49/2",
+        "altitudeProjection": "601/48",
+        "altitudeSquared": "28175/2304",
+        "areaSquared": "28175/16",
+        "actualRadiusSquared": "575/196",
+        "printedRadiusSquared": 36,
+        "actualAreaIBCSquared": "20700/49",
+        "printedFormulaAreaIBC": "72",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "dbc3af6506ce9124168ddba15bc831aa745ee59c083c63d761a0dea759d4fd22",
+      "printed": {
+        "BC": 20,
+        "CA": 15,
+        "AB": 14,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          21,
+          19,
+          9
+        ],
+        "semiperimeter": "49/2",
+        "altitudeProjection": "371/40",
+        "altitudeSquared": "175959/1600",
+        "areaSquared": "175959/16",
+        "actualRadiusSquared": "513/28",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "12825/7",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "ae9f9f1244984d45c383b61e6269cd9f0676df7ca2fee7c600e6a3fef7421853",
+      "printed": {
+        "BC": 16,
+        "CA": 14,
+        "AB": 5,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          25,
+          7,
+          3
+        ],
+        "semiperimeter": "35/2",
+        "altitudeProjection": "85/32",
+        "altitudeSquared": "18375/1024",
+        "areaSquared": "18375/16",
+        "actualRadiusSquared": "15/4",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "240",
+        "printedFormulaAreaIBC": "24",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "400ce567f8c22c5889e2c0aecf4ec649e6371afd550b52cce631b996dbe526c2",
+      "printed": {
+        "BC": 12,
+        "CA": 13,
+        "AB": 5,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          4,
+          6
+        ],
+        "semiperimeter": "15",
+        "altitudeProjection": "0",
+        "altitudeSquared": "25",
+        "areaSquared": "900",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "144",
+        "printedFormulaAreaIBC": "24",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "30",
+        "semiperimeter": "15",
+        "actualRadius": "2",
+        "actualAreaIBC": "12",
+        "printedFormulaAreaIBC": "24"
+      },
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "4345dbbcf05a9c6912217d490dda0f604d06b52c189a310f4b1bbe8352c3554d",
+      "printed": {
+        "BC": 12,
+        "CA": 15,
+        "AB": 11,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          8,
+          14
+        ],
+        "semiperimeter": "19",
+        "altitudeProjection": "5/3",
+        "altitudeSquared": "1064/9",
+        "areaSquared": "4256",
+        "actualRadiusSquared": "224/19",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "8064/19",
+        "printedFormulaAreaIBC": "12",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "bb04c7b2713e6f1d657aa2ef649b13fd5ad6b183237384115d512ef040757c50",
+      "printed": {
+        "BC": 10,
+        "CA": 6,
+        "AB": 13,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          3,
+          17,
+          9
+        ],
+        "semiperimeter": "29/2",
+        "altitudeProjection": "233/20",
+        "altitudeSquared": "13311/400",
+        "areaSquared": "13311/16",
+        "actualRadiusSquared": "459/116",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "11475/116",
+        "printedFormulaAreaIBC": "15",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "9b954e92bb08aa66235943efb691c2e11522d5db44285ce771c9691bee52bc12",
+      "printed": {
+        "BC": 18,
+        "CA": 12,
+        "AB": 7,
+        "radius": 7
+      },
+      "own": {
+        "triangleStrictMargins": [
+          23,
+          13,
+          1
+        ],
+        "semiperimeter": "37/2",
+        "altitudeProjection": "229/36",
+        "altitudeSquared": "11063/1296",
+        "areaSquared": "11063/16",
+        "actualRadiusSquared": "299/148",
+        "printedRadiusSquared": 49,
+        "actualAreaIBCSquared": "24219/148",
+        "printedFormulaAreaIBC": "63",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "55f0f4d7c25c4688081eebea72791d5e50eb75939e88e2cfdbe4f56ee3bbb3f7",
+      "printed": {
+        "BC": 10,
+        "CA": 13,
+        "AB": 12,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          11,
+          9,
+          15
+        ],
+        "semiperimeter": "35/2",
+        "altitudeProjection": "15/4",
+        "altitudeSquared": "2079/16",
+        "areaSquared": "51975/16",
+        "actualRadiusSquared": "297/28",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "7425/28",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "97a88e5e13e43c748845e3bd4a85904fe5e5ede5e98c8f9c64fbef8c5de630c7",
+      "printed": {
+        "BC": 22,
+        "CA": 10,
+        "AB": 15,
+        "radius": 6
+      },
+      "own": {
+        "triangleStrictMargins": [
+          17,
+          27,
+          3
+        ],
+        "semiperimeter": "47/2",
+        "altitudeProjection": "609/44",
+        "altitudeSquared": "64719/1936",
+        "areaSquared": "64719/16",
+        "actualRadiusSquared": "1377/188",
+        "printedRadiusSquared": 36,
+        "actualAreaIBCSquared": "166617/188",
+        "printedFormulaAreaIBC": "66",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "4e4a94a04da2229e562634f69e487fd7bf1097ec3266b66c049f3c1dabd22e66",
+      "printed": {
+        "BC": 10,
+        "CA": 10,
+        "AB": 6,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          14,
+          6,
+          6
+        ],
+        "semiperimeter": "13",
+        "altitudeProjection": "9/5",
+        "altitudeSquared": "819/25",
+        "areaSquared": "819",
+        "actualRadiusSquared": "63/13",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "1575/13",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "683d884ba58b792f77e92bee31ba0094b06466e0a1320cf0522d9a20206d65f2",
+      "printed": {
+        "BC": 10,
+        "CA": 7,
+        "AB": 5,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          2
+        ],
+        "semiperimeter": "11",
+        "altitudeProjection": "19/5",
+        "altitudeSquared": "264/25",
+        "areaSquared": "264",
+        "actualRadiusSquared": "24/11",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "600/11",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "56320be0f0bbf4653e69bae31a8550e9db0d2fa871e1f416f665ab898e89e705",
+      "printed": {
+        "BC": 24,
+        "CA": 14,
+        "AB": 10,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          28,
+          20,
+          0
+        ],
+        "semiperimeter": "24",
+        "altitudeProjection": "10",
+        "altitudeSquared": "0",
+        "areaSquared": "0",
+        "actualRadiusSquared": "0",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "0",
+        "printedFormulaAreaIBC": "48",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "1f44e11d267cd1fc35d37a3ae87858aa92a9b7db253caa021eeb57f192f62c53",
+      "printed": {
+        "BC": 16,
+        "CA": 13,
+        "AB": 7,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          22,
+          10,
+          4
+        ],
+        "semiperimeter": "18",
+        "altitudeProjection": "17/4",
+        "altitudeSquared": "495/16",
+        "areaSquared": "1980",
+        "actualRadiusSquared": "55/9",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "3520/9",
+        "printedFormulaAreaIBC": "32",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "827d754f313ca274cbd361a6e94c74ba22850d2ed50b5a12d9bb9cd4af298e89",
+      "printed": {
+        "BC": 8,
+        "CA": 5,
+        "AB": 14,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          -1,
+          17,
+          11
+        ],
+        "semiperimeter": "27/2",
+        "altitudeProjection": "235/16",
+        "altitudeSquared": "-5049/256",
+        "areaSquared": "-5049/16",
+        "actualRadiusSquared": "-187/108",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "-748/27",
+        "printedFormulaAreaIBC": "8",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": false,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "d1ae9a80999544872f4f7d2da76bb35b654a77188956134279301a0738801462",
+      "printed": {
+        "BC": 18,
+        "CA": 13,
+        "AB": 11,
+        "radius": 6
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          16,
+          6
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "23/3",
+        "altitudeSquared": "560/9",
+        "areaSquared": "5040",
+        "actualRadiusSquared": "80/7",
+        "printedRadiusSquared": 36,
+        "actualAreaIBCSquared": "6480/7",
+        "printedFormulaAreaIBC": "54",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "9dcc9f7e83a866adbbc39c6e98d357438367ada68ec652552ad1510bc58dcfd8",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          6
+        ],
+        "formalIdentityIntendedSum": 11,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 6,
+          "sum": 10,
+          "lhs": "5832",
+          "rhs": "5832"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 3,
+            "sum": 6,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "a": 1,
+            "b": 3,
+            "c": 6,
+            "sum": 10,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "a": 2,
+            "b": 2,
+            "c": 1,
+            "sum": 5,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 6,
+            "sum": 11,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 3,
+            "sum": 8,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 9,
+            "sum": 15,
+            "lhs": "114791256",
+            "rhs": "114791256"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 7,
+            "sum": 13,
+            "lhs": "4194304",
+            "rhs": "4194304"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "bee8b20a6d710b47153c95d2784553637dbf543a719d4692cce74ea54e98c270",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "87429161cd224d5dbae7048b311c130b527b277741854a5e8f5bd085dc81baff",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "59ab003827de4868486ffc6b887e046d25880237257e320619701ec404c37017",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "91fe0d2e9f853e3def7b74a7ee931b0599cb291cc383116e7402e9847d1dfbb7",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          3
+        ],
+        "formalIdentityIntendedSum": 8,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 3,
+          "sum": 7,
+          "lhs": "216",
+          "rhs": "216"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 1,
+            "sum": 4,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 3,
+            "c": 3,
+            "sum": 7,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 3,
+            "sum": 8,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 1,
+            "sum": 6,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 6,
+            "sum": 12,
+            "lhs": "4251528",
+            "rhs": "4251528"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 5,
+            "sum": 11,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "bf69d35bd05c278488c5a73b4393211a3f3202156058078599a1058dde2fbdaa",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 4
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          2,
+          2
+        ],
+        "formalIdentityIntendedSum": 6,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 2,
+          "sum": 5,
+          "lhs": "16",
+          "rhs": "16"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 2,
+            "sum": 5,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 4,
+            "c": 5,
+            "sum": 10,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "a": 1,
+            "b": 8,
+            "c": 10,
+            "sum": 19,
+            "lhs": "4294967296",
+            "rhs": "4294967296"
+          },
+          {
+            "a": 2,
+            "b": 2,
+            "c": 2,
+            "sum": 6,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "a": 2,
+            "b": 4,
+            "c": 7,
+            "sum": 13,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 10,
+            "sum": 16,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": true
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "465180fd260f7c4dd91a179cb627b7349fd7b35186f89e85fe41604446672def",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "d0ff01072d5d38924b3d787fd9f80bb203445c0afab8c6c9a94639fc9a54c626",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "439ae9acd5a0803525b72a5ecf16a23dee5004dbe34f33aaebeeff8c334f7520",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 9,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          2,
+          4
+        ],
+        "formalIdentityIntendedSum": 9,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 4,
+          "sum": 7,
+          "lhs": "144",
+          "rhs": "144"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 4,
+            "sum": 7,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "a": 2,
+            "b": 2,
+            "c": 2,
+            "sum": 6,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 4,
+            "sum": 9,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 8,
+            "sum": 14,
+            "lhs": "9437184",
+            "rhs": "9437184"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "9b544885e48e19cbf1c37935c0cf74795242c309dc8af835a7c3771930b24aa7",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "13690594d70afc71ada06497e03d92dac24829c3230849582401b6f78ef3fa5b",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          2,
+          2
+        ],
+        "formalIdentityIntendedSum": 7,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 2,
+          "sum": 5,
+          "lhs": "16",
+          "rhs": "16"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 2,
+            "sum": 5,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 4,
+            "c": 5,
+            "sum": 10,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "a": 1,
+            "b": 8,
+            "c": 10,
+            "sum": 19,
+            "lhs": "4294967296",
+            "rhs": "4294967296"
+          },
+          {
+            "a": 2,
+            "b": 4,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 2,
+            "sum": 7,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": true
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "32f2dc0bf352bcaf16bf9cd9e07dfc1d83187981546030eafb5b2c1151c1829c",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 27,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          6
+        ],
+        "formalIdentityIntendedSum": 11,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 6,
+          "sum": 10,
+          "lhs": "19683",
+          "rhs": "19683"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 3,
+            "c": 6,
+            "sum": 10,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 6,
+            "sum": 11,
+            "lhs": "1259712",
+            "rhs": "1259712"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 9,
+            "sum": 15,
+            "lhs": "387420489",
+            "rhs": "387420489"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "439ae9acd5a0803525b72a5ecf16a23dee5004dbe34f33aaebeeff8c334f7520",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 9,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          2,
+          4
+        ],
+        "formalIdentityIntendedSum": 9,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 4,
+          "sum": 7,
+          "lhs": "144",
+          "rhs": "144"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 4,
+            "sum": 7,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "a": 2,
+            "b": 2,
+            "c": 2,
+            "sum": 6,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 4,
+            "sum": 9,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 8,
+            "sum": 14,
+            "lhs": "9437184",
+            "rhs": "9437184"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "13690594d70afc71ada06497e03d92dac24829c3230849582401b6f78ef3fa5b",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          2,
+          2
+        ],
+        "formalIdentityIntendedSum": 7,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 2,
+          "sum": 5,
+          "lhs": "16",
+          "rhs": "16"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 2,
+            "sum": 5,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 4,
+            "c": 5,
+            "sum": 10,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "a": 1,
+            "b": 8,
+            "c": 10,
+            "sum": 19,
+            "lhs": "4294967296",
+            "rhs": "4294967296"
+          },
+          {
+            "a": 2,
+            "b": 4,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 2,
+            "sum": 7,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": true
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "678c5bfeca1a5d01f97aea522de9db8854afa64bcb5b1456893650ab5d9402e1",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 9
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          3,
+          3
+        ],
+        "formalIdentityIntendedSum": 9,
+        "numericWitness": null,
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Baseletters x,y distinct; intended formal monomial-identity reading supports exponent matching. Equality for arbitrary numeric assignments alone would not imply coefficient/exponent equality; require explicit identity/free-variable condition. Not counted as collision."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "da91b92172b65b68f12490e093cee1a497309a91ff680d381ac9783357f080fe",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "608d274fddf4bf816ae5181fe5de25610fba607e230d45775f4f202df6ea2c14",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          6
+        ],
+        "formalIdentityIntendedSum": 11,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 6,
+          "sum": 10,
+          "lhs": "-19683",
+          "rhs": "-19683"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 3,
+            "c": 6,
+            "sum": 10,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 6,
+            "sum": 11,
+            "lhs": "-1259712",
+            "rhs": "-1259712"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 9,
+            "sum": 15,
+            "lhs": "-387420489",
+            "rhs": "-387420489"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "09ebf5aad73d149548956fde708d1e6abd8c72eabb110ab4404b4a0363ec0ea7",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "7bee260f78c515832694000c0f150db23d3c8a2a7bdef52d86fc2a08f6397a95",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "5d9ef046e9d2d4699aed593e6fb5f2bc8baad88146c54ea8f17ef2c6dd6e6e03",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 3,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 27,
+        "rightFirstExponent": 9
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          3,
+          6
+        ],
+        "formalIdentityIntendedSum": 12,
+        "numericWitness": null,
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Baseletters x,y distinct; intended formal monomial-identity reading supports exponent matching. Equality for arbitrary numeric assignments alone would not imply coefficient/exponent equality; require explicit identity/free-variable condition. Not counted as collision."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "e369cba86413b4a9ea7b4b41306c910927091a3d2d24c4c3af52b78a2be53607",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 9
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          3,
+          6
+        ],
+        "formalIdentityIntendedSum": 12,
+        "numericWitness": null,
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Baseletters x,y distinct; intended formal monomial-identity reading supports exponent matching. Equality for arbitrary numeric assignments alone would not imply coefficient/exponent equality; require explicit identity/free-variable condition. Not counted as collision."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "f303b918a36681b66ef0d4cb33b13da9477aa3c5ae6cdb17a43e251b05f5d270",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "6858a3cb27bad06a63146729abe358ab9f592d69d4fc83bc2adaa063e05fc07b",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          3
+        ],
+        "formalIdentityIntendedSum": 8,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 3,
+          "sum": 7,
+          "lhs": "-729",
+          "rhs": "-729"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 3,
+            "c": 3,
+            "sum": 7,
+            "lhs": "-729",
+            "rhs": "-729"
+          },
+          {
+            "a": 1,
+            "b": 9,
+            "c": 12,
+            "sum": 22,
+            "lhs": "-7625597484987",
+            "rhs": "-7625597484987"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 3,
+            "sum": 8,
+            "lhs": "-46656",
+            "rhs": "-46656"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 6,
+            "sum": 12,
+            "lhs": "-14348907",
+            "rhs": "-14348907"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "321115a0b067f7b7bbf0b357b78d05b70f1c49f65db8d69507a186789debbe29",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 4
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          2,
+          4
+        ],
+        "formalIdentityIntendedSum": 8,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 4,
+          "sum": 7,
+          "lhs": "64",
+          "rhs": "64"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 4,
+            "sum": 7,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "a": 1,
+            "b": 4,
+            "c": 9,
+            "sum": 14,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          },
+          {
+            "a": 2,
+            "b": 2,
+            "c": 4,
+            "sum": 8,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "a": 2,
+            "b": 4,
+            "c": 11,
+            "sum": 17,
+            "lhs": "268435456",
+            "rhs": "268435456"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 12,
+            "sum": 18,
+            "lhs": "4194304",
+            "rhs": "4194304"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "ed92fede9e32262112cd8c1ad4d625135baa52efd4197bbe75bf507b81f3a2fa",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "2574398b767dc0d6a19c9d26b7c703f54c72eec5f244389e16b74dbaec7f1288",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "91fe0d2e9f853e3def7b74a7ee931b0599cb291cc383116e7402e9847d1dfbb7",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          2,
+          3,
+          3
+        ],
+        "formalIdentityIntendedSum": 8,
+        "numericWitness": {
+          "a": 1,
+          "b": 3,
+          "c": 3,
+          "sum": 7,
+          "lhs": "216",
+          "rhs": "216"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 1,
+            "sum": 4,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 3,
+            "c": 3,
+            "sum": 7,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "a": 2,
+            "b": 3,
+            "c": 3,
+            "sum": 8,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 1,
+            "sum": 6,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "a": 3,
+            "b": 3,
+            "c": 6,
+            "sum": 12,
+            "lhs": "4251528",
+            "rhs": "4251528"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 5,
+            "sum": 11,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": false
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "1a42adccde7e8f3c3535a3ae9b82b4c462edc28beef7bc733b03ad7cddc10d79",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "dfa615116d5d4905944bef8f0d87b098037bfa0380e6697153b02c43759ab294",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "dfa615116d5d4905944bef8f0d87b098037bfa0380e6697153b02c43759ab294",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "No exponent-input collision task in this branch; not a complete simplification correctness certification."
+    }
+  ],
+  "oracle": "All math parsed from printed content; generator facts not used, generator answers compared only after independent derivation. Exact Fraction and integers; no pixels/renderer.",
+  "inputSHA256": "d2226ff8caa895d1511aba51921220cb8c6848e178d921a9a6f124a4085b5329"
+}

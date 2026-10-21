@@ -1,0 +1,270 @@
+{
+  "status": "PRECHANGE_DYNAMIC_TECHNICAL_HOLD",
+  "executionFinished": true,
+  "scope": "ActualROOT generateMiddleProblem(key,seed,variant0),4selectedtypes only; one Nodeprocess,30seeds/type20261020+s*7919",
+  "counts": {
+    "actualGenerateMiddleProblemCalls": 120,
+    "registeredTypesCalls": 1,
+    "selectedTypeMetadata": 4,
+    "seedMatrixPerType": 30,
+    "extraSuppliedSeeds": 0,
+    "suppliedSeedsAlreadyInMatrix": {
+      "M19": 20403562,
+      "M20": 20363967
+    },
+    "APIRequests": 0,
+    "networkCalls": 0,
+    "DBImports": 0,
+    "realRendererCalls": 0,
+    "nodeProcesses": 1
+  },
+  "incidence": {
+    "M8": {
+      "matrixCount": 30,
+      "mathematicalDefects": 21
+    },
+    "M9": {
+      "matrixCount": 30,
+      "mathematicalDefects": 17
+    },
+    "M19": {
+      "matrixCount": 30,
+      "mathematicalDefects": 30,
+      "rightTriangles": 1,
+      "triangleNonexistence": 7,
+      "radiusMismatchForExistingTriangles": 23
+    },
+    "M20": {
+      "matrixCount": 30,
+      "mathematicalDefects": 12,
+      "naturalInputBranch": 15,
+      "collisionCount": 12,
+      "simplifyBranch": 15
+    }
+  },
+  "counterexamples": {
+    "M8": {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "1af6b568f7bc163fb226310228648ba487f4d4e939e2b68e2d4fa478edabbe62",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 3
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": -7,
+        "scale": "4",
+        "equalOtherSidesWitness": "-1",
+        "largerPerimeterConditional": "12"
+      },
+      "exists": false,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    "M9": {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "1dd3f4c650af2d74ab4a1cb225fbe01c1b2a6e68a7d7c6a61e07925484bc5465",
+      "printed": {
+        "AB": 35,
+        "AC": 20,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          46,
+          24,
+          -6
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "21",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "-11776/9",
+        "triangleRange": "15 < BC < 55"
+      },
+      "exists": false,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": true,
+      "answerMatchesConditionalAlgebra": true
+    },
+    "M19": {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "400ce567f8c22c5889e2c0aecf4ec649e6371afd550b52cce631b996dbe526c2",
+      "printed": {
+        "BC": 12,
+        "CA": 13,
+        "AB": 5,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          4,
+          6
+        ],
+        "semiperimeter": "15",
+        "altitudeProjection": "0",
+        "altitudeSquared": "25",
+        "areaSquared": "900",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "144",
+        "printedFormulaAreaIBC": "24",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "30",
+        "semiperimeter": "15",
+        "actualRadius": "2",
+        "actualAreaIBC": "12",
+        "printedFormulaAreaIBC": "24"
+      },
+      "exists": true,
+      "radiusConsistent": false,
+      "mathematicalDefect": true,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    "M20": {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "13690594d70afc71ada06497e03d92dac24829c3230849582401b6f78ef3fa5b",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 6
+      },
+      "own": {
+        "formalIdentityIntendedInputs": [
+          3,
+          2,
+          2
+        ],
+        "formalIdentityIntendedSum": 7,
+        "numericWitness": {
+          "a": 1,
+          "b": 2,
+          "c": 2,
+          "sum": 5,
+          "lhs": "16",
+          "rhs": "16"
+        },
+        "boundedSearchDomain": "a,b,c each1..12, exact Python integers. Existence of2different sums disproves uniqueness; bounded search not completeness proof.",
+        "boundedSolutions": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 2,
+            "sum": 5,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "a": 1,
+            "b": 4,
+            "c": 5,
+            "sum": 10,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "a": 1,
+            "b": 8,
+            "c": 10,
+            "sum": 19,
+            "lhs": "4294967296",
+            "rhs": "4294967296"
+          },
+          {
+            "a": 2,
+            "b": 4,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          },
+          {
+            "a": 3,
+            "b": 2,
+            "c": 2,
+            "sum": 7,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "a": 4,
+            "b": 2,
+            "c": 6,
+            "sum": 12,
+            "lhs": "1048576",
+            "rhs": "1048576"
+          }
+        ],
+        "a1_b2_c2Valid": true
+      },
+      "letterBaseExponentCollision": true,
+      "mathematicalDefect": true,
+      "assessment": "Collision a/b used both as numeric bases and exponent inputs creates distinct natural-number solutions."
+    }
+  },
+  "interpretation": {
+    "M8": "21/30strictperimetertriangleexistencefailures. Conditional similarityanswercanmatchformalalgebra despite no triangle.",
+    "M9": "17/30invalidstricttriangleinequalities. AllformalCDanswerscanmatchratio but pointconfiguration requiresvalidtrianglefirst.",
+    "M19": "30/30inconsistentconditions:7nontriangles+23existingtriangleswronginradius. Actualsuppliedseedrighttriple exactM2area/semiperimeter check in counterexamples.",
+    "M20": "30outputs include15simplificationbranches+15naturalexponent-input branches.12naturalbranchesuseabbase/exponentcollision and eachhasdistinctnatural solutions/sums. Other3usexybaseletters, no collision counted; formalidentityreading remainscondition. Simplification15notfullycertifiedbythisfocusedchecker."
+  },
+  "independentOracle": "PythonFraction/integer parsing of actualprintedcontent; generatorfacts ignored; produceranswers compared onlyafter independentcalculation. Geometryfromconditions, no pixels/figurecoordinates/mathoracle. Exactinteger exponentsearch a,b,c1..12providescounterexamples, notallsolutions proof.",
+  "sourceBindings": "own-source-hashes.json includesfreshfirst-importactualROOTdependencyhashes+oldmath/adaptersoriginalmatch andafterunchanged; no parentcurrentcandidateimports.",
+  "resource": {
+    "singleFreshProbe": {
+      "maxSemiSpaceMiB": 8,
+      "maxOldSpaceMiB": 192,
+      "minimumBytes": 1610612736,
+      "availablePhysicalMemoryBytes": 3942674432
+    },
+    "reportedNodeHeapLimitBytes": 226492416,
+    "nodeArgs": "--max-old-space-size=192 --max-semi-space-size=8",
+    "NodeProcessExited": true,
+    "noPolling": true
+  },
+  "priorEvidence": "d607staticreportandall16ownedfilesverifiedunchanged againstsealedGit. Staticdomaincoverage6910tuplesnotaddedtoactual120outputs. Priorpending102313984memoryprobe not countedasexecution.",
+  "reproduction": "own-runner.ts own-tsconfig.json own-guard.cjs; outputpathdirname(script). No Mac-onlycommands. ScopedactualAPI signaturematchescurrentgenerate.ts.",
+  "limits": [
+    "Bounded30seedmatrix, notwholebank/fullcatalogue/exhaustivefrequency oruniformprobability.",
+    "Prechange originalmath only, nofix/sourcechange/DBmigration/issuedquestionrefresh.",
+    "No grade/sourceidentity/rights/native/public release approval.",
+    "No renderer/browser/heavytestrunner or calls toDB/network/model/API. Existingprivate/raw untouched."
+  ],
+  "artifacts": {
+    "own-actual-outputs.json": "d2226ff8caa895d1511aba51921220cb8c6848e178d921a9a6f124a4085b5329",
+    "own-independent-calculations.json": "1397f26b634a54ec8d5848e792a434427078da2d3459ce368446c0b11aa68e82",
+    "own-runner.ts": "eaf81dcdcd579da436c1133c15d3f58348180fdd2d00059ee488788db5001866",
+    "own-independent-calculations.py": "ab12c4e7a013376d8534e0b9db27d6dcfe49dbc87ba3bbe25d927d1bde91ca83",
+    "own-source-hashes.json": "69e5cfe5b9f43bb79dbc3a151328698e207532414db6f715bd2209724080f3a3",
+    "own-counterexamples.json": "0e290cfeb86601601ba103bb33824d47a2bc0c9728ac26ee77bdb3bc8293f25f",
+    "own-dynamic-memory.json": "8038e1dae1449f15c00682ec480dd877db51254009c004e60a3b31510b5bde1c"
+  }
+}
