@@ -17,3 +17,5 @@
 다른 컴퓨터가 이 분담을 받도록 현재 기능 브랜치 `chrismathone/exam-extraction-resume-20261008`에 체크포인트를 커밋·푸시한다. 매번 푸시 직전에 원격 기능 브랜치와 main을 fetch/비교하고 새 커밋을 보존·통합한 뒤 관련 검사를 통과시킨다. force-push, 기능 브랜치의 main 병합, 배포는 하지 않는다. 다른 세션의 결함 목록은 파일 경로·커밋·재현 조건을 확인하고, 기존 문항 수정과 엔진 수정의 책임을 구분해 반영한다.
 
 현재 보완의 근거는 [중3 방법 관문 보고서](reports/exam-engine-grade-method-hardening-20261020.md)다. 현재 원격 main과 로컬의 다른 세션 커밋도 확인하며, 아직 main에 없는 다른 컴퓨터의 변경을 임의로 cherry-pick하거나 그 DB 갱신 작업을 재실행하지 않는다.
+
+2026-10-21에는 [검산·렌더 데이터 소유권의 최신 main 검증](reports/exam-engine-draft-ownership-checkpoint-20261021.md)을 추가했다. 다른 세션의 [중고등 엔진 결함 M1~M38](brief-engine-handoff-display-20261021.md)을 이어받아 생성 코드에서 수정·검증한다. 기존 문항 지면과 DB 갱신은 계속 다른 세션의 범위다.

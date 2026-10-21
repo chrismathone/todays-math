@@ -1,0 +1,48 @@
+{
+  "kind": "m38-priority-engine-candidate/v2",
+  "utc": "2026-10-21T04:31:17.398024+00:00",
+  "status": "prepared-separate-code-not-applied-runtime-validation-pending",
+  "findings": [
+    "M8",
+    "M9",
+    "M19",
+    "M20"
+  ],
+  "bindings": [
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "originalSha256": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+      "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m38-candidate-code-20261021-r2/src/lib/middle/m2GeoSim.ts",
+      "candidateSha256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567"
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "originalSha256": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+      "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m38-candidate-code-20261021-r2/src/lib/middle/m2Center.ts",
+      "candidateSha256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3"
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "originalSha256": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+      "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m38-candidate-code-20261021-r2/src/lib/middle/m2Mono.ts",
+      "candidateSha256": "9e58280def8c423c6c1f9d4e935bd18d6465c496493639304a7cc7b61fb1d9d3"
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "originalSha256": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+      "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m38-candidate-code-20261021-r2/src/lib/examStudy/adapters.ts",
+      "candidateSha256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87"
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "originalSha256": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+      "candidate": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m38-candidate-code-20261021-r2/src/__tests__/unit/middleM2Mono.test.ts",
+      "candidateSha256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+    }
+  ],
+  "rootSourceChanges": 0,
+  "existingBankOrIssuedQuestionsChanged": 0,
+  "dbWrites": 0,
+  "gradeOrRightsApproval": false,
+  "oldSeedReplayPending": true
+}

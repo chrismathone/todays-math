@@ -92763,14 +92763,33 @@
     "currentRawPending": 1
   },
   "executionState": {
-    "status": "PAUSED",
-    "utc": "2026-10-12T05:05:42.668158+00:00",
-    "reason": "explicit-user-request-memory",
-    "pauseReceipt": {
-      "path": ".qa-artifacts/exam-resume-20261008/pause-receipt-20261012-r1.json",
-      "sha256": "1a0898639bfcd7848507ce39e139fbc18e05a2307a933e754825c01a10f69827"
-    },
-    "resumeOnlyOnUserRequest": true,
-    "wholeGoalComplete": false
-  }
+    "status": "ACTIVE",
+    "utc": "2026-10-21T04:43:36.299406+00:00",
+    "reason": "latest-explicit-user-continue-engine-only",
+    "wholeGoalComplete": false,
+    "controllerFilesChanged": false,
+    "dbWrites": 0
+  },
+  "latestEngineCheckpoint": {
+    "utc": "2026-10-21T04:43:36.299406+00:00",
+    "progress": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r44.json",
+    "sha256": "b41bcf0fcb9cd39df18298fe42d11d5e9f2eeb4250f7f4edc99866112c5643e0",
+    "scope": "engine-only; issued/bank questions and DB unchanged",
+    "canonicalIndex": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v50.json",
+    "legacyExecutionCountsAreHistorical": true,
+    "allEngineOrExtractionComplete": false
+  },
+  "historicalExecutionStates": [
+    {
+      "status": "PAUSED",
+      "utc": "2026-10-12T05:05:42.668158+00:00",
+      "reason": "explicit-user-request-memory",
+      "pauseReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/pause-receipt-20261012-r1.json",
+        "sha256": "1a0898639bfcd7848507ce39e139fbc18e05a2307a933e754825c01a10f69827"
+      },
+      "resumeOnlyOnUserRequest": true,
+      "wholeGoalComplete": false
+    }
+  ]
 }
