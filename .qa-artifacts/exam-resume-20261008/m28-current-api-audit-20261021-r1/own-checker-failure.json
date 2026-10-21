@@ -1,0 +1,7 @@
+{
+  "classification": "Own checker preparation threshold, not proven production contract failure",
+  "failedAssertion": "Reconstructed SVG arc center distance from intended vertex <0.2 SVG units",
+  "cause": "Arc endpoints serialized1decimal; center reconstruction sensitive near semicircle. This arbitrary bound was not a source contract.",
+  "retained": "Original own-check.py and failed run; noAPI/source/output rewrite",
+  "v2": "Verify exact SVG radius and both endpoint radial residuals <=0.08 consistent with independent rounding bound sqrt(2)*0.05+line0.001; then compute exact serialized arc halfplane minima. Retain center error/strict outside findings instead of suppressing."
+}

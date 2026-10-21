@@ -1,0 +1,111 @@
+{
+  "status": "CURRENT API MATH/FIGURE PASS with strict serialized SVG containment precision HOLD",
+  "actualAPICalls": 532,
+  "cohorts": {
+    "actualSeedCalls": 100,
+    "requiredSeed20403562Included": true,
+    "forcedTupleAPICalls": 432,
+    "forcedOriginalDomainExactMatch": true,
+    "distinctPrintedTasks": 432,
+    "distinctFigureSpecs": 64,
+    "notNewManualBlindQuestions": true
+  },
+  "execution": {
+    "node": "ENDED",
+    "maxOldMiB": 192,
+    "maxSemiMiB": 8,
+    "observedHeapLimitBytes": 226492416,
+    "memoryFirstBelowFloor": {
+      "maxOldMiB": 192,
+      "minimumBytes": 1610612736,
+      "singleProbe": true,
+      "availablePhysicalMemoryBytes": 459943936,
+      "semiMiB": 8
+    },
+    "memorySecondBoundedAttempt": {
+      "maxOldMiB": 192,
+      "minimumBytes": 1610612736,
+      "singleProbe": true,
+      "availablePhysicalMemoryBytes": 7796051968,
+      "semiMiB": 8
+    },
+    "noBusyPoll": true,
+    "DBImports": 0,
+    "networkCalls": 0,
+    "handlerRestored": true,
+    "forcedBridge": "Selected registered entry wrapper injects3RNG draws into ORIGINAL handler; every output goes through actual generateMiddleProblem and existing postprocessing. No mocked outputs or source edits."
+  },
+  "math": {
+    "all532Passed": true,
+    "answerOracle": "Printed B=(px+q),D=(x+s),B=D solved as rationalx=(s-q)/(p-1) before producedanswer read; nofacts/params collected",
+    "positiveAndUnique": "p2..4 ensures nonzero coefficient and unique x4..15; B/D9..72,A/C108..171 positive. Actual convex vector witness, same signedturns, four nonzeroedges and opposite parallel pair checks.",
+    "actualAnglesMaximumErrorDeg": 0.0039042520139105363,
+    "seed20403562": {
+      "ownX": "7",
+      "ownBD": "16",
+      "actualVectorAngles": {
+        "A": 163.99681450060635,
+        "B": 16.00318549939365,
+        "C": 163.99681450060635,
+        "D": 16.00318549939365
+      }
+    },
+    "studentMethod": "Opposite equal angles and simple linear equation only; engine/audittrig not a student prerequisite."
+  },
+  "figureInfo": {
+    "AandCEqualArcGivenPreserved": true,
+    "fourBoundaryEdgesOnly": true,
+    "allABCDLabelsPreserved": true,
+    "noEvaluatedAngleOrAnswerLabelAdded": true,
+    "positiveMatchingArcRadius": true
+  },
+  "actualNativeSVG": {
+    "implementation": "Current absoluteRoot vendor core.figure_scene.compile_figure_spec(spec).render_svg plus current sanitize_svg, NOT mocked; no raster/browser/PNG",
+    "uniqueCompleteSVGCompilations": 64,
+    "auditedFullRuns": 2,
+    "secondRunPurpose": "Exact before-first-import Python closure hashing; repeatedsame64 not newfigures.",
+    "otherCalls": "2owned endpointfixtures prepared beforeAPI, one initialcheckerfailed partial run countnotinstrumented/excluded, and1oversizedarcmutation rejectioncontrol; not promoted as extra coverage.",
+    "allNonincidentSidesContained": true,
+    "minimumNonincidentMarginSVGUnits": 3.8822683323905167,
+    "strictEntireArcCenterlineContained": {
+      "passedDistinctSpecs": 4,
+      "notStrictlyContainedDistinctSpecs": 60,
+      "minimumIncidentSignedMarginSVGUnits": -0.060781752466689855
+    },
+    "analysis": "Actual SVG endpoint-to-center arc reconstruction and analytic minima of signed distances to all4actualSVGboundary halfplanes, including endpoints and stationary angles; no pixels/mathoracle."
+  },
+  "finding": {
+    "id": "M28-SVG-precision-boundary",
+    "severity": "bounded low-level serialization precision, strict containment assurance HOLD",
+    "observed": "60/64serializedspecs have some incident-side centerline overshoot, at most0.060782SVGunits. Boundarylines use3decimalcoordinates; arc endpoints1decimal. Nonincident-side spill fixed on all64; minimumclearance3.882268.",
+    "reproduction": "own-check-v2.py, own-cross-controls.json worstSerializedArc includes exact SVGpath/spec/outputdigests; own-native-svg contains actual64outputs.",
+    "doNotOverstate": "Not wronglinearanswer, not gross opposite-side crossing, no measured pixel/physicalreadability impact. Stroke-width/visual approval not evaluated.",
+    "possibleFollowup": "If strict closed-interior centerline contract is intended, separately review SVGarc endpoint precision against boundary serialization before asserting exactcontainment. No sourcechange proposed/applied automatically here."
+  },
+  "bindings": {
+    "m2QuadRawSHA256": "794c8428bd24f4c714bd32a58511db4bd81126b6c3bd5a17749866a3a273b0bf",
+    "adapter15A": "20261021-input-angle-and-contained-marks-r1",
+    "rootBeforeAfterUnchanged": true,
+    "nodeFirstImportModules": 104,
+    "pythonFirstImportModules": 5,
+    "eachAPIOutputDigest": "own-actual-outputs.json outputSHA256 checks original UTF8JSON.stringify serializedOutput; own-calculations binds spec and nativeSVG hashes",
+    "nodeHashBeforeAfter": "own-actual-outputs.json / own-calculations.json",
+    "pythonHashBeforeAfter": "own-python-first-import-hashes.json"
+  },
+  "checkerControls": {
+    "ownedSyntheticNegatives": 5,
+    "allRejected": true,
+    "notProductionMutations": true
+  },
+  "harnessFailuresPreserved": [
+    "First memory459943936bytes failedfloor; noNodeuntil finalboundedsecondattempt.",
+    "Original checker assumed reconstructed arc center error<0.2 without contractbasis; failed. Own-check.py/failure receipt retained. V2checks exactradius and endpoint rounding residuals then records all strictcontainmentfailures; no silent tolerance blessing."
+  ],
+  "holds": [
+    "WholeGrade/actualUnit/livefamily/source/rights/native/loadability/publicrelease remain unapproved. Priorcurriculumstudy onlygradeband evidence, not currentwholemethodpermission.",
+    "No sourceN/DB/bank/issued question/student changes or newmanual/blind count.",
+    "No Rootpreview64 orparenttest counts reused; ownAPI532 and native64 explicitly executed.",
+    "No fullcatalog/Vitest/browser/realraster/network/fetch/install/newagent/worktree.",
+    "Root and all previous dirtycurriculum/Pytha/M28 evidence unchanged."
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "wholeForcedDomainExactSetMatches": true,
+  "perForcedInputBridgeMatchesPrintedData": true,
+  "syntheticCheckerNegatives": [
+    {
+      "name": "wronganswer",
+      "ownSyntheticInput": true,
+      "rejected": true,
+      "productionInputChanged": false
+    },
+    {
+      "name": "distortedpoint",
+      "ownSyntheticInput": true,
+      "rejected": true,
+      "productionInputChanged": false
+    },
+    {
+      "name": "missingAgivenarc",
+      "ownSyntheticInput": true,
+      "rejected": true,
+      "productionInputChanged": false
+    },
+    {
+      "name": "evaluatedanglelabel",
+      "ownSyntheticInput": true,
+      "rejected": true,
+      "productionInputChanged": false
+    },
+    {
+      "name": "oversizedarcradius",
+      "ownSyntheticInput": true,
+      "rejected": true,
+      "productionInputChanged": false
+    }
+  ],
+  "seed20403562OwnMath": {
+    "index": 0,
+    "cohort": "actualAPI100seeds",
+    "seed": 20403562,
+    "outputSHA256": "e7d3e002d0a8e8cb7181dec333c48eaa347feee7018a4e4bb50c6455e87509c3",
+    "specSHA256": "ffc6e113543fc6a6b74c16bf03c43957117c0a9df22b55e20f2ed38480a58b85",
+    "independentlySolvedX": "7",
+    "printedCoefficients": {
+      "p": 2,
+      "q": 2,
+      "s": 9
+    },
+    "printedBD": "16",
+    "actualAngles": {
+      "A": 163.99681450060635,
+      "B": 16.00318549939365,
+      "C": 163.99681450060635,
+      "D": 16.00318549939365
+    },
+    "angleErrorDeg": 0.0031854993936519804,
+    "parallelCrossErrors": [
+      0.0,
+      0.0
+    ],
+    "convexExists": true,
+    "uniqueExplanation": "p-1 nonzero gives unique linear solution; opposite positive angles sum360 and actual strictly convex vector witness exists. No student trigonometry required."
+  },
+  "worstSerializedArc": {
+    "minimumSignedDistance": -0.060781752466689855,
+    "specSHA256": "9acb3c8e2e4684519d4bd5214092f8031a903ca8b0ba30eee1f5922e3b271e63",
+    "arc": {
+      "vertex": "A",
+      "actualSVGPath": "M 63.8 46.8 A 18.0 18.0 0 0 0 90.3 30.9",
+      "actualSVGCircleCenter": [
+        72.30003095985322,
+        30.93338493308869
+      ],
+      "centerErrorFromVertex": 0.016889261857735,
+      "sweepAngleDeg": 118.28502214274022,
+      "halfplaneMinDistances": {
+        "AB": -0.060781752466689855,
+        "BC": 64.70661506691131,
+        "CD": 105.64244938532694,
+        "DA": -0.05000000000000071
+      },
+      "nonincidentMinMargin": 64.70661506691131,
+      "incidentMinMargin": -0.060781752466689855,
+      "strictCenterlineContainment": false
+    },
+    "boundOutputs": [
+      "258b7d3da0e216650afe9ae8488bbace55bd0cb3ba19d321a08cc18c62494918",
+      "61d2fbe41019bedf55ec44d89ae4bc32dec4a3b4b99831d439d4faeaa233cf02",
+      "4272fed0b66f376d1e2b47985ef18705272ded5a7b5ca013cd73023afd11280d",
+      "258b7d3da0e216650afe9ae8488bbace55bd0cb3ba19d321a08cc18c62494918"
+    ]
+  }
+}
