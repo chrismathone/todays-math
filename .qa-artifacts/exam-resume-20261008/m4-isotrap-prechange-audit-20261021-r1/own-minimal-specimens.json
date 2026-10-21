@@ -1,0 +1,173 @@
+{
+  "basis": "Existing literal domainp4,c4; source port, NOT actual TS/API",
+  "sourcePort": {
+    "version": 2,
+    "points": {
+      "A": [
+        64.0,
+        92.32
+      ],
+      "B": [
+        18.0,
+        172.0
+      ],
+      "C": [
+        202.0,
+        172.0
+      ],
+      "D": [
+        156.0,
+        92.32
+      ]
+    },
+    "segments": {
+      "AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "parallel": 1
+      },
+      "AB": {
+        "points": [
+          "A",
+          "B"
+        ],
+        "ticks": 1
+      },
+      "DC": {
+        "points": [
+          "D",
+          "C"
+        ],
+        "ticks": 1
+      },
+      "BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "parallel": 1
+      }
+    },
+    "angles": {
+      "angB": {
+        "vertex": "B",
+        "points": [
+          "A",
+          "C"
+        ],
+        "label": "60°"
+      }
+    },
+    "labels": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D"
+    },
+    "dimensions": {
+      "d_AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "label": "4 cm",
+        "side": "auto"
+      },
+      "d_AB": {
+        "points": [
+          "A",
+          "B"
+        ],
+        "label": "4 cm",
+        "side": "auto"
+      }
+    }
+  },
+  "QAOnlyAngAProposal": {
+    "version": 2,
+    "points": {
+      "A": [
+        64.0,
+        92.32
+      ],
+      "B": [
+        18.0,
+        172.0
+      ],
+      "C": [
+        202.0,
+        172.0
+      ],
+      "D": [
+        156.0,
+        92.32
+      ]
+    },
+    "segments": {
+      "AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "parallel": 1
+      },
+      "AB": {
+        "points": [
+          "A",
+          "B"
+        ],
+        "ticks": 1
+      },
+      "DC": {
+        "points": [
+          "D",
+          "C"
+        ],
+        "ticks": 1
+      },
+      "BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "parallel": 1
+      }
+    },
+    "angles": {
+      "angA": {
+        "vertex": "A",
+        "points": [
+          "B",
+          "D"
+        ],
+        "label": "120°"
+      }
+    },
+    "labels": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D"
+    },
+    "dimensions": {
+      "d_AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "label": "4 cm",
+        "side": "auto"
+      },
+      "d_AB": {
+        "points": [
+          "A",
+          "B"
+        ],
+        "label": "4 cm",
+        "side": "auto"
+      }
+    }
+  }
+}
