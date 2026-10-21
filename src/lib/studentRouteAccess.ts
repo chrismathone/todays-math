@@ -199,11 +199,6 @@ const ACTIVE_RULES: readonly Rule[] = [
   },
   {
     methods: ["POST"],
-    path: "/api/learn/math-srs/course/plan",
-    why: "본인의 시작 진도와 하루 학습량 설정",
-  },
-  {
-    methods: ["POST"],
     path: "/api/learn/math-srs/course/attempts",
     why: "초등 현재 문제 답안 제출",
   },

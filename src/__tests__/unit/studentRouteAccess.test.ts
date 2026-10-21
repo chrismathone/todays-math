@@ -20,6 +20,7 @@ describe("🔴 학생 API 라우트는 전부 학생 관문을 지난다 (2026-1
   // 학생에게 403 이었다. 라우트 시험은 처리기를 바로 불러 관문을 못 보고, 지나가는 집합을 잠근
   // 시험은 빠진 줄까지 그대로 잠갔다 — 그래서 반대 방향(라우트 파일 → 관문)을 전수로 본다.
   const CLOSED_ON_PURPOSE = new Set([
+    "POST /api/learn/math-srs/course/plan", // 결정5: 학생 계획 writer 은퇴, 직접 처리기도 인증 뒤 403
     "POST /api/learn/login", // 로그인한 학생에게는 닫는다 — 로그인 안 한 사람의 갈래가 연다
   ]);
   const root = path.join(process.cwd(), "src/app/api/learn");
@@ -85,7 +86,6 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|HEAD /learn/math-srs",
       "GET|HEAD /learn/math-srs/algebra",
       "GET|POST /api/learn/math-srs/course",
-      "POST /api/learn/math-srs/course/plan",
       "POST /api/learn/math-srs/course/attempts",
       "POST /api/learn/math-srs/course/hint",
       "POST /api/learn/math-srs/course/follow-up",
