@@ -164,12 +164,28 @@ function packValues(
   });
 }
 
-/** 산점도 자료를 표로도 함께 적는다 — 그림만 있으면 발문 문자열이 씨앗마다 안
- * 달라져(생성 세트의 「발문이 전부 다르다」 가드가 문자열만 본다) 변형이 안 갈린다.
- * 실제 교과서도 산점도 앞에 원자료 표를 함께 싣는 경우가 흔하다.
+/** 모눈 자료의 실제 읽기 검수 전까지 원자료 목록을 함께 유지한다.
+ * 세트 중복은 별도의 학생 입력 비교가 맡는다(studentInputIdentity.ts).
  */
 function pointsList(pts: readonly (readonly [number, number])[]): string {
   return pts.map(([x, y]) => `$(${x}, ${y})$`).join(", ");
+}
+
+/** 산점도만 5점 교점으로 제한한다. 상자그림·산포도의 기존 정수 풀은 바꾸지 않는다. */
+function scatterSorted(rng: Rng, n: number, lo: number, hi: number): number[] {
+  if (lo % 5 || hi % 5 || (hi - lo) / 5 + 1 < n) {
+    throw new Error("산점도 5점 자료의 범위와 개수를 확인하십시오");
+  }
+  return distinctSorted(rng, n, lo / 5, hi / 5).map((v) => v * 5);
+}
+
+function scatterValue(rng: Rng, lo: number, hi: number): number {
+  if (lo % 5 || hi % 5) throw new Error("산점도 자료의 양 끝은 5의 배수여야 합니다");
+  return intBetween(rng, lo / 5, hi / 5) * 5;
+}
+
+function scatterAxis(min: 20 | 30) {
+  return { axisMin: min, axisMax: 100, axisStep: 10 };
 }
 
 /** 값 범위를 담는 「예쁜」 축 — 걸음은 `1·2·5·10·20·25·50·100` 사다리에서 고른다.
@@ -755,23 +771,24 @@ export const M3_STAT2: TypeEntry[] = [
   // ══ 상자그림과 산점도 06~10 (산점도) — SEC.산점도 「산점도와 상관관계」 ══
   def(MINOR_BOX, "06", "산점도의 이해 ⑴", SEC.산점도, "기본", (rng) =>
     attempt(200, () => {
-      const xs = distinctSorted(rng, 7, 40, 95);
-      const ys = xs.map(() => intBetween(rng, 40, 95));
+      const xs = scatterSorted(rng, 7, 40, 95);
+      const ys = xs.map(() => scatterValue(rng, 40, 95));
       const threshold = pick(rng, [50, 60, 70, 80] as const);
       const count = xs.filter((x) => x >= threshold).length;
       if (count === 0 || count === xs.length) return null;
       const facts: Record<string, number> = { threshold, count, n: xs.length };
       packValues("x", xs, facts);
       packValues("y", ys, facts);
-      const axis = niceAxis(30, 100);
+      const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n수학 점수가 $${threshold}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n수학 점수가 $${threshold}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${count}$명`,
         solution: `산점도에서 $x$값이 $${threshold}$ 이상인 점의 개수를 세면 $${count}$개이다.\n따라서 수학 점수가 $${threshold}$점 이상인 학생은 $${count}$명이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: xs.map((x, i) => [x, ys[i]!]),
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -779,8 +796,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "수학(점)",
+          yLabel: "과학(점)",
         },
       };
     }),
@@ -788,10 +805,10 @@ export const M3_STAT2: TypeEntry[] = [
 
   def(MINOR_BOX, "07", "산점도의 이해 ⑵", SEC.산점도, "응용", (rng) =>
     attempt(200, () => {
-      const xs = distinctSorted(rng, 7, 40, 95);
+      const xs = scatterSorted(rng, 7, 40, 95);
       const ys = xs.map(() =>
         attempt(50, () => {
-          const v = intBetween(rng, 40, 95);
+          const v = scatterValue(rng, 40, 95);
           return v;
         }),
       );
@@ -804,15 +821,16 @@ export const M3_STAT2: TypeEntry[] = [
       const facts: Record<string, number> = { count, n: xs.length };
       packValues("x", xs, facts);
       packValues("y", ys, facts);
-      const axis = niceAxis(30, 100);
+      const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 국어 점수(x)와 영어 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n국어 점수가 영어 점수보다 높은 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 국어 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n국어 점수가 영어 점수보다 높은 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${count}$명`,
         solution: `산점도에서 대각선 $y=x$보다 아래쪽(즉 $x>y$)에 있는 점의 개수를 세면 $${count}$개이다.\n따라서 국어 점수가 영어 점수보다 높은 학생은 $${count}$명이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: xs.map((x, i) => [x, ys[i]!]),
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -820,8 +838,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "국어(점)",
+          yLabel: "영어(점)",
         },
       };
     }),
@@ -836,7 +854,7 @@ export const M3_STAT2: TypeEntry[] = [
       neg: [5, 4, 3, 2, 1, 0],
       none: [2, 4, 0, 5, 1, 3],
     };
-    const ysSorted = distinctSorted(rng, 6, 30, 90);
+    const ysSorted = scatterSorted(rng, 6, 30, 90);
     const ys = RANK[kind]!.map((r) => ysSorted[r]!);
     const answerText = {
       pos: "양의 상관관계",
@@ -848,9 +866,9 @@ export const M3_STAT2: TypeEntry[] = [
     };
     packValues("x", xs, facts);
     packValues("y", ys, facts);
-    const axis = niceAxis(20, 100);
+    const axis = scatterAxis(20);
     return {
-      content: `다음은 학생 $6$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 산점도가 나타내는 상관관계로 알맞은 것을 구하시오.`,
+      content: `다음은 학생 $6$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 산점도가 나타내는 상관관계로 알맞은 것을 구하시오.`,
       answer: answerText,
       solution:
         kind === "pos"
@@ -862,6 +880,7 @@ export const M3_STAT2: TypeEntry[] = [
       figureSpec: {
         version: "elem-1",
         kind: "scatterPlot",
+        gridStep: 5,
         points: xs.map((x, i) => [x, ys[i]!]),
         xMin: axis.axisMin,
         xMax: axis.axisMax,
@@ -869,8 +888,8 @@ export const M3_STAT2: TypeEntry[] = [
         yMin: axis.axisMin,
         yMax: axis.axisMax,
         yStep: axis.axisStep,
-        xLabel: "(점)",
-        yLabel: "(점)",
+        xLabel: "수학(점)",
+        yLabel: "과학(점)",
       },
     };
   }),
@@ -894,8 +913,8 @@ export const M3_STAT2: TypeEntry[] = [
       const pts: [number, number][] = [];
       const seen = new Set<string>();
       for (let i = 0; i < n; i += 1) {
-        const x = intBetween(rng, 30, 95);
-        const y = intBetween(rng, 30, 95);
+        const x = scatterValue(rng, 30, 95);
+        const y = scatterValue(rng, 30, 95);
         if (seen.has(`${x},${y}`)) return null; // 같은 점이 겹치면 산점도가 거짓말을 한다
         seen.add(`${x},${y}`);
         pts.push([x, y]);
@@ -920,9 +939,9 @@ export const M3_STAT2: TypeEntry[] = [
         pts.map((p) => p[1]),
         facts,
       );
-      const axis = niceAxis(20, 100);
+      const axis = scatterAxis(20);
       return {
-        content: `다음은 학생 $${pts.length}$명의 국어 점수(x)와 수학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n국어 점수와 수학 점수의 합이 $${k}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${pts.length}$명의 국어 점수($x$)와 수학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n국어 점수와 수학 점수의 합이 $${k}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${hit.length}$명`,
         solution: `두 점수의 합이 $${k}$점 이상인 학생의 점은 ${hit
           .map(([x, y]) => `$(${x},\\,${y})$`)
@@ -933,6 +952,7 @@ export const M3_STAT2: TypeEntry[] = [
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: pts,
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -940,8 +960,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "국어(점)",
+          yLabel: "수학(점)",
         },
       };
     }),
@@ -949,23 +969,24 @@ export const M3_STAT2: TypeEntry[] = [
 
   def(MINOR_BOX, "10", "산점도에서 평균 구하기", SEC.산점도, "응용", (rng) =>
     attempt(200, () => {
-      const xs = distinctSorted(rng, 5, 40, 90);
+      const xs = scatterSorted(rng, 5, 40, 90);
       const sum = xs.reduce((s, v) => s + v, 0);
       if (sum % 5 !== 0) return null;
       const mean = sum / 5;
-      const ys = xs.map(() => intBetween(rng, 40, 90));
+      const ys = xs.map(() => scatterValue(rng, 40, 90));
       const facts: Record<string, number> = { mean, sum, n: xs.length };
       packValues("x", xs, facts);
       packValues("y", ys, facts);
-      const axis = niceAxis(30, 100);
+      const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 수학 점수(x)와 영어 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 학생들의 수학 점수의 평균을 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 학생들의 수학 점수의 평균을 구하시오.`,
         answer: `$${mean}$점`,
         solution: `산점도에서 각 점의 $x$값을 모두 더하면 $${xs.join("+")}=${sum}$이고, 학생 수는 $${xs.length}$명이다.\n따라서 수학 점수의 평균은 $\\dfrac{${sum}}{${xs.length}}=${mean}$점이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: xs.map((x, i) => [x, ys[i]!]),
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -973,8 +994,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "수학(점)",
+          yLabel: "영어(점)",
         },
       };
     }),
@@ -1001,8 +1022,8 @@ export const M3_STAT2: TypeEntry[] = [
   def(MINOR_BOX, "11", "산점도에서 좌표 읽기", SEC.산점도, "연산", (rng) =>
     attempt(200, () => {
       const n = 7;
-      const xs = distinctSorted(rng, n, 40, 95);
-      const ys = distinctSorted(rng, n, 40, 95);
+      const xs = scatterSorted(rng, n, 40, 95);
+      const ys = scatterSorted(rng, n, 40, 95);
       // `distinctSorted` 를 그대로 쓰면 x·y 가 **함께** 오름차순이라 답이 늘 맨
       // 오른쪽 점이 된다 — 그러면 그림을 안 보고도 맞힌다. 그래서 y 만 섞는다.
       for (let i = ys.length - 1; i > 0; i -= 1) {
@@ -1020,15 +1041,16 @@ export const M3_STAT2: TypeEntry[] = [
       };
       packValues("x", xs, facts);
       packValues("y", ys, facts);
-      const axis = niceAxis(30, 100);
+      const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n과학 점수가 가장 높은 학생의 수학 점수를 구하시오.`,
+        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n과학 점수가 가장 높은 학생의 수학 점수를 구하시오.`,
         answer: `$${xs[top]}$점`,
         solution: `산점도에서 $y$좌표가 가장 큰 점은 $(${xs[top]},\\,${ys[top]})$이다.\n따라서 과학 점수가 가장 높은 학생의 수학 점수는 $${xs[top]}$점이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: xs.map((x, i) => [x, ys[i]!]),
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -1036,8 +1058,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "수학(점)",
+          yLabel: "과학(점)",
         },
       };
     }),
@@ -1051,8 +1073,8 @@ export const M3_STAT2: TypeEntry[] = [
       const pts: [number, number][] = [];
       const seen = new Set<string>();
       for (let i = 0; i < n; i += 1) {
-        const x = intBetween(rng, 40, 95);
-        const y = intBetween(rng, 40, 95);
+        const x = scatterValue(rng, 40, 95);
+        const y = scatterValue(rng, 40, 95);
         if (seen.has(`${x},${y}`)) return null; // 점이 겹치면 산점도가 거짓말을 한다
         // 문턱에 딱 걸친 점은 「이상」을 그림에서 가르기 어렵다.
         if (x === t || y === t) return null;
@@ -1078,9 +1100,9 @@ export const M3_STAT2: TypeEntry[] = [
         pts.map((p) => p[1]),
         facts,
       );
-      const axis = niceAxis(30, 100);
+      const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n수학 점수와 과학 점수가 모두 $${t}$점 이상인 학생은 전체의 몇 $\\%$인지 구하시오.`,
+        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n수학 점수와 과학 점수가 모두 $${t}$점 이상인 학생은 전체의 몇 $\\%$인지 구하시오.`,
         answer: `$${pct}\\%$`,
         solution: `두 점수가 모두 $${t}$점 이상인 점은 ${hit
           .map(([x, y]) => `$(${x},\\,${y})$`)
@@ -1091,6 +1113,7 @@ export const M3_STAT2: TypeEntry[] = [
         figureSpec: {
           version: "elem-1",
           kind: "scatterPlot",
+          gridStep: 5,
           points: pts,
           xMin: axis.axisMin,
           xMax: axis.axisMax,
@@ -1098,8 +1121,8 @@ export const M3_STAT2: TypeEntry[] = [
           yMin: axis.axisMin,
           yMax: axis.axisMax,
           yStep: axis.axisStep,
-          xLabel: "(점)",
-          yLabel: "(점)",
+          xLabel: "수학(점)",
+          yLabel: "과학(점)",
         },
       };
     }),
@@ -1166,11 +1189,11 @@ export const M3_STAT2: TypeEntry[] = [
     (rng) =>
       attempt(400, () => {
         const n = 7;
-        const xs = distinctSorted(rng, n, 40, 95);
+        const xs = scatterSorted(rng, n, 40, 95);
         const ys: number[] = [];
         const seen = new Set<string>();
         for (const x of xs) {
-          const y = intBetween(rng, 40, 95);
+          const y = scatterValue(rng, 40, 95);
           if (seen.has(`${x},${y}`)) return null; // 점이 겹치면 산점도가 거짓말을 한다
           seen.add(`${x},${y}`);
           ys.push(y);
@@ -1188,15 +1211,16 @@ export const M3_STAT2: TypeEntry[] = [
         };
         packValues("x", xs, facts);
         packValues("y", ys, facts);
-        const axis = niceAxis(30, 100);
+        const axis = scatterAxis(30);
         return {
-          content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n두 과목의 점수의 차가 가장 큰 학생의 두 점수의 차를 구하시오.`,
+          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n두 과목의 점수의 차가 가장 큰 학생의 두 점수의 차를 구하시오.`,
           answer: `$${sorted[0]}$점`,
           solution: `각 점에서 두 좌표의 차를 구하면 ${gaps.map((g) => `$${g}$`).join(", ")}이다.\n그중 가장 큰 것은 점 $(${xs[top]},\\,${ys[top]})$의 $|${xs[top]}-${ys[top]}|=${sorted[0]}$이다.\n따라서 구하는 차는 $${sorted[0]}$점이다.`,
           facts,
           figureSpec: {
             version: "elem-1",
             kind: "scatterPlot",
+            gridStep: 5,
             points: xs.map((x, i) => [x, ys[i]!]),
             xMin: axis.axisMin,
             xMax: axis.axisMax,
@@ -1204,8 +1228,8 @@ export const M3_STAT2: TypeEntry[] = [
             yMin: axis.axisMin,
             yMax: axis.axisMax,
             yStep: axis.axisStep,
-            xLabel: "(점)",
-            yLabel: "(점)",
+            xLabel: "수학(점)",
+            yLabel: "과학(점)",
           },
         };
       }),
@@ -1224,8 +1248,8 @@ export const M3_STAT2: TypeEntry[] = [
         const pts: [number, number][] = [];
         const seen = new Set<string>();
         for (let i = 0; i < n; i += 1) {
-          const x = intBetween(rng, 40, 95);
-          const y = intBetween(rng, 40, 95);
+          const x = scatterValue(rng, 40, 95);
+          const y = scatterValue(rng, 40, 95);
           if (seen.has(`${x},${y}`)) return null;
           // 문턱에 딱 걸친 점은 「이상」을 그림에서 가르기 어렵다.
           if (x === t) return null;
@@ -1256,9 +1280,9 @@ export const M3_STAT2: TypeEntry[] = [
           pts.map((p) => p[1]),
           facts,
         );
-        const axis = niceAxis(30, 100);
+        const axis = scatterAxis(30);
         return {
-          content: `다음은 학생 $${n}$명의 수학 점수(x)와 과학 점수(y)를 조사하여 나타낸 산점도이다. (x, y): ${pointsList(pts)}\n수학 점수가 $${t}$점 이상인 학생들의 과학 점수의 평균을 구하시오.`,
+          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n수학 점수가 $${t}$점 이상인 학생들의 과학 점수의 평균을 구하시오.`,
           answer: `$${mean}$점`,
           solution: `수학 점수가 $${t}$점 이상인 학생의 점은 ${hit
             .map(([x, y]) => `$(${x},\\,${y})$`)
@@ -1273,6 +1297,7 @@ export const M3_STAT2: TypeEntry[] = [
           figureSpec: {
             version: "elem-1",
             kind: "scatterPlot",
+            gridStep: 5,
             points: pts,
             xMin: axis.axisMin,
             xMax: axis.axisMax,
@@ -1280,8 +1305,8 @@ export const M3_STAT2: TypeEntry[] = [
             yMin: axis.axisMin,
             yMax: axis.axisMax,
             yStep: axis.axisStep,
-            xLabel: "(점)",
-            yLabel: "(점)",
+            xLabel: "수학(점)",
+            yLabel: "과학(점)",
           },
         };
       }),

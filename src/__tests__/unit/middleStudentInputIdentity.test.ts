@@ -73,7 +73,7 @@ describe("산점도 세트의 학생에게 주어진 자료", () => {
     expect(() => generateMiddleSet(KEY, 1, 2)).toThrow("변형 공간이 좁아");
   });
 
-  it("지원 변경만으로 기존 실제 API368개와 세트43개가 바뀌지 않는다", () => {
+  it("산점도 변형 이후에도 범위 밖 기존 API80개와 세트16개는 바뀌지 않는다", () => {
     const baseline = JSON.parse(fs.readFileSync("src/__tests__/fixtures/m3Scatter-before-input-identity-20261022.json", "utf8")) as {
       actualAPI:{key:string;seed:number;output:MidProblem}[];
       outside:{key:string;seed:number;output:MidProblem}[];
@@ -82,7 +82,8 @@ describe("산점도 세트의 학생에게 주어진 자료", () => {
     };
     expect(baseline.actualAPI).toHaveLength(288);
     expect(baseline.outside).toHaveLength(80);
-    for (const row of [...baseline.actualAPI, ...baseline.outside]) expect(generateMiddleProblem(row.key, row.seed)).toEqual(row.output);
-    for (const row of [...baseline.sets, ...baseline.sharedSets]) expect(generateMiddleSet(row.key, row.seed, 4)).toEqual(row.output);
+    // 산점도 9유형의 이전 출력은 보존한다. 새 출력의 수학·그림은 별도 시험에서 검산한다.
+    for (const row of baseline.outside) expect(generateMiddleProblem(row.key, row.seed)).toEqual(row.output);
+    for (const row of baseline.sharedSets) expect(generateMiddleSet(row.key, row.seed, 4)).toEqual(row.output);
   });
 });
