@@ -1,0 +1,106 @@
+{
+  "classification": "independent arithmetic/grammar reasoning only; no candidate/production execution",
+  "perspective": {
+    "vertex": [
+      0,
+      0
+    ],
+    "rays": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "dot": 1,
+    "squaredCosine": "1/2",
+    "angleDegrees": 45,
+    "predicate": "cos_value > tolerance AND NOT perspective",
+    "whenTrue": "90degree check skipped independently of 3D evidence"
+  },
+  "uprightSnap": {
+    "assetBase": [
+      0,
+      10
+    ],
+    "assetTop": [
+      0,
+      0
+    ],
+    "from": [
+      0,
+      0
+    ],
+    "to": [
+      1,
+      -10
+    ],
+    "tiltDegrees": 5.710593137499643,
+    "within12degrees": true,
+    "proposedPlacedTop": [
+      0,
+      -10
+    ],
+    "targetTop": [
+      1,
+      -10
+    ],
+    "error": 1
+  },
+  "bboxRelativePath": {
+    "path": "M100 100 h10 v10",
+    "actualLineBounds": [
+      100,
+      100,
+      110,
+      110
+    ],
+    "proposedNumericPairBounds": [
+      10,
+      10,
+      100,
+      100
+    ],
+    "reason": "relative h/v command parameters are not absolute xy pairs"
+  },
+  "bboxRotatedCircle": {
+    "circle": "cx=0 cy=0 r=1 rotated45",
+    "actualBounds": [
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "twoDiagonalCornerMethodXExtent": 0,
+    "reason": "two transformed opposite corners do not bound rotated ellipse/circle"
+  },
+  "markerHiding": {
+    "svg": "<g data-asset=\"house\"><line id=\"AB\" x1=\"0\" y1=\"0\" x2=\"40\" y2=\"20\"/></g>",
+    "proposedBehaviorBySource": "group one editable object; AB child excluded; stripAssetBodies discards AB from textual model view",
+    "runtime": "PENDING"
+  },
+  "units": {
+    "ambiguous": "30 m can be30 times variable m OR30metres; whitespace is not semantic proof",
+    "pythonLetters": [
+      "m",
+      "g",
+      "L"
+    ],
+    "TSLetters": [
+      "m",
+      "g"
+    ],
+    "contextsToPreserve": [
+      "2m",
+      "30 m as algebra",
+      "g/h variables",
+      "explicit unit roman m",
+      "mL/dL/kL",
+      "thinspace/NBSP",
+      "powers/subscripts"
+    ]
+  }
+}

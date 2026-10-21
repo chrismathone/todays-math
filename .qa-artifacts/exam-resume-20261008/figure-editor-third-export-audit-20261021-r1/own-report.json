@@ -1,0 +1,43 @@
+{
+  "scope": "third export README and patches04/05 static audit only",
+  "status": "REPORT_ONLY_DO_NOT_APPLY_WHOLESALE",
+  "reviewSHA256": "e56b39c09488cf641a9872356b06d7457f7fbaf3660a5746aa336a0f9d90a65a",
+  "staticWitnessSHA256": "05ec76d48abee9ebdd03e3b35113fd38e38746f4b9b734e8f6606706754bad2f",
+  "decisions": {
+    "perspectiveUncertified90DegreeBypass": "EXCLUDE as general validation override; projected rendering need separately HOLD",
+    "existing27AssetOverwrite": "HOLD; preserve bytes/version explicit output changes",
+    "new12Assets": "CONDITIONAL concept, provenance/licence/geometry/runtime HOLD",
+    "singleValidatedAssetEditorObject": "CONDITIONAL concept; slug-only opacity/regex stripping HOLD",
+    "oneLetterUnitUpright": "CONDITIONAL explicit unit context; ambiguous variable heuristic HOLD",
+    "finalReviewAndNoAutoPassed": "PRESERVE; no final rejected candidate automatic success fallback"
+  },
+  "staticCompatibility": {
+    "patch04ApplyCheck": 1,
+    "patch05ApplyCheck": 0,
+    "applyPerformed": false,
+    "SVGExistingTargets": 27,
+    "SVGNewTargets": 12
+  },
+  "runtimeCounts": {
+    "independentCandidateOrProductionRuns": 0,
+    "Node": 0,
+    "browser": 0,
+    "modelDB": 0,
+    "mathGradeApprovals": 0
+  },
+  "limits": [
+    "Static formula/grammar witnesses only, not generated engine outputs",
+    "No asset gallery/raster/layout/colour or physical print verification",
+    "Self-authored/exporter editing/performance claims not independently certified",
+    "Root scene ahead and strengthened grid boundary must not be overwritten",
+    "Per-asset rights/source identity/native/load approvals remain unknown"
+  ],
+  "bindings": {
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changed": [],
+    "currentRootSceneSHA256": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e"
+  },
+  "productionAndSourceDWrites": 0,
+  "priorEvidenceAndDirtyPreserved": true
+}
