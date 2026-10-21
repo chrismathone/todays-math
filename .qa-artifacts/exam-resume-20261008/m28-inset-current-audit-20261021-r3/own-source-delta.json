@@ -1,0 +1,33 @@
+{
+  "defaultFunctions": {
+    "arc": {
+      "oldFunctionSHA": "9e98077472d893c3cd7d926486ac5016de55f847b0f41a871746b51d90ca0012",
+      "currentFunctionSHA": "9e98077472d893c3cd7d926486ac5016de55f847b0f41a871746b51d90ca0012",
+      "sameSource": true
+    },
+    "angle_arc": {
+      "oldFunctionSHA": "d005386f4b7543f504acb77935fd97130583c40ead986e4480015b142daa45a7",
+      "currentFunctionSHA": "d005386f4b7543f504acb77935fd97130583c40ead986e4480015b142daa45a7",
+      "sameSource": true
+    }
+  },
+  "m2QuadSourceDiff": [
+    "--- ",
+    "+++ ",
+    "@@ -289,8 +289,8 @@",
+    "       BC: [\"B\", \"C\"],",
+    "     },",
+    "     angles: {",
+    "-      angA: { vertex: \"A\", points: [\"B\", \"D\"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },",
+    "-      angC: { vertex: \"C\", points: [\"B\", \"D\"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius }) },",
+    "+      angA: { vertex: \"A\", points: [\"B\", \"D\"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius, serialized_inset: true }) },",
+    "+      angC: { vertex: \"C\", points: [\"B\", \"D\"], arcs: 1, ...(angleRadius === undefined ? {} : { radius: angleRadius, serialized_inset: true }) },",
+    "     },",
+    "     labels: { A: \"A\", B: \"B\", C: \"C\", D: \"D\" },",
+    "   };"
+  ],
+  "m2QuadOnlyFlagInsertion": true,
+  "adapterLine": [
+    "  \"2-2|평행사변형|15A\": \"20261021-input-angle-and-inset-marks-r2\","
+  ]
+}
