@@ -1,0 +1,755 @@
+[
+  {
+    "id": "load-sanitize:tree",
+    "input": {
+      "slug": "tree"
+    }
+  },
+  {
+    "id": "load-sanitize:house",
+    "input": {
+      "slug": "house"
+    }
+  },
+  {
+    "id": "load-sanitize:lighthouse",
+    "input": {
+      "slug": "lighthouse"
+    }
+  },
+  {
+    "id": "load-sanitize:airplane",
+    "input": {
+      "slug": "airplane"
+    }
+  },
+  {
+    "id": "load-sanitize:tower",
+    "input": {
+      "slug": "tower"
+    }
+  },
+  {
+    "id": "load-sanitize:ladder",
+    "input": {
+      "slug": "ladder"
+    }
+  },
+  {
+    "id": "load-sanitize:utility-pole",
+    "input": {
+      "slug": "utility-pole"
+    }
+  },
+  {
+    "id": "load-sanitize:hot-air-balloon",
+    "input": {
+      "slug": "hot-air-balloon"
+    }
+  },
+  {
+    "id": "load-sanitize:kite",
+    "input": {
+      "slug": "kite"
+    }
+  },
+  {
+    "id": "load-sanitize:sun",
+    "input": {
+      "slug": "sun"
+    }
+  },
+  {
+    "id": "load-sanitize:slide",
+    "input": {
+      "slug": "slide"
+    }
+  },
+  {
+    "id": "load-sanitize:ferris-wheel",
+    "input": {
+      "slug": "ferris-wheel"
+    }
+  },
+  {
+    "id": "load-sanitize:bowl",
+    "input": {
+      "slug": "bowl"
+    }
+  },
+  {
+    "id": "load-sanitize:building-3d",
+    "input": {
+      "slug": "building-3d"
+    }
+  },
+  {
+    "id": "load-sanitize:house-3d",
+    "input": {
+      "slug": "house-3d"
+    }
+  },
+  {
+    "id": "load-sanitize:water-tank",
+    "input": {
+      "slug": "water-tank"
+    }
+  },
+  {
+    "id": "load-sanitize:cup-cylinder",
+    "input": {
+      "slug": "cup-cylinder"
+    }
+  },
+  {
+    "id": "load-sanitize:cup-cone",
+    "input": {
+      "slug": "cup-cone"
+    }
+  },
+  {
+    "id": "load-sanitize:can",
+    "input": {
+      "slug": "can"
+    }
+  },
+  {
+    "id": "load-sanitize:cake-roll",
+    "input": {
+      "slug": "cake-roll"
+    }
+  },
+  {
+    "id": "load-sanitize:pizza",
+    "input": {
+      "slug": "pizza"
+    }
+  },
+  {
+    "id": "load-sanitize:ice-cream-cone",
+    "input": {
+      "slug": "ice-cream-cone"
+    }
+  },
+  {
+    "id": "load-sanitize:baduk-black",
+    "input": {
+      "slug": "baduk-black"
+    }
+  },
+  {
+    "id": "load-sanitize:baduk-white",
+    "input": {
+      "slug": "baduk-white"
+    }
+  },
+  {
+    "id": "load-sanitize:matchstick",
+    "input": {
+      "slug": "matchstick"
+    }
+  },
+  {
+    "id": "load-sanitize:picture-frame",
+    "input": {
+      "slug": "picture-frame"
+    }
+  },
+  {
+    "id": "load-sanitize:balance-scale",
+    "input": {
+      "slug": "balance-scale"
+    }
+  },
+  {
+    "id": "load-sanitize:thermometer",
+    "input": {
+      "slug": "thermometer"
+    }
+  },
+  {
+    "id": "load-sanitize:dice",
+    "input": {
+      "slug": "dice"
+    }
+  },
+  {
+    "id": "load-sanitize:train-side",
+    "input": {
+      "slug": "train-side"
+    }
+  },
+  {
+    "id": "load-sanitize:tunnel",
+    "input": {
+      "slug": "tunnel"
+    }
+  },
+  {
+    "id": "load-sanitize:bridge",
+    "input": {
+      "slug": "bridge"
+    }
+  },
+  {
+    "id": "load-sanitize:streetlamp",
+    "input": {
+      "slug": "streetlamp"
+    }
+  },
+  {
+    "id": "load-sanitize:building",
+    "input": {
+      "slug": "building"
+    }
+  },
+  {
+    "id": "load-sanitize:flagpole",
+    "input": {
+      "slug": "flagpole"
+    }
+  },
+  {
+    "id": "load-sanitize:mountain",
+    "input": {
+      "slug": "mountain"
+    }
+  },
+  {
+    "id": "load-sanitize:person-standing",
+    "input": {
+      "slug": "person-standing"
+    }
+  },
+  {
+    "id": "load-sanitize:person-walking",
+    "input": {
+      "slug": "person-walking"
+    }
+  },
+  {
+    "id": "load-sanitize:bicycle",
+    "input": {
+      "slug": "bicycle"
+    }
+  },
+  {
+    "id": "load-sanitize:car-side",
+    "input": {
+      "slug": "car-side"
+    }
+  },
+  {
+    "id": "load-sanitize:boat",
+    "input": {
+      "slug": "boat"
+    }
+  },
+  {
+    "id": "edge:building:False:front",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        100,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building:False:inclined",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        160,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building:False:shallow-upright",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        110,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building:True:front",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        100,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "edge:building:True:inclined",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        160,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "edge:building:True:shallow-upright",
+    "input": {
+      "asset": "building",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        110,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "edge:building-3d:False:front",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        100,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building-3d:False:inclined",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        160,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building-3d:False:shallow-upright",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        110,
+        80
+      ],
+      "flip": false
+    }
+  },
+  {
+    "id": "edge:building-3d:True:front",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        100,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "edge:building-3d:True:inclined",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        160,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "edge:building-3d:True:shallow-upright",
+    "input": {
+      "asset": "building-3d",
+      "from": [
+        100,
+        200
+      ],
+      "to": [
+        110,
+        80
+      ],
+      "flip": true
+    }
+  },
+  {
+    "id": "asset-only-empty-points",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "house",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-only-free-shrink",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "house",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 900
+        }
+      ]
+    }
+  },
+  {
+    "id": "fixed-oversize-no-useless-shrink",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          0,
+          700
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "assets": [
+        {
+          "asset": "building-3d",
+          "from": "A",
+          "to": "B"
+        },
+        {
+          "asset": "house",
+          "at": [
+            10,
+            10
+          ],
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "malformed-assets:null",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": null
+    }
+  },
+  {
+    "id": "malformed-assets:empty",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": []
+    }
+  },
+  {
+    "id": "malformed-assets:object",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": {}
+    }
+  },
+  {
+    "id": "malformed-assets:string",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": "house"
+    }
+  },
+  {
+    "id": "malformed-assets:number",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": 3
+    }
+  },
+  {
+    "id": "malformed-assets:listnull",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        null
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:can",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "can",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:dice",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "dice",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:bowl",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "bowl",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:unknown",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "unknown",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:../house",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "../house",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "solid-or-unknown:__proto__",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "__proto__",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "invalid-item:widthzero",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': 0}]}"
+  },
+  {
+    "id": "invalid-item:widthnegative",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': -1}]}"
+  },
+  {
+    "id": "invalid-item:widthbool",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': True}]}"
+  },
+  {
+    "id": "invalid-item:widthnan",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': nan}]}"
+  },
+  {
+    "id": "invalid-item:widthinf",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': inf}]}"
+  },
+  {
+    "id": "invalid-item:flipstring",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': 40, 'flip': 'true'}]}"
+  },
+  {
+    "id": "invalid-item:badanchor",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'edgeTop', 'width': 40}]}"
+  },
+  {
+    "id": "invalid-item:unknownfield",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': 40, 'extra': 1}]}"
+  },
+  {
+    "id": "invalid-item:mixedfrom",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [100, 100], 'anchor': 'center', 'width': 40, 'from': [0, 0]}]}"
+  },
+  {
+    "id": "invalid-item:badcoords",
+    "input": "{'version': 2, 'points': {}, 'assets': [{'asset': 'house', 'at': [1, inf], 'anchor': 'center', 'width': 40}]}"
+  },
+  {
+    "id": "degenerate-from-to",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "building-3d",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "current-render-new-picture:building-3d",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "building-3d",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "current-render-new-picture:house-3d",
+    "input": {
+      "version": 2,
+      "points": {},
+      "assets": [
+        {
+          "asset": "house-3d",
+          "at": [
+            100,
+            100
+          ],
+          "anchor": "center",
+          "width": 40
+        }
+      ]
+    }
+  }
+]
