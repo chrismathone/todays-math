@@ -1,0 +1,277 @@
+{
+  "controls": [
+    {
+      "name": "FI1-ascii-case",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI1-unicode-casefold",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI1-unknown-only",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI1-mixed-known-unknown",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks-0",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks-3",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks-4",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks-True",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks--1",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-reject-ticks-'2'",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-conflict",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-valid-alias-1",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-valid-alias-2",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI2-matching-explicit-alias",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-old-angle-nan",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-old-circle-nan",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-old-negative-mixed",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-length-zero",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-length-degenerate",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-length-nan-coordinate",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-arc-radius-zero",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-arc-nan-angle",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-arc-zero-span",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-angle-degenerate",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-tangent-negative-radius",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-tangent-degenerate",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-on-line-inf-point",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-on-line-degenerate",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-circle-negative-radius",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-tol-nan",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-tol-deg-inf",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "FI3-reject-and-invalidate-tol-px-negative",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-length",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-arc",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-angle",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-tangent",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-line",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "positive-circle",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "background-none",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "background-transparent",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "background-white",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "import-no-site",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "name": "builder-pure-mocked-output-hash",
+      "passed": true,
+      "observed": true
+    }
+  ],
+  "uniqueControls": 43,
+  "passed": 43,
+  "failed": 0,
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_vendor_tools.py": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\figure-authoring-import-20261021.md": "03463f153c1774acbc5ea6018ba8abb9f7a65a3a5906d54b3c220c95eb91e6ac",
+    "D:\\시험지 한글화\\docs\\export\\todays-math\\patches\\01-figure-engine.patch": "3035151b7cd3169006874e828d0466e9b014a254c04b4c5a70190979f6e7741a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-before.json": "c01a423af2abe42c4e2ff368b37f98e919632474c199901dfde6d7005c247282",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-controls.py": "14fbf447d2601194ca85837755dc0403cd3d4fad309877853ae6eca6ae07cb2a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-controls-v2.py": "09bc382252fab749694f062081e70ccffc7a5fcd02a12f6f5937a2213260b578",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-controls.py": "53de7810998c41d2ee1b9596954dc21b89bc2a33694e8363b8f3dafcd7022ab1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-harness-failure.json": "9ca4387d6589847cc5dfe3b43145d6c699dbac3eeb829bbbba31e49229611c1e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-results.json": "85e10444b87600cb2b4eb9a45a559126c48412b859644ac77a1e0d0d34d0413f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-report-build.py": "e51aa87cd0764955d33c9eb8d2e1a99b7a5ea6c90f3d02403b1102fa0f050e2f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-report.json": "e89ff1c832695d94bd2e6ba6b29fabe2e07fdd4d98d9d4f54e6b09b96e6251cc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-results.json": "fba3ccab41b3fe829609ecfbc75b8e09368f53479f39360c5560f7b3b51f92a6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-utf8-probe.txt": "44ce42ff6db2e19c4d8adf6c887fed5678f1d47d0d6f6b7bc933e799b90c2513"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_vendor_tools.py": "0875b2398d4bdffbcc0fff3370cacd1e64d5a272b6a7f6d3a7724063c5038989",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\figure-authoring-import-20261021.md": "03463f153c1774acbc5ea6018ba8abb9f7a65a3a5906d54b3c220c95eb91e6ac",
+    "D:\\시험지 한글화\\docs\\export\\todays-math\\patches\\01-figure-engine.patch": "3035151b7cd3169006874e828d0466e9b014a254c04b4c5a70190979f6e7741a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-before.json": "c01a423af2abe42c4e2ff368b37f98e919632474c199901dfde6d7005c247282",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-controls.py": "14fbf447d2601194ca85837755dc0403cd3d4fad309877853ae6eca6ae07cb2a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-controls-v2.py": "09bc382252fab749694f062081e70ccffc7a5fcd02a12f6f5937a2213260b578",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-controls.py": "53de7810998c41d2ee1b9596954dc21b89bc2a33694e8363b8f3dafcd7022ab1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-harness-failure.json": "9ca4387d6589847cc5dfe3b43145d6c699dbac3eeb829bbbba31e49229611c1e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-extra-results.json": "85e10444b87600cb2b4eb9a45a559126c48412b859644ac77a1e0d0d34d0413f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-report-build.py": "e51aa87cd0764955d33c9eb8d2e1a99b7a5ea6c90f3d02403b1102fa0f050e2f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-report.json": "e89ff1c832695d94bd2e6ba6b29fabe2e07fdd4d98d9d4f54e6b09b96e6251cc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-results.json": "fba3ccab41b3fe829609ecfbc75b8e09368f53479f39360c5560f7b3b51f92a6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-import-independent-20261021-r1\\own-utf8-probe.txt": "44ce42ff6db2e19c4d8adf6c887fed5678f1d47d0d6f6b7bc933e799b90c2513"
+  },
+  "importedClosureHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "d02a3fb150d76f2adff12146fc6e7464a3d5c243fa77deb2f6a6d8ba6ebfb2d1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "0e0fa761fbac66616dc7c9f5b06e287e1220c153b43adb4972d86cbc1a4fcc4b"
+  },
+  "solidUnchangedNormalizedFromR1RootCommit": true,
+  "solidRawSHA256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+  "solidR1GitNormalizedSHA256": "767324ca2e23dc25405e5104588684454881052163f6378c9355ce792698a84b",
+  "solidNotExecuted": true,
+  "rootHEADInformational": "0d9bb248b7b2267c9e28fb9259b7aa99d472cd47"
+}
