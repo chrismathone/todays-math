@@ -1,0 +1,62 @@
+{
+  "scope": "current Root fractional setter repair, exact direct-function/jsdom R4 replay",
+  "verdict": "BOUNDED_REPAIR_CONFIRMED",
+  "counts": {
+    "currentUniqueRuntimeControls": 86,
+    "passed": 86,
+    "failed": 0,
+    "reexecutedR3Cohort": 83,
+    "addedStrictRejectionControls": 3,
+    "newManualBlindGradeCounts": 0,
+    "parentTestsCounted": 0
+  },
+  "resolvedFinding": {
+    "id": "FE-R3-COUNT",
+    "inputs": [
+      1.001,
+      0.999,
+      60.001
+    ],
+    "observed": "all reject in current actual Root setFigureGrid before any returned SVG",
+    "sourceObservation": "raw joined metadata parse precedes rounded metadata parse; read-only source validation only, no worker patch"
+  },
+  "runtime": {
+    "actualRootImports": {
+      "meta": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGridMetadata.ts",
+      "grid": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGrid.ts",
+      "edit": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSvgEditing.ts",
+      "label": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx",
+      "jsdom": "D:\\todays-math\\node_modules\\jsdom\\lib\\api.js"
+    },
+    "moduleBeforeFirstImportAndAfter": "own-results.json",
+    "heapLimitMiB": 216,
+    "availableMemoryBytes": 2691133440,
+    "nodeProcesses": 1,
+    "nodeEnded": true,
+    "noMocksOfTestedFunctions": true
+  },
+  "bindings": {
+    "cohort": "own-cohort-binding.json",
+    "inputSHA256": "12ddd154435979f87534ef4ad67bb2ce3d15f89076360ca28fa29c161b0d7afd",
+    "outputSHA256": "0581df3715e5d53cbe4cac026ed24f528a64bfe2763bffd86afd65c893f67275",
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changedExplicitSources": [],
+    "changedImportedSources": [],
+    "currentFigureGridSHA256": "a6cbdd2939c74c2b3b9fbd590491f709fc246e4d0c0261cde1c9090e72ac3136",
+    "deltaFromR3ExplicitSources": [
+      "src/components/unified/figure-editor/figureGrid.ts"
+    ]
+  },
+  "catalogue": "own-catalogue-metadata.json preserves historical comparison and confirms unchanged v2 example; catalogue writer not executed",
+  "parentValidationStatus": "R4 raw guard types run pending due parent memory floor; prior UI66/engine109/types/lint are historical parent evidence, not current independent checks",
+  "limits": [
+    "No mounted React pointerdown/warning lifecycle/lazy chip failure testing; unchanged R3 direct-function scope only",
+    "No visual layout/SVG getBBox, no real browser or raster, no pixel math oracle",
+    "No general code/TypeScript/lint/whole engine approval from86 controls",
+    "No grade/rights/native/source/DB/load/public release approval; root/vector notation support is not curriculum permission",
+    "No SourceD execution/read expansion, Root/source edits, DB/API/network calls, installation, new worker/session/worktree",
+    "R1/R2/R3 and unrelated dirty evidence preserved; repeated controls not accumulated as new questions"
+  ],
+  "reproduce": "From Root cwd and memory>=1.5GiB: node --max-old-space-size=192 --max-semi-space-size=8 --require ROOT/node_modules/tsx/dist/cjs/index.cjs ABS_OWN/own-dom-controls.cjs; python -B -S own-finalize.py"
+}
