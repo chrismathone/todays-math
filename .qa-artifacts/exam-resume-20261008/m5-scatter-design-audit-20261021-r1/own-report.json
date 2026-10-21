@@ -1,0 +1,58 @@
+{
+  "scope": "Short preimplementation design audit; M5/M18 nine scatter families 06..12,14,15 only; 13 excluded",
+  "sourceHashes": {
+    "src/lib/middle/studentInputIdentity.ts": "7d04c7846c7a55d7e6deb73a960e7be42de0d44c08f915aa51d4d678df0bccd1",
+    "src/lib/middle/generate.ts": "6a63b6fe714e412ccdb3e7ecda4a06058e915eff71795273a8f8db96b71f04be",
+    "src/lib/middle/m3Stat2.ts": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+    "scripts/figure/elem_advanced.py": "04fab4b50c4168ad7bec7fcba7452e9a7ea359acf8e8499127964efc637f8fd5",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m5-scatter-input-20261021-r1/work-card.json": "80b912dbf6210b7c7589b90cae265ea9e7705aa6dae9977a5f9f27e12b502889"
+  },
+  "independentPythonDesignChecks": {
+    "contentOnlyCollapsesDifferentFiguresAfterCoordinateListRemoval": true,
+    "currentCoordinateListOrderCanEvadeTextDedup": true,
+    "sortedNumericPairsIgnoreOrder": true,
+    "multiplicityMustNotBeSetDeduplicated": true,
+    "range30to100Step5Has14MinorIntervals": true,
+    "range20to100Step5Has16MinorIntervals": true,
+    "major10DoesNotAlignAt30With20Step": true,
+    "range0to105Major10NotDivisible": true,
+    "arbitraryCurrentInteger41NotOn5Lattice": true
+  },
+  "actualTSAPIOrRendererExecutions": 0,
+  "currentObserved": [
+    "Current generateMiddleSet now consumes middleStudentInputIdentity; original content-only guard is historical, not current. Retry exhaustion still throws.",
+    "m3Stat2 currently includes raw coordinate lists in content. Therefore picture-only collapse is prospective after removing those lists, not established for every current pair. Current order-sensitive coordinate lists can distinguish the same multiset.",
+    "m3Stat2 uses arbitrary integer values (e.g. 40..95), axes carry only unit labels (점), and niceAxis results are reused for both axes.",
+    "elem_advanced _scatter_plot derives independent plot_w/plot_h mappings, grids only at major ticks, and labels every major tick. No current gridStep key in scatter optional registry; _axis_from_spec permits at most AXIS_MAX_TICKS=20 intervals and uses floating tolerance, not exact-rational divisibility."
+  ],
+  "identityRecommendation": [
+    "Allowlist full registered type keys including course/minor/family identity, not just suffix 06; require scatterPlot and supported version. Keep exactly current text identity outside the nine including 13.",
+    "Current implementation rejects duplicate pairs rather than preserving multiplicity: reasonable for these nine only if each point represents one uniquely plotted observation. Do not silently apply this to future overlapping-data templates. Retain the current sparse Array.from checks.",
+    "Exclude answer/facts/style/point-array order. Do not strip coordinate-list substrings from existing content by regex: exact content remains order-sensitive until phase4 explicitly removes lists. Subject labels currently only units; actual semantic x/y labels must first be authored and bound to printed content.",
+    "Content+labels+points is semantic-input dedup, not complete display identity: excluded axis ranges can affect interpretation/readability. Require validated axes with unchanged meaning and exact readback before removing coordinate lists; malformed whitelisted figures should throw, not silently fall back to text.",
+    "No TypeEntry/persisted schema change needed for a pure helper at set selection; separate combo.ts also has content-only guard and is outside proposed generateMiddleSet wiring. Do not claim all callers repaired."
+  ],
+  "gridRecommendation": [
+    "Opt-in only; absent key must execute original branch byte-for-byte. Add optional key to strict renderer schema/catalog and any typed producer contract, with explicit finite positive numeric and boolean rejection.",
+    "Define gridStep relative to both axis minima; require exact integer ratios (max-min)/gridStep and majorStep/gridStep on each axis, with separate bounded minor-interval counts. Label major10 only; never silently round a nondivisible range. Decide decimal policy explicitly (bounded integer/rational recommended).",
+    "Square cells require plot_w/nx == plot_h/ny in final serialized coordinates, not merely equal data step values. Current independent plot_w/plot_h does not guarantee this. Use contained aspect-preserving plot dimensions plus tick/unit/title padding; do not distort data axes.",
+    "GridStep5 alone does not put current arbitrary integers on the lattice: value41 on axis min30 is 2.2 minor cells. Preserve raw lists until later lattice/domain redesign is independently checked.",
+    "Measure actual font-label extents against neighbouring tick boxes, unit/title boxes and point disks; numeric step divisibility or fixed estimated string width alone does not prove clearance. Exact point/axis SVG readback and clipping checks remain necessary."
+  ],
+  "missingContractsAndRisks": [
+    "Need exact nine full type keys, helper failure return/throw contract, duplicate multiplicity policy, point bounds/axis subject labels, max minor count, square-cell serialized-error criterion, and malformed/foreign figure fixtures.",
+    "Changing finite domains to a 5 lattice may shrink capacity and alter rank/tie/threshold/mean/correlation predicates. Preserve retry exhaustion and rederive answers independently; no silent threshold or count change.",
+    "No coordinate distance/trigonometry/covariance prerequisite may be inferred from plotting. Current type13 distance exclusion retained. Whole-grade, Unit exact family, source, rights and native/public release remain unapproved."
+  ],
+  "limitations": "Static source review plus independent Python logical/rational witnesses only; no actual generated-pair counterexample, TS/API, native render or measured label clearance execution. No production edits. Initial guessed index.ts/elem_advanced.ts paths were absent; actual generate.ts and scripts/figure/elem_advanced.py were read instead.",
+  "currentHelperStaticAssessment": {
+    "whitelist": "Exact nine full keys 3-2|상자그림과 산점도|06..12,14,15; 13/other keys retain exact content identity.",
+    "canonicalization": "JSON tuple of exact content, trimmed ordered x/y labels and numeric sorted pairs; excludes answer/solution/facts/style and does not mutate point array; negative zero normalized.",
+    "malformed": "Array.from visits holes in outer points and inner pairs, converting holes to undefined which fails validation. Rejects invalid kind/version, missing/empty/overlong labels, counts outside2..40, nonpairs, nonnumeric/nonfinite/out-of-range coordinates, and duplicate coordinate pairs. Duplicate rejection is an explicit no-overlapping-person contract, not multiset dedup; current nine must continue ensuring unique coordinates.",
+    "contentOrderLimitation": "Point-array order alone is ignored only when content is identical. Existing content embeds the coordinate-list order, so reordering both list text and points still changes identity. No automatic coordinate-text removal should be inferred.",
+    "axisBoundary": "Helper intentionally does not validate xMin/xMax/yMin/yMax/steps or point-in-axis bounds. Same content/labels/points with altered or malformed axes can share identity. Renderer validation must run separately before output; helper success is not render success or meaningful axis semantics.",
+    "labelBoundary": "Current labels are units, not full subject names; subjects remain in exact content. Future subject axes must be explicitly aligned with content. Trimming labels is a bounded whitespace equivalence, not arbitrary text normalization.",
+    "execution": "Static actual-current source review only. No independent JS/TS/API execution; parent368API/43set/34test claims not counted."
+  },
+  "currentDelta": "Interrupted proposal review resumed after helper implementation. Earlier proposed requirements are design recommendations, not claims of missing current whitelist or sparse validation. GridStep work remains prospective."
+}
