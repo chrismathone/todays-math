@@ -1,10 +1,10 @@
 """Retire only the two explicitly authorized, remotely archived local worktrees."""
 from pathlib import Path
-import argparse,datetime,hashlib,json,os,shutil,stat,subprocess,time
+import argparse,datetime,hashlib,json,os,shutil,socket,stat,subprocess,time
 p=argparse.ArgumentParser();p.add_argument('--plan',type=Path,required=True);p.add_argument('--owner',choices=['parent','worker'],required=True);p.add_argument('--execute',action='store_true');a=p.parse_args()
 plan=json.loads(a.plan.read_text(encoding='utf-8'));vault=a.plan.parent.resolve()
 assert plan['userAuthorizedOtherPcHandoffAndLocalCleanup']is True
-assert os.environ.get('COMPUTERNAME')==plan['computerName']
+assert socket.gethostname()==plan['computerName']
 allowed=Path('C:/Users/user/orca/workspaces/todays-math').resolve()
 expectedNames={'parent':'exam-extraction-resume-20261008','worker':'exam-twin-source-identity-20261008'}
 target=Path(plan['worktrees'][a.owner]['path']).resolve()

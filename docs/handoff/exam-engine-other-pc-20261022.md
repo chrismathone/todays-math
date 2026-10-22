@@ -22,6 +22,8 @@
 
 최신 사용자 AGENTS 지시와 프로젝트의 reader floor를 먼저 확인한다. 특히 SRS reviewVariant v1/v2 등 새 reader 지시가 옛 checkout의 AGENTS 파일보다 최신일 수 있다. 이 세션은 SRS·학생 개념은행을 수정하지 않았다.
 
+원래 기출 지시는 `docs/planning/tracks/brief-exam-extraction-resume-20261008.md`와 addendum-1~6, `brief-exam-extraction-resume-20261012-addendum-7.md`에 보존돼 있다. 최신 엔진 전담·다른 컴퓨터 인수인계 지시가 실행 범위에서 우선한다. 기존 source=past_exam/원본 그림 loader를 쌍둥이 적재기로 그대로 쓰지 않는다. 표현·역추론 변형에서는 정의역·단위·부호·길이 양수·존재·유일성·선택지와 새 선수개념 유입도 검사한다.
+
 ## 3. 방금 도착한 회신 — 이미 완료, 중복 적용 금지
 
 math-figure-editor 담당자는 optional r2 입력 후보를 검토·적용해 **`a32662cf57ee71ffc8bf45ffffa87933c939d423`**를 `origin/master`에 푸시했다고 회신했다. source 저장소에서 해당 커밋과 갱신된 동기화 문서를 읽어 `H/source-ack-a32662c/`와 JSON 명세에 보존했다.
