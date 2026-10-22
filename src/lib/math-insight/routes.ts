@@ -1,4 +1,9 @@
 import "server-only";
+import {
+  MATH_INSIGHT_VERSION_HEADER,
+  MATH_INSIGHT_V2,
+} from "@/contracts/mathInsightV2.contract";
+import { handleInsightV2Request } from "./v2Routes";
 import { z } from "zod";
 import { idParamSchema } from "@/contracts/common.contract";
 import {
@@ -75,6 +80,11 @@ export async function handleInsightRequest(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const version = request.headers.get(MATH_INSIGHT_VERSION_HEADER);
+  if (version !== null)
+    return version === MATH_INSIGHT_V2
+      ? handleInsightV2Request(request, context)
+      : badRequest();
   const access = await teacherGate(request);
   if (access.response) return noStore(access.response);
   const parsed = idParamSchema.safeParse(await context.params);
