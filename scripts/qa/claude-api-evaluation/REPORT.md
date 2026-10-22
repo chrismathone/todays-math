@@ -38,6 +38,12 @@ No cache usage was reported. This estimates token charges; the account invoice,
 remaining credits and credential expiry were not inspected. No further calls
 are planned; the unused 13-request allowance is not authorization to expand.
 
+The eight-call pilot cost USD 0.056 and projected USD 1.414 for the original
+202 calls. Those 202 calls actually used USD 1.390162; the separately approved
+34 schema-only corrections added USD 0.189020, giving the final text-cohort
+estimate of USD 1.579182. Features and the later order study are separate scope
+additions in the table above, not charges hidden in the pilot projection.
+
 ## Original text cohort
 
 The prepared denominator is 458 packets across 229 targets. The frozen eligible
