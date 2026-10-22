@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import sharp from "sharp";
-import { fixtures } from "./fixtures";
+import { fixtures, type Fixture } from "./fixtures";
 const sha = (v: string | Buffer) =>
   createHash("sha256").update(v).digest("hex");
 const root = process.env.OCR_EVIDENCE!;
@@ -19,13 +19,18 @@ vi.mock("@/lib/studio-ai/api", async (original) => {
   return {
     ...actual,
     runModelApi: (input: Parameters<typeof actual.runModelApi>[0]) =>
-      actual.runModelApi({ ...input, maxOutputTokens: 4096, effort: "medium" }),
+      actual.runModelApi({
+        ...input,
+        maxOutputTokens: process.env.OCR_SHADOW ? 8192 : 4096,
+        effort: process.env.OCR_SHADOW ? "high" : "medium",
+        ...(process.env.OCR_SHADOW ? { model: "claude-opus-5-5" } : {}),
+      }),
   };
 });
 const canonical = (s: string) => s.replace(/\$|\\(?:text|mathrm)|[{}\s]/g, "");
 test("freeze actual requests and replay exact owner replies with independent text/count/pixel checks", async () => {
   const { executeStudioTask } = await import("@/lib/studio-ai/execute");
-  const all = process.env.OCR_INDEPENDENT_MANIFEST
+  const all: Fixture[] = process.env.OCR_INDEPENDENT_MANIFEST
     ? await Promise.all(
         JSON.parse(
           fs.readFileSync(process.env.OCR_INDEPENDENT_MANIFEST, "utf8"),
@@ -209,8 +214,9 @@ test("freeze actual requests and replay exact owner replies with independent tex
     JSON.stringify(
       {
         version: 1,
-        boundary:
-          "actual executeStudioTask -> runModelApi -> offline fetch; 4096/medium overrides",
+        boundary: process.env.OCR_SHADOW
+          ? "actual executeStudioTask -> runModelApi -> offline fetch; QA ONLY model Opus5.5/high/8192 override; product route unchanged"
+          : "actual executeStudioTask -> runModelApi -> offline fetch; 4096/medium overrides",
         cases: records,
       },
       null,

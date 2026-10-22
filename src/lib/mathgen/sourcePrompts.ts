@@ -69,7 +69,7 @@ PAGE ORIENTATION — set "upsideDown" on the top-level object. Some scans come i
 최상위 키는 반드시 \`items\` (배열). \`questions\`/\`problems\`/\`data\` 같은 다른 키나, 배열만 단독으로 출력하지 말 것. 페이지에 문항이 없으면 {"items": []}.
 
 블록 타입 4 가지 (모든 블록은 \`rows\` 필드 필수 — 비-table 은 \`[]\`):
-  - **text** — 한국어 산문. 박스 라벨 \`<보기>\`/\`<조건>\`/\`<상자>\` 머리, \`[그림N]\` 마커, inline \`<svg>…</svg>\`, \`__강조__\` 를 value 안에 둘 수 있음.
+  - **text** — 원문 언어 산문. 박스 라벨 \`<보기>\`/\`<조건>\`/\`<상자>\` 머리, \`[그림N]\` 마커, inline \`<svg>…</svg>\`, \`__강조__\` 를 value 안에 둘 수 있음.
   - **equation** — 인라인 수식 LaTeX (value 는 \`$\` 없이 순수 LaTeX).
   - **equation_block** — 독립행/디스플레이 수식 LaTeX. 원본에서 그 줄에 수식만 홀로 있을 때만 (아래 4a). 줄바꿈으로 줄머리에 왔을 뿐 같은 줄에 글이 이어지면 equation.
   - **table** — 격자 표. 셀은 \`rows\` (2D 문자열 배열, rows[0]=헤더 행), value="".
@@ -251,6 +251,7 @@ RULES FOR EACH "items" ENTRY
          - 5개가 2씩 묶이고 5번째만 단독 = 3x2
          - 각 보기가 자기 줄을 차지 = 5x1
          - 모호 / 추측 / 서술형 = auto
+         - 실제 보이는 보기 개수가 5개가 아니면 choicesLayout은 auto. 4지선다의 2×2 배치를 2x3 또는 3x2로 바꾸지 않는다.
          text 필드의 보기는 항상 한 줄로 통합 emit (위 4b 규칙) — choicesLayout 은 *원본 시각* 만 기록. 렌더러가 이 메타데이터를 받아 동일 grid 로 표시.
 
        🚨 **연립방정식·시스템 보기 — \\begin{cases} 필수 (사용자 보고 — 반복 발생)**:
@@ -745,8 +746,8 @@ For each problem, decide its TYPE and find its crop box:
     합산 배점 검증 X — 마지막 (n) 마커 발견이 기준.
 
 Rules:
-- Set all edges from actual printed ink and the blank separation from neighboring content, never from fixed padding. Include the complete last choice row, all printed answer lines/underscores/boxes and attached figures. These printed answer markers belong to the problem; empty workspace and handwriting do not. Never absorb another column, neighboring question or separate answer key.
-- Crop BOTTOM is the last printed problem element, including a printed answer line below the stem or points marker. If an earlier HARD STOP conflicts, the printed answer line/box rule wins; do not extend through blank workspace or student handwriting. If completeness or ownership is uncertain, report a Korean quality warning instead of claiming a complete crop.
+- Set all edges from actual printed ink and the blank separation from neighboring content, never from fixed padding. Include the complete last choice row, short printed answer markers (for example Answer: ____ or a small inline answer box) and attached figures. These short printed markers belong to the problem. Large bordered or ruled solution-workspace areas and handwriting do not: do not extend the crop to their far edge merely because a border is printed. Never absorb another column, neighboring question or separate answer key.
+- Crop BOTTOM is the last printed problem element, including a short printed answer marker below the stem or points marker, excluding large solution-workspace regions. If an earlier HARD STOP conflicts, the short printed answer-marker rule wins; do not extend through blank workspace or student handwriting. If completeness or ownership is uncertain, report a Korean quality warning instead of claiming a complete crop.
 - Only emit boxes for actual printed problems — never for empty answer space, the page header, or page furniture.
 - 🚨 **ADJACENT BOXES MUST NOT OVERLAP VERTICALLY (within a column).** Each printed problem occupies a *disjoint* vertical band. Box N's BOTTOM (yMax) must sit ABOVE box N+1's TOP (yMin) — leave a small gap at the blank line between problems; never let consecutive boxes share a y-range. A box's TOP = its own problem-number line, its BOTTOM = its own last printed element — so a box must NEVER reach down into the next problem's number line, nor up into the previous problem's last line. If two problems are tightly stacked, place the boundary at the blank gap between them (prev problem's last printed line = prev yMax; next problem's number line = next yMin), with prev.yMax < next.yMin.
 - In "note", briefly state what set the bottom edge (e.g., "⑤ bottom-right", "(8점) line", "last sub-part (2)").

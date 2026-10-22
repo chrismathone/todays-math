@@ -3,7 +3,9 @@ import path from "node:path";
 import fs from "node:fs";
 const [mode, evidence, map, independent] = process.argv.slice(2);
 if (
-  !["capture", "replay", "guards"].includes(mode) ||
+  !["capture", "replay", "guards", "shadow-capture", "shadow-replay"].includes(
+    mode,
+  ) ||
   !path.isAbsolute(evidence ?? "")
 )
   throw Error("capture|replay|guards absolute-evidence [response-map]");
@@ -13,7 +15,8 @@ const env = {
   STUDIO_AI_JEV: "off",
   ANTHROPIC_API_KEY: "offline-placeholder-never-transmitted",
   STUDIO_AI_ANTHROPIC_MODEL: "claude-opus-5",
-  OCR_MODE: mode,
+  OCR_MODE: mode.replace("shadow-", ""),
+  ...(mode.startsWith("shadow-") ? { OCR_SHADOW: "1" } : {}),
   OCR_EVIDENCE: evidence,
   ...(independent
     ? { OCR_INDEPENDENT_MANIFEST: path.resolve(independent) }
@@ -35,7 +38,7 @@ const r = spawnSync(
 if (r.error) throw r.error;
 process.exitCode = r.status ?? 1;
 // Transport completion is separate from the frozen objective quality verdict.
-if (mode === "replay" && process.exitCode === 0) {
+if (mode.endsWith("replay") && process.exitCode === 0) {
   const summary = JSON.parse(
     fs.readFileSync(path.join(evidence, "summary.json"), "utf8"),
   );
