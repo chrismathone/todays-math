@@ -1,8 +1,8 @@
 {
-  "backendFreeze": "6c9e431563f68f1e344a28b9232eb849cc303fbd",
+  "backendFreeze": "9a009c737e0c2e490a2d0c5b9fb27d9350447548",
   "sourceHashes": {
     "src/lib/math-insight/v2Snapshot.ts": "ab7c8281071f329f1f24eb0db4a9ef165a444464b3cfe5017231f888fe4b80f0",
-    "src/lib/math-insight/v2Inference.ts": "8d63f8499ef4bcbd00e0a97e1ff4c21f75f25c3423267f755a85fd8c3a52a1fd",
+    "src/lib/math-insight/v2Inference.ts": "43b58a7fabe3fa3d4fb1f787d40706402a2c1a83227ba91c4d7dbe89bf36441f",
     "src/lib/math-insight/v2Validation.ts": "04ef0d536b84f743b408d34ce35873e9088d2624cada5d83b5219acdee5a1b6e",
     "src/lib/math-insight/snapshot.ts": "3c7503dbc6197d1893536711eb4f89b274335221544529fc66d4707aca9e0aeb",
     "src/lib/math-prerequisite/evidence.ts": "911a7d6a1ae4bbeb3f176c72e0c1d7e40934eda51f13e15856336d3436cd78c1",
@@ -57,6 +57,71 @@
     },
     "multiple-grades": {
       "MATH_PREREQ_CHECK": "on"
+    }
+  },
+  "stateSchema": {
+    "validator": "storedCourseSchema",
+    "sourcePath": "src/lib/math-srs/courseAutomation.ts",
+    "sourceSha256": "05f51fee769d3aced57e1a191fdbc1f3791b96d207bfa6d4ee004585c01a3f14",
+    "allScenariosValid": true,
+    "scenarioCount": 14
+  },
+  "scenarioValidation": {
+    "ready": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "feature-off": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "outside": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "empty": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "paused": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "future": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "stale": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "grade-3": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "grade-4": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "grade-5": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "grade-6": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "missing-source": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "unfinished": {
+      "schemaValid": true,
+      "projections": 2
+    },
+    "multiple-grades": {
+      "schemaValid": true,
+      "projections": 2
     }
   },
   "candidateWrapper": "expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)",
@@ -8593,7 +8658,7 @@
         },
         "asOf": "2026-10-22T08:00:00.000Z",
         "revision": 3,
-        "stateDigest": "3ac0a374b219eabffaadc7fd1268b36f495b2f3e188033d9e2050cc5e434fab5",
+        "stateDigest": "9d35626742e47245a6a5e7f5d63948659563917765ce98fd7c10a0455d861ac7",
         "planContext": {
           "status": "active",
           "storedPlan": {
@@ -8803,7 +8868,7 @@
           },
           "asOf": "2026-10-22T08:00:00.000Z",
           "revision": 3,
-          "stateDigest": "3ac0a374b219eabffaadc7fd1268b36f495b2f3e188033d9e2050cc5e434fab5",
+          "stateDigest": "9d35626742e47245a6a5e7f5d63948659563917765ce98fd7c10a0455d861ac7",
           "freshness": "insufficient",
           "eligibility": "insufficient",
           "goal": {
@@ -8948,7 +9013,7 @@
         },
         "asOf": "2026-10-22T08:00:00.000Z",
         "revision": 3,
-        "stateDigest": "dfa1146515350c3f9bebab34950188247272e6c95844ba5e81eb7f4ec9e510f4",
+        "stateDigest": "6c7c8f50fa21989842033ea5315096badcd84d95cd7a408c154c38a2bd5f0a12",
         "planContext": {
           "status": "active",
           "storedPlan": {
@@ -9158,7 +9223,7 @@
           },
           "asOf": "2026-10-22T08:00:00.000Z",
           "revision": 3,
-          "stateDigest": "dfa1146515350c3f9bebab34950188247272e6c95844ba5e81eb7f4ec9e510f4",
+          "stateDigest": "6c7c8f50fa21989842033ea5315096badcd84d95cd7a408c154c38a2bd5f0a12",
           "freshness": "insufficient",
           "eligibility": "insufficient",
           "goal": {

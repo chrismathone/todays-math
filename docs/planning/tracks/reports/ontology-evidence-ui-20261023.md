@@ -184,3 +184,97 @@ to the coordinator/core integration checks. The browser matrices are 390/1440
 and the explicit resize path, not every workspace breakpoint, print surface or
 full accessibility audit. Pure grade examples are not all-catalogue educational
 validation, achievement-standard alignment, or a measured learning effect.
+
+## QA-only fixture correction — 2026-10-23 01:56 KST
+
+The preceding final-run account is historical. Root's subsequent direct review
+of `browser-final/1440-ready-question.png` found a real synthetic fixture
+contradiction: both candidate rows said they were current candidates while their
+canonical facts also said the prerequisite feature was off. The old fixture SHA
+`256e9581247cfb6270461a1f57439b0b3da8b409c1fc3096d7694991c2343969` reproduces
+this with two eligible candidates and two feature-off facts. The generator had
+bypassed the production wrapper by passing `true` directly to the lower-level
+policy, while the snapshot independently read an undeclared feature flag. The
+product route already used the correct gated wrapper. This finding is a fixture
+defect; it does not establish a production product defect or change a production
+feature setting. Earlier evidence is preserved, including its contradiction.
+
+Correction commit: **`b1d63d05b64d16b55e07784cd90e96cc955844f0`**. Exact pure
+projection/composer freeze remains **`6c9e431563f68f1e344a28b9232eb849cc303fbd`**;
+tested product remains **`83901c9ab6b3698548574dd914a0af324f7e70d6`**. No current
+core WIP was merged. The complete `src` Git tree is unchanged from that tested
+product: **`b0af714002f17d3f5d23e00c32b10b7f923b883a`**. Root authorized narrow
+QA-only routing/assertion changes to `fixture.tsx` and `verify.mjs` in
+`msg_03a05f307358`, alongside generator/data, README and this report.
+
+The generator now uses exactly
+`expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)`. Each
+scenario declares a synthetic `MATH_PREREQ_CHECK` value. Both production wrapper
+and snapshot read that same value inside a synchronous offline CLI projection;
+`finally` restores the prior value (or deletes a previously absent flag).
+Ready and the existing scenarios explicitly use `on`; the added `feature-off`
+scenario uses `off` with the same course. Original pure course transitions,
+self-assessment and the documented synthetic missing-source case are retained.
+No learner payload, mission or student record is invented to force a result.
+
+Positive assertions require ready to remain eligible through the actual
+wrapper. Negative assertions require every off candidate to be ineligible and
+its canonical candidate facts to explain feature-off. Across every declared
+scenario an eligible candidate cannot coexist with feature-off text. Off keeps
+identical retained factual observations and the canonical composer returns a
+usable factual inquiry. All original thirteen scenarios retain byte-equivalent
+`observations` and complete `pilot` DTOs; only candidate fact wording changed in
+their snapshots. Original noncandidate fact prose is unchanged. The corrected
+JSON is **657,702 bytes**, SHA-256
+**`c7cebaeba1c1e103b4930e578328c565daf63f4e69ccfa989f44ac7ff0ab3e03`**.
+Separate generator processes inheriting `on` and `off` produce identical JSON
+and confirm restoration after every projection.
+
+New evidence directory (earlier files were not overwritten):
+`/Users/pss/Desktop/creative/display-survey/consensus/ontology-plan-20261023/ui/fixture-correction/`.
+
+- `old-generated-v2.json` and `contradiction-reproduced.json`: exact frozen
+  fixture bytes and the contradictory eligible/off facts.
+- `old-artifact-hashes.json`: 271 existing evidence files hashed before work and
+  verified unchanged after the correction.
+- `evidence-manifest.json`: exact QA/product/projection refs, source hashes and
+  byte counts, all scenario flags, fixture bytes, original-scenario comparison,
+  generated artifact hashes, and the final browser result.
+- `generator.log`, `generator-inherited-on.log`, `generator-inherited-off.log`:
+  wrapper/flag assertions and deterministic regeneration without model calls.
+- `final-component-tests.log`: **223 PASS / 8 files**, `maxWorkers=1`, including
+  the existing AutoGrow animation-frame fix and its regressions.
+- `scoped-ts.log`, `scoped-lint.log`: exit 0. `git diff --check`: clean.
+- `browser-final/results.json`, `browser-final.log`: **64 captures, 34 checks,
+  errors 0, rejected requests 0, failure null, resourcesClosed true, process
+  exit 0**. All captures have overflow 0, no broken images or KaTeX errors;
+  actual Pretendard and KaTeX font readiness passed.
+
+The single installed Chromium engine and local Vite server ran the full prior
+matrix plus explicit feature-off read/question cases at 390px and 1440px.
+The checks retain generic/pilot source reveal and keyboard focus, one explicit
+POST admission, cancel/late response rejection, student/class switching,
+refresh, POST 409 → one GET → automatic POST 0 with the question preserved,
+authorization clearing, and multiline 1440 → 390 → 1440 growth/shrink with value
+and focus preserved. The final run records synthetic flags explicitly and
+checks unchanged product bytes before and after; no warnings were suppressed.
+
+Direct PNG review covered `1440-ready-question.png`,
+`1440-feature-off-question.png`, and candidate-area crops of those plus
+`390-ready-question.png` and `390-feature-off-question.png`. Ready shows two
+current candidates with matching on prose and no off claim; off shows both
+candidates withheld with the off explanation, while factual observations and
+the inquiry remain readable. Original screenshots remain whole and immutable;
+review crops are separate derived artifacts. Wrapping, text hierarchy, citation
+focus and candidate-state wording agree at both widths.
+
+The script awaited browser and server closure in `finally`; exit 0 was observed
+before lease return message **`msg_21cd2406e3d1`**. The lease was returned before
+README/report cleanup, and no browser/server was restarted afterward.
+
+This pass remains synthetic UI verification through memory transport and local
+Next adapters. It does not exercise production authorization, databases, real
+student writes, real endpoint cross-read consistency, the later prompt-only
+model evaluation, or educational effectiveness. No paid calls, key reads,
+environment-file edits, dependency changes, full repository typecheck, build,
+push or deploy were performed. Root owns integration, merge and release.

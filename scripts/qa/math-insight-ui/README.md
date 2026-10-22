@@ -75,3 +75,38 @@ switch and reload races, model failures, authorization denial, and POST 409 →
 one fresh GET → no automatic POST with the question preserved. Unknown failures
 remain manual retry. Synthetic UI QA is distinct from real authorization,
 production services, model relevance, and educational validation.
+
+## Fixture flag correction (2026-10-23)
+
+The earlier frozen v2 ready fixture was internally inconsistent: its generator
+called the lower-level candidate policy with `true`, while canonical text read an
+undeclared `MATH_PREREQ_CHECK`. Earlier PNGs and logs remain immutable evidence of
+that fixture defect. The production route already used the correct wrapper;
+this correction changes no product source or production feature setting.
+
+`generate-v2.ts` now calls the existing production
+`expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)` wrapper.
+Every scenario explicitly declares its synthetic `MATH_PREREQ_CHECK` setting in
+`scenarioFlags`. The offline CLI sets it synchronously around both wrapper and
+snapshot, then restores the previous process value in `finally`; it never reads
+an environment file or changes another process. Ready and the existing cases use
+`on`; the separate `feature-off` case uses the identical transitioned course with
+`off`. Assertions require ready eligibility, no off eligibility, coherent
+canonical text, identical retained observations, and usable factual inquiries
+while off. No learner payload is invented to force eligibility.
+
+The exact pure source freeze remains
+`6c9e431563f68f1e344a28b9232eb849cc303fbd`, with additional actual-byte checks
+for the production wrapper, state constructor, gate and integration source.
+Product source remains `83901c9ab6b3698548574dd914a0af324f7e70d6`. This is the
+canonical display projection freeze, not the separately evaluated later model
+prompt. Explicit on/off inherited child-process checks produce identical JSON.
+
+The corrected full browser matrix includes both on and off question/render
+cases at 390px and 1440px: 64 captures and 34 checks. `results.json` records
+product hashes, projection hashes, the wrapper and all scenario flags. The
+external `ui/fixture-correction/evidence-manifest.json` also records exact refs,
+source and fixture bytes, old artifact hashes, unchanged original observations
+and pilot DTOs, and the new browser result. See the appended correction in
+`docs/planning/tracks/reports/ontology-evidence-ui-20261023.md` for evidence paths,
+closure and limits. The coordinator owns merging and release.

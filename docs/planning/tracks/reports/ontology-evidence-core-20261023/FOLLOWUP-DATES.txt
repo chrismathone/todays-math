@@ -1,0 +1,66 @@
+V2 selector source-day provenance follow-up — 2026-10-23
+
+Baseline: 7011863d6 (includes immutable a0bf8c3bf prompt correction).
+Immutable code commit: 9a009c737e0c2e490a2d0c5b9fb27d9350447548.
+v2Inference.ts SHA256:
+43b58a7fabe3fa3d4fb1f787d40706402a2c1a83227ba91c4d7dbe89bf36441f
+Coordinator notified immediately after freezing; no later product edits.
+
+Change
+Only the v2Inference model projection and brief prompt guidance changed in product
+code. scope.asOfDayKst and evidence.startedOnKst/completedOnKst (nullable), plus
+isCompletedToday, reuse the existing pure kstDateOf helper. Dates use the frozen
+snapshot.asOf and timestamp instants, including valid offsets; no wall clock or
+natural-language date parser is used. Exact session clocks are not added to model
+input. Future start/completion, unfinished and summary-only sources cannot be
+completed-today sources. Completion provenance stays separate from inclusion in
+the current plan: a before-plan source may have completed today without receiving
+current-plan credit. Missing source dates remain null. This is transient model
+metadata, not a schema, persistence or reader-floor extension.
+
+The guidance preserves scope-first refusal and in-scope withholding explanations,
+limits date-specific selection to relevant supplied dates/sources, forbids guessed
+dates and unrelated prior-day filler, and states that provenance is not mastery.
+Facts/text/counts are still code-owned; model output stays closed alias selection.
+Real source/session/student identities, answers and problem text are not added.
+Catalog/order, parser and composer are byte-identical to baseline; snapshot,
+contracts/DTOs, authorization, student/UI, graph, FSRS, policy, models/config/env,
+dependencies and storage writers are untouched. No new utility was necessary.
+
+Offline evidence
+RED before product change: missing KST day metadata and unfinished-source metadata
+failed the new tests. One initial offset assertion also overcompared the unchanged
+raw windowEnd representation; corrected it to compare computed day provenance.
+GREEN: 45 focused mathInsightV2 tests, including 8 new cases for KST midnight,
+completion exactly at frozen time, same-day future completion, equivalent positive/
+negative offsets and precision, frozen-day advancement, unfinished/summary flags,
+before-plan provenance versus inclusion, exact aliases/references and privacy.
+Existing forged IDs, strict fields, missing references and candidate restrictions
+remain covered. Broader scoped v1/v2 unit and mocked route suite: 8 files / 158
+tests PASS with --maxWorkers=1. Scoped TypeScript (only v2Inference, focused test
+and transitive imports), scoped ESLint and git diff --check PASS.
+
+Normal git commit was used without bypass, amend or rebase. The checkout initially
+lacked generated .husky/_ launchers; npx husky restored local hook infrastructure,
+and normal lint-staged --diff HEAD^ tasks (eslint --fix and prettier) then passed
+without changing frozen files. The report commit uses the restored normal hook.
+
+Behavioral evidence and remaining work
+The original actual j04 replay remains semantic RED: it selected today's check P
+and withholding explanations, but added two prior-day target T source facts.
+Its strict pass did not prove relevance; no false new fact or endorsement was
+reported. The actual old model input omitted source dates. These offline tests
+prove metadata/projection and reference behavior, not model relevance or a solved
+j04. No audit expectations/results or previous 76 paid-call records were changed.
+Original replay (read only):
+/Users/pss/Desktop/creative/display-survey/consensus/ontology-plan-20261023/audit/replay-final-heldout-j04-completed-check-and-hold.json
+Replay SHA256: 652933c0d72410460bc246a856b12d581cfb601c955dd4870b60c25066b9dc1b
+
+This worker made zero model/provider calls, read zero keys, and did not inspect
+fresh date heldouts. Independent frozen-code model evaluation remains with the
+audit sole key owner under its separate bounded allowance; root owns integration
+and broader release checks. No browser, server, DB, live API, fullTS, build, push,
+merge, new window, education threshold or writer was performed or introduced.
+Read applicable AGENTS/GOAL, prior report, actual j04 replay, existing helper and
+Next testing/TypeScript docs; applied project TypeSafe State/Choice guidance while
+preserving the current stack (no provider or architecture changes).
