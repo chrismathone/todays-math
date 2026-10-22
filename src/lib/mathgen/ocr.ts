@@ -103,7 +103,9 @@ export function normalizeNativeOcr(item: NativeOcrItem): {
         ? ["문제 본문 누락이 의심됩니다. 원본을 확인하고 다시 인식해 주세요."]
         : []),
       ...(choicesMissing
-        ? ["객관식 보기 누락이 의심됩니다. 원본의 다섯 보기를 확인해 주세요."]
+        ? [
+            `인식된 객관식 보기는 ${item.choices.length}개입니다. 보기의 번호·내용 또는 원본 전체 개수를 확인할 수 없어 완전성을 보류합니다. 원본을 확인해 주세요.`,
+          ]
         : []),
       ...(item.confidence !== "high"
         ? ["인식이 불확실한 문자·수식이 있습니다. 원본을 확인해 주세요."]

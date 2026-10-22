@@ -422,7 +422,8 @@ function ReviewCard({
       )}
       {crop.ocr?.choicesMissing && !crop.ocr.bodyMissing && (
         <p className={styles.warning}>
-          보기 누락 · 원본을 확인하고 보기를 추가하거나 다시 인식해 주세요.
+          보기 확인 필요 · 인식된 보기의 번호·내용·전체 개수를 원본과 대조해
+          주세요.
         </p>
       )}
       {crop.ocr?.confidence === "low" && !crop.reviewed && (

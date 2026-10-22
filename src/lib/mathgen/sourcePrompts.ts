@@ -40,7 +40,7 @@ images/figures 의 box 좌표는 *이 크롭 이미지 자체* 를 0–1000 그�
 
 `;
 
-export const OCR_PAGE_PROMPT = `Task: This image is ONE page of a Korean math workbook or exam. Extract EVERY problem visible on this page into a single JSON object \`{"items": [ … ]}\` (the schema below). Do NOT solve them — transcribe only.
+export const OCR_PAGE_PROMPT = `Task: This image is ONE page of a Korean math workbook or exam. Extract EVERY problem visible on this page into a single JSON object \`{"items": [ … ]}\` (the schema below). Do NOT solve them — transcribe only. Preserve the original source language in every transcribed stem, option, condition, table, unit and printed answer; never translate it. Generated topic labels and warnings are Korean.
 
 The output is rendered through react-markdown + remark-math + rehype-raw + rehype-katex, so Markdown, KaTeX delimiters (\$…\$, \$\$…\$\$), and raw HTML (<table>, <svg>, <tr>, <td>) are ALL passed through. Use that freely — you almost never need to fall back to image cropping.
 
@@ -79,7 +79,7 @@ PAGE ORIENTATION — set "upsideDown" on the top-level object. Some scans come i
   2. 빈칸 □ / 채울 칸 → equation 블록 {"type":"equation","value":"\\\\boxed{\\\\phantom{0}}","rows":[]} (또는 value \`\\\\square\`). 정답을 채우지 말 것.
   3. LaTeX 명령의 백슬래시는 JSON wire 에서 *두 번* — value 에 \`\\\\frac\` 처럼 적으면 JSON.parse 후 \`\\frac\` 이 된다. 절대 백슬래시를 빠뜨리지 말 것 (sqrt/frac/pm/times 가 가장 자주 누락됨).
   4. 도형(직접 그린 inline \`<svg>…</svg>\` 또는 \`[그림N]\` 마커)은 그 위치의 *text 블록 value* 안에 둔다 (아래 VISUAL ELEMENTS 규칙대로 그림). 표는 text 가 아니라 \`table\` 블록.
-  5. 보기 ①②③④⑤ 는 \`choices\` 배열 ({"number":1..5,"contents":[블록]}). **서술형/단답형은 \`choices: []\` (빈 배열)**. ①②③④⑤ 마커 자체를 contents text 에 넣지 말 것.
+  5. 보기 ①②③④⑤ 는 \`choices\` 배열 ({"number":실제 번호,"contents":[블록]}). **서술형/단답형은 \`choices: []\` (빈 배열)**. ①②③④⑤ 마커 자체를 contents text 에 넣지 말 것.
   6. 배점(4점) → \`score\` 정수(4), 없으면 0. 문항 유형 라벨([서답형 N]) → \`labelType\` ("서답형"), 없으면 "".
   7. **소문항 \`subQuestions\`** — (1)(2) 처럼 *각각 자기 배점이 따로 매겨진* 실제 하위 문항만 \`subQuestions\` 배열로. 각 소문항 = {"number":1, "contents":[블록], "choices":[], "score":2, "labelType":""}. 이때 부모 \`score\` 는 소문항 배점의 *합계(총점)*. 그 외 — 배점 없는 (1)(2)(3) 나열·박스 (가)(나)/보기 조건 — 은 \`subQuestions\` 가 아니라 본문 \`contents\` 또는 박스 text 블록에 그대로 둔다. **소문항 없으면 \`subQuestions: []\` (빈 배열)**.
 
@@ -138,9 +138,9 @@ RULES FOR EACH "items" ENTRY
      - "(Note: The original image has a division sign here, but the handwritten solution uses multiplication. I will follow the printed text.)"
      - "I will follow ..." / "The original image has ..." / "the handwritten solution uses ..."
 
-   본문은 *학생이 그대로 볼 수 있는 한국어 문제 텍스트만*. 모델 *자체 추론·판단 흔적* (영어 영어 코멘트, 1인칭 narrative, 원본 vs 손글씨 비교 메모 등) 본문에 절대 emit X. \`\\text{}\` 안에도 동일 — \`\\text{ (Note: ...) }\` 같은 *LaTeX wrapping 으로 위장한 영어 노트* 도 금지.
+   본문은 *학생이 그대로 볼 수 있는 원문 언어의 문제 텍스트만*. 모델 *자체 추론·판단 흔적* (영어 영어 코멘트, 1인칭 narrative, 원본 vs 손글씨 비교 메모 등) 본문에 절대 emit X. \`\\text{}\` 안에도 동일 — \`\\text{ (Note: ...) }\` 같은 *LaTeX wrapping 으로 위장한 영어 노트* 도 금지.
 
-   판단 결과는 *내부에서만* 사용하고, output 의 \`text\` 필드에는 *해석된 최종 한국어 본문* 만. 원본 vs 손글씨 풀이 불일치 같은 *전사 모호성* 은 \`confidence: "medium"\` 으로만 표시하고 본문에는 한 가지 *결정한 형태* 만.
+   판단 결과는 *내부에서만* 사용하고, output 의 \`text\` 필드에는 *원문 언어 그대로의 최종 본문* 만. 원본 vs 손글씨 풀이 불일치 같은 *전사 모호성* 은 \`confidence: "medium"\` 으로만 표시하고 본문에는 한 가지 *결정한 형태* 만.
 
    **MANDATORY — DO NOT VIOLATE**:
    - The \`contents\` blocks MUST contain the FULL question body (every text/equation block of the statement before any options). Examples of valid body openers:
@@ -163,10 +163,10 @@ RULES FOR EACH "items" ENTRY
      → 위 신호 검출 시: **choices: [] 강제, ①②③④⑤ 마커 *절대* emit X**, confidence 는 본문 정확도 기반으로만.
 
      **객관식 신호 — 위 단답형 신호가 *전혀* 없고 다음 조건 만족 시**:
-       - 본문에 ①②③④⑤ 마커 5 개 모두 visible
+       - 실제 정답 선택지 마커와 내용이 보이며 조건·소문항 번호가 아님
        - 그리고 발문이 "...값은?", "...옳은 것은?", "...구하면?", "...개수는?" 등 의문문
 
-     → 객관식 emit: 본문 + 5 옵션 한 줄.
+     → 객관식 emit: 본문 + 실제로 보이는 모든 옵션. 보기 개수만으로 완전성을 단정하지 않는다.
 
      **🚨 사용자 보고 사례 (반드시 따를 것 — 2026-05-27)**:
 
@@ -186,16 +186,16 @@ RULES FOR EACH "items" ENTRY
      **선판단 알고리즘 (every problem)**:
        Step 1. 페이지에서 "[단답형/서술형/주관식/논술형 N]" 헤더 검색 → 있으면 단답/서술형 확정.
        Step 2. "서술하시오" / "쓰시오" / "(1) ... (2) ..." 검색 → 있으면 단답/서술형 확정.
-       Step 3. ①②③④⑤ 마커 5 개 모두 가까이 (한 줄 또는 인접 줄) → 객관식 확정.
-       Step 4. 위 셋 모두 미확정 → confidence="low" + 보수적으로 서술형 (choices=[]).
+       Step 3. 실제 정답 선택지가 가까이 (한 줄 또는 인접 줄) 보이면 그 항목들을 원래 번호대로 보존. 4개도 객관식일 수 있으나 원본 전체 개수는 알 수 없다.
+       Step 4. 유형이 미확정이면 confidence="low". 보이는 선택지를 버리거나 서술형이라고 단정하지 않는다.
 
    - 🚨 **객관식 보기 누락 금지 — 객관식 *확정* 인 경우에만 적용**.
-     위 분류로 *객관식 확정* 된 케이스에서만 — 본문이 있고 보기가 없으면 실패다. 본문이 끝나는 문장이 "?", "값은?", "옳은 것은?", "옳지 않은 것은?", "구하면?" 등 5지선다 발문 패턴이면 페이지에 반드시 ①②③④⑤ 보기가 있다. 그 5개 모두 rule 4b 에 따라 \`choices\` 배열로 emit 해야 한다 (text 블록 아님).
+     위 분류로 *객관식 확정* 된 케이스에서만 — 본문이 있고 보기가 없으면 실패다. 발문이나 보이는 보기 개수만으로 원본이 5지선다라고 단정하지 않는다. 실제로 보이는 보기만 번호·순서대로 rule 4b 에 따라 \`choices\` 배열로 emit 해야 한다 (text 블록 아님).
      체크리스트 (객관식 확정 문제마다 emit 전 확인):
        1. 단답형/서술형 마커 (위 신호 a~e) 없음 → ✓
        2. body 끝이 "?" 로 끝나고 객관식 발문이다 → ✓
-       3. \`choices\` 배열에 5 보기(number 1..5)가 모두 들어 있다 → ✓
-       4. 다섯 옵션의 값이 페이지의 실제 옵션과 일치한다 (특히 분수의 분자/분모, ± 부호) → ✓
+       3. \`choices\` 배열에 실제로 보이는 모든 보기가 원래 번호대로 들어 있다 → ✓
+       4. 보이는 모든 옵션의 값이 페이지의 실제 옵션과 일치한다 (특히 분수의 분자/분모, ± 부호) → ✓
      체크 중 하나라도 빠지면 confidence="low" 로 표시.
    - It is NEVER acceptable to emit ONLY the 5 multiple-choice options ("① 40/3 ② 14 …") with no body. If you cannot read the body for some reason, transcribe what's visible and set confidence="low" — but never skip the body.
    - 마찬가지로 — body 만 있고 ①②③④⑤ 보기가 통째로 빠진 emit 도 NEVER acceptable. body 와 options 는 한 set 이다.
@@ -235,11 +235,11 @@ RULES FOR EACH "items" ENTRY
          · Is there a ± sign? → use \\pm.
          · Example: an option printed as "$p = -\\dfrac{1}{2},\\ q = \\dfrac{\\sqrt{5}}{2}$" MUST become "$p = -\\frac{1}{2},\\ q = \\frac{\\sqrt{5}}{2}$" — do NOT collapse it to "p = -1/2, q = 5/2" or "p = -1/2, q = -5/2".
 
-   4b. **Multiple choice (객관식)** → \`choices\` 배열: 각 보기를 {"number":1..5,"contents":[블록]} 로 emit. 보통 보기 하나 = equation 블록 하나 (value 는 \$ 없는 pure LaTeX). 예: 보기 ③ "3k" → {"number":3,"contents":[{"type":"equation","value":"3k","rows":[]}]}. ①②③④⑤ 마커 자체는 number 필드로만 표현 (contents text 에 넣지 말 것). 서술형/단답형은 choices=[] (빈 배열). 보기가 그림이면 그 choice 의 contents text 블록에 inline \`<svg>\` 또는 \`[그림N]\`. (아래 choicesLayout 은 *원본 시각 배치* 만 기록.)
+   4b. **Multiple choice (객관식)** → \`choices\` 배열: 각 보기를 실제 인쇄된 number와 contents로 emit. 4개가 보이면 4개만 보존하고 다섯째를 만들지 않는다. ①~④만 보인다는 사실은 원본이 4지선다라는 증거가 아니며 잘린 ⑤ 가능성은 남는다. 보통 보기 하나 = equation 블록 하나 (value 는 \$ 없는 pure LaTeX). 예: 보기 ③ "3k" → {"number":3,"contents":[{"type":"equation","value":"3k","rows":[]}]}. ①②③④⑤ 마커 자체는 number 필드로만 표현 (contents text 에 넣지 말 것). 서술형/단답형은 choices=[] (빈 배열). 보기가 그림이면 그 choice 의 contents text 블록에 inline \`<svg>\` 또는 \`[그림N]\`. (아래 choicesLayout 은 *원본 시각 배치* 만 기록.)
 
        🚨 **원본 보기 배치 인식 — choicesLayout 필드 (사용자 보고)**:
          사용자 보고: "원본의 문제별 보기번호 배치를 보고 배치가능한지 체크해볼것 예를 들어 3x2나 2x3 또는 1x5 처럼"
-         원본 페이지에서 ①②③④⑤ 가 *어떻게 배치돼있는지* 확인해 schema 의 \`choicesLayout\` 필드에 명시:
+         원본 페이지에서 실제 보기가 *어떻게 배치돼있는지* 확인해 schema 의 \`choicesLayout\` 필드에 명시:
          - **1x5** — 1 행 × 5 열 (가로 한 줄): "① $1$  ② $2$  ③ $3$  ④ $4$  ⑤ $5$" 형태로 좌→우 한 줄에 5개
          - **2x3** — 2 행 × 3 열: 첫 행에 ①②③, 두 번째 행에 ④⑤ — 한국 시험지에 가장 흔함
          - **3x2** — 3 행 × 2 열: 첫 행 ①②, 두 번째 행 ③④, 세 번째 행 ⑤
@@ -745,8 +745,8 @@ For each problem, decide its TYPE and find its crop box:
     합산 배점 검증 X — 마지막 (n) 마커 발견이 기준.
 
 Rules:
-- Bias toward OVER-cropping *horizontally* (LEFT edge must include the printed number; RIGHT edge must include the rightmost content). Pad ~15 units on left/right.
-- Bias toward UNDER-cropping *vertically* on the bottom for essay problems — never extend past the last printed problem element (last sub-part text, last (N점), last printed figure) into the student's answer space.
+- Set all edges from actual printed ink and the blank separation from neighboring content, never from fixed padding. Include the complete last choice row, all printed answer lines/underscores/boxes and attached figures. These printed answer markers belong to the problem; empty workspace and handwriting do not. Never absorb another column, neighboring question or separate answer key.
+- Crop BOTTOM is the last printed problem element, including a printed answer line below the stem or points marker. If an earlier HARD STOP conflicts, the printed answer line/box rule wins; do not extend through blank workspace or student handwriting. If completeness or ownership is uncertain, report a Korean quality warning instead of claiming a complete crop.
 - Only emit boxes for actual printed problems — never for empty answer space, the page header, or page furniture.
 - 🚨 **ADJACENT BOXES MUST NOT OVERLAP VERTICALLY (within a column).** Each printed problem occupies a *disjoint* vertical band. Box N's BOTTOM (yMax) must sit ABOVE box N+1's TOP (yMin) — leave a small gap at the blank line between problems; never let consecutive boxes share a y-range. A box's TOP = its own problem-number line, its BOTTOM = its own last printed element — so a box must NEVER reach down into the next problem's number line, nor up into the previous problem's last line. If two problems are tightly stacked, place the boundary at the blank gap between them (prev problem's last printed line = prev yMax; next problem's number line = next yMin), with prev.yMax < next.yMin.
 - In "note", briefly state what set the bottom edge (e.g., "⑤ bottom-right", "(8점) line", "last sub-part (2)").

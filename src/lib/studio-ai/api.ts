@@ -222,9 +222,26 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         throw new StudioApiError(
           "Claude 응답이 완료되지 않았습니다. 문항을 나누어 다시 시도해 주세요.",
         );
+      // No tools were requested. Never silently drop an unexpected block and
+      // accept the remaining text as an ordinary completed answer.
+      if (
+        !Array.isArray(result.content) ||
+        result.content.some((block: unknown) => {
+          if (!block || typeof block !== "object" || !("type" in block))
+            return true;
+          if (block.type === "text")
+            return !("text" in block) || typeof block.text !== "string";
+          return (
+            block.type !== "thinking" && block.type !== "redacted_thinking"
+          );
+        })
+      )
+        throw new StudioApiError(
+          "Claude 응답에 예상하지 않은 내용이 포함되어 적용하지 않았습니다. 다시 시도해 주세요.",
+        );
       return nonempty(
         result.content
-          ?.filter((p: { type: string }) => p.type === "text")
+          .filter((p: { type: string }) => p.type === "text")
           .map((p: { text: string }) => p.text)
           .join(""),
       );
