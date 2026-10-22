@@ -29,7 +29,7 @@ python3 -B scripts/qa/claude-api-evaluation/verify.py --compare --read-only --in
 
 The commands are not an instruction to repeat the completed cohort. An existing
 attempt directory is preserved. An unfinished or ambiguous network attempt is
-not automatically reissued. Only HTTP 429 gets bounded backoff, with each
+not automatically reissued. In the original phases only HTTP 429 gets bounded backoff, with each
 attempt consuming the same 300-request ledger. A process lock and two-worker
 executor keep the evaluation at two simultaneous requests. HTTP 401/402/403
 halts further dispatch. The actual key expiry and credit balance are unknown.
@@ -79,3 +79,25 @@ Read the external report for final counts, observed failures, exact seals,
 limitations, and whether a later feature phase remains pending. No historical
 CLI failure, legacy generation, unapproved source image, source right, official
 curriculum alignment, or production write is certified by this evaluation.
+
+## Separate post-hoc order study and final audit
+
+The separately approved `order_experiment.py` freezes 14 selected projections
+and 42 fresh requests across three arms. It preserves actual serialized schema
+property order rather than using the canonical serializer for HTTP bodies.
+The runner records the SHA of `Request.data`; no prior answer or reference is
+included in a request. The manifest disables every retry, including HTTP 429.
+Original cohort responses, selections, judgments and seals remain unchanged.
+
+The study has finished. Do not rerun it or expand the call budget. All 24
+refusals remain rejected and are included in the 42-call denominator. Only the
+18 accepted responses receive mathematical review. This is a selected,
+single-run protocol observation, not a general accuracy or causal estimate.
+
+```sh
+# Read-only: verifies all phase freezes, raw seal, transmitted study bytes,
+# refused envelopes, original preservation, unique IDs, budget and concurrency.
+python3 -B scripts/qa/claude-api-evaluation/final_audit.py
+```
+
+See [REPORT.md](REPORT.md) for the completed scope and observed results.

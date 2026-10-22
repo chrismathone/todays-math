@@ -181,11 +181,15 @@ def api_send(body, key, *, opener=None):
                     urllib.request.HTTPSHandler(context=ssl.create_default_context()))
     request = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body,
         headers={'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
+    if request.data != body: raise EvidenceError('serialized request body changed')
+    # Local evidence metadata only; never sent as an HTTP header.
+    transmission = {'evaluation-transmitted-body-sha256': digest(request.data),
+                    'evaluation-transmitted-body-bytes': str(len(request.data))}
     try:
         with opener.open(request, timeout=180) as response:
-            return response.status, dict(response.headers), response.read()
+            return response.status, {**dict(response.headers), **transmission}, response.read()
     except urllib.error.HTTPError as exc:
-        return exc.code, dict(exc.headers), exc.read() if exc.fp else b''
+        return exc.code, {**dict(exc.headers), **transmission}, exc.read() if exc.fp else b''
 
 
 def freeze_packets(external=DEFAULT_EXTERNAL, preparation=PREPARATION):
@@ -291,7 +295,8 @@ def _run_locked(external, *, pilot=False, series=None, first=None):
         frozen = subprocess.run(['git', '-C', str(evidence), 'show', freeze+':'+call['requestPath']], capture_output=True, check=True).stdout
         if frozen != body: raise EvidenceError('request differs from freeze')
         req = decode_json(body); check_request(req)
-        for retry in range(3):
+        retry_count = 3 if manifest.get('retry429', True) else 1
+        for retry in range(retry_count):
             with mutex:
                 count = len(list((evidence/'attempts').glob('*/attempt-*/start.json')))
                 if count >= LIMIT or stop.is_set():
@@ -318,9 +323,12 @@ def _run_locked(external, *, pilot=False, series=None, first=None):
             result = {'httpStatus': status, 'requestId': headers.get('request-id'),
                       'elapsedSeconds': round(time.monotonic()-start, 3), 'endedAt': now(),
                       'responseSha256': digest(raw), 'status': 'http_error'}
+            if headers.get('evaluation-transmitted-body-sha256'):
+                result.update(transmittedBodySha256=headers['evaluation-transmitted-body-sha256'],
+                              transmittedBodyBytes=int(headers['evaluation-transmitted-body-bytes']))
             if status == 200:
                 try:
-                    parsed = audit_response(raw, req, result['requestId'], call['kind'] == 'textbook')
+                    parsed = audit_response(raw, req, result['requestId'], call['kind'] in ('textbook','order-experiment'))
                     save(attempt/'parsed.json', parsed)
                     result.update(status='accepted', actualModel=parsed['actualModel'], usage=parsed['usage'],
                                   stopReason=parsed['stopReason'], toolBlocks=parsed['toolBlocks'])
@@ -332,7 +340,7 @@ def _run_locked(external, *, pilot=False, series=None, first=None):
                     except EvidenceError: pass
             save(attempt/'result.json', result)
             if status in (401, 402, 403): stop.set()
-            if status != 429 or retry == 2:
+            if status != 429 or retry == retry_count-1:
                 return {'id': call['id'], **result}
             delay = min(30, max(2, int(headers.get('retry-after', '5'))))
             time.sleep(delay)
