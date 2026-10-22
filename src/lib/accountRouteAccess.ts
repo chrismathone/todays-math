@@ -14,6 +14,8 @@ export function srsTeacherManagementRoute(method: string, path: string) {
   return (
     (method === "GET" && path === "/api/math-srs/course") ||
     (["GET", "POST"].includes(method) &&
+      /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(path)) ||
+    (["GET", "POST"].includes(method) &&
       /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path)) ||
     (method === "GET" &&
       /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)) ||
@@ -213,6 +215,7 @@ export function accountRouteAllowed(
   if (path === "/api/studio/overview") return any("home", "teaching");
   // SRS teacher management: explorer summaries stay read-only; class routes use teaching below.
   if (
+    /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(path) ||
     path === "/api/math-srs/course" ||
     /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path) ||
     /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path) ||

@@ -27,6 +27,9 @@ type InferenceInput = {
   signal: AbortSignal;
   action?: DevAiAction;
   maxOutputTokens?: number;
+  /** Opt-in bounded selection requests; existing callers preserve retries/log details. */
+  singleAttempt?: boolean;
+  suppressUpstreamDetails?: boolean;
   /**
    * Claude 의 생각 강도(`output_config.effort`) — 부르는 쪽이 정할 때만. 없으면 지금 그대로다(Opus 5 는 medium ·
    * 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9).
@@ -64,6 +67,7 @@ async function rest(
   keyHeaders: Record<string, string>,
   body: unknown,
   signal: AbortSignal,
+  suppressUpstreamDetails = false,
 ) {
   const response = await fetch(url, {
     method: "POST",
@@ -81,8 +85,12 @@ async function rest(
       path: target.pathname,
       status: response.status,
       retryAfter: response.headers.get("retry-after"),
-      body: await upstreamHead(response),
+      ...(suppressUpstreamDetails
+        ? {}
+        : { body: await upstreamHead(response) }),
     });
+    if (suppressUpstreamDetails)
+      await response.body?.cancel().catch(() => undefined);
     throw new StudioApiError(
       response.status === 429
         ? "AI 사용량 한도에 도달했습니다. 잠시 후 다시 시도해 주세요."
@@ -121,7 +129,9 @@ export async function runModelApi(input: InferenceInput): Promise<string> {
     ...input,
     signal: AbortSignal.any([input.signal, AbortSignal.timeout(110_000)]),
   };
-  return withModelRetry(() => runModelApiOnce(input), input.signal);
+  return input.singleAttempt
+    ? runModelApiOnce(input)
+    : withModelRetry(() => runModelApiOnce(input), input.signal);
 }
 
 async function runModelApiOnce(input: InferenceInput): Promise<string> {
@@ -159,6 +169,7 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
           },
         },
         input.signal,
+        input.suppressUpstreamDetails,
       );
       const candidate = result.candidates?.[0];
       if (candidate?.finishReason === "MAX_TOKENS")
@@ -213,6 +224,7 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
           ],
         },
         input.signal,
+        input.suppressUpstreamDetails,
       );
       if (result.stop_reason === "max_tokens")
         throw new StudioApiError(
@@ -348,15 +360,16 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
     if (error instanceof StudioApiError) throw error;
     // SDK/raw upstream errors may contain credentials or source material.
     // 화면에는 안 싣고, 오류 기록에만 원문을 남긴다(비밀 값은 기록기가 거른다).
-    pushErrorLogContext("upstream", {
-      vendor: input.vendor,
-      model: input.model,
-      status: (error as { status?: unknown } | null)?.status ?? null,
-      message:
-        error instanceof Error
-          ? `${error.name}: ${error.message}`.slice(0, 2000)
-          : String(error).slice(0, 2000),
-    });
+    if (!input.suppressUpstreamDetails)
+      pushErrorLogContext("upstream", {
+        vendor: input.vendor,
+        model: input.model,
+        status: (error as { status?: unknown } | null)?.status ?? null,
+        message:
+          error instanceof Error
+            ? `${error.name}: ${error.message}`.slice(0, 2000)
+            : String(error).slice(0, 2000),
+      });
     const upstream = error as {
       status?: unknown;
       headers?: Headers;
