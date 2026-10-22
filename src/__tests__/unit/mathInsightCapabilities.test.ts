@@ -1,17 +1,22 @@
 // @vitest-environment node
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   emptyCourseState,
   storedCourseSchema,
   type StoredCourse,
 } from "@/lib/math-srs/courseAutomation";
-import { prerequisiteCheckCandidates } from "@/lib/math-prerequisite/policy";
+import {
+  heldCheckSections,
+  PREREQUISITE_REASONS,
+  prerequisiteCheckCandidates,
+} from "@/lib/math-prerequisite/policy";
 import { coursePrerequisiteBudget } from "@/lib/math-prerequisite/courseIntegration";
 import { buildInsightSnapshot } from "@/lib/math-insight/snapshot";
 import {
   buildInsightPrompt,
   composeInsightResult,
   insightSnapshotId,
+  maskInsightQuery,
   parseInsightSelection,
 } from "@/lib/math-insight/inference";
 import {
@@ -23,6 +28,8 @@ import {
   practise,
 } from "../helpers/mathPrerequisiteCourse";
 import { failedTargetCourse } from "../helpers/mathPrerequisiteIntegrationFixture";
+
+afterEach(() => vi.unstubAllEnvs());
 
 const t0 = at("2026-10-01T01:00:00.000Z");
 const now = later(t0, DAY);
@@ -209,5 +216,60 @@ describe("separate evidence-summary and next-check capabilities", () => {
       ),
     ).toBe(true);
     expect(prompt).not.toContain(snapshot.evidence[0].sessionId);
+  });
+});
+
+describe("query privacy guard distinguishes curricular references", () => {
+  it.each([
+    "2026-10-20 풀이 기록을 요약해 주세요",
+    "2024-02-29 풀이 기록을 요약해 주세요",
+    "5-2-2-1 5-1-5-4 기록을 비교해 주세요",
+    "(5-2-2-1) (5-1-5-3) 최근 기록",
+  ])("preserves a valid date or known section reference: %s", (query) => {
+    expect(maskInsightQuery(query, [])).toBe(query);
+  });
+  it.each([
+    "2026-10-20 연락 010-1234-5678",
+    "5-2-2-1 연락 +82 10 1234 5678",
+    "전화 01012345678",
+    "전화 02-123-4567",
+    "010-5-2-2-1-5678",
+    "12026-10-201",
+    "2026-02-30",
+    "9-9-9-9 9-9-9-8",
+    "2026-10-20 person@example.com",
+    "5-2-2-1 d56e582b-a5af-4763-8b0a-801ecff4b5a5",
+  ])("still rejects contacts or unrecognized number sequences: %s", (query) => {
+    expect(() => maskInsightQuery(query, [])).toThrow("identity-bearing-query");
+  });
+  it("still masks known identity before preserving curricular query text", () => {
+    expect(maskInsightQuery("서연의 2026-10-20 5-2-2-1 기록", ["서연"])).toBe(
+      "[대상]의 2026-10-20 5-2-2-1 기록",
+    );
+  });
+});
+
+describe("hold caveats follow the actual prerequisite feature gate", () => {
+  it("keeps the real hold when enabled and removes its claim when disabled", () => {
+    const P = "5-1-5-4";
+    const valid = practise(
+      failedTargetCourse(now, 20),
+      P,
+      "review",
+      later(now, -DAY),
+      PASS,
+    );
+    expect(heldCheckSections(valid, now, true).sectionIds).toContain(P);
+    vi.stubEnv("MATH_PREREQ_CHECK", "on");
+    const enabled = buildInsightSnapshot(valid, 1, now);
+    expect(
+      enabled.nextChecks.find((c) => c.sectionId === P)!.caveats,
+    ).toContain(PREREQUISITE_REASONS.held);
+    vi.stubEnv("MATH_PREREQ_CHECK", "off");
+    const disabled = buildInsightSnapshot(valid, 1, now);
+    expect(disabled.nextChecks.every((c) => !c.eligible)).toBe(true);
+    expect(
+      disabled.nextChecks.find((c) => c.sectionId === P)!.caveats,
+    ).not.toContain(PREREQUISITE_REASONS.held);
   });
 });
