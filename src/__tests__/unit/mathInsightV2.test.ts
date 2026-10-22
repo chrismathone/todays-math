@@ -419,3 +419,22 @@ describe("strict closed selection and shared references", () => {
     ).toThrow();
   });
 });
+
+it("explains an ineligible candidate as context without endorsing or selecting it", () => {
+  const s = buildInsightV2Snapshot(emptyCourseState(), 0, now),
+    p = promptData(s);
+  const f = p.facts.find((f: { text: string }) =>
+    f.text.includes("현재 조건에서 다음 확인 후보로 제안하지"),
+  );
+  expect(f).toBeDefined();
+  const sel = {
+    snapshotId: p.snapshotId,
+    intent: "context",
+    factIds: [f.id],
+    evidenceIds: f.evidenceIds,
+    candidateIds: [],
+  };
+  const result = composeInsightV2Result(s, sel as never, provenance);
+  expect(result.status).toBe("supported");
+  expect(result.facts[0].candidateIds).toEqual([]);
+});

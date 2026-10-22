@@ -231,9 +231,9 @@ export function buildInsightV2Snapshot(
     facts.push({
       id: `fact:candidate:${c.id}`,
       kind: "availability",
-      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다.`,
+      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. ${c.caveats.join(" ")}`,
       evidenceIds: c.evidenceIds,
-      candidateIds: [c.id],
+      candidateIds: c.eligible ? [c.id] : [],
     });
   }
   add(
