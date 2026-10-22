@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { chromium, expect } from "@playwright/test";
 import { startServer } from "./server.mjs";
 import generated from "./generated-v2.json" with { type: "json" };
@@ -36,7 +37,43 @@ const productBytes = async () =>
       ]),
     ),
   );
+const productRef = "83901c9ab6b3698548574dd914a0af324f7e70d6";
+for (const file of productFiles.filter((file) => file.startsWith("src/")))
+  assert.ok(
+    execFileSync("git", ["show", `${productRef}:${file}`]).equals(
+      await readFile(file),
+    ),
+    `${file}: unchanged tested product source`,
+  );
 const sourceBefore = await productBytes();
+const featureOffText = "현재 선수 확인 기능이 꺼져 있습니다.";
+for (const [scene, snapshots] of Object.entries(generated.scenarios)) {
+  const feature = generated.scenarioFlags[scene]?.MATH_PREREQ_CHECK;
+  assert.ok(
+    ["on", "off"].includes(feature),
+    `${scene}: declared feature setting`,
+  );
+  for (const snapshot of snapshots) {
+    const facts = snapshot.facts.filter((fact) =>
+      fact.id.startsWith("fact:candidate:"),
+    );
+    assert.ok(
+      facts.length &&
+        facts.every(
+          (fact) => fact.text.includes(featureOffText) === (feature === "off"),
+        ),
+      `${scene}: feature text consistent`,
+    );
+    if (feature === "off")
+      assert.ok(
+        snapshot.pilot.nextChecks.every((candidate) => !candidate.eligible),
+      );
+    if (scene === "ready")
+      assert.ok(
+        snapshot.pilot.nextChecks.some((candidate) => candidate.eligible),
+      );
+  }
+}
 await mkdir(output, { recursive: true });
 let server, browser, currentPage;
 const captures = [],
@@ -128,6 +165,7 @@ try {
       ? ["ready", "outside"]
       : [
           "ready",
+          "feature-off",
           "loading",
           "empty",
           "outside",
@@ -162,6 +200,28 @@ try {
         0,
         `${scene}: no automatic POST`,
       );
+      if (["ready", "feature-off"].includes(scene)) {
+        const feature = generated.scenarioFlags[scene].MATH_PREREQ_CHECK;
+        await expect(
+          page.getByText(featureOffText, { exact: false }),
+        ).toHaveCount(feature === "off" ? 2 : 0);
+        await expect(page.getByText(/ · 현재 확인 후보$/)).toHaveCount(
+          feature === "on" ? 2 : 0,
+        );
+        await expect(
+          page.getByText(/ · 현재 학생의 확인 후보로 고르지 않음$/),
+        ).toHaveCount(feature === "off" ? 2 : 0);
+        await expect(
+          page.getByRole("heading", { name: "보존된 코스 관찰" }),
+        ).toBeVisible();
+        checks.push({
+          width,
+          scene,
+          MATH_PREREQ_CHECK: feature,
+          candidateTextConsistent: true,
+          automaticPosts: 0,
+        });
+      }
       await capture(
         page,
         `${width}-${scene}`,
@@ -185,6 +245,7 @@ try {
       ? ["ready"]
       : [
           "ready",
+          "feature-off",
           "unavailable",
           "ai-error",
           "unknown-error",
@@ -272,6 +333,24 @@ try {
             { exact: true },
           ),
         ).toBeVisible();
+      }
+      if (scene === "feature-off") {
+        const inquiry = generated.featureOffInquiries[0];
+        assert.ok(inquiry.facts.some((fact) => fact.kind === "observation"));
+        for (const fact of inquiry.facts)
+          await expect(
+            page.getByText(fact.text, { exact: true }).last(),
+          ).toBeVisible();
+        await expect(page.getByText(/ · 현재 확인 후보$/)).toHaveCount(0);
+        await expect(
+          page.getByText(featureOffText, { exact: false }),
+        ).toHaveCount(2);
+        checks.push({
+          width,
+          scene,
+          MATH_PREREQ_CHECK: "off",
+          factualInquiryUsable: true,
+        });
       }
       await capture(page, `${width}-${scene}-question`, true);
       checks.push({ width, scene, ...control });
@@ -539,6 +618,10 @@ try {
     JSON.stringify(
       {
         backendFreeze: generated.backendFreeze,
+        productRef,
+        scenarioFlags: generated.scenarioFlags,
+        projectionSourceHashes: generated.sourceHashes,
+        candidateWrapper: generated.candidateWrapper,
         productBytes: sourceBefore,
         captures,
         checks,

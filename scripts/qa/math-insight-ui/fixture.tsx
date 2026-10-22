@@ -84,6 +84,7 @@ window.fetch = async (input, options) => {
       if (scene === "error" || (scene === "stale-auth" && conflicted))
         return fail(403, "예시 조회 권한을 확인해 주세요.");
       const directScenes = [
+        "feature-off",
         "empty",
         "outside",
         "paused",
@@ -121,7 +122,7 @@ window.fetch = async (input, options) => {
         return fail(502, "질문 응답을 확인하지 못했습니다.");
       if (scene === "unknown-error")
         return fail(500, "질문 응답을 확인하지 못했습니다.");
-      const result = inquiryFixture(context);
+      const result = inquiryFixture(context, scene);
       if (scene === "ai-inconsistent") result.facts[0].text = "합성 위조 문장";
       if (scene === "insufficient") {
         result.status = "insufficient";
