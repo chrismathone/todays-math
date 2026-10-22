@@ -3,6 +3,7 @@ import CourseDashboard from "../../../src/components/math-srs/CourseDashboard";
 import {
   courseDetailFixture,
   insightFixture,
+  outsideFixture,
   inquiryFixture,
   rosterStudent,
   scopeA,
@@ -12,6 +13,7 @@ import "../../../src/app/globals.css";
 import "katex/dist/katex.min.css";
 import w from "../../../src/components/unified/Workroom.module.css";
 import "./fixture.css";
+import { MathText } from "../../../src/components/math/MathText";
 
 const scene = new URLSearchParams(location.search).get("scene") ?? "ready";
 type Call = { url: string; method: string; body: unknown; aborted: boolean };
@@ -76,7 +78,8 @@ window.fetch = async (input, options) => {
         });
       if (scene === "error")
         return fail(403, "예시 조회 권한을 확인해 주세요.");
-      const snapshot = insightFixture(context);
+      const snapshot =
+        scene === "outside" ? outsideFixture(context) : insightFixture(context);
       if (scene === "empty") {
         snapshot.sections = [];
         snapshot.evidence = [];
@@ -84,18 +87,6 @@ window.fetch = async (input, options) => {
         snapshot.eligibility = "insufficient";
         snapshot.freshness = "insufficient";
         snapshot.goal = null;
-      }
-      if (scene === "outside") {
-        snapshot.eligibility = "out-of-scope";
-        snapshot.goal = {
-          sectionId: "3-1-1-1",
-          title: "시범 범위 밖 예시",
-          unitId: null,
-          mappingStatus: "unmapped",
-        };
-        snapshot.nextChecks.forEach((item) => {
-          item.eligible = false;
-        });
       }
       if (scene === "inconsistent") snapshot.context = { ...scopeB };
       return json({ data: snapshot });
@@ -126,6 +117,9 @@ window.fetch = async (input, options) => {
 
 createRoot(document.getElementById("root")!).render(
   <div className={w.workspace} data-product="math" data-authenticated="true">
+    <div className="fixture-font-probe" aria-hidden="true">
+      <MathText text="$\\frac{3}{4}-\\frac{1}{2}$" />
+    </div>
     <aside className={w.sidebar} aria-label="예시 작업실 메뉴">
       <div className={w.brand}>오늘의수학</div>
       <nav className={w.navigation}>

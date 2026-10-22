@@ -69,14 +69,26 @@ function consistent(snapshot: MathInsightSnapshot, context: Props) {
     new Set(snapshot.nextChecks.map((item) => item.id)).size ===
       snapshot.nextChecks.length &&
     snapshot.scope.graphHash === snapshot.scope.versions.graphContentHash &&
+    snapshot.evidence.every(
+      (item) =>
+        item.included === item.purposes.length > 0 &&
+        new Set(item.purposes).size === item.purposes.length,
+    ) &&
     snapshot.sections.every((item) =>
       item.evidenceIds.every(
         (id) =>
-          evidence.has(id) && evidence.get(id)!.sectionId === item.sectionId,
+          evidence.has(id) &&
+          evidence.get(id)!.sectionId === item.sectionId &&
+          evidence.get(id)!.purposes.includes("section-current"),
       ),
     ) &&
     snapshot.nextChecks.every((item) =>
-      item.evidenceIds.every((id) => evidence.has(id)),
+      item.evidenceIds.every(
+        (id) =>
+          evidence.has(id) &&
+          (!item.eligible ||
+            evidence.get(id)!.purposes.includes("candidate-trigger")),
+      ),
     )
   );
 }
@@ -360,6 +372,17 @@ function ScopedInsight({ studentId, classId, branchId }: Props) {
                       정답 {item.independentCorrect} · 독립 오답{" "}
                       {item.independentIncorrect}
                     </p>
+                    {item.purposes.includes("section-current") ? (
+                      <p className={s.muted}>
+                        {item.purposes.includes("candidate-trigger")
+                          ? "최근 상태와 확인 후보 판단에 사용"
+                          : "최근 상태에 사용"}
+                      </p>
+                    ) : item.purposes.includes("candidate-trigger") ? (
+                      <p className={s.muted}>
+                        확인 후보 판단에만 사용 · 최근 상태 수치에 더하지 않음
+                      </p>
+                    ) : null}
                     {item.exclusions.map((reason) => (
                       <p key={reason} className={s.muted}>
                         {exclusions[reason]}
