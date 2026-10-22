@@ -584,6 +584,19 @@ export function estimatedCourseRecall(
   );
 }
 
+/** A later answer must also follow the saved second answer / solution acknowledgement. */
+function courseFollowUpTimeFloor(session: CourseSession): number {
+  return (session.followUps ?? []).reduce(
+    (floor, entry) =>
+      Math.max(
+        floor,
+        Date.parse(entry.answeredAt),
+        Date.parse(entry.doneAt ?? entry.answeredAt),
+      ),
+    Date.parse(session.startedAt),
+  );
+}
+
 function submitCourseRetryAttempt(
   state: StoredCourse,
   input: CourseAttemptInput,
@@ -632,6 +645,7 @@ function submitCourseRetryAttempt(
   const answeredAt = new Date(
     Math.max(
       now.getTime(),
+      courseFollowUpTimeFloor(session),
       Date.parse(
         retry.attempts.at(-1)?.answeredAt ??
           session.completedAt ??
@@ -725,6 +739,7 @@ export function submitCourseAttempt(
   const answeredAt = new Date(
     Math.max(
       now.getTime(),
+      courseFollowUpTimeFloor(session),
       Date.parse(session.attempts.at(-1)?.answeredAt ?? session.startedAt),
     ),
   ).toISOString();

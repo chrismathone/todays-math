@@ -158,7 +158,7 @@ import {
   submitCourseAttempt,
   type StoredCourse,
 } from "@/lib/math-srs/courseAutomation";
-import { parseSrsState } from "@/lib/math-srs/serverState";
+import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
 import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
 import { db } from "@/lib/db";
 
@@ -242,6 +242,126 @@ describe("course follow-ups — «한 번 더 → 풀이» (plan §3.2)", () => 
   };
   const stored = () =>
     parseSrsState(f.rows.get(f.studentId)!.payload).course!.learner.session!;
+
+  it.each(["next-first", "retry"])(
+    "saves a clock-back %s after follow-up answer/done through the actual route, with duplicate writes zero",
+    async (boundary) => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      const at = (minute: number) =>
+        new Date(Date.parse("2026-10-21T14:50:00.000Z") + minute * 60_000);
+      const writes = vi.spyOn(db.studentSrsState, "updateMany");
+      try {
+        vi.setSystemTime(at(0));
+        const course = startAutomaticCourse(
+          setCoursePlan(
+            emptyCourseState(),
+            { ...plan, dailyQuestionCount: 10 },
+            at(0),
+          ),
+          at(0),
+          1,
+          randomUUID,
+        );
+        // Replace generated content with a synthetic arithmetic fixture; no student payload.
+        course.learner.session!.problems = course.learner.session!.problems.map(
+          (problem) => ({
+            ...problem,
+            content: "1 + 1 = ?",
+            answer: "2",
+            solution: "1 + 1 = 2",
+            figureSpec: null,
+            answerChoices: null,
+            interactive: null,
+            input: { mode: "number", label: "답", placeholder: "", help: "" },
+          }),
+        );
+        f.rows.set(f.studentId, {
+          studentId: f.studentId,
+          revision: 1,
+          payload: { ...emptySrsState(), course },
+        });
+        const problems = stored().problems;
+        const sessionId = stored().id;
+        const first = {
+          sessionId,
+          problemId: problems[0].id,
+          submittedAnswer: "3",
+        };
+        vi.setSystemTime(at(1));
+        await read(await ATTEMPT(asking(`${coursePath}/attempts`, first)));
+        const index = boundary === "retry" ? 4 : 0;
+        if (boundary === "retry") {
+          for (let i = 1; i <= 4; i++) {
+            vi.setSystemTime(at(i + 1));
+            await read(
+              await ATTEMPT(
+                asking(`${coursePath}/attempts`, {
+                  sessionId,
+                  problemId: problems[i].id,
+                  submittedAnswer: i === 4 ? "3" : "2",
+                }),
+              ),
+            );
+          }
+        }
+        const ids = { sessionId, problemId: problems[index].id };
+        vi.setSystemTime(at(11));
+        await read(
+          await FOLLOW_UP(
+            asking(`${coursePath}/follow-up`, {
+              ...ids,
+              action: "answer",
+              submittedAnswer: "2",
+            }),
+          ),
+        );
+        vi.setSystemTime(at(12));
+        await read(
+          await FOLLOW_UP(
+            asking(`${coursePath}/follow-up`, { ...ids, action: "done" }),
+          ),
+        );
+        const before = structuredClone(stored());
+        vi.setSystemTime(at(-1440));
+        writes.mockClear();
+        const receipt = f.rows.get(f.studentId);
+        await read(await ATTEMPT(asking(`${coursePath}/attempts`, first)));
+        expect(f.rows.get(f.studentId)).toBe(receipt);
+        expect(writes).not.toHaveBeenCalled();
+        const next =
+          boundary === "retry"
+            ? {
+                sessionId,
+                problemId: problems[0].id,
+                submittedAnswer: "2",
+                retryIndex: 0,
+              }
+            : { sessionId, problemId: problems[1].id, submittedAnswer: "2" };
+        await read(await ATTEMPT(asking(`${coursePath}/attempts`, next)));
+        expect(writes).toHaveBeenCalledTimes(1);
+        const session = stored(); // The persisted payload must pass the full stored parser.
+        expect(
+          (boundary === "retry"
+            ? session.retry!.attempts
+            : session.attempts
+          ).at(-1)!.answeredAt,
+        ).toBe(at(12).toISOString());
+        expect(session.followUps).toEqual(before.followUps);
+        expect(session.problems).toEqual(before.problems);
+        expect(session.attempts.slice(0, before.attempts.length)).toEqual(
+          before.attempts,
+        );
+        writes.mockClear();
+        const saved = f.rows.get(f.studentId);
+        await read(await ATTEMPT(asking(`${coursePath}/attempts`, next)));
+        expect(f.rows.get(f.studentId)).toBe(saved);
+        expect(writes).not.toHaveBeenCalled();
+      } finally {
+        writes.mockRestore();
+        vi.useRealTimers();
+      }
+    },
+  );
 
   it("records «모르겠어요» as an opened solution and «알겠어요» for a screen that asks", async () => {
     const { session } = await started();
