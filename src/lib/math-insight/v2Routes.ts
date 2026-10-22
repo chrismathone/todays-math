@@ -188,7 +188,11 @@ export async function handleInsightV2Request(
       // Final authoritative local read: do not call cached teacherGate again, and
       // do not rebuild/hash asOf-dependent snapshots for the stale comparison.
       const finalAccess = await freshInsightV2Access(request, access.account);
-      if (!finalAccess) return forbidden();
+      if (
+        !finalAccess ||
+        finalAccess.sessionVersion !== initialAccess.sessionVersion
+      )
+        return forbidden();
       const finalStudent = await freshInsightV2Student(
         parsed.data.id,
         scope.data,
