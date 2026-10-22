@@ -134,6 +134,7 @@ test("external evidence guard requires assistant/model/usage and completed text"
 test("current studio rejects 5.5 while current English allows explicit 5.5", () => {
   expect(() =>
     resolveApiModel("anthropic", "ocr", {
+      NODE_ENV: "test",
       STUDIO_AI_ANTHROPIC_MODEL: "claude-opus-5-5",
     }),
   ).toThrow();
