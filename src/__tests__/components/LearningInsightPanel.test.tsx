@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import LearningInsightPanel from "@/components/math-srs/LearningInsightPanel";
@@ -29,6 +29,60 @@ beforeEach(() => vi.resetAllMocks());
 afterEach(cleanup);
 
 describe("LearningInsightPanel request ownership", () => {
+  it("discards stale records after POST 409, reads once and preserves the question without rerunning AI", async () => {
+    get.mockResolvedValueOnce({ ok: true, data: insightFixture() });
+    get.mockImplementation(() => new Promise(() => {}));
+    inquire.mockResolvedValue({ ok: false, status: 409, message: "기록이 바뀌었습니다." });
+    const user = userEvent.setup();
+    render(<LearningInsightPanel {...props} />);
+    await user.type(await screen.findByRole("textbox"), "남겨 둔 질문");
+    await user.click(screen.getByRole("button", { name: "AI에 근거 질문하기" }));
+    await waitFor(() => expect(get).toHaveBeenCalledTimes(2));
+    expect(inquire).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText(NEXT_CHECK_TITLE)).not.toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toHaveValue("남겨 둔 질문");
+  });
+
+  it.each([401, 403, 404])("clears records and AI on inquiry authorization failure %s", async (status) => {
+    get.mockResolvedValue({ ok: true, data: insightFixture() });
+    inquire.mockResolvedValue({ ok: false, status, message: "조회 권한을 확인해 주세요." });
+    const user = userEvent.setup();
+    render(<LearningInsightPanel {...props} />);
+    await user.type(await screen.findByRole("textbox"), "권한 확인");
+    await user.click(screen.getByRole("button", { name: "AI에 근거 질문하기" }));
+    await screen.findByRole("alert");
+    expect(screen.queryByText(NEXT_CHECK_TITLE)).not.toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toHaveValue("권한 확인");
+    expect(get).toHaveBeenCalledTimes(1);
+  });
+
+  it("submits on Enter once even when a same-turn click also submits", async () => {
+    get.mockResolvedValue({ ok: true, data: insightFixture() });
+    inquire.mockImplementation(() => new Promise(() => {}));
+    render(<LearningInsightPanel {...props} />);
+    const field = await screen.findByRole("textbox");
+    fireEvent.change(field, { target: { value: "질문 하나" } });
+    fireEvent.keyDown(field, { key: "Enter", code: "Enter" });
+    expect(inquire).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "근거 확인 중…" }));
+    expect(inquire).toHaveBeenCalledTimes(1);
+  });
+
+  it("cancels inquiry, retains the question and ignores a late response", async () => {
+    get.mockResolvedValue({ ok: true, data: insightFixture() });
+    let finish!: (value: { ok: true; data: ReturnType<typeof inquiryFixture> }) => void;
+    inquire.mockImplementation(() => new Promise((resolve) => { finish = resolve; }));
+    const user = userEvent.setup();
+    render(<LearningInsightPanel {...props} />);
+    await user.type(await screen.findByRole("textbox"), "취소할 질문");
+    await user.click(screen.getByRole("button", { name: "AI에 근거 질문하기" }));
+    await user.click(screen.getByRole("button", { name: "질문 취소" }));
+    expect(inquire.mock.calls[0][4]!.aborted).toBe(true);
+    await act(async () => finish({ ok: true, data: inquiryFixture() }));
+    expect(screen.queryByText("질문에 연결된 근거")).not.toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toHaveValue("취소할 질문");
+  });
+
   it("requests scoped deterministic evidence on mount and never invokes AI automatically", async () => {
     get.mockImplementation(() => new Promise(() => {}));
     render(<LearningInsightPanel {...props} />);
