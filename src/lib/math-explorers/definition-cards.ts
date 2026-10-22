@@ -776,7 +776,7 @@ export function applyDefinitionAction(
     );
     if (variantCardIds.length)
       record.session.reviewVariant = {
-        version: 1,
+        version: 2,
         seed: record.runs,
         cardIds: variantCardIds,
       };

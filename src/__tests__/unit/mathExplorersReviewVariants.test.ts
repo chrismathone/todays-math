@@ -72,10 +72,15 @@ describe("bounded grade-5 review variants", () => {
     );
     const memory = start(state);
     expect(memory.profile.definitions!.session!.reviewVariant).toEqual({
-      version: 1,
+      version: 2,
       seed: 1,
       cardIds: ids.slice(0, 4),
     });
+    const openedV1 = structuredClone(memory);
+    openedV1.profile.definitions!.session!.reviewVariant!.version = 1;
+    expect(start(openedV1).profile.definitions).toEqual(
+      openedV1.profile.definitions,
+    );
     const opened = structuredClone(memory);
     delete opened.profile.definitions!.session!.reviewVariant;
     const resumed = start(opened);
@@ -93,6 +98,24 @@ describe("bounded grade-5 review variants", () => {
       "reviewVariant",
     );
   });
+  it("keeps a new memory session with only unsupported cards static", () => {
+    const state = dueState();
+    const unsupported = definitionCards
+      .filter((card) => card.id.startsWith("g5-") && !ids.includes(card.id))
+      .slice(0, 5);
+    expect(unsupported).toHaveLength(5);
+    const progress = state.profile.definitions!.cards[ids[0]];
+    state.profile.definitions!.cards = Object.fromEntries(
+      unsupported.map((card) => [card.id, { ...progress }]),
+    );
+    const memory = start(state);
+    expect(memory.profile.definitions!.session).not.toHaveProperty(
+      "reviewVariant",
+    );
+    expect(new Set(memory.profile.definitions!.session!.cardIds)).toEqual(
+      new Set(unsupported.map((card) => card.id)),
+    );
+  });
   it("retains frozen identity on completion/replay and varies successive actual due reviews", () => {
     let state = dueState();
     let day = date;
@@ -107,6 +130,7 @@ describe("bounded grade-5 review variants", () => {
       const identity = structuredClone(
         state.profile.definitions!.session!.reviewVariant,
       );
+      expect(identity).toMatchObject({ version: 2 });
       const examples = ids.map((id) =>
         JSON.stringify(
           definitionSessionCard(state.profile.definitions!.session, id)

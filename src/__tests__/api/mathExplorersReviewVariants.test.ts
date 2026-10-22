@@ -211,8 +211,21 @@ describe("actual explorer route with in-memory storage: variant reader", () => {
     const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
     expect(
       saved.explorers!.profile.definitions!.session!.reviewVariant,
-    ).toEqual({ version: 1, seed: 13, cardIds: [...ids] });
+    ).toEqual({ version: 2, seed: 13, cardIds: [...ids] });
     expect((await read()).currentActivity).toEqual(started.currentActivity);
+    saved.explorers!.profile.definitions!.session!.reviewVariant!.version = 1;
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 7,
+      payload: saved,
+    });
+    const oldV1 = await read();
+    const resumedV1 = await act(oldV1, { type: "start", route: "memory" });
+    expect(resumedV1.currentActivity).toEqual(oldV1.currentActivity);
+    expect(
+      parseSrsState(f.rows.get(f.studentId)!.payload).explorers!.profile
+        .definitions!.session!.reviewVariant,
+    ).toEqual({ version: 1, seed: 13, cardIds: [...ids] });
     delete saved.explorers!.profile.definitions!.session!.reviewVariant;
     f.rows.set(f.studentId, {
       studentId: f.studentId,

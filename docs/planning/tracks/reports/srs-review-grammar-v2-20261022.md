@@ -59,3 +59,36 @@ R SHA와 clean 상태는 선납품 메시지와 외부 로그로 전달한다.
 이 작업자는 모델/유료 API/공유 DB/운영 API/browser/server/build/push/deploy를
 실행하지 않았고 deps/lock/env를 변경하지 않았다. 기존 untracked engine 자료
 3파일은 경로·바이트 그대로 보존하며 stage하지 않는다. 운영 시각 검수와 배포는 리드 소유다.
+
+## Reader 운영 게이트와 writer W
+
+R은 **`497dc74f3a6be66e0875ec0e018000b647a143ab`**, 부모는 위 exact 7f다.
+선납품 뒤 tracked/index/HEAD를 동결했고 동일 질문 `msg_6eb37574602a`로
+대기했다. 리드는 이 질문의 reply에서 정확 R의 main 정상 push·필수 hook exit 0,
+독립 **4파일 69시험**, build exit 0, 독립 검수자의 source gate 차단 0 이후
+fresh GitHub deployment status의 **Vercel success**를 확인했다고 통지했다.
+리드가 제공한 status는 `updated: 2026-10-22T00:20:20Z`,
+target `Gd39jmBSCbZrSxDb7hThbMwJ5BVs`다. 원문은 외부
+`reader-production-gate-reply.txt`에 있다. 이 운영 확인은 **리드 통지**이며,
+작업자가 운영 API·브라우저를 실행해 확인한 것이 아니다.
+
+그 reply가 W 편집권을 명시 반환한 뒤 동일 분기/HEAD R 및 기존 세 자료의 SHA-256
+일치를 확인하고 W를 시작했다. W 제품 변경은 `definition-cards.ts`의 신규
+memory session identity 한 곳을 **version 1 → 2**로 바꾼 한 줄이다.
+이미 열린 v1·static, 완료일 v1/v2 replay, unit/repair·첫학습 filler,
+225개 지원 밖 카드의 처리와 저장 기록은 보존한다. reader의 v1 대조는 유지하고
+신규 writer 기대값만 바꿨으며, v1 열린 회차를 다시 시작해도 v1로 남는 대조와
+지원 밖 카드만 있는 새 memory가 static인 시험을 더했다.
+
+writer 회귀는 R에서 **3실패/12통과**(`writer-red.log`)를 보인 뒤 W에서
+관련 **10파일 144시험 통과**(`writer-tests.log`, `--maxWorkers=3`)했다.
+네 번의 실제 로컬 due 복습을 끝내고 완료일 identity/replay를 보존하며,
+v1/v2 일정·history·별 불변, exact 7f v1 3,200 byte 비교, v2 독립 수학·조사,
+route 인증/저장 roundtrip/idempotency도 같은 묶음에서 다시 통과했다.
+전체 `tsc --noEmit --incremental false`, 명시 파일 ESLint, affordance,
+formatting, `git diff --check` 통과(`writer-types.log`, `writer-eslint.log`,
+`writer-affordance.log`). 공유 의존성·lock·env 변경이나 우회는 없다.
+
+**실제 version 2 운영 세션은 실행하지 않았다.** W의 통합·build·push·배포 및
+운영 시각 확인은 리드의 다음 단계다. R→W 계보를 유지한 로컬 SHA, clean 상태와
+기존 세 untracked 자료의 최종 해시를 외부 로그·최종 납품 메시지로 전달한다.
