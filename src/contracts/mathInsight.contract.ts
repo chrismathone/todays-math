@@ -41,9 +41,23 @@ export const mathInsightSnapshotSchema = z.strictObject({
     pilotId: z.literal("elementary-fractions-v1"),
     dataVersion: z.literal(1),
     graphHash: z.string(),
+    mappingSource: z.strictObject({ path: z.string(), hash: z.string() }),
+    editorialEdge: z.strictObject({
+      from: z.literal("E56-N03"),
+      to: z.literal("E56-N04"),
+      relation: z.literal("prerequisite"),
+      status: z.literal("editorial"),
+    }),
     versions: prerequisiteVersionsSchema,
     limitations: z.array(z.string()),
   }),
+  context: z
+    .strictObject({
+      studentId: z.uuid(),
+      classId: z.uuid(),
+      branchId: z.uuid().nullable(),
+    })
+    .nullable(),
   asOf: isoDateTimeSchema,
   revision: z.number().int().nonnegative(),
   stateDigest: z.string(),
