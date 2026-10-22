@@ -164,3 +164,20 @@ test("decoded blank stays empty without a fabricated crop warning", async () => 
   expect(result.problems).toEqual([]);
   expect(result.warnings).toEqual([]);
 });
+
+test("legacy OCR exposes missing native metadata as a source-check advisory only", async () => {
+  const result = await executeMathgenTask(request, async () =>
+    JSON.stringify({
+      content: "Find the sum. ① 1 ② 2 ③ 3 ④ 4",
+      warnings: [],
+      figures: [],
+    }),
+  );
+  expect(result.ocr).toBeUndefined();
+  expect(result.warnings.join(" ")).toContain("전체 개수");
+  const figures = await executeMathgenTask(
+    { ...request, action: "figures" },
+    async () => JSON.stringify({ figures: [], warnings: [] }),
+  );
+  expect(figures.warnings).toEqual([]);
+});

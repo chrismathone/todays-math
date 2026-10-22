@@ -584,6 +584,14 @@ export async function executeMathgenTask(
       warnings: [...new Set([...result.warnings, ...normalized.warnings])],
     };
   }
+  if (request.action === "ocr" && !result.ocr) {
+    result.warnings = [
+      ...new Set([
+        ...result.warnings,
+        "구조화된 문항·보기 정보를 받지 못했습니다. 보기의 번호·내용·전체 개수와 원문을 확인해 주세요.",
+      ]),
+    ];
+  }
   if (request.action === "page-ocr" && request.imageDataUrl) {
     result.warnings = [
       ...new Set([
