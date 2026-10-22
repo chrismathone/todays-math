@@ -32,8 +32,12 @@ const path = `/api/students/${ids.studied}/math-srs/insight`;
 const get = (query = "") => GET(req(path + query), params(ids.studied));
 const post = (body: unknown = { query: "기록을 보여 주세요" }) =>
   POST(req(path, "POST", body), params(ids.studied));
+let clockStep = 0;
 beforeEach(() => {
   world.reset();
+  vi.spyOn(Date, "now").mockReturnValue(
+    1_800_000_000_000 + ++clockStep * 60_001,
+  );
   vi.clearAllMocks();
   vi.stubEnv("AUTH_URL", "http://localhost:3000");
   vi.stubEnv("GEMINI_API_KEY", "");
@@ -146,4 +150,49 @@ describe("teacher-only insight admission", () => {
     expect((await post()).status).toBe(502);
     expect(world.writes).toBe(0);
   });
+});
+
+it("denies overlapping calls and releases on client cancellation", async () => {
+  vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+  let started!: () => void;
+  const ready = new Promise<void>((r) => {
+    started = r;
+  });
+  vi.mocked(runModelApi).mockImplementationOnce(
+    async (input) =>
+      new Promise<string>((_resolve, reject) => {
+        started();
+        input.signal.addEventListener(
+          "abort",
+          () => reject(input.signal.reason),
+          { once: true },
+        );
+      }),
+  );
+  const controller = new AbortController();
+  const request = new Request(`http://localhost:3000${path}`, {
+    method: "POST",
+    headers: {
+      origin: "http://localhost:3000",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ query: "근거" }),
+    signal: controller.signal,
+  });
+  const pending = POST(request, params(ids.studied));
+  await ready;
+  expect((await post()).status).toBe(429);
+  controller.abort();
+  expect((await pending).status).toBe(499);
+  vi.mocked(runModelApi).mockImplementation(async (input) => {
+    const data = JSON.parse(input.prompt.split("\n").at(-1)!);
+    return JSON.stringify({
+      snapshotId: data.snapshotId,
+      intent: "insufficient",
+      evidenceIds: [],
+      candidateIds: [],
+    });
+  });
+  expect((await post()).status).toBe(200);
+  expect(world.writes).toBe(0);
 });

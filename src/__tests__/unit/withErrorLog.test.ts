@@ -356,3 +356,72 @@ describe("양 제한 — 봇이 두드려도 표가 부풀지 않게", () => {
     }
   });
 });
+
+describe("opt-in metadata-only privacy", () => {
+  it.each([400, 401, 403, 429, 502, 503, 504])(
+    "records only template/status/duration for %i, stripping request/notes/response identity",
+    async (status) => {
+      const sentinel = "PRIVATE-STUDENT-QUERY@example.test";
+      const path = "/api/students/[id]/math-srs/insight";
+      const handler = withErrorLog<WithParams>(
+        path,
+        async () => {
+          noteErrorLog({
+            userId: sentinel,
+            detail: sentinel,
+            context: { identity: sentinel },
+            image: sentinel,
+            action: "selection",
+          });
+          return Response.json(
+            {
+              error: {
+                code: "INTERNAL_ERROR",
+                message: sentinel,
+                details: sentinel,
+              },
+            },
+            { status },
+          );
+        },
+        { metadataOnly: true },
+      );
+      await handler(
+        req(
+          `http://localhost/api/students/${sentinel}/math-srs/insight?arbitrary=${sentinel}`,
+          {
+            headers: {
+              referer: `http://localhost/${sentinel}`,
+              "user-agent": sentinel,
+            },
+          },
+        ),
+        { params: Promise.resolve({ id: sentinel }) },
+      );
+      const [entry] = await entries();
+      expect(JSON.stringify(entry)).not.toContain(sentinel);
+      expect(entry).toMatchObject({
+        route: path,
+        status,
+        action: "selection",
+        userId: null,
+      });
+      expect(entry.durationMs).toBeGreaterThanOrEqual(0);
+      expect(entry.context).toMatchObject({ request: { path } });
+    },
+  );
+  it("sanitizes thrown errors while rethrowing the original error", async () => {
+    const error = new Error("private-student-sentinel");
+    const handler = withErrorLog<Handler>(
+      "/api/students/[id]/math-srs/insight",
+      async () => {
+        throw error;
+      },
+      { metadataOnly: true },
+    );
+    await expect(handler(req())).rejects.toBe(error);
+    expect(JSON.stringify(await entries())).not.toContain(
+      "private-student-sentinel",
+    );
+  });
+});

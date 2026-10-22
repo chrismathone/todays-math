@@ -85,8 +85,12 @@ function rejected(
     pathname === CLIENT_LOG_ENDPOINT
   )
     return response;
+  const privateInsight = /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(
+    pathname,
+  );
   return logRejectedResponse({
-    route: pathname,
+    route: privateInsight ? "/api/students/[id]/math-srs/insight" : pathname,
+    ...(privateInsight ? { metadataOnly: true } : {}),
     request: req,
     response,
     userId: who.userId,
@@ -257,7 +261,12 @@ export const proxy = auth(async (req) => {
         actorId: user.id,
         action: "request",
         outcome: allowed && !legacyDenied ? "requested" : "denied",
-        details: { method: req.method, path: pathname },
+        details: {
+          method: req.method,
+          path: /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(pathname)
+            ? "/api/students/[id]/math-srs/insight"
+            : pathname,
+        },
       });
     if (!allowed) {
       if (pathname.startsWith("/api/"))

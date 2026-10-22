@@ -186,3 +186,25 @@ describe("⑷ 로그 받는 곳에 대한 거절은 기록하지 않는다", () 
     ]);
   });
 });
+
+it("insight proxy denials use only route template metadata", async () => {
+  const sentinel = "PRIVATE-INSIGHT-CONTACT@example.test";
+  session.mockReturnValue(account({ id: sentinel }));
+  const response = await run(
+    "POST",
+    `/api/students/${sentinel}/math-srs/insight?unknown=${sentinel}`,
+  );
+  expect(response.status).toBe(403);
+  const [entry] = await logged();
+  expect(JSON.stringify(entry)).not.toContain(sentinel);
+  expect(recordAudit).toHaveBeenCalledWith(
+    expect.objectContaining({
+      details: { method: "POST", path: "/api/students/[id]/math-srs/insight" },
+    }),
+  );
+  expect(entry).toMatchObject({
+    route: "/api/students/[id]/math-srs/insight",
+    status: 403,
+    userId: null,
+  });
+});
