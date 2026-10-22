@@ -9,7 +9,8 @@ establish complete source recovery or block importing a warned crop.
 Base: `35169949839a97e2ff0eefb6e348e260575bc85a`.
 Initial product/fixture freeze: `2da3de65f`.
 Final prompt freeze: `c5b51a90df56acd054ee85e3797e894630a57a87`.
-Final product freeze: `8e7c1eadc014855d0d888c962894d54bdd6d9f2f`.
+Warning-lifecycle freeze: `8e7c1eadc014855d0d888c962894d54bdd6d9f2f`.
+Final product safety freeze: `057f316f261f4a164264d16bcfb62b6289436e94`.
 Later report/harness commits do not change that product source.
 
 External evidence root:
@@ -44,6 +45,10 @@ input or raw model reply is committed to the product repository.
 - Anthropic accepts text with valid thinking/redacted-thinking block types and
   rejects mixed tool, unknown or malformed text blocks even at `end_turn`.
   Other vendors were not changed.
+- A final OCR-only safety advisory covers legacy generic replies that omit native
+  OCR metadata. It asks for original text, option numbering/content and total
+  count verification without fabricating metadata or completeness flags.
+  Existing crop warnings render it in the review pane.
 
 The page warnings are advisory, not a new storage flag or enforced import gate.
 Blank decoded pages remain empty; decode failure and nonblank empty detections
@@ -54,6 +59,8 @@ provider default or allowlist changed.
 
 All 114 response phases were replayed through actual `executeStudioTask` and
 `runModelApi`, with offline fetch returning the API owner's untouched raw bytes.
+A final advisory-only correction additionally replays the same final 68 raw
+replies in distinct `safety-final-*` roots; these are not new calls.
 Native Sharp renders authored source SVGs; no Chromium seam is needed. Sources,
 required/excluded pixel masks and expectations were frozen before each relevant
 live phase. Each replay rechecks frozen request bytes and actual response model.
@@ -133,6 +140,12 @@ The six diagnostic OCR failures must not all be called invented choices.
   hallucination. The frozen expectations and their failures remain unchanged;
   no parser or normalizer inserted those raw entries.
 
+`legacy-safety-replay-check.json` proves all final 68 requests, image bytes,
+expectations, raw pointers, statuses, issue lists and pixel metrics are unchanged
+after the final advisory. Five legacy replies now expose an explicit source-check
+warning; all native-contract failures remain failures. Original parsed artifacts
+were not overwritten.
+
 Complete four-choice support is therefore unresolved under the unchanged
 storage contract. Image reconstruction and semantic source completeness remain
 unresolved. A correctly numbered five-entry result also is not pixel proof of
@@ -150,7 +163,8 @@ component import. This does not substitute for a production build.
 
 ## Independent model-review disposition
 
-Model review is evidence, not an authority. Findings were read after product
+Independent recomputation and finding adjudication were performed by Codex, not
+a human reviewer. Model review is evidence, not an authority. Findings were read after product
 freezes and checked against source or reproductions; no final geometry tuning
 or expectation changes followed final outcomes.
 
@@ -171,11 +185,13 @@ or expectation changes followed final outcomes.
 
 ## Verification and provenance
 
-- Committed 13 focused guards: exact base RED 11 / pass 2; final GREEN 13.
+- Original 13 focused guards: exact base RED 11 / pass 2; final GREEN 13.
+  The final legacy-metadata guard separately fails RED before its fix and brings
+  the final GREEN count to 14.
   The first pre-format 11-guard run was RED 10 / pass 1. Its log remains, but its
   original pre-format source bytes were not separately sealed; do not claim
-  that unavailable byte-level provenance. The committed 13-guard bytes are
-  unchanged from 2da and retained externally.
+  that unavailable byte-level provenance. The original 13-guard byte prefix is
+  unchanged from 2da and retained externally; the 14th guard is appended.
 - Five new queue/rotation lifecycle cases were added with observed RED before
   each fix. Full seven-file regression run passes 294 tests, including actual
   warningless child OCR applied before the persistence assertion, stale/abort
