@@ -59,7 +59,7 @@ const observationExclusions: Record<
   "before-plan": "현재 저장 계획 이전",
   "outside-window": "관찰 기간 밖",
   "no-plan": "저장 계획 없음",
-  "future-plan": "시작 전인 저장 계획",
+  "future-plan": "기준 시각 이후의 계획 설정",
   "source-missing": "세션 원천을 확인할 수 없음",
   "unsupported-section": "이 조회가 지원하는 단원 밖",
   "hint-self-check-give-up-or-repeated":
@@ -518,29 +518,34 @@ function ScopedInsight({ studentId, classId, branchId }: Props) {
             </p>
             {snapshot.nextChecks.length ? (
               <ul className={p.rows}>
-                {snapshot.nextChecks.map((item, index) => (
-                  <li
-                    key={item.id}
-                    id={`${id}-candidate-${index}`}
-                    tabIndex={-1}
-                  >
-                    <strong>{item.title}</strong>
-                    <p>
-                      {relations[item.relation]} · {reviews[item.reviewStatus]}{" "}
-                      ·{" "}
-                      {item.eligible
-                        ? "현재 확인 후보"
-                        : "현재 학생의 확인 후보로 고르지 않음"}
-                    </p>
-                    <MathText text={item.reason} as="p" />
-                    {evidenceLinks(item.evidenceIds)}
-                    {item.caveats.map((note, n) => (
-                      <p className={s.muted} key={n}>
-                        {note}
+                {snapshot.nextChecks.map((item, index) => {
+                  const fact = view!.facts.find(
+                    (entry) => entry.id === `fact:candidate:${item.id}`,
+                  );
+                  return (
+                    <li
+                      key={item.id}
+                      id={`${id}-candidate-${index}`}
+                      tabIndex={-1}
+                    >
+                      <strong>{item.title}</strong>
+                      <p>
+                        {relations[item.relation]} ·{" "}
+                        {reviews[item.reviewStatus]} ·{" "}
+                        {item.eligible
+                          ? "현재 확인 후보"
+                          : "현재 학생의 확인 후보로 고르지 않음"}
                       </p>
-                    ))}
-                  </li>
-                ))}
+                      <MathText text={fact?.text ?? item.reason} as="p" />
+                      {evidenceLinks(item.evidenceIds)}
+                      {(fact ? [] : item.caveats).map((note, n) => (
+                        <p className={s.muted} key={n}>
+                          {note}
+                        </p>
+                      ))}
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
               <p className={s.emptyReport}>현재 제시할 확인 후보가 없습니다.</p>
