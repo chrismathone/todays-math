@@ -13,9 +13,14 @@ async function request<T>(
   parse: (value: unknown) => Promise<T>,
   body?: unknown,
   headers?: Record<string, string>,
+  signal?: AbortSignal,
+  timeoutMs = 15_000,
 ): Promise<Submitted<T> & { code?: string }> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15_000);
+  const abort = () => controller.abort();
+  if (signal?.aborted) abort();
+  else signal?.addEventListener("abort", abort, { once: true });
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(url, {
       cache: "no-store",
@@ -61,6 +66,7 @@ async function request<T>(
     };
   } finally {
     clearTimeout(timeout);
+    signal?.removeEventListener("abort", abort);
   }
 }
 /** The same timeout and messages for the other student records (guide). */
@@ -94,6 +100,49 @@ const teacherQuery = (classId?: string, branchId?: string) => {
   if (classId) params.set("classId", classId);
   if (branchId) params.set("branchId", branchId);
   return params.size ? `?${params}` : "";
+};
+const insightContract = () => import("@/contracts/mathInsight.contract");
+export const getLearningInsight = (
+  studentId: string,
+  classId: string,
+  branchId?: string,
+  signal?: AbortSignal,
+) =>
+  request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/insight${teacherQuery(classId, branchId)}`,
+    async (value) =>
+      (await insightContract()).mathInsightSnapshotResponseSchema.parse(value)
+        .data,
+    undefined,
+    undefined,
+    signal,
+  );
+export const inquireLearningInsight = async (
+  studentId: string,
+  classId: string,
+  input: import("@/contracts/mathInsight.contract").MathInsightInquiryInput,
+  branchId?: string,
+  signal?: AbortSignal,
+) => {
+  const parsed = (
+    await insightContract()
+  ).mathInsightInquiryInputSchema.safeParse(input);
+  if (!parsed.success)
+    return {
+      ok: false as const,
+      status: 400,
+      message: "질문을 1~500자로 입력해 주세요.",
+    };
+  return request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/insight${teacherQuery(classId, branchId)}`,
+    async (value) =>
+      (await insightContract()).mathInsightInquiryResponseSchema.parse(value)
+        .data,
+    parsed.data,
+    undefined,
+    signal,
+    25_000,
+  );
 };
 export const getCourseStudentDetail = (
   studentId: string,

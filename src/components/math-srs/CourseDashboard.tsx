@@ -1,6 +1,7 @@
 "use client";
 
 import ExplorerTeacherActivity from "./ExplorerTeacherActivity";
+import LearningInsightPanel from "./LearningInsightPanel";
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -1334,6 +1335,12 @@ function StudentDetail({
                 >
                   {record.plan ? "학습 계획 수정" : "시작 진도 설정"}
                 </button>
+                <LearningInsightPanel
+                  studentId={student.id}
+                  classId={student.classId}
+                  branchId={branchId}
+                  refreshKey={reload}
+                />
                 <h3 className={s.sectionHeading}>
                   최근 학습 세션 <small>{detail.recentSessions.length}건</small>
                 </h3>
