@@ -54,6 +54,7 @@ export async function freshInsightV2Access(
   });
   if (
     !row ||
+    row.id !== identity.id ||
     row.deletedAt ||
     row.suspendedAt ||
     row.manualSuspendedAt ||
@@ -100,6 +101,7 @@ export async function freshInsightV2Access(
     return null;
   return {
     account,
+    sessionVersion: row.sessionVersion,
     managed,
     stamp: insightDigest({
       account,
