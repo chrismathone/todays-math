@@ -1,0 +1,89 @@
+diff --git a/src/__tests__/unit/middleM3Stat2.test.ts b/src/__tests__/unit/middleM3Stat2.test.ts
+index 674d28772..ad5b9cf9f 100644
+--- a/src/__tests__/unit/middleM3Stat2.test.ts
++++ b/src/__tests__/unit/middleM3Stat2.test.ts
+@@ -21,0 +22 @@ import { renderFigureSpec } from "../../lib/figure/renderFigureSpec";
++import { svgLabels } from "../../lib/figure/svgLabels";
+@@ -63,0 +65,40 @@ function firstNumber(text: string): number {
++/** Read the student's actual SVG, independently of raw spec points and facts. */
++async function plottedStudentPoints(problem: MidProblem): Promise<[number, number][]> {
++  if (!problem.figureSpec) throw new Error("산점도 그림이 없습니다.");
++  const rendered = await renderFigureSpec(problem.figureSpec, { strict: true });
++  if (!rendered.ok) throw new Error(rendered.error);
++  const labels = svgLabels(rendered.svg).filter((label) => /^\d+$/.test(label.text));
++  const mapping = (anchor: "middle" | "end", axis: "x" | "y") => {
++    const ticks = labels.filter((label) => label.anchor === anchor)
++      .map((label) => [label[axis], Number(label.text)] as const)
++      .sort((a, b) => a[0] - b[0]);
++    expect(ticks.length).toBeGreaterThanOrEqual(2);
++    const [a, b] = ticks;
++    expect(b[0]).not.toBe(a[0]);
++    const slope = (b[1] - a[1]) / (b[0] - a[0]);
++    expect(Number.isFinite(slope) && slope !== 0).toBe(true);
++    const read = (screen: number) => a[1] + (screen - a[0]) * slope;
++    for (const [screen, value] of ticks) expect(read(screen)).toBeCloseTo(value, 7);
++    return read;
++  };
++  const readX = mapping("middle", "x"), readY = mapping("end", "y");
++  const points = [...rendered.svg.matchAll(/<circle\b([^>]*)>/g)].map((match) => {
++    const at = (name: string) => {
++      const raw = new RegExp(`\\b${name}="([^"]+)"`).exec(match[1])?.[1];
++      if (raw === undefined || !Number.isFinite(Number(raw))) throw new Error("점의 좌표가 잘못되었습니다.");
++      return Number(raw);
++    };
++    const values = [readX(at("cx")), readY(at("cy"))];
++    for (const value of values) {
++      expect(value).toBeCloseTo(Math.round(value), 7);
++      expect(value).toBeGreaterThanOrEqual(0);
++      expect(value).toBeLessThanOrEqual(100);
++    }
++    return values.map(Math.round) as [number, number];
++  });
++  const count = /학생 \$(\d+)\$명/.exec(problem.content);
++  expect(count, "본문의 학생 수와 실제 그림의 점 수가 같아야 한다").not.toBeNull();
++  expect(points).toHaveLength(Number(count![1]));
++  return points;
++}
++
+@@ -489 +530 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-  it("09 산점도의 분석 — 지면에 찍힌 점으로 다시 세면 정답과 같다", () => {
++  it("09 산점도의 분석 — 지면에 찍힌 점으로 다시 세면 정답과 같다", async () => {
+@@ -493,4 +534,2 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-      // 발문에서 점과 문턱을 직접 읽는다.
+-      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+-        (m) => [Number(m[1]), Number(m[2])] as const,
+-      );
++      // 점은 실제 SVG 눈금에서, 문턱은 발문에서 읽는다.
++      const pts = await plottedStudentPoints(p);
+@@ -529 +568 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-  it("11 산점도에서 좌표 읽기 — 지면의 점 중 y가 가장 큰 것의 x가 정답이다", () => {
++  it("11 산점도에서 좌표 읽기 — 지면의 점 중 y가 가장 큰 것의 x가 정답이다", async () => {
+@@ -532,3 +571 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+-        (m) => [Number(m[1]), Number(m[2])] as const,
+-      );
++      const pts = await plottedStudentPoints(p);
+@@ -552 +589 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-  it("12 산점도에서 비율 구하기 — 두 좌표가 모두 문턱 이상인 점의 비율", () => {
++  it("12 산점도에서 비율 구하기 — 두 좌표가 모두 문턱 이상인 점의 비율", async () => {
+@@ -555,3 +592 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-      const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+-        (m) => [Number(m[1]), Number(m[2])] as const,
+-      );
++      const pts = await plottedStudentPoints(p);
+@@ -613 +648 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-  it("14 두 변량의 차 — 지면의 점으로 다시 재면 가장 큰 차가 정답이다", () => {
++  it("14 두 변량의 차 — 지면의 점으로 다시 재면 가장 큰 차가 정답이다", async () => {
+@@ -617,3 +652 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-        const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+-          (m) => [Number(m[1]), Number(m[2])] as const,
+-        );
++        const pts = await plottedStudentPoints(p);
+@@ -635 +668 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-  it("15 무리의 평균 — 지면의 점으로 다시 세고 다시 평균 낸다", () => {
++  it("15 무리의 평균 — 지면의 점으로 다시 세고 다시 평균 낸다", async () => {
+@@ -639,3 +672 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
+-        const pts = [...p.content.matchAll(/\$\((\d+), (\d+)\)\$/g)].map(
+-          (m) => [Number(m[1]), Number(m[2])] as const,
+-        );
++        const pts = await plottedStudentPoints(p);

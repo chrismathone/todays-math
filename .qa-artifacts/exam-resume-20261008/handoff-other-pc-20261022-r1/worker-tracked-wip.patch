@@ -1,0 +1,96 @@
+diff --git a/scripts/import/exam-twin/candidatePack.mjs b/scripts/import/exam-twin/candidatePack.mjs
+index 99cfcf453..a1ad2fb59 100644
+--- a/scripts/import/exam-twin/candidatePack.mjs
++++ b/scripts/import/exam-twin/candidatePack.mjs
+@@ -7 +7,8 @@ import { compareConstantParts } from "./constantAnswers.mjs";
+-import { compareWrittenAnswerPresentation } from "./answerPresentation.mjs";
++import {
++  compareWrittenAnswerPresentation,
++  isStandaloneMeasuredAnswer,
++} from "./answerPresentation.mjs";
++import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
++import { compareCurriculumDeclarations } from "./curriculumDeclarations.mjs";
++import { compareRecordCorrectionAnswer } from "./recordCorrectionAnswer.mjs";
++import { compareNumberedConstantAssignments } from "./numberedConstantAssignments.mjs";
+@@ -300,0 +308 @@ export function validateCandidate(candidate) {
++    curriculumMetadataComparison: compareCurriculumDeclarations(candidate),
+@@ -301,0 +310,8 @@ export function validateCandidate(candidate) {
++    studentMathNotationWarnings: [
++      ["stem", candidate.content],
++      ...candidate.choices.map((text, i) => [`choice-${i + 1}`, text]),
++      ["answer", candidate.answer],
++      ["studentSolution", candidate.solution],
++    ].flatMap(([surface, text]) =>
++      unescapedMathCommandWarnings(text).map((warning) => ({ surface, ...warning })),
++    ),
+@@ -302,0 +319,8 @@ export function validateCandidate(candidate) {
++    // Preserve readable historical drafts, but never count a known copied MC
++    // answer descriptor as valid metadata for a non-choice response.
++    metadataAnswerFormatMismatch:
++      candidate.questionType !== "객관식" &&
++      typeof metadata.answerFormat === "string" &&
++      ["single-choice", "single circled choice"].includes(
++        metadata.answerFormat.trim().toLowerCase(),
++      ),
+@@ -307 +331,3 @@ export function bindCandidate(file) {
+-  const candidate = readJson(file);
++  // Parse and hash the same captured bytes, even if the path is later replaced.
++  const candidateBytes = fs.readFileSync(file);
++  const candidate = parseJsonArtifact(candidateBytes);
+@@ -348 +374,2 @@ export function bindCandidate(file) {
+-      const generation = readJson(generationPath);
++      const generationBytes = fs.readFileSync(generationPath);
++      const generation = parseJsonArtifact(generationBytes);
+@@ -360 +387 @@ export function bindCandidate(file) {
+-        generationSha256: sha256(fs.readFileSync(generationPath)),
++        generationSha256: sha256(generationBytes),
+@@ -419 +446 @@ export function bindCandidate(file) {
+-    candidateFileSha256: sha256(fs.readFileSync(file)),
++    candidateFileSha256: sha256(candidateBytes),
+@@ -446,0 +474,7 @@ export function independentAnswerMatches(candidate, answer) {
++  if (candidate.questionType === "서술형" &&
++      candidate.metadata?.answerFormat === "numbered-named-scalars-with-working")
++    return compareNumberedConstantAssignments(candidate.answer, answer).status === "equivalent";
++  if (candidate.questionType === "서술형" &&
++      candidate.metadata?.answerFormat === "record-label-and-scalar-with-working")
++    return compareRecordCorrectionAnswer(candidate.answer, answer,
++      candidate.metadata.recordCorrectionAnswerSchema).status === "equivalent";
+@@ -448,2 +482,6 @@ export function independentAnswerMatches(candidate, answer) {
+-  if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5)
+-    return exact || compareWrittenAnswerPresentation(candidate.answer, answer).status === "equivalent";
++  if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5) {
++    const compared = compareWrittenAnswerPresentation(candidate.answer, answer);
++    if (isStandaloneMeasuredAnswer(candidate.answer))
++      return compared.status === "equivalent";
++    return exact || compared.status === "equivalent";
++  }
+@@ -491,0 +530,6 @@ export function evaluateReview(binding, solve, review, gates = {}) {
++  if (binding.validation.metadataAnswerFormatMismatch)
++    fail("metadata-answer-format-mismatch");
++  if (binding.validation.curriculumMetadataComparison?.conflicts.length)
++    fail("curriculum-metadata-declarations-conflict");
++  if (binding.validation.studentMathNotationWarnings?.length)
++    fail("student-math-notation-command-escape-held");
+@@ -546,0 +591 @@ export function evaluateReview(binding, solve, review, gates = {}) {
++      !binding.validation.studentMathNotationWarnings?.length &&
+@@ -551,0 +597 @@ export function evaluateReview(binding, solve, review, gates = {}) {
++      !binding.validation.studentMathNotationWarnings?.length &&
+diff --git a/scripts/import/exam-twin/review-exam-twins.mjs b/scripts/import/exam-twin/review-exam-twins.mjs
+index 53af12d2a..04afd0e0b 100644
+--- a/scripts/import/exam-twin/review-exam-twins.mjs
++++ b/scripts/import/exam-twin/review-exam-twins.mjs
+@@ -92,0 +93,8 @@ function freeze(directory, files) {
++  assert(
++    sourceBindings.every((b) => !b.validation.studentMathNotationWarnings.length),
++    "Suspected lost math command escapes require a corrected student version before a solve pack",
++  );
++  assert(
++    sourceBindings.every((b) => !b.validation.curriculumMetadataComparison?.conflicts.length),
++    "Conflicting curriculum metadata requires a corrected metadata version before a new solve pack",
++  );
+@@ -228 +236 @@ function prepareBlind(directory, newBlindDirectory) {
+-    "# 독립 풀이 — 새 문항만\n\n이 폴더의 student-problems.json과 figures/만 읽는다. 부모·저장소·원문·저자 답/해설/비공개 스펙을 열지 않는다. 답을 검색하지 않는다. 대상은 중3·2015 개정이다. 새 그림을 실제로 확인하고 허용된 학생 방법으로 독립 풀이한다. 부족한 조건/학년 불명은 pending으로 남긴다.\n\n각 solve/qNN.json: {studentDigest,solverId,answer,solution,evidence,status:'solved'|'pending'}. 5개 보기를 모두 검토하고 존재/유일성·양수 길이·부호·단위·그림 조건을 확인한다. 저자의 답을 본 뒤 독립 풀이 기록을 만들지 않는다.\n",
++    "# 독립 풀이 — 새 문항만\n\n이 폴더의 student-problems.json과 figures/만 읽는다. 부모·저장소·원문·저자 답/해설/비공개 스펙을 열지 않는다. 답을 검색하지 않는다. 대상은 중3·2015 개정이다. 새 그림을 실제로 확인하고 허용된 학생 방법으로 독립 풀이한다. 부족한 조건/학년 불명은 pending으로 남긴다.\n\n각 solve/qNN.json: {studentDigest,solverId,answer,solution,evidence,status:'solved'|'pending'}. answer와 solution은 모두 문자열이어야 한다. 객관식 answer에는 선택한 ①~⑤ 기호 하나만 기록하고, 수치·해의 목록·괄호 주석·설명은 solution 문자열 또는 evidence 객체에 쓴다. 단답/서술형 answer는 요청된 답과 단위를 정확히 기록한다. 배열/객체로 된 답이나 풀이를 저장하지 않는다.\n\n5개 보기를 모두 검토하고 존재/유일성·양수 길이·부호·단위·그림 조건을 확인한다. 저자 답에 노출되기 전에 현재 형식의 원시 풀이를 Git에 봉인한다. 봉인 뒤 형식 오류를 고쳐야 하면 저자 노출 전에 새 버전으로 기록하고 옛 바이트는 보존한다. 저자 답을 본 뒤 원시 풀이를 바꾸거나 새 독립 풀이로 세지 않는다.\n",
+@@ -316 +324 @@ function verifyPack(directory, blindDirectory, newReviewDirectory) {
+-    `# 독립 풀이 후 새 해설/학년 검토\n\n독립 solve를 먼저 작성한 별도 검수자가 후보의 답/해설/스펙을 검토한다. 원문 답 일치를 승인 기준으로 쓰지 않는다. 원문과 같은 개념/핵심 방법, 새 구조/소재/표현/역추론, 자연스러움과 목표 난이도를 검토한다. 각 reports/qNN.json에 {status:'verified'|'pending'|'rejected',studentDigest,candidateDigest,assetDigest,method:'independent-solve-then-review',verifierId,solveDigest,checks,evidence,curriculumSurfaces}를 기록한다.\n\nchecks: ${REVIEW_CHECKS.join(", ")}. 각 true는 구체적인 풀이·보기·그림·성취기준/학년/선수 근거를 필요로 한다. curriculumSurfaces 각 ${SURFACES.join(", ")}는 passed/pending/rejected로 판정한다. 학년 밖 필수 방법은 rejected, 불명은 pending. 코드/확률/원본 학교가 승인 근거가 아니다. 권리와 출처 승인은 이 검수의 수학 통과와 분리한다.\n`,
++    `# 독립 풀이 후 새 해설/학년 검토\n\n독립 solve를 먼저 작성한 별도 검수자가 후보의 답/해설/스펙을 검토한다. 원문 답 일치를 승인 기준으로 쓰지 않는다. 원문과 같은 개념/핵심 방법, 새 구조/소재/표현/역추론, 자연스러움과 목표 난이도를 검토한다. 각 reports/qNN.json에 {status:'verified'|'pending'|'rejected',studentDigest,candidateDigest,assetDigest,method:'independent-solve-then-review',verifierId,solveDigest,checks,evidence,curriculumSurfaces}를 기록한다.\n\nchecks: ${REVIEW_CHECKS.join(", ")}. 각 true는 구체적인 풀이·보기·그림·성취기준/학년/선수 근거를 필요로 한다. curriculumSurfaces 각 ${SURFACES.join(", ")}는 passed/pending/rejected로 판정한다. 객체 형식은 {status:'passed'|'pending'|'rejected',basis:'해당 면의 실제 개념·풀이와 학년·교육과정 근거'}처럼 basis 또는 evidence를 반드시 포함한다. reason만 있는 객체는 근거 필드 누락으로 학년 집계에서 보류된다. 기존 문자열 상태 형식도 읽지만, 그 경우에도 각 면의 실제 판단 근거를 evidence에 별도로 기록한다. 하나의 포괄적 근거를 일곱 면의 개별 검토처럼 복사하지 않는다. 학년 밖 필수 방법은 rejected, 불명은 pending. 코드/확률/원본 학교가 승인 근거가 아니다. 권리와 출처 승인은 이 검수의 수학 통과와 분리한다.\n`,

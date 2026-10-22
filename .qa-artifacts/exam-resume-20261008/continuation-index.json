@@ -92791,5 +92791,16 @@
       "resumeOnlyOnUserRequest": true,
       "wholeGoalComplete": false
     }
-  ]
+  ],
+  "latestHandoff": {
+    "utc": "2026-10-22T06:58:39.287462+00:00",
+    "status": "HANDED_OFF_TO_OTHER_COMPUTER",
+    "document": "docs/handoff/exam-engine-other-pc-20261022.md",
+    "manifest": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip-manifest-r1.json",
+    "localExecutionRequested": false,
+    "workerSessionStopped": true,
+    "wholeEngineComplete": false,
+    "dbWrites": 0,
+    "localCleanupUserAuthorized": true
+  }
 }

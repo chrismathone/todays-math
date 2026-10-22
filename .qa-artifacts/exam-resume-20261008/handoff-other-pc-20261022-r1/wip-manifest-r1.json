@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-22T06:46:05.959326+00:00",
+  "scope": "USER_HANDOFF_OTHER_PC_LOCAL_EXECUTION_STOPPED",
+  "vault": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-handoff-20261022-r1",
+  "roots": {
+    "parent": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+      "head": "8ba64fd4ed1426812cb6e4830c2ec473c069b6ca",
+      "branch": "chrismathone/exam-extraction-resume-20261008"
+    },
+    "worker": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008",
+      "head": "a66e54d1f2c4f7010d9c3e3687ef24d23dffb497",
+      "branch": "chrismathone/exam-twin-source-identity-20261008"
+    }
+  },
+  "files": [
+    {
+      "owner": "parent",
+      "path": "src/__tests__/unit/middleM3Stat2.test.ts",
+      "stored": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip/parent/src/__tests__/unit/middleM3Stat2.test.ts",
+      "sha256": "b3de8fc781d185a73798c159a447b5d92967dca7538dd1a8b278f8e02f54e049",
+      "bytes": 35921,
+      "baseLF_SHA256": "c9307b0b955a197a4816042be28c772fa9a261b3bd9d9768c7ceecce6a54f51a",
+      "baselineHead": "8ba64fd4ed1426812cb6e4830c2ec473c069b6ca",
+      "status": "UNVERIFIED_WIP_DO_NOT_TREAT_AS_ENGINE_APPROVAL"
+    },
+    {
+      "owner": "worker",
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "stored": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip/worker/scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f",
+      "bytes": 23341,
+      "baseLF_SHA256": "1f5038bfa48d2e539ac5b85aea7ffb5aafc6472add2e50fca0df25d0992897b2",
+      "baselineHead": "a66e54d1f2c4f7010d9c3e3687ef24d23dffb497",
+      "status": "UNVERIFIED_WIP_DO_NOT_TREAT_AS_ENGINE_APPROVAL"
+    },
+    {
+      "owner": "worker",
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "stored": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip/worker/scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7",
+      "bytes": 17542,
+      "baseLF_SHA256": "42e2709a818171b0aba3b108c5575c5bd00bbd9ed3c99e9e4c90a6a2fbc4d73f",
+      "baselineHead": "a66e54d1f2c4f7010d9c3e3687ef24d23dffb497",
+      "status": "UNVERIFIED_WIP_DO_NOT_TREAT_AS_ENGINE_APPROVAL"
+    },
+    {
+      "owner": "worker",
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "stored": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip/worker/scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6",
+      "bytes": 1825,
+      "baseLF_SHA256": null,
+      "baselineHead": "a66e54d1f2c4f7010d9c3e3687ef24d23dffb497",
+      "status": "UNVERIFIED_WIP_DO_NOT_TREAT_AS_ENGINE_APPROVAL"
+    },
+    {
+      "owner": "worker",
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "stored": ".qa-artifacts/exam-resume-20261008/handoff-other-pc-20261022-r1/wip/worker/scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b58a18be5a6e5467a5615c24f3b1ca5b2e7a10edd3252977aba7784b1fe74dfa",
+      "bytes": 5349,
+      "baseLF_SHA256": null,
+      "baselineHead": "a66e54d1f2c4f7010d9c3e3687ef24d23dffb497",
+      "status": "UNVERIFIED_WIP_DO_NOT_TREAT_AS_ENGINE_APPROVAL"
+    }
+  ],
+  "verifiedEngineApprovalsAdded": 0,
+  "newQuestions": 0,
+  "dbWrites": 0
+}

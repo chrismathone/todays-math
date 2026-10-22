@@ -1,0 +1,3 @@
+# Preserve the actual engine SVG and raw test output bytes.
+*.svg whitespace=-blank-at-eol
+*.log whitespace=-blank-at-eol,-blank-at-eof

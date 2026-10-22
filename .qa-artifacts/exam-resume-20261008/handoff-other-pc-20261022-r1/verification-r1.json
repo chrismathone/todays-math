@@ -1,0 +1,65 @@
+{
+  "wipFilesVerified": 5,
+  "restoreCheckAndRoundTripResults": [
+    {
+      "owner": "parent",
+      "restoreRequested": false,
+      "files": 1,
+      "status": "PREIMAGE_CHECK_PASSED_NO_FILES_CHANGED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    },
+    {
+      "owner": "parent",
+      "restoreRequested": true,
+      "files": 1,
+      "status": "UNVERIFIED_WIP_RESTORED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    },
+    {
+      "owner": "parent",
+      "restoreRequested": true,
+      "files": 0,
+      "status": "UNVERIFIED_WIP_RESTORED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    },
+    {
+      "owner": "worker",
+      "restoreRequested": false,
+      "files": 4,
+      "status": "PREIMAGE_CHECK_PASSED_NO_FILES_CHANGED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    },
+    {
+      "owner": "worker",
+      "restoreRequested": true,
+      "files": 4,
+      "status": "UNVERIFIED_WIP_RESTORED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    },
+    {
+      "owner": "worker",
+      "restoreRequested": true,
+      "files": 0,
+      "status": "UNVERIFIED_WIP_RESTORED",
+      "dbWrites": 0,
+      "questionApprovals": 0
+    }
+  ],
+  "coauthorPreimageMismatchRejectedForBothOwners": true,
+  "ignoredEvidenceFiles": 14185,
+  "ignoredEvidenceBytes": 3713577148,
+  "verifiedEditorFilesUnchanged": 55,
+  "M5StudentAndPrivateSealHashesMatch": true,
+  "M5CapturedSVGFiles": 144,
+  "sourceAckCommit": "a32662cf57ee71ffc8bf45ffffa87933c939d423",
+  "newEngineTestsRun": 0,
+  "newQuestionApprovals": 0,
+  "dbWrites": 0,
+  "wholeEngineComplete": false,
+  "handoffDocument": "docs/handoff/exam-engine-other-pc-20261022.md"
+}
