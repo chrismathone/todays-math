@@ -34,13 +34,25 @@ export default function AutoGrowTextarea(
     const element = ref.current;
     if (!element || typeof ResizeObserver === "undefined") return;
     let width = element.clientWidth;
+    let frame = 0;
+    let live = true;
     const observer = new ResizeObserver(() => {
-      if (element.clientWidth === width) return;
+      if (!live || element.clientWidth === width) return;
       width = element.clientWidth;
-      fit();
+      // A height write in the observer's delivery cycle can resize this same
+      // target again. Keep value fitting immediate; defer width-only fitting.
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        if (live) fit();
+      });
     });
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => {
+      live = false;
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, [fit]);
 
   return <textarea rows={1} {...props} ref={ref} data-autogrow="" />;

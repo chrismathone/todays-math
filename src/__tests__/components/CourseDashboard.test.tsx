@@ -23,7 +23,7 @@ import {
   getExplorerTeacherDetail,
   getExplorerTeacherSettings,
   saveExplorerTeacherSettings,
-  getLearningInsight,
+  getLearningInsightV2,
 } from "@/components/math-srs/courseApi";
 
 vi.mock("@/components/math-srs/courseApi", () => ({
@@ -33,8 +33,8 @@ vi.mock("@/components/math-srs/courseApi", () => ({
   getExplorerTeacherDetail: vi.fn(),
   getExplorerTeacherSettings: vi.fn(),
   saveExplorerTeacherSettings: vi.fn(),
-  getLearningInsight: vi.fn(),
-  inquireLearningInsight: vi.fn(),
+  getLearningInsightV2: vi.fn(),
+  inquireLearningInsightV2: vi.fn(),
 }));
 vi.mock("@/components/math/ProblemContent", () => ({
   ProblemContent: ({ content }: { content: string }) => <p>{content}</p>,
@@ -200,7 +200,7 @@ function detail(row = learner): CourseStudentDetail {
   };
 }
 function roster(rows = [learner, other]) {
-  vi.mocked(getLearningInsight).mockResolvedValue({
+  vi.mocked(getLearningInsightV2).mockResolvedValue({
     ok: false,
     status: 503,
     message: "시범 근거를 불러올 수 없습니다.",
