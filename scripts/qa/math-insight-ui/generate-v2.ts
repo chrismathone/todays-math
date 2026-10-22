@@ -121,6 +121,8 @@ async function main() {
     context: (typeof scopes)[number],
     feature: FeatureSetting,
   ) => {
+    // Validate the actual synthetic record, not only its projected display DTO.
+    const validated = courseApi.storedCourseSchema.parse(state);
     const previous = process.env.MATH_PREREQ_CHECK;
     // Only this offline CLI process is changed, synchronously, for one projection.
     // The real wrapper and canonical snapshot prose read the same synthetic flag.
@@ -128,12 +130,12 @@ async function main() {
     try {
       const snapshot = contracts.mathInsightV2SnapshotSchema.parse(
         snapshotApi.buildInsightV2Snapshot(
-          state,
+          validated,
           3,
           now,
           context,
           expedition.expeditionCourseCheckCandidates(
-            { ...serverState.emptySrsState(), course: state },
+            { ...serverState.emptySrsState(), course: validated },
             now,
           ),
         ),
@@ -177,9 +179,17 @@ async function main() {
   const scenarios: Record<string, ReturnType<typeof project>[]> = {};
   const scenarioFlags: Record<string, { MATH_PREREQ_CHECK: FeatureSetting }> =
     {};
+  const scenarioValidation: Record<
+    string,
+    { schemaValid: true; projections: number }
+  > = {};
   const pair = (name: string, state: unknown, feature: FeatureSetting) => {
     scenarioFlags[name] = { MATH_PREREQ_CHECK: feature };
     scenarios[name] = scopes.map((scope) => project(state, scope, feature));
+    scenarioValidation[name] = {
+      schemaValid: true,
+      projections: scopes.length,
+    };
     assert.equal(
       process.env.MATH_PREREQ_CHECK,
       inheritedFeature,
@@ -232,11 +242,12 @@ async function main() {
     const state = rightCourse(section, earlier(2));
     pair(`grade-${grade}`, state, "on");
   }
-  // Deliberately malformed-source fixtures are derived from a real synthetic
-  // transition and change only retained-source availability, never real records.
+  // Synthetic source absence keeps the stored-record invariant: discarded
+  // sessions cannot retain their request receipts. Summaries remain untouched.
   const missing = structuredClone(course);
   missing.history = [];
   missing.learner.session = null;
+  missing.requests = [];
   pair("missing-source", missing, "on");
   const incomplete = courseApi.startRecommendedCourse(
     plannedCourse("3-1-1-1", earlier(1), 20),
@@ -315,6 +326,18 @@ async function main() {
   };
   const inquiries = scenarios.ready.map(composeInquiry);
   const featureOffInquiries = scenarios["feature-off"].map(composeInquiry);
+  assert.ok(Object.keys(scenarios).length >= 14);
+  assert.deepEqual(Object.keys(scenarioValidation), Object.keys(scenarios));
+  assert.ok(
+    Object.values(scenarioValidation).every((result) => result.schemaValid),
+  );
+  const stateSchema = {
+    validator: "storedCourseSchema",
+    sourcePath: "src/lib/math-srs/courseAutomation.ts",
+    sourceSha256: hashes["src/lib/math-srs/courseAutomation.ts"],
+    allScenariosValid: true,
+    scenarioCount: Object.keys(scenarios).length,
+  };
   assert.ok(
     featureOffInquiries.every((inquiry) =>
       inquiry.facts.some(
@@ -330,6 +353,8 @@ async function main() {
         backendFreeze: freeze,
         sourceHashes: hashes,
         scenarioFlags,
+        stateSchema,
+        scenarioValidation,
         candidateWrapper:
           "expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)",
         generatedAt: now.toISOString(),
@@ -347,6 +372,8 @@ async function main() {
       scenarios: Object.keys(scenarios),
       backendFreeze: freeze,
       scenarioFlags,
+      stateSchema,
+      scenarioValidation,
       restoredCallerFlag: process.env.MATH_PREREQ_CHECK === inheritedFeature,
       modelCalls: 0,
     }),

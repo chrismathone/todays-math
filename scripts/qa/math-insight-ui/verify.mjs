@@ -47,7 +47,18 @@ for (const file of productFiles.filter((file) => file.startsWith("src/")))
   );
 const sourceBefore = await productBytes();
 const featureOffText = "현재 선수 확인 기능이 꺼져 있습니다.";
+assert.equal(generated.stateSchema.validator, "storedCourseSchema");
+assert.equal(generated.stateSchema.allScenariosValid, true);
+assert.equal(
+  generated.stateSchema.scenarioCount,
+  Object.keys(generated.scenarios).length,
+);
+assert.ok(generated.stateSchema.scenarioCount >= 14);
 for (const [scene, snapshots] of Object.entries(generated.scenarios)) {
+  assert.deepEqual(generated.scenarioValidation[scene], {
+    schemaValid: true,
+    projections: snapshots.length,
+  });
   const feature = generated.scenarioFlags[scene]?.MATH_PREREQ_CHECK;
   assert.ok(
     ["on", "off"].includes(feature),
@@ -620,6 +631,8 @@ try {
         backendFreeze: generated.backendFreeze,
         productRef,
         scenarioFlags: generated.scenarioFlags,
+        stateSchema: generated.stateSchema,
+        scenarioValidation: generated.scenarioValidation,
         projectionSourceHashes: generated.sourceHashes,
         candidateWrapper: generated.candidateWrapper,
         productBytes: sourceBefore,
