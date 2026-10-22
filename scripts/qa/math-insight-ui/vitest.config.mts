@@ -14,6 +14,10 @@ export default defineConfig({
     include: [
       "src/__tests__/components/LearningInsightPanel*.test.tsx",
       "src/__tests__/components/CourseDashboard.test.tsx",
+      "src/__tests__/components/AutoGrowTextarea.test.tsx",
+      "src/__tests__/components/EnglishEditor*.test.tsx",
+      "src/__tests__/components/EnglishMakerView.test.tsx",
+      "src/__tests__/components/ExamReportWorkspace.test.tsx",
       "src/__tests__/components/learningInsightApi*.test.ts",
     ],
     maxWorkers: 1,

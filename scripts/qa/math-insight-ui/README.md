@@ -43,7 +43,7 @@ The current panel and `verify.mjs` consume `data-v2.ts` / `generated-v2.json`.
 The retained v1 JSON and `data.ts` continue to exercise the unchanged legacy
 client exports. V2 uses the same endpoint with `x-math-insight-version: 2`.
 The fixture freezes core projection/composer commit
-`2c29e0c9b5ef65f0eb9209e04d59ccdd63db6db5`; the generator verifies actual source
+`6c9e431563f68f1e344a28b9232eb849cc303fbd`; the generator verifies actual source
 bytes against that exact commit, uses production pure transitions for grade 3–6
 (including explicit self-assessment where required), and freezes canonical
 teacher text without calling a model. The missing-source scenario deliberately
@@ -54,7 +54,7 @@ record is read or changed.
 node node_modules/tsx/dist/cli.mjs --tsconfig tsconfig.json \
   scripts/qa/math-insight-ui/generate-v2.ts . \
   scripts/qa/math-insight-ui/generated-v2.json \
-  2c29e0c9b5ef65f0eb9209e04d59ccdd63db6db5
+  6c9e431563f68f1e344a28b9232eb849cc303fbd
 node node_modules/vitest/vitest.mjs run \
   --config scripts/qa/math-insight-ui/vitest.config.mts
 node node_modules/typescript/bin/tsc --noEmit \

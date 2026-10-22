@@ -22,6 +22,7 @@ const productFiles = [
   "src/components/math-srs/LearningInsightPanel.tsx",
   "src/components/math-srs/LearningInsightPanel.module.css",
   "src/components/math-srs/courseApi.ts",
+  "src/components/ui/AutoGrowTextarea.tsx",
   "scripts/qa/math-insight-ui/generated-v2.json",
 ];
 const productBytes = async () =>
@@ -96,6 +97,14 @@ try {
       reducedMotion: "reduce",
     });
     currentPage = page;
+    await page.exposeFunction("recordQaWindowError", (message) =>
+      errors.push(`window: ${message}`),
+    );
+    await page.addInitScript(() =>
+      window.addEventListener("error", (event) => {
+        void window.recordQaWindowError(event.message);
+      }),
+    );
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error") errors.push(message.text());
@@ -269,6 +278,77 @@ try {
     }
     if (!material) {
       await open("ready");
+      const growField = page.getByRole("textbox");
+      const settleResize = () =>
+        page.evaluate(
+          () =>
+            new Promise((resolve) =>
+              requestAnimationFrame(() => requestAnimationFrame(resolve)),
+            ),
+        );
+      const longQuestion =
+        "합성 질문을 여러 줄로 길게 적어 읽기와 폭 변경을 확인합니다. ".repeat(
+          12,
+        );
+      await growField.fill(longQuestion);
+      await growField.focus();
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await settleResize();
+      await expect
+        .poll(() =>
+          growField.evaluate(
+            (field) => field.scrollHeight <= field.clientHeight + 1,
+          ),
+        )
+        .toBe(true);
+      const wideHeight = await growField.evaluate(
+        (field) => field.clientHeight,
+      );
+      await page.setViewportSize({ width: 390, height: 900 });
+      await settleResize();
+      await expect
+        .poll(() => growField.evaluate((field) => field.clientHeight))
+        .toBeGreaterThan(wideHeight);
+      await expect(growField).toBeFocused();
+      await expect(growField).toHaveValue(longQuestion);
+      await expect
+        .poll(() =>
+          growField.evaluate(
+            (field) => field.scrollHeight <= field.clientHeight + 1,
+          ),
+        )
+        .toBe(true);
+      await capture(page, `${width}-resize-narrow`, true);
+      const narrowHeight = await growField.evaluate(
+        (field) => field.clientHeight,
+      );
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await settleResize();
+      await expect
+        .poll(() => growField.evaluate((field) => field.clientHeight))
+        .toBeLessThan(narrowHeight);
+      await growField.fill("짧게");
+      await expect
+        .poll(() => growField.evaluate((field) => field.clientHeight))
+        .toBeLessThan(wideHeight);
+      await expect(growField).toBeFocused();
+      await expect(growField).toHaveValue("짧게");
+      assert.equal(
+        await page.evaluate(
+          () =>
+            window.insightQa.calls.filter((call) => call.method === "POST")
+              .length,
+        ),
+        0,
+      );
+      checks.push({
+        width,
+        textareaGrowShrinkResize: true,
+        wideHeight,
+        narrowHeight,
+      });
+      await page.setViewportSize({ width, height: 900 });
+      await open("ready");
       const genericLink = page
         .getByRole("link", { name: "기록 1", exact: true })
         .first();
@@ -342,14 +422,15 @@ try {
       await field.fill("취소할 질문");
       await field.press("Enter");
       await field.locator("..").evaluate((form) => form.requestSubmit());
-      assert.equal(
-        await page.evaluate(
-          () =>
-            window.insightQa.calls.filter((call) => call.method === "POST")
-              .length,
-        ),
-        1,
-      );
+      await expect
+        .poll(() =>
+          page.evaluate(
+            () =>
+              window.insightQa.calls.filter((call) => call.method === "POST")
+                .length,
+          ),
+        )
+        .toBe(1);
       await page.getByRole("button", { name: "질문 취소" }).click();
       await page.evaluate(() => window.insightQa.release());
       await expect(field).toBeEnabled();

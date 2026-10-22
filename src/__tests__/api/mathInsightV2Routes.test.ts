@@ -199,6 +199,9 @@ it("rejects strict body/scope/content-type and bounds input", async () => {
   expect(
     (await get(`?classId=${ids.classId}&classId=${ids.classId}`)).status,
   ).toBe(400);
+  const wrongMime = request("POST", { query: "설명" });
+  wrongMime.headers.set("content-type", "application/jsonp");
+  expect((await POST(wrongMime, params(ids.studied))).status).toBe(400);
   const plain = request("POST", { query: "설명" });
   plain.headers.set("content-type", "text/plain");
   expect((await POST(plain, params(ids.studied))).status).toBe(400);
@@ -266,8 +269,12 @@ it("rechecks current DB menu even when cached session claims remain authorized",
   expect(await r.json()).not.toHaveProperty("data");
   expect(read).toHaveBeenCalledTimes(1);
   expect(runModelApi).toHaveBeenCalledTimes(1);
+  accountPatch = {};
+  onModel = () => {};
+  expect((await post()).status).toBe(200);
 });
 it.each([
+  { sessionVersion: 1 },
   { approvalStatus: "rejected" },
   { suspendedAt: new Date() },
   { manualSuspendedAt: new Date() },
@@ -282,7 +289,7 @@ it.each([
   expect((await post()).status).toBe(403);
   expect(world.writes).toBe(0);
 });
-it.each([{ sessionVersion: 1 }, { name: "이름 변경" }])(
+it.each([{ name: "이름 변경" }])(
   "returns safe conflict on authorized account context changes %j",
   async (patch) => {
     onModel = () => {
@@ -506,4 +513,20 @@ it("GET grade-wide observations are actual retained transitions and never write 
   expect(s.observations[0].independentIncorrect).toBe(2);
   expect(s.pilot.evidence).toHaveLength(0);
   expect(world.writes).toBe(0);
+});
+
+it("rejects an authorized same-branch class reassignment with safe409 and releases admission", async () => {
+  world.session = sameBranchAdmin();
+  accountPatch = { ...sameBranchAdmin().user };
+  onModel = () => {
+    studentPatch = { classId: ids.fresh };
+    classPatch = { id: ids.fresh, userId: ids.colleague };
+  };
+  const r = await post();
+  expect(r.status).toBe(409);
+  expect(await r.json()).not.toHaveProperty("data");
+  onModel = () => {};
+  studentPatch = {};
+  classPatch = {};
+  expect((await post()).status).toBe(200);
 });
