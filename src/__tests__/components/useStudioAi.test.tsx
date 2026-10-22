@@ -1274,6 +1274,67 @@ describe("Studio background page queue", () => {
     },
   });
 
+  it.each([true, false])(
+    "retains page crop quality warnings after empty=%s and child OCR",
+    async (empty) => {
+      const warning = "크롭 밖 원본 잉크를 확인해 주세요.";
+      bridge.run.mockImplementation(async (request) =>
+        request.action === "page-ocr"
+          ? {
+              ...detection(empty ? 0 : 1),
+              result: {
+                ...detection(empty ? 0 : 1).result,
+                warnings: [warning],
+              },
+            }
+          : { ...response(), result: { ...response().result, warnings: [] } },
+      );
+      const { result } = mount([]);
+      await act(async () => {
+        await result.current.recognizePages([task(1)]);
+      });
+      await waitFor(() =>
+        expect(result.current.pageJobs[0]?.state).toBe(
+          empty ? "empty" : "complete",
+        ),
+      );
+      if (!empty) {
+        await waitFor(() =>
+          expect(
+            bridge.run.mock.calls.some(([input]) => input.action === "ocr"),
+          ).toBe(true),
+        );
+        await waitFor(() =>
+          expect(result.current.crops[0]?.content).toBe(
+            response().result.content,
+          ),
+        );
+        expect(result.current.crops[0].aiWarnings).toEqual([]);
+      }
+      expect(result.current.pageJobs[0].warnings).toContain(warning);
+    },
+  );
+
+  it("does not publish late crop warnings from an aborted page", async () => {
+    const late = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(late.promise);
+    const { result } = mount([]);
+    let pending: Promise<void>;
+    act(() => {
+      pending = result.current.recognizePages([task(1)]);
+    });
+    await waitFor(() => expect(bridge.run).toHaveBeenCalledOnce());
+    act(() => result.current.cancel(false));
+    await act(async () => {
+      late.resolve({
+        ...detection(0),
+        result: { ...detection(0).result, warnings: ["late crop warning"] },
+      });
+      await pending!;
+    });
+    expect(result.current.pageJobs[0].warnings ?? []).toEqual([]);
+  });
+
   it("uses a crop majority to rotate and retry a page exactly once before figure work", async () => {
     let ocrCalls = 0;
     bridge.run.mockImplementation(async (request) => {

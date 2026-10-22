@@ -25,7 +25,40 @@ vi.mock("@/lib/studio-ai/api", async (original) => {
 const canonical = (s: string) => s.replace(/\$|\\(?:text|mathrm)|[{}\s]/g, "");
 test("freeze actual requests and replay exact owner replies with independent text/count/pixel checks", async () => {
   const { executeStudioTask } = await import("@/lib/studio-ai/execute");
-  const all = await fixtures();
+  const all = process.env.OCR_INDEPENDENT_MANIFEST
+    ? await Promise.all(
+        JSON.parse(
+          fs.readFileSync(process.env.OCR_INDEPENDENT_MANIFEST, "utf8"),
+        ).specs.map(
+          async (spec: {
+            id: string;
+            action: "ocr" | "page-ocr";
+            svgPath: string;
+            svgSha256: string;
+            regions: number[][];
+            forbidden: number[][];
+            stem?: string;
+            count?: number;
+            hold?: boolean;
+          }) => {
+            const source = fs.readFileSync(spec.svgPath);
+            expect(sha(source)).toBe(spec.svgSha256);
+            const image = await sharp(source).png().toBuffer();
+            return {
+              ...spec,
+              image,
+              request: {
+                provider: "claude" as const,
+                action: spec.action,
+                grade: "초3",
+                sourceName: `authored-${spec.id}.png`,
+                imageDataUrl: `data:image/png;base64,${image.toString("base64")}`,
+              },
+            };
+          },
+        ),
+      )
+    : await fixtures();
   const records: unknown[] = [];
   const outcomes: unknown[] = [];
   const map = process.env.OCR_RESPONSE_MAP

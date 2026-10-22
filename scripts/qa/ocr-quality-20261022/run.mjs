@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
-const [mode, evidence, map] = process.argv.slice(2);
+import fs from "node:fs";
+const [mode, evidence, map, independent] = process.argv.slice(2);
 if (
   !["capture", "replay", "guards"].includes(mode) ||
   !path.isAbsolute(evidence ?? "")
@@ -14,6 +15,10 @@ const env = {
   STUDIO_AI_ANTHROPIC_MODEL: "claude-opus-5",
   OCR_MODE: mode,
   OCR_EVIDENCE: evidence,
+  ...(independent
+    ? { OCR_INDEPENDENT_MANIFEST: path.resolve(independent) }
+    : {}),
+  ...(evidence.endsWith("baseline-v2") ? { OCR_BASELINE: "1" } : {}),
   ...(map ? { OCR_RESPONSE_MAP: path.resolve(map) } : {}),
 };
 const r = spawnSync(
@@ -29,3 +34,11 @@ const r = spawnSync(
 );
 if (r.error) throw r.error;
 process.exitCode = r.status ?? 1;
+// Transport completion is separate from the frozen objective quality verdict.
+if (mode === "replay" && process.exitCode === 0) {
+  const summary = JSON.parse(
+    fs.readFileSync(path.join(evidence, "summary.json"), "utf8"),
+  );
+  if (summary.outcomes.some((outcome) => outcome.status !== "quality-pass"))
+    process.exitCode = 2;
+}

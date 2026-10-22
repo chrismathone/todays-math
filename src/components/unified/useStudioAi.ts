@@ -648,7 +648,10 @@ export function useStudioAi({
         throw new Error(
           "문제 인식 결과를 확인하지 못했습니다. 다시 시도해 주세요.",
         );
-      update({ detectedGrade: response.result.detectedGrade });
+      update({
+        detectedGrade: response.result.detectedGrade,
+        warnings: response.result.warnings,
+      });
       if (!recognized.length) {
         entry.task = undefined;
         update({ state: "empty" });

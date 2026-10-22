@@ -5,6 +5,14 @@ export default defineConfig({
   cacheDir: path.join(process.env.OCR_EVIDENCE!, "cache"),
   resolve: {
     alias: {
+      ...(process.env.OCR_BASELINE
+        ? {
+            "@/lib": path.join(
+              process.env.OCR_EVIDENCE!,
+              "base-snapshot/src/lib",
+            ),
+          }
+        : {}),
       "@": path.resolve("src"),
       "server-only": path.resolve(
         "scripts/qa/claude-api-evaluation/features/serverOnly.ts",
