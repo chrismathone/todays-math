@@ -8,9 +8,58 @@
     "src/lib/math-prerequisite/evidence.ts": "911a7d6a1ae4bbeb3f176c72e0c1d7e40934eda51f13e15856336d3436cd78c1",
     "src/lib/math-prerequisite/policy.ts": "6766acb55d1fd79375f10c8186ad89eab1829a500827a9e0f20046b8e946a754",
     "src/lib/math-srs/courseAutomation.ts": "05f51fee769d3aced57e1a191fdbc1f3791b96d207bfa6d4ee004585c01a3f14",
+    "src/lib/math-explorers/expedition.ts": "f3352190b13781d02c1632db4443c116013ab49f893f289649b3fd43054f0a1e",
+    "src/lib/math-srs/serverState.ts": "a750fa048a1007e1ff926f1795708dad73b9c870a91f69c5219574060909f342",
+    "src/lib/math-prerequisite/enabled.ts": "a80ae17cf2ad165c2555000c3553e11899b2e39437ddea74ed336eb024d9d5ee",
+    "src/lib/math-prerequisite/courseIntegration.ts": "86f0473a123363b9455ea761714871923446386001b2a6252d640e7302c94cfd",
     "src/contracts/mathInsightV2.contract.ts": "d413f0bf997895a6700add9fbf4190ffe31f0a44c141070b9a277b099097d3aa",
     "src/__tests__/helpers/mathPrerequisiteCourse.ts": "6571a3445d7075b131fa875985c3d7ecef66cd268958ff7ba10b320ca46211c7"
   },
+  "scenarioFlags": {
+    "ready": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "feature-off": {
+      "MATH_PREREQ_CHECK": "off"
+    },
+    "outside": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "empty": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "paused": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "future": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "stale": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "grade-3": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "grade-4": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "grade-5": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "grade-6": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "missing-source": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "unfinished": {
+      "MATH_PREREQ_CHECK": "on"
+    },
+    "multiple-grades": {
+      "MATH_PREREQ_CHECK": "on"
+    }
+  },
+  "candidateWrapper": "expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)",
   "generatedAt": "2026-10-22T08:00:00.000Z",
   "scopes": [
     {
@@ -204,7 +253,7 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -216,7 +265,7 @@
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -668,7 +717,7 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -680,7 +729,7 @@
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -955,6 +1004,886 @@
         }
       }
     ],
+    "feature-off": [
+      {
+        "scope": {
+          "dataVersion": 2,
+          "supportedGrades": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "windowStart": "2026-10-08T08:00:00.000Z",
+          "windowEnd": "2026-10-22T08:00:00.000Z",
+          "limitations": [
+            "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다."
+          ]
+        },
+        "context": {
+          "studentId": "11111111-1111-4111-8111-111111111111",
+          "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+        "planContext": {
+          "status": "active",
+          "storedPlan": {
+            "startSectionId": "5-2-2-1",
+            "dailyQuestionCount": 20,
+            "enabled": true,
+            "configuredAt": "2026-10-15T08:00:00.000Z"
+          },
+          "courseGoal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산"
+          },
+          "courseDailyGoal": 20,
+          "defaultPlan": "not-evaluated",
+          "dailyMission": "not-evaluated"
+        },
+        "retention": {
+          "sourcePresence": "present",
+          "retentionCoverage": "unknown",
+          "retainedSessionCount": 3,
+          "recentAttemptCount": 15
+        },
+        "observations": [
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "grade": 5,
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "source": "retained-session",
+            "included": false,
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 5,
+            "independentIncorrect": 0,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 0
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          }
+        ],
+        "facts": [
+          {
+            "id": "fact:0",
+            "kind": "plan-context",
+            "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:1",
+            "kind": "course-goal",
+            "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:2",
+            "kind": "availability",
+            "text": "보존 세션 3개와 최근 답안 15개 범위의 관찰입니다. 전체 과거를 나타내지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:3",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 현재 저장된 계획 전에 시작한 세션이라 현재 계획 관찰에서 제외했습니다. 최근 14일 관찰기간 밖의 기록입니다. 보존 원천의 수를 현재 성취로 해석하지 않습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000001"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:4",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:5",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:6",
+            "kind": "observation",
+            "text": "분수 부분 대응 시범 · (분수)×(자연수)의 계산: 시범 정책이 선택한 보존 첫 풀이의 독립 정답 3개, 독립 오답 2개입니다. 일반 관찰 합계와 별개이며 숙달·인과 진단이 아닙니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-4",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-3",
+            "kind": "availability",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:9",
+            "kind": "limitation",
+            "text": "이 요청의 날짜·소단원 또는 판단은 제공된 조회 범위에서 뒷받침할 수 없습니다. 화면의 관찰기간·보존 원천·저장 계획을 확인해 주세요.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:10",
+            "kind": "limitation",
+            "text": "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:11",
+            "kind": "limitation",
+            "text": "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:12",
+            "kind": "limitation",
+            "text": "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:13",
+            "kind": "limitation",
+            "text": "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:14",
+            "kind": "limitation",
+            "text": "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:15",
+            "kind": "limitation",
+            "text": "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:16",
+            "kind": "limitation",
+            "text": "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          }
+        ],
+        "pilot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "11111111-1111-4111-8111-111111111111",
+            "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+          "freshness": "current",
+          "eligibility": "insufficient",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "superseded",
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        }
+      },
+      {
+        "scope": {
+          "dataVersion": 2,
+          "supportedGrades": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "windowStart": "2026-10-08T08:00:00.000Z",
+          "windowEnd": "2026-10-22T08:00:00.000Z",
+          "limitations": [
+            "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다."
+          ]
+        },
+        "context": {
+          "studentId": "22222222-2222-4222-8222-222222222222",
+          "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+        "planContext": {
+          "status": "active",
+          "storedPlan": {
+            "startSectionId": "5-2-2-1",
+            "dailyQuestionCount": 20,
+            "enabled": true,
+            "configuredAt": "2026-10-15T08:00:00.000Z"
+          },
+          "courseGoal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산"
+          },
+          "courseDailyGoal": 20,
+          "defaultPlan": "not-evaluated",
+          "dailyMission": "not-evaluated"
+        },
+        "retention": {
+          "sourcePresence": "present",
+          "retentionCoverage": "unknown",
+          "retainedSessionCount": 3,
+          "recentAttemptCount": 15
+        },
+        "observations": [
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "grade": 5,
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "source": "retained-session",
+            "included": false,
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 5,
+            "independentIncorrect": 0,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 0
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          }
+        ],
+        "facts": [
+          {
+            "id": "fact:0",
+            "kind": "plan-context",
+            "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:1",
+            "kind": "course-goal",
+            "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:2",
+            "kind": "availability",
+            "text": "보존 세션 3개와 최근 답안 15개 범위의 관찰입니다. 전체 과거를 나타내지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:3",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 현재 저장된 계획 전에 시작한 세션이라 현재 계획 관찰에서 제외했습니다. 최근 14일 관찰기간 밖의 기록입니다. 보존 원천의 수를 현재 성취로 해석하지 않습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000001"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:4",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:5",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:6",
+            "kind": "observation",
+            "text": "분수 부분 대응 시범 · (분수)×(자연수)의 계산: 시범 정책이 선택한 보존 첫 풀이의 독립 정답 3개, 독립 오답 2개입니다. 일반 관찰 합계와 별개이며 숙달·인과 진단이 아닙니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-4",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-3",
+            "kind": "availability",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:9",
+            "kind": "limitation",
+            "text": "이 요청의 날짜·소단원 또는 판단은 제공된 조회 범위에서 뒷받침할 수 없습니다. 화면의 관찰기간·보존 원천·저장 계획을 확인해 주세요.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:10",
+            "kind": "limitation",
+            "text": "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:11",
+            "kind": "limitation",
+            "text": "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:12",
+            "kind": "limitation",
+            "text": "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:13",
+            "kind": "limitation",
+            "text": "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:14",
+            "kind": "limitation",
+            "text": "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:15",
+            "kind": "limitation",
+            "text": "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:16",
+            "kind": "limitation",
+            "text": "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          }
+        ],
+        "pilot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "22222222-2222-4222-8222-222222222222",
+            "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+          "freshness": "current",
+          "eligibility": "insufficient",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "superseded",
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        }
+      }
+    ],
     "outside": [
       {
         "scope": {
@@ -1118,14 +2047,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -1547,14 +2476,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -1885,14 +2814,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -2170,14 +3099,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -2550,14 +3479,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -2979,14 +3908,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -3413,14 +4342,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -3848,14 +4777,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -4282,14 +5211,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -4711,14 +5640,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -5083,14 +6012,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -5407,14 +6336,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -5733,14 +6662,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -6057,14 +6986,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -6392,14 +7321,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -6742,14 +7671,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -7087,14 +8016,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -7413,14 +8342,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -7770,14 +8699,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -8125,14 +9054,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -8453,14 +9382,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -8779,14 +9708,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -9188,14 +10117,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -9610,14 +10539,14 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. ",
             "evidenceIds": [],
             "candidateIds": []
           },
@@ -10028,7 +10957,7 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -10040,7 +10969,7 @@
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -10535,7 +11464,7 @@
           {
             "id": "fact:candidate:check:5-1-5-4",
             "kind": "availability",
-            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -10547,7 +11476,7 @@
           {
             "id": "fact:candidate:check:5-1-5-3",
             "kind": "availability",
-            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 기존 분수 시범 조건의 다음 확인 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. ",
             "evidenceIds": [
               "session:00000000-0000-4000-8000-000000000007",
               "session:00000000-0000-4000-8000-00000000000d"
@@ -10809,6 +11738,972 @@
                 "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
                 "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
                 "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        }
+      },
+      "status": "supported",
+      "intent": "overview",
+      "facts": [
+        {
+          "id": "fact:0",
+          "kind": "plan-context",
+          "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+          "evidenceIds": [],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:1",
+          "kind": "course-goal",
+          "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+          "evidenceIds": [],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:4",
+          "kind": "observation",
+          "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+          "evidenceIds": [
+            "observation:session:00000000-0000-4000-8000-000000000007"
+          ],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:5",
+          "kind": "observation",
+          "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+          "evidenceIds": [
+            "observation:session:00000000-0000-4000-8000-00000000000d"
+          ],
+          "candidateIds": []
+        }
+      ],
+      "provenance": {
+        "provider": "gemini",
+        "model": "synthetic-no-model-call",
+        "role": "selection-only"
+      }
+    }
+  ],
+  "featureOffInquiries": [
+    {
+      "snapshot": {
+        "scope": {
+          "dataVersion": 2,
+          "supportedGrades": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "windowStart": "2026-10-08T08:00:00.000Z",
+          "windowEnd": "2026-10-22T08:00:00.000Z",
+          "limitations": [
+            "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다."
+          ]
+        },
+        "context": {
+          "studentId": "11111111-1111-4111-8111-111111111111",
+          "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+        "planContext": {
+          "status": "active",
+          "storedPlan": {
+            "startSectionId": "5-2-2-1",
+            "dailyQuestionCount": 20,
+            "enabled": true,
+            "configuredAt": "2026-10-15T08:00:00.000Z"
+          },
+          "courseGoal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산"
+          },
+          "courseDailyGoal": 20,
+          "defaultPlan": "not-evaluated",
+          "dailyMission": "not-evaluated"
+        },
+        "retention": {
+          "sourcePresence": "present",
+          "retentionCoverage": "unknown",
+          "retainedSessionCount": 3,
+          "recentAttemptCount": 15
+        },
+        "observations": [
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "grade": 5,
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "source": "retained-session",
+            "included": false,
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 5,
+            "independentIncorrect": 0,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 0
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          }
+        ],
+        "facts": [
+          {
+            "id": "fact:0",
+            "kind": "plan-context",
+            "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:1",
+            "kind": "course-goal",
+            "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:2",
+            "kind": "availability",
+            "text": "보존 세션 3개와 최근 답안 15개 범위의 관찰입니다. 전체 과거를 나타내지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:3",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 현재 저장된 계획 전에 시작한 세션이라 현재 계획 관찰에서 제외했습니다. 최근 14일 관찰기간 밖의 기록입니다. 보존 원천의 수를 현재 성취로 해석하지 않습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000001"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:4",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:5",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:6",
+            "kind": "observation",
+            "text": "분수 부분 대응 시범 · (분수)×(자연수)의 계산: 시범 정책이 선택한 보존 첫 풀이의 독립 정답 3개, 독립 오답 2개입니다. 일반 관찰 합계와 별개이며 숙달·인과 진단이 아닙니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-4",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-3",
+            "kind": "availability",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:9",
+            "kind": "limitation",
+            "text": "이 요청의 날짜·소단원 또는 판단은 제공된 조회 범위에서 뒷받침할 수 없습니다. 화면의 관찰기간·보존 원천·저장 계획을 확인해 주세요.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:10",
+            "kind": "limitation",
+            "text": "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:11",
+            "kind": "limitation",
+            "text": "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:12",
+            "kind": "limitation",
+            "text": "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:13",
+            "kind": "limitation",
+            "text": "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:14",
+            "kind": "limitation",
+            "text": "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:15",
+            "kind": "limitation",
+            "text": "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:16",
+            "kind": "limitation",
+            "text": "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          }
+        ],
+        "pilot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "11111111-1111-4111-8111-111111111111",
+            "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+          "freshness": "current",
+          "eligibility": "insufficient",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "superseded",
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        }
+      },
+      "status": "supported",
+      "intent": "overview",
+      "facts": [
+        {
+          "id": "fact:0",
+          "kind": "plan-context",
+          "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+          "evidenceIds": [],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:1",
+          "kind": "course-goal",
+          "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+          "evidenceIds": [],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:4",
+          "kind": "observation",
+          "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+          "evidenceIds": [
+            "observation:session:00000000-0000-4000-8000-000000000007"
+          ],
+          "candidateIds": []
+        },
+        {
+          "id": "fact:5",
+          "kind": "observation",
+          "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+          "evidenceIds": [
+            "observation:session:00000000-0000-4000-8000-00000000000d"
+          ],
+          "candidateIds": []
+        }
+      ],
+      "provenance": {
+        "provider": "gemini",
+        "model": "synthetic-no-model-call",
+        "role": "selection-only"
+      }
+    },
+    {
+      "snapshot": {
+        "scope": {
+          "dataVersion": 2,
+          "supportedGrades": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "windowStart": "2026-10-08T08:00:00.000Z",
+          "windowEnd": "2026-10-22T08:00:00.000Z",
+          "limitations": [
+            "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다."
+          ]
+        },
+        "context": {
+          "studentId": "22222222-2222-4222-8222-222222222222",
+          "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+        "planContext": {
+          "status": "active",
+          "storedPlan": {
+            "startSectionId": "5-2-2-1",
+            "dailyQuestionCount": 20,
+            "enabled": true,
+            "configuredAt": "2026-10-15T08:00:00.000Z"
+          },
+          "courseGoal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산"
+          },
+          "courseDailyGoal": 20,
+          "defaultPlan": "not-evaluated",
+          "dailyMission": "not-evaluated"
+        },
+        "retention": {
+          "sourcePresence": "present",
+          "retentionCoverage": "unknown",
+          "retainedSessionCount": 3,
+          "recentAttemptCount": 15
+        },
+        "observations": [
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "grade": 5,
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "source": "retained-session",
+            "included": false,
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 5,
+            "independentIncorrect": 0,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 0
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          },
+          {
+            "id": "observation:session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "grade": 5,
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "source": "retained-session",
+            "included": true,
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "excludedFirstAttempts": 0,
+            "retryAttempts": 2
+          }
+        ],
+        "facts": [
+          {
+            "id": "fact:0",
+            "kind": "plan-context",
+            "text": "저장된 코스 계획: (분수)×(자연수)의 계산부터, 설정 분량 20문항. 계획이 켜져 있습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:1",
+            "kind": "course-goal",
+            "text": "저장된 코스에서 계산한 다음 진도: (분수)×(자연수)의 계산. 코스 계산 분량은 20문항입니다. 이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:2",
+            "kind": "availability",
+            "text": "보존 세션 3개와 최근 답안 15개 범위의 관찰입니다. 전체 과거를 나타내지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:3",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 현재 저장된 계획 전에 시작한 세션이라 현재 계획 관찰에서 제외했습니다. 최근 14일 관찰기간 밖의 기록입니다. 보존 원천의 수를 현재 성취로 해석하지 않습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000001"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:4",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:5",
+            "kind": "observation",
+            "text": "(분수)×(자연수)의 계산: 현재 기간·저장 계획 범위의 보존 첫 풀이에서 독립 정답 3개, 독립 오답 2개를 관찰했습니다. 숙달·원인 판단이 아닙니다. 재시도·후속 풀이를 독립 첫 정오답에 더하지 않았습니다.",
+            "evidenceIds": [
+              "observation:session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:6",
+            "kind": "observation",
+            "text": "분수 부분 대응 시범 · (분수)×(자연수)의 계산: 시범 정책이 선택한 보존 첫 풀이의 독립 정답 3개, 독립 오답 2개입니다. 일반 관찰 합계와 별개이며 숙달·인과 진단이 아닙니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-4",
+            "kind": "availability",
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:candidate:check:5-1-5-3",
+            "kind": "availability",
+            "text": "진분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 현재 조건에서 다음 확인 후보로 제안하지 않습니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. 확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다. 이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다. 확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다. 현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다. 현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:9",
+            "kind": "limitation",
+            "text": "이 요청의 날짜·소단원 또는 판단은 제공된 조회 범위에서 뒷받침할 수 없습니다. 화면의 관찰기간·보존 원천·저장 계획을 확인해 주세요.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:10",
+            "kind": "limitation",
+            "text": "초3~초6의 실제 코스 카탈로그에 있는 보존 세션을 읽습니다. 정오답 수는 관찰 기록이며 성취·숙달·원인 진단이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:11",
+            "kind": "limitation",
+            "text": "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:12",
+            "kind": "limitation",
+            "text": "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:13",
+            "kind": "limitation",
+            "text": "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:14",
+            "kind": "limitation",
+            "text": "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:15",
+            "kind": "limitation",
+            "text": "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          },
+          {
+            "id": "fact:16",
+            "kind": "limitation",
+            "text": "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다.",
+            "evidenceIds": [],
+            "candidateIds": []
+          }
+        ],
+        "pilot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "22222222-2222-4222-8222-222222222222",
+            "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+          "freshness": "current",
+          "eligibility": "insufficient",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "superseded",
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": false,
+              "evidenceIds": [],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+                "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
               ]
             }
           ],
