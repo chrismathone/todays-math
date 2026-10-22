@@ -20,12 +20,13 @@ import {
   sectionUnitId,
   targetForCourse,
 } from "@/lib/math-prerequisite/mapping";
+import type { prerequisiteCheckCandidates } from "@/lib/math-prerequisite/policy";
 import { heldCheckSections } from "@/lib/math-prerequisite/policy";
 import { prerequisiteVersions } from "@/lib/math-prerequisite/versions";
 
 export const INSIGHT_LIMITATIONS = [
   "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
-  "math_graph_2022.json의 단원 관계는 편집 자료이며 공식 교육과정 전수 감사를 마친 것이 아닙니다.",
+  "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
   "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
   "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
   "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다.",
@@ -39,6 +40,7 @@ export function buildInsightSnapshot(
   revision: number,
   now: Date,
   context: MathInsightSnapshot["context"] = null,
+  candidates: ReturnType<typeof prerequisiteCheckCandidates> = null,
 ): MathInsightSnapshot {
   const planValid =
     !!course.plan && Date.parse(course.plan.configuredAt) <= now.getTime();
@@ -71,7 +73,14 @@ export function buildInsightSnapshot(
     const section = rawSections.find((s) => s.sectionId === session.sectionId)!;
     const latest = currentPlanSessions(course, session.sectionId, now).at(-1);
     const included =
-      planValid && section.sourceRetained && latest?.id === session.id;
+      planValid &&
+      section.sourceRetained &&
+      (latest?.id === session.id ||
+        !!candidates?.evidenceSessionIds.includes(session.id));
+    const purposes: MathInsightSnapshot["evidence"][number]["purposes"] = [];
+    if (included && latest?.id === session.id) purposes.push("section-current");
+    if (included && candidates?.evidenceSessionIds.includes(session.id))
+      purposes.push("candidate-trigger");
     const exclusions: MathInsightSnapshot["evidence"][number]["exclusions"] =
       [];
     if (!planValid) exclusions.push("no-plan");
@@ -103,6 +112,7 @@ export function buildInsightSnapshot(
       startedAt: session.startedAt,
       completedAt: session.completedAt,
       included,
+      purposes,
       exclusions,
       independentCorrect: included ? result.independentCorrect : 0,
       independentIncorrect: included ? result.independentIncorrect : 0,
@@ -120,7 +130,13 @@ export function buildInsightSnapshot(
         }
       : {}),
     evidenceIds: evidence
-      .filter((e) => e.included && e.sectionId === s.sectionId)
+      .filter(
+        (e) =>
+          e.included &&
+          e.sectionId === s.sectionId &&
+          currentPlanSessions(course, s.sectionId, now).at(-1)?.id ===
+            e.sessionId,
+      )
       .map((e) => e.id),
     mappingStatus: "verified" as const,
     relation: "covers-part" as const,
@@ -136,13 +152,15 @@ export function buildInsightSnapshot(
       ? "insufficient"
       : !isPilotTarget(target)
         ? "out-of-scope"
-        : freshness === "current"
+        : freshness === "current" && !!candidates?.sectionIds.length
           ? "eligible"
           : "insufficient";
   const held = heldCheckSections(course, now, true);
-  const citations = sections
-    .filter((s) => isPilotTarget(s.sectionId))
-    .flatMap((s) => s.evidenceIds);
+  const citations = evidence
+    .filter(
+      (e) => e.included && candidates?.evidenceSessionIds.includes(e.sessionId),
+    )
+    .map((e) => e.id);
   return mathInsightSnapshotSchema.parse({
     scope: {
       pilotId: "elementary-fractions-v1",
@@ -186,17 +204,19 @@ export function buildInsightSnapshot(
       reviewStatus: "candidate",
       eligible:
         eligibility === "eligible" &&
+        !!candidates?.sectionIds.includes(sectionId) &&
         citations.length > 0 &&
         !held.sectionIds.includes(sectionId),
       evidenceIds: citations,
       reason:
-        "편집 단원 E56-N03 → E56-N04 관계에 대응하는 분수 뺄셈의 부분 확인 후보입니다.",
+        "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
       caveats: [
-        "소단원 대응 출처: src/lib/math-prerequisite/mapping.ts (mappingVersion 1). 단원 전체와 같은 뜻이 아닙니다.",
-        "교수 추천은 후보이며 교재 연결 검수의 confirmed 상태를 부여한 것이 아닙니다.",
+        "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+        "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
         ...(held.sectionIds.includes(sectionId) && held.reason
           ? [held.reason]
           : []),
+        "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
         ...(eligibility !== "eligible"
           ? [
               "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다.",

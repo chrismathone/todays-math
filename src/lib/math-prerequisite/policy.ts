@@ -190,13 +190,12 @@ function unavailable(target: string): PrerequisiteDecision {
   };
 }
 
-export function prerequisiteStep(
+/** Shared pre-supply gate; no generation, randomness, persistence or thresholds of its own. */
+function prerequisiteTarget(
   course: StoredCourse,
-  now: Date,
   enabled: boolean,
   effectiveBudget: PrerequisiteBudget,
-  deps: { generate?: SessionGenerator } = {},
-): PrerequisiteDecision | null {
+) {
   if (!enabled || !course.plan?.enabled || activeSession(course)) return null;
   if (
     effectiveBudget.goal - effectiveBudget.answered <
@@ -205,22 +204,66 @@ export function prerequisiteStep(
     return null;
   const target = pilotTargetForCourse(course);
   if (!target) return null;
+  return target;
+}
+
+function completedCheckForReturn(course: StoredCourse, now: Date): boolean {
   const current = course.learner.session;
   const currentEndedAt = current?.retry?.completedAt ?? current?.completedAt;
-
-  // 복귀는 지금 계획을 저장한 뒤 시작해 `now` 까지 끝난 P 세션에만 — 옛 계획의 P · 앞날 기록은 아니다.
-  if (
+  return !!(
+    course.plan &&
     current &&
     currentEndedAt &&
     current.mode === "review" &&
     isPilotCheck(current.sectionId) &&
     time(current.startedAt) >= time(course.plan.configuredAt) &&
     time(currentEndedAt) <= now.getTime()
-  ) {
+  );
+}
+
+/** Authoritative candidate pool before supply validation. Never claims actual problem availability. */
+export function prerequisiteCheckCandidates(
+  course: StoredCourse,
+  now: Date,
+  enabled: boolean,
+  effectiveBudget: PrerequisiteBudget,
+) {
+  const target = prerequisiteTarget(course, enabled, effectiveBudget);
+  if (!target || completedCheckForReturn(course, now)) return null;
+  const failure = triggeringFailure(course, target, now);
+  if (!failure || checkedToday(course, now)) return null;
+  const sectionIds = PILOT_CHECK_SECTION_IDS.filter(
+    (sectionId) => !inCooldown(course, sectionId, now),
+  ).slice(0, PREREQUISITE_POLICY.maxCheckSections);
+  if (!sectionIds.length) return null;
+  const evidenceSessionIds = currentPlanSessions(course, target, now)
+    .slice(-PREREQUISITE_POLICY.triggerSessions)
+    .map((s) => s.id);
+  return {
+    targetSectionId: target,
+    failureSessionId: failure,
+    sectionIds,
+    evidenceSessionIds,
+  };
+}
+
+export function prerequisiteStep(
+  course: StoredCourse,
+  now: Date,
+  enabled: boolean,
+  effectiveBudget: PrerequisiteBudget,
+  deps: { generate?: SessionGenerator } = {},
+): PrerequisiteDecision | null {
+  const target = prerequisiteTarget(course, enabled, effectiveBudget);
+  if (!target) return null;
+  const current = course.learner.session;
+
+  // 복귀는 지금 계획을 저장한 뒤 시작해 `now` 까지 끝난 P 세션에만 — 옛 계획의 P · 앞날 기록은 아니다.
+  if (completedCheckForReturn(course, now)) {
     const session = choose(
       target,
       "learn",
-      `return:${current.id}:${target}`,
+      `return:${current!.id}:${target}`,
       exposedContents(course),
       now,
       deps.generate,
@@ -240,12 +283,14 @@ export function prerequisiteStep(
       : unavailable(target);
   }
 
-  const failure = triggeringFailure(course, target, now);
-  if (!failure || checkedToday(course, now)) return null;
-  const eligible = PILOT_CHECK_SECTION_IDS.filter(
-    (sectionId) => !inCooldown(course, sectionId, now),
-  ).slice(0, PREREQUISITE_POLICY.maxCheckSections);
-  if (!eligible.length) return null;
+  const candidates = prerequisiteCheckCandidates(
+    course,
+    now,
+    enabled,
+    effectiveBudget,
+  );
+  if (!candidates) return null;
+  const { failureSessionId: failure, sectionIds: eligible } = candidates;
 
   const avoid = exposedContents(course);
   for (const sectionId of eligible) {

@@ -8,8 +8,10 @@ import type { StoredExplorer } from "@/contracts/mathExplorers.contract";
 import { kstDateOf } from "@/lib/kstDate";
 import {
   coursePrerequisiteDecision,
+  coursePrerequisiteBudget,
   prerequisiteRecommendation,
 } from "@/lib/math-prerequisite/courseIntegration";
+import { prerequisiteCheckCandidates } from "@/lib/math-prerequisite/policy";
 import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
 import { pilotTargetForCourse } from "@/lib/math-prerequisite/mapping";
 import { contextForDecision } from "@/lib/math-prerequisite/display";
@@ -645,6 +647,34 @@ export function expeditionCoursePrerequisiteDecision(
   )
     return null;
   return decision;
+}
+
+/** Read-only candidate pool under exactly the open mission's frozen budget and unit scope. */
+export function expeditionCourseCheckCandidates(
+  state: StoredSrsState,
+  now: Date,
+) {
+  const course = state.course;
+  if (!course) return null;
+  const mission = open(state);
+  if (mission && mission.kind !== "elementary") return null;
+  const candidates = prerequisiteCheckCandidates(
+    course,
+    now,
+    mathPrerequisiteEnabled(),
+    mission
+      ? { goal: mission.goal, answered: mission.answered }
+      : coursePrerequisiteBudget(course, now),
+  );
+  if (!candidates) return null;
+  const sectionIds = mission
+    ? candidates.sectionIds.filter(
+        (sectionId) =>
+          explorerUnitForSection(sectionId) === mission.unitId &&
+          explorerUnitForSection(candidates.targetSectionId) === mission.unitId,
+      )
+    : candidates.sectionIds;
+  return sectionIds.length ? { ...candidates, sectionIds } : null;
 }
 
 export function expeditionInitialPrerequisiteDecision(
