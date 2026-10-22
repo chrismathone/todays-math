@@ -1,0 +1,83 @@
+.panel {
+  min-width: 0;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--learn-track);
+  overflow-wrap: anywhere;
+}
+.panel h4 {
+  margin: 20px 0 8px;
+  font-size: var(--text-body);
+  font-weight: 700;
+}
+.rows {
+  margin: 12px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.rows > li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learn-track);
+  scroll-margin-top: var(--workspace-sticky-inset, 68px);
+}
+.rows p {
+  margin-top: 4px;
+}
+.references {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+.panel .references a,
+.panel .candidateLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px;
+  white-space: normal;
+}
+.candidateLink {
+  margin-right: 8px;
+}
+.records summary {
+  min-height: 44px;
+  padding-block: 12px;
+  color: var(--learn-accent);
+  cursor: pointer;
+}
+.records:has(:target) {
+  scroll-margin-top: var(--workspace-sticky-inset, 68px);
+}
+.limits {
+  color: var(--learn-muted);
+}
+.limits p + p {
+  margin-top: 8px;
+}
+.question {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  margin: 20px 0 16px;
+}
+.question label {
+  font-weight: 600;
+}
+.question textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 88px;
+  padding: 10px 12px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius, 8px);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  line-height: 1.6;
+  resize: none;
+}
+.panel :is(button, textarea, a, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}

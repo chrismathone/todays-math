@@ -1,0 +1,164 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+  getLearningInsight,
+  inquireLearningInsight,
+} from "@/components/math-srs/courseApi";
+import {
+  insightFixture,
+  inquiryFixture,
+  scopeA,
+} from "../../../scripts/qa/math-insight-ui/data";
+
+afterEach(() => vi.unstubAllGlobals());
+const response = (data: unknown, status = 200) =>
+  new Response(JSON.stringify(data), {
+    status,
+    headers: { "content-type": "application/json" },
+  });
+
+describe("learning insight strict client transport", () => {
+  it("GET encodes enrollment/branch context and validates the owned response DTO", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValue(response({ data: insightFixture() }));
+    vi.stubGlobal("fetch", fetch);
+    const result = await getLearningInsight(
+      scopeA.studentId,
+      scopeA.classId,
+      scopeA.branchId,
+    );
+    expect(result.ok).toBe(true);
+    expect(fetch).toHaveBeenCalledWith(
+      `/api/students/${scopeA.studentId}/math-srs/insight?classId=${scopeA.classId}&branchId=${scopeA.branchId}`,
+      expect.objectContaining({
+        cache: "no-store",
+        signal: expect.any(AbortSignal),
+      }),
+    );
+    expect(fetch.mock.calls[0][1].method).toBeUndefined();
+  });
+  it("POST sends only validated query and context, with no student answers or snapshot", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValue(response({ data: inquiryFixture() }));
+    vi.stubGlobal("fetch", fetch);
+    expect(
+      (
+        await inquireLearningInsight(
+          scopeA.studentId,
+          scopeA.classId,
+          { query: "  근거는?  " },
+          scopeA.branchId,
+        )
+      ).ok,
+    ).toBe(true);
+    expect(fetch.mock.calls[0][1]).toMatchObject({
+      method: "POST",
+      body: JSON.stringify({ query: "근거는?" }),
+    });
+  });
+  it.each(["", " ", "가".repeat(501)])(
+    "rejects invalid query before fetch",
+    async (query) => {
+      const fetch = vi.fn();
+      vi.stubGlobal("fetch", fetch);
+      expect(
+        (
+          await inquireLearningInsight(scopeA.studentId, scopeA.classId, {
+            query,
+          })
+        ).ok,
+      ).toBe(false);
+      expect(fetch).not.toHaveBeenCalled();
+    },
+  );
+  it("rejects extra request fields rather than silently discarding them", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    const input = { query: "근거는?", studentAnswer: "private" };
+    expect(
+      (await inquireLearningInsight(scopeA.studentId, scopeA.classId, input))
+        .ok,
+    ).toBe(false);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("rejects unknown fields in a success response", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValue(
+          response({ data: { ...insightFixture(), answer: "not permitted" } }),
+        ),
+    );
+    expect(
+      await getLearningInsight(scopeA.studentId, scopeA.classId),
+    ).toMatchObject({ ok: false, message: expect.stringContaining("형식") });
+  });
+  it("preserves structured unavailable messages", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValue(
+          response(
+            {
+              error: {
+                code: "UNAVAILABLE",
+                message: "질문 기능을 사용할 수 없습니다.",
+              },
+            },
+            503,
+          ),
+        ),
+    );
+    expect(
+      await inquireLearningInsight(scopeA.studentId, scopeA.classId, {
+        query: "근거는?",
+      }),
+    ).toMatchObject({
+      ok: false,
+      status: 503,
+      code: "UNAVAILABLE",
+      message: "질문 기능을 사용할 수 없습니다.",
+    });
+  });
+  it("propagates caller cancellation to the actual GET and POST fetches", async () => {
+    const signals: AbortSignal[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(
+        (_url, options) =>
+          new Promise((_resolve, reject) => {
+            signals.push(options.signal);
+            options.signal.addEventListener(
+              "abort",
+              () => reject(new DOMException("Aborted", "AbortError")),
+              { once: true },
+            );
+          }),
+      ),
+    );
+    for (const post of [false, true]) {
+      const caller = new AbortController();
+      const pending = post
+        ? inquireLearningInsight(
+            scopeA.studentId,
+            scopeA.classId,
+            { query: "근거는?" },
+            scopeA.branchId,
+            caller.signal,
+          )
+        : getLearningInsight(
+            scopeA.studentId,
+            scopeA.classId,
+            scopeA.branchId,
+            caller.signal,
+          );
+      await vi.waitFor(() => expect(signals.length).toBe(post ? 2 : 1));
+      caller.abort();
+      expect((await pending).ok).toBe(false);
+      expect(signals.at(-1)!.aborted).toBe(true);
+    }
+  });
+});
