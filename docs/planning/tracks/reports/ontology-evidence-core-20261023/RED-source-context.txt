@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/pss/orca/workspaces/today_/ontology-evidence-core-20261023
+
+ ❯ src/__tests__/unit/mathInsightV2.test.ts (34 tests | 1 failed) 343ms
+   × allows a source-backed contextual explanation without proposing a candidate 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/mathInsightV2.test.ts > allows a source-backed contextual explanation without proposing a candidate
+Error: contradictory-selection
+ ❯ parseInsightV2Selection src/lib/math-insight/v2Inference.ts:166:13
+    164|       selectedFacts.some((f) => f.kind === "observation")
+    165|     )
+    166|       throw new Error("contradictory-selection");
+       |             ^
+    167|   }
+    168|   return result;
+ ❯ composeInsightV2Result src/lib/math-insight/v2Inference.ts:176:19
+ ❯ src/__tests__/unit/mathInsightV2.test.ts:479:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 33 passed (34)
+   Start at  01:35:40
+   Duration  1.69s (transform 1.02s, setup 463ms, import 825ms, tests 343ms, environment 0ms)
+

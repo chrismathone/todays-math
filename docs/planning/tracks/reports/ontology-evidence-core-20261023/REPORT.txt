@@ -1,0 +1,125 @@
+Ontology evidence phase 2 — backend worker report
+
+Assigned branch: BIGSHOL/ontology-evidence-core-20261023
+Baseline: 8620f31542fec5d3fdb25711b7f306d625f7e425
+Final code commit: 9eef7606a6f97d49188aa61e7e651dc755a3bf24
+Pure snapshot/prompt/parser/composer freeze: 6c9e431563f68f1e344a28b9232eb849cc303fbd
+Immutable initial DTO commit: 6cbb1ecac0b5f30472a8694ba49a5591612341c5
+
+Result
+Implemented the explicitly opt-in v2 teacher evidence protocol on the existing
+insight GET/POST endpoint. No header retains v1; x-math-insight-version: 2 selects
+v2; every other present value is 400 VALIDATION_ERROR. POST accepts only {query}
+(up to 500 trimmed characters), bounded JSON body and existing narrowed scope.
+
+The new strict DTO exposes stored plan status (absent/active/paused/future),
+existing computed course target and course daily goal, raw retained independent
+first-attempt counts and separate current-period/current-plan inclusion, exclusions,
+source presence, bounded-history coverage, and code-owned facts with citations.
+General observations use actual elementary catalog grades 3–6 and ONLY the count
+fields of the existing sessionOutcome helper. They never copy its pilot outcome
+threshold into grade-wide passed/failed/mastery claims. Raw excluded rows remain
+separate from current observations. No-retained-session and missing source mean
+unavailable source, never no learning experience or zero achievement.
+
+The existing four-section fraction pilot remains a distinct nested v1 projection.
+Its graph/mapping/policy/candidate helpers and supply eligibility gates are unchanged.
+The existing expeditionCourseCheckCandidates wrapper still uses the saved mission
+solely for established candidate budget/unit eligibility. The new context does not
+construct a default student plan or display/evaluate expedition mission content or
+quota; absence of those contexts is not asserted. The courseDailyGoal value reuses
+courseSummary and is explicitly distinguished from stored plan quota and mission.
+
+Model boundary
+Same provider configuration, allowlist, API transport, admission, privacy filter,
+20-second signal, max output 700, singleAttempt and suppressUpstreamDetails.
+The prompt contains bounded aliases (at most 64 code facts) and allowed references,
+not student/teacher identity, raw session IDs, exercise text, answers or solutions.
+The model selects only fact/evidence/candidate IDs and a closed intent. The parser
+rejects unknown fields/IDs, duplicates, missing citations, mismatched snapshot,
+ineligible candidate endorsements, code fences and contradictory selections.
+The composer only returns canonical snapshot.facts entries, never model prose,
+numbers, relations or a repaired selection. Shared structural/reference validation
+runs before projection delivery, prompt generation, selection and composition.
+Catalog membership and strict typing are NOT semantic relevance/completeness proofs.
+
+Context can cite a source-backed observation without endorsing candidates. Explanatory
+facts for ineligible candidates have no endorsement candidateIds. No-record/plan
+context facts remain selectable independently of candidate eligibility. Unsupported
+date/section/diagnostic questions have a code-owned scope-limitation fact; the model
+cannot issue a date calculation, dynamic database query or new relationship.
+
+Concurrency and authorization
+V2 alone reads current uncached local user/branch menu/status/role/session facts before
+learning records. JWT admin normalization is matched exactly and existing menu/route
+policies are reused. A narrow read-only ownership adapter reuses legacyClassInScope,
+membershipAllows, currentClassGrantAllows, currentEnrollmentWhere and accountUsable
+with current local class, membership and enrollment rows. No source refresh or
+synchronization writer was added or forced. Existing common authentication may still
+perform its own established synchronization; this feature does not create that work.
+
+After inference the endpoint rechecks current authorization, ownership/enrollment,
+student class/branch, class owner/grade/permission context, revision and stored course.
+Revocation returns safe 403/404, including a sessionVersion change. Still-authorized
+record/context change returns 409 CONFLICT with no stale data. Time alone does not
+conflict: the first now is frozen for the observation window and new asOf-dependent
+snapshot hashes are not compared. Admission releases after success, parse/provider
+failure, timeout, cancellation, authorization denial and conflict. There is no automatic
+model POST or retry. The final local reads are not an atomic transaction with response
+delivery, and upstream managed-source changes are only as current as local leases.
+
+Compatibility
+v1 contract/snapshot/inference/config/admission and prerequisite evidence/mapping/
+policy byte equality is recorded in v1-byte-parity.json. Existing routes.ts changes
+are only the 10-line header dispatch/import. All no-header v1 tests remain separate.
+No student writer, schema, reader floor, FSRS, quota, grading, supply, mapping,
+prerequisite policy, graph, navigation, dependency, env file or global model default
+was changed. No real student record was created or used. Learning fixtures are local
+pure transitions; deliberate exceptional source mutations are labeled in tests.
+
+Verification
+Final scoped run: 8 test files, 147 tests PASS, --maxWorkers=1.
+Command: npx vitest run src/__tests__/unit/mathInsight*.test.ts src/__tests__/api/mathInsight*.test.ts --maxWorkers=1
+Coverage includes grade3/4/5/6 actual generation/answer transitions, absent/paused/
+future plans, no source/recent/old/prior-plan/unfinished/future/missing/unsupported
+source, hints/self-check/give-up/retry/repeated content, exact raw counts, stored
+versus computed quota, partial pilot parity, strict forgery/reference rejection,
+initial auth-before-record/model, final learning/course/account/menu/class/branch
+changes, managed membership/enrollment/local-lease revocation, time-only no-conflict,
+provider error privacy, admission release, overlap, cancellation and timeout.
+The read-only authorization tests compare scope results with the existing ownership
+helpers across local teacher/manager/superadmin and managed cases, including membership
+capabilities/dates/revocation, source permission revision/expiry, class closure/branch,
+student test/withdrawal, enrollment inclusive end/transfer end and on-hold read access.
+
+Scoped TypeScript PASS with no diagnostics; no full-project tsc was run by this worker.
+Temporary config extended repository tsconfig, disabled incremental/plugins, and
+included only the new contract/server/pure/tests files (and their transitive imports).
+Scoped ESLint PASS with no diagnostics. git diff --check PASS.
+
+RED evidence retained: initial API opt-in/final-menu checks, held-candidate fact
+selection, numeric offset/precision time filters, and source-backed context selection.
+Each was followed by a passing focused run and final combined run. Numeric instant
+fix is v2-only; inherited helper and v1 lexical behavior were not changed. Early test
+fixture issues (grade6 self-check submission, mocked account identity and admission
+clock regression) were test setup errors and were corrected, not product regressions.
+
+Independent evaluation and remaining ownership
+Independent audit owns real synthetic-model evaluation. Its 2c29 baseline reported
+22/24 strict and 17/24 semantic, with two code-fence failures and five generic-only
+answers; those failures were preserved. The 6c9 follow-up fixes context source selection
+and adds explicit JSON/source-specific prompt guidance; it was delivered for root-
+authorized reevaluation and heldout testing. This worker made zero model calls. At final report packaging the root reported corrected
+base24 strict/semantic24 PASS, with first heldout8 still running; those are independent
+root/audit results, not new core measurements. Pure inputs remain byte-equal to6c9
+(pure-freeze-parity.json). UI/courseApi remain UI-worker owned.
+Root owns independent review, full TypeScript, full integration, browser/server lease,
+build, fresh remote fetch/merge/push, deployment and production read-only verification.
+No browser, server, build, push, deployment or shared DB operation was performed here.
+
+Instruction sources
+Read root AGENTS and project-installed TypeSafe SKILL. Read current TypeSafe index,
+HTTP API, Choice and function-calling cookbook via live documentation (docs.typesafe.ai).
+Read installed next/dist/docs/01-app/01-getting-started/15-route-handlers.md before code.
+Read scope GOAL and, once present, consult/final-agreement.json plus final-goal and
+lead-final-decision. Their final refinements match this scoped implementation.
