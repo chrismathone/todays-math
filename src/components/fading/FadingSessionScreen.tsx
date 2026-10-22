@@ -179,6 +179,8 @@ export function FadingSessionScreen({
   onState,
   onReconcile,
   onExit,
+  exitLabel = "오늘의 복습으로",
+  completionHasNext = false,
   paused = false,
   onEvidence,
   onBoundary,
@@ -833,11 +835,11 @@ export function FadingSessionScreen({
             </p>
           </section>
           <button
-            className={s.primary}
+            className={completionHasNext ? s.secondary : s.primary}
             data-fading-action="true"
             onClick={onExit}
           >
-            오늘의 복습으로
+            {exitLabel}
             <FadingIcon name="arrow" />
           </button>
         </div>

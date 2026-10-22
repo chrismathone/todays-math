@@ -171,6 +171,35 @@ next concept day comes only while a card was never studied (`settled` in
 instead of replaying the whole unit (decision 6). Stars, chests and «모은 개념»
 still count collected cards only.
 
+**Explorer review examples — reader first (2026-10-22, L09b):** a definitions
+session and its completed-day replay record may carry `reviewVariant` —
+`{ version: 1, seed, cardIds }`, limited to the five grade-5 cards in
+`EXPLORER_REVIEW_VARIANT_CARD_IDS`. Missing identity always means the original
+static examples, including old/open sessions and historical days. The reader
+commit "feat(srs): read versioned explorer review examples before writing them"
+and the latest pre-activation correction "fix(srs): preserve decimal operand precision in review examples"
+(which also includes the consecutive-set and independent-truth corrections)
+is the floor: once a record carries this identity, never run older code against
+the shared database or roll production back below it. Version 1 templates are
+immutable; view, grading and solutions resolve the same stored identity. The
+identity stays server-only; public activity and completed-day shapes are unchanged.
+The later writer may mark only new memory sessions, after the coordinator confirms
+the reader is successful in production. Local in-memory validation is allowed;
+reader delivery alone must not start emitting identities for new sessions.
+
+**Explorer review grammar version 2 — reader first (2026-10-22):** the same
+`reviewVariant` identity accepts version 1 or 2, with unchanged seed/cardIds.
+Version 1 templates and outputs remain byte-exact to
+`7f68007dd2970ad8189c3674a7f79b957dd361e4`, including their original wording.
+Version 2 corrects only the range explanation/note particles (이상은 · 이하는 ·
+초과는 · 미만은, 큰/작은 수만). The reader commit "feat(srs): read grammar v2
+review examples before writing them" is the new floor: once a record carries
+version 2, never run older code against the shared database or roll production
+back below it. This reader still writes version 1 for new memory sessions.
+Only after the coordinator confirms this reader's production success may the
+separate writer mark new memory sessions version 2; open/completed/replayed
+version 1 and unmarked/static sessions keep their stored identity forever.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).

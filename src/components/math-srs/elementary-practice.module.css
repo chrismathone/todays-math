@@ -368,6 +368,13 @@
   color: var(--learn-on-accent);
 }
 
+/* Use the existing neutral/muted disabled tokens, rather than an active cobalt face. */
+.practice .primary:disabled {
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  opacity: 1;
+}
+
 .practice .primary:hover:not(:disabled) {
   background: var(--learn-accent-hover);
 }
@@ -1689,5 +1696,16 @@
   }
   .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .responsePane {
     flex: 0 0 auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .practice .primary:disabled {
+    background: ButtonFace;
+    color: GrayText;
+    border: 1px solid GrayText;
+  }
+  .practice button:focus-visible {
+    outline-color: Highlight;
   }
 }

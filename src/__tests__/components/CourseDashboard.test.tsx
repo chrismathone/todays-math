@@ -13,12 +13,14 @@ import type {
   CourseRosterStudent,
   CourseStudentDetail,
 } from "@/contracts/mathSrsCourse.contract";
+import { explorerTeacherDetail } from "@/lib/math-explorers/teacherSummary";
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 import { requestCourseNavigation } from "@/lib/math-srs/courseNavigation";
 import {
   getCourseDashboard,
   getCourseStudentDetail,
   saveCourseStudentPlan,
+  getExplorerTeacherDetail,
   getExplorerTeacherSettings,
   saveExplorerTeacherSettings,
 } from "@/components/math-srs/courseApi";
@@ -27,6 +29,7 @@ vi.mock("@/components/math-srs/courseApi", () => ({
   getCourseDashboard: vi.fn(),
   getCourseStudentDetail: vi.fn(),
   saveCourseStudentPlan: vi.fn(),
+  getExplorerTeacherDetail: vi.fn(),
   getExplorerTeacherSettings: vi.fn(),
   saveExplorerTeacherSettings: vi.fn(),
 }));
@@ -40,6 +43,7 @@ vi.mock("@/components/math/MathText", () => ({
 const dashboardApi = vi.mocked(getCourseDashboard);
 const detailApi = vi.mocked(getCourseStudentDetail);
 const saveApi = vi.mocked(saveCourseStudentPlan);
+const activityApi = vi.mocked(getExplorerTeacherDetail);
 const explorerApi = vi.mocked(getExplorerTeacherSettings);
 const explorerSaveApi = vi.mocked(saveExplorerTeacherSettings);
 const first = COURSE_SECTIONS[0];
@@ -237,6 +241,21 @@ beforeEach(() => {
     this.open = true;
   };
   roster();
+  activityApi.mockImplementation(async (id) => ({
+    ok: true,
+    data: {
+      student: {
+        id,
+        name: "김하늘",
+        classId: "class-1",
+        className: "초등 새싹반",
+        hasAccount: true,
+      },
+      today: "2026-10-22",
+      policy: 2,
+      detail: explorerTeacherDetail(null, "2026-10-22"),
+    },
+  }));
   detailApi.mockImplementation(async (id) => ({
     ok: true,
     data: detail(id === other.id ? other : learner),
@@ -245,6 +264,151 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("CourseDashboard", () => {
+  it("hides explorer data when the returned student identity differs", async () => {
+    const user = userEvent.setup();
+    activityApi.mockResolvedValueOnce({
+      ok: true,
+      data: {
+        student: {
+          id: other.id,
+          name: other.name,
+          classId: other.classId,
+          className: other.className,
+          hasAccount: true,
+        },
+        today: "2026-10-22",
+        policy: 2,
+        detail: explorerTeacherDetail(null, "2026-10-22"),
+      },
+    });
+    render(<CourseDashboard />);
+    await user.click(
+      await screen.findByRole("button", { name: "김하늘 상세 보기" }),
+    );
+    await user.click(await screen.findByRole("button", { name: "일별 활동" }));
+    const history = await screen.findByRole("region", {
+      name: "탐험 활동 기록",
+    });
+    expect(await within(history).findByRole("alert")).toHaveTextContent(
+      "학생 기록이 일치하지 않습니다.",
+    );
+    expect(history).not.toHaveTextContent(other.name);
+    expect(history).not.toHaveTextContent(
+      "아직 완료한 개념 카드 탐험 기록이 없습니다.",
+    );
+  });
+
+  it("does not mistake a denied explorer read for empty activity and retries independently", async () => {
+    const user = userEvent.setup();
+    activityApi.mockResolvedValueOnce({
+      ok: false,
+      status: 403,
+      message: "이 학생 탐험 기록을 열 수 없습니다.",
+    });
+    render(<CourseDashboard />);
+    await user.click(
+      await screen.findByRole("button", { name: "김하늘 상세 보기" }),
+    );
+    await user.click(await screen.findByRole("button", { name: "일별 활동" }));
+    const history = await screen.findByRole("region", {
+      name: "탐험 활동 기록",
+    });
+    await within(history).findByRole("alert");
+    expect(history).not.toHaveTextContent(
+      "아직 완료한 개념 카드 탐험 기록이 없습니다.",
+    );
+    await user.click(
+      within(history).getByRole("button", { name: "탐험 기록 다시 불러오기" }),
+    );
+    await within(history).findByText(
+      "아직 완료한 개념 카드 탐험 기록이 없습니다.",
+    );
+    expect(detailApi).toHaveBeenCalledTimes(1);
+    expect(saveApi).not.toHaveBeenCalled();
+  });
+
+  it.each(["explorer-only", "mixed"])(
+    "shows %s explorer history separately from course answer totals",
+    async (mode) => {
+      const user = userEvent.setup();
+      const course = detail(learner);
+      if (mode === "explorer-only") course.activity = [];
+      detailApi.mockResolvedValue({ ok: true, data: course });
+      activityApi.mockResolvedValue({
+        ok: true,
+        data: {
+          student: {
+            id: learner.id,
+            name: learner.name,
+            classId: learner.classId,
+            className: learner.className,
+            hasAccount: true,
+          },
+          today: "2026-10-22",
+          policy: 2,
+          detail: {
+            ...explorerTeacherDetail(null, "2026-10-22"),
+            started: true,
+            recentSessions: [
+              {
+                date: "2026-10-21",
+                route: "unit",
+                unitId: "g5-fractions",
+                unitTitle: "분수",
+                targetCardName: null,
+                first: 9,
+                total: 15,
+                unresolved: 2,
+                stars: 2,
+              },
+            ],
+          },
+        },
+      });
+      render(<CourseDashboard />);
+      await user.click(
+        await screen.findByRole("button", { name: "김하늘 상세 보기" }),
+      );
+      await user.click(
+        await screen.findByRole("button", { name: "일별 활동" }),
+      );
+      const history = await screen.findByRole("region", {
+        name: "탐험 활동 기록",
+      });
+      await within(history).findByText("분수");
+      expect(history).toHaveTextContent("9 / 15");
+      expect(history).not.toHaveTextContent(/정답률|FSRS|60%/);
+      expect(activityApi).toHaveBeenCalledWith(
+        learner.id,
+        learner.classId,
+        undefined,
+      );
+      expect(saveApi).not.toHaveBeenCalled();
+      if (mode === "explorer-only")
+        expect(
+          screen.getByText("표시할 일별 활동 기록이 없습니다."),
+        ).toBeInTheDocument();
+    },
+  );
+
+  it("distinguishes the saved standalone course quota from the integrated elementary mission", async () => {
+    const user = userEvent.setup();
+    const five = student({ plan: { ...learner.plan!, dailyQuestionCount: 5 } });
+    roster([five]);
+    detailApi.mockResolvedValue({ ok: true, data: detail(five) });
+    render(<CourseDashboard />);
+    await user.click(
+      await screen.findByRole("button", { name: "김하늘 상세 보기" }),
+    );
+    await user.click(await screen.findByRole("button", { name: "학습 설정" }));
+    expect(screen.getByLabelText("코스 하루 목표")).toHaveValue("5");
+    expect(screen.getByText(/독립 코스에서 적용되는 목표/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/초등 문제를 푸는 날에 10문제 묶음/),
+    ).toHaveTextContent(/기본 15칸/);
+    expect(saveApi).not.toHaveBeenCalled();
+  });
+
   it("preselects the branch enrollment and saves the student's actual explorer target", async () => {
     const user = userEvent.setup();
     const branchId = "eb2bf8f7-24a1-44cd-9778-c1da6bd20d12";
@@ -436,7 +600,7 @@ describe("CourseDashboard", () => {
     expect(buttons[1].closest("tr")).toHaveAttribute("data-selected", "true");
     await panel.findByRole("button", { name: "학습 설정" });
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "15");
     const saved = {
       ...secondEnrollment,
       revision: 4,
@@ -528,25 +692,25 @@ describe("CourseDashboard", () => {
     const panel = within(
       screen.getByRole("region", { name: "김하늘 · 학습 상세" }),
     );
-    await panel.findByLabelText("하루 학습량");
+    await panel.findByLabelText("코스 하루 목표");
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "20");
     const unload = new Event("beforeunload", { cancelable: true });
     window.dispatchEvent(unload);
     expect(unload.defaultPrevented).toBe(true);
     await user.click(buttons[0]);
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
     await user.click(buttons[1]);
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
     expect(detailApi).toHaveBeenCalledTimes(1);
     await user.keyboard("{Escape}");
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "10");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "10");
     const reverted = new Event("beforeunload", { cancelable: true });
     window.dispatchEvent(reverted);
     expect(reverted.defaultPrevented).toBe(false);
@@ -562,7 +726,7 @@ describe("CourseDashboard", () => {
     render(<CourseDashboard />);
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "15");
     await user.click(screen.getByRole("button", { name: "이바다 진도 설정" }));
     saveApi.mockResolvedValueOnce({
       ok: true,
@@ -614,7 +778,7 @@ describe("CourseDashboard", () => {
     );
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "20");
     await user.click(screen.getByRole("link", { name: "내부 이동" }));
     expect(navigate).not.toHaveBeenCalled();
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
@@ -629,7 +793,7 @@ describe("CourseDashboard", () => {
     expect(navigate).not.toHaveBeenCalled();
     await user.click(screen.getByRole("button", { name: "버리고 이동" }));
     expect(navigate).toHaveBeenCalledTimes(1);
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("10");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("10");
   });
   it("shows all accessible students, honest totals, account link and combined class/name filters", async () => {
     const user = userEvent.setup();
@@ -816,7 +980,7 @@ describe("CourseDashboard", () => {
     render(<CourseDashboard />);
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "15");
     await user.click(panel.getByRole("checkbox", { name: "자동 학습 사용" }));
     detailApi.mockResolvedValueOnce({ ok: true, data: detail(paused) });
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
@@ -913,7 +1077,7 @@ describe("CourseDashboard", () => {
     render(<CourseDashboard />);
     const panel = await openStudent(user, other.name);
     await user.selectOptions(panel.getByLabelText("학년"), "4");
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "20");
     await user.click(panel.getByRole("button", { name: "개요" }));
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
@@ -921,7 +1085,7 @@ describe("CourseDashboard", () => {
       screen.getByRole("button", { name: `${other.name} 시작 진도 설정` }),
     );
     expect(panel.getByLabelText("학년")).toHaveValue("4");
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
     expect(panel.getByRole("button", { name: "학습 설정" })).toHaveAttribute(
       "aria-pressed",
       "true",
@@ -940,7 +1104,7 @@ describe("CourseDashboard", () => {
     render(<CourseDashboard />);
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "20");
     await user.selectOptions(
       panel.getByLabelText("소단원", { exact: true }),
       second.id,
@@ -964,13 +1128,13 @@ describe("CourseDashboard", () => {
         panel.getByRole("button", { name: "학습 계획 저장" }),
       ).toBeEnabled(),
     );
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
     expect(panel.getByLabelText("소단원", { exact: true })).toHaveValue(
       second.id,
     );
     await user.click(panel.getByRole("button", { name: "개요" }));
     await user.click(screen.getByRole("button", { name: "계속 편집" }));
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
     saveApi.mockResolvedValueOnce({
       ok: true,
       data: { ...revised, revision: 10 },
@@ -1001,7 +1165,7 @@ describe("CourseDashboard", () => {
     render(<CourseDashboard />);
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "20");
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
     expect(await panel.findByRole("alert")).toHaveTextContent(
       "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
@@ -1012,8 +1176,8 @@ describe("CourseDashboard", () => {
     expect(
       panel.queryByRole("button", { name: "최신 기록 불러오기 · 입력 유지" }),
     ).not.toBeInTheDocument();
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
-    expect(panel.getByLabelText("하루 학습량")).toBeEnabled();
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("20");
+    expect(panel.getByLabelText("코스 하루 목표")).toBeEnabled();
     expect(panel.getByRole("button", { name: "학습 계획 저장" })).toBeEnabled();
   });
 
@@ -1227,7 +1391,7 @@ describe("CourseDashboard", () => {
     await user.click(panel.getByRole("button", { name: "상세 새로고침" }));
     await panel.findByText("복습 시점이 되어 다시 풀어요.");
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
-    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    await user.selectOptions(panel.getByLabelText("코스 하루 목표"), "15");
     saveApi.mockResolvedValueOnce({
       ok: false,
       status: 503,
@@ -1237,7 +1401,7 @@ describe("CourseDashboard", () => {
     expect(await panel.findByRole("alert")).toHaveTextContent(
       "계획을 저장하지 못했습니다.",
     );
-    expect(panel.getByLabelText("하루 학습량")).toHaveValue("15");
+    expect(panel.getByLabelText("코스 하루 목표")).toHaveValue("15");
     expect(
       screen.getByRole("button", { name: "김하늘 상세 보기" }).closest("tr"),
     ).toHaveTextContent("5 / 10");

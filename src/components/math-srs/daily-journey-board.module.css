@@ -183,7 +183,7 @@
   overflow-wrap: anywhere;
 }
 .progressNote {
-  font-size: 9.5px !important;
+  font-size: 14px !important;
   line-height: 1.45 !important;
   color: #6f819c;
   word-break: keep-all;
@@ -240,7 +240,7 @@
     font-size: 22px !important;
   }
   .progressNote {
-    font-size: 12.5px !important;
+    font-size: 14px !important;
   }
 }
 /* 가장 좁은 폰(판 300px 이하 — 320 화면): 세 줄이 들어가게 칸 안 여백을 줄인다 */
@@ -266,7 +266,7 @@
   }
 }
 .map .reviewNote {
-  font-size: 10px !important;
+  font-size: 14px !important;
   margin-top: 2px !important;
 }
 .eyebrow {
@@ -710,6 +710,7 @@ button.currentPosition {
   word-break: keep-all;
 }
 .reviewNote {
+  font-size: 14px !important;
   color: #416e5a;
 }
 .planNote {
@@ -790,8 +791,7 @@ button.next:active:enabled {
     height: 25px;
     font-size: 18px;
   }
-  .legend,
-  .reviewNote {
+  .legend {
     font-size: 10px !important;
   }
 }

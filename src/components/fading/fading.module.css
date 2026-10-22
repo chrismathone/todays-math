@@ -2705,6 +2705,7 @@
 .chipInput > div {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .chipInput input {
   flex: 1;
@@ -3122,6 +3123,13 @@
 }
 .typedInput button {
   min-height: 48px;
+}
+.root .primary:disabled,
+.root .typedInput button:disabled {
+  background: #e5eeff;
+  color: #5f6b80;
+  box-shadow: none;
+  opacity: 1;
 }
 .cardFlow {
   display: grid;

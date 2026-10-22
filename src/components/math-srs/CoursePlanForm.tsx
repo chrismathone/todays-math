@@ -181,7 +181,7 @@ function PlanFields({
           </label>
         </div>
         <label className={s.daily} htmlFor={`${id}-daily`}>
-          하루 학습량
+          코스 하루 목표
           <select
             id={`${id}-daily`}
             value={daily}
@@ -201,7 +201,10 @@ function PlanFields({
           </select>
         </label>
         <p className={s.note}>
-          5문제씩 나누어 풀고, 하루 목표를 채우면 마쳐요.
+          독립 코스에서 적용되는 목표이며 5문제씩 나누어 풉니다. 통합 학습에서는
+          초등 문제를 푸는 날에 10문제 묶음으로 배정합니다. 개념 활동과 오늘의
+          기억도 전체 분량(기본 15칸)에 맞춰 배정하며, 짧은 추가 확인은 따로
+          이어집니다.
         </p>
         <label className={s.toggle}>
           <input

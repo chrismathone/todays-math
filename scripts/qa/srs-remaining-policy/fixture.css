@@ -1,0 +1,20 @@
+@font-face {
+  font-family: PolicyPretendard;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+}
+:root {
+  --font-pretendard: PolicyPretendard;
+}
+.qa-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.qa-controls button {
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}

@@ -192,7 +192,7 @@ export function FadingHome({
                   ? "오늘의 평가를 마쳤어요. 개념 목록에서 기록 없는 연습으로 이어 갈 수 있습니다."
                   : summary.longBreak
                     ? `${summary.idleDays}일 쉬었어요. 오늘 할 만큼부터 다시 시작하세요.`
-                    : "복습일이 된 개념부터 다시 살펴보세요. 칩을 보고 문장을 채우며 뜻을 확인합니다."}
+                    : "복습일이 된 개념부터 다시 살펴보세요. 문장의 빈칸을 채우며 뜻을 확인합니다."}
             </p>
           </div>
           <div className={s.heroAction}>
@@ -310,7 +310,7 @@ export function FadingHome({
               {[
                 "개념 목록에서 고르기",
                 "문장을 읽고 뜻 살펴보기",
-                "단서를 지우며 칩 채우기",
+                "단서를 지우며 빈칸 채우기",
               ].map((label, i) => (
                 <div key={label}>
                   <span className={s.roundNumber}>{i + 1}</span>

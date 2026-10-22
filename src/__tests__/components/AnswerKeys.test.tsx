@@ -1196,7 +1196,8 @@ describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 �
       />,
     );
     const next = await screen.findByRole("button", { name: /다음 문제/ });
-    expectKeyCaps();
+    // 넘김은 Enter로 실행되지만 답 입력용 키 모양은 달지 않는다.
+    expect(next).toHaveAttribute("aria-keyshortcuts", "Enter");
     expect(next.querySelector("[data-answer-key]")).toBeNull();
     expect(next.querySelector("[data-answer-key-swap]")).toBeNull();
   });

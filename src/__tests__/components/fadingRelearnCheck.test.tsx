@@ -315,6 +315,31 @@ function QueueHost({
 }
 
 describe("minute typed checks", () => {
+  it("renders actual formula markup without nesting the math renderer in a paragraph", async () => {
+    const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+    const mathContent = structuredClone(content);
+    mathContent.concept.propositions[0].pieces[0] = {
+      kind: "text",
+      text: "$5$ 이상인 수는 ",
+    };
+    const { container } = render(
+      <FadingRelearnCheck
+        item={item}
+        content={mathContent}
+        source={source()}
+        onQueue={vi.fn()}
+        onConflict={vi.fn()}
+        onClose={vi.fn()}
+        onFailure={vi.fn()}
+      />,
+    );
+    await waitFor(() =>
+      expect(container.querySelector(".katex")).not.toBeNull(),
+    );
+    expect(container.querySelector("p div")).toBeNull();
+    expect(errors).not.toHaveBeenCalled();
+  });
+
   it("keeps the final result visible after its last queue content is removed, then releases the paused screen", async () => {
     const api = source();
     vi.mocked(api.grade).mockImplementationOnce(async (attempt) => ({
@@ -537,6 +562,89 @@ describe("server clock queue controller", () => {
     await act(async () => fireEvent(document, new Event("visibilitychange")));
     expect(api.queue).toHaveBeenCalledTimes(4);
     expect(hook.current.active).toBeNull();
+  });
+
+  it("respects closing the same check at later boundaries but keeps manual re-entry and changed checks", async () => {
+    const api = source();
+    const { result: hook, rerender } = renderHook(
+      ({ current }) => useFadingRelearn(current),
+      { initialProps: { current: api } },
+    );
+    await act(async () => {});
+    const unchanged = structuredClone(hook.current.queue);
+    act(() => hook.current.boundary());
+    act(() => hook.current.dismiss());
+    await act(async () => hook.current.refresh());
+    act(() => hook.current.boundary());
+    expect(hook.current.active).toBeNull();
+    expect(hook.current.queue).toEqual(unchanged);
+    render(<FadingRelearnStatus controller={hook.current} student />);
+    fireEvent.click(screen.getByRole("button", { name: "한 번 더 확인하기" }));
+    expect(hook.current.active?.token).toBe(item.token);
+    act(() => hook.current.dismiss());
+    const changed = {
+      ...item,
+      stage: "confirm" as const,
+      token: newFadingId(),
+    };
+    act(() => hook.current.receive(queue([changed])));
+    act(() => hook.current.boundary());
+    expect(hook.current.active?.token).toBe(changed.token);
+    act(() => hook.current.dismiss());
+    rerender({ current: source() });
+    await act(async () => {});
+    act(() => hook.current.boundary());
+    expect(hook.current.active?.token).toBe(item.token);
+    expect(api.record).not.toHaveBeenCalled();
+    expect(api.grade).not.toHaveBeenCalled();
+    expect(api.judge).not.toHaveBeenCalled();
+  });
+
+  it("allows a newly judging state after closing ready, then suppresses that same judging state", async () => {
+    const api = source();
+    const { result: hook } = renderHook(() => useFadingRelearn(api));
+    await act(async () => {});
+    act(() => hook.current.boundary());
+    act(() => hook.current.dismiss());
+    const judging = {
+      ...item,
+      state: "judging" as const,
+      pending: { attemptId: newFadingId(), answers: [] },
+    };
+    act(() => hook.current.receive(queue([judging])));
+    act(() => hook.current.boundary());
+    expect(hook.current.active?.state).toBe("judging");
+    act(() => hook.current.dismiss());
+    act(() => hook.current.boundary());
+    expect(hook.current.active).toBeNull();
+    expect(hook.current.queue?.counts.judging).toBe(1);
+  });
+
+  it("remembers closing the judging receipt returned while the ready modal was open", async () => {
+    const api = source();
+    const { result: hook } = renderHook(() => useFadingRelearn(api));
+    await act(async () => {});
+    act(() => hook.current.boundary());
+    act(() =>
+      hook.current.receive(
+        queue([
+          {
+            ...item,
+            state: "judging",
+            pending: { attemptId: newFadingId(), answers: [] },
+          },
+        ]),
+      ),
+    );
+    act(() => hook.current.dismiss());
+    act(() => hook.current.boundary());
+    expect(hook.current.active).toBeNull();
+    expect(hook.current.queue?.counts.judging).toBe(1);
+    act(() => hook.current.resume());
+    expect(hook.current.active?.state).toBe("judging");
+    expect(api.record).not.toHaveBeenCalled();
+    expect(api.grade).not.toHaveBeenCalled();
+    expect(api.judge).not.toHaveBeenCalled();
   });
 
   it("ignores an old identity's delayed queue and drops its open check", async () => {

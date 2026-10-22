@@ -48,7 +48,7 @@ export function FadingPreview({
             모바일 미리 보기
           </button>
         </div>
-        <p>저장되지 않음 · 화면을 바꿔도 풀이가 이어집니다</p>
+        <p>기억 학습만 미리 봅니다 · 저장되지 않음</p>
       </div>
       <div className={s.preview} data-preview-device={device}>
         <FadingApp source={source} preview />

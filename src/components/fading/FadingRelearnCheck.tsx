@@ -30,7 +30,7 @@ export function FadingRelearnStatus({
   allowStart?: boolean;
   student?: boolean;
 }) {
-  const { queue, failure, refresh, boundary } = controller;
+  const { queue, failure, refresh, resume } = controller;
   if (!queue?.enabled && !failure) return null;
   const actionable =
     !!queue?.enabled &&
@@ -41,7 +41,7 @@ export function FadingRelearnStatus({
     return (
       <aside className={s.status} aria-label="다시 확인하기">
         {actionable ? (
-          <button type="button" onClick={boundary}>
+          <button type="button" onClick={resume}>
             {queue!.counts.judging ? "쓴 답 확인하기" : "한 번 더 확인하기"}
           </button>
         ) : null}
@@ -77,7 +77,7 @@ export function FadingRelearnStatus({
             </div>
           ) : null}
           {allowStart && queue.counts.ready + queue.counts.judging > 0 ? (
-            <button type="button" onClick={boundary}>
+            <button type="button" onClick={resume}>
               {queue.counts.judging
                 ? "입력한 답 대조 이어하기"
                 : "추가 확인 시작"}
@@ -332,7 +332,7 @@ export function FadingRelearnCheck({
             grade();
           }}
         >
-          <p className={s.sentence}>
+          <div className={s.sentence}>
             {proposition.pieces.map((piece, index) =>
               piece.kind === "text" ? (
                 <FadingMath key={index} text={piece.text} />
@@ -344,11 +344,11 @@ export function FadingRelearnCheck({
                 </span>
               ),
             )}
-          </p>
+          </div>
           {fadingSafeLabel(proposition.term, targets) ? (
-            <p className={s.note}>
+            <div className={s.note}>
               <FadingMath text={proposition.term} />
-            </p>
+            </div>
           ) : null}
           <div className={s.inputs}>
             {targets.map((target, index) => (
@@ -409,22 +409,22 @@ export function FadingRelearnCheck({
         <section
           aria-label={student ? "내가 쓴 답 확인" : "추가 확인 기준안 대조"}
         >
-          <p className={s.sentence}>
+          <div className={s.sentence}>
             {proposition.pieces.map((piece, index) => (
               <FadingMath
                 key={index}
                 text={piece.kind === "text" ? piece.text : piece.target.text}
               />
             ))}
-          </p>
+          </div>
           {targets.map((target, index) => (
             <div key={target.id} className={s.comparison}>
               <strong>빈칸 {index + 1}</strong>
               <p>내 답: {answers[target.id] || "아직 쓰지 못했어요"}</p>
-              <p>
+              <div>
                 {student ? "답: " : "기준안: "}
                 <FadingMath text={target.text} />
-              </p>
+              </div>
               {unknown.some((answer) => answer.targetId === target.id) ? (
                 <fieldset disabled={busy || !!retry}>
                   <legend>

@@ -44,7 +44,7 @@ const activityNames = {
   // 갈래(정의 · 성질 · 공식 · 방법 …)와 상관없이 하나로(원장님 2026-09-28, D-143 ②) — 갈래는 이름 옆 딱지가 말한다.
   assemble: "문장 조립",
   examples: "예 모으기",
-  truth: "경계 살피기",
+  truth: "맞는지 살펴보기",
 };
 
 /**
@@ -158,7 +158,11 @@ export function ExplorerPracticeFrame({
           {session.reviewOnly ? (
             "지난 학습 다시 풀기"
           ) : (
-            <ExplorerMath text={session.title} />
+            <ExplorerMath
+              text={
+                session.title === "기억 퀘스트" ? "기억 복습" : session.title
+              }
+            />
           )}
         </span>
       </div>

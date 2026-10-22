@@ -27,6 +27,8 @@ import {
   definitionOptions,
   definitionQuestionId,
   definitionSessionCards,
+  definitionSessionCard,
+  type DefinitionSession,
   definitionSessionTitle,
   definitionUnits,
   definitionWeak,
@@ -177,7 +179,10 @@ export function applyExplorerAction(
     }
     feedback = {
       message: "요청한 개념 해설이에요.",
-      solution: cardSolution(action.cardId),
+      solution: cardSolution(
+        action.cardId,
+        before?.cardIds?.includes(action.cardId) ? before : undefined,
+      ),
     };
   } else {
     const onQuestion =
@@ -254,7 +259,13 @@ export function applyExplorerAction(
       );
       // An opened solution (plan §3.2 ②) uses the same shape as «해설 보기».
       feedback = solutionCardId
-        ? { ...rest, solution: cardSolution(solutionCardId) }
+        ? {
+            ...rest,
+            solution: cardSolution(
+              solutionCardId,
+              profile.definitions?.session,
+            ),
+          }
         : rest;
     } catch (error) {
       throw new ExplorerActionInvalid(
@@ -283,6 +294,9 @@ export function applyExplorerAction(
       session.route = day.route ?? "unit";
       session.targetCardId = day.targetCardId;
       session.eligible = [];
+      if (day.reviewVariant)
+        session.reviewVariant = structuredClone(day.reviewVariant);
+      else delete session.reviewVariant;
     }
     if (reviewSnapshot && session) {
       profile.stars = reviewSnapshot.stars;
@@ -306,6 +320,9 @@ export function applyExplorerAction(
         cardIds: definitionSessionCards(session).map((card) => card.id),
         route: session.route,
         targetCardId: session.targetCardId,
+        ...(session.reviewVariant
+          ? { reviewVariant: structuredClone(session.reviewVariant) }
+          : {}),
       });
     }
     // The imported engine's completion message suggested automatically showing answers.
@@ -358,8 +375,11 @@ export function applyExplorerAction(
 }
 
 /** A card's solution — «해설 보기» and an opened follow-up solution share it. */
-function cardSolution(cardId: string): ExplorerSolution {
-  const card = definitionCard(cardId);
+function cardSolution(
+  cardId: string,
+  session?: DefinitionSession,
+): ExplorerSolution {
+  const card = definitionSessionCard(session, cardId);
   return {
     cardId: card.id,
     name: card.name,
@@ -390,7 +410,7 @@ export function explorerView(
   let currentActivity: ExplorerActivity | null = null;
   if (session && !session.done) {
     const task = session.queue[session.index]!;
-    const card = definitionCard(task.cardId);
+    const card = definitionSessionCard(session, task.cardId);
     const unit = definitionUnits.find(
       (candidate) => candidate.id === card.unit,
     )!;
@@ -442,7 +462,7 @@ export function explorerView(
         ...currentActivity,
         followUp: { state: open.state, firstChoiceIds: open.firstChoiceIds },
         ...(open.state === "solution"
-          ? { solution: cardSolution(card.id) }
+          ? { solution: cardSolution(card.id, session) }
           : {}),
       };
   }
@@ -500,7 +520,12 @@ export function explorerView(
     dueCardIds: definitionDue(profile, serverDate).map((card) => card.id),
     weakCardIds: definitionWeak(profile).map((card) => card.id),
     chests: definitionChests(profile),
-    completedDays: stored.completedDays,
+    // Stored identity is server-only: older tabs parse the public shape strictly.
+    completedDays: stored.completedDays.map((day) => {
+      const publicDay = { ...day };
+      delete publicDay.reviewVariant;
+      return publicDay;
+    }),
     history: record?.history ?? [],
     workshop: workshopView(profile.workshop, serverDate),
     supplements: supplementView(profile, stored.completedDays, serverDate),

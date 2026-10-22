@@ -214,7 +214,7 @@ export function FadingComparisonSheet({
                   <ExplorerMath text={canon} />
                 </div>
                 <div data-missed={missed}>
-                  <p className={s.caps}>내가 넣은 칩</p>
+                  <p className={s.caps}>내가 채운 답</p>
                   <ExplorerMath text={mine} />
                 </div>
               </div>

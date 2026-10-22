@@ -344,6 +344,28 @@ describe("개념백지에서 교재로 이어지는 지연 조회", () => {
 });
 
 describe("교사 학생 상세의 교재 활동과 확인", () => {
+  it("treats a valid empty textbook history as no activity, not a missing student", async () => {
+    evidenceBody = { attempts: [], references: [] };
+    render(<TextbookStudentEvidence studentId={STUDENT_ID} />);
+    await screen.findByText(/아직 기록된 교재 활동이 없습니다/);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls[0][0]).toBe(EVIDENCE_URL);
+    expect(puts()).toHaveLength(0);
+  });
+
+  it("explains an unavailable textbook read without claiming the student is missing or access is certainly denied", async () => {
+    fetchMock.mockResolvedValueOnce(
+      errorResponse(404, "학생을(를) 찾을 수 없습니다."),
+    );
+    render(<TextbookStudentEvidence studentId={STUDENT_ID} />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "교재 활동을 확인할 수 없습니다. 학생의 재원 상태와 교재 담당 권한을 확인해 주세요.",
+    );
+    expect(screen.queryByText(/아직 기록된 교재 활동/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/학생을.*찾을 수/)).not.toBeInTheDocument();
+    expect(puts()).toHaveLength(0);
+  });
+
   it("정확한 학생의 활동과 허용된 교재 링크를 표시하고 CAS 요청만 저장한다", async () => {
     await openEvidence();
     expect(screen.getByText(attempt().response)).toBeVisible();
@@ -424,7 +446,11 @@ describe("교사 학생 상세의 교재 활동과 확인", () => {
         errorResponse(status, "이 학생 기록을 열 수 없습니다."),
       );
       fireEvent.click(screen.getByRole("button", { name: "활동 새로고침" }));
-      await screen.findByText("이 학생 기록을 열 수 없습니다.");
+      await screen.findByText(
+        status === 404
+          ? "교재 활동을 확인할 수 없습니다. 학생의 재원 상태와 교재 담당 권한을 확인해 주세요."
+          : "이 학생 기록을 열 수 없습니다.",
+      );
       expect(screen.queryByText(attempt().response)).not.toBeInTheDocument();
       expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
       expect(screen.queryByRole("link")).not.toBeInTheDocument();

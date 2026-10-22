@@ -747,7 +747,7 @@ export function TeacherFadingStatus({
         )}
       </div>
       {previewOpen ? (
-        <section className={s.preview} aria-label="학생 앱 미리 보기">
+        <section className={s.preview} aria-label="기억 학습 미리 보기">
           <header className={s.previewHeader}>
             <button
               type="button"
@@ -757,8 +757,11 @@ export function TeacherFadingStatus({
               학생 현황으로
             </button>
             <div>
-              <h2>학생 앱 미리 보기</h2>
-              <p>저장되지 않음</p>
+              <h2>기억 학습 미리 보기</h2>
+              <p>
+                별도 기억 학습 화면입니다. 탐험이 포함된 학생 홈과 다르며
+                저장되지 않습니다.
+              </p>
             </div>
           </header>
           <PreviewDataView read={readPreview} />

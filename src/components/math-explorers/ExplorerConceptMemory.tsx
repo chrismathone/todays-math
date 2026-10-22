@@ -594,6 +594,7 @@ export default function ExplorerConceptMemory({
             state={sessionState}
             practice={practice}
             paused={!!relearn.active}
+            onAccessFailure={onAccessFailure}
             onEvidence={(observation) => void relearn.record(observation)}
             onBoundary={relearn.boundary}
             onState={(next) => {
@@ -618,6 +619,17 @@ export default function ExplorerConceptMemory({
               if (!next.session) exitSession();
             }}
             onExit={exitSession}
+            exitLabel="학습 홈으로"
+            completionHasNext={
+              !!(
+                !practice &&
+                state &&
+                !state.session &&
+                dailyPlan?.next &&
+                !dailyBusy &&
+                !dailyFailure
+              )
+            }
           />
           {!practice &&
           state &&
@@ -707,10 +719,19 @@ export default function ExplorerConceptMemory({
       {
         studyBook: true,
         separateExpedition: dailyPlan?.integration.expedition === false,
+        // A concept day's prerequisite target also names the explorer bundle.
+        // Only a course target or a problem mission identifies problem progress.
         dailyUnit:
-          dailyPlan?.prerequisite?.target.title ??
-          dailyPlan?.activities.find((activity) => activity.kind === "practice")
-            ?.source.title,
+          (dailyPlan?.prerequisite?.target.courseSectionId
+            ? dailyPlan.prerequisite.target.title
+            : undefined) ??
+          dailyPlan?.activities.find(
+            (
+              activity,
+            ): activity is Extract<FadingDailyActivity, { kind: "practice" }> =>
+              activity.kind === "practice" &&
+              activity.source.kind !== "explorers",
+          )?.source.title,
         dailyExplorerAllowed: !dailyBusy && !dailyFailure,
       },
     );

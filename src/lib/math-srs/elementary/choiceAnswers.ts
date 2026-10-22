@@ -212,6 +212,54 @@ export function hasPrintedFourNumberCandidates(content: string): boolean {
   );
 }
 
+/** A range extremum is selected from the numbers in the question, never another question's answers. */
+function rangeExtremumChoices(problem: CourseProblem): string[] | null {
+  const text = problem.content
+    .replaceAll("$", "")
+    .replace(/\\ /g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const match =
+    /^(\d+(?:,\s*\d+){4}) 중에서 (\d+) (이상|이하|초과|미만)인 수 중 가장 (큰|작은) 수를 구하시오\.$/.exec(
+      text,
+    );
+  if (!match) return null;
+  const values = match[1].split(",").map(Number);
+  const boundary = Number(match[2]);
+  if (
+    new Set(values).size !== 5 ||
+    ![...values, boundary].every(Number.isSafeInteger)
+  )
+    return null;
+  const eligible = values.filter((value) =>
+    match[3] === "이상"
+      ? value >= boundary
+      : match[3] === "이하"
+        ? value <= boundary
+        : match[3] === "초과"
+          ? value > boundary
+          : value < boundary,
+  );
+  if (!eligible.length) return null;
+  const answer =
+    match[4] === "큰" ? Math.max(...eligible) : Math.min(...eligible);
+  if (gradeCourseAnswer(problem, String(answer)) !== true) return null;
+  const choices = [
+    problem.answer,
+    ...values
+      .filter((value) => value !== answer)
+      .sort((a, b) => Math.abs(a - answer) - Math.abs(b - answer) || a - b)
+      .slice(0, 3)
+      .map((value) => `$${value}$`),
+  ];
+  const random = stableRandom(problem.seed ^ 0x9e3779b9);
+  for (let i = choices.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [choices[i], choices[j]] = [choices[j], choices[i]];
+  }
+  return choices;
+}
+
 /** The student sees only this persisted list; grading still compares the answer on the server. */
 export function makeCourseAnswerChoices(
   problem: CourseProblem,
@@ -219,6 +267,9 @@ export function makeCourseAnswerChoices(
 ): Pick<CourseProblem, "answerChoices" | "interactive"> {
   if (problem.input.mode !== "number")
     return { answerChoices: null, interactive: null };
+
+  const range = rangeExtremumChoices(problem);
+  if (range) return { answerChoices: range, interactive: null };
 
   const embedded = embeddedCourseAnswerChoices(problem);
   if (embedded)
