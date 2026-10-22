@@ -481,3 +481,83 @@ it("allows a source-backed contextual explanation without proposing a candidate"
   expect(result.facts[0].evidenceIds.length).toBeGreaterThan(0);
   expect(result.facts[0].candidateIds).toEqual([]);
 });
+
+// These are now known model regressions, not unseen heldouts. Canonical selections
+// below exercise reference validity only; an independent model audit owns relevance.
+it.each(["newer-summary", "cooldown", "active-after-trigger"] as const)(
+  "accepts cited withholding context for known %s without endorsing candidates",
+  (state) => {
+    let c = practise(plannedCourse(T, t0), T, "learn", t0, FAIL, {
+      seed: 11003,
+    });
+    c = practise(c, T, "review", now, FAIL, { seed: 22301 });
+    const today = later(now, DAY),
+      time = later(today, 2 * 60 * 60 * 1000);
+    if (state === "newer-summary") {
+      // Schema-valid uncertain summary: its matching completed source is absent.
+      c.memories[T].lastReviewedAt = later(time, DAY).toISOString();
+      c.memories[T].nextReviewAt = later(time, 2 * DAY).toISOString();
+    } else if (state === "cooldown") {
+      c = practise(c, "5-1-5-4", "review", today, FAIL, { seed: 11801 });
+    } else {
+      c = practise(c, T, "review", today, ["wrong"], {
+        finishRetry: false,
+        seed: 11802,
+      });
+    }
+    const s = buildInsightV2Snapshot(storedCourseSchema.parse(c), 0, time),
+      p = promptData(s);
+    expect(p.capabilities.nextCheckProposal).toBe(false);
+    const source = s.observations.find((e) =>
+      state === "newer-summary"
+        ? e.source === "summary-without-session"
+        : e.exclusions.includes("unfinished"),
+    );
+    const canonical = s.facts.find((f) =>
+      state === "cooldown"
+        ? f.id === "fact:candidate:check:5-1-5-4"
+        : f.evidenceIds.includes(source!.id),
+    )!;
+    expect(canonical.kind).toBe("availability");
+    expect(canonical.candidateIds).toEqual([]);
+    const context = p.facts.find(
+      (f: { text: string }) => f.text === canonical.text,
+    );
+    const observation = p.facts.find(
+      (f: { kind: string; evidenceIds: string[] }) =>
+        f.kind === "observation" && f.evidenceIds.length,
+    );
+    const sel = {
+      snapshotId: p.snapshotId,
+      intent: "context",
+      factIds: [context.id, observation.id],
+      evidenceIds: [
+        ...new Set([...context.evidenceIds, ...observation.evidenceIds]),
+      ],
+      candidateIds: [],
+    };
+    const checked = parseInsightV2Selection(JSON.stringify(sel), s),
+      result = composeInsightV2Result(s, checked, provenance);
+    expect(result.status).toBe("supported");
+    expect(result.facts[0]).toEqual(canonical);
+    expect(result.facts[1].kind).toBe("observation");
+    expect(result.facts.every((f) => !f.candidateIds.length)).toBe(true);
+    expect(() =>
+      parseInsightV2Selection(
+        JSON.stringify({
+          ...sel,
+          evidenceIds: context.evidenceIds.length
+            ? sel.evidenceIds.filter((id) => !context.evidenceIds.includes(id))
+            : [],
+        }),
+        s,
+      ),
+    ).toThrow("missing-fact-reference");
+    expect(() =>
+      parseInsightV2Selection(
+        JSON.stringify({ ...sel, candidateIds: ["c0"] }),
+        s,
+      ),
+    ).toThrow("unsupported-selection");
+  },
+);

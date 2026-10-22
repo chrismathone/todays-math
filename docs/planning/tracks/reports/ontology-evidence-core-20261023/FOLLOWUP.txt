@@ -1,0 +1,80 @@
+Ontology phase 2 v2 — bounded prompt precedence follow-up
+
+Baseline: 2ecb9555c11ae0def944b480871874f9e6643a60
+Immutable product freeze: a0bf8c3bf3d640a061db4eed2334ea7b027c4d72
+v2Inference.ts SHA256:
+1ae4223c3c64e6c36b009bbfbdbb7159e6296a4b786c6929b11e1baaee7cfb12
+
+Root cause and change
+The old prompt correctly allowed context explanations for withheld candidates,
+but also instructed any next-check request with an unavailable candidate to select
+insufficient. That blanket condition conflicted with the explanation policy and
+matched the three actual generic-only failures below. The new prompt checks scope
+first, then separates proposal eligibility from current-state explanation availability.
+For an in-scope next-check request, existing relevant availability/source/plan facts
+can explain withholding through context with candidateIds=[] and every required
+citation. It explicitly forbids guessing or substituting another withholding cause.
+Unsupported dates/sections and diagnosis/mastery/automatic assignment demands still
+select insufficient with the existing scope limitation; actual proposals still require
+eligible candidates. No product edits follow the immutable prompt commit.
+
+Actual model RED evidence preserved, not regraded
+Provider/model: actual claude-opus-5, medium, 700 output tokens, 20-second boundary.
+Independent baseline known base24: strict22/24, semantic17/24; original failures remain.
+After previous 6c9 correction, known base24: strict24/24, semantic24/24.
+Original heldout8 against the previous prompt: strict8/8, semantic5/8, with three
+necessary and three unnecessary abstentions. All three semantic failures avoided
+candidate endorsement but selected generic insufficient instead of expected context:
+  h03-newer-summary: factIds=[f5], evidenceIds=[], candidateIds=[];
+    immutable expectation requires f15, source-uncertainty availability with e2.
+  h04-cooldown: factIds=[f7], evidenceIds=[], candidateIds=[];
+    immutable expectation requires one of f5/f6 (candidate withholding facts).
+    f5 specifically includes the existing recent-check postponement explanation.
+  h07-active-after-trigger: factIds=[f5], evidenceIds=[], candidateIds=[];
+    immutable expectation requires f15, unfinished-session availability with e2.
+Each actual selection had intent=insufficient and failed missing-required-fact-group-0
+and unnecessary-abstention. These three are now KNOWN regression cases, never unseen
+heldouts for this fix. Neither audit expectations nor captured requests/results changed.
+
+Exact retained audit artifact:
+/Users/pss/Desktop/creative/display-survey/consensus/ontology-plan-20261023/audit/replay-corrected-heldout-8.json
+SHA256: 93348512446854fbd514a5b0965945f5642520a9ab5bd1ea1205b11344cf7ff0
+Captured model requests: audit/corrected-heldout/requests/h03-newer-summary.json,
+h04-cooldown.json, h07-active-after-trigger.json under the same external audit directory.
+
+Offline checks and scope
+Added three canonical context/reference cases to existing mathInsightV2.test.ts using
+actual course transitions and one labeled schema-valid uncertain-summary mutation.
+Each composes the exact code-owned withholding fact plus a retained observation,
+selects no candidate, rejects removal of required citations, and rejects an ineligible
+candidate reference. Existing unsupported scope, fabricated ID, duplicate, citation,
+exact JSON, candidate eligibility and v1 checks remain. No prompt-string mirror tests.
+Scoped suite: npx vitest run src/__tests__/unit/mathInsight*.test.ts
+src/__tests__/api/mathInsight*.test.ts --maxWorkers=1 — 8 files / 150 tests PASS.
+After tightening the citation-removal assertion, focused suite: 37 tests PASS.
+Scoped ESLint and git diff --check PASS. Scoped TypeScript PASS using a temporary
+config extending this checkout's tsconfig, including only v2Inference and the focused
+test plus transitive imports, incremental=false, plugins=[], types=[node], and this
+checkout's node_modules/@types. The first temporary config omitted explicit typeRoots
+and failed Node process/node:* resolution; that verification-config error is retained
+here and was corrected without any repository config/dependency change.
+
+Byte comparison against baseline: catalog unchanged (SHA256
+12d7a17eeea90f92f6926cfef547ac6f3696e16ae55324dbf0c9839b341ebb50),
+and JSON prompt payload through parser/composer unchanged (SHA256
+f3133a5e0fab33020d8faa20e114777d871e714a8ea373d9f5cf3031263867ba).
+Only v2 prompt prose changed in product code. Snapshot/DTO/fact order and all v1,
+pilot/helper/education policy, transport, auth, model/config/env/dependencies, writers,
+student records and UI remain byte-identical to the assigned baseline.
+
+Independent reevaluation remains
+This worker made zero model/provider calls and read no credentials. Offline reference
+checks do not prove semantic relevance or that the new prompt fixes model behavior.
+Root accepted and normally merged a0bf, and authorized audit's separate 20-case run
+(base8, existing known heldout8, new undisclosed4), per msg_69627d3af8ed. Its actual
+result is not yet established by this report. Audit remains sole key reader; root owns
+independent results/review, integration, fullTS, browser/build, remote checks, release
+and production read-only verification. No browser/server/DB/API/build/push/merge was
+performed by this worker. Commits use normal git commit without hook bypass, amend
+or rebase. Read applicable AGENTS/GOAL/lead decisions/prior report and live TypeSafe
+index/State/Choice guidance; preserve code-owned facts and the existing stack.
