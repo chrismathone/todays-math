@@ -1,0 +1,165 @@
+
+ RUN  v4.1.11 /Users/pss/orca/workspaces/today_/ontology-evidence-core-20261023
+
+ ❯ src/__tests__/api/mathInsightV2Routes.test.ts (2 tests | 2 failed) 69ms
+   × opts in strictly while no-header GET stays exact v1 64ms
+   × rechecks current DB menu even when session claims remain authorized 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/api/mathInsightV2Routes.test.ts > opts in strictly while no-header GET stays exact v1
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      2
+    ],
+    "path": [
+      "data",
+      "scope",
+      "dataVersion"
+    ],
+    "message": "잘못된 입력: 값은 2 이어야 합니다"
+  },
+  {
+    "expected": "tuple",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "scope",
+      "supportedGrades"
+    ],
+    "message": "잘못된 입력: 예상 타입은 tuple, 받은 타입은 undefined입니다"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "scope",
+      "windowStart"
+    ],
+    "message": "일시 형식이 올바르지 않습니다."
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "scope",
+      "windowEnd"
+    ],
+    "message": "일시 형식이 올바르지 않습니다."
+  },
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "pilotId",
+      "graphHash",
+      "mappingSource",
+      "editorialEdge",
+      "versions"
+    ],
+    "path": [
+      "data",
+      "scope"
+    ],
+    "message": "인식할 수 없는 키: \"pilotId\", \"graphHash\", \"mappingSource\", \"editorialEdge\", \"versions\""
+  },
+  {
+    "expected": "object",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "planContext"
+    ],
+    "message": "잘못된 입력: 예상 타입은 object, 받은 타입은 undefined입니다"
+  },
+  {
+    "expected": "object",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "retention"
+    ],
+    "message": "잘못된 입력: 예상 타입은 object, 받은 타입은 undefined입니다"
+  },
+  {
+    "expected": "array",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "observations"
+    ],
+    "message": "잘못된 입력: 예상 타입은 array, 받은 타입은 undefined입니다"
+  },
+  {
+    "expected": "array",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "facts"
+    ],
+    "message": "잘못된 입력: 예상 타입은 array, 받은 타입은 undefined입니다"
+  },
+  {
+    "expected": "object",
+    "code": "invalid_type",
+    "path": [
+      "data",
+      "pilot"
+    ],
+    "message": "잘못된 입력: 예상 타입은 object, 받은 타입은 undefined입니다"
+  },
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "freshness",
+      "eligibility",
+      "goal",
+      "sections",
+      "evidence",
+      "nextChecks",
+      "limitations"
+    ],
+    "path": [
+      "data"
+    ],
+    "message": "인식할 수 없는 키: \"freshness\", \"eligibility\", \"goal\", \"sections\", \"evidence\", \"nextChecks\", \"limitations\""
+  }
+]
+ ❯ src/__tests__/api/mathInsightV2Routes.test.ts:46:49
+     44| it("opts in strictly while no-header GET stays exact v1", async () => {
+     45|   const r = await get(); expect(r.status).toBe(200);
+     46|   const s = mathInsightV2SnapshotResponseSchema.parse(await r.json()).…
+       |                                                 ^
+     47|   expect(s.planContext.status).toBe("absent");
+     48|   expect(s.retention.sourcePresence).toBe("none-retained");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/api/mathInsightV2Routes.test.ts > rechecks current DB menu even when session claims remain authorized
+AssertionError: expected 502 to be 403 // Object.is equality
+
+- Expected
++ Received
+
+- 403
++ 502
+
+ ❯ src/__tests__/api/mathInsightV2Routes.test.ts:60:33
+     58|     return JSON.stringify({snapshotId:s.snapshotId,intent:"context",fa…
+     59|   });
+     60|   expect((await post()).status).toBe(403);
+       |                                 ^
+     61|   expect(read).toHaveBeenCalledTimes(1);
+     62| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:18:36
+   Duration  1.73s (transform 1.17s, setup 430ms, import 1.18s, tests 69ms, environment 0ms)
+
