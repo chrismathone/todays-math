@@ -11,6 +11,7 @@ import {
   sessionOutcome,
   newestObservedAt,
 } from "@/lib/math-prerequisite/evidence";
+import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
 import { targetForCourse } from "@/lib/math-prerequisite/mapping";
 import type { prerequisiteCheckCandidates } from "@/lib/math-prerequisite/policy";
 import { buildInsightSnapshot, insightDigest } from "./snapshot";
@@ -81,10 +82,10 @@ export function buildInsightV2Snapshot(
     if (!course.plan) exclusions.push("no-plan");
     else {
       if (status === "future") exclusions.push("future-plan");
-      if (s.startedAt < course.plan.configuredAt)
+      if (Date.parse(s.startedAt) < Date.parse(course.plan.configuredAt))
         exclusions.push("before-plan");
     }
-    if (s.completedAt && s.completedAt < windowStart)
+    if (s.completedAt && Date.parse(s.completedAt) < Date.parse(windowStart))
       exclusions.push("outside-window");
     const included = exclusions.length === 0;
     const independentCorrect = counts?.independentCorrect ?? 0;
@@ -231,7 +232,7 @@ export function buildInsightV2Snapshot(
     facts.push({
       id: `fact:candidate:${c.id}`,
       kind: "availability",
-      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. ${c.caveats.join(" ")}`,
+      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. ${c.caveats.join(" ")} ${!mathPrerequisiteEnabled() ? "현재 선수 확인 기능이 꺼져 있습니다. 일반 보존 관찰 조회와는 별개인 후보 자격 조건입니다." : ""}`,
       evidenceIds: c.evidenceIds,
       candidateIds: c.eligible ? [c.id] : [],
     });
