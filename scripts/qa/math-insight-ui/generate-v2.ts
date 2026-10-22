@@ -21,6 +21,10 @@ async function main() {
     "src/lib/math-prerequisite/evidence.ts",
     "src/lib/math-prerequisite/policy.ts",
     "src/lib/math-srs/courseAutomation.ts",
+    "src/lib/math-explorers/expedition.ts",
+    "src/lib/math-srs/serverState.ts",
+    "src/lib/math-prerequisite/enabled.ts",
+    "src/lib/math-prerequisite/courseIntegration.ts",
     "src/contracts/mathInsightV2.contract.ts",
     "src/__tests__/helpers/mathPrerequisiteCourse.ts",
   ];
@@ -43,16 +47,16 @@ async function main() {
     courseApi,
     snapshotApi,
     inference,
-    policy,
-    integration,
+    expedition,
+    serverState,
     contracts,
   ] = await Promise.all([
     load("src/__tests__/helpers/mathPrerequisiteCourse.ts"),
     load("src/lib/math-srs/courseAutomation.ts"),
     load("src/lib/math-insight/v2Snapshot.ts"),
     load("src/lib/math-insight/v2Inference.ts"),
-    load("src/lib/math-prerequisite/policy.ts"),
-    load("src/lib/math-prerequisite/courseIntegration.ts"),
+    load("src/lib/math-explorers/expedition.ts"),
+    load("src/lib/math-srs/serverState.ts"),
     load("src/contracts/mathInsightV2.contract.ts"),
   ]);
   const { plannedCourse, practise, FAIL, PASS, DAY } = helpers;
@@ -109,27 +113,98 @@ async function main() {
   course = plannedCourse("5-2-2-1", earlier(7), 20, course);
   course = practise(course, "5-2-2-1", "learn", earlier(5), FAIL);
   course = practise(course, "5-2-2-1", "review", earlier(2), FAIL);
-  const project = (state: unknown, context = scopes[0]) =>
-    contracts.mathInsightV2SnapshotSchema.parse(
-      snapshotApi.buildInsightV2Snapshot(
-        state,
-        3,
-        now,
-        context,
-        policy.prerequisiteCheckCandidates(
+  type FeatureSetting = "on" | "off";
+  const featureOffText = "현재 선수 확인 기능이 꺼져 있습니다.";
+  const inheritedFeature = process.env.MATH_PREREQ_CHECK;
+  const project = (
+    state: unknown,
+    context: (typeof scopes)[number],
+    feature: FeatureSetting,
+  ) => {
+    const previous = process.env.MATH_PREREQ_CHECK;
+    // Only this offline CLI process is changed, synchronously, for one projection.
+    // The real wrapper and canonical snapshot prose read the same synthetic flag.
+    process.env.MATH_PREREQ_CHECK = feature;
+    try {
+      const snapshot = contracts.mathInsightV2SnapshotSchema.parse(
+        snapshotApi.buildInsightV2Snapshot(
           state,
+          3,
           now,
-          true,
-          integration.coursePrerequisiteBudget(state, now),
+          context,
+          expedition.expeditionCourseCheckCandidates(
+            { ...serverState.emptySrsState(), course: state },
+            now,
+          ),
         ),
-      ),
-    );
+      );
+      const candidateFacts = snapshot.facts.filter((fact: { id: string }) =>
+        fact.id.startsWith("fact:candidate:"),
+      );
+      assert.ok(
+        candidateFacts.length,
+        "Canonical candidate facts remain available.",
+      );
+      assert.ok(
+        candidateFacts.every(
+          (fact: { text: string }) =>
+            fact.text.includes(featureOffText) === (feature === "off"),
+        ),
+        "Candidate text must agree with the explicit synthetic feature setting.",
+      );
+      if (feature === "off")
+        assert.ok(
+          snapshot.pilot.nextChecks.every(
+            (candidate: { eligible: boolean }) => !candidate.eligible,
+          ),
+          "Feature-off candidates must all be ineligible through the production wrapper.",
+        );
+      assert.ok(
+        !snapshot.pilot.nextChecks.some(
+          (candidate: { eligible: boolean }) => candidate.eligible,
+        ) ||
+          !candidateFacts.some((fact: { text: string }) =>
+            fact.text.includes(featureOffText),
+          ),
+        "An eligible candidate cannot coexist with feature-off text.",
+      );
+      return snapshot;
+    } finally {
+      if (previous === undefined) delete process.env.MATH_PREREQ_CHECK;
+      else process.env.MATH_PREREQ_CHECK = previous;
+    }
+  };
   const scenarios: Record<string, ReturnType<typeof project>[]> = {};
-  const pair = (state: unknown) => scopes.map((scope) => project(state, scope));
-  scenarios.ready = pair(course);
-  scenarios.outside = pair(plannedCourse("3-1-1-1", earlier(1), 20, course));
-  scenarios.empty = pair(courseApi.emptyCourseState());
-  scenarios.paused = pair(
+  const scenarioFlags: Record<string, { MATH_PREREQ_CHECK: FeatureSetting }> =
+    {};
+  const pair = (name: string, state: unknown, feature: FeatureSetting) => {
+    scenarioFlags[name] = { MATH_PREREQ_CHECK: feature };
+    scenarios[name] = scopes.map((scope) => project(state, scope, feature));
+    assert.equal(
+      process.env.MATH_PREREQ_CHECK,
+      inheritedFeature,
+      "Restore the caller's flag after every scenario.",
+    );
+  };
+  pair("ready", course, "on");
+  pair("feature-off", course, "off");
+  assert.ok(
+    scenarios.ready.every((snapshot) =>
+      snapshot.pilot.nextChecks.some(
+        (candidate: { eligible: boolean }) => candidate.eligible,
+      ),
+    ),
+    "The original transitioned ready course must remain eligible through the production wrapper.",
+  );
+  assert.deepEqual(
+    scenarios["feature-off"].map((snapshot) => snapshot.observations),
+    scenarios.ready.map((snapshot) => snapshot.observations),
+    "Feature-off keeps factual retained observations usable and unchanged.",
+  );
+  pair("outside", plannedCourse("3-1-1-1", earlier(1), 20, course), "on");
+  pair("empty", courseApi.emptyCourseState(), "on");
+  pair(
+    "paused",
     courseApi.setCoursePlan(
       course,
       {
@@ -140,11 +215,14 @@ async function main() {
       },
       earlier(1),
     ),
+    "on",
   );
-  scenarios.future = pair(
+  pair(
+    "future",
     plannedCourse("5-2-2-1", new Date(now.getTime() + DAY), 20, course),
+    "on",
   );
-  scenarios.stale = pair(plannedCourse("5-2-2-1", earlier(1), 20, course));
+  pair("stale", plannedCourse("5-2-2-1", earlier(1), 20, course), "on");
   for (const [grade, section] of [
     [3, "3-1-1-1"],
     [4, "4-1-1-1"],
@@ -152,14 +230,14 @@ async function main() {
     [6, "6-1-1-1"],
   ] as const) {
     const state = rightCourse(section, earlier(2));
-    scenarios[`grade-${grade}`] = pair(state);
+    pair(`grade-${grade}`, state, "on");
   }
   // Deliberately malformed-source fixtures are derived from a real synthetic
   // transition and change only retained-source availability, never real records.
   const missing = structuredClone(course);
   missing.history = [];
   missing.learner.session = null;
-  scenarios["missing-source"] = pair(missing);
+  pair("missing-source", missing, "on");
   const incomplete = courseApi.startRecommendedCourse(
     plannedCourse("3-1-1-1", earlier(1), 20),
     { sectionId: "3-1-1-1", mode: "learn", reason: "fixture" },
@@ -168,7 +246,7 @@ async function main() {
     helpers.uuid,
     [],
   );
-  scenarios.unfinished = pair(incomplete);
+  pair("unfinished", incomplete, "on");
   let mixed = courseApi.emptyCourseState();
   for (const [index, section] of [
     "3-1-1-1",
@@ -178,8 +256,8 @@ async function main() {
   ].entries()) {
     mixed = rightCourse(section, earlier(8 - index * 2), mixed);
   }
-  scenarios["multiple-grades"] = pair(mixed);
-  const inquiries = scenarios.ready.map((snapshot) => {
+  pair("multiple-grades", mixed, "on");
+  const composeInquiry = (snapshot: ReturnType<typeof project>) => {
     // Read aliases from the exact core prompt catalog. No model is called.
     const catalog = JSON.parse(
       inference
@@ -234,17 +312,31 @@ async function main() {
       "Core composer must return canonical facts.",
     );
     return inquiry;
-  });
+  };
+  const inquiries = scenarios.ready.map(composeInquiry);
+  const featureOffInquiries = scenarios["feature-off"].map(composeInquiry);
+  assert.ok(
+    featureOffInquiries.every((inquiry) =>
+      inquiry.facts.some(
+        (fact: { kind: string }) => fact.kind === "observation",
+      ),
+    ),
+    "Feature-off factual inquiries remain usable through the canonical composer.",
+  );
   await writeFile(
     output,
     JSON.stringify(
       {
         backendFreeze: freeze,
         sourceHashes: hashes,
+        scenarioFlags,
+        candidateWrapper:
+          "expeditionCourseCheckCandidates({ ...emptySrsState(), course }, now)",
         generatedAt: now.toISOString(),
         scopes,
         scenarios,
         inquiries,
+        featureOffInquiries,
       },
       null,
       2,
@@ -254,6 +346,8 @@ async function main() {
     JSON.stringify({
       scenarios: Object.keys(scenarios),
       backendFreeze: freeze,
+      scenarioFlags,
+      restoredCallerFlag: process.env.MATH_PREREQ_CHECK === inheritedFeature,
       modelCalls: 0,
     }),
   );

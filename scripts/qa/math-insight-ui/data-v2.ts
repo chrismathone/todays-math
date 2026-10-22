@@ -17,9 +17,13 @@ export function insightFixture(context = scopeA, scene = "ready") {
 }
 export const outsideFixture = (context = scopeA) =>
   insightFixture(context, "outside");
-export function inquiryFixture(context = scopeA) {
+export function inquiryFixture(context = scopeA, scene = "ready") {
   return mathInsightV2InquiryResultSchema.parse(
-    structuredClone(generated.inquiries[index(context)]),
+    structuredClone(
+      (scene === "feature-off"
+        ? generated.featureOffInquiries
+        : generated.inquiries)[index(context)],
+    ),
   );
 }
 export const CURRENT_EVIDENCE_ID = insightFixture().pilot.evidence.find(
