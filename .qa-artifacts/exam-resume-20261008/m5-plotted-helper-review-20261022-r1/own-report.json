@@ -1,0 +1,76 @@
+{
+  "scope": "Short static review of plottedStudentPoints and exactly five call sites 09/11/12/14/15; no suite execution",
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM3Stat2.test.ts": "b3de8fc781d185a73798c159a447b5d92967dca7538dd1a8b278f8e02f54e049",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\svgLabels.ts": "772b64e21e07de09d2e98ebe0bacb019857e93697371c825b0d1ada4b35ffdda"
+  },
+  "goodBoundaries": [
+    "strict:true rendering; !ok throws, with no fallback to facts or raw points.",
+    "Both affine mappings require at least2 ticks, different screen positions, finite nonzero slope, and consistency of every selected tick.",
+    "Each recovered coordinate must be near an integer and within0..100 before rounding. Missing/nonfinite cx/cy throws.",
+    "Printed student count is required and compared with actual matched circle count. All5 call sites await helper.",
+    "Expected answer arithmetic is derived from plotted points and text thresholds. Remaining facts comparisons are extra consistency assertions, not point or answer oracles. Type14 additionally rejects duplicate points."
+  ],
+  "boundedGaps": [
+    {
+      "topic": "Count versus distinct visible observations",
+      "evidence": "No common helper uniqueness, positive finite radius, visibility/opacity or clip/viewBox checks. 09/11/12/15 may count coincident or invisible circles as multiple students if arithmetic remains consistent.",
+      "recommendation": "Assert unique recovered pairs and positive finite r, and explicitly require supported untransformed visible direct-child point disks or compute full transforms; reject unsupported point structure. This is test coverage, not a demonstrated defect in current native renderer."
+    },
+    {
+      "topic": "Transform and circle classification",
+      "evidence": "Regex scans every circle including defs/labels/decorations and ignores ancestor transforms. It is valid only under current scatter serialization invariant; strict rendering alone is not an independently established selector contract.",
+      "recommendation": "Restrict to verified data-point layer/direct root circles and reject transforms or use XML/world coordinates. Avoid claiming all SVG forms supported."
+    },
+    {
+      "topic": "Tick roles and metadata",
+      "evidence": "Any nonnegative integer label with middle/end anchor can be treated as tick; negative/decimal ticks are ignored. svgLabels substitutes0 for missing coordinates and defaults unknown anchor to middle. No check of expected major tick range, axis direction, subject labels, grid path or geometric placement of text.",
+      "recommendation": "For these positive score templates assert monotone x-increasing/y-decreasing scales, expected axis subjects and actual tick/grid structure, plus raw metadata validity. Keep this helper bounded to current templates."
+    },
+    {
+      "topic": "Precision and lexical inputs",
+      "evidence": "toBeCloseTo7 plus Math.round is approximate, not rational identity; Number accepts empty/whitespace as0 and the attribute regex does not parse XML namespaces/attribute ownership.",
+      "recommendation": "If used beyond this trusted renderer output, require exact finite numeric tokens and supported structural form. Do not weaken current tolerances to make failed readback pass."
+    }
+  ],
+  "callSiteAssessment": "No obvious async unawaited call, catch-and-pass, render-skip or raw-spec answer oracle introduced by the five replacements. The numerical count/threshold/mean/max comparisons remain substantive. This does not upgrade other tests still based on facts (e.g.10) into SVG-based independent checks.",
+  "syntheticCoverageWitnesses": [
+    {
+      "name": "duplicate-disks",
+      "recovered": [
+        [
+          40,
+          50
+        ],
+        [
+          40,
+          50
+        ]
+      ],
+      "printedN": 2,
+      "helperCountWouldMatch": true,
+      "uniqueVisiblePositions": 1
+    },
+    {
+      "name": "invisible-radius",
+      "svg": "<circle cx=\"40\" cy=\"50\" r=\"0\"/>",
+      "observation": "cx/cy and count accepted by helper logic; r not read."
+    },
+    {
+      "name": "ancestor-transform",
+      "svg": "<g transform=\"translate(1000 0)\"><circle cx=\"40\" cy=\"50\" r=\"3\"/></g>",
+      "observation": "regex reads local cx/cy, not visible transformed position."
+    },
+    {
+      "name": "hidden-circle",
+      "svg": "<circle cx=\"40\" cy=\"50\" r=\"3\" opacity=\"0\"/>",
+      "observation": "helper reads neither visibility nor opacity."
+    }
+  ],
+  "execution": "Python source checks only; four synthetic missing-contract witnesses not actual production renderer/JS/Vitest failures. Parent related199 tests not counted. Fresh144 prior sealed solutions not rerun or counted again.",
+  "limits": "No Node, API/model/DB, production/shared source edits, new student/grade/rights/public approval. Existing dirty files preserved.",
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM3Stat2.test.ts": "b3de8fc781d185a73798c159a447b5d92967dca7538dd1a8b278f8e02f54e049",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\svgLabels.ts": "772b64e21e07de09d2e98ebe0bacb019857e93697371c825b0d1ada4b35ffdda"
+  }
+}
