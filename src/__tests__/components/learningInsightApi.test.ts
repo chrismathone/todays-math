@@ -2,6 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   getLearningInsight,
   inquireLearningInsight,
+  getLearningInsightV2,
+  inquireLearningInsightV2,
 } from "@/components/math-srs/courseApi";
 import {
   insightFixture,
@@ -98,19 +100,17 @@ describe("learning insight strict client transport", () => {
   it("preserves structured unavailable messages", async () => {
     vi.stubGlobal(
       "fetch",
-      vi
-        .fn()
-        .mockResolvedValue(
-          response(
-            {
-              error: {
-                code: "UNAVAILABLE",
-                message: "질문 기능을 사용할 수 없습니다.",
-              },
+      vi.fn().mockResolvedValue(
+        response(
+          {
+            error: {
+              code: "UNAVAILABLE",
+              message: "질문 기능을 사용할 수 없습니다.",
             },
-            503,
-          ),
+          },
+          503,
         ),
+      ),
     );
     expect(
       await inquireLearningInsight(scopeA.studentId, scopeA.classId, {
@@ -160,5 +160,113 @@ describe("learning insight strict client transport", () => {
       expect((await pending).ok).toBe(false);
       expect(signals.at(-1)!.aborted).toBe(true);
     }
+  });
+});
+
+describe("learning insight explicit v2 opt-in", () => {
+  it("uses the opt-in header and rejects a v1 response without silently falling back", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValue(response({ data: insightFixture() }));
+    vi.stubGlobal("fetch", fetch);
+    expect(
+      await getLearningInsightV2(
+        scopeA.studentId,
+        scopeA.classId,
+        scopeA.branchId,
+      ),
+    ).toMatchObject({ ok: false, message: expect.stringContaining("형식") });
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch.mock.calls[0][1]).toMatchObject({
+      cache: "no-store",
+      headers: { "x-math-insight-version": "2" },
+    });
+  });
+  it("sends only trimmed query with v2 header and preserves structured conflict without retry", async () => {
+    const fetch = vi.fn().mockResolvedValue(
+      response(
+        {
+          error: { code: "CONFLICT", message: "조회한 기록이 바뀌었습니다." },
+        },
+        409,
+      ),
+    );
+    vi.stubGlobal("fetch", fetch);
+    expect(
+      await inquireLearningInsightV2(
+        scopeA.studentId,
+        scopeA.classId,
+        { query: "  계획 맥락은?  " },
+        scopeA.branchId,
+      ),
+    ).toMatchObject({ ok: false, status: 409, code: "CONFLICT" });
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch.mock.calls[0][1]).toMatchObject({
+      method: "POST",
+      body: JSON.stringify({ query: "계획 맥락은?" }),
+      headers: {
+        "content-type": "application/json",
+        "x-math-insight-version": "2",
+      },
+    });
+  });
+  it.each(["", " ", "가".repeat(501)])(
+    "rejects invalid v2 input before fetch",
+    async (query) => {
+      const fetch = vi.fn();
+      vi.stubGlobal("fetch", fetch);
+      expect(
+        await inquireLearningInsightV2(scopeA.studentId, scopeA.classId, {
+          query,
+        }),
+      ).toMatchObject({ ok: false, status: 400 });
+      expect(fetch).not.toHaveBeenCalled();
+    },
+  );
+});
+
+describe("learning insight actual v2 projections", () => {
+  it("parses actual frozen core GET and POST DTOs", async () => {
+    const v2 = await import("../../../scripts/qa/math-insight-ui/data-v2");
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(response({ data: v2.insightFixture() }))
+      .mockResolvedValueOnce(response({ data: v2.inquiryFixture() }));
+    vi.stubGlobal("fetch", fetch);
+    expect(
+      (
+        await getLearningInsightV2(
+          scopeA.studentId,
+          scopeA.classId,
+          scopeA.branchId,
+        )
+      ).ok,
+    ).toBe(true);
+    expect(
+      (
+        await inquireLearningInsightV2(
+          scopeA.studentId,
+          scopeA.classId,
+          { query: "보존된 사실은?" },
+          scopeA.branchId,
+        )
+      ).ok,
+    ).toBe(true);
+    expect(fetch).toHaveBeenCalledTimes(2);
+  });
+  it("v1 GET/POST never send the opt-in header", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(response({ data: insightFixture() }))
+      .mockResolvedValueOnce(response({ data: inquiryFixture() }));
+    vi.stubGlobal("fetch", fetch);
+    await getLearningInsight(scopeA.studentId, scopeA.classId);
+    await inquireLearningInsight(scopeA.studentId, scopeA.classId, {
+      query: "기존 조회",
+    });
+    for (const call of fetch.mock.calls)
+      expect(new Headers(call[1].headers).has("x-math-insight-version")).toBe(
+        false,
+      );
   });
 });

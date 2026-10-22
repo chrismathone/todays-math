@@ -36,3 +36,42 @@ lease grant. It checks ready/current/trigger citations, the explicit question,
 and outside-pilot static candidates at both widths; earlier broad-state results
 remain separate. A clipped, noninteractive, fixture-only MathText probe loads
 KaTeX fonts without adding artificial mathematics to actual server prose.
+
+## Phase 2 opt-in v2 QA (2026-10-23)
+
+The current panel and `verify.mjs` consume `data-v2.ts` / `generated-v2.json`.
+The retained v1 JSON and `data.ts` continue to exercise the unchanged legacy
+client exports. V2 uses the same endpoint with `x-math-insight-version: 2`.
+The fixture freezes core projection/composer commit
+`2c29e0c9b5ef65f0eb9209e04d59ccdd63db6db5`; the generator verifies actual source
+bytes against that exact commit, uses production pure transitions for grade 3–6
+(including explicit self-assessment where required), and freezes canonical
+teacher text without calling a model. The missing-source scenario deliberately
+removes retained source from a synthetic transitioned record. No real student
+record is read or changed.
+
+```sh
+node node_modules/tsx/dist/cli.mjs --tsconfig tsconfig.json \
+  scripts/qa/math-insight-ui/generate-v2.ts . \
+  scripts/qa/math-insight-ui/generated-v2.json \
+  2c29e0c9b5ef65f0eb9209e04d59ccdd63db6db5
+node node_modules/vitest/vitest.mjs run \
+  --config scripts/qa/math-insight-ui/vitest.config.mts
+node node_modules/typescript/bin/tsc --noEmit \
+  -p scripts/qa/math-insight-ui/tsconfig.json
+```
+
+Only after an explicit coordinator browser/server lease, run `verify.mjs
+--browser-granted` with `QA_OUTPUT` set to a durable external evidence directory
+and `QA_CHROMIUM_EXECUTABLE` set to the installed Chromium executable. No browser
+is downloaded. The script uses one engine, blocks external/API network requests,
+records product source hashes, and awaits browser/server closure in `finally`.
+The fixture's fetch interceptor serves API DTOs in memory.
+
+V2 checks cover stored plan versus computed course goal, retained-source absence
+and bounded history, generic observations versus the four-section fraction
+pilot, source focus/reveal, Enter and duplicate admission, cancellation, scope
+switch and reload races, model failures, authorization denial, and POST 409 →
+one fresh GET → no automatic POST with the question preserved. Unknown failures
+remain manual retry. Synthetic UI QA is distinct from real authorization,
+production services, model relevance, and educational validation.

@@ -11,7 +11,11 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
-    include: ["src/__tests__/components/LearningInsightPanel*.test.tsx", "src/__tests__/components/learningInsightApi*.test.ts"],
+    include: [
+      "src/__tests__/components/LearningInsightPanel*.test.tsx",
+      "src/__tests__/components/CourseDashboard.test.tsx",
+      "src/__tests__/components/learningInsightApi*.test.ts",
+    ],
     maxWorkers: 1,
     testTimeout: 20_000,
     css: false,

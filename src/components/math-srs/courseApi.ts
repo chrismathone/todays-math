@@ -102,6 +102,47 @@ const teacherQuery = (classId?: string, branchId?: string) => {
   return params.size ? `?${params}` : "";
 };
 const insightContract = () => import("@/contracts/mathInsight.contract");
+const insightV2Contract = () => import("@/contracts/mathInsightV2.contract");
+/** Explicit v2 opt-in; legacy exports below retain their strict v1 protocol. */
+export const getLearningInsightV2 = async (
+  studentId: string,
+  classId: string,
+  branchId?: string,
+  signal?: AbortSignal,
+) => {
+  const dto = await insightV2Contract();
+  return request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/insight${teacherQuery(classId, branchId)}`,
+    async (value) => dto.mathInsightV2SnapshotResponseSchema.parse(value).data,
+    undefined,
+    { [dto.MATH_INSIGHT_VERSION_HEADER]: dto.MATH_INSIGHT_V2 },
+    signal,
+  );
+};
+export const inquireLearningInsightV2 = async (
+  studentId: string,
+  classId: string,
+  input: import("@/contracts/mathInsight.contract").MathInsightInquiryInput,
+  branchId?: string,
+  signal?: AbortSignal,
+) => {
+  const dto = await insightV2Contract();
+  const parsed = dto.mathInsightV2InquiryInputSchema.safeParse(input);
+  if (!parsed.success)
+    return {
+      ok: false as const,
+      status: 400,
+      message: "질문을 1~500자로 입력해 주세요.",
+    };
+  return request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/insight${teacherQuery(classId, branchId)}`,
+    async (value) => dto.mathInsightV2InquiryResponseSchema.parse(value).data,
+    parsed.data,
+    { [dto.MATH_INSIGHT_VERSION_HEADER]: dto.MATH_INSIGHT_V2 },
+    signal,
+    25_000,
+  );
+};
 export const getLearningInsight = (
   studentId: string,
   classId: string,

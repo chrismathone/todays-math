@@ -1,14 +1,7 @@
 import { createRoot } from "react-dom/client";
 import CourseDashboard from "../../../src/components/math-srs/CourseDashboard";
-import {
-  courseDetailFixture,
-  insightFixture,
-  outsideFixture,
-  inquiryFixture,
-  rosterStudent,
-  scopeA,
-  scopeB,
-} from "./data";
+import { insightFixture, inquiryFixture, scopeA, scopeB } from "./data-v2";
+import { courseDetailFixture, rosterStudent } from "./data";
 import "../../../src/app/globals.css";
 import "katex/dist/katex.min.css";
 import w from "../../../src/components/unified/Workroom.module.css";
@@ -16,7 +9,14 @@ import "./fixture.css";
 import { MathText } from "../../../src/components/math/MathText";
 
 const scene = new URLSearchParams(location.search).get("scene") ?? "ready";
-type Call = { url: string; method: string; body: unknown; aborted: boolean };
+type Call = {
+  url: string;
+  method: string;
+  body: unknown;
+  aborted: boolean;
+  version: string | null;
+};
+let conflicted = false;
 const qa = { calls: [] as Call[], release: () => {}, blocked: [] as string[] };
 Object.assign(window, { insightQa: qa });
 const json = (data: unknown, status = 200) =>
@@ -36,6 +36,7 @@ window.fetch = async (input, options) => {
     method,
     body: options?.body ? JSON.parse(String(options.body)) : null,
     aborted: options?.signal?.aborted ?? false,
+    version: new Headers(options?.headers).get("x-math-insight-version"),
   };
   qa.calls.push(call);
   options?.signal?.addEventListener(
@@ -71,23 +72,35 @@ window.fetch = async (input, options) => {
   )
     return json({ data: courseDetailFixture(context) });
   if (url.pathname === `/api/students/${context.studentId}/math-srs/insight`) {
+    if (call.version !== "2") {
+      qa.blocked.push("missing-v2-opt-in");
+      return fail(400, "조회 버전 확인 필요");
+    }
     if (method === "GET") {
       if (scene === "loading" || (scene === "late-get" && context === scopeA))
         await new Promise<void>((resolve) => {
           qa.release = resolve;
         });
-      if (scene === "error")
+      if (scene === "error" || (scene === "stale-auth" && conflicted))
         return fail(403, "예시 조회 권한을 확인해 주세요.");
-      const snapshot =
-        scene === "outside" ? outsideFixture(context) : insightFixture(context);
-      if (scene === "empty") {
-        snapshot.sections = [];
-        snapshot.evidence = [];
-        snapshot.nextChecks = [];
-        snapshot.eligibility = "insufficient";
-        snapshot.freshness = "insufficient";
-        snapshot.goal = null;
-      }
+      const directScenes = [
+        "empty",
+        "outside",
+        "paused",
+        "future",
+        "stale",
+        "missing-source",
+        "unfinished",
+        "multiple-grades",
+        "grade-3",
+        "grade-4",
+        "grade-5",
+        "grade-6",
+      ];
+      const snapshot = insightFixture(
+        context,
+        conflicted ? "stale" : directScenes.includes(scene) ? scene : "ready",
+      );
       if (scene === "inconsistent") snapshot.context = { ...scopeB };
       return json({ data: snapshot });
     }
@@ -96,17 +109,26 @@ window.fetch = async (input, options) => {
         await new Promise<void>((resolve) => {
           qa.release = resolve;
         });
+      if (["conflict", "stale-auth"].includes(scene)) {
+        conflicted = true;
+        return fail(409, "조회한 학습 기록이 바뀌었습니다.");
+      }
+      if (scene === "auth-denied")
+        return fail(403, "예시 조회 권한을 확인해 주세요.");
       if (scene === "unavailable")
         return fail(503, "AI 질문 기능을 지금 사용할 수 없습니다.");
       if (scene === "ai-error")
         return fail(502, "질문 응답을 확인하지 못했습니다.");
+      if (scene === "unknown-error")
+        return fail(500, "질문 응답을 확인하지 못했습니다.");
       const result = inquiryFixture(context);
-      if (scene === "ai-inconsistent")
-        result.facts[0].evidenceIds = ["missing-record"];
+      if (scene === "ai-inconsistent") result.facts[0].text = "합성 위조 문장";
       if (scene === "insufficient") {
         result.status = "insufficient";
         result.intent = "insufficient";
-        result.facts = [];
+        result.facts = [
+          result.snapshot.facts.find((fact) => fact.kind === "limitation")!,
+        ];
       }
       return json({ data: result });
     }
