@@ -108,7 +108,7 @@ export const EXPLORER_REVIEW_VARIANT_CARD_IDS = [
   "g5-round-up",
 ] as const;
 export const explorerReviewVariantSchema = z.strictObject({
-  version: z.literal(1),
+  version: z.union([z.literal(1), z.literal(2)]),
   seed: count,
   cardIds: z
     .array(z.enum(EXPLORER_REVIEW_VARIANT_CARD_IDS))

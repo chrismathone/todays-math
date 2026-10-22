@@ -21,7 +21,7 @@ import {
 import { reviewVariantCard } from "@/lib/math-explorers/reviewVariants";
 
 const date = "2026-10-22";
-function marked(seed = 1) {
+function markedState(seed = 1, version: 1 | 2 = 1) {
   let state = createExplorerState("variant-reader", 5);
   state = applyExplorerAction(
     state,
@@ -31,7 +31,7 @@ function marked(seed = 1) {
   ).state;
   const session = state.profile.definitions!.session!;
   session.seen = [...ids];
-  session.reviewVariant = { version: 1, seed, cardIds: [...ids] };
+  session.reviewVariant = { version, seed, cardIds: [...ids] };
   return state;
 }
 function answer(state: StoredExplorer, values: number[]) {
@@ -75,11 +75,12 @@ function independentTruth(cardId: string, statement: string) {
     statement.includes("이상") || statement.includes("이하");
   return includesBoundary !== statement.includes("포함되지 않는다");
 }
-describe("review variant reader floor", () => {
+describe.each([1, 2] as const)("review variant reader floor v%s", (version) => {
+  const marked = (seed = 1) => markedState(seed, version);
   it("prints both tenths operands with one decimal place, matching the two-place explanation", () => {
     for (let seed = 0; seed < 640; seed++) {
       const card = reviewVariantCard(definitionCard("g5-decimal-multiply"), {
-        version: 1,
+        version,
         seed,
         cardIds: [...ids],
       });
@@ -94,7 +95,7 @@ describe("review variant reader floor", () => {
       );
     }
     const boundary = reviewVariantCard(definitionCard("g5-decimal-multiply"), {
-      version: 1,
+      version,
       seed: 9,
       cardIds: [...ids],
     });
@@ -107,7 +108,7 @@ describe("review variant reader floor", () => {
       const combinations = new Set<string>();
       for (let seed = 0; seed < 4; seed++) {
         const card = reviewVariantCard(definitionCard(id), {
-          version: 1,
+          version,
           seed,
           cardIds: [...ids],
         });
@@ -131,7 +132,7 @@ describe("review variant reader floor", () => {
       for (let seed = 0; seed < 640; seed++) {
         const labels = (value: number) =>
           reviewVariantCard(card, {
-            version: 1,
+            version,
             seed: value,
             cardIds: [...ids],
           })
@@ -152,7 +153,7 @@ describe("review variant reader floor", () => {
       const outputs = new Set<string>();
       for (let seed = 0; seed < 640; seed++) {
         const card = reviewVariantCard(original, {
-          version: 1,
+          version,
           seed,
           cardIds: [...ids],
         });
@@ -182,7 +183,7 @@ describe("review variant reader floor", () => {
       expect(reviewVariantCard(card)).toBe(card);
       if (!ids.some((id) => id === card.id))
         expect(
-          reviewVariantCard(card, { version: 1, seed: 52, cardIds: [...ids] }),
+          reviewVariantCard(card, { version, seed: 52, cardIds: [...ids] }),
         ).toBe(card);
     }
     const state = marked();
@@ -292,14 +293,57 @@ describe("review variant reader floor", () => {
     expect(
       storedExplorerSchema.parse(marked()).profile.definitions!.session!
         .reviewVariant!.version,
-    ).toBe(1);
+    ).toBe(version);
     for (const value of [
-      { version: 2, seed: 1, cardIds: [ids[0]] },
+      { version: 3, seed: 1, cardIds: [ids[0]] },
       { version: 1, seed: -1, cardIds: [ids[0]] },
       { version: 1, seed: 1, cardIds: ["prime"] },
       { version: 1, seed: 1, cardIds: [ids[0], ids[0]] },
     ])
       expect(explorerReviewVariantSchema.safeParse(value).success).toBe(false);
+  });
+  it("completes the same answers with identical card scheduling, history and stars across versions", () => {
+    const initial = markedState(33, 1);
+    const outcomes = ([1, 2] as const).map((storedVersion) => {
+      let state = structuredClone(initial);
+      state.profile.definitions!.session!.reviewVariant!.version =
+        storedVersion;
+      while (!state.profile.definitions!.session!.done) {
+        const session = state.profile.definitions!.session!;
+        const task = session.queue[session.index]!;
+        const card = definitionSessionCard(session, task.cardId);
+        const correct =
+          task.kind === 0
+            ? [0, 1]
+            : task.kind === 1
+              ? card.examples.flatMap((example, index) =>
+                  example.yes ? [index] : [],
+                )
+              : [Number(card.truth)];
+        state = answer(state, correct).state;
+        // Storage parse happens between every move, including completion.
+        state = storedExplorerSchema.parse(JSON.parse(JSON.stringify(state)));
+      }
+      expect(state.profile.definitions!.session!.reviewVariant!.version).toBe(
+        storedVersion,
+      );
+      expect(state.completedDays.at(-1)!.reviewVariant!.version).toBe(
+        storedVersion,
+      );
+      expect(JSON.stringify(explorerView(state, date))).not.toContain(
+        "reviewVariant",
+      );
+      return {
+        cards: state.profile.definitions!.cards,
+        history: state.profile.definitions!.history,
+        stars: state.profile.stars,
+        days: state.completedDays.map(({ reviewVariant: identity, ...day }) => {
+          expect(identity!.version).toBe(storedVersion);
+          return day;
+        }),
+      };
+    });
+    expect(JSON.stringify(outcomes[1])).toBe(JSON.stringify(outcomes[0]));
   });
   it("replays a completed variant exactly and keeps an old day static without changing history or schedule", () => {
     for (const variant of [

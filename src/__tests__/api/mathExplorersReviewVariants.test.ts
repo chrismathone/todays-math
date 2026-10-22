@@ -128,7 +128,7 @@ async function act(
   expect(response.status).toBe(200);
   return explorerStateSchema.parse((await response.json()).data);
 }
-function load(id: string, kind: number, variant: boolean) {
+function load(id: string, kind: number, variant: false | 1 | 2) {
   let explorer = createExplorerState(f.studentId, 5);
   explorer = applyExplorerAction(
     explorer,
@@ -142,7 +142,7 @@ function load(id: string, kind: number, variant: boolean) {
     (task) => task.cardId === id && task.kind === kind,
   );
   if (variant)
-    session.reviewVariant = { version: 1, seed: 27, cardIds: [...ids] };
+    session.reviewVariant = { version: variant, seed: 27, cardIds: [...ids] };
   f.rows.set(f.studentId, {
     studentId: f.studentId,
     revision: 1,
@@ -166,6 +166,23 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 describe("actual explorer route with in-memory storage: variant reader", () => {
+  it("rejects unauthenticated reads and writes before storage", async () => {
+    f.session = null;
+    expect((await GET(new Request(url, { headers }))).status).toBe(401);
+    expect(
+      (
+        await POST(
+          new Request(url, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({}),
+          }),
+        )
+      ).status,
+    ).toBe(401);
+    expect(f.reads).toBe(0);
+    expect(f.writes).toBe(0);
+  });
   it("starts a versioned new memory session through the route and resumes an old one without marking it", async () => {
     const explorer = createExplorerState(f.studentId, 5);
     explorer.profile.definitions = {
@@ -214,7 +231,7 @@ describe("actual explorer route with in-memory storage: variant reader", () => {
   it.each(ids)(
     "aligns GET, choices, POST grading, retry, solution reload and receipts: %s",
     async (id) => {
-      for (const variant of [false, true])
+      for (const variant of [false, 1, 2] as const)
         for (const kind of [1, 2]) {
           const card = load(id, kind, variant);
           if (!variant) expect(card).toBe(definitionCard(id));
@@ -261,6 +278,10 @@ describe("actual explorer route with in-memory storage: variant reader", () => {
             card.examples.map((e) => ({ label: e.text, correct: e.yes })),
           );
           expect(solution.feedback!.solution!.statement).toBe(card.trap);
+          expect(solution.feedback!.solution!.explanation).toBe(
+            card.explanation,
+          );
+          expect(JSON.stringify(solution)).not.toContain("reviewVariant");
           expect(solution.currentActivity!.solution).toEqual(
             solution.feedback!.solution,
           );
@@ -283,7 +304,9 @@ describe("actual explorer route with in-memory storage: variant reader", () => {
             f.rows.get(f.studentId)!.payload,
           ).explorers!;
           expect(stored.profile.definitions!.session!.reviewVariant).toEqual(
-            variant ? { version: 1, seed: 27, cardIds: [...ids] } : undefined,
+            variant
+              ? { version: variant, seed: 27, cardIds: [...ids] }
+              : undefined,
           );
           expect(stored.profile.definitions!.session!.first).toBe(0);
         }

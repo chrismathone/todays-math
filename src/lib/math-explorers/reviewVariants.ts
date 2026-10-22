@@ -76,7 +76,10 @@ export function reviewVariantCard(
         examples: values.map((value) => choice(String(value), accepts(value))),
         trap: `${n} ${term}에는 ${n}이 ${truth === inclusive ? "포함된다" : "포함되지 않는다"}.`,
         truth,
-        explanation: `${term}은 기준 수 ${n}을 ${inclusive ? "포함해" : "포함하지 않아"}. ${n}보다 ${greater ? "큰" : "작은"} 수${inclusive ? "와 기준 수" : "만"}가 이 범위에 들어가.`,
+        explanation:
+          variant.version === 2
+            ? `${term}${term === "이상" || term === "미만" ? "은" : "는"} 기준 수 ${n}을 ${inclusive ? "포함해" : "포함하지 않아"}. ${n}보다 ${greater ? "큰" : "작은"} 수${inclusive ? "와 기준 수가" : "만"} 이 범위에 들어가.`
+            : `${term}은 기준 수 ${n}을 ${inclusive ? "포함해" : "포함하지 않아"}. ${n}보다 ${greater ? "큰" : "작은"} 수${inclusive ? "와 기준 수" : "만"}가 이 범위에 들어가.`,
       };
       break;
     }
