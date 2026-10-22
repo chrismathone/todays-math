@@ -1,0 +1,170 @@
+{
+  "baseCommit": "1f20540ec8bdd6777b498f9692b00f0f3bf1368a",
+  "featureCount": 7,
+  "specimenCount": 8,
+  "actualResponseCount": 9,
+  "functionCompleted": 8,
+  "qualityPassed": 6,
+  "qualityFailed": 2,
+  "finalReplayExitCode": 1,
+  "inputTokens": 107912,
+  "outputTokens": 1917,
+  "helperLiveCalls": 0,
+  "productEdits": 0,
+  "syntheticGuardTestsPassed": 20,
+  "existingRegressionTestsPassed": 158,
+  "scopedTypeCheck": "passed",
+  "scopedEslint": "passed",
+  "affordance": "passed",
+  "assertionVersion": 2,
+  "cases": [
+    {
+      "caseId": "ocr",
+      "status": "quality-failed",
+      "functionCompleted": true,
+      "parsedSha256": "4b04c9b86e17e5b9499b8a92ef043cc5d3392a57e4bd5138ff9bd1493a3e1db8"
+    },
+    {
+      "caseId": "page-ocr",
+      "status": "quality-failed",
+      "functionCompleted": true,
+      "parsedSha256": "6e5de5b75ff7e8d64cd613a011196d59e78a4efd6816872ff6ed963d16989bd6"
+    },
+    {
+      "caseId": "figures",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "b28147523d9b77facbe3aa43fc11c47df4821db58714d019bf045398e4e82d06"
+    },
+    {
+      "caseId": "figure-redraw",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "f156ff56faa0ebe5b4d513fb1ec1c0529ae134b3caf5614ce58982119c8a50aa"
+    },
+    {
+      "caseId": "figure-edit",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "27f5c3dd3de3d866b92818bc09d7bcd6c8a8e52c690997163309aa69449cd68f"
+    },
+    {
+      "caseId": "solution",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "267df3d779f2a9abaf958e6e59ff0b22736675a3e739c369a3a0d94ad530248f"
+    },
+    {
+      "caseId": "english-photo-read",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "00a4738ff42107bf506927bbf14a9da10148115f1587ee4b5138d72e4479ea3b"
+    },
+    {
+      "caseId": "ocr-ko-control",
+      "status": "live-raw-replay-verified",
+      "functionCompleted": true,
+      "parsedSha256": "afd4c7e2ea26c1b424810deaafcba3cb3544d280a61049d12f01c38789e0f0e0"
+    }
+  ],
+  "phases": [
+    {
+      "id": "ocr.01",
+      "model": "claude-opus-5",
+      "effort": "low",
+      "maxOutputTokens": 4096,
+      "inputTokens": 32529,
+      "outputTokens": 286,
+      "requestSha256": "9db4dfcfd3e05a3a85a003904361ef6837d7741c5a33b8163a23100299aecc3e",
+      "responseSha256": "4ccbf5c70fd160ed5d3c2b49afb57d6fd41c35b85f8e9b6ee53f787fef238551"
+    },
+    {
+      "id": "page-ocr.01",
+      "model": "claude-opus-5",
+      "effort": "low",
+      "maxOutputTokens": 4096,
+      "inputTokens": 9002,
+      "outputTokens": 136,
+      "requestSha256": "1cf7810570b595c9184167c76702176f1f0379d801ca405ca0af0cd33c2e3d0f",
+      "responseSha256": "255e2780e26206d6b01a4a505482f087d0acde67849e6fb28732f1f4df71e7c8"
+    },
+    {
+      "id": "figures.01",
+      "model": "claude-opus-5",
+      "effort": "low",
+      "maxOutputTokens": 4096,
+      "inputTokens": 1897,
+      "outputTokens": 375,
+      "requestSha256": "7696cf5ef071969d388316059e333c569151295408af8564803dd97998057a6a",
+      "responseSha256": "9271aba7db5b61025eeedca55459b10ec35aac7fb87fa866e705270ed5097709"
+    },
+    {
+      "id": "figure-redraw.01",
+      "model": "claude-opus-5",
+      "effort": "medium",
+      "maxOutputTokens": 8192,
+      "inputTokens": 12614,
+      "outputTokens": 341,
+      "requestSha256": "e42dcc884e1f93fc722b33a4188e0ac8f6660b234f8cd3ab709634a2b8eeb2d4",
+      "responseSha256": "1ae2ffdb630d551937a4c550c9f258d4922085f9ababb4a9af0294fa9c4b0ffe"
+    },
+    {
+      "id": "figure-redraw.02",
+      "model": "claude-opus-5",
+      "effort": "medium",
+      "maxOutputTokens": 3000,
+      "inputTokens": 4674,
+      "outputTokens": 108,
+      "requestSha256": "0eb4c4c0aa3cbfb3cce86a10ffbd15ef029b23c201bec6f0964f573df4af8a06",
+      "responseSha256": "00774b735f3a027ca9e14d4d4f2a5fbf5ca5656cdc2b5ae8756451b9bf021623"
+    },
+    {
+      "id": "figure-edit.01",
+      "model": "claude-opus-5",
+      "effort": "medium",
+      "maxOutputTokens": 4096,
+      "inputTokens": 4182,
+      "outputTokens": 42,
+      "requestSha256": "cc407a32f63584f598ccd68fa5cf6e9255f8bb56fbe41712c4517fdbf53e1053",
+      "responseSha256": "cd0deba2ee01ac87f600b984aec102ecf5cd2f20a9c8abc7e888a6d1fb27cf0c"
+    },
+    {
+      "id": "solution.01",
+      "model": "claude-opus-5",
+      "effort": "medium",
+      "maxOutputTokens": 8192,
+      "inputTokens": 7931,
+      "outputTokens": 97,
+      "requestSha256": "b59f62b9c02bdc3701760a3642a38b52e8c7d32c2286e60073fdb28d6fe6cc63",
+      "responseSha256": "015abf160c0d9fff00bb6e4c15deda714ea7a9b1f61c49928804a6005f14cccb"
+    },
+    {
+      "id": "english-photo-read.01",
+      "model": "claude-opus-5-5",
+      "effort": "low",
+      "maxOutputTokens": 4096,
+      "inputTokens": 2482,
+      "outputTokens": 195,
+      "requestSha256": "ae5b99098a91963792e1a01785f50f840e553536909ce10bba8a5706c1064fc3",
+      "responseSha256": "80aa58dbdff1e661c129a645ac8eba1a8008b7d4607da42bb8c616488196a83c"
+    },
+    {
+      "id": "ocr-ko-control.01",
+      "model": "claude-opus-5",
+      "effort": "low",
+      "maxOutputTokens": 4096,
+      "inputTokens": 32601,
+      "outputTokens": 337,
+      "requestSha256": "2dc785a9c11e3acb110d53c1c42e0a5c59094894edf42db831d067216eada7f5",
+      "responseSha256": "6f8661af251aa0014389a519322682ebf2368e76feea2659454d4544465a9d89"
+    }
+  ],
+  "externalEvidenceSha256": {
+    "requests.json": "5caf91a3db8fc500f16db5a9f64f034f081f8f631e4e3bbce6b3fa532ae9b9f7",
+    "response-map-09.json": "3a51a338142e190ce882c30cd9c86999b80036335cd9202580faeeb23b9c24ce",
+    "replay-summary.json": "d126eda7a52ea4d8edc39116641df54655df26464758956e33c6fa69d0d3254a",
+    "source-manifest.json": "6440ab417802689ab1202606e1e2c41e1bb236d4f63cce16e6ddff5fe11ae2dc",
+    "criterion-history.json": "b3d8097b92758970a5b288bfa6a9c993d1be77f389cefba329f57a24b95ba4d7",
+    "page-crop-ink.json": "388bf9f0e7f76d05fd48baac13663390669e803cd11378565a148f16fbcdb779"
+  }
+}
