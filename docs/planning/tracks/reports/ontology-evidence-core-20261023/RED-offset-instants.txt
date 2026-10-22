@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/pss/orca/workspaces/today_/ontology-evidence-core-20261023
+
+ ❯ src/__tests__/unit/mathInsightV2.test.ts (33 tests | 1 failed) 425ms
+   × compares current-plan instants numerically across accepted offsets and precision 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/mathInsightV2.test.ts > compares current-plan instants numerically across accepted offsets and precision
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/unit/mathInsightV2.test.ts:445:75
+    443|   const course=practise(plannedCourse("3-1-1-1",t0),"3-1-1-1","learn",…
+    444|   const positive=structuredClone(course);positive.plan!.configuredAt="…
+    445|   expect(buildInsightV2Snapshot(positive,0,now).observations[0].includ…
+       |                                                                           ^
+    446|   const precise=structuredClone(course);precise.learner.session!.start…
+    447|   expect(buildInsightV2Snapshot(precise,0,now).observations[0].include…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 32 passed (33)
+   Start at  01:33:51
+   Duration  2.03s (transform 1.09s, setup 591ms, import 922ms, tests 425ms, environment 0ms)
+
