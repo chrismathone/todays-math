@@ -1,0 +1,36 @@
+{
+  "scope": "QA-only exact parent delta and bounded TS regression candidate because worker bake baseline differs",
+  "parentBaselineCommit": "406615bf8690d91e1ca86f0deee5c5af8de74b79",
+  "parentRawSHA256": "d4558484409c8a22f451dd15a909a71ba075cfa3de5cf6b3c10b18a4e8745445",
+  "parentLFSHA256": "d1718e6f3db46f407cbd4733d6f3a6ad3a96c48158805630d689a6be7e538de1",
+  "ownRawSHA256": "54e6604894fd9f49f07c24a9779ab69e33592cf8b4c7bad7af8ed4b37878dfad",
+  "ownLFSHA256": "671c91ea0822d704b246294aa49621d03f7e4632c3fcf98d3edb84fe4c099bb6",
+  "candidateLFSHA256": "f68ff53dd252601f3c64bf0cc66a64c5d7035caef24b291187ef1b4636d2bd72",
+  "patchSHA256": "9977bb479da2a34401ba1029cdaeb732eacd1e16e49f8bca1f06470de41d1d2b",
+  "testCandidateSHA256": "381795bef8dc3576de1cc9e559fb8d71e48dbf66e39e0978eedf580bbaa93aa4",
+  "testCandidateCases": 8,
+  "gitApplyCheck": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "",
+    "actualApply": false
+  },
+  "productionFilesEdited": 0,
+  "parentUnchanged": true,
+  "guardContract": [
+    "Existing asset keepsFrame and registry-based extent precede ordinary group recursion.",
+    "Invalid/edited g[data-asset] has no measurable registered extent and does not fall through to generic geometry.",
+    "inkPoints also preserves the registered current/legacy container; no new sampled asset bounds.",
+    "No bake switch or child-coordinate rewriting changed; g still moves through whole frame matrix.",
+    "Ordinary nested group extents compose child matrices once; ordinary ink recurses using full element matrices and existing curve sampling."
+  ],
+  "expectedRegression": [
+    "Nested ordinary rect rotation/alignment bounds become nonempty and correct.",
+    "Nested quadratic ink box uses sampled curve height50, not control point100.",
+    "Current and legacy registered airplane bounds use exact matching registry viewBox, not ink.",
+    "Unknown slug, changed body, nonfinite/degenerate transform rejected without modifying source.",
+    "Whole asset matrix motion preserves every child geometry attr and stable number; no change to strict transform/identity implementation."
+  ],
+  "ownExecuted": "Python candidate construction, invariants, exact arithmetic and readonly git apply --check only; no JS/TS/Node/Vitest/browser execution. Parent must apply exact delta and run tests.",
+  "limits": "No broad renderer/grade/rights approval. Do not copy worker old figureBake over parent. Patch generated from current parent LF-equivalent406615bf8; rebind SHA before apply. Original source and unrelated dirty untouched."
+}
