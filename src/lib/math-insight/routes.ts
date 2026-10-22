@@ -22,6 +22,7 @@ import { ClassAccessDenied } from "@/lib/classAccess";
 import { noStore } from "@/lib/learn/accountRoutes";
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import { runModelApi } from "@/lib/studio-ai/api";
+import { expeditionCourseCheckCandidates } from "@/lib/math-explorers/expedition";
 import { buildInsightSnapshot } from "./snapshot";
 import {
   buildInsightPrompt,
@@ -155,15 +156,17 @@ export async function handleInsightRequest(
       );
     // Every authorization check completes before reading the learning record or invoking a model.
     const saved = await readSrsState(student.id);
+    const now = new Date();
     const snapshot = buildInsightSnapshot(
       saved.state.course ?? emptyCourseState(),
       saved.revision,
-      new Date(),
+      now,
       {
         studentId: student.id,
         classId: student.classId,
         branchId: student.branchId,
       },
+      expeditionCourseCheckCandidates(saved.state, now),
     );
     if (!inquiry)
       return noStore(
