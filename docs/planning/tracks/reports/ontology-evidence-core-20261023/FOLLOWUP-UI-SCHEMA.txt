@@ -1,0 +1,50 @@
+Insight UI synthetic record-shape correction — 2026-10-23
+
+Root integration merged normally: f9bc1b14f10852c382c83367e83f1e341f792903.
+Immutable QA code: aa346029f04faa0a5d92fcaff29a4399fd06c19b.
+Approved backend source freeze: 9a009c737e0c2e490a2d0c5b9fb27d9350447548.
+Unchanged tested UI product: 83901c9ab6b3698548574dd914a0af324f7e70d6.
+
+Reproduced root's RED audit: missing-source clears history/learner.session but
+leaves five requests, so storedCourseSchema rejects the synthetic record.
+Cleared only missing.requests alongside the discarded sessions. All 14 states
+now parse the existing schema before both production wrapper and snapshot,
+under their explicit on/off flags; two scopes per scenario record schemaValid
+true. No other invalid state was found. No product/schema/helper/policy/UI or
+authorization change was needed; validation is synthetic evidence, not actual
+operational records. Paid model fixtures and their results are unaffected.
+
+Canonical fixture comparison: all facts, observations and pilot DTO fields are
+unchanged except missing-source snapshot/pilot stateDigest, reflecting removed
+receipts. Other JSON changes are backend freeze, the approved v2Inference source
+hash (old 8d63f8499ef4bcbd00e0a97e1ff4c21f75f25c3423267f755a85fd8c3a52a1fd;
+new 43b58a7fabe3fa3d4fb1f787d40706402a2c1a83227ba91c4d7dbe89bf36441f),
+and new state-validation metadata.
+Exact old/new hashes and differing paths are in fixture-comparison.json; the
+current fixture SHA256 is c1c051647604834cfc048033976eb7cb402ac64b3ebbdf0b5a351c016e735241.
+Separate inherited-on/off generator processes exit 0 with identical JSON.
+
+Evidence directory (all old artifacts preserved):
+/Users/pss/Desktop/creative/display-survey/consensus/ontology-plan-20261023/ui/schema-correction/
+red-generator.log preserves the original rejection; old-generated-v2.json
+preserves the prior fixture. evidence-manifest.json records exact refs, source
+hashes, scenario flags/schema validation, comparisons and verification outcomes.
+All 356 pre-existing UI evidence files, including the earlier 271 and prior
+flag-correction files, match old-artifact-hashes.json byte for byte.
+
+One explicitly authorized installed-Chromium/local-Vite full matrix: 64 captures,
+34 checks, errors 0, rejected requests 0, failure null, resourcesClosed true,
+runner exit 0. Covers both widths, missing sources, on/off coherence, citations,
+409 refresh, denial clearing, keyboard and resize; all captures have overflow 0,
+no broken images/KaTeX errors and font readiness. Direct static PNG review:
+1440-missing-source, 390-missing-source and 1440-feature-off-question. UI bytes
+were checked against 83901c9 before/after. Logs were not filtered or rewritten.
+The runner awaited browser/server closure, and process exit 0 was observed before
+lease return msg_dac196be594e, before README/report edits. No restart followed.
+
+Scoped component suite: 223 PASS / 8 files, maxWorkers=1. QA TypeScript, scoped
+generator/runner ESLint and git diff --check PASS. Normal commit hooks passed;
+no amend/rebase or hook bypass. No real DB/API/user data/env file, key/model call,
+new library, fullTS, build, push or deploy; no subworkers. Existing historical
+invalid fixture evidence is not reclassified as valid or silently replaced.
+Root owns integration/release; audit owns independent paid model validation.

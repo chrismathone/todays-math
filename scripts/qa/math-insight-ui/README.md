@@ -110,3 +110,29 @@ source and fixture bytes, old artifact hashes, unchanged original observations
 and pilot DTOs, and the new browser result. See the appended correction in
 `docs/planning/tracks/reports/ontology-evidence-ui-20261023.md` for evidence paths,
 closure and limits. The coordinator owns merging and release.
+
+## Stored-state validation correction (2026-10-23)
+
+The previous missing-source fixture cleared its sessions but retained five
+request receipts, violating `storedCourseSchema`. Earlier captures remain
+immutable evidence with that limitation. The fixture now clears only those
+orphan receipts while preserving its intended summaries and missing sources.
+Every state is parsed by the existing schema before the production candidate
+wrapper and snapshot, under the declared per-scenario flag. Generated
+`stateSchema` and `scenarioValidation` metadata records all 14 scenarios as
+valid, with two scope projections each; this validates synthetic records only.
+
+Current QA code freeze: `aa346029f04faa0a5d92fcaff29a4399fd06c19b`.
+Regenerate using the command above with exact approved backend freeze
+`9a009c737e0c2e490a2d0c5b9fb27d9350447548` in place of the historical `6c9e431`.
+The only backend source-hash change is the approved v2 prompt date projection;
+canonical facts and observations remain unchanged, with missing-source state
+digests updated for the valid record. UI product bytes still match `83901c9`.
+Inherited `on` and `off` processes generate identical JSON.
+
+The single final browser run passed 64 captures / 34 checks with zero errors or
+rejected requests. Browser/server closure and runner exit 0 preceded lease
+return `msg_dac196be594e`; neither was restarted for documentation. Evidence,
+comparison, historical artifact hashes and source metadata are under external
+`ui/schema-correction/`. All 356 prior UI evidence files remain byte-identical.
+See `docs/planning/tracks/reports/ontology-evidence-core-20261023/FOLLOWUP-UI-SCHEMA.txt`.
