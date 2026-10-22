@@ -45,6 +45,7 @@ test("freeze actual requests and replay exact owner replies with independent tex
             stem?: string;
             count?: number;
             hold?: boolean;
+            expectedChoiceLayout?: "auto";
           }) => {
             const source = fs.readFileSync(spec.svgPath);
             expect(sha(source)).toBe(spec.svgSha256);
@@ -82,6 +83,7 @@ test("freeze actual requests and replay exact owner replies with independent tex
           forbidden: item.forbidden,
           hold: item.hold,
           heldOut: item.heldOut,
+          expectedChoiceLayout: item.expectedChoiceLayout,
         },
         null,
         2,
@@ -132,6 +134,11 @@ test("freeze actual requests and replay exact owner replies with independent tex
       if (item.request.action === "ocr") {
         if (!canonical(result.content).includes(canonical(item.stem!)))
           issues.push("source-language/text");
+        if (
+          item.expectedChoiceLayout &&
+          result.ocr?.choicesLayout !== item.expectedChoiceLayout
+        )
+          issues.push("choice-layout");
         if (result.ocr?.choiceGroups.length !== item.count)
           issues.push("choice-count");
         if (result.answer !== "" || result.solution !== "")

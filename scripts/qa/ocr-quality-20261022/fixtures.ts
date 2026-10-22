@@ -1,6 +1,7 @@
 import sharp from "sharp";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 export interface Fixture {
+  expectedChoiceLayout?: "auto";
   id: string;
   request: DevAiRequest;
   image: Buffer;
