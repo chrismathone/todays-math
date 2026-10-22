@@ -137,3 +137,49 @@ describe("bounded model selection", () => {
     expect(() => parseInsightSelection("```json\n{}\n```", s)).toThrow();
   });
 });
+
+describe("snapshot source integrity", () => {
+  it("blocks old positive credit when newer unfinished/future retained source exists", () => {
+    const course = practise(plannedCourse(T, t0), T, "learn", t0, FAIL);
+    const base = structuredClone(course.learner.session!);
+    course.history.push({
+      session: base,
+      archivedAt: later(t0, DAY).toISOString(),
+    } as never);
+    course.learner.session = {
+      ...base,
+      id: "future-session",
+      startedAt: later(t0, DAY).toISOString(),
+      completedAt: null,
+      attempts: [],
+    };
+    const s = buildInsightSnapshot(course, 0, later(t0, 2 * DAY));
+    expect(s.sections[0].outcome).toBe("unknown");
+    expect(s.sections[0].evidenceIds).toEqual([]);
+    expect(s.freshness).toBe("insufficient");
+  });
+  it("freezes authored mapping source hash to actual local bytes", async () => {
+    const { readFileSync } = await import("node:fs"),
+      { createHash } = await import("node:crypto");
+    const s = buildInsightSnapshot(emptyCourseState(), 0, t0);
+    expect(s.scope.mappingSource.hash).toBe(
+      createHash("sha256")
+        .update(readFileSync(s.scope.mappingSource.path))
+        .digest("hex"),
+    );
+  });
+  it("rejects selected IDs bound to a different snapshot", () => {
+    const s = snapshot();
+    expect(() =>
+      parseInsightSelection(
+        JSON.stringify({
+          snapshotId: "0".repeat(64),
+          intent: "evidence",
+          evidenceIds: ["e0"],
+          candidateIds: [],
+        }),
+        s,
+      ),
+    ).toThrow("snapshot-mismatch");
+  });
+});

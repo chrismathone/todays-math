@@ -1,7 +1,9 @@
 import "server-only";
 import { API_KEY_NAMES, API_MODELS } from "@/lib/studio-ai/routing";
 /** Explicit per-feature selection. Never mutates global model defaults or falls back. */
-export function insightModelConfig(env: NodeJS.ProcessEnv = process.env) {
+export function insightModelConfig(
+  env: NodeJS.ProcessEnv = process.env,
+): { vendor: "gemini" | "anthropic"; model: string } | null {
   const vendor = env.MATH_INSIGHT_VENDOR?.trim() || "gemini";
   if (vendor !== "gemini" && vendor !== "anthropic") return null;
   const model =

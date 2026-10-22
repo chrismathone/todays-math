@@ -332,6 +332,7 @@ type RouteHandler = (
 export function withErrorLog<H extends RouteHandler>(
   route: string,
   handler: H,
+  options: { metadataOnly?: boolean } = {},
 ): ((...args: Parameters<H>) => Promise<Awaited<ReturnType<H>>>) & {
   readonly [ERROR_LOG_ROUTE]: string;
 } {
@@ -342,7 +343,13 @@ export function withErrorLog<H extends RouteHandler>(
     const notes = createErrorLogNotes();
     const base = () => ({
       route,
-      ...describeRequest(args[0]),
+      ...(options.metadataOnly
+        ? {
+            method: args[0] instanceof Request ? args[0].method : null,
+            request: { path: route },
+            requestId: null,
+          }
+        : describeRequest(args[0])),
       durationMs: Date.now() - started,
     });
     let response: Awaited<ReturnType<H>>;
@@ -361,7 +368,13 @@ export function withErrorLog<H extends RouteHandler>(
       if (!isFrameworkSignal(error) && admit(info, notes, args[0])) {
         schedule(async () =>
           recordErrorLog(
-            entryFrom(info, notes, await routeParams(args[1]), {}, error),
+            entryFrom(
+              info,
+              options.metadataOnly ? metadataNotes(notes) : notes,
+              options.metadataOnly ? undefined : await routeParams(args[1]),
+              {},
+              options.metadataOnly ? new Error("요청 처리 오류") : error,
+            ),
           ),
         );
       }
@@ -375,6 +388,7 @@ export function withErrorLog<H extends RouteHandler>(
         notes,
         () => routeParams(args[1]),
         args[0],
+        options.metadataOnly,
       );
     return response;
   };
@@ -388,6 +402,7 @@ function logRejection(
   notes: ErrorLogNotes,
   params: () => Promise<unknown>,
   request: unknown,
+  metadataOnly = false,
 ) {
   if (!admit(info, notes, request)) {
     // 넘친 것 — 줄은 안 남기지만 머리는 붙인다(브라우저가 같은 실패를 다시 보내지 않게). 버린 수는 serverQuota 가 센다
@@ -401,7 +416,7 @@ function logRejection(
   const id = randomUUID();
   let copy: Response | undefined;
   try {
-    copy = response.clone();
+    copy = metadataOnly ? undefined : response.clone();
   } catch {
     copy = undefined; // 이미 읽힌 본문 — 머리와 상태만 남긴다
   }
@@ -414,9 +429,11 @@ function logRejection(
     recordErrorLog(
       entryFrom(
         { ...info, id },
-        notes,
-        await params(),
-        await readRejection(copy),
+        metadataOnly ? metadataNotes(notes) : notes,
+        metadataOnly ? undefined : await params(),
+        metadataOnly
+          ? { message: "요청을 처리하지 못했습니다." }
+          : await readRejection(copy),
       ),
     ),
   );
@@ -426,12 +443,17 @@ function logRejection(
  * 라우트 틀 **밖**에서 낸 거절 응답을 기록한다 — 관문(`src/proxy.ts`)의 API 403 이 그것이다.
  * 틀은 관문 뒤에 있어 그 거절을 못 본다(원장님 2026-09-22 «거절되었을 때 로그를 전부»). 응답은 그대로 돌려준다.
  */
+function metadataNotes(notes: ErrorLogNotes): ErrorLogNotes {
+  return { action: notes.action, kind: notes.kind, details: [], context: {} };
+}
+
 export function logRejectedResponse<R extends Response>(options: {
   route: string;
   request: Request;
   response: R;
   userId?: string | null;
   context?: Record<string, unknown>;
+  metadataOnly?: boolean;
 }): R {
   if (options.response.status < 400) return options.response;
   const notes = createErrorLogNotes();
@@ -441,13 +463,20 @@ export function logRejectedResponse<R extends Response>(options: {
     options.response,
     {
       route: options.route,
-      ...describeRequest(options.request),
+      ...(options.metadataOnly
+        ? {
+            method: options.request.method,
+            request: { path: options.route },
+            requestId: null,
+          }
+        : describeRequest(options.request)),
       status: options.response.status,
       durationMs: 0,
     },
     notes,
     async () => undefined,
     options.request,
+    options.metadataOnly,
   );
   return options.response;
 }

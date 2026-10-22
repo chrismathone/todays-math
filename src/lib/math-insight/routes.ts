@@ -137,7 +137,7 @@ export async function handleInsightRequest(
           student.name,
           student.classId,
           student.class.name,
-          student.branchId,
+          student.branchId ?? "",
           access.account.id,
           access.account.name,
           access.account.email,

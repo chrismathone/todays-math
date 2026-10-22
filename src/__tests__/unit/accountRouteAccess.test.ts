@@ -14,6 +14,34 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
+  it("opens only GET/POST of exact teacher insight endpoint to SRS accounts or superadmin", () => {
+    const path = "/api/students/student/math-srs/insight";
+    for (const method of ["GET", "POST"]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["srs"] }, method, path),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed({ ...account, menus: ["teaching"] }, method, path),
+      ).toBe(false);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: [], isSuperAdmin: true },
+          method,
+          path,
+        ),
+      ).toBe(true);
+    }
+    for (const method of ["DELETE", "PUT", "PATCH", "HEAD"])
+      expect(accountRouteAllowed(account, method, path)).toBe(false);
+    expect(
+      accountRouteAllowed(
+        { ...account, menus: ["srs"] },
+        "POST",
+        path + "/write",
+      ),
+    ).toBe(false);
+  });
+
   it("성적표 화면과 모든 읽기·쓰기·PDF는 출력 단계가 있는 메뉴를 따른다", () => {
     for (const [method, path] of [
       ["GET", "/exam-reports/test-1"],
