@@ -1,0 +1,66 @@
+{
+  "scope": "Current parent dirty shared editor read-only static review; completion ownership stays with parent. No JS/Node/test/browser execution.",
+  "reviewedSourceSHA256": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureMathEditor.tsx": "f73ad005e9a3a55519c2e04836381d498affaa61161361885bb27950ebc3da59",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx": "d7913ee81c7dce5a6a4688d22e7ee839baf7642525cd0fd767648ba8cd4145ad",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMathTemplates.ts": "d0985472e5b6cc427c7b33af7f0530ec3cfbbb28bcee3786b55179532e93f9d3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureEditor.tsx": "b31a0c5f78298df0e621253c2914058b8ccc110e3af82058339968c32925dacd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\StudioFigureEditor.tsx": "0c41c8b2ec793f3c1daf83217184c5cdab2778f1c2d8b223996b63260d29777f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\types.ts": "653bb3c0554cab25784ede2b80f3b6e75c3e21405c8ee2fcf772c4d15c2ed0b1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureClipboard.ts": "22f467a0e7798a63bfa646ed48cddecd50f87de3e6f731ad55a2a898d3da631e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquation.ts": "53fa803e506bb7a4859719656a6bef2ae4fd50f201c3d40a07067434b8f1122c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\FigureMathEditor.test.tsx": "e127e3a00c727f5731d120f6bdbbd7d0cd6a91de74804607f81a1a626d470494",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\FigureLabelInput.test.tsx": "5343313cd97db5821de05d6df9894746a016a02c50737a8bc4fe2144eeef2579",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\StudioFigureEditor.test.tsx": "15fe2289d9c92956d24e4251ef0c61f84a3e0001923fe495efec56a27f0e3a00"
+  },
+  "actionableFindings": [
+    {
+      "id": "FINAL-1",
+      "priority": "medium",
+      "status": "static supported path; DOM reproduction pending",
+      "file": "FigureEditor.tsx",
+      "lines": "638-679,1665-1677,2339-2346",
+      "finding": "Edits remain possible while async apply/export is busy. save closes over the starting svg; selected-text FigureLabelInput is not disabled by busy, and change/commit have no busy guard. Typing a label while onSave Promise waits can update local SVG after the saved snapshot. Successful onSave then closes, discarding the later local edit. PNG may similarly export starting snapshot while right-panel edits continue, though it does not close.",
+      "boundedRepro": "Select an existing text; start apply with deferred host Promise; type new text while pending; resolve. Assert either input is disabled/no mutation or saved snapshot and retained edits are explicitly reconciled. Repeat delayed output/PNG with same policy. Existing test only checks apply button disabled and failure retry.",
+      "suggestion": "Freeze all mutating controls during save/export (including MathLive) or enforce a snapshot/revision policy in the mutation/apply boundary; ensure the last pre-save MathLive flush is included before freezing. Do not silently drop input."
+    },
+    {
+      "id": "FINAL-2",
+      "priority": "medium",
+      "status": "static supported warning-loss path; UI reproduction pending",
+      "file": "FigureLabelInput.tsx",
+      "lines": "92-101,125-135",
+      "finding": "Every tab click clears warning. Entering editor calls hwpLabelToTex, which returns only converted text, so conversion warnings are discarded. A previously shown unbalanced-braces warning can disappear on editor tab entry without user fixing the value.",
+      "boundedRepro": "Use existing root{2 unbalanced-brace warning fixture; commit math mode then switch to editor. Also switch directly after entering warning-producing HWP text. Verify warning remains bound to the converted current value until actual edit/repair, or an explicit replacement diagnostic is shown.",
+      "suggestion": "Use the full HWP conversion result at tab entry and preserve warning state tied to resulting value; do not treat switching tabs or MathLive normalization as evidence that invalid input was repaired."
+    }
+  ],
+  "positiveReadOnlyChecks": [
+    "Mathfield has active cleanup guard; removes input/change/blur/keydown/composition/document listeners and DOM node. idPrefix recreates field from latest value. Input/onChange refs are refreshed via layout effect.",
+    "Template insertion retains live placeholders while stripped persisted TeX excludes placeholder commands; value effect compares stripped form so a matching parent echo does not by itself erase active slots. Stored selected-label key=current.id prevents carrying one field identity across different text objects.",
+    "Outside pointer capture flushes before canvas/tab pointer actions; key/composition microtasks and blur/change supplement delayed input. This is not independent real-MathLive timing verification. Existing Mathfield tests mock a simple custom element.",
+    "Host onSave type permits Promise and save awaits it before onClose; rejection displays error, leaves modal open and clears busy for retry. PNG handler never invokes onSave/onClose, uses rendered data URL to PNG and reports failures separately.",
+    "Clipboard write is caught before cut removal; stale page-local token displays error; explicit notice says same-page paste. External SVG/text fallback still goes through paste preparation. Original numbering/URL rewrite implementation is retained."
+  ],
+  "residualLimits": [
+    "Unmount cleanup deliberately cancels queued input without a final flush. Pointer tab changes have capture flush, but programmatic/keyboard identity changes with a pending delayed input need a dedicated test; no actual lost keystroke claimed from static inspection.",
+    "Single-slot opaque clipboard invalidates previous tokens when a later copy replaces memory, and cannot restore after reload/cross-tab. A synchronous setData failure avoids cut deletion but can already replace memory token and clear OS clipboard data. Silent MIME refusal is not validated by current code; no actual browser failure reproduced.",
+    "No host callsite persistence/transaction or navigation-abort guarantee beyond inspected shared onSave contract; no broad SSR/MathLive/font/layout approval.",
+    "No admin/server/IP/public recent-import implementation inspected or added. No source-app execution/writes, production edits, DB/API/model/network or new worker/worktree. Existing unrelated dirty preserved."
+  ],
+  "parentTests": "Parent512/obsolete-expectation/rerun results are parent evidence only; no counts claimed here.",
+  "afterSourceSHA256": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureMathEditor.tsx": "f73ad005e9a3a55519c2e04836381d498affaa61161361885bb27950ebc3da59",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx": "d7913ee81c7dce5a6a4688d22e7ee839baf7642525cd0fd767648ba8cd4145ad",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMathTemplates.ts": "d0985472e5b6cc427c7b33af7f0530ec3cfbbb28bcee3786b55179532e93f9d3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureEditor.tsx": "b31a0c5f78298df0e621253c2914058b8ccc110e3af82058339968c32925dacd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\StudioFigureEditor.tsx": "0c41c8b2ec793f3c1daf83217184c5cdab2778f1c2d8b223996b63260d29777f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\types.ts": "653bb3c0554cab25784ede2b80f3b6e75c3e21405c8ee2fcf772c4d15c2ed0b1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureClipboard.ts": "22f467a0e7798a63bfa646ed48cddecd50f87de3e6f731ad55a2a898d3da631e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquation.ts": "53fa803e506bb7a4859719656a6bef2ae4fd50f201c3d40a07067434b8f1122c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\FigureMathEditor.test.tsx": "e127e3a00c727f5731d120f6bdbbd7d0cd6a91de74804607f81a1a626d470494",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\FigureLabelInput.test.tsx": "5343313cd97db5821de05d6df9894746a016a02c50737a8bc4fe2144eeef2579",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\components\\StudioFigureEditor.test.tsx": "15fe2289d9c92956d24e4251ef0c61f84a3e0001923fe495efec56a27f0e3a00"
+  },
+  "sourceStableDuringFinalCapture": true
+}
