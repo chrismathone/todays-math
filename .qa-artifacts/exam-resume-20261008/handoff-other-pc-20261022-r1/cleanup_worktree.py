@@ -36,6 +36,8 @@ try:
     else:
         if a.owner=='parent':
             time.sleep(5)
+            record['status']='WAITING_FOR_PARENT_IDLE_NO_DELETE_YET'
+            receipt.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             waited=orca('terminal','wait','--terminal',plan['parentTerminal'],'--for','tui-idle','--timeout-ms','300000',timeout=315)
             (vault/'parent-idle-observation.json').write_text(json.dumps(waited,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             assert waited.get('ok')is True
