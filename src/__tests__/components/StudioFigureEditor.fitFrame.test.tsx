@@ -50,6 +50,16 @@ beforeEach(() => {
     value: () => box,
   });
 });
+it("expands the whole frame and horizontal frame without rewriting the diagram", async () => {
+  open();
+  openFigureDetails();
+  const before = canvas().querySelector("line")!.outerHTML;
+  fireEvent.click(screen.getByRole("button", { name: "전체 넓히기" }));
+  await waitFor(() => expect(canvas().querySelector("svg")).toHaveAttribute("viewBox", "-20 -20 520 400"));
+  expect(canvas().querySelector("line")!.outerHTML).toBe(before);
+  fireEvent.click(screen.getByRole("button", { name: "가로 넓히기" }));
+  await waitFor(() => expect(canvas().querySelector("svg")).toHaveAttribute("viewBox", "-40 -20 560 400"));
+});
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.restoreAllMocks();

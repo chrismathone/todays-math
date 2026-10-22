@@ -1,0 +1,76 @@
+{
+  "utc": "2026-10-22T05:56:31.782Z",
+  "typescript": "5.9.3",
+  "rootFiles": [
+    {
+      "path": "src/components/unified/figure-editor/FigureMathEditor.tsx",
+      "sha256": "4295aa6e4670e5fbff47aba9f5997660e7acb0307a4afbb670e0bda10cbe0b79",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "sha256": "091d91b4113fc763ad68918f10259f2e103c7bc0454904f79f4f956fd3a213d7",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureMathTemplates.ts",
+      "sha256": "d0985472e5b6cc427c7b33af7f0530ec3cfbbb28bcee3786b55179532e93f9d3",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "sha256": "9e779ee4759ca4aebcaa2cc21adb89031a366c417a9054c930ba3ee2d53a0ed1",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureRotateRow.tsx",
+      "sha256": "7f493d24e5970254ef821465fd1472f5ff3f446ffcfd2366ec2885e5e10ad224",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureClipboard.ts",
+      "sha256": "22f467a0e7798a63bfa646ed48cddecd50f87de3e6f731ad55a2a898d3da631e",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureFrame.ts",
+      "sha256": "5658c485595b374e452156c8454188f904f9b45d26b6d5283a931fe6e5864311",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "sha256": "653bb3c0554cab25784ede2b80f3b6e75c3e21405c8ee2fcf772c4d15c2ed0b1",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/figure/imageFilename.ts",
+      "sha256": "8cb94b8fbff4403bbae54dce9d7fd998ce21c03ea62c71552839244211682e22",
+      "diagnostics": []
+    },
+    {
+      "path": "src/lib/figure/exportImage.ts",
+      "sha256": "6392051b384558391915bca2405f5a4128c95151d91442192f0631a71db78254",
+      "diagnostics": []
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureBake.ts",
+      "sha256": "89aadf4c0d2d7aaabf674866091d7612b053b733a9849ad8aded9dd30743b993",
+      "diagnostics": []
+    }
+  ],
+  "rootErrors": 0,
+  "globalDiagnostics": [],
+  "projectConfigurationDiagnostics": [],
+  "actualProjectCompilerOptionsAndImports": true,
+  "MathLiveTypes": "0.111.1 private verified official package",
+  "ambientTypes": [
+    "node",
+    "react",
+    "react-dom",
+    "installed Next global CSS"
+  ],
+  "otherImportedBodiesNotCertified": true,
+  "wholeProjectTypecheckClaim": false,
+  "compilerOrTsBuildInfoWrites": 0,
+  "dbWrites": 0
+}

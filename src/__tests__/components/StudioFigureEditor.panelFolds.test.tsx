@@ -141,11 +141,12 @@ describe("오른쪽 칸 — 접는 무리 셋", () => {
     expect(fold("틀 · 세부")).toHaveAttribute("aria-expanded", "true");
     const frame = screen.getByRole("region", { name: "틀" });
     expect(frame).toHaveTextContent(
-      /^틀다 보이게잘린 곳을 들이고 여백을 줄입니다$/,
+      /^틀다 보이게잘린 곳을 들이고 여백을 줄입니다여백전체 넓히기가로 넓히기세로 넓히기$/,
     );
     expect(
       within(frame).getByRole("button", { name: "다 보이게" }),
     ).toBeVisible();
+    expect(within(frame).getByRole("spinbutton", { name: "틀 확장 여백" })).toHaveValue(20);
     expect(screen.getByRole("checkbox", { name: LOCK })).toBeVisible();
     expect(screen.getByText("정밀 수치 조정")).toBeVisible();
   });

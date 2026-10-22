@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-22T05:47:59.517798+00:00",
+  "command": [
+    "node",
+    "--max-old-space-size=384",
+    "--max-semi-space-size=8",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\editor-final-20261022-r1\\port-related-r3.mts",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "--reporter=json",
+    "--outputFile=C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\editor-final-20261022-r1\\port-related-r3-results.json"
+  ],
+  "sourceSHA256": {
+    "src/components/unified/figure-editor/FigureMathEditor.tsx": "f73ad005e9a3a55519c2e04836381d498affaa61161361885bb27950ebc3da59",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx": "d7913ee81c7dce5a6a4688d22e7ee839baf7642525cd0fd767648ba8cd4145ad",
+    "src/components/unified/figure-editor/figureMathTemplates.ts": "d0985472e5b6cc427c7b33af7f0530ec3cfbbb28bcee3786b55179532e93f9d3",
+    "src/components/unified/figure-editor/FigureEditor.tsx": "b31a0c5f78298df0e621253c2914058b8ccc110e3af82058339968c32925dacd",
+    "src/components/unified/figure-editor/FigureRotateRow.tsx": "7f493d24e5970254ef821465fd1472f5ff3f446ffcfd2366ec2885e5e10ad224",
+    "src/components/unified/figure-editor/figureClipboard.ts": "22f467a0e7798a63bfa646ed48cddecd50f87de3e6f731ad55a2a898d3da631e",
+    "src/components/unified/figure-editor/figureFrame.ts": "5658c485595b374e452156c8454188f904f9b45d26b6d5283a931fe6e5864311",
+    "src/components/unified/figure-editor/types.ts": "653bb3c0554cab25784ede2b80f3b6e75c3e21405c8ee2fcf772c4d15c2ed0b1",
+    "src/lib/figure/imageFilename.ts": "8cb94b8fbff4403bbae54dce9d7fd998ce21c03ea62c71552839244211682e22",
+    "src/lib/figure/exportImage.ts": "6392051b384558391915bca2405f5a4128c95151d91442192f0631a71db78254",
+    "src/components/unified/figure-editor/figureBake.ts": "89aadf4c0d2d7aaabf674866091d7612b053b733a9849ad8aded9dd30743b993"
+  },
+  "sourcesUnchanged": true,
+  "memory": {
+    "availableGiB": 2.3237380981445312,
+    "floorGiB": 1.5
+  },
+  "MathLive": "0.111.1 private official integrity-checked package",
+  "sharedDepsWrites": 0,
+  "dbWrites": 0,
+  "exitcode": 0
+}

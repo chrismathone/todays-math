@@ -1,0 +1,24 @@
+{"viewports":0,"passed":0,"errors":["Error: Mathfield not mounted","TimeoutError: Waiting for selector `math-field` failed\n    at CSSQueryHandler.waitFor (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/common/QueryHandler.js:211:46)\n    at async CdpFrame.waitForSelector (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/api/Frame.js:541:21)\n    at async CdpPage.waitForSelector (file:///D:/todays-math/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:1387:20)\n    at async file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/editor-final-20261022-r1/browser/verify.mjs:27:42"],"blocked":[],"sourcesUnchanged":true}
+오후 2:51:41 [vite] (client) [Unhandled error] Error: Mathfield not mounted
+ > set menuItems ../independent-deps/node_modules/mathlive/mathlive.mjs:42462:32
+ > ../../../../../src/components/unified/figure-editor/FigureMathEditor.tsx:33:9
+    31 |      math.className = styles.field;
+    32 |      math.mathVirtualKeyboardPolicy = "manual";
+    33 |      math.menuItems = [];
+       |           ^
+    34 |      math.setValue(currentValue.current, { silenceNotifications: true });
+    35 |      let active = true;
+ > Object.react_stack_bottom_frame D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:25989:19
+ > runWithFiberInDEV D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > commitHookEffectListMount D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:13249:28
+ > commitHookPassiveMountEffects D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:13336:10
+ > reconnectPassiveEffects D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:15832:10
+ > recursivelyTraverseReconnectPassiveEffects D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:15784:8
+ > commitPassiveMountOnFiber D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:15675:16
+ > recursivelyTraversePassiveMountEffects D:/todays-math/node_modules/react-dom/cjs/react-dom-client.development.js:15439:10
+
+오후 2:51:41 [vite] (client) [console.warn] An error occurred in the <FigureMathEditor> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+

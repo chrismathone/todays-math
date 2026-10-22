@@ -1,10 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from "react";
 import { hwpToLatex } from "@/lib/math/hwpEquation";
 import { FIGURE_SYMBOL_GROUPS, figureSymbolInput } from "./figureSymbols";
 
-// Local adapter for Mathgen's label editor. TeX metadata is unchanged; no MathLive assets are required.
-// math-figure-editor: 벡터·선분·호 틀을 더했다(2026-10-21 — 벡터 그림을 손으로 고칠 방법이 없었다).
-// todays-math 상류에는 아직 없는 세 줄이다.
+const FigureMathEditor = lazy(() => import("./FigureMathEditor"));
+
+// Local adapter for Mathgen's label editor. All modes retain the same TeX metadata.
 const MATH_TEMPLATES = [
   ["분수", "\\frac{}{}"],
   ["제곱", "^{2}"],
@@ -52,7 +52,7 @@ export function FigureLabelInput({
   const group =
     FIGURE_SYMBOL_GROUPS.find((g) => g.name === symbolGroup) ??
     FIGURE_SYMBOL_GROUPS[0];
-  const [mode, setMode] = useState<"text" | "math">(() =>
+  const [mode, setMode] = useState<"text" | "math" | "editor">(() =>
     isFigureMathLabel(value) ? "math" : "text",
   );
   const input = useRef<HTMLInputElement>(null);
@@ -67,7 +67,7 @@ export function FigureLabelInput({
     input.current?.setSelectionRange(cursor, cursor);
   }, [value]);
   const update = (next: string) =>
-    onChange(mode === "math" ? `$${next}$` : next);
+    onChange(mode === "text" ? next : `$${next}$`);
   /**
    * 확정(Enter · 포커스 아웃) 때 한글(HWP) 수식 문법을 TeX 로 — `root2` → `\sqrt{2}` (트랙 8).
    * 역슬래시가 있으면(이미 TeX · 특수문자 자판의 `\angle ` 등) 그대로 둔다.
@@ -92,29 +92,34 @@ export function FigureLabelInput({
   return (
     <div className="space-y-2" onKeyDown={(event) => event.stopPropagation()}>
       <div
-        className="grid grid-cols-2 rounded-lg bg-side p-1"
+        className="grid grid-cols-3 rounded-lg bg-side p-1"
         role="group"
         aria-label={`${idPrefix} 종류`}
       >
-        {(["text", "math"] as const).map((option) => (
+        {(["text", "math", "editor"] as const).map((option) => (
           <button
             key={option}
             type="button"
             aria-pressed={mode === option}
             onClick={() => {
-              setWarning(null);
+              const result = option === "editor" ? hwpToLatex(unwrap(value)) : null;
+              const body = result?.changed ? result.latex : unwrap(value);
+              const next = option === "text" ? body : `$${body}$`;
+              setWarning((previous) => result?.changed
+                ? result.warnings.length ? { value: next, text: result.warnings.join(" · ") } : null
+                : previous?.value === value ? { ...previous, value: next } : null);
               setMode(option);
-              onChange(
-                option === "math" ? `$${unwrap(value)}$` : unwrap(value),
-              );
+              onChange(next);
             }}
             className={`rounded-md px-2 py-1.5 text-xs font-medium ${mode === option ? "bg-surface text-ink shadow-sm" : "text-muted"}`}
           >
-            {option === "text" ? "일반 글자" : "수식"}
+            {option === "text" ? "일반 글자" : option === "math" ? "수식" : "수식편집기"}
           </button>
         ))}
       </div>
-      <input
+      {mode === "editor" ? <Suspense fallback={<p role="status" className="text-xs text-muted">수식편집기를 여는 중…</p>}>
+        <FigureMathEditor value={unwrap(value)} onChange={update} idPrefix={idPrefix} />
+      </Suspense> : <input
         ref={input}
         aria-label={mode === "math" ? `${idPrefix} 수식` : idPrefix}
         value={unwrap(value)}
@@ -131,7 +136,7 @@ export function FigureLabelInput({
           mode === "math" ? "예: x^2, \\frac{1}{2}" : "예: 점 A, 길이"
         }
         spellCheck={false}
-      />
+      />}
       {warning?.value === value && (
         <p role="status" className="text-xs leading-relaxed text-[var(--learn-warning)]">
           한글 수식을 TeX 로 바꿨습니다 — {warning.text}. 결과를 확인해 주세요.
@@ -139,7 +144,7 @@ export function FigureLabelInput({
       )}
       {/* 특수문자 자판 — 휴대폰 자판의 기호 쪽처럼 무리 탭 + 문자 격자. 누르면 입력칸의 커서 자리에 넣는다
           (누를 때 입력칸 초점·선택을 뺏지 않는다). 모양은 «일반 글자 | 수식» 전환과 수식 도구 단추의 것. */}
-      <div className="space-y-1.5">
+      {mode !== "editor" && <div className="space-y-1.5">
         <div
           className="flex flex-wrap gap-0.5 rounded-lg bg-side p-1"
           role="group"
@@ -168,14 +173,14 @@ export function FigureLabelInput({
               key={symbol}
               type="button"
               onMouseDown={(event) => event.preventDefault()}
-              onClick={() => insert(figureSymbolInput(symbol, mode))}
+              onClick={() => insert(figureSymbolInput(symbol, mode === "text" ? "text" : "math"))}
               className="rounded border border-control bg-surface py-1 text-base leading-6"
             >
               {symbol}
             </button>
           ))}
         </div>
-      </div>
+      </div>}
       {mode === "math" && (
         <>
           <div
@@ -196,7 +201,7 @@ export function FigureLabelInput({
             ))}
           </div>
           <p className="text-xs leading-relaxed text-muted">
-            수식은 TeX로 입력하세요. 그림과 SVG 저장에 수식 모양으로 표시됩니다.
+            TeX와 일부 한글 수식 문법을 사용할 수 있습니다. 그림과 저장 이미지에는 수식 형태로 표시됩니다.
           </p>
         </>
       )}

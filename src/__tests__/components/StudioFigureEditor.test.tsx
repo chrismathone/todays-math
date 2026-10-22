@@ -13,6 +13,12 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
 import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
+import { download, svgToPng } from "@/lib/figure/exportImage";
+
+vi.mock("@/lib/figure/exportImage", () => ({
+  download: vi.fn(),
+  svgToPng: vi.fn(async () => "data:image/png;base64,cG5n"),
+}));
 
 const crop = "data:image/png;base64,b3JpZ2luYWw=";
 const initialSvg = `<svg xmlns="${SVG_NS}" viewBox="0 0 480 360"><line x1="20" y1="30" x2="80" y2="90" stroke="#111111"/></svg>`;
@@ -264,21 +270,9 @@ describe("StudioFigureEditor", () => {
     );
   });
 
-  it("downloads sanitized SVG without applying or closing the editor", async () => {
-    const createObjectURL = vi.fn<(blob: Blob) => string>(
-        () => "blob:figure-export",
-      ),
-      revokeObjectURL = vi.fn();
-    vi.stubGlobal(
-      "URL",
-      class extends URL {
-        static createObjectURL = createObjectURL;
-        static revokeObjectURL = revokeObjectURL;
-      },
-    );
-    const click = vi
-      .spyOn(HTMLAnchorElement.prototype, "click")
-      .mockImplementation(() => {});
+  it("downloads PNG without applying or closing, retaining editable SVG internally", async () => {
+    vi.mocked(download).mockClear();
+    vi.mocked(svgToPng).mockClear();
     const onSave = vi.fn(),
       onClose = vi.fn();
     render(
@@ -290,14 +284,62 @@ describe("StudioFigureEditor", () => {
         onClose={onClose}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: "SVG 저장" }));
-    await waitFor(() => expect(click).toHaveBeenCalledOnce());
-    expect(createObjectURL.mock.calls[0][0]).toMatchObject({
-      type: "image/svg+xml",
-    });
-    expect(click.mock.instances[0]).toHaveAttribute("download", "도형-2.svg");
+    expect(screen.queryByRole("button", { name: "SVG 저장" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "PNG 저장" }));
+    await waitFor(() => expect(download).toHaveBeenCalledOnce());
+    expect(svgToPng).toHaveBeenCalledWith(expect.stringMatching(/^data:image\/svg\+xml/));
+    expect(download).toHaveBeenCalledWith(expect.stringMatching(/^\d{12}_\d{6}\.png$/), "data:image/png;base64,cG5n");
     expect(onSave).not.toHaveBeenCalled();
     expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it("waits for host apply to finish before closing and keeps failures open for retry", async () => {
+    let reject!: (error: Error) => void;
+    const onSave = vi.fn((_result: StudioFigureSaveResult) => new Promise<void>((_resolve, fail) => { reject = fail; }));
+    const onClose = vi.fn();
+    render(<StudioFigureEditor image={crop} initialSvg={initialSvg} index={0} onSave={onSave} onClose={onClose} />);
+    fireEvent.click(screen.getByRole("button", { name: "도형 적용" }));
+    await waitFor(() => expect(onSave).toHaveBeenCalledOnce());
+    expect(onClose).not.toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "도형 적용" })).toBeDisabled();
+    expect(document.querySelector("aside fieldset[inert]")).not.toBeNull();
+    await act(async () => reject(new Error("호스트 저장 실패")));
+    expect(screen.getByRole("alert")).toHaveTextContent("호스트 저장 실패");
+    expect(onClose).not.toHaveBeenCalled();
+    onSave.mockImplementationOnce(async () => {});
+    fireEvent.click(screen.getByRole("button", { name: "도형 적용" }));
+    await waitFor(() => expect(onClose).toHaveBeenCalledOnce());
+    const saved = onSave.mock.calls[0][0] as StudioFigureSaveResult;
+    expect(saved.svg).toContain("<line");
+    expect(saved.dataUrl).toMatch(/^data:image\/svg\+xml/);
+  });
+
+  it("copies and cuts through an opaque page-local key while keeping paste functional", () => {
+    render(<StudioFigureEditor image={crop} initialSvg={initialSvg} index={0} onSave={vi.fn()} onClose={vi.fn()} />);
+    const surface = screen.getByLabelText("도형 편집 캔버스");
+    surface.focus();
+    fireEvent.keyDown(surface, { key: "a", ctrlKey: true });
+    const data = new Map<string, string>();
+    const clipboardData = { clearData: () => data.clear(), setData: (key: string, value: string) => data.set(key, value), getData: (key: string) => data.get(key) ?? "" };
+    fireEvent.copy(document, { clipboardData });
+    expect(data.size).toBe(1);
+    expect([...data.values()].every(value => !/<svg|<line/.test(value))).toBe(true);
+    expect(data.has("text/plain")).toBe(false);
+    fireEvent.paste(document, { clipboardData });
+    expect(document.querySelectorAll("#figure-editor-canvas line")).toHaveLength(2);
+    fireEvent.cut(document, { clipboardData });
+    expect(document.querySelectorAll("#figure-editor-canvas line")).toHaveLength(1);
+    fireEvent.paste(document, { clipboardData });
+    expect(document.querySelectorAll("#figure-editor-canvas line")).toHaveLength(2);
+  });
+
+  it("does not delete a cut selection when clipboard writing throws", () => {
+    render(<StudioFigureEditor image={crop} initialSvg={initialSvg} index={0} onSave={vi.fn()} onClose={vi.fn()} />);
+    const surface = screen.getByLabelText("도형 편집 캔버스");surface.focus();
+    fireEvent.keyDown(surface, { key: "a", ctrlKey: true });
+    fireEvent.cut(document, { clipboardData: { clearData() {}, setData() { throw new Error("unsupported"); } } });
+    expect(document.querySelectorAll("#figure-editor-canvas line")).toHaveLength(1);
+    expect(screen.getByRole("alert")).toHaveTextContent("요소를 복사하지 못했습니다");
   });
 
   it("aborts a pending redraw on close and ignores a late result", async () => {

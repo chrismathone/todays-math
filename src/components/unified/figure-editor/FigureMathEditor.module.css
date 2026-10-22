@@ -1,0 +1,14 @@
+.editor { display: grid; min-width: 0; gap: 8px; color: var(--learn-ink); }
+.editor button { min-height: 44px; border: 1px solid var(--learn-control); border-radius: 6px; padding: 6px 8px; background: var(--learn-surface); color: var(--learn-ink); font-size: 12px; line-height: 1.5; cursor: pointer; }
+.editor button:hover { background: var(--learn-soft); }
+.editor button:focus-visible { outline: 2px solid var(--learn-accent); outline-offset: 2px; }
+.categories { display: flex; flex-wrap: wrap; gap: 4px; }
+.categories button[aria-pressed="true"] { border-color: var(--learn-accent); background: var(--learn-soft); color: var(--learn-accent); }
+.templates { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 4px; }
+.templates button { overflow-wrap: anywhere; }
+.host { min-width: 0; overflow-x: auto; border: 1px solid var(--learn-control); border-radius: 8px; background: var(--learn-surface); }
+.host:focus-within { outline: 2px solid var(--learn-accent); outline-offset: 1px; }
+.field { display: block; width: 100%; min-height: 72px; padding: 8px; border: 0; background: var(--learn-surface); color: var(--learn-ink); font-size: 22px; --caret-color: var(--learn-accent); --selection-background-color: var(--learn-soft); }
+.field::part(menu-toggle), .field::part(virtual-keyboard-toggle) { display: none; }
+.help { display: flex; align-items: center; gap: 8px; color: var(--learn-muted); font-size: 12px; line-height: 1.5; }
+.help button { flex-shrink: 0; }

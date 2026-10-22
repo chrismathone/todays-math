@@ -1,0 +1,256 @@
+{
+  "utc": "2026-10-22T06:12:27.740885+00:00",
+  "sourceRepo": "D:\\math-figure-editor",
+  "sharedSourceCommit": "129207fba40a6324cfc3c3fc365aee67c2e3bbb8",
+  "followingAppOnlyMiddlewareCommit": "b4d6a19 (excluded)",
+  "sourceRepoWrites": 0,
+  "sourceFiles": [
+    {
+      "path": "src/components/unified/figure-editor/FigureMathEditor.tsx",
+      "commitSHA256": "4019554622bafa723d35d5e221d0a77e8480bcc73699c659a89f01cd964b4102",
+      "bytes": 3391,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureMathTemplates.ts",
+      "commitSHA256": "d0985472e5b6cc427c7b33af7f0530ec3cfbbb28bcee3786b55179532e93f9d3",
+      "bytes": 4643,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "commitSHA256": "168b0a2d88ea138a2ec6befcf212ea3db970ebdc95d535c5feb8ea9beaafda65",
+      "bytes": 8478,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureRotateRow.tsx",
+      "commitSHA256": "09e4ad08d12f2007e19f1c926b46ebfee81f87e2b0f0e769f0f2f7d851d5a39e",
+      "bytes": 11364,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "commitSHA256": "e7072aeed4f0542b228070813e064ebc9feb472878a7e299fc676d577ca60e23",
+      "bytes": 114275,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureFrame.ts",
+      "commitSHA256": "d705a8c74fab442b08aea04d04ee68473e8fc64d5d1c997ff95cf00751b9dafd",
+      "bytes": 6654,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureBake.ts",
+      "commitSHA256": "81338927cc43a8bb09878877c64f912b116cc772f587ada4eff41f9ae7c58d94",
+      "bytes": 36833,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureClipboard.ts",
+      "commitSHA256": "0bbf2a17b468c2ca41fb82fe892303d3c4de8f8930a5f4df0fe9c69f9b1ac1ad",
+      "bytes": 5382,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "commitSHA256": "b7b38914f0d4a04e0404dadcf1a82cbf7b303829e4be0ab980d63ef852006b4e",
+      "bytes": 2298,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/lib/figure/imageFilename.ts",
+      "commitSHA256": "8cb94b8fbff4403bbae54dce9d7fd998ce21c03ea62c71552839244211682e22",
+      "bytes": 514,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/lib/figure/exportImage.ts",
+      "commitSHA256": "0e145fa72eab67ead75508b2d2d705668943ca790a62642ac3ff616cc8dc70da",
+      "bytes": 2538,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/unit/figureMathTemplates.test.ts",
+      "commitSHA256": "38bf6d4f32a481ba2d2164beddb7f13d29d6fa5de7fddb787ddf418df16efbd9",
+      "bytes": 782,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/unit/figureAssetTransforms.test.ts",
+      "commitSHA256": "239e58c027f3e93174a4f4766a0c2a624b52ee7cc7895ac607aeff24d0cf1dae",
+      "bytes": 2465,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/unit/exportImage.test.ts",
+      "commitSHA256": "8ed34e4fc0fd90948e2f6a67794863aa43fb191ce2de3335b1550a2dd9dcb6ef",
+      "bytes": 1121,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.fitFrame.test.tsx",
+      "commitSHA256": "168d847a6505c6d5c68521a444a91f653aad8a0314cc6b04024a1bc55f77d80c",
+      "bytes": 6962,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.panelFolds.test.tsx",
+      "commitSHA256": "5946361f3a3b1b6a6d161aec7b7aea96a2c71a9c9f4a768329889cbe11b46827",
+      "bytes": 14170,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "src/__tests__/components/StudioFigureEditor.test.tsx",
+      "commitSHA256": "3ced135ddd912cce173b7ebb55f051f2ed57645c918f029e280b109965406bca",
+      "bytes": 14315,
+      "workingCopyLFMatchesCommit": true
+    },
+    {
+      "path": "public/mathlive/LICENSE.txt",
+      "commitSHA256": "3caebd18611959ca725ab976a004d408017eb1d7093d6c9b9b09c5a4790eaff8",
+      "bytes": 1099,
+      "workingCopyLFMatchesCommit": true
+    }
+  ],
+  "fontFiles": [
+    {
+      "path": "public/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "bytes": 28076,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "bytes": 6912,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "bytes": 6908,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Fraktur-Bold.woff2",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "bytes": 11348,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Fraktur-Regular.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "bytes": 11316,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Main-Bold.woff2",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "bytes": 25324,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Main-BoldItalic.woff2",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "bytes": 16780,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Main-Italic.woff2",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "bytes": 16988,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Main-Regular.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "bytes": 26272,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Math-BoldItalic.woff2",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "bytes": 16400,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Math-Italic.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "bytes": 16440,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_SansSerif-Bold.woff2",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "bytes": 12216,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_SansSerif-Italic.woff2",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "bytes": 12028,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_SansSerif-Regular.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "bytes": 10344,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Script-Regular.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "bytes": 9644,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Size1-Regular.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "bytes": 5468,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Size2-Regular.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "bytes": 5208,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Size3-Regular.woff2",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+      "bytes": 3624,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Size4-Regular.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "bytes": 4928,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/fonts/KaTeX_Typewriter-Regular.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "bytes": 13568,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    },
+    {
+      "path": "public/mathlive/LICENSE.txt",
+      "sha256": "3caebd18611959ca725ab976a004d408017eb1d7093d6c9b9b09c5a4790eaff8",
+      "bytes": 1099,
+      "sourceCommitAndIntegrityCheckedPackageEqual": true
+    }
+  ],
+  "installedJunctionMathLive": "0.110.0",
+  "declaredAndTestedPrivateMathLive": "0.111.1",
+  "finalPNGExportEventIncluded": true,
+  "scopeExcludes": [
+    "root admin console",
+    "server storage",
+    "IP blocking",
+    "public recent work",
+    "source app autosave or close confirmation"
+  ],
+  "sourceSourceLiteralEqualityNotWholeHostEquality": true
+}

@@ -1,0 +1,5 @@
+# Keep captured upstream bytes and raw failure output, including their whitespace.
+source-final/public/mathlive/LICENSE.txt whitespace=-blank-at-eol
+port-browser-r4.log whitespace=-blank-at-eof
+port-lint-r3.log whitespace=-blank-at-eol
+pre-format-exportImage.ts whitespace=-blank-at-eof

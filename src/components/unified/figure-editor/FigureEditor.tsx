@@ -52,10 +52,14 @@ import {
   removeFigureSelection,
   transformFigureSelection,
   FIGURE_CLIPBOARD_TYPE,
+  storeFigureClipboard,
+  readFigureClipboard,
 } from "./figureClipboard";
 import { modKey } from "./platform";
 import { carryTypeset, typesetFigureSvg } from "./figureTypeset";
-import { fitFrameToContent, renderFittedFigure } from "./figureFrame";
+import { expandFigureFrame, fitFrameToContent, renderFittedFigure } from "./figureFrame";
+import { download, svgToPng } from "@/lib/figure/exportImage";
+import { pngFilename } from "@/lib/figure/imageFilename";
 import {
   centerFigureGrid,
   defaultFigureGrid,
@@ -1051,20 +1055,30 @@ export function FigureEditor({
       const source = copyFigureSelection(svg, selectedIds);
       if (!source) return;
       event.preventDefault();
-      event.clipboardData.setData(FIGURE_CLIPBOARD_TYPE, source);
-      event.clipboardData.setData("text/plain", source);
+      try {
+        event.clipboardData.clearData();
+        event.clipboardData.setData(FIGURE_CLIPBOARD_TYPE, storeFigureClipboard(source));
+      } catch {
+        setError("요소를 복사하지 못했습니다. 다시 복사해 주세요.");
+        return;
+      }
       setClipboardNotice(
-        `${selectedIds.length}개 요소를 ${event.type === "cut" ? "잘라냈" : "복사했"}습니다.`,
+        `${selectedIds.length}개 요소를 ${event.type === "cut" ? "잘라냈" : "복사했"}습니다. 이 페이지에서만 붙여넣을 수 있습니다.`,
       );
       if (event.type === "cut") remove();
     };
     const onPaste = (event: ClipboardEvent) => {
       if (!inEditor(event) || busy || drag.current || !event.clipboardData)
         return;
-      const source =
-        event.clipboardData.getData(FIGURE_CLIPBOARD_TYPE) ||
-        event.clipboardData.getData("image/svg+xml") ||
-        event.clipboardData.getData("text/plain");
+      const token = event.clipboardData.getData(FIGURE_CLIPBOARD_TYPE);
+      const internal = readFigureClipboard(token);
+      const external = event.clipboardData.getData("image/svg+xml") || event.clipboardData.getData("text/plain");
+      if (token && !internal && !external) {
+        event.preventDefault();
+        setError("이 페이지에서 다시 복사한 뒤 붙여넣어 주세요.");
+        return;
+      }
+      const source = internal || external;
       event.preventDefault();
       if (/^\s*<svg\b/i.test(source)) paste(source);
       else setClipboardNotice("도형 요소를 복사한 뒤 붙여넣어 주세요.");
@@ -1653,7 +1667,7 @@ export function FigureEditor({
     setError("");
     try {
       const rendered = await output();
-      onSave(createFigureSaveResult(svg, rendered, original));
+      await onSave(createFigureSaveResult(svg, rendered, original));
       onClose();
     } catch (e) {
       setError((e as Error).message);
@@ -1694,14 +1708,8 @@ export function FigureEditor({
               setBusy(true);
               setError("");
               try {
-                const url = URL.createObjectURL(
-                  new Blob([await output()], { type: "image/svg+xml" }),
-                );
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = `${figureName.replace(/\s+/g, "-")}.svg`;
-                link.click();
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                const rendered = createFigureSaveResult(svg, await output(), original);
+                download(pngFilename(), await svgToPng(rendered.dataUrl));
               } catch (e) {
                 setError((e as Error).message);
               } finally {
@@ -1709,7 +1717,7 @@ export function FigureEditor({
               }
             }}
           >
-            SVG 저장
+            PNG 저장
           </Btn>
           <Btn kind="ghost" onClick={close} disabled={busy && !redrawing}>
             취소
@@ -2250,6 +2258,7 @@ export function FigureEditor({
         >
           <fieldset
             disabled={busy}
+            inert={busy}
             className="flex-1 min-h-0 min-w-0 overflow-y-auto p-4"
           >
             <h3 className="text-sm font-semibold mb-1">
@@ -2675,7 +2684,7 @@ export function FigureEditor({
               onToggle={() => toggleFold("틀 · 세부")}
             >
               <div className="space-y-3 text-xs">
-                <FigureFitRow onFit={fitFrame} />
+                <FigureFitRow onFit={fitFrame} onExpand={(margin, axis) => commit(expandFigureFrame(svg, margin, axis))} />
                 {current && (
                   <>
                     <label className="flex gap-2">

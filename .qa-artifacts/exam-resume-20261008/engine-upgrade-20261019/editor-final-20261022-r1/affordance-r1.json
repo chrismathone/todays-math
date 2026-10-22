@@ -1,0 +1,31 @@
+{
+  "files": [
+    "src/__tests__/components/FigureLabelInput.test.tsx",
+    "src/__tests__/components/FigureMathEditor.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.fitFrame.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.panelFolds.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.test.tsx",
+    "src/components/unified/figure-editor/FigureEditor.tsx",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx",
+    "src/components/unified/figure-editor/FigureMathEditor.module.css",
+    "src/components/unified/figure-editor/FigureMathEditor.tsx",
+    "src/components/unified/figure-editor/FigureRotateRow.tsx"
+  ],
+  "exitcode": 0,
+  "command": [
+    "node",
+    "--max-old-space-size=128",
+    "src/lint/check-affordance.mjs",
+    "src/__tests__/components/FigureLabelInput.test.tsx",
+    "src/__tests__/components/FigureMathEditor.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.fitFrame.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.panelFolds.test.tsx",
+    "src/__tests__/components/StudioFigureEditor.test.tsx",
+    "src/components/unified/figure-editor/FigureEditor.tsx",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx",
+    "src/components/unified/figure-editor/FigureMathEditor.module.css",
+    "src/components/unified/figure-editor/FigureMathEditor.tsx",
+    "src/components/unified/figure-editor/FigureRotateRow.tsx"
+  ],
+  "automaticFormatterNotRunOnHashedSnapshots": true
+}

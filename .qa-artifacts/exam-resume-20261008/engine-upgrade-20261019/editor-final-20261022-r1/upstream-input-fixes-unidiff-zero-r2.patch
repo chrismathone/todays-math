@@ -1,0 +1,67 @@
+--- a/src/components/unified/figure-editor/FigureMathEditor.tsx
++++ b/src/components/unified/figure-editor/FigureMathEditor.tsx
+@@ -1 +1,3 @@
+-import { useEffect, useRef, useState } from "react";
++"use client";
++
++import { useEffect, useLayoutEffect, useRef, useState } from "react";
+@@ -9,0 +12,4 @@
++const focusField = (field: MathfieldElement) => {
++  field.focus();
++  field.shadowRoot?.querySelector<HTMLElement>('[part~="keyboard-sink"]')?.focus({ preventScroll: true });
++};
+@@ -17 +23 @@
+-  change.current = onChange;
++  const currentValue = useRef(value);
+@@ -18,0 +25 @@
++  useLayoutEffect(() => { change.current = onChange; currentValue.current = value; }, [onChange, value]);
+@@ -23 +30,13 @@
+-    const input = () => change.current(labelLatex(math));
++    let active = true;
++    const input = () => {
++      if (!active) return;
++      const next = labelLatex(math);
++      if (next !== currentValue.current) {
++        currentValue.current = next;
++        change.current(next);
++      }
++    };
++    // MathLive delays input events. Flush before a subsequent tab/canvas click
++    // so the last typed character is part of the applied diagram.
++    const afterKey = () => queueMicrotask(input);
++    const outside = (event: Event) => { if (!event.composedPath().includes(math)) input(); };
+@@ -24,0 +44,5 @@
++    math.addEventListener("change", input);
++    math.addEventListener("blur", input);
++    math.addEventListener("keydown", afterKey, true);
++    math.addEventListener("compositionend", afterKey);
++    document.addEventListener("pointerdown", outside, true);
+@@ -27,0 +52 @@
++    math.setValue(currentValue.current, { silenceNotifications: true });
+@@ -29 +54,11 @@
+-    return () => { math.removeEventListener("input", input); math.remove(); field.current = null; };
++    return () => {
++      active = false;
++      math.removeEventListener("input", input);
++      math.removeEventListener("change", input);
++      math.removeEventListener("blur", input);
++      math.removeEventListener("keydown", afterKey, true);
++      math.removeEventListener("compositionend", afterKey);
++      document.removeEventListener("pointerdown", outside, true);
++      math.remove();
++      field.current = null;
++    };
+@@ -34 +69 @@
+-  }, [value]);
++  }, [value, idPrefix]);
+@@ -38 +73 @@
+-    math.focus();
++    focusField(math);
+@@ -40 +75,3 @@
+-    change.current(labelLatex(math));
++    const next = labelLatex(math);
++    currentValue.current = next;
++    change.current(next);
+@@ -56 +93 @@
+-      <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => { field.current?.focus(); field.current?.executeCommand("moveToNextPlaceholder"); }} className="rounded border border-control px-2 py-1">다음 칸</button>
++      <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => { if (field.current) { focusField(field.current); field.current.executeCommand("moveToNextPlaceholder"); } }} className="rounded border border-control px-2 py-1">다음 칸</button>

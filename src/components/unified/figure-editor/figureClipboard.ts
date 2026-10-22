@@ -8,6 +8,16 @@ import {
 } from "./figureSvgEditing";
 
 export const FIGURE_CLIPBOARD_TYPE = "application/x-mathgen-figure";
+// Keep editable SVG in this page's memory; only an opaque key reaches the OS.
+let internalClipboard: { token: string; source: string } | null = null;
+export function storeFigureClipboard(source: string): string {
+  const token = crypto.randomUUID();
+  internalClipboard = { token, source };
+  return token;
+}
+export function readFigureClipboard(token: string): string | null {
+  return internalClipboard?.token === token ? internalClipboard.source : null;
+}
 const parse = (svg: string) =>
   new DOMParser().parseFromString(svg, "image/svg+xml");
 

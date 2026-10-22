@@ -49,7 +49,7 @@ export interface StudioFigureEditorProps {
   index: number;
   /** 편집기 머리의 도형 번호(작업실 «도형 9-1») — 없으면 «도형 {index + 1}». */
   label?: string;
-  onSave: (result: StudioFigureSaveResult) => void;
+  onSave: (result: StudioFigureSaveResult) => void | Promise<void>;
   onClose: () => void;
   onRedraw?: (
     request: StudioFigureRedrawRequest,

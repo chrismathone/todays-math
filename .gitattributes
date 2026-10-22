@@ -37,6 +37,10 @@ docs/design/mockups/math-prerequisite-hifi.html text eol=lf
 /docs/planning/tracks/reports/exam-twin-checkpoint-v15-20261019.md -text
 /docs/planning/tracks/reports/exam-engine-answer-presentation-20261019.md -text
 /docs/planning/tracks/reports/exam-engine-arrow-sync-20261022.md -text
+/docs/planning/tracks/reports/exam-engine-editor-final-20261022.md -text
+
+# Preserve the upstream license and raw diagnostic output verbatim.
+/public/mathlive/LICENSE.txt -text whitespace=-blank-at-eol
 
 # Captured engine SVGs contain an indented blank line; preserve their frozen bytes.
 /.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-review-r1/blind/figures/q20-1.svg whitespace=-blank-at-eol

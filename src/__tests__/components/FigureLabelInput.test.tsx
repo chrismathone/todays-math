@@ -20,6 +20,10 @@ import {
 } from "@/components/unified/figure-editor/figureSymbols";
 import { hwpToLatex } from "@/lib/math/hwpEquation";
 
+vi.mock("@/components/unified/figure-editor/FigureMathEditor", () => ({
+  default: ({ value }: { value: string }) => <span aria-label="구조 수식 값">{value}</span>,
+}));
+
 function Harness({
   initial,
   onValue,
@@ -55,6 +59,17 @@ function renderLabel(initial = "$$") {
 }
 
 describe("[도형 글자 칸] 수식 탭 — 한글 수식 입력", () => {
+  it("구조 수식 탭으로 바꿔도 HWP 변환 경고를 유지한다", async () => {
+    const { user } = renderLabel();
+    await user.click(screen.getByLabelText("라벨 수식"));
+    await user.paste("root{2");
+    await user.keyboard("{Enter}");
+    await user.click(screen.getByRole("button", { name: "수식편집기" }));
+    await screen.findByLabelText("구조 수식 값");
+    expect(screen.getByRole("status")).toHaveTextContent("중괄호 짝이 맞지 않습니다");
+    await user.click(screen.getByRole("button", { name: "수식", exact: true }));
+    expect(screen.getByRole("status")).toHaveTextContent("중괄호 짝이 맞지 않습니다");
+  });
   it('keeps a conversion warning across an unchanged blur and Enter', async () => {
     const {user}=renderLabel();
     const field=screen.getByLabelText('라벨 수식');

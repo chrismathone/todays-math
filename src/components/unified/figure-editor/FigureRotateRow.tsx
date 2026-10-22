@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ALIGN_BLOCKED,
   ALIGN_SPREAD_FEW,
@@ -246,7 +247,11 @@ export function FigureOrderRow({
  * 이미 딱 맞으면 눌러도 아무 일이 안 일어난다(되돌리기 자리도 안 생긴다). 미리 흐리게 하려면 렌더마다
  * 조판·측정을 다시 해야 해서 끄지 않는다.
  */
-export function FigureFitRow({ onFit }: { onFit: () => void }) {
+export function FigureFitRow({ onFit, onExpand }: {
+  onFit: () => void;
+  onExpand?: (margin: number, axis: "both" | "horizontal" | "vertical") => void;
+}) {
+  const [margin, setMargin] = useState(20);
   return (
     <section
       aria-label="틀"
@@ -262,6 +267,16 @@ export function FigureFitRow({ onFit }: { onFit: () => void }) {
         다 보이게
       </button>
       <span className="text-muted">잘린 곳을 들이고 여백을 줄입니다</span>
+      {onExpand && <div className="flex w-full flex-wrap items-center gap-1.5">
+        <label className="flex items-center gap-1">여백
+          <input type="number" aria-label="틀 확장 여백" min={1} max={1000} value={margin}
+            onChange={(event) => setMargin(Number(event.target.value))}
+            className="w-14 rounded border border-control px-1 py-1" />
+        </label>
+        {([["both", "전체 넓히기"], ["horizontal", "가로 넓히기"], ["vertical", "세로 넓히기"]] as const).map(([axis, name]) =>
+          <button key={axis} type="button" className={BUTTON} disabled={!Number.isFinite(margin) || margin < 1 || margin > 1000}
+            onClick={() => onExpand(margin, axis)}>{name}</button>)}
+      </div>}
     </section>
   );
 }

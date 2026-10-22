@@ -85,6 +85,25 @@ export const renderFittedFigure = async (svg: string) =>
     fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg))),
   );
 
+/** Expand the viewport only; preserve element coordinates, strokes and grid cells. */
+export function expandFigureFrame(svg: string, margin: number, axis: "both" | "horizontal" | "vertical" = "both"): string {
+  if (!Number.isFinite(margin) || margin <= 0 || margin > 10_000 || !["both", "horizontal", "vertical"].includes(axis)) return svg;
+  const doc = editableFigureDoc(svg), root = doc.documentElement;
+  const view = (root.getAttribute("viewBox") ?? "").trim().split(/[\s,]+/).map(Number);
+  if (view.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0 || view[3] <= 0) return svg;
+  for (const name of ["width", "height"]) {
+    const raw = root.getAttribute(name);
+    if (raw !== null) {
+      const value = raw.trim().replace(/px$/, "");
+      if (!value || !Number.isFinite(Number(value)) || Number(value) <= 0) return svg;
+    }
+  }
+  const [x, y, width, height] = view;
+  const dx = axis === "vertical" ? 0 : margin, dy = axis === "horizontal" ? 0 : margin;
+  return widenFigureFrame(root, [[x - dx, y - dy], [x + width + dx, y + height + dy]], 0)
+    ? serializeFigureSvg(doc) : svg;
+}
+
 /** 적힌 수가 같은 틀인가 — 글자가 달라도(`10` vs `10.0`) 수가 같으면 같다. */
 const sameFrameValue = (a: string | null, b: string) => {
   const read = (value: string | null) =>

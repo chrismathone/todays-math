@@ -1,0 +1,109 @@
+{
+  "bugs": {
+    "url": "https://github.com/arnog/mathlive/issues/"
+  },
+  "dist": {
+    "shasum": "3761b1fb105369ac7a3926bb9cb514ed67758697",
+    "tarball": "https://registry.npmjs.org/mathlive/-/mathlive-0.111.1.tgz",
+    "fileCount": 49,
+    "integrity": "sha512-RVaC7NO02Lmx3ZNUxOHR2xCRpcvTfBb2BtdgV60cTanAMufaUkWcPPB2VxChcsNeL+0rTQKqOPDYxXLPOXJI+A==",
+    "signatures": [
+      {
+        "sig": "MEYCIQDYXgOYBY4VRQVWuwbgnQ+ewcXpQGCCbLhJ62YXu6UK/gIhAJ+rW0DaZNL82WjUbcw2QPKPHQTJsxU2t8VqzMTBmYVy",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEYCIQDZHFOaYYTYF147U+Wp0IwpeqqjFcRqCoYd6lgMAzNw/AIhAPviRvPPXwr8OugrOxWq9Eo7sSPbye9fmT6SqMv6c6nD",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 5755950
+  },
+  "main": "./mathlive.min.js",
+  "name": "mathlive",
+  "types": "./types/mathlive.d.ts",
+  "author": {
+    "name": "Arno Gourdol",
+    "email": "arno@arno.org"
+  },
+  "module": "./mathlive.min.mjs",
+  "exports": {
+    ".": {
+      "node": {
+        "types": "./types/mathlive-ssr.d.ts",
+        "import": "./mathlive-ssr.min.mjs"
+      },
+      "browser": {
+        "production": {
+          "types": "./types/mathlive.d.ts",
+          "import": "./mathlive.min.mjs",
+          "require": "./mathlive.min.js"
+        },
+        "development": {
+          "types": "./types/mathlive.d.ts",
+          "import": "./mathlive.mjs",
+          "require": "./mathlive.js"
+        }
+      },
+      "default": {
+        "types": "./types/mathlive.d.ts",
+        "import": "./mathlive.min.mjs",
+        "require": "./mathlive.min.js"
+      }
+    },
+    "./ssr": {
+      "types": "./types/mathlive-ssr.d.ts",
+      "import": "./mathlive-ssr.min.mjs"
+    },
+    "./vue": "./vue-mathlive.mjs",
+    "./fonts.css": "./mathlive-fonts.css",
+    "./static.css": "./mathlive-static.css"
+  },
+  "funding": {
+    "url": "https://paypal.me/arnogourdol",
+    "type": "individual"
+  },
+  "gitHead": "30ad20a7a47ea43a2f6915808023202c78f37742",
+  "license": "MIT",
+  "_npmUser": {
+    "name": "arnog",
+    "email": "arno@arno.org"
+  },
+  "homepage": "https://github.com/arnog/mathlive#readme",
+  "keywords": [
+    "math",
+    "editor",
+    "javascript",
+    "math-editing",
+    "cortex",
+    "compute engine",
+    "virtual keyboard",
+    "math keyboard",
+    "latex",
+    "tex",
+    "mathjax",
+    "katex",
+    "mathquill"
+  ],
+  "repository": {
+    "url": "git+https://github.com/arnog/mathlive.git",
+    "type": "git"
+  },
+  "_npmVersion": "11.19.1",
+  "description": "A web component for math input",
+  "directories": {},
+  "maintainers": [
+    {
+      "name": "arnog",
+      "email": "arno@arno.org"
+    }
+  ],
+  "_nodeVersion": "26.9.0",
+  "_hasShrinkwrap": false,
+  "_npmOperationalInternal": {
+    "tmp": "tmp/mathlive_0.111.1_1791539889274_0.2680771328870286",
+    "host": "s3://npm-registry-packages-npm-production"
+  },
+  "_id": "mathlive@0.111.1",
+  "version": "0.111.1"
+}
