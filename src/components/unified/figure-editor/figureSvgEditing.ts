@@ -1,5 +1,6 @@
 import { isFigureGridLayer } from './figureGridMetadata';
 import { figureAssetLocalFrame, isFigureAssetLayer } from './figureAssetGeometry';
+import { normalizeFigureArrows } from './figureArrow';
 
 export const SVG_NS = "http://www.w3.org/2000/svg";
 const SHAPES = "path,line,polyline,polygon,circle,ellipse,rect,text";
@@ -19,7 +20,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|group-stack|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid|asset)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|group-stack|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid|asset|arrow)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -248,6 +249,7 @@ export function prepareFigureSvg(source?: string) {
   for (const node of doc.querySelectorAll("[data-asset]")) {
     if (!isFigureAssetLayer(node)) node.removeAttribute("data-asset");
   }
+  normalizeFigureArrows(root);
   // 그림 조각(`g[data-asset]`, scene_assets.py)은 묶음 통째가 요소 하나 — 안의 도형은 따로 세지 않는다
   // (건물 하나가 요소 마흔 개·번호표 마흔 개·AI 요소 목록 마흔 줄이 되지 않게. math-figure-editor 추가).
   for (const node of doc.querySelectorAll(`${SHAPES},g[data-asset]`)) {

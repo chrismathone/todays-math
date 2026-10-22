@@ -1,0 +1,100 @@
+{
+  "exactCommittedSourceMatches": [
+    {
+      "path": "scripts/figure/graph_scene.py",
+      "committedSourceSHA256": "d09793472d9227157866677a1dca51ad776b01af33dec226871b8421b5d9dce1",
+      "currentLF_SHA256": "d09793472d9227157866677a1dca51ad776b01af33dec226871b8421b5d9dce1"
+    },
+    {
+      "path": "scripts/figure/elementary.py",
+      "committedSourceSHA256": "336bf8cb39b5836a44f7262e4a77fa98acbd3e22e67f9cab0490631140be92f1",
+      "currentLF_SHA256": "336bf8cb39b5836a44f7262e4a77fa98acbd3e22e67f9cab0490631140be92f1"
+    },
+    {
+      "path": "scripts/figure/figure_assets.py",
+      "committedSourceSHA256": "847e4609e4954bb0b70cbf420646c7a9f3d10d055cbc971eba23045d6f9536cc",
+      "currentLF_SHA256": "847e4609e4954bb0b70cbf420646c7a9f3d10d055cbc971eba23045d6f9536cc"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureArrow.ts",
+      "committedSourceSHA256": "3655c796faaa8970babb943ddea5384bab9dea339184b7e6f3173d8931858387",
+      "currentLF_SHA256": "3655c796faaa8970babb943ddea5384bab9dea339184b7e6f3173d8931858387"
+    },
+    {
+      "path": "src/__tests__/unit/figureEngineArrows.test.ts",
+      "committedSourceSHA256": "593547e1d5263513a40871fbcaa1c0583236185806f4eece3992552bc6d37b97",
+      "currentLF_SHA256": "593547e1d5263513a40871fbcaa1c0583236185806f4eece3992552bc6d37b97"
+    }
+  ],
+  "nativeCases": 7,
+  "securityRejected": [
+    "invalid data-arrow",
+    "invalid data-arrow",
+    "only local url(#id) gradient references are allowed",
+    "attribute 'data-arrow' is not allowed on <line>",
+    "unsupported SVG element: <marker>",
+    "external/reference value is not allowed in marker-end",
+    "data-grid must be one untransformed root background path layer",
+    "data-grid must be one untransformed root background path layer"
+  ],
+  "externalFrozenFixtures": [
+    {
+      "name": "grid",
+      "rawIdentical": false,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "actualSHA256": "73dd3ce7b82fbf64aef9037c64c95176630595077deac8623dcb9e3cdb9faaeb"
+    },
+    {
+      "name": "assets",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "94b4049dfa4803bed3b6cfbebf1c0da8f32895fa3f17e51e9eb11a3dd8dc02e1",
+      "actualSHA256": "94b4049dfa4803bed3b6cfbebf1c0da8f32895fa3f17e51e9eb11a3dd8dc02e1"
+    },
+    {
+      "name": "assets-3d",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "dadf0618beecf168092cbc9261cff0f7b8a48dc570817b4e88a9ad316326ff19",
+      "actualSHA256": "dadf0618beecf168092cbc9261cff0f7b8a48dc570817b4e88a9ad316326ff19"
+    },
+    {
+      "name": "assets-only",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "f30cfe7fd86283e164e67a23cc568526d4165da8cf0da9cc2e044676d6b67c81",
+      "actualSHA256": "f30cfe7fd86283e164e67a23cc568526d4165da8cf0da9cc2e044676d6b67c81"
+    },
+    {
+      "name": "perspective",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "actualSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514"
+    },
+    {
+      "name": "units",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "actualSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60"
+    },
+    {
+      "name": "right-refused",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "actualSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d"
+    },
+    {
+      "name": "solid-object-refused",
+      "rawIdentical": true,
+      "arrowWrapperOnlyEqual": true,
+      "expectedSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "actualSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54"
+    }
+  ],
+  "sourceRepositoryWritten": false,
+  "dbWrites": 0
+}

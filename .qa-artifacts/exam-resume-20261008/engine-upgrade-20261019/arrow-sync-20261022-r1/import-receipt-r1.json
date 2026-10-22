@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-22T04:53:51.721158+00:00",
+  "sourceCommit": "69d134beb0efcaf29bc20f788929571198efcaca",
+  "baseHead": "261d1e98da880d7b38d665a95b2491094be017b0",
+  "main": "1f20540ec8bdd6777b498f9692b00f0f3bf1368a",
+  "sourceWorkingTreeReadOnly": true,
+  "exactImportedPaths": [
+    "scripts/figure/graph_scene.py",
+    "scripts/figure/elementary.py",
+    "scripts/figure/figure_assets.py",
+    "src/components/unified/figure-editor/figureArrow.ts",
+    "src/__tests__/unit/figureEngineArrows.test.ts"
+  ],
+  "adaptedPaths": [
+    "vendor/figure-engine/core/figure_quality.py",
+    "src/components/unified/figure-editor/figureSvgEditing.ts"
+  ],
+  "firstPatchCheck": "failed atomically on stricter local data-grid validation; no source files applied by failed command",
+  "patchSha256": "9f19e976db77c5ba39e7d8f760b09c870589ce130ebcda3ceb211b47c5c5a5c9"
+}

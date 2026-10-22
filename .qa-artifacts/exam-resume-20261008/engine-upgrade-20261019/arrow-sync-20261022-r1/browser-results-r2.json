@@ -1,0 +1,166 @@
+{
+  "utc": "2026-10-22T05:02:53.271Z",
+  "actualCurrentRootParser": true,
+  "driver": "one headless Microsoft Edge Chromium page, private Vite, no Next production build",
+  "results": [
+    {
+      "name": "down",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "up",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "right",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "both",
+      "objects": 1,
+      "markers": 2,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "horizontal",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "vertical",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "diagonal",
+      "objects": 1,
+      "markers": 1,
+      "headObjects": 0,
+      "sameAfterReopen": true,
+      "movedObjects": 1,
+      "rotatedObjects": 1,
+      "pastedObjects": 2,
+      "pastedReferenceIDsUnique": true,
+      "pastedReferencesPresent": true,
+      "nativePixels": {
+        "channelDifference": 0,
+        "differentPixels": 0
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "code": [
+    {
+      "path": "src/components/unified/figure-editor/figureArrow.ts",
+      "sha256": "278f33b36e9ea92efe23a34d38e705a99a4226d188446eda5a29cb1a6cd6d65a"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "sha256": "0b038211f997581d6e29c2017e36f1df5d9d77419b697154a2bddbdc0dbab71a"
+    },
+    {
+      "path": "src/__tests__/unit/figureEngineArrows.test.ts",
+      "sha256": "3589c4f4fb40958d74240924075de34d366760f1cd1d1d13d94a30d07a675e69"
+    },
+    {
+      "path": "src/__tests__/unit/figureArrowBoundaries.test.ts",
+      "sha256": "2052363d365d17ca4b30f970d40498da980ada4141cc1ef6bdea12b8d53811bd"
+    },
+    {
+      "path": "scripts/figure/graph_scene.py",
+      "sha256": "431e8048930b2969d8d8b69be0bce04dbaaee90262399d66ec629cdd74f8776b"
+    },
+    {
+      "path": "scripts/figure/elementary.py",
+      "sha256": "736bd6606855f1682a4dcf7cdf674e6ae9239c534a55dcf6ff9f0cec1ea03247"
+    },
+    {
+      "path": "scripts/figure/figure_assets.py",
+      "sha256": "7d39551d58ef3e8f5fce96618cc03bd96e2dd052b5643e5a1c3851edffcc54d6"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "932acef280e51d7434a8911089847058895f335f1ef140de2dd455fcc422bda6"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "dbWrites": 0,
+  "apiCalls": 0,
+  "success": true
+}

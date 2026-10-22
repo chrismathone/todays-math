@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-22T05:09:19.379161+00:00",
+  "head": "382a0520cf18c12faebf386ef9929cd55f919620",
+  "main": "1f20540ec8bdd6777b498f9692b00f0f3bf1368a",
+  "scope": "arrow-only native/editor import regressions; not whole generator final validation",
+  "code": [
+    {
+      "path": "scripts/figure/graph_scene.py",
+      "sha256": "431e8048930b2969d8d8b69be0bce04dbaaee90262399d66ec629cdd74f8776b"
+    },
+    {
+      "path": "scripts/figure/elementary.py",
+      "sha256": "736bd6606855f1682a4dcf7cdf674e6ae9239c534a55dcf6ff9f0cec1ea03247"
+    },
+    {
+      "path": "scripts/figure/figure_assets.py",
+      "sha256": "7d39551d58ef3e8f5fce96618cc03bd96e2dd052b5643e5a1c3851edffcc54d6"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "932acef280e51d7434a8911089847058895f335f1ef140de2dd455fcc422bda6"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureArrow.ts",
+      "sha256": "278f33b36e9ea92efe23a34d38e705a99a4226d188446eda5a29cb1a6cd6d65a"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "sha256": "0b038211f997581d6e29c2017e36f1df5d9d77419b697154a2bddbdc0dbab71a"
+    },
+    {
+      "path": "src/__tests__/unit/figureEngineArrows.test.ts",
+      "sha256": "3589c4f4fb40958d74240924075de34d366760f1cd1d1d13d94a30d07a675e69"
+    },
+    {
+      "path": "src/__tests__/unit/figureArrowBoundaries.test.ts",
+      "sha256": "2052363d365d17ca4b30f970d40498da980ada4141cc1ef6bdea12b8d53811bd"
+    }
+  ],
+  "currentMainRelatedPassed": 383,
+  "currentMainRelatedFailed": 0,
+  "currentRelatedTestFiles": 17,
+  "currentTypes": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/arrow-sync-20261022-r1/dom-types-r1.json",
+    "sha256": "dc325487c76a242c77b99e3354513a013f30cfc0f457e1b278387acf12fb942c"
+  },
+  "lintFiles": 4,
+  "browser": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/arrow-sync-20261022-r1/browser-results-r2.json",
+    "sha256": "7ed9645c2cc240a2c1626a48388e92c12ae7c618dac66d3bd707b8f207a9c11c"
+  },
+  "native": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/arrow-sync-20261022-r1/native-results-r2.json",
+    "sha256": "94a1b58647b6cc9f736f29bdf46439a86424e9d6aa3a6a1fb3ab95e612ac5a36"
+  },
+  "sourceCommit": "69d134beb0efcaf29bc20f788929571198efcaca",
+  "sourceRepoWrites": 0,
+  "issuedQuestionEdits": 0,
+  "dbWrites": 0,
+  "latestMainPathsPreserved": [
+    "docs/planning/tracks/reports/srs-course-clock-20261022.md",
+    "src/__tests__/api/mathSrsCourseRoutes.test.ts",
+    "src/__tests__/unit/courseSessionClock.test.ts",
+    "src/lib/math-srs/courseAutomation.ts"
+  ],
+  "wholeEngineComplete": false,
+  "unrelatedM5FinalPending": {
+    "priorRelatedPassed": 194,
+    "priorRelatedFailed": 5,
+    "reason": "Old tests still read removed body coordinate lists. Separate follow-up; arrow checkpoint does not certify M5 final."
+  }
+}

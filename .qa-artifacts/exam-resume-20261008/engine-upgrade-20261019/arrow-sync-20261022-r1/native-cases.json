@@ -1,0 +1,125 @@
+[
+  {
+    "name": "down",
+    "raw": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 120\"><g data-arrow=\"end\"><line x1=\"80\" y1=\"20\" x2=\"80\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\"/><polygon points=\"76.5,74 83.5,74 80,80\" fill=\"#111111\"/></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"80\" y1=\"20\" x2=\"80\" y2=\"76\" stroke=\"#111111\" stroke-width=\"1.2\" /><polygon points=\"76.5,74 83.5,74 80,80\" fill=\"#111111\" /></g></svg>",
+    "metadata": "end"
+  },
+  {
+    "name": "up",
+    "raw": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 120\"><g data-arrow=\"end\"><line x1=\"80\" y1=\"80\" x2=\"80\" y2=\"24\" stroke=\"#111111\" stroke-width=\"1.2\"/><polygon points=\"76.5,26 83.5,26 80,20\" fill=\"#111111\"/></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"80\" y1=\"80\" x2=\"80\" y2=\"24\" stroke=\"#111111\" stroke-width=\"1.2\" /><polygon points=\"76.5,26 83.5,26 80,20\" fill=\"#111111\" /></g></svg>",
+    "metadata": "end"
+  },
+  {
+    "name": "right",
+    "raw": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 120\"><g data-arrow=\"end\"><line x1=\"20\" y1=\"50\" x2=\"96\" y2=\"50\" stroke=\"#111111\" stroke-width=\"1.2\"/><polygon points=\"94,46.5 94,53.5 100,50\" fill=\"#111111\"/></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"20\" y1=\"50\" x2=\"96\" y2=\"50\" stroke=\"#111111\" stroke-width=\"1.2\" /><polygon points=\"94,46.5 94,53.5 100,50\" fill=\"#111111\" /></g></svg>",
+    "metadata": "end"
+  },
+  {
+    "name": "both",
+    "raw": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 120\"><g data-arrow=\"both\"><line x1=\"20\" y1=\"50\" x2=\"100\" y2=\"50\" stroke=\"#333\" stroke-width=\"1.1\"/><polygon points=\"20,50 24.5,52.7 24.5,47.3\" fill=\"#333\"/><polygon points=\"100,50 95.5,52.7 95.5,47.3\" fill=\"#333\"/></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 200 120\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"both\"><line x1=\"20\" y1=\"50\" x2=\"100\" y2=\"50\" stroke=\"#333\" stroke-width=\"1.1\" /><polygon points=\"20,50 24.5,52.7 24.5,47.3\" fill=\"#333\" /><polygon points=\"100,50 95.5,52.7 95.5,47.3\" fill=\"#333\" /></g></svg>",
+    "metadata": "both"
+  },
+  {
+    "name": "horizontal",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        5
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "width": 240,
+      "height": 200,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            1
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "raw": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"163.2\" y2=\"131.2\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"163.200,131.200 155.200,128.200 155.200,134.200\" fill=\"#111\" /></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"163.2\" y2=\"131.2\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"163.200,131.200 155.200,128.200 155.200,134.200\" fill=\"#111\" /></g></svg>",
+    "metadata": "end"
+  },
+  {
+    "name": "vertical",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        5
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "width": 240,
+      "height": 200,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            1,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "raw": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"76.8\" y2=\"68.8\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"76.800,68.800 73.800,76.800 79.800,76.800\" fill=\"#111\" /></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"76.8\" y2=\"68.8\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"76.800,68.800 73.800,76.800 79.800,76.800\" fill=\"#111\" /></g></svg>",
+    "metadata": "end"
+  },
+  {
+    "name": "diagonal",
+    "spec": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        5
+      ],
+      "yRange": [
+        0,
+        5
+      ],
+      "axes": false,
+      "width": 240,
+      "height": 200,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "raw": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"163.2\" y2=\"68.8\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"163.200,68.800 154.958,71.052 158.471,75.916\" fill=\"#111\" /></g></svg>",
+    "sanitized": "<svg viewBox=\"0 0 240 200\" xmlns=\"http://www.w3.org/2000/svg\"><g data-arrow=\"end\"><line x1=\"76.8\" y1=\"131.2\" x2=\"163.2\" y2=\"68.8\" stroke=\"#000\" stroke-width=\"1.7\" /><polygon points=\"163.200,68.800 154.958,71.052 158.471,75.916\" fill=\"#111\" /></g></svg>",
+    "metadata": "end"
+  }
+]

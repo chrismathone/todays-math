@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "69d134beb0efcaf29bc20f788929571198efcaca",
+  "independentAuditCommit": "62b1147ef",
+  "findings": [
+    {"id": "AR-SYNC-1", "resolution": "Styled group ancestry and head clip/mask stay in original coordinates, without normalization. Non-rendering definition subtrees are skipped. Native plain producer groups still normalize.", "regressionFile": "src/__tests__/unit/figureArrowBoundaries.test.ts"},
+    {"id": "AR-SYNC-2", "resolution": "Reserve the root SVG id as well as descendant ids when allocating a marker id.", "regressionFile": "src/__tests__/unit/figureArrowBoundaries.test.ts"}
+  ],
+  "validationHistory": [
+    "Initial atomic patch check failed on the parent's stronger square-grid security validation; that validation is preserved and arrow enum cases were applied separately.",
+    "Native helper initial run used an incorrect imported function name; corrected ensure_engine_path to the existing ensure_on_path before actual execution.",
+    "arrow-related-r2: 377 passed, 0 failed before the boundary repairs.",
+    "arrow-related-r3: 383 passed, 0 failed, but a last non-rendering-subtree guard changed while the check was running; source-hash gate correctly rejected certification and r4 reruns the final source.",
+    "Browser r1: all 7 actual SVGs had zero differing pixels and one editable element; strict stringified object comparison falsely treated XML attribute-order changes on reopening as data changes. The harness now compares all object keys/values canonically and keeps r1 evidence."
+  ],
+  "sourceRepositoryWritten": false,
+  "dbWrites": 0,
+  "manualAuthoredQuestionsAdded": 0,
+  "wholeEngineComplete": false
+}
