@@ -1,0 +1,30 @@
+--- a/src/components/unified/figure-editor/figureBake.ts
++++ b/src/components/unified/figure-editor/figureBake.ts
+@@ -365,7 +365,14 @@
+   if (node.hasAttribute("data-asset")) {
+     const frame = figureAssetLocalFrame(node);
+     if (frame) return frame.map((point) => applyPoint(m, point));
++    // A forged/edited asset must not bypass its registered-frame guard by
++    // falling through to ordinary group geometry.
++    if (node.localName === "g") return [];
+   }
++  if (node.localName === "g")
++    return [...node.children].flatMap((child) =>
++      extentPoints(child, multiply(m, parseTransform(child.getAttribute("transform") ?? ""))),
++    );
+   if (node.localName === "circle" || node.localName === "ellipse") {
+     const n = (name: string) => first(node.getAttribute(name));
+     const rx = node.localName === "circle" ? n("r") : n("rx"),
+@@ -433,6 +440,12 @@
+ /** 요소가 그림에서 차지하는 자리(그림 좌표) — 곡선은 조절점이 아니라 곡선 위의 점, 원·타원은 정확한 상자. */
+ function inkPoints(node: Element): Point[] {
+   const m = elementMatrix(node);
++  // Registered current/legacy pictures keep their conservative container in
++  // alignment too; recursive ink must not replace asset identity with a bbox.
++  if (node.localName === "g" && node.hasAttribute("data-asset"))
++    return extentPoints(node, m);
++  if (node.localName === "g")
++    return [...node.children].flatMap((child) => inkPoints(child));
+   if (node.localName === "path") {
+     const pieces = sampleFigurePath(node.getAttribute("d") ?? "", 12);
+     if (pieces) return pieces.flat().map((p) => applyPoint(m, p));
