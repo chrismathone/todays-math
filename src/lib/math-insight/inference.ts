@@ -6,6 +6,7 @@ import {
   type MathInsightInquiryResult,
 } from "@/contracts/mathInsight.contract";
 import { insightDigest } from "./snapshot";
+import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 
 export const insightSelectionSchema = z.strictObject({
   snapshotId: z.string().length(64),
@@ -27,10 +28,22 @@ export function maskInsightQuery(
     .filter(Boolean)
     .sort((a, b) => b.length - a.length))
     masked = masked.split(value).join("[대상]");
+  // Recognized curricular references are exempt only from phone detection.
+  // Keep the actual masked query unchanged and check email/UUID on it directly.
+  const phoneText = masked
+    .replace(/(?<![\w-])\d{4}-\d{2}-\d{2}(?![\w-])/g, (value) => {
+      const time = Date.parse(`${value}T00:00:00.000Z`);
+      return Number.isFinite(time) &&
+        new Date(time).toISOString().slice(0, 10) === value
+        ? "[날짜]"
+        : value;
+    })
+    .replace(/(?<![\w-])\d+-\d+-\d+-\d+(?![\w-])/g, (value) =>
+      getCourseSection(value) ? "[소단원]" : value,
+    );
   if (
-    /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?:\+?\d[\d ()-]{7,}\d)|[a-f\d]{8}-[a-f\d-]{27,}/i.test(
-      masked,
-    )
+    /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|[a-f\d]{8}-[a-f\d-]{27,}/i.test(masked) ||
+    /(?:\+?\d[\d ()-]{7,}\d)/.test(phoneText)
   )
     throw new Error("identity-bearing-query");
   if (!masked.trim() || masked.length > 500) throw new Error("invalid-query");
