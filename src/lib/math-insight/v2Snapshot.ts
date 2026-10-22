@@ -21,7 +21,7 @@ export const INSIGHT_V2_LIMITATIONS = [
   "최근 14일과 저장된 계획 이후 여부를 구분합니다. 보존된 기록이 없다는 것은 학습한 적이 없거나 성취가 0이라는 뜻이 아닙니다.",
   "세션 이력은 최대 30개, 최근 답안은 최대 100개를 보존합니다. 원천이 잘렸을 수 있고, 상한 미만이어도 전체 과거를 확인할 수 없습니다.",
   "힌트·자기채점·포기·반복 본문·재시도는 독립 첫 정오답에 더하지 않습니다. 반복 여부도 보존된 세션과 최근 답안 범위에서만 확인합니다.",
-  "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획과 통합 탐험의 하루 미션은 조회·계산하지 않아 이 화면에 포함하지 않습니다.",
+  "저장된 계획과 코스의 계산된 다음 진도를 구분합니다. 학생용 기본계획을 새로 계산하지 않으며, 통합 탐험 하루 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다. 다음 확인 후보 자격은 기존 정책으로 검사합니다.",
   "일반 관찰에는 통과·실패 임계값을 적용하지 않습니다. 선수 대응·판정·다음 확인 후보는 기존 초5 분수 네 소단원만 별도로 봅니다.",
   "날짜와 소단원 질문은 이 조회의 기간과 원천 범위에서만 답합니다. 자동 배정·학습 기록 변경·전체 이력 조회는 하지 않습니다.",
 ];
@@ -203,7 +203,7 @@ export function buildInsightV2Snapshot(
   const dailyGoal = course.plan ? courseSummary(course, now).todayGoal : null;
   add(
     "course-goal",
-    `저장된 코스에서 계산한 다음 진도: ${target ? (getCourseSection(target)?.title ?? target) : "없음"}. ${dailyGoal !== null ? `코스 계산 분량은 ${dailyGoal}문항입니다. ` : ""}이 값은 통합 탐험의 하루 미션이 아니며, 미션은 조회하지 않았습니다.`,
+    `저장된 코스에서 계산한 다음 진도: ${target ? (getCourseSection(target)?.title ?? target) : "없음"}. ${dailyGoal !== null ? `코스 계산 분량은 ${dailyGoal}문항입니다. ` : ""}이 값은 통합 탐험의 하루 미션이 아니며, 미션의 내용·분량은 이 조회에서 표시·평가하지 않습니다.`,
   );
   add(
     "availability",
@@ -231,9 +231,9 @@ export function buildInsightV2Snapshot(
     facts.push({
       id: `fact:candidate:${c.id}`,
       kind: "availability",
-      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다.`,
+      text: `${c.title}: ${c.reason} ${c.eligible ? "기존 분수 시범 조건의 다음 확인 후보입니다." : "현재 조건에서 다음 확인 후보로 제안하지 않습니다."} 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다. ${c.caveats.join(" ")}`,
       evidenceIds: c.evidenceIds,
-      candidateIds: [c.id],
+      candidateIds: c.eligible ? [c.id] : [],
     });
   }
   add(
