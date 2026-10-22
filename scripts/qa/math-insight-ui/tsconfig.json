@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "types": ["node", "next", "@testing-library/jest-dom/vitest"]
+  },
+  "include": [
+    "../../../src/components/math-srs/LearningInsightPanel.tsx",
+    "../../../src/components/math-srs/CourseDashboard.tsx",
+    "../../../src/components/math-srs/courseApi.ts",
+    "../../../src/__tests__/components/LearningInsightPanel.test.tsx",
+    "../../../src/__tests__/components/learningInsightApi.test.ts",
+    "../../../src/__tests__/components/CourseDashboard.test.tsx",
+    "./data.ts",
+    "./generate.ts",
+    "./fixture.tsx"
+  ]
+}
