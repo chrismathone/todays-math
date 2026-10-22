@@ -1,0 +1,250 @@
+[
+  {
+    "id": "horizontal",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            8,
+            2
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 460\" width=\"520\" height=\"460\"><line x1=\"90.4\" y1=\"339.2\" x2=\"387.2\" y2=\"339.2\" stroke=\"#000\" stroke-width=\"1.7\"/><polygon points=\"387.200,339.200 379.200,336.200 379.200,342.200\" fill=\"#111\"/></svg>",
+    "directShapes": [
+      {
+        "type": "line",
+        "attrs": {
+          "x1": "90.4",
+          "y1": "339.2",
+          "x2": "387.2",
+          "y2": "339.2",
+          "stroke": "#000",
+          "stroke-width": "1.7"
+        }
+      },
+      {
+        "type": "polygon",
+        "attrs": {
+          "points": "387.200,339.200 379.200,336.200 379.200,342.200",
+          "fill": "#111"
+        }
+      }
+    ],
+    "expectedImporterObjectsByCurrentSelector": 2,
+    "expectedArrowToolObjects": 1
+  },
+  {
+    "id": "diagonal",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            8,
+            7
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 460\" width=\"520\" height=\"460\"><line x1=\"90.4\" y1=\"375.6\" x2=\"387.2\" y2=\"157.2\" stroke=\"#000\" stroke-width=\"1.7\"/><polygon points=\"387.200,157.200 378.978,159.525 382.535,164.358\" fill=\"#111\"/></svg>",
+    "directShapes": [
+      {
+        "type": "line",
+        "attrs": {
+          "x1": "90.4",
+          "y1": "375.6",
+          "x2": "387.2",
+          "y2": "157.2",
+          "stroke": "#000",
+          "stroke-width": "1.7"
+        }
+      },
+      {
+        "type": "polygon",
+        "attrs": {
+          "points": "387.200,157.200 378.978,159.525 382.535,164.358",
+          "fill": "#111"
+        }
+      }
+    ],
+    "expectedImporterObjectsByCurrentSelector": 2,
+    "expectedArrowToolObjects": 1
+  },
+  {
+    "id": "reverse",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            8,
+            7
+          ],
+          "to": [
+            1,
+            1
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 460\" width=\"520\" height=\"460\"><line x1=\"387.2\" y1=\"157.2\" x2=\"90.4\" y2=\"375.6\" stroke=\"#000\" stroke-width=\"1.7\"/><polygon points=\"90.400,375.600 98.622,373.275 95.065,368.442\" fill=\"#111\"/></svg>",
+    "directShapes": [
+      {
+        "type": "line",
+        "attrs": {
+          "x1": "387.2",
+          "y1": "157.2",
+          "x2": "90.4",
+          "y2": "375.6",
+          "stroke": "#000",
+          "stroke-width": "1.7"
+        }
+      },
+      {
+        "type": "polygon",
+        "attrs": {
+          "points": "90.400,375.600 98.622,373.275 95.065,368.442",
+          "fill": "#111"
+        }
+      }
+    ],
+    "expectedImporterObjectsByCurrentSelector": 2,
+    "expectedArrowToolObjects": 1
+  },
+  {
+    "id": "short",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            1.01,
+            1
+          ],
+          "arrow": true
+        }
+      ]
+    },
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 460\" width=\"520\" height=\"460\"><line x1=\"90.4\" y1=\"375.6\" x2=\"90.8\" y2=\"375.6\" stroke=\"#000\" stroke-width=\"1.7\"/><polygon points=\"90.824,375.600 82.824,372.600 82.824,378.600\" fill=\"#111\"/></svg>",
+    "directShapes": [
+      {
+        "type": "line",
+        "attrs": {
+          "x1": "90.4",
+          "y1": "375.6",
+          "x2": "90.8",
+          "y2": "375.6",
+          "stroke": "#000",
+          "stroke-width": "1.7"
+        }
+      },
+      {
+        "type": "polygon",
+        "attrs": {
+          "points": "90.824,375.600 82.824,372.600 82.824,378.600",
+          "fill": "#111"
+        }
+      }
+    ],
+    "expectedImporterObjectsByCurrentSelector": 2,
+    "expectedArrowToolObjects": 1
+  },
+  {
+    "id": "plain",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "segments": [
+        {
+          "from": [
+            1,
+            1
+          ],
+          "to": [
+            8,
+            7
+          ],
+          "arrow": false
+        }
+      ]
+    },
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 520 460\" width=\"520\" height=\"460\"><line x1=\"90.4\" y1=\"375.6\" x2=\"387.2\" y2=\"157.2\" stroke=\"#000\" stroke-width=\"1.7\"/></svg>",
+    "directShapes": [
+      {
+        "type": "line",
+        "attrs": {
+          "x1": "90.4",
+          "y1": "375.6",
+          "x2": "387.2",
+          "y2": "157.2",
+          "stroke": "#000",
+          "stroke-width": "1.7"
+        }
+      }
+    ],
+    "expectedImporterObjectsByCurrentSelector": 1,
+    "expectedArrowToolObjects": null
+  }
+]
