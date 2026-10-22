@@ -23,6 +23,7 @@ import {
 import type { prerequisiteCheckCandidates } from "@/lib/math-prerequisite/policy";
 import { heldCheckSections } from "@/lib/math-prerequisite/policy";
 import { prerequisiteVersions } from "@/lib/math-prerequisite/versions";
+import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
 
 export const INSIGHT_LIMITATIONS = [
   "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
@@ -155,7 +156,7 @@ export function buildInsightSnapshot(
         : freshness === "current" && !!candidates?.sectionIds.length
           ? "eligible"
           : "insufficient";
-  const held = heldCheckSections(course, now, true);
+  const held = heldCheckSections(course, now, mathPrerequisiteEnabled());
   const citations = evidence
     .filter(
       (e) => e.included && candidates?.evidenceSessionIds.includes(e.sessionId),

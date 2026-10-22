@@ -83,3 +83,33 @@ Tests cover read authorization before record/model access, strict body/query han
 ## Remaining boundaries
 
 Lead owns integration, full build/release validation and any production activation. Independent audit/live synthetic provider validation is owned by the other dispatched worker; its findings are not inferred from these unit tests. No measured instructional effect, official whole-curriculum alignment, diagnosis, mastery or all-content certification is claimed. Existing textbook rights/verification holds remain untouched. TypeSafe live guidance was read for narrow code-controlled selection design; the existing chosen transport was preserved: https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md and https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.md. Installed Next route-handler documentation was read via the existing dependency installation.
+
+## Addendum — evidence summary capability repair (2026-10-23)
+
+Dispatch `ctx_ea4bdee6dbd6` started from clean `7df647485`. The independent auditor reported that all final 18 runtime responses parsed on `6f78cfaa7`, but the fresh-pass and disabled-plan-retained cases incorrectly abstained from observed-record summaries. The prompt exposed `snapshot.eligibility`, which describes personalized next-check availability, as an unqualified model-context field. This was a prompt/context ambiguity; the existing parser already permits summaries of included current evidence independently of candidate availability.
+
+Implementation/test commit: **`3891f1780`** (`fix(insight): separate evidence summaries from next-check eligibility`). Only `src/lib/math-insight/inference.ts` and new `src/__tests__/unit/mathInsightCapabilities.test.ts` changed in that commit. This report addendum is committed separately. The frozen helper's SHA-256 is **`3e5480baf6579b42432555d52116e7d76714b321796bbbd6f57c9038b0c8b111`**; the source hash and then the exact implementation commit were sent to both coordinator and audit dispatch `ctx_0a261e1b89fd` before completion.
+
+`buildInsightPrompt` replaces the ambiguous context field with two code-computed capabilities:
+
+- `capabilities.evidenceSummary`: freshness is `current` and at least one source record is already `included` by the existing snapshot builder.
+- `capabilities.nextCheckProposal`: freshness is `current` and at least one authoritative candidate already has `eligible: true`.
+
+Instructions explicitly allow observed first-attempt summaries after a passed target or paused plan, and allow evidence-only overview. A next-check request without proposal capability must still return `insufficient`; candidate selection still requires the candidate's own eligibility and every trigger citation. Scope, diagnosis, mastery, automatic-assignment, untrusted-query and JSON/ID-only restrictions remain explicit. The parser, composer, snapshot builder, source inclusion rules, candidate guards, thresholds, shared DTO, policy and UI are unchanged. No free model prose is accepted or rendered.
+
+Meaningful RED/GREEN used product course transitions and real snapshot/candidate builders. The new regression file initially had **9 failures / 1 pass** against the old prompt context. After the repair and one additional absent-authoritative-pool regression, the final scoped run passed **5 files / 44 tests**, including **11 capability tests**:
+
+```sh
+node_modules/.bin/vitest run \
+  src/__tests__/unit/mathInsightCapabilities.test.ts \
+  src/__tests__/unit/mathInsight.test.ts \
+  src/__tests__/unit/mathInsightEligibility.test.ts \
+  src/__tests__/unit/mathInsightRuntime.test.ts \
+  src/__tests__/api/mathInsightRoutes.test.ts --maxWorkers=1
+```
+
+The capability tests cover supported summaries with exact source citations for fresh-pass/paused-plan records; refusal of candidate selections in both cases; a valid authoritative two-failure pool with complete citations; rejection of missing trigger citations; no inferred proposal permission when the pool is absent; and empty, stale, future-session, no-plan, future-plan and outside-pilot fixtures. The last group exposes neither capability, hides excluded evidence from model context, rejects evidence selection and preserves an explicit insufficient result. Prompt restrictions for out-of-scope/diagnosis/mastery requests and strict rejection of an extra diagnosis field are checked. These checks establish context and parser behavior; they do not claim a live model's semantic accuracy on arbitrary questions.
+
+Scoped TypeScript passed for the changed inference source and regression test, plus their transitive imports, using a removed temporary configuration extending the project tsconfig with `incremental: false` and the checkout's absolute `node_modules/@types` root. The first temporary config omitted that type root and failed to discover Node types from `/tmp`; correcting the test configuration resolved it without a product source change. Scoped ESLint and Prettier checks passed, as did `git diff --check`. No full-repository type check, build, full test suite, browser, server, push, environment/DB mutation, credential read or model API call was performed; the existing dependencies symlink was unchanged.
+
+Live validation remains exclusively owned by audit dispatch `ctx_0a261e1b89fd`, preserving its prior 22 attempts. It acknowledged the helper freeze and requested the exact commit for its predeclared 18 same-case comparisons plus 4 heldouts; that commit has been supplied, and no new live result is claimed here. Separate identity-mask phone/date/section-ID false positives and a feature-off hold-caveat mismatch were reported by that auditor to root and remain outside this repair's scope. Root owns final integration, validation and release; no production wait is required for this worker. The project's TypeSafe skill and live [state guidance](https://docs.typesafe.ai/concepts/state) informed explicit context naming while preserving the existing transport; installed Next data-security guidance was also read.
