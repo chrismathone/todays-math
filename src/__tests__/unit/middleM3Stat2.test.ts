@@ -214,11 +214,22 @@ describe("중3 산포도·상자그림과 산점도 25유형", () => {
     });
   }
 
-  it("한 유형에서 4문항을 뽑으면 발문이 전부 다르다", () => {
+  it("한 유형에서 4문항을 뽑으면 발문·주어진 그림 자료가 서로 다르다", () => {
     for (const e of entries()) {
       const set = generateMiddleSet(e.key, 20260824, 4);
-      const contents = new Set(set.map((p: MidProblem) => p.content));
-      expect(contents.size, e.key).toBe(4);
+      const scatter = e.rpmMinor === "상자그림과 산점도" &&
+        ["06", "07", "08", "09", "10", "11", "12", "14", "15"].includes(e.rpmType);
+      if (!scatter) {
+        expect(new Set(set.map((p: MidProblem) => p.content)).size, e.key).toBe(4);
+        continue;
+      }
+      for (let i = 0; i < set.length; i += 1) for (let j = i + 1; j < set.length; j += 1) {
+        if (set[i]!.content !== set[j]!.content) continue;
+        // 각 축은 이 유형에서 고정이다. 같은 발문이면 점 자료가 실제로 달라야 한다.
+        const rows = (p: MidProblem) => (p.figureSpec!.points as number[][])
+          .map((xy) => xy.join(",")).sort();
+        expect(rows(set[i]!), e.key).not.toEqual(rows(set[j]!));
+      }
     }
   });
 

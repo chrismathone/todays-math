@@ -27,7 +27,8 @@ describe("산점도 9유형의 읽을 수 있는 모눈 자료",()=>{
       const ySubject=type==="07"||type==="10"?"영어":type==="09"?"수학":"과학";
       expect(fig.xLabel).toBe(`${xSubject}(점)`);expect(fig.yLabel).toBe(`${ySubject}(점)`);
       expect(p.content).toContain(`${xSubject} 점수($x$)`);expect(p.content).toContain(`${ySubject} 점수($y$)`);
-      expect(p.content).toContain("$(x, y)$:"); // 정확한 읽기 검수 전에는 원자료 목록을 유지한다.
+      expect(p.content).not.toContain("$(x, y)$:");
+      expect(p.content).not.toMatch(/\$\(\d+,\s*\d+\)\$/);
     }
   });
 
@@ -74,12 +75,27 @@ describe("산점도 9유형의 읽을 수 있는 모눈 자료",()=>{
     }
   });
 
+  it("좌표 목록 제거는 검증한144개 자료·답·메타데이터를 바꾸지 않는다",()=>{
+    const before=JSON.parse(fs.readFileSync(".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m5-scatter-lattice-20261022-r1/actual-current-private.json","utf8"));
+    expect(before.rows).toHaveLength(144);
+    for(const row of before.rows){
+      const current=generateMiddleProblem(row.key,row.seed);
+      const marker=row.output.content.indexOf(" $(x, y)$:");
+      expect(marker).toBeGreaterThan(0);
+      const expectedContent=row.output.content.slice(0,marker)+row.output.content.slice(row.output.content.indexOf("\n"));
+      const expected={...row.output,content:expectedContent};
+      // 두 설명의 접속 표현만 다듬는다. 수치·조건은 별도 독립 풀이로 확인한다.
+      if(row.key.endsWith("|12")||row.key.endsWith("|15"))expected.solution=current.solution;
+      expect(current).toEqual(expected);
+    }
+  });
+
   it("같은 family ID의 새 결과는 별도 버전으로 재현한다",()=>{
     const families=legacyStudyFamilies();
     for(const type of TYPES){
       const family=families.find(f=>f.id===`legacy:mid:${key(type)}`);
       expect(family,`missing ${type}`).toBeDefined();
-      expect(family!.version).toBe("20261022-scatter-five-point-grid-subject-axes-r1");
+      expect(family!.version).toBe("20261022-scatter-grid-reading-without-coordinate-lists-r2");
     }
   });
 });

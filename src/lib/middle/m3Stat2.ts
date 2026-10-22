@@ -164,13 +164,6 @@ function packValues(
   });
 }
 
-/** 모눈 자료의 실제 읽기 검수 전까지 원자료 목록을 함께 유지한다.
- * 세트 중복은 별도의 학생 입력 비교가 맡는다(studentInputIdentity.ts).
- */
-function pointsList(pts: readonly (readonly [number, number])[]): string {
-  return pts.map(([x, y]) => `$(${x}, ${y})$`).join(", ");
-}
-
 /** 산점도만 5점 교점으로 제한한다. 상자그림·산포도의 기존 정수 풀은 바꾸지 않는다. */
 function scatterSorted(rng: Rng, n: number, lo: number, hi: number): number[] {
   if (lo % 5 || hi % 5 || (hi - lo) / 5 + 1 < n) {
@@ -781,7 +774,7 @@ export const M3_STAT2: TypeEntry[] = [
       packValues("y", ys, facts);
       const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n수학 점수가 $${threshold}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n수학 점수가 $${threshold}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${count}$명`,
         solution: `산점도에서 $x$값이 $${threshold}$ 이상인 점의 개수를 세면 $${count}$개이다.\n따라서 수학 점수가 $${threshold}$점 이상인 학생은 $${count}$명이다.`,
         facts,
@@ -823,7 +816,7 @@ export const M3_STAT2: TypeEntry[] = [
       packValues("y", ys, facts);
       const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 국어 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n국어 점수가 영어 점수보다 높은 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 국어 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다.\n국어 점수가 영어 점수보다 높은 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${count}$명`,
         solution: `산점도에서 대각선 $y=x$보다 아래쪽(즉 $x>y$)에 있는 점의 개수를 세면 $${count}$개이다.\n따라서 국어 점수가 영어 점수보다 높은 학생은 $${count}$명이다.`,
         facts,
@@ -868,7 +861,7 @@ export const M3_STAT2: TypeEntry[] = [
     packValues("y", ys, facts);
     const axis = scatterAxis(20);
     return {
-      content: `다음은 학생 $6$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 산점도가 나타내는 상관관계로 알맞은 것을 구하시오.`,
+      content: `다음은 학생 $6$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n이 산점도가 나타내는 상관관계로 알맞은 것을 구하시오.`,
       answer: answerText,
       solution:
         kind === "pos"
@@ -941,7 +934,7 @@ export const M3_STAT2: TypeEntry[] = [
       );
       const axis = scatterAxis(20);
       return {
-        content: `다음은 학생 $${pts.length}$명의 국어 점수($x$)와 수학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n국어 점수와 수학 점수의 합이 $${k}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
+        content: `다음은 학생 $${pts.length}$명의 국어 점수($x$)와 수학 점수($y$)를 조사하여 나타낸 산점도이다.\n국어 점수와 수학 점수의 합이 $${k}$점 이상인 학생은 모두 몇 명인지 구하시오.`,
         answer: `$${hit.length}$명`,
         solution: `두 점수의 합이 $${k}$점 이상인 학생의 점은 ${hit
           .map(([x, y]) => `$(${x},\\,${y})$`)
@@ -979,7 +972,7 @@ export const M3_STAT2: TypeEntry[] = [
       packValues("y", ys, facts);
       const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n이 학생들의 수학 점수의 평균을 구하시오.`,
+        content: `다음은 학생 $${xs.length}$명의 수학 점수($x$)와 영어 점수($y$)를 조사하여 나타낸 산점도이다.\n이 학생들의 수학 점수의 평균을 구하시오.`,
         answer: `$${mean}$점`,
         solution: `산점도에서 각 점의 $x$값을 모두 더하면 $${xs.join("+")}=${sum}$이고, 학생 수는 $${xs.length}$명이다.\n따라서 수학 점수의 평균은 $\\dfrac{${sum}}{${xs.length}}=${mean}$점이다.`,
         facts,
@@ -1043,7 +1036,7 @@ export const M3_STAT2: TypeEntry[] = [
       packValues("y", ys, facts);
       const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n과학 점수가 가장 높은 학생의 수학 점수를 구하시오.`,
+        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n과학 점수가 가장 높은 학생의 수학 점수를 구하시오.`,
         answer: `$${xs[top]}$점`,
         solution: `산점도에서 $y$좌표가 가장 큰 점은 $(${xs[top]},\\,${ys[top]})$이다.\n따라서 과학 점수가 가장 높은 학생의 수학 점수는 $${xs[top]}$점이다.`,
         facts,
@@ -1102,13 +1095,13 @@ export const M3_STAT2: TypeEntry[] = [
       );
       const axis = scatterAxis(30);
       return {
-        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n수학 점수와 과학 점수가 모두 $${t}$점 이상인 학생은 전체의 몇 $\\%$인지 구하시오.`,
+        content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n수학 점수와 과학 점수가 모두 $${t}$점 이상인 학생은 전체의 몇 $\\%$인지 구하시오.`,
         answer: `$${pct}\\%$`,
         solution: `두 점수가 모두 $${t}$점 이상인 점은 ${hit
           .map(([x, y]) => `$(${x},\\,${y})$`)
           .join(
             ", ",
-          )}${euroRo(hit[hit.length - 1]![1])} $${hit.length}$개이다.\n따라서 전체의 $\\dfrac{${hit.length}}{${n}}\\times100=${pct}\\,(\\%)$이다.`,
+          )}이다.\n해당하는 학생은 $${hit.length}$명이므로 전체의 $\\dfrac{${hit.length}}{${n}}\\times100=${pct}\\,(\\%)$이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
@@ -1213,7 +1206,7 @@ export const M3_STAT2: TypeEntry[] = [
         packValues("y", ys, facts);
         const axis = scatterAxis(30);
         return {
-          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(xs.map((x, i) => [x, ys[i]!] as const))}\n두 과목의 점수의 차가 가장 큰 학생의 두 점수의 차를 구하시오.`,
+          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n두 과목의 점수의 차가 가장 큰 학생의 두 점수의 차를 구하시오.`,
           answer: `$${sorted[0]}$점`,
           solution: `각 점에서 두 좌표의 차를 구하면 ${gaps.map((g) => `$${g}$`).join(", ")}이다.\n그중 가장 큰 것은 점 $(${xs[top]},\\,${ys[top]})$의 $|${xs[top]}-${ys[top]}|=${sorted[0]}$이다.\n따라서 구하는 차는 $${sorted[0]}$점이다.`,
           facts,
@@ -1282,13 +1275,13 @@ export const M3_STAT2: TypeEntry[] = [
         );
         const axis = scatterAxis(30);
         return {
-          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다. $(x, y)$: ${pointsList(pts)}\n수학 점수가 $${t}$점 이상인 학생들의 과학 점수의 평균을 구하시오.`,
+          content: `다음은 학생 $${n}$명의 수학 점수($x$)와 과학 점수($y$)를 조사하여 나타낸 산점도이다.\n수학 점수가 $${t}$점 이상인 학생들의 과학 점수의 평균을 구하시오.`,
           answer: `$${mean}$점`,
           solution: `수학 점수가 $${t}$점 이상인 학생의 점은 ${hit
             .map(([x, y]) => `$(${x},\\,${y})$`)
             .join(
               ", ",
-            )}${euroRo(hit[hit.length - 1]![1])} $${hit.length}$명이다.\n그 학생들의 과학 점수의 합은 $${hit
+            )}이다.\n해당하는 학생은 $${hit.length}$명이고, 그 학생들의 과학 점수의 합은 $${hit
             .map(([, y]) => y)
             .join(
               "+",
