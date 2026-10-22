@@ -182,7 +182,7 @@ describe("generic retained first-attempt observations", () => {
     expect(noPlan.observations[0].exclusions).toContain("no-plan");
   });
   it("unfinished counts are unavailable even with first attempts", () => {
-    let c = startRecommendedCourse(
+    const c = startRecommendedCourse(
       plannedCourse(T, t0),
       { sectionId: T, mode: "learn", reason: "fixture" },
       t0,
@@ -436,5 +436,48 @@ it("explains an ineligible candidate as context without endorsing or selecting i
   };
   const result = composeInsightV2Result(s, sel as never, provenance);
   expect(result.status).toBe("supported");
+  expect(result.facts[0].candidateIds).toEqual([]);
+});
+
+it("compares current-plan instants numerically across accepted offsets and precision", () => {
+  const course = practise(
+    plannedCourse("3-1-1-1", t0),
+    "3-1-1-1",
+    "learn",
+    t0,
+    PASS,
+  );
+  const positive = structuredClone(course);
+  positive.plan!.configuredAt = "2026-10-01T10:00:00.000+09:00";
+  expect(
+    buildInsightV2Snapshot(positive, 0, now).observations[0].included,
+  ).toBe(true);
+  const precise = structuredClone(course);
+  precise.learner.session!.startedAt = "2026-10-01T01:00:00.000000Z";
+  expect(buildInsightV2Snapshot(precise, 0, now).observations[0].included).toBe(
+    true,
+  );
+  const negative = structuredClone(course),
+    completed = Date.parse(negative.learner.session!.completedAt!);
+  negative.learner.session!.completedAt = new Date(
+    completed - 9 * 60 * 60 * 1000,
+  )
+    .toISOString()
+    .replace("Z", "-09:00");
+  const boundary = new Date(completed + 14 * DAY);
+  expect(
+    buildInsightV2Snapshot(negative, 0, boundary).observations[0].included,
+  ).toBe(true);
+  expect(
+    buildInsightV2Snapshot(negative, 0, new Date(boundary.getTime() + 1))
+      .observations[0].exclusions,
+  ).toContain("outside-window");
+});
+
+it("allows a source-backed contextual explanation without proposing a candidate", () => {
+  const s = snapshot(),
+    sel = { ...selection(s), intent: "context" };
+  const result = composeInsightV2Result(s, sel as never, provenance);
+  expect(result.facts[0].evidenceIds.length).toBeGreaterThan(0);
   expect(result.facts[0].candidateIds).toEqual([]);
 });
