@@ -76,7 +76,9 @@ try:
                 if name!='.git'and f.lstat().st_file_attributes&stat.FILE_ATTRIBUTE_REPARSE_POINT:f.unlink()
         removed=orca('worktree','rm','--worktree','path:'+str(target),'--force',timeout=240)
         assert removed.get('ok')is True
-        assert not target.exists()
+        deadline=time.monotonic()+120
+        while target.exists()and time.monotonic()<deadline:time.sleep(0.25)
+        assert not target.exists(),'Orca acknowledged removal but filesystem deletion is not complete'
         assert modules.is_dir()and all(sha(Path(f).read_bytes())==h for f,h in before.items())
         branch=info['branch']
         exists=subprocess.run(['git','-C',str(main),'show-ref','--verify','--quiet','refs/heads/'+branch]).returncode==0
