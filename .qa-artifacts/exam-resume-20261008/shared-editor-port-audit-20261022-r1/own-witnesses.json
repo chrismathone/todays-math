@@ -1,0 +1,78 @@
+{
+  "registeredContainerVsInk": {
+    "syntheticOnly": true,
+    "originalContainer": [
+      [
+        0,
+        0
+      ],
+      [
+        100,
+        0
+      ],
+      [
+        100,
+        100
+      ],
+      [
+        0,
+        100
+      ]
+    ],
+    "ink": [
+      [
+        20,
+        10
+      ],
+      [
+        60,
+        10
+      ],
+      [
+        60,
+        50
+      ],
+      [
+        20,
+        50
+      ]
+    ],
+    "transform": "translate(100,80) scale(2) translate(5,10)",
+    "containerBounds": [
+      110,
+      100,
+      310,
+      300
+    ],
+    "recursiveInkBounds": [
+      150,
+      120,
+      230,
+      200
+    ],
+    "interpretation": "Different center/left/spacing contract even when all points transform correctly; not an actual registry asset assertion."
+  },
+  "numericFrame": {
+    "oldView": [
+      "200",
+      "100"
+    ],
+    "oldSize": [
+      "400",
+      "200"
+    ],
+    "newView": [
+      "240",
+      "140"
+    ],
+    "newSize": [
+      "480",
+      "280"
+    ],
+    "scaleUnchanged": true
+  },
+  "clipboardState": {
+    "logicOnly": "store(A)->tokenA; store(B)->tokenB replaces single slot; read(tokenA)=null. OS token alone cannot restore A after module reload or in another tab.",
+    "cutOrder": "Source handler stores token then setsData then calls remove. A synchronous setData throw prevents remove, but old slot already replaced. No durable clipboard confirmation; silently unsupported custom MIME/cross-tab/reload can leave cut data unavailable."
+  }
+}
