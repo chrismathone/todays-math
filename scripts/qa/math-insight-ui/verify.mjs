@@ -3,10 +3,14 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium, expect } from "@playwright/test";
 import { startServer } from "./server.mjs";
+import generated from "./generated.json" with { type: "json" };
 
 if (!process.argv.includes("--browser-granted"))
   throw Error("Coordinator browser/server lease is required.");
 const output = process.env.QA_OUTPUT;
+const material = process.argv.includes("--material-only");
+const snapshot = generated.scenarios[0].snapshot;
+const currentRecordLabel = `기록 ${snapshot.evidence.findIndex((item) => item.purposes.includes("section-current")) + 1}`;
 assert.ok(output, "QA_OUTPUT must name the external evidence directory.");
 await mkdir(output, { recursive: true });
 let server, browser, currentPage;
@@ -87,14 +91,9 @@ try {
         .getByRole("heading", { name: "다시 살펴볼 학습 근거" })
         .waitFor();
     };
-    for (const scene of [
-      "ready",
-      "loading",
-      "empty",
-      "outside",
-      "error",
-      "inconsistent",
-    ]) {
+    for (const scene of material
+      ? ["ready", "outside"]
+      : ["ready", "loading", "empty", "outside", "error", "inconsistent"]) {
       await open(scene);
       if (scene === "loading")
         await expect(page.getByText("학습 근거를 불러오는 중…")).toBeVisible();
@@ -119,13 +118,15 @@ try {
         ["ready", "outside"].includes(scene),
       );
     }
-    for (const scene of [
-      "ready",
-      "unavailable",
-      "ai-error",
-      "ai-inconsistent",
-      "insufficient",
-    ]) {
+    for (const scene of material
+      ? ["ready"]
+      : [
+          "ready",
+          "unavailable",
+          "ai-error",
+          "ai-inconsistent",
+          "insufficient",
+        ]) {
       await open(scene);
       const question = page.getByRole("textbox", {
         name: "학습 근거에 관해 질문하기",
@@ -162,7 +163,7 @@ try {
           ),
         ).toBeVisible();
       await expect(
-        page.getByText("분수의 뺄셈", { exact: true }).first(),
+        page.getByText(snapshot.nextChecks[0].title, { exact: true }).first(),
       ).toBeVisible();
       assert.equal(
         await page.evaluate(
@@ -174,7 +175,7 @@ try {
       );
       if (scene === "ready") {
         const link = page
-          .getByRole("link", { name: "기록 1", exact: true })
+          .getByRole("link", { name: currentRecordLabel, exact: true })
           .first();
         await link.focus();
         await page.keyboard.press("Enter");
@@ -182,11 +183,20 @@ try {
         await expect(
           page.getByText("관찰에서 제외", { exact: false }),
         ).toBeVisible();
+        await expect(
+          page.getByText("최근 상태와 확인 후보 판단에 사용", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText(
+            "확인 후보 판단에만 사용 · 최근 상태 수치에 더하지 않음",
+            { exact: true },
+          ),
+        ).toBeVisible();
       }
       await capture(page, `${width}-${scene}-question`, true);
       checks.push({ width, scene, ...control });
     }
-    for (const scene of ["late-get", "late-post"]) {
+    for (const scene of material ? [] : ["late-get", "late-post"]) {
       await open(scene);
       if (scene === "late-post") {
         await page.getByRole("textbox").fill("늦게 도착하는 질문");
@@ -221,19 +231,21 @@ try {
       );
       await capture(page, `${width}-${scene}-switched`, true);
     }
-    await open("late-post");
-    await page.getByRole("textbox").fill("새로고침 전 질문");
-    await page.getByRole("button", { name: "AI에 근거 질문하기" }).click();
-    await page
-      .getByRole("button", { name: "학습 근거 새로고침", exact: true })
-      .click();
-    await expect(page.getByRole("textbox")).toBeVisible();
-    await page.evaluate(() => window.insightQa.release());
-    await expect(
-      page.getByText("질문에 연결된 근거", { exact: true }),
-    ).toHaveCount(0);
-    assert.deepEqual(await page.evaluate(() => window.insightQa.blocked), []);
-    checks.push({ width, reloadRejectsLatePost: true });
+    if (!material) {
+      await open("late-post");
+      await page.getByRole("textbox").fill("새로고침 전 질문");
+      await page.getByRole("button", { name: "AI에 근거 질문하기" }).click();
+      await page
+        .getByRole("button", { name: "학습 근거 새로고침", exact: true })
+        .click();
+      await expect(page.getByRole("textbox")).toBeVisible();
+      await page.evaluate(() => window.insightQa.release());
+      await expect(
+        page.getByText("질문에 연결된 근거", { exact: true }),
+      ).toHaveCount(0);
+      assert.deepEqual(await page.evaluate(() => window.insightQa.blocked), []);
+      checks.push({ width, reloadRejectsLatePost: true });
+    }
     await page.close();
   }
   assert.deepEqual(errors, []);

@@ -11,6 +11,10 @@ import {
   inquiryFixture,
   scopeA,
   scopeB,
+  CURRENT_RECORD_LABEL,
+  TRIGGER_EVIDENCE_ID,
+  EXCLUDED_EVIDENCE_ID,
+  NEXT_CHECK_TITLE,
 } from "../../../scripts/qa/math-insight-ui/data";
 
 vi.mock("@/components/math-srs/courseApi", () => ({
@@ -119,13 +123,17 @@ describe("LearningInsightPanel request ownership", () => {
     expect(
       await screen.findByText(/최근 확인 기준 미충족/),
     ).toBeInTheDocument();
-    expect(screen.getByText(/관련 개념 · 관계 확인 전/)).toBeInTheDocument();
-    expect(inquire).not.toHaveBeenCalled();
-    await user.click(screen.getAllByRole("link", { name: "기록 1" })[0]);
     expect(
-      screen.getByText("근거 기록 2건 · 포함·제외 이유").parentElement,
+      screen.getAllByText(/일부 범위 · 관계 확인 전/)[0],
+    ).toBeInTheDocument();
+    expect(inquire).not.toHaveBeenCalled();
+    await user.click(
+      screen.getAllByRole("link", { name: CURRENT_RECORD_LABEL })[0],
+    );
+    expect(
+      screen.getByText("근거 기록 3건 · 포함·제외 이유").parentElement,
     ).toHaveAttribute("open");
-    expect(screen.getByText("미완료")).toBeInTheDocument();
+    expect(screen.getByText("관찰 기간 밖")).toBeInTheDocument();
   });
 
   it("submits a bounded explicit question and uses the fresh server snapshot", async () => {
@@ -178,7 +186,7 @@ describe("LearningInsightPanel request ownership", () => {
         "위 학습 근거는 계속 확인",
       );
       expect(field).toHaveValue("기록을 설명해 주세요");
-      expect(screen.getByText("분수의 뺄셈")).toBeInTheDocument();
+      expect(screen.getAllByText(NEXT_CHECK_TITLE)[0]).toBeInTheDocument();
     },
   );
 
@@ -231,7 +239,7 @@ describe("LearningInsightPanel request ownership", () => {
   it("rejects an AI result referring to excluded or unknown evidence and keeps the original evidence", async () => {
     get.mockResolvedValue({ ok: true, data: insightFixture() });
     const data = inquiryFixture();
-    data.facts[0].evidenceIds = ["record-excluded"];
+    data.facts[0].evidenceIds = [EXCLUDED_EVIDENCE_ID];
     inquire.mockResolvedValue({ ok: true, data });
     const user = userEvent.setup();
     render(<LearningInsightPanel {...props} />);
@@ -243,7 +251,7 @@ describe("LearningInsightPanel request ownership", () => {
       "응답의 근거가 일치하지 않습니다",
     );
     expect(screen.queryByText(data.facts[0].text)).not.toBeInTheDocument();
-    expect(screen.getByText("분수의 뺄셈")).toBeInTheDocument();
+    expect(screen.getAllByText(NEXT_CHECK_TITLE)[0]).toBeInTheDocument();
   });
 
   it("distinguishes empty and outside-pilot evidence without inventing student conclusions", async () => {
@@ -270,5 +278,42 @@ describe("LearningInsightPanel request ownership", () => {
       screen.getByText("현재 제시할 확인 후보가 없습니다."),
     ).toBeInTheDocument();
     expect(inquire).not.toHaveBeenCalled();
+  });
+
+  it("distinguishes current-section observation from both failed sessions behind a candidate", async () => {
+    get.mockResolvedValue({ ok: true, data: insightFixture() });
+    const user = userEvent.setup();
+    render(<LearningInsightPanel {...props} />);
+    await screen.findByRole("textbox");
+    await user.click(screen.getByText("근거 기록 3건 · 포함·제외 이유"));
+    expect(
+      screen.getByText("최근 상태와 확인 후보 판단에 사용"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "확인 후보 판단에만 사용 · 최근 상태 수치에 더하지 않음",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it.each([
+    "current-reference",
+    "candidate-reference",
+    "missing-purpose",
+    "duplicate-purpose",
+  ])("rejects contradictory %s proof metadata", async (kind) => {
+    const data = insightFixture();
+    if (kind === "current-reference")
+      data.sections[0].evidenceIds = [TRIGGER_EVIDENCE_ID];
+    if (kind === "candidate-reference")
+      data.nextChecks[0].evidenceIds = [EXCLUDED_EVIDENCE_ID];
+    if (kind === "missing-purpose") data.evidence[1].purposes = [];
+    if (kind === "duplicate-purpose")
+      data.evidence[1].purposes = ["candidate-trigger", "candidate-trigger"];
+    get.mockResolvedValue({ ok: true, data });
+    render(<LearningInsightPanel {...props} />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "일치하지 않습니다",
+    );
   });
 });

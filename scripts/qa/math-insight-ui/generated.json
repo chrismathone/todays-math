@@ -1,0 +1,1360 @@
+{
+  "backendFreeze": "6f78cfaa7",
+  "generatedAt": "2026-10-22T08:00:00.000Z",
+  "scenarios": [
+    {
+      "snapshot": {
+        "scope": {
+          "pilotId": "elementary-fractions-v1",
+          "dataVersion": 1,
+          "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+          "mappingSource": {
+            "path": "src/lib/math-prerequisite/mapping.ts",
+            "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+          },
+          "editorialEdge": {
+            "from": "E56-N03",
+            "to": "E56-N04",
+            "relation": "prerequisite",
+            "status": "editorial"
+          },
+          "versions": {
+            "graphSchemaVersion": "1.1.0",
+            "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingVersion": 1,
+            "policyVersion": 1
+          },
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "context": {
+          "studentId": "11111111-1111-4111-8111-111111111111",
+          "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+        "freshness": "current",
+        "eligibility": "eligible",
+        "goal": {
+          "sectionId": "5-2-2-1",
+          "title": "(분수)×(자연수)의 계산",
+          "unitId": "E56-N04",
+          "mappingStatus": "verified"
+        },
+        "sections": [
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "status": "not_passed_recent",
+            "outcome": "failed",
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "lastObservedAt": "2026-10-20T08:05:00.000Z",
+            "sourceRetained": true,
+            "partial": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-2",
+            "title": "(자연수)×(분수)의 계산",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-09-03T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          }
+        ],
+        "evidence": [
+          {
+            "id": "session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "included": true,
+            "purposes": [
+              "candidate-trigger"
+            ],
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "included": true,
+            "purposes": [
+              "section-current",
+              "candidate-trigger"
+            ],
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2
+          }
+        ],
+        "nextChecks": [
+          {
+            "id": "check:5-1-5-4",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+            ]
+          },
+          {
+            "id": "check:5-1-5-3",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+            ]
+          }
+        ],
+        "limitations": [
+          "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+          "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+          "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+          "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+          "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+        ]
+      },
+      "inquiry": {
+        "snapshot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "11111111-1111-4111-8111-111111111111",
+            "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "e60eb74b83517d84b5d34628570e4fe6687fb53579e86c4920597a3c4a098a8a",
+          "freshness": "current",
+          "eligibility": "eligible",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "candidate-trigger"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current",
+                "candidate-trigger"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-000000000007",
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-000000000007",
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "status": "supported",
+        "intent": "next-checks",
+        "facts": [
+          {
+            "text": "(분수)×(자연수)의 계산: 보존된 첫 풀이에서 독립 정답 3개, 독립 오답 2개입니다. 이 부분 기록만으로 원인이나 숙달을 판단하지 않습니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "text": "(분수)×(자연수)의 계산: 보존된 첫 풀이에서 독립 정답 3개, 독립 오답 2개입니다. 이 부분 기록만으로 원인이나 숙달을 판단하지 않습니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": [
+              "check:5-1-5-4"
+            ]
+          }
+        ],
+        "provenance": {
+          "provider": "gemini",
+          "model": "synthetic-no-model-call",
+          "role": "selection-only"
+        }
+      },
+      "outside": {
+        "scope": {
+          "pilotId": "elementary-fractions-v1",
+          "dataVersion": 1,
+          "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+          "mappingSource": {
+            "path": "src/lib/math-prerequisite/mapping.ts",
+            "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+          },
+          "editorialEdge": {
+            "from": "E56-N03",
+            "to": "E56-N04",
+            "relation": "prerequisite",
+            "status": "editorial"
+          },
+          "versions": {
+            "graphSchemaVersion": "1.1.0",
+            "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingVersion": 1,
+            "policyVersion": 1
+          },
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "context": {
+          "studentId": "11111111-1111-4111-8111-111111111111",
+          "classId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "c3e902d51a82c176783d899865fc0d1ff970afd582c48ce2488af9109d3ae7cc",
+        "freshness": "insufficient",
+        "eligibility": "out-of-scope",
+        "goal": {
+          "sectionId": "3-1-1-1",
+          "title": "받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+          "unitId": null,
+          "mappingStatus": "unmapped"
+        },
+        "sections": [
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-10-20T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-2",
+            "title": "(자연수)×(분수)의 계산",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-09-03T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          }
+        ],
+        "evidence": [
+          {
+            "id": "session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          }
+        ],
+        "nextChecks": [
+          {
+            "id": "check:5-1-5-4",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": false,
+            "evidenceIds": [],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+              "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+            ]
+          },
+          {
+            "id": "check:5-1-5-3",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": false,
+            "evidenceIds": [],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+              "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+            ]
+          }
+        ],
+        "limitations": [
+          "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+          "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+          "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+          "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+          "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+        ]
+      }
+    },
+    {
+      "snapshot": {
+        "scope": {
+          "pilotId": "elementary-fractions-v1",
+          "dataVersion": 1,
+          "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+          "mappingSource": {
+            "path": "src/lib/math-prerequisite/mapping.ts",
+            "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+          },
+          "editorialEdge": {
+            "from": "E56-N03",
+            "to": "E56-N04",
+            "relation": "prerequisite",
+            "status": "editorial"
+          },
+          "versions": {
+            "graphSchemaVersion": "1.1.0",
+            "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingVersion": 1,
+            "policyVersion": 1
+          },
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "context": {
+          "studentId": "22222222-2222-4222-8222-222222222222",
+          "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+        "freshness": "current",
+        "eligibility": "eligible",
+        "goal": {
+          "sectionId": "5-2-2-1",
+          "title": "(분수)×(자연수)의 계산",
+          "unitId": "E56-N04",
+          "mappingStatus": "verified"
+        },
+        "sections": [
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "status": "not_passed_recent",
+            "outcome": "failed",
+            "independentCorrect": 3,
+            "independentIncorrect": 2,
+            "lastObservedAt": "2026-10-20T08:05:00.000Z",
+            "sourceRetained": true,
+            "partial": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-2",
+            "title": "(자연수)×(분수)의 계산",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-09-03T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          }
+        ],
+        "evidence": [
+          {
+            "id": "session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "included": true,
+            "purposes": [
+              "candidate-trigger"
+            ],
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "included": true,
+            "purposes": [
+              "section-current",
+              "candidate-trigger"
+            ],
+            "exclusions": [
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 3,
+            "independentIncorrect": 2
+          }
+        ],
+        "nextChecks": [
+          {
+            "id": "check:5-1-5-4",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+            ]
+          },
+          {
+            "id": "check:5-1-5-3",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": true,
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+            ]
+          }
+        ],
+        "limitations": [
+          "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+          "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+          "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+          "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+          "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+        ]
+      },
+      "inquiry": {
+        "snapshot": {
+          "scope": {
+            "pilotId": "elementary-fractions-v1",
+            "dataVersion": 1,
+            "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingSource": {
+              "path": "src/lib/math-prerequisite/mapping.ts",
+              "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+            },
+            "editorialEdge": {
+              "from": "E56-N03",
+              "to": "E56-N04",
+              "relation": "prerequisite",
+              "status": "editorial"
+            },
+            "versions": {
+              "graphSchemaVersion": "1.1.0",
+              "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+              "mappingVersion": 1,
+              "policyVersion": 1
+            },
+            "limitations": [
+              "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+              "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+              "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+              "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+              "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+            ]
+          },
+          "context": {
+            "studentId": "22222222-2222-4222-8222-222222222222",
+            "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          },
+          "asOf": "2026-10-22T08:00:00.000Z",
+          "revision": 3,
+          "stateDigest": "7cfc6e844c90ebc046fb84ae65946d1d1f5b82c71afc8c516d3a185cbfc0b297",
+          "freshness": "current",
+          "eligibility": "eligible",
+          "goal": {
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "unitId": "E56-N04",
+            "mappingStatus": "verified"
+          },
+          "sections": [
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-1",
+              "title": "(분수)×(자연수)의 계산",
+              "status": "not_passed_recent",
+              "outcome": "failed",
+              "independentCorrect": 3,
+              "independentIncorrect": 2,
+              "lastObservedAt": "2026-10-20T08:05:00.000Z",
+              "sourceRetained": true,
+              "partial": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N04",
+              "sectionId": "5-2-2-2",
+              "title": "(자연수)×(분수)의 계산",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "status": "stale",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": "2026-09-03T08:05:00.000Z",
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            },
+            {
+              "unitId": "E56-N03",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "status": "unassessed",
+              "outcome": "unknown",
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "lastObservedAt": null,
+              "sourceRetained": false,
+              "partial": true,
+              "evidenceIds": [],
+              "mappingStatus": "verified",
+              "relation": "covers-part"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "session:00000000-0000-4000-8000-000000000001",
+              "sessionId": "00000000-0000-4000-8000-000000000001",
+              "sectionId": "5-1-5-4",
+              "startedAt": "2026-09-03T08:00:00.000Z",
+              "completedAt": "2026-09-03T08:05:00.000Z",
+              "included": false,
+              "purposes": [],
+              "exclusions": [
+                "before-plan",
+                "outside-window"
+              ],
+              "independentCorrect": 0,
+              "independentIncorrect": 0
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-000000000007",
+              "sessionId": "00000000-0000-4000-8000-000000000007",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-17T08:00:00.000Z",
+              "completedAt": "2026-10-17T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "candidate-trigger"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            },
+            {
+              "id": "session:00000000-0000-4000-8000-00000000000d",
+              "sessionId": "00000000-0000-4000-8000-00000000000d",
+              "sectionId": "5-2-2-1",
+              "startedAt": "2026-10-20T08:00:00.000Z",
+              "completedAt": "2026-10-20T08:05:00.000Z",
+              "included": true,
+              "purposes": [
+                "section-current",
+                "candidate-trigger"
+              ],
+              "exclusions": [
+                "retry-not-first-attempt"
+              ],
+              "independentCorrect": 3,
+              "independentIncorrect": 2
+            }
+          ],
+          "nextChecks": [
+            {
+              "id": "check:5-1-5-4",
+              "sectionId": "5-1-5-4",
+              "title": "대분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-000000000007",
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+              ]
+            },
+            {
+              "id": "check:5-1-5-3",
+              "sectionId": "5-1-5-3",
+              "title": "진분수의 뺄셈",
+              "unitId": "E56-N03",
+              "relation": "covers-part",
+              "reviewStatus": "candidate",
+              "eligible": true,
+              "evidenceIds": [
+                "session:00000000-0000-4000-8000-000000000007",
+                "session:00000000-0000-4000-8000-00000000000d"
+              ],
+              "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+              "caveats": [
+                "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+                "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+                "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다."
+              ]
+            }
+          ],
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "status": "supported",
+        "intent": "next-checks",
+        "facts": [
+          {
+            "text": "(분수)×(자연수)의 계산: 보존된 첫 풀이에서 독립 정답 3개, 독립 오답 2개입니다. 이 부분 기록만으로 원인이나 숙달을 판단하지 않습니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007"
+            ],
+            "candidateIds": []
+          },
+          {
+            "text": "(분수)×(자연수)의 계산: 보존된 첫 풀이에서 독립 정답 3개, 독립 오답 2개입니다. 이 부분 기록만으로 원인이나 숙달을 판단하지 않습니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": []
+          },
+          {
+            "text": "대분수의 뺄셈: 분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다. 자동 배정하지 않으며 실제 출제 가능 여부는 별도입니다.",
+            "evidenceIds": [
+              "session:00000000-0000-4000-8000-000000000007",
+              "session:00000000-0000-4000-8000-00000000000d"
+            ],
+            "candidateIds": [
+              "check:5-1-5-4"
+            ]
+          }
+        ],
+        "provenance": {
+          "provider": "gemini",
+          "model": "synthetic-no-model-call",
+          "role": "selection-only"
+        }
+      },
+      "outside": {
+        "scope": {
+          "pilotId": "elementary-fractions-v1",
+          "dataVersion": 1,
+          "graphHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+          "mappingSource": {
+            "path": "src/lib/math-prerequisite/mapping.ts",
+            "hash": "91a6c5e22bbc6ca095a3cd696a87804ad89f25c6ac80ee230e9fe6071393a743"
+          },
+          "editorialEdge": {
+            "from": "E56-N03",
+            "to": "E56-N04",
+            "relation": "prerequisite",
+            "status": "editorial"
+          },
+          "versions": {
+            "graphSchemaVersion": "1.1.0",
+            "graphContentHash": "80f599e064e428f56f63ef06d89ede24d71319521b2c93ff97a3126212f17554",
+            "mappingVersion": 1,
+            "policyVersion": 1
+          },
+          "limitations": [
+            "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+            "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+            "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+            "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+            "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+          ]
+        },
+        "context": {
+          "studentId": "22222222-2222-4222-8222-222222222222",
+          "classId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "branchId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        },
+        "asOf": "2026-10-22T08:00:00.000Z",
+        "revision": 3,
+        "stateDigest": "16e04d907d13ba200e2662dd22feb601c29e6c93a562dbd719fbf828bdb0a0a0",
+        "freshness": "insufficient",
+        "eligibility": "out-of-scope",
+        "goal": {
+          "sectionId": "3-1-1-1",
+          "title": "받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+          "unitId": null,
+          "mappingStatus": "unmapped"
+        },
+        "sections": [
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-1",
+            "title": "(분수)×(자연수)의 계산",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-10-20T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N04",
+            "sectionId": "5-2-2-2",
+            "title": "(자연수)×(분수)의 계산",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "status": "stale",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": "2026-09-03T08:05:00.000Z",
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          },
+          {
+            "unitId": "E56-N03",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "status": "unassessed",
+            "outcome": "unknown",
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "lastObservedAt": null,
+            "sourceRetained": false,
+            "partial": true,
+            "evidenceIds": [],
+            "mappingStatus": "verified",
+            "relation": "covers-part"
+          }
+        ],
+        "evidence": [
+          {
+            "id": "session:00000000-0000-4000-8000-000000000001",
+            "sessionId": "00000000-0000-4000-8000-000000000001",
+            "sectionId": "5-1-5-4",
+            "startedAt": "2026-09-03T08:00:00.000Z",
+            "completedAt": "2026-09-03T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "outside-window"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-000000000007",
+            "sessionId": "00000000-0000-4000-8000-000000000007",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-17T08:00:00.000Z",
+            "completedAt": "2026-10-17T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          },
+          {
+            "id": "session:00000000-0000-4000-8000-00000000000d",
+            "sessionId": "00000000-0000-4000-8000-00000000000d",
+            "sectionId": "5-2-2-1",
+            "startedAt": "2026-10-20T08:00:00.000Z",
+            "completedAt": "2026-10-20T08:05:00.000Z",
+            "included": false,
+            "purposes": [],
+            "exclusions": [
+              "before-plan",
+              "retry-not-first-attempt"
+            ],
+            "independentCorrect": 0,
+            "independentIncorrect": 0
+          }
+        ],
+        "nextChecks": [
+          {
+            "id": "check:5-1-5-4",
+            "sectionId": "5-1-5-4",
+            "title": "대분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": false,
+            "evidenceIds": [],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+              "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+            ]
+          },
+          {
+            "id": "check:5-1-5-3",
+            "sectionId": "5-1-5-3",
+            "title": "진분수의 뺄셈",
+            "unitId": "E56-N03",
+            "relation": "covers-part",
+            "reviewStatus": "candidate",
+            "eligible": false,
+            "evidenceIds": [],
+            "reason": "분수의 곱셈과 연결된 분수의 뺄셈을 부분적으로 확인하는 후보입니다.",
+            "caveats": [
+              "확인한 소단원의 일부만 연결합니다. 단원 전체를 같은 내용으로 보지 않습니다.",
+              "이 학생에게 적절한 다음 확인인지는 교사가 기록을 보고 검토해야 합니다.",
+              "확인 후보를 고르는 기존 학습 조건을 따르며, 실제 새 문제를 낼 수 있는지는 아직 검사하지 않았습니다.",
+              "현재 목표 또는 최근 근거가 시범 조건에 맞지 않아 학생별 다음 확인으로 제안하지 않습니다."
+            ]
+          }
+        ],
+        "limitations": [
+          "초5 분수의 네 소단원만 보는 읽기 전용 시범입니다. 자동 배정이나 학습 기록 변경은 하지 않습니다.",
+          "단원 관계는 편집 자료이며 공식 교육과정 전체를 검증한 결과가 아닙니다.",
+          "단원 선수 관계와 소단원의 부분 대응은 구분합니다. 대응 확인은 숙달·진단·인과관계의 확인이 아닙니다.",
+          "보존된 첫 풀이의 최근 14일 근거만 사용합니다. 힌트·자기채점·포기·반복 본문·재도전은 독립 정오답에서 제외합니다.",
+          "탐험·소거 학습 기록은 이 코스 근거에 합치지 않습니다. 후보는 실제 출제 가능 여부를 검사한 결과가 아닙니다."
+        ]
+      }
+    }
+  ],
+  "courseProjection": {
+    "plan": {
+      "startSectionId": "5-2-2-1",
+      "dailyQuestionCount": 20,
+      "enabled": true,
+      "configuredAt": "2026-10-15T08:00:00.000Z"
+    },
+    "summary": {
+      "status": "review",
+      "currentSectionId": "5-2-2-1",
+      "dueCount": 2,
+      "todayAnswered": 0,
+      "todayCorrect": 0,
+      "todayGoal": 20,
+      "completedSections": 1,
+      "lastPracticedAt": "2026-10-20T08:05:00.000Z",
+      "nextReviewAt": "2026-09-06T08:05:00.000Z",
+      "recommendation": {
+        "sectionId": "5-1-5-4",
+        "mode": "review",
+        "reason": "복습 날짜가 가장 오래 지난 소단원이에요."
+      }
+    },
+    "recentSessions": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "sectionId": "5-1-5-4",
+        "mode": "learn",
+        "startedAt": "2026-09-03T08:00:00.000Z",
+        "completedAt": "2026-09-03T08:05:00.000Z",
+        "answered": 5,
+        "correct": 5,
+        "hinted": 0
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "sectionId": "5-2-2-1",
+        "mode": "learn",
+        "startedAt": "2026-10-17T08:00:00.000Z",
+        "completedAt": "2026-10-17T08:05:00.000Z",
+        "answered": 5,
+        "correct": 3,
+        "hinted": 0
+      },
+      {
+        "id": "00000000-0000-4000-8000-00000000000d",
+        "sectionId": "5-2-2-1",
+        "mode": "review",
+        "startedAt": "2026-10-20T08:00:00.000Z",
+        "completedAt": "2026-10-20T08:05:00.000Z",
+        "answered": 5,
+        "correct": 3,
+        "hinted": 0
+      }
+    ]
+  }
+}
