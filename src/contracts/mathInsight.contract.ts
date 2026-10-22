@@ -32,6 +32,7 @@ export const mathInsightEvidenceSchema = z.strictObject({
   startedAt: isoDateTimeSchema,
   completedAt: isoDateTimeSchema.nullable(),
   included: z.boolean(),
+  purposes: z.array(z.enum(["section-current", "candidate-trigger"])).max(2),
   exclusions: z.array(mathInsightExclusionSchema),
   independentCorrect: z.number().int().nonnegative(),
   independentIncorrect: z.number().int().nonnegative(),
