@@ -323,6 +323,180 @@ describe("generic retained first-attempt observations", () => {
     expect(s.observations[0].exclusions).toContain("unsupported-section");
   });
 });
+describe("model source-day provenance (not model relevance)", () => {
+  const frozen = at("2026-10-01T15:01:00.000Z");
+  it.each([
+    ["2026-10-01T14:54:00.000Z", "2026-10-01", "2026-10-01", false],
+    ["2026-10-01T14:55:00.000Z", "2026-10-01", "2026-10-02", true],
+    ["2026-10-01T14:56:00.000Z", "2026-10-01", "2026-10-02", true],
+    ["2026-10-01T15:00:00.000Z", "2026-10-02", "2026-10-02", false],
+  ] as const)(
+    "projects KST boundary/future source %s",
+    (start, started, completed, today) => {
+      const course = practise(
+        plannedCourse(T, t0),
+        T,
+        "learn",
+        at(start),
+        PASS,
+      );
+      const s = buildInsightV2Snapshot(course, 0, frozen);
+      const before = JSON.stringify(s);
+      const p = promptData(s);
+      expect(p.scope.asOfDayKst).toBe("2026-10-02");
+      expect(p.evidence.length).toBeGreaterThan(0);
+      for (const e of p.evidence) {
+        expect(e).toEqual({
+          id: e.id,
+          sectionId: T,
+          included: today || completed === "2026-10-01",
+          domain: e.domain,
+          startedOnKst: started,
+          completedOnKst: completed,
+          isCompletedToday: today,
+        });
+        expect(e.id).toMatch(/^e\d+$/);
+      }
+      expect(
+        p.evidence.some(
+          (e: { domain: string }) => e.domain === "fraction-pilot",
+        ),
+      ).toBe(today || completed === "2026-10-01");
+      expect(JSON.stringify(s)).toBe(before);
+    },
+  );
+  it("uses identical instants across offsets and the frozen clock", () => {
+    const course = practise(
+      plannedCourse(T, t0),
+      T,
+      "learn",
+      at("2026-10-01T14:55:00Z"),
+      PASS,
+    );
+    const s = buildInsightV2Snapshot(course, 0, frozen);
+    const p = promptData(s);
+    const offset = structuredClone(s);
+    offset.asOf =
+      offset.scope.windowEnd =
+      offset.pilot.asOf =
+        "2026-10-01T06:01:00-09:00";
+    for (const e of [...offset.observations, ...offset.pilot.evidence]) {
+      e.startedAt = "2026-10-01T23:55:00+09:00";
+      e.completedAt = "2026-10-01T06:00:00.000000-09:00";
+    }
+    const projected = promptData(offset);
+    expect(projected.evidence).toEqual(p.evidence);
+    expect(projected.scope.asOfDayKst).toBe(p.scope.asOfDayKst);
+    const nextDay = structuredClone(s);
+    nextDay.asOf =
+      nextDay.scope.windowEnd =
+      nextDay.pilot.asOf =
+        "2026-10-02T15:00:00Z";
+    expect(
+      promptData(nextDay).evidence.every(
+        (e: { isCompletedToday: boolean }) => !e.isCompletedToday,
+      ),
+    ).toBe(true);
+  });
+  it("keeps unfinished and summary-only sources distinct from completed today", () => {
+    const course = startRecommendedCourse(
+      plannedCourse(T, t0),
+      { sectionId: T, mode: "learn", reason: "fixture" },
+      frozen,
+      3729,
+      uuid,
+      [],
+    );
+    const unfinished = promptData(buildInsightV2Snapshot(course, 0, frozen));
+    expect(unfinished.evidence).toHaveLength(1);
+    expect(unfinished.evidence[0]).toMatchObject({
+      startedOnKst: "2026-10-02",
+      completedOnKst: null,
+      isCompletedToday: false,
+    });
+    const completed = practise(
+      plannedCourse(T, t0),
+      T,
+      "learn",
+      at("2026-10-01T14:55:00Z"),
+      PASS,
+    );
+    // A schema-valid summary with no matching retained session is not a dated source.
+    completed.memories[T].lastReviewedAt = frozen.toISOString();
+    const s = buildInsightV2Snapshot(
+      storedCourseSchema.parse(completed),
+      0,
+      frozen,
+    );
+    const p = promptData(s);
+    const source = s.observations.find(
+      (e) => e.source === "summary-without-session",
+    )!;
+    const fact = s.facts.find((f) => f.evidenceIds.includes(source.id))!;
+    const projectedFact = p.facts.find(
+      (f: { text: string }) => f.text === fact.text,
+    );
+    expect(
+      p.evidence.find(
+        (e: { id: string }) => e.id === projectedFact.evidenceIds[0],
+      ),
+    ).toMatchObject({
+      startedOnKst: null,
+      completedOnKst: null,
+      isCompletedToday: false,
+    });
+  });
+  it("preserves exact aliases, canonical references and privacy", () => {
+    const s = snapshot();
+    const p = promptData(s);
+    const sources = [
+      ...s.observations,
+      ...s.pilot.evidence.filter((e) => e.included),
+    ];
+    expect(p.evidence.map((e: { id: string }) => e.id)).toEqual(
+      sources.map((_, i) => `e${i}`),
+    );
+    for (const f of p.facts) {
+      const canonical = s.facts.find((x) => x.text === f.text)!;
+      expect(f.evidenceIds).toEqual(
+        canonical.evidenceIds.map(
+          (id) => `e${sources.findIndex((e) => e.id === id)}`,
+        ),
+      );
+    }
+    const encoded = JSON.stringify(p);
+    for (const e of sources) {
+      expect(encoded).not.toContain(e.id);
+      expect(encoded).not.toContain(e.sessionId!);
+      expect(encoded).not.toContain(e.startedAt!);
+      expect(encoded).not.toContain(e.completedAt!);
+    }
+    expect(encoded).not.toMatch(
+      /"(?:sessionId|studentId|classId|branchId|startedAt|completedAt|answer|submittedAnswer|problems|problemText)":/,
+    );
+  });
+  it("does not confuse today's source completion with plan inclusion", () => {
+    const course = practise(
+      plannedCourse(T, t0),
+      T,
+      "learn",
+      at("2026-10-01T14:55:00Z"),
+      PASS,
+    );
+    const replanned = setCoursePlan(
+      course,
+      { ...course.plan!, expectedRevision: 0 },
+      frozen,
+    );
+    const s = buildInsightV2Snapshot(replanned, 0, frozen);
+    expect(s.observations[0].exclusions).toContain("before-plan");
+    expect(promptData(s).evidence[0]).toMatchObject({
+      included: false,
+      completedOnKst: "2026-10-02",
+      isCompletedToday: true,
+    });
+  });
+});
 describe("strict closed selection and shared references", () => {
   it("returns only canonical code-owned facts and references", () => {
     const s = snapshot(),
