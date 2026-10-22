@@ -226,6 +226,7 @@ export function useStudioAi({
           ...entry.job,
           state: "complete",
           warnings: [
+            ...(entry.job.warnings ?? []),
             "수정한 문항을 보존하기 위해 자동 회전을 중단했습니다. 원본 방향을 확인해 주세요.",
           ],
         };
@@ -236,6 +237,9 @@ export function useStudioAi({
       try {
         latest.current.onRotatePage?.(entry.job.sourceId, entry.job.page, 180);
         entry.extraRotation = (entry.extraRotation ?? 0) + 180;
+        // The next pass uses a different source render. Keep original warnings
+        // when rotation was declined, but do not carry them into a failed retry.
+        entry.job = { ...entry.job, warnings: undefined };
         if (entry.task)
           entry.promise = queue.enqueue(entry.controller.signal, () =>
             executePage(entry, entry.task!),
@@ -591,6 +595,7 @@ export function useStudioAi({
         ...(upsideDown
           ? {
               warnings: [
+                ...(entry.job.warnings ?? []),
                 entry.job.rotationAutoRetried
                   ? "자동 회전 후에도 원본 방향 확인이 필요합니다. 추가 자동 인식은 하지 않습니다."
                   : latest.current.onRotatePage

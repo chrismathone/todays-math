@@ -1335,6 +1335,63 @@ describe("Studio background page queue", () => {
     expect(result.current.pageJobs[0].warnings ?? []).toEqual([]);
   });
 
+  it("keeps source crop warnings alongside orientation feedback", async () => {
+    bridge.run.mockImplementation(async (input) =>
+      input.action === "page-ocr"
+        ? {
+            ...detection(1),
+            result: {
+              ...detection(1).result,
+              warnings: ["source crop warning"],
+            },
+          }
+        : {
+            ...response(),
+            result: { ...response().result, upsideDown: true, warnings: [] },
+          },
+    );
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.state).toBe("complete"),
+    );
+    expect(result.current.pageJobs[0].warnings).toContain(
+      "source crop warning",
+    );
+    expect(result.current.pageJobs[0].warnings?.join(" ")).toContain("180도");
+  });
+
+  it("clears discarded orientation-pass warnings if the new render fails", async () => {
+    let pageCalls = 0;
+    bridge.run.mockImplementation(async (input) => {
+      if (input.action === "page-ocr") {
+        if (++pageCalls > 1) throw new Error("rotated request failed");
+        return {
+          ...detection(1),
+          result: {
+            ...detection(1).result,
+            warnings: ["discarded crop warning"],
+          },
+        };
+      }
+      return {
+        ...response(),
+        result: { ...response().result, upsideDown: true },
+      };
+    });
+    const { result } = mount([], vi.fn(), vi.fn());
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.state).toBe("error"),
+    );
+    expect(pageCalls).toBe(2);
+    expect(result.current.pageJobs[0].warnings ?? []).toEqual([]);
+  });
+
   it("uses a crop majority to rotate and retry a page exactly once before figure work", async () => {
     let ocrCalls = 0;
     bridge.run.mockImplementation(async (request) => {
