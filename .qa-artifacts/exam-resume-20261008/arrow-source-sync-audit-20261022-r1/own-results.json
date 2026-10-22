@@ -1,0 +1,169 @@
+{
+  "pinnedSanitizerControls": [
+    {
+      "name": "end",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"end\"><line x1=\"10\" y1=\"50\" x2=\"100\" y2=\"50\"/><polygon points=\"100,50 92,47 92,53\"/></g></svg>",
+      "expectedAccept": true,
+      "observedAccept": true,
+      "detail": "5a518317ba692025ecf9adf822e227dce8d8bb5f984c41148c99bad228a8123b",
+      "pass": true
+    },
+    {
+      "name": "both",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"both\"><line x1=\"10\" y1=\"50\" x2=\"100\" y2=\"50\"/><polygon points=\"10,50 18,47 18,53\"/><polygon points=\"100,50 92,47 92,53\"/></g></svg>",
+      "expectedAccept": true,
+      "observedAccept": true,
+      "detail": "b0eb181f22ae74dbc6c126ad5dd259b483811f16b0fdf74f52366a524ab3d0c1",
+      "pass": true
+    },
+    {
+      "name": "wrong-enum",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"start\"/></svg>",
+      "expectedAccept": false,
+      "observedAccept": false,
+      "detail": "SvgSecurityError: invalid data-arrow",
+      "pass": true
+    },
+    {
+      "name": "wrong-tag",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><line data-arrow=\"end\"/></svg>",
+      "expectedAccept": false,
+      "observedAccept": false,
+      "detail": "SvgSecurityError: attribute 'data-arrow' is not allowed on <line>",
+      "pass": true
+    },
+    {
+      "name": "external-reference",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"end\"><line stroke=\"url(https://evil.test/x)\"/></g></svg>",
+      "expectedAccept": false,
+      "observedAccept": false,
+      "detail": "SvgSecurityError: only local url(#id) gradient references are allowed",
+      "pass": true
+    },
+    {
+      "name": "event",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"end\" onclick=\"alert(1)\"/></svg>",
+      "expectedAccept": false,
+      "observedAccept": false,
+      "detail": "SvgSecurityError: event attribute is not allowed: onclick",
+      "pass": true
+    },
+    {
+      "name": "marker-input",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><defs><marker id=\"x\"/></defs></svg>",
+      "expectedAccept": false,
+      "observedAccept": false,
+      "detail": "SvgSecurityError: unsupported SVG element: <marker>",
+      "pass": true
+    },
+    {
+      "name": "nested-valid-enum",
+      "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"end\"><g data-arrow=\"end\"><line/><polygon points=\"1,2 3,4 5,6\"/></g></g></svg>",
+      "expectedAccept": true,
+      "observedAccept": true,
+      "detail": "0bcc59a7551a637d4448d4e9f6fed2e05ff9e861f7d7f7f045d88b830c7425aa",
+      "pass": true
+    }
+  ],
+  "markerCoordinateAlgebra": [
+    {
+      "from": [
+        10,
+        50
+      ],
+      "to": [
+        100,
+        50
+      ],
+      "start": false,
+      "error": 0.0
+    },
+    {
+      "from": [
+        10,
+        50
+      ],
+      "to": [
+        100,
+        50
+      ],
+      "start": true,
+      "error": 0.0
+    },
+    {
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        10,
+        90
+      ],
+      "start": false,
+      "error": 0.0
+    },
+    {
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        10,
+        90
+      ],
+      "start": true,
+      "error": 0.0
+    },
+    {
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        80,
+        70
+      ],
+      "start": false,
+      "error": 0.0
+    },
+    {
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        80,
+        70
+      ],
+      "start": true,
+      "error": 1.3322676295501878e-15
+    },
+    {
+      "from": [
+        100,
+        80
+      ],
+      "to": [
+        10,
+        20
+      ],
+      "start": false,
+      "error": 3.972054645195637e-15
+    },
+    {
+      "from": [
+        100,
+        80
+      ],
+      "to": [
+        10,
+        20
+      ],
+      "start": true,
+      "error": 0.0
+    }
+  ],
+  "styleWitness": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g stroke=\"red\" fill=\"blue\"><g data-arrow=\"end\"><line x1=\"10\" y1=\"50\" x2=\"100\" y2=\"50\"/><polygon points=\"100,50 92,47 92,53\"/></g></g></svg>",
+  "styleObservation": "Original polygon inherits red stroke and blue fill from outer g. cloneNode(false) retains neither; a marker under root defs has no such ancestors. Exact effective display depends on marker style inheritance; requires actual DOM/browser regression, not supplied by this Python witness.",
+  "rootIDWitness": "<svg id=\"engine-arrow-0\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><g data-arrow=\"end\"><line x1=\"10\" y1=\"50\" x2=\"100\" y2=\"50\"/><polygon points=\"100,50 92,47 92,53\"/></g></svg>"
+}

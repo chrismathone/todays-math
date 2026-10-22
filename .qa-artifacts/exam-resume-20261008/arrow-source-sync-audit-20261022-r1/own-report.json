@@ -1,0 +1,37 @@
+{
+  "sourceCommit": "69d134beb0efcaf29bc20f788929571198efcaca",
+  "sourceWorkingTreeReadOrExecuted": false,
+  "scope": "Pinned SourceD seven arrow implementation changes plus supplied source regression reviewed against parent parser; no production changes",
+  "counts": {
+    "ownPinnedPythonSanitizerControls": 8,
+    "sanitizerPass": 8,
+    "ownIndependentCoordinateRoundtrips": 8,
+    "actualJSDOMBrowser": 0
+  },
+  "acceptableCore": "Explicit g end/both provenance avoids guessing arbitrary triangles. Engine diffs add wrappers while preserving shaft/head geometry, and dimension text stays outside. Marker userSpaceOnUse and local dot-product coordinates preserve forward tip offset and original sizes algebraically, unlike generic arrow-tool replacement.",
+  "findings": [
+    {
+      "id": "AR-SYNC-1",
+      "status": "bounded compatibility HOLD",
+      "topic": "Parent inherited styling / coordinate-dependent clipping",
+      "evidence": "figureArrow clones polygon attributes only, moves it from original group ancestry to root defs, and does not resolve inherited fill/stroke/stroke-width or CSS selector effects. Source producer heads have explicit fill, so simple generated examples are not proof for all styled imports. A nested parent stroke changes polygon outline while marker relocation loses that ancestry. A head clip-path/mask in userSpaceOnUse also remains in original coordinate frame while polygon points become local.",
+      "minimalFix": "Restrict accepted groups/heads to known plain producer attributes or materialize safe effective inherited presentation on the marker polygon; reject unsupported coordinate-bound effects rather than silently converting. Add actual parent-style/clipping regressions."
+    },
+    {
+      "id": "AR-SYNC-2",
+      "status": "static concrete collision HOLD; DOM reproduction pending",
+      "topic": "Root ID omitted from generated-id reservation",
+      "evidence": "ids uses root.querySelectorAll([id]), which excludes root itself. svg id=engine-arrow-0 with no descendant ids permits a marker with the same ID. Fragment resolution is then ambiguous; do not claim an exploit or definite browser outcome without DOM test.",
+      "minimalFix": "Reserve root id along with all descendant ids before allocation."
+    }
+  ],
+  "contracts": {
+    "wrongTagEnum": "Pinned Python sanitizer rejects data-arrow on wrong tags and enum outside end/both. TS normalizer processes g end/both only, but broad metadata regex itself permits arrow on other tags; these are inert until normalization, not engine semantic approval.",
+    "nested": "Only direct children line plus exact1/2 polygons accepted; extra/nested geometry makes group skip. Inner eligible groups may still normalize independently. defs/assets/grids skipped. Parent mask/clipPath/marker/pattern ancestors are not all explicitly skipped by normalize; test preservation before broad imports.",
+    "oldNumbers": "Head data-object-id/data-n deliberately stripped; line number remains, group unchanged. Existing head references/IDs/numbers can change object membership after reopening if saved annotated group arrives. No executed JS number/undo/reopen guarantee; preserve legacy unmarked shapes and test stable line number/root last-number.",
+    "reopenBoth": "Once normalized marker polygon lives under defs and data-arrow removed, repeated normalize should not convert it again. Both mapping relies on producer order first polygon=start second=end; malformed swapped order is not validated against endpoints and must not be called geometry verification.",
+    "externalRefs": "Pinned Python sanitizer continues rejecting external references, events and input markers. Parent sanitizes imported attrs/references before normalization. Generated marker URLs are local; this patch is not broader SVG security certification.",
+    "parentIntegration": "Apply only arrow imports/metadata/function call to current richer parent prepare implementation; do not replace SourceD entire figureSvgEditing file over asset/grid/group safety. Existing parent source hashes captured stable, not current postmerge execution."
+  },
+  "limits": "Static TypeScript review + pinned committed Python sanitizer and independent coordinate algebra only. No actual DOM/move/rotate/control/reopen/undo runtime or pixel equality executed. Exporter6test/Chromium zero-diff claims are exporter evidence only. No math/grade/rights/DB/public approval; no other equation editor/browser/IP work. Initial documentation root path was absent; actual committed docs/export path used."
+}
