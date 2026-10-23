@@ -22,6 +22,7 @@ import {
 import { routeAccessFor } from "@/lib/routeAccess";
 import { isTextbookEditorialRead } from "@/lib/textbook/render/editorialAssets";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
+import { ontologyMachineRoute } from "@/lib/math-ontology/access/readPolicy";
 import { recordAudit } from "@/lib/audit";
 import { isLabPath } from "@/lib/labPath";
 import { EYWA_SSO_PATH } from "@/lib/eywaSso";
@@ -111,6 +112,9 @@ function isLabRead(method: string, pathname: string): boolean {
 
 export const proxy = auth(async (req) => {
   const { pathname } = req.nextUrl;
+  // User cookies do not authenticate machine work. Each exact endpoint requires
+  // its own protocol-bound HMAC and durable job lease before any side effect.
+  if (ontologyMachineRoute(req.method, pathname)) return NextResponse.next();
   /**
    * 수학 랩실은 **누구든** 읽는다 — 로그인 안 한 사람 · 원장 · 선생님 · 검수 · 승인 대기 · 학생 세션
    * (원장님 2026-09-21, D-135 ⑻⑼). 랩실은 서버·DB 를 안 부르고 진도는 브라우저에만 있다.
