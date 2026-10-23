@@ -173,3 +173,69 @@ it("keeps the latest selected book when a previous download finishes late", asyn
   );
   loader.mockRestore();
 });
+
+it("searches the available packs without importing and leaves no stale registration action for an empty result", async () => {
+  const source = createLocalCommercialWorkbookSource({ seed: false });
+  const create = vi.spyOn(source, "createEdition");
+  render(
+    <WorkbookPublisherPacks source={source} books={[]} onSaved={vi.fn()} />,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "확보한 자료 보기" }));
+  await screen.findByRole("button", { name: "이 범위의 정답표 등록" });
+  fireEvent.change(
+    screen.getByRole("searchbox", { name: "교재·출판사 검색" }),
+    {
+      target: { value: " EBS  만점왕 " },
+    },
+  );
+  expect(screen.getByLabelText("출판사 공개 교재")).toHaveValue("");
+  expect(
+    screen.queryByRole("button", { name: "이 범위의 정답표 등록" }),
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole("option", { name: /EBS 만점왕/ }),
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole("option", { name: /풍산자 반복/ }),
+  ).not.toBeInTheDocument();
+  fireEvent.change(
+    screen.getByRole("searchbox", { name: "교재·출판사 검색" }),
+    {
+      target: { value: "없는교재검색어" },
+    },
+  );
+  expect(screen.getByRole("status")).toHaveTextContent(
+    "조건에 맞는 정답 자료가 없습니다",
+  );
+  expect(create).not.toHaveBeenCalled();
+});
+
+it("ignores a pending preview when the search changes before it arrives", async () => {
+  const source = createLocalCommercialWorkbookSource({ seed: false });
+  const originalLoad = PUBLISHER_PACKS[0].load;
+  let resolve!: (value: { default: unknown }) => void;
+  const loader = vi.spyOn(PUBLISHER_PACKS[0], "load").mockImplementationOnce(
+    () =>
+      new Promise((done) => {
+        resolve = done;
+      }),
+  );
+  render(
+    <WorkbookPublisherPacks source={source} books={[]} onSaved={vi.fn()} />,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "확보한 자료 보기" }));
+  fireEvent.change(
+    screen.getByRole("searchbox", { name: "교재·출판사 검색" }),
+    {
+      target: { value: "EBS" },
+    },
+  );
+  await act(async () => {
+    resolve(await originalLoad());
+  });
+  expect(
+    screen.queryByRole("button", { name: "이 범위의 정답표 등록" }),
+  ).not.toBeInTheDocument();
+  expect(screen.getByLabelText("출판사 공개 교재")).toHaveValue("");
+  loader.mockRestore();
+});

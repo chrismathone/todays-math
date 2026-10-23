@@ -28,12 +28,31 @@ export default function WorkbookPublisherPacks({
   onBeforeOpen?: () => boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(PUBLISHER_PACKS[0].id);
   const [preview, setPreview] = useState<PublisherPackPreview | null>(null);
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const loadVersion = useRef(0);
+  const searchTerms = query
+    .normalize("NFC")
+    .trim()
+    .toLocaleLowerCase()
+    .split(/\s+/u);
+  const matches = PUBLISHER_PACKS.filter((entry) =>
+    searchTerms.every((term) =>
+      entry.label.normalize("NFC").toLocaleLowerCase().includes(term),
+    ),
+  );
+  function search(value: string) {
+    ++loadVersion.current;
+    setQuery(value);
+    setSelectedId("");
+    setPreview(null);
+    setLoading(false);
+    setError("");
+  }
   async function open(id: string) {
     const entry = PUBLISHER_PACKS.find((item) => item.id === id);
     if (!entry || busy) return;
@@ -85,7 +104,8 @@ export default function WorkbookPublisherPacks({
         <div>
           <h3>출판사 공개 정답 자료</h3>
           <p className={s.muted}>
-            공식 자료와 대조한 범위를 확인하고 내 교재에 등록합니다.
+            정답 자료 {PUBLISHER_PACKS.length}개. 공식 자료와 대조한 범위를
+            확인하고 내 교재에 등록합니다.
           </p>
         </div>
         {!expanded && (
@@ -102,20 +122,33 @@ export default function WorkbookPublisherPacks({
       {expanded && (
         <div className={s.toolbar}>
           <label className={s.search}>
+            교재·출판사 검색
+            <input
+              type="search"
+              value={query}
+              disabled={busy}
+              placeholder="교재명, 출판사, 학년"
+              onChange={(event) => search(event.target.value)}
+            />
+          </label>
+          <label className={s.search}>
             출판사 공개 교재
             <select
               value={selectedId}
               disabled={busy}
               onChange={(event) => void open(event.target.value)}
             >
-              {PUBLISHER_PACKS.map((entry) => (
+              <option value="" disabled>
+                교재를 선택하세요
+              </option>
+              {matches.map((entry) => (
                 <option key={entry.id} value={entry.id}>
                   {entry.label}
                 </option>
               ))}
             </select>
           </label>
-          {!loading && !preview && (
+          {!loading && !preview && selectedId && (
             <button
               type="button"
               className={s.button}
@@ -125,6 +158,13 @@ export default function WorkbookPublisherPacks({
             </button>
           )}
         </div>
+      )}
+      {expanded && query.trim() && (
+        <p role="status" className={s.muted}>
+          {matches.length > 0
+            ? `검색 결과 ${matches.length}개. 교재를 선택하면 등록 범위를 확인할 수 있습니다.`
+            : "조건에 맞는 정답 자료가 없습니다. 교재명이나 출판사를 바꿔 검색하세요."}
+        </p>
       )}
       {loading && <p role="status">선택한 교재의 정답 자료를 불러오는 중…</p>}
       {preview && (

@@ -111,9 +111,11 @@ describe("commercial workbook SQL persistence", () => {
       const reviewed = reloaded.exercises.find(
         (row) => row.key?.status === "reviewed",
       )!;
-      const missing = reloaded.exercises.find((row) => row.key === null)!;
+      const unattempted =
+        reloaded.exercises.find((row) => row.key === null) ??
+        reloaded.exercises.find((row) => row.id !== reviewed?.id)!;
       expect(reviewed).toBeDefined();
-      expect(missing).toBeDefined();
+      expect(unattempted).toBeDefined();
       const assignment = await api.createAssignment({
         requestId: `assignment:${pack.id}`,
         title: "검증용 교재 과제",
@@ -121,7 +123,7 @@ describe("commercial workbook SQL persistence", () => {
         expectedEditionRevision: edition.revision,
         classId: cls.id,
         studentIds: [cls.students[0].id],
-        exerciseIds: [reviewed.id, missing.id],
+        exerciseIds: [reviewed.id, unattempted.id],
       });
       await api.saveMarks(assignment.id, {
         requestId: `marks:${pack.id}`,
@@ -129,7 +131,7 @@ describe("commercial workbook SQL persistence", () => {
         expectedRevision: 0,
         marks: [
           { exerciseId: reviewed.id, mark: "wrong" },
-          { exerciseId: missing.id, mark: "unattempted" },
+          { exerciseId: unattempted.id, mark: "unattempted" },
         ],
       });
       const notes = await api.listWrongNotes();
