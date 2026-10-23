@@ -4,6 +4,10 @@ import type {
   MathOntologySourceRdfTerm,
 } from "@/contracts/mathOntologySource.contract";
 import { compareSourceStrings } from "./canonical";
+import {
+  projectMathOntologyPublicSources,
+  type MathOntologyPublicSourceProjection,
+} from "./publicProjection";
 export const MATH_ONTOLOGY_SOURCE_VOCAB = "urn:todaymath:vocab:";
 const rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 const xsd = "http://www.w3.org/2001/XMLSchema#";
@@ -31,29 +35,43 @@ const literal = (
 /** Only allowlisted metadata enters RDF. Quarantine remains visible in coverage, never as a public entity. */
 export function toMathOntologySourceQuads(
   dataset: MathOntologySourceDataset,
+  emit?: (quad: MathOntologySourceQuad) => void,
+): readonly MathOntologySourceQuad[] {
+  return publicMathOntologySourceQuads(
+    projectMathOntologyPublicSources(dataset),
+    emit,
+  );
+}
+/** Compiler transport of an already authorized projection (also used for dependency-closed shards). */
+export function publicMathOntologySourceQuads(
+  projection: MathOntologyPublicSourceProjection,
+  emit?: (quad: MathOntologySourceQuad) => void,
 ): readonly MathOntologySourceQuad[] {
   const graph = named(
-      `urn:todaymath:math-source:graph:${dataset.payloadHash.slice(7)}`,
+      `urn:todaymath:math-source:graph:${projection.projectionHash.slice(7)}`,
     ),
     quads: MathOntologySourceQuad[] = [];
   const add = (
     subject: string,
     predicate: string,
     object: MathOntologySourceRdfTerm,
-  ) =>
-    quads.push({
+  ) => {
+    const quad = {
       subject: named(subject),
       predicate: named(predicate),
       object,
       graph,
-    });
+    };
+    if (emit) emit(quad);
+    else quads.push(quad);
+  };
   const vocab = MATH_ONTOLOGY_SOURCE_VOCAB,
     eligible = new Set(
-      dataset.entities
+      projection.entities
         .filter((e) => e.distribution !== "quarantine-reference")
         .map((e) => e.iri),
     );
-  for (const e of dataset.entities) {
+  for (const e of projection.entities) {
     if (!eligible.has(e.iri)) continue;
     add(e.iri, rdf + "type", named(vocab + "SourceEntity"));
     add(e.iri, vocab + "versionOf", named(e.stableIri));
@@ -67,17 +85,17 @@ export function toMathOntologySourceQuads(
       distribution: e.distribution,
       curriculumEdition: e.edition,
       repositoryPath: e.origin.repositoryPath,
-      sourcePointer: e.origin.pointer,
-      sourceByteHash: e.origin.byteHash,
+      projectedPointer: e.origin.projectedPointer,
+      sourceProjectionHash: e.sourceProjectionHash,
       extractorVersion: e.origin.extractorVersion,
       ...e.metadata,
     }))
       if (value !== null) add(e.iri, vocab + key, literal(value));
-    if (e.origin.upstreamByteHash)
+    if (e.origin.publicOfficialByteHash)
       add(
         e.iri,
         vocab + "upstreamByteHash",
-        literal(e.origin.upstreamByteHash),
+        literal(e.origin.publicOfficialByteHash),
       );
     if (e.origin.publicSourceIri)
       add(e.iri, vocab + "publicSource", named(e.origin.publicSourceIri));
@@ -93,13 +111,27 @@ export function toMathOntologySourceQuads(
         sourceField: label.sourceField,
         sourceTextHash: label.sourceTextHash,
         repositoryPath: label.origin.repositoryPath,
-        sourcePointer: label.origin.pointer,
-        sourceByteHash: label.origin.byteHash,
+        projectedPointer: label.origin.projectedPointer,
+        sourceProjectionHash: e.sourceProjectionHash,
+      }))
+        add(iri, vocab + key, literal(value));
+    }
+    for (const [index, reference] of (e.nativeReferences ?? []).entries()) {
+      const iri = `${e.iri}:declaredReference:${index}`;
+      add(e.iri, vocab + "declaredNativeReference", named(iri));
+      add(iri, rdf + "type", named(vocab + "DeclaredSourceReference"));
+      for (const [key, value] of Object.entries({
+        nativeNamespace: reference.namespace,
+        nativeId: reference.nativeId,
+        resolution: reference.resolution,
+        repositoryPath: reference.origin.repositoryPath,
+        projectedPointer: reference.origin.projectedPointer,
+        sourceProjectionHash: e.sourceProjectionHash,
       }))
         add(iri, vocab + key, literal(value));
     }
   }
-  for (const a of dataset.assertions) {
+  for (const a of projection.assertions) {
     if (!eligible.has(a.subjectIri) || !eligible.has(a.objectIri)) continue;
     add(a.iri, rdf + "type", named(vocab + "SourceAssertion"));
     add(a.iri, vocab + "versionOf", named(a.stableIri));
@@ -115,10 +147,12 @@ export function toMathOntologySourceQuads(
       partial: a.partial,
       sourceVersion: a.sourceVersion,
       repositoryPath: a.origin.repositoryPath,
-      sourcePointer: a.origin.pointer,
-      sourceByteHash: a.origin.byteHash,
+      projectedPointer: a.origin.projectedPointer,
+      sourceProjectionHash: a.sourceProjectionHash,
     }))
       add(a.iri, vocab + key, literal(value));
+    if (a.mappingReviewStatus)
+      add(a.iri, vocab + "mappingReviewStatus", literal(a.mappingReviewStatus));
     // Source-owned structural projection only. Educational/editorial claims stay reified and unapproved.
     if (
       a.originKind === "source-projection" &&
@@ -127,6 +161,28 @@ export function toMathOntologySourceQuads(
     )
       add(a.subjectIri, vocab + a.predicate, named(a.objectIri));
   }
+  return quads;
+}
+/** Administrative offline census only. Never merge this named graph into teacher/student query datasets. */
+export function toMathOntologyAdminCensusQuads(
+  dataset: MathOntologySourceDataset,
+): readonly MathOntologySourceQuad[] {
+  const graph = named(
+    `urn:todaymath:math-source:admin-census:${dataset.payloadHash.slice(7)}`,
+  );
+  const quads: MathOntologySourceQuad[] = [];
+  const vocab = MATH_ONTOLOGY_SOURCE_VOCAB;
+  const add = (
+    subject: string,
+    predicate: string,
+    object: MathOntologySourceRdfTerm,
+  ) =>
+    quads.push({
+      subject: named(subject),
+      predicate: named(predicate),
+      object,
+      graph,
+    });
   for (const c of dataset.coverage) {
     const iri = `${graph.value}:coverage:${encodeURIComponent(c.namespace)}`;
     add(iri, rdf + "type", named(vocab + "SourceCoverage"));
@@ -142,6 +198,9 @@ function term(term: MathOntologySourceRdfTerm): string {
   return term.termType === "NamedNode"
     ? `<${term.value}>`
     : `${JSON.stringify(term.value)}^^<${term.datatype.value}>`;
+}
+export function sourceQuadToNQuad(q: MathOntologySourceQuad): string {
+  return `${term(q.subject)} ${term(q.predicate)} ${term(q.object)} ${term(q.graph)} .`;
 }
 /** Deterministic serialization of this blank-node-free source transport; formal worker owns RDF dataset canonicalization. */
 export function sourceQuadsToNQuads(
