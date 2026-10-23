@@ -1,6 +1,4 @@
 import "server-only";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { z } from "zod";
 import { DataFactory } from "n3";
 import type { WorkspaceAnswer } from "@/components/math-ontology/source";
@@ -23,7 +21,7 @@ import { createOntologyFeedbackService } from "../feedback/service";
 import { currentOntologyObservations } from "../feedback/observations";
 import { createOntologyPublisher } from "../publish/service";
 import { createOntologyPublicationApproval } from "../publish/approval";
-import { buildNativeOntologyPublicationInput, currentPackagedPublicationBase } from "../publish/native";
+import { buildNativeOntologyPublicationInput, currentPackagedPublicationBase, currentOntologyEngineFingerprint } from "../publish/native";
 import { createOntologyPythonPort } from "../transport/python";
 import { verifyOntologyCompiledArtifactForInput } from "../runtime/compiled";
 import { createOntologyHistoryDelivery } from "../outbox/history";
@@ -74,7 +72,7 @@ export function productionOntologyOperations() {
   };
   const relations = createOntologyRelationService({ db, candidates });
   const feedback = createOntologyFeedbackService({ db, observations: currentOntologyObservations });
-  const publisher = createOntologyPublisher({ db, engineLockHash: digest(readFileSync(resolve(process.cwd(), "requirements.txt"), "utf8")), buildInput: buildNativeOntologyPublicationInput,
+  const publisher = createOntologyPublisher({ db, engineLockHash: currentOntologyEngineFingerprint(), buildInput: buildNativeOntologyPublicationInput,
     compiler: { async compile(input, job) {
       const audience = process.env.ONTOLOGY_ENGINE_AUDIENCE || process.env.VERCEL_URL;
       const origin = process.env.ONTOLOGY_ENGINE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/ontology-engine` : undefined);

@@ -12,8 +12,15 @@ import { authorizeOntologyPublisher } from "../review/authorization";
 import type { OntologyActionActor } from "../actions/authorization";
 import type { approvedOntologyReviews } from "./service";
 import type { OntologyPublicationBase } from "./approval";
+import { canonicalOntologyJson, ontologyDigest } from "../compiler/canonical";
 const hash = z.string().regex(/^sha256:[a-f0-9]{64}$/);
 const catalogSchema = z.strictObject({ format: z.literal("tm-base-catalog-1"), bases: z.array(z.strictObject({ baseHash: hash, projectionHash: hash, path: z.string() })).min(1) });
+/** Bind the actual engine inputs, not the top-level requirements include line.
+ * These exact files are also included in the formal Node deployment trace. */
+export function currentOntologyEngineFingerprint() {
+  const root = resolve(process.cwd(), "scripts/ontology/compiler");
+  return ontologyDigest(canonicalOntologyJson({ lock: readFileSync(resolve(root, "requirements.lock"), "utf8"), compiler: readFileSync(resolve(root, "compiler.py"), "utf8"), packaged: readFileSync(resolve(root, "packaged.py"), "utf8") }));
+}
 /** The fixed deployment catalog is configuration, never a request path/hash. */
 export function currentPackagedPublicationBase(): OntologyPublicationBase {
   const bytes = readFileSync(resolve(process.cwd(), "ontology/model/releases/catalog.json"));

@@ -33,6 +33,7 @@ graphVersion은 서버가 확인하는 opaque identity다. `sourceSnapshotHash`,
 
 - `checkpoint-b1-b2-b3-final.txt`: 격리 PostgreSQL + Request + 실제 NextAuth + 실제 React + source server clock 묶음 14파일 **70시험 PASS**. 별도 `publisher-actual-http-first.txt`는 합성 inline 입력을 실제 durable publisher → Node HMAC → 실제 Python OWL/SHACL → 제어된 65초 지연 → 활성화 1시험 PASS(67.05초). 각 PID/port/lease/종료 영수증은 `postgres-run-*.json`, `publisher-python-http-*.json`이다.
 - `operations-cleanup-77.txt`: 초기 게시/철회·이력·sealer 최종 쓰기 만료 rollback, MathText/operator UI와 staging writer gate까지 16파일 **77시험 PASS**. 실제 65초 HTTP 검사는 앞선 단독 통과를 유지했다. `typecheck-operations-cleanup.txt`는 전체 TypeScript 진단 0, `eslint-operations-cleanup.txt`와 diff 검사도 0이다. 동일 시험 재실행을 새 시험으로 더하지 않는다.
+- `native-flow-core.txt`: 실제 전원천 native base 게시부터 scoped snapshot·계획 승인/실행·outbox 이력·feedback까지 연결한 시험을 더해 17파일 **78시험 PASS**다. 이 추가 시험은 concrete native input builder, 실제 Node/Python compiler transport, exact-input verifier, 활성 판 runtime을 사용하고 학생·계정만 합성한다. 명시적 원천 연결 3단계와 파생 shortcut을 포함한 실제 최단 2홉 proof를 각각 확인했다. 처음 경로 길이를 3으로 고정한 시험 실패는 `native-flow-first.txt`에 보존했다. `native-flow-typecheck.txt`, `native-flow-eslint.txt`는 진단 0이며 child Python 및 격리 PG 종료 영수증을 남겼다.
 - no-op, 동시 8승인/실행의 영수증 하나, 결과 재전송, args/seal/source/evidence/graph tamper, 현재 학생 revision·계정·메뉴·이동/수강·관리 lease 철회, 실제 별도 연결의 잠금/철회 경합, 단계별 5 failpoint, 실제 audit constraint 실패 rollback을 검증했다. 종료된 lease generation의 outbox ack도 거절한다.
 - 독립 B1: 잠금 대기 후 이전 시각을 쓰는 결함을 인정하고 clock 함수 및 근거 검사/마지막 mutation 뒤 권한 재검사를 추가했다. 실제 PG `pg_stat_activity`의 Lock을 확인한 뒤 clock 만료 negative/정상 positive, 마지막 outbox write 뒤 만료 시 전체 rollback이 `clock-lock-GREEN.txt`에서 통과했다.
 - 독립 B2: self-consistent zero-delta artifact를 다른 승인 delta의 출력으로 받아들이는 결함을 인정했다. formal worker의 exact-input verifier를 production callback에 필수로 연결했다. 엔진이 반환한 identity 자체와 source 문자열만 비교하는 이전 경로는 제거했다.
@@ -76,5 +77,7 @@ Reader 먼저 순서는: writer off에서 새 schema-aware 서버/Prisma reader 
 정책을 임의 확정하지 않는 독립 조치로 게시 준비에 사람 승인 총수, 실제 질의 전제 조건 충족 수, 근거/배포 조건에 따른 제외 수를 분리했다. 이 수는 봉인된 review state hash의 정확한 행에서 산출하며 기존 persisted preview v1 형식은 바꾸지 않는다. `support-unknown-actual-engine.json`은 실제 inline OWL/SHACL에서 승인·게시 입력 2개 중 전제로 쓰인 관계가 1개인 반례다. 또한 최초 근거 snapshot은 RepeatableRead로 읽어 여러 원천 행의 일관성을 보존한다. 기존 승인/실행의 동시 idempotency 경로를 RepeatableRead로 바꾸지는 않았다.
 
 staging machine API도 writer off에서 새 표를 조회하지 않으며 Node/Python과 같은 명시적 MATH_ONTOLOGY_ENGINE_SECRET 우선순위를 사용한다. 만료된 미실행 제안은 이력에서 다시 준비가 필요한 것으로 표시한다. 철회/제거된 판의 개체 표기를 찾을 수 없는 과거 승인 관계는 **미확인**으로 표시하고 폐기만 준비할 수 있게 해 복구 경로가 막히지 않도록 했다. 이 fallback은 새 승인이나 근거 승격을 허용하지 않는다.
+
+게시 job의 engine fingerprint는 최상위 `requirements.txt`의 include 한 줄 대신 실제 `scripts/ontology/compiler/requirements.lock`, `compiler.py`, `packaged.py`의 canonical bytes를 묶는다. 이 세 파일은 formal worker의 Node 배포 trace에도 포함된다. source/ontology/shapes/rules/base와 exact compile input의 별도 바인딩은 그대로 유지한다.
 
 이 worker는 이 항목들을 읽기 전용/경량 시범으로 대신하거나, 아직 미확인인 교육 콘텐츠·관계를 공식 확정으로 표시하지 않는다.
