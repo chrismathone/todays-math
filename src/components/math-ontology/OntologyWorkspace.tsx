@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { MathText } from "@/components/math/MathText";
 import { findMathSpans } from "@/lib/math/segments";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
@@ -8,12 +8,19 @@ import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { createOntologyWorkspaceSource } from "./api";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer, type WorkspaceStudent, type WorkspaceExecution } from "./source";
 import s from "./workspace.module.css";
-const evidenceText = (text: string) => {
-  let at = 0, value = "";
-  for (const span of findMathSpans(text)) { value += text.slice(at, span.start).replace(/!\[/g, "[") + text.slice(span.start, span.end); at = span.end; }
-  return value + text.slice(at).replace(/!\[/g, "[");
-};
 const labels = { observed: "관측", reviewed: "검토한 연결", candidate: "검토 전 후보", unknown: "미확인" };
+/** Provenance is literal data, not OCR math. Only explicit math delimiters use
+ * the shared renderer; identifiers, line breaks and URLs remain plain text. */
+function EvidenceText({ text, className }: { text: string; className?: string }) {
+  const parts: ReactNode[] = []; let at = 0;
+  for (const span of findMathSpans(text)) {
+    parts.push(text.slice(at, span.start));
+    parts.push(<MathText key={span.start} text={text.slice(span.start, span.end)} as={span.type === "display" ? "div" : "span"} staticLayout />);
+    at = span.end;
+  }
+  parts.push(text.slice(at));
+  return <div className={className} style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere", minWidth: 0 }}>{parts}</div>;
+}
 export default function OntologyWorkspace({ source, branchId, scopeKey = "account", canPublish = false }: { source?: OntologyWorkspaceSource; branchId?: string; scopeKey?: string; canPublish?: boolean }) {
   const port = useMemo(() => source ?? createOntologyWorkspaceSource(branchId), [source, branchId]);
   return <ScopedWorkspace key={`${scopeKey}:${branchId ?? ""}`} source={port} canPublish={canPublish} />;
@@ -111,10 +118,10 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
       {(answer || history.length > 0 || (!busy && !error)) && <section className={s.result} aria-label="준비한 결과">
         {history.length > 0 && <button type="button" className={s.textButton} disabled={busy === "confirm"} onClick={back}>이전 결과</button>}
         {answer ? <>
-          <div role="heading" aria-level={2} className={s.resultTitle}><MathText text={evidenceText(answer.summary)} as="div" staticLayout /></div>
+          <div role="heading" aria-level={2} className={s.resultTitle}><EvidenceText text={answer.summary} /></div>
           {answer.requiresStudent && <button type="button" className={s.primary} onClick={() => setPicking(true)}>학생을 연결해 계속하기</button>}
-          {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><MathText text={evidenceText(step.title)} as="div" staticLayout /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><MathText text={evidenceText(step.note)} as="div" className={s.evidenceNote} staticLayout /></div></li>)}</ol>}
-          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><MathText text={evidenceText(item.text)} as="div" staticLayout />{canPublish && item.reviewId && source.review && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "review", item.reviewId)}>이 연결 검토</button>}</div>)}</details>}
+          {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><EvidenceText text={step.title} /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><EvidenceText text={step.note} className={s.evidenceNote} /></div></li>)}</ol>}
+          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><EvidenceText text={item.text} />{canPublish && item.reviewId && source.review && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "review", item.reviewId)}>이 연결 검토</button>}</div>)}</details>}
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
       </section>}
       {(execution || answer?.action || answer?.reprepare) && <section className={s.next} aria-label="다음 작업">
