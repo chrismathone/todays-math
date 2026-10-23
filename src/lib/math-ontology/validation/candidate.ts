@@ -20,6 +20,7 @@ export async function actualCandidateValidation(
     a.distribution !== "allowed"
   )
     throw new Error("CANDIDATE_STATE_OR_SCOPE");
+  if(runtime.materialize)runtime=await runtime.materialize({kind:"neighbors",entityId:a.subject,targetId:a.object,limit:20},{allowedScopes:["global",scope],contextHash:"candidate-structure",cursorSecret:"candidate-local-only"});
   const { namedNode, literal } = DataFactory,
     { registry } = runtime.datasets();
   const sourcePredicate =

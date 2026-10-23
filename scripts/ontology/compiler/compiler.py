@@ -149,6 +149,10 @@ def build_proofs(model, premises, closure, scope):
     return sorted(proofs.values(),key=lambda p:p["id"])
 
 def compile_release(value):
+    source=json.loads(value.get("sourceManifest","{}"))
+    if isinstance(source,dict) and source.get("format")=="tm-packaged-source-1":
+        from packaged import compile_packaged
+        return compile_packaged(value)
     registry=parse_registry(value["registryNquads"])
     check_input(value,registry)
     model_bytes=(ROOT/"ontology/model/tm-owlrl-1.ttl").read_text()
@@ -175,7 +179,7 @@ def compile_release(value):
     proofs=build_proofs(model,premises,closure,value["scope"])
     inferred=set(closure)-set(model)-set(premises)
     proved={tuple(URIRef(x) for x in p["conclusion"]) for p in proofs if p["rule"]!="asserted"}
-    engine=canonical({"pythonVersion":platform.python_version(), "implementationHash":digest(Path(__file__).read_text()), "packages":{name:importlib.metadata.version(name) for name in ("rdflib","owlrl","pyshacl")},"lock":(ROOT/"scripts/ontology/compiler/requirements.lock").read_text()})
+    engine=canonical({"compileInputHash":digest(canonical(value)), "pythonVersion":platform.python_version(), "implementationHash":digest(Path(__file__).read_text()), "packages":{name:importlib.metadata.version(name) for name in ("rdflib","owlrl","pyshacl")},"lock":(ROOT/"scripts/ontology/compiler/requirements.lock").read_text()})
     files=dict(source=value["sourceManifest"],registry=value["registryNquads"],asserted=graph_bytes(asserted,"urn:todaymath:graph:asserted"),closure=graph_bytes(closure,"urn:todaymath:graph:closure"),review=canonical(sorted(value["assertions"],key=lambda a:a["id"])),ontology=model_bytes,shapes=canonical({"runtime":(ROOT/"ontology/shapes/runtime-core.ttl").read_text(),"full":(ROOT/"ontology/shapes/full.ttl").read_text()}),rules=(ROOT/"ontology/rules/profile.json").read_text(),proof=canonical(proofs),engine=engine,report=canonical({"raw":raw_report,"closure":closure_report}),coverage=canonical({"registryTriples":len(registry),"assertions":len(value["assertions"]),"publishedAssertions":sum(len(v) for v in premises.values()),"engineInferredTriples":len(inferred),"witnessedInferredTriples":len(inferred & proved),"untracedInferredTriples":len(inferred-proved),"scope":value["scope"]}))
     unsigned=dict(schemaVersion=1,profile=PROFILE,hashes={k:digest(files[k]) for k in HASH_KEYS})
     return dict(identity={**unsigned,"graphVersion":digest(canonical(unsigned))},files=files)

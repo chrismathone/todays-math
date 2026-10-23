@@ -8,7 +8,7 @@ import {
   type MathOntologyCompilePort,
 } from "@/contracts/mathOntology.contract";
 import { canonicalOntologyJson, ontologyDigest } from "../compiler/canonical";
-import { verifyOntologyArtifact } from "../runtime/artifact";
+import { verifyOntologyCompiledArtifactForInput } from "../runtime/compiled";
 
 export function createOntologyPythonPort(options: {
   endpoint: URL;
@@ -47,6 +47,7 @@ export function createOntologyPythonPort(options: {
         inputHash,
         leaseGeneration: job.leaseGeneration,
         expiresAt: Math.min(leaseExpiry, nowSeconds + 55),
+        leaseExpiresAt: leaseExpiry,
         nonce: randomBytes(16).toString("hex"),
         input,
       };
@@ -70,7 +71,7 @@ export function createOntologyPythonPort(options: {
         body,
         redirect: "error",
         cache: "no-store",
-        signal: AbortSignal.timeout(55_000),
+        signal: AbortSignal.timeout(Math.min(240_000,(leaseExpiry-nowSeconds)*1000)),
       });
       if (!response.ok) {
         await response.body?.cancel();
@@ -104,7 +105,7 @@ export function createOntologyPythonPort(options: {
       )
         throw new Error("UNBOUND_ENGINE_RESPONSE");
       const result = gunzipSync(Buffer.from(envelope.resultGzip, "base64"), {
-        maxOutputLength: 192 * 1024 * 1024,
+        maxOutputLength: 8 * 1024 * 1024,
       });
       if (
         `sha256:${createHash("sha256").update(result).digest("hex")}` !==
@@ -115,7 +116,7 @@ export function createOntologyPythonPort(options: {
         JSON.parse(result.toString("utf8")),
       );
       // Transport verifies actual bytes/policy, ops verifies DB authority and activates it.
-      return verifyOntologyArtifact(artifact, artifact.identity);
+      return verifyOntologyCompiledArtifactForInput(artifact, input);
     },
   };
 }

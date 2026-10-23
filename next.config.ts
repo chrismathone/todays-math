@@ -1,6 +1,19 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
 import type { NextConfig } from "next";
 
+const ontologyTraceAssets = [
+  "./ontology/model/tm-owlrl-1.ttl",
+  "./ontology/model/source-kinds.json",
+  "./ontology/model/releases/catalog.json",
+  "./ontology/model/releases/52597f5f6437aff2418d3189399e1aac261149bea17994a352d62fbfebaee554/**/*",
+  "./ontology/shapes/**/*",
+  "./ontology/rules/**/*",
+  "./ontology/source-manifests/public-v1/52597f5f6437aff2418d3189399e1aac261149bea17994a352d62fbfebaee554/**/*",
+  "./requirements.txt",
+  "./scripts/ontology/compiler/requirements.lock",
+  "./scripts/ontology/compiler/compiler.py",
+  "./scripts/ontology/compiler/packaged.py",
+];
 const nextConfig: NextConfig = {
   // Type errors must fail every production build, including Vercel builds.
   // The build checks the shipped code only (tsconfig.build.json leaves out
@@ -104,6 +117,8 @@ const nextConfig: NextConfig = {
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
   outputFileTracingIncludes: {
+    "/api/math-ontology/**": ontologyTraceAssets,
+    "/api/students/*/math-ontology/**": ontologyTraceAssets,
     "/api/exam-reports/**": [
       "./node_modules/katex/dist/katex.min.css",
       "./node_modules/katex/dist/fonts/**/*",

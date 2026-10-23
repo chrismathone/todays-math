@@ -54,5 +54,207 @@
     "referencesSource",
     "partialCourseMapping",
     "generatesForSection"
-  ]
+  ],
+  "sourcePolicy": {
+    "partOf": {
+      "predicate": "partOf",
+      "iri": "urn:todaymath:vocab:partOf",
+      "semanticRole": "hierarchy",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "orderedBefore": {
+      "predicate": "orderedBefore",
+      "iri": "urn:todaymath:vocab:orderedBefore",
+      "semanticRole": "service-order",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "assessesDefinition": {
+      "predicate": "assessesDefinition",
+      "iri": "urn:todaymath:vocab:assessesDefinition",
+      "semanticRole": "representation",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "containsProposition": {
+      "predicate": "containsProposition",
+      "iri": "urn:todaymath:vocab:containsProposition",
+      "semanticRole": "representation",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "cardInUnit": {
+      "predicate": "cardInUnit",
+      "iri": "urn:todaymath:vocab:cardInUnit",
+      "semanticRole": "hierarchy",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "authoredPrerequisiteRecommendation": {
+      "predicate": "authoredPrerequisiteRecommendation",
+      "iri": "urn:todaymath:vocab:authoredPrerequisiteRecommendation",
+      "semanticRole": "authored-education",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "editorialPrerequisite": {
+      "predicate": "editorialPrerequisite",
+      "iri": "urn:todaymath:vocab:editorialPrerequisite",
+      "semanticRole": "authored-education",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "editorialSupport": {
+      "predicate": "editorialSupport",
+      "iri": "urn:todaymath:vocab:editorialSupport",
+      "semanticRole": "authored-education",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "editorialContains": {
+      "predicate": "editorialContains",
+      "iri": "urn:todaymath:vocab:editorialContains",
+      "semanticRole": "hierarchy",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "courseSequence": {
+      "predicate": "courseSequence",
+      "iri": "urn:todaymath:vocab:courseSequence",
+      "semanticRole": "course-advice",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "courseAlternativeTrack": {
+      "predicate": "courseAlternativeTrack",
+      "iri": "urn:todaymath:vocab:courseAlternativeTrack",
+      "semanticRole": "course-advice",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "courseRecommendedFoundation": {
+      "predicate": "courseRecommendedFoundation",
+      "iri": "urn:todaymath:vocab:courseRecommendedFoundation",
+      "semanticRole": "course-advice",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "courseRecommendedBeforeOrConcurrent": {
+      "predicate": "courseRecommendedBeforeOrConcurrent",
+      "iri": "urn:todaymath:vocab:courseRecommendedBeforeOrConcurrent",
+      "semanticRole": "course-advice",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "projectsSourceSection": {
+      "predicate": "projectsSourceSection",
+      "iri": "urn:todaymath:vocab:projectsSourceSection",
+      "semanticRole": "representation",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "coversSourceSection": {
+      "predicate": "coversSourceSection",
+      "iri": "urn:todaymath:vocab:coversSourceSection",
+      "semanticRole": "authored-mapping",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "representativeCard": {
+      "predicate": "representativeCard",
+      "iri": "urn:todaymath:vocab:representativeCard",
+      "semanticRole": "authored-mapping",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "scriptUsesDefinition": {
+      "predicate": "scriptUsesDefinition",
+      "iri": "urn:todaymath:vocab:scriptUsesDefinition",
+      "semanticRole": "representation",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "referencesSource": {
+      "predicate": "referencesSource",
+      "iri": "urn:todaymath:vocab:referencesSource",
+      "semanticRole": "source-reference",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "partialCourseMapping": {
+      "predicate": "partialCourseMapping",
+      "iri": "urn:todaymath:vocab:partialCourseMapping",
+      "semanticRole": "authored-mapping",
+      "queryLocation": "candidate-review",
+      "publicationGate": "independent-relation-review",
+      "proofRule": "approved-assertion-witness-only",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    },
+    "generatesForSection": {
+      "predicate": "generatesForSection",
+      "iri": "urn:todaymath:vocab:generatesForSection",
+      "semanticRole": "representation",
+      "queryLocation": "approved-source-projection",
+      "publicationGate": "eligible-endpoints-and-projection-release-approval",
+      "proofRule": "source-byte-projection-witness",
+      "transitive": false,
+      "officialEducationalMeaning": false
+    }
+  }
 }
