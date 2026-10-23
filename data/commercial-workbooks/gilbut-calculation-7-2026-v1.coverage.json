@@ -1,0 +1,2399 @@
+{
+  "packId": "gilbut-calculation-7-2026-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeRequestedQuickAnswerScope": true,
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": true,
+    "wholeBookAddressAudit": false,
+    "definition": "공식 정답에 인쇄된 61~70단계 전체 주소; 본문 책 전체를 독립 대조했다는 뜻은 아님",
+    "sourceQuickAnswerPages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "rowGranularity": "one row per printed circled exercise number"
+  },
+  "source": {
+    "productUrl": "https://school.gilbut.co.kr/book/view?bookcode=BN004959",
+    "pdfUrl": "https://gfile.gilbut.co.kr/gilbut/bookpds/PD05/BN004959//%EA%B8%B0%EC%A0%81%EC%9D%98%EA%B3%84%EC%82%B0%EB%B2%95_7%EA%B6%8C_%EC%A0%95%EB%8B%B5(01~24).pdf",
+    "sha256": "24620bffde9ffdc47e6c185c251e254448752306001984fd089a14299b5227f3",
+    "pageCount": 24,
+    "byteCount": 877491,
+    "sourceRelativePath": "elementary/pdfs/gilbut_BN004959.pdf",
+    "editionEvidence": {
+      "title": "기적의계산법(2026개정)7권",
+      "isbn": "9791174672681",
+      "publicationDate": "2026-11-02",
+      "publicationDateIsFutureAtReview": true,
+      "curriculum": null,
+      "impression": null,
+      "productHtmlSha256": "adff08af8a1f5e00dc3f919bdb4f7b02ca3763fd09fa3d15f52facd7c100872f"
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "sha256": "5e538c9dd2ee429fa272ae1c410345fc74585476ba80b5715ce94675ed1f74df",
+        "filename": "page-001.png"
+      },
+      {
+        "sourcePage": 2,
+        "sha256": "cfcd4335a094bfcd90ae943f2a620370e2da9b02c1089e2136cfa185a6d90cf0",
+        "filename": "page-002.png"
+      },
+      {
+        "sourcePage": 3,
+        "sha256": "82f6a5571fc8095685d338848877f9ab1ddbe13440c95a570143ab92fcc12ea3",
+        "filename": "page-003.png"
+      },
+      {
+        "sourcePage": 4,
+        "sha256": "4a1079753940c3b04dc2632928e0280a836811bbd27aee12d053af6f29ed7ef1",
+        "filename": "page-004.png"
+      },
+      {
+        "sourcePage": 5,
+        "sha256": "7a01c9f1340cb0ea8229f7665b20ce800c407fea22f4f075ed4bb90f1329673d",
+        "filename": "page-005.png"
+      },
+      {
+        "sourcePage": 6,
+        "sha256": "c7cb2426979391f60b4c4d05d65e9c7ca2eaad3e39bdf325e1ca073ecbcdc657",
+        "filename": "page-006.png"
+      },
+      {
+        "sourcePage": 7,
+        "sha256": "5047cbe16078282001e5475157c0b1eb5370f00dda5e4eda34d7d0725bfe807e",
+        "filename": "page-007.png"
+      },
+      {
+        "sourcePage": 8,
+        "sha256": "0a6af72b15f76473af0eea3c79e63ee124c7bc821ad2d812299d5aa4fdf2a6ab",
+        "filename": "page-008.png"
+      },
+      {
+        "sourcePage": 9,
+        "sha256": "ecf5930f0ef5c4afea11f2846336136e6fe013b1f5d21edb30d8a4037840b4b2",
+        "filename": "page-009.png"
+      },
+      {
+        "sourcePage": 10,
+        "sha256": "d20dc3b3c68ac86081fb348ed305e5971582053affb450c61c792ce40c59bff4",
+        "filename": "page-010.png"
+      },
+      {
+        "sourcePage": 11,
+        "sha256": "93acadde5fd74a6811f219e56ba8235a53d2e185cdacf7a37e9266f6e3a135a9",
+        "filename": "page-011.png"
+      },
+      {
+        "sourcePage": 12,
+        "sha256": "a120fa393e24c493f44573dbba02271761c271c9fd2fd402d45a1e8c5df2bdea",
+        "filename": "page-012.png"
+      },
+      {
+        "sourcePage": 13,
+        "sha256": "d1cb7205b2e8130d39540be7738fdd3c5d1837602aaa3c51487bf7921db082b0",
+        "filename": "page-013.png"
+      },
+      {
+        "sourcePage": 14,
+        "sha256": "89dc5abd02e7377708c02c419d26fdb18fdff7675bcf63897abe2880d566da72",
+        "filename": "page-014.png"
+      },
+      {
+        "sourcePage": 15,
+        "sha256": "d3fa7ffa38bc2f2e3da322de5cce09ccf716d1b3b7aa0814eb16f9e867ee0170",
+        "filename": "page-015.png"
+      },
+      {
+        "sourcePage": 16,
+        "sha256": "93894dde27af2c01c1e4dcb7a280013cbf727c281afd9b9a984f850923ed9037",
+        "filename": "page-016.png"
+      },
+      {
+        "sourcePage": 17,
+        "sha256": "25191ca0e694e8b880520f2d1c37bdf8f8c78272dc6c083ef1e765a241db217c",
+        "filename": "page-017.png"
+      },
+      {
+        "sourcePage": 18,
+        "sha256": "b1a924796c23b9bfead0e463e97d06e6eccb09b8e7e1f2d4dcbf039c0eeb928d",
+        "filename": "page-018.png"
+      },
+      {
+        "sourcePage": 19,
+        "sha256": "d51cfed2d1d904896767cf40cfc74ad76c1fe44cd5b168fc7f31bec4978de0c5",
+        "filename": "page-019.png"
+      },
+      {
+        "sourcePage": 20,
+        "sha256": "96a96155aa7d26ead7eaccdbe7562f8e0aeda0b897a0406495fefa94fe9d01e9",
+        "filename": "page-020.png"
+      },
+      {
+        "sourcePage": 21,
+        "sha256": "e37eeead859d6725cbce695610aa3ab770319b2fdc8b14c7ebfd970fee718006",
+        "filename": "page-021.png"
+      },
+      {
+        "sourcePage": 22,
+        "sha256": "fb7e83a27fefffcb8d85699581d313fb8988742b3f93fea04563ea1152dcd9b8",
+        "filename": "page-022.png"
+      },
+      {
+        "sourcePage": 23,
+        "sha256": "0c322e1fed8f335ad0bf8b8d3e9cd342ebbc3b2867e311e29855488008f83ed3",
+        "filename": "page-023.png"
+      },
+      {
+        "sourcePage": 24,
+        "sha256": "eadf3a5973e2f8f11a036af91484e08734234a73b9cd27cdda9fe9ee6bcd1513",
+        "filename": "page-024.png"
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 1060,
+    "reviewedKeys": 1060,
+    "nullKeys": 0,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 100
+  },
+  "pageGroups": [
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 1일 / A",
+      "page": "11",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "sourcePage": 4
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 1일 / B",
+      "page": "12",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 4
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 2일 / A",
+      "page": "13",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "sourcePage": 4
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 2일 / B",
+      "page": "14",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 4
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 3일 / A",
+      "page": "15",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 3일 / B",
+      "page": "16",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 4일 / A",
+      "page": "17",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 4일 / B",
+      "page": "18",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 5일 / 문장 연산",
+      "page": "19",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "61단계 몇십, 몇백 곱하기 / 5일 / 문장 연산",
+      "page": "20",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 1일 / A",
+      "page": "23",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 6
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 1일 / B",
+      "page": "24",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 6
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 2일 / A",
+      "page": "25",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 6
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 2일 / B",
+      "page": "26",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 6
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 3일 / A",
+      "page": "27",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 3일 / B",
+      "page": "28",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 4일 / A",
+      "page": "29",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 4일 / B",
+      "page": "30",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 5일 / 문장 연산",
+      "page": "31",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "62단계 (세 자리 수)×(몇십) / 5일 / 문장 연산",
+      "page": "32",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 1일 / A",
+      "page": "35",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 8
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 1일 / B",
+      "page": "36",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 8
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 2일 / A",
+      "page": "37",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 8
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 2일 / B",
+      "page": "38",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 8
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 3일 / A",
+      "page": "39",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 3일 / B",
+      "page": "40",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 4일 / A",
+      "page": "41",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 4일 / B",
+      "page": "42",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 5일 / 문장 연산",
+      "page": "43",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "63단계 (세 자리 수)×(두 자리 수) ❶ / 5일 / 문장 연산",
+      "page": "44",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 9
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 1일 / A",
+      "page": "47",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 10
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 1일 / B",
+      "page": "48",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 10
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 2일 / A",
+      "page": "49",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 10
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 2일 / B",
+      "page": "50",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 10
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 3일 / A",
+      "page": "51",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 3일 / B",
+      "page": "52",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 4일 / A",
+      "page": "53",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 4일 / B",
+      "page": "54",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 5일 / 문장 연산",
+      "page": "55",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "64단계 (세 자리 수)×(두 자리 수) ❷ / 5일 / 문장 연산",
+      "page": "56",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 1일 / A",
+      "page": "59",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 12
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 1일 / B",
+      "page": "60",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 12
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 2일 / A",
+      "page": "61",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 12
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 2일 / B",
+      "page": "62",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 12
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 3일 / A",
+      "page": "63",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 3일 / B",
+      "page": "64",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 4일 / A",
+      "page": "65",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 4일 / B",
+      "page": "66",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 5일 / 문장 연산",
+      "page": "67",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "65단계 몇십으로 나누기 / 5일 / 문장 연산",
+      "page": "68",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 13
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 1일 / A",
+      "page": "71",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 14
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 1일 / B",
+      "page": "72",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 14
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 2일 / A",
+      "page": "73",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 14
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 2일 / B",
+      "page": "74",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 14
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 3일 / A",
+      "page": "75",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 3일 / B",
+      "page": "76",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 4일 / A",
+      "page": "77",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 4일 / B",
+      "page": "78",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 5일 / 문장 연산",
+      "page": "79",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "66단계 (두 자리 수)÷(두 자리 수) / 5일 / 문장 연산",
+      "page": "80",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 1일 / A",
+      "page": "83",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 16
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 1일 / B",
+      "page": "84",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 16
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 2일 / A",
+      "page": "85",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 16
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 2일 / B",
+      "page": "86",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 16
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 3일 / A",
+      "page": "87",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 3일 / B",
+      "page": "88",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 4일 / A",
+      "page": "89",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 4일 / B",
+      "page": "90",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 5일 / 문장 연산",
+      "page": "91",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "67단계 (세 자리 수)÷(두 자리 수) ❶ / 5일 / 문장 연산",
+      "page": "92",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 1일 / A",
+      "page": "95",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 18
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 1일 / B",
+      "page": "96",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 18
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 2일 / A",
+      "page": "97",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 18
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 2일 / B",
+      "page": "98",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 18
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 3일 / A",
+      "page": "99",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 3일 / B",
+      "page": "100",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 4일 / A",
+      "page": "101",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 4일 / B",
+      "page": "102",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 5일 / 문장 연산",
+      "page": "103",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "68단계 (세 자리 수)÷(두 자리 수) ❷ / 5일 / 문장 연산",
+      "page": "104",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 1일 / A",
+      "page": "107",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 20
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 1일 / B",
+      "page": "108",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 20
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 2일 / A",
+      "page": "109",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 20
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 2일 / B",
+      "page": "110",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 20
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 3일 / A",
+      "page": "111",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 3일 / B",
+      "page": "112",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 4일 / A",
+      "page": "113",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 4일 / B",
+      "page": "114",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 5일 / 문장 연산",
+      "page": "115",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "69단계 곱셈과 나눗셈 종합 / 5일 / 문장 연산",
+      "page": "116",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 1일 / A",
+      "page": "119",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 22
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 1일 / B",
+      "page": "120",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 22
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 2일 / A",
+      "page": "121",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 22
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 2일 / B",
+      "page": "122",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 22
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 3일 / A",
+      "page": "123",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 3일 / B",
+      "page": "124",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 4일 / A",
+      "page": "125",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 4일 / B",
+      "page": "126",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 5일 / 문장 연산",
+      "page": "127",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    },
+    {
+      "volume": "7권",
+      "section": "70단계 4학년 방정식 / 5일 / 문장 연산",
+      "page": "128",
+      "expectedNumbers": [
+        "①",
+        "②",
+        "③"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePage": 23
+    }
+  ],
+  "nullKeyLedger": [],
+  "outOfScope": [
+    {
+      "sourcePages": [
+        1,
+        2,
+        3,
+        24
+      ],
+      "reason": "cover, parent study log, closing page; no exercise answers"
+    }
+  ],
+  "reviewMethod": {
+    "coordinateFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/gilbut_BN004959/native-coordinates.json",
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/gilbut_BN004959/reviewed-correspondence.json",
+    "allAnswerRegionsVisuallyInspected": true,
+    "manuallyCorrectedAddresses": [
+      {
+        "page": "125",
+        "number": "①"
+      },
+      {
+        "page": "125",
+        "number": "②"
+      },
+      {
+        "page": "125",
+        "number": "③"
+      },
+      {
+        "page": "125",
+        "number": "④"
+      },
+      {
+        "page": "125",
+        "number": "⑤"
+      },
+      {
+        "page": "125",
+        "number": "⑥"
+      },
+      {
+        "page": "128",
+        "number": "①"
+      },
+      {
+        "page": "128",
+        "number": "②"
+      },
+      {
+        "page": "128",
+        "number": "③"
+      }
+    ]
+  }
+}
