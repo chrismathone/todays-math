@@ -17,6 +17,7 @@ import {
 } from "./authorization";
 import { lockOntologyScope } from "../publish/scope";
 import { recordOntologyReviewEvent } from "./events";
+import { ontologyRelationCanPublish } from "./eligibility";
 
 export interface OntologyCandidatePort {
   /** Actual authorization of subject/object/source and sealed model evidence.
@@ -42,6 +43,7 @@ export function createOntologyRelationService(deps: {
       raw: { assertion: unknown; evidenceRef: string },
       origin: "authored" | "model-proposal" = "authored",
       stableReviewId?: string,
+      predecessor?: { previousReviewId: string; expectedPreviousRevision: number },
     ) {
       z.string().min(1).max(512).parse(raw.evidenceRef);
       const candidateInput = {
@@ -69,9 +71,20 @@ export function createOntologyRelationService(deps: {
           const previous = await tx.ontologyRelationReview.findUnique({ where: { id: stableReviewId } });
           if (previous) {
             requireOperation(previous.proposedBy === actor.id && previous.assertionCanonical === assertionCanonical && previous.assertionHash === assertionHash, "BINDING_MISMATCH");
+            const link = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: previous.id, event: "relation.reprepared" } });
+            requireOperation(predecessor ? link && canonicalBytes({ previousReviewId: predecessor.previousReviewId, previousRevision: predecessor.expectedPreviousRevision }) === link.detailCanonical && digest(link.detailCanonical) === link.detailHash : !link, "BINDING_MISMATCH");
             await authorizeOntologyDraftScope(tx, actor, previous.scopeKey, now);
             return { reviewId: previous.id, revision: previous.revision, state: previous.state };
           }
+        }
+        if (predecessor) {
+          requireOperation(stableReviewId && stableReviewId !== predecessor.previousReviewId, "BINDING_MISMATCH");
+          await tx.$queryRaw`SELECT id FROM ontology_relation_review WHERE id = ${predecessor.previousReviewId}::uuid FOR SHARE`;
+          const previous = await tx.ontologyRelationReview.findUnique({ where: { id: predecessor.previousReviewId } });
+          requireOperation(previous, "NOT_FOUND");
+          await authorizeOntologyDraftScope(tx, actor, previous.scopeKey, now);
+          requireOperation(previous.scopeKey === candidate.scope, "BINDING_MISMATCH");
+          requireOperation(previous.revision === predecessor.expectedPreviousRevision && ["draft", "validated", "rejected"].includes(previous.state), "STALE");
         }
         const row = await tx.ontologyRelationReview.create({
           data: {
@@ -93,6 +106,7 @@ export function createOntologyRelationService(deps: {
           { assertionHash, evidenceRef: raw.evidenceRef },
           time,
         );
+        if (predecessor) await recordOntologyReviewEvent(tx, actor.id, row.scopeKey, row.id, "relation.reprepared", { previousReviewId: predecessor.previousReviewId, previousRevision: predecessor.expectedPreviousRevision }, time);
         await authorizeOntologyDraftScope(tx, actor, row.scopeKey, now);
         requireOperation(modelExpiresAt === null || modelExpiresAt > now().getTime(), "EXPIRED");
         return { reviewId: row.id, revision: row.revision, state: row.state };
@@ -113,6 +127,12 @@ export function createOntologyRelationService(deps: {
     },
     async draftModel(actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string; modelRunId: string }) {
       return draft(actor, raw, "model-proposal", z.uuid().parse(raw.modelRunId));
+    },
+    /** New provider/evidence seal, new candidate and immutable predecessor event.
+     * Previous candidate bytes and its review decision are never promoted. */
+    async draftModelRevision(actor: OntologyActionActor, raw: { previousReviewId: string; expectedPreviousRevision: number; assertion: unknown; evidenceRef: string; modelRunId: string }) {
+      const predecessor = z.object({ previousReviewId: z.uuid(), expectedPreviousRevision: z.number().int().nonnegative() }).parse(raw);
+      return draft(actor, raw, "model-proposal", z.uuid().parse(raw.modelRunId), predecessor);
     },
     async validate(actor: OntologyActionActor, reviewId: string) {
       z.uuid().parse(reviewId);
@@ -222,6 +242,7 @@ export function createOntologyRelationService(deps: {
           "BINDING_MISMATCH",
         );
         const candidate = mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash));
+        requireOperation(input.decision !== "approve" || ontologyRelationCanPublish(candidate), "EVIDENCE_INSUFFICIENT");
         const event = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: row.id, event: "relation.drafted" }, orderBy: { createdAt: "asc" } });
         requireOperation(event, "BINDING_MISMATCH");
         const ref = z.object({ evidenceRef: z.string() }).parse(checkedCanonical(event.detailCanonical, event.detailHash)).evidenceRef;

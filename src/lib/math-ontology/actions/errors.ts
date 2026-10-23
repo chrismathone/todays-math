@@ -4,6 +4,7 @@ export type OntologyOperationCode =
   | "STALE"
   | "EXPIRED"
   | "BINDING_MISMATCH"
+  | "EVIDENCE_INSUFFICIENT"
   | "UNAVAILABLE"
   | "CONFLICT";
 export class OntologyOperationError extends Error {

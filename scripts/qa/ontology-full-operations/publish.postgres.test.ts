@@ -22,7 +22,7 @@ function assertion(): MathOntologyAssertion {
     locator: "synthetic only",
     provenance: "unknown",
     origin: "model-proposal",
-    support: "unknown",
+    support: "direct",
     review: "candidate",
     publication: "unpublished",
     distribution: "allowed",
@@ -54,6 +54,34 @@ function artifactFor(input: MathOntologyCompileInput) {
   } satisfies MathOntologyArtifact;
 }
 describe("manual/model relation provenance", () => {
+ it("reprepares a separately sealed model candidate with atomic immutable predecessor history and fenced replay", async () => {
+  const f = await fixture(); await db.user.update({ where: { id: f.actor.id }, data: { isSuperAdmin: true } });
+  const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-revision-validator", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
+  const previous = await service.draft(f.actor, { assertion: { ...assertion(), support: "unknown" }, evidenceRef: "synthetic:old-graph" });
+  const checked = await service.validate(f.actor, previous.reviewId);
+  const original = await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: previous.reviewId } });
+  const candidate = { ...assertion(), id: `urn:todaymath:assertion:revision:${crypto.randomUUID()}`, support: "indirect" as const };
+  const sealed = await db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, { assertion: candidate, evidenceRef: "synthetic:new-graph", evidenceHash: digest("synthetic-exact-triple-witness-not-a-real-engine-claim"), receipt: { modelCalled: true, vendor: "gemini", requestedModel: "synthetic-fixture", reportedModel: null, responseId: null, completionReason: "synthetic-stop", usage: null, responseTextHash: digest("synthetic-response") } }, () => now));
+  const input = { previousReviewId: previous.reviewId, expectedPreviousRevision: checked.revision, assertion: candidate, evidenceRef: "synthetic:new-graph", ...sealed };
+  await expect(service.draftModelRevision(f.actor, { ...input, expectedPreviousRevision: checked.revision - 1 })).rejects.toMatchObject({ code: "STALE" });
+  expect(await db.ontologyRelationReview.count({ where: { id: sealed.modelRunId } })).toBe(0);
+  const next = await service.draftModelRevision(f.actor, input);
+  expect(next.reviewId).not.toBe(previous.reviewId); expect(next.state).toBe("draft");
+  expect(await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: previous.reviewId } })).toEqual(original);
+  const link = await db.ontologyReviewEvent.findFirstOrThrow({ where: { subjectId: next.reviewId, event: "relation.reprepared" } });
+  expect(JSON.parse(link.detailCanonical)).toEqual({ previousReviewId: previous.reviewId, previousRevision: checked.revision });
+  await expect(db.ontologyReviewEvent.update({ where: { id: link.id }, data: { detailCanonical: "tampered" } })).rejects.toThrow("immutable");
+  expect(await service.draftModelRevision(f.actor, input)).toEqual(next);
+  await expect(service.draftModelRevision(f.actor, { ...input, expectedPreviousRevision: checked.revision + 1 })).rejects.toMatchObject({ code: "BINDING_MISMATCH" });
+  expect(await db.ontologyReviewEvent.count({ where: { subjectId: next.reviewId, event: "relation.reprepared" } })).toBe(1);
+  const retrySeal = await db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, { assertion: candidate, evidenceRef: input.evidenceRef, evidenceHash: digest("synthetic-retry-proof"), receipt: { modelCalled: true, vendor: "gemini", requestedModel: "synthetic-fixture", reportedModel: null, responseId: null, completionReason: "synthetic-stop", usage: null, responseTextHash: digest("synthetic-retry-response") } }, () => now));
+  const failing = db.$extends({ query: { ontologyReviewEvent: { async create({ args, query }) { const result = await query(args); if (args.data.event === "relation.reprepared") throw new Error("synthetic-predecessor-audit-failpoint"); return result; } } } });
+  const failingService = createOntologyRelationService({ db: failing as unknown as Pick<typeof db, "$transaction">, now: () => now, candidates: { authorize: async () => {}, validate: async () => { throw new Error("unused"); } } });
+  await expect(failingService.draftModelRevision(f.actor, { ...input, ...retrySeal })).rejects.toThrow("synthetic-predecessor-audit-failpoint");
+  expect(await db.ontologyRelationReview.count({ where: { id: retrySeal.modelRunId } })).toBe(0);
+  expect(await db.ontologyReviewEvent.count({ where: { subjectId: retrySeal.modelRunId } })).toBe(0);
+  expect(await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: previous.reviewId } })).toEqual(original);
+ });
  it("labels client drafts authored; actual server receipt binds model candidate bytes and rejects forgery", async () => {
   const f = await fixture(); await db.user.update({ where: { id: f.actor.id }, data: { isSuperAdmin: true } });
   const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-validator", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
@@ -69,6 +97,20 @@ describe("manual/model relation provenance", () => {
  });
 });
 describe("relation review and durable publication orchestration (synthetic compiler port)", () => {
+  it("keeps insufficient or undistributable candidates unapproved without promoting their support", async () => {
+    const f = await fixture(); await db.user.update({ where: { id: f.actor.id }, data: { isSuperAdmin: true } });
+    const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-policy-validation", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
+    for (const variant of [{ support: "unknown" }, { support: "missing" }, { distribution: "restricted" }, { distribution: "unknown" }] as const) {
+      const candidate = { ...assertion(), ...variant, id: `urn:todaymath:assertion:policy:${crypto.randomUUID()}`, scope: `branch:${f.branch.id}` };
+      const draft = await service.draft(f.actor, { assertion: candidate, evidenceRef: "synthetic-policy-graph" });
+      const checked = await service.validate(f.actor, draft.reviewId);
+      await expect(service.decide(f.actor, { reviewId: draft.reviewId, expectedRevision: checked.revision, validationHash: checked.validationHash, decision: "approve", sourceReviewed: true, meaningReviewed: true })).rejects.toMatchObject({ code: "EVIDENCE_INSUFFICIENT" });
+      const retained = await service.read(f.actor, draft.reviewId);
+      expect(retained.state).toBe("validated"); expect(retained.assertion.support).toBe(candidate.support); expect(retained.assertion.distribution).toBe(candidate.distribution);
+      expect(await db.ontologyReviewEvent.count({ where: { subjectId: draft.reviewId, event: "relation.approved" } })).toBe(0);
+      expect((await service.decide(f.actor, { reviewId: draft.reviewId, expectedRevision: checked.revision, validationHash: checked.validationHash, decision: "reject", sourceReviewed: true, meaningReviewed: true })).state).toBe("rejected");
+    }
+  });
   it("requires publisher rights and actual validator success, preserving draft → validated → approved events", async () => {
     const f = await fixture();
     await db.user.update({

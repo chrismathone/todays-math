@@ -9,6 +9,7 @@ async function request(url: string, signal: AbortSignal, body?: unknown): Promis
   try { response = await fetch(url, { signal, cache: "no-store", ...(body === undefined ? {} : { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }) }); }
   catch { throw new OntologyWorkspaceError("NETWORK", "결과를 확인하지 못했습니다. 다시 확인해 주세요."); }
   const json: unknown = await response.json().catch(() => null);
+  if (response.status === 409 && z.object({ error: z.object({ code: z.literal("EVIDENCE_INSUFFICIENT") }) }).safeParse(json).success) throw new OntologyWorkspaceError("BLOCKED", "근거 또는 배포 허용을 확인해야 승인·게시할 수 있습니다. 후보는 보존했습니다.");
   if (!response.ok) throw new OntologyWorkspaceError([401,403,404].includes(response.status) ? "FORBIDDEN" : response.status === 409 ? "STALE" : "UNAVAILABLE", response.status === 409 ? "기록이나 근거가 바뀌었습니다. 다시 준비해 주세요." : [401,403,404].includes(response.status) ? "현재 권한으로 볼 수 없습니다." : "자료를 준비하지 못했습니다. 다시 시도해 주세요.");
   return z.object({ data: z.unknown() }).parse(json).data;
 }
