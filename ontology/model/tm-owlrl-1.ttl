@@ -1,0 +1,16 @@
+@prefix tm: <urn:todaymath:vocab:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+tm:ContentEntity a owl:Class .
+tm:TextbookConcept a owl:Class ; rdfs:subClassOf tm:ContentEntity .
+tm:CourseSection a owl:Class ; rdfs:subClassOf tm:ContentEntity .
+tm:RegisteredEntity a owl:Class .
+tm:Assertion a owl:Class .
+tm:partOf a owl:ObjectProperty, owl:TransitiveProperty ;
+  rdfs:domain tm:ContentEntity ; rdfs:range tm:ContentEntity .
+tm:covers a owl:ObjectProperty .
+tm:projectsSourceSection a owl:ObjectProperty .
+tm:directPedagogicalPrerequisite a owl:ObjectProperty .
+tm:supports a owl:ObjectProperty .
+tm:observedIn a owl:ObjectProperty .
