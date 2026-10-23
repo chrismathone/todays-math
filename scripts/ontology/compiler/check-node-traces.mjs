@@ -3,6 +3,7 @@
  * Does not build, start a server, load env files, call models or touch a DB. */
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
+import { createHash } from "node:crypto";
 const root = resolve(process.argv[2] ?? process.cwd());
 const budgetBytes = 250_000_000; // conservative decimal-byte gate, not a deployment claim
 const readJson = (path) =>
@@ -19,19 +20,62 @@ const required = new Set([
   "scripts/ontology/compiler/compiler.py",
   "scripts/ontology/compiler/packaged.py",
 ]);
+const integrity = new Map();
+const requireAsset = (path, byteHash, bytes) => {
+  required.add(path);
+  if (byteHash) integrity.set(path, { byteHash, bytes });
+};
 for (const entry of readJson("ontology/model/releases/catalog.json").bases) {
-  required.add(entry.path);
+  requireAsset(entry.path, entry.baseHash);
   const base = readJson(entry.path);
-  required.add(base.catalog.path);
-  required.add(base.signature.path);
-  required.add(base.sourceManifestPath);
-  for (const part of base.partitions) required.add(part.artifact.path);
+  requireAsset(base.catalog.path, base.catalog.byteHash, base.catalog.bytes);
+  requireAsset(
+    base.signature.path,
+    base.signature.byteHash,
+    base.signature.bytes,
+  );
+  requireAsset(base.sourceManifestPath, base.sourceManifestHash);
+  for (const part of base.partitions)
+    requireAsset(
+      part.artifact.path,
+      part.artifact.byteHash,
+      part.artifact.bytes,
+    );
   const source = readJson(base.sourceManifestPath);
   for (const part of source.partitions) {
-    required.add(part.nquads.path);
-    required.add(part.projection.path);
+    requireAsset(part.nquads.path, part.nquads.byteHash, part.nquads.bytes);
+    requireAsset(
+      part.projection.path,
+      part.projection.byteHash,
+      part.projection.bytes,
+    );
   }
-  for (const index of source.assertionIndexes) required.add(index.path);
+  for (const index of source.assertionIndexes)
+    requireAsset(index.path, index.byteHash, index.bytes);
+}
+// A path in the trace is not proof that the required readable file exists.
+// Directory entries are allowed for dependencies, never for required assets.
+const invalidRequired = [];
+for (const path of required) {
+  try {
+    const file = resolve(root, path);
+    if (!statSync(file).isFile()) {
+      invalidRequired.push({ path, reason: "not-regular-file" });
+      continue;
+    }
+    const content = readFileSync(file),
+      expected = integrity.get(path);
+    if (
+      expected &&
+      "sha256:" + createHash("sha256").update(content).digest("hex") !==
+        expected.byteHash
+    )
+      invalidRequired.push({ path, reason: "byte-hash-mismatch" });
+    else if (expected?.bytes !== undefined && content.length !== expected.bytes)
+      invalidRequired.push({ path, reason: "byte-size-mismatch" });
+  } catch {
+    invalidRequired.push({ path, reason: "missing-or-unreadable-file" });
+  }
 }
 const app = resolve(root, ".next/server/app");
 const traces = readdirSync(app, { recursive: true }).filter(
@@ -93,6 +137,7 @@ for (const name of traces.sort()) {
 }
 const ok =
   results.length > 0 &&
+  invalidRequired.length === 0 &&
   results.every(
     (r) =>
       r.underBudget &&
@@ -102,7 +147,14 @@ const ok =
   );
 console.log(
   JSON.stringify(
-    { root, budgetBytes, requiredAssets: [...required].sort(), results, ok },
+    {
+      root,
+      budgetBytes,
+      requiredAssets: [...required].sort(),
+      invalidRequired,
+      results,
+      ok,
+    },
     null,
     2,
   ),

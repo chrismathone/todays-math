@@ -99,3 +99,7 @@ Root's distinct plan diagnostic `provider-006.json` returned HTTP400 before any 
 
 Observed-structure REDs → GREEN cover invalid uncited insufficient, compact unknown, old explicit-empty compatibility, injected fields, cited minimum, the rejected nullable-enum shape and allowed plan values. Actual full-source runtime assist composition with a synthetic compact model response returns unknown without an action or503. Five related files /17tests and ESLint/diff passed; full typecheck's initial empty-array union inference failure was corrected with an explicit internal selection type, with raw failure retained. Worker provider calls remain zero.
 Full 8GiB typecheck subsequently passed; final grammar-only follow-up retained 5/5 tests. The top-level union is an anyOf container, and each object alternative explicitly forbids additional properties.
+
+### Required trace-file integrity correction
+
+Independent review reproduced a preflight false pass when `compiler.py` was replaced by a same-named directory. The script now verifies every required asset is a readable regular file and checks declared base, source-manifest and compressed-artifact byte hashes/sizes once per preflight. Nonrequired Prisma/MathJax directory entries remain permitted and reported. An isolated synthetic trace reproduces the original directory false-pass RED and now rejects it; a second test rejects changed bytes with all required paths still present. Two focused tests, ESLint and diff checks passed. Product TypeScript, build output and deployment settings were not changed.
