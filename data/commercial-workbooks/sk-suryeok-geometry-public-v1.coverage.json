@@ -92,7 +92,11 @@
       }
     ],
     "coordinateEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/raw-answers.json",
-    "headerEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/headers.json"
+    "headerEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/headers.json",
+    "numericCorrespondence": {
+      "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/numeric-correspondence.json",
+      "sha256": "adf8c054c2bda9b4d408dbe907492ce8559d162ac215cedf0b11d4a8da398341"
+    }
   },
   "counts": {
     "exercises": 406,
@@ -436,7 +440,9 @@
         "subpart": ""
       },
       "sourcePage": 7,
-      "note": "79번 3)의 세 좌표 분모가 원문에 모두 2로 인쇄됨. 임의로 3으로 고치지 않음."
+      "note": "79번 3)의 세 좌표 분모가 원문에 모두 2로 인쇄되어 원문 이상으로 보류했다. 임의로 3으로 고치거나 검수 정답으로 등록하지 않는다.",
+      "registered": true,
+      "key": null
     },
     {
       "address": {
@@ -447,7 +453,16 @@
         "subpart": ""
       },
       "sourcePage": 7,
-      "note": "57번 2)의 마지막 좌표가 (a 0, c)로 인쇄되어 쉼표를 추가하지 않고 보존함."
+      "note": "57번 2)의 마지막 좌표가 (a 0, c)로 인쇄되어 쉼표 누락이 모호하므로 원문 이상으로 보류했다. 쉼표를 만들어 정답으로 등록하지 않는다.",
+      "registered": true,
+      "key": null
     }
-  ]
+  ],
+  "numericChoiceChecks": {
+    "checked": 394,
+    "exactDigitMultisetMatches": 389,
+    "visuallyReconciled": 5,
+    "unresolved": 0,
+    "limitation": "Digit multiset comparison does not prove order, signs or formula grouping; all six answer pages were separately visually read."
+  }
 }
