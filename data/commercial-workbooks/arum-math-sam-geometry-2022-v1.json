@@ -1,0 +1,7973 @@
+{
+  "id": "arum-math-sam-geometry-2022-v1",
+  "label": "아름다운샘 수학의 샘 기하 · 2022 교육과정 · 단원 시작 쪽 참조 · 개별 문항 쪽 미확인",
+  "coverage": "공식 해설집 11단원·33절 전체 571개 인쇄 주소 · 검수 정답 561개 · 그림·증명 10개 보류 · 단원 시작 쪽 참조 · 개별 문항 쪽 미확인",
+  "metadata": {
+    "title": "수학의 샘 기하",
+    "publisher": "아름다운샘",
+    "grade": "고등",
+    "curriculum": "2022 교육과정",
+    "edition": "공식 해설집 · 연도·판쇄·ISBN 미확인"
+  },
+  "provenance": {
+    "kind": "publisher",
+    "reference": "http://www.a-ssam.co.kr/bbs/board.php?bo_table=table37&wr_id=303",
+    "description": "공식 해설집 112쪽을 모두 렌더링하고 개념확인·유제·연습문제 전체의 짧은 최종 정답을 수동 시각 대조했다. 단원 시작 쪽 참조 · 개별 문항 쪽 미확인: page는 원문 각 절 머리말에 인쇄된 본문 시작 쪽이며, 반드시 단원 시작 접두어를 붙인다. 모든 개별 문항이 그 쪽에 있다는 뜻이 아니다. 인쇄된 단원·절·번호를 보존하고 sourcePage는 실제 정답이 있는 PDF 파일 쪽이다. 소문항은 주 번호 아래 결합했다. 그림·긴 증명 10개는 key:null이다. 벡터는 vec(), 근호는 sqrt(), 분수는 /, 도·파이·선택 원문 기호는 °·π·② 표기로 보존했다. 원문은 벡터 윤곽선이므로 OCR은 보조 확인에만 썼고 OCR만으로 검수 표시하지 않았다. 2022 교육과정은 공식 자료 목록 근거이며 상품 연도·발행연도·판쇄·ISBN은 미확인이다. 수동 채점용 정답 참조이며 문제·풀이 전문, 이미지, 자동 채점을 제공하지 않는다. 원문 SHA-256: bd81b51c1486c2e6d3dc2d12e6f369cfb3d0a2a29901da7d9d0fa79ab4a8ff6f."
+  },
+  "exercises": [
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 개념확인",
+        "page": "단원 시작 013",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 초점 (-1,0), 준선 x=1; (2) 초점 (0,1/4), 준선 y=-1/4",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 개념확인",
+        "page": "단원 시작 013",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y²=-16x; (2) x²=3y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 개념확인",
+        "page": "단원 시작 013",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²=16y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 개념확인",
+        "page": "단원 시작 013",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 꼭짓점 (-1,3), 초점 (0,3), 준선 x=-2; (2) 꼭짓점 (-2,1), 초점 (-2,0), 준선 y=2; (3) 꼭짓점 (-2,-2), 초점 (0,-2), 준선 x=-4; (4) 꼭짓점 (1,-2), 초점 (1,1), 준선 y=-5",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "초점 (-2,0), 준선 x=2",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²=2y; (2) y²=-x; (3) y²=-12x",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y²=10x",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "38",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "42",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(m-n)/(m+n)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-12",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(y-2)²=-12(x+1)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(y+1)²=4x 또는 (y+1)²=-16(x-5)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-1)²=4(y-2)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-18",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 유제",
+        "page": "단원 시작 015",
+        "number": "1-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y²-x-3y+2=0",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y²=-12(x+1)",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/3",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 9
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2p",
+        "status": "reviewed",
+        "sourcePage": 9
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12",
+        "status": "reviewed",
+        "sourcePage": 9
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 9
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 9
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(22)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "156",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9/2",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "01. 포물선 / 연습문제",
+        "page": "단원 시작 028",
+        "number": "1-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "23",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 개념확인",
+        "page": "단원 시작 041",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/9²+y²/4²=1: 거리의 합 18, 장축 18, 단축 8, 초점 (sqrt(65),0),(-sqrt(65),0); x²/4²+y²/5²=1: 거리의 합 10, 장축 10, 단축 8, 초점 (0,3),(0,-3)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 개념확인",
+        "page": "단원 시작 041",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/36+y²/20=1; (2) x²/7+y²/16=1",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 개념확인",
+        "page": "단원 시작 041",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (-2,4),(-2,-4); (2) (5,-1),(1,-1); (3) (3,-4),(-1,-4); (4) (1,-1),(1,-5)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/25+y²/9=1; (2) x²+y²/4=1",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/36+y²/27=1; (2) x²/4+y²/5=1",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-3",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6+2sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "28",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "105",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-2)²/16+(y+1)²/25=1",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x+1)²/5+(y-2)²/9=1",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "장축 4sqrt(2), 단축 2sqrt(6), 초점 (2,sqrt(2)-3),(2,-sqrt(2)-3), 꼭짓점 (2+sqrt(6),-3),(2-sqrt(6),-3),(2,-3+2sqrt(2)),(2,-3-2sqrt(2)), 중심 (2,-3)",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 유제",
+        "page": "단원 시작 042",
+        "number": "2-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/100+y²/36=1",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/8+y²/6=1",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(14)",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "30sqrt(3) cm",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4+2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "14",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ, ㄹ",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-4)²/20+(y-3)²/36=1",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "51",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "30",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "45",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "25",
+        "status": "reviewed",
+        "sourcePage": 21
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "103",
+        "status": "reviewed",
+        "sourcePage": 21
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-1/2)²+(4/3)y²=1",
+        "status": "reviewed",
+        "sourcePage": 21
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "02. 타원 / 연습문제",
+        "page": "단원 시작 052",
+        "number": "2-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/5²-y²/4²=1: 거리의 차 10, 주축 10, 초점 (sqrt(41),0),(-sqrt(41),0); x²/5²-y²/4²=-1: 거리의 차 8, 주축 8, 초점 (0,sqrt(41)),(0,-sqrt(41))",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/4-y²/21=1; (2) x²/40-y²/9=-1",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/9-y²/5=1; (2) x²/16-y²/9=-1",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (7,-1),(-1,-1); (2) (-2,4),(-2,-4); (3) (4,-4),(-2,-4); (4) (-1,5),(-1,-1)",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 개념확인",
+        "page": "단원 시작 066",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 원; (2) 포물선; (3) 타원; (4) 쌍곡선",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/16-y²/20=1; (2) x²-y²/3=1",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²-y²/2=-1",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "88",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "48",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(690)/30",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4 km",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/5",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "80",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "42",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-2)²/24-(y+1)²/25=-1",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x+1)²/16-y²/20=1",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "초점 (-2,4),(-2,-2); 꼭짓점 (-2,3),(-2,-1); 중심 (-2,1); 점근선 y=±(2sqrt(5)/5)(x+2)+1",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1<k<1/2",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 유제",
+        "page": "단원 시작 067",
+        "number": "3-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 4; (2) (0,sqrt(7)),(0,-sqrt(7)); (3) (0,2),(0,-2); (4) y=±(2sqrt(3)/3)x",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²/2-y²/7=1; (2) 2x²-2y²=1; (3) x²/9-(y+1)²/16=-1",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (2,-1); (2) 8; (3) (7,-1),(-3,-1); (4) (6,-1),(-2,-1)",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "100",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "75",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "25",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "106",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2π",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/5",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "03. 쌍곡선 / 연습문제",
+        "page": "단원 시작 086",
+        "number": "3-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9/4",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) k<1/2; (2) k=1/2; (3) k>1/2",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=2x+1",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=-x-1",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=2x±2sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=-x+3",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=2x±2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 개념확인",
+        "page": "단원 시작 100",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=x-2",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) -3/2; (2) 0 또는 2",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=-2x-3/2; (2) y=sqrt(3)x-6",
+        "status": "reviewed",
+        "sourcePage": 35
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=-(1/8)x-1; (2) y=(2/5)x+2/5",
+        "status": "reviewed",
+        "sourcePage": 35
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=0, y=x+2",
+        "status": "reviewed",
+        "sourcePage": 35
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4 또는 4",
+        "status": "reviewed",
+        "sourcePage": 35
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=3x±3sqrt(5); (2) y=(3sqrt(2)/4)x-5sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x=4, 3x+8y=20",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1 또는 1",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=sqrt(2)x±4; (2) y=-(3/2)x+1/2",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 유제",
+        "page": "단원 시작 101",
+        "number": "4-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=2x+2, y=-2x+2",
+        "status": "reviewed",
+        "sourcePage": 36
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3/2",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1 또는 1",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-sqrt(3) 또는 sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=2x-1; (2) y=(sqrt(3)/3)x±sqrt(3); (3) y=3x±sqrt(15)",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5/9",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) y=-(1/2)x+1; (2) y=-x+3; (3) y=-(1/2)x+1/2",
+        "status": "reviewed",
+        "sourcePage": 37
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=(1/4)x-2",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 38
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "17/8",
+        "status": "reviewed",
+        "sourcePage": 39
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 39
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 39
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 39
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 39
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(5)/5",
+        "status": "reviewed",
+        "sourcePage": 40
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 40
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "32/9",
+        "status": "reviewed",
+        "sourcePage": 40
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 40
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "32",
+        "status": "reviewed",
+        "sourcePage": 41
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15",
+        "status": "reviewed",
+        "sourcePage": 41
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 41
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 41
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "04. 이차곡선의 접선 / 연습문제",
+        "page": "단원 시작 126",
+        "number": "4-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 42
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 직선 BF, 직선 DH; (2) 직선 BF",
+        "status": "reviewed",
+        "sourcePage": 42
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 직선 DC, 직선 HG, 직선 EF; (2) 직선 AE, 직선 BF, 직선 CG, 직선 DH; (3) 직선 DC, 직선 HG, 직선 BC, 직선 FG",
+        "status": "reviewed",
+        "sourcePage": 42
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 42
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5/12",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 개념확인",
+        "page": "단원 시작 141",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24π",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "11",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 43
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9/2",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(11)",
+        "status": "reviewed",
+        "sourcePage": 44
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 45
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "250",
+        "status": "reviewed",
+        "sourcePage": 45
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/3",
+        "status": "reviewed",
+        "sourcePage": 45
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 45
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/5",
+        "status": "reviewed",
+        "sourcePage": 45
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 46
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 46
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 4/5; (2) 5π",
+        "status": "reviewed",
+        "sourcePage": 46
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24",
+        "status": "reviewed",
+        "sourcePage": 47
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 유제",
+        "page": "단원 시작 142",
+        "number": "5-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "32 m²",
+        "status": "reviewed",
+        "sourcePage": 47
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 47
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 47
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 47
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "150°",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "200π",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 48
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 49
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 49
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(29)",
+        "status": "reviewed",
+        "sourcePage": 49
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 49
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 50
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(11)/11",
+        "status": "reviewed",
+        "sourcePage": 50
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 50
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6(3+2sqrt(3))π",
+        "status": "reviewed",
+        "sourcePage": 50
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3+sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 51
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3π/4",
+        "status": "reviewed",
+        "sourcePage": 51
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 51
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "π/9",
+        "status": "reviewed",
+        "sourcePage": 51
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/3",
+        "status": "reviewed",
+        "sourcePage": 52
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(2)/3",
+        "status": "reviewed",
+        "sourcePage": 52
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/3",
+        "status": "reviewed",
+        "sourcePage": 52
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "05. 공간도형 / 연습문제",
+        "page": "단원 시작 168",
+        "number": "5-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 53
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (-2,3,1); (2) (2,3,1)",
+        "status": "reviewed",
+        "sourcePage": 53
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) sqrt(35); (2) sqrt(38)",
+        "status": "reviewed",
+        "sourcePage": 53
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "직각삼각형",
+        "status": "reviewed",
+        "sourcePage": 53
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (7/3,10/3,-1/3); (2) (5/3,8/3,4/3); (3) (2,3,1/2)",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1/3,2/3,1)",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x²+y²+z²=4; (2) (x-3)²+(y-2)²+(z-1)²=9",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 개념확인",
+        "page": "단원 시작 179",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 중심 (0,2,-1), 반지름 2; (2) 중심 (2,-3,-1), 반지름 5",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (5,3,0); (2) (0,0,4); (3) (0,3,2); (4) (5,3/2,4)",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 54
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (0,6,0); (2) (0,2,4) 또는 (0,5,1)",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 55
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-1,3/2,2)",
+        "status": "reviewed",
+        "sourcePage": 56
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-18",
+        "status": "reviewed",
+        "sourcePage": 56
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-7/3,2,4)",
+        "status": "reviewed",
+        "sourcePage": 56
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(23/3,20/3,17/3)",
+        "status": "reviewed",
+        "sourcePage": 56
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²+(y-2)²+z²=5",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "58",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "30sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 57
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(7)",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "27π",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "최댓값 sqrt(29)+2, 최솟값 sqrt(29)-2",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 유제",
+        "page": "단원 시작 180",
+        "number": "6-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(0,0,-4)",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-1,-1,-3)",
+        "status": "reviewed",
+        "sourcePage": 58
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(7/3,7/3,5/3)",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x+1)²+y²+(z-2)²=17; (2) (x+4)²+(y-1)²+(z+3)²=16",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x+1)²+(y-4)²+z²=16",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20π",
+        "status": "reviewed",
+        "sourcePage": 59
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 60
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "64",
+        "status": "reviewed",
+        "sourcePage": 60
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(0,1,1)",
+        "status": "reviewed",
+        "sourcePage": 60
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/4",
+        "status": "reviewed",
+        "sourcePage": 60
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(57)",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(26)",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8/3",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 61
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 62
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12",
+        "status": "reviewed",
+        "sourcePage": 62
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 62
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(18+4sqrt(3))π",
+        "status": "reviewed",
+        "sourcePage": 62
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8sqrt(5)π/3",
+        "status": "reviewed",
+        "sourcePage": 63
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 63
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(14)/4",
+        "status": "reviewed",
+        "sourcePage": 63
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "06. 공간좌표 / 연습문제",
+        "page": "단원 시작 202",
+        "number": "6-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10sqrt(30)/3",
+        "status": "reviewed",
+        "sourcePage": 64
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(FO), vec(OC), vec(ED); (2) vec(CB), vec(OA), vec(DO), vec(EF)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(OB) 또는 vec(DO); (2) vec(DB)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(OD); (2) vec(CB)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(b)-vec(a); (2) vec(a)+vec(b)+vec(c)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(x)=2vec(a)-(5/2)vec(b); (2) vec(x)=(3/2)vec(a)+(1/2)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(p)∥vec(s), vec(q)∥vec(r)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 개념확인",
+        "page": "단원 시작 213",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(c); (2) vec(a); (3) vec(b)",
+        "status": "reviewed",
+        "sourcePage": 65
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄴ, ㄹ",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(BF), vec(CG), vec(DH); (2) vec(BA), vec(CD), vec(GH); (3) |vec(AB)|=2, |vec(BD)|=2sqrt(2), |vec(DF)|=3",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) -vec(a)+vec(b); (2) -vec(b)-vec(a); (3) vec(a)-vec(b); (4) vec(b)+vec(a)",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(c)-vec(b); (2) vec(a)-vec(b)+vec(c); (3) vec(a)-2vec(b)+vec(c)",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 5vec(a)-2vec(b); (2) vec(a)-2vec(b)+3vec(c)",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(a)-2vec(b)+(4/3)vec(c); (2) vec(a)+2vec(b)-vec(c)",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 66
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16+8sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 67
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(7)",
+        "status": "reviewed",
+        "sourcePage": 68
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 68
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-12",
+        "status": "reviewed",
+        "sourcePage": 68
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/3",
+        "status": "reviewed",
+        "sourcePage": 68
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 유제",
+        "page": "단원 시작 214",
+        "number": "7-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6π",
+        "status": "reviewed",
+        "sourcePage": 68
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(CB), vec(DO), vec(EF); (2) vec(CO), vec(BA), vec(OF), vec(DE); (3) vec(EB), vec(AD), vec(DA), vec(CF), vec(FC); (4) vec(BC)=-vec(a), vec(AF)=-vec(b), vec(DE)=-vec(c)",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(EC); (2) sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3vec(b)",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-(3/4)vec(a)+(1/4)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (3/2)vec(a)+2vec(b); (2) -vec(a)+(1/2)vec(b)-(1/2)vec(c)",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 3sqrt(2); (2) 4",
+        "status": "reviewed",
+        "sourcePage": 69
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1/3",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 70
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "점 D, 점 E",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1/2",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 71
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 72
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-3 또는 sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 72
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 72
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "07. 벡터의 연산 / 연습문제",
+        "page": "단원 시작 238",
+        "number": "7-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "90",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-5vec(a)+7vec(b)-2vec(c)",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (1/4)vec(a)+(3/4)vec(b); (2) (1/2)vec(a)+(1/2)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (4,-1); (2) (-3,0)",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 5; (2) 2sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (-1,-8); (2) sqrt(65)",
+        "status": "reviewed",
+        "sourcePage": 73
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (-4,3); (2) 5",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (2,3,-4); (2) (1,0,-2)",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 6; (2) 5",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (2,6,-5); (2) (6,0,-9)",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 개념확인",
+        "page": "단원 시작 250",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (-2,-4,-2); (2) 2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) vec(b)-vec(c); (2) vec(a)+6vec(b)-7vec(c)",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1/3)vec(a)+(3/8)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 74
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1/5)vec(a)-(3/5)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2/3",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(vec(p)+vec(q)+vec(r))/3",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1/6)vec(a)-(1/3)vec(b)-(1/3)vec(c)",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15",
+        "status": "reviewed",
+        "sourcePage": 75
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8:4:3",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-1,4)",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(85)",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(2,-1)",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "k=5, l=1",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5/2",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=x+2",
+        "status": "reviewed",
+        "sourcePage": 76
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9π",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(5,10,3)",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(14)",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "180",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3/2",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x=-1, y=-2",
+        "status": "reviewed",
+        "sourcePage": 77
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 유제",
+        "page": "단원 시작 252",
+        "number": "8-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (3/5)vec(a)+(2/5)vec(b); (2) (1/4)vec(a)+(3/4)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (2,7/2); (2) sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-6",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 78
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-6",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4/3",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-(1/3)vec(a)+(1/6)vec(b)",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 79
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 80
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(11)",
+        "status": "reviewed",
+        "sourcePage": 80
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 80
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 80
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20",
+        "status": "reviewed",
+        "sourcePage": 81
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5:6",
+        "status": "reviewed",
+        "sourcePage": 81
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1:6:2",
+        "status": "reviewed",
+        "sourcePage": 81
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 81
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1:6",
+        "status": "reviewed",
+        "sourcePage": 82
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5:2",
+        "status": "reviewed",
+        "sourcePage": 82
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 82
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "990",
+        "status": "reviewed",
+        "sourcePage": 82
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "54",
+        "status": "reviewed",
+        "sourcePage": 83
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "08. 벡터의 성분 / 연습문제",
+        "page": "단원 시작 276",
+        "number": "8-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ",
+        "status": "reviewed",
+        "sourcePage": 83
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 3; (2) -3; (3) 6; (4) 0",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 6; (2) 10; (3) -4",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(7)",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 45°; (2) 90°; (3) 90°; (4) 60°",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) -4; (2) 9",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 개념확인",
+        "page": "단원 시작 291",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-5",
+        "status": "reviewed",
+        "sourcePage": 84
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 0; (2) 4; (3) 4; (4) -8",
+        "status": "reviewed",
+        "sourcePage": 85
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15",
+        "status": "reviewed",
+        "sourcePage": 85
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "34",
+        "status": "reviewed",
+        "sourcePage": 85
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 85
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-5",
+        "status": "reviewed",
+        "sourcePage": 85
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 86
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(10)+1",
+        "status": "reviewed",
+        "sourcePage": 86
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 86
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "85",
+        "status": "reviewed",
+        "sourcePage": 86
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15",
+        "status": "reviewed",
+        "sourcePage": 86
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "120°",
+        "status": "reviewed",
+        "sourcePage": 87
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "120°",
+        "status": "reviewed",
+        "sourcePage": 87
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "50/77",
+        "status": "reviewed",
+        "sourcePage": 87
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "45°",
+        "status": "reviewed",
+        "sourcePage": 87
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 87
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(3,2)",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-11/3",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 유제",
+        "page": "단원 시작 292",
+        "number": "9-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4π",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-10",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) -12; (2) 4",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 88
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/8",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-8",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "14",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(7)/7",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(3,5)",
+        "status": "reviewed",
+        "sourcePage": 89
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 90
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 91
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 91
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4/9",
+        "status": "reviewed",
+        "sourcePage": 91
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "32/7",
+        "status": "reviewed",
+        "sourcePage": 91
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "40",
+        "status": "reviewed",
+        "sourcePage": 92
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 92
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "09. 벡터의 내적 / 연습문제",
+        "page": "단원 시작 308",
+        "number": "9-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "M=0, m=-27/8",
+        "status": "reviewed",
+        "sourcePage": 93
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x-3)/(-2)=y-2; (2) (x-1)/2=(y+2)/3=(z-7)/(-5); (3) x=-2; (4) (x-2)/3=(y-3)/2=z+1",
+        "status": "reviewed",
+        "sourcePage": 93
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x-3)/(-5)=(y-2)/3 또는 (x+2)/(-5)=(y-5)/3; (2) y=5; (3) x-2=(y-4)/(-6)=z/5 또는 x-3=(y+2)/(-6)=(z-5)/5; (4) x=-2, y=2",
+        "status": "reviewed",
+        "sourcePage": 93
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 2x-y-7=0; (2) 3x+y+5=0",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 4/5; (2) 4/21",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 9; (2) -1",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 개념확인",
+        "page": "단원 시작 326",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 1/2; (2) -5/2",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-3)/4=(y-1)/(-2)",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "41",
+        "status": "reviewed",
+        "sourcePage": 94
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-2)/(-2)=y/2=(z-2)/(-1)",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 95
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-1,4)",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(-3,2,-5)",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-3",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "45°",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15/2",
+        "status": "reviewed",
+        "sourcePage": 96
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-5",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(3-x)/5=y+2=(5-z)/7",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 유제",
+        "page": "단원 시작 327",
+        "number": "10-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(vec(p)-(vec(a)+vec(b))/2)·(vec(b)-vec(a))=0",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x-1)/(-2)=(y+3)/3; (2) 2x-3y-7=0",
+        "status": "reviewed",
+        "sourcePage": 97
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x=3; (2) x-5=(y-7)/(-3); (3) (x-2)/(-5)=(y-4)/3 또는 (x+3)/(-5)=(y-7)/3",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x-2)/(-3)=y/4=(z+1)/2; (2) (x+1)/3=(y-3)/(-2)=(z-2)/5; (3) (x-1)/3=(y+2)/(-1)=(z-1)/4 또는 (x-4)/3=(y+3)/(-1)=(z-5)/4",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5/13",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/2",
+        "status": "reviewed",
+        "sourcePage": 98
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4",
+        "status": "reviewed",
+        "sourcePage": 99
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-12",
+        "status": "reviewed",
+        "sourcePage": 99
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 99
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) -2; (2) 8",
+        "status": "reviewed",
+        "sourcePage": 99
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 99
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 100
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "14",
+        "status": "reviewed",
+        "sourcePage": 100
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 100
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-3/5",
+        "status": "reviewed",
+        "sourcePage": 100
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(13)",
+        "status": "reviewed",
+        "sourcePage": 100
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "13",
+        "status": "reviewed",
+        "sourcePage": 101
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(29)",
+        "status": "reviewed",
+        "sourcePage": 101
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(39)",
+        "status": "reviewed",
+        "sourcePage": 101
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-3/2",
+        "status": "reviewed",
+        "sourcePage": 101
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2/3",
+        "status": "reviewed",
+        "sourcePage": 102
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "29",
+        "status": "reviewed",
+        "sourcePage": 102
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3/2",
+        "status": "reviewed",
+        "sourcePage": 102
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "10. 직선의 방정식 / 연습문제",
+        "page": "단원 시작 342",
+        "number": "10-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 개념확인",
+        "page": "단원 시작 357",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 2x-y+3z-11=0; (2) x+2y+3z-14=0",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 개념확인",
+        "page": "단원 시작 357",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) z=0; (2) x=3; (3) y=2",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 개념확인",
+        "page": "단원 시작 357",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 개념확인",
+        "page": "단원 시작 357",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) 2; (2) 2",
+        "status": "reviewed",
+        "sourcePage": 103
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 개념확인",
+        "page": "단원 시작 357",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) |vec(x)-(3,1,-2)|=3; (2) |vec(x)|=2",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x-2y+2z-10=0",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x-1=z/2, y=-1",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(2,-1,3)",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(5,3,5)",
+        "status": "reviewed",
+        "sourcePage": 104
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x/2=y-1=(z-3)/3",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-4/3",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2x-y-2z-6=0 또는 2x-y-2z+6=0",
+        "status": "reviewed",
+        "sourcePage": 105
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7/3",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "11",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4±sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) (x+3)²+(y-1)²+(z-2)²=9; (2) (x-3/2)²+(y+1)²+(z-9/2)²=3/2",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²+(y-1)²+(z-3)²=11",
+        "status": "reviewed",
+        "sourcePage": 106
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 유제",
+        "page": "단원 시작 358",
+        "number": "11-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(5)π",
+        "status": "reviewed",
+        "sourcePage": 107
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(1) x-2y+3z+16=0; (2) x+3y-2z+1=0",
+        "status": "reviewed",
+        "sourcePage": 107
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 107
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 107
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 108
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(4sqrt(3)-3)/3",
+        "status": "reviewed",
+        "sourcePage": 108
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12π",
+        "status": "reviewed",
+        "sourcePage": 108
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(13)",
+        "status": "reviewed",
+        "sourcePage": 108
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "21",
+        "status": "reviewed",
+        "sourcePage": 108
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)π",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-2)²+(y-4)²+(z-4)²=25",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7x-5y-z=-2",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/2",
+        "status": "reviewed",
+        "sourcePage": 109
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(3,6,-3)",
+        "status": "reviewed",
+        "sourcePage": 110
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(14)π/21",
+        "status": "reviewed",
+        "sourcePage": 110
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 110
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 110
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2-sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 110
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²+y²+z²=1",
+        "status": "reviewed",
+        "sourcePage": 111
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "14",
+        "status": "reviewed",
+        "sourcePage": 111
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "17",
+        "status": "reviewed",
+        "sourcePage": 111
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 111
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "27",
+        "status": "reviewed",
+        "sourcePage": 112
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 112
+      }
+    },
+    {
+      "address": {
+        "volume": "본문",
+        "section": "11. 평면과 구의 방정식 / 연습문제",
+        "page": "단원 시작 372",
+        "number": "11-26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 112
+      }
+    }
+  ]
+}
