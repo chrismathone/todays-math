@@ -51,9 +51,9 @@ it("loads actual packaged source shards and follows assessment to definition to 
     stableIri = target.stableIri;
   }
   expect(witnessed).toHaveLength(3);
-  expect(source.manifest.entities).toBe(51354);
-  expect(source.manifest.assertions).toBe(56120);
+  expect(source.manifest.entities).toBe(51319);
+  expect(source.manifest.assertions).toBe(56049);
   expect(
     source.manifest.partitions.reduce((n, p) => n + p.primaryEntities, 0),
-  ).toBe(51354);
+  ).toBe(51319);
 });

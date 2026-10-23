@@ -92,6 +92,21 @@ export function collectMathOntologyRepoSources(
   collectorInvoked = true;
   const actualPort = createRepoSourceReadPort(repo);
   const require = createRequire(join(repo, "package.json"));
+  for (const cachedPath of Object.keys(require.cache)) {
+    const local = relative(repo, cachedPath).replaceAll("\\", "/");
+    if (
+      INPUT_PREFIXES.some(
+        (prefix) =>
+          prefix !== "src/lib/math-ontology/sources/" &&
+          prefix !== "scripts/ontology/" &&
+          local.startsWith(prefix),
+      )
+    )
+      throw new Error(
+        "Source collector requires empty native module cache; use a fresh subprocess",
+      );
+  }
+
   const load = <T>(path: string): T => require(join(repo, path)) as T;
   const byteCache = new Map<string, Uint8Array>();
   const bytes = (path: string): Uint8Array => {
@@ -1075,7 +1090,7 @@ export function collectMathOntologyRepoSources(
       labPath,
       "/sources/" + id,
       { licenseStatus: "unknown" },
-      { sourceProvenance: "unknown" },
+      { sourceProvenance: "unknown", distribution: "quarantine-reference" },
     );
   for (const [i, u] of lab.units.entries()) {
     const r = add("lab-unit", str(u.id), "LabUnit", labPath, "/units/" + i, {
@@ -1168,6 +1183,10 @@ export function collectMathOntologyRepoSources(
         count: Array.isArray(r.selectedExternalIds)
           ? r.selectedExternalIds.length
           : 1,
+      },
+      {
+        distribution: "quarantine-reference",
+        sourceProvenance: "imported-source",
       },
     );
     for (const id of Array.isArray(r.selectedExternalIds)
