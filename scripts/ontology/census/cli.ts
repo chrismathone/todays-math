@@ -11,6 +11,7 @@ import {
   verifySourceCatalogStructure,
   EXPECTED_MATH_ONTOLOGY_SOURCE_RELATION_COVERAGE,
 } from "@/lib/math-ontology/sources/correspondence";
+import { projectMathOntologyPublicSources } from "@/lib/math-ontology/sources/publicProjection";
 import { writeSourcePartitions } from "./writePartitions";
 import { writeCanonicalSourceNQuads } from "./writeNQuads";
 const arg = (name: string) => {
@@ -48,14 +49,28 @@ async function main() {
     dataset,
     EXPECTED_MATH_ONTOLOGY_SOURCE_RELATION_COVERAGE,
   );
+  const expectedProjection = arg("--expected-projection-hash");
+  const projectionHash =
+    projectMathOntologyPublicSources(dataset).projectionHash;
+  if (expectedProjection && projectionHash !== expectedProjection)
+    throw new Error(
+      "Actual source projection differs from pinned public release",
+    );
   const nquads = arg("--nquads");
+  if (nquads && process.argv.includes("--check"))
+    throw new Error(
+      "--nquads is export-only; use --partitions --check for sealed release verification",
+    );
   const rdf = nquads
     ? await writeCanonicalSourceNQuads(dataset, resolve(nquads))
     : null;
   const partitions = process.argv.includes("--partitions")
-    ? writeSourcePartitions(dataset, outputRoot)
+    ? writeSourcePartitions(dataset, outputRoot, {
+        check: process.argv.includes("--check"),
+      })
     : null;
   const receipt = {
+    projectionHash,
     correspondence,
     partitions,
     payloadHash: envelope.payloadHash,

@@ -47,10 +47,11 @@ export type MathOntologySourceTransaction = Pick<
 function fail(): never {
   throw new MathOntologySourceAccessDenied();
 }
-/** Fresh, transaction-local projections reuse the existing policy functions. No credential/name/contact fields are queried. */
-export async function authorizeMathOntologySourceRead(
+/** Fresh actor policy shared by scoped private reads and global native-definition evidence. */
+async function authorizeSourceActor(
   tx: MathOntologySourceTransaction,
-  input: MathOntologyDatabaseReadInput,
+  input: Pick<MathOntologyDatabaseReadInput, "actor" | "authorizationNow">,
+  dataPath: string,
 ) {
   const now = input.authorizationNow ?? new Date();
   if (!Number.isFinite(now.getTime())) fail();
@@ -161,7 +162,6 @@ export async function authorizeMathOntologySourceRead(
     approvalStatus: row.approvalStatus,
     menus: workspaceMenuPolicy(row).menus,
   };
-  const dataPath = `/api/students/${input.target.studentId}/math-srs/insight`;
   if (
     !accountRouteAllowed(account, "GET", dataPath) ||
     (!account.isAdmin &&
@@ -171,6 +171,33 @@ export async function authorizeMathOntologySourceRead(
       !account.menus.includes("srs"))
   )
     fail();
+  return { now, row, managed, account };
+}
+/** Native authored definitions are global teacher resources; no student record is required or read. */
+export async function authorizeMathOntologyNativeSourceRead(
+  tx: MathOntologySourceTransaction,
+  input: Pick<MathOntologyDatabaseReadInput, "actor" | "authorizationNow">,
+) {
+  const { account } = await authorizeSourceActor(
+    tx,
+    input,
+    "/api/math-srs/fading",
+  );
+  return {
+    actorId: account.id,
+    scope: "global-native-authored-definition" as const,
+  };
+}
+/** Fresh scoped projections reuse the existing policy functions. No credential/name/contact fields are queried. */
+export async function authorizeMathOntologySourceRead(
+  tx: MathOntologySourceTransaction,
+  input: MathOntologyDatabaseReadInput,
+) {
+  const { now, row, managed, account } = await authorizeSourceActor(
+    tx,
+    input,
+    `/api/students/${input.target.studentId}/math-srs/insight`,
+  );
   const student = await tx.student.findUnique({
     where: { id: input.target.studentId },
     select: {
