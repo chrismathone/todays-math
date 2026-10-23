@@ -334,6 +334,116 @@ export const PUBLISHER_PACKS: readonly PublisherPackEntry[] = [
     load: () =>
       import("../../../data/commercial-workbooks/ne-dalgom-calculation-4-2-v1.json"),
   },
+  {
+    id: "mothertong-solt-m1-1-9353-v1",
+    label: "마더텅 중학수학 쏠트 1-1 · 게시물 9353 · 판·쇄 미확인",
+    links: [
+      {
+        label: "공식 정답 출처",
+        href: "https://www.toptutor.co.kr/pds/view.jsp?id=9353&type=01",
+      },
+      {
+        label: "검토한 원본 PDF",
+        href: "https://www.toptutor.co.kr/main/download.jsp?id=249989&ek=d678abcd7c063af558a0d2ac3194d85d",
+      },
+    ],
+    scopeNote:
+      "1068문항 주소, 검토 정답 1041개, 미수록 정답 27개 · STEP 시작 쪽수와 인쇄 번호 보존",
+    load: () =>
+      import("../../../data/commercial-workbooks/mothertong-solt-m1-1-9353-v1.json"),
+  },
+  {
+    id: "mega-calculation-volume12-1400-v1",
+    label: "초등 메가 계산력 12권 · 자료 1400 · 판·쇄 미확인",
+    links: [
+      {
+        label: "공식 정답 출처",
+        href: "https://www.megastudybooks.com/book/file/explanation?page=27",
+      },
+      {
+        label: "검토한 원본 PDF",
+        href: "https://www.megastudybooks.com/download/1400",
+      },
+    ],
+    scopeNote:
+      "1321문항 주소, 검토 정답 1321개, 미수록 정답 0개 · 50일 번호 문항 전체, 번호 없는 생각 수학 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/mega-calculation-volume12-1400-v1.json"),
+  },
+  {
+    id: "erum-summa-common-math1-4ed2print-v1",
+    label: "이룸이앤비 숨마쿰라우데 공통수학1 · 2022 개정 · 4판 2쇄 · 전 단원",
+    links: [
+      {
+        label: "출판사 공식 자료실 · 새 다운로드 제공",
+        href: "https://www.erumenb.com/bookdata/index.php?section=3",
+      },
+    ],
+    scopeNote:
+      "공식 서브노트 개념 TEST·유제·연습문제 전체 774개 주소 · 검수 정답 769개 · 풀이 참조 5개 보류",
+    load: () =>
+      import("../../../data/commercial-workbooks/erum-summa-common-math1-4ed2print-v1.json"),
+  },
+  {
+    id: "chun-ddapul-6-2-upper-v1",
+    label: "천종현 따풀 6-2 상 · 유형별 문제·예제",
+    links: [
+      {
+        label: "출판사 답지 자료실",
+        href: "https://www.1000math.com/archive/?bmode=view&idx=155855986",
+      },
+    ],
+    scopeNote:
+      "본문 쪽이 있는 유형 01A~20B의 481주소 · 검수 정답 460개 · 그림·표 21개 보류 · 쪽 미기재 연습 문제·Quiz 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/chun-ddapul-6-2-upper-v1.json"),
+  },
+  {
+    id: "ne-gak-common-math1-2023-v1",
+    label: "NE능률 각 공통수학1 · 전체 번호·선택형/정수 정답",
+    links: [
+      {
+        label: "출판사 상품 페이지",
+        href: "https://www.nebooks.co.kr/pages/book/view.asp?c=BH04090001",
+      },
+      {
+        label: "공식 정답 PDF",
+        href: "https://upfile.neungyule.com/upload_admin/2026/01/%EA%B3%A0%EB%93%B1%20%EA%B0%81_%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991_%ED%95%B4%EC%84%A4_20260120.pdf",
+      },
+    ],
+    scopeNote:
+      "0001~0945 전체 번호 945주소 · 검수 선택형·정수 정답 763개 · 수식·다답·풀이 등 182주소 정답 보류 · 본문 쪽 범위 그대로 보존",
+    load: () =>
+      import("../../../data/commercial-workbooks/ne-gak-common-math1-2023-v1.json"),
+  },
+  {
+    id: "chun-ddapul-3-1-upper-v1",
+    label: "천종현 따풀 3-1 상 · 유형별 문제·예제",
+    links: [
+      {
+        label: "출판사 답지 자료실",
+        href: "https://www.1000math.com/archive/?bmode=view&idx=155855986",
+      },
+    ],
+    scopeNote:
+      "본문 쪽이 있는 유형 01A~20B의 558주소 · 검수 정답 502개 · 그림·표 56개 보류 · 쪽 미기재 연습 문제·Quiz 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/chun-ddapul-3-1-upper-v1.json"),
+  },
+  {
+    id: "chun-ddapul-5-1-upper-v1",
+    label: "천종현 따풀 5-1 상 · 유형별 문제·예제",
+    links: [
+      {
+        label: "출판사 답지 자료실",
+        href: "https://www.1000math.com/archive/?bmode=view&idx=155855986",
+      },
+    ],
+    scopeNote:
+      "본문 쪽이 있는 유형 01A~20B의 502주소 · 검수 정답 472개 · 그림·표 30개 보류 · 쪽 미기재 연습 문제·Quiz 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/chun-ddapul-5-1-upper-v1.json"),
+  },
 ];
 
 const packSchema = workbookCreateEditionSchema
