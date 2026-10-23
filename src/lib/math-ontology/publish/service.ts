@@ -225,12 +225,14 @@ export function createOntologyPublisher(deps: {
         artifactHash = ontologyDigest(artifactCanonical);
       return await transaction(async (tx) => {
         await authorizeOntologyPublisher(tx, actor, now);
-        const time = now(),
-          active = await lockOntologyScope(tx, lease.row.scopeKey, time);
+        const active = await lockOntologyScope(tx, lease.row.scopeKey, now());
         await tx.$queryRaw`SELECT id FROM ontology_compile_job WHERE id = ${jobId}::uuid FOR UPDATE`;
         const current = await tx.ontologyCompileJob.findUniqueOrThrow({
           where: { id: jobId },
         });
+        // Both locks and row reads can await. Their entry time cannot authorize
+        // a lease that expired while this transaction was waiting.
+        const time = now();
         requireOperation(
           current.state === "leased" &&
             current.leaseGeneration === lease.row.leaseGeneration &&
@@ -240,6 +242,7 @@ export function createOntologyPublisher(deps: {
             current.engineLockHash === deps.engineLockHash,
           "STALE",
         );
+        const leaseDeadline = current.leaseUntil;
         requireOperation(
           active.generation === current.expectedActiveGeneration &&
             (await approvedOntologyReviews(tx, current.scopeKey)).hash ===
@@ -260,6 +263,7 @@ export function createOntologyPublisher(deps: {
             current.inputManifestHash,
           "STALE",
         );
+        requireOperation(leaseDeadline > now(), "STALE");
         await tx.ontologyRelease.create({
           data: {
             graphVersion: artifact.identity.graphVersion,
@@ -313,7 +317,11 @@ export function createOntologyPublisher(deps: {
           },
           time,
         );
+        const finalized = await tx.ontologyCompileJob.findUniqueOrThrow({ where: { id: jobId } });
         await authorizeOntologyPublisher(tx, actor, now);
+        // The original deadline remains binding even though the published row
+        // clears leaseUntil. Failure here rolls back release/pointer/job/audit.
+        requireOperation(finalized.state === "published" && finalized.leaseGeneration === lease.row.leaseGeneration && finalized.inputManifestHash === lease.row.inputManifestHash && finalized.engineLockHash === deps.engineLockHash && leaseDeadline > now(), "STALE");
         return {
           jobId,
           state: "published",

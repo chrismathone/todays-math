@@ -53,6 +53,10 @@ root의 실제 실패 화면 검수(`msg_3275c41cd403`)에서 오류 아래 내�
 
 root의 후속 실제 판정(`msg_81455cbeeda4`, 통합 f9a6a2ba)은 새 local tab·visible·실제 390px media 상태에서 bounded 400ms 후 nav scrollLeft 469, 현재 메뉴 left 295/right 371로 client 375 안에 보이며 문서 넘침 0임을 확인했다. 초기 화면의 비활성 next card도 없다. 앞선 즉시 eval/HMR·정지된 background rAF 진단은 제품 실패로 세지 않는다. 이는 root의 실행 증거이며 이 worker의 브라우저 실행이 아니다. 전체 1440→390→768→390 PNG matrix와 실제 AI producer/교육적 검수는 root의 인수 범위에 남는다.
 
+독립 B4(`msg_2e618c6726fe`, root 승인 `msg_f2f75b3f9c59`)는 최종 게시 tx가 scope/job 잠금 전 시각으로 lease를 검사해 301초에도 게시하는 결함이었다. 원본 시험은 수정하지 않고 import root만 own으로 바꾼 외부 사본에서 2음성 RED → 4시험 GREEN을 확인했다(`operations/independent-b4/`). 잠금/행 읽기 뒤 fresh clock, source rebuild 뒤 deadline, 최종 activation/audit/auth await 뒤 실제 job의 state/generation/input/engine와 **원래 lease deadline**을 같은 tx에서 검사한다. published row가 leaseUntil을 비워도 원래 deadline은 최종 commit 전까지 유효해야 한다.
+
+`publisher-lease-final-write-RED.txt`는 실제 격리 PG에서 마지막 event insert 뒤 301초에 published가 되는 원본 결함을 단독 재현한다. 수정 후 `publisher-lease-GREEN-final.txt` 3파일 **14시험 PASS**는 실제 PG scope 행 잠금 대기, release insert·최종 activation event 뒤 만료, 마지막 generation 변경에서 새 release/pointer/activation event를 rollback하고 audit/outbox 추가가 없음을 확인한다. 이미 commit된 queued/leased 이력은 보존한다. 정상 게시 후 301초의 재전송은 같은 판을 반환하며 컴파일 횟수는 1이다. 실제 E01 runtime/proof/SHACL artifact를 사용하되 compiler/clock은 합성 port로 명시했고 모델/공유 DB/실제 compiler IO를 호출하지 않았다. 최초 다중 RED의 잘못된 게시가 후속 fixture에 graphVersion 중복을 만든 로그와 첫 GREEN의 outbox relation-filter 오류도 원본을 보존했으며, 단독 RED와 최종 격리 GREEN으로 구분했다. 전체 TypeScript·해당 ESLint·diff 진단 0이다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.
