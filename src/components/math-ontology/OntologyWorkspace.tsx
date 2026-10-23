@@ -72,17 +72,18 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
     </WorkspacePageHeader>
     <form className={s.prompt} onSubmit={event => void prepare(event)}>
       <label htmlFor="ontology-work-request">원하는 일</label>
-      <AutoGrowTextarea id="ontology-work-request" value={query} maxLength={500} placeholder="개념에 연결된 자료를 찾거나, 확인할 내용을 준비해 달라고 해 주세요." onChange={event => setQuery(event.target.value)} />
+      <AutoGrowTextarea id="ontology-work-request" value={query} maxLength={500} aria-describedby="ontology-request-keys" placeholder="개념에 연결된 자료를 찾거나, 확인할 내용을 준비해 달라고 해 주세요." onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229) { event.preventDefault(); void prepare(); } }} />
+      <small id="ontology-request-keys" className={s.muted}>Enter로 준비 · Shift+Enter로 줄바꿈</small>
       <div className={s.promptActions}><span className={s.muted}>{student ? "연결한 학생의 허용된 기록을 함께 봅니다." : "전체 지식부터 찾습니다."}</span><button type="submit" className={s.primary} disabled={!!busy || !query.trim()}>{busy === "prepare" ? "준비 중…" : "준비하기"}</button></div>
     </form>
     {busy && <p className={s.status} role="status">{busy === "prepare" ? "자료를 찾아 검토하고 있습니다." : busy === "confirm" ? "확인한 내용을 적용하고 결과를 확인합니다." : "이후 관찰을 확인합니다."}</p>}
     {error && <div className={s.error} role="alert"><p>{error.message}</p>{error.code !== "FORBIDDEN" && <button type="button" className={s.button} disabled={!!busy} onClick={() => confirmUnknown ? void confirm() : void prepare()}>{confirmUnknown ? "결과 확인" : "다시 준비"}</button>}</div>}
     <div className={s.columns}>
       <aside className={s.context} aria-label="지식과 현재 맥락">
-        <h2>지식 찾기</h2><p className={s.muted}>개념 · 단원 · 문항 · 자료</p>
+        <details className={s.contextDetails}><summary>지식과 원천 범위</summary><p className={s.muted}>개념 · 단원 · 문항 · 자료</p>
         <button type="button" className={s.button} disabled={!!busy} onClick={() => { const text = "등록된 지식과 원천 범위를 보여줘"; setQuery(text); void prepare(undefined, student, text); }}>원천과 포함 범위</button>
         {answer?.coverage.length ? <dl className={s.coverage}>{answer.coverage.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl> : null}
-        {student && <p className={s.student}>{student.label}<small>{student.classLabel}</small></p>}
+        {student && <p className={s.student}>{student.label}<small>{student.classLabel}</small></p>}</details>
       </aside>
       <section className={s.result} aria-label="준비한 결과">
         {history.length > 0 && <button type="button" className={s.textButton} disabled={busy === "confirm"} onClick={back}>이전 결과</button>}
@@ -94,7 +95,7 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
       </section>
       <section className={s.next} aria-label="다음 작업">
-        {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details><button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button>{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
+        {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details>{execution.state === "preparing" ? <button type="button" className={s.primary} disabled={!!busy} onClick={() => void confirm()}>결과 확인</button> : answer?.action?.kind === "plan" ? <button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button> : null}{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
           <h2>{answer.action.kind === "plan" ? "계획 변경 확인" : answer.action.kind === "relation" ? "관계 검토" : "게시 내용 확인"}</h2>
           <dl className={s.diff}>{answer.action.changes.map(change => <div key={change.label}><dt>{change.label}</dt><dd><span>{change.before}</span><span aria-hidden="true"> → </span><strong>{change.after}</strong></dd></div>)}</dl>
           {answer.action.effects.map(text => <p className={s.muted} key={text}>{text}</p>)}

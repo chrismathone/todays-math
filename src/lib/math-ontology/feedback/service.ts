@@ -59,6 +59,7 @@ export interface OntologyObservationPort {
     target: OntologyActionTarget,
     sourceSnapshotId: string,
     now: Date,
+    window?: { committedAt: string; minimumRevision: number },
   ): Promise<ResolvedObservation>;
 }
 
@@ -112,6 +113,7 @@ export function createOntologyFeedbackService(deps: {
             target,
             input.sourceSnapshotId,
             time,
+            { committedAt: result.committedAt, minimumRevision: result.afterRevision },
           ),
         );
         requireOperation(

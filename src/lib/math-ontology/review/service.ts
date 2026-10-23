@@ -91,6 +91,10 @@ export function createOntologyRelationService(deps: {
           row && ["draft", "validated"].includes(row.state),
           "NOT_FOUND",
         );
+        const event = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: row.id, event: "relation.drafted" }, orderBy: { createdAt: "asc" } });
+        requireOperation(event, "BINDING_MISMATCH");
+        const ref = z.object({ evidenceRef: z.string() }).parse(checkedCanonical(event.detailCanonical, event.detailHash)).evidenceRef;
+        await deps.candidates.authorize(tx, actor, mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash)), ref);
         return row;
       });
       const assertion = mathOntologyAssertionSchema.parse(
@@ -182,7 +186,11 @@ export function createOntologyRelationService(deps: {
           report.conforms && !report.incomplete,
           "BINDING_MISMATCH",
         );
-        checkedCanonical(row.assertionCanonical, row.assertionHash);
+        const candidate = mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash));
+        const event = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: row.id, event: "relation.drafted" }, orderBy: { createdAt: "asc" } });
+        requireOperation(event, "BINDING_MISMATCH");
+        const ref = z.object({ evidenceRef: z.string() }).parse(checkedCanonical(event.detailCanonical, event.detailHash)).evidenceRef;
+        await deps.candidates.authorize(tx, actor, candidate, ref);
         const state = input.decision === "approve" ? "approved" : "rejected",
           time = now();
         const updated = await tx.ontologyRelationReview.update({
@@ -210,6 +218,21 @@ export function createOntologyRelationService(deps: {
           time,
         );
         return { reviewId: row.id, state, revision: updated.revision };
+      });
+    },
+    async retire(actor: OntologyActionActor, reviewId: string, expectedRevision: number) {
+      z.uuid().parse(reviewId); z.number().int().nonnegative().parse(expectedRevision);
+      return deps.db.$transaction(async tx => {
+        const time = now(); await authorizeOntologyPublisher(tx, actor, time);
+        const original = await tx.ontologyRelationReview.findUnique({ where: { id: reviewId } });
+        requireOperation(original, "NOT_FOUND");
+        await lockOntologyScope(tx, original.scopeKey, time);
+        await tx.$queryRaw`SELECT id FROM ontology_relation_review WHERE id = ${reviewId}::uuid FOR UPDATE`;
+        const row = await tx.ontologyRelationReview.findUniqueOrThrow({ where: { id: reviewId } });
+        requireOperation(row.state === "approved" && row.revision === expectedRevision, "STALE");
+        const result = await tx.ontologyRelationReview.update({ where: { id: reviewId }, data: { state: "retired", revision: { increment: 1 } } });
+        await recordOntologyReviewEvent(tx, actor.id, row.scopeKey, row.id, "relation.retired", { assertionHash: row.assertionHash, previousRevision: row.revision, revision: result.revision }, time);
+        return { reviewId, state: result.state, revision: result.revision };
       });
     },
   };

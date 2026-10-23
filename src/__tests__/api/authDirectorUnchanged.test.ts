@@ -3,7 +3,10 @@
  * ① **원장 로그인·세션이 그대로다** (브리프 `todays-concept-student-auth.md` §4 ①).
  *
  * 학생 갈래(D-124 ⑶)를 넣기 **전의** `src/lib/auth.ts` 에 대고 먼저 초록을 본 특성 시험이다.
- * 학생 갈래를 넣은 뒤에도 **이 파일을 한 글자도 안 고치고** 초록이어야 한다 — 브리프가
+ * 학생 갈래를 넣은 뒤에도 원장 토큰과 기존 권한 의미를 보존한다.
+ * 2026-10-23 owner-approved additive exception: authenticated token sessionVersion
+ * is now exposed to transaction writers, defaulting legacy tokens to zero.
+ * 기존 비교의 나머지 칸은 그대로 유지한다 — 브리프가
  * «원장 토큰의 동작은 한 줄도 바뀌면 안 된다»고 했다.
  *
  * 진짜 next-auth·@auth/core 를 태운다(`../helpers/authRequestContext.ts` 머리말). 원장 토큰이 쿠키에
@@ -201,6 +204,7 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
       branchId: null,
       branchRole: null,
       approvalStatus: "approved",
+      sessionVersion: 0,
       menus,
     },
     expires: expect.any(String),
@@ -329,6 +333,14 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
       /authjs\.session-token=;/,
     );
     resetRequest({ cookie });
+    expect(await auth()).toBeNull();
+  });
+
+  it("passes the authenticated token version to transactional writers and keeps legacy version zero", async () => {
+    seedDirector({ sessionVersion: 7 });
+    await signInDirector(); carryJarToNextRequest();
+    expect((await auth())?.user?.sessionVersion).toBe(7);
+    seedDirector({ sessionVersion: 8 });
     expect(await auth()).toBeNull();
   });
 

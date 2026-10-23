@@ -325,6 +325,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.branchRole = token.branchRole ?? null;
         session.user.approvalStatus = token.approvalStatus ?? "pending";
         session.user.menus = token.menus ?? [];
+        session.user.sessionVersion = token.sessionVersion ?? 0;
       }
       return session;
     },
@@ -348,6 +349,7 @@ declare module "next-auth" {
       branchRole?: "owner" | "manager" | "teacher" | null;
       approvalStatus: ApprovalStatus;
       menus: WorkspaceMenu[];
+      sessionVersion: number;
     } & DefaultSession["user"];
     /** 학생(«오늘의 개념» 시청 전용 — D-123 ⑵). 원장 세션에는 없다. */
     student?: StudentSession;
