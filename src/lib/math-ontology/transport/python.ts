@@ -1,6 +1,8 @@
 import "server-only";
 import { createHash, createHmac, randomBytes } from "node:crypto";
 import { gunzipSync } from "node:zlib";
+import { request as httpRequest, type ClientRequest, type IncomingMessage } from "node:http";
+import { request as httpsRequest } from "node:https";
 import {
   mathOntologyArtifactSchema,
   mathOntologyCompileInputSchema,
@@ -9,6 +11,65 @@ import {
 } from "@/contracts/mathOntology.contract";
 import { canonicalOntologyJson, ontologyDigest } from "../compiler/canonical";
 import { verifyOntologyCompiledArtifactForInput } from "../runtime/compiled";
+
+// Native fetch has an independent 300s Undici header timeout. This one-request
+// transport uses the caller's absolute deadline through DNS, connect and body,
+// without changing a global dispatcher or following a redirect.
+function requestOntologyEngine(
+  endpoint: URL,
+  body: string,
+  headers: Record<string, string>,
+  signal: AbortSignal,
+): Promise<Response> {
+  return new Promise((resolve, reject) => {
+    let finished = false;
+    let request: ClientRequest | undefined;
+    let incoming: IncomingMessage | undefined;
+    const chunks: Buffer[] = [];
+    const fail = (error: unknown) => {
+      if (finished) return;
+      finished = true; chunks.length = 0;
+      reject(error); incoming?.destroy(); request?.destroy();
+    };
+    const closed = () => fail(new Error("ENGINE_RESPONSE_TRUNCATED"));
+    try {
+      request = (endpoint.protocol === "https:" ? httpsRequest : httpRequest)(
+        endpoint,
+        { method: "POST", headers: { ...headers, "content-length": String(Buffer.byteLength(body)) }, signal, agent: false },
+        response => {
+          incoming = response;
+          response.on("error", fail);
+          response.once("aborted", () => fail(new Error("ENGINE_RESPONSE_ABORTED")));
+          response.once("close", closed);
+          const status = response.statusCode ?? 502;
+          // Only 200 carries the engine envelope. Never follow redirects or
+          // construct a body-bearing Response for a bodyless 204/205 status.
+          if (status !== 200) { fail(new Error(`ONTOLOGY_ENGINE_${status}`)); return; }
+          let bytes = 0;
+          response.on("data", (chunk: Buffer) => {
+            if (finished) return;
+            bytes += chunk.length;
+            if (bytes > 4_000_000) { fail(new Error("ENGINE_RESPONSE_BUDGET")); return; }
+            chunks.push(chunk);
+          });
+          response.once("end", () => {
+            if (finished) return;
+            if (!response.complete) { closed(); return; }
+            try {
+              const result = new Response(new Uint8Array(Buffer.concat(chunks)), { status });
+              finished = true; chunks.length = 0;
+              resolve(result); response.destroy(); request?.destroy();
+            } catch (error) { fail(error); }
+          });
+        },
+      );
+      request.once("error", fail);
+      request.once("close", closed);
+      request.once("upgrade", (_response, socket) => { socket.destroy(); fail(new Error("ONTOLOGY_ENGINE_101")); });
+      request.end(body);
+    } catch (error) { fail(error); }
+  });
+}
 
 export function createOntologyPythonPort(options: {
   endpoint: URL;
@@ -61,18 +122,17 @@ export function createOntologyPythonPort(options: {
         .update(`ontology-engine-v1\n${timestamp}\n`)
         .update(body)
         .digest("hex");
-      const response = await (options.fetch ?? fetch)(options.endpoint, {
-        method: "POST",
-        headers: {
+      const headers = {
           "content-type": "application/json",
           "x-ontology-timestamp": timestamp,
           "x-ontology-signature": signature,
-        },
-        body,
-        redirect: "error",
-        cache: "no-store",
-        signal: AbortSignal.timeout(Math.min(240_000,(leaseExpiry-nowSeconds)*1000)),
-      });
+      };
+      // Leave time after the 480s child bound for response verification and
+      // the publisher's final transaction, within its durable 540s lease.
+      const signal = AbortSignal.timeout(Math.min(500_000,(leaseExpiry-nowSeconds)*1000));
+      const response = options.fetch
+        ? await options.fetch(options.endpoint, { method: "POST", headers, body, redirect: "error", cache: "no-store", signal })
+        : await requestOntologyEngine(options.endpoint, body, headers, signal);
       if (!response.ok) {
         await response.body?.cancel();
         throw new Error(`ONTOLOGY_ENGINE_${response.status}`);

@@ -19,9 +19,10 @@ MAX_BODY=3_500_000
 MAX_RESPONSE=4_000_000
 MAX_OUTPUT=8*1024*1024
 MAX_AGE=60
-CPU_SOFT_SECONDS=220
-CPU_HARD_SECONDS=221
-CHILD_WALL_SECONDS=230
+# Bounded publish chain: child480 < transport500 < durable lease540 < functions600.
+CPU_SOFT_SECONDS=400
+CPU_HARD_SECONDS=401
+CHILD_WALL_SECONDS=480
 PROTOCOL="ontology-engine-v1"
 _nonces={}
 _nonce_lock=threading.Lock()
