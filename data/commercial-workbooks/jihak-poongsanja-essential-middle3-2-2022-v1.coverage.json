@@ -1,0 +1,1659 @@
+{
+  "packId": "jihak-poongsanja-essential-middle3-2-2022-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeBook": true,
+    "addressCoverage": "full",
+    "answerCoverage": "partial",
+    "definition": "유형북 001~450, 실전북 대표 서술형 42개·서술형 실전대비 56개·실전 TEST 100개. 공식 정답과 풀이에 제시된 인쇄 주소 전체의 범위이며 문제 본문을 별도로 확보한 것은 아니다.",
+    "rowGranularity": "one printed numbered exercise per row",
+    "sourcePdfPagesVisuallyReviewed": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      77,
+      81,
+      83
+    ],
+    "addressHeaderCount": 39,
+    "chapterTitleCount": 7
+  },
+  "source": {
+    "sourceRelativePath": "major/pdfs/jihak-3.pdf",
+    "pdfUrl": "https://www.jihak.co.kr/api/v1/file/open-pdf-file?url=/public/reference-book/NjZQIy0bHBgEr3CS/Dp3tVAV1Nl2xcA32.pdf&fileName=%ED%95%84%EC%88%98%EC%9C%A0%ED%98%95+%EC%A4%913-2+%EC%A0%95%EB%8B%B5%EA%B3%BC+%ED%92%80%EC%9D%B4.pdf",
+    "listingUrl": "https://www.jihak.co.kr/reference-book/reference-room?blockFilter=Y&fileType=%EC%A0%95%EB%8B%B5+%EB%B0%8F+%ED%95%B4%EC%84%A4&school=%EC%A4%91%ED%95%99&search=%ED%92%8D%EC%82%B0%EC%9E%90&subject=%EC%88%98%ED%95%99&page=1",
+    "bookUrl": "https://www.jihak.co.kr/reference-book/middle-school/NjZQIy0bHBgEr3CS",
+    "sha256": "04f91c7f5c78f47870a3dde050948347849f7e778270fe3b92d28c2132abcfef",
+    "pageCount": 88,
+    "byteCount": 12208378,
+    "editionEvidence": {
+      "curriculum": "2022 개정",
+      "year": null,
+      "isbn": null,
+      "printing": null,
+      "officialListEvidence": "/Volumes/TodayWork/commercial-workbook-sources/survey-20261024/major/evidence/jihak-middle-1.html"
+    },
+    "coordinateEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/entries.json",
+    "practiceAddressEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/practice-addresses.json",
+    "practiceAnswerEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/practice-answers.json",
+    "visualEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/visual-review.json",
+    "addressHeaderEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/headers.json",
+    "numericCorrespondence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/numeric-correspondence.json"
+  },
+  "counts": {
+    "exercises": 648,
+    "reviewedKeys": 600,
+    "nullKeys": 48,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 39,
+    "choiceKeys": 246,
+    "byReviewedKeySourcePage": {
+      "2": 8,
+      "3": 10,
+      "4": 7,
+      "5": 8,
+      "6": 8,
+      "7": 12,
+      "8": 9,
+      "9": 7,
+      "10": 5,
+      "11": 8,
+      "12": 10,
+      "13": 7,
+      "14": 6,
+      "15": 5,
+      "16": 8,
+      "17": 8,
+      "18": 7,
+      "19": 5,
+      "20": 5,
+      "21": 11,
+      "22": 9,
+      "23": 8,
+      "24": 10,
+      "25": 7,
+      "26": 10,
+      "27": 7,
+      "28": 9,
+      "29": 6,
+      "30": 6,
+      "31": 6,
+      "32": 10,
+      "33": 11,
+      "34": 9,
+      "35": 8,
+      "36": 7,
+      "37": 6,
+      "38": 10,
+      "39": 10,
+      "40": 9,
+      "41": 10,
+      "42": 9,
+      "43": 7,
+      "44": 5,
+      "45": 12,
+      "46": 7,
+      "47": 7,
+      "48": 8,
+      "49": 6,
+      "50": 3,
+      "51": 2,
+      "52": 8,
+      "53": 6,
+      "54": 9,
+      "55": 10,
+      "56": 10,
+      "57": 7,
+      "58": 6,
+      "61": 7,
+      "62": 1,
+      "63": 5,
+      "64": 3,
+      "65": 1,
+      "66": 7,
+      "67": 3,
+      "68": 5,
+      "69": 6,
+      "70": 2,
+      "71": 5,
+      "72": 3,
+      "73": 6,
+      "74": 27,
+      "77": 25,
+      "81": 25,
+      "83": 25
+    }
+  },
+  "pageGroups": [
+    {
+      "volume": "유형북",
+      "section": "1 삼각비 / 개념 확인하기",
+      "page": "9, 11",
+      "firstNumber": "001",
+      "lastNumber": "011",
+      "exerciseCount": 11,
+      "addressHeaderSourcePage": 2
+    },
+    {
+      "volume": "유형북",
+      "section": "1 삼각비 / 필수유형 다지기",
+      "page": "12~19",
+      "firstNumber": "012",
+      "lastNumber": "060",
+      "exerciseCount": 49,
+      "addressHeaderSourcePage": 3
+    },
+    {
+      "volume": "유형북",
+      "section": "1 삼각비 / 만점에 도전하기",
+      "page": "20~21",
+      "firstNumber": "061",
+      "lastNumber": "074",
+      "exerciseCount": 14,
+      "addressHeaderSourcePage": 8
+    },
+    {
+      "volume": "유형북",
+      "section": "2 삼각비의 활용 / 개념 확인하기",
+      "page": "23, 25",
+      "firstNumber": "075",
+      "lastNumber": "087",
+      "exerciseCount": 13,
+      "addressHeaderSourcePage": 11
+    },
+    {
+      "volume": "유형북",
+      "section": "2 삼각비의 활용 / 필수유형 다지기",
+      "page": "26~32",
+      "firstNumber": "088",
+      "lastNumber": "129",
+      "exerciseCount": 42,
+      "addressHeaderSourcePage": 12
+    },
+    {
+      "volume": "유형북",
+      "section": "2 삼각비의 활용 / 만점에 도전하기",
+      "page": "33~34",
+      "firstNumber": "130",
+      "lastNumber": "143",
+      "exerciseCount": 14,
+      "addressHeaderSourcePage": 18
+    },
+    {
+      "volume": "유형북",
+      "section": "1 원과 직선 / 개념 확인하기",
+      "page": "37, 39",
+      "firstNumber": "144",
+      "lastNumber": "155",
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 21
+    },
+    {
+      "volume": "유형북",
+      "section": "1 원과 직선 / 필수유형 다지기",
+      "page": "40~49",
+      "firstNumber": "156",
+      "lastNumber": "215",
+      "exerciseCount": 60,
+      "addressHeaderSourcePage": 22
+    },
+    {
+      "volume": "유형북",
+      "section": "1 원과 직선 / 만점에 도전하기",
+      "page": "50~51",
+      "firstNumber": "216",
+      "lastNumber": "228",
+      "exerciseCount": 13,
+      "addressHeaderSourcePage": 29
+    },
+    {
+      "volume": "유형북",
+      "section": "2 원주각 / 개념 확인하기",
+      "page": "53",
+      "firstNumber": "229",
+      "lastNumber": "234",
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 31
+    },
+    {
+      "volume": "유형북",
+      "section": "2 원주각 / 필수유형 다지기",
+      "page": "54~59",
+      "firstNumber": "235",
+      "lastNumber": "271",
+      "exerciseCount": 37,
+      "addressHeaderSourcePage": 32
+    },
+    {
+      "volume": "유형북",
+      "section": "2 원주각 / 만점에 도전하기",
+      "page": "60~61",
+      "firstNumber": "272",
+      "lastNumber": "283",
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 36
+    },
+    {
+      "volume": "유형북",
+      "section": "3 원주각의 활용 / 개념 확인하기",
+      "page": "63",
+      "firstNumber": "284",
+      "lastNumber": "289",
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 38
+    },
+    {
+      "volume": "유형북",
+      "section": "3 원주각의 활용 / 필수유형 다지기",
+      "page": "64~70",
+      "firstNumber": "290",
+      "lastNumber": "332",
+      "exerciseCount": 43,
+      "addressHeaderSourcePage": 38
+    },
+    {
+      "volume": "유형북",
+      "section": "3 원주각의 활용 / 만점에 도전하기",
+      "page": "71~72",
+      "firstNumber": "333",
+      "lastNumber": "344",
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 43
+    },
+    {
+      "volume": "유형북",
+      "section": "1 산포도 / 개념 확인하기",
+      "page": "75",
+      "firstNumber": "345",
+      "lastNumber": "351",
+      "exerciseCount": 7,
+      "addressHeaderSourcePage": 45
+    },
+    {
+      "volume": "유형북",
+      "section": "1 산포도 / 필수유형 다지기",
+      "page": "76~79",
+      "firstNumber": "352",
+      "lastNumber": "375",
+      "exerciseCount": 24,
+      "addressHeaderSourcePage": 45
+    },
+    {
+      "volume": "유형북",
+      "section": "1 산포도 / 만점에 도전하기",
+      "page": "80~81",
+      "firstNumber": "376",
+      "lastNumber": "387",
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 48
+    },
+    {
+      "volume": "유형북",
+      "section": "2 상자그림과 산점도 / 개념 확인하기",
+      "page": "83, 85",
+      "firstNumber": "388",
+      "lastNumber": "397",
+      "exerciseCount": 10,
+      "addressHeaderSourcePage": 51
+    },
+    {
+      "volume": "유형북",
+      "section": "2 상자그림과 산점도 / 필수유형 다지기",
+      "page": "86~93",
+      "firstNumber": "398",
+      "lastNumber": "439",
+      "exerciseCount": 42,
+      "addressHeaderSourcePage": 52
+    },
+    {
+      "volume": "유형북",
+      "section": "2 상자그림과 산점도 / 만점에 도전하기",
+      "page": "94~95",
+      "firstNumber": "440",
+      "lastNumber": "450",
+      "exerciseCount": 11,
+      "addressHeaderSourcePage": 57
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+      "page": "2~3",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 60
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅰ. 삼각비 / 서술형 실전대비",
+      "page": "4~5",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 60
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+      "page": "6~7",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 62
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅰ. 삼각비 / 서술형 실전대비",
+      "page": "8~9",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 63
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+      "page": "10~11",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 65
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 서술형 실전대비",
+      "page": "12~13",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 65
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+      "page": "14~15",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 67
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 서술형 실전대비",
+      "page": "16~17",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 67
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+      "page": "18~19",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 68
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 서술형 실전대비",
+      "page": "20~21",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 69
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+      "page": "22~23",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 70
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅲ. 통계 / 서술형 실전대비",
+      "page": "24~25",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 71
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+      "page": "26~27",
+      "numbers": [
+        "예제 1",
+        "유제 1-1",
+        "유제 1-2",
+        "예제 2",
+        "유제 2-1",
+        "유제 2-2"
+      ],
+      "exerciseCount": 6,
+      "addressHeaderSourcePage": 72
+    },
+    {
+      "volume": "실전북",
+      "section": "서술형 집중연습 / Ⅲ. 통계 / 서술형 실전대비",
+      "page": "28~29",
+      "numbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "addressHeaderSourcePage": 73
+    },
+    {
+      "volume": "실전북",
+      "section": "최종점검 TEST / 실전 TEST 1회",
+      "page": "32~35",
+      "firstNumber": "01",
+      "lastNumber": "25",
+      "exerciseCount": 25,
+      "addressHeaderSourcePage": 74
+    },
+    {
+      "volume": "실전북",
+      "section": "최종점검 TEST / 실전 TEST 2회",
+      "page": "36~39",
+      "firstNumber": "01",
+      "lastNumber": "25",
+      "exerciseCount": 25,
+      "addressHeaderSourcePage": 77
+    },
+    {
+      "volume": "실전북",
+      "section": "최종점검 TEST / 실전 TEST 3회",
+      "page": "40~43",
+      "firstNumber": "01",
+      "lastNumber": "25",
+      "exerciseCount": 25,
+      "addressHeaderSourcePage": 81
+    },
+    {
+      "volume": "실전북",
+      "section": "최종점검 TEST / 실전 TEST 4회",
+      "page": "44~47",
+      "firstNumber": "01",
+      "lastNumber": "25",
+      "exerciseCount": 25,
+      "addressHeaderSourcePage": 83
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "3 원주각의 활용 / 만점에 도전하기",
+        "page": "71~72",
+        "number": "339",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "풀이 참조 — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 43,
+      "bbox": [
+        533.3983154296875,
+        764.6639404296875,
+        586,
+        797.4569702148438
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-339.png"
+    },
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "2 상자그림과 산점도 / 개념 확인하기",
+        "page": "83, 85",
+        "number": "390",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "풀이 참조 — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 51,
+      "bbox": [
+        533.3986206054688,
+        172.49200439453125,
+        586,
+        205.28500366210938
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-390.png"
+    },
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "2 상자그림과 산점도 / 개념 확인하기",
+        "page": "83, 85",
+        "number": "391",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "⑶ 풀이 참조 (그림) — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 51,
+      "bbox": [
+        402.3534851074219,
+        443.49603271484375,
+        586,
+        521.9878234863281
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-391.png"
+    },
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "2 상자그림과 산점도 / 개념 확인하기",
+        "page": "83, 85",
+        "number": "392",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "풀이 참조 — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 51,
+      "bbox": [
+        533.398681640625,
+        764.2850341796875,
+        586,
+        797.0780639648438
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-392.png"
+    },
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "2 상자그림과 산점도 / 개념 확인하기",
+        "page": "83, 85",
+        "number": "394",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "풀이 참조 — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 52,
+      "bbox": [
+        249.93408203125,
+        321.8533935546875,
+        316,
+        354.6463928222656
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-394.png"
+    },
+    {
+      "address": {
+        "volume": "유형북",
+        "section": "2 상자그림과 산점도 / 필수유형 다지기",
+        "page": "86~93",
+        "number": "402",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "graphic-or-solution-reference",
+      "note": "⑵ 풀이 참조 (그림) — 전체 답안을 짧은 텍스트로 완전하게 보존할 수 없어 일부만 등록하지 않는다.",
+      "sourcePage": 53,
+      "bbox": [
+        168.9846954345703,
+        550.2244873046875,
+        316,
+        583.0175170898438
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/answer-402.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        60.11989974975586,
+        214.74822998046875,
+        87.60789489746094,
+        230.6442413330078
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        59.48569869995117,
+        402.1827087402344,
+        85.74260711669922,
+        413.6158447265625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        59.48569869995117,
+        611.8275146484375,
+        85.74250030517578,
+        623.2606201171875
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        329.41119384765625,
+        81.40252685546875,
+        354.9156799316406,
+        97.29853820800781
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        328.7770080566406,
+        332.4985046386719,
+        355.0337829589844,
+        343.931640625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "2~3",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 60,
+      "bbox": [
+        328.7770080566406,
+        474.46612548828125,
+        355.0337829589844,
+        485.8992614746094
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-60.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 62,
+      "bbox": [
+        60.119998931884766,
+        668.1384887695312,
+        87.60800170898438,
+        684.0344848632812
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-62.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 62,
+      "bbox": [
+        328.7770080566406,
+        82.69644927978516,
+        355.0337829589844,
+        94.12956237792969
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-62.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 62,
+      "bbox": [
+        328.7770080566406,
+        226.41384887695312,
+        355.0337829589844,
+        237.8469696044922
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-62.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 62,
+      "bbox": [
+        329.4111022949219,
+        440.176025390625,
+        356.89910888671875,
+        456.072021484375
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-62.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 62,
+      "bbox": [
+        328.7770080566406,
+        660.2740478515625,
+        355.0337829589844,
+        671.7071533203125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-62.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅰ. 삼각비 / 대표 서술형",
+        "page": "6~7",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 63,
+      "bbox": [
+        73.65879821777344,
+        209.66390991210938,
+        99.91570281982422,
+        221.09703063964844
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-63.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        74.29310607910156,
+        166.22900390625,
+        101.78109741210938,
+        182.12501525878906
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        73.65890502929688,
+        332.8536071777344,
+        99.91570281982422,
+        344.2867431640625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        73.65899658203125,
+        515.1922607421875,
+        99.9157943725586,
+        526.6253662109375
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        74.29319763183594,
+        658.5596923828125,
+        101.78118896484375,
+        674.4556884765625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        342.9501953125,
+        82.69644927978516,
+        369.2070007324219,
+        94.12956237792969
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "10~11",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 65,
+      "bbox": [
+        342.9501953125,
+        263.8775329589844,
+        369.2070007324219,
+        275.3106689453125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-65.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        74.29310607910156,
+        112.18170166015625,
+        101.78109741210938,
+        128.0777130126953
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        73.65899658203125,
+        217.08193969726562,
+        99.9157943725586,
+        228.5150604248047
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        73.65899658203125,
+        350.6882019042969,
+        99.9157943725586,
+        362.121337890625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        74.29310607910156,
+        498.0006103515625,
+        99.79759979248047,
+        513.8966064453125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        73.65899658203125,
+        669.751220703125,
+        99.9157943725586,
+        681.184326171875
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "14~15",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 67,
+      "bbox": [
+        342.91900634765625,
+        158.98953247070312,
+        369.17578125,
+        170.4226531982422
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-67.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 68,
+      "bbox": [
+        329.4111022949219,
+        557.2297973632812,
+        356.89910888671875,
+        573.1257934570312
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-68.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 68,
+      "bbox": [
+        328.7768859863281,
+        677.697021484375,
+        355.03369140625,
+        689.130126953125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-68.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 69,
+      "bbox": [
+        73.65890502929688,
+        82.69644927978516,
+        99.91570281982422,
+        94.12956237792969
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-69.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 69,
+      "bbox": [
+        74.29310607910156,
+        201.40252685546875,
+        99.79759979248047,
+        217.2985382080078
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-69.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 69,
+      "bbox": [
+        73.65899658203125,
+        353.8775329589844,
+        99.9157943725586,
+        365.3106689453125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-69.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅱ. 원의 성질 / 대표 서술형",
+        "page": "18~19",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 69,
+      "bbox": [
+        73.65899658203125,
+        503.0507507324219,
+        99.9157943725586,
+        514.48388671875
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-69.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 70,
+      "bbox": [
+        329.41119384765625,
+        166.323486328125,
+        356.8992004394531,
+        182.21949768066406
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-70.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 70,
+      "bbox": [
+        328.777099609375,
+        301.7906188964844,
+        355.0339050292969,
+        313.2237548828125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-70.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 70,
+      "bbox": [
+        328.777099609375,
+        435.9638366699219,
+        355.0339050292969,
+        447.39697265625
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-70.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 70,
+      "bbox": [
+        329.4112854003906,
+        596.0084228515625,
+        356.8993225097656,
+        611.9044189453125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-70.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 71,
+      "bbox": [
+        73.65890502929688,
+        82.69644927978516,
+        99.91570281982422,
+        94.12956237792969
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-71.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "22~23",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 71,
+      "bbox": [
+        73.65899658203125,
+        278.6412048339844,
+        99.9157943725586,
+        290.0743408203125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-71.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "예제 1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 72,
+      "bbox": [
+        329.4111022949219,
+        342.9061279296875,
+        356.89910888671875,
+        358.8021240234375
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-72.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "유제 1-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 72,
+      "bbox": [
+        328.7768859863281,
+        448.37322998046875,
+        355.03369140625,
+        459.8063659667969
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-72.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "유제 1-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 72,
+      "bbox": [
+        328.7768859863281,
+        593.8851318359375,
+        355.03369140625,
+        605.3182373046875
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-72.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "예제 2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 72,
+      "bbox": [
+        329.4111022949219,
+        742.5911254882812,
+        354.91558837890625,
+        758.4871215820312
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-72.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "유제 2-1",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 73,
+      "bbox": [
+        73.65899658203125,
+        224.54684448242188,
+        99.9157943725586,
+        235.97996520996094
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-73.png"
+    },
+    {
+      "address": {
+        "volume": "실전북",
+        "section": "서술형 집중연습 / Ⅲ. 통계 / 대표 서술형",
+        "page": "26~27",
+        "number": "유제 2-2",
+        "subpart": ""
+      },
+      "key": null,
+      "registered": true,
+      "reason": "structured-worked-solution",
+      "note": "단계별 밑줄 풀이를 채우는 대표 서술형이며 독립된 단답란이 없다. 마지막 계산값만 전체 정답으로 대체하지 않고 주소를 보존한다.",
+      "sourcePage": 73,
+      "bbox": [
+        73.65899658203125,
+        352.2239074707031,
+        99.9157943725586,
+        363.65704345703125
+      ],
+      "evidenceImage": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/jihak-3/full-73.png"
+    }
+  ]
+}
