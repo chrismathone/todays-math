@@ -31,6 +31,8 @@ graphVersion은 서버가 확인하는 opaque identity다. `sourceSnapshotHash`,
 
 root의 실제 Next 390px 검수에서 하단 11개 메뉴가 각 33px로 줄어 글자가 겹친 결함을 인수했다(`msg_ce4db8851bcd`). 모바일에만 최소 76px implicit grid column과 메뉴 내부 가로 scroll을 적용했고 조작은 최소 44px를 유지한다. 실제 `WorkspaceNavigation` presentation을 얇게 분리해 UnifiedWorkspace와 fixture가 같은 DOM/CSS를 사용한다. 현재 메뉴가 가려진 경우 가로 메뉴만 이동하고 본문은 스크롤하지 않는다. 기존 prefetch·계정별 권한·제품 전환은 유지한다. 실제 셸의 권한/로딩/카트 및 nav 회귀 4파일 89시험이 `mobile-navigation-shell-GREEN.txt`에서 통과했다. 기존 4실패는 이미 추가한 ontology의 SRS 권한 상속을 이전 기대 목록에 반영하지 않은 것이었고, 새 상속 positive/negative를 추가했다. jsdom은 조작/이동을 검증하며 최종 390/768/1440 기하 검수는 root의 실제 브라우저 증거로 인수한다. fixture 서버를 이 worker가 실행하지 않았다.
 
+후속 root 실측(`msg_faed8e818422`, root pin 5bc)은 폭 76px·높이 53.8px·문서 가로 넘침 0을 확인했지만, 데스크톱에서 390px로 바꿀 때 active 지식 메뉴가 x764에 남는 결함을 찾았다. `view/identity`만 보던 effect를 수정해 breakpoint change, window resize, 메뉴/active의 scoped ResizeObserver, font loadingdone 때 가로 영역을 다시 확인하고 listener/observer를 해제한다. `mobile-breakpoint-RED.txt` → `mobile-breakpoint-GREEN-final.txt` 실제 셸 회귀 4파일 **91시험 PASS**, 전체 TypeScript/ESLint/diff 진단 0이다. 87시험 운영 묶음 뒤 바뀐 nav에 대한 별도 집중 검증이며, root의 후속 실제 기하 판정과 구분한다.
+
 외부 evidence root는 `/Users/pss/Desktop/creative/display-survey/consensus/ontology-full-20261023/operations/`이다. 학생 자료·정답·문항 본문을 모델로 전송하지 않았다. 이 보고에는 비밀 헤더·인증 값이 없다.
 
 - `checkpoint-b1-b2-b3-final.txt`: 격리 PostgreSQL + Request + 실제 NextAuth + 실제 React + source server clock 묶음 14파일 **70시험 PASS**. 별도 `publisher-actual-http-first.txt`는 합성 inline 입력을 실제 durable publisher → Node HMAC → 실제 Python OWL/SHACL → 제어된 65초 지연 → 활성화 1시험 PASS(67.05초). 각 PID/port/lease/종료 영수증은 `postgres-run-*.json`, `publisher-python-http-*.json`이다.
