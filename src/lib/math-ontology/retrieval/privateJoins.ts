@@ -304,10 +304,14 @@ export async function joinRetainedOntologySources(
       summaryFocus: summaryWitnesses.length,
     },
     coverage: {
+      availableRetainedEvents:
+        snapshot.learning.firstAttempts.length +
+        snapshot.learning.followUps.length,
       retainedEvents: events.length,
       joinedEvents: witnesses.length,
       unresolved,
       retainedSummaries: summaryInputs.length,
+      inspectedSummaries: Math.min(summaryInputs.length, 100),
       joinedSummaries: summaryWitnesses.length,
       unresolvedSummaries,
       summaryPartial: summaryInputs.length > 100,

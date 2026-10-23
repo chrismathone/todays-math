@@ -1,3 +1,4 @@
+import type { ontologyPrivateSummaryPacket } from "./privatePacket";
 import { ontologyModelJson } from "./output";
 import { z } from "zod";
 import {
@@ -70,12 +71,15 @@ export interface OntologyModelPacket {
     text: string;
     authority: "native-authored-not-official-alignment";
   }[];
+  privateSummaries?: ReturnType<typeof ontologyPrivateSummaryPacket>;
   observations?: {
     retainedFirstAttempts: number;
     independentCorrect: number;
     independentIncorrect: number;
     excluded: number;
     joinedEvents: number;
+    sliceOnly?: boolean;
+    partial?: boolean;
     historyComplete: false;
     causalEffect: "unknown";
     mastery: "unknown";
@@ -162,6 +166,7 @@ export function ontologySelectionPrompt(
     "explain은 질문에 직접 필요한 factIds만 고릅니다. ID가 존재한다는 것만으로 질문과 관련 있음을 뜻하지 않습니다.",
     "조회·보여줘·알려줘·설명해 요청은 explain입니다. 사용자가 새 후보를 만들거나 다시 준비하라고 명시하지 않았다면 relation-draft를 선택하지 마세요.",
     "relation-draft는 검토할 가설이며 승인된 사실이 아닙니다. packet에 있는 개체와 근거만 사용하며 교육적 진실이나 실행 허가를 주장하지 마세요.",
+    "privateSummaries는 날짜·상태 요약의 개수와 원천 연결 범위입니다. eventTime null인 요약은 독립 첫 풀이·정답률·계획 변경 이후 사건으로 합산하지 마세요. partial/미확인/누락은 성취 0이나 미학습이 아닙니다.",
     "단원 소속과 선수 관계는 다릅니다. authored 정의는 공식 성취 기준 정렬이 아닙니다. 학생 관측 수치는 기술 통계이며 숙달·오답 원인·효과가 아닙니다. 독립 첫 풀이와 후속 풀이를 합치지 마세요.",
     "reasoning은 최대4개 {text,factIds}로 질문에 답하는 짧은 근거 설명입니다. 모든 문장에 선택한 사실 ID를 붙이고 근거 밖 결론을 쓰지 마세요. 모호한 동명이 개념은 확인을 요청하고 관계·근거가 없으면 insufficient입니다.",
     "오직 JSON {packetId,intent,factIds,relationDrafts,reasoning}를 반환하세요. relationDrafts 원소는 {subject,predicate,object,factIds}입니다. explain은 factIds 1개 이상/관계배열 비움, insufficient는 두배열 비움, relation-draft는 가설 1개 이상입니다.",

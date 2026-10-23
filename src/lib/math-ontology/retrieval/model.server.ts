@@ -1,3 +1,7 @@
+import {
+  ontologyGroundingJsonSchema,
+  type OntologyModelJsonSchema,
+} from "./modelSchemas";
 import "server-only";
 import { insightModelConfig } from "@/lib/math-insight/config";
 import { maskInsightQuery } from "@/lib/math-insight/inference";
@@ -11,6 +15,7 @@ import { ontologyDigest } from "../compiler/canonical";
 export async function requestOntologyCompletion(
   prompt: string,
   signal: AbortSignal,
+  jsonSchema?: OntologyModelJsonSchema,
 ) {
   const config = insightModelConfig();
   if (!config) throw new Error("MODEL_NOT_CONFIGURED");
@@ -18,6 +23,7 @@ export async function requestOntologyCompletion(
   const boundedSignal = AbortSignal.any([signal, AbortSignal.timeout(20000)]);
   const raw = await runModelApi({
     ...config,
+    ...(jsonSchema ? { jsonSchema } : {}),
     prompt,
     signal: boundedSignal,
     maxOutputTokens: 1600,
@@ -44,7 +50,11 @@ export async function requestOntologyModelSelection(input: {
     input.packet,
     maskInsightQuery(input.question, input.knownIdentities),
   );
-  const completion = await requestOntologyCompletion(prompt, input.signal);
+  const completion = await requestOntologyCompletion(
+    prompt,
+    input.signal,
+    ontologyGroundingJsonSchema,
+  );
   const latest = await input.stillCurrent();
   if (latest !== "current")
     throw new Error(
