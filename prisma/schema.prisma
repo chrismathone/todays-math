@@ -2825,3 +2825,233 @@ model StudentEnrollment {
   @@index([studentId, classId])
   @@map("student_enrollment")
 }
+
+// Formal ontology operations are additive and never extend StudentSrsState payload.
+// IDs below are frozen audit context, not browser authorization edges.
+model OntologyProposal {
+  id                 String            @id @db.Uuid
+  actorId            String            @map("actor_id") @db.Uuid
+  studentId          String            @map("student_id") @db.Uuid
+  classId            String            @map("class_id") @db.Uuid
+  branchId           String?           @map("branch_id") @db.Uuid
+  actionId           String            @map("action_id") @db.VarChar(80)
+  status             String            @default("draft") @db.VarChar(20)
+  argumentsCanonical String            @map("arguments_canonical") @db.Text
+  evidenceCanonical  String            @map("evidence_canonical") @db.Text
+  sourceCanonical    String            @map("source_canonical") @db.Text
+  previewCanonical   String            @map("preview_canonical") @db.Text
+  bindingCanonical   String            @map("binding_canonical") @db.Text
+  sealHash           String            @map("seal_hash") @db.VarChar(71)
+  authorizationStamp String            @map("authorization_stamp") @db.VarChar(71)
+  expiresAt          DateTime          @map("expires_at")
+  createdAt          DateTime          @default(now()) @map("created_at")
+  approval           OntologyApproval?
+  receipt            OntologyReceipt?
+
+  @@index([actorId, studentId, createdAt])
+  @@map("ontology_proposal")
+}
+
+model OntologyApproval {
+  id         String           @id @db.Uuid
+  proposalId String           @unique @map("proposal_id") @db.Uuid
+  actorId    String           @map("actor_id") @db.Uuid
+  sealHash   String           @map("seal_hash") @db.VarChar(71)
+  approvedAt DateTime         @map("approved_at")
+  consumedAt DateTime?        @map("consumed_at")
+  proposal   OntologyProposal @relation(fields: [proposalId], references: [id], onDelete: Restrict)
+  receipt    OntologyReceipt?
+
+  @@map("ontology_approval")
+}
+
+model OntologyReceipt {
+  id              String             @id @db.Uuid
+  proposalId      String             @unique @map("proposal_id") @db.Uuid
+  approvalId      String             @unique @map("approval_id") @db.Uuid
+  actorId         String             @map("actor_id") @db.Uuid
+  resultCanonical String             @map("result_canonical") @db.Text
+  resultHash      String             @map("result_hash") @db.VarChar(71)
+  createdAt       DateTime           @map("created_at")
+  proposal        OntologyProposal   @relation(fields: [proposalId], references: [id], onDelete: Restrict)
+  approval        OntologyApproval   @relation(fields: [approvalId], references: [id], onDelete: Restrict)
+  audit           OntologyAudit?
+  outbox          OntologyOutbox?
+  feedback        OntologyFeedback[]
+
+  @@map("ontology_receipt")
+}
+
+model OntologyAudit {
+  id              String          @id @db.Uuid
+  receiptId       String          @unique @map("receipt_id") @db.Uuid
+  actorId         String          @map("actor_id") @db.Uuid
+  event           String          @db.VarChar(80)
+  detailCanonical String          @map("detail_canonical") @db.Text
+  detailHash      String          @map("detail_hash") @db.VarChar(71)
+  createdAt       DateTime        @map("created_at")
+  receipt         OntologyReceipt @relation(fields: [receiptId], references: [id], onDelete: Restrict)
+
+  @@map("ontology_audit")
+}
+
+model OntologyOutbox {
+  id              String          @id @db.Uuid
+  receiptId       String          @unique @map("receipt_id") @db.Uuid
+  topic           String          @db.VarChar(80)
+  bodyCanonical   String          @map("body_canonical") @db.Text
+  bodyHash        String          @map("body_hash") @db.VarChar(71)
+  status          String          @default("queued") @db.VarChar(20)
+  leaseGeneration Int             @default(0) @map("lease_generation")
+  leaseUntil      DateTime?       @map("lease_until")
+  attempts        Int             @default(0)
+  availableAt     DateTime        @map("available_at")
+  deliveredAt     DateTime?       @map("delivered_at")
+  lastErrorCode   String?         @map("last_error_code") @db.VarChar(80)
+  receipt         OntologyReceipt @relation(fields: [receiptId], references: [id], onDelete: Restrict)
+
+  @@index([status, availableAt])
+  @@map("ontology_outbox")
+}
+
+model OntologyFeedback {
+  id                   String          @id @db.Uuid
+  receiptId            String          @map("receipt_id") @db.Uuid
+  actorId              String          @map("actor_id") @db.Uuid
+  sourceSnapshotId     String          @map("source_snapshot_id") @db.VarChar(512)
+  observationCanonical String          @map("observation_canonical") @db.Text
+  observationHash      String          @map("observation_hash") @db.VarChar(71)
+  observedAt           DateTime        @map("observed_at")
+  createdAt            DateTime        @map("created_at")
+  receipt              OntologyReceipt @relation(fields: [receiptId], references: [id], onDelete: Restrict)
+
+  @@unique([receiptId, observationHash])
+  @@map("ontology_feedback")
+}
+
+model OntologyRelationReview {
+  id                  String    @id @db.Uuid
+  scopeKey            String    @map("scope_key") @db.VarChar(200)
+  assertionId         String    @map("assertion_id") @db.Text
+  assertionCanonical  String    @map("assertion_canonical") @db.Text
+  assertionHash       String    @map("assertion_hash") @db.VarChar(71)
+  state               String    @default("draft") @db.VarChar(20)
+  revision            Int       @default(0)
+  proposedBy          String    @map("proposed_by") @db.Uuid
+  reviewerId          String?   @map("reviewer_id") @db.Uuid
+  validationCanonical String?   @map("validation_canonical") @db.Text
+  validationHash      String?   @map("validation_hash") @db.VarChar(71)
+  reviewedAt          DateTime? @map("reviewed_at")
+  createdAt           DateTime  @default(now()) @map("created_at")
+
+  @@index([scopeKey, state, createdAt])
+  @@map("ontology_relation_review")
+}
+
+model OntologyCompileJob {
+  id                       String    @id @db.Uuid
+  scopeKey                 String    @map("scope_key") @db.VarChar(200)
+  requestedBy              String    @map("requested_by") @db.Uuid
+  inputCanonical           String    @map("input_canonical") @db.Text
+  inputManifestHash        String    @map("input_manifest_hash") @db.VarChar(71)
+  approvedReviewStateHash  String    @map("approved_review_state_hash") @db.VarChar(71)
+  expectedActiveGeneration Int       @map("expected_active_generation")
+  engineLockHash           String    @map("engine_lock_hash") @db.VarChar(71)
+  state                    String    @default("queued") @db.VarChar(20)
+  leaseGeneration          Int       @default(0) @map("lease_generation")
+  leaseUntil               DateTime? @map("lease_until")
+  attempt                  Int       @default(0)
+  resultCanonical          String?   @map("result_canonical") @db.Text
+  resultHash               String?   @map("result_hash") @db.VarChar(71)
+  lastErrorCode            String?   @map("last_error_code") @db.VarChar(80)
+  createdAt                DateTime  @default(now()) @map("created_at")
+
+  @@index([scopeKey, state, createdAt])
+  @@map("ontology_compile_job")
+}
+
+model OntologyRelease {
+  graphVersion      String    @id @map("graph_version") @db.VarChar(512)
+  scopeKey          String    @map("scope_key") @db.VarChar(200)
+  jobId             String    @unique @map("job_id") @db.Uuid
+  identityCanonical String    @map("identity_canonical") @db.Text
+  artifactCanonical String    @map("artifact_canonical") @db.Text
+  artifactHash      String    @map("artifact_hash") @db.VarChar(71)
+  publishedAt       DateTime  @map("published_at")
+  revokedAt         DateTime? @map("revoked_at")
+
+  @@index([scopeKey, publishedAt])
+  @@map("ontology_release")
+}
+
+model OntologyActiveGraph {
+  scopeKey     String   @id @map("scope_key") @db.VarChar(200)
+  graphVersion String?  @map("graph_version") @db.VarChar(512)
+  generation   Int      @default(0)
+  updatedAt    DateTime @map("updated_at")
+
+  @@map("ontology_active_graph")
+}
+
+model OntologyArtifactChunk {
+  jobId          String   @map("job_id") @db.Uuid
+  chunkIndex     Int      @map("chunk_index")
+  scopeKey       String   @map("scope_key") @db.VarChar(200)
+  inputHash      String   @map("input_hash") @db.VarChar(71)
+  leaseGeneration Int    @map("lease_generation")
+  chunkCount     Int      @map("chunk_count")
+  totalBytes     Int      @map("total_bytes")
+  gzipHash       String   @map("gzip_hash") @db.VarChar(71)
+  chunkHash      String   @map("chunk_hash") @db.VarChar(71)
+  bytes          Bytes    @db.ByteA
+  createdAt      DateTime @default(now()) @map("created_at")
+  @@id([jobId, leaseGeneration, chunkIndex])
+  @@index([scopeKey, gzipHash])
+  @@map("ontology_artifact_chunk")
+}
+
+model OntologySourceAuthorityDecision {
+  id                 String    @id @db.Uuid
+  scopeKey           String    @map("scope_key") @db.VarChar(200)
+  sourceManifestHash String    @map("source_manifest_hash") @db.VarChar(71)
+  decisionCanonical  String    @map("decision_canonical") @db.Text
+  decisionHash       String    @map("decision_hash") @db.VarChar(71)
+  approvedBy         String    @map("approved_by") @db.Uuid
+  createdAt          DateTime  @map("created_at")
+  revokedAt          DateTime? @map("revoked_at")
+  @@index([scopeKey, sourceManifestHash])
+  @@map("ontology_source_authority_decision")
+}
+
+model OntologyReviewEvent {
+  id              String   @id @db.Uuid
+  actorId         String   @map("actor_id") @db.Uuid
+  scopeKey        String   @map("scope_key") @db.VarChar(200)
+  subjectId       String   @map("subject_id") @db.VarChar(512)
+  event           String   @db.VarChar(80)
+  detailCanonical String   @map("detail_canonical") @db.Text
+  detailHash      String   @map("detail_hash") @db.VarChar(71)
+  createdAt       DateTime @map("created_at")
+  @@index([scopeKey, subjectId, createdAt])
+  @@map("ontology_review_event")
+}
+
+model OntologyEvidenceSnapshot {
+  id                    String   @id @db.VarChar(512)
+  actorId               String   @map("actor_id") @db.Uuid
+  studentId             String   @map("student_id") @db.Uuid
+  classId               String   @map("class_id") @db.Uuid
+  branchId              String?  @map("branch_id") @db.Uuid
+  graphVersion          String   @map("graph_version") @db.VarChar(512)
+  studentRevision       Int      @map("student_revision")
+  sourceCanonical       String   @map("source_canonical") @db.Text
+  sourceHash            String   @map("source_hash") @db.VarChar(71)
+  evidenceCanonical     String   @map("evidence_canonical") @db.Text
+  evidenceHash          String   @map("evidence_hash") @db.VarChar(71)
+  queryCanonical        String   @map("query_canonical") @db.Text
+  queryHash             String   @map("query_hash") @db.VarChar(71)
+  expiresAt             DateTime @map("expires_at")
+  createdAt             DateTime @map("created_at")
+  @@index([actorId, studentId, createdAt])
+  @@map("ontology_evidence_snapshot")
+}
