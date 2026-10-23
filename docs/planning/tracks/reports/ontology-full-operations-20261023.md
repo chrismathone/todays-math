@@ -82,6 +82,12 @@ root의 실제 production-mode 질의 반례 `msg_08bc38759772`에 따라 `retri
 
 frontier 8·3홉·개체당 neighbors 12·packet facts 30을 늘리지 않았고, source-specific 라벨/ID 예외나 unknown 승격은 없다. runtime/base/modelSelection/modelSchemas는 수정하지 않았다. `retrieval-grounding-GREEN-first.txt`는 정확 정의와 문항→정의·정의→단원 연결이 남는 실제 RDF/SHACL packet 및 broad collision/20 incoming/늦은 bridge 배분 4시험 PASS다. 기존 기대값을 바꾸지 않은 `retrieval-grounding-regression.txt`는 assist/selection/plan/private join/context까지 **9파일 30시험 PASS**, 전체 TypeScript·해당 ESLint·diff 진단 0이다. 실제 모델/provider/DB/browser/build는 호출하지 않았으며, 실제 모델 선택·최종 사용자 답의 적합성은 root/formal의 새 앱 인수로 검증한다.
 
+## 실제 앱 출처·이력 문자열 표시 수정
+
+root가 실제 앱 af9548b에서 URN·`model-packet`·`rdf-validate-shacl 0.6.5`가 자동 수식 추론으로 분해되고, 이력의 `26. 10. 23. 오후 8:17` 날짜 접두부가 사라지는 반례를 전달했다. 온톨로지 화면의 summary/title/note/details만 로컬 explicit-math 구간 분리로 표시한다. 일반 증거 문자열·URL·실제 줄바꿈·literal escape는 React 텍스트로 보존하고, 명시 수식은 기존 공용 MathText로 렌더링한다. 글로벌 OCR/MathText·source contract는 바꾸지 않았다. markdown 이미지 표기도 일반 문자열이므로 외부 이미지 요청을 만들지 않는다.
+
+`provenance-detail-RED.txt`의 388/1440 폭 두 회귀와 `provenance-date-RED.txt`의 날짜 회귀는 기존 렌더러에서 실패했다. `provenance-detail-GREEN-final.txt`는 날짜 전체·URN·엔진/packet 식별자·실제 줄바꿈·명시 분수·외부 이미지 없음 및 기존 UI/API 흐름 **2파일 17시험 PASS**, 전체 TypeScript·해당 ESLint·diff 진단 0이다. 이 폭은 DOM fixture 경계이며 실제 브라우저 overflow 측정으로 주장하지 않는다. 합성 React fixture `?case=relation`에도 같은 식별자·날짜·분수를 넣어 root의 388/1440 직접 검수 대상으로 전달했다. 이 worker의 모델/API/브라우저/서버/build/공유 DB 실행은 없으며 최종 실제 앱 재검수는 root 소유다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.

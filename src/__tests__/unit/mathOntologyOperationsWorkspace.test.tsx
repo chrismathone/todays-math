@@ -8,6 +8,27 @@ afterEach(cleanup);
 const answer: WorkspaceAnswer = { id: "answer-1", summary: "계획 변경을 준비했습니다.", steps: [{ id: "e1", title: "보존된 첫 풀이", note: "힌트와 재시도 제외", state: "observed" }], details: [], coverage: [], action: { kind: "plan", id: "proposal-1", label: "이 계획으로 바꾸기", changes: [{ label: "하루 목표", before: "10문제", after: "15문제" }], effects: ["시작한 학습은 유지됩니다."] } };
 function source(): OntologyWorkspaceSource { return { students: vi.fn(async () => []), run: vi.fn(async () => answer), confirm: vi.fn(async () => ({ id: "receipt-1", state: "applied" as const, message: "계획을 변경했습니다.", details: ["같은 요청은 다시 쓰지 않습니다."] })), feedback: vi.fn(async () => ({ summary: "아직 후속 관찰이 없습니다.", details: [] })) }; }
 describe("B/H3 concise AI-first workspace", () => {
+ it.each([388, 1440])("keeps provenance identifiers literal and newlines intact while rendering explicit fractions at the %ipx fixture boundary", async width => {
+  const port = source(), identifier = "urn:todaymath:assertion:model:01234567-89ab-cdef-0123-456789abcdef", engine = "rdf-validate-shacl 0.6.5", packet = `model-packet:sha256:${"a".repeat(64)};exact-witness:sha256:${"b".repeat(64)}`;
+  vi.mocked(port.run).mockResolvedValue({ ...answer, action: undefined, details: [{ title: "원천과 검증", text: `${identifier}\n${engine}\n${packet}\n설명 $\\frac{1}{2}$는 절반입니다.\n![외부그림](https://invalid.example/metadata.png)` }] });
+  const { container } = render(<div style={{ width }}><OntologyWorkspace source={port} /></div>);
+  fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "근거를 보여줘" } }); fireEvent.click(screen.getByRole("button", { name: "준비하기" })); await screen.findByText(answer.summary);
+  fireEvent.click(screen.getByText("출처·검토 이력"));
+  for (const literal of [identifier, engine, packet]) { const text = screen.getByText(literal, { exact: false }); expect(text.closest(".katex")).toBeNull(); expect(text.textContent).toContain(literal); }
+  const details = screen.getByText("원천과 검증").parentElement!;
+  expect(details.textContent).toContain(`${identifier}\n${engine}\n${packet}`);
+  expect(details.querySelectorAll(".katex")).toHaveLength(1); expect(details.querySelector(".katex .mfrac")).not.toBeNull(); expect(container.querySelectorAll("img")).toHaveLength(0);
+ });
+ it("preserves the full history date and technical evidence in summaries, titles and notes with only explicit math rendered", async () => {
+  const port = source(), timestamp = "26. 10. 23. 오후 8:17 · 해당 판의 게시를 완료했습니다.", identifier = "urn:todaymath:assertion:model:01234567-89ab-cdef-0123-456789abcdef";
+  port.history = vi.fn(async () => ({ ...answer, action: undefined, summary: `${timestamp} 요약`, steps: [{ id: "published", title: `${identifier} 이력`, note: `${timestamp}\n검증 rdf-validate-shacl 0.6.5\n분수 $\\frac{1}{2}$`, state: "observed" as const }] }));
+  const { container } = render(<OntologyWorkspace source={port} />);
+  fireEvent.click(screen.getByRole("button", { name: "검토·실행 이력" }));
+  await screen.findByText(`${timestamp} 요약`); expect(screen.getByText(`${identifier} 이력`).textContent).toBe(`${identifier} 이력`);
+  const note = screen.getByText("검증 rdf-validate-shacl 0.6.5", { exact: false, selector: "div" });
+  expect(note.textContent).toContain(`${timestamp}\n검증 rdf-validate-shacl 0.6.5`);
+  expect(container.querySelectorAll(".katex")).toHaveLength(1); expect(container.querySelector(".katex .mfrac")).not.toBeNull();
+ });
  it("reads source populations directly without delegating counting to AI or replacing the user's request", async () => {
   const port: OntologyWorkspaceSource & { coverage: ReturnType<typeof vi.fn> } = { ...source(), coverage: vi.fn(async () => ({ id: "synthetic-coverage", summary: "합성 원천 모집단입니다.", steps: [], details: [], coverage: [{ label: "합성 개체", value: "100 / 100" }, { label: "공식 기준 대응", value: "미확인" }] })) };
   render(<OntologyWorkspace source={port} />);

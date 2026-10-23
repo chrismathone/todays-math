@@ -17,3 +17,7 @@ For the mobile-shell regression, inspect 390 / 768 / 1440: every navigation targ
 `?case=reprepare` shows an unresolved candidate with one explicit reprepare action. Edit the existing request, click once, and verify a new candidate is prepared while the earlier result remains reachable. It never confirms a relation or writes student state; all results are synthetic.
 
 The source-coverage button now calls the deterministic `coverage` fixture port directly (`coverage` counter only, `prepare` stays unchanged). Production uses GET `/api/math-ontology/coverage`; no model chooses or counts its populations. Displayed fixture denominators are explicitly synthetic.
+
+`?case=relation` → enter a request → open source/review details includes literal synthetic URN/model-packet/engine-version identifiers, actual newlines, and one explicit fraction. At 388/1440, verify identifiers remain ordinary readable text with wrapping and only the fraction renders as math. DOM tests do not claim measured browser geometry; root owns that check.
+
+합성 출처의 날짜 `26. 10. 23. 오후 8:17`도 글자 그대로 유지되는지 확인합니다. 자동 수식 추론은 이 화면의 증거 문자열에 적용하지 않고 명시 수식만 공용 렌더러로 표시합니다.\n 같은 literal escape를 임의로 줄바꿈으로 풀지 않습니다.
