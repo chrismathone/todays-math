@@ -106,6 +106,6 @@ Orca 내부 브라우저의 개발용 메모리 화면에서 새 검색 → 수�
 - 변경 영역 22개 TypeScript/TSX 파일 ESLint 통과. 등록 전 원본 파일 해시와 PDF 쪽 경계를 다시 확인했다.
 - 이 첫 배포의 전체 TypeScript와 Next.js 16.3.8 운영 빌드도 통과했다. 추가 자료를 통합한 뒤의 최종 빌드·배포 확인은 별도 기록한다.
 
-25개 공개 자료 검색 UI 체크포인트 `835baed6e315a894b9b65290818d93833b97cb59`는 main에 통합됐고, GitHub Production 배포 `7285266363`와 Vercel 성공 상태를 03:03 KST에 확인했다. 운영 탭을 실제 새로고침해 공개 자료 25개, 저장 교재 29권, 출판사·교재 검색 결과를 확인했다. 이어서 32개 공개 자료 체크포인트 `5cf8c8b5bc4044409a5729754b1f97d8dc095677`도 GitHub Production 배포 `7285707812`와 Vercel 성공 상태를 확인했고, 운영 탭 새로고침에서 정답 자료 32개를 확인했다. 이후 추가한 팩의 공개 선택 목록은 최종 배포로 전달한다.
+25개 공개 자료 검색 UI 체크포인트 `835baed6e315a894b9b65290818d93833b97cb59`는 main에 통합됐고, GitHub Production 배포 `7285266363`와 Vercel 성공 상태를 03:03 KST에 확인했다. 운영 탭을 실제 새로고침해 공개 자료 25개, 저장 교재 29권, 출판사·교재 검색 결과를 확인했다. 이어서 32개 공개 자료 체크포인트 `5cf8c8b5bc4044409a5729754b1f97d8dc095677`도 GitHub Production 배포 `7285707812`와 Vercel 성공 상태를 확인했고, 운영 탭 새로고침에서 정답 자료 32개를 확인했다. 37개 공개 선택 목록이 이번 최종 배포 대상이다. 최종 커밋·GitHub/Vercel 성공 상태·운영 검색 확인 결과는 외부 증거 루트의 `final-deployment.json`과 `final-production-browser-check.json`에 별도로 기록한다.
 
 외부 실행 로그의 접두사는 `checkpoint-25-`이다. 외부 APFS 작업 공간에서 lockfile대로 설치한 의존성을 사용했다. 공유 의존성·잠금 파일·학생 SRS 기록은 바꾸지 않았다. [Orca orchestration 스킬](/Users/pss/.agents/skills/orchestration/SKILL.md)로 major·secondary·elementary Codex 작업을 분리했고, 등록/화면/배포는 조정 작업이 소유한다. 원본 수집·문항별 검수·운영 등록·배포 확인을 각각 분리해 기록한다.
