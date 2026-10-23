@@ -22,9 +22,40 @@ import {
   sourceByteDigest,
   freezeSourceValue,
 } from "./canonical";
+import {
+  publicSourceRecordValue,
+  publicSourceAssertionValue,
+} from "./publicProjection";
 type UnversionedPayload = Omit<MathOntologySourcePayload, "versions">;
 const recordKey = (ref: MathOntologySourceRef) =>
   canonicalSourceJson([ref.namespace, ref.scope, ref.nativeId]);
+function familyVersion(
+  namespace: string,
+  records: MathOntologySourcePayload["records"],
+  inputs: MathOntologySourcePayload["inputs"],
+) {
+  const paths = new Set<string>();
+  for (const row of records) {
+    paths.add(row.origin.repositoryPath);
+    for (const label of row.labels ?? [])
+      paths.add(label.origin.repositoryPath);
+    for (const reference of row.nativeReferences ?? [])
+      paths.add(reference.origin.repositoryPath);
+  }
+  const sourceInputs = inputs.filter(
+    (input) =>
+      paths.has(input.path) ||
+      input.path.startsWith("scripts/ontology/") ||
+      input.path.startsWith("src/lib/math-ontology/") ||
+      input.path === "src/contracts/mathOntologySource.contract.ts",
+  );
+  return sourceDigest({
+    adapterVersion: "repo-sources-1",
+    namespace,
+    sourceInputs,
+    records,
+  });
+}
 function canonicalPayload(
   input: UnversionedPayload,
 ): MathOntologySourcePayload {
@@ -40,15 +71,13 @@ function canonicalPayload(
   const expectedCoverage = [...input.expectedCoverage].sort((a, b) =>
     compareSourceStrings(a.namespace, b.namespace),
   );
-  const inputHash = sourceDigest(inputs);
   const versions = MATH_ONTOLOGY_SOURCE_NAMESPACES.map((namespace) => ({
     namespace,
-    sourceVersion: sourceDigest({
-      adapterVersion: input.adapterVersion,
+    sourceVersion: familyVersion(
       namespace,
-      inputHash,
-      records: records.filter((r) => r.namespace === namespace),
-    }),
+      records.filter((r) => r.namespace === namespace),
+      inputs,
+    ),
   }));
   return mathOntologySourcePayloadSchema.parse({
     ...input,
@@ -99,6 +128,12 @@ function assertIntegrity(payload: MathOntologySourcePayload): void {
         paths.get(label.origin.repositoryPath) !== label.origin.byteHash
       )
         throw new Error("Label/source text hash correspondence mismatch");
+    }
+    for (const reference of record.nativeReferences ?? []) {
+      if (
+        paths.get(reference.origin.repositoryPath) !== reference.origin.byteHash
+      )
+        throw new Error("Native reference/source hash mismatch");
     }
   }
   const assertionIds = new Set<string>();
@@ -162,21 +197,49 @@ export function assembleMathOntologySources(
   const versions = new Map(
     envelope.payload.versions.map((v) => [v.namespace, v.sourceVersion]),
   );
+  const eligibleVersions = new Map(
+    MATH_ONTOLOGY_SOURCE_NAMESPACES.map((namespace) => [
+      namespace,
+      sourceDigest({
+        adapterVersion: envelope.payload.adapterVersion,
+        namespace,
+        records: envelope.payload.records
+          .filter(
+            (r) =>
+              r.namespace === namespace &&
+              r.distribution !== "quarantine-reference",
+          )
+          .map(publicSourceRecordValue),
+      }),
+    ]),
+  );
   const entities = envelope.payload.records.map((record) => ({
     ...record,
     stableIri: sourceEntityIri(record),
-    iri: sourceEntityVersionIri(record, versions.get(record.namespace)!),
-    sourceVersion: versions.get(record.namespace)!,
+    iri: sourceEntityVersionIri(
+      record,
+      (record.distribution === "quarantine-reference"
+        ? versions
+        : eligibleVersions
+      ).get(record.namespace)!,
+    ),
+    sourceVersion: (record.distribution === "quarantine-reference"
+      ? versions
+      : eligibleVersions
+    ).get(record.namespace)!,
   }));
   const byRef = new Map(entities.map((e) => [recordKey(e), e]));
-  const inputVersion = sourceDigest(envelope.payload.inputs);
   const assertions = envelope.payload.assertions.map((a) => {
     const scope = a.origin.repositoryPath;
     const sourceVersion = sourceDigest({
-      assertion: a,
-      inputVersion,
-      subjectVersion: versions.get(a.subject.namespace),
-      objectVersion: versions.get(a.object.namespace),
+      assertion:
+        byRef.get(recordKey(a.subject))!.distribution !==
+          "quarantine-reference" &&
+        byRef.get(recordKey(a.object))!.distribution !== "quarantine-reference"
+          ? publicSourceAssertionValue(a)
+          : a,
+      subjectVersion: byRef.get(recordKey(a.subject))!.sourceVersion,
+      objectVersion: byRef.get(recordKey(a.object))!.sourceVersion,
     });
     return {
       ...a,

@@ -20,7 +20,7 @@ export const EXPECTED_MATH_ONTOLOGY_ADAPTER_COVERAGE: Readonly<
   "fading-group": 2040,
   "graph-unit": 100,
   "graph-topic": 356,
-  "graph-course": 11,
+  "graph-course": 13,
   "arithmetic-skill": 7,
   "arithmetic-v2-type": 737,
   "algebra-srs-concept": 6,
@@ -93,8 +93,8 @@ const labels: Partial<Record<MathOntologySourceNamespace, string>> = {
   "official-standard": "공식 교육과정 코드",
   "operational-model": "운영 데이터 계약",
 };
-/** UI-safe descriptive counts: actual instances/official alignment are not derived from registry size. */
-export function mathOntologySourceCoverageRows(
+/** Administrative full census only; never return these global/quarantine counts to teacher/student queries. */
+export function mathOntologyAdminSourceCoverageRows(
   coverage: readonly MathOntologySourceCoverage[],
 ) {
   return coverage.map((c) => ({
@@ -118,4 +118,20 @@ export function mathOntologySourceCoverageRows(
           : "저장소 원천 레코드 수",
     educationStatus: "공식 기준 대응·교육 관계 검수 미확인",
   }));
+}
+
+/** Public metadata counts only, after the caller has selected its authorized graph. No private existence/denominator signal. */
+export function mathOntologyVisibleSourceCoverageRows(
+  coverage: readonly MathOntologySourceCoverage[],
+) {
+  return coverage
+    .filter((c) => c.rdfEligible > 0)
+    .map((c) => ({
+      namespace: c.namespace,
+      label: labels[c.namespace] ?? c.namespace,
+      visibleSourceRecords: c.rdfEligible,
+      populationKind: c.populationKind,
+      actualInstances: null,
+      educationStatus: "공식 기준 대응·교육 관계 검수 미확인",
+    }));
 }
