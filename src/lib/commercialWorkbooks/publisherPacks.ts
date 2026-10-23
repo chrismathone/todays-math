@@ -444,6 +444,129 @@ export const PUBLISHER_PACKS: readonly PublisherPackEntry[] = [
     load: () =>
       import("../../../data/commercial-workbooks/chun-ddapul-5-1-upper-v1.json"),
   },
+  {
+    id: "jihak-poongsanja-light-middle3-1-2022-v1",
+    label: "지학사 풍산자 라이트유형 중학수학 3-1 · 2022 개정 · 전 단원",
+    links: [
+      {
+        label: "출판사 공식 교재",
+        href: "https://www.jihak.co.kr/reference-book/middle-school/JRlTLIH7kLqcADqw",
+      },
+      {
+        label: "출판사 공식 자료실",
+        href: "https://www.jihak.co.kr/reference-book/reference-room?blockFilter=Y&fileType=%EC%A0%95%EB%8B%B5+%EB%B0%8F+%ED%95%B4%EC%84%A4&school=%EC%A4%91%ED%95%99&search=%ED%92%8D%EC%82%B0%EC%9E%90&subject=%EC%88%98%ED%95%99&page=1",
+      },
+    ],
+    scopeNote:
+      "공식 정답과 풀이 0001~1182 전체 주소 · 검수 정답 1,172개 · 그래프·풀이 참조 10개 보류",
+    load: () =>
+      import("../../../data/commercial-workbooks/jihak-poongsanja-light-middle3-1-2022-v1.json"),
+  },
+  {
+    id: "visang-conceptroot-common1-2022-v1",
+    label: "개념루트 공통수학 1 (22개정) · 해설 001–839 주소",
+    links: [
+      {
+        label: "공식 정답 출처",
+        href: "https://book.visang.com/books/info/5396",
+      },
+      {
+        label: "검토한 원본 PDF",
+        href: "https://cdn.visang.com/book/202407/20240716171708456.pdf",
+      },
+    ],
+    scopeNote:
+      "공식 정답 및 해설 PDF 2~153쪽 · 주번호 001–839, 839주소·839검토 키; 별도 본문 전수 감사 아님",
+    load: () =>
+      import("../../../data/commercial-workbooks/visang-conceptroot-common1-2022-v1.json"),
+  },
+  {
+    id: "mathtian-facto-operation-c05-v1",
+    label: "매스티안 팩토 연산 C05 · 번호 있는 평가·열쇠",
+    links: [
+      {
+        label: "출판사 정답 자료실",
+        href: "https://www.mathtian.com/qna/qna_errata_answer.aspx?page=3&srh_code1=&srh_code2=&srh_code3=",
+      },
+      {
+        label: "공식 정답 PDF",
+        href: "https://www.mathtian.com/UploadPath/NewAnswer/%5B%EC%A0%95%EB%8B%B5%5D%ED%8C%A9%ED%86%A0%EC%97%B0%EC%82%B0C05_OUT.pdf",
+      },
+    ],
+    scopeNote:
+      "전체 PDF에서 문항 번호가 인쇄된 연산 실력 체크 40개·십자말 열쇠 9개, 총 49주소/49검수 정답 · 번호 없는 활동 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/mathtian-facto-operation-c05-v1.json"),
+  },
+  {
+    id: "mathtian-steps-6-2-v1",
+    label: "매스티안 단계수 6-2 · 6개 단원",
+    links: [
+      {
+        label: "출판사 정답 자료실",
+        href: "https://www.mathtian.com/qna/qna_errata_answer.aspx",
+      },
+      {
+        label: "공식 정답 PDF",
+        href: "https://www.mathtian.com/UploadPath/NewAnswer/%5B%EC%A0%95%EB%8B%B5%5D%EB%8B%A8%EA%B3%84%EC%88%986-2_OUT.pdf",
+      },
+    ],
+    scopeNote:
+      "6개 단원 전체 인쇄 문항 462주소 · 정답 394개 검수 · 도형·서술 등 68개 제외",
+    load: () =>
+      import("../../../data/commercial-workbooks/mathtian-steps-6-2-v1.json"),
+  },
+  {
+    id: "jihak-poongsanja-essential-middle3-2-2022-v1",
+    label: "지학사 풍산자 필수유형 중학수학 3-2 · 2022 개정 · 유형북·실전북",
+    links: [
+      {
+        label: "출판사 공식 교재",
+        href: "https://www.jihak.co.kr/reference-book/middle-school/NjZQIy0bHBgEr3CS",
+      },
+      {
+        label: "출판사 공식 자료실",
+        href: "https://www.jihak.co.kr/reference-book/reference-room?blockFilter=Y&fileType=%EC%A0%95%EB%8B%B5+%EB%B0%8F+%ED%95%B4%EC%84%A4&school=%EC%A4%91%ED%95%99&search=%ED%92%8D%EC%82%B0%EC%9E%90&subject=%EC%88%98%ED%95%99&page=1",
+      },
+    ],
+    scopeNote:
+      "유형북 450 + 실전북 198 전체 주소 648개 · 검수 정답 600개 · 단계별 풀이·그림 48개 보류",
+    load: () =>
+      import("../../../data/commercial-workbooks/jihak-poongsanja-essential-middle3-2-2022-v1.json"),
+  },
+  {
+    id: "mathtian-facto-gifted-e5-6-v1",
+    label: "매스티안 팩토 영재성검사·창의적 문제해결력 초등5~6학년",
+    links: [
+      {
+        label: "출판사 정답 자료실",
+        href: "https://www.mathtian.com/qna/qna_errata_answer.aspx?page=3&srh_code1=&srh_code2=&srh_code3=",
+      },
+      {
+        label: "공식 정답 PDF",
+        href: "https://www.mathtian.com/UploadPath/NewAnswer/%5B%EC%A0%95%EB%8B%B5%5D%ED%8C%A9%ED%86%A0%EC%98%81%EC%9E%AC%EC%84%B1%EA%B2%80%EC%82%AC%20%EC%B0%BD%EC%9D%98%EC%A0%81%20%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0%EB%A0%A5%20%EC%B4%88%EB%93%B15~6%ED%95%99%EB%85%84_OUT.pdf",
+      },
+    ],
+    scopeNote:
+      "전체 답지의 인쇄 번호 131주소 · 짧은 정답 47개 검수 · 그림·서술 84개 제외 · 단원 시작 쪽 참조 · 개별 문항 쪽 미확인",
+    load: () =>
+      import("../../../data/commercial-workbooks/mathtian-facto-gifted-e5-6-v1.json"),
+  },
+  {
+    id: "erum-summa-concept-middle3-2-2027-v1",
+    label:
+      "이룸이앤비 숨마쿰라우데 중학수학 개념기본서 3-2 · 2027 · 개념·테스트 BOOK 전체",
+    links: [
+      {
+        label: "출판사 공식 자료실 · 새 다운로드 제공",
+        href: "https://www.erumenb.com/bookdata/index.php?section=3",
+      },
+    ],
+    scopeNote:
+      "공식 해설BOOK 전체 823개 주소 · 검수 정답 819개 · 풀이 참조 4개 보류",
+    load: () =>
+      import("../../../data/commercial-workbooks/erum-summa-concept-middle3-2-2027-v1.json"),
+  },
 ];
 
 const packSchema = workbookCreateEditionSchema
