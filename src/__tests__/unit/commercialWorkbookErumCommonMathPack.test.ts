@@ -75,7 +75,9 @@ describe("Summa common math 1 fourth edition second printing complete official a
     expect(parsed.metadata.curriculum).toBe("2022 개정");
     expect(parsed.metadata).not.toHaveProperty("isbn");
     expect(parsed.provenance.description).toContain(coverage.source.sha256);
-    expect(parsed.provenance.reference).toContain(coverage.source.pdfUrl);
+    expect(parsed.provenance.reference).toBe(coverage.source.listingUrl);
+    expect(parsed.provenance.reference).not.toContain("dl2.bookdata");
+    expect(coverage.source.pdfUrlStatus).toContain("expiry-bound");
     expect(coverage.source.reviewedAnswerBoxes).toHaveLength(61);
     expect(coverage.scope.addressHeaderPdfPagesVisuallyReviewed).toHaveLength(28);
     expect(coverage.grading).toBe("manual-reference-only");
