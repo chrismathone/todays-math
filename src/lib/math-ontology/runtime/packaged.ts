@@ -89,7 +89,7 @@ export function loadPackagedOntologyRuntime(artifact:MathOntologyArtifact):MathO
    const offset=query.cursor?cursorDecode(query.cursor,context.cursorSecret).offset:0;
    if(typeof offset!=='number'||!Number.isSafeInteger(offset)||offset<0)throw new Error('INVALID_CURSOR');
    const needle=query.q?.toLowerCase();
-   catalogEntries=index.entries.filter(e=>!needle||e.label.toLowerCase().includes(needle));
+   catalogEntries=index.entries.filter(e=>(!query.namespace||e.namespace===query.namespace)&&(!needle||e.label.toLowerCase().includes(needle)));
    // Only visible rows require metadata; the bounded global search index contains
    // registered public labels/identities, never private counts or source text.
    for(const e of catalogEntries.slice(offset,offset+query.limit+1))entities.add(e.entity);
