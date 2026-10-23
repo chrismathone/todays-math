@@ -2014,7 +2014,7 @@ function UnifiedWorkspaceContent({
           )}
           {can("ontology") && (opened.has("ontology") || view === "ontology") && (
             <main hidden={view !== "ontology"} className={s.viewContent}>
-              <OntologyWorkspace branchId={branchId} scopeKey={currentUser?.id} />
+              <OntologyWorkspace branchId={branchId ?? undefined} scopeKey={storageScope ?? "anonymous"} />
             </main>
           )}
           {can("textbook") &&

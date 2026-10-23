@@ -37,6 +37,14 @@ describe("lost response recovery", () => {
     expect(await f.service.execute(f.actor, recoveredApproval)).toEqual(receipt);
   });
 });
+describe("existing legacy test student parity", () => {
+  it("keeps a legacy teacher's own test student usable", async () => {
+    const f = await fixture();
+    await db.student.update({ where: { id: f.student.id }, data: { isTest: true } });
+    const result = await f.propose();
+    expect(result.proposalId).toBeTruthy();
+  });
+});
 describe("actual isolated PostgreSQL ontology action transactions", () => {
   it("preview/approval write no student record; execution matches the established teacher transition pipeline", async () => {
     const f = await fixture(),
@@ -438,6 +446,9 @@ describe("actual isolated PostgreSQL ontology action transactions", () => {
       },
     });
     await expect(f.propose()).resolves.toHaveProperty("sealHash");
+    await db.student.update({ where: { id: f.student.id }, data: { isTest: true } });
+    await expect(f.propose()).rejects.toMatchObject({ code: "FORBIDDEN" });
+    await db.student.update({ where: { id: f.student.id }, data: { isTest: false } });
     await db.classMembership.update({
       where: { id: membership.id },
       data: { role: "delegate" },
