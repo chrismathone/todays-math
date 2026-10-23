@@ -1,0 +1,5662 @@
+{
+  "id": "sk-suryeok-geometry-public-v1",
+  "label": "수경출판사 수력충전 기하 · 공개 PDF 판본 미확인 · 전 단원",
+  "coverage": "공식 공개 PDF 전 단원 답안 범위 406문항 주소 · 정답 참조 396개 · 도형 정답 미수록 10개",
+  "metadata": {
+    "title": "수력충전 기하",
+    "publisher": "수경출판사",
+    "grade": "고등",
+    "edition": "공식 공개 PDF 보관본 · 발행연도·교육과정·쇄·ISBN 미확인"
+  },
+  "provenance": {
+    "kind": "publisher",
+    "description": "출판사 공개 정답 및 해설 64쪽 중 빠른 정답 PDF 2~7쪽 전체를 시각 대조했다. 문제편의 18개 인쇄 쪽 범위와 406개 주 문항 번호를 보존했으며 396개 정답 참조를 수록했다. 해설 참조로 표기된 작도·그래프 10개는 전체 문항 key:null이다. 소문항은 답 안에 원래 순서대로 묶었다. sourcePage는 1부터 세는 PDF 쪽이다. /는 분수, sqrt는 제곱근, vec(A)는 화살표가 있는 벡터 A, 선분 AB는 윗줄 AB를 뜻한다. 교사의 수동 채점용 참조이며 자동 채점을 제공하지 않는다. 발행연도·교육과정·쇄·ISBN을 확인하지 못했으며 파일명/제작일에서 추정하지 않는다. 현재 자이스토리 전체 해설로 표시하지 않는다. 원문 PDF SHA-256: 33c22526f99668787c45721c4eb4a8f1563778e118f77105a9ee6d077bf7dd56.",
+    "reference": "https://www.book-sk.co.kr/study/answer.asp\nhttps://www.book-sk.co.kr/upload/appendFile/202105111448370005K9.pdf"
+  },
+  "exercises": [
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 포물선 ; 2) 초점, 준선, 축,꼭짓점",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2, y²=8x",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1, y²=-4x",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1, x²=4y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/3, x²=(4/3)y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1/8, x²=-(1/2)y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) F{1/4, 0}, x=-1/4 ; 2) F(-4, 0), x=4 ; 3) F(3, 0),x=-3 ; 4) F{-1/16, 0}, x=1/16",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) F{0, 1/4}, y=-1/4 ; 2) F(0, 2), y=-2 ; 3) F(0, -1), y=1 ; 4) F{0, -1/2}, y=1/2",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "25/4",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "94/5",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "A(2, 4)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "36",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y²=4px ; 2) x²=4py",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y²=2(x-1), ; 2) y²=-6(x-1) ; 3) (x-1)²=3y",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (y+2)²=7x ; 2) (y+2)²=-16x ; 3) x²=9(y+2)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (y+2)²=x-3 ; 2) (y+2)²=-3(x-3) ; 3) (x-3)²=4(y+2) ; 4) (x-3)²=-12(y+2)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 초점 : (2, -2), 준선 : x=0 ; 2) 초점 : {15/4, 0}, 준선 : y=17/4 ; 3) 초점 : (4, -3), 준선 : y=-7; 4) 초점 : {-1, 1/2}, 준선 : y=3/2",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 꼭짓점 : (-1, 3), 초점 : (1, 3), 준선 : x=-3; 2) 꼭짓점 : ( 4, 2), 초점 : ( 3, 2), 준선 : x=5; 3) 꼭짓점 : ( -1, 1), 초점 : {-3/4, 1}, 준선 : x=-5/4; 4) 꼭짓점 : ( -2, -1), 초점 : (-2, 0), 준선 : y=-2; 5) 꼭짓점 : ( -3, 2), 초점 : ( -3, 1), 준선 : y=3; 6) 꼭짓점 : ( 2, 3), 초점 : ( 2, 5), 준선 : y=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (y-b)²=4p(x-a) ① (a, b) ② (p+a, b) ③ x=-p+a ; 2) (x-a)²=4p(y-b) ① (a, b) ② (a, p+b) ③ y=-p+b",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "27",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 초점 : (4, 0), (-4, 0), 꼭짓점 : (5, 0), (-5, 0), (0, 3), (0, -3), 장축의 길이 : 10, 단축의 길이 : 6; 2) 초점 : (2sqrt(2), 0), (-2sqrt(2), 0), 꼭짓점 : (3, 0), (-3, 0), (0, 1), (0, -1), 장축의 길이 : 6, 단축의 길이 : 2; 3) 초점 : (0, 3), (0, -3), 꼭짓점 : (4, 0), (-4, 0), (0, 5), (0, -5), 장축의 길이 : 10, 단축의 길이 : 8",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "28",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 10 ; 2) 8",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "29",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "타원, 초점, 장축, 단축, 중심",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "30",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2a, 2a-sqrt((x+c)²+y²), sqrt((x+c)²+y²), a²-c², a²-c², b²=a²-c², b²",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "31",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2b, 2b-sqrt(x²+(y+c)²), sqrt(x²+(y+c)²), b²-c², b²-c², a²=b²-c², a²",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "32",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²/25+y²/9=1; 2) x²/9+y²/5=1; 3) x²/3+y²/4=1; 4) x²/9+y²/25=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "33",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 10, 4, (sqrt(21), 0), ( -sqrt(21), 0); 2) 2sqrt(7), 4, ( sqrt(3), 0), (-sqrt(3), 0) ; 3) 20, 12, (0, 8), (0, -8); 4) 6, 2, (0, 2sqrt(2)), (0, -2sqrt(2)) ; 5) 6, 2sqrt(5), (0, 2), (0, -2)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "34",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "35",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "36",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "37",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "38",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²/a²+y²/b²=1; 2) x²/a²+y²/b²=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "39",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-1)²/3+(y-1)²/2=1; 2) (x+5)²/9+(y+3)²/4=1; 3) (x-3)²/4+(y+4)²/5=1; 4) (x-3)²/6+(y-3)²/16=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "40",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+3)²/9+(y-2)²/4=1; 2) (-6, 2), (0, 2), (-3, 0), (-3, 4), 6, 4; 3) (sqrt(5)-3, 2), (-sqrt(5)-3, 2)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "41",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+1)²/4+(y+1)²/9=1; 2) (x-2)²/3+(y-3)²/7=1; 3) (x+1)²/2+(y+1)²=1; 4) (x-2)²/8+(y-3)²/3=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "42",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (sqrt(5)+2, -2), (-sqrt(5)+2, -2), 6, 4 ; 2) (-2, 6),(-2, 0), 10, 8",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "43",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-m)²/a²+(y-n)²/b²=1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "44",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 초점 : (4, 0), (-4, 0), 주축의 길이 : 4 ; 2) 초점 : (3, 0), (-3, 0), 주축의 길이 : 2; 3) 초점 : (0, 2), (0, -2), 주축의 길이 : 2",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "45",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2 ; 2) 6",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "46",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "쌍곡선, 초점, 꼭짓점, 주축, 중심",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "47",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2a, sqrt((x+c)²+y²), sqrt((x+c)²+y²), c²-a², c²-a², c²-a², b², 1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "48",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2b, sqrt(x²+(y+c)²), sqrt(x²+(y+c)²), c²-b², b²-c², c²-b², a², -1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "49",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²/25-y²/11=1; 2) x²/4-y²/5=1; 3) x²/21-y²/4=-1; 4) x²/15-y²=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "50",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (sqrt(29), 0), (-sqrt(29), 0), 10 ; 2) (13, 0), (-13, 0), 24 ; 3) (0, 2sqrt(7)), (0, -2sqrt(7)), 4sqrt(3) ; 4) (0, 4sqrt(2)), (0, -4sqrt(2)), 4sqrt(5) ; 5) (0, sqrt(6)), (0, -sqrt(6)), 4",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "51",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-2)²/9-y²/7=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "52",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "53",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²-y²/4=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "54",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/3-y²/2=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "55",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²/a²-y²/b²=1; 2) x²/a²-y²/b²=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "56",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=±(2/3)x; 2) y=±(3/2)x; 3) y=±x; 4) y=±(2sqrt(3)/3)x",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "57",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²-y²/4=1; 2) 2x²-y²=1; 3) x²/8-y²/9=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "58",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "59",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "42",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "60",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/4-y²/12=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "61",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "62",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=±(3/4)x",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "63",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=±(b/a)x; 2) y=±(b/a)x",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "64",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-2)²/8-(y-1)²/5=1; 2) (x-3)²/12-(y+1)²/2=1; 3) (x+2)²/4-(y+1)²/3=-1; 4) (x+2)²/6-(y-2)²/2=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "65",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+3)²/5-(y-2)²/4=1; 2) (-sqrt(5)-3, 2), (sqrt(5)-3, 2), 2sqrt(5); 3) (-6, 2), (0, 2)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "66",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+1)²/3-(y-2)²/4=1; 2) (x-2)²/5-(y+1)²/3=1; 3) x²/7-(y-1)²/8=1; 4) (x-2)²/9-(y+1)²/8=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "67",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (±sqrt(7)+2, -1), (4, -1), (0, -1), 4 ; 2) (2, -1±sqrt(5)), (2, 1), (2, -3), 4",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "68",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-m)²/a²-(y-n)²/b²=1; 2) (x-m)²/a²-(y-n)²/b²=-1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "13",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4 m",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x²/9+y²/8=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x-1)²/25+(y+1)²/16=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "k<1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+        "page": "32~33",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "69",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 원 ; 2) 포물선 ; 3) 타원 ; 4) 쌍곡선",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "70",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 한 점에서 만난다. ; 2) 만나지 않는다. ; 3) 서로 다른 두 점에서 만난다.",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "71",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 이차곡선 ; 2) (i) > (ii) = (iii) <",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "72",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "mn-2p, p-mn, p/m, p/m",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "73",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=2x+1/2 ; 2) y=3x+2/3 ; 3) y=-4x+1/16; 4) y=x-4",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "74",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=mx+p/m",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "75",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "a²mn, a²m²+b²-n², a²m²+b², sqrt(a²m²+b²), sqrt(a²m²+b²)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "76",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=x±sqrt(13) ; 2) y=3x±sqrt(13) ; 3) y=-x±sqrt(5); 4) y=-2x±2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "77",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y=mx±sqrt(a²m²+b²)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "78",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "a²mn, a²m²-b²-n², a²m²-b², sqrt(a²m²-b²), sqrt(a²m²-b²)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "79",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=x±sqrt(2) ; 2) y=-2x±sqrt(35) ; 3) y=-x±1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "80",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=mx±sqrt(a²m²-b²); 2) y=mx±sqrt(b²-a²m²)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "81",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x₁, y₁, p, x₁, y₁, p, y₁, y₁, y₁²-4px₁, 2p, 2p, 2p",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "82",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=(1/2)x+3 ; 2) y=-x-2 ; 3) y=(1/16)x+1/2",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "83",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y₁y=2p(x+x₁)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "84",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y₁, x₁, x₁, y₁, a²m²+b², x₁, y₁, a²m²+b², a²m²+b², 2x₁y₁, b²/a², bx₁/a, b²x₁",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "85",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=(1/2)x+2; 2) y=(sqrt(2)/2)x-4; 3) y=-sqrt(2)x+2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "86",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x₁x/a²+y₁y/b²=1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "87",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "y₁, x₁, x₁, y₁, a²m²-b², x₁, y₁, a²m²-b², a²m²-b², 2x₁y₁, b²/a², bx₁/a, b²x₁",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "88",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=-x+1 ; 2) y=x+2 ; 3) y=-(5/2)x+3/2",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "89",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "x₁x/a²-y₁y/b²=±1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "90",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=-x-1, y=(1/2)x+2; 2) y=-sqrt(2)x-sqrt(2), y=sqrt(2)x+sqrt(2); 3) y=-2x-2, y=x+4",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "91",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(i) y₁²=4px₁; (ii) y₁y=2p(x+x₁); (iii) y₁y=2p(x+x₁)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "92",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=-(3/2)x+9/2, y=3; 2) y=(sqrt(6)/2)x+2, y=-(sqrt(6)/2)x+2; 3) y=-sqrt(2)x-2sqrt(2), y=sqrt(2)x+2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "93",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(i) x₁²/a²+y₁²/b²=1; (ii) x₁x/a²+y₁y/b²=1; (iii) x₁x/a²+y₁y/b²=1",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "94",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=3x-6, y=-3x+6; 2) y=-(sqrt(3)/3)x+sqrt(3)/3, y=(sqrt(3)/3)x-sqrt(3)/3; 3) y=-(sqrt(3)/2)x-1, y=(sqrt(3)/2)x-1",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "95",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(i) x₁²/a²-y₁²/b²=±1; (ii) x₁x/a²-y₁y/b²=±1; (iii) x₁x/a²-y₁y/b²=±1",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "96",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=2x+3/2 ; 2) y=x+1/2 ; 3) y=-x+2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "97",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=x±2sqrt(6) ; 2) sqrt(10) ; 3) y=x-3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "98",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=(1/4)x+5/4; 2) y=sqrt(3)x±1; 3) y=(1/2)x±sqrt(7)/2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "99",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2sqrt(2); 2) sqrt(10)/2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선",
+        "page": "34~45",
+        "number": "100",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -1; 2) tan θ; 3) 접선",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-sqrt(3)≤k≤sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(7)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+        "page": "46~47",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(5)/5",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 시점 : A, 종점 : C ; 2) 시점 : F, 종점 : Q",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2 ; 2) 1 ; 3) sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 방향 ; 2) A, B, 시점, 종점 ; 3) |vec(AB)|, |vec(a)| ; 4) 단위 ; 5) 영, vec(0)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(d) ; 2) vec(c)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(13); 2) vec(BC) ; 3) vec(DA), vec(CB)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(FO), vec(OC), vec(ED); 2) 23개 ; 3) vec(BA), vec(OF), vec(CO), vec(DE) ; 4) vec(DC), vec(OB), vec(EO), vec(FA)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(DC), vec(AD) ; 2) vec(OA), vec(CO)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(BD) ; 2) vec(CA), vec(DF)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 같다, vec(a)=vec(b) ; 2) -vec(a)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(AC) ; 2) vec(AD) ; 3) vec(AB) ; 4) vec(0) ; 5) vec(AD)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 4sqrt(2) ; 2) sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ① 합 ② vec(AC); 2) ① 교환 ② 결합",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "15",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(CB); 2) vec(CB)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(b)-vec(a) ; 2) -vec(a)-vec(b)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(0) ; 2) vec(OE), vec(AF), vec(CD) ; 3) vec(0)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "차",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "20",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "21",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 8vec(a)-13vec(b); 2) vec(a)+2vec(b); 3) -vec(a)+vec(c)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(x)=2vec(a)+vec(b); 2) vec(x)=7vec(b)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -vec(a)-vec(b); 2) 2vec(a)+2vec(b); 3) vec(a)+2vec(b)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 실수배 ① (i) 같 (ii) 반대, |k||vec(a)| (iii) vec(0) ② vec(0); 2) ① 결합 ② 분배",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(b); 2) vec(c); 3) vec(b), vec(c)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "27",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 평행하다 ; 2) 평행하다 ; 3) 평행하다 4) 평행하지 않다",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "28",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -1 ; 2) -2 ; 3) 6",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "29",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "평행하다",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "30",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -7 ; 2) 7/3; 3) 1",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "31",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 점 C는 직선 AB 위의 점이다.; 2) 점 D는 직선 AB 위의 점이 아니다.; 3) 점 E는 직선 AB 위의 점이다.",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "32",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "33",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "34",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "35",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 평행, vec(a)∥vec(b) ; 2) vec(b)=kvec(a) (또는 vec(a)=kvec(b)) ; 3) 한 직선",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(DB), vec(FE)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "평행사변형",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2vec(b)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+        "page": "64~65",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "36",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(c)-vec(a) ; 2) vec(b)-vec(c) ; 3) vec(b)-vec(a) ; 4) vec(0) ; 5) vec(0)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "37",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -vec(a)-vec(b)+2vec(c); 2) -2vec(a)+3vec(b)-vec(c)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "38",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(AC)-vec(AB) ; 2) vec(AF)-vec(AD) ; 3) vec(AG)-vec(AC) ; 4) vec(AA)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "39",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 위치벡터 ; 2) vec(OB), vec(b)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "40",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(p)=(vec(a)+2vec(b))/3; 2) vec(p)=(2vec(a)+vec(b))/3; 3) vec(q)=4vec(b)-3vec(a); 4) vec(q)=4vec(a)-3vec(b); 5) vec(m)=(vec(a)+vec(b))/2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "41",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/3(vec(AB)+vec(AC))",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "42",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(b), vec(c), 2, 1, vec(m), vec(a), 1, vec(b), vec(c), vec(a), 3, 3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "43",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(0)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "44",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(p)=(5/8)vec(a)+(3/8)vec(b), vec(q)=(5/2)vec(a)-(3/2)vec(b) ; 2) 1/2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "45",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (mvec(b)+nvec(a))/(m+n), (mvec(b)-nvec(a))/(m-n); 2) (vec(a)+vec(b)+vec(c))/3",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "46",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(a)=(-3, 2), vec(b)=(2, 3); 2) vec(a)=-3vec(e₁)+2vec(e₂), vec(b)=2vec(e₁)+3vec(e₂); 3) sqrt(13); 4) sqrt(13)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "47",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) k=-1, l=4; 2) k=2, l=2",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "48",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) a₁, a₂, 성분, 단위; 2) b₁, b₂; 3) sqrt(a₁²+a₂²)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "49",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (4, -3); 2) (-16, -12) ; 3) (-9, 0) ; 4) (-3, 9)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "50",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) k=3, l=2 ; 2) k=-9, l=-1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "51",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (-4, 3), 5 ; 2) (3, -2), sqrt(13)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "52",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 5 ; 2) 10",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "53",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 5 ; 2) 5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분",
+        "page": "66~71",
+        "number": "54",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ① (a₁+b₁, a₂+b₂) ② (a₁-b₁, a₂-b₂) ③ (ka₁, ka₂); 2) ① (b₁-a₁, b₂-a₂) ② sqrt((b₁-a₁)²+(b₂-a₂)²)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(OC)=(3vec(OB)+2vec(OA))/5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7/5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+        "page": "72~73",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "55",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 6 ; 2) 4 ; 3) -sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "56",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 16 ; 2) 8",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "57",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -1; 2) -5 ; 3) 5 ; 4) 0 ; 5) 5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "58",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 3 ; 2) 2",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "59",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 내적, vec(a)·vec(b) ① |vec(a)||vec(b)|cos θ ② -|vec(a)||vec(b)|cos(180°-θ); 2) a₁b₁+a₂b₂",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "60",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 45° ; 2) 120° ; 3) 90° ; 4) 180°",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "61",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(3) ; 2) 120°",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "62",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -6 ; 2) 9",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "63",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -2 ; 2) 2/3",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "64",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ∠O=90°인 직각삼각형; 2) x=y=sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "65",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ① |vec(a)||vec(b)|, sqrt(a₁²+a₂²)sqrt(b₁²+b₂²) ② |vec(a)||vec(b)|, sqrt(a₁²+a₂²)sqrt(b₁²+b₂²); 2) ① 0 ② ±|vec(a)||vec(b)|",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "66",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(a)+vec(b), vec(a)+vec(b), vec(a), vec(b), vec(a)·vec(a), vec(b)·vec(b), vec(a), vec(b)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "67",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "68",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "vec(a), -vec(b), vec(b)·vec(a), vec(a)·vec(b), vec(a)·vec(b), 4, 9, 3",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "69",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "70",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2 ; 2) sqrt(14) ; 3) sqrt(29)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "71",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 10; 2) 8",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "72",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 3 ; 2) 1/4",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "73",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "∠A=90°인 직각삼각형",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "74",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "90°",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "75",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 교환 ⑵ 분배 ⑶ k(vec(a)·vec(b))",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 AB를 지름으로 하는 원",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "120°",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+        "page": "80~81",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/2",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "76",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-2)/2=(y-1)/5; 2) (x-5)/4=(y-1)/(-1)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "77",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (4, 3); 2) (-5, 1) ; 3) (-1, -7)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "78",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=7 ; 2) x=-2",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "79",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-3)/(-1)=(y-1)/3; 2) (x-1)/(-3)=(y-9)/(-6); 3) x=5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "80",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-5)/(-5)=(y+2)/5; 2) x-4=(y-4)/(-7)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "81",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) vec(a)+tvec(u); 2) x₁, u₁, y₁, u₂; 3) x₁, x₂-x₁, y₁, y₂-y₁",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "82",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2x-y-4=0 ; 2) x+3y-7=0 ; 3) -2x+3y-10=0",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "83",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (2, 6) ; 2) (3, 7) ; 3) (2, 8) ; 4) (9, 0) ; 5) (0, 7)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "84",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x=8 ; 2) y=8",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "85",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 5x-4y+18=0 ; 2) 6x+y-28=0",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "86",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2x-y-1=0 ; 2) b=2a",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "87",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (vec(p)-vec(a))·vec(n)=0; 2) a(x-x₁)+b(y-y₁)=0",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "88",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 11sqrt(5)/25; 2) sqrt(2)/2; 3) sqrt(10)/10",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "89",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(2)/2; 2) sqrt(5)/5; 3) 4/5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "90",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 3 ; 2) -1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "91",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) -9 ; 2) 1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "92",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) y=-(1/2)x; 2) (x-2)/(-4)=(y-3)/(-1)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "93",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) |vec(u₁)·vec(u₂)|/(|vec(u₁)||vec(u₂)|); 2) ① kvec(u₂), b₁/b₂ ② a₁a₂+b₁b₂=0",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "94",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x₁, y₁), x₁, y₁, (vec(p)-vec(a)), (vec(p)-vec(a)), x-x₁, y-y₁",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "95",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(x+2)²+(y-3)²=1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "96",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 점 A를 중심으로 하고, 반지름의 길이가 1인 원; 2) 점 A를 중심으로 하고, 반지름의 길이가 4인 원; 3) 점 A를 중심으로 하고, 반지름의 길이가 1/2인 원",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "97",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-2)²+(y-3)²=5 ; 2) x²+(y+1)²=8; 3) (x-1)²+(y-1)²=8 ; 4) (x-3)²+y²=5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "98",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+2)²+(y-3)²=2; 2) 13π",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+        "page": "82~89",
+        "number": "99",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "|vec(AP)|=r, vec(p)-vec(a), |vec(p)-vec(a)|",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+        "page": "90~91",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ○; 2) ×; 3) ○; 4) ○; 5) ×; 6) ○",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 10 ; 2) 20",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 한 직선 ; 2) 한 점 ; 3) 두 직선 ; 4) 평행한",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 모서리 AC, 모서리 AD, 모서리 AE, 모서리 BC, 모서리 BE ; 2) 모서리 ED ; 3) 모서리 CD, 모서리 ED ; 4) 모서리 AE, 모서리 AB",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ○; 2) ○; 3) ×",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 한 점 ; 2) 평행 ; 3) 꼬인 위치",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 면 ABCD, 면 ABFE ; 2) 면 AEHD, 면 BFGC; 3) 면 CGHD, 면 EFGH ; 4) 면 AEHD, 면 CGHD; 5) 모서리 AE, 모서리 EH, 모서리 HD, 모서리 DA; 6) 모서리 AD, 모서리 BC, 모서리 FG, 모서리 EH",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 직선 ; 2) 한 점 ; 3) 평행",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 면 FLKE; 2) 면 BHIC, 면 DJKE, 면 ABCDEF, 면 GHIJKL; 3) 모서리 EK ; 4) 면 AGLF, 면 GHIJKL",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 4 ; 2) 6 ; 3) 4",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 모서리 DE, 모서리 EF, 모서리 DF ; 2) 면 DEF ; 3) 4 ; 4) 4",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ○; 2) ○; 3) ×; 4) ○; 5) ○",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 만난다 ; 2) 평행",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ○; 2) ×; 3) ○; 4) ×",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "16",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ×; 2) ×; 3) ○; 4) ○; 5) ×",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "17",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 면 AEHD, 면 CGHD ; 2) 면 ABCD, 면 EFGH; 3) 60°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "18",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 90° ; 2) 45° ; 3) 90°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "19",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "20",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/2",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "21",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형",
+        "page": "96~103",
+        "number": "22",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ① l∥m ② α∥m ③ 평면 α; 2) 이루는 각; 3) l⊥α, 수선, 수선의 발",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "면 ACD, 면 ADE, 면 BCDE",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "모서리 DF",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+        "page": "104~105",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "23",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 선분 PH ; 2) 선분 OH ; 3) 선분 PO",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "24",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(29) ; 2) 4",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "25",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 2sqrt(2); 2) 2sqrt(61)/5",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "26",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 BC, 선분 BC, BCD",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "27",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "28",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "삼수선, ⑴ 선분 PH⊥l; ⑵ 선분 OH⊥l; ⑶ 선분 PO⊥α",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "29",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⊥, ⊥, 45°, 45°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "30",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "45°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "31",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⊥, ⊥, 2a, sqrt(3)a, 3, 3, (sqrt(3)/3)a, 선분 AM, (sqrt(3)/3)a, 1/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "32",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "33",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "34",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "35",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 이면각, 이면각의 변, 이변각의 면; 2) 이면각의 크기",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "36",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 선분 FH ; 2) △EGF",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "37",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 선분 CD 또는 선분 AB ; 2) 선분 CD 또는 선분 AB를 지름으로 하는 원",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "38",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 선분 EG ; 2) △EFG ; 3) 선분 EG와 선분 HF의 교점",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "39",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 정사영 ; 2) 정사영",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "40",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 6 ; 2) 6sqrt(2) ; 3) 2/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "41",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "42",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "43",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 AB cos θ",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "44",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 40; 2) 90; 3) 10sqrt(2); 4) 8π",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "45",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 45° ; 2) 60° ; 3) 45° ; 4) 30°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "46",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "47",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(3)π",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "48",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6sqrt(3)π",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "49",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24sqrt(3)π",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "50",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10 cm",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영",
+        "page": "106~113",
+        "number": "51",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "S cos θ",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄴ, ㄹ",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "60°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+        "page": "114~115",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "52",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) P(1, 5, 3) ; 2) P(1, 3, -2) ; 3) P(5, -1, 2); 4) P(2, -3, -1)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "53",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "54",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "공간좌표, P(a, b, c), x좌표, y좌표, z좌표",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "55",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (4, 0, 0); 2) (0, -2, 0) ; 3) (0, 0, -1)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "56",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (-1, 2, 0); 2) (0, 2, 3) ; 3) (-1, 0, 3)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "57",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (a, 0, 0), (0, b, 0), (0, 0, c); 2) (a, b, 0), (0, b, c), (a 0, c)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "58",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x축 : (3, -4, 2), y축 : (-3, 4, 2), z축 : (-3, -4, -2); 2) xy평면 : (3, 4, 2), yz평면 : (-3, 4, -2), zx평면 : (3, -4, -2)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "59",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(3, -4, -7)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "60",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "S(2, 3, -4)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "61",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "62",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (a, -b, -c), (-a, b, -c), (-a, -b, c); 2) (a, b, -c), (-a, b, c), (a, -b, c)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "63",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 3 ; 2) 3",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "64",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2, 4",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "65",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "66",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "67",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (-3, 0, 0) ; 2) (0, 3, 0)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "68",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(0, 0, 0), (0, -2, 0)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "69",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(22) ; 2) sqrt(14)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "70",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "71",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) sqrt(2); 2) sqrt(5)/3; 3) 2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "72",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt((x₂-x₁)²+(y₂-y₁)²+(z₂-z₁)²), sqrt(x₁²+y₁²+z₁²)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "73",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) P{2, -5/3, 1} ; 2) Q(-14, 9, 9) ; 3) M{1, -1, 3/2}",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "74",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) {3, 7/2, 1/2} ; 2) (4, 2, 1)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "75",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) P{17/3, 5/3, 0} ; 2) P'(6, 8, 3)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "76",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (-1, 6, 8) ; 2) sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "77",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "78",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "{4/3, 2, 8/3}",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "79",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) ① ((mx₂+nx₁)/(m+n), (my₂+ny₁)/(m+n), (mz₂+nz₁)/(m+n)) ② ((mx₂-nx₁)/(m-n), (my₂-ny₁)/(m-n), (mz₂-nz₁)/(m-n)); 2) ((x₁+x₂)/2, (y₁+y₂)/2, (z₁+z₂)/2); 3) ((x₁+x₂+x₃)/2, (y₁+y₂+y₃)/2, (z₁+z₂+z₃)/2)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "80",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4, (-1, 2, 4), (x-2)²+(y-1)²+(z+1)²=9",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "81",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-2)²+(y+3)²+(z-4)²=9 ; 2) x²+y²+z²=14",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "82",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 중심의 좌표 : (4, -2, 1), 반지름이 길이 : 2; 2) 중심의 좌표 : (0, -3, 4), 반지름이 길이 : 5",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "83",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-3)²+y²+(z-2)²=3; 2) (x-4)²+(y-1)²+(z-3)²=5",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "84",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4, y+2, z+3, 2, -2, -3, 2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "85",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) 중심의 좌표 : (1, -2, 3), 반지름이 길이 : 4; 2) 중심의 좌표 : (-4, 0, 1), 반지름이 길이 : 5; 3) 중심의 좌표 : (3, 0, 0), 반지름이 길이 : 3",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "86",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) x²+y²+z²-x-3y+4z=0; 2) x²+y²+z²-6y+8z=0",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "87",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x+1)²+(y-2)²+(z-4)²=16; 2) (x+1)²+(y-2)²+(z-4)²=1",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "88",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "89",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "90",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "91",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8π",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "92",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "35π",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "93",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "94",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "95",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "최댓값 : 4, 최솟값 : 2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "96",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "16",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "97",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "98",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "14",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "99",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1) (x-a)²+(y-b)²+(z-c)²=r²; 2) (-A/2, -B/2, -C/2)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "01",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "02",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "03",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "-1/4",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "04",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2sqrt(10)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "05",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "06",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "07",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "96",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "08",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "96π",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "09",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "8",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+        "page": "126~127",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    }
+  ]
+}

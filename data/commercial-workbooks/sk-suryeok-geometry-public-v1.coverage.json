@@ -1,0 +1,425 @@
+{
+  "packId": "sk-suryeok-geometry-public-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeBook": true,
+    "addressCoverage": "full",
+    "answerCoverage": "partial",
+    "allChapterAnswersPresent": false,
+    "definition": "제공된 공식 정답 PDF의 전 단원 번호 있는 답안 범위 전체. 문제편 본문 전체를 확보하여 문제 수를 별도로 검증한 것은 아님. 주소의 쪽은 솔루션에 인쇄된 범위이며 범위 안의 개별 위치는 추정하지 않음.",
+    "sourcePdfPagesVisuallyReviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "addressHeaderPdfPagesVisuallyReviewed": [
+      8,
+      18,
+      20,
+      28,
+      30,
+      33,
+      34,
+      36,
+      38,
+      40,
+      42,
+      46,
+      48,
+      49,
+      51,
+      53,
+      55,
+      61
+    ],
+    "rowGranularity": "one printed main number per row; subparts combined in answerText"
+  },
+  "source": {
+    "sourceRelativePath": "secondary/files/sk_pdf2.pdf",
+    "pdfUrl": "https://www.book-sk.co.kr/upload/appendFile/202105111448370005K9.pdf",
+    "listingUrl": "https://www.book-sk.co.kr/study/answer.asp",
+    "sha256": "33c22526f99668787c45721c4eb4a8f1563778e118f77105a9ee6d077bf7dd56",
+    "pageCount": 64,
+    "byteCount": 11413112,
+    "editionEvidence": {
+      "publicationYear": null,
+      "curriculum": null,
+      "isbn": null,
+      "impression": null,
+      "confirmedTitle": "수력충전 기하",
+      "note": "표지의 제목과 수경출판사 표시 확인. 판본 연도는 PDF 제작일로 확정하지 않음."
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p001.png",
+        "sha256": "31300cb5d1c13b43a9a491e61ee01fe915ad50cf0c49e2428783a58ebb63ef2f"
+      },
+      {
+        "sourcePage": 2,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p002.png",
+        "sha256": "718927e4ccc930b5b653e2c99a9bed2c2c012a11ef23dfa424847ff3826c5508"
+      },
+      {
+        "sourcePage": 3,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p003.png",
+        "sha256": "8d2288e72ef14b45a3876298b1edf370b07483eae7cb8bcf6380a538fca4d887"
+      },
+      {
+        "sourcePage": 4,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p004.png",
+        "sha256": "76c3e4bca88a9cf783c7674d82eecb9e47d827e8d96e802336a719453386916a"
+      },
+      {
+        "sourcePage": 5,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p005.png",
+        "sha256": "4ff4960b39816e344900cf78a0a0b1fd577f8c49b00655d79cbe66b97f781a82"
+      },
+      {
+        "sourcePage": 6,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p006.png",
+        "sha256": "6fd62c3ba7a0c7df136be783a0a05f1a99b3bcb9b589076c381984ef32a7b53d"
+      },
+      {
+        "sourcePage": 7,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/p007.png",
+        "sha256": "b0fc6bf64c6d950587a4c9ea73b8882440a53bcb9381e5c151b90ea30d4a2576"
+      }
+    ],
+    "coordinateEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/raw-answers.json",
+    "headerEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/secondary/sk_pdf2/headers.json"
+  },
+  "counts": {
+    "exercises": 406,
+    "reviewedKeys": 396,
+    "nullKeys": 10,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 18,
+    "byReviewedKeySourcePage": {
+      "2": 41,
+      "3": 58,
+      "4": 73,
+      "5": 78,
+      "6": 91,
+      "7": 55
+    }
+  },
+  "pageGroups": [
+    {
+      "section": "Ⅰ-1 이차곡선",
+      "page": "10~31",
+      "firstNumber": 1,
+      "lastNumber": 68,
+      "exerciseCount": 68,
+      "addressHeaderSourcePage": 8
+    },
+    {
+      "section": "Ⅰ-1 이차곡선 / 단원 총정리 문제",
+      "page": "32~33",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 18
+    },
+    {
+      "section": "Ⅰ-2 이차곡선과 직선",
+      "page": "34~45",
+      "firstNumber": 69,
+      "lastNumber": 100,
+      "exerciseCount": 32,
+      "addressHeaderSourcePage": 20
+    },
+    {
+      "section": "Ⅰ-2 이차곡선과 직선 / 단원 총정리 문제",
+      "page": "46~47",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 28
+    },
+    {
+      "section": "Ⅱ-1 벡터의 연산",
+      "page": "52~63",
+      "firstNumber": 1,
+      "lastNumber": 35,
+      "exerciseCount": 35,
+      "addressHeaderSourcePage": 30
+    },
+    {
+      "section": "Ⅱ-1 벡터의 연산 / 단원 총정리 문제",
+      "page": "64~65",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 33
+    },
+    {
+      "section": "Ⅱ-2 평면벡터의 성분",
+      "page": "66~71",
+      "firstNumber": 36,
+      "lastNumber": 54,
+      "exerciseCount": 19,
+      "addressHeaderSourcePage": 34
+    },
+    {
+      "section": "Ⅱ-2 평면벡터의 성분 / 단원 총정리 문제",
+      "page": "72~73",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 36
+    },
+    {
+      "section": "Ⅱ-3 평면벡터의 내적",
+      "page": "74~79",
+      "firstNumber": 55,
+      "lastNumber": 75,
+      "exerciseCount": 21,
+      "addressHeaderSourcePage": 38
+    },
+    {
+      "section": "Ⅱ-3 평면벡터의 내적 / 단원 총정리 문제",
+      "page": "80~81",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 40
+    },
+    {
+      "section": "Ⅱ-4 직선의 방정식과 원의 방정식",
+      "page": "82~89",
+      "firstNumber": 76,
+      "lastNumber": 99,
+      "exerciseCount": 24,
+      "addressHeaderSourcePage": 42
+    },
+    {
+      "section": "Ⅱ-4 직선의 방정식과 원의 방정식 / 단원 총정리 문제",
+      "page": "90~91",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 46
+    },
+    {
+      "section": "Ⅲ-1 공간도형",
+      "page": "96~103",
+      "firstNumber": 1,
+      "lastNumber": 22,
+      "exerciseCount": 22,
+      "addressHeaderSourcePage": 48
+    },
+    {
+      "section": "Ⅲ-1 공간도형 / 단원 총정리 문제",
+      "page": "104~105",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 49
+    },
+    {
+      "section": "Ⅲ-2 삼수선과 정사영",
+      "page": "106~113",
+      "firstNumber": 23,
+      "lastNumber": 51,
+      "exerciseCount": 29,
+      "addressHeaderSourcePage": 51
+    },
+    {
+      "section": "Ⅲ-2 삼수선과 정사영 / 단원 총정리 문제",
+      "page": "114~115",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 53
+    },
+    {
+      "section": "Ⅲ-3 공간좌표",
+      "page": "116~125",
+      "firstNumber": 52,
+      "lastNumber": 99,
+      "exerciseCount": 48,
+      "addressHeaderSourcePage": 55
+    },
+    {
+      "section": "Ⅲ-3 공간좌표 / 단원 총정리 문제",
+      "page": "126~127",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "addressHeaderSourcePage": 61
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅰ-1 이차곡선",
+        "page": "10~31",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-1 벡터의 연산",
+        "page": "52~63",
+        "number": "21",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅱ-3 평면벡터의 내적",
+        "page": "74~79",
+        "number": "67",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "53",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "registered": true,
+      "key": null,
+      "reason": "diagram",
+      "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    }
+  ],
+  "sourceAnomalies": [
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "79",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "note": "79번 3)의 세 좌표 분모가 원문에 모두 2로 인쇄됨. 임의로 3으로 고치지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "57",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "note": "57번 2)의 마지막 좌표가 (a 0, c)로 인쇄되어 쉼표를 추가하지 않고 보존함."
+    }
+  ]
+}
