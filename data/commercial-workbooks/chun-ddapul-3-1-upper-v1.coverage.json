@@ -1,0 +1,3044 @@
+{
+  "packId": "chun-ddapul-3-1-upper-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeRequestedQuickAnswerScope": false,
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": false,
+    "definition": "본문 쪽이 인쇄된 01A~20B 예제 소문항 및 두 자리 번호 문제 전체",
+    "sourceQuickAnswerPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "rowGranularity": "printed example code + parenthesized subpart; printed two-digit exercises separately"
+  },
+  "source": {
+    "productUrl": "https://www.1000math.com/archive/?bmode=view&idx=155855986",
+    "pdfUrl": "https://dataseoul.s3.ap-northeast-2.amazonaws.com/upload/S2024092523166c6143805/5ef8da1819586.pdf?response-content-disposition=attachment%3B%20filename%3D%22_______3-1___________.pdf%22%3B%20filename%2A%3DUTF-8%27%27%25EB%2594%25B0%25ED%2592%2580_3-1_%25EC%2583%2581_%25EB%258B%25B5%25EC%25A7%2580.pdf&response-content-type=application%2Fpdf&response-cache-control=private%2C%20no-store%2C%20max-age%3D0&response-expires=1997-07-28T05%3A00%3A00Z&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJZQOKHMYYDTTJAFA%2F20261023%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20261023T153505Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=71aca9ca79059a5b488ae6cd0dc90fb9d7f6bfa29da63d2cc16ff51606ee36f3",
+    "sha256": "ba4f685bb4246d096b1f89d6db6fc3903366a4978f2eac063658c7bd56d61023",
+    "pageCount": 32,
+    "byteCount": 1403770,
+    "sourceRelativePath": "elementary/pdfs/chun_ddapul_0.pdf",
+    "editionEvidence": {
+      "title": "따풀 3-1 상",
+      "isbn": null,
+      "publicationDate": null,
+      "curriculum": null,
+      "impression": null
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-001.png",
+        "sha256": "441866d0f28f768200c2c65ea24ffe7cc1bc0aaa77d10f6671ad48751b531df1"
+      },
+      {
+        "sourcePage": 2,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-002.png",
+        "sha256": "b8ac3ff74038e36aee5e94bbb021d16471f50f8fb6214304bf3fd16c4b5619b5"
+      },
+      {
+        "sourcePage": 3,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-003.png",
+        "sha256": "b37bc7edc893227b319bd3636d9cd03581aae24846cdfa6c6e0561f5dc23382d"
+      },
+      {
+        "sourcePage": 4,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-004.png",
+        "sha256": "41803535d0571859be92c04cf230e5c82ca3402b13c99605cf420a62fd3b9e12"
+      },
+      {
+        "sourcePage": 5,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-005.png",
+        "sha256": "5d77fe9cfb80564577d9765e0b37be570e685f242c5340d872cd003fc2ce7fa1"
+      },
+      {
+        "sourcePage": 6,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-006.png",
+        "sha256": "941e6473e35ab3cd82587c6b8640525e18ce6555eed14197edf6ea769fba9225"
+      },
+      {
+        "sourcePage": 7,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-007.png",
+        "sha256": "c64ce89ca9fa8a741378b3570bc3feac8055d3eba90ce0e42de0dc8842692195"
+      },
+      {
+        "sourcePage": 8,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-008.png",
+        "sha256": "d62afd29195771c922094575f70c06b61bd23cbcc25b0a6e515fb6654b61be28"
+      },
+      {
+        "sourcePage": 9,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-009.png",
+        "sha256": "26bb3b059630730a91cfb47d37965ef2855c4d18d722ba8b075a568f4188978d"
+      },
+      {
+        "sourcePage": 10,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-010.png",
+        "sha256": "8817134516accf79e93d658d09ce577a491ae19b3ae0fd7d1e5aaa0b9ae1d18b"
+      },
+      {
+        "sourcePage": 11,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-011.png",
+        "sha256": "d05d2883dcc7cc71cda13805cd21569df6b0d44d8a698b76560df93edb10a1ac"
+      },
+      {
+        "sourcePage": 12,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-012.png",
+        "sha256": "ba4e84f30510218c6d359aab080b52ac99caeb1580ec8ab6414c7721417c5fe9"
+      },
+      {
+        "sourcePage": 13,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-013.png",
+        "sha256": "4d73d9ecf373a97ba83a0f63d546ee6c875b87be67d8e0d5879cd61b2f5e63a7"
+      },
+      {
+        "sourcePage": 14,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-014.png",
+        "sha256": "ae50b71e77aa2fc11606e68289ff244859f3f5e2077ba23a487b55bafda124d3"
+      },
+      {
+        "sourcePage": 15,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-015.png",
+        "sha256": "791ce97d946cadeb5c2f76e349404657343c9eb20ee08773e1bea618a660ab49"
+      },
+      {
+        "sourcePage": 16,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-016.png",
+        "sha256": "cc58c2f108b6c41697862c8d8d8d3db9c109bd1dff97bbdc1e23194cdf723c3b"
+      },
+      {
+        "sourcePage": 17,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-017.png",
+        "sha256": "75ba54af8833dd80d658886f8f9f61c0ace380ec4217705b2fc67119700ec956"
+      },
+      {
+        "sourcePage": 18,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-018.png",
+        "sha256": "0dffe1d64bcc135adaf65cc44223028a46f54ffe3af60cdb5725bb3c70c8c3d3"
+      },
+      {
+        "sourcePage": 19,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-019.png",
+        "sha256": "8950924086ac0bfb145a42ce318e0b10e937ed12b7593734c51577bdf3f91c58"
+      },
+      {
+        "sourcePage": 20,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-020.png",
+        "sha256": "44af5f183ceb975cbabe8223d2fd74dd53d62b8e2258276a5e13af4791ef6f76"
+      },
+      {
+        "sourcePage": 21,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-021.png",
+        "sha256": "3ffc1d225c5bf36279fb53d1830f1064a8493814a88c3995db01e64911ff0f52"
+      },
+      {
+        "sourcePage": 22,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-022.png",
+        "sha256": "b6e8e5360a86a24ec4737afcfebeef6c42e8dfbb451dd1121c9a80bc1d15f30a"
+      },
+      {
+        "sourcePage": 23,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-023.png",
+        "sha256": "f7660776d912200563c9454d75a067eb34611c8f1cacf490b744a481e20d440b"
+      },
+      {
+        "sourcePage": 24,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-024.png",
+        "sha256": "3a623861e5e33ad41f4324c6c2aaa382074f5becc87e82759e1f960d9c6f0e46"
+      },
+      {
+        "sourcePage": 25,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-025.png",
+        "sha256": "6346f2a8e1059a9bfb849925fc719e35c305483bb79d263a1f59c827ca2c7d67"
+      },
+      {
+        "sourcePage": 26,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-026.png",
+        "sha256": "bd3594d1c061ab524ca84525d403b3be8f5ccda9a148cb960b7aca0a7658388c"
+      },
+      {
+        "sourcePage": 27,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-027.png",
+        "sha256": "7c3406a33938ae8e7244c28af5408fc8054e28c79674d241454a6363b7c90607"
+      },
+      {
+        "sourcePage": 28,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-028.png",
+        "sha256": "b4e0435c607afb34d7763d7cdce8efb4a86d6fb4811c8af3b63b5c80945a3234"
+      },
+      {
+        "sourcePage": 29,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-029.png",
+        "sha256": "d5045a73b2520d7c146fcd5d96652ae84467b3f3900113e98d81921695c2bc55"
+      },
+      {
+        "sourcePage": 30,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-030.png",
+        "sha256": "b02157526d33101bc30786867e9d71bcb97c0b020006859b36f702cfe53ae346"
+      },
+      {
+        "sourcePage": 31,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-031.png",
+        "sha256": "e2d0c96ea42747d933d3cc3fb1ccd194ff149130c897adcdad49b859d8569c67"
+      },
+      {
+        "sourcePage": 32,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/page-032.png",
+        "sha256": "65a60b78aaab19f10bbeae3bd17556ead1971916265114442eaef2c69683f604"
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 558,
+    "reviewedKeys": 502,
+    "nullKeys": 56,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 80
+  },
+  "pageGroups": [
+    {
+      "page": "6",
+      "section": "PART 1 / 01A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "6",
+          "number": "01A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "6",
+          "number": "01A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "7",
+      "section": "PART 1 / 01A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "8",
+      "section": "PART 1 / 01B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "8",
+          "number": "01B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "8",
+          "number": "01B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "8",
+          "number": "01B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "9",
+      "section": "PART 1 / 01B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "10",
+      "section": "PART 1 / 02A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "10",
+          "number": "02A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "10",
+          "number": "02A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "11",
+      "section": "PART 1 / 02A",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 2
+    },
+    {
+      "page": "12",
+      "section": "PART 1 / 02B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "12",
+          "number": "02B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "12",
+          "number": "02B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "12",
+          "number": "02B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "13",
+      "section": "PART 1 / 02B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "14",
+      "section": "PART 1 / 03A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "14",
+          "number": "03A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "14",
+          "number": "03A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "15",
+      "section": "PART 1 / 03A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "16",
+      "section": "PART 1 / 03B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "16",
+          "number": "03B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "16",
+          "number": "03B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "16",
+          "number": "03B",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "16",
+          "number": "03B",
+          "subpart": "(4)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "16",
+          "number": "03B",
+          "subpart": "(5)"
+        }
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "17",
+      "section": "PART 1 / 03B",
+      "expectedExerciseNumbers": [
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "18",
+      "section": "PART 1 / 04A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "18",
+          "number": "04A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "18",
+          "number": "04A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "18",
+          "number": "04A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "19",
+      "section": "PART 1 / 04A",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "20",
+      "section": "PART 1 / 04B",
+      "expectedExerciseNumbers": [
+        "01"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "20",
+          "number": "04B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "20",
+          "number": "04B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "20",
+          "number": "04B",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "20",
+          "number": "04B",
+          "subpart": "(4)"
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "21",
+      "section": "PART 1 / 04B",
+      "expectedExerciseNumbers": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "22",
+      "section": "PART 1 / 05A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "22",
+          "number": "05A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "22",
+          "number": "05A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "22",
+          "number": "05A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "23",
+      "section": "PART 1 / 05A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "24",
+      "section": "PART 1 / 05B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "24",
+          "number": "05B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "24",
+          "number": "05B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "24",
+          "number": "05B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "25",
+      "section": "PART 1 / 05B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "26",
+      "section": "PART 1 / 06A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "26",
+          "number": "06A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "26",
+          "number": "06A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "27",
+      "section": "PART 1 / 06A",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "28",
+      "section": "PART 1 / 06B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "28",
+          "number": "06B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "28",
+          "number": "06B",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "29",
+      "section": "PART 1 / 06B",
+      "expectedExerciseNumbers": [
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "30",
+      "section": "PART 1 / 07A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "30",
+          "number": "07A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "30",
+          "number": "07A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "31",
+      "section": "PART 1 / 07A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "32",
+      "section": "PART 1 / 07B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "32",
+          "number": "07B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "32",
+          "number": "07B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "32",
+          "number": "07B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 6
+    },
+    {
+      "page": "33",
+      "section": "PART 1 / 07B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "34",
+      "section": "PART 1 / 08A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "34",
+          "number": "08A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "34",
+          "number": "08A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "34",
+          "number": "08A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "35",
+      "section": "PART 1 / 08A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "36",
+      "section": "PART 1 / 08B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "36",
+          "number": "08B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "36",
+          "number": "08B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "36",
+          "number": "08B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "37",
+      "section": "PART 1 / 08B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "38",
+      "section": "PART 1 / 09A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "38",
+          "number": "09A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "38",
+          "number": "09A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "39",
+      "section": "PART 1 / 09A",
+      "expectedExerciseNumbers": [
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "39",
+          "number": "09A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "39",
+          "number": "09A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "39",
+          "number": "09A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "40",
+      "section": "PART 1 / 09B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "40",
+          "number": "09B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "40",
+          "number": "09B",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "41",
+      "section": "PART 1 / 09B",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "41",
+          "number": "09B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "41",
+          "number": "09B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "41",
+          "number": "09B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "42",
+      "section": "PART 1 / 10A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "42",
+          "number": "10A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "42",
+          "number": "10A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "43",
+      "section": "PART 1 / 10A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "44",
+      "section": "PART 1 / 10B",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "44",
+          "number": "10B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "44",
+          "number": "10B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "44",
+          "number": "10B",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 1",
+          "page": "44",
+          "number": "10B",
+          "subpart": "(4)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 2
+    },
+    {
+      "page": "45",
+      "section": "PART 1 / 10B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "52",
+      "section": "PART 2 / 11A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "52",
+          "number": "11A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "52",
+          "number": "11A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "53",
+      "section": "PART 2 / 11A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "53",
+          "number": "11A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "53",
+          "number": "11A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "54",
+      "section": "PART 2 / 11B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "54",
+          "number": "11B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "54",
+          "number": "11B",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "55",
+      "section": "PART 2 / 11B",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "56",
+      "section": "PART 2 / 12A",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "56",
+          "number": "12A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "56",
+          "number": "12A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "56",
+          "number": "12A",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "56",
+          "number": "12A",
+          "subpart": "(4)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "57",
+      "section": "PART 2 / 12A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "58",
+      "section": "PART 2 / 12B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "58",
+          "number": "12B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "58",
+          "number": "12B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "58",
+          "number": "12B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "59",
+      "section": "PART 2 / 12B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "60",
+      "section": "PART 2 / 13A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "60",
+          "number": "13A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "60",
+          "number": "13A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "61",
+      "section": "PART 2 / 13A",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "62",
+      "section": "PART 2 / 13B",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "62",
+          "number": "13B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "62",
+          "number": "13B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "62",
+          "number": "13B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "63",
+      "section": "PART 2 / 13B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "64",
+      "section": "PART 2 / 14A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "64",
+          "number": "14A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "64",
+          "number": "14A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "64",
+          "number": "14A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "65",
+      "section": "PART 2 / 14A",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "66",
+      "section": "PART 2 / 14B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "66",
+          "number": "14B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "66",
+          "number": "14B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "66",
+          "number": "14B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "67",
+      "section": "PART 2 / 14B",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "68",
+      "section": "PART 2 / 15A",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "68",
+          "number": "15A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "68",
+          "number": "15A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "68",
+          "number": "15A",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "68",
+          "number": "15A",
+          "subpart": "(4)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 2
+    },
+    {
+      "page": "69",
+      "section": "PART 2 / 15A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "70",
+      "section": "PART 2 / 15B",
+      "expectedExerciseNumbers": [
+        "01"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "70",
+          "number": "15B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "70",
+          "number": "15B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "70",
+          "number": "15B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "71",
+      "section": "PART 2 / 15B",
+      "expectedExerciseNumbers": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "72",
+      "section": "PART 2 / 16A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(4)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(5)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "72",
+          "number": "16A",
+          "subpart": "(6)"
+        }
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "73",
+      "section": "PART 2 / 16A",
+      "expectedExerciseNumbers": [
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "74",
+      "section": "PART 2 / 16B",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "74",
+          "number": "16B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "74",
+          "number": "16B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "74",
+          "number": "16B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "75",
+      "section": "PART 2 / 16B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 2
+    },
+    {
+      "page": "76",
+      "section": "PART 2 / 17A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "76",
+          "number": "17A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "76",
+          "number": "17A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "77",
+      "section": "PART 2 / 17A",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "78",
+      "section": "PART 2 / 17B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "78",
+          "number": "17B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "78",
+          "number": "17B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "78",
+          "number": "17B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 7
+    },
+    {
+      "page": "79",
+      "section": "PART 2 / 17B",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 13,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 4
+    },
+    {
+      "page": "80",
+      "section": "PART 2 / 18A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "80",
+          "number": "18A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "80",
+          "number": "18A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "81",
+      "section": "PART 2 / 18A",
+      "expectedExerciseNumbers": [
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "82",
+      "section": "PART 2 / 18B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "82",
+          "number": "18B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "82",
+          "number": "18B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "82",
+          "number": "18B",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "83",
+      "section": "PART 2 / 18B",
+      "expectedExerciseNumbers": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "84",
+      "section": "PART 2 / 19A",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "84",
+          "number": "19A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "84",
+          "number": "19A",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "84",
+          "number": "19A",
+          "subpart": "(3)"
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "85",
+      "section": "PART 2 / 19A",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "86",
+      "section": "PART 2 / 19B",
+      "expectedExerciseNumbers": [],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "86",
+          "number": "19B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "86",
+          "number": "19B",
+          "subpart": "(2)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "86",
+          "number": "19B",
+          "subpart": "(3)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "86",
+          "number": "19B",
+          "subpart": "(4)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "87",
+      "section": "PART 2 / 19B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0
+    },
+    {
+      "page": "88",
+      "section": "PART 2 / 20A",
+      "expectedExerciseNumbers": [
+        "01"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "88",
+          "number": "20A",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "88",
+          "number": "20A",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 2
+    },
+    {
+      "page": "89",
+      "section": "PART 2 / 20A",
+      "expectedExerciseNumbers": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10
+    },
+    {
+      "page": "90",
+      "section": "PART 2 / 20B",
+      "expectedExerciseNumbers": [
+        "01",
+        "02"
+      ],
+      "exampleSubparts": [
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "90",
+          "number": "20B",
+          "subpart": "(1)"
+        },
+        {
+          "volume": "3-1 상",
+          "section": "PART 2",
+          "page": "90",
+          "number": "20B",
+          "subpart": "(2)"
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 1
+    },
+    {
+      "page": "91",
+      "section": "PART 2 / 20B",
+      "expectedExerciseNumbers": [
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exampleSubparts": [],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "10",
+        "number": "02A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 2,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 02A",
+        "page": "11",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 02A",
+        "page": "11",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "26",
+        "number": "06A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 7,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "32",
+        "number": "07B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "32",
+        "number": "07B",
+        "subpart": "(2)"
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 07B",
+        "page": "32",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 07B",
+        "page": "32",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 07B",
+        "page": "32",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1 / 07B",
+        "page": "32",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "40",
+        "number": "09B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 12,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "42",
+        "number": "10A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 13,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "44",
+        "number": "10B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 13,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 1",
+        "page": "44",
+        "number": "10B",
+        "subpart": "(2)"
+      },
+      "sourcePage": 13,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "52",
+        "number": "11A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 15,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "53",
+        "number": "11A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 16,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "54",
+        "number": "11B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 16,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "68",
+        "number": "15A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 20,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "68",
+        "number": "15A",
+        "subpart": "(4)"
+      },
+      "sourcePage": 20,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "70",
+        "number": "15B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 21,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "74",
+        "number": "16B",
+        "subpart": "(2)"
+      },
+      "sourcePage": 22,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 16B",
+        "page": "75",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 22,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 16B",
+        "page": "75",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 22,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "78",
+        "number": "17B",
+        "subpart": "(1)"
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "78",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "79",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "79",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "79",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 17B",
+        "page": "79",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "86",
+        "number": "19B",
+        "subpart": "(2)"
+      },
+      "sourcePage": 25,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "88",
+        "number": "20A",
+        "subpart": "(1)"
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "88",
+        "number": "20A",
+        "subpart": "(2)"
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20A",
+        "page": "89",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2",
+        "page": "90",
+        "number": "20B",
+        "subpart": "(2)"
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    },
+    {
+      "address": {
+        "volume": "3-1 상",
+        "section": "PART 2 / 20B",
+        "page": "91",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 27,
+      "reason": "그림·표·음표가 답의 일부이며 문자열만으로 전체 답을 보존할 수 없음"
+    }
+  ],
+  "outOfScope": [
+    {
+      "sourcePages": [
+        14,
+        15
+      ],
+      "section": "PART 01 연습 문제",
+      "numbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "reason": "본문 쪽 미기재"
+    },
+    {
+      "sourcePages": [
+        27,
+        28
+      ],
+      "section": "PART 02 연습 문제",
+      "numbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "reason": "본문 쪽 미기재"
+    },
+    {
+      "sourcePages": [
+        15,
+        28
+      ],
+      "section": "Quiz Quiz",
+      "reason": "본문 쪽·문항 번호 미기재"
+    },
+    {
+      "sourcePages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "reason": "MEMO 및 여백으로 답안 없음"
+    }
+  ],
+  "reviewMethod": {
+    "coordinateFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/native-coordinates.json",
+    "glyphMap": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/glyph-maps.json",
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/chun_ddapul_0/reviewed-correspondence.json",
+    "allAnswerRegionsVisuallyInspected": true
+  }
+}
