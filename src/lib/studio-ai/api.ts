@@ -1,4 +1,5 @@
 import "server-only";
+import { createHash } from "node:crypto";
 import OpenAI from "openai";
 import type {
   DevAiAction,
@@ -19,6 +20,22 @@ import { pushErrorLogContext } from "@/lib/errorLog/scope";
 import { StudioApiError, retryAfterMs } from "./errors";
 import { withModelRetry } from "./retry";
 export { StudioApiError } from "./errors";
+export interface ModelApiReceipt {
+  vendor: ApiVendor;
+  requestedModel: string;
+  reportedModel: string | null;
+  responseId: string | null;
+  completionReason: string;
+  responseTextHash: string;
+  usage: Readonly<{
+    inputTokens: number | null;
+    outputTokens: number | null;
+    totalTokens: number | null;
+    thinkingTokens: number | null;
+    cachedInputTokens: number | null;
+    cacheCreationInputTokens: number | null;
+  }> | null;
+}
 type InferenceInput = {
   vendor: ApiVendor;
   model: string;
@@ -30,6 +47,9 @@ type InferenceInput = {
   /** Opt-in bounded selection requests; existing callers preserve retries/log details. */
   singleAttempt?: boolean;
   suppressUpstreamDetails?: boolean;
+  /** Successful provider metadata only; missing reported fields stay null.
+   * Called outside the provider retry loop, so a consumer failure never replays inference. */
+  onReceipt?: (receipt: Readonly<ModelApiReceipt>) => void;
   /**
    * Claude 의 생각 강도(`output_config.effort`) — 부르는 쪽이 정할 때만. 없으면 지금 그대로다(Opus 5 는 medium ·
    * 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9).
@@ -41,6 +61,84 @@ function nonempty(text: string | null | undefined) {
   if (text.length > 1_000_000)
     throw new StudioApiError("AI 응답이 너무 큽니다.");
   return text;
+}
+function record(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+function reportedString(value: unknown) {
+  return typeof value === "string" && value.length > 0 && value.length <= 256
+    ? value
+    : null;
+}
+function reportedTokens(value: unknown) {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0
+    ? value
+    : null;
+}
+function completed(
+  input: InferenceInput,
+  text: string | null | undefined,
+  response: unknown,
+  completionReason: string,
+) {
+  const output = nonempty(text);
+  if (input.onReceipt) {
+    const data = record(response) ?? {};
+    const gemini = input.vendor === "gemini";
+    const usage = record(gemini ? data.usageMetadata : data.usage);
+    const inputDetails = record(usage?.input_tokens_details);
+    const promptDetails = record(usage?.prompt_tokens_details);
+    const outputDetails = record(usage?.output_tokens_details);
+    const completionDetails = record(usage?.completion_tokens_details);
+    input.onReceipt(
+      Object.freeze({
+        vendor: input.vendor,
+        requestedModel: input.model,
+        reportedModel: reportedString(gemini ? data.modelVersion : data.model),
+        responseId: reportedString(gemini ? data.responseId : data.id),
+        completionReason,
+        responseTextHash: `sha256:${createHash("sha256").update(output).digest("hex")}`,
+        usage: usage
+          ? Object.freeze({
+              inputTokens: reportedTokens(
+                gemini
+                  ? usage.promptTokenCount
+                  : (usage.input_tokens ?? usage.prompt_tokens),
+              ),
+              outputTokens: reportedTokens(
+                gemini
+                  ? usage.candidatesTokenCount
+                  : (usage.output_tokens ?? usage.completion_tokens),
+              ),
+              totalTokens: reportedTokens(
+                gemini ? usage.totalTokenCount : usage.total_tokens,
+              ),
+              thinkingTokens: reportedTokens(
+                gemini
+                  ? usage.thoughtsTokenCount
+                  : input.vendor === "anthropic"
+                    ? outputDetails?.thinking_tokens
+                    : (outputDetails?.reasoning_tokens ??
+                      completionDetails?.reasoning_tokens),
+              ),
+              cachedInputTokens: reportedTokens(
+                gemini
+                  ? usage.cachedContentTokenCount
+                  : (usage.cache_read_input_tokens ??
+                      inputDetails?.cached_tokens ??
+                      promptDetails?.cached_tokens),
+              ),
+              cacheCreationInputTokens: reportedTokens(
+                usage.cache_creation_input_tokens,
+              ),
+            })
+          : null,
+      }),
+    );
+  }
+  return output;
 }
 /** 실패한 상류 응답의 앞부분 — 오류 기록 메모용. 읽다 실패하면 빈 글. */
 async function upstreamHead(response: Response, max = 2000): Promise<string> {
@@ -125,13 +223,22 @@ async function rest(
 
 /** Server credentials and fixed official endpoints only; no CLI fallback or tool access. */
 export async function runModelApi(input: InferenceInput): Promise<string> {
+  const onReceipt = input.onReceipt;
+  let receipt: Readonly<ModelApiReceipt> | undefined;
   input = {
     ...input,
     signal: AbortSignal.any([input.signal, AbortSignal.timeout(110_000)]),
+    onReceipt: onReceipt
+      ? (value) => {
+          receipt = value;
+        }
+      : undefined,
   };
-  return input.singleAttempt
+  const output = await (input.singleAttempt
     ? runModelApiOnce(input)
-    : withModelRetry(() => runModelApiOnce(input), input.signal);
+    : withModelRetry(() => runModelApiOnce(input), input.signal));
+  if (receipt) onReceipt?.(receipt);
+  return output;
 }
 
 async function runModelApiOnce(input: InferenceInput): Promise<string> {
@@ -180,11 +287,14 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         throw new StudioApiError(
           "Gemini 응답이 완료되지 않았습니다. 문항을 나누어 다시 시도해 주세요.",
         );
-      return nonempty(
+      return completed(
+        input,
         candidate.content?.parts
           ?.filter((p: { thought?: boolean; text?: string }) => !p.thought)
           .map((p: { text?: string }) => p.text ?? "")
           .join(""),
+        result,
+        candidate.finishReason,
       );
     }
     if (input.vendor === "anthropic") {
@@ -251,11 +361,14 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         throw new StudioApiError(
           "Claude 응답에 예상하지 않은 내용이 포함되어 적용하지 않았습니다. 다시 시도해 주세요.",
         );
-      return nonempty(
+      return completed(
+        input,
         result.content
           .filter((p: { type: string }) => p.type === "text")
           .map((p: { text: string }) => p.text)
           .join(""),
+        result,
+        result.stop_reason,
       );
     }
     const client = new OpenAI({
@@ -302,7 +415,8 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         throw new StudioApiError(
           "OpenAI 응답이 완료되지 않았습니다. 문항을 나누어 다시 시도해 주세요.",
         );
-      return nonempty(
+      return completed(
+        input,
         result.output_text?.trim()
           ? result.output_text
           : result.output
@@ -311,6 +425,8 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
               .filter((part) => part.type === "output_text")
               .map((part) => part.text)
               .join(""),
+        result,
+        result.status,
       );
     }
     const result = await client.chat.completions.create(
@@ -354,7 +470,12 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
       throw new StudioApiError(
         "AI 응답이 완료되지 않았습니다. 문항을 나누어 다시 시도해 주세요.",
       );
-    return nonempty(result.choices[0].message.content);
+    return completed(
+      input,
+      result.choices[0].message.content,
+      result,
+      result.choices[0].finish_reason,
+    );
   } catch (error) {
     input.signal.throwIfAborted();
     if (error instanceof StudioApiError) throw error;
