@@ -8,6 +8,7 @@ import hmac
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 import threading
@@ -18,6 +19,9 @@ MAX_BODY=3_500_000
 MAX_RESPONSE=4_000_000
 MAX_OUTPUT=8*1024*1024
 MAX_AGE=60
+CPU_SOFT_SECONDS=220
+CPU_HARD_SECONDS=221
+CHILD_WALL_SECONDS=230
 PROTOCOL="ontology-engine-v1"
 _nonces={}
 _nonce_lock=threading.Lock()
@@ -31,11 +35,38 @@ def signature(secret,timestamp,body):
 
 def limits():
     import resource
-    resource.setrlimit(resource.RLIMIT_CPU,(180,181))
+    resource.setrlimit(resource.RLIMIT_CPU,(CPU_SOFT_SECONDS,CPU_HARD_SECONDS))
     # AS is enforced on Linux production; macOS RSS/AS enforcement is not assumed.
     if sys.platform.startswith("linux"):resource.setrlimit(resource.RLIMIT_AS,(1536*1024*1024,1536*1024*1024))
 
+def child_usage():
+    try:
+        import resource
+        usage=resource.getrusage(resource.RUSAGE_CHILDREN)
+        rss_bytes=usage.ru_maxrss if sys.platform=="darwin" else usage.ru_maxrss*1024
+        return usage.ru_utime+usage.ru_stime,rss_bytes
+    except (ImportError,OSError,ValueError):return None,None
+
+def child_diagnostic(code,started,cpu_before,overflow,timed_out):
+    cpu_after,lifetime_child_rss=child_usage()
+    memory=os.environ.get("AWS_LAMBDA_FUNCTION_MEMORY_SIZE","")
+    platform_memory=int(memory) if re.fullmatch(r"[1-9][0-9]{0,5}",memory) and int(memory)<=65536 else None
+    # Server-only resource metadata. Never include input, raw stderr or content.
+    signal_name=None
+    if code is not None and code<0:
+        signal_name=next((name for name in ("SIGXCPU","SIGKILL","SIGTERM") if getattr(signal,name,None)==-code),"OTHER")
+    payload={"event":"ontology_compiler_child","returnCode":code,"signal":signal_name,
+        "elapsedMs":round((time.monotonic()-started)*1000,3),
+        "cpuSeconds":round(max(0,cpu_after-cpu_before),6) if cpu_before is not None and cpu_after is not None else None,
+        "processLifetimeMaxChildRssBytes":lifetime_child_rss,"platformMemoryMiB":platform_memory,
+        "addressSpaceBytes":1536*1024*1024 if sys.platform.startswith("linux") else None,
+        "cpuSoftSeconds":CPU_SOFT_SECONDS,"cpuHardSeconds":CPU_HARD_SECONDS,"wallSeconds":CHILD_WALL_SECONDS,
+        "stdoutOverflow":overflow,"wallTimeout":timed_out}
+    try:print(canonical(payload),file=sys.stderr,flush=True)
+    except (OSError,ValueError):pass
+
 def compile_child(value):
+    started=time.monotonic();cpu_before,_=child_usage();timed_out=False;code=None
     child=subprocess.Popen([sys.executable,"-B",str(ROOT/"scripts/ontology/compiler/compiler.py")],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,cwd=ROOT,preexec_fn=limits if os.name=="posix" else None)
     overflow=threading.Event();chunks=[]
     def write():
@@ -53,12 +84,16 @@ def compile_child(value):
     writer=threading.Thread(target=write,daemon=True);reader=threading.Thread(target=read,daemon=True)
     writer.start();reader.start()
     try:
-        code=child.wait(timeout=230);reader.join(timeout=2)
+        code=child.wait(timeout=CHILD_WALL_SECONDS);reader.join(timeout=2)
         if code or overflow.is_set() or reader.is_alive():raise ValueError("COMPILER_FAILED")
         return b"".join(chunks)
+    except subprocess.TimeoutExpired:
+        timed_out=True
+        raise
     finally:
         if child.poll() is None:child.kill()
-        child.wait();writer.join(timeout=2);reader.join(timeout=2);child.stdout.close()
+        code=child.wait();writer.join(timeout=2);reader.join(timeout=2);child.stdout.close()
+        child_diagnostic(code,started,cpu_before,overflow.is_set(),timed_out)
 
 class handler(BaseHTTPRequestHandler):
     def log_message(self,*_):pass
