@@ -41,6 +41,7 @@ describe("Sookyung Suryeok Geometry public PDF complete answer scope", () => {
     expect(parsed.exercises.filter(row => !row.key).map(row => row.address)).toEqual(coverage.nullKeyLedger.map(row => row.address));
     expect(coverage.nullKeyLedger.every(row => row.registered && ["diagram", "source-anomaly"].includes(row.reason) && row.key === null && row.note.length > 20)).toBe(true);
     expect(coverage.counts).toMatchObject({ exercises: 406, reviewedKeys: 394, nullKeys: 12, unreviewedKeys: 0, omittedInScopeAddresses: 0 });
+    expect(coverage.sourceAnomalies.every(row => row.registered && row.key === null)).toBe(true);
   });
   it("preserves numeric, radical, unit, vector and split-page references read from all six pages", () => {
     const fixtures = [
@@ -75,6 +76,7 @@ describe("Sookyung Suryeok Geometry public PDF complete answer scope", () => {
     for (const row of parsed.exercises) if (row.key) byPage[String(row.key.sourcePage)] = (byPage[String(row.key.sourcePage)] ?? 0) + 1;
     expect(byPage).toEqual({ "2": 41, "3": 58, "4": 73, "5": 78, "6": 91, "7": 53 });
     expect(byPage).toEqual(coverage.counts.byReviewedKeySourcePage);
+    expect(coverage.numericChoiceChecks).toMatchObject({ checked: 394, exactDigitMultisetMatches: 389, visuallyReconciled: 5, unresolved: 0 });
   });
   it("pins official provenance without deriving an edition from a filename", () => {
     expect(parsed.metadata).toEqual({ title: "수력충전 기하", publisher: "수경출판사", grade: "고등", edition: "공식 공개 PDF 보관본 · 발행연도·교육과정·쇄·ISBN 미확인" });
