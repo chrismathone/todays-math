@@ -160,6 +160,10 @@ const CourseDashboard = dynamic(
     ),
   },
 );
+const OntologyWorkspace = dynamic(
+  () => import("@/components/math-ontology/OntologyWorkspace"),
+  { ssr: false, loading: () => <WorkProgress className={s.loading} label="지식 작업실을 여는 중입니다…" /> },
+);
 const EnglishStudio = dynamic(
   () => import("@/components/english/EnglishStudio"),
   {
@@ -191,7 +195,7 @@ const EnglishResourceBank = dynamic(
  * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
  */
-type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView;
+type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView | "ontology";
 /**
  * 옆 메뉴의 짜임은 두 제품이 한 벌이다(원장님 2026-10-08 «왼쪽에 많은 탭을 둬도 되지만 편의상 수학 · 영어로
  * 구분한 것 — 통일»). `common` 은 두 제품에 같은 자리 · 같은 일로 서는 메뉴(오늘의 작업 → 시험지 만들기 →
@@ -286,6 +290,7 @@ const mathNav: NavItem[] = [
     icon: "clock",
     group: "own",
   },
+  { id: "ontology", label: "지식 작업실", short: "지식", icon: "search", group: "own" },
 ];
 /** 오늘의 영어 옆 메뉴 — 위 넷은 수학의 같은 자리와 짝이고, 영어듣기 · 자료은행은 영어만의 메뉴다. */
 const englishNav: NavItem[] = [
@@ -350,7 +355,7 @@ const viewValid = (value: string): value is View =>
   allNavItems.some((item) => item.id === value);
 /** 뷰가 딸린 메뉴 — 권한은 이것으로 본다. «연산대장»은 제 메뉴 `arithmetic` 을 본다(2026-10-16 — bank 에 딸리지 않는다). */
 const menuOf = (view: View): WorkspaceMenu =>
-  isEnglishView(view) ? englishViewMenu(view) : view;
+  view === "ontology" ? "srs" : isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
   view &&
   (isEnglishView(view) ||
@@ -2005,6 +2010,11 @@ function UnifiedWorkspaceContent({
                 branchId={branchId}
                 legacy={<CourseDashboard textbookEnabled={can("textbook")} />}
               />
+            </main>
+          )}
+          {can("ontology") && (opened.has("ontology") || view === "ontology") && (
+            <main hidden={view !== "ontology"} className={s.viewContent}>
+              <OntologyWorkspace branchId={branchId} scopeKey={currentUser?.id} />
             </main>
           )}
           {can("textbook") &&

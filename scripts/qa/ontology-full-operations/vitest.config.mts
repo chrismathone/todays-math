@@ -7,7 +7,8 @@ export default defineConfig({
     maxWorkers: 3,
     testTimeout: 30000,
     include: [
-      "src/__tests__/{unit,integration}/mathOntologyOperations*.test.ts",
+      "src/__tests__/{unit,integration}/mathOntologyOperations*.test.{ts,tsx}",
+      "scripts/qa/ontology-full-operations/*.postgres.test.ts",
     ],
   },
 });
