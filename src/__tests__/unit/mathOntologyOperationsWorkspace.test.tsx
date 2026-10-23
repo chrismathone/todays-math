@@ -42,17 +42,28 @@ describe("B/H3 concise AI-first workspace", () => {
   render(<OntologyWorkspace source={port} />);
   const input = screen.getByLabelText("원하는 일"); fireEvent.change(input, { target: { value: "원천을 찾아줘" } });
   fireEvent.click(screen.getByRole("button", { name: "준비하기" })); await screen.findByRole("alert");
+  expect(screen.queryByRole("region", { name: "준비한 결과" })).toBeNull();
+  expect(screen.queryByRole("region", { name: "다음 작업" })).toBeNull();
   expect((input as HTMLTextAreaElement).value).toBe("원천을 찾아줘"); expect(port.run).toHaveBeenCalledTimes(1);
   fireEvent.click(screen.getByRole("button", { name: "다시 준비" })); await screen.findByText(answer.summary);
   vi.mocked(port.run).mockRejectedValueOnce(new OntologyWorkspaceError("FORBIDDEN", "현재 권한으로 볼 수 없습니다."));
   fireEvent.click(screen.getByRole("button", { name: "준비하기" })); await screen.findByText("현재 권한으로 볼 수 없습니다.");
   expect(screen.queryByText("보존된 첫 풀이")).toBeNull();
  });
+ it("keeps previous-result recovery when a later preparation fails without leaving an inert next-action card", async () => {
+  const port = source(); vi.mocked(port.run).mockResolvedValueOnce({ ...answer, action: undefined }).mockRejectedValueOnce(new OntologyWorkspaceError("UNAVAILABLE", "새 자료를 준비하지 못했습니다."));
+  render(<OntologyWorkspace source={port} />);
+  fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "찾아줘" } }); fireEvent.click(screen.getByRole("button", { name: "준비하기" })); await screen.findByText(answer.summary);
+  fireEvent.click(screen.getByRole("button", { name: "준비하기" })); await screen.findByRole("alert");
+  expect(screen.queryByRole("region", { name: "다음 작업" })).toBeNull();
+  fireEvent.click(screen.getByRole("button", { name: "이전 결과" })); await screen.findByText(answer.summary); expect(port.confirm).not.toHaveBeenCalled();
+ });
  it("locks duplicate submission while preparation is pending", async () => {
   const port = source(); let resolve!: (value: WorkspaceAnswer) => void;
   vi.mocked(port.run).mockReturnValue(new Promise(r => { resolve = r; }));
   render(<OntologyWorkspace source={port} />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "찾아줘" } });
   const button = screen.getByRole("button", { name: "준비하기" }); fireEvent.click(button); fireEvent.click(button);
+  expect(screen.getByRole("status")).toBeTruthy(); expect(screen.queryByRole("region", { name: "준비한 결과" })).toBeNull(); expect(screen.queryByRole("region", { name: "다음 작업" })).toBeNull();
   expect(port.run).toHaveBeenCalledTimes(1); resolve(answer);
   await waitFor(() => expect(screen.queryByText("준비 중…")).toBeNull());
  });
