@@ -103,7 +103,6 @@ export function createProductionOntologyContext(
           source: source?.snapshotDigest ?? null,
           graphVersion: release.identity.graphVersion,
           generation: release.generation,
-          asOf: asOf.toISOString(),
         }),
       ),
       cursorSecret: ontologyCursorSecret(),
@@ -114,7 +113,7 @@ export function createProductionOntologyContext(
     );
     async function assertCurrent() {
       const latest = await authorize();
-      if (latest !== stamp) throw new OntologyOperationError("FORBIDDEN");
+      if (latest !== stamp) throw new OntologyOperationError("STALE");
       if (target && source) {
         const last = await readMathOntologyDatabaseSources({
           actor,

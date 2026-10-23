@@ -98,6 +98,12 @@ describe("actual assist composition with synthetic model port and actual full-so
     expect(result.answer.steps.length).toBeGreaterThan(0);
     expect(result.answer.details[0].text).toContain("소속");
     expect(result.packet?.facts.length).toBeGreaterThan(0);
+    expect(
+      result.packet?.facts.some((f) => f.predicate === "assessesDefinition"),
+    ).toBe(true);
+    expect(result.packet?.facts.some((f) => f.predicate === "partOf")).toBe(
+      true,
+    );
     expect(result.receipts).toHaveLength(2);
     expect(prompts[1]).not.toContain("urn:todaymath:math-source");
   }, 60000);

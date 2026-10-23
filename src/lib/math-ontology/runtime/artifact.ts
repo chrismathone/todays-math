@@ -28,6 +28,7 @@ export interface MathOntologyRuntime {
  proofs:()=>readonly MathOntologyProof[];
  shapes:string;
  resolveEntity?:(iri:string)=>string;
+ assessmentSubjects?:(definition:string,context:OntologyQueryContext)=>readonly string[];
  materialize?:(query:MathOntologyQuery,context:OntologyQueryContext)=>Promise<MathOntologyRuntime>;
 }
 
