@@ -3,7 +3,7 @@ import {
   type OntologyModelJsonSchema,
 } from "./modelSchemas";
 import "server-only";
-import { insightModelConfig } from "@/lib/math-insight/config";
+import { ontologyModelConfig } from "./config.server";
 import { maskInsightQuery } from "@/lib/math-insight/inference";
 import { runModelApi, type ModelApiReceipt } from "@/lib/studio-ai/api";
 import {
@@ -17,7 +17,7 @@ export async function requestOntologyCompletion(
   signal: AbortSignal,
   jsonSchema?: OntologyModelJsonSchema,
 ) {
-  const config = insightModelConfig();
+  const config = ontologyModelConfig();
   if (!config) throw new Error("MODEL_NOT_CONFIGURED");
   let receipt: Readonly<ModelApiReceipt> | undefined;
   const boundedSignal = AbortSignal.any([signal, AbortSignal.timeout(20000)]);
