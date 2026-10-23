@@ -30,11 +30,21 @@ const rec: MathOntologySourceRecord = {
   edition: "unknown",
   metadata: { grade: "초3" },
 };
-function fixture(records: MathOntologySourceRecord[] = [rec]) {
+function fixture(
+  records: MathOntologySourceRecord[] = [rec],
+  extraInputs: {
+    path: string;
+    bytes: number;
+    byteHash: `sha256:${string}`;
+  }[] = [],
+) {
   return sealMathOntologySourcePayload({
     schemaVersion: 1,
     adapterVersion: "repo-sources-1",
-    inputs: [{ path: origin.repositoryPath, byteHash: digest, bytes: 10 }],
+    inputs: [
+      { path: origin.repositoryPath, byteHash: digest, bytes: 10 },
+      ...extraInputs,
+    ],
     records,
     assertions: [],
     expectedCoverage: MATH_ONTOLOGY_SOURCE_NAMESPACES.map((namespace) => ({
@@ -44,6 +54,87 @@ function fixture(records: MathOntologySourceRecord[] = [rec]) {
   });
 }
 describe("immutable source assembler and RDF boundary", () => {
+  it("keeps public bytes/versions identical when a private row in the same physical file changes", () => {
+    const privateRow = {
+      ...rec,
+      namespace: "source-exam-question" as const,
+      scope: "hidden",
+      nativeId: "PRIVATE",
+      distribution: "quarantine-reference" as const,
+      sourceProvenance: "imported-source" as const,
+    };
+    const a = fixture([rec, privateRow]);
+    const changedOrigin = {
+      ...origin,
+      byteHash: `sha256:${"d".repeat(64)}` as const,
+    };
+    const b = sealMathOntologySourcePayload({
+      ...a.payload,
+      inputs: [
+        {
+          path: origin.repositoryPath,
+          byteHash: changedOrigin.byteHash,
+          bytes: 11,
+        },
+      ],
+      records: [
+        { ...rec, origin: changedOrigin },
+        { ...privateRow, nativeId: "PRIVATE-EDITED", origin: changedOrigin },
+      ],
+    });
+    const nq = (e: ReturnType<typeof fixture>) =>
+      sourceQuadsToNQuads(
+        toMathOntologySourceQuads(
+          assembleMathOntologySources(e, {
+            expectedPayloadHash: e.payloadHash,
+          }),
+        ),
+      );
+    expect(a.payloadHash).not.toBe(b.payloadHash);
+    expect(nq(a)).toBe(nq(b));
+    expect(nq(b)).not.toContain(changedOrigin.byteHash);
+  });
+
+  it("does not disclose private registry existence/count or contaminate public versions", () => {
+    const a = fixture();
+    const privateOrigin = {
+      ...origin,
+      repositoryPath: "private/source.json",
+      byteHash: `sha256:${"2".repeat(64)}` as const,
+    };
+    const b = fixture(
+      [
+        rec,
+        {
+          ...rec,
+          namespace: "source-exam-question",
+          scope: "private",
+          nativeId: "PRIVATE-ID",
+          origin: privateOrigin,
+          distribution: "quarantine-reference",
+          sourceProvenance: "imported-source",
+        },
+      ],
+      [
+        {
+          path: privateOrigin.repositoryPath,
+          byteHash: privateOrigin.byteHash,
+          bytes: 7,
+        },
+      ],
+    );
+    const nq = (e: ReturnType<typeof fixture>) =>
+      sourceQuadsToNQuads(
+        toMathOntologySourceQuads(
+          assembleMathOntologySources(e, {
+            expectedPayloadHash: e.payloadHash,
+          }),
+        ),
+      );
+    expect(nq(a)).toBe(nq(b));
+    expect(nq(b)).not.toContain("SourceCoverage");
+    expect(nq(b)).not.toContain("PRIVATE-ID");
+  });
   it("keeps stable IDs but binds each immutable version and byte manifest", () => {
     const envelope = fixture();
     const dataset = assembleMathOntologySources(envelope, {

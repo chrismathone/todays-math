@@ -10,7 +10,7 @@ tm:AssertionShape a sh:NodeShape ; sh:targetClass tm:Assertion ;
   sh:property [ sh:path tm:sourceRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path tm:sourceDigest ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
   sh:property [ sh:path tm:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
-  sh:property [ sh:path tm:review ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "approved" ] ;
+  sh:property [ sh:path tm:review ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "approved"^^xsd:string ] ;
   sh:property [ sh:path tm:approval ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
 
 tm:PartShape a sh:NodeShape ; sh:targetSubjectsOf tm:partOf ;
@@ -19,7 +19,7 @@ tm:PartShape a sh:NodeShape ; sh:targetSubjectsOf tm:partOf ;
 tm:SourceEntityShape a sh:NodeShape ; sh:targetClass tm:SourceEntity ;
   sh:property [ sh:path tm:nativeId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
   sh:property [ sh:path tm:sourceVersion ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
-  sh:property [ sh:path tm:sourceByteHash ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path [ sh:alternativePath (tm:sourceByteHash tm:sourceProjectionHash) ] ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
   sh:property [ sh:path tm:sourceKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
   sh:property [ sh:path tm:sourceScope ; sh:minCount 1 ; sh:maxCount 1 ] .
 
@@ -27,9 +27,9 @@ tm:SourceAssertionShape a sh:NodeShape ; sh:targetClass tm:SourceAssertion ;
   sh:property [ sh:path rdf:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:class tm:SourceEntity ] ;
   sh:property [ sh:path rdf:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path rdf:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:class tm:SourceEntity ] ;
-  sh:property [ sh:path tm:sourceByteHash ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path [ sh:alternativePath (tm:sourceByteHash tm:sourceProjectionHash) ] ; sh:minCount 1 ; sh:maxCount 1 ] ;
   sh:property [ sh:path tm:reviewState ; sh:minCount 1 ; sh:maxCount 1 ] ;
-  sh:property [ sh:path tm:publicationState ; sh:minCount 1 ; sh:hasValue "unpublished" ] .
+  sh:property [ sh:path tm:publicationState ; sh:minCount 1 ; sh:hasValue "unpublished"^^xsd:string ] .
 
 tm:SourceCoverageShape a sh:NodeShape ; sh:targetClass tm:SourceCoverage ;
   sh:property [ sh:path tm:nativeNamespace ; sh:minCount 1 ; sh:maxCount 1 ] ;
@@ -40,3 +40,59 @@ tm:LearningObservationShape a sh:NodeShape ; sh:targetClass tm:LearningObservati
   sh:property [ sh:path tm:recordRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ;
   sh:property [ sh:path tm:sourceKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
   sh:property [ sh:path tm:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+tm:CandidateAssertionShape a sh:NodeShape ; sh:targetClass tm:CandidateAssertion ;
+  sh:property [ sh:path rdf:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path rdf:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path rdf:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path tm:sourceRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path tm:sourceDigest ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path tm:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path tm:review ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "candidate"^^xsd:string ] ;
+  sh:property [ sh:path tm:publication ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "unpublished"^^xsd:string ] .
+
+tm:SourceGradeShape a sh:NodeShape ; sh:targetClass tm:SourceGrade ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Grade"^^xsd:string ] .
+
+tm:SourceChapterShape a sh:NodeShape ; sh:targetClass tm:SourceChapter ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Chapter"^^xsd:string ] .
+
+tm:SourceSectionShape a sh:NodeShape ; sh:targetClass tm:SourceSection ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Section"^^xsd:string ] .
+
+tm:SourceDefinitionShape a sh:NodeShape ; sh:targetClass tm:SourceDefinition ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Definition"^^xsd:string ] .
+
+tm:SourceAssessmentEntryShape a sh:NodeShape ; sh:targetClass tm:SourceAssessmentEntry ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "AssessmentEntry"^^xsd:string ] .
+
+tm:SourceQuestionRepresentationShape a sh:NodeShape ; sh:targetClass tm:SourceQuestionRepresentation ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "QuestionRepresentation"^^xsd:string ] .
+
+tm:SourceLearningUnitShape a sh:NodeShape ; sh:targetClass tm:SourceLearningUnit ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "LearningUnit"^^xsd:string ] .
+
+tm:SourceCardShape a sh:NodeShape ; sh:targetClass tm:SourceCard ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Card"^^xsd:string ] .
+
+tm:SourceRecallGroupShape a sh:NodeShape ; sh:targetClass tm:SourceRecallGroup ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "RecallGroup"^^xsd:string ] .
+
+tm:SourceEditorialUnitShape a sh:NodeShape ; sh:targetClass tm:SourceEditorialUnit ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "EditorialUnit"^^xsd:string ] .
+
+tm:SourceEditorialTopicShape a sh:NodeShape ; sh:targetClass tm:SourceEditorialTopic ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "EditorialTopic"^^xsd:string ] .
+
+tm:SourceCourseShape a sh:NodeShape ; sh:targetClass tm:SourceCourse ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Course"^^xsd:string ] .
+
+tm:SourceCourseExpressionShape a sh:NodeShape ; sh:targetClass tm:SourceCourseExpression ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "CourseExpression"^^xsd:string ] .
+
+tm:SourceSkillShape a sh:NodeShape ; sh:targetClass tm:SourceSkill ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Skill"^^xsd:string ] .
+
+tm:SourceGeneratorFamilyShape a sh:NodeShape ; sh:targetClass tm:SourceGeneratorFamily ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "GeneratorFamily"^^xsd:string ] .
+
+tm:SourceRequirementShape a sh:NodeShape ; sh:targetClass tm:SourceRequirement ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "Requirement"^^xsd:string ] .
+
+tm:SourceTeachingScriptShape a sh:NodeShape ; sh:targetClass tm:SourceTeachingScript ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "TeachingScript"^^xsd:string ] .
+
+tm:SourceScriptTurnShape a sh:NodeShape ; sh:targetClass tm:SourceScriptTurn ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "ScriptTurn"^^xsd:string ] .
+
+tm:SourceSourceReferenceShape a sh:NodeShape ; sh:targetClass tm:SourceSourceReference ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "SourceReference"^^xsd:string ] .
+
+tm:SourceLabUnitShape a sh:NodeShape ; sh:targetClass tm:SourceLabUnit ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "LabUnit"^^xsd:string ] .
+
+tm:SourceSourceQuestionShape a sh:NodeShape ; sh:targetClass tm:SourceSourceQuestion ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "SourceQuestion"^^xsd:string ] .
+
+tm:SourceOfficialStandardShape a sh:NodeShape ; sh:targetClass tm:SourceOfficialStandard ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "OfficialStandard"^^xsd:string ] .
+
+tm:SourceOperationalModelShape a sh:NodeShape ; sh:targetClass tm:SourceOperationalModel ; sh:node tm:SourceEntityShape ; sh:property [ sh:path tm:sourceKind ; sh:hasValue "OperationalModel"^^xsd:string ] .

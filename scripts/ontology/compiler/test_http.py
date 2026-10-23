@@ -10,6 +10,8 @@ import subprocess
 import sys
 import time
 import unittest
+import tempfile
+import shutil
 from compiler import canonical,digest
 from test_compiler import fixture
 
@@ -39,6 +41,14 @@ class HttpEngine(unittest.TestCase):
         status,r=self.call();self.assertEqual(status,200)
         raw=gzip.decompress(base64.b64decode(r['resultGzip']));self.assertEqual(r['resultHash'],"sha256:"+hashlib.sha256(raw).hexdigest())
         self.assertEqual(json.loads(raw)['identity']['profile'],'tm-owlrl-1')
+    def test_actual_node_transport_accepts_publisher_120_second_lease(self):
+        with tempfile.TemporaryDirectory() as folder:
+            p=pathlib.Path(folder)/'input.json';p.write_text(canonical(fixture()))
+            node=shutil.which('node')
+            if not node:raise RuntimeError('Node is required for transport integration')
+            result=subprocess.run([node,'--conditions=react-server','node_modules/tsx/dist/cli.mjs','scripts/ontology/compiler/http-client.ts',str(self.port),str(p)],capture_output=True,text=True,timeout=20,env={'PATH':str(pathlib.Path(node).parent)+':/usr/bin:/bin','NODE_OPTIONS':'--conditions=react-server'})
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertTrue(json.loads(result.stdout)['expiredRejected'])
     def test_unsigned_other_purpose_audience_expired_and_body_change(self):
         self.assertEqual(self.call(sign=False)[0],401)
         self.assertEqual(self.call(purpose="mathgen-engine-v1")[0],401)
