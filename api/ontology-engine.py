@@ -71,7 +71,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):self.reply(405,{"error":"POST_ONLY"})
     def do_POST(self):
         if self.path!="/api/ontology-engine":return self.reply(404,{"error":"NOT_FOUND"})
-        secret=os.environ.get("ONTOLOGY_ENGINE_SECRET") or os.environ.get("STUDIO_ENGINE_SECRET") or os.environ.get("AUTH_SECRET")
+        secret=os.environ.get("MATH_ONTOLOGY_ENGINE_SECRET") or os.environ.get("ONTOLOGY_ENGINE_SECRET") or os.environ.get("STUDIO_ENGINE_SECRET") or os.environ.get("AUTH_SECRET")
         audience=os.environ.get("ONTOLOGY_ENGINE_AUDIENCE") or os.environ.get("VERCEL_URL")
         if not secret or not audience:return self.reply(503,{"error":"ENGINE_NOT_CONFIGURED"})
         lengths=self.headers.get_all("Content-Length",[])

@@ -14,3 +14,28 @@ tm:projectsSourceSection a owl:ObjectProperty .
 tm:directPedagogicalPrerequisite a owl:ObjectProperty .
 tm:supports a owl:ObjectProperty .
 tm:observedIn a owl:ObjectProperty .
+
+tm:SourceEntity a owl:Class ; rdfs:subClassOf tm:RegisteredEntity .
+tm:SourceGrade a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceChapter a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceSection a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceDefinition a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceAssessmentEntry a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceQuestionRepresentation a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceLearningUnit a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceCard a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceRecallGroup a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceEditorialUnit a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceEditorialTopic a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceCourse a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceCourseExpression a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceSkill a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceGeneratorFamily a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceRequirement a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceTeachingScript a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceScriptTurn a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceSourceReference a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceLabUnit a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceSourceQuestion a owl:Class ; rdfs:subClassOf tm:SourceEntity, tm:ContentEntity .
+tm:SourceOfficialStandard a owl:Class ; rdfs:subClassOf tm:SourceEntity .
+tm:SourceOperationalModel a owl:Class ; rdfs:subClassOf tm:SourceEntity .

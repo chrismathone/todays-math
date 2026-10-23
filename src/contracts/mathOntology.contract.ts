@@ -53,14 +53,15 @@ export const mathOntologyAssertionSchema = z
   .strictObject({
     id: mathOntologyIriSchema,
     subject: mathOntologyIriSchema,
-  predicate: z.enum([
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-    ...MATH_ONTOLOGY_RELATIONS.map((p) => `${MATH_ONTOLOGY_VOCAB}${p}`),
-  ]),
+    predicate: z.enum([
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      ...MATH_ONTOLOGY_RELATIONS.map((p) => `${MATH_ONTOLOGY_VOCAB}${p}`),
+    ]),
     object: mathOntologyIriSchema,
     scope: mathOntologyScopeSchema,
     sourceRevision: mathOntologyIriSchema,
     sourceDigest: mathOntologyDigestSchema,
+    sourceDigestKind: z.enum(["raw-bytes", "authorized-projection"]).optional(),
     locator: z.string().min(1).max(4000),
     provenance: z.enum([
       "official-document",

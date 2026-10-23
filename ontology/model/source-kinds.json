@@ -1,0 +1,171 @@
+{
+  "Grade": {
+    "classIri": "urn:todaymath:vocab:SourceGrade",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceGradeShape"
+  },
+  "Chapter": {
+    "classIri": "urn:todaymath:vocab:SourceChapter",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceChapterShape"
+  },
+  "Section": {
+    "classIri": "urn:todaymath:vocab:SourceSection",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceSectionShape"
+  },
+  "Definition": {
+    "classIri": "urn:todaymath:vocab:SourceDefinition",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceDefinitionShape"
+  },
+  "AssessmentEntry": {
+    "classIri": "urn:todaymath:vocab:SourceAssessmentEntry",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceAssessmentEntryShape"
+  },
+  "QuestionRepresentation": {
+    "classIri": "urn:todaymath:vocab:SourceQuestionRepresentation",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceQuestionRepresentationShape"
+  },
+  "LearningUnit": {
+    "classIri": "urn:todaymath:vocab:SourceLearningUnit",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceLearningUnitShape"
+  },
+  "Card": {
+    "classIri": "urn:todaymath:vocab:SourceCard",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceCardShape"
+  },
+  "RecallGroup": {
+    "classIri": "urn:todaymath:vocab:SourceRecallGroup",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceRecallGroupShape"
+  },
+  "EditorialUnit": {
+    "classIri": "urn:todaymath:vocab:SourceEditorialUnit",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceEditorialUnitShape"
+  },
+  "EditorialTopic": {
+    "classIri": "urn:todaymath:vocab:SourceEditorialTopic",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceEditorialTopicShape"
+  },
+  "Course": {
+    "classIri": "urn:todaymath:vocab:SourceCourse",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceCourseShape"
+  },
+  "CourseExpression": {
+    "classIri": "urn:todaymath:vocab:SourceCourseExpression",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceCourseExpressionShape"
+  },
+  "Skill": {
+    "classIri": "urn:todaymath:vocab:SourceSkill",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceSkillShape"
+  },
+  "GeneratorFamily": {
+    "classIri": "urn:todaymath:vocab:SourceGeneratorFamily",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceGeneratorFamilyShape"
+  },
+  "Requirement": {
+    "classIri": "urn:todaymath:vocab:SourceRequirement",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceRequirementShape"
+  },
+  "TeachingScript": {
+    "classIri": "urn:todaymath:vocab:SourceTeachingScript",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceTeachingScriptShape"
+  },
+  "ScriptTurn": {
+    "classIri": "urn:todaymath:vocab:SourceScriptTurn",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceScriptTurnShape"
+  },
+  "SourceReference": {
+    "classIri": "urn:todaymath:vocab:SourceSourceReference",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceSourceReferenceShape"
+  },
+  "LabUnit": {
+    "classIri": "urn:todaymath:vocab:SourceLabUnit",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceLabUnitShape"
+  },
+  "SourceQuestion": {
+    "classIri": "urn:todaymath:vocab:SourceSourceQuestion",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity",
+      "urn:todaymath:vocab:ContentEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceSourceQuestionShape"
+  },
+  "OfficialStandard": {
+    "classIri": "urn:todaymath:vocab:SourceOfficialStandard",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceOfficialStandardShape"
+  },
+  "OperationalModel": {
+    "classIri": "urn:todaymath:vocab:SourceOperationalModel",
+    "parentIris": [
+      "urn:todaymath:vocab:SourceEntity"
+    ],
+    "shapeIri": "urn:todaymath:vocab:SourceOperationalModelShape"
+  }
+}

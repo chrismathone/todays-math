@@ -11,7 +11,7 @@ import sys
 import platform
 from pathlib import Path
 from rdflib import Dataset, Graph, URIRef, Literal, BNode, Namespace
-from rdflib.namespace import RDF, RDFS, OWL, SH
+from rdflib.namespace import RDF, RDFS, OWL, SH, XSD
 from rdflib.compare import to_canonical_graph
 from owlrl import DeductiveClosure, OWLRL_Semantics
 from pyshacl import validate
@@ -19,6 +19,7 @@ from pyshacl import validate
 ROOT = Path(__file__).resolve().parents[3]
 TM = Namespace("urn:todaymath:vocab:")
 PROFILE = "tm-owlrl-1"
+SOURCE_KINDS=json.loads((ROOT/"ontology/model/source-kinds.json").read_text())
 HASH_KEYS = ("source", "registry", "asserted", "closure", "review", "ontology", "shapes", "rules", "proof", "engine", "report", "coverage")
 RELATIONS = {str(RDF.type)} | {str(TM[x]) for x in ("partOf", "covers", "projectsSourceSection", "directPedagogicalPrerequisite", "supports", "observedIn")} | {str(TM[x]) for x in json.loads((ROOT/"ontology/rules/profile.json").read_text())["sourcePredicates"]}
 
@@ -63,8 +64,9 @@ def validate_graph(graph, full=True):
     # as an interchange-wide standard canonicalization of arbitrary RDF datasets.
     normalized=to_canonical_graph(report_graph)
     report="".join(sorted(" ".join(term(x) for x in t)+" .\n" for t in normalized))
-    focus=set(graph.subjects(RDF.type,TM.Assertion)) | set(graph.subjects(TM.partOf,None)) | set(graph.subjects(RDF.type,TM.SourceEntity))
-    return dict(engine="pyshacl@"+importlib.metadata.version("pyshacl"), conforms=bool(conforms), incomplete=False, report=report, focusNodeCount=len(focus), results=sorted(results,key=canonical))
+    targets={kind:set(graph.subjects(RDF.type,TM[kind])) for kind in ("Assertion","SourceEntity","SourceAssertion","SourceCoverage","LearningObservation","CandidateAssertion")}
+    focus=set(graph.subjects(TM.partOf,None)).union(*targets.values())
+    return dict(engine="pyshacl@"+importlib.metadata.version("pyshacl"), conforms=bool(conforms), incomplete=False, report=report, focusNodeCount=len(focus), targetCounts={k:len(v) for k,v in targets.items()}, results=sorted(results,key=canonical))
 
 def check_input(value, registry):
     if set(value) != {"schemaVersion","profile","scope","registryNquads","assertions","sourceManifest"} or value["schemaVersion"] != 1 or value["profile"] != PROFILE: raise ValueError("Compile contract")
@@ -74,19 +76,22 @@ def check_input(value, registry):
     seen=set()
     for a in value["assertions"]:
         required={"id","subject","predicate","object","scope","sourceRevision","sourceDigest","locator","provenance","origin","support","review","publication","distribution","revision"}
-        if set(a)-{"approvalId"} != required or a["id"] in seen: raise ValueError("Assertion identity")
+        if set(a)-{"approvalId","sourceDigestKind"} != required or a["id"] in seen: raise ValueError("Assertion identity")
         seen.add(a["id"])
         for k in ("id","subject","object","sourceRevision"):
             if not isinstance(a[k],str) or not re.fullmatch(r'urn:todaymath:[^\s<>"{}|\\^`]+',a[k]): raise ValueError("IRI")
         if a["predicate"] not in RELATIONS or a["scope"] not in ("global",value["scope"]): raise ValueError("Relation or scope")
-        if a["predicate"]==str(RDF.type) and a["object"] not in {str(TM[x]) for x in ("ContentEntity","TextbookConcept","CourseSection","RegisteredEntity")}:
+        if a["predicate"]==str(RDF.type) and a["object"] not in ({str(TM[x]) for x in ("ContentEntity","TextbookConcept","CourseSection","RegisteredEntity")} | {k["classIri"] for k in SOURCE_KINDS.values()}):
             raise ValueError("Unsupported application class")
+        for entity in ([a["subject"]] if a["predicate"]==str(RDF.type) else [a["subject"],a["object"]]):
+            if (URIRef(entity),RDF.type,TM.SourceEntity) not in registry:raise ValueError("Unregistered relation endpoint")
         axes={"provenance":{"official-document","native-product","other","unknown"},"origin":{"source-projection","authored","model-proposal"},"support":{"direct","indirect","missing","unknown"},"review":{"unreviewed","candidate","approved","rejected"},"publication":{"unpublished","published","retired"},"distribution":{"allowed","restricted","unknown"}}
         if any(a[k] not in options for k,options in axes.items()): raise ValueError("Axes")
         if type(a["revision"]) is not int or a["revision"]<1 or not a["locator"] or not re.fullmatch(r"sha256:[a-f0-9]{64}",a["sourceDigest"]): raise ValueError("Source identity")
         if a["review"]=="approved" and not re.fullmatch(r'urn:todaymath:[^\s<>"{}|\\^`]+',a.get("approvalId","")): raise ValueError("Missing approval")
         if a["publication"]=="published" and a["review"]!="approved": raise ValueError("Unapproved publication")
-        if not any(str(o)==a["sourceDigest"] for o in registry.objects(URIRef(a["sourceRevision"]),TM.sourceByteHash)): raise ValueError("Source revision/digest absent")
+        source_predicate=TM.sourceProjectionHash if a.get("sourceDigestKind")=="authorized-projection" else TM.sourceByteHash
+        if not any(str(o)==a["sourceDigest"] for o in registry.objects(URIRef(a["sourceRevision"]),source_predicate)): raise ValueError("Source revision/digest absent")
 
 def assertion_graph(assertions):
     graph=Graph()
@@ -96,7 +101,7 @@ def assertion_graph(assertions):
         s,p,o=map(URIRef,(a["subject"],a["predicate"],a["object"]))
         graph.add((s,p,o));premises.setdefault((s,p,o),[]).append(a)
         iri=URIRef(a["id"])
-        for pred,obj in [(RDF.type,TM.Assertion),(RDF.subject,s),(RDF.predicate,p),(RDF.object,o),(TM.sourceRevision,URIRef(a["sourceRevision"])),(TM.sourceDigest,Literal(a["sourceDigest"])),(TM.scope,Literal(a["scope"])),(TM.review,Literal(a["review"])),(TM.approval,URIRef(a["approvalId"]))]: graph.add((iri,pred,obj))
+        for pred,obj in [(RDF.type,TM.Assertion),(RDF.subject,s),(RDF.predicate,p),(RDF.object,o),(TM.sourceRevision,URIRef(a["sourceRevision"])),(TM.sourceDigest,Literal(a["sourceDigest"],datatype=XSD.string)),(TM.scope,Literal(a["scope"],datatype=XSD.string)),(TM.review,Literal(a["review"],datatype=XSD.string)),(TM.approval,URIRef(a["approvalId"]))]: graph.add((iri,pred,obj))
     return graph,premises
 
 def build_proofs(model, premises, closure, scope):

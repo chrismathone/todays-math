@@ -18,8 +18,14 @@ def assertion(i, s, p, o, **kw):
     return a
 
 def fixture(assertions=None):
+    rows=[f'<urn:todaymath:source:r1> <{TM}sourceByteHash> "{HASH}" <urn:todaymath:graph:registry> .']
+    for id in ('a','b','c'):
+        s=f'<urn:todaymath:entity:{id}>';g='<urn:todaymath:graph:registry>'
+        rows.append(f'{s} <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <{TM}SourceEntity> {g} .')
+        for p,v in [('nativeId',id),('nativeNamespace','synthetic'),('sourceVersion',HASH),('sourceByteHash',HASH),('sourceKind','Definition'),('sourceScope','global')]:rows.append(f'{s} <{TM}{p}> "{v}" {g} .')
+        rows.append(f'{s} <http://www.w3.org/2000/01/rdf-schema#label> "{id.upper()}" {g} .')
     return dict(schemaVersion=1, profile="tm-owlrl-1", scope="global",
-                registryNquads=f'<urn:todaymath:source:r1> <{TM}sourceByteHash> "{HASH}" <urn:todaymath:graph:registry> .\n',
+                registryNquads='\n'.join(rows)+'\n',
                 assertions=assertions or [assertion("ab","a","partOf","b"),assertion("bc","b","partOf","c")],
                 sourceManifest=json.dumps({"hash": HASH},sort_keys=True,separators=(",",":")))
 

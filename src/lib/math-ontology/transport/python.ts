@@ -34,7 +34,11 @@ export function createOntologyPythonPort(options: {
       const input = mathOntologyCompileInputSchema.parse(raw),
         inputHash = ontologyDigest(canonicalOntologyJson(input));
       if (job.inputHash !== inputHash) throw new Error("UNBOUND_COMPILE_JOB");
-      const timestamp = String(Math.floor(Date.now() / 1000));
+      const nowSeconds = Math.floor(Date.now() / 1000);
+      const leaseExpiry = Math.floor(Date.parse(job.expiresAt) / 1000);
+      if (!Number.isSafeInteger(leaseExpiry) || leaseExpiry <= nowSeconds)
+        throw new Error("EXPIRED_COMPILE_JOB");
+      const timestamp = String(nowSeconds);
       const request = {
         protocol: "ontology-engine-v1",
         operation: "compile",
@@ -42,7 +46,7 @@ export function createOntologyPythonPort(options: {
         jobId: job.jobId,
         inputHash,
         leaseGeneration: job.leaseGeneration,
-        expiresAt: Math.floor(Date.parse(job.expiresAt) / 1000),
+        expiresAt: Math.min(leaseExpiry, nowSeconds + 55),
         nonce: randomBytes(16).toString("hex"),
         input,
       };

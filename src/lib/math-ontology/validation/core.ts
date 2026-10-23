@@ -64,6 +64,7 @@ export async function validateOntologyCore(
                 "SourceAssertion",
                 "SourceCoverage",
                 "LearningObservation",
+                "CandidateAssertion",
               ].some((c) => q.object.value === `urn:todaymath:vocab:${c}`),
             )
             .map((q) => q.subject.value),
