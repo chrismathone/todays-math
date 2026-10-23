@@ -4,8 +4,14 @@ import { createHmac } from "node:crypto";
 import { gzipSync } from "node:zlib";
 vi.mock("server-only", () => ({}));
 const requests = vi.hoisted(() => ({ http: vi.fn(), https: vi.fn() }));
-vi.mock("node:http", () => ({ request: requests.http }));
-vi.mock("node:https", () => ({ request: requests.https }));
+vi.mock("node:http", async importOriginal => {
+  const original = await importOriginal<typeof import("node:http")>();
+  return { ...original, default: { ...original, request: requests.http }, request: requests.http };
+});
+vi.mock("node:https", async importOriginal => {
+  const original = await importOriginal<typeof import("node:https")>();
+  return { ...original, default: { ...original, request: requests.https }, request: requests.https };
+});
 import { createOntologyPythonPort } from "@/lib/math-ontology/transport/python";
 import { mathOntologyCompileInputSchema } from "@/contracts/mathOntology.contract";
 import { canonicalOntologyJson, ontologyDigest } from "@/lib/math-ontology/compiler/canonical";
