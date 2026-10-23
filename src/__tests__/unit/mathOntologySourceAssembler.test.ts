@@ -54,6 +54,24 @@ function fixture(
   });
 }
 describe("immutable source assembler and RDF boundary", () => {
+  it("keeps public bytes, IDs, versions and counts unchanged for foreign native scope rows", () => {
+    const a = fixture();
+    const b = fixture([
+      rec,
+      { ...rec, scope: "owner:foreign", nativeId: "FOREIGN" },
+    ]);
+    const run = (e: ReturnType<typeof fixture>) =>
+      assembleMathOntologySources(e, { expectedPayloadHash: e.payloadHash });
+    expect(sourceQuadsToNQuads(toMathOntologySourceQuads(run(a)))).toBe(
+      sourceQuadsToNQuads(toMathOntologySourceQuads(run(b))),
+    );
+    expect(
+      sourceQuadsToNQuads(toMathOntologySourceQuads(run(b))),
+    ).not.toContain("FOREIGN");
+    expect(run(a).entities[0].sourceVersion).toBe(
+      run(b).entities.find((e) => e.scope === "global")!.sourceVersion,
+    );
+  });
   it("keeps public bytes/versions identical when a private row in the same physical file changes", () => {
     const privateRow = {
       ...rec,

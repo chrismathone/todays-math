@@ -7,6 +7,7 @@ import {
   sourceBundleRelativePaths,
 } from "@/lib/math-ontology/sources/bundle";
 import { mathOntologyAdminSourceCoverageRows } from "@/lib/math-ontology/sources/registry";
+import { writeSourcePartitions } from "./writePartitions";
 import { writeCanonicalSourceNQuads } from "./writeNQuads";
 const arg = (name: string) => {
   const index = process.argv.indexOf(name);
@@ -43,7 +44,11 @@ async function main() {
   const rdf = nquads
     ? await writeCanonicalSourceNQuads(dataset, resolve(nquads))
     : null;
+  const partitions = process.argv.includes("--partitions")
+    ? writeSourcePartitions(dataset, outputRoot)
+    : null;
   const receipt = {
+    partitions,
     payloadHash: envelope.payloadHash,
     manifestByteHash: bundle.manifestByteHash,
     paths,
