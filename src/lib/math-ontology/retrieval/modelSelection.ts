@@ -171,7 +171,8 @@ export function ontologySelectionPrompt(
     "privateSummaries는 날짜·상태 요약의 개수와 원천 연결 범위입니다. eventTime null인 요약은 독립 첫 풀이·정답률·계획 변경 이후 사건으로 합산하지 마세요. partial/미확인/누락은 성취 0이나 미학습이 아닙니다.",
     "단원 소속과 선수 관계는 다릅니다. authored 정의는 공식 성취 기준 정렬이 아닙니다. 학생 관측 수치는 기술 통계이며 숙달·오답 원인·효과가 아닙니다. 독립 첫 풀이와 후속 풀이를 합치지 마세요.",
     "reasoning은 최대4개 {text,factIds}로 질문에 답하는 짧은 근거 설명입니다. 모든 문장에 선택한 사실 ID를 붙이고 근거 밖 결론을 쓰지 마세요. 모호한 동명이 개념은 확인을 요청하고 관계·근거가 없으면 insufficient입니다.",
-    "오직 JSON {packetId,intent,factIds,relationDrafts,reasoning}를 반환하세요. relationDrafts 원소는 {subject,predicate,object,factIds}입니다. explain은 factIds 1개 이상/관계배열 비움, insufficient는 두배열 비움, relation-draft는 가설 1개 이상입니다.",
+    '근거 부족·구별되지 않는 대상이면 오직 JSON {packetId,intent:"insufficient"}만 반환하세요. 이 분기에는 factIds, relationDrafts, reasoning을 넣지 마세요. 확인 질문이나 인용 없는 설명을 근거 설명 배열에 쓰지 마세요.',
+    "근거가 있는 explain 또는 relation-draft만 JSON {packetId,intent,factIds,relationDrafts,reasoning}를 반환하세요. factIds는 선택한 근거 1~6개, reasoning은 최대4개이고 각 text는 300자 이내, 각 인용은 선택한 factIds 중 1~6개입니다. explain의 relationDrafts는 빈 배열입니다. relation-draft는 가설 1~2개이며 원소는 {subject,predicate,object,factIds}, 각 가설의 인용은 선택한 사실 중 1~4개입니다.",
     canonicalOntologyJson({
       packet,
       untrustedQuestion: maskedQuestion,
@@ -184,7 +185,22 @@ export function composeOntologySelection(
   packet: OntologyModelPacket,
 ) {
   if (Buffer.byteLength(raw) > 10000) throw new Error("MODEL_OUTPUT_BUDGET");
-  const selection = selectionSchema.parse(ontologyModelJson(raw));
+  const selection = z
+    .union([
+      selectionSchema,
+      z
+        .strictObject({
+          packetId: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+          intent: z.literal("insufficient"),
+        })
+        .transform((value): z.infer<typeof selectionSchema> => ({
+          ...value,
+          factIds: [],
+          relationDrafts: [],
+          reasoning: [],
+        })),
+    ])
+    .parse(ontologyModelJson(raw));
   if (selection.packetId !== packet.packetId)
     throw new Error("MODEL_PACKET_MISMATCH");
   const facts = new Map(packet.facts.map((f) => [f.id, f])),
