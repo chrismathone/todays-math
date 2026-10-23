@@ -71,7 +71,7 @@ SHACL은 RDF data graph에 대한 실제 shape graph 검증이다. 존재하지 
 
 ### 4.1 IRI와 entity
 
-기본 예시 namespace는 `urn:tmath:`이며 서비스가 관리하는 HTTPS namespace로 바꾸더라도 stable alias registry를 먼저 고정한다. 학생·교사의 실제 식별자를 모델용 IRI에 넣지 않는다.
+아래 초기 예시는 `urn:tmath:`를 사용한다. 리드와 원천 담당자의 후속 계약 제안은 vocabulary `urn:todaymath:vocab:`, instance `urn:todaymath:math-source:`로 통일하는 것이다. 최종 구현에서 이 namespace와 alias registry를 먼저 고정한다. 학생·교사의 실제 식별자를 모델용 IRI에 넣지 않는다. 원천 담당자에게 stable `(namespace, exactNativeId, scope)`와 versioned `(stableId, sourceVersion)`를 별도 함수/필드로 요청한다. 파일 전체 hash가 바뀌었다고 영속 native identity까지 바뀌면 안 된다. `versionOf`로 연결하며 `sameAs`를 사용하지 않는다. JS/Python의 percent encoding과 Unicode/공백 원형 보존 규칙을 양쪽 fixture로 고정한다.
 
 | 개체 | 안정 ID 예 | 판·내용의 구분 |
 | --- | --- | --- |
@@ -92,7 +92,7 @@ SHACL은 RDF data graph에 대한 실제 shape graph 검증이다. 존재하지 
 
 RDF triple은 서로 같은 subject/predicate/object라도 출처·범위·검토판별로 별도 Assertion으로 식별한다. RDF 1.1 `rdf:subject`, `rdf:predicate`, `rdf:object`로 진술을 기술하고, 승인된 assertion만 실 triple을 published graph에 materialize한다. reification resource를 만든 것만으로 해당 triple을 참으로 assert한 것은 아니다.
 
-각 Assertion에는 source revision, 정확한 locator(JSON pointer/ID, page·span 등), source digest, evidence kind, 작성 주체, review state/revision, decision ID, 교육과정 판, 적용 scope가 필요하다. 출처 유형은 `official-source | observed | authored-inference | model-proposal | unknown`으로 나눈다. `approved`가 되더라도 evidence kind는 바뀌지 않는다. 기존 `pedagogical_inference`를 들여온 행은 authored-inference로 남으며 사람 승인 영수증이 없으면 draft다.
+각 Assertion에는 source revision, 정확한 locator(JSON pointer/ID, page·span 등), source digest, evidence kind, 작성 주체, review state/revision, decision ID, 교육과정 판, 적용 scope가 필요하다. 간단한 표시에는 `official-source | observed | authored-inference | model-proposal | unknown`을 쓸 수 있지만 최종 계약의 원정보를 단일 enum에 합치지 않는다. **source provenance, assertion origin(source projection/authored/AI), evidence support, review state, publication state, distribution eligibility**를 직교 필드로 둔다. 공식 원문을 AI가 읽은 경우도 원문 종류와 생성 경위를 동시에 보존한다. `approved`가 되어도 origin/support는 바뀌지 않는다. 기존 `pedagogical_inference`는 authored-inference로 남으며 승인 영수증이 없으면 draft다. native metadata를 등록했다는 것만으로 그 교육 관계가 승인되지는 않는다.
 
 상태: `draft → validated → approved → published`; 거절은 `rejected`, 게시 종료는 `retired`. validated는 엔진 검증을 통과했다는 뜻이고, approved는 **특정 assertion revision에 대한 사람의 판단**이다. 게시 후 수정은 새로운 revision의 재검토와 새 GraphRelease를 요구한다. 한 그래프의 검토 완료 표시로 그 안의 모든 관계를 승인하지 않는다.
 
