@@ -51,7 +51,7 @@ describe("B/H3 concise AI-first workspace", () => {
   expect(port.run).toHaveBeenCalledTimes(1); expect(port.confirm).not.toHaveBeenCalled();
  });
  it("publication recovery reuses the prepared action and never sends a job id to plan feedback", async () => {
-  const port = source(); const publication: WorkspaceAnswer = { ...answer, action: { ...answer.action!, kind: "publication", label: "검토한 내용 게시하기" } };
+  const port = source(); const publication: WorkspaceAnswer = { ...answer, action: { ...answer.action!, kind: "publication" as const, label: "검토한 내용 게시하기" } };
   vi.mocked(port.run).mockResolvedValue(publication);
   vi.mocked(port.confirm).mockResolvedValueOnce({ id: "job-1", state: "preparing", message: "게시 결과를 준비하고 있습니다.", details: [] }).mockResolvedValueOnce({ id: "job-1", state: "published", message: "검토한 내용을 게시했습니다.", details: [] });
   render(<OntologyWorkspace source={port} />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "게시를 준비해줘" } });
@@ -62,5 +62,20 @@ describe("B/H3 concise AI-first workspace", () => {
   expect(port.confirm).toHaveBeenNthCalledWith(1, publication.action, expect.any(AbortSignal));
   expect(port.confirm).toHaveBeenNthCalledWith(2, publication.action, expect.any(AbortSignal));
   expect(screen.queryByRole("button", { name: "이후 관찰" })).toBeNull(); expect(port.feedback).not.toHaveBeenCalled();
+ });
+ it("renders native math through the shared renderer without invalid block nesting or automatic external images", async () => {
+  const port = source(); vi.mocked(port.run).mockResolvedValue({ ...answer, summary: "수식 근거입니다.", action: undefined, steps: [{ id: "math", title: "일의 자리에서 받아올린 $1$의 값", note: "$\\frac{1}{2}$ · $n![k]$ · ![외부](https://example.test/private-probe)", state: "observed" }] });
+  const view = render(<OntologyWorkspace source={port} />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "수식 연결을 보여줘" } }); fireEvent.keyDown(screen.getByLabelText("원하는 일"), { key: "Enter" });
+  await screen.findByText("수식 근거입니다.");
+  expect(view.container.querySelectorAll(".katex").length).toBeGreaterThanOrEqual(3);
+  expect(view.container.querySelector("p div,h2 div,strong div,img")).toBeNull();
+  expect([...view.container.querySelectorAll("annotation")].some(node => node.textContent?.includes("n!"))).toBe(true);
+ });
+ it("loads durable history and prepares publisher operations without confirming writes", async () => {
+  const port = source(); port.history = vi.fn(async () => ({ ...answer, summary: "최근 검토·실행 이력입니다.", action: undefined })); port.publication = vi.fn(async () => ({ ...answer, summary: "게시할 변경을 준비했습니다.", action: { ...answer.action!, kind: "publication" as const, label: "검토한 내용 게시하기" } }));
+  render(<OntologyWorkspace source={port} canPublish />);
+  fireEvent.click(screen.getByRole("button", { name: "검토·실행 이력" })); await screen.findByText("최근 검토·실행 이력입니다.");
+  expect(port.history).toHaveBeenCalledTimes(1); expect(port.run).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", { name: "게시 준비" })); await screen.findByText("게시할 변경을 준비했습니다."); expect(port.confirm).not.toHaveBeenCalled();
  });
 });

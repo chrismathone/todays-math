@@ -59,13 +59,13 @@ describe("manual/model relation provenance", () => {
   const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-validator", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
   const candidate = assertion(), manual = await service.draft(f.actor, { assertion: candidate, evidenceRef: "synthetic:graph" });
   expect(JSON.parse((await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: manual.reviewId } })).assertionCanonical).origin).toBe("authored");
-  const raw = { assertion: candidate, evidenceRef: "synthetic:graph", evidenceHash: digest("synthetic-checked-packet"), receipt: { modelCalled: true as const, provider: "synthetic-provider", requestedModel: "synthetic-configured-model", reportedModel: null, responseId: null, inputTokens: null, outputTokens: null, rawResponseHash: digest("synthetic-successful-http-body") } };
-  const sealed = await db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, raw, now));
+  const raw = { assertion: candidate, evidenceRef: "synthetic:graph", evidenceHash: digest("synthetic-checked-packet"), receipt: { modelCalled: true as const, vendor: "gemini" as const, requestedModel: "synthetic-configured-model", reportedModel: null, responseId: null, completionReason: "synthetic-stop", usage: null, responseTextHash: digest("synthetic-returned-text") } };
+  const sealed = await db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, raw, () => now));
   const model = await service.draftModel(f.actor, { assertion: candidate, evidenceRef: raw.evidenceRef, ...sealed });
   expect(JSON.parse((await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: model.reviewId } })).assertionCanonical).origin).toBe("model-proposal");
   expect(await service.draftModel(f.actor, { assertion: candidate, evidenceRef: raw.evidenceRef, ...sealed })).toEqual(model);
   await expect(service.draftModel(f.actor, { assertion: { ...candidate, object: "urn:todaymath:forged" }, evidenceRef: raw.evidenceRef, ...sealed })).rejects.toThrow();
-  await expect(db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, { ...raw, receipt: { ...raw.receipt, modelCalled: false } as never }, now))).rejects.toThrow();
+  await expect(db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, { ...raw, receipt: { ...raw.receipt, modelCalled: false } as never }, () => now))).rejects.toThrow();
  });
 });
 describe("relation review and durable publication orchestration (synthetic compiler port)", () => {
@@ -140,6 +140,11 @@ describe("relation review and durable publication orchestration (synthetic compi
         where: { subjectId: draft.reviewId },
       }),
     ).toBe(4);
+    const read = await service.read(f.actor, draft.reviewId); expect(read.state).toBe("approved");
+    await expect(service.retire(f.actor, draft.reviewId, approved.revision - 1)).rejects.toMatchObject({ code: "STALE" });
+    expect(await service.retire(f.actor, draft.reviewId, approved.revision)).toMatchObject({ state: "retired", revision: approved.revision + 1 });
+    expect((await service.read(f.actor, draft.reviewId)).state).toBe("retired");
+    expect(await db.ontologyReviewEvent.count({ where: { subjectId: draft.reviewId, event: "relation.retired" } })).toBe(1);
   });
   it("persists a queued job, runs compilation outside its DB transaction, atomically activates a verified immutable release and preserves old bytes", async () => {
     const f = await fixture();

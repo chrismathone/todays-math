@@ -58,10 +58,18 @@ export function createOntologyRelationService(deps: {
         const assertionCanonical = canonicalBytes(candidate),
           assertionHash = digest(assertionCanonical),
           time = now();
+        let modelExpiresAt: number | null = null;
         if (stableReviewId) {
+          await tx.$queryRaw`SELECT id FROM ontology_review_event WHERE id = ${stableReviewId}::uuid FOR UPDATE`;
+          const sealed = await tx.ontologyReviewEvent.findUnique({ where: { id: stableReviewId } });
+          requireOperation(sealed && sealed.actorId === actor.id && sealed.event === "model.relation.proposed", "BINDING_MISMATCH");
+          const receipt = z.object({ actorId: z.uuid(), sessionVersion: z.number().int(), modelCalled: z.literal(true), assertionHash: z.string(), evidenceRef: z.string(), evidenceHash: z.string(), expiresAt: z.iso.datetime() }).parse(checkedCanonical(sealed.detailCanonical, sealed.detailHash));
+          modelExpiresAt = Date.parse(receipt.expiresAt);
+          requireOperation(receipt.actorId === actor.id && receipt.sessionVersion === actor.sessionVersion && receipt.assertionHash === assertionHash && receipt.evidenceRef === raw.evidenceRef && modelExpiresAt > now().getTime(), "BINDING_MISMATCH");
           const previous = await tx.ontologyRelationReview.findUnique({ where: { id: stableReviewId } });
           if (previous) {
             requireOperation(previous.proposedBy === actor.id && previous.assertionCanonical === assertionCanonical && previous.assertionHash === assertionHash, "BINDING_MISMATCH");
+            await authorizeOntologyDraftScope(tx, actor, previous.scopeKey, now);
             return { reviewId: previous.id, revision: previous.revision, state: previous.state };
           }
         }
@@ -86,22 +94,25 @@ export function createOntologyRelationService(deps: {
           time,
         );
         await authorizeOntologyDraftScope(tx, actor, row.scopeKey, now);
+        requireOperation(modelExpiresAt === null || modelExpiresAt > now().getTime(), "EXPIRED");
         return { reviewId: row.id, revision: row.revision, state: row.state };
-      });
+      }, { maxWait: 10000, timeout: 20000 });
     }
   return {
     draft: (actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string }) => draft(actor, raw),
-    async draftModel(actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string; modelRunId: string }) {
-      const normalized: Record<string, unknown> = { ...(raw.assertion as Record<string, unknown>), origin: "model-proposal", review: "candidate", publication: "unpublished" }; delete normalized.approvalId;
-      const candidate = mathOntologyAssertionSchema.parse(normalized);
-      await deps.db.$transaction(async tx => {
-        await authorizeOntologyDraftScope(tx, actor, candidate.scope, now);
-        const row = await tx.ontologyReviewEvent.findUnique({ where: { id: z.uuid().parse(raw.modelRunId) } });
-        requireOperation(row && row.actorId === actor.id && row.event === "model.relation.proposed", "BINDING_MISMATCH");
-        const receipt = z.object({ actorId: z.uuid(), sessionVersion: z.number().int(), modelCalled: z.literal(true), assertionHash: z.string(), evidenceRef: z.string(), evidenceHash: z.string(), expiresAt: z.iso.datetime() }).parse(checkedCanonical(row.detailCanonical, row.detailHash));
-        requireOperation(receipt.actorId === actor.id && receipt.sessionVersion === actor.sessionVersion && receipt.assertionHash === digest(canonicalBytes(candidate)) && receipt.evidenceRef === raw.evidenceRef && Date.parse(receipt.expiresAt) > now().getTime(), "BINDING_MISMATCH");
+    async read(actor: OntologyActionActor, reviewId: string) {
+      z.uuid().parse(reviewId);
+      return deps.db.$transaction(async tx => {
+        await authorizeOntologyPublisher(tx, actor, now);
+        const row = await tx.ontologyRelationReview.findUnique({ where: { id: reviewId } }); requireOperation(row, "NOT_FOUND");
+        const assertion = mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash));
+        const report = row.validationCanonical && row.validationHash ? mathOntologyValidationSchema.parse(checkedCanonical(row.validationCanonical, row.validationHash)) : null;
+        await authorizeOntologyPublisher(tx, actor, now);
+        return { reviewId, revision: row.revision, state: row.state, assertion, validationHash: row.validationHash, report };
       });
-      return draft(actor, raw, "model-proposal", raw.modelRunId);
+    },
+    async draftModel(actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string; modelRunId: string }) {
+      return draft(actor, raw, "model-proposal", z.uuid().parse(raw.modelRunId));
     },
     async validate(actor: OntologyActionActor, reviewId: string) {
       z.uuid().parse(reviewId);
