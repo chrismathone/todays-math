@@ -4,7 +4,10 @@ import type {
   MathOntologySourceRdfTerm,
 } from "@/contracts/mathOntologySource.contract";
 import { compareSourceStrings } from "./canonical";
-import { projectMathOntologyPublicSources } from "./publicProjection";
+import {
+  projectMathOntologyPublicSources,
+  type MathOntologyPublicSourceProjection,
+} from "./publicProjection";
 export const MATH_ONTOLOGY_SOURCE_VOCAB = "urn:todaymath:vocab:";
 const rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 const xsd = "http://www.w3.org/2001/XMLSchema#";
@@ -34,7 +37,16 @@ export function toMathOntologySourceQuads(
   dataset: MathOntologySourceDataset,
   emit?: (quad: MathOntologySourceQuad) => void,
 ): readonly MathOntologySourceQuad[] {
-  const projection = projectMathOntologyPublicSources(dataset);
+  return publicMathOntologySourceQuads(
+    projectMathOntologyPublicSources(dataset),
+    emit,
+  );
+}
+/** Compiler transport of an already authorized projection (also used for dependency-closed shards). */
+export function publicMathOntologySourceQuads(
+  projection: MathOntologyPublicSourceProjection,
+  emit?: (quad: MathOntologySourceQuad) => void,
+): readonly MathOntologySourceQuad[] {
   const graph = named(
       `urn:todaymath:math-source:graph:${projection.projectionHash.slice(7)}`,
     ),
@@ -73,7 +85,7 @@ export function toMathOntologySourceQuads(
       distribution: e.distribution,
       curriculumEdition: e.edition,
       repositoryPath: e.origin.repositoryPath,
-      sourcePointer: e.origin.pointer,
+      projectedPointer: e.origin.projectedPointer,
       sourceProjectionHash: e.sourceProjectionHash,
       extractorVersion: e.origin.extractorVersion,
       ...e.metadata,
@@ -99,7 +111,7 @@ export function toMathOntologySourceQuads(
         sourceField: label.sourceField,
         sourceTextHash: label.sourceTextHash,
         repositoryPath: label.origin.repositoryPath,
-        sourcePointer: label.origin.pointer,
+        projectedPointer: label.origin.projectedPointer,
         sourceProjectionHash: e.sourceProjectionHash,
       }))
         add(iri, vocab + key, literal(value));
@@ -113,7 +125,7 @@ export function toMathOntologySourceQuads(
         nativeId: reference.nativeId,
         resolution: reference.resolution,
         repositoryPath: reference.origin.repositoryPath,
-        sourcePointer: reference.origin.pointer,
+        projectedPointer: reference.origin.projectedPointer,
         sourceProjectionHash: e.sourceProjectionHash,
       }))
         add(iri, vocab + key, literal(value));
@@ -135,7 +147,7 @@ export function toMathOntologySourceQuads(
       partial: a.partial,
       sourceVersion: a.sourceVersion,
       repositoryPath: a.origin.repositoryPath,
-      sourcePointer: a.origin.pointer,
+      projectedPointer: a.origin.projectedPointer,
       sourceProjectionHash: a.sourceProjectionHash,
     }))
       add(a.iri, vocab + key, literal(value));

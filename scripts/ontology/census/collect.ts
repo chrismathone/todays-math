@@ -15,7 +15,10 @@ import {
   sourcePopulationKind,
 } from "@/lib/math-ontology/sources/registry";
 import { sealMathOntologySourcePayload } from "@/lib/math-ontology/sources/assembler";
-import { sourceByteDigest } from "@/lib/math-ontology/sources/canonical";
+import {
+  sourceByteDigest,
+  sourceDigest,
+} from "@/lib/math-ontology/sources/canonical";
 import {
   createRepoSourceReadPort,
   readSourceInputManifest,
@@ -76,11 +79,18 @@ const INPUT_FILES = [
   "src/lib/math-ontology/ids.ts",
   "ontology/source-manifests/official-2022-codes.json",
 ];
+let collectorInvoked = false;
 /** Executes only existing finite source registries, never generators, database code, models or network clients. */
 export function collectMathOntologyRepoSources(
   repo: string,
   port: RepoSourceReadPort = createRepoSourceReadPort(repo),
 ) {
+  if (collectorInvoked)
+    throw new Error(
+      "Source collector requires a fresh subprocess for each extraction",
+    );
+  collectorInvoked = true;
+  const actualPort = createRepoSourceReadPort(repo);
   const require = createRequire(join(repo, "package.json"));
   const load = <T>(path: string): T => require(join(repo, path)) as T;
   const byteCache = new Map<string, Uint8Array>();
@@ -878,23 +888,40 @@ export function collectMathOntologyRepoSources(
           path,
           "/" + i + "/conceptIds",
         );
+      const occurrenceCounts = new Map<string, number>();
       for (const [j, turn] of rows(s.dialogue).entries()) {
-        const nativeId = id + "::turn:" + j,
-          source = turn.source as Raw,
+        const source = turn.source as Raw,
           kind = str(source.kind);
+        const signature = sourceDigest([
+          source.kind,
+          source.key ?? null,
+          (turn.presentation as Raw | undefined)?.lessonKey ?? null,
+          turn.role ?? null,
+          turn.purpose ?? null,
+          turn.expression ?? null,
+        ]);
+        const occurrence = occurrenceCounts.get(signature) ?? 0;
+        occurrenceCounts.set(signature, occurrence + 1);
+        const nativeId = id + "::turn:" + signature.slice(7) + ":" + occurrence;
         const q = add(
           "textbook-script-turn",
           nativeId,
           "ScriptTurn",
           path,
           `/${i}/dialogue/${j}`,
-          { sourceKind: kind, order: j },
+          { sourceKind: kind, order: j, nativeKind: "source-key-occurrence" },
           {
             distribution:
               kind === "v15" ? "quarantine-reference" : "native-metadata",
             sourceProvenance:
               kind === "v15" ? "imported-source" : "native-source",
           },
+        );
+        nativeReference(
+          q,
+          "declared-family",
+          source.key,
+          q.origin.pointer + "/source/key",
         );
         relation(
           "turn-script:" + nativeId,
@@ -1294,6 +1321,7 @@ export function collectMathOntologyRepoSources(
       paths.delete(path);
   const inputs = readSourceInputManifest({ read: bytes }, [...paths]);
   verifySourceInputManifest(port, inputs);
+  verifySourceInputManifest(actualPort, inputs);
   const payload: Omit<MathOntologySourcePayload, "versions"> = {
     schemaVersion: 1,
     adapterVersion: MATH_ONTOLOGY_SOURCE_ADAPTER_VERSION,

@@ -197,37 +197,43 @@ export function assembleMathOntologySources(
   const versions = new Map(
     envelope.payload.versions.map((v) => [v.namespace, v.sourceVersion]),
   );
-  const eligibleVersions = new Map(
-    MATH_ONTOLOGY_SOURCE_NAMESPACES.map((namespace) => [
-      namespace,
+  // Every eligible version binds only its own namespace AND scope projection.
+  // Foreign source rows cannot change a global version or its query/cache identity.
+  const eligibleVersions = new Map<string, string>();
+  for (const record of envelope.payload.records) {
+    const key = canonicalSourceJson([record.namespace, record.scope]);
+    if (eligibleVersions.has(key)) continue;
+    eligibleVersions.set(
+      key,
       sourceDigest({
         adapterVersion: envelope.payload.adapterVersion,
-        namespace,
+        namespace: record.namespace,
+        scope: record.scope,
         records: envelope.payload.records
           .filter(
             (r) =>
-              r.namespace === namespace &&
+              r.namespace === record.namespace &&
+              r.scope === record.scope &&
               r.distribution !== "quarantine-reference",
           )
           .map(publicSourceRecordValue),
       }),
-    ]),
-  );
-  const entities = envelope.payload.records.map((record) => ({
-    ...record,
-    stableIri: sourceEntityIri(record),
-    iri: sourceEntityVersionIri(
-      record,
-      (record.distribution === "quarantine-reference"
-        ? versions
-        : eligibleVersions
-      ).get(record.namespace)!,
-    ),
-    sourceVersion: (record.distribution === "quarantine-reference"
-      ? versions
-      : eligibleVersions
-    ).get(record.namespace)!,
-  }));
+    );
+  }
+  const entities = envelope.payload.records.map((record) => {
+    const sourceVersion =
+      record.distribution === "quarantine-reference"
+        ? versions.get(record.namespace)!
+        : eligibleVersions.get(
+            canonicalSourceJson([record.namespace, record.scope]),
+          )!;
+    return {
+      ...record,
+      stableIri: sourceEntityIri(record),
+      iri: sourceEntityVersionIri(record, sourceVersion),
+      sourceVersion,
+    };
+  });
   const byRef = new Map(entities.map((e) => [recordKey(e), e]));
   const assertions = envelope.payload.assertions.map((a) => {
     const scope = a.origin.repositoryPath;
