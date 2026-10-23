@@ -1,0 +1,19 @@
+export type WorkspaceStudent = { id: string; classId: string; branchId: string | null; label: string; classLabel: string };
+export type WorkspaceAction = { kind: "plan" | "relation" | "publication"; id: string; sealHash?: string; revision?: number; validationHash?: string; label: string; changes: { label: string; before: string; after: string }[]; effects: string[] };
+export type WorkspaceAnswer = {
+  id: string; summary: string; requiresStudent?: boolean;
+  steps: { id: string; title: string; note: string; state: "observed" | "reviewed" | "candidate" | "unknown" }[];
+  details: { title: string; text: string }[];
+  coverage: { label: string; value: string }[];
+  action?: WorkspaceAction;
+};
+export type WorkspaceExecution = { id: string; state: "applied" | "no-op" | "preparing" | "published"; message: string; details: string[] };
+export interface OntologyWorkspaceSource {
+  students(signal: AbortSignal): Promise<WorkspaceStudent[]>;
+  run(input: { query: string; student: WorkspaceStudent | null }, signal: AbortSignal): Promise<WorkspaceAnswer>;
+  confirm(action: WorkspaceAction, signal: AbortSignal): Promise<WorkspaceExecution>;
+  feedback(result: WorkspaceExecution, signal: AbortSignal): Promise<{ summary: string; details: string[] }>;
+}
+export class OntologyWorkspaceError extends Error {
+  constructor(public code: "FORBIDDEN" | "STALE" | "UNAVAILABLE" | "NETWORK", message: string) { super(message); this.name = "OntologyWorkspaceError"; }
+}

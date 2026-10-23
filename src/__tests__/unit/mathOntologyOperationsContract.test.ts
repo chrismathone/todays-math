@@ -39,11 +39,25 @@ describe("ontology action argument and byte bindings", () => {
       undefined,
       new Date(),
       { x: undefined },
-      { x: 1n },
+      { x: BigInt(1) },
       { x: -0 },
       { x: Number.MAX_SAFE_INTEGER + 1 },
     ])
       expect(() => canonicalBytes(bad)).toThrow();
+  });
+  it("orders integer-looking keys by UTF-16 code units and refuses array getters without invoking them", () => {
+    expect(canonicalBytes({ "2": "b", "10": "a" })).toBe('{"10":"a","2":"b"}');
+    let invoked = false;
+    const array = [1];
+    Object.defineProperty(array, "0", {
+      enumerable: true,
+      get: () => {
+        invoked = true;
+        return 1;
+      },
+    });
+    expect(() => canonicalBytes(array)).toThrow();
+    expect(invoked).toBe(false);
   });
   it("binds a server-confirmed opaque graph identity separately from canonical args/evidence/source bytes", () => {
     const binding = {

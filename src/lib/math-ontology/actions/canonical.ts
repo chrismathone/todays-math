@@ -11,16 +11,16 @@ export type CanonicalValue =
 /** tm-json-1: UTF-8 JSON; UTF-16 key order; arrays retain order; no coercion.
  * This bounded application format is not advertised as general RFC 8785.
  */
-export function canonicalBytes(input: unknown): string {
+export function canonicalBytes(input: unknown, maxBytes = 1_048_576): string {
   const active = new Set<object>();
-  function visit(value: unknown, depth: number): CanonicalValue {
+  function visit(value: unknown, depth: number): string {
     if (depth > 64) throw new Error("canonical-depth");
     if (
       value === null ||
       typeof value === "boolean" ||
       typeof value === "string"
     )
-      return value;
+      return JSON.stringify(value);
     if (typeof value === "number") {
       if (
         !Number.isFinite(value) ||
@@ -28,7 +28,7 @@ export function canonicalBytes(input: unknown): string {
         Math.abs(value) > Number.MAX_SAFE_INTEGER
       )
         throw new Error("canonical-number");
-      return value;
+      return JSON.stringify(value);
     }
     if (typeof value !== "object" || active.has(value))
       throw new Error("canonical-value");
@@ -43,23 +43,33 @@ export function canonicalBytes(input: unknown): string {
       if (Array.isArray(value)) {
         if (Object.keys(value).length !== value.length)
           throw new Error("canonical-array");
-        return value.map((entry) => visit(entry, depth + 1));
+        return `[${Array.from({ length: value.length }, (_, index) => {
+          const descriptor = Object.getOwnPropertyDescriptor(
+            value,
+            String(index),
+          );
+          if (!descriptor || !("value" in descriptor))
+            throw new Error("canonical-accessor");
+          return visit(descriptor.value, depth + 1);
+        }).join(",")}]`;
       }
       if (Object.getOwnPropertySymbols(value).length)
         throw new Error("canonical-symbol");
-      const output: { [key: string]: CanonicalValue } = Object.create(null);
+      const output: string[] = [];
       for (const key of Object.keys(value).sort()) {
         const descriptor = Object.getOwnPropertyDescriptor(value, key)!;
         if (!("value" in descriptor)) throw new Error("canonical-accessor");
-        output[key] = visit(descriptor.value, depth + 1);
+        output.push(
+          `${JSON.stringify(key)}:${visit(descriptor.value, depth + 1)}`,
+        );
       }
-      return output;
+      return `{${output.join(",")}}`;
     } finally {
       active.delete(value);
     }
   }
-  const bytes = JSON.stringify(visit(input, 0));
-  if (Buffer.byteLength(bytes, "utf8") > 1_048_576)
+  const bytes = visit(input, 0);
+  if (Buffer.byteLength(bytes, "utf8") > maxBytes)
     throw new Error("canonical-size");
   return bytes;
 }
