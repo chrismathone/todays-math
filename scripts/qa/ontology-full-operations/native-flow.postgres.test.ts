@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { spawn } from "node:child_process";
 import { once } from "node:events";
+import { randomUUID } from "node:crypto";
+import { DataFactory } from "n3";
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import { db, fixture, nextArgs } from "./harness";
@@ -19,6 +21,10 @@ import { currentOntologyObservations } from "@/lib/math-ontology/feedback/observ
 import { createOntologyHistoryReader } from "@/lib/math-ontology/actions/history";
 import { sourceEntityIri } from "@/lib/math-ontology/ids";
 import { queryOntology } from "@/lib/math-ontology/query/closed";
+import { createOntologyRelationService } from "@/lib/math-ontology/review/service";
+import { authorizeOntologyPublisher } from "@/lib/math-ontology/review/authorization";
+import { actualCandidateValidation } from "@/lib/math-ontology/validation/candidate";
+import type { MathOntologyAssertion } from "@/contracts/mathOntology.contract";
 
 const evidence = "/Users/pss/Desktop/creative/display-survey/consensus/ontology-full-20261023/operations";
 const python = "/Users/pss/Desktop/creative/display-survey/consensus/ontology-full-20261023/formal/.venv312/bin/python";
@@ -39,8 +45,43 @@ describe("full native package -> real publication -> scoped action -> history/fe
     const publication = createOntologyPublicationApproval({ db, publisher, base: currentPackagedPublicationBase });
     const prepared = await publication.prepare(f.actor), published = await publication.confirm(f.actor, { confirmationId: prepared.confirmationId, sealHash: prepared.sealHash });
     expect(published.state).toBe("published");
-    const active = await db.ontologyActiveGraph.findUniqueOrThrow({ where: { scopeKey: "global" } }); expect(active.graphVersion).toBeTruthy();
-    const graphVersion = active.graphVersion!, seed = sourceEntityIri({ namespace: "bank-assessment", scope: "global", nativeId: "e5-1-5-3-c1" });
+    const initial = await db.ontologyActiveGraph.findUniqueOrThrow({ where: { scopeKey: "global" } }); expect(initial.graphVersion).toBeTruthy();
+    const seed = sourceEntityIri({ namespace: "bank-assessment", scope: "global", nativeId: "e5-1-5-3-c1" });
+    // Review an already witnessed structural source connection. This fixture
+    // makes no new educational/prerequisite assertion about the real content.
+    const candidate = await db.$transaction(async tx => {
+      const query = { kind: "neighbors" as const, entityId: seed, relation: "assessesDefinition", limit: 20 };
+      const original = await loadActiveOntologyRuntimeInTransaction(tx, initial.graphVersion!, query);
+      const result = await queryOntology(original, query, { allowedScopes: ["global"], contextHash: "native-review", cursorSecret: secret });
+      const runtime = original.materialize ? await original.materialize(query, { allowedScopes: ["global"], contextHash: "native-review", cursorSecret: secret }) : original;
+      const row = result.rows[0], proof = runtime.proofs().find(p => p.id === row.proofId)!;
+      const { asserted, registry } = runtime.datasets(), tm = "urn:todaymath:vocab:", node = DataFactory.namedNode;
+      const value = (predicate: string) => asserted.getObjects(node(proof.assertionIds[0]), node(tm + predicate), null)[0]?.value;
+      const sourceRevision = value("sourceRevision")!;
+      const projection = registry.getObjects(node(sourceRevision), node(tm + "sourceProjectionHash"), null)[0]?.value;
+      const sourceDigest = projection ?? registry.getObjects(node(sourceRevision), node(tm + "sourceByteHash"), null)[0]?.value;
+      return { id: `urn:todaymath:assertion:native-operation-review:${randomUUID()}`, subject: row.s, predicate: row.p, object: row.o, scope: "global", sourceRevision, sourceDigest: sourceDigest!, sourceDigestKind: projection ? "authorized-projection" : "raw-bytes", locator: "QA replay of existing witnessed native structural connection", provenance: "native-product", origin: "authored", support: "direct", review: "candidate", publication: "unpublished", distribution: "allowed", revision: 1 } satisfies MathOntologyAssertion;
+    });
+    const validateCandidate = async (tx: Parameters<typeof loadActiveOntologyRuntimeInTransaction>[0], assertion: MathOntologyAssertion) => {
+      const runtime = await loadActiveOntologyRuntimeInTransaction(tx, initial.graphVersion!, { kind: "neighbors", entityId: assertion.subject, targetId: assertion.object, limit: 20 });
+      return actualCandidateValidation(assertion, "global", runtime);
+    };
+    const reviews = createOntologyRelationService({ db, candidates: {
+      async authorize(tx, actor, assertion, evidenceRef) { expect(evidenceRef).toBe(initial.graphVersion); await authorizeOntologyPublisher(tx, actor); await validateCandidate(tx, assertion); },
+      async validate(assertion) { const { engine, conforms, incomplete, report, focusNodeCount, results } = await db.$transaction(tx => validateCandidate(tx, assertion)); return { engine, conforms, incomplete, report, focusNodeCount, results }; },
+    } });
+    const draft = await reviews.draft(f.actor, { assertion: candidate, evidenceRef: initial.graphVersion! });
+    const checked = await reviews.validate(f.actor, draft.reviewId);
+    expect(checked.state).toBe("validated");
+    const approved = await reviews.decide(f.actor, { reviewId: draft.reviewId, expectedRevision: checked.revision, validationHash: checked.validationHash, sourceReviewed: true, meaningReviewed: true, decision: "approve" });
+    expect(approved.state).toBe("approved");
+    const delta = await publication.prepare(f.actor);
+    expect(delta.preview.relationCount).toBe(1);
+    expect((await publication.confirm(f.actor, { confirmationId: delta.confirmationId, sealHash: delta.sealHash })).state).toBe("published");
+    const active = await db.ontologyActiveGraph.findUniqueOrThrow({ where: { scopeKey: "global" } });
+    expect(active.generation).toBe(initial.generation + 1); expect(active.graphVersion).not.toBe(initial.graphVersion);
+    receipt.reviewId = draft.reviewId; receipt.relationOrigin = "authored-existing-source-replay";
+    const graphVersion = active.graphVersion!;
     const chapter = await db.$transaction(async tx => {
       await authorizeOntologyAction(tx, f.actor, f.target, () => new Date());
       const runtime = await loadActiveOntologyRuntimeInTransaction(tx, graphVersion, { kind: "neighbors", entityId: seed, limit: 20 });

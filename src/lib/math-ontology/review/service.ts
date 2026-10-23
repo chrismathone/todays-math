@@ -17,6 +17,7 @@ import {
 } from "./authorization";
 import { lockOntologyScope } from "../publish/scope";
 import { recordOntologyReviewEvent } from "./events";
+import { ontologyRelationCanPublish } from "./eligibility";
 
 export interface OntologyCandidatePort {
   /** Actual authorization of subject/object/source and sealed model evidence.
@@ -222,6 +223,7 @@ export function createOntologyRelationService(deps: {
           "BINDING_MISMATCH",
         );
         const candidate = mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash));
+        requireOperation(input.decision !== "approve" || ontologyRelationCanPublish(candidate), "EVIDENCE_INSUFFICIENT");
         const event = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: row.id, event: "relation.drafted" }, orderBy: { createdAt: "asc" } });
         requireOperation(event, "BINDING_MISMATCH");
         const ref = z.object({ evidenceRef: z.string() }).parse(checkedCanonical(event.detailCanonical, event.detailHash)).evidenceRef;

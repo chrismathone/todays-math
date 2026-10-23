@@ -22,7 +22,7 @@ function assertion(): MathOntologyAssertion {
     locator: "synthetic only",
     provenance: "unknown",
     origin: "model-proposal",
-    support: "unknown",
+    support: "direct",
     review: "candidate",
     publication: "unpublished",
     distribution: "allowed",
@@ -69,6 +69,20 @@ describe("manual/model relation provenance", () => {
  });
 });
 describe("relation review and durable publication orchestration (synthetic compiler port)", () => {
+  it("keeps insufficient or undistributable candidates unapproved without promoting their support", async () => {
+    const f = await fixture(); await db.user.update({ where: { id: f.actor.id }, data: { isSuperAdmin: true } });
+    const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-policy-validation", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
+    for (const variant of [{ support: "unknown" }, { support: "missing" }, { distribution: "restricted" }, { distribution: "unknown" }] as const) {
+      const candidate = { ...assertion(), ...variant, id: `urn:todaymath:assertion:policy:${crypto.randomUUID()}`, scope: `branch:${f.branch.id}` };
+      const draft = await service.draft(f.actor, { assertion: candidate, evidenceRef: "synthetic-policy-graph" });
+      const checked = await service.validate(f.actor, draft.reviewId);
+      await expect(service.decide(f.actor, { reviewId: draft.reviewId, expectedRevision: checked.revision, validationHash: checked.validationHash, decision: "approve", sourceReviewed: true, meaningReviewed: true })).rejects.toMatchObject({ code: "EVIDENCE_INSUFFICIENT" });
+      const retained = await service.read(f.actor, draft.reviewId);
+      expect(retained.state).toBe("validated"); expect(retained.assertion.support).toBe(candidate.support); expect(retained.assertion.distribution).toBe(candidate.distribution);
+      expect(await db.ontologyReviewEvent.count({ where: { subjectId: draft.reviewId, event: "relation.approved" } })).toBe(0);
+      expect((await service.decide(f.actor, { reviewId: draft.reviewId, expectedRevision: checked.revision, validationHash: checked.validationHash, decision: "reject", sourceReviewed: true, meaningReviewed: true })).state).toBe("rejected");
+    }
+  });
   it("requires publisher rights and actual validator success, preserving draft → validated → approved events", async () => {
     const f = await fixture();
     await db.user.update({

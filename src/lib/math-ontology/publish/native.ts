@@ -13,6 +13,7 @@ import type { OntologyActionActor } from "../actions/authorization";
 import type { approvedOntologyReviews } from "./service";
 import type { OntologyPublicationBase } from "./approval";
 import { canonicalOntologyJson, ontologyDigest } from "../compiler/canonical";
+import { ontologyRelationCanPublish } from "../review/eligibility";
 const hash = z.string().regex(/^sha256:[a-f0-9]{64}$/);
 const catalogSchema = z.strictObject({ format: z.literal("tm-base-catalog-1"), bases: z.array(z.strictObject({ baseHash: hash, projectionHash: hash, path: z.string() })).min(1) });
 /** Bind the actual engine inputs, not the top-level requirements include line.
@@ -41,6 +42,7 @@ export async function buildNativeOntologyPublicationInput(tx: Prisma.Transaction
   const input = await preparePackagedSourceCompileInput({ decisionId, expectedProjectionHash: base.projectionHash, scope: scopeKey, verify: async () => ({ isSuperAdmin: publisher.isSuperAdmin, active: !row.revokedAt, approvedProjectionHash: row.sourceManifestHash, decisionId }) });
   const assertions = reviews.rows.map(review => {
     const candidate = mathOntologyAssertionSchema.parse(checkedCanonical(review.assertionCanonical, review.assertionHash));
+    requireOperation(ontologyRelationCanPublish(candidate), "EVIDENCE_INSUFFICIENT");
     requireOperation(candidate.scope === scopeKey && review.reviewerId && review.reviewedAt && review.validationHash, "BINDING_MISMATCH");
     return mathOntologyAssertionSchema.parse({ ...candidate, review: "approved", publication: "published", revision: review.revision, approvalId: `urn:todaymath:relation-review:${review.id}:revision:${review.revision}` });
   });
