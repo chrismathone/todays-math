@@ -1,0 +1,5572 @@
+{
+  "packId": "ebs-manjeom-e5-1-2026-v1",
+  "displayName": "BOOK1 개념책 + BOOK2 실전책 한눈에 보는 정답 전체",
+  "reviewDate": "2026-10-24",
+  "scope": {
+    "wholeRequestedQuickAnswerScope": true,
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": false,
+    "coverageKind": "full-quick-answer-addresses-partial-text-keys",
+    "sourceQuickAnswerPages": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "sourcePdfPagesVisuallyReviewed": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "sourcePdfPagesContainingRegisteredAnswers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "rowGranularity": "one row per printed leading-zero main exercise number; printed subparts stay together in answerText; address.subpart is empty",
+    "volumes": [
+      {
+        "volume": "BOOK1 개념책",
+        "chapters": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "textbookPageLabels": [
+          "9",
+          "10~11",
+          "13",
+          "14~15",
+          "17",
+          "18~19",
+          "20~23",
+          "29",
+          "30~31",
+          "33",
+          "34~35",
+          "37",
+          "38~39",
+          "40~43",
+          "49",
+          "50~51",
+          "53",
+          "54~55",
+          "57",
+          "58~59",
+          "60~63",
+          "69",
+          "70~71",
+          "73",
+          "74~75",
+          "77",
+          "78~79",
+          "80~83",
+          "89",
+          "90~91",
+          "93",
+          "94~95",
+          "97",
+          "98~99",
+          "101",
+          "102~103",
+          "104~107",
+          "113",
+          "114~115",
+          "117",
+          "118~119",
+          "121",
+          "122~123",
+          "125",
+          "126~127",
+          "129",
+          "130~131",
+          "133",
+          "134~135",
+          "137",
+          "138~139",
+          "141",
+          "142~143",
+          "144~147"
+        ]
+      },
+      {
+        "volume": "BOOK2 실전책",
+        "chapters": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "textbookPageLabels": [
+          "5",
+          "6~8",
+          "9~11",
+          "12~13",
+          "15",
+          "16~18",
+          "19~21",
+          "22~23",
+          "25",
+          "26~28",
+          "29~31",
+          "32~33",
+          "35",
+          "36~38",
+          "39~41",
+          "42~43",
+          "45",
+          "46~48",
+          "49~51",
+          "52~53",
+          "55",
+          "56~58",
+          "59~61",
+          "62~63"
+        ]
+      }
+    ]
+  },
+  "source": {
+    "productUrl": "https://book.ebs.co.kr/sub/primary/view?txbkId=TB1000013094&ebkId=EB100002640",
+    "answerPostUrl": "https://primary.ebs.co.kr/book/answer/index#answer/view/115/60000465839/0/1//0",
+    "pdfUrl": "https://primary.ebs.co.kr/board/common/download?division=&id=30000005667",
+    "textbookId": "TB1000013094",
+    "pageCount": 80,
+    "byteCount": 6076876,
+    "sha256": "5488c312b7212b3431010c1af7e83c262b9e983b66852b40ee356599d8dc5c11",
+    "localPdf": "/Volumes/TodayWork/commercial-workbook-sources/survey-20261024/root/samples/ebs-primary-60000465839.pdf",
+    "localExtractedText": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs-primary-60000465839-layout.txt",
+    "localReviewedTranscription": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/reviewed-transcription.txt",
+    "sourceListingDate": "2025-12-29",
+    "editionYear": "2026",
+    "publicationDateConfirmed": false,
+    "printingNumberConfirmed": false,
+    "editionEvidence": [
+      {
+        "url": "https://primary.ebs.co.kr/book/answer/index#answer/view/115/60000465839/0/1//0",
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/official-answer-detail.html",
+        "sha256": "2d525a3bc25cef4011ebad93aa8877e407be1d7cca5f66897d8f5fb2f319a00b",
+        "claims": [
+          "제목 만점왕 수학 5-1 (2026)",
+          "본문의 2026 초등 만점왕 수학 5-1 정답과 풀이 안내",
+          "첨부 2026만점왕수학5-1(북3).pdf와 download id 30000005667",
+          "작성일 25.12.29는 게시일이며 판본 연도 근거로 사용하지 않음"
+        ],
+        "retrieval": {
+          "method": "POST",
+          "url": "https://primary.ebs.co.kr/board/book/view",
+          "body": "tabNm=answer&boardId=115&postId=60000465839&parentPostId=0&pageNo=1&tid=&filterCategory=0"
+        }
+      },
+      {
+        "url": "https://book.ebs.co.kr/sub/primary/view?txbkId=TB1000013094&ebkId=EB100002640",
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/official-bookstory-product.html",
+        "sha256": "667930b905e34a003520abb1a45ae87808ae7b58fd26938ad035a4b7bee38f57",
+        "claims": [
+          "공식 표제 만점왕 수학 5-1 (2026)",
+          "종이책 ISBN 9788954795920",
+          "5학년, 수학, EBS",
+          "전자책 ISBN 9788954796095는 이 팩의 종이책 ISBN으로 사용하지 않음"
+        ]
+      },
+      {
+        "url": "https://book.ebs.co.kr/sub/primary/view?txbkId=TB1000013094&ebkId=EB100002640",
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/official-bookstory-info.html",
+        "sha256": "cf9914a1918d5b7991e7a75eec45e9e2d9bcc0d602ca028bad808e98e000e9f6",
+        "claims": [
+          "책 소개 탭의 ISBN 9788954795920, 320쪽"
+        ],
+        "retrieval": {
+          "method": "POST",
+          "url": "https://book.ebs.co.kr/sub/primary/additionalInfo",
+          "body": "schIsbn=9788954795920&ebkId=EB100002640&searchCondition=info&schFmySiteDsCd=PRIM&schSiteDsCd=PS&schgrade=primary"
+        }
+      },
+      {
+        "url": "https://book.ebs.co.kr/sub/primary/view?txbkId=TB1000013094&ebkId=EB100002640",
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/official-bookstory-toc.html",
+        "sha256": "732ce0fd1ad0ed86092d038fde6cd9ef729732ff53363ba061fbf423a1aae32a",
+        "claims": [
+          "BOOK1 개념책과 BOOK2 실전책 각각 6개 단원",
+          "BOOK3 풀이책"
+        ],
+        "retrieval": {
+          "method": "POST",
+          "url": "https://book.ebs.co.kr/sub/primary/additionalInfo",
+          "body": "schIsbn=9788954795920&ebkId=EB100002640&searchCondition=content&schFmySiteDsCd=PRIM&schSiteDsCd=PS&schgrade=primary"
+        }
+      },
+      {
+        "url": "https://primary.ebs.co.kr/course/view?courseId=100007146",
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/official-course.html",
+        "sha256": "564ba002b6bb6585b7e352d20f4fc820b71bcd586d367a29248c45c48dc23e4e",
+        "claims": [
+          "만점왕 수학 5-1 제목 옆 2022개정 배지",
+          "교재 링크 TB1000013094 및 미리보기 ISBN 9788954795920가 해당 판본과 연결됨"
+        ]
+      }
+    ],
+    "reviewedImages": [
+      {
+        "sourcePage": 2,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-02.png",
+        "sha256": "537cdb01f7ef625b387d59fd8e010af1350bd36023efdd6f26ea1ec79bf07ad6",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 3,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-03.png",
+        "sha256": "af26317f783d4d1aa551e5097ebd8a7153e36d7a216b2deed3ba713cae18099e",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 4,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-04.png",
+        "sha256": "cb16a353f2697fba3a7c0cd26d7606283126a11dbff68ab866530f764961bfb5",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 5,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-05.png",
+        "sha256": "1ecc2acaf7a643b28594f280c65e13973d26dda821c438a7b492e17f551934f1",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 6,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-06.png",
+        "sha256": "1c20b8f81fb4d6f8de1334936490b6586cbaadcd882294a36ebff5ef0e06a238",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 7,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-07.png",
+        "sha256": "ec1cbe7c8a63c07701cfc312416dbb06aec1cef372cb95c4ddca1042aa82dae2",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 8,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-08.png",
+        "sha256": "6dd9112c9bf097832dd7ad187968202e744f29540867b94955359f5555f07ecc",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 9,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-09.png",
+        "sha256": "a1ef35e55f7e131c88bf8fcffb28be9321b1aee36e3e36e4d2c8ec19570b50ee",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 10,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-10.png",
+        "sha256": "bc8d622a280170d09b8d9b115c6fd236327b8b5aefcd318523df44231a9cf2a6",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 11,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-11.png",
+        "sha256": "c54e3bf85247ad16c06e63ac46df60b80fc28ecca2e9e14df82ad7b778634842",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 12,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-12.png",
+        "sha256": "329ec9fe87a0214eed0e25900f4d9d85b60408f6c7feef6d39ab5e93ea6d06f1",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 13,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-13.png",
+        "sha256": "e1c0eea5309f9a5ec72d770bbd2cbbfd3f15b2502fc64c6bdcc2d5ba78ab8528",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 14,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-14.png",
+        "sha256": "4737f41b8db6ad928daf071871f30d2cb1c68f8d6bff629ec6c087db5ab3a640",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 15,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-15.png",
+        "sha256": "d661ef2be5e36cdd4a157cf1e6bbe52ec2eeb7eb82d7ac2e71b6c5b71e5b1005",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 16,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-16.png",
+        "sha256": "e10005001712f55663dd6c4c1741eadc3cc7b5d441ec20594f28c07ca873df9c",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 17,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-17.png",
+        "sha256": "beb2e52efb176969cce2fc02d680f17a55186b9739a7da14a96ab9726f03e299",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "quick-answer address and key review"
+      },
+      {
+        "sourcePage": 18,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/ebs/page-18.png",
+        "sha256": "8fca0dd9c88e9e921b0b4d7d5bf9e64570d7e3e69d13e3a57c161bd46e87f736",
+        "method": "pdftoppm -scale-to 2200 -png; visual reread of printed page group, number, subparts and answer; layout text used only as an aid",
+        "purpose": "boundary check: detailed solutions begin at PDF page 18; supporting confirmation for PDF page 2"
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 818,
+    "reviewedKeys": 669,
+    "unreviewedKeys": 0,
+    "nullKeys": 149,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 78,
+    "byAnswerSourcePage": {
+      "2": 40,
+      "3": 51,
+      "4": 57,
+      "5": 43,
+      "6": 43,
+      "7": 36,
+      "8": 33,
+      "9": 47,
+      "10": 49,
+      "11": 59,
+      "12": 60,
+      "13": 60,
+      "14": 60,
+      "15": 60,
+      "16": 60,
+      "17": 60
+    },
+    "byReviewedKeySourcePage": {
+      "2": 34,
+      "3": 47,
+      "4": 52,
+      "5": 37,
+      "6": 37,
+      "7": 31,
+      "8": 28,
+      "9": 43,
+      "10": 40,
+      "11": 55,
+      "12": 45,
+      "13": 46,
+      "14": 43,
+      "15": 40,
+      "16": 46,
+      "17": 45
+    },
+    "byVolume": {
+      "BOOK1 개념책": {
+        "exercises": 458,
+        "reviewedKeys": 404,
+        "nullKeys": 54
+      },
+      "BOOK2 실전책": {
+        "exercises": 360,
+        "reviewedKeys": 265,
+        "nullKeys": 95
+      }
+    },
+    "nullReasons": {
+      "diagram": 30,
+      "solution-reference": 106,
+      "explanation-required": 9,
+      "worked-calculation": 4
+    }
+  },
+  "pageGroups": [
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "9",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "10~11",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "13",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "14~15",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "17",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "18~19",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 2,
+          "firstNumber": "01",
+          "lastNumber": "09",
+          "exerciseCount": 9
+        },
+        {
+          "sourcePage": 3,
+          "firstNumber": "10",
+          "lastNumber": "11",
+          "exerciseCount": 2
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "20~23",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 3,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "29",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 3,
+          "firstNumber": "01",
+          "lastNumber": "04",
+          "exerciseCount": 4
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "30~31",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 3,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "33",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 3,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "34~35",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 3,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "37",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "38~39",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "2. 약수와 배수",
+      "page": "40~43",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "49",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "05",
+          "exerciseCount": 5
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "50~51",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 3,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "53",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "04",
+          "exerciseCount": 4
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "54~55",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 4,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        },
+        {
+          "sourcePage": 5,
+          "firstNumber": "04",
+          "lastNumber": "11",
+          "exerciseCount": 8
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "57",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 5,
+          "firstNumber": "01",
+          "lastNumber": "04",
+          "exerciseCount": 4
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "58~59",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 3,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 5,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "3. 대응 관계",
+      "page": "60~63",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 5,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "69",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "70~71",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "73",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "74~75",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "77",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "04",
+          "exerciseCount": 4
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "78~79",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 6,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "4. 약분과 통분",
+      "page": "80~83",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 7,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "89",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 7,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "90~91",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 7,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "93",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02"
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 7,
+          "firstNumber": "01",
+          "lastNumber": "02",
+          "exerciseCount": 2
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "94~95",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 8,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "97",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 8,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "98~99",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 8,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "101",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02"
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 8,
+          "firstNumber": "01",
+          "lastNumber": "02",
+          "exerciseCount": 2
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "102~103",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 8,
+          "firstNumber": "01",
+          "lastNumber": "06",
+          "exerciseCount": 6
+        },
+        {
+          "sourcePage": 9,
+          "firstNumber": "07",
+          "lastNumber": "11",
+          "exerciseCount": 5
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "104~107",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 9,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "113",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02"
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 9,
+          "firstNumber": "01",
+          "lastNumber": "02",
+          "exerciseCount": 2
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "114~115",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 9,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "117",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 9,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "118~119",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 4,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 9,
+          "firstNumber": "01",
+          "lastNumber": "06",
+          "exerciseCount": 6
+        },
+        {
+          "sourcePage": 10,
+          "firstNumber": "07",
+          "lastNumber": "11",
+          "exerciseCount": 5
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "121",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02"
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "02",
+          "exerciseCount": 2
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "122~123",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "125",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "126~127",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "129",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "130~131",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "133",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 10,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "134~135",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "137",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "138~139",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "141",
+      "activity": "문제를 풀며 이해해요",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "03",
+          "exerciseCount": 3
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "142~143",
+      "activity": "교과서 문제 해결하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "11",
+          "exerciseCount": 11
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK1 개념책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "144~147",
+      "activity": "단원평가로 완성하기",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 11,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "5",
+      "activity": "1단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 12,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "6~8",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 12,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "9~11",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 17,
+      "nullKeyCount": 3,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 12,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "12~13",
+      "activity": "1단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 12,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "2. 약수와 배수",
+      "page": "15",
+      "activity": "2단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 13,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "2. 약수와 배수",
+      "page": "16~18",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 13,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "2. 약수와 배수",
+      "page": "19~21",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 13,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "2. 약수와 배수",
+      "page": "22~23",
+      "activity": "2단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 13,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "3. 대응 관계",
+      "page": "25",
+      "activity": "3단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 14,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "3. 대응 관계",
+      "page": "26~28",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 4,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 14,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "3. 대응 관계",
+      "page": "29~31",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 17,
+      "nullKeyCount": 3,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 14,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "3. 대응 관계",
+      "page": "32~33",
+      "activity": "3단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 14,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "4. 약분과 통분",
+      "page": "35",
+      "activity": "4단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 1,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 15,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "4. 약분과 통분",
+      "page": "36~38",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 5,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 15,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "4. 약분과 통분",
+      "page": "39~41",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 4,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 15,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "4. 약분과 통분",
+      "page": "42~43",
+      "activity": "4단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 15,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "45",
+      "activity": "5단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 16,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "46~48",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 16,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "49~51",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 16,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "52~53",
+      "activity": "5단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 16,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "55",
+      "activity": "6단원 쪽지 시험",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 17,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "56~58",
+      "activity": "학교 시험 만점왕 1회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 17,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "59~61",
+      "activity": "학교 시험 만점왕 2회",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 20,
+      "reviewedKeyCount": 17,
+      "nullKeyCount": 3,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 17,
+          "firstNumber": "01",
+          "lastNumber": "20",
+          "exerciseCount": 20
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "BOOK2 실전책",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "62~63",
+      "activity": "6단원 서술형·논술형 평가",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "answerSourceSegments": [
+        {
+          "sourcePage": 17,
+          "firstNumber": "01",
+          "lastNumber": "10",
+          "exerciseCount": 10
+        }
+      ],
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "9",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "10~11",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "10~11",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "14~15",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "14~15",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "18~19",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "18~19",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "20~23",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "2. 약수와 배수",
+        "page": "30~31",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "2. 약수와 배수",
+        "page": "34~35",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "2. 약수와 배수",
+        "page": "38~39",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "49",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "50~51",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "50~51",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "50~51",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "54~55",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "58~59",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "58~59",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "58~59",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "60~63",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "3. 대응 관계",
+        "page": "60~63",
+        "number": "18",
+        "subpart": ""
+      },
+      "sourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "69",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "69",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "70~71",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "70~71",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "74~75",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "78~79",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "80~83",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "4. 약분과 통분",
+        "page": "80~83",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "90~91",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "90~91",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "93",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "94~95",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "worked-calculation",
+      "note": "복수 방법이나 변환 경로의 계산 과정을 작성하는 답안이다. 전체 풀이를 복제하거나 최종 계산값만으로 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "94~95",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "98~99",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "worked-calculation",
+      "note": "복수 방법이나 변환 경로의 계산 과정을 작성하는 답안이다. 전체 풀이를 복제하거나 최종 계산값만으로 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "98~99",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "102~103",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "worked-calculation",
+      "note": "복수 방법이나 변환 경로의 계산 과정을 작성하는 답안이다. 전체 풀이를 복제하거나 최종 계산값만으로 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "102~103",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "114~115",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "114~115",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "118~119",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "118~119",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "118~119",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "118~119",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "122~123",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "126~127",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "129",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "130~131",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "130~131",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "133",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "134~135",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "134~135",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "138~139",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK1 개념책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "142~143",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "6~8",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "6~8",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "9~11",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "9~11",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "9~11",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "1. 자연수의 혼합 계산",
+        "page": "12~13",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "16~18",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "16~18",
+        "number": "17",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "19~21",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "19~21",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "2. 약수와 배수",
+        "page": "22~23",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "26~28",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "26~28",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "26~28",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "26~28",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "29~31",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "29~31",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "29~31",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "explanation-required",
+      "note": "원문 답안에 이유 또는 관계를 설명하는 문장이 포함되어 있다. 설명을 복제하거나 이름·식·숫자 일부만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "3. 대응 관계",
+        "page": "32~33",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "35",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "36~38",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "36~38",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "36~38",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "36~38",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "worked-calculation",
+      "note": "복수 방법이나 변환 경로의 계산 과정을 작성하는 답안이다. 전체 풀이를 복제하거나 최종 계산값만으로 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "36~38",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "39~41",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "39~41",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "39~41",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "39~41",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "4. 약분과 통분",
+        "page": "42~43",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "46~48",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "46~48",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "49~51",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "49~51",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "5. 분수의 덧셈과 뺄셈",
+        "page": "52~53",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "56~58",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "56~58",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "59~61",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "diagram",
+      "note": "원문 정답에 계산 순서의 연결선·도형·색칠·그리기가 포함되어 있다. 그림을 복제하거나 함께 제시된 숫자만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "59~61",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "59~61",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "05",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "BOOK2 실전책",
+        "section": "6. 다각형의 둘레와 넓이",
+        "page": "62~63",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ],
+      "reason": "solution-reference",
+      "note": "원문 정답이 풀이 참조를 지시한다. 함께 인쇄된 최종 수치·선택지·이름이 있더라도 그것만으로 전체 답안을 대체하지 않았다.",
+      "registered": true,
+      "key": null
+    }
+  ],
+  "limitations": [
+    "전체 수록은 지정된 한눈에 보는 정답(파일 2~17쪽)의 주문항 주소 전체를 뜻한다. 본책의 개념 설명·핵심 정리 등 빠른 정답에 없는 활동을 독립적으로 전수 조사했다는 뜻은 아니다.",
+    "BOOK1 교재 9~147쪽과 BOOK2 교재 5~63쪽에 인쇄된 정답 그룹만 등록한다. 범위 사이의 빠진 쪽은 추정하지 않는다. 범위 표기를 개별 쪽으로 나누지 않는다.",
+    "149개의 null 키는 주소 누락이 아니다. 도형·계산 순서 연결선 30개, 풀이 참조 106개, 설명이 필요한 답안 9개, 복수 방법 계산 4개의 정답을 의도적으로 미수록했다.",
+    "주번호가 여러 소문항이나 답안 요소를 포함하면 모두 한 행에 유지한다. 한 요소라도 그림·설명 등 텍스트 수록이 부적절하면 전체 주번호의 키를 null로 두고 최종 수치로 대체하지 않는다.",
+    "대분수 a b/c에서 공백은 정수부와 분수부를 구분한다. 단독 분수의 /와 구분 기호로 사용한 공백 포함 /를 구별한다. 자동 계산용 문법이 아니다.",
+    "5단원은 원문에서 기약분수·대분수로 바꾸지 않은 계산 결과도 정답으로 인정한다고 밝힌다(PDF 7, 16쪽). 이 팩은 인쇄된 대표 표기를 유지하며 동치 답안의 자동 판정을 구현하지 않는다.",
+    "정확한 2026년판, 2022개정, 종이책 ISBN을 공식 출처로 확인했다. 발행일·쇄차는 확인하지 않았으며 PDF 하단 제작 시각과 게시일을 발행일 또는 쇄차로 사용하지 않는다.",
+    "공개 정답 자료를 근거로 교사 참조용 짧은 정답만 작성했다. 문제·도형·풀이 문장·전체 원문 텍스트·원본 PDF는 저장소에 포함하지 않는다. 공개 접근이 별도 재배포 라이선스를 확인했다는 뜻은 아니다.",
+    "원문 오탈자를 교정하거나 최신 정오표를 적용한 자료는 아니다. 검토 기준은 SHA-256으로 고정한 다운로드 원본이다."
+  ],
+  "normalization": [
+    "원문 01~20 주번호와 BOOK1/BOOK2 권 구분을 유지한다.",
+    "⑴~⑷ 소문항, 방법 1/2, 예시 표지, 답의 순서, 단위, 또는 대안을 함께 보존한다.",
+    "곱셈 ×, 나눗셈 ÷, 뺄셈 −, 선택 ○·△, 문자 기호 ㉠~㉤·◎·♡·☆·◇·▽·□를 텍스트로 나타낸다.",
+    "행갈이는 의미 단위별 공백 또는 세미콜론으로 표시한다. 분수는 a/b, 대분수는 a b/c, 복합 분자는 (a×b)/(c×d)로 나타낸다.",
+    "분리된 정답 배열의 구분은 공백 포함 /로 유지하고 정렬·약분하지 않는다.",
+    "원문이 텍스트로 쓴 연결 답 (1)−㉠은 ⑴−㉠ 형태로 유지한다. 실제 선 그림·색칠 도형·계산 순서 연결선은 null이다.",
+    "null TSV 행의 answerText·keyStatus·sourcePage는 모두 비운다. 빈 마지막 셀은 따옴표 쌍으로 표시하여 끝 공백 없이 8열을 유지한다. null의 출처는 별도 nullKeyLedger에 남긴다."
+  ],
+  "outOfScope": [
+    {
+      "sourcePages": "1",
+      "reason": "풀이책 표지이며 답안 주소 없음"
+    },
+    {
+      "sourcePages": "18~80",
+      "reason": "상세 풀이·채점 기준. 중복 답안 주소로 등록하지 않으며 풀이 문장을 복제하지 않음"
+    }
+  ],
+  "files": {
+    "pack": "ebs-manjeom-e5-1-2026-v1.json",
+    "tsv": "ebs-manjeom-e5-1-2026-v1.tsv"
+  },
+  "grading": "manual-reference-only"
+}
