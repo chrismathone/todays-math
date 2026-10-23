@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { db, now, fixture } from "./harness";
 import { createOntologyRelationService } from "@/lib/math-ontology/review/service";
+import { sealOntologyModelRelationProposal } from "@/lib/math-ontology/review/modelReceipt";
 import { createOntologyPublisher } from "@/lib/math-ontology/publish/service";
 import { canonicalBytes, digest } from "@/lib/math-ontology/actions/canonical";
 import type {
@@ -52,6 +53,21 @@ function artifactFor(input: MathOntologyCompileInput) {
     files,
   } satisfies MathOntologyArtifact;
 }
+describe("manual/model relation provenance", () => {
+ it("labels client drafts authored; actual server receipt binds model candidate bytes and rejects forgery", async () => {
+  const f = await fixture(); await db.user.update({ where: { id: f.actor.id }, data: { isSuperAdmin: true } });
+  const service = createOntologyRelationService({ db, now: () => now, candidates: { authorize: async () => {}, validate: async () => ({ engine: "synthetic-validator", conforms: true, incomplete: false, report: "[]", focusNodeCount: 1, results: [] }) } });
+  const candidate = assertion(), manual = await service.draft(f.actor, { assertion: candidate, evidenceRef: "synthetic:graph" });
+  expect(JSON.parse((await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: manual.reviewId } })).assertionCanonical).origin).toBe("authored");
+  const raw = { assertion: candidate, evidenceRef: "synthetic:graph", evidenceHash: digest("synthetic-checked-packet"), receipt: { modelCalled: true as const, provider: "synthetic-provider", requestedModel: "synthetic-configured-model", reportedModel: null, responseId: null, inputTokens: null, outputTokens: null, rawResponseHash: digest("synthetic-successful-http-body") } };
+  const sealed = await db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, raw, now));
+  const model = await service.draftModel(f.actor, { assertion: candidate, evidenceRef: raw.evidenceRef, ...sealed });
+  expect(JSON.parse((await db.ontologyRelationReview.findUniqueOrThrow({ where: { id: model.reviewId } })).assertionCanonical).origin).toBe("model-proposal");
+  expect(await service.draftModel(f.actor, { assertion: candidate, evidenceRef: raw.evidenceRef, ...sealed })).toEqual(model);
+  await expect(service.draftModel(f.actor, { assertion: { ...candidate, object: "urn:todaymath:forged" }, evidenceRef: raw.evidenceRef, ...sealed })).rejects.toThrow();
+  await expect(db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, { ...raw, receipt: { ...raw.receipt, modelCalled: false } as never }, now))).rejects.toThrow();
+ });
+});
 describe("relation review and durable publication orchestration (synthetic compiler port)", () => {
   it("requires publisher rights and actual validator success, preserving draft → validated → approved events", async () => {
     const f = await fixture();

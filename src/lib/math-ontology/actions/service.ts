@@ -171,7 +171,6 @@ export function createOntologyActionService(deps: {
     tx: Prisma.TransactionClient,
     actor: OntologyActionActor,
     id: string,
-    time: Date,
   ) {
     const initial = await tx.ontologyProposal.findUnique({ where: { id } });
     requireOperation(initial && initial.actorId === actor.id, "NOT_FOUND");
@@ -179,7 +178,7 @@ export function createOntologyActionService(deps: {
       tx,
       actor,
       targetOf(initial),
-      time,
+      now,
     );
     await tx.$queryRaw`SELECT id FROM ontology_proposal WHERE id = ${id}::uuid FOR UPDATE`;
     const row = await tx.ontologyProposal.findUniqueOrThrow({ where: { id } });
@@ -229,12 +228,15 @@ export function createOntologyActionService(deps: {
       saved.state,
       saved.revision,
       args,
-      time,
+      now(),
     );
     requireOperation(
       digest(canonicalBytes(preview)) === binding.previewHash,
       "STALE",
     );
+    const finalAccess = await authorizeOntologyAction(tx, actor, targetOf(row), now);
+    requireOperation(finalAccess.authorizationStamp === access.authorizationStamp, "STALE");
+    requireOperation(row.expiresAt > now() && Date.parse(actual.expiresAt) > now().getTime(), "EXPIRED");
     return { args, binding, saved };
   }
   return {
@@ -251,7 +253,7 @@ export function createOntologyActionService(deps: {
       const args = ontologyPlanArgsSchema.parse(input.args);
       return transaction(async (tx) => {
         const time = now();
-        const access = await authorizeOntologyAction(tx, actor, target, time);
+        const access = await authorizeOntologyAction(tx, actor, target, now);
         const saved = await readSrsState(target.studentId, srsStateTableIn(tx));
         const actual = await resolve(
           tx,
@@ -311,6 +313,8 @@ export function createOntologyActionService(deps: {
         const proposal = await tx.ontologyProposal.create({
           data: { ...row, sealHash: seal(row) },
         });
+        const finalAccess = await authorizeOntologyAction(tx, actor, target, now);
+        requireOperation(finalAccess.authorizationStamp === access.authorizationStamp && proposal.expiresAt > now(), "STALE");
         return {
           proposalId: proposal.id,
           sealHash: proposal.sealHash,
@@ -328,7 +332,6 @@ export function createOntologyActionService(deps: {
             tx,
             actor,
             input.proposalId,
-            time,
           );
         verifyProposal(row, input.sealHash);
         const existing = await tx.ontologyApproval.findUnique({
@@ -345,6 +348,7 @@ export function createOntologyActionService(deps: {
           if (existing.consumedAt) {
             const receipt = await tx.ontologyReceipt.findUnique({ where: { approvalId: existing.id } });
             requireOperation(row.status === "executed" && receipt, "BINDING_MISMATCH");
+            await authorizeOntologyAction(tx, actor, targetOf(row), now);
             return { approvalId: existing.id, proposalId: row.id, sealHash: input.sealHash };
           }
           await current(tx, actor, row, access, input.sealHash, time);
@@ -369,6 +373,7 @@ export function createOntologyActionService(deps: {
           where: { id: row.id },
           data: { status: "approved" },
         });
+        await authorizeOntologyAction(tx, actor, targetOf(row), now);
         return {
           approvalId: approval.id,
           proposalId: row.id,
@@ -384,7 +389,6 @@ export function createOntologyActionService(deps: {
             tx,
             actor,
             input.proposalId,
-            time,
           );
         const verified = verifyProposal(row, input.sealHash);
         const approval = await tx.ontologyApproval.findUnique({
@@ -418,6 +422,7 @@ export function createOntologyActionService(deps: {
                 canonicalBytes(verified.binding),
             "BINDING_MISMATCH",
           );
+          await authorizeOntologyAction(tx, actor, targetOf(row), now);
           return result;
         }
         requireOperation(
@@ -432,6 +437,7 @@ export function createOntologyActionService(deps: {
           input.sealHash,
           time,
         );
+        const executionTime = now();
         await tx.ontologyApproval.update({
           where: { id: approval.id },
           data: { consumedAt: time },
@@ -439,11 +445,11 @@ export function createOntologyActionService(deps: {
         await deps.failpoint?.("approval-consumed");
         const updated = await changeSrsState(
           row.studentId,
-          (state) => coursePlanTransition(state, args, time),
+          (state) => coursePlanTransition(state, args, executionTime),
           srsStateTableIn(tx),
           binding.expectedStudentRevision,
           { teacher: true },
-          time,
+          executionTime,
         );
         await deps.failpoint?.("student-written");
         const result = ontologyActionReceiptSchema.parse({
@@ -454,7 +460,7 @@ export function createOntologyActionService(deps: {
           beforeRevision: saved.revision,
           afterRevision: updated.revision,
           plan: updated.state.course?.plan ?? null,
-          committedAt: time.toISOString(),
+          committedAt: executionTime.toISOString(),
           binding,
         });
         const resultCanonical = canonicalBytes(result);
@@ -512,6 +518,8 @@ export function createOntologyActionService(deps: {
           where: { id: row.id },
           data: { status: "executed" },
         });
+        const finalAccess = await authorizeOntologyAction(tx, actor, targetOf(row), now);
+        requireOperation(finalAccess.authorizationStamp === access.authorizationStamp && row.expiresAt > now(), "STALE");
         return result;
       });
     },

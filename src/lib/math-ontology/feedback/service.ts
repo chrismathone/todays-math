@@ -59,7 +59,7 @@ export interface OntologyObservationPort {
     target: OntologyActionTarget,
     sourceSnapshotId: string,
     now: Date,
-    window?: { committedAt: string; minimumRevision: number },
+    window?: { committedAt: string; minimumRevision: number; authorizationClock?: () => Date },
   ): Promise<ResolvedObservation>;
 }
 
@@ -73,7 +73,6 @@ export function createOntologyFeedbackService(deps: {
     tx: Prisma.TransactionClient,
     actor: OntologyActionActor,
     receiptId: string,
-    time: Date,
   ) {
     const receipt = await tx.ontologyReceipt.findUnique({
       where: { id: receiptId },
@@ -85,7 +84,7 @@ export function createOntologyFeedbackService(deps: {
       classId: receipt.proposal.classId,
       branchId: receipt.proposal.branchId,
     };
-    await authorizeOntologyAction(tx, actor, target, time);
+    await authorizeOntologyAction(tx, actor, target, now);
     const result = ontologyActionReceiptSchema.parse(
       checkedCanonical(receipt.resultCanonical, receipt.resultHash),
     );
@@ -104,7 +103,6 @@ export function createOntologyFeedbackService(deps: {
             tx,
             actor,
             input.receiptId,
-            time,
           );
         const value = resolvedObservationSchema.parse(
           await deps.observations.resolve(
@@ -113,7 +111,7 @@ export function createOntologyFeedbackService(deps: {
             target,
             input.sourceSnapshotId,
             time,
-            { committedAt: result.committedAt, minimumRevision: result.afterRevision },
+            { committedAt: result.committedAt, minimumRevision: result.afterRevision, authorizationClock: now },
           ),
         );
         requireOperation(
@@ -161,13 +159,14 @@ export function createOntologyFeedbackService(deps: {
             createdAt: time,
           },
         });
+        await authorizeOntologyAction(tx, actor, target, now);
         return { id: row.id, observation };
       });
     },
     async list(actor: OntologyActionActor, receiptId: string) {
       z.uuid().parse(receiptId);
       return deps.db.$transaction(async (tx) => {
-        await authorized(tx, actor, receiptId, now());
+        await authorized(tx, actor, receiptId);
         const rows = await tx.ontologyFeedback.findMany({
           where: { receiptId },
           orderBy: [{ observedAt: "asc" }, { id: "asc" }],

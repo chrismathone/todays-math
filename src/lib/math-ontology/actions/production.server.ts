@@ -23,7 +23,9 @@ import { createOntologyPublisher } from "../publish/service";
 import { createOntologyPublicationApproval } from "../publish/approval";
 import { buildNativeOntologyPublicationInput, currentPackagedPublicationBase } from "../publish/native";
 import { createOntologyPythonPort } from "../transport/python";
-import { loadOntologyRuntime, verifyOntologyArtifact } from "../runtime/artifact";
+import { verifyOntologyCompiledArtifactForInput } from "../runtime/compiled";
+import { createOntologyHistoryDelivery } from "../outbox/history";
+import { authorizeMathOntologySourceRead, MathOntologySourceAccessDenied } from "../sources/server";
 
 export const ontologyOperationsEnabled = () => process.env.MATH_ONTOLOGY_OPERATIONS === "on";
 function secret() {
@@ -46,22 +48,20 @@ export function productionOntologyOperations() {
   const plans = createOntologyActionService({ db, evidence: evidence.evidence });
   const candidates = {
     async authorize(tx: Parameters<typeof loadActiveOntologyRuntimeInTransaction>[0], actor: OntologyActionActor, assertion: Parameters<typeof actualCandidateValidation>[0], evidenceRef: string) {
-      await readOntologyActorInTransaction(tx, actor, new Date());
+      await readOntologyActorInTransaction(tx, actor, () => new Date());
       await lockActiveOntologyReleaseInTransaction(tx, "global", evidenceRef);
       const a = z.object({ subject: z.string(), scope: z.string() }).parse(assertion);
       const runtime = await loadActiveOntologyRuntimeInTransaction(tx, evidenceRef, { kind: "neighbors", entityId: a.subject, limit: 100 });
       // Candidate validator performs actual endpoint/source hash membership and
       // isolated SHACL. It does not establish educational meaning or cycles.
-      const materialized = "materialize" in runtime && typeof runtime.materialize === "function" ? await runtime.materialize({ kind: "neighbors", entityId: a.subject, limit: 100 }, { allowedScopes: ["global"], contextHash: evidenceRef, cursorSecret: secret() }) : runtime;
-      await actualCandidateValidation(assertion, a.scope, materialized);
+      await actualCandidateValidation(assertion, a.scope, runtime);
     },
     async validate(assertion: Parameters<typeof actualCandidateValidation>[0]) {
       const a = z.object({ subject: z.string(), scope: z.string() }).parse(assertion);
       return db.$transaction(async tx => {
         const { release } = await lockActiveOntologyReleaseInTransaction(tx, "global");
         const runtime = await loadActiveOntologyRuntimeInTransaction(tx, release.graphVersion, { kind: "neighbors", entityId: a.subject, limit: 100 });
-        const materialized = "materialize" in runtime && typeof runtime.materialize === "function" ? await runtime.materialize({ kind: "neighbors", entityId: a.subject, limit: 100 }, { allowedScopes: ["global"], contextHash: release.graphVersion, cursorSecret: secret() }) : runtime;
-        const result = await actualCandidateValidation(assertion, a.scope, materialized);
+        const result = await actualCandidateValidation(assertion, a.scope, runtime);
         const { engine, conforms, incomplete, report, focusNodeCount, results } = result;
         return { engine, conforms, incomplete, report, focusNodeCount, results };
       });
@@ -76,15 +76,10 @@ export function productionOntologyOperations() {
       requireOperation(audience && origin, "UNAVAILABLE");
       return createOntologyPythonPort({ endpoint: new URL(origin), audience, secret: secret() }).compile(input, job);
     } },
-    verifyArtifact: async (raw, input) => {
-      const artifact = verifyOntologyArtifact(raw, raw.identity);
-      requireOperation(artifact.files.source === input.sourceManifest, "BINDING_MISMATCH");
-      await loadOntologyRuntime(artifact, artifact.identity);
-      return artifact;
-    },
+    verifyArtifact: verifyOntologyCompiledArtifactForInput,
   });
   const publication = createOntologyPublicationApproval({ db, publisher, base: currentPackagedPublicationBase });
-  return { plans, evidence, relations, feedback, publisher, publication };
+  return { plans, evidence, relations, feedback, publisher, publication, deliverHistory: createOntologyHistoryDelivery({ db }) };
 }
 export async function handleOntologyOperations(request: Request) {
   if (!ontologyOperationsEnabled()) return ontologyResponse(503, { error: { code: "ONTOLOGY_OPERATIONS_UNAVAILABLE" } });
@@ -93,18 +88,18 @@ export async function handleOntologyOperations(request: Request) {
     return await createOntologyOperationsHandler({ ...ports, authorize: authorizeOntologyOperationRequest,
       async students(actor, req) {
         const branchId = new URL(req.url).searchParams.get("branchId"); if (branchId) z.uuid().parse(branchId);
-        const account = await db.$transaction(tx => readOntologyActorInTransaction(tx, actor, new Date()));
+        const account = await db.$transaction(tx => readOntologyActorInTransaction(tx, actor, () => new Date()));
         const viewer = account.row;
-        const where = await accessibleClassesWhere(viewer);
+        const where = await accessibleClassesWhere(viewer, "student:read");
         const classes = await db.class.findMany({ where: branchId ? { AND: [where, { branchId }] } : where, select: { id: true, name: true, grade: true }, orderBy: { name: "asc" } });
         const rows = await loadOperationalRosterSummary(classes, false);
         return db.$transaction(async tx => {
-          await readOntologyActorInTransaction(tx, actor, new Date());
+          await readOntologyActorInTransaction(tx, actor, () => new Date());
           const result = [];
           for (const row of rows) {
             const target = { studentId: row.id, classId: row.classId, branchId: row.branchId };
-            try { await authorizeOntologyAction(tx, actor, target, new Date()); }
-            catch (error) { if (error instanceof OntologyOperationError && error.code === "FORBIDDEN") continue; throw error; }
+            try { await authorizeMathOntologySourceRead(tx, { actor, target, graphVersion: "ontology:student-selector:v1", now: new Date(), authorizationNow: () => new Date() }); }
+            catch (error) { if (error instanceof MathOntologySourceAccessDenied || (error instanceof OntologyOperationError && error.code === "FORBIDDEN")) continue; throw error; }
             result.push({ id: row.id, classId: row.classId, branchId: row.branchId, label: row.name, classLabel: row.class.name });
           }
           return result;
@@ -114,7 +109,7 @@ export async function handleOntologyOperations(request: Request) {
         return db.$transaction(async tx => {
           const row = await tx.ontologyProposal.findUnique({ where: { id: proposalId } });
           requireOperation(row && row.actorId === actor.id, "NOT_FOUND");
-          await authorizeOntologyAction(tx, actor, { studentId: row.studentId, classId: row.classId, branchId: row.branchId }, new Date());
+          await authorizeOntologyAction(tx, actor, { studentId: row.studentId, classId: row.classId, branchId: row.branchId }, () => new Date());
           const receipt = await tx.ontologyReceipt.findUnique({ where: { proposalId } });
           return { proposalId, state: row.status, preview: checkedCanonical(row.previewCanonical, digest(row.previewCanonical)), receipt: receipt ? checkedCanonical(receipt.resultCanonical, receipt.resultHash) : null };
         });

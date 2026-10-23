@@ -8,9 +8,10 @@ import { readOntologyActorInTransaction } from "../actions/actor";
 export async function authorizeOntologyPublisher(
   tx: Prisma.TransactionClient,
   actor: OntologyActionActor,
-  now = new Date(),
+  now: Date | (() => Date) = () => new Date(),
 ) {
-  const { row } = await readOntologyActorInTransaction(tx, actor, now);
+  const clock = typeof now === "function" ? now : () => now;
+  const { row } = await readOntologyActorInTransaction(tx, actor, clock);
   requireOperation(row.isSuperAdmin, "FORBIDDEN");
   return row;
 }
@@ -22,9 +23,10 @@ export async function authorizeOntologyDraftScope(
   tx: Prisma.TransactionClient,
   actor: OntologyActionActor,
   scopeKey: string,
-  now = new Date(),
+  now: Date | (() => Date) = () => new Date(),
 ) {
-  const { row, branch } = await readOntologyActorInTransaction(tx, actor, now);
+  const clock = typeof now === "function" ? now : () => now;
+  const { row, branch } = await readOntologyActorInTransaction(tx, actor, clock);
   if (row.isSuperAdmin) return;
   requireOperation(
     effectiveWorkspaceMenuPolicy({ ...row, branch }).menus.includes("srs") &&

@@ -3,6 +3,7 @@ import type { Prisma } from "@prisma/client";
 import type { OntologyActionTarget } from "@/contracts/mathOntologyAction.contract";
 import { legacyClassInScope } from "@/lib/classAccess";
 import { controlUserSchema } from "@/lib/eywa/sync-contract";
+import { accountUsable } from "@/lib/eywa/managedPolicy";
 import {
   currentClassGrantAllows,
   membershipAllows,
@@ -29,10 +30,14 @@ export async function authorizeOntologyAction(
   tx: Prisma.TransactionClient,
   actor: OntologyActionActor,
   target: OntologyActionTarget,
-  now: Date,
+  time: Date | (() => Date),
 ) {
+  const clock = typeof time === "function" ? time : () => time;
   const { row, branch, managed, binding } =
-    await readOntologyActorInTransaction(tx, actor, now);
+    await readOntologyActorInTransaction(tx, actor, clock);
+  let now = clock();
+  let currentGrant = () => true;
+  let currentEnrollment = () => true;
   const viewer = {
     id: row.id,
     name: row.name,
@@ -65,6 +70,7 @@ export async function authorizeOntologyAction(
   const student = await tx.student.findUnique({
     where: { id: target.studentId },
   });
+  now = clock();
   requireOperation(
     cls &&
       student &&
@@ -107,6 +113,8 @@ export async function authorizeOntologyAction(
           managed.sourceClasses,
         );
         const sourceGrant = grants.find((g) => g.id === cls.eywaClassId);
+        currentGrant = () => memberships.some(m => membershipAllows(m, "progress:write", clock())) && currentClassGrantAllows(sourceGrant, cls.eywaClassId, cls.permissionRevision, "progress:write", clock());
+        now = clock();
         requireOperation(
           cls.eywaBindingId === managed.bindingId &&
             memberships.some((m) =>
@@ -144,6 +152,8 @@ export async function authorizeOntologyAction(
         bindingId: student.eywaBindingId,
       },
     });
+    now = clock();
+    currentEnrollment = () => enrollments.some(e => enrollmentActive(e, kstRelationshipDay(clock()), false));
     requireOperation(
       student.eywaBindingId === cls.eywaBindingId &&
         enrollments.some((e) =>
@@ -152,6 +162,8 @@ export async function authorizeOntologyAction(
       "FORBIDDEN",
     );
   }
+  requireOperation(currentGrant() && currentEnrollment() && (!cls.eywaBindingId || (cls.active && (!cls.closedAt || cls.closedAt > clock()))), "FORBIDDEN");
+  if (managed) requireOperation(binding && accountUsable(row, managed, binding, clock().getTime()), "FORBIDDEN");
   return {
     authorizationStamp: digest(
       canonicalBytes({

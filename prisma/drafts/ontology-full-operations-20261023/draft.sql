@@ -1,3 +1,16 @@
+-- REVIEW DRAFT ONLY. Atomic, fail-closed application; never rerun over partial storage.
+BEGIN;
+SET LOCAL lock_timeout = '3s';
+SET LOCAL statement_timeout = '60s';
+SELECT pg_advisory_xact_lock(hashtextextended('todaymath-ontology-storage-v1', 0));
+DO $$ BEGIN
+  IF NOT has_schema_privilege(current_user, 'public', 'CREATE') THEN
+    RAISE EXCEPTION 'Ontology storage requires reviewed schema-owner execution';
+  END IF;
+  IF EXISTS (SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relname LIKE 'ontology_%' AND c.relkind IN ('r','p')) THEN
+    RAISE EXCEPTION 'Ontology storage already exists; inspect migration state instead of replaying DDL';
+  END IF;
+END $$;
 -- CreateTable
 CREATE TABLE "ontology_proposal" (
     "id" UUID NOT NULL,
@@ -348,3 +361,4 @@ DO $$ DECLARE r text; BEGIN FOREACH r IN ARRAY ARRAY['anon','authenticated'] LOO
  IF EXISTS(SELECT 1 FROM pg_roles WHERE rolname=r) THEN EXECUTE format('REVOKE ALL ON TABLE ontology_evidence_snapshot FROM %I',r); END IF;
 END LOOP; END $$;
 CREATE TRIGGER ontology_evidence_snapshot_immutable BEFORE UPDATE ON ontology_evidence_snapshot FOR EACH ROW EXECUTE FUNCTION ontology_immutable_record();
+COMMIT;

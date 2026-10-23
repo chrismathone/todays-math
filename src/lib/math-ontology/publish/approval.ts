@@ -31,7 +31,7 @@ export function createOntologyPublicationApproval(deps: {
   return {
     async prepare(actor: OntologyActionActor) {
       return transaction(async tx => {
-        const time = now(); await authorizeOntologyPublisher(tx, actor, time);
+        const time = now(); await authorizeOntologyPublisher(tx, actor, now);
         const base = baseSchema.parse(deps.base()), active = await lockOntologyScope(tx, "global", time), reviews = await approvedOntologyReviews(tx, "global"), id = randomUUID();
         const preview = previewSchema.parse({ version: 1, id, actorId: actor.id, scopeKey: "global", base, reviewStateHash: reviews.hash, generation: active.generation, relationCount: reviews.rows.length, expiresAt: new Date(time.getTime() + 10 * 60_000).toISOString() });
         await recordOntologyReviewEvent(tx, actor.id, "global", id, "publish.prepared", preview as unknown as CanonicalValue, time);
@@ -41,7 +41,7 @@ export function createOntologyPublicationApproval(deps: {
     async confirm(actor: OntologyActionActor, raw: unknown) {
       const input = z.strictObject({ confirmationId: z.uuid(), sealHash: z.string().regex(/^sha256:[a-f0-9]{64}$/) }).parse(raw);
       const job = await transaction(async tx => {
-        const time = now(); await authorizeOntologyPublisher(tx, actor, time);
+        const time = now(); await authorizeOntologyPublisher(tx, actor, now);
         await lockOntologyScope(tx, "global", time);
         const row = await tx.ontologyReviewEvent.findFirst({ where: { subjectId: input.confirmationId, event: "publish.prepared", actorId: actor.id } });
         requireOperation(row && row.detailHash === input.sealHash, "BINDING_MISMATCH");

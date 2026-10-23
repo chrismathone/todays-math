@@ -37,29 +37,37 @@ export function createOntologyRelationService(deps: {
   now?: () => Date;
 }) {
   const now = deps.now ?? (() => new Date());
-  return {
-    async draft(
+  async function draft(
       actor: OntologyActionActor,
       raw: { assertion: unknown; evidenceRef: string },
+      origin: "authored" | "model-proposal" = "authored",
+      stableReviewId?: string,
     ) {
       z.string().min(1).max(512).parse(raw.evidenceRef);
       const candidateInput = {
         ...(raw.assertion as Record<string, unknown>),
-        origin: "model-proposal",
+        origin,
         review: "candidate",
         publication: "unpublished",
       };
       delete (candidateInput as Record<string, unknown>).approvalId;
       const candidate = mathOntologyAssertionSchema.parse(candidateInput);
       return deps.db.$transaction(async (tx) => {
-        await authorizeOntologyDraftScope(tx, actor, candidate.scope, now());
+        await authorizeOntologyDraftScope(tx, actor, candidate.scope, now);
         await deps.candidates.authorize(tx, actor, candidate, raw.evidenceRef);
         const assertionCanonical = canonicalBytes(candidate),
           assertionHash = digest(assertionCanonical),
           time = now();
+        if (stableReviewId) {
+          const previous = await tx.ontologyRelationReview.findUnique({ where: { id: stableReviewId } });
+          if (previous) {
+            requireOperation(previous.proposedBy === actor.id && previous.assertionCanonical === assertionCanonical && previous.assertionHash === assertionHash, "BINDING_MISMATCH");
+            return { reviewId: previous.id, revision: previous.revision, state: previous.state };
+          }
+        }
         const row = await tx.ontologyRelationReview.create({
           data: {
-            id: randomUUID(),
+            id: stableReviewId ?? randomUUID(),
             scopeKey: candidate.scope,
             assertionId: candidate.id,
             assertionCanonical,
@@ -77,13 +85,28 @@ export function createOntologyRelationService(deps: {
           { assertionHash, evidenceRef: raw.evidenceRef },
           time,
         );
+        await authorizeOntologyDraftScope(tx, actor, row.scopeKey, now);
         return { reviewId: row.id, revision: row.revision, state: row.state };
       });
+    }
+  return {
+    draft: (actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string }) => draft(actor, raw),
+    async draftModel(actor: OntologyActionActor, raw: { assertion: unknown; evidenceRef: string; modelRunId: string }) {
+      const normalized: Record<string, unknown> = { ...(raw.assertion as Record<string, unknown>), origin: "model-proposal", review: "candidate", publication: "unpublished" }; delete normalized.approvalId;
+      const candidate = mathOntologyAssertionSchema.parse(normalized);
+      await deps.db.$transaction(async tx => {
+        await authorizeOntologyDraftScope(tx, actor, candidate.scope, now);
+        const row = await tx.ontologyReviewEvent.findUnique({ where: { id: z.uuid().parse(raw.modelRunId) } });
+        requireOperation(row && row.actorId === actor.id && row.event === "model.relation.proposed", "BINDING_MISMATCH");
+        const receipt = z.object({ actorId: z.uuid(), sessionVersion: z.number().int(), modelCalled: z.literal(true), assertionHash: z.string(), evidenceRef: z.string(), evidenceHash: z.string(), expiresAt: z.iso.datetime() }).parse(checkedCanonical(row.detailCanonical, row.detailHash));
+        requireOperation(receipt.actorId === actor.id && receipt.sessionVersion === actor.sessionVersion && receipt.assertionHash === digest(canonicalBytes(candidate)) && receipt.evidenceRef === raw.evidenceRef && Date.parse(receipt.expiresAt) > now().getTime(), "BINDING_MISMATCH");
+      });
+      return draft(actor, raw, "model-proposal", raw.modelRunId);
     },
     async validate(actor: OntologyActionActor, reviewId: string) {
       z.uuid().parse(reviewId);
       const original = await deps.db.$transaction(async (tx) => {
-        await authorizeOntologyPublisher(tx, actor, now());
+        await authorizeOntologyPublisher(tx, actor, now);
         const row = await tx.ontologyRelationReview.findUnique({
           where: { id: reviewId },
         });
@@ -106,7 +129,7 @@ export function createOntologyRelationService(deps: {
       const validationCanonical = canonicalBytes(report),
         validationHash = digest(validationCanonical);
       return deps.db.$transaction(async (tx) => {
-        await authorizeOntologyPublisher(tx, actor, now());
+        await authorizeOntologyPublisher(tx, actor, now);
         await tx.$queryRaw`SELECT id FROM ontology_relation_review WHERE id = ${reviewId}::uuid FOR UPDATE`;
         const row = await tx.ontologyRelationReview.findUniqueOrThrow({
           where: { id: reviewId },
@@ -140,6 +163,7 @@ export function createOntologyRelationService(deps: {
           },
           now(),
         );
+        await authorizeOntologyPublisher(tx, actor, now);
         return {
           reviewId,
           revision: updated.revision,
@@ -161,7 +185,7 @@ export function createOntologyRelationService(deps: {
         })
         .parse(raw);
       return deps.db.$transaction(async (tx) => {
-        await authorizeOntologyPublisher(tx, actor, now());
+        await authorizeOntologyPublisher(tx, actor, now);
         const initial = await tx.ontologyRelationReview.findUnique({
           where: { id: input.reviewId },
         });
@@ -217,13 +241,14 @@ export function createOntologyRelationService(deps: {
           },
           time,
         );
+        await authorizeOntologyPublisher(tx, actor, now);
         return { reviewId: row.id, state, revision: updated.revision };
       });
     },
     async retire(actor: OntologyActionActor, reviewId: string, expectedRevision: number) {
       z.uuid().parse(reviewId); z.number().int().nonnegative().parse(expectedRevision);
       return deps.db.$transaction(async tx => {
-        const time = now(); await authorizeOntologyPublisher(tx, actor, time);
+        const time = now(); await authorizeOntologyPublisher(tx, actor, now);
         const original = await tx.ontologyRelationReview.findUnique({ where: { id: reviewId } });
         requireOperation(original, "NOT_FOUND");
         await lockOntologyScope(tx, original.scopeKey, time);
@@ -232,6 +257,7 @@ export function createOntologyRelationService(deps: {
         requireOperation(row.state === "approved" && row.revision === expectedRevision, "STALE");
         const result = await tx.ontologyRelationReview.update({ where: { id: reviewId }, data: { state: "retired", revision: { increment: 1 } } });
         await recordOntologyReviewEvent(tx, actor.id, row.scopeKey, row.id, "relation.retired", { assertionHash: row.assertionHash, previousRevision: row.revision, revision: result.revision }, time);
+        await authorizeOntologyPublisher(tx, actor, now);
         return { reviewId, state: result.state, revision: result.revision };
       });
     },

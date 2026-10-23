@@ -8,7 +8,7 @@ import { requireOperation } from "./errors";
 export async function readOntologyActorInTransaction(
   tx: Prisma.TransactionClient,
   actor: OntologyActionActor,
-  now: Date,
+  clock: () => Date = () => new Date(),
 ) {
   await tx.$queryRaw`SELECT id FROM "user" WHERE id = ${actor.id}::uuid FOR SHARE`;
   const row = await tx.user.findUnique({ where: { id: actor.id } });
@@ -37,7 +37,7 @@ export async function readOntologyActorInTransaction(
       where: { id: managed.bindingId },
     });
     requireOperation(
-      binding && accountUsable(row, managed, binding, now.getTime()),
+      binding && accountUsable(row, managed, binding, clock().getTime()),
       "FORBIDDEN",
     );
   } else requireOperation(row.authSource !== "eywa", "FORBIDDEN");

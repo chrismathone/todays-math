@@ -78,7 +78,7 @@ export function createOntologyPublisher(deps: {
       scopeKey.length > 0 && scopeKey.length <= 200,
       "FORBIDDEN",
     );
-      await authorizeOntologyPublisher(tx, actor, now());
+      await authorizeOntologyPublisher(tx, actor, now);
       if (expected) {
         const previous = await tx.ontologyCompileJob.findUnique({ where: { id: expected.jobId } });
         if (previous) {
@@ -134,12 +134,13 @@ export function createOntologyPublisher(deps: {
         },
         time,
       );
+      await authorizeOntologyPublisher(tx, actor, now);
       return { jobId: row.id, state: row.state };
   }
   const enqueue = (actor: OntologyActionActor, scopeKey: string) => transaction(tx => enqueueInTransaction(tx, actor, scopeKey));
   async function run(actor: OntologyActionActor, jobId: string) {
     const lease = await transaction(async (tx) => {
-      await authorizeOntologyPublisher(tx, actor, now());
+      await authorizeOntologyPublisher(tx, actor, now);
       await tx.$queryRaw`SELECT id FROM ontology_compile_job WHERE id = ${jobId}::uuid FOR UPDATE`;
       const row = await tx.ontologyCompileJob.findUnique({
         where: { id: jobId },
@@ -180,7 +181,7 @@ export function createOntologyPublisher(deps: {
           state: "leased",
           leaseGeneration: { increment: 1 },
           attempt: { increment: 1 },
-          leaseUntil: new Date(time.getTime() + 120000),
+          leaseUntil: new Date(time.getTime() + 300000),
           lastErrorCode: null,
         },
       });
@@ -193,6 +194,7 @@ export function createOntologyPublisher(deps: {
         { leaseGeneration: updated.leaseGeneration, attempt: updated.attempt },
         time,
       );
+      await authorizeOntologyPublisher(tx, actor, now);
       return { published: false as const, row: updated, input };
     });
     if (lease.published)
@@ -203,7 +205,9 @@ export function createOntologyPublisher(deps: {
         jobId,
         inputHash: lease.row.inputManifestHash,
         leaseGeneration: lease.row.leaseGeneration,
-        expiresAt: new Date(Math.min(lease.row.leaseUntil!.getTime(), now().getTime() + 55_000)).toISOString(),
+        // This is the durable DB lease. The transport separately binds its
+        // short request-auth start window; it must not cap job lifetime to 55s.
+        expiresAt: lease.row.leaseUntil!.toISOString(),
       });
       const artifact = mathOntologyArtifactSchema.parse(
         await deps.verifyArtifact(raw, lease.input),
@@ -211,7 +215,7 @@ export function createOntologyPublisher(deps: {
       const artifactCanonical = canonicalOntologyJson(artifact),
         artifactHash = ontologyDigest(artifactCanonical);
       return await transaction(async (tx) => {
-        await authorizeOntologyPublisher(tx, actor, now());
+        await authorizeOntologyPublisher(tx, actor, now);
         const time = now(),
           active = await lockOntologyScope(tx, lease.row.scopeKey, time);
         await tx.$queryRaw`SELECT id FROM ontology_compile_job WHERE id = ${jobId}::uuid FOR UPDATE`;
@@ -300,6 +304,7 @@ export function createOntologyPublisher(deps: {
           },
           time,
         );
+        await authorizeOntologyPublisher(tx, actor, now);
         return {
           jobId,
           state: "published",
