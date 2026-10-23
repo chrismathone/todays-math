@@ -1,0 +1,472 @@
+{
+  "packId": "mathtian-facto-operation-c05-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": true,
+    "wholeBookAddressAudit": false,
+    "wholeRequestedQuickAnswerScope": false,
+    "allPrintedNumberedExercisesAudited": true,
+    "definition": "전체 PDF의 인쇄된 문항 번호 또는 퍼즐 열쇠 식별자가 있는 항목 전부",
+    "rowGranularity": "one printed question number or clue identifier"
+  },
+  "source": {
+    "productUrl": "https://www.mathtian.com/qna/qna_errata_answer.aspx?page=3&srh_code1=&srh_code2=&srh_code3=",
+    "pdfUrl": "https://www.mathtian.com/UploadPath/NewAnswer/%5B%EC%A0%95%EB%8B%B5%5D%ED%8C%A9%ED%86%A0%EC%97%B0%EC%82%B0C05_OUT.pdf",
+    "sha256": "3450da5fb9ff2ece7ab324d2527993ad03697e0b50df8108b02b7918bc6928b8",
+    "pageCount": 27,
+    "byteCount": 82214487,
+    "sourceRelativePath": "elementary/pdfs/mathtian_facto_operation_c05.pdf",
+    "editionEvidence": {
+      "title": "사고력을 키우는 팩토 연산 C05",
+      "isbn": null,
+      "publicationDate": null,
+      "curriculum": null,
+      "impression": null
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-01.png",
+        "sha256": "52051f991d17b81ef12e737e60f29f33c6048e2d01f5b7e4eaa4c1c6c5efd334",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 2,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-02.png",
+        "sha256": "c9fcd529a3add7ca184d596ad3a59f1da0183f045ceda7493bb798b6ca4da0b4",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 3,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-03.png",
+        "sha256": "1ff140aec18983b5571cfc6e591646e77ce3a49d05cdf2648bc40588f77bbab2",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 4,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-04.png",
+        "sha256": "0b936ccc102f797cd023094e8702bd077d4b9b19a740459e8cb394017b8e9fef",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 5,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-05.png",
+        "sha256": "f7a6e8efeff40a4b094b2b0bc0c52a1bbfa19f327ef2337d5fdba8972d4cb09d",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 6,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-06.png",
+        "sha256": "b6ca738443ee733e42b6f790438791141b8032c42eea697e665f6ee69a3c3134",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 7,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-07.png",
+        "sha256": "b6ec54b26cd2bf45cf0b7e53fbaa7e5fb9e3659512be41ad4ac920ca5f430b0a",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 8,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-08.png",
+        "sha256": "902cf8996373b910b7e31267096ae50d2afa7d388c432d58418d919262dbb9eb",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 9,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-09.png",
+        "sha256": "3510c263beeac0e5c56f1bc944a56dae93a328d2817b6e6fae84f89d1778ac2e",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 10,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-10.png",
+        "sha256": "be5a075a27bc59a8ef9f1a156d56a45537f835303434598ca177c46aa8697059",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 11,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-11.png",
+        "sha256": "8d88ef1becfdaceeb904a12fec970ffda4ab159b61513c5efcae10ea0a731da4",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 12,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-12.png",
+        "sha256": "0410241882102e8e8f46c38990aa5dbb64c2befeee401ff7e4320e2ed51dc54a",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 13,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-13.png",
+        "sha256": "df9be29de2dccdd08bc32ce3eea9b318e4cb5b369354be2058cf296c2922f46e",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 14,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-14.png",
+        "sha256": "0b5812fbd01fa657c7105b07484b570ad461b904fb4fbe114812a2d5741b3b01",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 15,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-15.png",
+        "sha256": "4fb4af111066e9ef1db94b2ae9c5896afd28b3faca5d5af2712c866ee65eed95",
+        "width": 1404,
+        "height": 1800
+      },
+      {
+        "sourcePage": 16,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-16.png",
+        "sha256": "357866d79b3f723bf04543e608e8599d773a61b74827f0af8e92b2afd67ac6dd",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 17,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-17.png",
+        "sha256": "15ec1210cd9481e1a0c95543eadae64c9cbc433fa65f9609b4e8ea10726e6f07",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 18,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-18.png",
+        "sha256": "5ba0ed856a74a531a9fb5db298d1d2931ce489892e0f26da01c0b0f2108b2065",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 19,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-19.png",
+        "sha256": "cc17d4f71a542b5a4438c5cdce63b1b2f36629ca8e5f78d04c580a1bbec75439",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 20,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-20.png",
+        "sha256": "419724c00caa888e3fceb394927bf82d1bb078d5c8aba1e8232d39c49e38b68e",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 21,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-21.png",
+        "sha256": "cdbae95c7ac989b1a8812731b4492490d262ffdab6f80408ccd11e13e6414baa",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 22,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-22.png",
+        "sha256": "37819694663c54021f1299eb9728a8b408efc4e738d2f4f7fed382a605ad352a",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 23,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-23.png",
+        "sha256": "f4d1bd455ed0ee41cf229ba2eb1464040e3847054aaccced6c0cb2221236e279",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 24,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-24.png",
+        "sha256": "2387ef947a3815f432d894bc45b24803e11ccfa8073c5c194b7c1e1577bd5b18",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 25,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-25.png",
+        "sha256": "75ef03435cd15b672d6e8e489faa095974e0c542b636101590d5a3174e446b4f",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 26,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-26.png",
+        "sha256": "359f780063a8a60c5678e024127c61e9eb6c84497ca2036d002f41791f0d82d0",
+        "width": 1406,
+        "height": 1800
+      },
+      {
+        "sourcePage": 27,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-27.png",
+        "sha256": "cf61a31637819b81911ec0f33334ae930efaf93de2f165e331b920793c21fc0a",
+        "width": 1406,
+        "height": 1800
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 49,
+    "reviewedKeys": 49,
+    "nullKeys": 0,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 6
+  },
+  "pageGroups": [
+    {
+      "section": "1주 연산 실력 체크",
+      "page": "38",
+      "expectedExerciseNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "section": "1주 연산 실력 체크",
+      "page": "39",
+      "expectedExerciseNumbers": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0
+    },
+    {
+      "section": "1주 연산 실력 체크",
+      "page": "40",
+      "expectedExerciseNumbers": [
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37"
+      ],
+      "exerciseCount": 13,
+      "reviewedKeyCount": 13,
+      "nullKeyCount": 0
+    },
+    {
+      "section": "1주 연산 실력 체크",
+      "page": "41",
+      "expectedExerciseNumbers": [
+        "38",
+        "39",
+        "40"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0
+    },
+    {
+      "section": "2주 5일차 소수의 표현 / 가로 열쇠",
+      "page": "63",
+      "expectedExerciseNumbers": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0
+    },
+    {
+      "section": "2주 5일차 소수의 표현 / 세로 열쇠",
+      "page": "63",
+      "expectedExerciseNumbers": [
+        "㉠",
+        "㉡",
+        "㉢",
+        "㉣"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0
+    }
+  ],
+  "nullKeyLedger": [],
+  "outOfScope": [
+    {
+      "sourcePage": 2,
+      "printedTextbookPages": "8~9",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 3,
+      "printedTextbookPages": "10~13",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 4,
+      "printedTextbookPages": "14~15",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 5,
+      "printedTextbookPages": "16~19",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 6,
+      "printedTextbookPages": "20~21",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 7,
+      "printedTextbookPages": "22~25",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 8,
+      "printedTextbookPages": "26~27",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 9,
+      "printedTextbookPages": "28~31",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 10,
+      "printedTextbookPages": "32~33",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 11,
+      "printedTextbookPages": "34~37",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 13,
+      "printedTextbookPages": "44~47",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 14,
+      "printedTextbookPages": "48~51",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 15,
+      "printedTextbookPages": "52~55",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 16,
+      "printedTextbookPages": "56~59",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 17,
+      "printedTextbookPages": "60~62",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 18,
+      "printedTextbookPages": "66~69",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 19,
+      "printedTextbookPages": "70~73",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 20,
+      "printedTextbookPages": "74~77",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 21,
+      "printedTextbookPages": "78~81",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 22,
+      "printedTextbookPages": "82~85",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 23,
+      "printedTextbookPages": "88~91",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 24,
+      "printedTextbookPages": "92~95",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 25,
+      "printedTextbookPages": "96~99",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 26,
+      "printedTextbookPages": "100~103",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 27,
+      "printedTextbookPages": "104~107",
+      "reason": "문항 번호 없는 활동: 주차·일차·숫자 카드·도형 속 수는 문항 번호가 아니므로 위치 번호 생성 안 함"
+    },
+    {
+      "sourcePage": 1,
+      "reason": "표지"
+    }
+  ],
+  "reviewMethod": {
+    "allAnswerRegionsVisuallyInspected": true,
+    "manualTranscription": true,
+    "ocrUsedAsReviewedText": false,
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/reviewed-correspondence.json",
+    "scanOcrEvidence": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_facto_operation_c05/page-12.ocr.json"
+  }
+}
