@@ -374,6 +374,7 @@ export function createOntologyActionService(deps: {
           data: { status: "approved" },
         });
         await authorizeOntologyAction(tx, actor, targetOf(row), now);
+        requireOperation(row.expiresAt > now(), "EXPIRED");
         return {
           approvalId: approval.id,
           proposalId: row.id,

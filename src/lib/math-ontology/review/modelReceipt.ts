@@ -7,6 +7,7 @@ import type { OntologyActionActor } from "../actions/authorization";
 import { canonicalBytes, digest } from "../actions/canonical";
 import { authorizeOntologyDraftScope } from "./authorization";
 import type { ModelApiReceipt } from "@/lib/studio-ai/api";
+import { requireOperation } from "../actions/errors";
 /** Server-only entry after the formal adapter has checked the actual provider
  * response and its exact public evidence packet. No HTTP route exposes this. */
 export async function sealOntologyModelRelationProposal(tx: Prisma.TransactionClient, actor: OntologyActionActor, input: {
@@ -23,5 +24,6 @@ export async function sealOntologyModelRelationProposal(tx: Prisma.TransactionCl
   const id = randomUUID(), detailCanonical = canonicalBytes(body);
   await tx.ontologyReviewEvent.create({ data: { id, actorId: actor.id, scopeKey: candidate.scope, subjectId: candidate.id, event: "model.relation.proposed", detailCanonical, detailHash: digest(detailCanonical), createdAt: now } });
   await authorizeOntologyDraftScope(tx, actor, candidate.scope, clock);
+  requireOperation(Date.parse(body.expiresAt) > clock().getTime(), "EXPIRED");
   return { modelRunId: id };
 }

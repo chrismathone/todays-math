@@ -19,7 +19,10 @@ describe("explicit publisher release/source-authority withdrawal", () => {
  it("preview is inert; an audit failure rolls back every withdrawal; confirm is atomic and idempotent", async () => {
   const { f, id, graphVersion, generation, service } = await setup(), p = await service.prepare(f.actor), input = { confirmationId: p.confirmationId, sealHash: p.sealHash };
   expect((await db.ontologyActiveGraph.findUniqueOrThrow({ where: { scopeKey: "global" } })).graphVersion).toBe(graphVersion);
-  await db.$executeRawUnsafe("ALTER TABLE ontology_review_event ADD CONSTRAINT qa_revoke_audit_failure CHECK (event <> 'release.revoked')");
+  // Other serialized fixtures retain their immutable revocation histories.
+  // Fail this operation's new audit, without rejecting those older rows.
+  if (!/^[a-f0-9-]{36}$/.test(p.confirmationId)) throw new Error("Invalid synthetic confirmation id");
+  await db.$executeRawUnsafe(`ALTER TABLE ontology_review_event ADD CONSTRAINT qa_revoke_audit_failure CHECK (event <> 'release.revoked' OR subject_id <> '${p.confirmationId}')`);
   try { await expect(service.confirm(f.actor, input)).rejects.toThrow(); }
   finally { await db.$executeRawUnsafe("ALTER TABLE ontology_review_event DROP CONSTRAINT qa_revoke_audit_failure"); }
   expect((await db.ontologyRelease.findUniqueOrThrow({ where: { graphVersion } })).revokedAt).toBeNull();

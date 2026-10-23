@@ -31,7 +31,7 @@ export function currentPackagedPublicationBase(): OntologyPublicationBase {
   return { baseHash: entry.baseHash, projectionHash: entry.projectionHash, entities: base.coverage.entities, assertions: base.coverage.sourceAssertions, focuses: base.coverage.primaryFocus };
 }
 export async function buildNativeOntologyPublicationInput(tx: Prisma.TransactionClient, actor: OntologyActionActor, scopeKey: string, reviews: Awaited<ReturnType<typeof approvedOntologyReviews>>): Promise<MathOntologyCompileInput> {
-  const time = new Date(), publisher = await authorizeOntologyPublisher(tx, actor, time), base = currentPackagedPublicationBase();
+  const publisher = await authorizeOntologyPublisher(tx, actor, () => new Date()), base = currentPackagedPublicationBase();
   requireOperation(scopeKey === "global", "FORBIDDEN");
   await tx.$queryRaw`SELECT id FROM ontology_source_authority_decision WHERE scope_key = 'global' AND source_manifest_hash = ${base.projectionHash} AND revoked_at IS NULL FOR SHARE`;
   const row = await tx.ontologySourceAuthorityDecision.findFirst({ where: { scopeKey, sourceManifestHash: base.projectionHash, approvedBy: actor.id, revokedAt: null }, orderBy: [{ createdAt: "desc" }, { id: "desc" }] });

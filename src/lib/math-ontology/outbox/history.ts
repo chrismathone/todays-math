@@ -29,13 +29,16 @@ export function createOntologyHistoryDelivery(deps: { db: Pick<PrismaClient, "$t
       const target = { studentId: receipt.proposal.studentId, classId: receipt.proposal.classId, branchId: receipt.proposal.branchId };
       await authorizeOntologyAction(tx, actor, target, clock);
       requireOperation(row.status === "leased" && row.leaseGeneration === lease.leaseGeneration && row.leaseUntil && row.leaseUntil > clock(), "STALE");
+      const deadline = row.leaseUntil;
       checkedCanonical(row.bodyCanonical, row.bodyHash);
       const previous = await tx.ontologyReviewEvent.findUnique({ where: { id: row.id } });
       if (previous) requireOperation(previous.subjectId === receiptId && previous.actorId === actor.id && previous.detailHash === row.bodyHash && previous.detailCanonical === row.bodyCanonical, "BINDING_MISMATCH");
       else await tx.ontologyReviewEvent.create({ data: { id: row.id, actorId: actor.id, scopeKey: `owner:${actor.id}`, subjectId: receiptId, event: "action.history.delivered", detailCanonical: row.bodyCanonical, detailHash: row.bodyHash, createdAt: clock() } });
       requireOperation(canonicalBytes(lease.body) === row.bodyCanonical, "BINDING_MISMATCH");
       await tx.ontologyOutbox.update({ where: { id: row.id }, data: { status: "delivered", deliveredAt: clock(), leaseUntil: null, lastErrorCode: null } });
+      const finalized = await tx.ontologyOutbox.findUniqueOrThrow({ where: { id: row.id } });
       await authorizeOntologyAction(tx, actor, target, clock);
+      requireOperation(finalized.status === "delivered" && finalized.leaseGeneration === lease.leaseGeneration && deadline > clock(), "STALE");
       return { state: "delivered" as const };
     });
   };

@@ -38,6 +38,8 @@ export function createOntologyPublicationApproval(deps: {
         const eligibleRelationCount = reviews.rows.filter(row => ontologyRelationCanPublish(mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash)))).length;
         const preview = previewSchema.parse({ version: 1, id, actorId: actor.id, scopeKey: "global", base, reviewStateHash: reviews.hash, generation: active.generation, relationCount: reviews.rows.length, expiresAt: new Date(time.getTime() + 10 * 60_000).toISOString() });
         await recordOntologyReviewEvent(tx, actor.id, "global", id, "publish.prepared", preview as unknown as CanonicalValue, time);
+        await authorizeOntologyPublisher(tx, actor, now);
+        requireOperation(Date.parse(preview.expiresAt) > now().getTime(), "EXPIRED");
         return { confirmationId: id, sealHash: digest(canonicalBytes(preview)), preview: { ...preview, eligibleRelationCount, excludedRelationCount: reviews.rows.length - eligibleRelationCount } };
       });
     },
@@ -52,14 +54,18 @@ export function createOntologyPublicationApproval(deps: {
         requireOperation(preview.id === input.confirmationId && preview.actorId === actor.id, "BINDING_MISMATCH");
         const existing = await tx.ontologyCompileJob.findUnique({ where: { id: preview.id } });
         if (!existing) {
-          requireOperation(Date.parse(preview.expiresAt) > time.getTime(), "EXPIRED");
+          requireOperation(Date.parse(preview.expiresAt) > now().getTime(), "EXPIRED");
           requireOperation(canonicalBytes(baseSchema.parse(deps.base())) === canonicalBytes(preview.base), "STALE");
           const decision = { version: 1, decision: "approved", scope: "global", baseHash: preview.base.baseHash, projectionHash: preview.base.projectionHash, confirmationId: preview.id };
           const decisionCanonical = canonicalBytes(decision);
           await tx.ontologySourceAuthorityDecision.create({ data: { id: preview.id, scopeKey: "global", sourceManifestHash: preview.base.projectionHash, decisionCanonical, decisionHash: digest(decisionCanonical), approvedBy: actor.id, createdAt: time } });
           await recordOntologyReviewEvent(tx, actor.id, "global", preview.id, "source.approved", decision, time);
         }
-        return deps.publisher.enqueueInTransaction(tx, actor, "global", { jobId: preview.id, reviewStateHash: preview.reviewStateHash, generation: preview.generation });
+        const queued = await deps.publisher.enqueueInTransaction(tx, actor, "global", { jobId: preview.id, reviewStateHash: preview.reviewStateHash, generation: preview.generation });
+        // A completed durable confirmation is replay, not a new grant. Only a
+        // newly granted authority/job must still meet the original preview TTL.
+        if (!existing) requireOperation(Date.parse(preview.expiresAt) > now().getTime(), "EXPIRED");
+        return queued;
       });
       // Engine work is outside the approval/job transaction. A crash leaves a
       // durable queued/leased job, recoverable under current publisher rights.

@@ -67,7 +67,7 @@ export function createOntologyRelationService(deps: {
           requireOperation(sealed && sealed.actorId === actor.id && sealed.event === "model.relation.proposed", "BINDING_MISMATCH");
           const receipt = z.object({ actorId: z.uuid(), sessionVersion: z.number().int(), modelCalled: z.literal(true), assertionHash: z.string(), evidenceRef: z.string(), evidenceHash: z.string(), expiresAt: z.iso.datetime() }).parse(checkedCanonical(sealed.detailCanonical, sealed.detailHash));
           modelExpiresAt = Date.parse(receipt.expiresAt);
-          requireOperation(receipt.actorId === actor.id && receipt.sessionVersion === actor.sessionVersion && receipt.assertionHash === assertionHash && receipt.evidenceRef === raw.evidenceRef && modelExpiresAt > now().getTime(), "BINDING_MISMATCH");
+          requireOperation(receipt.actorId === actor.id && receipt.sessionVersion === actor.sessionVersion && receipt.assertionHash === assertionHash && receipt.evidenceRef === raw.evidenceRef, "BINDING_MISMATCH");
           const previous = await tx.ontologyRelationReview.findUnique({ where: { id: stableReviewId } });
           if (previous) {
             requireOperation(previous.proposedBy === actor.id && previous.assertionCanonical === assertionCanonical && previous.assertionHash === assertionHash, "BINDING_MISMATCH");
@@ -76,6 +76,7 @@ export function createOntologyRelationService(deps: {
             await authorizeOntologyDraftScope(tx, actor, previous.scopeKey, now);
             return { reviewId: previous.id, revision: previous.revision, state: previous.state };
           }
+          requireOperation(modelExpiresAt > now().getTime(), "EXPIRED");
         }
         if (predecessor) {
           requireOperation(stableReviewId && stableReviewId !== predecessor.previousReviewId, "BINDING_MISMATCH");
