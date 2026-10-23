@@ -112,12 +112,18 @@ function assertIntegrity(payload: MathOntologySourcePayload): void {
         "Official metadata requires verified upstream byte provenance",
       );
     if (
-      record.sourceProvenance === "imported-source" &&
+      (record.sourceProvenance === "imported-source" ||
+        record.sourceProvenance === "unknown") &&
       record.distribution !== "quarantine-reference"
     )
       throw new Error(
-        "Imported source cannot be published by the metadata adapter",
+        "Imported or unknown source cannot be published by the metadata adapter",
       );
+    if (
+      record.metadata.licenseStatus === "unknown" &&
+      record.distribution !== "quarantine-reference"
+    )
+      throw new Error("Unknown license source must remain quarantined");
     if (record.distribution === "quarantine-reference" && record.labels?.length)
       throw new Error(
         "Quarantined imported labels cannot enter the source package",

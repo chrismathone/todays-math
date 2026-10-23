@@ -101,6 +101,27 @@ describe("immutable source assembler and RDF boundary", () => {
       ).entities,
     ).toHaveLength(0);
   });
+  it("quarantines unknown provenance before any public RDF eligibility", () => {
+    expect(() =>
+      fixture([{ ...rec, metadata: { licenseStatus: "unknown" } }]),
+    ).toThrow(/license/);
+
+    expect(() => fixture([{ ...rec, sourceProvenance: "unknown" }])).toThrow(
+      /unknown source/i,
+    );
+    const e = fixture([
+      {
+        ...rec,
+        sourceProvenance: "unknown",
+        distribution: "quarantine-reference",
+      },
+    ]);
+    expect(
+      toMathOntologySourceQuads(
+        assembleMathOntologySources(e, { expectedPayloadHash: e.payloadHash }),
+      ),
+    ).toHaveLength(0);
+  });
   it("keeps public bytes, IDs, versions and counts unchanged for foreign native scope rows", () => {
     const a = fixture();
     const b = fixture([
