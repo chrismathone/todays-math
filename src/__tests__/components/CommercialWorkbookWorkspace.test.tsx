@@ -211,6 +211,60 @@ describe("commercial workbook teacher UI", () => {
     ).toHaveLength(1);
   });
 
+  it("separates repeated page numbers by volume and keeps selected exercises when browsing another volume", async () => {
+    const { source, book } = await fixture();
+    const first = book.exercises[0];
+    const current = await source.reviseEdition(book.id, {
+      requestId: "multi-volume-fixture",
+      expectedRevision: book.revision,
+      provenance: book.provenance,
+      exercises: [
+        ...book.exercises.map(({ address, key }) => ({ address, key })),
+        {
+          address: { ...first.address, volume: "부록", section: "부록 단원" },
+          key: first.key,
+        },
+      ],
+    });
+    const saved = vi.fn();
+    render(
+      <WorkbookAssignmentForm source={source} book={current} onSaved={saved} />,
+    );
+    await screen.findByRole("option", { name: "예시 수학반" });
+    fireEvent.change(screen.getByLabelText("권 · 책"), {
+      target: { value: "부록" },
+    });
+    fireEvent.change(screen.getByLabelText("단원"), {
+      target: { value: "부록 단원" },
+    });
+    const appendix = current.exercises.at(-1)!;
+    expect(
+      screen.queryByLabelText(addressLabel(first.address)),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(addressLabel(appendix.address)));
+    fireEvent.change(screen.getByLabelText("시작 쪽"), {
+      target: { value: first.address.page },
+    });
+    fireEvent.change(screen.getByLabelText("권 · 책"), {
+      target: { value: first.address.volume },
+    });
+    expect(screen.getByLabelText("시작 쪽")).toHaveValue("");
+    expect(screen.getByLabelText("단원")).toHaveValue("");
+    expect(screen.getByText("선택 1 / 최대 500문항")).toBeVisible();
+    fireEvent.click(screen.getByLabelText(addressLabel(first.address)));
+    fireEvent.change(screen.getByLabelText("배정할 반"), {
+      target: { value: COMMERCIAL_WORKBOOK_DEMO_ROSTER[0].id },
+    });
+    fireEvent.click(screen.getByLabelText("예시 학생 가"));
+    fireEvent.click(
+      screen.getByRole("button", { name: "선택한 학생에게 과제 배정" }),
+    );
+    await waitFor(() => expect(saved).toHaveBeenCalledOnce());
+    expect(
+      saved.mock.calls[0][0].exercises.map((item: { id: string }) => item.id),
+    ).toEqual([first.id, appendix.id]);
+  });
+
   it("retains a conflicting mark until latest comparison and explicit confirmation", async () => {
     const { source, assignment } = await fixture();
     const student = assignment.targets[1];

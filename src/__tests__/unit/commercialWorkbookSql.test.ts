@@ -12,6 +12,10 @@ import type {
 } from "@/lib/commercialWorkbooks/store";
 import { bookInput, setup } from "@/__tests__/helpers/commercialWorkbook";
 import { CommercialWorkbookError } from "@/lib/commercialWorkbooks/errors";
+import {
+  loadPublisherPack,
+  PUBLISHER_PACKS,
+} from "@/lib/commercialWorkbooks/publisherPacks";
 const actor = "10000000-0000-4000-8000-000000000004";
 const other = "10000000-0000-4000-8000-000000000005";
 const cls = COMMERCIAL_WORKBOOK_DEMO_ROSTER[0];
@@ -92,6 +96,52 @@ afterEach(async () => {
   await pg.close();
 });
 describe("commercial workbook SQL persistence", () => {
+  it.each(PUBLISHER_PACKS)(
+    "preserves every imported address and runs assignment → wrong note → print for $id",
+    async (pack) => {
+      const api = source();
+      const { input } = await loadPublisherPack(pack);
+      const edition = await api.createEdition(input);
+      expect((await api.createEdition(input)).id).toBe(edition.id);
+      const reloaded = await api.getEdition(edition.id);
+      expect(
+        reloaded.exercises.map(({ address, key }) => ({ address, key })),
+      ).toEqual(input.exercises);
+      expect(await source(other).listCatalog()).toEqual([]);
+      const reviewed = reloaded.exercises.find(
+        (row) => row.key?.status === "reviewed",
+      )!;
+      const missing = reloaded.exercises.find((row) => row.key === null)!;
+      expect(reviewed).toBeDefined();
+      expect(missing).toBeDefined();
+      const assignment = await api.createAssignment({
+        requestId: `assignment:${pack.id}`,
+        title: "검증용 교재 과제",
+        editionId: edition.id,
+        expectedEditionRevision: edition.revision,
+        classId: cls.id,
+        studentIds: [cls.students[0].id],
+        exerciseIds: [reviewed.id, missing.id],
+      });
+      await api.saveMarks(assignment.id, {
+        requestId: `marks:${pack.id}`,
+        studentId: cls.students[0].id,
+        expectedRevision: 0,
+        marks: [
+          { exerciseId: reviewed.id, mark: "wrong" },
+          { exerciseId: missing.id, mark: "unattempted" },
+        ],
+      });
+      const notes = await api.listWrongNotes();
+      expect(notes).toHaveLength(1);
+      expect(notes[0].address).toEqual(reviewed.address);
+      expect(notes[0].edition.metadata).toEqual(input.metadata);
+      const printed = await api.getWrongNotePrint({ noteIds: [notes[0].id] });
+      expect(printed.items).toHaveLength(1);
+      expect(printed.items[0].address).toEqual(reviewed.address);
+      expect(printed.items[0].answerText).toBeUndefined();
+    },
+  );
   it("round-trips catalog, immutable revisions, assignment snapshot and grade history through the real SQL store", async () => {
     const { source: api, book, assignment, marks } = await setup(source());
     const first = await api.saveMarks(assignment.id, marks);

@@ -105,6 +105,8 @@ export default function WorkbookCatalog({
     ]);
     setImportOpen(false);
     setReviseOpen(false);
+    setAssignmentDirty(false);
+    setRevisionDirty(false);
     setSaved(`${value.metadata.title} · 정답표 개정 ${value.revision} 저장됨`);
   }
   return (
@@ -135,6 +137,12 @@ export default function WorkbookCatalog({
         source={source}
         books={books}
         onSaved={imported}
+        onBeforeOpen={() =>
+          !(assignmentDirty || revisionDirty) ||
+          window.confirm(
+            "출판사 교재를 열면 현재 교재의 배정 선택과 정답표 수정 입력이 닫힙니다. 이동할까요?",
+          )
+        }
       />
       <div className={s.toolbar}>
         <label className={s.search}>
@@ -269,12 +277,15 @@ export default function WorkbookCatalog({
                       <dd>{book.metadata.curriculum || "기록 없음"}</dd>
                       <dt>출처</dt>
                       <dd>
-                        {book.provenance.description}
-                        {book.provenance.reference && (
-                          <p className={s.caption}>
-                            {book.provenance.reference}
-                          </p>
-                        )}
+                        <details>
+                          <summary>출처·검토 기록 보기</summary>
+                          <p>{book.provenance.description}</p>
+                          {book.provenance.reference && (
+                            <p className={s.caption}>
+                              {book.provenance.reference}
+                            </p>
+                          )}
+                        </details>
                       </dd>
                     </dl>
                     <div className={s.summary}>

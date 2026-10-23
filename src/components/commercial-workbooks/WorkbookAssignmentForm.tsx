@@ -28,6 +28,8 @@ export default function WorkbookAssignmentForm({
   const [classId, setClassId] = useState("");
   const [students, setStudents] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
+  const [volume, setVolume] = useState("");
+  const [section, setSection] = useState("");
   const [pageFrom, setPageFrom] = useState("");
   const [pageTo, setPageTo] = useState("");
   const [number, setNumber] = useState("");
@@ -63,11 +65,24 @@ export default function WorkbookAssignmentForm({
       active = false;
     };
   }, [source, reload]);
-  const pages = [...new Set(book.exercises.map((item) => item.address.page))];
+  const volumes = [
+    ...new Set(book.exercises.map((item) => item.address.volume)),
+  ].filter(Boolean);
+  const volumeItems = book.exercises.filter(
+    (item) => !volume || item.address.volume === volume,
+  );
+  const sections = [
+    ...new Set(volumeItems.map((item) => item.address.section)),
+  ].filter(Boolean);
+  const scoped = volumeItems.filter(
+    (item) => !section || item.address.section === section,
+  );
+  const pages = [...new Set(scoped.map((item) => item.address.page))];
+  const pageIndexes = new Map(pages.map((page, index) => [page, index]));
   const fromIndex = pageFrom ? pages.indexOf(pageFrom) : 0;
   const toIndex = pageTo ? pages.indexOf(pageTo) : pages.length - 1;
-  const filtered = book.exercises.filter((item) => {
-    const index = pages.indexOf(item.address.page);
+  const filtered = scoped.filter((item) => {
+    const index = pageIndexes.get(item.address.page)!;
     return (
       index >= fromIndex &&
       index <= toIndex &&
@@ -134,6 +149,47 @@ export default function WorkbookAssignmentForm({
             onChange={(event) => setTitle(event.target.value)}
           />
         </label>
+        {(volumes.length > 1 || sections.length > 1) && (
+          <div className={s.formGrid}>
+            <label>
+              권 · 책
+              <select
+                value={volume}
+                onChange={(event) => {
+                  setVolume(event.target.value);
+                  setSection("");
+                  setPageFrom("");
+                  setPageTo("");
+                }}
+              >
+                <option value="">모든 권 · 책</option>
+                {volumes.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              단원
+              <select
+                value={section}
+                onChange={(event) => {
+                  setSection(event.target.value);
+                  setPageFrom("");
+                  setPageTo("");
+                }}
+              >
+                <option value="">모든 단원</option>
+                {sections.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        )}
         <div className={s.formGrid}>
           <label>
             시작 쪽
