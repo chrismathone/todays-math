@@ -22,6 +22,18 @@ function requestOntologyEngine(
   signal: AbortSignal,
 ): Promise<Response> {
   return new Promise((resolve, reject) => {
+    const started = performance.now();
+    let phase = "request", status: number | null = null;
+    let bytes = 0, chunkCount = 0, firstByteMs: number | null = null, lastByteAt = started, maxGapMs = 0;
+    const diagnostic = (complete: boolean, error?: unknown) => {
+      const ended = performance.now();
+      const codes = ["ECONNRESET", "ECONNREFUSED", "EPIPE", "ETIMEDOUT", "ENOTFOUND", "ABORT_ERR", "ERR_STREAM_PREMATURE_CLOSE"];
+      const rawCode = error instanceof Error && "code" in error ? error.code : null;
+      const code = typeof rawCode === "string" && codes.includes(rawCode) ? rawCode : error ? "OTHER" : null;
+      const name = error instanceof Error && ["Error", "AbortError", "TimeoutError"].includes(error.name) ? error.name : error ? "OTHER" : null;
+      // complete means HTTP bytes received, never validated or published.
+      try { process.stderr.write(JSON.stringify({ event: "ontology_engine_transport", complete, phase, status, elapsedMs: Math.round(ended - started), firstByteMs, chunkCount, maxGapMs: Math.round(Math.max(maxGapMs, ended - lastByteAt)), bytes, code, name }) + "\n"); } catch { /* Diagnostics never change the result. */ }
+    };
     let finished = false;
     let request: ClientRequest | undefined;
     let incoming: IncomingMessage | undefined;
@@ -29,6 +41,7 @@ function requestOntologyEngine(
     const fail = (error: unknown) => {
       if (finished) return;
       finished = true; chunks.length = 0;
+      diagnostic(false, error);
       reject(error); incoming?.destroy(); request?.destroy();
     };
     const closed = () => fail(new Error("ENGINE_RESPONSE_TRUNCATED"));
@@ -38,16 +51,19 @@ function requestOntologyEngine(
         { method: "POST", headers: { ...headers, "content-length": String(Buffer.byteLength(body)) }, signal, agent: false },
         response => {
           incoming = response;
+          phase = "headers"; status = response.statusCode ?? 502;
           response.on("error", fail);
           response.once("aborted", () => fail(new Error("ENGINE_RESPONSE_ABORTED")));
           response.once("close", closed);
-          const status = response.statusCode ?? 502;
           // Only 200 carries the engine envelope. Never follow redirects or
           // construct a body-bearing Response for a bodyless 204/205 status.
           if (status !== 200) { fail(new Error(`ONTOLOGY_ENGINE_${status}`)); return; }
-          let bytes = 0;
           response.on("data", (chunk: Buffer) => {
             if (finished) return;
+            phase = "body";
+            const current = performance.now();
+            if (firstByteMs === null) firstByteMs = Math.round(current - started);
+            maxGapMs = Math.max(maxGapMs, current - lastByteAt); lastByteAt = current; chunkCount++;
             bytes += chunk.length;
             if (bytes > 4_000_000) { fail(new Error("ENGINE_RESPONSE_BUDGET")); return; }
             chunks.push(chunk);
@@ -56,8 +72,9 @@ function requestOntologyEngine(
             if (finished) return;
             if (!response.complete) { closed(); return; }
             try {
-              const result = new Response(new Uint8Array(Buffer.concat(chunks)), { status });
+              const result = new Response(new Uint8Array(Buffer.concat(chunks)), { status: 200 });
               finished = true; chunks.length = 0;
+              phase = "complete"; diagnostic(true);
               resolve(result); response.destroy(); request?.destroy();
             } catch (error) { fail(error); }
           });
@@ -102,6 +119,7 @@ export function createOntologyPythonPort(options: {
       const timestamp = String(nowSeconds);
       const request = {
         protocol: "ontology-engine-v1",
+        responseMode: "heartbeat-v1",
         operation: "compile",
         audience: options.audience,
         jobId: job.jobId,
@@ -153,7 +171,29 @@ export function createOntologyPythonPort(options: {
         await reader.cancel();
         reader.releaseLock();
       }
+      let validationPhase = "json";
+      try {
       const envelope = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+      validationPhase = "binding";
+      if (!envelope || typeof envelope !== "object" || Array.isArray(envelope) ||
+          envelope.protocol !== "ontology-engine-v1" || envelope.responseMode !== "heartbeat-v1" ||
+          envelope.jobId !== job.jobId || envelope.leaseGeneration !== job.leaseGeneration || envelope.inputHash !== inputHash)
+        throw new Error("UNBOUND_ENGINE_RESPONSE");
+      const bindingKeys = ["protocol", "responseMode", "kind", "jobId", "leaseGeneration", "inputHash"];
+      validationPhase = "terminal";
+      const exactKeys = (extra: string[]) => {
+        const keys = [...bindingKeys, ...extra].sort();
+        return JSON.stringify(Object.keys(envelope).sort()) === JSON.stringify(keys);
+      };
+      if (envelope.kind === "error") {
+        const errors: Record<string, number> = { EXPIRED_LEASE: 409, RESPONSE_BUDGET: 413, COMPILER_FAILED: 422, COMPILER_TIMEOUT: 504 };
+        if (!exactKeys(["status", "error"]) || typeof envelope.error !== "string" ||
+            !Object.hasOwn(errors, envelope.error) || errors[envelope.error] !== envelope.status)
+          throw new Error("INVALID_ENGINE_TERMINAL_ERROR");
+        throw new Error(`ONTOLOGY_ENGINE_${envelope.status}`);
+      }
+      if (envelope.kind !== "success" || !exactKeys(["resultGzip", "resultHash"]))
+        throw new Error("INVALID_ENGINE_TERMINAL_RESULT");
       if (
         envelope.jobId !== job.jobId ||
         envelope.leaseGeneration !== job.leaseGeneration ||
@@ -164,19 +204,27 @@ export function createOntologyPythonPort(options: {
         )
       )
         throw new Error("UNBOUND_ENGINE_RESPONSE");
+      validationPhase = "gzip";
       const result = gunzipSync(Buffer.from(envelope.resultGzip, "base64"), {
         maxOutputLength: 8 * 1024 * 1024,
       });
+      validationPhase = "hash";
       if (
         `sha256:${createHash("sha256").update(result).digest("hex")}` !==
         envelope.resultHash
       )
         throw new Error("ENGINE_RESULT_HASH");
+      validationPhase = "artifact";
       const artifact = mathOntologyArtifactSchema.parse(
         JSON.parse(result.toString("utf8")),
       );
       // Transport verifies actual bytes/policy, ops verifies DB authority and activates it.
-      return verifyOntologyCompiledArtifactForInput(artifact, input);
+      validationPhase = "proof";
+      return await verifyOntologyCompiledArtifactForInput(artifact, input);
+      } catch (error) {
+        try { process.stderr.write(JSON.stringify({ event: "ontology_engine_result", accepted: false, phase: validationPhase }) + "\n"); } catch { /* Never expose the raw exception or change failure behavior. */ }
+        throw error;
+      }
     },
   };
 }
