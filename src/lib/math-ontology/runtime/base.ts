@@ -14,7 +14,11 @@ export type PackagedDescriptor=z.infer<typeof packagedDescriptorSchema>;
 export const packagedSourceSchema=z.strictObject({format:z.literal("tm-packaged-source-1"),baseHash:digest,projectionHash:digest,authorityDecisionId:z.string().regex(/^urn:todaymath:[^\s<>"{}|\\^`]+$/),scope:z.literal("global")});
 export function readOntologyAsset(path:string):Buffer{
   if(!/^ontology\/(?:model\/releases|source-manifests\/public-v1)\/[a-f0-9]{64}\/[A-Za-z0-9/.-]+$/.test(path)||path.split('/').includes('..'))throw new Error('INVALID_PACKAGED_ASSET_PATH');
-  return readFileSync(resolve(process.cwd(),path));
+  // Keep the literal filesystem roots visible to Next/NFT. Runtime regex checks
+  // alone do not narrow a statically unknown path relative to the repository root.
+  if (path.startsWith('ontology/model/releases/'))
+    return readFileSync(resolve(process.cwd(), 'ontology/model/releases', path.slice('ontology/model/releases/'.length)));
+  return readFileSync(resolve(process.cwd(), 'ontology/source-manifests/public-v1', path.slice('ontology/source-manifests/public-v1/'.length)));
 }
 /** Only fixed deployment catalog entries can select a packaged base. */
 export function loadPackagedOntologyBase(baseHash:string){
