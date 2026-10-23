@@ -895,6 +895,12 @@ export function collectMathOntologyRepoSources(
       for (const [j, turn] of rows(s.dialogue).entries()) {
         const source = turn.source as Raw,
           kind = str(source.kind);
+        const nativeTurn = [
+          "bank-concept",
+          "authored-example",
+          "bank-example",
+          "bank-ox",
+        ].includes(kind);
         const signature = sourceDigest([
           source.kind,
           source.key ?? null,
@@ -914,10 +920,14 @@ export function collectMathOntologyRepoSources(
           `/${i}/dialogue/${j}`,
           { sourceKind: kind, order: j, nativeKind: "source-key-occurrence" },
           {
-            distribution:
-              kind === "v15" ? "quarantine-reference" : "native-metadata",
-            sourceProvenance:
-              kind === "v15" ? "imported-source" : "native-source",
+            distribution: nativeTurn
+              ? "native-metadata"
+              : "quarantine-reference",
+            sourceProvenance: nativeTurn
+              ? "native-source"
+              : kind === "v15"
+                ? "imported-source"
+                : "unknown",
           },
         );
         nativeReference(

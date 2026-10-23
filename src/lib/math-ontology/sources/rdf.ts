@@ -32,6 +32,33 @@ const literal = (
           : "string"),
   ),
 });
+// Defense in depth beyond the closed input metadata schema: future native keys never overwrite core identity/provenance predicates.
+const CORE_SOURCE_FIELDS = new Set([
+  "nativeId",
+  "nativeNamespace",
+  "sourceScope",
+  "sourceVersion",
+  "sourceKind",
+  "sourceProvenance",
+  "distribution",
+  "curriculumEdition",
+  "repositoryPath",
+  "projectedPointer",
+  "sourceProjectionHash",
+  "extractorVersion",
+  "upstreamByteHash",
+  "publicSource",
+  "versionOf",
+  "labelEvidence",
+  "declaredNativeReference",
+]);
+function nativeMetadataField(key: string) {
+  return key === "sourceKind"
+    ? "nativeSourceKind"
+    : CORE_SOURCE_FIELDS.has(key)
+      ? "nativeMetadata" + key[0].toUpperCase() + key.slice(1)
+      : key;
+}
 /** Only allowlisted metadata enters RDF. Quarantine remains visible in coverage, never as a public entity. */
 export function toMathOntologySourceQuads(
   dataset: MathOntologySourceDataset,
@@ -90,7 +117,7 @@ export function publicMathOntologySourceQuads(
       extractorVersion: e.origin.extractorVersion,
       ...Object.fromEntries(
         Object.entries(e.metadata).map(([key, value]) => [
-          key === "sourceKind" ? "nativeSourceKind" : key,
+          nativeMetadataField(key),
           value,
         ]),
       ),

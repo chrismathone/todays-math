@@ -24,7 +24,10 @@ export {
 export { MATH_ONTOLOGY_SOURCE_RELATION_POLICY } from "./relationMatrix";
 export { readAuthorizedMathOntologySources } from "./authorized";
 
-export { projectMathOntologyPublicSources } from "./publicProjection";
+export {
+  projectMathOntologyPublicSources,
+  projectMathOntologySourceScopeSelection,
+} from "./publicProjection";
 export {
   sourcePartitionKey,
   sourcePartitionManifestPath,

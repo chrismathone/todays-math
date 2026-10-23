@@ -69,7 +69,7 @@ export function projectRetainedMathOntologyLearning(
     for (const s of retainedSessions(course)) {
       for (const [index, a] of s.attempts.entries()) {
         if (
-          Date.parse(a.answeredAt) < after ||
+          Date.parse(a.answeredAt) <= after ||
           Date.parse(a.answeredAt) > until
         )
           continue;
@@ -125,7 +125,7 @@ export function projectRetainedMathOntologyLearning(
       }
       for (const [index, a] of (s.followUps ?? []).entries())
         if (
-          Date.parse(a.answeredAt) >= after &&
+          Date.parse(a.answeredAt) > after &&
           Date.parse(a.answeredAt) <= until
         )
           followUps.push({
@@ -147,7 +147,7 @@ export function projectRetainedMathOntologyLearning(
           });
       for (const [index, a] of (s.retry?.attempts ?? []).entries())
         if (
-          Date.parse(a.answeredAt) >= after &&
+          Date.parse(a.answeredAt) > after &&
           Date.parse(a.answeredAt) <= until
         )
           followUps.push({
@@ -222,8 +222,7 @@ export function projectRetainedMathOntologyLearning(
     s.attempts
       .filter(
         (a) =>
-          Date.parse(a.answeredAt) >= after &&
-          Date.parse(a.answeredAt) <= until,
+          Date.parse(a.answeredAt) > after && Date.parse(a.answeredAt) <= until,
       )
       .map((a) => ({
         id: `legacy:${s.id}:${a.problemId}`,
