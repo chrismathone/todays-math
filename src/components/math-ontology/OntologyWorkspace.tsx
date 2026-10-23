@@ -108,7 +108,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
         {answer?.coverage.length ? <dl className={s.coverage}>{answer.coverage.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl> : null}
         {student && <p className={s.student}>{student.label}<small>{student.classLabel}</small></p>}</details>
       </aside>
-      <section className={s.result} aria-label="준비한 결과">
+      {(answer || history.length > 0 || (!busy && !error)) && <section className={s.result} aria-label="준비한 결과">
         {history.length > 0 && <button type="button" className={s.textButton} disabled={busy === "confirm"} onClick={back}>이전 결과</button>}
         {answer ? <>
           <div role="heading" aria-level={2} className={s.resultTitle}><MathText text={evidenceText(answer.summary)} as="div" staticLayout /></div>
@@ -116,8 +116,8 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
           {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><MathText text={evidenceText(step.title)} as="div" staticLayout /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><MathText text={evidenceText(step.note)} as="div" className={s.evidenceNote} staticLayout /></div></li>)}</ol>}
           {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><MathText text={evidenceText(item.text)} as="div" staticLayout />{canPublish && item.reviewId && source.review && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "review", item.reviewId)}>이 연결 검토</button>}</div>)}</details>}
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
-      </section>
-      <section className={s.next} aria-label="다음 작업">
+      </section>}
+      {(execution || answer?.action || answer?.reprepare) && <section className={s.next} aria-label="다음 작업">
         {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details>{execution.state === "preparing" ? <button type="button" className={s.primary} disabled={!!busy} onClick={() => void confirm()}>결과 확인</button> : answer?.action?.kind === "plan" ? <button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button> : null}{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
           <h2>{answer.action.kind === "plan" ? "계획 변경 확인" : answer.action.kind === "relation" ? answer.action.operation === "retire" ? "연결 폐기 확인" : "관계 검토" : answer.action.operation === "revoke" ? "지식 판 철회 확인" : "게시 내용 확인"}</h2>
           <dl className={s.diff}>{answer.action.changes.map(change => <div key={change.label}><dt>{change.label}</dt><dd><span>{change.before}</span><span aria-hidden="true"> → </span><strong>{change.after}</strong></dd></div>)}</dl>
@@ -126,7 +126,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
           {answer.action.kind === "relation" && answer.reprepare && <button type="button" className={s.button} disabled={!!busy || !(query.trim() || answer.reprepare.query?.trim())} onClick={reprepare}>새 근거로 다시 준비</button>}
           {answer.action.kind === "plan" && !student && <p>학생을 연결한 뒤 다시 준비해 주세요.</p>}
         </> : answer?.reprepare ? <><h2>근거 다시 확인</h2><p className={s.muted}>원하는 일을 고쳐 새 근거를 찾을 수 있습니다. 이전 후보는 보존합니다.</p><button type="button" className={s.primary} disabled={!!busy || !(query.trim() || answer.reprepare.query?.trim())} onClick={reprepare}>새 근거로 다시 준비</button></> : <><h2>다음 작업</h2><p className={s.muted}>검토가 필요하면 변경 내용을 여기에 준비합니다.</p></>}
-      </section>
+      </section>}
     </div>
     {picking && <StudentPicker source={source} onClose={() => setPicking(false)} onSelect={connect} returnFocus={pickerButton} />}
   </div>;
