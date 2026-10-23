@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { MATH_ONTOLOGY_SOURCE_PREDICATES } from "./mathOntologySource.contract";
+import {
+  MATH_ONTOLOGY_SOURCE_PREDICATES,
+  MATH_ONTOLOGY_SOURCE_NAMESPACES,
+} from "./mathOntologySource.contract";
 
 export const MATH_ONTOLOGY_PROFILE = "tm-owlrl-1" as const;
 export const MATH_ONTOLOGY_VOCAB = "urn:todaymath:vocab:" as const;
@@ -145,6 +148,7 @@ export const mathOntologyQuerySchema = z.strictObject({
   entityId: mathOntologyIriSchema.optional(),
   targetId: mathOntologyIriSchema.optional(),
   q: z.string().max(120).optional(),
+  namespace: z.enum(MATH_ONTOLOGY_SOURCE_NAMESPACES).optional(),
   relation: z.enum(MATH_ONTOLOGY_RELATIONS).optional(),
   limit: z.number().int().min(1).max(100).default(20),
   cursor: z.string().max(64000).optional(),
