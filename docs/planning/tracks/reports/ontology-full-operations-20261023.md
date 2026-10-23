@@ -79,6 +79,8 @@ Reader 먼저 순서는: writer off에서 새 schema-aware 서버/Prisma reader 
 
 같은 GREEN 묶음의 확장 native-flow는 실제 원천에서 이미 증명된 구조 연결을 authored 후보로 재검토한다. 새 교육적·선수 관계를 만들지 않는다. 실제 SHACL → 사람 source/meaning 승인 → 실제 전원천 delta compiler → 새 활성 판 → scoped 근거/action/history/feedback까지 성공했다. 묶음 82.73초 중 시험 78.69초이며 zero-delta base 게시의 짧은 실행과 혼동하지 않는다. 실제 모델은 호출하지 않았다. genuinely unknown인 새 의미는 자동으로 indirect로 올리지 않는다. 실제 고정 triple witness 또는 새 검토 근거에 묶인 새 후보를 준비하는 생산자·전임 후보 이력 연결을 formal worker/root와 이어서 검수한다.
 
+재준비의 server-only ABI는 `relations.draftModelRevision(actor, { previousReviewId, expectedPreviousRevision, assertion, evidenceRef, modelRunId })`다. 새 provider/evidence 봉인에 묶인 새 후보를 만들고 같은 tx에 immutable `relation.reprepared` 전임 ID/검토 판 이력을 쓴다. 이전 후보 bytes/결정은 바꾸지 않는다. stale 전임, 다른 전임으로 바꾼 replay를 거절하며 동일 새 run은 같은 후보를 돌려준다. `model-revision-RED.txt` → `model-revision-GREEN-final.txt` 실제 PG 6시험은 마지막 전임 audit insert 직후 failpoint에서 새 draft/이력 전체 rollback과 원래 후보 보존까지 확인한다. 이 묶음의 provider·witness는 명시적 합성 fixture이며 실제 모델 생산 증거는 formal/root 소유다. 전체 TypeScript·해당 ESLint·diff는 진단 0이다.
+
 최초 근거 snapshot은 RepeatableRead로 읽어 여러 원천 행의 일관성을 보존한다. 기존 승인/실행의 동시 idempotency 경로를 RepeatableRead로 바꾸지는 않았다.
 
 staging machine API도 writer off에서 새 표를 조회하지 않으며 Node/Python과 같은 명시적 MATH_ONTOLOGY_ENGINE_SECRET 우선순위를 사용한다. 만료된 미실행 제안은 이력에서 다시 준비가 필요한 것으로 표시한다. 철회/제거된 판의 개체 표기를 찾을 수 없는 과거 승인 관계는 **미확인**으로 표시하고 폐기만 준비할 수 있게 해 복구 경로가 막히지 않도록 했다. 이 fallback은 새 승인이나 근거 승격을 허용하지 않는다.
