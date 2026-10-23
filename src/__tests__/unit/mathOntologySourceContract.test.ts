@@ -12,6 +12,8 @@ const locator = {
 };
 const record = {
   namespace: "curriculum-section",
+  scope: "global",
+  sourceProvenance: "native-source",
   nativeId: "초3::1-1 덧셈과 뺄셈::1-1-1",
   kind: "Section",
   origin: locator,
@@ -56,9 +58,12 @@ describe("source metadata boundary", () => {
   it("does not accept approved/official promotion of an authored inference", () => {
     const a = {
       nativeId: "edge/1",
-      subject: { namespace: "graph-unit", nativeId: "a" },
+      originKind: "authored",
+      supportKind: "editorial-judgment",
+      publicationState: "unpublished",
+      subject: { namespace: "graph-unit", scope: "global", nativeId: "a" },
       predicate: "editorialPrerequisite",
-      object: { namespace: "graph-unit", nativeId: "b" },
+      object: { namespace: "graph-unit", scope: "global", nativeId: "b" },
       origin: locator,
       evidenceKind: "authored-inference",
       reviewState: "unreviewed",
