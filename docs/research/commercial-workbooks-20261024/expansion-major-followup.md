@@ -1,13 +1,15 @@
 # Major publisher follow-up — 2026-10-24
 
-The accepted seven packs are unchanged. This follow-up processes the four remaining source PDFs in order: Visang Concept Root, Visang Type Manrep, Mega CPR, and RPM Pro. Distributed solutions and scanned pages are extraction/review work; their layout alone is not a registration blocker.
+The accepted seven packs are unchanged. This worker completed Visang Concept Root, Visang Type Manrep, and Mega CPR: **3,470 addresses, 3,435 reviewed short keys, and 35 individually documented null keys**. The coordinator accepted all three packs. RPM Pro ownership transferred at 18:09Z to the elementary worker and that worker completed it in commit `956a09f9e`; RPM is outside this worker's final pack totals.
 
 | Source | Current outcome | Pack | Addresses | Reviewed keys | Missing keys |
 | --- | --- | --- | ---: | ---: | ---: |
 | `root/samples/visang-27061.pdf` | Ready | `visang-conceptroot-common1-2022-v1` | 839 | 839 | 0 |
 | `root/samples/visang-26737.pdf` | Ready | `visang-typemanrep-m2-1-2022-v1` | 1,386 | 1,369 | 17 |
 | `root/samples/mega-1493.pdf` | Ready | `mega-cpr-m2-1-1493-v1` | 1,245 | 1,227 | 18 |
-| `root/samples/imath-rpm-pro-common1.pdf` | OCR/review pending | — | — | — | — |
+| `root/samples/imath-rpm-pro-common1.pdf` | Transferred; completed by new owner in `956a09f9e` | See new owner's delivery | — | — | — |
+
+Completed pack commits are `2f63d30c7` (Concept Root), `57597673f` (Type Manrep), and `013f1625e` (CPR). Each includes JSON, exact-round-trip TSV, coverage and individual exclusion records, scoped tests, and its report update. The final settlement update changes only this report; registry integration and registration belong to the coordinator.
 
 ## Visang Concept Root
 
@@ -24,9 +26,9 @@ External evidence root: `/Volumes/TodayWork/commercial-workbook-sources/expansio
 - `visang-27061/followup/`: all text spans and coordinates, 839 answer crops, 35 full answer review sheets, 75 header crops/three review sheets, chapter crops, seven enlarged rechecks, manually corrected answers, independent header/chapter census, and visual review receipt.
 - `extract_visang_root.py`, `root_answers.py`, `root_final_evidence.py`, `build_visang_root.py`: reproducible extraction, rendering, transcription normalization and pack assembly. These files and source images remain outside the repository.
 - `registration.json`: aggregate registration entries retaining all accepted packs; coordinator owns registry changes.
-- `status.json`: aggregate per-source state, including the prior audit and follow-up progress.
+- `status.json`: aggregate per-source state, including the prior audit and follow-up progress. Its historical RPM progress entry does not reflect the new owner's completion; the transfer section below records the final ownership and completion rather than rewriting the preserved evidence.
 
-Validation uses the strict create-edition contract, exact TSV round-trip, an independently transcribed 75-group/18-chapter address census, source-page/region coverage, empty missing-key ledger checks, 139 choice-key count, and explicit numeric/symbol/unit/matrix regressions across the book. Validation results and subsequent source outcomes are updated as each source completes.
+Validation uses the strict create-edition contract, exact TSV round-trip, an independently transcribed 75-group/18-chapter address census, source-page/region coverage, empty missing-key ledger checks, 139 choice-key count, and explicit numeric/symbol/unit/matrix regressions across the book.
 
 Concept Root validation completed: five related pack test files, **33 tests passed** (including the new five tests and all seven accepted packs); scoped ESLint passed. No dependency, registry, UI, database or production changes were made.
 
@@ -42,7 +44,7 @@ The font-aware extractor supplies candidates and coordinates. Manual visual corr
 
 External evidence is in `visang-26737/followup/`: 1,386 individual answer crops, 47 answer sheets, 50 header crops/three sheets, main chapter sheet, six supplemental table renders, boundary pages, independent census, reviewed answer overrides, per-address exclusion ledger in the pack coverage, and `visual-review.json`/`resolution.json`. Reproduction scripts are external `extract_manrep.py`, `manrep_answers.py`, `manrep_rechecks.py`, `manrep_final_evidence.py`, and `build_manrep.py`. Aggregate registration and status retain the accepted entries and now include this ninth ready pack.
 
-Validation: **five scoped tests passed** for strict parsing, exact TSV round-trip, all independent addresses, every exclusion/source-page record, 557 single-choice keys, and numerical/symbol/unit regressions across all 20 chapter contexts; scoped ESLint passed. The earlier packs are unchanged. CPR and RPM Pro remain active OCR/review work.
+Validation: **five scoped tests passed** for strict parsing, exact TSV round-trip, all independent addresses, every exclusion/source-page record, 557 single-choice keys, and numerical/symbol/unit regressions across all 20 chapter contexts; scoped ESLint passed. The earlier packs are unchanged.
 
 ## Mega CPR
 
@@ -54,6 +56,14 @@ All 96 pages were rendered externally and OCRed using the native Apple Vision en
 
 Structured tables and short multipart answers are combined per printed main number. Recurring-decimal dots, powers, fractions, choice circles, inequality signs and units are preserved. Cropped first lines of simultaneous equations were recovered from expanded images before review completion. The 1242 coefficient was also checked against the full explanation; the printed final answer is preserved. Review denotes correspondence to the fixed public source, not a claim of independent mathematical correctness or application of later errata.
 
-External evidence: `mega-1493/followup/` contains all 96 rendered pages and OCR coordinates, number-candidate audits, 1,245 answer crops/42 review sheets, 30 header crops/three sheets, four missing-number sheets, 40 expanded regions/seven sheets, major headings, independent census, final answers, and `visual-review.json`. Reproduction scripts are `ocr.swift`, `prepare_cpr.py`, `extract_cpr.py`, `cpr_color.py`, `cpr_find_missing.py`, `cpr_regions.py`, `cpr_answers.py`, `cpr_rechecks.py`, `cpr_boundaries.py`, and `build_cpr.py`, all under the external evidence root. Aggregate registration/status retain all earlier entries and now contain ten ready packs; RPM Pro remains active work.
+External evidence: `mega-1493/followup/` contains all 96 rendered pages and OCR coordinates, number-candidate audits, 1,245 answer crops/42 review sheets, 30 header crops/three sheets, four missing-number sheets, 40 expanded regions/seven sheets, major headings, independent census, final answers, and `visual-review.json`. Reproduction scripts are `ocr.swift`, `prepare_cpr.py`, `extract_cpr.py`, `cpr_color.py`, `cpr_find_missing.py`, `cpr_regions.py`, `cpr_answers.py`, `cpr_rechecks.py`, `cpr_boundaries.py`, and `build_cpr.py`, all under the external evidence root. Aggregate registration/status retain all earlier entries and contain ten ready major packs, including the three completed here. They are preserved unchanged during this report-only settlement.
 
 Validation: **five scoped tests passed** for the strict schema, exact TSV round-trip, all 30 independent address groups, all key/source-region records and exclusions, immutable source provenance, choice counts, and numeric/symbol/table/unit regressions in every chapter; scoped ESLint passed. Existing immutable packs, dependencies, registry, UI and production are unchanged.
+
+## RPM Pro ownership transfer and final disposition
+
+At 18:09Z the coordinator transferred `root/samples/imath-rpm-pro-common1.pdf` to task `task_09dd2dbb97e8`, dispatch `ctx_f7c4725ab109`. The final ownership instruction `msg_272d9623f6a8` explicitly ended this worker's RPM implementation scope. The coordinator subsequently confirmed that the elementary worker completed RPM in commit **`956a09f9e`**. This is a reported completion by its sole owner, not an additional review or pack claimed by this worker.
+
+The new owner's evidence is separate, under `/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/rpm/`. Preliminary major-worker material remains intact under `/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/major/imath-rpm-pro-common1/`, with the external helpers `prepare_rpm.py`, `extract_rpm.py`, and `rpm_missing.py`. These historical renders, OCR coordinates, candidate audits and missing-number regions are preliminary evidence, not a reviewed major pack. No competing RPM pack was created and no RPM evidence or aggregate manifest was changed during final settlement.
+
+The three completed major packs cover their declared fixed solution-PDF address scopes; they do not assert an independent whole-problem-book census, mathematical correctness, or later errata reconciliation. The 35 null keys remain explicit manual-review limitations with individual reasons and source regions. No source implementation remains assigned to this worker. The final report-only change requires no pack test rerun; the completed validations above remain applicable, and `git diff --check` passed before commit.
