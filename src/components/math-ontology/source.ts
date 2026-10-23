@@ -11,6 +11,7 @@ export type WorkspaceAnswer = {
 export type WorkspaceExecution = { id: string; state: "applied" | "no-op" | "preparing" | "published"; message: string; details: string[] };
 export interface OntologyWorkspaceSource {
   students(signal: AbortSignal): Promise<WorkspaceStudent[]>;
+  coverage?(signal: AbortSignal): Promise<WorkspaceAnswer>;
   run(input: { query: string; student: WorkspaceStudent | null; previousReviewId?: string; expectedPreviousRevision?: number }, signal: AbortSignal): Promise<WorkspaceAnswer>;
   confirm(action: WorkspaceAction, signal: AbortSignal): Promise<WorkspaceExecution>;
   feedback(result: WorkspaceExecution, signal: AbortSignal): Promise<{ summary: string; details: string[] }>;

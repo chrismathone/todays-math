@@ -1635,8 +1635,8 @@ function UnifiedWorkspaceContent({
             </button>
           </div>
         )}
-        {/* 수학 «자료 제작»의 AI 연결 판 — 옆 메뉴는 지금 제품의 것만 그린다(영어에서는 안 뜬다) */}
-        {product === "math" && can("studio") && (
+        {/* 자료 제작의 연결 상태는 지식 작업실의 서버 판단 경로와 별개다. */}
+        {product === "math" && view !== "ontology" && can("studio") && (
           <DevAiStatusPanel
             collapsed={sidebarCollapsed}
             onExpand={toggleSidebar}

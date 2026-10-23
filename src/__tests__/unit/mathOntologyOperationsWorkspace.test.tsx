@@ -8,6 +8,14 @@ afterEach(cleanup);
 const answer: WorkspaceAnswer = { id: "answer-1", summary: "계획 변경을 준비했습니다.", steps: [{ id: "e1", title: "보존된 첫 풀이", note: "힌트와 재시도 제외", state: "observed" }], details: [], coverage: [], action: { kind: "plan", id: "proposal-1", label: "이 계획으로 바꾸기", changes: [{ label: "하루 목표", before: "10문제", after: "15문제" }], effects: ["시작한 학습은 유지됩니다."] } };
 function source(): OntologyWorkspaceSource { return { students: vi.fn(async () => []), run: vi.fn(async () => answer), confirm: vi.fn(async () => ({ id: "receipt-1", state: "applied" as const, message: "계획을 변경했습니다.", details: ["같은 요청은 다시 쓰지 않습니다."] })), feedback: vi.fn(async () => ({ summary: "아직 후속 관찰이 없습니다.", details: [] })) }; }
 describe("B/H3 concise AI-first workspace", () => {
+ it("reads source populations directly without delegating counting to AI or replacing the user's request", async () => {
+  const port: OntologyWorkspaceSource & { coverage: ReturnType<typeof vi.fn> } = { ...source(), coverage: vi.fn(async () => ({ id: "synthetic-coverage", summary: "합성 원천 모집단입니다.", steps: [], details: [], coverage: [{ label: "합성 개체", value: "100 / 100" }, { label: "공식 기준 대응", value: "미확인" }] })) };
+  render(<OntologyWorkspace source={port} />);
+  fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "내가 작성한 요청" } });
+  fireEvent.click(screen.getByText("지식과 원천 범위")); fireEvent.click(screen.getByRole("button", { name: "원천과 포함 범위" }));
+  await screen.findByText("합성 원천 모집단입니다."); expect(port.coverage).toHaveBeenCalledTimes(1); expect(port.run).not.toHaveBeenCalled();
+  expect((screen.getByLabelText("원하는 일") as HTMLTextAreaElement).value).toBe("내가 작성한 요청"); expect(screen.getByText("100 / 100")).toBeTruthy(); expect(port.confirm).not.toHaveBeenCalled();
+ });
  it.each(["원천에서 확인한 같은 연결의 근거를 다시 찾아줘", ""])("explicitly re-prepares an unknown candidate using edited request or stored fallback: %s", async edited => {
   const port = source(), previousReviewId = "00000000-0000-4000-8000-000000000011";
   const blocked = { ...answer, id: previousReviewId, summary: "근거를 더 확인해야 하는 후보입니다.", action: undefined, reprepare: { previousReviewId, expectedPreviousRevision: 3, query: "연결 근거를 다시 찾아줘" } };
