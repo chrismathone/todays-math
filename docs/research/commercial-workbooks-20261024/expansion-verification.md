@@ -46,7 +46,7 @@
 | 천종현수학연구소 | 따풀 5-1 상 | 502 | 472 | 30 | 본문 쪽이 있는 유형 01A~20B의 502주소 · 검수 정답 472개 · 그림·표 30개 보류 · 쪽 미기재 연습 문제·Quiz 제외 |
 | 천종현수학연구소 | 따풀 6-2 상 | 481 | 460 | 21 | 본문 쪽이 있는 유형 01A~20B의 481주소 · 검수 정답 460개 · 그림·표 21개 보류 · 쪽 미기재 연습 문제·Quiz 제외 |
 
-각 팩의 JSON, TSV와 `.coverage.json`은 `data/commercial-workbooks/`에 있다. coverage는 원본 SHA-256, 답안 PDF 쪽, 주소 기대 목록, 검토 렌더의 해시와 제외 사유를 기록한다. 이번에 선정한 확장 대상 33개 원본의 검수를 모두 마쳤다. [major 첫 결과](expansion-major.md)의 후속 4개도 완료했으며, [major 후속 기록](expansion-major-followup.md)의 개념루트·유형만렙·CPR과 별도로 이관한 [RPM 기록](expansion-rpm.md)을 함께 읽는다. 초등 12개 결과는 [elementary 기록](expansion-elementary.md)에 있다. 이는 확보한 PDF 1,650개 전체를 문항별로 검수했다는 뜻이 아니다.
+각 팩의 JSON, TSV와 `.coverage.json`은 `data/commercial-workbooks/`에 있다. coverage는 원본 SHA-256, 답안 PDF 쪽, 주소 기대 목록, 검토 렌더의 해시와 제외 사유를 기록한다. 이번에 선정한 확장 대상 33개 원본의 검수를 모두 마쳤다. [major 첫 결과](expansion-major.md)의 후속 4개도 완료했으며, [major 후속 기록](expansion-major-followup.md)의 개념루트·유형만렙·CPR과 별도로 이관한 [RPM 기록](expansion-rpm.md)을 함께 읽는다. 초등 12개 결과는 [elementary 기록](expansion-elementary.md), 나머지 중·고등 10개 결과는 [secondary 기록](expansion-secondary.md)에 있다. 이는 확보한 PDF 1,650개 전체를 문항별로 검수했다는 뜻이 아니다.
 
 발행연도·교육과정·쇄·ISBN을 확인하지 못한 자료는 그대로 표시한다. 자료실 게시일이나 PDF 조판 날짜를 교재 발행연도로 바꾸지 않았다. 길벗의 2026 개정 교재는 출판사가 표기한 발행일을 보존한다. 블랙라벨은 공식 공개 1쇄 보관본이며 최신 첨부·정오표 대조를 주장하지 않는다. 수경 기하의 의심스러운 원문 답 2개는 등록 전에 null로 보류했다.
 
@@ -77,6 +77,20 @@ Orca 내부 브라우저의 개발용 메모리 화면에서 새 검색 → 수�
 37개 자료를 통합한 관련 **41개 파일의 259개 테스트가 통과**했다(`final-tests.log`). 원본 PDF 37개와 검수 이미지 참조 2,055개의 SHA-256이 모두 일치했고, 모든 정답의 PDF 쪽이 파일 범위 안에 있었다. RPM의 `file` 형식 이미지 경로도 감사 도구가 인식하도록 포함했다.
 
 운영 37권 전체의 모든 주소·정답·판본·출처를 읽기 전용으로 다시 조회한 결과 정규화 해시가 전부 일치했다(`final-production-audit.json`). 운영 과제와 오답 기록은 각각 0개이며, 이번 실습 때문에 실제 학생 기록이 생성되지 않았다.
+
+변경 TypeScript/TSX 35개 파일의 ESLint, 프로젝트 전체 `npm run type-check`, Next.js 16.3.8 운영 빌드가 모두 통과했다(`final-eslint.log`, `final-typecheck.log`, `final-build.log`). 첫 타입 검사에서 유형만렙 테스트가 본책 쪽 문자열만으로 타입을 좁게 추론한 오류를 발견해 기대 주소 배열을 계약의 `WorkbookAddress[]`로 명시했다. 재검사와 해당 5개 테스트가 통과했고 정답·주소 데이터는 변경하지 않았다. 최초 실패 로그는 `final-typecheck-first.log`로 보존했다. 최종 브랜치 병합은 검수 보고서 변경만 추가했으며 타입 수정과 모든 정답을 보존했다.
+
+### 병렬 작업별 결과
+
+| 작업 | 결과 | 근거 |
+| --- | --- | --- |
+| major 최초 (`task_fd4afa193a1f`) | 7개 팩 완료, 후속 4개 인계 | [첫 보고서](expansion-major.md) |
+| major 후속 (`task_439be20eab48`) | 개념루트·유형만렙·CPR 3개 완료, RPM 이관 | [후속 보고서](expansion-major-followup.md) |
+| secondary (`task_3da36bc08463`) | 10개 팩 완료 | [10개 결과](expansion-secondary.md) |
+| elementary (`task_869b064930c9`) | 12개 팩 완료 | [12개 결과](expansion-elementary.md) |
+| RPM 후속 (`task_09dd2dbb97e8`) | 1개 팩 완료 | [RPM 결과](expansion-rpm.md) |
+
+다섯 디스패치가 모두 성공으로 종료됐다. 최초 두 작업은 같은 터미널을 후속 작업에 재사용했고, 마지막 세 작업의 터미널은 기록을 보존해 해제했다. 회수 대기 터미널은 없다. 세 작업 브랜치의 이력은 일반 병합으로 통합했다.
 
 ## 이전 검증 체크포인트
 
