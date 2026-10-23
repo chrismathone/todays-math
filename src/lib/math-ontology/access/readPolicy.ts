@@ -4,6 +4,7 @@ export function ontologyReadRoute(method: string, path: string): boolean {
     (method === "GET" &&
       [
         "/api/math-ontology/catalog",
+        "/api/math-ontology/coverage",
         "/api/math-ontology/students",
         "/api/math-ontology/history",
       ].includes(path)) ||
