@@ -29,6 +29,7 @@ function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWor
     });
   }
   return {
+    async coverage(signal) { count("coverage"); await pause(signal); return { id: "synthetic-coverage", summary: "합성 원천의 포함 범위입니다.", steps: [], details: [{ title: "합성 모집단", text: "직접 조회 경로를 검수하는 합성 수치입니다. API·DB·모델 호출이 없습니다." }], coverage: [{ label: "합성 등록 개체", value: "100 / 100" }, { label: "합성 원천 연결", value: "80 / 100" }, { label: "공식 기준 대응", value: "미확인" }] }; },
     async students(signal) { await pause(signal); return scenario === "empty" ? [] : [{ id: "00000000-0000-4000-8000-000000000001", classId: "00000000-0000-4000-8000-000000000002", branchId: null, label: "합성 학생", classLabel: "합성 5학년 반" }]; },
     async run(input, signal) {
       count("prepare"); await pause(signal); attempts++;

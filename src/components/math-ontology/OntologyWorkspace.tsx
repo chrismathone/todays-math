@@ -30,7 +30,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
   const [confirmUnknown, setConfirmUnknown] = useState(false);
   const [picking, setPicking] = useState(false);
   const busyRef = useRef(false), sequence = useRef(0), active = useRef<AbortController | null>(null), pickerButton = useRef<HTMLButtonElement>(null);
-  const preparationMode = useRef<"query" | "history" | "publication" | "revocation" | "review">("query");
+  const preparationMode = useRef<"query" | "history" | "publication" | "revocation" | "review" | "coverage">("query");
   const reviewPreparation = useRef("");
   const predecessorPreparation = useRef<WorkspaceAnswer["reprepare"]>(undefined);
   useEffect(() => () => { sequence.current++; active.current?.abort(); }, []);
@@ -39,7 +39,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
     if (problem.code === "FORBIDDEN" || problem.code === "STALE") { setAnswer(null); setHistory([]); setExecution(null); setFeedback(null); }
     setError(problem); return problem;
   };
-  async function prepare(event?: FormEvent, selected = student, text = query, mode: "query" | "history" | "publication" | "revocation" | "review" = "query", reviewId = "", predecessor?: WorkspaceAnswer["reprepare"]) {
+  async function prepare(event?: FormEvent, selected = student, text = query, mode: "query" | "history" | "publication" | "revocation" | "review" | "coverage" = "query", reviewId = "", predecessor?: WorkspaceAnswer["reprepare"]) {
     event?.preventDefault();
     if (busyRef.current || (mode === "query" && !text.trim())) return;
     preparationMode.current = mode; reviewPreparation.current = reviewId;
@@ -47,7 +47,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
     busyRef.current = true; const request = ++sequence.current, controller = new AbortController(); active.current = controller;
     if (answer) setHistory(items => [...items.slice(-9), answer]);
     setAnswer(null); setExecution(null); setFeedback(null); setConfirmUnknown(false); setError(null); setBusy("prepare");
-    try { const value = mode === "review" && source.review ? await source.review(reviewId, controller.signal) : mode === "history" && source.history ? await source.history(controller.signal) : mode === "publication" && source.publication ? await source.publication(controller.signal) : mode === "revocation" && source.revocation ? await source.revocation(controller.signal) : await source.run({ query: text.trim(), student: selected, ...(predecessor ? { previousReviewId: predecessor.previousReviewId, expectedPreviousRevision: predecessor.expectedPreviousRevision } : {}) }, controller.signal); if (sequence.current === request) setAnswer(value); }
+    try { const value = mode === "coverage" && source.coverage ? await source.coverage(controller.signal) : mode === "review" && source.review ? await source.review(reviewId, controller.signal) : mode === "history" && source.history ? await source.history(controller.signal) : mode === "publication" && source.publication ? await source.publication(controller.signal) : mode === "revocation" && source.revocation ? await source.revocation(controller.signal) : await source.run({ query: mode === "coverage" ? "등록된 지식과 원천 범위를 보여줘" : text.trim(), student: selected, ...(predecessor ? { previousReviewId: predecessor.previousReviewId, expectedPreviousRevision: predecessor.expectedPreviousRevision } : {}) }, controller.signal); if (sequence.current === request) setAnswer(value); }
     catch (cause) { if (sequence.current === request && !controller.signal.aborted) fail(cause); }
     finally { if (sequence.current === request) { busyRef.current = false; setBusy(null); } }
   }
@@ -101,7 +101,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
     <div className={s.columns}>
       <aside className={s.context} aria-label="지식과 현재 맥락">
         <details className={s.contextDetails}><summary>지식과 원천 범위</summary><p className={s.muted}>개념 · 단원 · 문항 · 자료</p>
-        <button type="button" className={s.button} disabled={!!busy} onClick={() => { const text = "등록된 지식과 원천 범위를 보여줘"; setQuery(text); void prepare(undefined, student, text); }}>원천과 포함 범위</button>
+        <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "coverage")}>원천과 포함 범위</button>
         {source.history && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "history")}>검토·실행 이력</button>}
         {canPublish && source.publication && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "publication")}>게시 준비</button>}
         {canPublish && source.revocation && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "revocation")}>활성 판 철회 준비</button>}

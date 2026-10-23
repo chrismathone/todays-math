@@ -2,9 +2,15 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { createOntologyWorkspaceSource } from "@/components/math-ontology/api";
 afterEach(() => vi.unstubAllGlobals());
 describe("operation policy errors", () => {
+  it("loads deterministic coverage through the direct GET port", async () => {
+    const fetch = vi.fn<(url: RequestInfo | URL, init?: RequestInit) => Promise<Response>>(async () => Response.json({ data: { id: "synthetic-coverage", summary: "서버가 센 원천 범위", steps: [], details: [], coverage: [] } })); vi.stubGlobal("fetch", fetch);
+    const source = createOntologyWorkspaceSource();
+    expect((await source.coverage!(new AbortController().signal)).summary).toBe("서버가 센 원천 범위"); expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch.mock.calls[0][0]).toBe("/api/math-ontology/coverage"); expect(fetch.mock.calls[0][1]?.body).toBeUndefined();
+  });
   it("preserves the predecessor metadata through the actual HTTP source without exposing support or hash controls", async () => {
     const predecessor = { previousReviewId: "00000000-0000-4000-8000-000000000011", expectedPreviousRevision: 3 };
-    const fetch = vi.fn(async (_url: RequestInfo | URL, _init?: RequestInit) => Response.json({ data: { id: "synthetic-result", summary: "근거 미확인 후보", steps: [], details: [], coverage: [], reprepare: { ...predecessor, query: "새 근거를 찾아줘" } } })); vi.stubGlobal("fetch", fetch);
+    const fetch = vi.fn<(url: RequestInfo | URL, init?: RequestInit) => Promise<Response>>(async () => Response.json({ data: { id: "synthetic-result", summary: "근거 미확인 후보", steps: [], details: [], coverage: [], reprepare: { ...predecessor, query: "새 근거를 찾아줘" } } })); vi.stubGlobal("fetch", fetch);
     const input = { query: "편집한 요청", student: null, ...predecessor };
     const result = await createOntologyWorkspaceSource().run(input, new AbortController().signal);
     expect(result).toMatchObject({ reprepare: { ...predecessor, query: "새 근거를 찾아줘" } });

@@ -74,6 +74,10 @@ root의 후속 지시 `msg_029dce9da20a`에 따라 같은 유형의 deadline 경
 
 최종 `confirmation-deadlines-core-final.txt`는 실제 full-source delta·B1/B3/B4·추가 TTL 12종을 포함해 **21파일 107시험 PASS**(88.94초)다. 독립 B4 사본도 4/4 PASS를 유지했다. 전체 TypeScript·해당 ESLint·diff 진단 0과 격리 프로세스 종료를 확인했다. 직전 106/107 실행의 유일 실패는 기존 audit CHECK가 새 cohort의 보존된 과거 철회 이력까지 거절한 fixture 충돌이었다. 해당 confirmation ID의 새 audit만 실패시키도록 CHECK를 한정했고 실제 audit 실패/rollback 기대값은 유지했다. 중간 로그는 보존했다.
 
+원천 포함 범위 버튼의 기존 AI 문장 질의는 정확한 모집단 집계를 보장하지 못하므로 root 지시 `msg_046decc96c88`에 따라 `source.coverage(signal)` → `GET /api/math-ontology/coverage` 직접 조회로 분리했다. 서버가 반환한 WorkspaceAnswer의 모집단/한계만 표시하고, 기존 요청 칸·접힌 원천 맥락은 보존한다. production source에는 coverage port가 항상 있으므로 실패 때 AI로 집계를 우회하지 않는다. port 없는 합성 fixture만 기존 질의 fallback을 유지한다. `coverage-direct-ui-RED.txt` → `coverage-direct-ui-GREEN.txt` React/실제 HTTP source 2파일 **14시험 PASS**는 AI run/confirm 호출 0과 직접 GET·입력 보존을 확인한다. 실제 승인된 원천의 결정적 집계/권한/라우트 구현과 실제 앱 인수는 formal/root 소유이며 합성 fixture 수치를 실제 모집단으로 보고하지 않는다.
+
+root의 실제 데스크톱 검수 `msg_e34a4ec2cf33`에서 자료 제작용 CLI 연결 판이 지식 작업실의 서버 AI 경로를 설명하는 것처럼 보인 문제를 인수했다. ontology view에서만 별개 DevAiStatusPanel을 숨기며 다른 수학/영어 메뉴·provider/settings·학생/인쇄 경로는 유지한다. `studio-panel-scope-RED.txt` → `studio-panel-scope-GREEN.txt` 실제 셸 4파일 **92시험 PASS**는 ontology에서 숨고 다른 수학 메뉴에서 다시 보이는 것을 확인한다. 추가 기술 안내나 키 설정 UI는 만들지 않았다. 이 묶음과 앞선 107/14시험을 합산하지 않는다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.

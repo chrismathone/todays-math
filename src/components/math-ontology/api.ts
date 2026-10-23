@@ -17,6 +17,7 @@ export function createOntologyWorkspaceSource(branchId?: string): OntologyWorksp
   const context = branchId ? `?branchId=${encodeURIComponent(branchId)}` : "";
   return {
     async students(signal) { return z.array(studentSchema).parse(await request(`/api/math-ontology/students${context}`, signal)); },
+    async coverage(signal) { return answerSchema.parse(await request("/api/math-ontology/coverage", signal)); },
     async review(reviewId, signal) { return answerSchema.parse(await request(`/api/math-ontology/relations/${encodeURIComponent(reviewId)}/review/prepare`, signal, {})); },
     async history(signal) { return answerSchema.parse(await request(`/api/math-ontology/history${context}`, signal)); },
     async publication(signal) { return answerSchema.parse(await request("/api/math-ontology/publish/prepare", signal, {})); },

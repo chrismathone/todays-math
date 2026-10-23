@@ -2110,6 +2110,15 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       screen.getByRole("button", { name: "AI 연결 설정" }),
     ).toBeInTheDocument();
   });
+  it("지식 작업실에서는 별개 제작 도구의 CLI 연결 설정을 숨기고 다른 수학 메뉴에서는 보존한다", async () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(screen.getByRole("button", { name: "AI 연결 설정" })).toBeInTheDocument();
+    fireEvent.click(nav().getByRole("button", { name: "지식 작업실" }));
+    await waitFor(() => expect(window.location.hash).toBe("#ontology"));
+    expect(screen.queryByRole("button", { name: "AI 연결 설정" })).toBeNull();
+    fireEvent.click(nav().getByRole("button", { name: "오늘의 작업" }));
+    expect(screen.getByRole("button", { name: "AI 연결 설정" })).toBeInTheDocument();
+  });
 
   it("제품 목록에서 Tab 으로 초점이 목록 밖으로 나가면 닫힌다 (검토 #13)", () => {
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);

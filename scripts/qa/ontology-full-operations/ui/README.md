@@ -15,3 +15,5 @@ The collapsed tool outside the product selects normal, empty, error-retry, delay
 For the mobile-shell regression, inspect 390 / 768 / 1440: every navigation target is at least 44px, labels fit, eleven menus remain reachable by touch/keyboard, a deep-linked active last menu is visible, and document scrollWidth never exceeds clientWidth. Horizontal overflow belongs only to the bottom nav. Desktop side navigation, student pages and print remain unchanged. Root must verify these dimensions in an actual browser; jsdom does not prove layout.
 
 `?case=reprepare` shows an unresolved candidate with one explicit reprepare action. Edit the existing request, click once, and verify a new candidate is prepared while the earlier result remains reachable. It never confirms a relation or writes student state; all results are synthetic.
+
+The source-coverage button now calls the deterministic `coverage` fixture port directly (`coverage` counter only, `prepare` stays unchanged). Production uses GET `/api/math-ontology/coverage`; no model chooses or counts its populations. Displayed fixture denominators are explicitly synthetic.
