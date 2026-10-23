@@ -20,6 +20,8 @@ export interface MathOntologyDatabaseReadInput {
   target: { studentId: string; classId: string; branchId: string | null };
   graphVersion: string;
   now: Date;
+  /** Current authorization clock, separate from immutable source observation asOf. */
+  authorizationNow?: Date;
   observedAfter?: string;
 }
 export class MathOntologySourceAccessDenied extends Error {
@@ -50,7 +52,7 @@ export async function authorizeMathOntologySourceRead(
   tx: MathOntologySourceTransaction,
   input: MathOntologyDatabaseReadInput,
 ) {
-  const now = input.now;
+  const now = input.authorizationNow ?? new Date();
   if (!Number.isFinite(now.getTime())) fail();
   const row = await tx.user.findUnique({
     where: { id: input.actor.id },

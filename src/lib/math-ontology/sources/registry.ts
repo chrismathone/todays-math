@@ -120,17 +120,27 @@ export function mathOntologyAdminSourceCoverageRows(
   }));
 }
 
-/** Public metadata counts only, after the caller has selected its authorized graph. No private existence/denominator signal. */
-export function mathOntologyVisibleSourceCoverageRows(
-  coverage: readonly MathOntologySourceCoverage[],
-) {
-  return coverage
-    .filter((c) => c.rdfEligible > 0)
-    .map((c) => ({
-      namespace: c.namespace,
-      label: labels[c.namespace] ?? c.namespace,
-      visibleSourceRecords: c.rdfEligible,
-      populationKind: c.populationKind,
+/** Takes already authorized public entity projections, never administrative global census rows. */
+export function mathOntologyVisibleSourceCoverageRows(projection: {
+  entities: readonly {
+    namespace: MathOntologySourceNamespace;
+    scope: string;
+    distribution: string;
+  }[];
+}) {
+  const counts = new Map<MathOntologySourceNamespace, number>();
+  for (const e of projection.entities) {
+    if (e.scope !== "global" || e.distribution === "quarantine-reference")
+      continue;
+    counts.set(e.namespace, (counts.get(e.namespace) ?? 0) + 1);
+  }
+  return [...counts]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([namespace, visibleSourceRecords]) => ({
+      namespace,
+      label: labels[namespace] ?? namespace,
+      visibleSourceRecords,
+      populationKind: sourcePopulationKind(namespace),
       actualInstances: null,
       educationStatus: "공식 기준 대응·교육 관계 검수 미확인",
     }));

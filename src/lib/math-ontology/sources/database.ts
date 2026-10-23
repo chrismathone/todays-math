@@ -262,12 +262,20 @@ export async function readMathOntologyDatabaseSources(
 ) {
   const { db } = await import("@/lib/db");
   const snapshot = await db.$transaction(
-    async (tx) => readMathOntologyDatabaseSourcesInTransaction(tx, input),
+    async (tx) =>
+      readMathOntologyDatabaseSourcesInTransaction(tx, {
+        ...input,
+        authorizationNow: new Date(),
+      }),
     { isolationLevel: "RepeatableRead", maxWait: 2000, timeout: 10000 },
   );
   // A current authorization recheck prevents a completed read from escaping after a revocation during the snapshot read.
   const latest = await db.$transaction(
-    async (tx) => authorizeMathOntologySourceRead(tx, input),
+    async (tx) =>
+      authorizeMathOntologySourceRead(tx, {
+        ...input,
+        authorizationNow: new Date(),
+      }),
     { isolationLevel: "RepeatableRead", maxWait: 2000, timeout: 5000 },
   );
   if (

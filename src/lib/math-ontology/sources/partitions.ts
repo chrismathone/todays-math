@@ -5,6 +5,7 @@ import {
   MATH_ONTOLOGY_SOURCE_NAMESPACES,
 } from "@/contracts/mathOntologySource.contract";
 import { sourceByteDigest, freezeSourceValue } from "./canonical";
+const verifiedManifests = new WeakSet<object>();
 const MAX_RAW = 64 * 1024 * 1024;
 export const sourcePartitionArtifactSchema = z.strictObject({
   path: z
@@ -100,6 +101,7 @@ export function loadSourcePartitionManifest(
       value.assertions
   )
     throw new Error("Partition primary population mismatch");
+  verifiedManifests.add(value);
   return freezeSourceValue(value);
 }
 /** Only descriptor objects from the pinned manifest may be read; arbitrary descriptor hashes are not authority. */
@@ -108,6 +110,8 @@ export function readSourcePartitionArtifact(
   manifest: MathOntologySourcePartitionManifest,
   artifact: MathOntologySourcePartitionArtifact,
 ) {
+  if (!verifiedManifests.has(manifest))
+    throw new Error("Manifest was not loaded from pinned bytes");
   if (
     !manifest.partitions.some(
       (p) => p.nquads === artifact || p.projection === artifact,

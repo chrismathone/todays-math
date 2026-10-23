@@ -47,6 +47,7 @@ function matches(
 }
 vi.mock("@/lib/db", () => ({
   db: {
+    $transaction: vi.fn(),
     user: { findUnique: vi.fn(async () => w.user) },
     eywaManagedAccount: { findUnique: vi.fn(async () => w.managed) },
     class: {
@@ -107,6 +108,7 @@ import {
   type MathOntologySourceTransaction,
 } from "@/lib/math-ontology/sources/databaseAccess";
 import {
+  readMathOntologyDatabaseSources,
   readMathOntologyDatabaseSourcesInTransaction,
   assertMathOntologySourceSnapshotTransaction,
 } from "@/lib/math-ontology/sources/database";
@@ -152,7 +154,7 @@ beforeEach(() => {
     grade: "초3",
     active: true,
     closedAt: null,
-    permissionRevision: 1n,
+    permissionRevision: BigInt(1),
   };
   w.student = {
     id: id(3),
@@ -211,10 +213,10 @@ function managed() {
     branchRoleOverride: null,
     leaseExpiresAt: new Date(now.getTime() + 600000),
     sourceEpoch: id(8),
-    tenantRevocationGeneration: 1n,
-    accountRevocationGeneration: 1n,
-    securityRevision: 1n,
-    classListRevision: 1n,
+    tenantRevocationGeneration: BigInt(1),
+    accountRevocationGeneration: BigInt(1),
+    securityRevision: BigInt(1),
+    classListRevision: BigInt(1),
     sourceClasses: [
       {
         id: id(6),
@@ -233,7 +235,7 @@ function managed() {
       healthy: true,
       leaseExpiresAt: new Date(now.getTime() + 600000),
       sourceEpoch: id(8),
-      tenantRevocationGeneration: 1n,
+      tenantRevocationGeneration: BigInt(1),
     },
   };
   w.memberships = [
@@ -287,7 +289,7 @@ describe("concrete Prisma source read composition (synthetic delegate fixtures, 
     expect(await parity()).toBe(false);
     w.enrollments[0].isTransferred = false;
     expect(await parity()).toBe(true);
-    w.cls.permissionRevision = 2n;
+    w.cls.permissionRevision = BigInt(2);
     expect(await parity()).toBe(false);
   });
   it("does not read learning/source rows before current authorization succeeds", async () => {
@@ -334,4 +336,151 @@ describe("concrete Prisma source read composition (synthetic delegate fixtures, 
     expect(s.studentRevision).toBe(0);
     expect(s.learning.sourcePresence).toBe("missing");
   });
+});
+
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { BANK_PARTS } from "@/lib/concept-blank/bank";
+import { sourceByteDigest } from "@/lib/math-ontology/sources/canonical";
+import { MATH_ONTOLOGY_SOURCE_NAMESPACES } from "@/contracts/mathOntologySource.contract";
+import {
+  sealMathOntologySourcePayload,
+  assembleMathOntologySources,
+} from "@/lib/math-ontology/sources/assembler";
+import { writeSourcePartitions } from "../../../scripts/ontology/census/writePartitions";
+import { loadSourcePartitionManifest } from "@/lib/math-ontology/sources/partitions";
+import { readNativeDefinitionEvidenceInTransaction } from "@/lib/math-ontology/sources/definitionEvidence";
+it("returns bounded exact native definition evidence only after actual policy authorization and approved revision correspondence", async () => {
+  const current = BANK_PARTS.e5.concepts[0],
+    origin = {
+      repositoryPath: "src/lib/concept-blank/bank/e5.ts",
+      pointer: "/bank/concepts/" + current.id,
+      byteHash: sourceByteDigest("synthetic-byte-receipt"),
+      extractorVersion: "repo-sources-1" as const,
+    };
+  const make = (hash: string) =>
+    sealMathOntologySourcePayload({
+      schemaVersion: 1,
+      adapterVersion: "repo-sources-1",
+      inputs: [
+        { path: origin.repositoryPath, byteHash: origin.byteHash, bytes: 22 },
+      ],
+      records: [
+        {
+          namespace: "bank-definition",
+          nativeId: current.id,
+          scope: "global",
+          kind: "Definition",
+          distribution: "native-metadata",
+          sourceProvenance: "native-source",
+          edition: "unknown",
+          origin,
+          metadata: { definitionTextHash: hash as `sha256:${string}` },
+          labels: [
+            {
+              value: current.term,
+              language: "ko",
+              sourceField: "term",
+              sourceTextHash: sourceByteDigest(current.term),
+              origin,
+            },
+          ],
+        },
+      ],
+      assertions: [],
+      expectedCoverage: MATH_ONTOLOGY_SOURCE_NAMESPACES.map((namespace) => ({
+        namespace,
+        expected: namespace === "bank-definition" ? 1 : 0,
+      })),
+    });
+  const root = mkdtempSync(join(tmpdir(), "native-definition-evidence-"));
+  try {
+    const e = make(sourceByteDigest(current.definition));
+    const p = writeSourcePartitions(
+      assembleMathOntologySources(e, { expectedPayloadHash: e.payloadHash }),
+      root,
+    );
+    const read = (path: string) => readFileSync(join(root, path));
+    const release = {
+      read,
+      manifest: loadSourcePartitionManifest(read, {
+        projectionHash: p.manifest.projectionHash,
+        manifestByteHash: p.manifestByteHash,
+      }),
+    };
+    const packet = await readNativeDefinitionEvidenceInTransaction(
+      tx(),
+      input(),
+      [current.id],
+      release,
+    );
+    expect(packet.packets[0]).toMatchObject({
+      term: current.term,
+      definition: current.definition,
+      definitionTextHash: sourceByteDigest(current.definition),
+    });
+    expect(JSON.stringify(packet)).not.toContain("bQuestion");
+    expect(JSON.stringify(packet)).not.toContain("clozeQuestion");
+    expect(JSON.stringify(packet)).not.toContain("answer");
+    await expect(
+      readNativeDefinitionEvidenceInTransaction(
+        tx(),
+        input(),
+        Array.from({ length: 7 }, (_, i) => "x" + i),
+        release,
+      ),
+    ).rejects.toThrow(/bounded/);
+    w.user.suspendedAt = now;
+    await expect(
+      readNativeDefinitionEvidenceInTransaction(
+        tx(),
+        input(),
+        [current.id],
+        release,
+      ),
+    ).rejects.toThrow(/not available/);
+    w.user.suspendedAt = null;
+    const bad = make(sourceByteDigest("stale definition"));
+    const b = writeSourcePartitions(
+      assembleMathOntologySources(bad, {
+        expectedPayloadHash: bad.payloadHash,
+      }),
+      root,
+    );
+    const badRelease = {
+      read,
+      manifest: loadSourcePartitionManifest(read, {
+        projectionHash: b.manifest.projectionHash,
+        manifestByteHash: b.manifestByteHash,
+      }),
+    };
+    await expect(
+      readNativeDefinitionEvidenceInTransaction(
+        tx(),
+        input(),
+        [current.id],
+        badRelease,
+      ),
+    ).rejects.toThrow(/differs/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+it("keeps observation asOf fixed but rejects expiry during the production wrapper final wall-clock authorization", async () => {
+  managed();
+  let calls = 0;
+  vi.mocked(db.$transaction).mockImplementation((async (callback: unknown) => {
+    if (typeof callback !== "function")
+      throw new Error("synthetic transaction expects callback");
+    const result = await callback(tx());
+    calls++;
+    if (calls === 1) vi.setSystemTime(new Date(now.getTime() + 600001));
+    return result;
+  }) as never);
+  await expect(readMathOntologyDatabaseSources(input())).rejects.toThrow(
+    /not available/,
+  );
+  expect(calls).toBe(1);
 });
