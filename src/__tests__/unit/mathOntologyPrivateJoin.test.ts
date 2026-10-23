@@ -163,3 +163,61 @@ it("keeps explorer and fading summaries distinct from timed first attempts while
       .length,
   ).toBeGreaterThan(0);
 }, 60000);
+import {
+  ontologyPrivateSummaryPacket,
+  ontologyPrivateSummaryDetails,
+} from "@/lib/math-ontology/retrieval/privatePacket";
+it("projects only summary domain counts and honest separate denominators into model/UI data", () => {
+  const evidence = {
+    summaryWitnesses: [
+      {
+        domain: "explorer-card",
+        event: "PRIVATE_RECORD",
+        nativeEntity: "PRIVATE_NATIVE",
+      },
+    ],
+    coverage: {
+      availableRetainedEvents: 200,
+      retainedEvents: 100,
+      joinedEvents: 90,
+      unresolved: 10,
+      partial: true,
+      retainedSummaries: 120,
+      inspectedSummaries: 100,
+      joinedSummaries: 80,
+      unresolvedSummaries: 20,
+      summaryPartial: true,
+      otherDomains: {
+        explorerCards: { count: 120 },
+        explorerDays: { count: 0 },
+        fadingConcepts: { count: 0 },
+        activeExplorerSession: { present: false },
+        legacyAttempts: { count: 7 },
+        minuteRelearning: { present: true },
+      },
+    },
+  } as unknown as Awaited<ReturnType<typeof joinRetainedOntologySources>>;
+  const packet = ontologyPrivateSummaryPacket(evidence);
+  expect(packet.coverage.timed).toMatchObject({
+    available: 200,
+    returned: 100,
+    joined: 90,
+    partial: true,
+  });
+  expect(packet.coverage.summaries).toMatchObject({
+    retained: 120,
+    inspected: 100,
+    joined: 80,
+    partial: true,
+  });
+  expect(packet.summaries[0]).toMatchObject({
+    domain: "explorer-card",
+    retained: 120,
+    joined: 1,
+    independentFirstAttempt: false,
+    eventTime: null,
+  });
+  expect(JSON.stringify(packet)).not.toContain("PRIVATE_RECORD");
+  expect(JSON.stringify(packet)).not.toContain("PRIVATE_NATIVE");
+  expect(ontologyPrivateSummaryDetails(evidence).text).toContain("일부 요약만");
+});

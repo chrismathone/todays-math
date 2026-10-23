@@ -153,3 +153,58 @@ describe("actual assist composition with synthetic model port and actual full-so
     expect(prepareRelation).not.toHaveBeenCalled();
   }, 60000);
 });
+import smallRelease from "../fixtures/ontology-formal-release.json";
+import {
+  ontologyIntentJsonSchema,
+  ontologyGroundingJsonSchema,
+} from "@/lib/math-ontology/retrieval/modelSchemas";
+it("finds an actual entity A from an unresolved generic phrase and forwards only static stage schemas", async () => {
+  const r = await loadOntologyRuntime(
+    smallRelease,
+    mathOntologyGraphIdentitySchema.parse(smallRelease.identity),
+  );
+  const schemas: unknown[] = [];
+  const result = await runOntologyAssist(
+    {
+      maskedQuestion: "개념 A가 속한 대단원은?",
+      hasSelectedStudent: false,
+      signal: new AbortController().signal,
+    },
+    {
+      assertAuthorized: async () => {},
+      open: async () => ({
+        runtime: r,
+        context,
+        assertCurrent: async () => {},
+      }),
+      complete: async (prompt, _signal, schema) => {
+        schemas.push(schema);
+        const data = JSON.parse(prompt.split("\n").at(-1)!);
+        const raw = JSON.stringify(
+          data.packet
+            ? {
+                packetId: data.packet.packetId,
+                intent: "explain",
+                factIds: data.packet.facts
+                  .slice(0, 2)
+                  .map((f: { id: string }) => f.id),
+                relationDrafts: [],
+              }
+            : {
+                intent: "explain",
+                searchTerms: ["개념 A", "대단원"],
+                context: "global",
+              },
+        );
+        return { raw, receipt: receipt(raw) };
+      },
+    },
+  );
+  expect(result.packet?.facts.length).toBeGreaterThan(0);
+  expect(schemas).toEqual([
+    ontologyIntentJsonSchema,
+    ontologyGroundingJsonSchema,
+  ]);
+  expect(JSON.stringify(schemas)).not.toContain("synthetic-authorized-context");
+  expect(JSON.stringify(schemas)).not.toContain(result.packet!.packetId);
+}, 60000);

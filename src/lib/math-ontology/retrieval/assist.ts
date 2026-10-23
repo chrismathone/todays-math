@@ -1,3 +1,13 @@
+import {
+  ontologyPrivateSummaryPacket,
+  ontologyPrivateSummaryDetails,
+} from "./privatePacket";
+import {
+  ontologyIntentJsonSchema,
+  ontologyGroundingJsonSchema,
+  ontologyPlanJsonSchema,
+  type OntologyModelJsonSchema,
+} from "./modelSchemas";
 import { ontologyModelJson, validateOntologyModelOutput } from "./output";
 import { z } from "zod";
 import { Store } from "n3";
@@ -39,6 +49,7 @@ export interface OntologyAssistPorts {
   complete: (
     prompt: string,
     signal: AbortSignal,
+    jsonSchema?: OntologyModelJsonSchema,
   ) => Promise<{ raw: string; receipt: Readonly<ModelApiReceipt> }>;
   preparePublication?: () => Promise<WorkspaceAnswer>;
   preparePlan?: (input: {
@@ -85,6 +96,7 @@ export async function runOntologyAssist(
   const intentCompletion = await ports.complete(
     ontologyIntentPrompt(input.maskedQuestion, input.hasSelectedStudent),
     input.signal,
+    ontologyIntentJsonSchema,
   );
   await ports.assertAuthorized();
   const intent = validateOntologyModelOutput("intent", () =>
@@ -148,6 +160,17 @@ export async function runOntologyAssist(
         },
       ],
     };
+    if (session.privateEvidence) {
+      answer.details.push(
+        ontologyPrivateSummaryDetails(session.privateEvidence),
+      );
+      answer.coverage.push({
+        label: "요약 연결 범위",
+        value: session.privateEvidence.coverage.summaryPartial
+          ? "일부 확인"
+          : "현재 보존 요약 범위 · 전체 과거 이력 아님",
+      });
+    }
     return { answer, receipts, intent, observation };
   }
   const retrieval = {
@@ -158,6 +181,7 @@ export async function runOntologyAssist(
     visitedEntities: 0,
   };
   const catalog: Record<string, string>[] = [];
+  const fallbackTerms = new Set<string>();
   for (const q of intent.searchTerms) {
     const page = await queryOntology(
       runtime,
@@ -166,8 +190,44 @@ export async function runOntologyAssist(
     );
     retrieval.catalogTruncated ||= page.truncated;
     catalog.push(...page.rows);
+    if (!page.rows.length) {
+      const tokens = [
+        ...new Set(
+          q
+            .split(/\s+/u)
+            .filter(
+              (t) =>
+                t.length > 0 &&
+                ![
+                  "개념",
+                  "정의",
+                  "단원",
+                  "대단원",
+                  "문항",
+                  "연결",
+                  "자료",
+                  "관계",
+                ].includes(t),
+            ),
+        ),
+      ].slice(0, 3);
+      for (const token of tokens)
+        if (token !== q) {
+          fallbackTerms.add(token);
+          const fallback = await queryOntology(
+            runtime,
+            { kind: "catalog", q: token, limit: 6 },
+            context,
+          );
+          retrieval.catalogTruncated ||= fallback.truncated;
+          catalog.push(...fallback.rows);
+        }
+    }
   }
-  for (const q of intent.searchTerms)
+  for (const q of [...new Set([...intent.searchTerms, ...fallbackTerms])].slice(
+    0,
+    6,
+  ))
     for (const namespace of intent.intent === "plan-draft"
       ? ["course-section" as const]
       : ["bank-definition" as const, "course-section" as const]) {
@@ -275,8 +335,19 @@ export async function runOntologyAssist(
   const summaries =
     session.privateEvidence?.summaries.filter((e) => e.domain === "course") ??
     [];
+  const retainedCounts =
+    session.privateEvidence && session.readObservations
+      ? await session.readObservations("retained")
+      : undefined;
   const body = {
     ...prepared.packet,
+    ...(session.privateEvidence
+      ? {
+          privateSummaries: ontologyPrivateSummaryPacket(
+            session.privateEvidence,
+          ),
+        }
+      : {}),
     retrieval,
     definitions: nativeDefinitions
       .filter((d) => aliases.has(d.entity))
@@ -288,16 +359,25 @@ export async function runOntologyAssist(
     ...(session.privateEvidence
       ? {
           observations: {
-            retainedFirstAttempts: summaries.length,
-            independentCorrect: summaries.filter(
-              (e) => e.independentFirstAttempt && e.correct,
-            ).length,
-            independentIncorrect: summaries.filter(
-              (e) => e.independentFirstAttempt && !e.correct,
-            ).length,
-            excluded: summaries.filter((e) => !e.independentFirstAttempt)
-              .length,
+            retainedFirstAttempts: retainedCounts?.available
+              ? retainedCounts.counts.retainedFirstAttempts
+              : summaries.length,
+            independentCorrect: retainedCounts?.available
+              ? retainedCounts.counts.independentCorrect
+              : summaries.filter((e) => e.independentFirstAttempt && e.correct)
+                  .length,
+            independentIncorrect: retainedCounts?.available
+              ? retainedCounts.counts.independentIncorrect
+              : summaries.filter((e) => e.independentFirstAttempt && !e.correct)
+                  .length,
+            excluded: retainedCounts?.available
+              ? retainedCounts.counts.excluded
+              : summaries.filter((e) => !e.independentFirstAttempt).length,
             joinedEvents: session.privateEvidence.coverage.joinedEvents,
+            sliceOnly: !retainedCounts?.available,
+            partial: retainedCounts?.available
+              ? false
+              : session.privateEvidence.coverage.partial,
             historyComplete: false as const,
             causalEffect: "unknown" as const,
             mastery: "unknown" as const,
@@ -330,7 +410,11 @@ export async function runOntologyAssist(
         choices: choices.map(({ id, label }) => ({ id, label })),
       }),
     ].join("\n");
-    const completion = await ports.complete(prompt, input.signal);
+    const completion = await ports.complete(
+      prompt,
+      input.signal,
+      ontologyPlanJsonSchema,
+    );
     receipts.push(completion.receipt);
     await session.assertCurrent();
     const plan = validateOntologyModelOutput("plan", () =>
@@ -384,6 +468,7 @@ export async function runOntologyAssist(
   const completion = await ports.complete(
     ontologySelectionPrompt(packet, input.maskedQuestion),
     input.signal,
+    ontologyGroundingJsonSchema,
   );
   receipts.push(completion.receipt);
   await session.assertCurrent();
@@ -454,6 +539,11 @@ export async function runOntologyAssist(
   };
   if (session.privateEvidence) {
     const p = session.privateEvidence;
+    answer.details.push(ontologyPrivateSummaryDetails(p));
+    answer.coverage.push({
+      label: "보존 기록 연결",
+      value: `사건 ${p.coverage.joinedEvents}/${p.coverage.retainedEvents} · 요약 ${p.coverage.joinedSummaries}/${p.coverage.retainedSummaries}${p.coverage.partial || p.coverage.summaryPartial ? " · 일부 확인" : ""}`,
+    });
     answer.details.push({
       title: "선택 학생의 보존된 기록",
       text: `단원에 연결한 기록 ${p.coverage.joinedEvents}개. ${p.unknown}`,
