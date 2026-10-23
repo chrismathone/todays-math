@@ -5,6 +5,11 @@ import {
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
 import { canUseExamStudy } from "./examStudyAccess";
+import {
+  ontologyReadRoute,
+  ontologyOperationRoute,
+  ontologyPublisherRoute,
+} from "./math-ontology/access/readPolicy";
 
 const under = (path: string, base: string) =>
   path === base || path.startsWith(`${base}/`);
@@ -12,6 +17,8 @@ const under = (path: string, base: string) =>
 /** Established admin SRS operations also work when workspace menus are disabled. */
 export function srsTeacherManagementRoute(method: string, path: string) {
   return (
+    ontologyReadRoute(method, path) ||
+    ontologyOperationRoute(method, path) ||
     (method === "GET" && path === "/api/math-srs/course") ||
     (["GET", "POST"].includes(method) &&
       /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(path)) ||
@@ -214,6 +221,18 @@ export function accountRouteAllowed(
     return any("studio");
   if (path === "/api/studio/overview") return any("home", "teaching");
   // SRS teacher management: explorer summaries stay read-only; class routes use teaching below.
+  if (
+    path === "/api/math-ontology" ||
+    path.startsWith("/api/math-ontology/") ||
+    /^\/api\/students\/[^/]+\/math-ontology(?:\/|$)/.test(path)
+  )
+    return (
+      (ontologyReadRoute(method, path) ||
+        ontologyOperationRoute(method, path)) &&
+      (ontologyPublisherRoute(path)
+        ? account.isSuperAdmin === true
+        : account.isSuperAdmin === true || any("srs"))
+    );
   if (
     /^\/api\/students\/[^/]+\/math-srs\/insight$/.test(path) ||
     path === "/api/math-srs/course" ||
