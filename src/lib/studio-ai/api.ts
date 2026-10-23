@@ -44,6 +44,8 @@ type InferenceInput = {
   signal: AbortSignal;
   action?: DevAiAction;
   maxOutputTokens?: number;
+  /** Opt-in native structured output; callers still validate semantics and provenance. */
+  jsonSchema?: Readonly<Record<string, unknown>>;
   /** Opt-in bounded selection requests; existing callers preserve retries/log details. */
   singleAttempt?: boolean;
   suppressUpstreamDetails?: boolean;
@@ -243,6 +245,15 @@ export async function runModelApi(input: InferenceInput): Promise<string> {
 
 async function runModelApiOnce(input: InferenceInput): Promise<string> {
   input.signal.throwIfAborted();
+  if (
+    input.jsonSchema &&
+    input.vendor !== "anthropic" &&
+    input.vendor !== "gemini"
+  )
+    throw new StudioApiError(
+      "선택한 제공자의 구조화 응답 경로는 지원하지 않습니다.",
+      400,
+    );
   const key = process.env[API_KEY_NAMES[input.vendor]]?.trim();
   if (!key)
     throw new StudioApiError(
@@ -273,6 +284,16 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
           generationConfig: {
             maxOutputTokens: maxTokens,
             ...geminiSampling(input.model),
+            ...(input.jsonSchema
+              ? {
+                  responseFormat: {
+                    text: {
+                      mimeType: "APPLICATION_JSON",
+                      schema: input.jsonSchema,
+                    },
+                  },
+                }
+              : {}),
           },
         },
         input.signal,
@@ -298,6 +319,9 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
       );
     }
     if (input.vendor === "anthropic") {
+      const effort =
+        input.effort ??
+        (input.model === "claude-opus-5" ? "medium" : undefined);
       const result = await rest(
         "https://api.anthropic.com/v1/messages",
         {
@@ -307,11 +331,22 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         {
           model: input.model,
           max_tokens: maxTokens,
-          ...(input.effort
-            ? { output_config: { effort: input.effort } }
-            : input.model === "claude-opus-5"
-              ? { output_config: { effort: "medium" } }
-              : { temperature: 0 }),
+          ...(effort || input.jsonSchema
+            ? {
+                output_config: {
+                  ...(effort ? { effort } : {}),
+                  ...(input.jsonSchema
+                    ? {
+                        format: {
+                          type: "json_schema",
+                          schema: input.jsonSchema,
+                        },
+                      }
+                    : {}),
+                },
+              }
+            : {}),
+          ...(!effort ? { temperature: 0 } : {}),
           messages: [
             {
               role: "user",
