@@ -3,11 +3,23 @@ import { createRoot } from "react-dom/client";
 import OntologyWorkspace from "@/components/math-ontology/OntologyWorkspace";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer } from "@/components/math-ontology/source";
 import workroom from "@/components/unified/Workroom.module.css";
+import WorkspaceNavigation from "@/components/unified/WorkspaceNavigation";
+import type { WorkspaceIconName } from "@/components/unified/WorkspaceIcon";
 import "@/app/globals.css";
 import "katex/dist/katex.min.css";
 import "./fixture.css";
-const states = ["normal", "empty", "error-retry", "delay", "forbidden", "stale", "lost-result", "relation", "publication"] as const;
+const states = ["normal", "empty", "error-retry", "delay", "forbidden", "stale", "lost-result", "relation", "publication", "reprepare"] as const;
 type Scenario = typeof states[number];
+// The real production navigation component/CSS with the actual eleven visible
+// Math menu labels. Only the selected panel and account are synthetic here.
+const menus = [
+  ["home", "오늘의 작업", "홈", "home"], ["bank", "시험지 만들기", "만들기", "bank"],
+  ["arithmetic", "연산대장", "연산대장", "calculator"], ["studio", "문제 추출", "문제 추출", "crop"],
+  ["library", "내 시험지", "보관함", "folder"], ["textbook", "교재 제작", "교재 제작", "paper"],
+  ["teaching", "수업 · 학생 관리", "수업·학생", "class"], ["concept", "오늘의 개념", "개념", "play"],
+  ["conceptBlank", "개념 백지", "백지", "pen"], ["srs", "오늘의 기억 · SRS", "기억 학습", "clock"],
+  ["ontology", "지식 작업실", "지식", "search"],
+].map(([id, label, short, icon]) => ({ id, label, short, icon: icon as WorkspaceIconName }));
 function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWorkspaceSource {
   let attempts = 0; const committed = new Set<string>();
   async function pause(signal: AbortSignal) {
@@ -23,11 +35,12 @@ function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWor
       if (scenario === "error-retry" && attempts === 1) throw new OntologyWorkspaceError("UNAVAILABLE", "자료를 준비하지 못했습니다. 다시 시도해 주세요.");
       if (scenario === "forbidden") throw new OntologyWorkspaceError("FORBIDDEN", "현재 권한으로 볼 수 없습니다.");
       if (scenario === "empty") return { id: "empty", summary: "확인할 자료가 없습니다.", steps: [], details: [], coverage: [] };
-      const kind = scenario === "relation" ? "relation" : scenario === "publication" ? "publication" : "plan";
-      const answer: WorkspaceAnswer = { id: `answer-${attempts}`, summary: kind === "plan" ? input.student ? "계획 변경을 준비했습니다." : "학생을 연결하면 계획을 준비합니다." : kind === "relation" ? "검토할 연결을 준비했습니다." : "게시할 변경을 준비했습니다.", requiresStudent: kind === "plan" && !input.student,
+      const kind = (scenario === "relation" || scenario === "reprepare") ? "relation" : scenario === "publication" ? "publication" : "plan";
+      const answer: WorkspaceAnswer = { id: `answer-${attempts}`, summary: scenario === "reprepare" ? input.previousReviewId ? "새 근거로 후보를 다시 준비했습니다." : "근거를 더 확인해야 하는 후보입니다." : kind === "plan" ? input.student ? "계획 변경을 준비했습니다." : "학생을 연결하면 계획을 준비합니다." : kind === "relation" ? "검토할 연결을 준비했습니다." : "게시할 변경을 준비했습니다.", requiresStudent: kind === "plan" && !input.student,
         steps: [{ id: "s1", title: "일의 자리에서 받아올린 $1$의 값", note: "실제 원천의 공개 개념명입니다. 아래 기록과 수치는 합성입니다.", state: "observed" }, { id: "s2", title: "분수 $\\frac{1}{2}$와 단원", note: "분수 식은 렌더 검수용 합성 예시입니다.", state: "reviewed" }, { id: "s3", title: "검토할 내용", note: "교사가 확인하기 전의 제안입니다.", state: "candidate" }],
         details: [{ title: "검수 데이터", text: "이 화면의 학생·기록·수치·AI 결과는 모두 합성입니다. 실제 React 컴포넌트를 실행하며 API·모델·DB 호출은 없습니다." }], coverage: [{ label: "원천", value: "합성 예시 3종" }, { label: "미확인", value: "교육적 효과" }],
-        ...(kind !== "plan" || input.student ? { action: { kind, id: "fixture-proposal", sealHash: "fixture-only", label: kind === "plan" ? "이 계획으로 바꾸기" : kind === "relation" ? "이 연결 승인하기" : "검토한 내용 게시하기", changes: [{ label: kind === "plan" ? "하루 목표" : "검토 상태", before: kind === "plan" ? "10문제" : "검토 대기", after: kind === "plan" ? "15문제" : "승인" }], effects: [kind === "plan" ? "시작한 학습은 유지됩니다." : "승인과 게시 이력을 남깁니다."] } } : {}) };
+        ...(scenario === "reprepare" ? { reprepare: { previousReviewId: "00000000-0000-4000-8000-000000000011", expectedPreviousRevision: attempts, query: input.query } } : {}),
+        ...(scenario !== "reprepare" && (kind !== "plan" || input.student) ? { action: { kind, id: "fixture-proposal", sealHash: "fixture-only", label: kind === "plan" ? "이 계획으로 바꾸기" : kind === "relation" ? "이 연결 승인하기" : "검토한 내용 게시하기", changes: [{ label: kind === "plan" ? "하루 목표" : "검토 상태", before: kind === "plan" ? "10문제" : "검토 대기", after: kind === "plan" ? "15문제" : "승인" }], effects: [kind === "plan" ? "시작한 학습은 유지됩니다." : "승인과 게시 이력을 남깁니다."] } } : {}) };
       return answer;
     },
     async confirm(action, signal) {
@@ -47,7 +60,14 @@ function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWor
 function App() {
   const initial = new URLSearchParams(location.search).get("case") as Scenario;
   const [scenario, setScenario] = useState<Scenario>(states.includes(initial) ? initial : "normal"), [generation, setGeneration] = useState(0), [counts, setCounts] = useState<Record<string, number>>({});
+  const [view, setView] = useState("ontology");
   const port = useMemo(() => fixture((generation >= 0 ? scenario : scenario), kind => setCounts(value => ({ ...value, [kind]: (value[kind] ?? 0) + 1 }))), [scenario, generation]);
-  return <><details className="fixture-tools"><summary>격리 검수 도구 · 합성 데이터 · API/모델/DB 호출 0</summary><label>상태 <select value={scenario} onChange={event => { setScenario(event.target.value as Scenario); setCounts({}); }}>{states.map(state => <option key={state}>{state}</option>)}</select></label><button onClick={() => { setGeneration(value => value + 1); setCounts({}); }}>처음부터</button><output aria-label="fixture calls">{JSON.stringify(counts)}</output></details><div className={workroom.workspace}><div className="fixture-shell"><aside className="fixture-navigation"><strong>오늘의 수학</strong><nav aria-label="작업실"><span>학생</span><span>오늘의 기억 · SRS</span><strong aria-current="page">지식 작업실</strong></nav></aside><main className="fixture-content"><OntologyWorkspace source={port} scopeKey={`${scenario}:${generation}`} canPublish /></main></div></div></>;
+  return <><details className="fixture-tools"><summary>격리 검수 도구 · 합성 데이터 · API/모델/DB 호출 0</summary><label>상태 <select value={scenario} onChange={event => { setScenario(event.target.value as Scenario); setCounts({}); }}>{states.map(state => <option key={state}>{state}</option>)}</select></label><button onClick={() => { setGeneration(value => value + 1); setCounts({}); }}>처음부터</button><output aria-label="fixture calls">{JSON.stringify(counts)}</output></details>
+    <div className={workroom.workspace} data-product="math" data-authenticated="true" data-menu-count={menus.length}>
+      <aside className={workroom.sidebar}><button className={workroom.brand} onClick={() => setView("home")}><span>오늘의 수학</span></button><WorkspaceNavigation items={menus} view={view} ownStart="textbook" onNavigate={setView} /></aside>
+      <main className={workroom.main}><header className={workroom.topbar}><div className={workroom.breadcrumb}><strong>{menus.find(menu => menu.id === view)?.label}</strong></div><span>합성 교사 · 격리 검수</span></header>
+        <div className={workroom.viewContent}>{view === "ontology" ? <OntologyWorkspace source={port} scopeKey={`${scenario}:${generation}`} canPublish /> : <div className="fixture-panel"><h1>{menus.find(menu => menu.id === view)?.label}</h1><p>탐색 접근 검수용 합성 패널입니다. 실제 자료를 조회하지 않습니다.</p><button onClick={() => setView("ontology")}>지식 작업실로 돌아가기</button></div>}</div>
+      </main>
+    </div></>;
 }
 createRoot(document.getElementById("root")!).render(<App />);

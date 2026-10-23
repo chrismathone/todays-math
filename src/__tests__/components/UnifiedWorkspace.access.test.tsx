@@ -479,6 +479,13 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it("inherits SRS permission for the knowledge workroom without adding a stored menu permission", () => {
+    const { unmount } = render(<UnifiedWorkspace initialData={initialData} allowedMenus={["srs"]} />);
+    expect(nav().getByRole("button", { name: "지식 작업실" })).toBeVisible();
+    unmount();
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={["concept"]} />);
+    expect(nav().queryByRole("button", { name: "지식 작업실" })).toBeNull();
+  });
   it.each(["bank", "studio"] as const)(
     "%s may restore its worksheet without library or export",
     async (source) => {
@@ -1126,6 +1133,7 @@ describe("per-account workspace menu access", () => {
       "오늘의 개념",
       "개념 백지",
       "오늘의 기억 · SRS",
+      "지식 작업실",
     ]);
     fireEvent.click(nav().getByRole("button", { name: "개념 백지" }));
     expect(
@@ -1647,7 +1655,7 @@ describe("per-account workspace menu access", () => {
 describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
   const ALL = WORKSPACE_MENUS.map((menu) => menu.id);
   const MATH_ONLY = ALL.filter((menu) => workspaceMenuProduct(menu) === "math");
-  const MATH_SIDEBAR = MATH_ONLY.filter((menu) => menu !== "export");
+  const MATH_SIDEBAR = [...MATH_ONLY.filter((menu) => menu !== "export"), "ontology"];
   const brand = () => screen.getByRole("button", { name: /제품 고르기/ });
   const ENGLISH_NAV = [
     "오늘의 작업",
@@ -1723,6 +1731,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       "오늘의 개념",
       "개념 백지",
       "오늘의 기억 · SRS",
+      "지식 작업실",
     ]);
     // 수학: 금은 «교재 제작» 위 — 영어에 짝이 없는 메뉴는 전부 아래 묶음이다
     expect(groupStarts()).toEqual(["교재 제작"]);

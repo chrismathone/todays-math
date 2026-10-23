@@ -1329,7 +1329,12 @@
     inset: auto 0 0;
     z-index: 50;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(76px, 1fr);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
     gap: 0;
     padding: 5px 4px calc(7px + env(safe-area-inset-bottom));
     background: #fff;
@@ -1355,7 +1360,8 @@
     justify-content: center;
     gap: 5px;
     min-height: var(--control-height, 44px);
-    padding: 7px 0 5px;
+    min-width: 44px;
+    padding: 7px 8px 5px;
     border-radius: var(--control-radius, 8px);
     color: var(--muted);
   }

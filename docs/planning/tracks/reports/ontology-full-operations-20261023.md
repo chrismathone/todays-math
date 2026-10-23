@@ -29,6 +29,8 @@ graphVersion은 서버가 확인하는 opaque identity다. `sourceSnapshotHash`,
 
 ## 실제 검증과 반례
 
+root의 실제 Next 390px 검수에서 하단 11개 메뉴가 각 33px로 줄어 글자가 겹친 결함을 인수했다(`msg_ce4db8851bcd`). 모바일에만 최소 76px implicit grid column과 메뉴 내부 가로 scroll을 적용했고 조작은 최소 44px를 유지한다. 실제 `WorkspaceNavigation` presentation을 얇게 분리해 UnifiedWorkspace와 fixture가 같은 DOM/CSS를 사용한다. 현재 메뉴가 가려진 경우 가로 메뉴만 이동하고 본문은 스크롤하지 않는다. 기존 prefetch·계정별 권한·제품 전환은 유지한다. 실제 셸의 권한/로딩/카트 및 nav 회귀 4파일 89시험이 `mobile-navigation-shell-GREEN.txt`에서 통과했다. 기존 4실패는 이미 추가한 ontology의 SRS 권한 상속을 이전 기대 목록에 반영하지 않은 것이었고, 새 상속 positive/negative를 추가했다. jsdom은 조작/이동을 검증하며 최종 390/768/1440 기하 검수는 root의 실제 브라우저 증거로 인수한다. fixture 서버를 이 worker가 실행하지 않았다.
+
 외부 evidence root는 `/Users/pss/Desktop/creative/display-survey/consensus/ontology-full-20261023/operations/`이다. 학생 자료·정답·문항 본문을 모델로 전송하지 않았다. 이 보고에는 비밀 헤더·인증 값이 없다.
 
 - `checkpoint-b1-b2-b3-final.txt`: 격리 PostgreSQL + Request + 실제 NextAuth + 실제 React + source server clock 묶음 14파일 **70시험 PASS**. 별도 `publisher-actual-http-first.txt`는 합성 inline 입력을 실제 durable publisher → Node HMAC → 실제 Python OWL/SHACL → 제어된 65초 지연 → 활성화 1시험 PASS(67.05초). 각 PID/port/lease/종료 영수증은 `postgres-run-*.json`, `publisher-python-http-*.json`이다.
@@ -80,6 +82,8 @@ Reader 먼저 순서는: writer off에서 새 schema-aware 서버/Prisma reader 
 같은 GREEN 묶음의 확장 native-flow는 실제 원천에서 이미 증명된 구조 연결을 authored 후보로 재검토한다. 새 교육적·선수 관계를 만들지 않는다. 실제 SHACL → 사람 source/meaning 승인 → 실제 전원천 delta compiler → 새 활성 판 → scoped 근거/action/history/feedback까지 성공했다. 묶음 82.73초 중 시험 78.69초이며 zero-delta base 게시의 짧은 실행과 혼동하지 않는다. 실제 모델은 호출하지 않았다. genuinely unknown인 새 의미는 자동으로 indirect로 올리지 않는다. 실제 고정 triple witness 또는 새 검토 근거에 묶인 새 후보를 준비하는 생산자·전임 후보 이력 연결을 formal worker/root와 이어서 검수한다.
 
 재준비의 server-only ABI는 `relations.draftModelRevision(actor, { previousReviewId, expectedPreviousRevision, assertion, evidenceRef, modelRunId })`다. 새 provider/evidence 봉인에 묶인 새 후보를 만들고 같은 tx에 immutable `relation.reprepared` 전임 ID/검토 판 이력을 쓴다. 이전 후보 bytes/결정은 바꾸지 않는다. stale 전임, 다른 전임으로 바꾼 replay를 거절하며 동일 새 run은 같은 후보를 돌려준다. `model-revision-RED.txt` → `model-revision-GREEN-final.txt` 실제 PG 6시험은 마지막 전임 audit insert 직후 failpoint에서 새 draft/이력 전체 rollback과 원래 후보 보존까지 확인한다. 이 묶음의 provider·witness는 명시적 합성 fixture이며 실제 모델 생산 증거는 formal/root 소유다. 전체 TypeScript·해당 ESLint·diff는 진단 0이다.
+
+재준비 UI는 같은 짧은 요청 칸과 `새 근거로 다시 준비` 버튼을 사용한다. 편집한 요청을 우선하고, 이력에서 요청 칸이 비었으면 봉인된 후보의 짧은 재준비 요청을 사용한다. `WorkspaceAnswer.reprepare`의 전임 ID/검토 판을 기존 assist body로 전달하고 새 답을 준비한다. 버튼은 모델에게 새 후보 준비를 요청하며 관계 승인이나 학생 쓰기를 실행하지 않는다. 준비 중 중복, 이전 결과 복귀, HTTP 왕복의 전임 metadata 보존은 `reprepare-ui-RED.txt` → `reprepare-ui-GREEN-final.txt` 2파일 11시험에서 확인했다. query에는 support/hash 편집 UI가 없다. fixture `?case=reprepare`도 추가했으며 실제 모델 생산/브라우저는 root와 formal의 별도 증거로 확인한다.
 
 최초 근거 snapshot은 RepeatableRead로 읽어 여러 원천 행의 일관성을 보존한다. 기존 승인/실행의 동시 idempotency 경로를 RepeatableRead로 바꾸지는 않았다.
 
