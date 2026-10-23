@@ -9,7 +9,6 @@ const ontologyTraceAssets = [
   "./ontology/shapes/**/*",
   "./ontology/rules/**/*",
   "./ontology/source-manifests/public-v1/52597f5f6437aff2418d3189399e1aac261149bea17994a352d62fbfebaee554/**/*",
-  "./requirements.txt",
   "./scripts/ontology/compiler/requirements.lock",
   "./scripts/ontology/compiler/compiler.py",
   "./scripts/ontology/compiler/packaged.py",
@@ -24,6 +23,17 @@ const ontologyTraceExcludes = [
   "./src/__tests__/**/*",
   "./public/figures/**/*",
   "./public/figures-svg/**/*",
+  // The generated client is PostgreSQL with engineType=library. Preserve its
+  // native engines and every PostgreSQL payload; these other-provider WASM
+  // payloads cannot service this datasource and add ~44 MB to each trace.
+  ...["cockroachdb", "mysql", "sqlserver", "sqlite"].flatMap((provider) =>
+    ["query_engine", "query_compiler"].flatMap((kind) =>
+      ["js", "mjs"].map(
+        (extension) =>
+          `./node_modules/@prisma/client/runtime/${kind}_bg.${provider}.wasm-base64.${extension}`,
+      ),
+    ),
+  ),
 ];
 const nextConfig: NextConfig = {
   // Type errors must fail every production build, including Vercel builds.
