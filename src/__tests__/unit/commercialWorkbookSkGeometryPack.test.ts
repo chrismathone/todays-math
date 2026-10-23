@@ -36,11 +36,11 @@ describe("Sookyung Suryeok Geometry public PDF complete answer scope", () => {
     expect(at("82~89", 76).address.section).toBe("Ⅱ-4 직선의 방정식과 원의 방정식");
   });
   it("leaves every diagram-dependent main answer null with exactly one exclusion", () => {
-    const missing = [["10~31", "01"], ["10~31", "05"], ["10~31", "09"], ["52~63", "02"], ["52~63", "11"], ["52~63", "15"], ["52~63", "20"], ["52~63", "21"], ["74~79", "67"], ["116~125", "53"]];
+    const missing = [["10~31", "01"], ["10~31", "05"], ["10~31", "09"], ["52~63", "02"], ["52~63", "11"], ["52~63", "15"], ["52~63", "20"], ["52~63", "21"], ["74~79", "67"], ["116~125", "53"], ["116~125", "57"], ["116~125", "79"]];
     expect(coverage.nullKeyLedger.map(row => [row.address.page, row.address.number])).toEqual(missing);
     expect(parsed.exercises.filter(row => !row.key).map(row => row.address)).toEqual(coverage.nullKeyLedger.map(row => row.address));
-    expect(coverage.nullKeyLedger.every(row => row.registered && row.reason === "diagram" && row.key === null && row.note.length > 20)).toBe(true);
-    expect(coverage.counts).toMatchObject({ exercises: 406, reviewedKeys: 396, nullKeys: 10, unreviewedKeys: 0, omittedInScopeAddresses: 0 });
+    expect(coverage.nullKeyLedger.every(row => row.registered && ["diagram", "source-anomaly"].includes(row.reason) && row.key === null && row.note.length > 20)).toBe(true);
+    expect(coverage.counts).toMatchObject({ exercises: 406, reviewedKeys: 394, nullKeys: 12, unreviewedKeys: 0, omittedInScopeAddresses: 0 });
   });
   it("preserves numeric, radical, unit, vector and split-page references read from all six pages", () => {
     const fixtures = [
@@ -57,7 +57,7 @@ describe("Sookyung Suryeok Geometry public PDF complete answer scope", () => {
     ] as const;
     for (const [page, number, answer] of fixtures) expect(at(page, number).key?.answerText).toBe(answer);
     expect(at("34~45", 90).key?.sourcePage).toBe(3); // Starts on PDF 3, continues on PDF 4.
-    expect(at("116~125", 79).key?.answerText).toContain("3) ((x₁+x₂+x₃)/2, (y₁+y₂+y₃)/2, (z₁+z₂+z₃)/2)"); // Printed anomaly, not silently corrected.
+    expect(at("116~125", 79).key).toBeNull(); // Source anomaly withheld pending correction.
     for (const row of parsed.exercises) if (row.key) {
       expect(row.key.status).toBe("reviewed");
       expect(row.key.answerText).not.toMatch(/[\u0000-\u001F\uFFFD]|해설 참조|빠\/|\[Ⅰ/);
@@ -73,7 +73,7 @@ describe("Sookyung Suryeok Geometry public PDF complete answer scope", () => {
     for (const [page, values] of choices) expect(Array.from({ length: 12 }, (_, i) => at(page, i + 1).key?.answerText)).toEqual(values.split("|"));
     const byPage: Record<string, number> = {};
     for (const row of parsed.exercises) if (row.key) byPage[String(row.key.sourcePage)] = (byPage[String(row.key.sourcePage)] ?? 0) + 1;
-    expect(byPage).toEqual({ "2": 41, "3": 58, "4": 73, "5": 78, "6": 91, "7": 55 });
+    expect(byPage).toEqual({ "2": 41, "3": 58, "4": 73, "5": 78, "6": 91, "7": 53 });
     expect(byPage).toEqual(coverage.counts.byReviewedKeySourcePage);
   });
   it("pins official provenance without deriving an edition from a filename", () => {

@@ -1,7 +1,7 @@
 {
   "id": "sk-suryeok-geometry-public-v1",
   "label": "수경출판사 수력충전 기하 · 공개 PDF 판본 미확인 · 전 단원",
-  "coverage": "공식 공개 PDF 전 단원 답안 범위 406문항 주소 · 정답 참조 396개 · 도형 정답 미수록 10개",
+  "coverage": "공식 공개 PDF 전 단원 답안 범위 406문항 주소 · 정답 참조 394개 · 도형·원문 이상 정답 미수록 12개",
   "metadata": {
     "title": "수력충전 기하",
     "publisher": "수경출판사",
@@ -10,7 +10,7 @@
   },
   "provenance": {
     "kind": "publisher",
-    "description": "출판사 공개 정답 및 해설 64쪽 중 빠른 정답 PDF 2~7쪽 전체를 시각 대조했다. 문제편의 18개 인쇄 쪽 범위와 406개 주 문항 번호를 보존했으며 396개 정답 참조를 수록했다. 해설 참조로 표기된 작도·그래프 10개는 전체 문항 key:null이다. 소문항은 답 안에 원래 순서대로 묶었다. sourcePage는 1부터 세는 PDF 쪽이다. /는 분수, sqrt는 제곱근, vec(A)는 화살표가 있는 벡터 A, 선분 AB는 윗줄 AB를 뜻한다. 교사의 수동 채점용 참조이며 자동 채점을 제공하지 않는다. 발행연도·교육과정·쇄·ISBN을 확인하지 못했으며 파일명/제작일에서 추정하지 않는다. 현재 자이스토리 전체 해설로 표시하지 않는다. 원문 PDF SHA-256: 33c22526f99668787c45721c4eb4a8f1563778e118f77105a9ee6d077bf7dd56.",
+    "description": "출판사 공개 정답 및 해설 64쪽 중 빠른 정답 PDF 2~7쪽 전체를 시각 대조했다. 문제편의 18개 인쇄 쪽 범위와 406개 주 문항 번호를 보존했으며 394개 정답 참조를 수록했다. 해설 참조로 표기된 작도·그래프 10개와 원문 표기 이상 2개는 전체 문항 key:null이다. 소문항은 답 안에 원래 순서대로 묶었다. sourcePage는 1부터 세는 PDF 쪽이다. /는 분수, sqrt는 제곱근, vec(A)는 화살표가 있는 벡터 A, 선분 AB는 윗줄 AB를 뜻한다. 교사의 수동 채점용 참조이며 자동 채점을 제공하지 않는다. 발행연도·교육과정·쇄·ISBN을 확인하지 못했으며 파일명/제작일에서 추정하지 않는다. 현재 자이스토리 전체 해설로 표시하지 않는다. 원문 PDF SHA-256: 33c22526f99668787c45721c4eb4a8f1563778e118f77105a9ee6d077bf7dd56.",
     "reference": "https://www.book-sk.co.kr/study/answer.asp\nhttps://www.book-sk.co.kr/upload/appendFile/202105111448370005K9.pdf"
   },
   "exercises": [
@@ -4896,11 +4896,7 @@
         "number": "57",
         "subpart": ""
       },
-      "key": {
-        "answerText": "1) (a, 0, 0), (0, b, 0), (0, 0, c); 2) (a, b, 0), (0, b, c), (a 0, c)",
-        "status": "reviewed",
-        "sourcePage": 7
-      }
+      "key": null
     },
     {
       "address": {
@@ -5204,11 +5200,7 @@
         "number": "79",
         "subpart": ""
       },
-      "key": {
-        "answerText": "1) ① ((mx₂+nx₁)/(m+n), (my₂+ny₁)/(m+n), (mz₂+nz₁)/(m+n)) ② ((mx₂-nx₁)/(m-n), (my₂-ny₁)/(m-n), (mz₂-nz₁)/(m-n)); 2) ((x₁+x₂)/2, (y₁+y₂)/2, (z₁+z₂)/2); 3) ((x₁+x₂+x₃)/2, (y₁+y₂+y₃)/2, (z₁+z₂+z₃)/2)",
-        "status": "reviewed",
-        "sourcePage": 7
-      }
+      "key": null
     },
     {
       "address": {

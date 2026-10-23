@@ -96,8 +96,8 @@
   },
   "counts": {
     "exercises": 406,
-    "reviewedKeys": 396,
-    "nullKeys": 10,
+    "reviewedKeys": 394,
+    "nullKeys": 12,
     "unreviewedKeys": 0,
     "omittedInScopeAddresses": 0,
     "pageGroups": 18,
@@ -107,7 +107,7 @@
       "4": 73,
       "5": 78,
       "6": 91,
-      "7": 55
+      "7": 53
     }
   },
   "pageGroups": [
@@ -396,6 +396,34 @@
       "key": null,
       "reason": "diagram",
       "note": "빠른 정답의 해설 참조에 해당하는 작도·그래프가 필요하여 주 문항 전체의 정답 참조를 비워 둠. 소문항 일부만으로 정답을 대신하지 않음."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "57",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "registered": true,
+      "key": null,
+      "reason": "source-anomaly",
+      "note": "Printed coordinate delimiter missing (57) or coordinate-sum denominator 2 (79); source correction and problem-context review required."
+    },
+    {
+      "address": {
+        "volume": "문제편",
+        "section": "Ⅲ-3 공간좌표",
+        "page": "116~125",
+        "number": "79",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "registered": true,
+      "key": null,
+      "reason": "source-anomaly",
+      "note": "Printed coordinate delimiter missing (57) or coordinate-sum denominator 2 (79); source correction and problem-context review required."
     }
   ],
   "sourceAnomalies": [
