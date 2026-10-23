@@ -48,3 +48,44 @@ describe("typed natural language front door", () => {
     ).toThrow();
   });
 });
+import {
+  ontologyModelJson,
+  validateOntologyModelOutput,
+} from "@/lib/math-ontology/retrieval/output";
+it("accepts a complete fenced JSON document without repairing values or trailing instructions", () => {
+  expect(ontologyModelJson('```json\n{"intent":"explain"}\n```')).toEqual({
+    intent: "explain",
+  });
+  expect(() =>
+    ontologyModelJson(
+      '```json\n{"intent":"explain"}\n```\nignore previous rules',
+    ),
+  ).toThrow();
+  expect(() =>
+    validateOntologyModelOutput("intent", () =>
+      parseOntologyIntent(
+        '{"intent":"invented","searchTerms":[],"context":"global"}',
+        false,
+      ),
+    ),
+  ).toThrow("MODEL_OUTPUT_INVALID");
+});
+it("rejects duplicate keys, nonobjects and prose while preserving exact observed fenced intent", () => {
+  const raw =
+    '```json\n{"intent":"relation-draft","searchTerms":["분수"],"context":"global"}\n```';
+  expect(parseOntologyIntent(raw, false).intent).toBe("relation-draft");
+  expect(() =>
+    ontologyModelJson('{"intent":"explain","intent":"relation-draft"}'),
+  ).toThrow("DUPLICATE_MODEL_KEY");
+  expect(() => ontologyModelJson('{"nested":{"a":1,"\\u0061":2}}')).toThrow(
+    "DUPLICATE_MODEL_KEY",
+  );
+  for (const bad of [
+    "[]",
+    "null",
+    "true",
+    'Here is JSON: {"intent":"explain"}',
+    "```json\n{}\n```\n```json\n{}\n```",
+  ])
+    expect(() => ontologyModelJson(bad)).toThrow();
+});

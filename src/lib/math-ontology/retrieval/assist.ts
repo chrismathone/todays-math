@@ -1,3 +1,4 @@
+import { ontologyModelJson, validateOntologyModelOutput } from "./output";
 import { z } from "zod";
 import { Store } from "n3";
 import type { ModelApiReceipt } from "@/lib/studio-ai/api";
@@ -86,9 +87,8 @@ export async function runOntologyAssist(
     input.signal,
   );
   await ports.assertAuthorized();
-  const intent = parseOntologyIntent(
-    intentCompletion.raw,
-    input.hasSelectedStudent,
+  const intent = validateOntologyModelOutput("intent", () =>
+    parseOntologyIntent(intentCompletion.raw, input.hasSelectedStudent),
   );
   const receipts: Readonly<ModelApiReceipt>[] = [intentCompletion.receipt];
   if (intent.requiresStudent)
@@ -150,7 +150,23 @@ export async function runOntologyAssist(
     };
     return { answer, receipts, intent, observation };
   }
+  const retrieval = {
+    catalogTruncated: false,
+    neighborsTruncated: false,
+    frontierCapped: false,
+    hopLimit: 3,
+    visitedEntities: 0,
+  };
   const catalog: Record<string, string>[] = [];
+  for (const q of intent.searchTerms) {
+    const page = await queryOntology(
+      runtime,
+      { kind: "catalog", q, limit: 6 },
+      context,
+    );
+    retrieval.catalogTruncated ||= page.truncated;
+    catalog.push(...page.rows);
+  }
   for (const q of intent.searchTerms)
     for (const namespace of intent.intent === "plan-draft"
       ? ["course-section" as const]
@@ -160,6 +176,7 @@ export async function runOntologyAssist(
         { kind: "catalog", q, namespace, limit: 6 },
         context,
       );
+      retrieval.catalogTruncated ||= page.truncated;
       catalog.push(...page.rows);
     }
   const preferred =
@@ -193,7 +210,23 @@ export async function runOntologyAssist(
   >();
   const selectedProofs = new Set<string>(),
     visited = new Set<string>();
-  let frontier = seeds.map((r) => r.entity);
+  const incoming: string[] = [];
+  for (const seed of seeds) {
+    const subjects = runtime.assessmentSubjects
+      ? runtime.assessmentSubjects(seed.entity, context)
+      : runtime
+          .proofs()
+          .filter(
+            (p) =>
+              p.conclusion[1] === "urn:todaymath:vocab:assessesDefinition" &&
+              p.conclusion[2] === seed.entity &&
+              context.allowedScopes.includes(p.scope),
+          )
+          .map((p) => p.conclusion[0]);
+    incoming.push(...subjects);
+  }
+  let frontier = [...new Set([...incoming, ...seeds.map((r) => r.entity)])];
+  retrieval.frontierCapped = frontier.length > 8;
   for (let hop = 0; hop < 3 && frontier.length; hop++) {
     const next: string[] = [];
     for (const entityId of frontier.slice(0, 8)) {
@@ -204,6 +237,7 @@ export async function runOntologyAssist(
         ? await runtime.materialize(query, context)
         : runtime;
       const answer = await queryOntology(slice, query, context);
+      retrieval.neighborsTruncated ||= answer.truncated;
       const datasets = slice.datasets();
       registry.addQuads(datasets.registry.getQuads(null, null, null, null));
       asserted.addQuads(datasets.asserted.getQuads(null, null, null, null));
@@ -214,8 +248,10 @@ export async function runOntologyAssist(
         if (!visited.has(row.o)) next.push(row.o);
       }
     }
+    retrieval.frontierCapped ||= new Set(next).size > 8;
     frontier = [...new Set(next)].slice(0, 8);
   }
+  retrieval.visitedEntities = visited.size;
   const view: MathOntologyRuntime = {
     identity: runtime.identity,
     coverage: runtime.coverage,
@@ -241,6 +277,7 @@ export async function runOntologyAssist(
     [];
   const body = {
     ...prepared.packet,
+    retrieval,
     definitions: nativeDefinitions
       .filter((d) => aliases.has(d.entity))
       .map((d) => ({
@@ -296,16 +333,18 @@ export async function runOntologyAssist(
     const completion = await ports.complete(prompt, input.signal);
     receipts.push(completion.receipt);
     await session.assertCurrent();
-    const plan = z
-      .strictObject({
-        intent: z.enum(["plan-draft", "insufficient"]),
-        section: z.string().nullable(),
-        dailyQuestionCount: z
-          .union([z.literal(5), z.literal(10), z.literal(15), z.literal(20)])
-          .nullable(),
-        enabled: z.boolean().nullable(),
-      })
-      .parse(JSON.parse(completion.raw));
+    const plan = validateOntologyModelOutput("plan", () =>
+      z
+        .strictObject({
+          intent: z.enum(["plan-draft", "insufficient"]),
+          section: z.string().nullable(),
+          dailyQuestionCount: z
+            .union([z.literal(5), z.literal(10), z.literal(15), z.literal(20)])
+            .nullable(),
+          enabled: z.boolean().nullable(),
+        })
+        .parse(ontologyModelJson(completion.raw)),
+    );
     const choice = choices.find((c) => c.id === plan.section);
     if (
       plan.intent === "insufficient" ||
@@ -348,7 +387,9 @@ export async function runOntologyAssist(
   );
   receipts.push(completion.receipt);
   await session.assertCurrent();
-  const selection = composeOntologySelection(completion.raw, packet);
+  const selection = validateOntologyModelOutput("grounding", () =>
+    composeOntologySelection(completion.raw, packet),
+  );
   if (selection.intent === "insufficient")
     return {
       answer: unknown(selection.limitation),
@@ -401,6 +442,10 @@ export async function runOntologyAssist(
       { title: "해석 범위", text: selection.limitation },
     ],
     coverage: [
+      {
+        label: "탐색 범위",
+        value: `최대 3홉 · ${retrieval.catalogTruncated || retrieval.neighborsTruncated || retrieval.frontierCapped ? "검색/연결 일부만 확인" : "현재 요청의 제한된 근거 범위"}`,
+      },
       {
         label: "질문 근거",
         value: `${selection.facts.length}개 연결 · 전체 교육적 관계 검수는 미완료`,

@@ -39,8 +39,26 @@ export function loadPackagedOntologyRuntime(artifact:MathOntologyArtifact):MathO
    indexed={index,byEntity:new Map(index.entries.map(e=>[e.entity,e])),byStable:new Map(index.entries.map(e=>[e.stableIri,e.entity]))};
   }return indexed;
  }
+ // Source-only reverse lookup seeds forward queries; it is not an inverse OWL
+ // assertion or a citation. Actual proof/SHACL validation still happens per seed.
+ let assessmentIndex:ReadonlyMap<string,readonly string[]>|null=null;
+ function assessmentSubjects(definition:string,context:OntologyQueryContext):readonly string[]{
+  if(!context.allowedScopes.includes('global'))throw new Error('SCOPE_DENIED');
+  const {byEntity,byStable}=getIndex(),target=byStable.get(definition)??definition;
+  if(!byEntity.has(target))throw new Error('ONTOLOGY_ENTITY_UNRESOLVED');
+  if(!assessmentIndex){
+   const signature=z.strictObject({format:z.literal('tm-global-signature-1'),projectionHash:z.string(),premises:z.array(z.tuple([z.string(),z.string(),z.string(),z.string()]))}).parse(JSON.parse(readPackagedOntologyArtifact(base,base.signature).toString('utf8')));
+   if(signature.projectionHash!==base.projectionHash)throw new Error('PACKAGED_SIGNATURE_BINDING');
+   const index=new Map<string,string[]>();
+   for(const [s,p,o] of signature.premises)if(p===TM+'assessesDefinition'){const values=index.get(o)??[];values.push(s);index.set(o,values);}
+   assessmentIndex=new Map([...index].map(([id,values])=>[id,Object.freeze([...new Set(values)].sort())]));
+  }
+  const values=assessmentIndex.get(target)??[];
+  if(values.length>8)throw new Error('MATERIALIZATION_ASSESSMENT_SEED_BUDGET');
+  return Object.freeze([...values]);
+ }
  const refuse=():never=>{throw new Error('PACKAGED_RUNTIME_REQUIRES_BOUNDED_MATERIALIZATION');};
- const runtime:MathOntologyRuntime={identity:artifact.identity,coverage,validation:sealedValidation,shapes,datasets:refuse,proofs:refuse,resolveEntity:(iri)=>getIndex().byStable.get(iri)??iri,
+ const runtime:MathOntologyRuntime={identity:artifact.identity,coverage,validation:sealedValidation,shapes,datasets:refuse,proofs:refuse,assessmentSubjects,resolveEntity:(iri)=>getIndex().byStable.get(iri)??iri,
  async materialize(query:MathOntologyQuery,context:OntologyQueryContext):Promise<MathOntologyRuntime>{
   if(!context.allowedScopes.includes('global'))throw new Error('SCOPE_DENIED');
   const {index,byEntity,byStable}=getIndex();

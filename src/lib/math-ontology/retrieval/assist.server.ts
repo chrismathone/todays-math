@@ -1,3 +1,4 @@
+import { OntologyModelOutputError } from "./output";
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
@@ -297,8 +298,43 @@ export async function handleOntologyAssist(request: Request) {
                 evidenceRef: session.runtime.identity.graphVersion,
                 modelRunId: sealed.modelRunId,
               }));
+          const validated = supported.witness
+            ? await ops.relations.validate(actor, draft.reviewId)
+            : null;
+          await session.assertCurrent();
+          const labels = slice.datasets().registry;
+          const display = (id: string) =>
+            labels.getObjects(
+              nn(id),
+              nn("http://www.w3.org/2000/01/rdf-schema#label"),
+              null,
+            )[0]?.value ?? "표기 미확인";
           return {
             id: draft.reviewId,
+            reprepare: {
+              previousReviewId: draft.reviewId,
+              expectedPreviousRevision: validated?.revision ?? draft.revision,
+              query: body.query,
+            },
+            ...(validated?.report.conforms && !validated.report.incomplete
+              ? {
+                  action: {
+                    kind: "relation" as const,
+                    id: draft.reviewId,
+                    revision: validated.revision,
+                    validationHash: validated.validationHash,
+                    label: "이 연결 승인하기",
+                    changes: [
+                      {
+                        label: display(subject) + " → " + display(object),
+                        before: "검토 전 후보",
+                        after: "사람이 검토한 연결",
+                      },
+                    ],
+                    effects: ["현재 지식 판 반영은 별도 게시에서 검증합니다."],
+                  },
+                }
+              : {}),
             summary: "검토할 연결 후보를 기록했습니다.",
             steps: [
               {
@@ -326,6 +362,10 @@ export async function handleOntologyAssist(request: Request) {
     );
     return ontologyResponse(200, { data: result.answer });
   } catch (error) {
+    if (error instanceof OntologyModelOutputError)
+      return ontologyResponse(503, {
+        error: { code: "MODEL_OUTPUT_INVALID", stage: error.stage },
+      });
     if (
       error instanceof z.ZodError ||
       error instanceof SyntaxError ||
