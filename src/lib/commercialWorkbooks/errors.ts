@@ -1,8 +1,16 @@
-import { WORKBOOK_ERROR_STATUS, type WorkbookErrorCode } from "@/contracts/commercialWorkbook.contract";
+import {
+  WORKBOOK_ERROR_STATUS,
+  type WorkbookErrorCode,
+} from "@/contracts/commercialWorkbook.contract";
 export class CommercialWorkbookError extends Error {
   readonly status: number;
-  constructor(readonly code: WorkbookErrorCode, message: string, readonly details?: unknown) {
-    super(message); this.name = "CommercialWorkbookError";
+  constructor(
+    readonly code: WorkbookErrorCode,
+    message: string,
+    readonly details?: unknown,
+  ) {
+    super(message);
+    this.name = "CommercialWorkbookError";
     this.status = WORKBOOK_ERROR_STATUS[code];
   }
 }
