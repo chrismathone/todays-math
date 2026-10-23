@@ -78,6 +78,10 @@ root의 후속 지시 `msg_029dce9da20a`에 따라 같은 유형의 deadline 경
 
 root의 실제 데스크톱 검수 `msg_e34a4ec2cf33`에서 자료 제작용 CLI 연결 판이 지식 작업실의 서버 AI 경로를 설명하는 것처럼 보인 문제를 인수했다. ontology view에서만 별개 DevAiStatusPanel을 숨기며 다른 수학/영어 메뉴·provider/settings·학생/인쇄 경로는 유지한다. `studio-panel-scope-RED.txt` → `studio-panel-scope-GREEN.txt` 실제 셸 4파일 **92시험 PASS**는 ontology에서 숨고 다른 수학 메뉴에서 다시 보이는 것을 확인한다. 추가 기술 안내나 키 설정 UI는 만들지 않았다. 이 묶음과 앞선 107/14시험을 합산하지 않는다.
 
+root의 실제 production-mode 질의 반례 `msg_08bc38759772`에 따라 `retrieval/assist.ts`의 seed/frontier/proof 배분 부분만 추가 소유했다. 10b를 clean fast-forward한 뒤 기존 전원천 artifact·동일 정확 구절/의도·합성 model port에서 요청 정의가 packet에 없는 `retrieval-grounding-RED.txt`를 재현했다. 긴 일치 구절의 relevance를 namespace/identity 정렬보다 먼저 적용하고, 서로 다른 stable identity를 이름으로 합치지 않는다. 순위가 높은 seed와 incoming 문항을 교차 배분하며, 실제 closed query를 통과한 문항→정의 bridge를 먼저 보존한 뒤 노드별로 proof를 공평하게 배분한다. 다음 frontier도 이미 방문한 개체를 제외하고 생산 노드별로 나눠 단일 fan-out의 독점을 막는다.
+
+frontier 8·3홉·개체당 neighbors 12·packet facts 30을 늘리지 않았고, source-specific 라벨/ID 예외나 unknown 승격은 없다. runtime/base/modelSelection/modelSchemas는 수정하지 않았다. `retrieval-grounding-GREEN-first.txt`는 정확 정의와 문항→정의·정의→단원 연결이 남는 실제 RDF/SHACL packet 및 broad collision/20 incoming/늦은 bridge 배분 4시험 PASS다. 기존 기대값을 바꾸지 않은 `retrieval-grounding-regression.txt`는 assist/selection/plan/private join/context까지 **9파일 30시험 PASS**, 전체 TypeScript·해당 ESLint·diff 진단 0이다. 실제 모델/provider/DB/browser/build는 호출하지 않았으며, 실제 모델 선택·최종 사용자 답의 적합성은 root/formal의 새 앱 인수로 검증한다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.

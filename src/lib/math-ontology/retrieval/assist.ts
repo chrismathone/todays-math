@@ -1,3 +1,4 @@
+import { rankOntologySeeds, ontologySeedFrontier, fairOntologyBudget } from "./budget";
 import {
   ontologyPlanSection,
   ontologyPlanChoiceIsExplicit,
@@ -253,18 +254,7 @@ export async function runOntologyAssist(
           "bank-assessment",
           "course-section",
         ];
-  const seeds = [...new Map(catalog.map((r) => [r.entity, r])).values()]
-    .sort((a, b) => {
-      const rank = (n: string) => {
-        const i = preferred.indexOf(n);
-        return i < 0 ? preferred.length : i;
-      };
-      return (
-        rank(a.namespace) - rank(b.namespace) ||
-        a.entity.localeCompare(b.entity)
-      );
-    })
-    .slice(0, 8);
+  const seeds = rankOntologySeeds(catalog, intent.searchTerms, preferred, 8);
   const registry = new Store(),
     asserted = new Store(),
     closure = new Store();
@@ -272,9 +262,10 @@ export async function runOntologyAssist(
     string,
     ReturnType<MathOntologyRuntime["proofs"]>[number]
   >();
-  const selectedProofs = new Set<string>(),
+  const proofGroups = new Map<string, string[]>(),
+    bridgeProofs = new Set<string>(),
     visited = new Set<string>();
-  const incoming: string[] = [];
+  const incoming = new Map<string, string[]>(), incomingTargets = new Map<string, Set<string>>();
   for (const seed of seeds) {
     const subjects = runtime.assessmentSubjects
       ? runtime.assessmentSubjects(seed.entity, context)
@@ -287,12 +278,19 @@ export async function runOntologyAssist(
               context.allowedScopes.includes(p.scope),
           )
           .map((p) => p.conclusion[0]);
-    incoming.push(...subjects);
+    const bounded = [...new Set(subjects)].sort().slice(0, 8);
+    incoming.set(seed.entity, bounded);
+    retrieval.frontierCapped ||= subjects.length > bounded.length;
+    for (const subject of bounded) {
+      const targets = incomingTargets.get(subject) ?? new Set<string>();
+      targets.add(seed.entity); incomingTargets.set(subject, targets);
+    }
   }
-  let frontier = [...new Set([...incoming, ...seeds.map((r) => r.entity)])];
-  retrieval.frontierCapped = frontier.length > 8;
+  const seedIds = seeds.map(row => row.entity);
+  retrieval.frontierCapped ||= new Set([...seedIds, ...[...incoming.values()].flat()]).size > 8;
+  let frontier = ontologySeedFrontier(seedIds, incoming, 8);
   for (let hop = 0; hop < 3 && frontier.length; hop++) {
-    const next: string[] = [];
+    const nextGroups: string[][] = [];
     for (const entityId of frontier.slice(0, 8)) {
       if (visited.has(entityId)) continue;
       visited.add(entityId);
@@ -307,13 +305,17 @@ export async function runOntologyAssist(
       asserted.addQuads(datasets.asserted.getQuads(null, null, null, null));
       closure.addQuads(datasets.closure.getQuads(null, null, null, null));
       for (const p of slice.proofs()) allProofs.set(p.id, p);
+      const group = proofGroups.get(entityId) ?? [], next: string[] = [];
       for (const row of answer.rows) {
-        selectedProofs.add(row.proofId);
+        group.push(row.proofId);
+        if (row.p === "urn:todaymath:vocab:assessesDefinition" && incomingTargets.get(row.s)?.has(row.o)) bridgeProofs.add(row.proofId);
         if (!visited.has(row.o)) next.push(row.o);
       }
+      proofGroups.set(entityId, group); nextGroups.push(next);
     }
-    retrieval.frontierCapped ||= new Set(next).size > 8;
-    frontier = [...new Set(next)].slice(0, 8);
+    const unvisited = nextGroups.map(group => group.filter(id => !visited.has(id)));
+    retrieval.frontierCapped ||= new Set(unvisited.flat()).size > 8;
+    frontier = fairOntologyBudget(unvisited, 8);
   }
   retrieval.visitedEntities = visited.size;
   const view: MathOntologyRuntime = {
@@ -326,7 +328,7 @@ export async function runOntologyAssist(
   };
   const prepared = prepareOntologyModelPacket(
       view,
-      [...selectedProofs],
+      fairOntologyBudget([...proofGroups.values()], 30, [...bridgeProofs]),
       context.contextHash,
       context.allowedScopes,
     ),
