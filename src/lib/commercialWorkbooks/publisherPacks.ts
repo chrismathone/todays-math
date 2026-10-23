@@ -599,6 +599,53 @@ export const PUBLISHER_PACKS: readonly PublisherPackEntry[] = [
     load: () =>
       import("../../../data/commercial-workbooks/erum-summa-startup-common-math1-2022-v1.json"),
   },
+  {
+    id: "mega-cpr-m2-1-1493-v1",
+    label: "메가스터디 문제 기본서 CPR 중학수학 2-1 · 정답과 해설 주소",
+    links: [
+      {
+        label: "공식 정답 출처",
+        href: "https://www.megastudybooks.com/book/file/explanation?page=31",
+      },
+      {
+        label: "검토한 원본 PDF",
+        href: "https://www.megastudybooks.com/download/1493",
+      },
+    ],
+    scopeNote:
+      "공식 정답과 해설 PDF 2~96쪽 · 0001–1245; 1,245주소·1,227검토 키·그림/설명 답 18개 미수록; 교육과정·ISBN·판·쇄 미확인",
+    load: () =>
+      import("../../../data/commercial-workbooks/mega-cpr-m2-1-1493-v1.json"),
+  },
+  {
+    id: "arum-math-sam-geometry-2022-v1",
+    label:
+      "아름다운샘 수학의 샘 기하 · 2022 교육과정 · 단원 시작 쪽 참조 · 개별 문항 쪽 미확인",
+    links: [
+      {
+        label: "출판사 공식 자료실",
+        href: "http://www.a-ssam.co.kr/bbs/board.php?bo_table=table37&wr_id=303",
+      },
+    ],
+    scopeNote:
+      "공식 해설집 11단원·33절 전체 571개 인쇄 주소 · 검수 정답 561개 · 그림·증명 10개 보류 · 단원 시작 쪽 참조 · 개별 문항 쪽 미확인",
+    load: () =>
+      import("../../../data/commercial-workbooks/arum-math-sam-geometry-2022-v1.json"),
+  },
+  {
+    id: "imath-rpm-pro-common-math1-2022-v1",
+    label: "개념원리 RPM Pro 공통수학 1 (2022 개정)",
+    links: [
+      {
+        label: "개념원리 공식 정답 및 풀이",
+        href: "https://www.imath.kr/app/board/detail/keys?boardKey=c2a9f7e7-7a8d-4116-a275-6368eaefe990&itemKey=c13f738a-c0fd-4fd1-bd32-4a219fa266d0",
+      },
+    ],
+    scopeNote:
+      "전체 208쪽의 인쇄 번호 0001~1066 및 셀프 CHECK A~I(단원별) 66개: 1,132주소, 검수 정답 1,131개, 풀이 참조 1개 null. 유형 시작 쪽·절별 쪽 범위만 확인되어 개별 문항 쪽 미확인. 번호 없는 논리 Check 10개 제외.",
+    load: () =>
+      import("../../../data/commercial-workbooks/imath-rpm-pro-common-math1-2022-v1.json"),
+  },
 ];
 
 const packSchema = workbookCreateEditionSchema
