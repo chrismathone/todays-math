@@ -94,6 +94,12 @@ root의 실제 production e556 교사 검수에서 승인 receipt가 성공해�
 
 서버 수정은 `production.server.ts` review 응답의 둘째 step state 한 곳뿐이다. 저장된 state가 approved일 때 reviewed, 그 외에는 기존 candidate로 표시한다. 모델 제안 출처·교육적 효과 미확인 문구와 권한/검증/승인/게시 동작은 유지한다. `snapshot-current-review-RED.txt`는 실제 production review HTTP projection의 approved→candidate 오류와 성공 후 시점 표시 누락 두 회귀를 재현했다. GREEN은 UI/API/실제 review handler **3파일 23시험 PASS**로, 한 번의 명시 승인·자동조회 없음·준비 후보 보존·한 번의 현재 검토 조회·서버 approved/validated/rejected/retired 분기·게시 preparing/결과 불명 경로를 확인한다. 서버 시험의 인증·DB·서비스 ports는 합성이며 DB/모델/브라우저 실행 증거가 아니다. 전체 TypeScript·해당 ESLint·diff 진단 0이고 실제 production 후속 검수는 root 소유다.
 
+## 실패한 게시 작업의 명시적 재검증 표시
+
+root의 실제 production 실패 관찰 뒤 history reader가 failed를 결과 대기로 표시하는 회귀를 확인했다. 실패 행은 `게시 검증 실패 기록`과 `검증 실패 · 이 작업은 미게시`로 표시한다. 기존 continuation은 `게시 다시 검증`, `검증 실패 → 현재 근거 재확인·재검증`으로 명시하고, 버튼이 전체 검증을 다시 실행하며 성공한 경우에만 활성 판을 교체한다고 알린다. 다른 작업이 게시할 수 있으므로 현재 global pointer가 영구히 유지된다고 주장하지 않는다. CPU 한도 등 실패 원인도 이 표시에서 단정하지 않는다.
+
+queued/leased의 기존 표시, storage/action contract, seal/current authorization/lease/reclaim/engine·generation guard는 바꾸지 않았다. `failed-publication-history-RED.txt`는 실패를 일반 작업으로 표시한 기존 동작과 queued/leased 두 control을 보존한다. GREEN-final은 실제 history reader의 합성 저장소 → 실제 React 화면 → 기존 API source의 mock fetch까지 **4파일 26시험 PASS**로, 이력 읽기에서는 실행 0, 명시 재검증 클릭에서 동일 job/seal POST 한 번, 이후 preparing 결과 확인 유지와 queued/leased 표시 불변을 확인한다. DB·모델·브라우저·build 실행 증거가 아니며, 전체 TypeScript·해당 ESLint·diff 진단 0이다. 수정 스크립트의 UTF-8 실패로 처음 GREEN 명령이 수정 전 코드에 실행된 기록도 별도로 보존하고, 실제 수정 뒤 GREEN-final로 검증했다. 실제 production 재검증은 root가 수행한다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.
