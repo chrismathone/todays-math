@@ -1,7 +1,12 @@
 /** Exact new read operations only. Existing v1/v2 and student gates are unchanged. */
 export function ontologyReadRoute(method: string, path: string): boolean {
   return (
-    (method === "GET" && ["/api/math-ontology/catalog", "/api/math-ontology/students"].includes(path)) ||
+    (method === "GET" &&
+      [
+        "/api/math-ontology/catalog",
+        "/api/math-ontology/students",
+        "/api/math-ontology/history",
+      ].includes(path)) ||
     (method === "POST" &&
       ["/api/math-ontology/query", "/api/math-ontology/validate"].includes(
         path,
@@ -19,8 +24,14 @@ export function ontologyOperationRoute(method: string, path: string): boolean {
         "/api/math-ontology/assist",
         "/api/math-ontology/relations/proposals",
         "/api/math-ontology/publish/jobs",
+        "/api/math-ontology/publish/prepare",
+        "/api/math-ontology/publish/revoke/prepare",
+        "/api/math-ontology/publish/revoke",
       ].includes(path)) ||
-    (method === "POST" && /^\/api\/math-ontology\/receipts\/[A-Za-z0-9-]+\/feedback$/.test(path)) ||
+    (method === "POST" &&
+      /^\/api\/math-ontology\/receipts\/[A-Za-z0-9-]+\/(?:feedback|outbox\/resume)$/.test(
+        path,
+      )) ||
     (method === "POST" &&
       new RegExp(
         `^/api/math-ontology/actions/${proposal}/(?:approve|execute|feedback)$`,
@@ -30,9 +41,9 @@ export function ontologyOperationRoute(method: string, path: string): boolean {
         path,
       )) ||
     (method === "POST" &&
-      new RegExp(`^/api/math-ontology/relations/${proposal}/(?:validate|approve)$`).test(
-        path,
-      )) ||
+      new RegExp(
+        `^/api/math-ontology/relations/${proposal}/(?:validate|approve|retire|review/prepare)$`,
+      ).test(path)) ||
     (method === "POST" &&
       new RegExp(`^/api/math-ontology/publish/jobs/${proposal}/recover$`).test(
         path,
@@ -42,8 +53,7 @@ export function ontologyOperationRoute(method: string, path: string): boolean {
 export function ontologyPublisherRoute(path: string): boolean {
   return (
     path.startsWith("/api/math-ontology/relations/") ||
-    path === "/api/math-ontology/publish/jobs" ||
-    path.startsWith("/api/math-ontology/publish/jobs/")
+    path.startsWith("/api/math-ontology/publish/")
   );
 }
 /** These public machine endpoints always perform their own purpose-bound HMAC. */
