@@ -3,11 +3,23 @@ import { createRoot } from "react-dom/client";
 import OntologyWorkspace from "@/components/math-ontology/OntologyWorkspace";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer } from "@/components/math-ontology/source";
 import workroom from "@/components/unified/Workroom.module.css";
+import WorkspaceNavigation from "@/components/unified/WorkspaceNavigation";
+import type { WorkspaceIconName } from "@/components/unified/WorkspaceIcon";
 import "@/app/globals.css";
 import "katex/dist/katex.min.css";
 import "./fixture.css";
 const states = ["normal", "empty", "error-retry", "delay", "forbidden", "stale", "lost-result", "relation", "publication"] as const;
 type Scenario = typeof states[number];
+// The real production navigation component/CSS with the actual eleven visible
+// Math menu labels. Only the selected panel and account are synthetic here.
+const menus = [
+  ["home", "오늘의 작업", "홈", "home"], ["bank", "시험지 만들기", "만들기", "bank"],
+  ["arithmetic", "연산대장", "연산대장", "calculator"], ["studio", "문제 추출", "문제 추출", "crop"],
+  ["library", "내 시험지", "보관함", "folder"], ["textbook", "교재 제작", "교재 제작", "paper"],
+  ["teaching", "수업 · 학생 관리", "수업·학생", "class"], ["concept", "오늘의 개념", "개념", "play"],
+  ["conceptBlank", "개념 백지", "백지", "pen"], ["srs", "오늘의 기억 · SRS", "기억 학습", "clock"],
+  ["ontology", "지식 작업실", "지식", "search"],
+].map(([id, label, short, icon]) => ({ id, label, short, icon: icon as WorkspaceIconName }));
 function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWorkspaceSource {
   let attempts = 0; const committed = new Set<string>();
   async function pause(signal: AbortSignal) {
@@ -47,7 +59,14 @@ function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWor
 function App() {
   const initial = new URLSearchParams(location.search).get("case") as Scenario;
   const [scenario, setScenario] = useState<Scenario>(states.includes(initial) ? initial : "normal"), [generation, setGeneration] = useState(0), [counts, setCounts] = useState<Record<string, number>>({});
+  const [view, setView] = useState("ontology");
   const port = useMemo(() => fixture((generation >= 0 ? scenario : scenario), kind => setCounts(value => ({ ...value, [kind]: (value[kind] ?? 0) + 1 }))), [scenario, generation]);
-  return <><details className="fixture-tools"><summary>격리 검수 도구 · 합성 데이터 · API/모델/DB 호출 0</summary><label>상태 <select value={scenario} onChange={event => { setScenario(event.target.value as Scenario); setCounts({}); }}>{states.map(state => <option key={state}>{state}</option>)}</select></label><button onClick={() => { setGeneration(value => value + 1); setCounts({}); }}>처음부터</button><output aria-label="fixture calls">{JSON.stringify(counts)}</output></details><div className={workroom.workspace}><div className="fixture-shell"><aside className="fixture-navigation"><strong>오늘의 수학</strong><nav aria-label="작업실"><span>학생</span><span>오늘의 기억 · SRS</span><strong aria-current="page">지식 작업실</strong></nav></aside><main className="fixture-content"><OntologyWorkspace source={port} scopeKey={`${scenario}:${generation}`} canPublish /></main></div></div></>;
+  return <><details className="fixture-tools"><summary>격리 검수 도구 · 합성 데이터 · API/모델/DB 호출 0</summary><label>상태 <select value={scenario} onChange={event => { setScenario(event.target.value as Scenario); setCounts({}); }}>{states.map(state => <option key={state}>{state}</option>)}</select></label><button onClick={() => { setGeneration(value => value + 1); setCounts({}); }}>처음부터</button><output aria-label="fixture calls">{JSON.stringify(counts)}</output></details>
+    <div className={workroom.workspace} data-product="math" data-authenticated="true" data-menu-count={menus.length}>
+      <aside className={workroom.sidebar}><button className={workroom.brand} onClick={() => setView("home")}><span>오늘의 수학</span></button><WorkspaceNavigation items={menus} view={view} ownStart="textbook" onNavigate={setView} /></aside>
+      <main className={workroom.main}><header className={workroom.topbar}><div className={workroom.breadcrumb}><strong>{menus.find(menu => menu.id === view)?.label}</strong></div><span>합성 교사 · 격리 검수</span></header>
+        <div className={workroom.viewContent}>{view === "ontology" ? <OntologyWorkspace source={port} scopeKey={`${scenario}:${generation}`} canPublish /> : <div className="fixture-panel"><h1>{menus.find(menu => menu.id === view)?.label}</h1><p>탐색 접근 검수용 합성 패널입니다. 실제 자료를 조회하지 않습니다.</p><button onClick={() => setView("ontology")}>지식 작업실로 돌아가기</button></div>}</div>
+      </main>
+    </div></>;
 }
 createRoot(document.getElementById("root")!).render(<App />);
