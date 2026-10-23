@@ -3,6 +3,7 @@ import { requestCourseNavigation } from "@/lib/math-srs/courseNavigation";
 import { requestTextbookNavigation } from "@/lib/textbook/navigation";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
+import WorkspaceNavigation from "./WorkspaceNavigation";
 import WorkProgress from "./WorkProgress";
 import SavedWorksheetActions from "./SavedWorksheetActions";
 import PrivateLibrary from "./PrivateLibrary";
@@ -1610,54 +1611,12 @@ function UnifiedWorkspaceContent({
                 <span>새 시험지 만들기</span>
               </button>
             )}
-        <nav className={s.navigation} aria-label="작업실 메뉴">
-          {availableNav.map((item) => (
-            <div
-              key={item.id}
-              className={item.id === ownStart ? s.navGroupStart : ""}
-              data-nav-group-start={item.id === ownStart ? "true" : undefined}
-            >
-              <button
-                aria-label={item.label}
-                title={sidebarCollapsed ? item.label : undefined}
-                aria-current={view === item.id ? "page" : undefined}
-                className={view === item.id ? s.navActive : ""}
-                onPointerEnter={
-                  item.id === "bank" || item.id === "studio"
-                    ? () => {
-                        void (
-                          item.id === "bank"
-                            ? loadMathBuilder()
-                            : loadStudioView()
-                        ).catch(() => {});
-                        void prepareDrafts();
-                      }
-                    : undefined
-                }
-                onFocus={
-                  item.id === "bank" || item.id === "studio"
-                    ? () => {
-                        void (
-                          item.id === "bank"
-                            ? loadMathBuilder()
-                            : loadStudioView()
-                        ).catch(() => {});
-                        void prepareDrafts();
-                      }
-                    : undefined
-                }
-                onClick={() => navigate(item.id)}
-              >
-                <Icon name={item.icon} />
-                <span className={s.navLabel}>{item.label}</span>
-                <span className={s.navShort}>{item.short}</span>
-                {item.id === "export" && selected.length > 0 && (
-                  <span className={s.navCount}>{selected.length}</span>
-                )}
-              </button>
-            </div>
-          ))}
-        </nav>
+        <WorkspaceNavigation items={availableNav} view={view} ownStart={ownStart} collapsed={sidebarCollapsed} outputCount={selected.length} onNavigate={navigate} onPrepare={id => {
+          if (id === "bank" || id === "studio") {
+            void (id === "bank" ? loadMathBuilder() : loadStudioView()).catch(() => {});
+            void prepareDrafts();
+          }
+        }} />
         {/* 담은 문항이 없으면 숨긴다 — 새로고침은 빈 시험지로 시작하는데 «0문항» 카드가 방금 만든 시험지가
             사라진 것처럼 보였다(원장님 2026-10-20). 지난 시험지는 «내 시험지»에서 연다 */}
         {worksheetView && hydrated && canUseWorksheetDrafts && (selected.length > 0 || view === "studio") && (
