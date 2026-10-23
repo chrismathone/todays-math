@@ -14,3 +14,11 @@ describe('exact compile job to artifact binding',()=>{
   await expect(verifyOntologyCompiledArtifactForInput(delta,input([]))).rejects.toThrow('COMPILED_INPUT_BINDING_MISMATCH');
  });
 });
+
+it('accepts genuine current-compiler nonempty delta and rejects omitted/changed approved review',async()=>{
+ const a=JSON.parse(delta.files.review).assertions.find((a:{id:string})=>a.id==='urn:todaymath:assertion:synthetic-cross-partition-delta');
+ await expect(verifyOntologyCompiledArtifactForInput(delta,input([a]))).resolves.toMatchObject({identity:delta.identity});
+ await expect(verifyOntologyCompiledArtifactForInput(delta,input([]))).rejects.toThrow('COMPILED_INPUT_BINDING_MISMATCH');
+ await expect(verifyOntologyCompiledArtifactForInput(delta,input([{...a,sourceRevision:a.sourceRevision+'-changed'}]))).rejects.toThrow('COMPILED_INPUT_BINDING_MISMATCH');
+ await expect(verifyOntologyCompiledArtifactForInput(delta,input([a,{...a,id:a.id+'-extra'}]))).rejects.toThrow('COMPILED_INPUT_BINDING_MISMATCH');
+},60000);
