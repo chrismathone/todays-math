@@ -14,6 +14,17 @@ const ontologyTraceAssets = [
   "./scripts/ontology/compiler/compiler.py",
   "./scripts/ontology/compiler/packaged.py",
 ];
+// These ontology-only endpoints consume metadata/definitions, not rendered figure
+// assets or authoring/QA documents. Keep all code, native sources and dependency
+// engines traceable; never apply these exclusions to existing product routes.
+const ontologyTraceExcludes = [
+  "./docs/**/*",
+  "./scratch/**/*",
+  "./scripts/qa/**/*",
+  "./src/__tests__/**/*",
+  "./public/figures/**/*",
+  "./public/figures-svg/**/*",
+];
 const nextConfig: NextConfig = {
   // Type errors must fail every production build, including Vercel builds.
   // The build checks the shipped code only (tsconfig.build.json leaves out
@@ -116,6 +127,10 @@ const nextConfig: NextConfig = {
     "@sparticuz/chromium-min",
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
+  outputFileTracingExcludes: {
+    "/api/math-ontology/**": ontologyTraceExcludes,
+    "/api/students/*/math-ontology/**": ontologyTraceExcludes,
+  },
   outputFileTracingIncludes: {
     "/api/math-ontology/**": ontologyTraceAssets,
     "/api/students/*/math-ontology/**": ontologyTraceAssets,
