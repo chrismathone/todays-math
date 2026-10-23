@@ -135,6 +135,7 @@ export const mathOntologySourceRecordSchema = z.strictObject({
     "EditorialUnit",
     "EditorialTopic",
     "Course",
+    "CourseExpression",
     "Skill",
     "GeneratorFamily",
     "Requirement",
@@ -181,6 +182,23 @@ export const mathOntologySourceRecordSchema = z.strictObject({
     )
     .max(5)
     .optional(),
+  nativeReferences: z
+    .array(
+      z.strictObject({
+        namespace: z.enum([
+          "db-unit",
+          "engine-family",
+          "source-external-id",
+          "declared-unit-section",
+          "declared-family",
+        ]),
+        nativeId: z.string().min(1).max(4000),
+        resolution: z.literal("unverified"),
+        origin: mathOntologySourceLocatorSchema,
+      }),
+    )
+    .max(5000)
+    .optional(),
 });
 export const MATH_ONTOLOGY_SOURCE_PREDICATES = [
   "partOf",
@@ -193,6 +211,9 @@ export const MATH_ONTOLOGY_SOURCE_PREDICATES = [
   "editorialSupport",
   "editorialContains",
   "courseSequence",
+  "courseAlternativeTrack",
+  "courseRecommendedFoundation",
+  "courseRecommendedBeforeOrConcurrent",
   "projectsSourceSection",
   "coversSourceSection",
   "representativeCard",
@@ -220,6 +241,9 @@ export const mathOntologySourceAssertionSchema = z
       "unverified",
     ]),
     publicationState: z.literal("unpublished"),
+    mappingReviewStatus: z
+      .enum(["source-marked-verified", "unknown"])
+      .optional(),
     evidenceKind: z.enum([
       "observed",
       "authored-inference",
