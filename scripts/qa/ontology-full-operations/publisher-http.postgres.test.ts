@@ -14,11 +14,11 @@ const python = "/Users/pss/Desktop/creative/display-survey/consensus/ontology-fu
 describe("actual durable publisher -> Node signed port -> Python engine", () => {
  it("survives a 65-second controlled post-compile delay beyond request authentication TTL with the actual 300s database lease", async () => {
   const secret = "synthetic-loopback-only-ontology-engine-secret", audience = "synthetic-isolated-operations";
-  const child = spawn(python, ["-B", "scripts/qa/ontology-full-operations/delayed-engine.py"], { cwd: process.cwd(), stdio: ["ignore", "pipe", "pipe"], env: { PATH: process.env.PATH ?? "/usr/bin:/bin", ONTOLOGY_ENGINE_SECRET: secret, ONTOLOGY_ENGINE_AUDIENCE: audience } });
+  const child = spawn(python, ["-B", "scripts/qa/ontology-full-operations/delayed-engine.py"], { cwd: process.cwd(), stdio: ["ignore", "pipe", "pipe"], env: { NODE_ENV: "test", PATH: process.env.PATH ?? "/usr/bin:/bin", ONTOLOGY_ENGINE_SECRET: secret, ONTOLOGY_ENGINE_AUDIENCE: audience } });
   const started = Date.now(), receipt: Record<string, unknown> = { pid: child.pid, host: "127.0.0.1", controlledDelaySeconds: 65, startedAt: new Date().toISOString(), stopped: false };
   try {
     let output = "";
-    const port = await new Promise<number>((resolve, reject) => { child.once("error", reject); child.once("exit", () => reject(new Error("Python fixture stopped before ready"))); child.stdout.on("data", chunk => { output += String(chunk); if (output.includes("\n")) { try { resolve(JSON.parse(output.split("\n")[0]).port); } catch { reject(new Error("Invalid fixture port")); } } }); });
+    const port = await new Promise<number>((resolve, reject) => { child.once("error", reject); child.once("exit", () => reject(new Error("Python fixture stopped before ready"))); child.stdout.on("data", (chunk: Buffer) => { output += String(chunk); if (output.includes("\n")) { try { resolve(JSON.parse(output.split("\n")[0]).port); } catch { reject(new Error("Invalid fixture port")); } } }); });
     receipt.port = port;
     const raw = execFileSync(python, ["-B", "-c", "import sys,json;sys.path.insert(0,'scripts/ontology/compiler');from test_compiler import fixture;print(json.dumps(fixture()))"], { cwd: process.cwd(), encoding: "utf8" });
     const input = mathOntologyCompileInputSchema.parse(JSON.parse(raw)), f = await fixture();
