@@ -9,6 +9,7 @@ import { authorizeOntologyPublisher } from "../review/authorization";
 import { recordOntologyReviewEvent } from "../review/events";
 import { approvedOntologyReviews, type createOntologyPublisher } from "./service";
 import { lockOntologyScope } from "./scope";
+import { mathOntologyAssertionSchema } from "@/contracts/mathOntology.contract";
 export interface OntologyPublicationBase {
   baseHash: string;
   projectionHash: string;
@@ -33,9 +34,10 @@ export function createOntologyPublicationApproval(deps: {
       return transaction(async tx => {
         const time = now(); await authorizeOntologyPublisher(tx, actor, now);
         const base = baseSchema.parse(deps.base()), active = await lockOntologyScope(tx, "global", time), reviews = await approvedOntologyReviews(tx, "global"), id = randomUUID();
+        const eligibleRelationCount = reviews.rows.filter(row => { const a = mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash)); return ["direct", "indirect"].includes(a.support) && a.distribution === "allowed"; }).length;
         const preview = previewSchema.parse({ version: 1, id, actorId: actor.id, scopeKey: "global", base, reviewStateHash: reviews.hash, generation: active.generation, relationCount: reviews.rows.length, expiresAt: new Date(time.getTime() + 10 * 60_000).toISOString() });
         await recordOntologyReviewEvent(tx, actor.id, "global", id, "publish.prepared", preview as unknown as CanonicalValue, time);
-        return { confirmationId: id, sealHash: digest(canonicalBytes(preview)), preview };
+        return { confirmationId: id, sealHash: digest(canonicalBytes(preview)), preview: { ...preview, eligibleRelationCount, excludedRelationCount: reviews.rows.length - eligibleRelationCount } };
       });
     },
     async confirm(actor: OntologyActionActor, raw: unknown) {

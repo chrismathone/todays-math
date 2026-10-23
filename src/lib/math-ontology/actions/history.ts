@@ -26,7 +26,7 @@ export function createOntologyHistoryReader(deps: { db: Pick<PrismaClient, "$tra
       if (row.receipt) {
         const receipt = ontologyActionReceiptSchema.parse(checkedCanonical(row.receipt.resultCanonical, row.receipt.resultHash));
         events.push({ id: row.receipt.id, at: row.receipt.createdAt.toISOString(), title: receipt.outcome === "applied" ? "학생 계획 변경" : "변경 없는 실행 확인", note: `기록 판 ${receipt.beforeRevision} → ${receipt.afterRevision}`, state: "observed", detail: `영수증 ${receipt.id}\n승인 ${receipt.approvalId}\n근거 판 ${receipt.binding.graphVersion}` });
-      } else events.push({ id: row.id, at: row.createdAt.toISOString(), title: "계획 변경 준비", note: row.status === "approved" ? "승인 후 실행 대기" : "실행 전 제안", state: "candidate", detail: `제안 ${row.id}\n학생 기록은 이 제안만으로 변경되지 않습니다.` });
+      } else events.push({ id: row.id, at: row.createdAt.toISOString(), title: "계획 변경 준비", note: row.expiresAt <= clock() ? "기한 만료 · 다시 준비 필요" : row.status === "approved" ? "승인 후 실행 대기" : "실행 전 제안", state: "candidate", detail: `제안 ${row.id}\n학생 기록은 이 제안만으로 변경되지 않습니다.` });
     }
     const relations = await tx.ontologyRelationReview.findMany({ where: { proposedBy: actor.id, ...(account.row.isSuperAdmin ? {} : { scopeKey: `owner:${actor.id}` }) }, orderBy: { createdAt: "desc" }, take: 20 });
     for (const row of relations) {

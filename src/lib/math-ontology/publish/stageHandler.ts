@@ -14,7 +14,8 @@ export async function handleOntologyStage(request: Request) {
   const signature = request.headers.get("x-ontology-stage-signature");
   if (!signature || !/^[a-f0-9]{64}$/.test(signature))
     return ontologyResponse(403, { error: { code: "FORBIDDEN" } });
-  const key = (process.env.ONTOLOGY_ENGINE_SECRET || process.env.STUDIO_ENGINE_SECRET || process.env.AUTH_SECRET);
+  if (process.env.MATH_ONTOLOGY_OPERATIONS !== "on") return ontologyResponse(503, { error: { code: "ONTOLOGY_OPERATIONS_UNAVAILABLE" } });
+  const key = (process.env.MATH_ONTOLOGY_ENGINE_SECRET || process.env.ONTOLOGY_ENGINE_SECRET || process.env.STUDIO_ENGINE_SECRET || process.env.AUTH_SECRET);
   if (!key || key.length < 32)
     return ontologyResponse(503, {
       error: { code: "ONTOLOGY_STAGE_UNAVAILABLE" },

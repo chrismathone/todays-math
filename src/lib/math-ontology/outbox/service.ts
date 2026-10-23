@@ -43,6 +43,7 @@ export function createOntologyOutbox(deps: {
             leaseUntil: null,
           },
         });
+        await deps.authorize?.(tx);
         return null;
       }
       const next = await tx.ontologyOutbox.update({

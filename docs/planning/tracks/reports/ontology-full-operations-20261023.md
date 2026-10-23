@@ -32,7 +32,7 @@ graphVersion은 서버가 확인하는 opaque identity다. `sourceSnapshotHash`,
 외부 evidence root는 `/Users/pss/Desktop/creative/display-survey/consensus/ontology-full-20261023/operations/`이다. 학생 자료·정답·문항 본문을 모델로 전송하지 않았다. 이 보고에는 비밀 헤더·인증 값이 없다.
 
 - `checkpoint-b1-b2-b3-final.txt`: 격리 PostgreSQL + Request + 실제 NextAuth + 실제 React + source server clock 묶음 14파일 **70시험 PASS**. 별도 `publisher-actual-http-first.txt`는 합성 inline 입력을 실제 durable publisher → Node HMAC → 실제 Python OWL/SHACL → 제어된 65초 지연 → 활성화 1시험 PASS(67.05초). 각 PID/port/lease/종료 영수증은 `postgres-run-*.json`, `publisher-python-http-*.json`이다.
-- `lifecycle-operator-final.txt`: 이후 초기 게시/철회·이력·sealer 최종 쓰기 만료 rollback, MathText와 operator UI까지 15파일 **75시험 PASS**. 실제 65초 HTTP 검사는 앞선 단독 통과를 유지했다. `typecheck-lifecycle-operator.txt`는 전체 TypeScript 진단 0이다. 동일 시험 재실행을 새 시험으로 더하지 않는다.
+- `operations-cleanup-77.txt`: 초기 게시/철회·이력·sealer 최종 쓰기 만료 rollback, MathText/operator UI와 staging writer gate까지 16파일 **77시험 PASS**. 실제 65초 HTTP 검사는 앞선 단독 통과를 유지했다. `typecheck-operations-cleanup.txt`는 전체 TypeScript 진단 0, `eslint-operations-cleanup.txt`와 diff 검사도 0이다. 동일 시험 재실행을 새 시험으로 더하지 않는다.
 - no-op, 동시 8승인/실행의 영수증 하나, 결과 재전송, args/seal/source/evidence/graph tamper, 현재 학생 revision·계정·메뉴·이동/수강·관리 lease 철회, 실제 별도 연결의 잠금/철회 경합, 단계별 5 failpoint, 실제 audit constraint 실패 rollback을 검증했다. 종료된 lease generation의 outbox ack도 거절한다.
 - 독립 B1: 잠금 대기 후 이전 시각을 쓰는 결함을 인정하고 clock 함수 및 근거 검사/마지막 mutation 뒤 권한 재검사를 추가했다. 실제 PG `pg_stat_activity`의 Lock을 확인한 뒤 clock 만료 negative/정상 positive, 마지막 outbox write 뒤 만료 시 전체 rollback이 `clock-lock-GREEN.txt`에서 통과했다.
 - 독립 B2: self-consistent zero-delta artifact를 다른 승인 delta의 출력으로 받아들이는 결함을 인정했다. formal worker의 exact-input verifier를 production callback에 필수로 연결했다. 엔진이 반환한 identity 자체와 source 문자열만 비교하는 이전 경로는 제거했다.
@@ -72,5 +72,9 @@ Reader 먼저 순서는: writer off에서 새 schema-aware 서버/Prisma reader 
 운영 UI에는 펼친 원천 맥락의 이력, publisher의 초기 게시 준비/활성 판 철회 준비, 관계 이력의 다시 검토→두 endpoint 실제 표기→승인/다음 게시에서 제외하는 폐기 확인을 연결했다. 실제 권한 검사는 서버가 한다. 모델 receipt는 root `ModelApiReceipt`를 그대로 사용하며 `responseTextHash`는 반환 텍스트의 해시다. 원본 HTTP 바이트 해시라고 부르지 않고, provider 미보고 model/usage/id는 null로 보존한다.
 
 검토 중 발견한 명시적 미확정 정책: `support=unknown/missing` 후보가 사람 승인을 받아도 엔진은 direct/indirect만 premise로 사용한다. 승인·게시 성공과 실제 그래프 반영이 조용히 달라지지 않도록, 근거 불충분/배포 제한 후보는 승인 거절·미확인 상태로 유지하고 자동 support 승격을 금지하는 기준을 리드에 제안했다. 정책 결정을 기다리는 동안 이 건을 완료로 표시하지 않는다.
+
+정책을 임의 확정하지 않는 독립 조치로 게시 준비에 사람 승인 총수, 실제 질의 전제 조건 충족 수, 근거/배포 조건에 따른 제외 수를 분리했다. 이 수는 봉인된 review state hash의 정확한 행에서 산출하며 기존 persisted preview v1 형식은 바꾸지 않는다. `support-unknown-actual-engine.json`은 실제 inline OWL/SHACL에서 승인·게시 입력 2개 중 전제로 쓰인 관계가 1개인 반례다. 또한 최초 근거 snapshot은 RepeatableRead로 읽어 여러 원천 행의 일관성을 보존한다. 기존 승인/실행의 동시 idempotency 경로를 RepeatableRead로 바꾸지는 않았다.
+
+staging machine API도 writer off에서 새 표를 조회하지 않으며 Node/Python과 같은 명시적 MATH_ONTOLOGY_ENGINE_SECRET 우선순위를 사용한다. 만료된 미실행 제안은 이력에서 다시 준비가 필요한 것으로 표시한다. 철회/제거된 판의 개체 표기를 찾을 수 없는 과거 승인 관계는 **미확인**으로 표시하고 폐기만 준비할 수 있게 해 복구 경로가 막히지 않도록 했다. 이 fallback은 새 승인이나 근거 승격을 허용하지 않는다.
 
 이 worker는 이 항목들을 읽기 전용/경량 시범으로 대신하거나, 아직 미확인인 교육 콘텐츠·관계를 공식 확정으로 표시하지 않는다.

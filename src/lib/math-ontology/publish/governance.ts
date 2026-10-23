@@ -54,7 +54,7 @@ export function createOntologyReleaseGovernance(deps: { db: Pick<PrismaClient, "
         }
         else requireOperation(row.revokedAt, "BINDING_MISMATCH");
         await authorizeOntologyPublisher(tx, actor, clock);
-        return { id: preview.id, state: "applied" as const, message: "활성 지식 판을 철회했습니다.", details: ["이전 판과 승인 이력은 보존했습니다.", "새 게시가 끝나기 전까지 이 판을 근거로 한 새 실행은 중단됩니다."] };
+        return { id: preview.id, state: "applied" as const, message: "활성 지식 판을 철회했습니다.", details: [`철회한 판 ${preview.graphVersion}`, "이전 판과 승인 이력은 보존했습니다.", "철회한 판을 근거로 한 새 실행은 허용되지 않습니다."] };
       }, { timeout: 20000, maxWait: 10000 });
     },
   };
