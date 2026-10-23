@@ -8,6 +8,7 @@ export {
 export type { MathOntologyDatabaseSourceSnapshot } from "./database";
 export {
   authorizeMathOntologySourceRead,
+  authorizeMathOntologyNativeSourceRead,
   MathOntologySourceAccessDenied,
 } from "./databaseAccess";
 export type {

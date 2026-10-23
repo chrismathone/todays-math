@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 import type { MathOntologySourceDataset } from "@/contracts/mathOntologySource.contract";
@@ -25,6 +25,7 @@ import {
 export function writeSourcePartitions(
   dataset: MathOntologySourceDataset,
   outputRoot: string,
+  options: { check?: boolean } = {},
 ) {
   const projection = projectMathOntologyPublicSources(dataset),
     root = sourcePartitionManifestPath(projection.projectionHash).replace(
@@ -67,8 +68,13 @@ export function writeSourcePartitions(
       throw new Error("Source shard exceeds bounded runtime budget");
     const compressed = gzipSync(raw, { level: 9 });
     const full = resolve(outputRoot, path);
-    mkdirSync(dirname(full), { recursive: true });
-    writeFileSync(full, compressed);
+    if (options.check) {
+      if (!readFileSync(full).equals(compressed))
+        throw new Error("Source partition artifact is stale");
+    } else {
+      mkdirSync(dirname(full), { recursive: true });
+      writeFileSync(full, compressed);
+    }
     return {
       path,
       byteHash: sourceByteDigest(compressed),
@@ -141,7 +147,12 @@ export function writeSourcePartitions(
   });
   const bytes = Buffer.from(canonicalSourceJson(manifest) + "\n");
   const path = sourcePartitionManifestPath(projection.projectionHash);
-  mkdirSync(dirname(resolve(outputRoot, path)), { recursive: true });
-  writeFileSync(resolve(outputRoot, path), bytes);
+  if (options.check) {
+    if (!readFileSync(resolve(outputRoot, path)).equals(bytes))
+      throw new Error("Source partition manifest is stale");
+  } else {
+    mkdirSync(dirname(resolve(outputRoot, path)), { recursive: true });
+    writeFileSync(resolve(outputRoot, path), bytes);
+  }
   return { path, manifestByteHash: sourceByteDigest(bytes), manifest };
 }

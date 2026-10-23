@@ -415,6 +415,7 @@ it("returns bounded exact native definition evidence only after actual policy au
       [current.id],
       release,
     );
+    expect(db.student.findUnique).not.toHaveBeenCalled();
     expect(packet.packets[0]).toMatchObject({
       term: current.term,
       definition: current.definition,

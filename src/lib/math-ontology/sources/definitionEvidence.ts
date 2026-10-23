@@ -7,7 +7,7 @@ import {
   canonicalSourceJson,
 } from "./canonical";
 import {
-  authorizeMathOntologySourceRead,
+  authorizeMathOntologyNativeSourceRead,
   type MathOntologyDatabaseReadInput,
   type MathOntologySourceTransaction,
 } from "./databaseAccess";
@@ -22,7 +22,10 @@ const MAX_ITEMS = 6,
 /** Native general definitions only. Assessment questions, examples/answers, imported originals and student text are excluded by construction. */
 export async function readNativeDefinitionEvidenceInTransaction(
   tx: MathOntologySourceTransaction,
-  input: MathOntologyDatabaseReadInput,
+  input: Pick<
+    MathOntologyDatabaseReadInput,
+    "actor" | "graphVersion" | "now" | "authorizationNow"
+  >,
   nativeIds: readonly string[],
   release: {
     manifest: MathOntologySourcePartitionManifest;
@@ -37,7 +40,7 @@ export async function readNativeDefinitionEvidenceInTransaction(
     throw new Error(
       "Definition evidence request exceeds bounded source policy",
     );
-  await authorizeMathOntologySourceRead(tx, input);
+  await authorizeMathOntologyNativeSourceRead(tx, input);
   const packets = [],
     unknownIds = [];
   for (const nativeId of nativeIds) {
