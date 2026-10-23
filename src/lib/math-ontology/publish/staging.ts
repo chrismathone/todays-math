@@ -123,6 +123,7 @@ export function createOntologyStageStore(deps: {
       return deps.db.$transaction(async (tx) => {
         await tx.$queryRaw`SELECT id FROM ontology_compile_job WHERE id = ${meta.jobId}::uuid FOR UPDATE`;
         const current = await job(tx, meta, true);
+        requireOperation(Date.parse(meta.expiresAt) > now().getTime(), "EXPIRED");
         requireOperation(
           Date.parse(meta.expiresAt) <= current.leaseUntil!.getTime(),
           "STALE",
@@ -145,6 +146,8 @@ export function createOntologyStageStore(deps: {
               byteHash(existing.bytes) === meta.chunkHash,
             "BINDING_MISMATCH",
           );
+          await job(tx, meta, true);
+          requireOperation(Date.parse(meta.expiresAt) > now().getTime(), "EXPIRED");
           return { accepted: true as const };
         }
         await tx.ontologyArtifactChunk.create({
@@ -161,6 +164,8 @@ export function createOntologyStageStore(deps: {
             bytes,
           },
         });
+        await job(tx, meta, true);
+        requireOperation(Date.parse(meta.expiresAt) > now().getTime(), "EXPIRED");
         return { accepted: true as const };
       });
     },
@@ -208,7 +213,9 @@ export function createOntologyStageStore(deps: {
         ),
         "BINDING_MISMATCH",
       );
-      return deps.verifyArtifact(artifact);
+      const verified = await deps.verifyArtifact(artifact);
+      await deps.db.$transaction(tx => job(tx, ref, false));
+      return verified;
     },
   };
 }

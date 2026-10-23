@@ -24,6 +24,7 @@ export function createOntologyReleaseGovernance(deps: { db: Pick<PrismaClient, "
         const preview = previewSchema.parse({ id: randomUUID(), actorId: actor.id, scopeKey: "global", graphVersion: active.release.graphVersion, generation: active.generation, expiresAt: new Date(time.getTime() + 600000).toISOString() });
         await recordOntologyReviewEvent(tx, actor.id, "global", preview.id, "release.revocation.prepared", preview, time);
         await authorizeOntologyPublisher(tx, actor, clock);
+        requireOperation(Date.parse(preview.expiresAt) > clock().getTime(), "EXPIRED");
         return { confirmationId: preview.id, sealHash: digest(canonicalBytes(preview)), preview };
       });
     },
@@ -54,6 +55,7 @@ export function createOntologyReleaseGovernance(deps: { db: Pick<PrismaClient, "
         }
         else requireOperation(row.revokedAt, "BINDING_MISMATCH");
         await authorizeOntologyPublisher(tx, actor, clock);
+        if (!done) requireOperation(Date.parse(preview.expiresAt) > clock().getTime(), "EXPIRED");
         return { id: preview.id, state: "applied" as const, message: "활성 지식 판을 철회했습니다.", details: [`철회한 판 ${preview.graphVersion}`, "이전 판과 승인 이력은 보존했습니다.", "철회한 판을 근거로 한 새 실행은 허용되지 않습니다."] };
       }, { timeout: 20000, maxWait: 10000 });
     },

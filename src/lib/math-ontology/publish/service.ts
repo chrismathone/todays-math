@@ -163,8 +163,8 @@ export function createOntologyPublisher(deps: {
           row,
         };
       }
-      const time = now();
       requirePublishableReviews(await approvedOntologyReviews(tx, row.scopeKey));
+      const time = now();
       requireOperation(
         row.state === "queued" ||
           row.state === "failed" ||
@@ -203,7 +203,9 @@ export function createOntologyPublisher(deps: {
         { leaseGeneration: updated.leaseGeneration, attempt: updated.attempt },
         time,
       );
+      const claimed = await tx.ontologyCompileJob.findUniqueOrThrow({ where: { id: jobId } });
       await authorizeOntologyPublisher(tx, actor, now);
+      requireOperation(claimed.state === "leased" && claimed.leaseGeneration === updated.leaseGeneration && claimed.inputManifestHash === updated.inputManifestHash && claimed.engineLockHash === deps.engineLockHash && claimed.leaseUntil && claimed.leaseUntil > now(), "STALE");
       return { published: false as const, row: updated, input };
     });
     if (lease.published)

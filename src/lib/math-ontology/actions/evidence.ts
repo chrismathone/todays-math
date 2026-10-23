@@ -62,6 +62,7 @@ export function createOntologyEvidenceStore(deps: {
         const id = `ontology:snapshot:${randomUUID()}`, expiresAt = new Date(time.getTime() + 10 * 60_000), queryCanonical = canonicalBytes(query);
         await tx.ontologyEvidenceSnapshot.create({ data: { id, actorId: actor.id, ...input.target, graphVersion: input.graphVersion, studentRevision: actual.source.studentRevision, sourceCanonical: actual.sourceCanonical, sourceHash: digest(actual.sourceCanonical), evidenceCanonical: actual.evidenceCanonical, evidenceHash: digest(actual.evidenceCanonical), queryCanonical, queryHash: digest(queryCanonical), expiresAt, createdAt: time } });
         await authorizeOntologyAction(tx, actor, input.target, now);
+        requireOperation(expiresAt > now(), "EXPIRED");
         return { sourceSnapshotId: id, graphVersion: input.graphVersion, studentRevision: actual.source.studentRevision, evidencePacket: actual.packet, expiresAt: expiresAt.toISOString() };
       }, { maxWait: 10000, timeout: 20000, isolationLevel: "RepeatableRead" });
     },

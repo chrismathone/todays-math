@@ -1,6 +1,7 @@
 import "server-only";
 import type { PrismaClient, Prisma } from "@prisma/client";
 import { checkedCanonical, type CanonicalValue } from "../actions/canonical";
+import { OntologyOperationError, requireOperation } from "../actions/errors";
 
 export type OntologyOutboxLease = {
   id: string;
@@ -52,10 +53,11 @@ export function createOntologyOutbox(deps: {
           status: "leased",
           leaseGeneration: { increment: 1 },
           attempts: { increment: 1 },
-          leaseUntil: new Date(time.getTime() + 60000),
+          leaseUntil: new Date(now().getTime() + 60000),
         },
       });
       await deps.authorize?.(tx);
+      requireOperation(next.leaseUntil && next.leaseUntil > now(), "STALE");
       return {
         id: row.id,
         leaseGeneration: next.leaseGeneration,
@@ -64,27 +66,23 @@ export function createOntologyOutbox(deps: {
       };
     });
   }
-  async function acknowledge(lease: OntologyOutboxLease) {
-    const time = now();
-    return (
-      (
-        await deps.db.ontologyOutbox.updateMany({
-          where: {
-            id: lease.id,
-            leaseGeneration: lease.leaseGeneration,
-            status: "leased",
-            leaseUntil: { gt: time },
-          },
-          data: {
-            status: "delivered",
-            deliveredAt: time,
-            leaseUntil: null,
-            lastErrorCode: null,
-          },
-        })
-      ).count === 1
-    );
+  async function finish(lease: OntologyOutboxLease, status: "delivered" | "queued") {
+    try {
+      return await deps.db.$transaction(async tx => {
+        await tx.$queryRaw`SELECT id FROM ontology_outbox WHERE id = ${lease.id}::uuid FOR UPDATE`;
+        const row = await tx.ontologyOutbox.findUnique({ where: { id: lease.id } });
+        await deps.authorize?.(tx);
+        if (!row || row.status !== "leased" || row.leaseGeneration !== lease.leaseGeneration || !row.leaseUntil || row.leaseUntil <= now()) return false;
+        const deadline = row.leaseUntil;
+        await tx.ontologyOutbox.update({ where: { id: row.id }, data: status === "delivered" ? { status, deliveredAt: now(), leaseUntil: null, lastErrorCode: null } : { status, leaseUntil: null, availableAt: new Date(now().getTime() + 30000), lastErrorCode: "delivery-failed" } });
+        const finalized = await tx.ontologyOutbox.findUniqueOrThrow({ where: { id: row.id } });
+        await deps.authorize?.(tx);
+        requireOperation(finalized.status === status && finalized.leaseGeneration === lease.leaseGeneration && deadline > now(), "STALE");
+        return true;
+      });
+    } catch (error) { if (error instanceof OntologyOperationError && error.code === "STALE") return false; throw error; }
   }
+  const acknowledge = (lease: OntologyOutboxLease) => finish(lease, "delivered");
   return {
     claim,
     acknowledge,
@@ -94,20 +92,7 @@ export function createOntologyOutbox(deps: {
       try {
         await sink(lease);
       } catch {
-        await deps.db.ontologyOutbox.updateMany({
-          where: {
-            id: lease.id,
-            leaseGeneration: lease.leaseGeneration,
-            status: "leased",
-          },
-          data: {
-            status: "queued",
-            leaseUntil: null,
-            availableAt: new Date(now().getTime() + 30000),
-            lastErrorCode: "delivery-failed",
-          },
-        });
-        return "retry" as const;
+        return (await finish(lease, "queued")) ? "retry" as const : "lease-lost" as const;
       }
       return (await acknowledge(lease))
         ? ("delivered" as const)

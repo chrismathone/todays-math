@@ -57,6 +57,23 @@ root의 후속 실제 판정(`msg_81455cbeeda4`, 통합 f9a6a2ba)은 새 local t
 
 `publisher-lease-final-write-RED.txt`는 실제 격리 PG에서 마지막 event insert 뒤 301초에 published가 되는 원본 결함을 단독 재현한다. 수정 후 `publisher-lease-GREEN-final.txt` 3파일 **14시험 PASS**는 실제 PG scope 행 잠금 대기, release insert·최종 activation event 뒤 만료, 마지막 generation 변경에서 새 release/pointer/activation event를 rollback하고 audit/outbox 추가가 없음을 확인한다. 이미 commit된 queued/leased 이력은 보존한다. 정상 게시 후 301초의 재전송은 같은 판을 반환하며 컴파일 횟수는 1이다. 실제 E01 runtime/proof/SHACL artifact를 사용하되 compiler/clock은 합성 port로 명시했고 모델/공유 DB/실제 compiler IO를 호출하지 않았다. 최초 다중 RED의 잘못된 게시가 후속 fixture에 graphVersion 중복을 만든 로그와 첫 GREEN의 outbox relation-filter 오류도 원본을 보존했으며, 단독 RED와 최종 격리 GREEN으로 구분했다. 전체 TypeScript·해당 ESLint·diff 진단 0이다.
 
+root의 후속 지시 `msg_029dce9da20a`에 따라 같은 유형의 deadline 경계 16묶음을 한 번에 점검했다. 경로별 TTL·최종 guard·replay 의미는 외부 `operations/deadline-audit.json`에 기록했다.
+
+| 경계 | 최종 조건 |
+|---|---|
+| 계획 제안/근거 snapshot 발급·해결 | 현재 권한과 발급/사용 deadline을 마지막 await 뒤 검사 |
+| 계획 승인/실행 | 새 승인은 마지막 approval/proposal 쓰기 후 expiry 검사, 실행은 기존 최종 proposal/evidence 경계 유지; 완료 receipt replay 우선 |
+| 게시 preview/철회 preview | 잠금 뒤 fresh time, 새 authority/job 또는 철회/audit 마지막 쓰기 후 원래 preview expiry; 이미 기록한 성공 확인은 replay |
+| compile claim/activation | fresh lease 발급과 final claim 확인; B4의 실제 generation/input/engine/deadline commit fence 유지 |
+| model intake seal/draft/revision | 만료된 새 봉인/새 후보 금지; 새 후보의 최종 expiry guard 유지, 이미 만든 같은 후보의 replay는 intake TTL보다 우선 |
+| outbox claim/ack/retry/history | 현재 행 lock/generation/원래 deadline을 쓰기 뒤 다시 검사; 만료 worker의 ack/retry는 rollback, primary receipt/audit 보존 |
+| staging accept/read | signed expiry와 현재 job lease를 lock·chunk write·검증 뒤 재검사; published artifact의 역사 읽기는 허용 |
+| durable 관계 검토/폐기·feedback | 새 TTL을 만들지 않는다. 현재 source/권한/revision·관찰 asOf 계약을 유지한다. |
+
+`confirmation-deadlines-RED.txt`의 실제 격리 PG 10시험은 8실패/2정상 control로, 잠금 대기 중 게시 preview 만료, 마지막 authority/job·철회 audit·계획 approval·outbox history/ack·chunk 쓰기 만료 및 이미 만든 model 후보의 TTL 뒤 replay를 재현했다. 수정 후 10시험 GREEN이며 outbox claim/retry의 마지막 쓰기 만료 2종도 추가했다. 새 상태를 성공 처리하지 않고 같은 tx를 rollback하며, 실제로 완료한 결과의 재전송은 새 mutation으로 보지 않는다. generic outbox sink는 여전히 at-least-once이며 외부 효과를 DB rollback할 수 있다고 주장하지 않는다. 모델/교육/source/UI 정책과 기존 학생 floor는 바꾸지 않았다.
+
+최종 `confirmation-deadlines-core-final.txt`는 실제 full-source delta·B1/B3/B4·추가 TTL 12종을 포함해 **21파일 107시험 PASS**(88.94초)다. 독립 B4 사본도 4/4 PASS를 유지했다. 전체 TypeScript·해당 ESLint·diff 진단 0과 격리 프로세스 종료를 확인했다. 직전 106/107 실행의 유일 실패는 기존 audit CHECK가 새 cohort의 보존된 과거 철회 이력까지 거절한 fixture 충돌이었다. 해당 confirmation ID의 새 audit만 실패시키도록 CHECK를 한정했고 실제 audit 실패/rollback 기대값은 유지했다. 중간 로그는 보존했다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.
