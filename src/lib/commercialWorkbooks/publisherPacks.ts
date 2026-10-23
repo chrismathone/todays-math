@@ -567,6 +567,38 @@ export const PUBLISHER_PACKS: readonly PublisherPackEntry[] = [
     load: () =>
       import("../../../data/commercial-workbooks/erum-summa-concept-middle3-2-2027-v1.json"),
   },
+  {
+    id: "visang-typemanrep-m2-1-2022-v1",
+    label: "유형만렙 중학 수학 2-1 (22개정) · 본권·기출 BOOK 해설 주소",
+    links: [
+      {
+        label: "공식 정답 출처",
+        href: "https://book.visang.com/books/info/5738",
+      },
+      {
+        label: "검토한 원본 PDF",
+        href: "https://cdn.visang.com/book/202505/20250512175755316.pdf",
+      },
+    ],
+    scopeNote:
+      "공식 정답과 해설 PDF 2~114쪽 · 본권 0001–1136 및 기출 BOOK 10단원 각 1–25번; 1,386주소·1,369검토 키·그래프 답 17개 미수록",
+    load: () =>
+      import("../../../data/commercial-workbooks/visang-typemanrep-m2-1-2022-v1.json"),
+  },
+  {
+    id: "erum-summa-startup-common-math1-2022-v1",
+    label: "이룸이앤비 숨마쿰라우데 스타트업 공통수학1 · 2022 개정 · 전 단원",
+    links: [
+      {
+        label: "출판사 공식 자료실 · 새 다운로드 제공",
+        href: "https://www.erumenb.com/bookdata/index.php?section=3",
+      },
+    ],
+    scopeNote:
+      "공식 SUB NOTE 전체 1710개 인쇄 주소 · 검수 정답 1692개 · 풀이 참조 18개 보류 · 원본의 1342~1391 번호 공백 보존",
+    load: () =>
+      import("../../../data/commercial-workbooks/erum-summa-startup-common-math1-2022-v1.json"),
+  },
 ];
 
 const packSchema = workbookCreateEditionSchema
