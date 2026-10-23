@@ -1,0 +1,4433 @@
+{
+  "packId": "visang-26711-2022-full-v1",
+  "displayName": "메인 북·클리닉 북 전체 답안",
+  "reviewDate": "2026-10-24",
+  "scope": {
+    "volumes": [
+      "메인 북",
+      "클리닉 북"
+    ],
+    "wholeBook": true,
+    "coverageMeaning": "전체 PDF에 인쇄된 답안 주소를 모두 등록했다. 67개 세로 나눗셈표의 정답 텍스트는 미수록이므로 완전한 정답 텍스트 수록을 뜻하지 않는다.",
+    "allAnswerAddressesPresent": true,
+    "allAnswersTranscribed": false,
+    "addressCoverage": "full",
+    "answerTextCoverage": "partial",
+    "rowGranularity": "one row per printed main exercise number, including all ordered values; no independently numbered subparts occur; address.subpart is empty",
+    "sourcePdfPagesVisuallyReviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "sourcePdfPagesContainingRegisteredAnswerBoxes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "textbookPageLabelsByVolume": {
+      "메인 북": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134",
+        "135",
+        "136",
+        "137",
+        "140",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "169",
+        "170",
+        "171"
+      ],
+      "클리닉 북": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ]
+    }
+  },
+  "source": {
+    "productUrl": "https://book.visang.com/books/info/5765",
+    "pdfUrl": "https://cdn.visang.com/book/202506/20250623163004477.pdf",
+    "publisherArchiveBookNo": "26711",
+    "sourceListingYear": "2025",
+    "productLearningYear": "2026",
+    "sha256": "01e9f604de6a07e806eeb1663257ff6f000fb3536a9d7d16581d7d29876c394b",
+    "pageCount": 32,
+    "byteCount": 15397939,
+    "localPdf": "/Volumes/TodayWork/commercial-workbook-sources/survey-20261024/root/samples/visang-26711.pdf",
+    "localExtractedText": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang-26711-layout.txt",
+    "catalogEvidence": "/Volumes/TodayWork/commercial-workbook-sources/survey-20261024/root/visang-catalog.json",
+    "manifestEvidence": "/Volumes/TodayWork/commercial-workbook-sources/survey-20261024/root/sample-manifest.json",
+    "localPublisherDetailEvidence": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/product-5765.html",
+    "publisherDetailSha256": "bdb81e885945ea90b4b24cbaa7d32292100bdaecd59a68fb59c31673c2251719",
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-01.png",
+        "sha256": "6095f8c7dc52c1298514598cf5af39cb7f91ece740f07ad5226a5345e018e57e",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 2,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-02.png",
+        "sha256": "c6c1de210444aadcfce5c987ae86a3da9e50bc4a3deb3b5b2da8ac28b1636b58",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 3,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-03.png",
+        "sha256": "bbb53958d51dc0af56af71162f2555aa310c258658541219dcd72735e8a89e0e",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 4,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-04.png",
+        "sha256": "62dd0f76a76447d90a6f8c0c702ae5af35763c6a0a7c20cde3bec0cc30f142d0",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 5,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-05.png",
+        "sha256": "5f84b6a2c64772d069dae3fee81d8b2424ec01f055755de6aba3d24d9303e3f1",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 6,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-06.png",
+        "sha256": "d18d830799166fdf20db7f7947ac06445795bea02b10f5961b1757981a43644f",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 7,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-07.png",
+        "sha256": "37515c72db58304f8777b8e898e9acc489dc3c15fc646fe489be71e0da5c25c9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 8,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-08.png",
+        "sha256": "1f395ff6d2a935053596d9d62b4bfd2b0f453ac8eb8fa9ecd58001d8f811c582",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 9,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-09.png",
+        "sha256": "6ef2a1742104eb4fbd5b4289699f44d0b03693f193305b0747d61cc5df74c4ca",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 10,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-10.png",
+        "sha256": "bd1bb4bbf597b663606a53fe1cc560bc59ceea322b900abec1a9fb1cfe5330e9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 11,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-11.png",
+        "sha256": "efee0bab664548a84baaba0959906e13ddd8d7048e1e9991729b31c6d43decfd",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 12,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-12.png",
+        "sha256": "2afc0f548d3b1fb86a4e8181c4ae0c7efe713f68faf7feea8e8c06b0d40e6ac9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 13,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-13.png",
+        "sha256": "53ab5c1946536a74083ba2716f319b0ff7d0e10507033196c93f27a7de1648ba",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 14,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-14.png",
+        "sha256": "b3b41d1a47c07a42642471a4f9b72ceda7f49911de886b95fef598a645154923",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 15,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-15.png",
+        "sha256": "5fd694f7f079296a34fc5eec89df4ef7e40f251c45531c591ec5f65ad9dbd9da",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 16,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-16.png",
+        "sha256": "b477845c959b7fb685c826a753c71603652502cf797328bc1d42f260f965d8d9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 17,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-17.png",
+        "sha256": "94025fc0f976e1402bda62ba757f6ae2d543838a548892179444e3c6286e07cd",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 18,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-18.png",
+        "sha256": "1a15d76b65f04c5682140ad0bf450aa0128fd3bec1b25ea86edb4cfbdcf90a34",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 19,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-19.png",
+        "sha256": "e942652bf204ea9d844c07b1b788a6d8521be2d41a440c4d318d027e689dabc3",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 20,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-20.png",
+        "sha256": "c2929e8c78c105f263b20a3cff8511eddc6b0e92da44bfd309fcaf5dbd1188b2",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 21,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-21.png",
+        "sha256": "3a27e6efc5cf5a840671b96d9baf78bdee53a9a03489e6a37a69b3a0987bc471",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 22,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-22.png",
+        "sha256": "1b5ffb11bf44c0e41753bf01aae0b8581a9a20c75333e5fb334215a1107ce5c1",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 23,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-23.png",
+        "sha256": "6bed00785bfa180775729338f4c64459003e11536fba7a283e61f10752e92ee6",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 24,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-24.png",
+        "sha256": "5377a77b058111cf84de06bfa3e4753efc79516b23f305885dc82a4ccda3ebf3",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 25,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-25.png",
+        "sha256": "6f362e629c2f4335a66fa299d6136b24b228350524676c09dbdf1530be20d9a7",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 26,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-26.png",
+        "sha256": "6f4835f6fce4961377343bb74b497942fa695cb5a7cba692396af8c450539ca8",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 27,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-27.png",
+        "sha256": "a710855dcb2a170c540b5b7aa8fdb415ed29a1f739574cc5b0a04c26c0bd3b6e",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 28,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-28.png",
+        "sha256": "9d954d2f230764872168338b099e69f2c7333a34a88140aac263371eec8099d9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 29,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-29.png",
+        "sha256": "6a4c976192a9776ba51c775b819a38c2da9ea2d014db1764382e115799251cbb",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 30,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-30.png",
+        "sha256": "df9069e021ee12b50761a0c29a57b5347174d83c2a0cb03c5931aeb2940e3f91",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 31,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-31.png",
+        "sha256": "543fe27242c87eca13523779d48a5f0797ed0309e0e30a88d4a17b19e582e0f9",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      },
+      {
+        "sourcePage": 32,
+        "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/page-32.png",
+        "sha256": "390d956b51a2edaff6f106c02df91666da1d1986c8d36107546dfecb16f15780",
+        "method": "pdftoppm -scale-to 1700 -png; visual page/number/answer review; numeric extraction only as a secondary check"
+      }
+    ]
+  },
+  "editionEvidence": {
+    "status": "official-product-identity-confirmed",
+    "observedAt": "2026-10-24",
+    "sourceUrls": [
+      "https://book.visang.com/books/info/5765",
+      "https://book.visang.com/search?pageRes=59",
+      "https://cdn.visang.com/book/202506/20250623163004477.pdf"
+    ],
+    "officialTitle": "개념플러스연산 라이트 초등 수학 5-1 (22 개정)",
+    "curriculum": "2022개정",
+    "learningYear": "2026",
+    "isbn": "979-11-7316-354-8",
+    "officialVolumePageCounts": {
+      "메인 북": 172,
+      "클리닉 북": 40,
+      "정답": 32
+    },
+    "editionBasis": "공식 상세의 2026년 학습 및 2022개정, ISBN 조합",
+    "printingOrImpressionDate": null,
+    "limitation": "공식 공개 상세에서 발행일·쇄는 확인하지 못했다. 자료실 2025 및 내장 인쇄 작업 일자는 발행 판본으로 추정하지 않았다."
+  },
+  "counts": {
+    "exercises": 2138,
+    "reviewedKeys": 2071,
+    "unreviewedKeys": 0,
+    "nullKeys": 67,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 189,
+    "byVolume": {
+      "메인 북": {
+        "exercises": 1703,
+        "reviewedKeys": 1652,
+        "nullKeys": 51,
+        "pageGroups": 154
+      },
+      "클리닉 북": {
+        "exercises": 435,
+        "reviewedKeys": 419,
+        "nullKeys": 16,
+        "pageGroups": 35
+      }
+    },
+    "byAnswerBoxSourcePage": {
+      "2": 84,
+      "3": 103,
+      "4": 77,
+      "5": 70,
+      "6": 78,
+      "7": 42,
+      "8": 48,
+      "9": 42,
+      "10": 46,
+      "11": 26,
+      "12": 24,
+      "13": 77,
+      "14": 70,
+      "15": 80,
+      "16": 51,
+      "17": 77,
+      "18": 77,
+      "19": 94,
+      "20": 77,
+      "21": 77,
+      "22": 94,
+      "23": 41,
+      "24": 60,
+      "25": 68,
+      "26": 72,
+      "27": 48,
+      "28": 92,
+      "29": 56,
+      "30": 68,
+      "31": 126,
+      "32": 93
+    },
+    "byReviewedKeySourcePage": {
+      "2": 84,
+      "3": 103,
+      "4": 77,
+      "5": 70,
+      "6": 78,
+      "7": 42,
+      "8": 24,
+      "9": 42,
+      "10": 19,
+      "11": 26,
+      "12": 24,
+      "13": 77,
+      "14": 70,
+      "15": 80,
+      "16": 51,
+      "17": 77,
+      "18": 77,
+      "19": 94,
+      "20": 77,
+      "21": 77,
+      "22": 94,
+      "23": 41,
+      "24": 60,
+      "25": 68,
+      "26": 72,
+      "27": 48,
+      "28": 92,
+      "29": 40,
+      "30": 68,
+      "31": 126,
+      "32": 93
+    }
+  },
+  "pageGroups": [
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "8",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "9",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "10",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "11",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "12",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "13",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 2,
+      "visuallyReviewedSourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "14",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "15",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "16",
+      "firstNumber": 1,
+      "lastNumber": 10,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "17",
+      "firstNumber": 11,
+      "lastNumber": 19,
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "18",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "19",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "20",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "21",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 3,
+      "visuallyReviewedSourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "22",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "23",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "24",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "25",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "26",
+      "firstNumber": 1,
+      "lastNumber": 7,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "27",
+      "firstNumber": 8,
+      "lastNumber": 21,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 4,
+      "visuallyReviewedSourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "28",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "29",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "30",
+      "firstNumber": 1,
+      "lastNumber": 10,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "31",
+      "firstNumber": 11,
+      "lastNumber": 17,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "32",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "33",
+      "firstNumber": 15,
+      "lastNumber": 25,
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 5,
+      "visuallyReviewedSourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "36",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "37",
+      "firstNumber": 4,
+      "lastNumber": 15,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "38",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "39",
+      "firstNumber": 13,
+      "lastNumber": 24,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "40",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "41",
+      "firstNumber": 4,
+      "lastNumber": 15,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "42",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "43",
+      "firstNumber": 13,
+      "lastNumber": 24,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 6,
+      "visuallyReviewedSourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "44",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "45",
+      "firstNumber": 5,
+      "lastNumber": 16,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "46",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "47",
+      "firstNumber": 5,
+      "lastNumber": 10,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "48",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "49",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 7,
+      "visuallyReviewedSourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "50",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "51",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "52",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "53",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "54",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "55",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "56",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "57",
+      "firstNumber": 5,
+      "lastNumber": 10,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "58",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "59",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "60",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "61",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 9,
+      "visuallyReviewedSourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "62",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "63",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "64",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "65",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "66",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 3,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "67",
+      "firstNumber": 7,
+      "lastNumber": 14,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "68",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "2. 약수와 배수",
+      "page": "69",
+      "firstNumber": 13,
+      "lastNumber": 20,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "72",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "73",
+      "firstNumber": 4,
+      "lastNumber": 6,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 11,
+      "visuallyReviewedSourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "74",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "75",
+      "firstNumber": 4,
+      "lastNumber": 6,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "76",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "77",
+      "firstNumber": 4,
+      "lastNumber": 6,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "78",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "3. 대응 관계",
+      "page": "79",
+      "firstNumber": 7,
+      "lastNumber": 12,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 12,
+      "visuallyReviewedSourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "82",
+      "firstNumber": 1,
+      "lastNumber": 10,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "83",
+      "firstNumber": 11,
+      "lastNumber": 20,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "84",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "85",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "86",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "87",
+      "firstNumber": 9,
+      "lastNumber": 29,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 13,
+      "visuallyReviewedSourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "88",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "89",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "90",
+      "firstNumber": 1,
+      "lastNumber": 7,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "91",
+      "firstNumber": 8,
+      "lastNumber": 14,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "92",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "93",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 14,
+      "visuallyReviewedSourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "94",
+      "firstNumber": 1,
+      "lastNumber": 7,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "95",
+      "firstNumber": 8,
+      "lastNumber": 14,
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "96",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "97",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "98",
+      "firstNumber": 1,
+      "lastNumber": 10,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "99",
+      "firstNumber": 11,
+      "lastNumber": 24,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 15,
+      "visuallyReviewedSourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "100",
+      "firstNumber": 1,
+      "lastNumber": 5,
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "101",
+      "firstNumber": 6,
+      "lastNumber": 26,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "102",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "4. 약분과 통분",
+      "page": "103",
+      "firstNumber": 13,
+      "lastNumber": 25,
+      "exerciseCount": 13,
+      "reviewedKeyCount": 13,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 16,
+      "visuallyReviewedSourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "106",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "107",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "108",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "109",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 17,
+      "visuallyReviewedSourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "110",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 18,
+      "visuallyReviewedSourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "111",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 18,
+      "visuallyReviewedSourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "112",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 18,
+      "visuallyReviewedSourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "113",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 18,
+      "visuallyReviewedSourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "114",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "115",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "116",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "117",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "118",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "119",
+      "firstNumber": 9,
+      "lastNumber": 17,
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 19,
+      "visuallyReviewedSourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "120",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 20,
+      "visuallyReviewedSourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "121",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 20,
+      "visuallyReviewedSourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "122",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 20,
+      "visuallyReviewedSourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "123",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 20,
+      "visuallyReviewedSourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "124",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 21,
+      "visuallyReviewedSourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "125",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 21,
+      "visuallyReviewedSourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "126",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 21,
+      "visuallyReviewedSourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "127",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 21,
+      "visuallyReviewedSourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "128",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "129",
+      "firstNumber": 15,
+      "lastNumber": 35,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "130",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "131",
+      "firstNumber": 22,
+      "lastNumber": 42,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "132",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "133",
+      "firstNumber": 9,
+      "lastNumber": 17,
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 22,
+      "visuallyReviewedSourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "134",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 23,
+      "visuallyReviewedSourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "135",
+      "firstNumber": 7,
+      "lastNumber": 16,
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 23,
+      "visuallyReviewedSourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "136",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 23,
+      "visuallyReviewedSourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "137",
+      "firstNumber": 15,
+      "lastNumber": 25,
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 23,
+      "visuallyReviewedSourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "140",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "141",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "142",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "143",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "144",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "145",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "146",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "147",
+      "firstNumber": 7,
+      "lastNumber": 20,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 24,
+      "visuallyReviewedSourcePages": [
+        24
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "148",
+      "firstNumber": 1,
+      "lastNumber": 14,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "149",
+      "firstNumber": 15,
+      "lastNumber": 28,
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "150",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "151",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "152",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "153",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "154",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "155",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 25,
+      "visuallyReviewedSourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "156",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "157",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "158",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "159",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "160",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "161",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "162",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "163",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "164",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "165",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 26,
+      "visuallyReviewedSourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "166",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "167",
+      "firstNumber": 5,
+      "lastNumber": 12,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "168",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "169",
+      "firstNumber": 9,
+      "lastNumber": 16,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "170",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "메인 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "171",
+      "firstNumber": 13,
+      "lastNumber": 20,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 27,
+      "visuallyReviewedSourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "1",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "2",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "3",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "4",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "1. 자연수의 혼합 계산",
+      "page": "5",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "7",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 28,
+      "visuallyReviewedSourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "8",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "9",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "10",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "11",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "12",
+      "firstNumber": 1,
+      "lastNumber": 6,
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "13",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "2. 약수와 배수",
+      "page": "14",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 8,
+      "answerBoxSourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "3. 대응 관계",
+      "page": "15",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "3. 대응 관계",
+      "page": "16",
+      "firstNumber": 1,
+      "lastNumber": 4,
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "3. 대응 관계",
+      "page": "17",
+      "firstNumber": 1,
+      "lastNumber": 3,
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "4. 약분과 통분",
+      "page": "19",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "4. 약분과 통분",
+      "page": "20",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "4. 약분과 통분",
+      "page": "21",
+      "firstNumber": 1,
+      "lastNumber": 12,
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "4. 약분과 통분",
+      "page": "22",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 30,
+      "visuallyReviewedSourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "4. 약분과 통분",
+      "page": "23",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "25",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "26",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "27",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "28",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "29",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 31,
+      "visuallyReviewedSourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "5. 분수의 덧셈과 뺄셈",
+      "page": "30",
+      "firstNumber": 1,
+      "lastNumber": 21,
+      "exerciseCount": 21,
+      "reviewedKeyCount": 21,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "31",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "32",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "33",
+      "firstNumber": 1,
+      "lastNumber": 16,
+      "exerciseCount": 16,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "34",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "35",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "36",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "37",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "클리닉 북",
+      "section": "6. 다각형의 둘레와 넓이",
+      "page": "38",
+      "firstNumber": 1,
+      "lastNumber": 8,
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "answerBoxSourcePage": 32,
+      "visuallyReviewedSourcePages": [
+        32
+      ]
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "13",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "14",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "53",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "54",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "13",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "14",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "55",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "visuallyReviewedSourcePages": [
+        8
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "13",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "14",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "63",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "64",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "13",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "14",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "65",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "66",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "66",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "메인 북",
+        "section": "2. 약수와 배수",
+        "page": "66",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "visuallyReviewedSourcePages": [
+        10
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "11",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    },
+    {
+      "address": {
+        "volume": "클리닉 북",
+        "section": "2. 약수와 배수",
+        "page": "14",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 29,
+      "visuallyReviewedSourcePages": [
+        29
+      ],
+      "reason": "unsupported-notation",
+      "registered": true,
+      "key": null,
+      "note": "공약수로 나누는 세로 나눗셈표와 결과가 함께 제시된 복합 답안이다. 배치 정보를 텍스트로 재현하거나 최종 숫자만 전체 답안으로 대신하지 않았다."
+    }
+  ],
+  "limitations": [
+    "전체 주소 수록이며 정답 텍스트는 67개 null을 제외한 부분 수록이다.",
+    "분수는 분자/분모, 대분수는 정수 공백 분자/분모로 표기했다. 가분수와 대분수 등 동치 정답 인정 규칙은 구현하지 않았다.",
+    "예시 답안은 예: 표시를 보존하며 유일한 허용 답이라고 주장하지 않는다.",
+    "PDF 28~32쪽 텍스트 추출에는 숨은 중복 내용·구판 잔여 문자가 섞여 있으므로 보이는 렌더링만 기준으로 삼았다.",
+    "전체 교재 본문과 질문은 검토·수록하지 않았다. 이 검수는 공식 답안의 충실한 교사 참조 전사이며 학습 효과나 성취기준 정합성 검증이 아니다."
+  ],
+  "normalization": [
+    "인쇄 쪽 제목을 직접 읽었다. 순번이나 일차로 교재 쪽을 추정하지 않았다. 이 PDF의 답안 쪽 제목은 모두 단일 쪽이며 임의 범위로 합치지 않았다.",
+    "원문 주문항 번호를 보존한다. 같은 일차의 두 번째 교재 쪽은 번호가 이어지며 이를 1로 재시작하지 않는다.",
+    "각 주문항의 복수 값은 쉼표와 공백 슬래시로 원문의 순서를 유지한다. 소문항 행으로 임의 분해하지 않는다.",
+    "색이 다른 기호는 ■ ▲ ★ ● ◆ ♥ 형태로 구별한다. ○와 ×의 참거짓 표기를 보존한다.",
+    "곱셈 ×, 나눗셈 ÷, 뺄셈 −, 제곱 단위 cm²·m²를 사용한다.",
+    "TSV null 행의 answerText·keyStatus·sourcePage는 빈 값이며 출처 쪽과 사유는 nullKeyLedger에 남긴다."
+  ],
+  "nonAnswerPages": [
+    {
+      "volume": "메인 북",
+      "pages": "1~7, 34~35, 70~71, 80~81, 104~105, 138~139, 172",
+      "basis": "공식 상세의 172쪽 중 이 답안 PDF에는 해당 쪽의 답안 상자가 없다. 질문 유무나 본문 내용을 추정하지 않는다."
+    },
+    {
+      "volume": "클리닉 북",
+      "pages": "6, 18, 24, 39~40",
+      "basis": "공식 상세의 40쪽 중 이 답안 PDF에는 해당 쪽의 답안 제목이 없다. 다른 쪽 답을 옮겨 메우지 않는다."
+    },
+    {
+      "volume": "정답",
+      "pages": "1",
+      "basis": "표지와 권별 시작 쪽 안내이며 문항 답안 없음"
+    }
+  ],
+  "supplementaryVerification": {
+    "numericTokenCrossCheck": {
+      "localEvidenceFile": "/Volumes/TodayWork/commercial-workbook-sources/intake-20261024/visang/visang-26711/independent-numeric-check.json",
+      "checked": 1220,
+      "disagreements": 0,
+      "limitation": "PDF 2~5·13~27쪽에서 위치와 글꼴로 독립 선택한 수치 토큰의 다중집합 비교. 모든 답안의 순서·분모·쪽 배치에 대한 이미지 검수를 대체하지 않는다."
+    }
+  },
+  "files": {
+    "pack": "visang-26711-2022-full-v1.json",
+    "tsv": "visang-26711-2022-full-v1.tsv"
+  },
+  "grading": "manual-reference-only"
+}
