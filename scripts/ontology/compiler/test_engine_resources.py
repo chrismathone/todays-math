@@ -37,9 +37,9 @@ class EngineResourceBoundaries(unittest.TestCase):
         self.assertNotIn("DO_NOT_LOG_STDERR", logs.getvalue())
         log = json.loads(logs.getvalue())
         self.assertEqual(log["event"], "ontology_compiler_child")
-        self.assertEqual(log["cpuSoftSeconds"], 220)
-        self.assertEqual(log["cpuHardSeconds"], 221)
-        self.assertEqual(log["wallSeconds"], 230)
+        self.assertEqual(log["cpuSoftSeconds"], 400)
+        self.assertEqual(log["cpuHardSeconds"], 401)
+        self.assertEqual(log["wallSeconds"], 480)
         self.assertGreaterEqual(log["cpuSeconds"], 0)
         self.assertGreaterEqual(log["elapsedMs"], 0)
         return result, log
@@ -47,7 +47,7 @@ class EngineResourceBoundaries(unittest.TestCase):
     def test_bounded_cpu_trial_preserves_linux_address_space_limit(self):
         with patch.object(resource, "setrlimit") as set_limit, patch.object(engine.sys, "platform", "linux"):
             engine.limits()
-        self.assertEqual(set_limit.call_args_list[0].args, (resource.RLIMIT_CPU, (220, 221)))
+        self.assertEqual(set_limit.call_args_list[0].args, (resource.RLIMIT_CPU, (400, 401)))
         self.assertEqual(set_limit.call_args_list[1].args, (resource.RLIMIT_AS, (1536 * 1024 * 1024,) * 2))
 
     def test_success_preserves_result_bytes_and_logs_only_resource_metadata(self):
@@ -70,13 +70,14 @@ class EngineResourceBoundaries(unittest.TestCase):
 
     def test_wall_timeout_kills_and_reaps_without_long_sleep(self):
         child = Mock(stdin=io.BytesIO(), stdout=io.BytesIO())
-        child.wait.side_effect = [subprocess.TimeoutExpired("synthetic-child", 230), -signal.SIGKILL]
+        child.wait.side_effect = [subprocess.TimeoutExpired("synthetic-child", 480), -signal.SIGKILL]
         child.poll.return_value = None
         logs = io.StringIO()
         with contextlib.redirect_stderr(logs), patch.object(engine.subprocess, "Popen", return_value=child):
             with self.assertRaises(subprocess.TimeoutExpired):
                 engine.compile_child({})
         child.kill.assert_called_once()
+        self.assertEqual(child.wait.call_args_list[0].kwargs, {"timeout": 480})
         self.assertEqual(child.wait.call_count, 2)
         log = json.loads(logs.getvalue())
         self.assertTrue(log["wallTimeout"])

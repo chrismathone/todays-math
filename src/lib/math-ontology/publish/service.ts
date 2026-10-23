@@ -190,7 +190,7 @@ export function createOntologyPublisher(deps: {
           state: "leased",
           leaseGeneration: { increment: 1 },
           attempt: { increment: 1 },
-          leaseUntil: new Date(time.getTime() + 300000),
+          leaseUntil: new Date(time.getTime() + 540000),
           lastErrorCode: null,
         },
       });
