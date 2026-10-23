@@ -1,0 +1,786 @@
+{
+  "packId": "ne-middle1-kwon-evaluation-2022-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeRequestedQuickAnswerScope": true,
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": false,
+    "definition": "공식 평가문제집 빠른 정답의 중단원·대단원 평가 전체; 자습서 별권은 해당하지 않음",
+    "sourceQuickAnswerPages": [
+      1,
+      2,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      24,
+      25
+    ],
+    "rowGranularity": "one row per printed two-digit question number; printed page ranges retained"
+  },
+  "source": {
+    "productUrl": "https://www.nebooks.co.kr/pages/book/view.asp?c=BE05020001",
+    "pdfUrl": "https://upfile.neungyule.com/upload_admin/2025/10/%EC%A4%91%ED%95%99%EA%B5%90%20%EC%88%98%ED%95%991%20%EC%9E%90%EC%8A%B5%EC%84%9C&%ED%8F%89%EA%B0%80%EB%AC%B8%EC%A0%9C%EC%A7%91_%EA%B6%8C%EC%98%A4%EB%82%A8%20%EC%A0%80%20(2022%20%EA%B0%9C%EC%A0%95)%20%ED%8F%89%EA%B0%80%EB%AC%B8%EC%A0%9C%EC%A7%91_%EC%A0%95%EB%8B%B5%20%EB%B0%8F%20%ED%95%B4%EC%84%A4.pdf",
+    "sha256": "9e1137d301d24bb488443a9b8fdb509f5af56a16622231caff8bba6156469f4f",
+    "pageCount": 27,
+    "byteCount": 1724078,
+    "sourceRelativePath": "elementary/pdfs/ne_BE05020001.pdf",
+    "editionEvidence": {
+      "title": "중학교 수학 1 자습서&평가문제집_권오남 저 (2022 개정)",
+      "isbn": "979-11-253-4972-3",
+      "publicationDate": "2025.02",
+      "curriculum": "2022 개정 교육과정",
+      "impression": null,
+      "productHtmlSha256": "f9698dcd162dce099d76f68d46a47fe1984110fb518a22fe6e5bf05656812e7f"
+    },
+    "reviewedAnswerRegions": [
+      {
+        "sourcePage": 1,
+        "bbox": [
+          56.94200134277344,
+          194.88543701171875,
+          277.54400634765625,
+          251.8934326171875
+        ],
+        "filename": "box-01.png",
+        "sha256": "115e548b062bf470851c23626f3a30e114fa30c71b6e51b78fc9540bd50f6c02"
+      },
+      {
+        "sourcePage": 2,
+        "bbox": [
+          68.28060150146484,
+          107.72003173828125,
+          288.8825988769531,
+          165.19703674316406
+        ],
+        "filename": "box-02.png",
+        "sha256": "6c71c01826aba7734f551435c286d763dbc5047cdec001ce8ec470d2c23f4bbe"
+      },
+      {
+        "sourcePage": 2,
+        "bbox": [
+          317.7294006347656,
+          535.4373779296875,
+          538.3314208984375,
+          660.6343994140625
+        ],
+        "filename": "box-03.png",
+        "sha256": "35b645aeee30a2725c5b8e18cf567dc04cef8510ed572ca3b229cbb1499d3954"
+      },
+      {
+        "sourcePage": 5,
+        "bbox": [
+          56.94200134277344,
+          142.4443359375,
+          277.54400634765625,
+          214.45233154296875
+        ],
+        "filename": "box-04.png",
+        "sha256": "0772fa9f2c5e49712a0f88cd28b803eeda811b8de979b3e9bc72d83cf5c679d9"
+      },
+      {
+        "sourcePage": 6,
+        "bbox": [
+          68.28060150146484,
+          401.93780517578125,
+          288.8825988769531,
+          473.94580078125
+        ],
+        "filename": "box-05.png",
+        "sha256": "6cd6e788c0f3ca695880cca9e38813f0ced410aefe7156c28c26f00b4d85b501"
+      },
+      {
+        "sourcePage": 7,
+        "bbox": [
+          306.3908996582031,
+          81.964111328125,
+          526.992919921875,
+          183.97210693359375
+        ],
+        "filename": "box-06.png",
+        "sha256": "d67e0f7bc0cc8738a95bf01c5995c3e24556c3db0d41c9802eac33b8ec506794"
+      },
+      {
+        "sourcePage": 10,
+        "bbox": [
+          68.28050231933594,
+          142.4443359375,
+          288.88250732421875,
+          221.9603271484375
+        ],
+        "filename": "box-07.png",
+        "sha256": "381718695d98cc4be3923d1be6a894688b1446893c4d5c4a5eab31f7cf8a3793"
+      },
+      {
+        "sourcePage": 11,
+        "bbox": [
+          56.94190216064453,
+          107.72003173828125,
+          277.5439147949219,
+          180.9210205078125
+        ],
+        "filename": "box-08.png",
+        "sha256": "0462a0f39580546934b4c9a0aac77444825022c0cc4921bf969061f441c5ff21"
+      },
+      {
+        "sourcePage": 12,
+        "bbox": [
+          68.28060150146484,
+          418.5602111816406,
+          288.8825988769531,
+          520.82421875
+        ],
+        "filename": "box-09.png",
+        "sha256": "cb90e0dd6bc7f3524154b8a4a6d1565f3d2c1c3a9c4bed9c28431d36d709fe04"
+      },
+      {
+        "sourcePage": 15,
+        "bbox": [
+          56.94200134277344,
+          142.4443359375,
+          277.54400634765625,
+          214.45233154296875
+        ],
+        "filename": "box-10.png",
+        "sha256": "3743d9740c54f34417ada8db89331e04d9595286618b148ea59e79b93803cac8"
+      },
+      {
+        "sourcePage": 16,
+        "bbox": [
+          68.28060150146484,
+          107.72003173828125,
+          288.8825988769531,
+          180.197021484375
+        ],
+        "filename": "box-11.png",
+        "sha256": "0092b98b0e03f6be65df0b0222ec2351928b97e43c6ff420269ac3ce44f5a9d1"
+      },
+      {
+        "sourcePage": 17,
+        "bbox": [
+          56.94190216064453,
+          81.964111328125,
+          277.5439147949219,
+          198.97210693359375
+        ],
+        "filename": "box-12.png",
+        "sha256": "f4e4323a83b90ae006acd99fdb38b0bbe62ea3b70e62f122db106178f94838e3"
+      },
+      {
+        "sourcePage": 19,
+        "bbox": [
+          306.39068603515625,
+          142.4443359375,
+          526.99267578125,
+          214.45233154296875
+        ],
+        "filename": "box-13.png",
+        "sha256": "c0e6f79cf0f936fc790bea80eab6f1233be246acc131700b24dde8ba53e246ed"
+      },
+      {
+        "sourcePage": 20,
+        "bbox": [
+          317.7294006347656,
+          306.81060791015625,
+          538.3314208984375,
+          378.818603515625
+        ],
+        "filename": "box-14.png",
+        "sha256": "bfc746dccb059bf2f1a937beaaa4d0af1a6c57a3eef006f473ee4ebda9920927"
+      },
+      {
+        "sourcePage": 21,
+        "bbox": [
+          306.3908996582031,
+          306.84130859375,
+          526.992919921875,
+          408.84930419921875
+        ],
+        "filename": "box-15.png",
+        "sha256": "d036d3d2bea649964453e4f8fa20c98879f718fe02708de016dde508bbb7af1a"
+      },
+      {
+        "sourcePage": 24,
+        "bbox": [
+          68.28050231933594,
+          142.4443359375,
+          288.88250732421875,
+          214.45233154296875
+        ],
+        "filename": "box-16.png",
+        "sha256": "7dd55f0aac7d1a89a1896429ac05e4e50395ad0d700203391b4512c7237de1dc"
+      },
+      {
+        "sourcePage": 25,
+        "bbox": [
+          56.94190216064453,
+          260.6240234375,
+          277.5439147949219,
+          332.63201904296875
+        ],
+        "filename": "box-17.png",
+        "sha256": "8d73f34b42b1f35bd0cb8b4e98cf155c9a45d2f34d2193c4cec798c6cec17710"
+      },
+      {
+        "sourcePage": 25,
+        "bbox": [
+          306.3908996582031,
+          612.3436279296875,
+          526.992919921875,
+          699.8206176757812
+        ],
+        "filename": "box-18.png",
+        "sha256": "2a74726d332439cc3567353fdcf15cedac73836969f879857d40d98f9f743ffc"
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 296,
+    "reviewedKeys": 294,
+    "nullKeys": 2,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 18
+  },
+  "pageGroups": [
+    {
+      "volume": "평가문제집",
+      "section": "1. 소인수분해 / 중단원 마무리 평가",
+      "page": "2~3",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePage": 1
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 정수와 유리수 / 중단원 마무리 평가",
+      "page": "4~5",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePage": 2
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "6~9",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "exerciseCount": 24,
+      "reviewedKeyCount": 24,
+      "nullKeyCount": 0,
+      "sourcePage": 2
+    },
+    {
+      "volume": "평가문제집",
+      "section": "1. 문자의 사용과 식 / 중단원 마무리 평가",
+      "page": "10~11",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 5
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 일차방정식 / 중단원 마무리 평가",
+      "page": "12~13",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePage": 6
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "14~17",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "exerciseCount": 24,
+      "reviewedKeyCount": 24,
+      "nullKeyCount": 0,
+      "sourcePage": 7
+    },
+    {
+      "volume": "평가문제집",
+      "section": "1. 좌표평면과 그래프 / 중단원 마무리 평가",
+      "page": "18~19",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exerciseCount": 13,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 1,
+      "sourcePage": 10
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 정비례와 반비례 / 중단원 마무리 평가",
+      "page": "20~21",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePage": 11
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "22~25",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "exerciseCount": 23,
+      "reviewedKeyCount": 23,
+      "nullKeyCount": 0,
+      "sourcePage": 12
+    },
+    {
+      "volume": "평가문제집",
+      "section": "1. 기본 도형 / 중단원 마무리 평가",
+      "page": "26~27",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePage": 15
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 작도와 합동 / 중단원 마무리 평가",
+      "page": "28~29",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 16
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "30~33",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "exerciseCount": 24,
+      "reviewedKeyCount": 24,
+      "nullKeyCount": 0,
+      "sourcePage": 17
+    },
+    {
+      "volume": "평가문제집",
+      "section": "1. 평면도형의 성질 / 중단원 마무리 평가",
+      "page": "34~35",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePage": 19
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 입체도형의 성질 / 중단원 마무리 평가",
+      "page": "36~37",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exerciseCount": 13,
+      "reviewedKeyCount": 13,
+      "nullKeyCount": 0,
+      "sourcePage": 20
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "38~41",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "exerciseCount": 24,
+      "reviewedKeyCount": 24,
+      "nullKeyCount": 0,
+      "sourcePage": 21
+    },
+    {
+      "volume": "평가문제집",
+      "section": "1. 대푯값 / 중단원 마무리 평가",
+      "page": "42~43",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12,
+      "nullKeyCount": 0,
+      "sourcePage": 24
+    },
+    {
+      "volume": "평가문제집",
+      "section": "2. 도수분포표와 상대도수 / 중단원 마무리 평가",
+      "page": "44~45",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 1,
+      "sourcePage": 25
+    },
+    {
+      "volume": "평가문제집",
+      "section": "대단원 마무리 평가",
+      "page": "46~49",
+      "expectedNumbers": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "exerciseCount": 18,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 0,
+      "sourcePage": 25
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "평가문제집",
+        "section": "1. 좌표평면과 그래프 / 중단원 마무리 평가",
+        "page": "18~19",
+        "number": "04",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "빠른 정답이 풀이 참조인 그래프·도수분포표 답안; 일부 소문항 답만으로 전체 키를 만들지 않음"
+    },
+    {
+      "address": {
+        "volume": "평가문제집",
+        "section": "2. 도수분포표와 상대도수 / 중단원 마무리 평가",
+        "page": "44~45",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "빠른 정답이 풀이 참조인 그래프·도수분포표 답안; 일부 소문항 답만으로 전체 키를 만들지 않음"
+    }
+  ],
+  "outOfScope": [
+    {
+      "reason": "해설 본문은 정답 상자와 중복되므로 재수록하지 않음; 자습서 자료는 별권"
+    }
+  ],
+  "reviewMethod": {
+    "coordinateFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BE05020001/native-coordinates.json",
+    "answerBoxFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BE05020001/answer-boxes.json",
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BE05020001/reviewed-correspondence.json",
+    "allAnswerRegionsVisuallyInspected": true
+  }
+}
