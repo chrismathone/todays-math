@@ -1,0 +1,3130 @@
+{
+  "packId": "ne-gak-common-math1-2023-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": true,
+    "definition": "공식 해설의 0001~0945 네 자리 문항 번호 전부, 소문항은 주번호 단위로 묶음",
+    "wholeRequestedQuickAnswerScope": false,
+    "rowGranularity": "one printed four-digit exercise number",
+    "individualTextbookPageResolved": false,
+    "printedPageGroupsPreserved": true
+  },
+  "source": {
+    "productUrl": "https://www.nebooks.co.kr/pages/book/view.asp?c=BH04090001",
+    "pdfUrl": "https://upfile.neungyule.com/upload_admin/2026/01/%EA%B3%A0%EB%93%B1%20%EA%B0%81_%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991_%ED%95%B4%EC%84%A4_20260120.pdf",
+    "sha256": "b219d92470219eb6d206aaf83353f026e35ed125569ab9df1dd4a76cc398b1b2",
+    "pageCount": 164,
+    "byteCount": 3999199,
+    "sourceRelativePath": "elementary/pdfs/ne_BH04090001.pdf",
+    "editionEvidence": {
+      "title": "고등 각_공통수학1",
+      "isbn": "979-11-253-4326-4",
+      "publicationDate": "2023.11",
+      "curriculum": null,
+      "impression": null
+    }
+  },
+  "counts": {
+    "exercises": 945,
+    "reviewedKeys": 763,
+    "nullKeys": 182,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 30
+  },
+  "pageGroups": [
+    {
+      "page": "9, 11",
+      "section": "01 다항식의 연산 / A step 개념 익히고,",
+      "firstNumber": "0001",
+      "lastNumber": "0011",
+      "exerciseCount": 11,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 11,
+      "headingSourcePage": 2,
+      "headingBBox": [
+        240.83999633789062,
+        170.92799377441406,
+        284.0490417480469,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "12 ~ 21",
+      "section": "01 다항식의 연산 / B step 기출 & 변형하면…",
+      "firstNumber": "0012",
+      "lastNumber": "0065",
+      "exerciseCount": 54,
+      "reviewedKeyCount": 52,
+      "nullKeyCount": 2,
+      "headingSourcePage": 3,
+      "headingBBox": [
+        486.1199951171875,
+        512.8079833984375,
+        536.4090576171875,
+        520.8479614257812
+      ]
+    },
+    {
+      "page": "22 ~ 25",
+      "section": "01 다항식의 연산 / C step 실력 완성!",
+      "firstNumber": "0066",
+      "lastNumber": "0085",
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "headingSourcePage": 11,
+      "headingBBox": [
+        233.87998962402344,
+        448.60797119140625,
+        284.0490417480469,
+        456.6479797363281
+      ]
+    },
+    {
+      "page": "27, 29",
+      "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+      "firstNumber": "0086",
+      "lastNumber": "0095",
+      "exerciseCount": 10,
+      "reviewedKeyCount": 2,
+      "nullKeyCount": 8,
+      "headingSourcePage": 15,
+      "headingBBox": [
+        236.51998901367188,
+        170.92799377441406,
+        284.0490417480469,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "30 ~ 44",
+      "section": "02 나머지정리와 인수분해 / B step 기출 & 변형하면…",
+      "firstNumber": "0096",
+      "lastNumber": "0175",
+      "exerciseCount": 80,
+      "reviewedKeyCount": 76,
+      "nullKeyCount": 4,
+      "headingSourcePage": 17,
+      "headingBBox": [
+        233.87998962402344,
+        412.7279968261719,
+        284.0490417480469,
+        420.76800537109375
+      ]
+    },
+    {
+      "page": "45 ~ 47",
+      "section": "02 나머지정리와 인수분해 / C step 실력 완성!",
+      "firstNumber": "0176",
+      "lastNumber": "0192",
+      "exerciseCount": 17,
+      "reviewedKeyCount": 17,
+      "nullKeyCount": 0,
+      "headingSourcePage": 29,
+      "headingBBox": [
+        486.1199951171875,
+        407.447998046875,
+        536.4090576171875,
+        415.4880065917969
+      ]
+    },
+    {
+      "page": "51, 53",
+      "section": "03 복소수 / A step 개념 익히고,",
+      "firstNumber": "0193",
+      "lastNumber": "0203",
+      "exerciseCount": 11,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 11,
+      "headingSourcePage": 33,
+      "headingBBox": [
+        236.51998901367188,
+        170.92799377441406,
+        284.0490417480469,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "54 ~ 63",
+      "section": "03 복소수 / B step 기출 & 변형하면…",
+      "firstNumber": "0204",
+      "lastNumber": "0255",
+      "exerciseCount": 52,
+      "reviewedKeyCount": 51,
+      "nullKeyCount": 1,
+      "headingSourcePage": 34,
+      "headingBBox": [
+        233.87998962402344,
+        511.96795654296875,
+        284.0490417480469,
+        520.0079345703125
+      ]
+    },
+    {
+      "page": "64 ~ 67",
+      "section": "03 복소수 / C step 실력 완성!",
+      "firstNumber": "0256",
+      "lastNumber": "0275",
+      "exerciseCount": 20,
+      "reviewedKeyCount": 18,
+      "nullKeyCount": 2,
+      "headingSourcePage": 42,
+      "headingBBox": [
+        233.75331115722656,
+        422.106689453125,
+        284.11602783203125,
+        430.1379089355469
+      ]
+    },
+    {
+      "page": "69, 71",
+      "section": "04 이차방정식 / A step 개념 익히고,",
+      "firstNumber": "0276",
+      "lastNumber": "0291",
+      "exerciseCount": 16,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 16,
+      "headingSourcePage": 46,
+      "headingBBox": [
+        236.51998901367188,
+        171.7679901123047,
+        284.0490417480469,
+        179.80799865722656
+      ]
+    },
+    {
+      "page": "72 ~ 82",
+      "section": "04 이차방정식 / B step 기출 & 변형하면…",
+      "firstNumber": "0292",
+      "lastNumber": "0355",
+      "exerciseCount": 64,
+      "reviewedKeyCount": 55,
+      "nullKeyCount": 9,
+      "headingSourcePage": 48,
+      "headingBBox": [
+        233.87998962402344,
+        613.6079711914062,
+        284.0490417480469,
+        621.64794921875
+      ]
+    },
+    {
+      "page": "83 ~ 85",
+      "section": "04 이차방정식 / C step 실력 완성!",
+      "firstNumber": "0356",
+      "lastNumber": "0371",
+      "exerciseCount": 16,
+      "reviewedKeyCount": 13,
+      "nullKeyCount": 3,
+      "headingSourcePage": 58,
+      "headingBBox": [
+        233.87998962402344,
+        100.9679946899414,
+        284.0490417480469,
+        109.00799560546875
+      ]
+    },
+    {
+      "page": "87, 89",
+      "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+      "firstNumber": "0372",
+      "lastNumber": "0382",
+      "exerciseCount": 11,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 11,
+      "headingSourcePage": 61,
+      "headingBBox": [
+        236.51998901367188,
+        170.92799377441406,
+        284.0490417480469,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "90 ~ 97",
+      "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+      "firstNumber": "0383",
+      "lastNumber": "0430",
+      "exerciseCount": 48,
+      "reviewedKeyCount": 43,
+      "nullKeyCount": 5,
+      "headingSourcePage": 63,
+      "headingBBox": [
+        233.87998962402344,
+        337.12799072265625,
+        284.0490417480469,
+        345.1679992675781
+      ]
+    },
+    {
+      "page": "98 ~ 101",
+      "section": "05 이차방정식과 이차함수 / C step 실력 완성!",
+      "firstNumber": "0431",
+      "lastNumber": "0448",
+      "exerciseCount": 18,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 2,
+      "headingSourcePage": 70,
+      "headingBBox": [
+        481.79998779296875,
+        595.7279663085938,
+        536.4090576171875,
+        603.7679443359375
+      ]
+    },
+    {
+      "page": "103, 105",
+      "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+      "firstNumber": "0449",
+      "lastNumber": "0462",
+      "exerciseCount": 14,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 11,
+      "headingSourcePage": 75,
+      "headingBBox": [
+        227.63999938964844,
+        170.92799377441406,
+        284.0490417480469,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "106 ~ 117",
+      "section": "06 여러 가지 방정식 / B step 기출 & 변형하면…",
+      "firstNumber": "0463",
+      "lastNumber": "0530",
+      "exerciseCount": 68,
+      "reviewedKeyCount": 66,
+      "nullKeyCount": 2,
+      "headingSourcePage": 78,
+      "headingBBox": [
+        225.1199951171875,
+        99.16799926757812,
+        284.0490417480469,
+        107.20800018310547
+      ]
+    },
+    {
+      "page": "118 ~ 121",
+      "section": "06 여러 가지 방정식 / C step 실력 완성!",
+      "firstNumber": "0531",
+      "lastNumber": "0550",
+      "exerciseCount": 20,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 1,
+      "headingSourcePage": 92,
+      "headingBBox": [
+        225.1199951171875,
+        328.60797119140625,
+        284.0490417480469,
+        336.6479797363281
+      ]
+    },
+    {
+      "page": "125, 127",
+      "section": "07 연립일차부등식 / A step 개념 익히고,",
+      "firstNumber": "0551",
+      "lastNumber": "0560",
+      "exerciseCount": 10,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 10,
+      "headingSourcePage": 97,
+      "headingBBox": [
+        227.63999938964844,
+        170.92799377441406,
+        284.2699890136719,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "128 ~ 135",
+      "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+      "firstNumber": "0561",
+      "lastNumber": "0606",
+      "exerciseCount": 46,
+      "reviewedKeyCount": 38,
+      "nullKeyCount": 8,
+      "headingSourcePage": 99,
+      "headingBBox": [
+        477.3599853515625,
+        99.16799926757812,
+        536.6300048828125,
+        107.20800018310547
+      ]
+    },
+    {
+      "page": "136 ~ 139",
+      "section": "07 연립일차부등식 / C step 실력 완성!",
+      "firstNumber": "0607",
+      "lastNumber": "0624",
+      "exerciseCount": 18,
+      "reviewedKeyCount": 16,
+      "nullKeyCount": 2,
+      "headingSourcePage": 106,
+      "headingBBox": [
+        477.3599853515625,
+        636.7680053710938,
+        536.6300048828125,
+        644.8079833984375
+      ]
+    },
+    {
+      "page": "141, 143",
+      "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+      "firstNumber": "0625",
+      "lastNumber": "0642",
+      "exerciseCount": 18,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 18,
+      "headingSourcePage": 111,
+      "headingBBox": [
+        227.63999938964844,
+        170.92799377441406,
+        284.2699890136719,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "144 ~ 155",
+      "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+      "firstNumber": "0643",
+      "lastNumber": "0710",
+      "exerciseCount": 68,
+      "reviewedKeyCount": 60,
+      "nullKeyCount": 8,
+      "headingSourcePage": 113,
+      "headingBBox": [
+        477.3599853515625,
+        612.2879638671875,
+        536.6300048828125,
+        620.3279418945312
+      ]
+    },
+    {
+      "page": "156 ~ 159",
+      "section": "08 이차부등식과 연립이차부등식 / C step 실력 완성!",
+      "firstNumber": "0711",
+      "lastNumber": "0728",
+      "exerciseCount": 18,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 3,
+      "headingSourcePage": 125,
+      "headingBBox": [
+        477.3599853515625,
+        468.2879943847656,
+        536.6300048828125,
+        476.3280029296875
+      ]
+    },
+    {
+      "page": "163, 165",
+      "section": "09 순열과 조합 / A step 개념 익히고,",
+      "firstNumber": "0729",
+      "lastNumber": "0741",
+      "exerciseCount": 13,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 10,
+      "headingSourcePage": 129,
+      "headingBBox": [
+        227.63999938964844,
+        166.12799072265625,
+        284.2699890136719,
+        174.16799926757812
+      ]
+    },
+    {
+      "page": "166 ~ 181",
+      "section": "09 순열과 조합 / B step 기출 & 변형하면…",
+      "firstNumber": "0742",
+      "lastNumber": "0835",
+      "exerciseCount": 94,
+      "reviewedKeyCount": 93,
+      "nullKeyCount": 1,
+      "headingSourcePage": 130,
+      "headingBBox": [
+        477.3599853515625,
+        276.2879943847656,
+        536.6300048828125,
+        284.3280029296875
+      ]
+    },
+    {
+      "page": "182 ~ 185",
+      "section": "09 순열과 조합 / C step 실력 완성!",
+      "firstNumber": "0836",
+      "lastNumber": "0855",
+      "exerciseCount": 20,
+      "reviewedKeyCount": 20,
+      "nullKeyCount": 0,
+      "headingSourcePage": 144,
+      "headingBBox": [
+        477.3599853515625,
+        598.4879760742188,
+        536.6300048828125,
+        606.5279541015625
+      ]
+    },
+    {
+      "page": "189, 191",
+      "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+      "firstNumber": "0856",
+      "lastNumber": "0869",
+      "exerciseCount": 14,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 14,
+      "headingSourcePage": 149,
+      "headingBBox": [
+        227.63999938964844,
+        170.92799377441406,
+        284.2699890136719,
+        178.96800231933594
+      ]
+    },
+    {
+      "page": "192 ~ 202",
+      "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+      "firstNumber": "0870",
+      "lastNumber": "0929",
+      "exerciseCount": 60,
+      "reviewedKeyCount": 54,
+      "nullKeyCount": 6,
+      "headingSourcePage": 151,
+      "headingBBox": [
+        225.1199951171875,
+        99.16799926757812,
+        284.2699890136719,
+        107.20800018310547
+      ]
+    },
+    {
+      "page": "203 ~ 205",
+      "section": "10 행렬과 그 연산 / C step 실력 완성!",
+      "firstNumber": "0930",
+      "lastNumber": "0945",
+      "exerciseCount": 16,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 1,
+      "headingSourcePage": 160,
+      "headingBBox": [
+        477.3599853515625,
+        377.2079772949219,
+        536.6300048828125,
+        385.24798583984375
+      ]
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0001",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        2
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0002",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        2
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0003",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        2
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0004",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        2
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0005",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        2
+      ],
+      "reason": "원문 답이 풀이 참조이며 긴 풀이·증명은 정답 참조 문자열에서 제외"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0006",
+        "subpart": ""
+      },
+      "sourcePage": 2,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0007",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0008",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0009",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0010",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "원문 답이 풀이 참조이며 긴 풀이·증명은 정답 참조 문자열에서 제외"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / A step 개념 익히고,",
+        "page": "9, 11",
+        "number": "0011",
+        "subpart": ""
+      },
+      "sourcePage": 3,
+      "answerSourcePages": [
+        3
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / B step 기출 & 변형하면…",
+        "page": "12 ~ 21",
+        "number": "0015",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "answerSourcePages": [
+        4
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / B step 기출 & 변형하면…",
+        "page": "12 ~ 21",
+        "number": "0048",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "answerSourcePages": [
+        8
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / C step 실력 완성!",
+        "page": "22 ~ 25",
+        "number": "0071",
+        "subpart": ""
+      },
+      "sourcePage": 12,
+      "answerSourcePages": [
+        12
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "01 다항식의 연산 / C step 실력 완성!",
+        "page": "22 ~ 25",
+        "number": "0085",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "answerSourcePages": [
+        14
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0086",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        15
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0087",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        15
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0088",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        15
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0089",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        15
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0091",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        15
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0093",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "answerSourcePages": [
+        16
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0094",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "answerSourcePages": [
+        16
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / A step 개념 익히고,",
+        "page": "27, 29",
+        "number": "0095",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "answerSourcePages": [
+        17
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / B step 기출 & 변형하면…",
+        "page": "30 ~ 44",
+        "number": "0140",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "answerSourcePages": [
+        23
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / B step 기출 & 변형하면…",
+        "page": "30 ~ 44",
+        "number": "0141",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "answerSourcePages": [
+        23
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / B step 기출 & 변형하면…",
+        "page": "30 ~ 44",
+        "number": "0144",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "answerSourcePages": [
+        24
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "02 나머지정리와 인수분해 / B step 기출 & 변형하면…",
+        "page": "30 ~ 44",
+        "number": "0156",
+        "subpart": ""
+      },
+      "sourcePage": 26,
+      "answerSourcePages": [
+        26
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0193",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0194",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0195",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0196",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0197",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0198",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0199",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0200",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "answerSourcePages": [
+        33
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0201",
+        "subpart": ""
+      },
+      "sourcePage": 34,
+      "answerSourcePages": [
+        34
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0202",
+        "subpart": ""
+      },
+      "sourcePage": 34,
+      "answerSourcePages": [
+        34
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / A step 개념 익히고,",
+        "page": "51, 53",
+        "number": "0203",
+        "subpart": ""
+      },
+      "sourcePage": 34,
+      "answerSourcePages": [
+        34
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / B step 기출 & 변형하면…",
+        "page": "54 ~ 63",
+        "number": "0237",
+        "subpart": ""
+      },
+      "sourcePage": 39,
+      "answerSourcePages": [
+        39
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / C step 실력 완성!",
+        "page": "64 ~ 67",
+        "number": "0258",
+        "subpart": ""
+      },
+      "sourcePage": 42,
+      "answerSourcePages": [
+        42
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "03 복소수 / C step 실력 완성!",
+        "page": "64 ~ 67",
+        "number": "0264",
+        "subpart": ""
+      },
+      "sourcePage": 43,
+      "answerSourcePages": [
+        43
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0276",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        46
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0277",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        46
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0278",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        46
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0279",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        46
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0280",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        46
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0281",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0282",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0283",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0284",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0285",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0286",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0287",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0288",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        47
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0289",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "answerSourcePages": [
+        48
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0290",
+        "subpart": ""
+      },
+      "sourcePage": 48,
+      "answerSourcePages": [
+        48
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / A step 개념 익히고,",
+        "page": "69, 71",
+        "number": "0291",
+        "subpart": ""
+      },
+      "sourcePage": 48,
+      "answerSourcePages": [
+        48
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0295",
+        "subpart": ""
+      },
+      "sourcePage": 48,
+      "answerSourcePages": [
+        48
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0301",
+        "subpart": ""
+      },
+      "sourcePage": 49,
+      "answerSourcePages": [
+        49
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0310",
+        "subpart": ""
+      },
+      "sourcePage": 51,
+      "answerSourcePages": [
+        51
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0311",
+        "subpart": ""
+      },
+      "sourcePage": 51,
+      "answerSourcePages": [
+        51
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0318",
+        "subpart": ""
+      },
+      "sourcePage": 52,
+      "answerSourcePages": [
+        52
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0319",
+        "subpart": ""
+      },
+      "sourcePage": 52,
+      "answerSourcePages": [
+        52
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0323",
+        "subpart": ""
+      },
+      "sourcePage": 52,
+      "answerSourcePages": [
+        52
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0342",
+        "subpart": ""
+      },
+      "sourcePage": 55,
+      "answerSourcePages": [
+        55
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / B step 기출 & 변형하면…",
+        "page": "72 ~ 82",
+        "number": "0343",
+        "subpart": ""
+      },
+      "sourcePage": 56,
+      "answerSourcePages": [
+        56
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / C step 실력 완성!",
+        "page": "83 ~ 85",
+        "number": "0357",
+        "subpart": ""
+      },
+      "sourcePage": 58,
+      "answerSourcePages": [
+        58
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / C step 실력 완성!",
+        "page": "83 ~ 85",
+        "number": "0360",
+        "subpart": ""
+      },
+      "sourcePage": 58,
+      "answerSourcePages": [
+        58
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "04 이차방정식 / C step 실력 완성!",
+        "page": "83 ~ 85",
+        "number": "0365",
+        "subpart": ""
+      },
+      "sourcePage": 59,
+      "answerSourcePages": [
+        59
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0372",
+        "subpart": ""
+      },
+      "sourcePage": 61,
+      "answerSourcePages": [
+        61
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0373",
+        "subpart": ""
+      },
+      "sourcePage": 61,
+      "answerSourcePages": [
+        61
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0374",
+        "subpart": ""
+      },
+      "sourcePage": 61,
+      "answerSourcePages": [
+        61
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0375",
+        "subpart": ""
+      },
+      "sourcePage": 61,
+      "answerSourcePages": [
+        61
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0376",
+        "subpart": ""
+      },
+      "sourcePage": 61,
+      "answerSourcePages": [
+        61
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0377",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        62
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0378",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        62
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0379",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        62
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0380",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        62
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0381",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        62
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / A step 개념 익히고,",
+        "page": "87, 89",
+        "number": "0382",
+        "subpart": ""
+      },
+      "sourcePage": 62,
+      "answerSourcePages": [
+        63
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+        "page": "90 ~ 97",
+        "number": "0404",
+        "subpart": ""
+      },
+      "sourcePage": 66,
+      "answerSourcePages": [
+        66
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+        "page": "90 ~ 97",
+        "number": "0405",
+        "subpart": ""
+      },
+      "sourcePage": 66,
+      "answerSourcePages": [
+        66
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+        "page": "90 ~ 97",
+        "number": "0412",
+        "subpart": ""
+      },
+      "sourcePage": 67,
+      "answerSourcePages": [
+        67
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+        "page": "90 ~ 97",
+        "number": "0427",
+        "subpart": ""
+      },
+      "sourcePage": 70,
+      "answerSourcePages": [
+        70
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / B step 기출 & 변형하면…",
+        "page": "90 ~ 97",
+        "number": "0428",
+        "subpart": ""
+      },
+      "sourcePage": 70,
+      "answerSourcePages": [
+        70
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / C step 실력 완성!",
+        "page": "98 ~ 101",
+        "number": "0445",
+        "subpart": ""
+      },
+      "sourcePage": 73,
+      "answerSourcePages": [
+        73,
+        73
+      ],
+      "reason": "동일 번호 아래 답 표지가 둘이며 대응 확인 전 보류"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "05 이차방정식과 이차함수 / C step 실력 완성!",
+        "page": "98 ~ 101",
+        "number": "0448",
+        "subpart": ""
+      },
+      "sourcePage": 73,
+      "answerSourcePages": [
+        74
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0449",
+        "subpart": ""
+      },
+      "sourcePage": 75,
+      "answerSourcePages": [
+        75
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0450",
+        "subpart": ""
+      },
+      "sourcePage": 75,
+      "answerSourcePages": [
+        75
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0451",
+        "subpart": ""
+      },
+      "sourcePage": 75,
+      "answerSourcePages": [
+        75
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0452",
+        "subpart": ""
+      },
+      "sourcePage": 75,
+      "answerSourcePages": [
+        76
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0453",
+        "subpart": ""
+      },
+      "sourcePage": 76,
+      "answerSourcePages": [
+        76
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0454",
+        "subpart": ""
+      },
+      "sourcePage": 76,
+      "answerSourcePages": [
+        76
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0455",
+        "subpart": ""
+      },
+      "sourcePage": 76,
+      "answerSourcePages": [
+        76
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0458",
+        "subpart": ""
+      },
+      "sourcePage": 76,
+      "answerSourcePages": [
+        77
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0459",
+        "subpart": ""
+      },
+      "sourcePage": 77,
+      "answerSourcePages": [
+        77
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0460",
+        "subpart": ""
+      },
+      "sourcePage": 77,
+      "answerSourcePages": [
+        77
+      ],
+      "reason": "원문 답이 풀이 참조이며 긴 풀이·증명은 정답 참조 문자열에서 제외"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / A step 개념 익히고,",
+        "page": "103, 105",
+        "number": "0461",
+        "subpart": ""
+      },
+      "sourcePage": 77,
+      "answerSourcePages": [
+        77
+      ],
+      "reason": "원문 답이 풀이 참조이며 긴 풀이·증명은 정답 참조 문자열에서 제외"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / B step 기출 & 변형하면…",
+        "page": "106 ~ 117",
+        "number": "0482",
+        "subpart": ""
+      },
+      "sourcePage": 82,
+      "answerSourcePages": [
+        82
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / B step 기출 & 변형하면…",
+        "page": "106 ~ 117",
+        "number": "0516",
+        "subpart": ""
+      },
+      "sourcePage": 89,
+      "answerSourcePages": [
+        89
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "06 여러 가지 방정식 / C step 실력 완성!",
+        "page": "118 ~ 121",
+        "number": "0550",
+        "subpart": ""
+      },
+      "sourcePage": 96,
+      "answerSourcePages": [
+        96
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0551",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        97
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0552",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        97
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0553",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        97
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0554",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        97
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0555",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        97
+      ],
+      "reason": "원문 답이 풀이 참조이며 긴 풀이·증명은 정답 참조 문자열에서 제외"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0556",
+        "subpart": ""
+      },
+      "sourcePage": 97,
+      "answerSourcePages": [
+        98
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0557",
+        "subpart": ""
+      },
+      "sourcePage": 98,
+      "answerSourcePages": [
+        98
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0558",
+        "subpart": ""
+      },
+      "sourcePage": 98,
+      "answerSourcePages": [
+        98
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0559",
+        "subpart": ""
+      },
+      "sourcePage": 98,
+      "answerSourcePages": [
+        98
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / A step 개념 익히고,",
+        "page": "125, 127",
+        "number": "0560",
+        "subpart": ""
+      },
+      "sourcePage": 98,
+      "answerSourcePages": [
+        99
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0563",
+        "subpart": ""
+      },
+      "sourcePage": 99,
+      "answerSourcePages": [
+        99
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0571",
+        "subpart": ""
+      },
+      "sourcePage": 100,
+      "answerSourcePages": [
+        101
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0576",
+        "subpart": ""
+      },
+      "sourcePage": 101,
+      "answerSourcePages": [
+        101
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0581",
+        "subpart": ""
+      },
+      "sourcePage": 102,
+      "answerSourcePages": [
+        102
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0588",
+        "subpart": ""
+      },
+      "sourcePage": 103,
+      "answerSourcePages": [
+        103
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0593",
+        "subpart": ""
+      },
+      "sourcePage": 104,
+      "answerSourcePages": [
+        104
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0602",
+        "subpart": ""
+      },
+      "sourcePage": 106,
+      "answerSourcePages": [
+        106
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / B step 기출 & 변형하면…",
+        "page": "128 ~ 135",
+        "number": "0603",
+        "subpart": ""
+      },
+      "sourcePage": 106,
+      "answerSourcePages": [
+        106
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / C step 실력 완성!",
+        "page": "136 ~ 139",
+        "number": "0610",
+        "subpart": ""
+      },
+      "sourcePage": 107,
+      "answerSourcePages": [
+        107
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "07 연립일차부등식 / C step 실력 완성!",
+        "page": "136 ~ 139",
+        "number": "0616",
+        "subpart": ""
+      },
+      "sourcePage": 108,
+      "answerSourcePages": [
+        108
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0625",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0626",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0627",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0628",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0629",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0630",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0631",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0632",
+        "subpart": ""
+      },
+      "sourcePage": 111,
+      "answerSourcePages": [
+        111
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0633",
+        "subpart": ""
+      },
+      "sourcePage": 112,
+      "answerSourcePages": [
+        112
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0634",
+        "subpart": ""
+      },
+      "sourcePage": 112,
+      "answerSourcePages": [
+        112
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0635",
+        "subpart": ""
+      },
+      "sourcePage": 112,
+      "answerSourcePages": [
+        112
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0636",
+        "subpart": ""
+      },
+      "sourcePage": 112,
+      "answerSourcePages": [
+        112
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0637",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0638",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0639",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0640",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0641",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / A step 개념 익히고,",
+        "page": "141, 143",
+        "number": "0642",
+        "subpart": ""
+      },
+      "sourcePage": 113,
+      "answerSourcePages": [
+        113
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0659",
+        "subpart": ""
+      },
+      "sourcePage": 116,
+      "answerSourcePages": [
+        116
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0660",
+        "subpart": ""
+      },
+      "sourcePage": 116,
+      "answerSourcePages": [
+        116
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0667",
+        "subpart": ""
+      },
+      "sourcePage": 117,
+      "answerSourcePages": [
+        118
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0676",
+        "subpart": ""
+      },
+      "sourcePage": 119,
+      "answerSourcePages": [
+        119
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0682",
+        "subpart": ""
+      },
+      "sourcePage": 120,
+      "answerSourcePages": [
+        120
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0692",
+        "subpart": ""
+      },
+      "sourcePage": 122,
+      "answerSourcePages": [
+        122
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0694",
+        "subpart": ""
+      },
+      "sourcePage": 122,
+      "answerSourcePages": [
+        122
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / B step 기출 & 변형하면…",
+        "page": "144 ~ 155",
+        "number": "0702",
+        "subpart": ""
+      },
+      "sourcePage": 123,
+      "answerSourcePages": [
+        124
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / C step 실력 완성!",
+        "page": "156 ~ 159",
+        "number": "0712",
+        "subpart": ""
+      },
+      "sourcePage": 125,
+      "answerSourcePages": [
+        125
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / C step 실력 완성!",
+        "page": "156 ~ 159",
+        "number": "0713",
+        "subpart": ""
+      },
+      "sourcePage": 126,
+      "answerSourcePages": [
+        126
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "08 이차부등식과 연립이차부등식 / C step 실력 완성!",
+        "page": "156 ~ 159",
+        "number": "0717",
+        "subpart": ""
+      },
+      "sourcePage": 126,
+      "answerSourcePages": [
+        126
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0729",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0731",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0733",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0734",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0735",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0736",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        129
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0737",
+        "subpart": ""
+      },
+      "sourcePage": 129,
+      "answerSourcePages": [
+        130
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0738",
+        "subpart": ""
+      },
+      "sourcePage": 130,
+      "answerSourcePages": [
+        130
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0739",
+        "subpart": ""
+      },
+      "sourcePage": 130,
+      "answerSourcePages": [
+        130
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / A step 개념 익히고,",
+        "page": "163, 165",
+        "number": "0740",
+        "subpart": ""
+      },
+      "sourcePage": 130,
+      "answerSourcePages": [
+        130
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "09 순열과 조합 / B step 기출 & 변형하면…",
+        "page": "166 ~ 181",
+        "number": "0797",
+        "subpart": ""
+      },
+      "sourcePage": 138,
+      "answerSourcePages": [
+        138
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0856",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0857",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0858",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0859",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0860",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0861",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0862",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0863",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0864",
+        "subpart": ""
+      },
+      "sourcePage": 149,
+      "answerSourcePages": [
+        149
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0865",
+        "subpart": ""
+      },
+      "sourcePage": 150,
+      "answerSourcePages": [
+        150
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0866",
+        "subpart": ""
+      },
+      "sourcePage": 150,
+      "answerSourcePages": [
+        150
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0867",
+        "subpart": ""
+      },
+      "sourcePage": 150,
+      "answerSourcePages": [
+        150
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0868",
+        "subpart": ""
+      },
+      "sourcePage": 150,
+      "answerSourcePages": [
+        150
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / A step 개념 익히고,",
+        "page": "189, 191",
+        "number": "0869",
+        "subpart": ""
+      },
+      "sourcePage": 150,
+      "answerSourcePages": [
+        150
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0872",
+        "subpart": ""
+      },
+      "sourcePage": 151,
+      "answerSourcePages": [
+        151
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0876",
+        "subpart": ""
+      },
+      "sourcePage": 151,
+      "answerSourcePages": [
+        151
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0897",
+        "subpart": ""
+      },
+      "sourcePage": 155,
+      "answerSourcePages": [
+        155
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0909",
+        "subpart": ""
+      },
+      "sourcePage": 157,
+      "answerSourcePages": [
+        157
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0913",
+        "subpart": ""
+      },
+      "sourcePage": 157,
+      "answerSourcePages": [
+        157
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / B step 기출 & 변형하면…",
+        "page": "192 ~ 202",
+        "number": "0925",
+        "subpart": ""
+      },
+      "sourcePage": 159,
+      "answerSourcePages": [
+        160
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    },
+    {
+      "address": {
+        "volume": "공통수학1",
+        "section": "10 행렬과 그 연산 / C step 실력 완성!",
+        "page": "203 ~ 205",
+        "number": "0944",
+        "subpart": ""
+      },
+      "sourcePage": 163,
+      "answerSourcePages": [
+        163
+      ],
+      "reason": "수식·분수·단위·여러 소문항의 전체 답 전사 미완료; 단순 문자열 추출은 채택하지 않음"
+    }
+  ],
+  "reviewMethod": {
+    "coordinates": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/native-coordinates.json",
+    "addressCandidates": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/candidate-addresses.json",
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/reviewed-correspondence.json",
+    "allPublishedKeyRegionsVisuallyInspected": true,
+    "unpublishedAnswersFullyReviewed": false,
+    "reviewedImages": [
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/choice-review-01.png",
+        "sha256": "c3b86714c7a87226b855244c26a419b6902309f339c8b8a78be5bb2d3b998342"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/choice-review-02.png",
+        "sha256": "df23c5f2b39ea875853b959f8010f7fb382816b8c6176adf554ce26d1ecf5463"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/choice-review-03.png",
+        "sha256": "eab789533d7e088183867b22af3de08cc56ee839fc815e09c0d9d38867a64766"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/choice-review-04.png",
+        "sha256": "b7411d6cce4f683857f6d8ee56234ffc4ab4f76ff029c846c23b0f5862d0fd8d"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/choice-review-05.png",
+        "sha256": "f2c15ee7aba1488e9703b5cd53d76a7737f371ef3e7a3ed50e03c741e4e31b4a"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/numeric-review-01.png",
+        "sha256": "3b2b382a3e37af402af612a2aa7ddab1e9041d7c974dcf2c655bc23b4e5eeedc"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/numeric-review-02.png",
+        "sha256": "459efd6137b66dcebf0419beb6c1154a4072753905f0776330d07d72fe510d16"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/numeric-review-03.png",
+        "sha256": "f942810e374dc9e0e90cc257b24b3dc41e788f735673d1aba9c29c218fd6472c"
+      },
+      {
+        "image": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/numeric-review-04.png",
+        "sha256": "0ef7ad19f5b496b8f55d786deae1a7276ed042df3c98725506e38484ef12f291"
+      }
+    ],
+    "wideWhitespaceReview": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_BH04090001/wide-whitespace-review.png"
+  },
+  "keyKinds": {
+    "choiceKeys": 472,
+    "integerKeys": 291
+  },
+  "outOfScope": [
+    {
+      "sourcePages": [
+        1,
+        164
+      ],
+      "reason": "표지 및 비문항 여백"
+    }
+  ]
+}
