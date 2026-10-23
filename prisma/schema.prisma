@@ -178,6 +178,9 @@ model Branch {
 // ─────────────────────────────────────────────
 
 model User {
+  commercialWorkbookEditions CommercialWorkbookEdition[]
+  commercialWorkbookAssignments CommercialWorkbookAssignment[]
+  commercialWorkbookRequests CommercialWorkbookRequest[]
   id                String    @id @default(uuid()) @db.Uuid
   email             String    @unique @db.VarChar(255)
   /// 이메일 가입 시만 값 존재 (bcrypt 해시). 구글 로그인은 NULL
@@ -326,6 +329,7 @@ model AccountAuditLog {
 // ─────────────────────────────────────────────
 
 model Class {
+  commercialWorkbookAssignments CommercialWorkbookAssignment[]
   id                 String              @id @default(uuid()) @db.Uuid
   userId             String              @map("user_id") @db.Uuid
   name               String              @db.VarChar(100)
@@ -402,6 +406,7 @@ model EywaSyncLedger {
 }
 
 model Student {
+  commercialWorkbookGrades CommercialWorkbookGradeEvent[]
   id                    String              @id @default(uuid()) @db.Uuid
   classId               String              @map("class_id") @db.Uuid
   branchId              String?             @map("branch_id") @db.Uuid
@@ -2824,4 +2829,88 @@ model StudentEnrollment {
   @@unique([bindingId, sourceId])
   @@index([studentId, classId])
   @@map("student_enrollment")
+}
+
+// Teacher-owned commercial-workbook references; separate from authored Textbook, Test and SRS.
+model CommercialWorkbookEdition {
+  id        String @id @db.Uuid
+  ownerId   String @map("owner_id") @db.Uuid
+  metadata  Json @db.JsonB
+  revision  Int
+  createdAt DateTime @map("created_at") @db.Timestamptz(3)
+  owner     User @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  revisions CommercialWorkbookRevision[]
+  assignments CommercialWorkbookAssignment[]
+  @@unique([id, ownerId])
+  @@index([ownerId, createdAt])
+  @@map("commercial_workbook_edition")
+}
+model CommercialWorkbookRevision {
+  editionId String @map("edition_id") @db.Uuid
+  revision  Int
+  snapshot  Json @db.JsonB
+  edition CommercialWorkbookEdition @relation(fields: [editionId], references: [id], onDelete: Restrict)
+  assignments CommercialWorkbookAssignment[]
+  @@id([editionId, revision])
+  @@map("commercial_workbook_revision")
+}
+model CommercialWorkbookAssignment {
+  id          String @id @db.Uuid
+  ownerId     String @map("owner_id") @db.Uuid
+  classId     String @map("class_id") @db.Uuid
+  editionId   String @map("edition_id") @db.Uuid
+  keyRevision Int @map("key_revision")
+  snapshot    Json @db.JsonB
+  createdAt   DateTime @map("created_at") @db.Timestamptz(3)
+  owner       User @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  class       Class @relation(fields: [classId], references: [id], onDelete: Restrict)
+  edition     CommercialWorkbookEdition @relation(fields: [editionId, ownerId], references: [id, ownerId], onDelete: Restrict)
+  key         CommercialWorkbookRevision @relation(fields: [editionId, keyRevision], references: [editionId, revision], onDelete: Restrict)
+  grades      CommercialWorkbookGradeEvent[]
+  notes       CommercialWorkbookWrongNote[]
+  @@unique([id, ownerId])
+  @@index([ownerId, createdAt])
+  @@index([classId])
+  @@index([editionId, keyRevision])
+  @@map("commercial_workbook_assignment")
+}
+model CommercialWorkbookGradeEvent {
+  id           String @id @db.Uuid
+  assignmentId String @map("assignment_id") @db.Uuid
+  studentId    String @map("student_id") @db.Uuid
+  revision     Int
+  snapshot     Json @db.JsonB
+  assignment CommercialWorkbookAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  notes CommercialWorkbookWrongNote[]
+  @@unique([assignmentId, studentId, revision])
+  @@unique([id, assignmentId, studentId])
+  @@index([studentId])
+  @@map("commercial_workbook_grade_event")
+}
+model CommercialWorkbookWrongNote {
+  id           String @id @db.Uuid
+  ownerId      String @map("owner_id") @db.Uuid
+  assignmentId String @map("assignment_id") @db.Uuid
+  studentId    String @map("student_id") @db.Uuid
+  exerciseId   String @map("exercise_id") @db.Uuid
+  eventId      String @map("event_id") @db.Uuid
+  revision     Int
+  snapshot     Json @db.JsonB
+  assignment CommercialWorkbookAssignment @relation(fields: [assignmentId, ownerId], references: [id, ownerId], onDelete: Restrict)
+  event CommercialWorkbookGradeEvent @relation(fields: [eventId, assignmentId, studentId], references: [id, assignmentId, studentId], onDelete: Restrict)
+  @@unique([eventId, exerciseId])
+  @@index([ownerId, studentId])
+  @@index([assignmentId])
+  @@map("commercial_workbook_wrong_note")
+}
+model CommercialWorkbookRequest {
+  ownerId     String @map("owner_id") @db.Uuid
+  requestId   String @map("request_id") @db.VarChar(100)
+  fingerprint String
+  response    Json @db.JsonB
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  @@id([ownerId, requestId])
+  @@map("commercial_workbook_request")
 }
