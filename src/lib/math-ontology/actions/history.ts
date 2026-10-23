@@ -38,10 +38,10 @@ export function createOntologyHistoryReader(deps: { db: Pick<PrismaClient, "$tra
       const jobs = await tx.ontologyCompileJob.findMany({ where: { requestedBy: actor.id }, orderBy: { createdAt: "desc" }, take: 20 });
       for (const job of jobs) {
         const release = job.state === "published" ? await tx.ontologyRelease.findUnique({ where: { jobId: job.id }, select: { revokedAt: true } }) : null;
-        events.push({ id: job.id, at: job.createdAt.toISOString(), title: job.state === "published" ? "게시 완료 기록" : "게시 작업 기록", note: release?.revokedAt ? "게시 후 철회된 판입니다." : job.state === "published" ? "해당 판의 게시를 완료했습니다." : job.state === "stale" ? "근거 변경 · 다시 준비 필요" : "게시 결과 확인 필요", state: job.state === "published" ? "observed" : "candidate", detail: `게시 작업 ${job.id}\n작업 시도 ${job.attempt}\n활성 판 교체는 검증이 끝난 작업만 수행합니다.` });
+        events.push({ id: job.id, at: job.createdAt.toISOString(), title: job.state === "published" ? "게시 완료 기록" : job.state === "failed" ? "게시 검증 실패 기록" : "게시 작업 기록", note: job.state === "failed" ? "검증 실패 · 이 작업은 미게시" : release?.revokedAt ? "게시 후 철회된 판입니다." : job.state === "published" ? "해당 판의 게시를 완료했습니다." : job.state === "stale" ? "근거 변경 · 다시 준비 필요" : "게시 결과 확인 필요", state: job.state === "published" ? "observed" : "candidate", detail: `게시 작업 ${job.id}\n작업 시도 ${job.attempt}\n활성 판 교체는 검증이 끝난 작업만 수행합니다.` });
         if (!action && ["queued", "leased", "failed"].includes(job.state)) {
           const prepared = await tx.ontologyReviewEvent.findFirst({ where: { actorId: actor.id, subjectId: job.id, event: "publish.prepared" } });
-          if (prepared) action = { kind: "publication", id: job.id, sealHash: prepared.detailHash, label: "게시 결과 확인", changes: [{ label: "이미 확인한 게시 작업", before: "결과 대기", after: "현재 결과 확인" }], effects: ["기존 작업을 이어서 확인합니다."] };
+          if (prepared) action = { kind: "publication", id: job.id, sealHash: prepared.detailHash, label: job.state === "failed" ? "게시 다시 검증" : "게시 결과 확인", changes: [{ label: "이미 확인한 게시 작업", before: job.state === "failed" ? "검증 실패" : "결과 대기", after: job.state === "failed" ? "현재 근거 재확인·재검증" : "현재 결과 확인" }], effects: [job.state === "failed" ? "버튼을 누르면 현재 근거를 재확인하고 전체 검증을 다시 실행합니다. 전체 검증에 성공한 경우에만 활성 판을 교체합니다." : "기존 작업을 이어서 확인합니다."] };
         }
       }
       const decisions = await tx.ontologyReviewEvent.findMany({ where: { actorId: actor.id, scopeKey: "global", event: { in: ["release.revoked", "source.approved"] } }, orderBy: { createdAt: "desc" }, take: 20 });
