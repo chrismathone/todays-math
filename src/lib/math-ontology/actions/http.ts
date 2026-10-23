@@ -1,4 +1,5 @@
 import { OntologyOperationError } from "./errors";
+import { MathOntologySourceAccessDenied } from "../sources/databaseAccess";
 export class OntologyBodyError extends Error { constructor(public status: 400 | 413) { super("INVALID_BODY"); } }
 
 export async function ontologyJsonBody(
@@ -34,6 +35,7 @@ export async function ontologyJsonBody(
 export const ontologyResponse = (status: number, value: unknown) =>
   Response.json(value, { status, headers: { "Cache-Control": "no-store" } });
 export function ontologyFailure(error: unknown) {
+  if (error instanceof MathOntologySourceAccessDenied) return ontologyResponse(403, { error: { code: "FORBIDDEN" } });
   if (error instanceof OntologyBodyError) return ontologyResponse(error.status, { error: { code: "VALIDATION_ERROR" } });
   if (error instanceof OntologyOperationError)
     return ontologyResponse(

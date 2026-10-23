@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, type Prisma } from "@prisma/client";
 import { db, now, localDatabaseUrl } from "./harness";
 import { managedFixture } from "./managed-fixture";
 import { readOntologyActorInTransaction } from "@/lib/math-ontology/actions/actor";
@@ -7,6 +7,8 @@ import { createOntologyActionService } from "@/lib/math-ontology/actions/service
 import { authorizeMathOntologySourceRead } from "@/lib/math-ontology/sources/server";
 import { authorizeOntologyAction } from "@/lib/math-ontology/actions/authorization";
 import { readSrsState, srsStateTableIn } from "@/lib/math-srs/serverStore";
+import { sealOntologyModelRelationProposal } from "@/lib/math-ontology/review/modelReceipt";
+import { digest } from "@/lib/math-ontology/actions/canonical";
 
 describe("read-only student connection capability parity", () => {
  it("allows current student:read context while refusing progress:write", async () => {
@@ -20,6 +22,16 @@ describe("read-only student connection capability parity", () => {
  });
 });
 describe("actual PostgreSQL lock-wait and final-write lease freshness", () => {
+  it("rolls back a real model-receipt event insert when the managed lease expires while its write awaits", async () => {
+    const f = await managedFixture(new Date(now.getTime() + 1000)); let clock = now;
+    const input = { assertion: { id: "urn:todaymath:assertion:synthetic-sealer", subject: "urn:todaymath:concept:synthetic:a", predicate: "urn:todaymath:vocab:supports", object: "urn:todaymath:concept:synthetic:b", scope: `owner:${f.actor.id}`, sourceRevision: "urn:todaymath:source:synthetic", sourceDigest: digest("synthetic-source"), locator: "synthetic", provenance: "unknown", origin: "authored", support: "unknown", review: "candidate", publication: "unpublished", distribution: "allowed", revision: 1 }, evidenceRef: "synthetic-graph", evidenceHash: digest("synthetic-packet"), receipt: { modelCalled: true as const, vendor: "gemini" as const, requestedModel: "synthetic-only", reportedModel: null, responseId: null, completionReason: "synthetic-stop", responseTextHash: digest("synthetic-returned-text"), usage: null } };
+    await expect(db.$transaction(tx => sealOntologyModelRelationProposal(tx, f.actor, input, () => clock))).resolves.toHaveProperty("modelRunId");
+    const client = new PrismaClient({ datasources: { db: { url: localDatabaseUrl } } }).$extends({ query: { ontologyReviewEvent: { async create({ args, query }) { const result = await query(args); clock = new Date(now.getTime() + 2000); return result; } } } });
+    try {
+      await expect(client.$transaction(tx => sealOntologyModelRelationProposal(tx as unknown as Prisma.TransactionClient, f.actor, input, () => clock))).rejects.toMatchObject({ code: "FORBIDDEN" });
+      expect(await db.ontologyReviewEvent.count({ where: { actorId: f.actor.id, event: "model.relation.proposed" } })).toBe(1);
+    } finally { await client.$disconnect(); }
+  });
   it("uses the injected live clock after a real row lock wait, with an unexpired control", async () => {
     const f = await managedFixture(new Date(now.getTime() + 1000));
     let clock = now;

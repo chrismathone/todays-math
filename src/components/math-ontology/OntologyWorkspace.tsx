@@ -1,19 +1,24 @@
 "use client";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { MathText } from "@/components/math/MathText";
+import { findMathSpans } from "@/lib/math/segments";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import AutoGrowTextarea from "@/components/ui/AutoGrowTextarea";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { createOntologyWorkspaceSource } from "./api";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer, type WorkspaceStudent, type WorkspaceExecution } from "./source";
 import s from "./workspace.module.css";
-const evidenceText = (text: string) => text.replace(/!\[/g, "\\![");
+const evidenceText = (text: string) => {
+  let at = 0, value = "";
+  for (const span of findMathSpans(text)) { value += text.slice(at, span.start).replace(/!\[/g, "[") + text.slice(span.start, span.end); at = span.end; }
+  return value + text.slice(at).replace(/!\[/g, "[");
+};
 const labels = { observed: "관측", reviewed: "검토한 연결", candidate: "검토 전 후보", unknown: "미확인" };
-export default function OntologyWorkspace({ source, branchId, scopeKey = "account" }: { source?: OntologyWorkspaceSource; branchId?: string; scopeKey?: string }) {
+export default function OntologyWorkspace({ source, branchId, scopeKey = "account", canPublish = false }: { source?: OntologyWorkspaceSource; branchId?: string; scopeKey?: string; canPublish?: boolean }) {
   const port = useMemo(() => source ?? createOntologyWorkspaceSource(branchId), [source, branchId]);
-  return <ScopedWorkspace key={`${scopeKey}:${branchId ?? ""}`} source={port} />;
+  return <ScopedWorkspace key={`${scopeKey}:${branchId ?? ""}`} source={port} canPublish={canPublish} />;
 }
-function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
+function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSource; canPublish: boolean }) {
   const [query, setQuery] = useState("");
   const [student, setStudent] = useState<WorkspaceStudent | null>(null);
   const [answer, setAnswer] = useState<WorkspaceAnswer | null>(null);
@@ -25,19 +30,22 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
   const [confirmUnknown, setConfirmUnknown] = useState(false);
   const [picking, setPicking] = useState(false);
   const busyRef = useRef(false), sequence = useRef(0), active = useRef<AbortController | null>(null), pickerButton = useRef<HTMLButtonElement>(null);
+  const preparationMode = useRef<"query" | "history" | "publication" | "revocation" | "review">("query");
+  const reviewPreparation = useRef("");
   useEffect(() => () => { sequence.current++; active.current?.abort(); }, []);
   const fail = (cause: unknown) => {
     const problem = cause instanceof OntologyWorkspaceError ? cause : new OntologyWorkspaceError("NETWORK", "결과를 확인하지 못했습니다. 다시 확인해 주세요.");
     if (problem.code === "FORBIDDEN" || problem.code === "STALE") { setAnswer(null); setHistory([]); setExecution(null); setFeedback(null); }
     setError(problem); return problem;
   };
-  async function prepare(event?: FormEvent, selected = student, text = query) {
+  async function prepare(event?: FormEvent, selected = student, text = query, mode: "query" | "history" | "publication" | "revocation" | "review" = "query", reviewId = "") {
     event?.preventDefault();
-    if (busyRef.current || !text.trim()) return;
+    if (busyRef.current || (mode === "query" && !text.trim())) return;
+    preparationMode.current = mode; reviewPreparation.current = reviewId;
     busyRef.current = true; const request = ++sequence.current, controller = new AbortController(); active.current = controller;
     if (answer) setHistory(items => [...items.slice(-9), answer]);
     setAnswer(null); setExecution(null); setFeedback(null); setConfirmUnknown(false); setError(null); setBusy("prepare");
-    try { const value = await source.run({ query: text.trim(), student: selected }, controller.signal); if (sequence.current === request) setAnswer(value); }
+    try { const value = mode === "review" && source.review ? await source.review(reviewId, controller.signal) : mode === "history" && source.history ? await source.history(controller.signal) : mode === "publication" && source.publication ? await source.publication(controller.signal) : mode === "revocation" && source.revocation ? await source.revocation(controller.signal) : await source.run({ query: text.trim(), student: selected }, controller.signal); if (sequence.current === request) setAnswer(value); }
     catch (cause) { if (sequence.current === request && !controller.signal.aborted) fail(cause); }
     finally { if (sequence.current === request) { busyRef.current = false; setBusy(null); } }
   }
@@ -79,11 +87,14 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
       <div className={s.promptActions}><span className={s.muted}>{student ? "연결한 학생의 허용된 기록을 함께 봅니다." : "전체 지식부터 찾습니다."}</span><button type="submit" className={s.primary} disabled={!!busy || !query.trim()}>{busy === "prepare" ? "준비 중…" : "준비하기"}</button></div>
     </form>
     {busy && <p className={s.status} role="status">{busy === "prepare" ? "자료를 찾아 검토하고 있습니다." : busy === "confirm" ? "확인한 내용을 적용하고 결과를 확인합니다." : "이후 관찰을 확인합니다."}</p>}
-    {error && <div className={s.error} role="alert"><p>{error.message}</p>{error.code !== "FORBIDDEN" && <button type="button" className={s.button} disabled={!!busy} onClick={() => confirmUnknown ? void confirm() : void prepare()}>{confirmUnknown ? "결과 확인" : "다시 준비"}</button>}</div>}
+    {error && <div className={s.error} role="alert"><p>{error.message}</p>{error.code !== "FORBIDDEN" && <button type="button" className={s.button} disabled={!!busy} onClick={() => confirmUnknown ? void confirm() : void prepare(undefined, student, query, preparationMode.current, reviewPreparation.current)}>{confirmUnknown ? "결과 확인" : "다시 준비"}</button>}</div>}
     <div className={s.columns}>
       <aside className={s.context} aria-label="지식과 현재 맥락">
         <details className={s.contextDetails}><summary>지식과 원천 범위</summary><p className={s.muted}>개념 · 단원 · 문항 · 자료</p>
         <button type="button" className={s.button} disabled={!!busy} onClick={() => { const text = "등록된 지식과 원천 범위를 보여줘"; setQuery(text); void prepare(undefined, student, text); }}>원천과 포함 범위</button>
+        {source.history && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "history")}>검토·실행 이력</button>}
+        {canPublish && source.publication && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "publication")}>게시 준비</button>}
+        {canPublish && source.revocation && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "revocation")}>활성 판 철회 준비</button>}
         {answer?.coverage.length ? <dl className={s.coverage}>{answer.coverage.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl> : null}
         {student && <p className={s.student}>{student.label}<small>{student.classLabel}</small></p>}</details>
       </aside>
@@ -93,12 +104,12 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
           <div role="heading" aria-level={2} className={s.resultTitle}><MathText text={evidenceText(answer.summary)} as="div" staticLayout /></div>
           {answer.requiresStudent && <button type="button" className={s.primary} onClick={() => setPicking(true)}>학생을 연결해 계속하기</button>}
           {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><MathText text={evidenceText(step.title)} as="div" staticLayout /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><MathText text={evidenceText(step.note)} as="div" className={s.evidenceNote} staticLayout /></div></li>)}</ol>}
-          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><MathText text={evidenceText(item.text)} as="div" staticLayout /></div>)}</details>}
+          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><MathText text={evidenceText(item.text)} as="div" staticLayout />{canPublish && item.reviewId && source.review && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "review", item.reviewId)}>이 연결 검토</button>}</div>)}</details>}
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
       </section>
       <section className={s.next} aria-label="다음 작업">
         {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details>{execution.state === "preparing" ? <button type="button" className={s.primary} disabled={!!busy} onClick={() => void confirm()}>결과 확인</button> : answer?.action?.kind === "plan" ? <button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button> : null}{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
-          <h2>{answer.action.kind === "plan" ? "계획 변경 확인" : answer.action.kind === "relation" ? "관계 검토" : "게시 내용 확인"}</h2>
+          <h2>{answer.action.kind === "plan" ? "계획 변경 확인" : answer.action.kind === "relation" ? answer.action.operation === "retire" ? "연결 폐기 확인" : "관계 검토" : answer.action.operation === "revoke" ? "지식 판 철회 확인" : "게시 내용 확인"}</h2>
           <dl className={s.diff}>{answer.action.changes.map(change => <div key={change.label}><dt>{change.label}</dt><dd><span>{change.before}</span><span aria-hidden="true"> → </span><strong>{change.after}</strong></dd></div>)}</dl>
           {answer.action.effects.map(text => <p className={s.muted} key={text}>{text}</p>)}
           <button type="button" className={s.primary} disabled={!!busy || (answer.action.kind === "plan" && !student)} onClick={() => void confirm()}>{confirmUnknown ? "결과 확인" : answer.action.label}</button>

@@ -61,6 +61,7 @@ export function createOntologyPublicationApproval(deps: {
       // Engine work is outside the approval/job transaction. A crash leaves a
       // durable queued/leased job, recoverable under current publisher rights.
       let result: { state: string } = job;
+      requireOperation(job.state !== "stale", "STALE");
       if (job.state !== "published") {
         try { result = await deps.publisher.run(actor, job.jobId); }
         catch (error) { if (!(error instanceof OntologyOperationError && error.code === "CONFLICT")) throw error; }
