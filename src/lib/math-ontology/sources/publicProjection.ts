@@ -5,11 +5,14 @@ import type {
   MathOntologySourceDataset,
 } from "@/contracts/mathOntologySource.contract";
 import { sourceDigest, freezeSourceValue } from "./canonical";
-/** Raw upstream byte provenance is administrative. A mixed private/public file hash is not a public version. */
-function coordinate(origin: MathOntologySourceLocator) {
+/** Raw upstream byte hashes/array offsets are administrative. Public coordinates address the allowed immutable metadata slice. */
+function coordinate(
+  origin: MathOntologySourceLocator,
+  projectedPointer: string,
+) {
   return {
     repositoryPath: origin.repositoryPath,
-    pointer: origin.pointer,
+    projectedPointer,
     extractorVersion: origin.extractorVersion,
     ...(origin.publicSourceIri
       ? { publicSourceIri: origin.publicSourceIri }
@@ -20,6 +23,17 @@ function coordinate(origin: MathOntologySourceLocator) {
   };
 }
 export function publicSourceRecordValue(record: MathOntologySourceRecord) {
+  const pointer =
+    "/entities/" +
+    [record.namespace, record.scope, record.nativeId]
+      .map(encodeURIComponent)
+      .join("/");
+  const metadata =
+    record.namespace === "textbook-script-turn"
+      ? Object.fromEntries(
+          Object.entries(record.metadata).filter(([key]) => key !== "order"),
+        )
+      : record.metadata;
   return {
     namespace: record.namespace,
     scope: record.scope,
@@ -28,21 +42,21 @@ export function publicSourceRecordValue(record: MathOntologySourceRecord) {
     sourceProvenance: record.sourceProvenance,
     distribution: record.distribution,
     edition: record.edition,
-    metadata: record.metadata,
-    origin: coordinate(record.origin),
+    metadata,
+    origin: coordinate(record.origin, pointer),
     ...(record.labels
       ? {
-          labels: record.labels.map((label) => ({
+          labels: record.labels.map((label, i) => ({
             ...label,
-            origin: coordinate(label.origin),
+            origin: coordinate(label.origin, pointer + "/labels/" + i),
           })),
         }
       : {}),
     ...(record.nativeReferences
       ? {
-          nativeReferences: record.nativeReferences.map((ref) => ({
+          nativeReferences: record.nativeReferences.map((ref, i) => ({
             ...ref,
-            origin: coordinate(ref.origin),
+            origin: coordinate(ref.origin, pointer + "/references/" + i),
           })),
         }
       : {}),
@@ -54,7 +68,10 @@ export function publicSourceAssertionValue(a: MathOntologySourceAssertion) {
     subject: a.subject,
     predicate: a.predicate,
     object: a.object,
-    origin: coordinate(a.origin),
+    origin: coordinate(
+      a.origin,
+      "/assertions/" + encodeURIComponent(a.nativeId),
+    ),
     originKind: a.originKind,
     supportKind: a.supportKind,
     evidenceKind: a.evidenceKind,
@@ -71,7 +88,9 @@ export function projectMathOntologyPublicSources(
   dataset: MathOntologySourceDataset,
 ) {
   const entities = dataset.entities
-    .filter((e) => e.distribution !== "quarantine-reference")
+    .filter(
+      (e) => e.scope === "global" && e.distribution !== "quarantine-reference",
+    )
     .map((e) => ({
       ...publicSourceRecordValue(e),
       stableIri: e.stableIri,
@@ -94,7 +113,11 @@ export function projectMathOntologyPublicSources(
       sourceProjectionHash: sourceDigest(publicSourceAssertionValue(a)),
     }));
   return freezeSourceValue({
-    projectionHash: sourceDigest({ entities, assertions }),
+    projectionHash: sourceDigest({
+      format: "public-source-projection-2",
+      entities,
+      assertions,
+    }),
     entities,
     assertions,
   });
