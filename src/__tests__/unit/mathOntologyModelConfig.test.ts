@@ -4,6 +4,7 @@ import { ontologyModelConfig } from "@/lib/math-ontology/retrieval/config.server
 import { insightModelConfig } from "@/lib/math-insight/config";
 import { API_KEY_NAMES, API_MODELS } from "@/lib/studio-ai/routing";
 const environment = (): NodeJS.ProcessEnv => ({
+  NODE_ENV: "test",
   MATH_INSIGHT_VENDOR: "gemini",
   MATH_INSIGHT_MODEL: API_MODELS.gemini[0],
   [API_KEY_NAMES.gemini]: "synthetic-test-only",

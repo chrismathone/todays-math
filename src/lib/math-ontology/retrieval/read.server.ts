@@ -33,6 +33,9 @@ export async function handleOntologyRead(request: Request, studentId?: string) {
             : null,
         }
       : undefined;
+    const coverage = url.pathname === "/api/math-ontology/coverage";
+    if (coverage && (request.method !== "GET" || url.searchParams.size !== 0))
+      return ontologyResponse(400, { error: { code: "VALIDATION_ERROR" } });
     const validation = url.pathname === "/api/math-ontology/validate";
     if (validation)
       z.strictObject({}).parse(await ontologyJsonBody(request, 8192));
@@ -56,6 +59,15 @@ export async function handleOntologyRead(request: Request, studentId?: string) {
         target,
       ),
       session = await current.open(!!target);
+    if (coverage) {
+      const result = session.readCoverage();
+      await session.assertCurrent();
+      return ontologyResponse(200, {
+        ...result,
+        asOf: current.asOf.toISOString(),
+        sourceSnapshotId: session.context.contextHash,
+      });
+    }
     let data: unknown;
     try {
       data = target

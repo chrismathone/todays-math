@@ -1,4 +1,5 @@
 import "server-only";
+import { ontologyPublicCoverage } from "./coverage";
 import { ontologyAuthorizationClockFields } from "../access/stamp";
 import { ontologyActionReceiptSchema } from "@/contracts/mathOntologyAction.contract";
 import { checkedCanonical } from "../actions/canonical";
@@ -82,7 +83,13 @@ export function createProductionOntologyContext(
       );
     });
   }
-  async function open(withPrivate = true): Promise<OntologyAssistSession> {
+  async function open(
+    withPrivate = true,
+  ): Promise<
+    OntologyAssistSession & {
+      readCoverage: () => ReturnType<typeof ontologyPublicCoverage>;
+    }
+  > {
     const stamp = await authorize();
     const release = await readActiveOntologyRelease("global");
     requireOperation(release, "UNAVAILABLE");
@@ -262,6 +269,7 @@ export function createProductionOntologyContext(
       assertCurrent,
       readDefinitions,
       readObservations,
+      readCoverage: () => ontologyPublicCoverage(release.artifact),
     };
   }
   async function identities() {

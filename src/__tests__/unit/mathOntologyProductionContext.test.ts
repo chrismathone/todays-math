@@ -4,12 +4,15 @@ const state = vi.hoisted(() => ({
   revoked: false,
   generation: 1,
   revision: 4,
+  releaseReads: 0,
+  revokeAfterRelease: false,
 }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/db", () => ({
   db: { $transaction: async (fn: (tx: unknown) => unknown) => fn({}) },
 }));
 vi.mock("@/lib/math-ontology/actions/production.server", () => ({
+  ontologyOperationsEnabled: () => true,
   authorizeOntologyOperationRequest: async () =>
     state.revoked
       ? { actor: null, response: new Response(null, { status: 403 }) }
@@ -63,19 +66,26 @@ vi.mock("@/lib/math-ontology/feedback/observations", () => ({
   currentOntologyObservations: {},
 }));
 vi.mock("@/lib/math-ontology/publish/store", () => ({
-  readActiveOntologyRelease: async () => ({
-    artifact: release,
-    identity: release.identity,
-    generation: state.generation,
-  }),
+  readActiveOntologyRelease: async () => {
+    state.releaseReads++;
+    if (state.revokeAfterRelease) state.revoked = true;
+    return {
+      artifact: release,
+      identity: release.identity,
+      generation: state.generation,
+    };
+  },
 }));
 import { createProductionOntologyContext } from "@/lib/math-ontology/retrieval/context.server";
 import { queryOntology } from "@/lib/math-ontology/query/closed";
+import { GET as coverageGET } from "@/app/api/math-ontology/coverage/route";
 const actor = { id: "synthetic-actor", sessionVersion: 2 };
 beforeEach(() => {
   state.revoked = false;
   state.generation = 1;
   state.revision = 4;
+  state.releaseReads = 0;
+  state.revokeAfterRelease = false;
   vi.stubEnv("AUTH_SECRET", "synthetic-only-ontology-cursor-secret-32chars");
 });
 afterEach(() => {
@@ -130,4 +140,44 @@ it("real managed context preserves BigInt stamp; current authority changes are s
   await expect(session.assertCurrent()).rejects.toMatchObject({
     code: "FORBIDDEN",
   });
+});
+
+it("coverage production route reads real pinned public counts with no private read", async () => {
+  const response = await coverageGET(
+    new Request("https://local.invalid/api/math-ontology/coverage"),
+  );
+  expect(response.status).toBe(200);
+  const body = await response.json();
+  expect(body.coverage.base.entities).toBe(51319);
+  expect(body.coverage.base.primaryFocus).toBe(107368);
+  expect(body.data.summary).toContain("공개");
+  expect(body.sourceSnapshotId).toMatch(/^sha256:/);
+  expect(response.headers.get("cache-control")).toContain("no-store");
+});
+it("coverage route authorizes before package reads and rechecks revocation before response", async () => {
+  state.revoked = true;
+  expect(
+    (
+      await coverageGET(
+        new Request("https://local.invalid/api/math-ontology/coverage"),
+      )
+    ).status,
+  ).toBe(403);
+  expect(state.releaseReads).toBe(0);
+  state.revoked = false;
+  state.revokeAfterRelease = true;
+  const response = await coverageGET(
+    new Request("https://local.invalid/api/math-ontology/coverage"),
+  );
+  expect(response.status).toBe(403);
+  expect(await response.json()).not.toHaveProperty("coverage");
+});
+it("coverage route accepts no client-selected private scope or alternate release", async () => {
+  const response = await coverageGET(
+    new Request(
+      "https://local.invalid/api/math-ontology/coverage?studentId=foreign",
+    ),
+  );
+  expect(response.status).toBe(400);
+  expect(state.releaseReads).toBe(0);
 });
