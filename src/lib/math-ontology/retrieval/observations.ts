@@ -25,7 +25,8 @@ export function retainedOntologyObservations(
   return {
     revision,
     asOf: asOf.toISOString(),
-    retention: snapshot.scope,
+    window: snapshot.scope,
+    retention: snapshot.retention,
     observations: snapshot.observations,
   };
 }
@@ -108,6 +109,7 @@ export async function queryOntologyObservations(
       focusNodeCount: report.focusNodeCount,
     },
     retention: snapshot.retention,
+    window: snapshot.window,
     scope: "authorized-student-retained-course",
     unknown:
       "Retained observations do not establish mastery, causality or all past learning.",
