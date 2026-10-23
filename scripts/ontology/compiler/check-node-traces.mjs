@@ -15,7 +15,6 @@ const required = new Set([
   "ontology/shapes/runtime-core.ttl",
   "ontology/shapes/full.ttl",
   "ontology/rules/profile.json",
-  "requirements.txt",
   "scripts/ontology/compiler/requirements.lock",
   "scripts/ontology/compiler/compiler.py",
   "scripts/ontology/compiler/packaged.py",
