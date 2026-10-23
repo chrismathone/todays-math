@@ -40,6 +40,7 @@ function compile(endpoint = "https://synthetic.invalid/api/ontology-engine") {
 
 describe("native engine socket transport (no network)", () => {
   beforeEach(() => {
+    vi.spyOn(process.stderr, "write").mockImplementation(() => true);
     vi.useFakeTimers(); vi.setSystemTime(start);
     vi.spyOn(AbortSignal, "timeout").mockImplementation(ms => {
       const controller = new AbortController();
@@ -61,11 +62,17 @@ describe("native engine socket transport (no network)", () => {
     expect(options.headers["content-length"]).toBe(String(Buffer.byteLength(body)));
     expect(options.agent).toBe(false);
     expect(sent.audience).toBe("synthetic-deployment");
+    expect(sent.responseMode).toBe("heartbeat-v1");
     const raw = canonicalOntologyJson(release);
-    response.emit("data", Buffer.from(JSON.stringify({ resultGzip: gzipSync(raw).toString("base64"), resultHash: ontologyDigest(raw), jobId: job.jobId, leaseGeneration: 3, inputHash: job.inputHash })));
+    response.emit("data", Buffer.from("\n"));
+    response.emit("data", Buffer.from(JSON.stringify({ protocol: "ontology-engine-v1", responseMode: "heartbeat-v1", kind: "success", resultGzip: gzipSync(raw).toString("base64"), resultHash: ontologyDigest(raw), jobId: job.jobId, leaseGeneration: 3, inputHash: job.inputHash })));
     response.emit("end");
     await expect(pending).resolves.toMatchObject({ identity: release.identity });
     expect(used).toHaveBeenCalledTimes(1);
+    const diagnostic = JSON.parse(String(vi.mocked(process.stderr.write).mock.calls[0][0]));
+    expect(diagnostic).toMatchObject({ event: "ontology_engine_transport", complete: true, phase: "complete", chunkCount: 2, status: 200 });
+    expect(diagnostic.firstByteMs).toBeGreaterThanOrEqual(0);
+    expect(JSON.stringify(diagnostic)).not.toMatch(/synthetic|jobId|inputHash|signature/);
   });
 
   it("keeps the absolute 500s abort active after headers and a partial body", async () => {
@@ -142,5 +149,22 @@ describe("native engine socket transport (no network)", () => {
     await rejected;
     expect(requests.https).toHaveBeenCalledTimes(1);
     expect(request.destroy).toHaveBeenCalled(); expect(response.destroy).toHaveBeenCalled();
+  });
+
+  it.each(["valid-error", "mixed", "unknown-code", "wrong-status", "foreign-job", "extra-json", "partial", "whitespace"])("rejects terminal %s without artifact activation", async variant => {
+    const { response } = socket();
+    const terminal: Record<string, unknown> = { protocol: "ontology-engine-v1", responseMode: "heartbeat-v1", kind: "error", status: 504, error: "COMPILER_TIMEOUT", jobId: job.jobId, leaseGeneration: 3, inputHash: job.inputHash };
+    if (variant === "mixed") terminal.resultGzip = "e30=";
+    if (variant === "unknown-code") terminal.error = "DO_NOT_LOG_RAW_ERROR";
+    if (variant === "wrong-status") terminal.status = 422;
+    if (variant === "foreign-job") terminal.jobId = "other-job";
+    let text = JSON.stringify(terminal);
+    if (variant === "extra-json") text += "{}";
+    if (variant === "partial") text = text.slice(0, -1);
+    if (variant === "whitespace") text = " \n ";
+    const rejected = expect(compile()).rejects.toThrow(variant === "valid-error" ? "ONTOLOGY_ENGINE_504" : undefined);
+    response.emit("data", Buffer.from("\n" + text)); response.emit("end");
+    await rejected;
+    expect(requests.https).toHaveBeenCalledTimes(1);
   });
 });

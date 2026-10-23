@@ -24,6 +24,9 @@ CPU_SOFT_SECONDS=400
 CPU_HARD_SECONDS=401
 CHILD_WALL_SECONDS=480
 PROTOCOL="ontology-engine-v1"
+STREAM_MODE="heartbeat-v1"
+HEARTBEAT_SECONDS=10
+STANDALONE_HTTP=False
 _nonces={}
 _nonce_lock=threading.Lock()
 _workers=threading.BoundedSemaphore(1)
@@ -66,7 +69,7 @@ def child_diagnostic(code,started,cpu_before,overflow,timed_out):
     try:print(canonical(payload),file=sys.stderr,flush=True)
     except (OSError,ValueError):pass
 
-def compile_child(value):
+def compile_child(value,heartbeat=None):
     started=time.monotonic();cpu_before,_=child_usage();timed_out=False;code=None
     child=subprocess.Popen([sys.executable,"-B",str(ROOT/"scripts/ontology/compiler/compiler.py")],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,cwd=ROOT,preexec_fn=limits if os.name=="posix" else None)
     overflow=threading.Event();chunks=[]
@@ -85,7 +88,19 @@ def compile_child(value):
     writer=threading.Thread(target=write,daemon=True);reader=threading.Thread(target=read,daemon=True)
     writer.start();reader.start()
     try:
-        code=child.wait(timeout=CHILD_WALL_SECONDS);reader.join(timeout=2)
+        if heartbeat is None:code=child.wait(timeout=CHILD_WALL_SECONDS)
+        else:
+            deadline=started+CHILD_WALL_SECONDS
+            while True:
+                remaining=deadline-time.monotonic()
+                if remaining<=0:raise subprocess.TimeoutExpired("ontology-compiler",CHILD_WALL_SECONDS)
+                try:
+                    code=child.wait(timeout=min(HEARTBEAT_SECONDS,remaining))
+                    break
+                except subprocess.TimeoutExpired:
+                    if time.monotonic()>=deadline:raise
+                    heartbeat()
+        reader.join(timeout=2)
         if code or overflow.is_set() or reader.is_alive():raise ValueError("COMPILER_FAILED")
         return b"".join(chunks)
     except subprocess.TimeoutExpired:
@@ -98,7 +113,28 @@ def compile_child(value):
 
 class handler(BaseHTTPRequestHandler):
     def log_message(self,*_):pass
+    def stream_write(self,data):
+        if self._stream_bytes+len(data)>MAX_RESPONSE:raise ValueError("RESPONSE_BUDGET")
+        self.wfile.write(data);self.wfile.flush();self._stream_bytes+=len(data)
+    def heartbeat(self):
+        # Reserve room for a bounded terminal failure, even under a test-sized cap.
+        if self._stream_bytes+1>MAX_RESPONSE-1024:raise ValueError("RESPONSE_BUDGET")
+        self.stream_write(b"\n")
+    def start_stream(self,request):
+        self._stream_request=request;self._stream_bytes=0;self.close_connection=True
+        self.send_response(200);self.send_header("Content-Type","application/json; charset=utf-8");self.send_header("Cache-Control","no-store");self.send_header("Connection","close");self.end_headers()
+        self.heartbeat()
     def reply(self,status,value):
+        request=getattr(self,"_stream_request",None)
+        if request is not None:
+            binding={"protocol":PROTOCOL,"responseMode":STREAM_MODE,"jobId":request["jobId"],"inputHash":request["inputHash"],"leaseGeneration":request["leaseGeneration"]}
+            failures={409:"EXPIRED_LEASE",413:"RESPONSE_BUDGET",422:"COMPILER_FAILED",504:"COMPILER_TIMEOUT"}
+            payload={**binding,"kind":"success",**value} if status==200 else {**binding,"kind":"error","status":status,"error":failures[status]}
+            data=canonical(payload).encode()
+            if self._stream_bytes+len(data)>MAX_RESPONSE:
+                data=canonical({**binding,"kind":"error","status":413,"error":"RESPONSE_BUDGET"}).encode()
+            self.stream_write(data)
+            return
         data=canonical(value).encode()
         if len(data)>MAX_RESPONSE:status,data=413,b'{"error":"RESPONSE_BUDGET"}'
         self.send_response(status);self.send_header("Content-Type","application/json; charset=utf-8");self.send_header("Cache-Control","no-store");self.send_header("Content-Length",str(len(data)));self.send_header("Connection","close");self.end_headers();self.close_connection=True
@@ -122,10 +158,15 @@ class handler(BaseHTTPRequestHandler):
             if len(body)!=int(lengths[0]) or not hmac.compare_digest(mac,signature(secret,stamp,body)):return self.reply(401,{"error":"UNAUTHORIZED"})
             request=json.loads(body)
             required={"protocol","operation","audience","jobId","inputHash","leaseGeneration","expiresAt","leaseExpiresAt","nonce","input"}
-            if set(request)!=required or request["protocol"]!=PROTOCOL or request["operation"]!="compile" or request["audience"]!=audience:return self.reply(401,{"error":"UNAUTHORIZED"})
+            streaming=set(request)==required|{"responseMode"} and request.get("responseMode")==STREAM_MODE
+            if (set(request)!=required and not streaming) or request["protocol"]!=PROTOCOL or request["operation"]!="compile" or request["audience"]!=audience:return self.reply(401,{"error":"UNAUTHORIZED"})
             if not re.fullmatch(r"[a-zA-Z0-9_-]{1,160}",request["jobId"]) or type(request["leaseGeneration"]) is not int or request["leaseGeneration"]<1 or type(request["expiresAt"]) is not int or not time.time()<request["expiresAt"]<=int(stamp)+MAX_AGE:return self.reply(401,{"error":"STALE_JOB"})
             if type(request["leaseExpiresAt"]) is not int or not time.time()<request["leaseExpiresAt"]<=int(stamp)+600 or request["expiresAt"]>request["leaseExpiresAt"]:return self.reply(401,{"error":"STALE_LEASE"})
             if not re.fullmatch(r"[a-f0-9]{32}",request["nonce"]) or digest(canonical(request["input"]))!=request["inputHash"]:return self.reply(401,{"error":"UNBOUND_INPUT"})
+            if streaming:
+                ipc_capable=bool(os.environ.get("VERCEL_IPC_PATH"))
+                print(canonical({"event":"ontology_engine_stream_capability","ipcCapable":ipc_capable}),file=sys.stderr,flush=True)
+                if not (ipc_capable or STANDALONE_HTTP):return self.reply(503,{"error":"STREAM_UNAVAILABLE"})
             with _nonce_lock:
                 for k,v in list(_nonces.items()):
                     if v<time.time():_nonces.pop(k,None)
@@ -133,15 +174,19 @@ class handler(BaseHTTPRequestHandler):
                 if len(_nonces)>=512:return self.reply(429,{"error":"BUSY"})
                 _nonces[request["nonce"]]=request["expiresAt"]
             if not _workers.acquire(blocking=False):return self.reply(429,{"error":"BUSY"})
-            try:result=compile_child(request["input"])
+            try:
+                if streaming:self.start_stream(request)
+                result=compile_child(request["input"],self.heartbeat) if streaming else compile_child(request["input"])
             finally:_workers.release()
             if time.time()>=request["leaseExpiresAt"]:return self.reply(409,{"error":"EXPIRED_LEASE"})
             packed=base64.b64encode(gzip.compress(result,mtime=0)).decode()
             self.reply(200,{"resultGzip":packed,"resultHash":"sha256:"+hashlib.sha256(result).hexdigest(),"jobId":request["jobId"],"leaseGeneration":request["leaseGeneration"],"inputHash":request["inputHash"]})
         except subprocess.TimeoutExpired:self.reply(504,{"error":"COMPILER_TIMEOUT"})
+        except (BrokenPipeError,ConnectionResetError,TimeoutError):self.close_connection=True
         except Exception:self.reply(422,{"error":"COMPILER_FAILED"})
 
 if __name__=="__main__":
+    STANDALONE_HTTP=True
     server=ThreadingHTTPServer(("127.0.0.1",int(sys.argv[1]) if len(sys.argv)>1 else 0),handler)
     print(canonical({"host":"127.0.0.1","port":server.server_port}),flush=True)
     try:server.serve_forever()
