@@ -38,8 +38,12 @@ const MainScreen = dynamic(
     loading: () => <Loading message="수업 진행 화면을 불러오는 중…" />,
   },
 );
+const CommercialWorkbookWorkspace = dynamic(
+  () => import("@/components/commercial-workbooks/CommercialWorkbookWorkspace"),
+  { loading: () => <Loading message="교재 과제 화면을 불러오는 중…" /> },
+);
 
-type TeachingTab = "classes" | "lessons";
+type TeachingTab = "classes" | "lessons" | "workbooks";
 type TeachingData = {
   user: {
     id: string;
@@ -61,6 +65,7 @@ type AccessState =
 const tabs = [
   { id: "classes", label: "반 · 학생 관리" },
   { id: "lessons", label: "수업 진행" },
+  { id: "workbooks", label: "교재 과제 · 오답" },
 ] as const;
 
 export default function TeachingView({
@@ -69,10 +74,16 @@ export default function TeachingView({
   embedded?: boolean;
 }) {
   const query = useScreenQuery();
+  const requestedTab = query.get("teachingTab");
   const tab: TeachingTab =
-    query.get("teachingTab") === "lessons" ? "lessons" : "classes";
-  const setTab = (next: TeachingTab) =>
+    requestedTab === "lessons" || requestedTab === "workbooks"
+      ? requestedTab
+      : "classes";
+  const [workbooksOpened, setWorkbooksOpened] = useState(tab === "workbooks");
+  const setTab = (next: TeachingTab) => {
+    if (next === "workbooks") setWorkbooksOpened(true);
     replaceScreenQuery({ teachingTab: next });
+  };
   const [access, setAccess] = useState<AccessState>({ status: "loading" });
   const [signingOut, setSigningOut] = useState(false);
   const [accountError, setAccountError] = useState("");
@@ -89,10 +100,11 @@ export default function TeachingView({
       // Child components cannot request classes/students until this succeeds.
       const endpoint = getStudioEndpoints().teaching;
       // Read the current tab at request time: login/retry can happen after tab navigation.
+      const requested = new URLSearchParams(window.location.search).get(
+        "teachingTab",
+      );
       const includeClasses =
-        !quiet &&
-        new URLSearchParams(window.location.search).get("teachingTab") !==
-          "lessons";
+        !quiet && requested !== "lessons" && requested !== "workbooks";
       const response = await fetch(
         includeClasses ? `${endpoint}?classes=1` : endpoint,
         {
@@ -297,6 +309,17 @@ export default function TeachingView({
                 />
               </div>
             ) : null}
+          </section>
+          <section
+            role="tabpanel"
+            id="teaching-panel-workbooks"
+            aria-labelledby="teaching-tab-workbooks"
+            hidden={tab !== "workbooks"}
+            tabIndex={0}
+          >
+            {(workbooksOpened || tab === "workbooks") && (
+              <CommercialWorkbookWorkspace ownerId={access.data.user.id} />
+            )}
           </section>
         </div>
       ) : (

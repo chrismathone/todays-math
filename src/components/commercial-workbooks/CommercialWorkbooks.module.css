@@ -1,0 +1,538 @@
+.workspace {
+  container: workbooks / inline-size;
+  min-width: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+  line-height: 1.6;
+}
+.demoPage {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.workspace *,
+.printSurface * {
+  box-sizing: border-box;
+}
+.workspace [hidden] {
+  display: none !important;
+}
+.workspace h2 {
+  margin: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+.workspace h3 {
+  margin: 0;
+  font-size: var(--text-body, 14px);
+  font-weight: 750;
+}
+.workspace p {
+  margin: 0;
+}
+.workspace :is(button, input, select, textarea) {
+  font: inherit;
+}
+.workspace :is(button, input:not([type="checkbox"]), select) {
+  min-height: 44px;
+}
+.workspace :is(input:not([type="checkbox"]), select, textarea) {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+}
+.workspace textarea {
+  min-height: 88px;
+  resize: none;
+  line-height: 1.6;
+}
+.workspace :is(button, input, select, textarea, summary, a):focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.workspace button {
+  cursor: pointer;
+  white-space: normal;
+}
+.workspace button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.workspace label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  font-weight: 600;
+}
+.workspace fieldset {
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.workspace legend {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.header,
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.muted,
+.header p {
+  color: var(--learn-muted);
+  font-weight: 400;
+}
+.caption {
+  font-size: var(--text-caption, 12px);
+  color: var(--learn-muted);
+  font-weight: 400;
+}
+.stack {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.compactStack {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.toolbar,
+.actions,
+.switcher,
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.toolbar {
+  margin-bottom: 16px;
+  align-items: end;
+}
+.toolbar > label {
+  flex: 1 1 180px;
+}
+.toolbar > .search {
+  flex: 3 1 240px;
+}
+.workspace .button,
+.workspace .primary,
+.workspace .switcher button {
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-weight: 600;
+  transition:
+    background 140ms,
+    border-color 140ms;
+}
+.workspace .primary {
+  background: var(--learn-accent);
+  border-color: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+.workspace .primary:enabled:hover {
+  background: var(--learn-accent-hover);
+}
+.workspace .button:enabled:hover {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.switcher {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.workspace .switcher button {
+  border-color: transparent;
+  background: transparent;
+  color: var(--learn-muted);
+}
+.workspace .switcher button[aria-pressed="true"] {
+  color: var(--learn-accent);
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.split {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.5fr);
+  gap: 20px;
+  align-items: start;
+}
+.panel {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--learn-track);
+  border-radius: 12px;
+  background: var(--learn-surface);
+}
+.list {
+  display: grid;
+  min-width: 0;
+}
+.workspace .listRow {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--learn-track);
+  border-radius: 0;
+  padding: 16px 12px;
+  color: var(--learn-ink);
+  background: transparent;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.workspace .listRow:first-child {
+  border-top: 1px solid var(--learn-track);
+}
+.workspace .listRow[aria-pressed="true"] {
+  background: var(--learn-soft);
+  box-shadow: inset 3px 0 var(--learn-accent);
+}
+.workspace .listRow:hover {
+  background: var(--learn-soft);
+}
+.rowTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.rowTitle strong {
+  min-width: 0;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 2px 8px;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.done {
+  color: var(--learn-done);
+  background: var(--learn-done-bg);
+}
+.warning {
+  color: var(--learn-warning);
+  background: var(--learn-warning-bg);
+}
+.notice,
+.error,
+.success,
+.demo {
+  padding: 12px 16px;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+.notice {
+  color: var(--learn-muted);
+  background: var(--learn-neutral);
+}
+.error {
+  color: var(--learn-danger);
+  background: var(--learn-danger-bg);
+}
+.success {
+  color: var(--learn-done);
+  background: var(--learn-done-bg);
+}
+.demo {
+  margin-bottom: 16px;
+  border: 1px solid var(--learn-warning);
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.empty {
+  padding: 24px 0;
+  color: var(--learn-muted);
+}
+.meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 16px;
+  margin: 0;
+}
+.meta dt {
+  color: var(--learn-muted);
+}
+.meta dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.full {
+  grid-column: 1/-1;
+}
+.workspace .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: var(--learn-accent);
+}
+.checkRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--learn-track);
+}
+.checkList {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 4px;
+}
+.tableRegion {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.table :is(th, td) {
+  padding: 12px;
+  border-bottom: 1px solid var(--learn-track);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.table th {
+  color: var(--learn-muted);
+  font-weight: 600;
+  font-size: var(--text-caption, 12px);
+  background: var(--learn-bg);
+}
+.table code {
+  white-space: pre-wrap;
+  font: inherit;
+}
+.summary {
+  color: var(--learn-muted);
+  font-variant-numeric: tabular-nums;
+  gap: 16px;
+}
+.summary strong {
+  color: var(--learn-ink);
+}
+.markRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--learn-track);
+}
+.markGroup {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.workspace .markGroup button {
+  padding: 10px 12px;
+}
+.markGroup button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+.answer {
+  margin-top: 8px !important;
+  padding: 8px 12px;
+  background: var(--learn-neutral);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.savebar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16px 0 0;
+}
+.workspace details > summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+.printPreview {
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--learn-neutral);
+  padding: 20px;
+  border-radius: 12px;
+}
+.printSurface {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+.paper {
+  padding: 16mm;
+  font-family: var(--paper-font-sans);
+  color: var(--paper-ink);
+}
+.paperHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid;
+  padding-bottom: 12px;
+}
+.paperHeader h2 {
+  font-size: 22px;
+  margin: 0;
+}
+.paperHeader p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+.referenceItem {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--paper-ink);
+  break-inside: avoid;
+}
+.referenceItem h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.referenceItem p {
+  margin: 4px 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.writingSpace {
+  min-height: 125mm;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 9mm,
+    var(--learn-track) 9mm,
+    var(--learn-track) calc(9mm + 1px)
+  );
+}
+.reflectionSpace {
+  min-height: 20mm;
+}
+.printAnswer {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.printPortal {
+  position: fixed;
+  left: -100000px;
+  top: 0;
+  visibility: hidden;
+}
+.paperFooter {
+  margin-top: 12px;
+  font-size: 11px;
+  text-align: right;
+}
+@container workbooks (max-width: 860px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@container workbooks (max-width: 480px) {
+  .panel {
+    padding: 16px;
+  }
+  .formGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .markRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .toolbar > label {
+    flex-basis: 100%;
+  }
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .meta dd {
+    margin-bottom: 8px;
+  }
+  .header > .actions,
+  .savebar > .primary {
+    width: 100%;
+  }
+  .printPreview {
+    padding: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .workspace button {
+    transition: none;
+  }
+}
+@media screen {
+  .paper {
+    zoom: var(--paper-strip-scale, 1);
+  }
+}
+@media print {
+  :global(
+    body:has([data-workbook-print-root]) > :not([data-workbook-print-root])
+  ) {
+    display: none !important;
+  }
+  .printPortal {
+    position: static;
+    visibility: visible;
+  }
+  .printSurface {
+    display: block;
+  }
+  .paper {
+    zoom: 1;
+    margin: 0 !important;
+    box-shadow: none !important;
+    break-after: page;
+  }
+  .paper:last-child {
+    break-after: auto;
+  }
+  .writingSpace {
+    background: none;
+  }
+}
