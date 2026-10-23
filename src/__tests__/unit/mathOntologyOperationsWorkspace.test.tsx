@@ -29,6 +29,22 @@ describe("B/H3 concise AI-first workspace", () => {
   expect(note.textContent).toContain(`${timestamp}\n검증 rdf-validate-shacl 0.6.5`);
   expect(container.querySelectorAll(".katex")).toHaveLength(1); expect(container.querySelector(".katex .mfrac")).not.toBeNull();
  });
+ it("keeps the approved preparation snapshot distinct and reads current review only on one explicit request", async () => {
+  const port = source(), prepared: WorkspaceAnswer = { ...answer, action: { ...answer.action!, kind: "relation", id: "review-1", label: "이 연결 승인하기" }, coverage: [{ label: "승인 상태", value: "후보 · 미게시" }], steps: [{ id: "candidate", title: "합성 연결", note: "교육적 효과 미확인", state: "candidate" }] };
+  port.review = vi.fn(async () => ({ ...prepared, summary: "승인한 연결을 다시 검토합니다.", steps: [{ ...prepared.steps[0], state: "reviewed" as const }], coverage: [], action: undefined }));
+  vi.mocked(port.run).mockResolvedValue(prepared); vi.mocked(port.confirm).mockResolvedValue({ id: "review-1", state: "applied", message: "연결을 승인했습니다.", details: [] });
+  render(<OntologyWorkspace source={port} canPublish />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "연결을 준비해 줘" } }); fireEvent.click(screen.getByRole("button", { name: "준비하기" }));
+  fireEvent.click(await screen.findByRole("button", { name: "이 연결 승인하기" })); await screen.findByText("연결을 승인했습니다.");
+  expect(screen.getByText("준비 시점의 근거")).toBeTruthy(); expect(screen.getByText("준비 시점의 범위")).toBeTruthy(); expect(screen.getByText("후보 · 미게시")).toBeTruthy(); expect(screen.getByText("검토 전 후보")).toBeTruthy();
+  expect(port.review).not.toHaveBeenCalled(); expect(port.confirm).toHaveBeenCalledTimes(1); expect(port.run).toHaveBeenCalledTimes(1); expect(prepared.steps[0].state).toBe("candidate");
+  fireEvent.click(screen.getByRole("button", { name: "현재 검토 보기" })); await screen.findByText("승인한 연결을 다시 검토합니다.");
+  expect(port.review).toHaveBeenCalledExactlyOnceWith("review-1", expect.any(AbortSignal)); expect(screen.getByText("검토한 연결")).toBeTruthy(); expect(screen.queryByText("후보 · 미게시")).toBeNull(); expect(port.confirm).toHaveBeenCalledTimes(1);
+ });
+ it("does not label an unknown confirmation outcome as a completed snapshot or read current review automatically", async () => {
+  const port = source(); port.review = vi.fn(); vi.mocked(port.run).mockResolvedValue({ ...answer, action: { ...answer.action!, kind: "relation", label: "이 연결 승인하기" } }); vi.mocked(port.confirm).mockRejectedValue(new OntologyWorkspaceError("NETWORK", "결과를 확인하지 못했습니다."));
+  render(<OntologyWorkspace source={port} canPublish />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "연결을 준비해 줘" } }); fireEvent.click(screen.getByRole("button", { name: "준비하기" })); fireEvent.click(await screen.findByRole("button", { name: "이 연결 승인하기" })); await screen.findByRole("alert");
+  expect(screen.queryByText("준비 시점의 근거")).toBeNull(); expect(screen.queryByText("준비 시점의 범위")).toBeNull(); expect(screen.queryByRole("button", { name: "현재 검토 보기" })).toBeNull(); expect(port.review).not.toHaveBeenCalled(); expect(port.confirm).toHaveBeenCalledTimes(1);
+ });
  it("reads source populations directly without delegating counting to AI or replacing the user's request", async () => {
   const port: OntologyWorkspaceSource & { coverage: ReturnType<typeof vi.fn> } = { ...source(), coverage: vi.fn(async () => ({ id: "synthetic-coverage", summary: "합성 원천 모집단입니다.", steps: [], details: [], coverage: [{ label: "합성 개체", value: "100 / 100" }, { label: "공식 기준 대응", value: "미확인" }] })) };
   render(<OntologyWorkspace source={port} />);
@@ -113,7 +129,9 @@ describe("B/H3 concise AI-first workspace", () => {
   render(<OntologyWorkspace source={port} />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "게시를 준비해줘" } });
   fireEvent.keyDown(screen.getByLabelText("원하는 일"), { key: "Enter" });
   fireEvent.click(await screen.findByRole("button", { name: "검토한 내용 게시하기" }));
-  fireEvent.click(await screen.findByRole("button", { name: "결과 확인" }));
+  const checkResult = await screen.findByRole("button", { name: "결과 확인" });
+  expect(screen.queryByText("준비 시점의 근거")).toBeNull(); expect(screen.queryByText("준비 시점의 범위")).toBeNull(); expect(screen.queryByRole("button", { name: "현재 검토 보기" })).toBeNull();
+  fireEvent.click(checkResult);
   await screen.findByText("검토한 내용을 게시했습니다.");
   expect(port.confirm).toHaveBeenNthCalledWith(1, publication.action, expect.any(AbortSignal));
   expect(port.confirm).toHaveBeenNthCalledWith(2, publication.action, expect.any(AbortSignal));

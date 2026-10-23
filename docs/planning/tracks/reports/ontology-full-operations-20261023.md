@@ -88,6 +88,12 @@ root가 실제 앱 af9548b에서 URN·`model-packet`·`rdf-validate-shacl 0.6.5`
 
 `provenance-detail-RED.txt`의 388/1440 폭 두 회귀와 `provenance-date-RED.txt`의 날짜 회귀는 기존 렌더러에서 실패했다. `provenance-detail-GREEN-final.txt`는 날짜 전체·URN·엔진/packet 식별자·실제 줄바꿈·명시 분수·외부 이미지 없음 및 기존 UI/API 흐름 **2파일 17시험 PASS**, 전체 TypeScript·해당 ESLint·diff 진단 0이다. 이 폭은 DOM fixture 경계이며 실제 브라우저 overflow 측정으로 주장하지 않는다. 합성 React fixture `?case=relation`에도 같은 식별자·날짜·분수를 넣어 root의 388/1440 직접 검수 대상으로 전달했다. 이 worker의 모델/API/브라우저/서버/build/공유 DB 실행은 없으며 최종 실제 앱 재검수는 root 소유다.
 
+## 승인 결과와 준비 자료의 시점 구분
+
+root의 실제 production e556 교사 검수에서 승인 receipt가 성공해도 보존된 준비 답의 후보/미게시 상태가 현재 상태처럼 보이는 문제와, 새 review 응답도 승인된 관계를 후보로 표시하는 결함을 전달받았다. e556을 clean fast-forward한 뒤 성공 receipt가 있는 경우에만 기존 coverage/근거에 `준비 시점의 범위`/`준비 시점의 근거`를 표시하고, 관계 실행 결과의 `현재 검토 보기`가 기존 review port로 명시 조회한다. 준비 답은 그대로 보존하며 자동 조회·모델 호출·클라이언트 승인/게시 상태 치환은 없다. 게시 준비 중과 결과 불명 상태는 기존 결과 확인 경로를 유지한다.
+
+서버 수정은 `production.server.ts` review 응답의 둘째 step state 한 곳뿐이다. 저장된 state가 approved일 때 reviewed, 그 외에는 기존 candidate로 표시한다. 모델 제안 출처·교육적 효과 미확인 문구와 권한/검증/승인/게시 동작은 유지한다. `snapshot-current-review-RED.txt`는 실제 production review HTTP projection의 approved→candidate 오류와 성공 후 시점 표시 누락 두 회귀를 재현했다. GREEN은 UI/API/실제 review handler **3파일 23시험 PASS**로, 한 번의 명시 승인·자동조회 없음·준비 후보 보존·한 번의 현재 검토 조회·서버 approved/validated/rejected/retired 분기·게시 preparing/결과 불명 경로를 확인한다. 서버 시험의 인증·DB·서비스 ports는 합성이며 DB/모델/브라우저 실행 증거가 아니다. 전체 TypeScript·해당 ESLint·diff 진단 0이고 실제 production 후속 검수는 root 소유다.
+
 ## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.

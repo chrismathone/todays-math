@@ -80,6 +80,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
     catch (cause) { if (sequence.current === request && !controller.signal.aborted) fail(cause); }
     finally { if (sequence.current === request) { busyRef.current = false; setBusy(null); } }
   }
+  const completed = execution !== null && execution.state !== "preparing";
   function back() {
     sequence.current++; active.current?.abort(); busyRef.current = false; setBusy(null); setError(null); setExecution(null); setFeedback(null); setConfirmUnknown(false);
     setAnswer(history.at(-1) ?? null); setHistory(items => items.slice(0, -1));
@@ -112,12 +113,13 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
         {source.history && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "history")}>검토·실행 이력</button>}
         {canPublish && source.publication && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "publication")}>게시 준비</button>}
         {canPublish && source.revocation && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "revocation")}>활성 판 철회 준비</button>}
-        {answer?.coverage.length ? <dl className={s.coverage}>{answer.coverage.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl> : null}
+        {answer?.coverage.length ? <>{completed && <p className={s.muted}>준비 시점의 범위</p>}<dl className={s.coverage}>{answer.coverage.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl></> : null}
         {student && <p className={s.student}>{student.label}<small>{student.classLabel}</small></p>}</details>
       </aside>
       {(answer || history.length > 0 || (!busy && !error)) && <section className={s.result} aria-label="준비한 결과">
         {history.length > 0 && <button type="button" className={s.textButton} disabled={busy === "confirm"} onClick={back}>이전 결과</button>}
         {answer ? <>
+          {completed && <p className={s.muted}>준비 시점의 근거</p>}
           <div role="heading" aria-level={2} className={s.resultTitle}><EvidenceText text={answer.summary} /></div>
           {answer.requiresStudent && <button type="button" className={s.primary} onClick={() => setPicking(true)}>학생을 연결해 계속하기</button>}
           {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><EvidenceText text={step.title} /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><EvidenceText text={step.note} className={s.evidenceNote} /></div></li>)}</ol>}
@@ -125,7 +127,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
       </section>}
       {(execution || answer?.action || answer?.reprepare) && <section className={s.next} aria-label="다음 작업">
-        {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details>{execution.state === "preparing" ? <button type="button" className={s.primary} disabled={!!busy} onClick={() => void confirm()}>결과 확인</button> : answer?.action?.kind === "plan" ? <button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button> : null}{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
+        {execution ? <><h2>{execution.message}</h2><details className={s.details}><summary>실행 이력</summary>{execution.details.map(text => <p key={text}>{text}</p>)}</details>{completed && answer?.action?.kind === "relation" && source.review && <button type="button" className={s.button} disabled={!!busy} onClick={() => void prepare(undefined, student, query, "review", answer.action!.id)}>현재 검토 보기</button>}{execution.state === "preparing" ? <button type="button" className={s.primary} disabled={!!busy} onClick={() => void confirm()}>결과 확인</button> : answer?.action?.kind === "plan" ? <button type="button" className={s.button} disabled={!!busy} onClick={() => void observe()}>이후 관찰</button> : null}{feedback && <div className={s.feedback}><h3>{feedback.summary}</h3>{feedback.details.map(text => <p key={text}>{text}</p>)}</div>}</> : answer?.action ? <>
           <h2>{answer.action.kind === "plan" ? "계획 변경 확인" : answer.action.kind === "relation" ? answer.action.operation === "retire" ? "연결 폐기 확인" : "관계 검토" : answer.action.operation === "revoke" ? "지식 판 철회 확인" : "게시 내용 확인"}</h2>
           <dl className={s.diff}>{answer.action.changes.map(change => <div key={change.label}><dt>{change.label}</dt><dd><span>{change.before}</span><span aria-hidden="true"> → </span><strong>{change.after}</strong></dd></div>)}</dl>
           {answer.action.effects.map(text => <p className={s.muted} key={text}>{text}</p>)}
