@@ -120,6 +120,7 @@ export const mathOntologySourceMetadataSchema = z.strictObject({
 });
 export const mathOntologySourceRecordSchema = z.strictObject({
   namespace: mathOntologySourceNamespaceSchema,
+  scope: z.string().min(1).max(1000),
   nativeId: z.string().min(1).max(4000),
   kind: z.enum([
     "Grade",
@@ -146,6 +147,12 @@ export const mathOntologySourceRecordSchema = z.strictObject({
     "OperationalModel",
   ]),
   origin: mathOntologySourceLocatorSchema,
+  sourceProvenance: z.enum([
+    "native-source",
+    "official-document",
+    "imported-source",
+    "unknown",
+  ]),
   distribution: z.enum([
     "native-metadata",
     "public-official-metadata",
@@ -153,6 +160,27 @@ export const mathOntologySourceRecordSchema = z.strictObject({
   ]),
   edition: z.enum(["unknown", "2015", "2022"]),
   metadata: mathOntologySourceMetadataSchema,
+  labels: z
+    .array(
+      z.strictObject({
+        value: z.string().min(1).max(800),
+        language: z.enum(["ko", "en", ""]),
+        sourceField: z.enum([
+          "term",
+          "title",
+          "section",
+          "chapter",
+          "label",
+          "name",
+          "code",
+          "model",
+        ]),
+        sourceTextHash: mathOntologySourceDigestSchema,
+        origin: mathOntologySourceLocatorSchema,
+      }),
+    )
+    .max(5)
+    .optional(),
 });
 export const MATH_ONTOLOGY_SOURCE_PREDICATES = [
   "partOf",
@@ -175,6 +203,7 @@ export const MATH_ONTOLOGY_SOURCE_PREDICATES = [
 ] as const;
 export const mathOntologySourceRefSchema = z.strictObject({
   namespace: mathOntologySourceNamespaceSchema,
+  scope: z.string().min(1).max(1000),
   nativeId: z.string().min(1).max(4000),
 });
 export const mathOntologySourceAssertionSchema = z
@@ -184,6 +213,13 @@ export const mathOntologySourceAssertionSchema = z
     predicate: z.enum(MATH_ONTOLOGY_SOURCE_PREDICATES),
     object: mathOntologySourceRefSchema,
     origin: mathOntologySourceLocatorSchema,
+    originKind: z.enum(["source-projection", "authored", "model-proposal"]),
+    supportKind: z.enum([
+      "direct-source-structure",
+      "editorial-judgment",
+      "unverified",
+    ]),
+    publicationState: z.literal("unpublished"),
     evidenceKind: z.enum([
       "observed",
       "authored-inference",
@@ -288,12 +324,14 @@ export type MathOntologySourceEnvelope = z.infer<
 >;
 export type MathOntologySourceEntity = Readonly<
   MathOntologySourceRecord & {
+    stableIri: string;
     iri: string;
     sourceVersion: MathOntologySourceDigest;
   }
 >;
 export type MathOntologySourceStatement = Readonly<
   MathOntologySourceAssertion & {
+    stableIri: string;
     iri: string;
     subjectIri: string;
     objectIri: string;
