@@ -1,3 +1,4 @@
+import { projectMathOntologySourceScopeSelection } from "@/lib/math-ontology/sources/publicProjection";
 import { describe, expect, it } from "vitest";
 import {
   MATH_ONTOLOGY_SOURCE_NAMESPACES,
@@ -74,6 +75,31 @@ describe("immutable source assembler and RDF boundary", () => {
         (q) => q.predicate.value === "urn:todaymath:vocab:nativeSourceKind",
       )!.object.value,
     ).toBe("external-import");
+  });
+  it("uses only the explicit server-selected scopes and ignores all foreign native scopes", () => {
+    const first = fixture([
+        rec,
+        { ...rec, scope: "student:allowed", nativeId: "ALLOWED" },
+      ]),
+      second = fixture([
+        ...first.payload.records,
+        { ...rec, scope: "student:foreign", nativeId: "FOREIGN" },
+      ]);
+    const run = (e: ReturnType<typeof fixture>) =>
+      projectMathOntologySourceScopeSelection(
+        assembleMathOntologySources(e, { expectedPayloadHash: e.payloadHash }),
+        new Set(["global", "student:allowed"]),
+      );
+    expect(run(first)).toEqual(run(second));
+    expect(run(first).entities).toHaveLength(2);
+    expect(
+      projectMathOntologySourceScopeSelection(
+        assembleMathOntologySources(second, {
+          expectedPayloadHash: second.payloadHash,
+        }),
+        new Set(),
+      ).entities,
+    ).toHaveLength(0);
   });
   it("keeps public bytes, IDs, versions and counts unchanged for foreign native scope rows", () => {
     const a = fixture();

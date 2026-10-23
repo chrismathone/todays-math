@@ -87,9 +87,17 @@ export function publicSourceAssertionValue(a: MathOntologySourceAssertion) {
 export function projectMathOntologyPublicSources(
   dataset: MathOntologySourceDataset,
 ) {
+  return projectMathOntologySourceScopeSelection(dataset, new Set(["global"]));
+}
+/** Selection only, not authorization. The server must derive exact scopes from the existing source policy; never accept this allowlist from a request/model. No implicit all-scope union. */
+export function projectMathOntologySourceScopeSelection(
+  dataset: MathOntologySourceDataset,
+  allowedScopes: ReadonlySet<string>,
+) {
   const entities = dataset.entities
     .filter(
-      (e) => e.scope === "global" && e.distribution !== "quarantine-reference",
+      (e) =>
+        allowedScopes.has(e.scope) && e.distribution !== "quarantine-reference",
     )
     .map((e) => ({
       ...publicSourceRecordValue(e),
