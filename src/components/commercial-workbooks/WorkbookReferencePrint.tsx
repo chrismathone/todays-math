@@ -45,7 +45,8 @@ export function ReferencePage({
         </p>
         <p>
           원문 문제는 포함하지 않습니다. 해당 교재에서 위 문항을 찾아 풀어
-          주세요.
+          주세요. 쪽 표시는 단원의 시작 위치일 수 있으니 단원과 문항 번호를 함께
+          확인하세요.
         </p>
         {includesAnswers && (
           <p className={s.printAnswer}>
