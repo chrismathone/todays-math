@@ -6,7 +6,7 @@ The accepted seven packs are unchanged. This follow-up processes the four remain
 | --- | --- | --- | ---: | ---: | ---: |
 | `root/samples/visang-27061.pdf` | Ready | `visang-conceptroot-common1-2022-v1` | 839 | 839 | 0 |
 | `root/samples/visang-26737.pdf` | Ready | `visang-typemanrep-m2-1-2022-v1` | 1,386 | 1,369 | 17 |
-| `root/samples/mega-1493.pdf` | OCR/review pending | — | — | — | — |
+| `root/samples/mega-1493.pdf` | Ready | `mega-cpr-m2-1-1493-v1` | 1,245 | 1,227 | 18 |
 | `root/samples/imath-rpm-pro-common1.pdf` | OCR/review pending | — | — | — | — |
 
 ## Visang Concept Root
@@ -43,3 +43,17 @@ The font-aware extractor supplies candidates and coordinates. Manual visual corr
 External evidence is in `visang-26737/followup/`: 1,386 individual answer crops, 47 answer sheets, 50 header crops/three sheets, main chapter sheet, six supplemental table renders, boundary pages, independent census, reviewed answer overrides, per-address exclusion ledger in the pack coverage, and `visual-review.json`/`resolution.json`. Reproduction scripts are external `extract_manrep.py`, `manrep_answers.py`, `manrep_rechecks.py`, `manrep_final_evidence.py`, and `build_manrep.py`. Aggregate registration and status retain the accepted entries and now include this ninth ready pack.
 
 Validation: **five scoped tests passed** for strict parsing, exact TSV round-trip, all independent addresses, every exclusion/source-page record, 557 single-choice keys, and numerical/symbol/unit regressions across all 20 chapter contexts; scoped ESLint passed. The earlier packs are unchanged. CPR and RPM Pro remain active OCR/review work.
+
+## Mega CPR
+
+Official title: **메가스터디 문제 기본서 CPR 중학수학 2-1**, confirmed by the captured [official answer listing](https://www.megastudybooks.com/book/file/explanation?page=31) and PDF cover. Curriculum revision, ISBN, printing number, and publication date remain unconfirmed and are not guessed. The [official download 1493](https://www.megastudybooks.com/download/1493) is a 96-page scanned PDF, SHA-256 `4aab4b7f6e2958b823d963d23e267769eb6139e972baeb734bdbb9ede62348e9`.
+
+The declared source scope is **all printed 0001–1245 on PDF 2–96**, across four major headings, ten chapters and 30 C/P/R activity headers. The independent address census retains printed three-digit body-page labels, comma-separated pages, and ranges exactly; it does not assign guessed individual pages. The only source page outside this scope is the unnumbered cover on PDF 1. This is complete address coverage of the fixed solution PDF, not an independent census of every activity in the separate problem book.
+
+All 96 pages were rendered externally and OCRed using the native Apple Vision engine. OCR candidates were filtered by printed number color and position; 35 missed numbers were read from enlarged source regions, and the OCR misreading of 0242 as 0262 was corrected visually. Each of the **1,245 individual answer regions** was then visually read, with 40 expanded regions checked for complete tables, tall equations, graphs and explanations. OCR output alone never established reviewed status. The result contains **1,227 reviewed keys**, including **356 single-choice keys**, and **18 null keys**: 0116 requires a long explanation; 0416–0420, 0468, 0888, 0897–0900, 0908–0909, 1116, 1130, 1146–1147 require graphs. Each exclusion retains its address, source page, expanded image coordinates and reason. No in-scope address is omitted.
+
+Structured tables and short multipart answers are combined per printed main number. Recurring-decimal dots, powers, fractions, choice circles, inequality signs and units are preserved. Cropped first lines of simultaneous equations were recovered from expanded images before review completion. The 1242 coefficient was also checked against the full explanation; the printed final answer is preserved. Review denotes correspondence to the fixed public source, not a claim of independent mathematical correctness or application of later errata.
+
+External evidence: `mega-1493/followup/` contains all 96 rendered pages and OCR coordinates, number-candidate audits, 1,245 answer crops/42 review sheets, 30 header crops/three sheets, four missing-number sheets, 40 expanded regions/seven sheets, major headings, independent census, final answers, and `visual-review.json`. Reproduction scripts are `ocr.swift`, `prepare_cpr.py`, `extract_cpr.py`, `cpr_color.py`, `cpr_find_missing.py`, `cpr_regions.py`, `cpr_answers.py`, `cpr_rechecks.py`, `cpr_boundaries.py`, and `build_cpr.py`, all under the external evidence root. Aggregate registration/status retain all earlier entries and now contain ten ready packs; RPM Pro remains active work.
+
+Validation: **five scoped tests passed** for the strict schema, exact TSV round-trip, all 30 independent address groups, all key/source-region records and exclusions, immutable source provenance, choice counts, and numeric/symbol/table/unit regressions in every chapter; scoped ESLint passed. Existing immutable packs, dependencies, registry, UI and production are unchanged.
