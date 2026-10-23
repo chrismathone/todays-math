@@ -2,7 +2,7 @@ import { z } from "zod";
 import { ontologyActionReceiptSchema } from "@/contracts/mathOntologyAction.contract";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer } from "./source";
 const actionSchema = z.object({ kind: z.enum(["plan", "relation", "publication"]), operation: z.enum(["approve", "retire", "revoke"]).optional(), id: z.string(), sealHash: z.string().optional(), revision: z.number().int().optional(), validationHash: z.string().optional(), label: z.string(), changes: z.array(z.object({ label: z.string(), before: z.string(), after: z.string() })), effects: z.array(z.string()) });
-const answerSchema = z.object({ id: z.string(), summary: z.string().max(2000), requiresStudent: z.boolean().optional(), steps: z.array(z.object({ id: z.string(), title: z.string(), note: z.string(), state: z.enum(["observed", "reviewed", "candidate", "unknown"]) })).max(100), details: z.array(z.object({ title: z.string(), text: z.string(), reviewId: z.uuid().optional() })), coverage: z.array(z.object({ label: z.string(), value: z.string() })), action: actionSchema.optional() });
+const answerSchema = z.object({ id: z.string(), summary: z.string().max(2000), requiresStudent: z.boolean().optional(), steps: z.array(z.object({ id: z.string(), title: z.string(), note: z.string(), state: z.enum(["observed", "reviewed", "candidate", "unknown"]) })).max(100), details: z.array(z.object({ title: z.string(), text: z.string(), reviewId: z.uuid().optional() })), coverage: z.array(z.object({ label: z.string(), value: z.string() })), action: actionSchema.optional(), reprepare: z.object({ previousReviewId: z.uuid(), expectedPreviousRevision: z.number().int().nonnegative(), query: z.string().max(500).optional() }).optional() });
 const studentSchema = z.object({ id: z.uuid(), classId: z.uuid(), branchId: z.uuid().nullable(), label: z.string(), classLabel: z.string() });
 async function request(url: string, signal: AbortSignal, body?: unknown): Promise<unknown> {
   let response: Response;
@@ -22,7 +22,7 @@ export function createOntologyWorkspaceSource(branchId?: string): OntologyWorksp
     async publication(signal) { return answerSchema.parse(await request("/api/math-ontology/publish/prepare", signal, {})); },
     async revocation(signal) { return answerSchema.parse(await request("/api/math-ontology/publish/revoke/prepare", signal, {})); },
     async run(input, signal): Promise<WorkspaceAnswer> {
-      return answerSchema.parse(await request("/api/math-ontology/assist", signal, { query: input.query, ...(input.student ? { studentId: input.student.id, classId: input.student.classId, branchId: input.student.branchId } : {}) }));
+      return answerSchema.parse(await request("/api/math-ontology/assist", signal, { query: input.query, ...(input.student ? { studentId: input.student.id, classId: input.student.classId, branchId: input.student.branchId } : {}), ...(input.previousReviewId ? { previousReviewId: input.previousReviewId, expectedPreviousRevision: input.expectedPreviousRevision } : {}) }));
     },
     async confirm(action, signal) {
       if (action.kind === "plan") {
