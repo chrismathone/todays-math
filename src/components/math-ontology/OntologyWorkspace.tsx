@@ -32,20 +32,22 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
   const busyRef = useRef(false), sequence = useRef(0), active = useRef<AbortController | null>(null), pickerButton = useRef<HTMLButtonElement>(null);
   const preparationMode = useRef<"query" | "history" | "publication" | "revocation" | "review">("query");
   const reviewPreparation = useRef("");
+  const predecessorPreparation = useRef<WorkspaceAnswer["reprepare"]>(undefined);
   useEffect(() => () => { sequence.current++; active.current?.abort(); }, []);
   const fail = (cause: unknown) => {
     const problem = cause instanceof OntologyWorkspaceError ? cause : new OntologyWorkspaceError("NETWORK", "결과를 확인하지 못했습니다. 다시 확인해 주세요.");
     if (problem.code === "FORBIDDEN" || problem.code === "STALE") { setAnswer(null); setHistory([]); setExecution(null); setFeedback(null); }
     setError(problem); return problem;
   };
-  async function prepare(event?: FormEvent, selected = student, text = query, mode: "query" | "history" | "publication" | "revocation" | "review" = "query", reviewId = "") {
+  async function prepare(event?: FormEvent, selected = student, text = query, mode: "query" | "history" | "publication" | "revocation" | "review" = "query", reviewId = "", predecessor?: WorkspaceAnswer["reprepare"]) {
     event?.preventDefault();
     if (busyRef.current || (mode === "query" && !text.trim())) return;
     preparationMode.current = mode; reviewPreparation.current = reviewId;
+    predecessorPreparation.current = predecessor;
     busyRef.current = true; const request = ++sequence.current, controller = new AbortController(); active.current = controller;
     if (answer) setHistory(items => [...items.slice(-9), answer]);
     setAnswer(null); setExecution(null); setFeedback(null); setConfirmUnknown(false); setError(null); setBusy("prepare");
-    try { const value = mode === "review" && source.review ? await source.review(reviewId, controller.signal) : mode === "history" && source.history ? await source.history(controller.signal) : mode === "publication" && source.publication ? await source.publication(controller.signal) : mode === "revocation" && source.revocation ? await source.revocation(controller.signal) : await source.run({ query: text.trim(), student: selected }, controller.signal); if (sequence.current === request) setAnswer(value); }
+    try { const value = mode === "review" && source.review ? await source.review(reviewId, controller.signal) : mode === "history" && source.history ? await source.history(controller.signal) : mode === "publication" && source.publication ? await source.publication(controller.signal) : mode === "revocation" && source.revocation ? await source.revocation(controller.signal) : await source.run({ query: text.trim(), student: selected, ...(predecessor ? { previousReviewId: predecessor.previousReviewId, expectedPreviousRevision: predecessor.expectedPreviousRevision } : {}) }, controller.signal); if (sequence.current === request) setAnswer(value); }
     catch (cause) { if (sequence.current === request && !controller.signal.aborted) fail(cause); }
     finally { if (sequence.current === request) { busyRef.current = false; setBusy(null); } }
   }
@@ -75,6 +77,14 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
     sequence.current++; active.current?.abort(); busyRef.current = false; setBusy(null); setError(null); setExecution(null); setFeedback(null); setConfirmUnknown(false);
     setAnswer(history.at(-1) ?? null); setHistory(items => items.slice(0, -1));
   }
+  function reprepare() {
+    const predecessor = answer?.reprepare;
+    if (!predecessor) return;
+    const text = query.trim() || predecessor.query?.trim() || "";
+    if (!text) return;
+    if (!query.trim()) setQuery(text);
+    void prepare(undefined, student, text, "query", "", predecessor);
+  }
   return <div className={s.page}>
     <WorkspacePageHeader title="지식 작업실" description="찾기와 검토를 한곳에서.">
       <button type="button" ref={pickerButton} className={s.button} disabled={busy === "confirm"} onClick={() => setPicking(true)}>{student ? `${student.label} · ${student.classLabel}` : "학생 연결"}</button>
@@ -87,7 +97,7 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
       <div className={s.promptActions}><span className={s.muted}>{student ? "연결한 학생의 허용된 기록을 함께 봅니다." : "전체 지식부터 찾습니다."}</span><button type="submit" className={s.primary} disabled={!!busy || !query.trim()}>{busy === "prepare" ? "준비 중…" : "준비하기"}</button></div>
     </form>
     {busy && <p className={s.status} role="status">{busy === "prepare" ? "자료를 찾아 검토하고 있습니다." : busy === "confirm" ? "확인한 내용을 적용하고 결과를 확인합니다." : "이후 관찰을 확인합니다."}</p>}
-    {error && <div className={s.error} role="alert"><p>{error.message}</p>{error.code !== "FORBIDDEN" && <button type="button" className={s.button} disabled={!!busy} onClick={() => confirmUnknown ? void confirm() : void prepare(undefined, student, query, preparationMode.current, reviewPreparation.current)}>{confirmUnknown ? "결과 확인" : "다시 준비"}</button>}</div>}
+    {error && <div className={s.error} role="alert"><p>{error.message}</p>{error.code !== "FORBIDDEN" && <button type="button" className={s.button} disabled={!!busy} onClick={() => confirmUnknown ? void confirm() : void prepare(undefined, student, query, preparationMode.current, reviewPreparation.current, predecessorPreparation.current)}>{confirmUnknown ? "결과 확인" : "다시 준비"}</button>}</div>}
     <div className={s.columns}>
       <aside className={s.context} aria-label="지식과 현재 맥락">
         <details className={s.contextDetails}><summary>지식과 원천 범위</summary><p className={s.muted}>개념 · 단원 · 문항 · 자료</p>
@@ -113,8 +123,9 @@ function ScopedWorkspace({ source, canPublish }: { source: OntologyWorkspaceSour
           <dl className={s.diff}>{answer.action.changes.map(change => <div key={change.label}><dt>{change.label}</dt><dd><span>{change.before}</span><span aria-hidden="true"> → </span><strong>{change.after}</strong></dd></div>)}</dl>
           {answer.action.effects.map(text => <p className={s.muted} key={text}>{text}</p>)}
           <button type="button" className={s.primary} disabled={!!busy || (answer.action.kind === "plan" && !student)} onClick={() => void confirm()}>{confirmUnknown ? "결과 확인" : answer.action.label}</button>
+          {answer.action.kind === "relation" && answer.reprepare && <button type="button" className={s.button} disabled={!!busy || !(query.trim() || answer.reprepare.query?.trim())} onClick={reprepare}>새 근거로 다시 준비</button>}
           {answer.action.kind === "plan" && !student && <p>학생을 연결한 뒤 다시 준비해 주세요.</p>}
-        </> : <><h2>다음 작업</h2><p className={s.muted}>검토가 필요하면 변경 내용을 여기에 준비합니다.</p></>}
+        </> : answer?.reprepare ? <><h2>근거 다시 확인</h2><p className={s.muted}>원하는 일을 고쳐 새 근거를 찾을 수 있습니다. 이전 후보는 보존합니다.</p><button type="button" className={s.primary} disabled={!!busy || !(query.trim() || answer.reprepare.query?.trim())} onClick={reprepare}>새 근거로 다시 준비</button></> : <><h2>다음 작업</h2><p className={s.muted}>검토가 필요하면 변경 내용을 여기에 준비합니다.</p></>}
       </section>
     </div>
     {picking && <StudentPicker source={source} onClose={() => setPicking(false)} onSelect={connect} returnFocus={pickerButton} />}

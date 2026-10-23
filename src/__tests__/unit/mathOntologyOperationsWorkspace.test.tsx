@@ -8,6 +8,22 @@ afterEach(cleanup);
 const answer: WorkspaceAnswer = { id: "answer-1", summary: "계획 변경을 준비했습니다.", steps: [{ id: "e1", title: "보존된 첫 풀이", note: "힌트와 재시도 제외", state: "observed" }], details: [], coverage: [], action: { kind: "plan", id: "proposal-1", label: "이 계획으로 바꾸기", changes: [{ label: "하루 목표", before: "10문제", after: "15문제" }], effects: ["시작한 학습은 유지됩니다."] } };
 function source(): OntologyWorkspaceSource { return { students: vi.fn(async () => []), run: vi.fn(async () => answer), confirm: vi.fn(async () => ({ id: "receipt-1", state: "applied" as const, message: "계획을 변경했습니다.", details: ["같은 요청은 다시 쓰지 않습니다."] })), feedback: vi.fn(async () => ({ summary: "아직 후속 관찰이 없습니다.", details: [] })) }; }
 describe("B/H3 concise AI-first workspace", () => {
+ it.each(["원천에서 확인한 같은 연결의 근거를 다시 찾아줘", ""])("explicitly re-prepares an unknown candidate using edited request or stored fallback: %s", async edited => {
+  const port = source(), previousReviewId = "00000000-0000-4000-8000-000000000011";
+  const blocked = { ...answer, id: previousReviewId, summary: "근거를 더 확인해야 하는 후보입니다.", action: undefined, reprepare: { previousReviewId, expectedPreviousRevision: 3, query: "연결 근거를 다시 찾아줘" } };
+  vi.mocked(port.run).mockResolvedValueOnce(blocked);
+  let resolve!: (value: WorkspaceAnswer) => void; vi.mocked(port.run).mockReturnValueOnce(new Promise(r => { resolve = r; }));
+  render(<OntologyWorkspace source={port} />);
+  const input = screen.getByLabelText("원하는 일"); fireEvent.change(input, { target: { value: "연결을 찾아줘" } }); fireEvent.click(screen.getByRole("button", { name: "준비하기" }));
+  await screen.findByText(blocked.summary); expect(port.confirm).not.toHaveBeenCalled();
+  fireEvent.change(input, { target: { value: edited } });
+  const retry = screen.getByRole("button", { name: "새 근거로 다시 준비" }); fireEvent.click(retry); fireEvent.click(retry);
+  expect(port.run).toHaveBeenCalledTimes(2);
+  expect(port.run).toHaveBeenLastCalledWith({ query: edited || blocked.reprepare.query, student: null, previousReviewId, expectedPreviousRevision: 3 }, expect.any(AbortSignal));
+  resolve({ ...answer, summary: "새 후보를 준비했습니다.", action: undefined }); await screen.findByText("새 후보를 준비했습니다.");
+  fireEvent.click(screen.getByRole("button", { name: "이전 결과" })); await screen.findByText(blocked.summary);
+  expect(screen.getByRole("button", { name: "새 근거로 다시 준비" })).toBeTruthy(); expect(port.confirm).not.toHaveBeenCalled();
+ });
  it("starts with no student, delegates preparation once, shows the concrete diff and requires one explicit confirmation", async () => {
   const port = source(); const selected = { id: "00000000-0000-4000-8000-000000000001", classId: "00000000-0000-4000-8000-000000000002", branchId: null, label: "예시 학생", classLabel: "예시 반" }; vi.mocked(port.students).mockResolvedValue([selected]); render(<OntologyWorkspace source={port} />);
   fireEvent.click(screen.getByRole("button", { name: "학생 연결" }));

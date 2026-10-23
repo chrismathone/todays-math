@@ -83,6 +83,8 @@ Reader 먼저 순서는: writer off에서 새 schema-aware 서버/Prisma reader 
 
 재준비의 server-only ABI는 `relations.draftModelRevision(actor, { previousReviewId, expectedPreviousRevision, assertion, evidenceRef, modelRunId })`다. 새 provider/evidence 봉인에 묶인 새 후보를 만들고 같은 tx에 immutable `relation.reprepared` 전임 ID/검토 판 이력을 쓴다. 이전 후보 bytes/결정은 바꾸지 않는다. stale 전임, 다른 전임으로 바꾼 replay를 거절하며 동일 새 run은 같은 후보를 돌려준다. `model-revision-RED.txt` → `model-revision-GREEN-final.txt` 실제 PG 6시험은 마지막 전임 audit insert 직후 failpoint에서 새 draft/이력 전체 rollback과 원래 후보 보존까지 확인한다. 이 묶음의 provider·witness는 명시적 합성 fixture이며 실제 모델 생산 증거는 formal/root 소유다. 전체 TypeScript·해당 ESLint·diff는 진단 0이다.
 
+재준비 UI는 같은 짧은 요청 칸과 `새 근거로 다시 준비` 버튼을 사용한다. 편집한 요청을 우선하고, 이력에서 요청 칸이 비었으면 봉인된 후보의 짧은 재준비 요청을 사용한다. `WorkspaceAnswer.reprepare`의 전임 ID/검토 판을 기존 assist body로 전달하고 새 답을 준비한다. 버튼은 모델에게 새 후보 준비를 요청하며 관계 승인이나 학생 쓰기를 실행하지 않는다. 준비 중 중복, 이전 결과 복귀, HTTP 왕복의 전임 metadata 보존은 `reprepare-ui-RED.txt` → `reprepare-ui-GREEN-final.txt` 2파일 11시험에서 확인했다. query에는 support/hash 편집 UI가 없다. fixture `?case=reprepare`도 추가했으며 실제 모델 생산/브라우저는 root와 formal의 별도 증거로 확인한다.
+
 최초 근거 snapshot은 RepeatableRead로 읽어 여러 원천 행의 일관성을 보존한다. 기존 승인/실행의 동시 idempotency 경로를 RepeatableRead로 바꾸지는 않았다.
 
 staging machine API도 writer off에서 새 표를 조회하지 않으며 Node/Python과 같은 명시적 MATH_ONTOLOGY_ENGINE_SECRET 우선순위를 사용한다. 만료된 미실행 제안은 이력에서 다시 준비가 필요한 것으로 표시한다. 철회/제거된 판의 개체 표기를 찾을 수 없는 과거 승인 관계는 **미확인**으로 표시하고 폐기만 준비할 수 있게 해 복구 경로가 막히지 않도록 했다. 이 fallback은 새 승인이나 근거 승격을 허용하지 않는다.
