@@ -15,3 +15,28 @@ tm:AssertionShape a sh:NodeShape ; sh:targetClass tm:Assertion ;
 
 tm:PartShape a sh:NodeShape ; sh:targetSubjectsOf tm:partOf ;
   sh:property [ sh:path tm:partOf ; sh:nodeKind sh:IRI ] .
+
+tm:SourceEntityShape a sh:NodeShape ; sh:targetClass tm:SourceEntity ;
+  sh:property [ sh:path tm:nativeId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path tm:sourceVersion ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path tm:sourceByteHash ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path tm:sourceKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:sourceScope ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+tm:SourceAssertionShape a sh:NodeShape ; sh:targetClass tm:SourceAssertion ;
+  sh:property [ sh:path rdf:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:class tm:SourceEntity ] ;
+  sh:property [ sh:path rdf:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path rdf:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:class tm:SourceEntity ] ;
+  sh:property [ sh:path tm:sourceByteHash ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:reviewState ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:publicationState ; sh:minCount 1 ; sh:hasValue "unpublished" ] .
+
+tm:SourceCoverageShape a sh:NodeShape ; sh:targetClass tm:SourceCoverage ;
+  sh:property [ sh:path tm:nativeNamespace ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:registered ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] .
+
+tm:LearningObservationShape a sh:NodeShape ; sh:targetClass tm:LearningObservation ;
+  sh:property [ sh:path tm:scope ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:recordRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ;
+  sh:property [ sh:path tm:sourceKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path tm:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
