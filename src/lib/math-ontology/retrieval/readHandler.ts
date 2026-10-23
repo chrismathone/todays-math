@@ -140,7 +140,10 @@ export function createOntologyReadHandler(deps: OntologyReadDependencies) {
           coverage: undefined,
         },
       });
-    } catch {
+    } catch(error) {
+      const code=error instanceof Error?error.message:"";
+      if(code==="ONTOLOGY_ENTITY_UNRESOLVED")return response(200,{data:{state:"unknown",completeness:"unknown",rows:[],proofIds:[],truncated:false,cursor:null}});
+      if(/^(?:MATERIALIZATION_|FRONTIER_WIDTH_BUDGET|CONTINUATION_BUDGET|QUERY_ROW_BUDGET)/.test(code))return response(200,{data:{state:"incomplete",completeness:"partial",rows:[],proofIds:[],truncated:true,cursor:null}});
       return response(503, { error: { code: "ONTOLOGY_READ_UNAVAILABLE" } });
     }
   };

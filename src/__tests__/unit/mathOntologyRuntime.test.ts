@@ -90,7 +90,7 @@ describe("actual Node RDF query, proof and Core SHACL", () => {
     await expect(
       queryOntology(
         runtime,
-        { ...query, cursor: first.cursor!.replace(/.$/, "0") },
+        { ...query, cursor: first.cursor!.slice(0, -1) + (first.cursor!.endsWith("0") ? "1" : "0") },
         context,
       ),
     ).rejects.toThrow();

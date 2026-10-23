@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["icn1"],
+  "regions": [
+    "icn1"
+  ],
   "env": {
     "TEXTBOOK_RECOVERY_WRITER_ENABLED": "true"
   },
@@ -9,6 +11,11 @@
       "maxDuration": 60,
       "includeFiles": "{scripts/figure/{render_spec.py,engine_path.py,elementary.py,elem_advanced.py,graph_scene.py,figure_assets.py,label-widths.json,assets/**},scripts/hwpx/**,vendor/figure-engine/**,vendor/hwpx/**}",
       "excludeFiles": "{{.claude,.husky,src,docs,e2e,qa,scratch,prisma}/**,**/*.pyc,.env*,scripts/!(figure|hwpx)/**,scripts/figure/{*.{ts,mjs},*-*.py,build_*.py,svg_prune.py,enhance_guards.py,{hwp,figure,engine}-*.json,assets/README.md},vendor/!(figure-engine|hwpx)/**}"
+    },
+    "api/ontology-engine.py": {
+      "maxDuration": 300,
+      "includeFiles": "{scripts/ontology/compiler/{compiler.py,packaged.py,partitions.py,requirements.lock},ontology/{model,shapes,rules}/**,ontology/source-manifests/public-v1/52597f5f6437aff2418d3189399e1aac261149bea17994a352d62fbfebaee554/**}",
+      "excludeFiles": "{{.claude,.husky,src,docs,e2e,qa,scratch,prisma,node_modules,public,vendor}/**,**/*.pyc,.env*,scripts/!(ontology)/**,scripts/ontology/!(compiler)/**,scripts/ontology/compiler/{test_*.py,*.ts},ontology/source-manifests/!(public-v1)/**}"
     }
   },
   "crons": [

@@ -27,7 +27,7 @@ function cursorEncode(data: unknown, secret: string) {
     .update("ontology-query-v1\n" + body)
     .digest("hex")}`;
 }
-function cursorDecode(value: string, secret: string): Record<string, unknown> {
+export function cursorDecode(value: string, secret: string): Record<string, unknown> {
   const [body, signature, ...tail] = value.split(".");
   const wanted = createHmac("sha256", secret)
     .update("ontology-query-v1\n" + body)
@@ -45,9 +45,11 @@ export async function queryOntology(
   runtime: MathOntologyRuntime,
   raw: MathOntologyQuery,
   context: OntologyQueryContext,
-) {
-  const query = mathOntologyQuerySchema.parse(raw),
-    started = performance.now();
+):Promise<{graphVersion:string;rows:Record<string,string>[];proofIds:string[];truncated:boolean;cursor:string|null;coverage:MathOntologyRuntime["coverage"]}> {
+  let query = mathOntologyQuerySchema.parse(raw);
+  const started=performance.now();
+  if(runtime.resolveEntity)query={...query,...(query.entityId?{entityId:runtime.resolveEntity(query.entityId)}:{}),...(query.targetId?{targetId:runtime.resolveEntity(query.targetId)}:{})};
+  if(runtime.materialize)return queryOntology(await runtime.materialize(query,context),query,context);
   if (
     !context.cursorSecret ||
     !context.allowedScopes.includes(runtime.coverage.scope)
@@ -65,6 +67,10 @@ export async function queryOntology(
   if (state && state.binding !== binding) throw new Error("STALE_CURSOR");
   const { registry, asserted } = runtime.datasets(),
     proofs = runtime.proofs();
+  if(query.kind!=="catalog")for(const id of [query.entityId,query.targetId].filter(Boolean)){
+    const scopes=registry.getObjects(namedNode(id!),namedNode(TM+"sourceScope"),null);
+    if(!registry.countQuads(namedNode(id!),namedNode(RDF+"type"),namedNode(TM+"SourceEntity"),null)||!scopes.some(s=>context.allowedScopes.includes(s.value)))throw new Error("ONTOLOGY_ENTITY_UNRESOLVED");
+  }
   const visible = proofs.filter(
     (p) => p.assertionIds.length && context.allowedScopes.includes(p.scope),
   );

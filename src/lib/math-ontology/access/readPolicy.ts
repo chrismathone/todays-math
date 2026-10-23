@@ -1,7 +1,7 @@
 /** Exact new read operations only. Existing v1/v2 and student gates are unchanged. */
 export function ontologyReadRoute(method: string, path: string): boolean {
   return (
-    (method === "GET" && path === "/api/math-ontology/catalog") ||
+    (method === "GET" && ["/api/math-ontology/catalog", "/api/math-ontology/students"].includes(path)) ||
     (method === "POST" &&
       ["/api/math-ontology/query", "/api/math-ontology/validate"].includes(
         path,
@@ -16,9 +16,11 @@ export function ontologyOperationRoute(method: string, path: string): boolean {
     (method === "POST" &&
       [
         "/api/math-ontology/actions/proposals",
+        "/api/math-ontology/assist",
         "/api/math-ontology/relations/proposals",
         "/api/math-ontology/publish/jobs",
       ].includes(path)) ||
+    (method === "POST" && /^\/api\/math-ontology\/receipts\/[A-Za-z0-9-]+\/feedback$/.test(path)) ||
     (method === "POST" &&
       new RegExp(
         `^/api/math-ontology/actions/${proposal}/(?:approve|execute|feedback)$`,
@@ -28,7 +30,7 @@ export function ontologyOperationRoute(method: string, path: string): boolean {
         path,
       )) ||
     (method === "POST" &&
-      new RegExp(`^/api/math-ontology/relations/${proposal}/approve$`).test(
+      new RegExp(`^/api/math-ontology/relations/${proposal}/(?:validate|approve)$`).test(
         path,
       )) ||
     (method === "POST" &&

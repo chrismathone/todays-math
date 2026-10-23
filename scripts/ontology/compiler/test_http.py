@@ -26,7 +26,7 @@ class HttpEngine(unittest.TestCase):
         cls.process.stdout.close();cls.process.stderr.close()
         print(canonical({"ownedPid":cls.process.pid,"port":cls.port,"exitCode":code,"resourcesClosed":True}))
     def envelope(self):
-        data=fixture();return dict(protocol="ontology-engine-v1",operation="compile",audience="synthetic-deployment",jobId="synthetic-job",inputHash=digest(canonical(data)),leaseGeneration=1,expiresAt=int(time.time())+55,nonce=secrets.token_hex(16),input=data)
+        data=fixture();return dict(protocol="ontology-engine-v1",operation="compile",audience="synthetic-deployment",jobId="synthetic-job",inputHash=digest(canonical(data)),leaseGeneration=1,expiresAt=int(time.time())+55,leaseExpiresAt=int(time.time())+300,nonce=secrets.token_hex(16),input=data)
     def call(self,value=None,sign=True,purpose="ontology-engine-v1",body_override=None,timestamp=None):
         body=canonical(value or self.envelope()).encode();stamp=str(timestamp or int(time.time()))
         key=hmac.new(b"synthetic-engine-test-secret",b"ontology-engine-key-v1",hashlib.sha256).digest()
@@ -47,6 +47,15 @@ class HttpEngine(unittest.TestCase):
             node=shutil.which('node')
             if not node:raise RuntimeError('Node is required for transport integration')
             result=subprocess.run([node,'--conditions=react-server','node_modules/tsx/dist/cli.mjs','scripts/ontology/compiler/http-client.ts',str(self.port),str(p)],capture_output=True,text=True,timeout=20,env={'PATH':str(pathlib.Path(node).parent)+':/usr/bin:/bin','NODE_OPTIONS':'--conditions=react-server'})
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertTrue(json.loads(result.stdout)['expiredRejected'])
+    def test_actual_node_transport_compiles_full_source_approved_delta(self):
+        from test_packaged import delta_fixture
+        value,_=delta_fixture()
+        with tempfile.TemporaryDirectory() as folder:
+            p=pathlib.Path(folder)/'input.json';p.write_text(canonical(value))
+            node=shutil.which('node')
+            result=subprocess.run([node,'--conditions=react-server','node_modules/tsx/dist/cli.mjs','scripts/ontology/compiler/http-client.ts',str(self.port),str(p)],capture_output=True,text=True,timeout=160,env={'PATH':str(pathlib.Path(node).parent)+':/usr/bin:/bin','NODE_OPTIONS':'--conditions=react-server'})
             self.assertEqual(result.returncode,0,result.stderr)
             self.assertTrue(json.loads(result.stdout)['expiredRejected'])
     def test_unsigned_other_purpose_audience_expired_and_body_change(self):

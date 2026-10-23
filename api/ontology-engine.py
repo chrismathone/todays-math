@@ -16,12 +16,12 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 MAX_BODY=3_500_000
 MAX_RESPONSE=4_000_000
-MAX_OUTPUT=192*1024*1024
+MAX_OUTPUT=8*1024*1024
 MAX_AGE=60
 PROTOCOL="ontology-engine-v1"
 _nonces={}
 _nonce_lock=threading.Lock()
-_workers=threading.BoundedSemaphore(2)
+_workers=threading.BoundedSemaphore(1)
 
 def canonical(value):return json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(",",":"),allow_nan=False)
 def digest(text):return "sha256:"+hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -31,7 +31,7 @@ def signature(secret,timestamp,body):
 
 def limits():
     import resource
-    resource.setrlimit(resource.RLIMIT_CPU,(45,46))
+    resource.setrlimit(resource.RLIMIT_CPU,(180,181))
     # AS is enforced on Linux production; macOS RSS/AS enforcement is not assumed.
     if sys.platform.startswith("linux"):resource.setrlimit(resource.RLIMIT_AS,(1536*1024*1024,1536*1024*1024))
 
@@ -53,7 +53,7 @@ def compile_child(value):
     writer=threading.Thread(target=write,daemon=True);reader=threading.Thread(target=read,daemon=True)
     writer.start();reader.start()
     try:
-        code=child.wait(timeout=50);reader.join(timeout=2)
+        code=child.wait(timeout=230);reader.join(timeout=2)
         if code or overflow.is_set() or reader.is_alive():raise ValueError("COMPILER_FAILED")
         return b"".join(chunks)
     finally:
@@ -85,9 +85,10 @@ class handler(BaseHTTPRequestHandler):
             body=self.rfile.read(int(lengths[0]))
             if len(body)!=int(lengths[0]) or not hmac.compare_digest(mac,signature(secret,stamp,body)):return self.reply(401,{"error":"UNAUTHORIZED"})
             request=json.loads(body)
-            required={"protocol","operation","audience","jobId","inputHash","leaseGeneration","expiresAt","nonce","input"}
+            required={"protocol","operation","audience","jobId","inputHash","leaseGeneration","expiresAt","leaseExpiresAt","nonce","input"}
             if set(request)!=required or request["protocol"]!=PROTOCOL or request["operation"]!="compile" or request["audience"]!=audience:return self.reply(401,{"error":"UNAUTHORIZED"})
             if not re.fullmatch(r"[a-zA-Z0-9_-]{1,160}",request["jobId"]) or type(request["leaseGeneration"]) is not int or request["leaseGeneration"]<1 or type(request["expiresAt"]) is not int or not time.time()<request["expiresAt"]<=int(stamp)+MAX_AGE:return self.reply(401,{"error":"STALE_JOB"})
+            if type(request["leaseExpiresAt"]) is not int or not time.time()<request["leaseExpiresAt"]<=int(stamp)+600 or request["expiresAt"]>request["leaseExpiresAt"]:return self.reply(401,{"error":"STALE_LEASE"})
             if not re.fullmatch(r"[a-f0-9]{32}",request["nonce"]) or digest(canonical(request["input"]))!=request["inputHash"]:return self.reply(401,{"error":"UNBOUND_INPUT"})
             with _nonce_lock:
                 for k,v in list(_nonces.items()):
@@ -98,6 +99,7 @@ class handler(BaseHTTPRequestHandler):
             if not _workers.acquire(blocking=False):return self.reply(429,{"error":"BUSY"})
             try:result=compile_child(request["input"])
             finally:_workers.release()
+            if time.time()>=request["leaseExpiresAt"]:return self.reply(409,{"error":"EXPIRED_LEASE"})
             packed=base64.b64encode(gzip.compress(result,mtime=0)).decode()
             self.reply(200,{"resultGzip":packed,"resultHash":"sha256:"+hashlib.sha256(result).hexdigest(),"jobId":request["jobId"],"leaseGeneration":request["leaseGeneration"],"inputHash":request["inputHash"]})
         except subprocess.TimeoutExpired:self.reply(504,{"error":"COMPILER_TIMEOUT"})

@@ -7,6 +7,9 @@ import {
   MATH_ONTOLOGY_HASH_KEYS,
   type MathOntologyArtifact,
   type MathOntologyGraphIdentity,
+  type MathOntologyProof,
+  type MathOntologyQuery,
+  type MathOntologyValidation,
 } from "@/contracts/mathOntology.contract";
 import {
   canonicalOntologyJson,
@@ -15,6 +18,19 @@ import {
 } from "../compiler/canonical";
 import { checkOntologyProofs } from "../proof/check";
 import { validateOntologyCore } from "../validation/core";
+import { loadPackagedOntologyRuntime } from "./packaged";
+import type { OntologyQueryContext } from "../query/closed";
+export interface MathOntologyRuntime {
+ identity: MathOntologyGraphIdentity;
+ coverage: Readonly<{scope:string;registryTriples:number;engineInferredTriples:number;witnessedInferredTriples:number;untracedInferredTriples:number}>;
+ validation: Readonly<MathOntologyValidation>;
+ datasets:()=>{registry:Store;asserted:Store;closure:Store};
+ proofs:()=>readonly MathOntologyProof[];
+ shapes:string;
+ resolveEntity?:(iri:string)=>string;
+ materialize?:(query:MathOntologyQuery,context:OntologyQueryContext)=>Promise<MathOntologyRuntime>;
+}
+
 
 export function verifyOntologyArtifact(
   value: unknown,
@@ -82,8 +98,9 @@ export function verifyOntologyArtifact(
 export async function loadOntologyRuntime(
   value: unknown,
   expected: MathOntologyGraphIdentity,
-) {
+):Promise<MathOntologyRuntime> {
   const artifact = verifyOntologyArtifact(value, expected);
+  if(artifact.files.registry.startsWith('{')) return loadPackagedOntologyRuntime(artifact);
   const parse = (text: string, format = "N-Quads") =>
     new Store(new Parser({ format }).parse(text));
   const registry = parse(artifact.files.registry),
@@ -126,9 +143,6 @@ export async function loadOntologyRuntime(
     shapes,
   });
 }
-export type MathOntologyRuntime = Awaited<
-  ReturnType<typeof loadOntologyRuntime>
->;
 export function createOntologyRuntimeFactory(maxEntries = 2) {
   const cache = new Map<string, Promise<MathOntologyRuntime>>();
   return Object.freeze({
