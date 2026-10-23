@@ -24,7 +24,7 @@ describe("real PostgreSQL publication lease fencing (genuine E01 artifact, synth
     } });
     const publisher = createOntologyPublisher({ db: hooked as unknown as Pick<typeof db, "$transaction" | "ontologyCompileJob">, now: () => clock, engineLockHash: digest("synthetic-lease-clock-engine"), buildInput: async () => input,
       compiler: { async compile() {
-        compileCount++; clock = new Date(now.getTime() + 299000); activation = true;
+        compileCount++; clock = new Date(now.getTime() + 539000); activation = true;
         if (point === "scope-lock") {
           blocker = db.$transaction(async tx => { await tx.$queryRaw`SELECT scope_key FROM ontology_active_graph WHERE scope_key = 'global' FOR UPDATE`; held(); await gate; }, { timeout: 10000 });
           await acquired;
@@ -50,7 +50,7 @@ describe("real PostgreSQL publication lease fencing (genuine E01 artifact, synth
       if (point === "none") {
         expect(result).toMatchObject({ value: { state: "published" } });
         expect((await db.ontologyActiveGraph.findUniqueOrThrow({ where: { scopeKey: "global" } })).generation).toBe(before.generation + 1);
-        clock = new Date(now.getTime() + 301000);
+        clock = new Date(now.getTime() + 541000);
         expect(await publisher.run(f.actor, job.jobId)).toMatchObject({ state: "published", graphVersion: artifact.identity.graphVersion }); expect(compileCount).toBe(1);
       } else {
         expect(result).toMatchObject({ error: { code: "STALE" } });
