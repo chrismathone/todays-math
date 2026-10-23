@@ -79,7 +79,7 @@ export async function prepareSourceProjectionCompileInput(
       sourceRevision: a.iri,
       sourceDigest: a.sourceProjectionHash,
       sourceDigestKind: "authorized-projection",
-      locator: a.origin.pointer,
+      locator: a.origin.projectedPointer,
       provenance: "native-product",
       origin: "source-projection",
       support: "direct",
@@ -104,7 +104,7 @@ export async function prepareSourceProjectionCompileInput(
       sourceRevision: entity.iri,
       sourceDigest: entity.sourceProjectionHash,
       sourceDigestKind: "authorized-projection",
-      locator: entity.origin.pointer,
+      locator: entity.origin.projectedPointer,
       provenance:
         entity.sourceProvenance === "official-document"
           ? "official-document"
