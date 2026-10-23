@@ -49,9 +49,11 @@ root의 실제 Next 390px 검수에서 하단 11개 메뉴가 각 33px로 줄어
 
 시험 파일들이 하나의 global active pointer를 공유하므로 QA 파일은 직렬화했다. 제품 동시성은 시험 내부의 실제 여러 Prisma 연결로 검증하며 maxWorkers 3을 넘지 않는다. 전체 61시험 중 1건이 타 fixture의 정상 generation 교체로 STALE을 받은 중간 실패는 `operations-model-history-clock.txt`에 보존했다. 방어 조건을 완화하지 않고 시험 간 publication을 격리했다.
 
-## DB 적용 검토물
-
 root의 실제 실패 화면 검수(`msg_3275c41cd403`)에서 오류 아래 내용 없는 결과/다음 작업 카드가 남는 것을 인수했다. 첫 준비의 loading/error에는 접근 가능한 상태/오류를 유지하며 빈 결과 면과 실행할 일 없는 다음 작업 면을 렌더하지 않는다. 이전 결과가 있을 때 복귀 동작은 남기고 현재 권한 철회 시에는 기존처럼 private 내용을 걷는다. `empty-failure-RED.txt` → `empty-failure-GREEN.txt` React/HTTP 2파일 12시험, 전체 TypeScript/ESLint/diff 진단 0이다. 엔진·DB 전이는 이 수정에서 바꾸지 않았다.
+
+root의 후속 실제 판정(`msg_81455cbeeda4`, 통합 f9a6a2ba)은 새 local tab·visible·실제 390px media 상태에서 bounded 400ms 후 nav scrollLeft 469, 현재 메뉴 left 295/right 371로 client 375 안에 보이며 문서 넘침 0임을 확인했다. 초기 화면의 비활성 next card도 없다. 앞선 즉시 eval/HMR·정지된 background rAF 진단은 제품 실패로 세지 않는다. 이는 root의 실행 증거이며 이 worker의 브라우저 실행이 아니다. 전체 1440→390→768→390 PNG matrix와 실제 AI producer/교육적 검수는 root의 인수 범위에 남는다.
+
+## DB 적용 검토물
 
 `prisma/drafts/ontology-full-operations-20261023/`의 `draft.sql`, `preflight.sql`, `rollback.sql`, README가 적용 전 검토물이다. Prisma에는 기존 모델의 필드를 바꾸지 않고 14개 분리 표만 추가했다.
 
