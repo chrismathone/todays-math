@@ -88,7 +88,12 @@ export function publicMathOntologySourceQuads(
       projectedPointer: e.origin.projectedPointer,
       sourceProjectionHash: e.sourceProjectionHash,
       extractorVersion: e.origin.extractorVersion,
-      ...e.metadata,
+      ...Object.fromEntries(
+        Object.entries(e.metadata).map(([key, value]) => [
+          key === "sourceKind" ? "nativeSourceKind" : key,
+          value,
+        ]),
+      ),
     }))
       if (value !== null) add(e.iri, vocab + key, literal(value));
     if (e.origin.publicOfficialByteHash)

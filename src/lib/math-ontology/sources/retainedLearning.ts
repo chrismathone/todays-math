@@ -3,6 +3,30 @@ import {
   retainedSessions,
   sessionOutcome,
 } from "@/lib/math-prerequisite/evidence";
+import { sourceEntityIri } from "../ids";
+import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import {
+  definitionCards,
+  definitionUnits,
+} from "@/lib/math-explorers/definition-cards";
+import { FADING_GROUPS } from "@/lib/fading/groups";
+import type { MathOntologySourceNamespace } from "@/contracts/mathOntologySource.contract";
+const cardIds = new Set(definitionCards.map((c) => c.id)),
+  unitIds = new Set(definitionUnits.map((u) => u.id));
+function binding(
+  namespace: MathOntologySourceNamespace,
+  nativeId: string,
+  known: boolean,
+) {
+  if (!known)
+    return { resolution: "unknown-native-id" as const, namespace, nativeId };
+  const ref = { namespace, scope: "global", nativeId };
+  return {
+    ...ref,
+    stableIri: sourceEntityIri(ref),
+    resolution: "exact-native-id-requires-approved-release-version" as const,
+  };
+}
 /** Read-only descriptive projection. Body/answer/input strings never leave this module. Existing grading/count rules remain the authority. */
 export function projectRetainedMathOntologyLearning(
   state: StoredSrsState | null,
@@ -11,7 +35,7 @@ export function projectRetainedMathOntologyLearning(
 ) {
   const after = observedAfter ? Date.parse(observedAfter) : -Infinity,
     until = now.getTime();
-  if (Number.isNaN(after) || !Number.isFinite(until))
+  if (Number.isNaN(after) || !Number.isFinite(until) || after > until)
     throw new Error("Invalid source observation window");
   const course = state?.course;
   const firstAttempts: {
@@ -20,6 +44,7 @@ export function projectRetainedMathOntologyLearning(
     sessionId: string;
     problemId: string;
     sectionId: string;
+    sourceBinding: ReturnType<typeof binding>;
     answeredAt: string;
     completedAt: string | null;
     correct: boolean;
@@ -33,6 +58,7 @@ export function projectRetainedMathOntologyLearning(
     sessionId: string;
     problemId: string;
     sectionId: string;
+    sourceBinding: ReturnType<typeof binding>;
     answeredAt: string;
     kind: "retry" | "reveal";
     correct: boolean;
@@ -84,6 +110,11 @@ export function projectRetainedMathOntologyLearning(
           sessionId: s.id,
           problemId: a.problemId,
           sectionId: s.sectionId,
+          sourceBinding: binding(
+            "course-section",
+            s.sectionId,
+            !!getCourseSection(s.sectionId),
+          ),
           answeredAt: a.answeredAt,
           completedAt: s.completedAt,
           correct: a.correct,
@@ -103,6 +134,11 @@ export function projectRetainedMathOntologyLearning(
             sessionId: s.id,
             problemId: a.problemId,
             sectionId: s.sectionId,
+            sourceBinding: binding(
+              "course-section",
+              s.sectionId,
+              !!getCourseSection(s.sectionId),
+            ),
             answeredAt: a.answeredAt,
             kind: a.kind,
             correct: a.correct,
@@ -120,6 +156,11 @@ export function projectRetainedMathOntologyLearning(
             sessionId: s.id,
             problemId: a.problemId,
             sectionId: s.sectionId,
+            sourceBinding: binding(
+              "course-section",
+              s.sectionId,
+              !!getCourseSection(s.sectionId),
+            ),
             answeredAt: a.answeredAt,
             kind: "retry",
             correct: a.correct,
@@ -131,6 +172,7 @@ export function projectRetainedMathOntologyLearning(
   const explorerCards = Object.entries(definitions?.cards ?? {}).map(
     ([cardId, p]) => ({
       cardId,
+      sourceBinding: binding("explorer-card", cardId, cardIds.has(cardId)),
       level: p.level,
       due: p.due,
       lastDate: p.lastDate,
@@ -151,6 +193,7 @@ export function projectRetainedMathOntologyLearning(
     .map((d) => ({
       date: d.date,
       unitId: d.unitId,
+      sourceBinding: binding("explorer-unit", d.unitId, unitIds.has(d.unitId)),
       sessionId: d.sessionId,
       cardIds: d.cardIds ?? null,
       route: d.route ?? null,
@@ -160,6 +203,11 @@ export function projectRetainedMathOntologyLearning(
   const fadingConcepts = Object.entries(state?.fading?.concepts ?? {}).map(
     ([conceptId, p]) => ({
       conceptId,
+      sourceBinding: binding(
+        "fading-group",
+        conceptId,
+        Object.hasOwn(FADING_GROUPS, conceptId),
+      ),
       step: p.step,
       reviewedOn: p.reviewedOn,
       dueOn: p.dueOn,
@@ -203,6 +251,11 @@ export function projectRetainedMathOntologyLearning(
       ? {
           id: definitions.session.id,
           unitId: definitions.session.unit,
+          sourceBinding: binding(
+            "explorer-unit",
+            definitions.session.unit,
+            unitIds.has(definitions.session.unit),
+          ),
           date: definitions.session.date,
           route: definitions.session.route ?? null,
           round: definitions.session.round,

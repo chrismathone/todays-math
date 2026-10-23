@@ -54,6 +54,27 @@ function fixture(
   });
 }
 describe("immutable source assembler and RDF boundary", () => {
+  it("does not let native metadata overwrite the formal sourceKind discriminator", () => {
+    const e = fixture([
+      {
+        ...rec,
+        kind: "SourceReference",
+        metadata: { sourceKind: "external-import" },
+      },
+    ]);
+    const q = toMathOntologySourceQuads(
+      assembleMathOntologySources(e, { expectedPayloadHash: e.payloadHash }),
+    );
+    expect(
+      q.find((q) => q.predicate.value === "urn:todaymath:vocab:sourceKind")!
+        .object.value,
+    ).toBe("SourceReference");
+    expect(
+      q.find(
+        (q) => q.predicate.value === "urn:todaymath:vocab:nativeSourceKind",
+      )!.object.value,
+    ).toBe("external-import");
+  });
   it("keeps public bytes, IDs, versions and counts unchanged for foreign native scope rows", () => {
     const a = fixture();
     const b = fixture([

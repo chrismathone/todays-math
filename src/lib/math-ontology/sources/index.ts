@@ -25,8 +25,10 @@ export { MATH_ONTOLOGY_SOURCE_RELATION_POLICY } from "./relationMatrix";
 export { readAuthorizedMathOntologySources } from "./authorized";
 
 export { projectMathOntologyPublicSources } from "./publicProjection";
-export {sourcePartitionKey,sourcePartitionManifestPath,loadSourcePartitionManifest,readSourcePartitionArtifact}from'./partitions';
-export {readMathOntologyDatabaseSources,readMathOntologyDatabaseSourcesInTransaction,assertMathOntologySourceSnapshotTransaction}from'./database';
-export type{MathOntologyDatabaseSourceSnapshot}from'./database';
-export {authorizeMathOntologySourceRead,MathOntologySourceAccessDenied}from'./databaseAccess';
-export type{MathOntologyDatabaseReadInput,MathOntologySourceTransaction}from'./databaseAccess';
+export {
+  sourcePartitionKey,
+  sourcePartitionManifestPath,
+  loadSourcePartitionManifest,
+  readSourcePartitionArtifact,
+} from "./partitions";
+export { loadBundledMathOntologySourcePartitions } from "./catalog";

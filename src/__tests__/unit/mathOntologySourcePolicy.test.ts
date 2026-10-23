@@ -41,19 +41,22 @@ describe("full relation policy and administrative coverage separation", () => {
       populationKind: "materialized-source-record" as const,
     };
     expect(mathOntologyAdminSourceCoverageRows([row])[0].quarantined).toBe(6);
-    expect(mathOntologyVisibleSourceCoverageRows([row])).toEqual(
-      mathOntologyVisibleSourceCoverageRows([
-        {
-          ...row,
-          expected: 100,
-          registered: 100,
-          quarantined: 96,
-          sourceLinked: 100,
-        },
-      ]),
+    const allowed = {
+      namespace: row.namespace,
+      scope: "global",
+      distribution: "native-metadata",
+    };
+    const a = { entities: [allowed] },
+      b = {
+        entities: [
+          allowed,
+          { ...allowed, scope: "owner:foreign" },
+          { ...allowed, distribution: "quarantine-reference" },
+        ],
+      };
+    expect(mathOntologyVisibleSourceCoverageRows(a)).toEqual(
+      mathOntologyVisibleSourceCoverageRows(b),
     );
-    expect(
-      mathOntologyVisibleSourceCoverageRows([{ ...row, rdfEligible: 0 }]),
-    ).toEqual([]);
+    expect(mathOntologyVisibleSourceCoverageRows({ entities: [] })).toEqual([]);
   });
 });
