@@ -1,0 +1,4466 @@
+{
+  "packId": "mathtian-steps-6-2-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": true,
+    "wholeRequestedQuickAnswerScope": true,
+    "definition": "PDF 2~47쪽의 전체 인쇄 문항; 제목·보기·메모는 문항에서 제외",
+    "rowGranularity": "printed numbered group; numbered inner 실력평가 exercises use printed subpart"
+  },
+  "source": {
+    "productUrl": "https://www.mathtian.com/qna/qna_errata_answer.aspx",
+    "pdfUrl": "https://www.mathtian.com/UploadPath/NewAnswer/%5B%EC%A0%95%EB%8B%B5%5D%EB%8B%A8%EA%B3%84%EC%88%986-2_OUT.pdf",
+    "sha256": "c6859cf17eca5fa4187f4063cbe4aadfca6f6727bcd4d8557532d8add6fc556f",
+    "pageCount": 48,
+    "byteCount": 64498133,
+    "sourceRelativePath": "elementary/pdfs/mathtian_steps_6-2.pdf",
+    "editionEvidence": {
+      "title": "단원별 계산력 수학 단계수 6-2",
+      "grade": "초6",
+      "isbn": null,
+      "publicationDate": null,
+      "curriculum": null,
+      "impression": null,
+      "listingDate": "2022-05-02",
+      "listingDateIsNotPublicationDate": true
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-01.png",
+        "sha256": "f181be7b61c650bbb9e5c8cfc9e7369420141b3020cb74f149ef3086268bbf35",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 2,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-02.png",
+        "sha256": "43f2b64a06239c11e6db967762dfc80964c7256e6a0e8b4e010e3884419f9f12",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 3,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-03.png",
+        "sha256": "974bee160b797f70dcbe9e9bf55e96ef38d9abb0580dcc54761b5488e3603095",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 4,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-04.png",
+        "sha256": "0f785571b2ce85eebbba52ba2ca3a34efca927d17caa65b8c9706b61a370b797",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 5,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-05.png",
+        "sha256": "8983ba0ad840a51569cc1965fbc501abbb367d2acf7b481da1854b9dcb3c66fc",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 6,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-06.png",
+        "sha256": "1eb84a4faf0888f0976950db8bf56ebb4fcbf7629b604a60a982f685fca9bbc3",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 7,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-07.png",
+        "sha256": "1a6a165504decdaf1e5319457b797935f5bcc8b78eb9c54b8145e22f1a2d956e",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 8,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-08.png",
+        "sha256": "b714f54ab37df067e3e289d0e721cf44b8571eb67d428176614290bf62abef82",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 9,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-09.png",
+        "sha256": "c5d54ff8de2974e6e646cc8f4b61202e80faed56922a325b1ff89b05bad7702c",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 10,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-10.png",
+        "sha256": "ace2dd6a68ae768c0a528fc526c1d9d9a3d7ad1ff1bc3b7b342f179763043846",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 11,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-11.png",
+        "sha256": "b083628b5de4b21ba6e758bebe29c2a7570f7a0af6ef165f56d3315456faf6a0",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 12,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-12.png",
+        "sha256": "32795dd1f42f61c68074692953c40be48cc45128b7c80e3a320cace42c66e8b5",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 13,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-13.png",
+        "sha256": "9112c48cf0134563ab9b5e419d8c4d79462e3bb983193eb8c97aa0560dccf3c1",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 14,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-14.png",
+        "sha256": "60637f9df8c112052e8f162099ff77da6cee80941b152bba6a075ee91ae51cb4",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 15,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-15.png",
+        "sha256": "8a8d8907f4a827c8f267b39c29b2f55788ca6c01308130fa46a1514c03a2d993",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 16,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-16.png",
+        "sha256": "1d3711c86be790c70b6fba071fe7f9d7a00d59c9c9775be1aae390caf489f5f5",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 17,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-17.png",
+        "sha256": "b2d8111cbeb319bd62f3294b516bb3feb46d73ca3e71c7613689e089170e5ce7",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 18,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-18.png",
+        "sha256": "78c65c3c0ea29f8365bf8f9ade7047f5dc49c069de414fba449e05c3d809f80f",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 19,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-19.png",
+        "sha256": "9ea4d84612b7d8f856dafe29ef8d35151f29c5ee82a2a299ad00bd86199f5bb4",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 20,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-20.png",
+        "sha256": "7e14e8f8468164726a684bf22f17ed15910dc81824640dc10071ea8a2179d4cc",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 21,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-21.png",
+        "sha256": "bf8bb8dbaccc6e4042d3c5578500ec15d8a641345dcfa67a0d2f5e9828297f2e",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 22,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-22.png",
+        "sha256": "1e710988d60d96774371de3b7c7c291f6ac6c00c71e2c3930c0b8d9d7a88bede",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 23,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-23.png",
+        "sha256": "f331c178d1c7f9e7bde715f45a2324fad6c76e32f5df39f9b484b9340cd72e9f",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 24,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-24.png",
+        "sha256": "b7cf024b04f5049c0cdbd5a0dfa65c9987f363230aae06838c723774cbe691ce",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 25,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-25.png",
+        "sha256": "52e3b38002812dcba6b7cea55c1b5210d776af7cc893e2a017d3f9d2afd7c415",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 26,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-26.png",
+        "sha256": "6f7acae7bcd3adc9baf3e101890eaa5df757f3fb16b72368fb12fb748e6ece27",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 27,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-27.png",
+        "sha256": "ffd367aab765f374faafb051c5f6edb5a4889c319c7625b9b59fefa2ae4d8060",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 28,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-28.png",
+        "sha256": "da415fa70fda183b9bf914c18d2208f16e4c909ed55da00277e93bbc8ed5d3cb",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 29,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-29.png",
+        "sha256": "4c620f9b86ae59723f07ff415d05963c068ed42cccd0ff9ef467bbe6b350d460",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 30,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-30.png",
+        "sha256": "480ec6acca93d1b2f1ab4d9d987ad2cecdb3aa516153f526a22b7caa4a2e66c2",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 31,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-31.png",
+        "sha256": "8d4e6b95b51263d0761eec3d273b0b54574dc068e3a909e5095193578f11437d",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 32,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-32.png",
+        "sha256": "674f267a1bb57ba85485969d99502a8f4506678031590f380146dd777ed7640e",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 33,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-33.png",
+        "sha256": "ef8ed265f8aad2a46d4c92731d761f35410a287bd9df05c60e2ac60f96762620",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 34,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-34.png",
+        "sha256": "e9ef420954614247ed33170685add59a94c07bb88db16d0a627f0e8d292ae441",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 35,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-35.png",
+        "sha256": "b0767b2ab7c02b6de1b8e9cdc4ee87c762b66042da11e6272b7d09e43d360c57",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 36,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-36.png",
+        "sha256": "f5c0e810d021e5621077f577976298965515baca7926937e95383db62311d21e",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 37,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-37.png",
+        "sha256": "d08f1dc1a9ffd58e7bddb40e7a0b79128c09e810d793e03fc8bcf6e2f9781116",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 38,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-38.png",
+        "sha256": "3e2b1545c96ede0edf57d4449b108797e681bb9a9bb7b8f9384ecffdb16a05dd",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 39,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-39.png",
+        "sha256": "0b1a1db193918708c898dd9459eeb59f45b1688ff96bd1ca316a0cd7800bb870",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 40,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-40.png",
+        "sha256": "7e43395734ff771709ae1be37f95745a060d63e886081e1485b1bba6f9ba3e87",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 41,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-41.png",
+        "sha256": "73ba64ad7370bb2ebbb113aaada6911472d74bb0b6d61ce82e77a1f65e7090e2",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 42,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-42.png",
+        "sha256": "f21f677d5662093c4e60a4b739a09d175a7bc8786d43f5d0b16d4950cf43e296",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 43,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-43.png",
+        "sha256": "30beb72b82cab24c90c7ff7eba5114b80a421fa9eff232e253feb68923e22ea4",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 44,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-44.png",
+        "sha256": "3d4ad905bec43348d3d13f2339bf0f8bf08457392c51b83d4d8e5067812b8383",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 45,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-45.png",
+        "sha256": "dd687ef033497580ccaf7f519ffa1dd5ec33c94e09c59f50eba08279601cba1d",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 46,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-46.png",
+        "sha256": "ba61a6860cfced81e4431aa1848cc2586d856a4d4e09a72f09b1d96fb225767f",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 47,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-47.png",
+        "sha256": "8697fc9320488ea863d33c69037c6c67deff2f5ea07c7dfe733be7cf0eda10ef",
+        "width": 1381,
+        "height": 1800
+      },
+      {
+        "sourcePage": 48,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/page-48.png",
+        "sha256": "1674dbb32a710153eba591dbee52de321201fd9c1f58d5487b034ec4499c7661",
+        "width": 1381,
+        "height": 1800
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 462,
+    "reviewedKeys": 394,
+    "nullKeys": 68,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 184
+  },
+  "pageGroups": [
+    {
+      "section": "1단원 분수의 나눗셈 / 01 분모가 같은 (분수)÷(분수)",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 01 분모가 같은 (분수)÷(분수)",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 01 분모가 같은 (분수)÷(분수)",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 01 분모가 같은 (분수)÷(분수)",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 02 분모가 다른 (분수)÷(분수)",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 02 분모가 다른 (분수)÷(분수)",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 02 분모가 다른 (분수)÷(분수)",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 02 분모가 다른 (분수)÷(분수)",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": "1"
+        },
+        {
+          "number": "4",
+          "subpart": "2"
+        },
+        {
+          "number": "4",
+          "subpart": "3"
+        },
+        {
+          "number": "4",
+          "subpart": "4"
+        },
+        {
+          "number": "4",
+          "subpart": "5"
+        },
+        {
+          "number": "4",
+          "subpart": "6"
+        },
+        {
+          "number": "4",
+          "subpart": "7"
+        },
+        {
+          "number": "4",
+          "subpart": "8"
+        },
+        {
+          "number": "4",
+          "subpart": "9"
+        },
+        {
+          "number": "4",
+          "subpart": "10"
+        },
+        {
+          "number": "4",
+          "subpart": "11"
+        },
+        {
+          "number": "4",
+          "subpart": "12"
+        },
+        {
+          "number": "4",
+          "subpart": "13"
+        },
+        {
+          "number": "4",
+          "subpart": "14"
+        },
+        {
+          "number": "4",
+          "subpart": "15"
+        },
+        {
+          "number": "4",
+          "subpart": "16"
+        },
+        {
+          "number": "4",
+          "subpart": "17"
+        }
+      ],
+      "exerciseCount": 17,
+      "reviewedKeyCount": 17
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 03 (자연수)÷(분수)",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 03 (자연수)÷(분수)",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 03 (자연수)÷(분수)",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 03 (자연수)÷(분수)",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 04 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 04 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 04 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 04 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": "1"
+        },
+        {
+          "number": "4",
+          "subpart": "2"
+        },
+        {
+          "number": "4",
+          "subpart": "3"
+        },
+        {
+          "number": "4",
+          "subpart": "4"
+        },
+        {
+          "number": "4",
+          "subpart": "5"
+        },
+        {
+          "number": "4",
+          "subpart": "6"
+        },
+        {
+          "number": "4",
+          "subpart": "7"
+        },
+        {
+          "number": "4",
+          "subpart": "8"
+        },
+        {
+          "number": "4",
+          "subpart": "9"
+        },
+        {
+          "number": "4",
+          "subpart": "10"
+        },
+        {
+          "number": "4",
+          "subpart": "11"
+        },
+        {
+          "number": "4",
+          "subpart": "12"
+        },
+        {
+          "number": "4",
+          "subpart": "13"
+        },
+        {
+          "number": "4",
+          "subpart": "14"
+        },
+        {
+          "number": "4",
+          "subpart": "15"
+        },
+        {
+          "number": "4",
+          "subpart": "16"
+        },
+        {
+          "number": "4",
+          "subpart": "17"
+        }
+      ],
+      "exerciseCount": 17,
+      "reviewedKeyCount": 17
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 05 분수의 나눗셈 연습",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 05 분수의 나눗셈 연습",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 05 분수의 나눗셈 연습",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 05 분수의 나눗셈 연습",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": "1"
+        },
+        {
+          "number": "4",
+          "subpart": "2"
+        },
+        {
+          "number": "4",
+          "subpart": "3"
+        },
+        {
+          "number": "4",
+          "subpart": "4"
+        },
+        {
+          "number": "4",
+          "subpart": "5"
+        },
+        {
+          "number": "4",
+          "subpart": "6"
+        },
+        {
+          "number": "4",
+          "subpart": "7"
+        },
+        {
+          "number": "4",
+          "subpart": "8"
+        },
+        {
+          "number": "4",
+          "subpart": "9"
+        },
+        {
+          "number": "4",
+          "subpart": "10"
+        },
+        {
+          "number": "4",
+          "subpart": "11"
+        },
+        {
+          "number": "4",
+          "subpart": "12"
+        },
+        {
+          "number": "4",
+          "subpart": "13"
+        },
+        {
+          "number": "4",
+          "subpart": "14"
+        },
+        {
+          "number": "4",
+          "subpart": "15"
+        },
+        {
+          "number": "4",
+          "subpart": "16"
+        },
+        {
+          "number": "4",
+          "subpart": "17"
+        }
+      ],
+      "exerciseCount": 17,
+      "reviewedKeyCount": 17
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 도전! 응용문제",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 도전! 응용문제",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 도전! 응용문제",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 도전! 응용문제",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 형성평가",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 형성평가",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "06",
+          "subpart": ""
+        },
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 형성평가",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 형성평가",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 단원평가",
+      "page": "32",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 단원평가",
+      "page": "33",
+      "expectedAddresses": [
+        {
+          "number": "6",
+          "subpart": ""
+        },
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 단원평가",
+      "page": "34",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 3
+    },
+    {
+      "section": "1단원 분수의 나눗셈 / 단원평가",
+      "page": "35",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 01 (소수)÷(소수)의 기본",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 01 (소수)÷(소수)의 기본",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 01 (소수)÷(소수)의 기본",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 01 (소수)÷(소수)의 기본",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 02 자연수의 나눗셈을 이용하여 계산하기",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 02 자연수의 나눗셈을 이용하여 계산하기",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 02 자연수의 나눗셈을 이용하여 계산하기",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 02 자연수의 나눗셈을 이용하여 계산하기",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": "1"
+        },
+        {
+          "number": "4",
+          "subpart": "2"
+        },
+        {
+          "number": "4",
+          "subpart": "3"
+        },
+        {
+          "number": "4",
+          "subpart": "4"
+        },
+        {
+          "number": "4",
+          "subpart": "5"
+        },
+        {
+          "number": "4",
+          "subpart": "6"
+        },
+        {
+          "number": "4",
+          "subpart": "7"
+        },
+        {
+          "number": "4",
+          "subpart": "8"
+        },
+        {
+          "number": "4",
+          "subpart": "9"
+        },
+        {
+          "number": "4",
+          "subpart": "10"
+        },
+        {
+          "number": "4",
+          "subpart": "11"
+        },
+        {
+          "number": "4",
+          "subpart": "12"
+        }
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 03 분수의 나눗셈을 이용하여 계산하기",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 03 분수의 나눗셈을 이용하여 계산하기",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 03 분수의 나눗셈을 이용하여 계산하기",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 03 분수의 나눗셈을 이용하여 계산하기",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": "1"
+        },
+        {
+          "number": "4",
+          "subpart": "2"
+        },
+        {
+          "number": "4",
+          "subpart": "3"
+        },
+        {
+          "number": "4",
+          "subpart": "4"
+        },
+        {
+          "number": "4",
+          "subpart": "5"
+        },
+        {
+          "number": "4",
+          "subpart": "6"
+        },
+        {
+          "number": "4",
+          "subpart": "7"
+        },
+        {
+          "number": "4",
+          "subpart": "8"
+        },
+        {
+          "number": "4",
+          "subpart": "9"
+        },
+        {
+          "number": "4",
+          "subpart": "10"
+        },
+        {
+          "number": "4",
+          "subpart": "11"
+        },
+        {
+          "number": "4",
+          "subpart": "12"
+        }
+      ],
+      "exerciseCount": 12,
+      "reviewedKeyCount": 12
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 04 세로셈으로 계산하기",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 04 세로셈으로 계산하기",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 04 세로셈으로 계산하기",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 04 세로셈으로 계산하기",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 05 몫을 반올림하여 나타내기",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 05 몫을 반올림하여 나타내기",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 05 몫을 반올림하여 나타내기",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 05 몫을 반올림하여 나타내기",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 도전! 응용문제",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "유형 1",
+          "subpart": ""
+        },
+        {
+          "number": "유형+ 1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 도전! 응용문제",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "유형 2",
+          "subpart": ""
+        },
+        {
+          "number": "유형+ 2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / Drill",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / 도전",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 형성평가",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 형성평가",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "06",
+          "subpart": ""
+        },
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 형성평가",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        },
+        {
+          "number": "16",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 형성평가",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 단원평가",
+      "page": "32",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 단원평가",
+      "page": "33",
+      "expectedAddresses": [
+        {
+          "number": "6",
+          "subpart": ""
+        },
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 단원평가",
+      "page": "34",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "2단원 소수의 나눗셈 / 단원평가",
+      "page": "35",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 도전! 응용문제",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 도전! 응용문제",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 도전! 응용문제",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 도전! 응용문제",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "3단원 공간과 입체 / 형성평가",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 2
+    },
+    {
+      "section": "3단원 공간과 입체 / 형성평가",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "06",
+          "subpart": ""
+        },
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "3단원 공간과 입체 / 형성평가",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 2
+    },
+    {
+      "section": "3단원 공간과 입체 / 형성평가",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 3
+    },
+    {
+      "section": "3단원 공간과 입체 / 단원평가",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        },
+        {
+          "number": "6",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "3단원 공간과 입체 / 단원평가",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 2
+    },
+    {
+      "section": "3단원 공간과 입체 / 단원평가",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "3단원 공간과 입체 / 단원평가",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 01 비의 성질",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 01 비의 성질",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 01 비의 성질",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 01 비의 성질",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 02 간단한 자연수의 비로 나타내기",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 02 간단한 자연수의 비로 나타내기",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 02 간단한 자연수의 비로 나타내기",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 02 간단한 자연수의 비로 나타내기",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 03 비례식",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 03 비례식",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 03 비례식",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 03 비례식",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 04 비례식의 성질",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 04 비례식의 성질",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 04 비례식의 성질",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 04 비례식의 성질",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 05 비례식의 활용",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 05 비례식의 활용",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 05 비례식의 활용",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 05 비례식의 활용",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 06 비례배분",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 06 비례배분",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 06 비례배분",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 06 비례배분",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 도전! 응용문제",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "유형 1",
+          "subpart": ""
+        },
+        {
+          "number": "유형+ 1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 도전! 응용문제",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "유형 2",
+          "subpart": ""
+        },
+        {
+          "number": "유형+ 2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / Drill",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / 도전",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 형성평가",
+      "page": "32",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        },
+        {
+          "number": "06",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 형성평가",
+      "page": "33",
+      "expectedAddresses": [
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        },
+        {
+          "number": "11",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 형성평가",
+      "page": "34",
+      "expectedAddresses": [
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        },
+        {
+          "number": "16",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 형성평가",
+      "page": "35",
+      "expectedAddresses": [
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 단원평가",
+      "page": "36",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 단원평가",
+      "page": "37",
+      "expectedAddresses": [
+        {
+          "number": "6",
+          "subpart": ""
+        },
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 단원평가",
+      "page": "38",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "4단원 비례식과 비례배분 / 단원평가",
+      "page": "39",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "5단원 원의 넓이 / 01 원주율, 원주, 지름 구하기",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 01 원주율, 원주, 지름 구하기",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 01 원주율, 원주, 지름 구하기",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 01 원주율, 원주, 지름 구하기",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 02 여러 가지 원의 둘레 구하기",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 02 여러 가지 원의 둘레 구하기",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 02 여러 가지 원의 둘레 구하기",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 02 여러 가지 원의 둘레 구하기",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 03 원의 넓이 구하기",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 03 원의 넓이 구하기",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 03 원의 넓이 구하기",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 03 원의 넓이 구하기",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 04 여러 가지 원의 넓이 구하기",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 04 여러 가지 원의 넓이 구하기",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 04 여러 가지 원의 넓이 구하기",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 04 여러 가지 원의 넓이 구하기",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 도전! 응용문제",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 도전! 응용문제",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 도전! 응용문제",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 도전! 응용문제",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "5단원 원의 넓이 / 형성평가",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 형성평가",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "06",
+          "subpart": ""
+        },
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 형성평가",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 형성평가",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 단원평가",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 단원평가",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "6",
+          "subpart": ""
+        },
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 단원평가",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "5단원 원의 넓이 / 단원평가",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "16",
+          "subpart": ""
+        },
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 3
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 01 원기둥",
+      "page": "04",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 01 원기둥",
+      "page": "05",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 01 원기둥",
+      "page": "06",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 01 원기둥",
+      "page": "07",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 02 원기둥의 전개도",
+      "page": "08",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 02 원기둥의 전개도",
+      "page": "09",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 02 원기둥의 전개도",
+      "page": "10",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 02 원기둥의 전개도",
+      "page": "11",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 03 원뿔과 구",
+      "page": "12",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 03 원뿔과 구",
+      "page": "13",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 03 원뿔과 구",
+      "page": "14",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 03 원뿔과 구",
+      "page": "15",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 04 입체도형의 특징 비교하기",
+      "page": "16",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 0
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 04 입체도형의 특징 비교하기",
+      "page": "17",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 04 입체도형의 특징 비교하기",
+      "page": "18",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 04 입체도형의 특징 비교하기",
+      "page": "19",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 도전! 응용문제",
+      "page": "20",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 도전! 응용문제",
+      "page": "21",
+      "expectedAddresses": [
+        {
+          "number": "2",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 도전! 응용문제",
+      "page": "22",
+      "expectedAddresses": [
+        {
+          "number": "3",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 도전! 응용문제",
+      "page": "23",
+      "expectedAddresses": [
+        {
+          "number": "4",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 1,
+      "reviewedKeyCount": 1
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+      "page": "24",
+      "expectedAddresses": [
+        {
+          "number": "01",
+          "subpart": ""
+        },
+        {
+          "number": "02",
+          "subpart": ""
+        },
+        {
+          "number": "03",
+          "subpart": ""
+        },
+        {
+          "number": "04",
+          "subpart": ""
+        },
+        {
+          "number": "05",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+      "page": "25",
+      "expectedAddresses": [
+        {
+          "number": "06",
+          "subpart": ""
+        },
+        {
+          "number": "07",
+          "subpart": ""
+        },
+        {
+          "number": "08",
+          "subpart": ""
+        },
+        {
+          "number": "09",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+      "page": "26",
+      "expectedAddresses": [
+        {
+          "number": "11",
+          "subpart": ""
+        },
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        },
+        {
+          "number": "16",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+      "page": "27",
+      "expectedAddresses": [
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+      "page": "28",
+      "expectedAddresses": [
+        {
+          "number": "1",
+          "subpart": ""
+        },
+        {
+          "number": "2",
+          "subpart": ""
+        },
+        {
+          "number": "3",
+          "subpart": ""
+        },
+        {
+          "number": "4",
+          "subpart": ""
+        },
+        {
+          "number": "5",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+      "page": "29",
+      "expectedAddresses": [
+        {
+          "number": "6",
+          "subpart": ""
+        },
+        {
+          "number": "7",
+          "subpart": ""
+        },
+        {
+          "number": "8",
+          "subpart": ""
+        },
+        {
+          "number": "9",
+          "subpart": ""
+        },
+        {
+          "number": "10",
+          "subpart": ""
+        },
+        {
+          "number": "11",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+      "page": "30",
+      "expectedAddresses": [
+        {
+          "number": "12",
+          "subpart": ""
+        },
+        {
+          "number": "13",
+          "subpart": ""
+        },
+        {
+          "number": "14",
+          "subpart": ""
+        },
+        {
+          "number": "15",
+          "subpart": ""
+        },
+        {
+          "number": "16",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 4
+    },
+    {
+      "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+      "page": "31",
+      "expectedAddresses": [
+        {
+          "number": "17",
+          "subpart": ""
+        },
+        {
+          "number": "18",
+          "subpart": ""
+        },
+        {
+          "number": "19",
+          "subpart": ""
+        },
+        {
+          "number": "20",
+          "subpart": ""
+        }
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 3
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 03 (자연수)÷(분수)",
+        "page": "14",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "reason": "그림에 구슬을 그려 완성하는 답과 수가 함께 있어 그림 답을 텍스트로 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 05 분수의 나눗셈 연습",
+        "page": "21",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 6,
+      "reason": "색칠한 칸으로 숫자 암호를 만드는 도표 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 형성평가",
+        "page": "30",
+        "number": "13",
+        "subpart": ""
+      },
+      "sourcePage": 8,
+      "reason": "구슬 그림 완성 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 단원평가",
+        "page": "34",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "reason": "이유·풀이 과정 서술 또는 선 연결 도표 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 단원평가",
+        "page": "34",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "reason": "이유·풀이 과정 서술 또는 선 연결 도표 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "1단원 분수의 나눗셈 / 단원평가",
+        "page": "35",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 9,
+      "reason": "이유·풀이 과정 서술 또는 선 연결 도표 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 01 (소수)÷(소수)의 기본",
+        "page": "04",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 10,
+      "reason": "수직선·묶음 그림을 완성하는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제",
+        "page": "24",
+        "number": "유형+ 1",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "문장에서 주어진 수에 동그라미·구하는 것에 밑줄을 그리는 표시와 풀이 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제",
+        "page": "25",
+        "number": "유형+ 2",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "문장에 동그라미·밑줄을 표시하는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / 도전",
+        "page": "27",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "서술형 풀이 과정 요구; 수치만으로 완전한 답을 대신하지 않음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / 도전",
+        "page": "27",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "서술형 풀이 과정 요구; 수치만으로 완전한 답을 대신하지 않음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / 도전",
+        "page": "27",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "서술형 풀이 과정 요구; 수치만으로 완전한 답을 대신하지 않음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 도전! 응용문제 / 도전",
+        "page": "27",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "서술형 풀이 과정 요구; 수치만으로 완전한 답을 대신하지 않음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 형성평가",
+        "page": "28",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 16,
+      "reason": "수직선 그림 완성 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 단원평가",
+        "page": "33",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "reason": "계산 이유 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "2단원 소수의 나눗셈 / 단원평가",
+        "page": "35",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 17,
+      "reason": "계산 이유 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+        "page": "04",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "위·앞·옆 모양을 그리는 도형 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 01 위, 앞, 옆에서 본 모양",
+        "page": "05",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "위·앞·옆 모양을 그리는 도형 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+        "page": "08",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 19,
+      "reason": "쌓기나무 각 자리와 화살표에 대응하는 수의 공간 배치 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+        "page": "09",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 19,
+      "reason": "도형을 그리거나 격자 각 자리에 수를 써야 하는 공간 배치 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+        "page": "10",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 19,
+      "reason": "도형을 그리거나 격자 각 자리에 수를 써야 하는 공간 배치 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 02 위, 앞, 옆에서 본 모양으로 쌓기나무 개수 구하기",
+        "page": "11",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 19,
+      "reason": "도형을 그리거나 격자 각 자리에 수를 써야 하는 공간 배치 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+        "page": "12",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 20,
+      "reason": "층별 모양 그리기"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+        "page": "14",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 20,
+      "reason": "층별·위 모양 그리기와 격자에 수 쓰기 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 03 층별로 나타낸 모양",
+        "page": "15",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 20,
+      "reason": "위·앞·옆 모양 그리기와 격자에 수 쓰기 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+        "page": "16",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "입체도형 속 모양을 색칠하는 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 04 여러 가지 모양 만들기",
+        "page": "17",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "식별자 없는 입체도형을 골라 동그라미 표시하는 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "24",
+        "number": "01",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "24",
+        "number": "02",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "24",
+        "number": "03",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "25",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "25",
+        "number": "07",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "25",
+        "number": "08",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "25",
+        "number": "09",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "25",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "26",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "26",
+        "number": "14",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "26",
+        "number": "15",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "27",
+        "number": "16",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 형성평가",
+        "page": "27",
+        "number": "17",
+        "subpart": ""
+      },
+      "sourcePage": 23,
+      "reason": "도형 그리기·색칠·연결 또는 공간 격자에 수를 쓰는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 단원평가",
+        "page": "28",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 단원평가",
+        "page": "29",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 단원평가",
+        "page": "29",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 단원평가",
+        "page": "30",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "3단원 공간과 입체 / 단원평가",
+        "page": "31",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 06 비례배분",
+        "page": "24",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 30,
+      "reason": "접시에 사탕을 동그라미로 그리는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 06 비례배분",
+        "page": "25",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 30,
+      "reason": "구슬을 묶는 그림 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 06 비례배분",
+        "page": "26",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 30,
+      "reason": "초콜릿을 비율대로 묶는 그림 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제",
+        "page": "28",
+        "number": "유형+ 1",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "문장에 동그라미·밑줄 표시와 풀이가 함께 있음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제",
+        "page": "29",
+        "number": "유형+ 2",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "문장에 동그라미·밑줄 표시와 풀이가 함께 있음"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / 도전",
+        "page": "31",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "서술형 풀이 과정 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / 도전",
+        "page": "31",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "서술형 풀이 과정 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / 도전",
+        "page": "31",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "서술형 풀이 과정 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 도전! 응용문제 / 도전",
+        "page": "31",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "서술형 풀이 과정 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 형성평가",
+        "page": "35",
+        "number": "19",
+        "subpart": ""
+      },
+      "sourcePage": 32,
+      "reason": "사탕을 접시에 동그라미로 그리는 답 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 단원평가",
+        "page": "38",
+        "number": "11",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "reason": "선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "4단원 비례식과 비례배분 / 단원평가",
+        "page": "39",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 33,
+      "reason": "선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "5단원 원의 넓이 / 단원평가",
+        "page": "31",
+        "number": "19",
+        "subpart": ""
+      },
+      "sourcePage": 40,
+      "reason": "풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "5단원 원의 넓이 / 단원평가",
+        "page": "31",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 40,
+      "reason": "풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 02 원기둥의 전개도",
+        "page": "08",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 42,
+      "reason": "전개도 선택·밑면 색칠·선분 표시 포함"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 04 입체도형의 특징 비교하기",
+        "page": "16",
+        "number": "1",
+        "subpart": ""
+      },
+      "sourcePage": 44,
+      "reason": "위·앞·옆에서 본 모양을 그리는 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+        "page": "25",
+        "number": "06",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "reason": "전개도 색칠 또는 모양 그리기 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 형성평가",
+        "page": "27",
+        "number": "17",
+        "subpart": ""
+      },
+      "sourcePage": 46,
+      "reason": "전개도 색칠 또는 모양 그리기 답"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+        "page": "28",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "reason": "도형에 이름 표시·모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+        "page": "29",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "reason": "도형에 이름 표시·모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+        "page": "29",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "reason": "도형에 이름 표시·모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+        "page": "30",
+        "number": "12",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "reason": "도형에 이름 표시·모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    },
+    {
+      "address": {
+        "volume": "6-2",
+        "section": "6단원 원기둥, 원뿔, 구 / 단원평가",
+        "page": "31",
+        "number": "20",
+        "subpart": ""
+      },
+      "sourcePage": 47,
+      "reason": "도형에 이름 표시·모양 그리기·선 연결 또는 풀이 과정 서술 요구"
+    }
+  ],
+  "outOfScope": [
+    {
+      "sourcePage": 1,
+      "reason": "표지"
+    },
+    {
+      "sourcePage": 48,
+      "reason": "메모"
+    }
+  ],
+  "reviewMethod": {
+    "allAnswerRegionsVisuallyInspected": true,
+    "manualTranscription": true,
+    "ocrUsedAsReviewedText": false,
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/mathtian/mathtian_steps_6-2/reviewed-correspondence.json",
+    "independentAddressExpectation": "scoped unit test independently specifies all 46 answer pages, page groups and numbered ranges"
+  }
+}
