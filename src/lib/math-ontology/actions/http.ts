@@ -1,4 +1,5 @@
 import { OntologyOperationError } from "./errors";
+export class OntologyBodyError extends Error { constructor(public status: 400 | 413) { super("INVALID_BODY"); } }
 
 export async function ontologyJsonBody(
   request: Request,
@@ -11,9 +12,9 @@ export async function ontologyJsonBody(
       .startsWith("application/json") ||
     Number(request.headers.get("content-length")) > maxBytes
   )
-    throw new Error("body-invalid");
+    throw new OntologyBodyError(Number(request.headers.get("content-length")) > maxBytes ? 413 : 400);
   const reader = request.body?.getReader();
-  if (!reader) throw new Error("body-required");
+  if (!reader) throw new OntologyBodyError(400);
   const parts: Uint8Array[] = [];
   let bytes = 0;
   try {
@@ -21,7 +22,7 @@ export async function ontologyJsonBody(
       const { value, done } = await reader.read();
       if (done) break;
       bytes += value.byteLength;
-      if (bytes > maxBytes) throw new Error("body-budget");
+      if (bytes > maxBytes) throw new OntologyBodyError(413);
       parts.push(value);
     }
   } finally {
@@ -33,6 +34,7 @@ export async function ontologyJsonBody(
 export const ontologyResponse = (status: number, value: unknown) =>
   Response.json(value, { status, headers: { "Cache-Control": "no-store" } });
 export function ontologyFailure(error: unknown) {
+  if (error instanceof OntologyBodyError) return ontologyResponse(error.status, { error: { code: "VALIDATION_ERROR" } });
   if (error instanceof OntologyOperationError)
     return ontologyResponse(
       error.code === "FORBIDDEN"

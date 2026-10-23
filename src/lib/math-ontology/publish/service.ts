@@ -72,16 +72,24 @@ export function createOntologyPublisher(deps: {
   const now = deps.now ?? (() => new Date());
   const transaction = <T>(run: (tx: Prisma.TransactionClient) => Promise<T>) =>
     deps.db.$transaction(run, { timeout: 30000, maxWait: 10000 });
-  async function enqueue(actor: OntologyActionActor, scopeKey: string) {
+  type ExpectedPublication = { jobId: string; reviewStateHash: string; generation: number };
+  async function enqueueInTransaction(tx: Prisma.TransactionClient, actor: OntologyActionActor, scopeKey: string, expected?: ExpectedPublication) {
     requireOperation(
       scopeKey.length > 0 && scopeKey.length <= 200,
       "FORBIDDEN",
     );
-    return transaction(async (tx) => {
       await authorizeOntologyPublisher(tx, actor, now());
+      if (expected) {
+        const previous = await tx.ontologyCompileJob.findUnique({ where: { id: expected.jobId } });
+        if (previous) {
+          requireOperation(previous.requestedBy === actor.id && previous.scopeKey === scopeKey && previous.approvedReviewStateHash === expected.reviewStateHash && previous.expectedActiveGeneration === expected.generation, "BINDING_MISMATCH");
+          return { jobId: previous.id, state: previous.state };
+        }
+      }
       const time = now(),
         active = await lockOntologyScope(tx, scopeKey, time),
         reviews = await approvedOntologyReviews(tx, scopeKey);
+      if (expected) requireOperation(active.generation === expected.generation && reviews.hash === expected.reviewStateHash, "STALE");
       const input = mathOntologyCompileInputSchema.parse(
         await deps.buildInput(tx, actor, scopeKey, reviews),
       );
@@ -101,7 +109,7 @@ export function createOntologyPublisher(deps: {
       if (existing) return { jobId: existing.id, state: existing.state };
       const row = await tx.ontologyCompileJob.create({
         data: {
-          id: randomUUID(),
+          id: expected?.jobId ?? randomUUID(),
           scopeKey,
           requestedBy: actor.id,
           inputCanonical,
@@ -127,8 +135,8 @@ export function createOntologyPublisher(deps: {
         time,
       );
       return { jobId: row.id, state: row.state };
-    });
   }
+  const enqueue = (actor: OntologyActionActor, scopeKey: string) => transaction(tx => enqueueInTransaction(tx, actor, scopeKey));
   async function run(actor: OntologyActionActor, jobId: string) {
     const lease = await transaction(async (tx) => {
       await authorizeOntologyPublisher(tx, actor, now());
@@ -320,5 +328,5 @@ export function createOntologyPublisher(deps: {
       throw error;
     }
   }
-  return { enqueue, run, recover: run };
+  return { enqueue, enqueueInTransaction, run, recover: run };
 }

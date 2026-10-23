@@ -69,7 +69,7 @@ export async function authorizeOntologyAction(
     cls &&
       student &&
       !student.eywaWithdrawnAt &&
-      !student.isTest &&
+      (!student.eywaBindingId || !student.isTest) &&
       cls.branchId === target.branchId &&
       student.branchId === target.branchId,
     "FORBIDDEN",
