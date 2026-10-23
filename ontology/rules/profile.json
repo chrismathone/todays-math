@@ -1,0 +1,9 @@
+{
+  "profile": "tm-owlrl-1",
+  "standard": "OWL 2 RL RDF-based rules, selected application constructs",
+  "supportedConstructs": ["rdfs:subClassOf", "rdfs:subPropertyOf", "rdfs:domain", "rdfs:range", "owl:TransitiveProperty(partOf only)"],
+  "witnessRules": ["asserted", "cax-sco", "prp-spo1", "prp-dom", "prp-rng", "prp-trp"],
+  "rejectedConstructs": ["owl:sameAs", "owl:imports", "owl:equivalentClass", "owl:propertyChainAxiom", "owl:Restriction", "SWRL", "SHACL-JS", "caller ontology or shapes"],
+  "neverInferred": ["mastery", "causality", "transitive pedagogical prerequisite", "permission"],
+  "canonicalization": "UTF-8, fixed skolem IRIs for data, lexically sorted N-Quads; ontology/shapes use original file bytes. Not general RDF semantic canonicalization."
+}

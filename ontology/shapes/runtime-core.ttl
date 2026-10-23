@@ -1,0 +1,17 @@
+@prefix tm: <urn:todaymath:vocab:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tm:AssertionShape a sh:NodeShape ; sh:targetClass tm:Assertion ;
+  sh:property [ sh:path rdf:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path rdf:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path rdf:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path tm:sourceRevision ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path tm:sourceDigest ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path tm:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path tm:review ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "approved" ] ;
+  sh:property [ sh:path tm:approval ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+
+tm:PartShape a sh:NodeShape ; sh:targetSubjectsOf tm:partOf ;
+  sh:property [ sh:path tm:partOf ; sh:nodeKind sh:IRI ] .

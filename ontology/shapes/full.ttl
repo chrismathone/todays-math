@@ -1,0 +1,5 @@
+@prefix tm: <urn:todaymath:vocab:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+tm:NoContainmentCycle a sh:NodeShape ; sh:targetSubjectsOf tm:partOf ;
+  sh:sparql [ sh:message "Containment must be acyclic" ;
+    sh:select "SELECT $this WHERE { $this <urn:todaymath:vocab:partOf>+ $this }" ] .
