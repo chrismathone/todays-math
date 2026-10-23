@@ -18,6 +18,7 @@ export interface OntologyOperationsHttpPorts {
   students(actor: OntologyActionActor, request: Request): Promise<unknown>;
   publication: { confirm(actor: OntologyActionActor, raw: unknown): Promise<unknown>; recover(actor: OntologyActionActor, jobId: string): Promise<unknown> };
   readProposal(actor: OntologyActionActor, proposalId: string): Promise<unknown>;
+  deliverHistory?(actor: OntologyActionActor, receiptId: string): Promise<unknown>;
 }
 /** Also used by actual Request-level tests. Authentication precedes body parsing
  * and all service work; session/permission checks repeat inside each DB tx. */
@@ -38,6 +39,10 @@ export function createOntologyOperationsHandler(deps: OntologyOperationsHttpPort
         const bodyId = z.object({ proposalId: z.uuid() }).parse(raw).proposalId;
         if (bodyId !== z.uuid().parse(action[1])) throw new OntologyOperationError("BINDING_MISMATCH");
         data = await deps.plans[action[2]](actor, raw);
+        if (action[2] === "execute" && deps.deliverHistory) {
+          const result = z.object({ id: z.uuid() }).parse(data);
+          try { await deps.deliverHistory(actor, result.id); } catch { /* Primary receipt/audit already committed; durable outbox remains resumable. */ }
+        }
       } else if (path === "/api/math-ontology/relations/proposals") data = await deps.relations.draft(actor, z.strictObject({ assertion: z.unknown(), evidenceRef: z.string() }).parse(raw));
       else if (/^\/api\/math-ontology\/relations\/[^/]+\/validate$/.test(path)) data = await deps.relations.validate(actor, z.uuid().parse(path.split("/")[4]));
       else if (/^\/api\/math-ontology\/relations\/[^/]+\/approve$/.test(path)) {
@@ -52,6 +57,9 @@ export function createOntologyOperationsHandler(deps: OntologyOperationsHttpPort
         const result = await deps.feedback.record(actor, { receiptId: z.uuid().parse(path.split("/")[4]), sourceSnapshotId: newOntologyObservationId() });
         const c = result.observation.counts;
         data = { summary: c.retainedFirstAttempts ? "계획 변경 이후의 보존 기록입니다." : "아직 후속 관찰이 없습니다.", details: [`보존된 첫 풀이 ${c.retainedFirstAttempts}건 · 독립 정답 ${c.independentCorrect}건 · 독립 오답 ${c.independentIncorrect}건 · 제외 ${c.excluded}건`, "학습 효과나 원인으로 해석하지 않습니다."] };
+      } else if (/^\/api\/math-ontology\/receipts\/[^/]+\/outbox\/resume$/.test(path) && deps.deliverHistory) {
+        z.strictObject({}).parse(raw);
+        data = await deps.deliverHistory(actor, z.uuid().parse(path.split("/")[4]));
       } else return ontologyResponse(404, { error: { code: "NOT_FOUND" } });
       return ontologyResponse(200, { data });
     } catch (error) {

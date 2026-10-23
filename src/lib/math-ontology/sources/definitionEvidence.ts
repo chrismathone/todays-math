@@ -130,5 +130,6 @@ export async function readNativeDefinitionEvidenceInTransaction(
   };
   if (Buffer.byteLength(canonicalSourceJson(result)) > MAX_BYTES)
     throw new Error("Definition evidence byte limit exceeded");
+  await authorizeMathOntologyNativeSourceRead(tx, input);
   return freezeSourceValue(result);
 }

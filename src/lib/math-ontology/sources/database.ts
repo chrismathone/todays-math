@@ -250,6 +250,8 @@ export async function readMathOntologyDatabaseSourcesInTransaction(
     ...value,
     snapshotDigest: sourceDigest(value),
   });
+  const finalAccess = await authorizeMathOntologySourceRead(tx, input);
+  if (finalAccess.authorizationStamp !== access.authorizationStamp || finalAccess.contextHash !== access.contextHash) throw new MathOntologySourceAccessDenied();
   transactionBindings.set(snapshot, tx);
   return snapshot;
 }
@@ -265,7 +267,7 @@ export async function readMathOntologyDatabaseSources(
     async (tx) =>
       readMathOntologyDatabaseSourcesInTransaction(tx, {
         ...input,
-        authorizationNow: new Date(),
+        authorizationNow: () => new Date(),
       }),
     { isolationLevel: "RepeatableRead", maxWait: 2000, timeout: 10000 },
   );
@@ -274,7 +276,7 @@ export async function readMathOntologyDatabaseSources(
     async (tx) =>
       authorizeMathOntologySourceRead(tx, {
         ...input,
-        authorizationNow: new Date(),
+        authorizationNow: () => new Date(),
       }),
     { isolationLevel: "RepeatableRead", maxWait: 2000, timeout: 5000 },
   );

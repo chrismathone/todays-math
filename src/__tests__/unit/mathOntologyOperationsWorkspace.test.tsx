@@ -40,4 +40,27 @@ describe("B/H3 concise AI-first workspace", () => {
   expect(port.run).toHaveBeenCalledTimes(1); resolve(answer);
   await waitFor(() => expect(screen.queryByText("준비 중…")).toBeNull());
  });
+ it("Enter prepares only after composition ends; Shift+Enter never submits or confirms", async () => {
+  const port = source(); render(<OntologyWorkspace source={port} />);
+  const input = screen.getByLabelText("원하는 일"); fireEvent.change(input, { target: { value: "연결을 찾아줘" } });
+  fireEvent.keyDown(input, { key: "Enter", shiftKey: true });
+  fireEvent.keyDown(input, { key: "Enter", isComposing: true, keyCode: 229 });
+  expect(port.run).not.toHaveBeenCalled();
+  fireEvent.keyDown(input, { key: "Enter", isComposing: false, keyCode: 13 });
+  await screen.findByText(answer.summary);
+  expect(port.run).toHaveBeenCalledTimes(1); expect(port.confirm).not.toHaveBeenCalled();
+ });
+ it("publication recovery reuses the prepared action and never sends a job id to plan feedback", async () => {
+  const port = source(); const publication: WorkspaceAnswer = { ...answer, action: { ...answer.action!, kind: "publication", label: "검토한 내용 게시하기" } };
+  vi.mocked(port.run).mockResolvedValue(publication);
+  vi.mocked(port.confirm).mockResolvedValueOnce({ id: "job-1", state: "preparing", message: "게시 결과를 준비하고 있습니다.", details: [] }).mockResolvedValueOnce({ id: "job-1", state: "published", message: "검토한 내용을 게시했습니다.", details: [] });
+  render(<OntologyWorkspace source={port} />); fireEvent.change(screen.getByLabelText("원하는 일"), { target: { value: "게시를 준비해줘" } });
+  fireEvent.keyDown(screen.getByLabelText("원하는 일"), { key: "Enter" });
+  fireEvent.click(await screen.findByRole("button", { name: "검토한 내용 게시하기" }));
+  fireEvent.click(await screen.findByRole("button", { name: "결과 확인" }));
+  await screen.findByText("검토한 내용을 게시했습니다.");
+  expect(port.confirm).toHaveBeenNthCalledWith(1, publication.action, expect.any(AbortSignal));
+  expect(port.confirm).toHaveBeenNthCalledWith(2, publication.action, expect.any(AbortSignal));
+  expect(screen.queryByRole("button", { name: "이후 관찰" })).toBeNull(); expect(port.feedback).not.toHaveBeenCalled();
+ });
 });

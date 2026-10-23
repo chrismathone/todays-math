@@ -11,7 +11,7 @@ export const currentOntologyObservations: OntologyObservationPort = {
   async resolve(tx, actor, target, sourceSnapshotId, time, window) {
     requireOperation(window, "UNAVAILABLE");
     const active = await lockActiveOntologyReleaseInTransaction(tx, "global");
-    const source = await readMathOntologyDatabaseSourcesInTransaction(tx, { actor, target, graphVersion: active.release.graphVersion, now: time, authorizationNow: time, observedAfter: window.committedAt });
+    const source = await readMathOntologyDatabaseSourcesInTransaction(tx, { actor, target, graphVersion: active.release.graphVersion, now: time, authorizationNow: window.authorizationClock ?? (() => time), observedAfter: window.committedAt });
     assertMathOntologySourceSnapshotTransaction(source, tx);
     requireOperation(source.studentRevision >= window.minimumRevision, "STALE");
     const attempts = source.learning.firstAttempts;

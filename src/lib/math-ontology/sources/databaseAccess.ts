@@ -5,6 +5,7 @@ import {
   membershipAllows,
   currentClassGrantAllows,
   kstRelationshipDay,
+  enrollmentActive,
 } from "@/lib/eywa/relationPolicy";
 import { accountUsable } from "@/lib/eywa/managedPolicy";
 import { controlUserSchema } from "@/lib/eywa/sync-contract";
@@ -21,7 +22,7 @@ export interface MathOntologyDatabaseReadInput {
   graphVersion: string;
   now: Date;
   /** Current authorization clock, separate from immutable source observation asOf. */
-  authorizationNow?: Date;
+  authorizationNow?: Date | (() => Date);
   observedAfter?: string;
 }
 export class MathOntologySourceAccessDenied extends Error {
@@ -53,8 +54,8 @@ async function authorizeSourceActor(
   input: Pick<MathOntologyDatabaseReadInput, "actor" | "authorizationNow">,
   dataPath: string,
 ) {
-  const now = input.authorizationNow ?? new Date();
-  if (!Number.isFinite(now.getTime())) fail();
+  const clock = typeof input.authorizationNow === "function" ? input.authorizationNow : input.authorizationNow ? () => input.authorizationNow as Date : () => new Date();
+  if (!Number.isFinite(clock().getTime())) fail();
   const row = await tx.user.findUnique({
     where: { id: input.actor.id },
     select: {
@@ -141,7 +142,7 @@ async function authorizeSourceActor(
           managed.user,
           managed as unknown as EywaManagedAccount,
           managed.binding as unknown as EywaBinding,
-          now.getTime(),
+          clock().getTime(),
         )
       : row.authSource === "eywa"
   )
@@ -171,7 +172,7 @@ async function authorizeSourceActor(
       !account.menus.includes("srs"))
   )
     fail();
-  return { now, row, managed, account };
+  return { now: clock(), clock, row, managed, account };
 }
 /** Native authored definitions are global teacher resources; no student record is required or read. */
 export async function authorizeMathOntologyNativeSourceRead(
@@ -193,11 +194,13 @@ export async function authorizeMathOntologySourceRead(
   tx: MathOntologySourceTransaction,
   input: MathOntologyDatabaseReadInput,
 ) {
-  const { now, row, managed, account } = await authorizeSourceActor(
+  const access = await authorizeSourceActor(
     tx,
     input,
     `/api/students/${input.target.studentId}/math-srs/insight`,
   );
+  const { clock, row, managed, account } = access;
+  let now = clock();
   const student = await tx.student.findUnique({
     where: { id: input.target.studentId },
     select: {
@@ -276,6 +279,7 @@ export async function authorizeMathOntologySourceRead(
           capabilities: true,
         },
       });
+      now = clock();
       if (
         cls.eywaBindingId !== managed.bindingId ||
         cls.branchId !== account.branchId ||
@@ -308,6 +312,7 @@ export async function authorizeMathOntologySourceRead(
   }> | null = null;
   if (student.eywaBindingId) {
     if (student.isTest || student.eywaBindingId !== cls.eywaBindingId) fail();
+    now = clock();
     enrollment = await tx.studentEnrollment.findFirst({
       where: {
         studentId: student.id,
@@ -325,8 +330,11 @@ export async function authorizeMathOntologySourceRead(
         endedAt: true,
       },
     });
-    if (!enrollment) fail();
+    if (!enrollment || !enrollmentActive(enrollment, kstRelationshipDay(clock()), true)) fail();
   } else if (student.classId !== cls.id) fail();
+  now = clock();
+  if (managed && (!managed.user || !accountUsable(managed.user, managed as unknown as EywaManagedAccount, managed.binding as unknown as EywaBinding, now.getTime()))) fail();
+  if (memberships.length && (!cls.active || (cls.closedAt && cls.closedAt <= now) || !memberships.some(m => membershipAllows(m, "student:read", now) && currentClassGrantAllows(grants.find(g => g.id === cls.eywaClassId), cls.eywaClassId, cls.permissionRevision, "student:read", now)))) fail();
   const context = {
     actorId: account.id,
     sessionVersion: row.sessionVersion,

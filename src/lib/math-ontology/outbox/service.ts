@@ -1,5 +1,5 @@
 import "server-only";
-import type { PrismaClient } from "@prisma/client";
+import type { PrismaClient, Prisma } from "@prisma/client";
 import { checkedCanonical, type CanonicalValue } from "../actions/canonical";
 
 export type OntologyOutboxLease = {
@@ -16,6 +16,7 @@ export function createOntologyOutbox(deps: {
   db: Pick<PrismaClient, "$transaction" | "ontologyOutbox">;
   now?: () => Date;
   receiptId?: string;
+  authorize?: (tx: Prisma.TransactionClient) => Promise<void>;
 }) {
   const now = deps.now ?? (() => new Date());
   async function claim(): Promise<OntologyOutboxLease | null> {
@@ -29,6 +30,7 @@ export function createOntologyOutbox(deps: {
       const row = await tx.ontologyOutbox.findUniqueOrThrow({
         where: { id: candidates[0].id },
       });
+      await deps.authorize?.(tx);
       let body: CanonicalValue;
       try {
         body = checkedCanonical(row.bodyCanonical, row.bodyHash);
@@ -52,6 +54,7 @@ export function createOntologyOutbox(deps: {
           leaseUntil: new Date(time.getTime() + 60000),
         },
       });
+      await deps.authorize?.(tx);
       return {
         id: row.id,
         leaseGeneration: next.leaseGeneration,

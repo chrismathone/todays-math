@@ -2,13 +2,14 @@
 import EmbeddedPostgres from "embedded-postgres";
 import { randomBytes, createHash } from "node:crypto";
 import { createServer } from "node:net";
-import { mkdtemp, readFile, writeFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile, rm, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawn, execFileSync } from "node:child_process";
 const evidence = process.argv[2];
 if (!evidence || !path.isAbsolute(evidence))
   throw new Error("Absolute external evidence directory required");
+await mkdir(evidence, { recursive: true, mode: 0o700 });
 const pointer = path.join(
   tmpdir(),
   `ontology-operations-${createHash("sha256").update(process.cwd()).digest("hex").slice(0, 12)}.json`,
@@ -91,12 +92,27 @@ try {
     { stdio: ["ignore", "pipe", "pipe"] },
   ).toString();
   await client.query(baseDdl);
+  const existingCatalog = async () => (await client.query("SELECT c.relname,a.attname,format_type(a.atttypid,a.atttypmod) AS type,a.attnotnull,pg_get_expr(d.adbin,d.adrelid) AS default_value FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace JOIN pg_attribute a ON a.attrelid=c.oid AND a.attnum>0 AND NOT a.attisdropped LEFT JOIN pg_attrdef d ON d.adrelid=c.oid AND d.adnum=a.attnum WHERE n.nspname='public' AND c.relkind='r' AND c.relname NOT LIKE 'ontology_%' ORDER BY c.relname,a.attnum")).rows;
+  const beforeCatalog = await existingCatalog();
   const migration = await readFile(
     "prisma/drafts/ontology-full-operations-20261023/draft.sql",
     "utf8",
   );
   await client.query("CREATE ROLE anon NOLOGIN; CREATE ROLE authenticated NOLOGIN");
   await client.query(migration);
+  const afterCatalog = await existingCatalog();
+  receipt.existingColumnsUnchanged = JSON.stringify(beforeCatalog) === JSON.stringify(afterCatalog);
+  if (!receipt.existingColumnsUnchanged) throw new Error("Existing schema changed");
+  receipt.emptyStorageImpact = (await client.query("SELECT c.relname AS table_name,pg_relation_size(c.oid)::int AS table_bytes,pg_indexes_size(c.oid)::int AS index_bytes,pg_total_relation_size(c.oid)::int AS total_bytes,(SELECT count(*)::int FROM pg_attribute a WHERE a.attrelid=c.oid AND a.attnum>0 AND NOT a.attisdropped) AS columns,(SELECT count(*)::int FROM pg_index i WHERE i.indrelid=c.oid) AS indexes,c.relrowsecurity AS rls FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'ontology_%' ORDER BY c.relname")).rows;
+  if (receipt.emptyStorageImpact.length !== 14) throw new Error("Unexpected new table count");
+  try { await client.query(migration); throw new Error("DDL replay unexpectedly succeeded"); }
+  catch (error) { if (!String(error.message).includes("Ontology storage already exists")) throw error; receipt.replayRejected = true; }
+  await client.query("ROLLBACK");
+  await client.query(await readFile("prisma/drafts/ontology-full-operations-20261023/rollback.sql", "utf8"));
+  receipt.emptyRollbackTablesRemaining = Number((await client.query("SELECT count(*) AS n FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'ontology_%'")).rows[0].n);
+  if (receipt.emptyRollbackTablesRemaining !== 0) throw new Error("Empty rollback incomplete");
+  await client.query(migration);
+  receipt.reapplyAfterEmptyRollback = true;
   receipt.baselineSchemaSha = "34742b2f02456930d911e60a69ee020ccee56d64";
   receipt.draftHash = createHash("sha256").update(migration).digest("hex");
   await client.end();
@@ -127,6 +143,15 @@ try {
     child.on("exit", (code) => resolve(code ?? 1));
   });
   receipt.testsExitCode = exitCode;
+  client = pg.getPgClient("ontology_operations_qa", "127.0.0.1");
+  await client.connect();
+  receipt.postQaStorageImpact = [];
+  for (const table of receipt.emptyStorageImpact) {
+    if (!/^ontology_[a-z_]+$/.test(table.table_name)) throw new Error("Unexpected QA table");
+    const count = Number((await client.query(`SELECT count(*) AS n FROM "${table.table_name}"`)).rows[0].n);
+    const bytes = (await client.query("SELECT pg_relation_size($1::regclass)::int AS table_bytes,pg_indexes_size($1::regclass)::int AS index_bytes,pg_total_relation_size($1::regclass)::int AS total_bytes", [table.table_name])).rows[0];
+    receipt.postQaStorageImpact.push({ table_name: table.table_name, rows: count, ...bytes });
+  }
 } finally {
   if (client) await client.end().catch(() => {});
   if (started) await pg.stop();
@@ -138,12 +163,13 @@ try {
     receipt.stopped = true;
   }
   receipt.finishedAt = new Date().toISOString();
-  await writeFile(
+  try { await writeFile(
     path.join(evidence, `postgres-run-${Date.now()}.json`),
     JSON.stringify(receipt, null, 2) + "\n",
-  );
+  ); } finally {
   // Local fixture data contains only synthetic rows and may be removed after stop.
   await rm(directory, { recursive: true, force: true });
+  }
 }
 if (!receipt.stopped)
   throw new Error("Local PostgreSQL process exit unverified");

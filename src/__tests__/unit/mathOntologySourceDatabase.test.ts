@@ -351,6 +351,25 @@ import {
 import { writeSourcePartitions } from "../../../scripts/ontology/census/writePartitions";
 import { loadSourcePartitionManifest } from "@/lib/math-ontology/sources/partitions";
 import { readNativeDefinitionEvidenceInTransaction } from "@/lib/math-ontology/sources/definitionEvidence";
+import { loadBundledMathOntologySourcePartitions } from "@/lib/math-ontology/sources/catalog";
+import sourceRuntimeFixture from "@/../ontology/source-manifests/source-runtime-fixture.v1.json";
+it("rejects lease expiry after awaited account reads and before native text export, while the current control returns real bounded evidence", async () => {
+  managed();
+  const release = loadBundledMathOntologySourcePartitions(sourceRuntimeFixture.pins), nativeId = BANK_PARTS.e5.concepts[0].id;
+  const live = { ...input(), authorizationNow: () => new Date() };
+  expect((await readNativeDefinitionEvidenceInTransaction(tx(), live, [nativeId], release)).packets).toHaveLength(1);
+  vi.mocked(db.eywaManagedAccount.findUnique).mockImplementationOnce((async () => { vi.setSystemTime(new Date(now.getTime() + 600001)); return w.managed; }) as never);
+  await expect(readNativeDefinitionEvidenceInTransaction(tx(), live, [nativeId], release)).rejects.toThrow(/not available/);
+  vi.setSystemTime(now);
+  const delayed = { ...release, read: (path: string) => { const bytes = release.read(path); vi.setSystemTime(new Date(now.getTime() + 600001)); return bytes; } };
+  await expect(readNativeDefinitionEvidenceInTransaction(tx(), live, [nativeId], delayed)).rejects.toThrow(/not available/);
+  expect(live.now).toEqual(now);
+});
+it("rejects lease expiry during private source reads at the final export boundary", async () => {
+  managed();
+  vi.mocked(db.studentSrsState.findUnique).mockImplementationOnce((async () => { vi.setSystemTime(new Date(now.getTime() + 600001)); return w.state; }) as never);
+  await expect(readMathOntologyDatabaseSourcesInTransaction(tx(), { ...input(), authorizationNow: () => new Date() })).rejects.toThrow(/not available/);
+});
 it("returns bounded exact native definition evidence only after actual policy authorization and approved revision correspondence", async () => {
   const current = BANK_PARTS.e5.concepts[0],
     origin = {

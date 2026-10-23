@@ -23,7 +23,7 @@ export function createOntologyWorkspaceSource(branchId?: string): OntologyWorksp
       if (action.kind === "plan") {
         const approval = z.object({ approvalId: z.uuid(), proposalId: z.uuid(), sealHash: z.string() }).parse(await request(`/api/math-ontology/actions/${encodeURIComponent(action.id)}/approve`, signal, { proposalId: action.id, sealHash: action.sealHash }));
         const receipt = ontologyActionReceiptSchema.parse(await request(`/api/math-ontology/actions/${encodeURIComponent(action.id)}/execute`, signal, approval));
-        return { id: receipt.id, state: receipt.outcome, message: receipt.outcome === "applied" ? "계획을 변경했습니다." : "변경할 내용이 없습니다.", details: [`기록 판 ${receipt.beforeRevision} → ${receipt.afterRevision}`, "승인 내용과 실행 영수증을 보존했습니다."] };
+        return { id: receipt.id, state: receipt.outcome, message: receipt.outcome === "applied" ? "계획을 변경했습니다." : "변경할 내용이 없습니다.", details: [`기록 판 ${receipt.beforeRevision} → ${receipt.afterRevision}`, `실행 시각 ${receipt.committedAt}`, `영수증 ${receipt.id}`, `근거 판 ${receipt.binding.graphVersion}`, "승인 내용과 실행 영수증을 보존했습니다."] };
       }
       const result = z.object({ id: z.string(), state: z.enum(["applied", "no-op", "preparing", "published"]), message: z.string(), details: z.array(z.string()) }).parse(await request(action.kind === "relation" ? `/api/math-ontology/relations/${encodeURIComponent(action.id)}/approve` : "/api/math-ontology/publish/jobs", signal, action.kind === "relation" ? { reviewId: action.id, expectedRevision: action.revision, validationHash: action.validationHash, decision: "approve", sourceReviewed: true, meaningReviewed: true } : { confirmationId: action.id, sealHash: action.sealHash }));
       return result;

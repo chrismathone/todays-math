@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { MathText } from "@/components/math/MathText";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import AutoGrowTextarea from "@/components/ui/AutoGrowTextarea";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { createOntologyWorkspaceSource } from "./api";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer, type WorkspaceStudent, type WorkspaceExecution } from "./source";
 import s from "./workspace.module.css";
+const evidenceText = (text: string) => text.replace(/!\[/g, "\\![");
 const labels = { observed: "관측", reviewed: "검토한 연결", candidate: "검토 전 후보", unknown: "미확인" };
 export default function OntologyWorkspace({ source, branchId, scopeKey = "account" }: { source?: OntologyWorkspaceSource; branchId?: string; scopeKey?: string }) {
   const port = useMemo(() => source ?? createOntologyWorkspaceSource(branchId), [source, branchId]);
@@ -88,10 +90,10 @@ function ScopedWorkspace({ source }: { source: OntologyWorkspaceSource }) {
       <section className={s.result} aria-label="준비한 결과">
         {history.length > 0 && <button type="button" className={s.textButton} disabled={busy === "confirm"} onClick={back}>이전 결과</button>}
         {answer ? <>
-          <h2>{answer.summary}</h2>
+          <div role="heading" aria-level={2} className={s.resultTitle}><MathText text={evidenceText(answer.summary)} as="div" staticLayout /></div>
           {answer.requiresStudent && <button type="button" className={s.primary} onClick={() => setPicking(true)}>학생을 연결해 계속하기</button>}
-          {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><strong>{step.title}</strong><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><p>{step.note}</p></div></li>)}</ol>}
-          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.text}</p></div>)}</details>}
+          {answer.steps.length > 0 && <ol className={s.path} aria-label="연결 경로와 근거">{answer.steps.map((step, index) => <li key={step.id}><span className={s.stepNumber} aria-hidden="true">{index + 1}</span><div><div className={s.stepTitle}><MathText text={evidenceText(step.title)} as="div" staticLayout /></div><span className={s.badge} data-state={step.state}>{labels[step.state]}</span><MathText text={evidenceText(step.note)} as="div" className={s.evidenceNote} staticLayout /></div></li>)}</ol>}
+          {answer.details.length > 0 && <details className={s.details}><summary>출처·검토 이력</summary>{answer.details.map(item => <div key={item.title}><h3>{item.title}</h3><MathText text={evidenceText(item.text)} as="div" staticLayout /></div>)}</details>}
         </> : !busy && !error ? <p className={s.empty}>어떤 자료가 필요한지 알려 주세요.</p> : null}
       </section>
       <section className={s.next} aria-label="다음 작업">

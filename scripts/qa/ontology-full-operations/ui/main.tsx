@@ -4,6 +4,7 @@ import OntologyWorkspace from "@/components/math-ontology/OntologyWorkspace";
 import { OntologyWorkspaceError, type OntologyWorkspaceSource, type WorkspaceAnswer } from "@/components/math-ontology/source";
 import workroom from "@/components/unified/Workroom.module.css";
 import "@/app/globals.css";
+import "katex/dist/katex.min.css";
 import "./fixture.css";
 const states = ["normal", "empty", "error-retry", "delay", "forbidden", "stale", "lost-result", "relation", "publication"] as const;
 type Scenario = typeof states[number];
@@ -24,7 +25,7 @@ function fixture(scenario: Scenario, count: (kind: string) => void): OntologyWor
       if (scenario === "empty") return { id: "empty", summary: "확인할 자료가 없습니다.", steps: [], details: [], coverage: [] };
       const kind = scenario === "relation" ? "relation" : scenario === "publication" ? "publication" : "plan";
       const answer: WorkspaceAnswer = { id: `answer-${attempts}`, summary: kind === "plan" ? input.student ? "계획 변경을 준비했습니다." : "학생을 연결하면 계획을 준비합니다." : kind === "relation" ? "검토할 연결을 준비했습니다." : "게시할 변경을 준비했습니다.", requiresStudent: kind === "plan" && !input.student,
-        steps: [{ id: "s1", title: "개념과 단원", note: "합성 예시 원천에 등록된 연결입니다.", state: "observed" }, { id: "s2", title: "연결된 학습 자료", note: "3단계 연결 경로와 출처를 함께 확인했습니다.", state: "reviewed" }, { id: "s3", title: "검토할 내용", note: "교사가 확인하기 전의 제안입니다.", state: "candidate" }],
+        steps: [{ id: "s1", title: "일의 자리에서 받아올린 $1$의 값", note: "실제 원천의 공개 개념명입니다. 아래 기록과 수치는 합성입니다.", state: "observed" }, { id: "s2", title: "분수 $\\frac{1}{2}$와 단원", note: "분수 식은 렌더 검수용 합성 예시입니다.", state: "reviewed" }, { id: "s3", title: "검토할 내용", note: "교사가 확인하기 전의 제안입니다.", state: "candidate" }],
         details: [{ title: "검수 데이터", text: "이 화면의 학생·기록·수치·AI 결과는 모두 합성입니다. 실제 React 컴포넌트를 실행하며 API·모델·DB 호출은 없습니다." }], coverage: [{ label: "원천", value: "합성 예시 3종" }, { label: "미확인", value: "교육적 효과" }],
         ...(kind !== "plan" || input.student ? { action: { kind, id: "fixture-proposal", sealHash: "fixture-only", label: kind === "plan" ? "이 계획으로 바꾸기" : kind === "relation" ? "이 연결 승인하기" : "검토한 내용 게시하기", changes: [{ label: kind === "plan" ? "하루 목표" : "검토 상태", before: kind === "plan" ? "10문제" : "검토 대기", after: kind === "plan" ? "15문제" : "승인" }], effects: [kind === "plan" ? "시작한 학습은 유지됩니다." : "승인과 게시 이력을 남깁니다."] } } : {}) };
       return answer;
