@@ -95,6 +95,7 @@ export const mathOntologySourceMetadataSchema = z.strictObject({
   bQuestionAvailable: z.boolean().optional(),
   clozeAvailable: z.boolean().optional(),
   questionRevision: metadataScalar.optional(),
+  definitionTextHash: mathOntologySourceDigestSchema.optional(),
   partial: z.boolean().optional(),
   licenseStatus: z
     .enum(["unknown", "not-declared", "public-official-metadata"])
@@ -399,3 +400,6 @@ export interface MathOntologySourceQuad {
   object: MathOntologySourceRdfTerm;
   graph: { termType: "NamedNode"; value: string };
 }
+
+export type MathOntologySourcePredicate =
+  MathOntologySourceAssertion["predicate"];

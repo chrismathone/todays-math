@@ -336,6 +336,9 @@ export function collectMathOntologyRepoSources(
               level: scalar(r.level),
               order: i,
               entryKind: genre,
+              ...(genre === "concepts"
+                ? { definitionTextHash: sourceByteDigest(str(r.definition)) }
+                : {}),
             },
           );
         bankRecords.set(id, record);
@@ -1034,7 +1037,12 @@ export function collectMathOntologyRepoSources(
           {
             distribution: "quarantine-reference",
             sourceProvenance: "imported-source",
-            edition: d.edition === "2022" ? "2022" : "unknown",
+            edition:
+              d.edition === "2022"
+                ? "2022"
+                : d.edition === "2015"
+                  ? "2015"
+                  : "unknown",
           },
         );
         relation(

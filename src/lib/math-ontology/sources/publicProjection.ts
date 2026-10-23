@@ -113,7 +113,11 @@ export function projectMathOntologyPublicSources(
       sourceProjectionHash: sourceDigest(publicSourceAssertionValue(a)),
     }));
   return freezeSourceValue({
-    projectionHash: sourceDigest({ entities, assertions }),
+    projectionHash: sourceDigest({
+      format: "public-source-projection-2",
+      entities,
+      assertions,
+    }),
     entities,
     assertions,
   });

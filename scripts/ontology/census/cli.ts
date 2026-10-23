@@ -7,6 +7,10 @@ import {
   sourceBundleRelativePaths,
 } from "@/lib/math-ontology/sources/bundle";
 import { mathOntologyAdminSourceCoverageRows } from "@/lib/math-ontology/sources/registry";
+import {
+  verifySourceCatalogStructure,
+  EXPECTED_MATH_ONTOLOGY_SOURCE_RELATION_COVERAGE,
+} from "@/lib/math-ontology/sources/correspondence";
 import { writeSourcePartitions } from "./writePartitions";
 import { writeCanonicalSourceNQuads } from "./writeNQuads";
 const arg = (name: string) => {
@@ -40,6 +44,10 @@ async function main() {
   const dataset = assembleMathOntologySources(envelope, {
     expectedPayloadHash: envelope.payloadHash,
   });
+  const correspondence = verifySourceCatalogStructure(
+    dataset,
+    EXPECTED_MATH_ONTOLOGY_SOURCE_RELATION_COVERAGE,
+  );
   const nquads = arg("--nquads");
   const rdf = nquads
     ? await writeCanonicalSourceNQuads(dataset, resolve(nquads))
@@ -48,6 +56,7 @@ async function main() {
     ? writeSourcePartitions(dataset, outputRoot)
     : null;
   const receipt = {
+    correspondence,
     partitions,
     payloadHash: envelope.payloadHash,
     manifestByteHash: bundle.manifestByteHash,
