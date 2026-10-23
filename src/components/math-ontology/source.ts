@@ -19,5 +19,5 @@ export interface OntologyWorkspaceSource {
   review?(reviewId: string, signal: AbortSignal): Promise<WorkspaceAnswer>;
 }
 export class OntologyWorkspaceError extends Error {
-  constructor(public code: "FORBIDDEN" | "STALE" | "UNAVAILABLE" | "NETWORK", message: string) { super(message); this.name = "OntologyWorkspaceError"; }
+  constructor(public code: "FORBIDDEN" | "STALE" | "UNAVAILABLE" | "NETWORK" | "BLOCKED", message: string) { super(message); this.name = "OntologyWorkspaceError"; }
 }

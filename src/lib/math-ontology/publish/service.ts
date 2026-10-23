@@ -4,6 +4,7 @@ import type { Prisma, PrismaClient } from "@prisma/client";
 import {
   mathOntologyCompileInputSchema,
   mathOntologyArtifactSchema,
+  mathOntologyAssertionSchema,
   type MathOntologyCompileInput,
   type MathOntologyCompilePort,
   type MathOntologyArtifact,
@@ -15,6 +16,11 @@ import { OntologyOperationError, requireOperation } from "../actions/errors";
 import { authorizeOntologyPublisher } from "../review/authorization";
 import { recordOntologyReviewEvent } from "../review/events";
 import { lockOntologyScope } from "./scope";
+import { ontologyRelationCanPublish } from "../review/eligibility";
+
+function requirePublishableReviews(reviews: Awaited<ReturnType<typeof approvedOntologyReviews>>) {
+  for (const row of reviews.rows) requireOperation(ontologyRelationCanPublish(mathOntologyAssertionSchema.parse(checkedCanonical(row.assertionCanonical, row.assertionHash))), "EVIDENCE_INSUFFICIENT");
+}
 
 export async function approvedOntologyReviews(
   tx: Prisma.TransactionClient,
@@ -89,6 +95,7 @@ export function createOntologyPublisher(deps: {
       const time = now(),
         active = await lockOntologyScope(tx, scopeKey, time),
         reviews = await approvedOntologyReviews(tx, scopeKey);
+      requirePublishableReviews(reviews);
       if (expected) requireOperation(active.generation === expected.generation && reviews.hash === expected.reviewStateHash, "STALE");
       const input = mathOntologyCompileInputSchema.parse(
         await deps.buildInput(tx, actor, scopeKey, reviews),
@@ -157,6 +164,7 @@ export function createOntologyPublisher(deps: {
         };
       }
       const time = now();
+      requirePublishableReviews(await approvedOntologyReviews(tx, row.scopeKey));
       requireOperation(
         row.state === "queued" ||
           row.state === "failed" ||
@@ -171,6 +179,7 @@ export function createOntologyPublisher(deps: {
       const input = mathOntologyCompileInputSchema.parse(
         JSON.parse(row.inputCanonical),
       );
+      for (const assertion of input.assertions) if (assertion.review === "approved" && assertion.publication === "published") requireOperation(ontologyRelationCanPublish(assertion), "EVIDENCE_INSUFFICIENT");
       requireOperation(
         canonicalOntologyJson(input) === row.inputCanonical,
         "BINDING_MISMATCH",
