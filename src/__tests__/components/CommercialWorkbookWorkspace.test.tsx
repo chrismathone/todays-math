@@ -86,7 +86,7 @@ describe("commercial workbook teacher UI", () => {
     fireEvent.click(screen.getByRole("button", { name: "과제 · 채점" }));
     fireEvent.click(screen.getByRole("button", { name: "교재 정답" }));
     expect(screen.getByLabelText("교재 찾기")).toHaveValue("없는 판본");
-    expect(screen.getByText("로컬 체험 · 직접 작성한 예시")).toBeVisible();
+    expect(screen.getByText("로컬 체험")).toBeVisible();
   });
 
   it("rejects duplicate import addresses, then saves only explicitly reviewed metadata and rows", async () => {

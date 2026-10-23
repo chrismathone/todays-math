@@ -46,10 +46,10 @@ export default function CommercialWorkbookWorkspace({
     <div className={s.workspace}>
       {demo && (
         <p className={s.demo}>
-          <strong>로컬 체험 · 직접 작성한 예시</strong>
+          <strong>로컬 체험</strong>
           <br />
-          실제 출판사 자료나 학생 기록이 아닙니다. 이 화면의 저장은 메모리에만
-          남으며 운영 데이터로 전송하지 않습니다.
+          기본 교재와 학생은 직접 작성한 예시입니다. 공개 정답 자료를 등록해도
+          이 화면의 저장은 메모리에만 남으며 운영 데이터로 전송하지 않습니다.
         </p>
       )}
       <div className={s.switcher} role="group" aria-label="교재 과제 작업 선택">

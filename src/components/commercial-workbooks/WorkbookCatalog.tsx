@@ -9,6 +9,7 @@ import type {
 import type { CommercialWorkbookSource } from "@/lib/commercialWorkbooks/source";
 import WorkbookImport from "./WorkbookImport";
 import WorkbookAssignmentForm from "./WorkbookAssignmentForm";
+import WorkbookPublisherPacks from "./WorkbookPublisherPacks";
 import { editionLabel, messageOf } from "./presentation";
 import s from "./CommercialWorkbooks.module.css";
 
@@ -130,6 +131,11 @@ export default function WorkbookCatalog({
       <div hidden={!importOpen}>
         <WorkbookImport source={source} onSaved={imported} />
       </div>
+      <WorkbookPublisherPacks
+        source={source}
+        books={books}
+        onSaved={imported}
+      />
       <div className={s.toolbar}>
         <label className={s.search}>
           교재 찾기

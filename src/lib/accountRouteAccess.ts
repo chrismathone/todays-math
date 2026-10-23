@@ -239,6 +239,8 @@ export function accountRouteAllowed(
       "/api/progress",
       "/api/scores",
       "/api/eywa-sync",
+      // 시중교재 정답·과제·채점·오답노트는 수업 관리의 별도 도메인이다.
+      "/api/commercial-workbooks",
     ].some((base) => under(path, base))
   )
     return any("teaching");

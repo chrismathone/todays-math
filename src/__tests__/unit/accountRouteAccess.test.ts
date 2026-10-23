@@ -14,6 +14,43 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
+  it("keeps commercial workbook keys, marks and print behind teaching access", () => {
+    const paths = [
+      "/api/commercial-workbooks",
+      "/api/commercial-workbooks/editions/book-1",
+      "/api/commercial-workbooks/assignments/assignment-1/marks",
+      "/api/commercial-workbooks/wrong-notes/print",
+    ];
+    for (const path of paths) {
+      for (const method of ["GET", "POST", "PATCH"]) {
+        expect(
+          accountRouteAllowed(
+            { ...account, menus: ["teaching"] },
+            method,
+            path,
+          ),
+        ).toBe(true);
+        expect(
+          accountRouteAllowed(
+            { ...account, menus: ["textbook", "library", "srs"] },
+            method,
+            path,
+          ),
+        ).toBe(false);
+        expect(
+          accountRouteAllowed(
+            { ...account, approvalStatus: "pending" },
+            method,
+            path,
+          ),
+        ).toBe(false);
+      }
+    }
+    expect(
+      accountRouteAllowed(account, "GET", "/api/commercial-workbooks-other"),
+    ).toBe(false);
+  });
+
   it("opens only GET/POST of exact teacher insight endpoint to SRS accounts or superadmin", () => {
     const path = "/api/students/student/math-srs/insight";
     for (const method of ["GET", "POST"]) {
