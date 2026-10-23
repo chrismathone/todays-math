@@ -58,6 +58,6 @@ Orca 내부 브라우저의 개발용 메모리 화면에서 새 검색 → 수�
 
 - 관련 29개 파일 **184개 테스트 통과**: JSON/TSV 왕복, 독립 주소/정답 기대값, null 원장, 판본 구별, 중복 재시도, API 권한, SQL 저장·재조회, 모든 등록 팩의 배정→오답→학생용 정답 제외 출력.
 - 변경 영역 22개 TypeScript/TSX 파일 ESLint 통과. 등록 전 원본 파일 해시와 PDF 쪽 경계를 다시 확인했다.
-- 전체 TypeScript와 Next.js 운영 빌드, 원격 통합·배포 확인은 이 체크포인트 이후 로그로 계속 기록한다. 완료하지 않은 검사를 통과했다고 표시하지 않는다.
+- 전체 TypeScript와 Next.js 16.3.8 운영 빌드도 통과했다. 원격 통합·운영 배포는 별도로 확인하며 완료하지 않은 검사를 통과했다고 표시하지 않는다.
 
 외부 실행 로그의 접두사는 `checkpoint-25-`이다. 외부 APFS 작업 공간에서 lockfile대로 설치한 의존성을 사용했다. 공유 의존성·잠금 파일·학생 SRS 기록은 바꾸지 않았다. [Orca orchestration 스킬](/Users/pss/.agents/skills/orchestration/SKILL.md)로 major·secondary·elementary Codex 작업을 분리했고, 등록/화면/배포는 조정 작업이 소유한다. 남은 검수와 배포가 완료되면 이 기록을 갱신한다.
