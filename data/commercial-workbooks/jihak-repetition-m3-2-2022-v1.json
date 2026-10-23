@@ -1,0 +1,3967 @@
+{
+  "id": "jihak-repetition-m3-2-2022-v1",
+  "label": "지학사 풍산자 반복수학 중학 3-2 · 2022 개정 · 전 단원",
+  "coverage": "진도북 전 단원 답안 범위 9~103쪽 (284문항 주소, 정답 참조 277개, 도형·그래프 정답 미수록 7개)",
+  "metadata": {
+    "title": "풍산자 반복수학 중학수학 3-2 (2022 개정)",
+    "publisher": "지학사",
+    "grade": "중학 3학년 2학기",
+    "curriculum": "2022 개정",
+    "edition": "2022 개정 교육과정 · 발행연도·쇄 미확인"
+  },
+  "provenance": {
+    "kind": "publisher",
+    "description": "출판사 공개 정답과 풀이 40쪽 전체를 렌더링하여 확인한 진도북 전 단원 답안 참조. 인쇄된 교재 쪽 범위와 주 문항 번호를 보존한 284개 주소 중 277개 정답 참조를 시각 대조했고, 작도·그래프가 포함된 7개는 주 문항 전체를 null로 보존했다. 소문항은 answerText 안에 원래 순서로 묶었다. sourcePage는 1부터 세는 PDF 파일 쪽이며 교재 쪽이 아니다. sqrt(n)은 제곱근, a/b는 분수, 선분 AB는 윗줄이 있는 AB를 뜻한다. 표는 답 행을 왼쪽부터 읽는 텍스트로 옮겼고 문제에 주어진 변량 행은 재수록하지 않았다. 교사의 수동 채점용 참조이며 풀이·문제·이미지나 자동 채점을 제공하지 않는다. 공식 페이지의 2022 개정과 제목·구성을 확인했으나 발행연도·쇄·ISBN은 확인되지 않았다. PDF 제작일을 판본 연도로 사용하지 않았다. 원문 PDF SHA-256: 6f2970153237e8505771cb00f409eb95d123273dafbf168c79cfd30f7220b2f2.",
+    "reference": "https://www.jihak.co.kr/reference-book/middle-school/HSFXztywBFQ2bis8\nhttps://www.jihak.co.kr/api/v1/file/open-pdf-file?url=/public/reference-book/HSFXztywBFQ2bis8/t8Su8xAJamy0p8xc.pdf&fileName=%ED%92%8D%EC%82%B0%EC%9E%90+%EB%B0%98%EB%B3%B5%EC%88%98%ED%95%99+3-2+%EC%A0%95%EB%8B%B5%EA%B3%BC+%ED%92%80%EC%9D%B4.pdf"
+  },
+  "exercises": [
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 BC, 3, 선분 AB, 4, 선분 AB, 4; ⑵ 3, sqrt(7), 3sqrt(7)/7; ⑶ sqrt(5)/3, 2/3, sqrt(5)/2; ⑷ 4/5, 3/5, 4/3; ⑸ sqrt(2)/2, sqrt(2)/2, 1",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 AB, 선분 AB, 4, 선분 AC, 5, 선분 AB, 4/3; ⑵ 3/5, 4/5, 3/4; ⑶ 12/13, 5/13, 12/5; ⑷ 2/3, sqrt(5)/3, 2sqrt(5)/5",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 4, sqrt(5)/5, 2sqrt(5)/5, 1/2; ⑵ 3sqrt(10)/10, sqrt(10)/10, 3; ⑶ sqrt(3)/2, 1/2, sqrt(3); ⑷ 3/5, 4/5, 3/4",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ x, 2sqrt(3); ⑵ 10; ⑶ 2sqrt(5); ⑷ 3sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 4, 4 ❷ 3, sqrt(7) ❸ sqrt(7)/4, 3sqrt(7)/7; ⑵ ❶ sqrt(3), sqrt(3) ❷ sqrt(3), 1 ❸ 1/2, sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 01 삼각비의 뜻",
+        "page": "9~11",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "a/b, c/b, a/c",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ △AED; ⑵ ∠C (또는 ∠ACB); ⑶ C, 3/5, C, 4/5, C, 3/4",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ∠ADE; ⑵ 1/2, sqrt(3)/2, sqrt(3)/3",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ △DBA, △DAC; ⑵ ∠C (또는 ∠ACB); ⑶ sqrt(5)/5, 2sqrt(5)/5, 1/2; ⑷ ∠B (또는 ∠ABC); ⑸ 2sqrt(5)/5, sqrt(5)/5, 2",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 3/5, 4/5, 3/4 ② ∠B (또는 ∠ABD) ③ 4/5, 3/5, 4/3; ⑵ ① 13 ② 12/13, 5/13, 12/5 ③ 5/13, 12/13, 5/12",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ △ADE; ⑵ ∠B (또는 ∠ABC); ⑶ B, B, sqrt(3)/2, B, 1/2, B, sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 4; ⑵ AED; ⑶ ∠C (또는 ∠ACB); ⑷ C, C, 4/5, C, 3/5, C, 4/3",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 02 직각삼각형의 닮음과 삼각비의 값",
+        "page": "12~13",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "C, b/c, a/c, b/a",
+        "status": "reviewed",
+        "sourcePage": 2
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 03 입체도형에서 삼각비의 값",
+        "page": "14",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "❶ 6, 6sqrt(2), 6sqrt(3) ❷ sqrt(3)/3, sqrt(6)/3, sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 03 입체도형에서 삼각비의 값",
+        "page": "14",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5, 5, 5sqrt(2), sqrt(2)/2, sqrt(2)/2, 1",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 03 입체도형에서 삼각비의 값",
+        "page": "14",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(3), 5sqrt(2), 5, sqrt(3)/3, sqrt(6)/3, sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 03 입체도형에서 삼각비의 값",
+        "page": "14",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9, sqrt(65), 4, 4/9, sqrt(65)/9, 4sqrt(65)/65",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 03 입체도형에서 삼각비의 값",
+        "page": "14",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(a²+b²+c²), sqrt(a²+b²), c",
+        "status": "reviewed",
+        "sourcePage": 3
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5/12",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3/5",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "0",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(6)/3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/2",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "15",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "1/3",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 60, 1; ⑵ 1/2, 선분 AB, sqrt(3)/2, 선분 BC, sqrt(3)/3; ⑶ 선분 AC, sqrt(3)/2, 선분 BC, 1/2, 선분 BC, sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 4
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 45, sqrt(2); ⑵ 선분 AC, sqrt(2)/2, 선분 AC, sqrt(2)/2, 선분 BC, 1; ⑶ 선분 AB, sqrt(2)/2, 선분 BC, sqrt(2)/2, 선분 BC, 1",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 3sqrt(3)/2; ⑵ 3/2; ⑶ 1/2; ⑷ −sqrt(3); ⑸ sqrt(3)/2; ⑹ 1/2; ⑺ 3/2; ⑻ sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 45°; ⑵ 30°; ⑶ 60°",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 3, 6; ⑵ 3sqrt(2); ⑶ 8",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ sqrt(3)/2, sqrt(3)/2, sqrt(3), sqrt(2)/2, sqrt(2)/2, sqrt(3), sqrt(2)/2, sqrt(6); ⑵ 2sqrt(2); ⑶ 4; ⑷ 2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ sqrt(3)/3, 4, sqrt(3)/3, 4; ⑵ y=sqrt(3)x+6; ⑶ y=x+5",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 04 30°, 45°, 60°의 삼각비의 값",
+        "page": "16~18",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "A=30°, 45°, 60° 순서: sin A=1/2, sqrt(2)/2, sqrt(3)/2; cos A=sqrt(3)/2, sqrt(2)/2, 1/2; tan A=sqrt(3)/3, 1, sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 5
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 05 예각의 삼각비의 값",
+        "page": "19~20",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 선분 AB, 선분 AB ② 선분 OB, 선분 OB ③ 선분 OD, 선분 CD; ⑵ ① 선분 OB, 선분 OB, 선분 AB, 선분 AB ② z, z, 선분 OD, 1/(선분 CD); ⑶ ① y, 선분 OB, 선분 AB ② 선분 OD, 1/(선분 CD)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 05 예각의 삼각비의 값",
+        "page": "19~20",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 AB, 선분 OB, 선분 CD; ⑵ 선분 OB, 선분 AB, 1/(선분 CD); ⑶ 선분 OB, 선분 AB, 1/(선분 CD)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 05 예각의 삼각비의 값",
+        "page": "19~20",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 0.6293 ② 0.7771 ③ 0.8098; ⑵ ① 0.6428 ② 0.7660 ③ 0.8391; ⑶ ① 0.8090 ② 0.5878 ③ 1.3764",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 05 예각의 삼각비의 값",
+        "page": "19~20",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 AB, 선분 OB, 선분 CD",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 06 직선의 방정식과 삼각비의 값",
+        "page": "21",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "❶ −3, 0, 0, 4 ❷ 3, 4, 5 ❸ 4/5, 3/5, 4/3",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 06 직선의 방정식과 삼각비의 값",
+        "page": "21",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(2)/2, sqrt(2)/2, 1",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 06 직선의 방정식과 삼각비의 값",
+        "page": "21",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(5)/5, 2sqrt(5)/5, 1/2",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 06 직선의 방정식과 삼각비의 값",
+        "page": "21",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(3)/2, 1/2, sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 06 직선의 방정식과 삼각비의 값",
+        "page": "21",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 OB, 선분 OA, 선분 OB",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "30°",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "72sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12sqrt(3) cm",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "12 cm",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "22",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3/5",
+        "status": "reviewed",
+        "sourcePage": 6
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 07 0°, 90°의 삼각비의 값",
+        "page": "23",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "A=0°, 30°, 45°, 60°, 90° 순서: sin A=0, 1/2, sqrt(2)/2, sqrt(3)/2, 1; cos A=1, sqrt(3)/2, sqrt(2)/2, 1/2, 0; tan A=0, sqrt(3)/3, 1, sqrt(3), 정할 수 없다",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 07 0°, 90°의 삼각비의 값",
+        "page": "23",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2; ⑵ 0; ⑶ −1; ⑷ 0; ⑸ 1; ⑹ 1",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 07 0°, 90°의 삼각비의 값",
+        "page": "23",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 1; ⑵ −1/2; ⑶ 1/2; ⑷ −1/2; ⑸ 3−2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 07 0°, 90°의 삼각비의 값",
+        "page": "23",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "A=0°, 90° 순서: sin A=0, 1; cos A=1, 0; tan A=0, 정할 수 없다",
+        "status": "reviewed",
+        "sourcePage": 7
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 08 삼각비의 값의 대소 관계",
+        "page": "24",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ○; ⑶ ×; ⑷ ○; ⑸ ×",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 08 삼각비의 값의 대소 관계",
+        "page": "24",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ <; ⑵ >; ⑶ <; ⑷ <; ⑸ >",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 08 삼각비의 값의 대소 관계",
+        "page": "24",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 1, 증가; ⑵ 0, 감소; ⑶ 0, 증가",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 09 삼각비의 표",
+        "page": "25~26",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 0.6293; ⑵ 0.6691; ⑶ 0.7660; ⑷ 0.7547; ⑸ 0.8693; ⑹ 0.9004",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 09 삼각비의 표",
+        "page": "25~26",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 54°; ⑵ 56°; ⑶ 53°; ⑷ 55°; ⑸ 53°; ⑹ 54°",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 09 삼각비의 표",
+        "page": "25~26",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 0.5150, x, x, 0.5150, 51.50; ⑵ 6.249; ⑶ 16.774; ⑷ 2.796",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 09 삼각비의 표",
+        "page": "25~26",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 6.691, 0.6691, 0.6691, 48°; ⑵ 49°; ⑶ 50°; ⑷ 51°",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "3",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄷ, ㄴ, ㄱ, ㄹ",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "125°",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 1. 삼각비 / 스스로 점검하기",
+        "page": "27",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "64°",
+        "status": "reviewed",
+        "sourcePage": 8
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 01 직각삼각형의 변의 길이",
+        "page": "29~30",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① sin A, 10/x, 10/(sin 20°) ② tan A, 10/y, 10/(tan 20°); ⑵ ① 13sin 61° ② 13cos 61°; ⑶ ① 3tan 43° ② 3/(cos 43°); ⑷ ① 4/(tan 22°) ② 4/(sin 22°)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 01 직각삼각형의 변의 길이",
+        "page": "29~30",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 6, 6, 2.34; ⑵ 3.9; ⑶ 50",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 01 직각삼각형의 변의 길이",
+        "page": "29~30",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ tan 58°, 1.6, 16; ⑵ 13.2 m; ⑶ 22.5 m",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 01 직각삼각형의 변의 길이",
+        "page": "29~30",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ b cos A, b sin A; ⑵ c/(cos A), c tan A; ⑶ a/(sin A), a/(tan A)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 3 ② 3 ③ 4 ④ 5; ⑵ ① 4sqrt(3) ② 4 ③ 6 ④ 2sqrt(21)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 3sqrt(2) ② 60° ③ 2sqrt(6); ⑵ ① 3sqrt(3) ② 45° ③ 3sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ sqrt(13); ⑵ 6; ⑶ 4sqrt(3); ⑷ 2sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 30sqrt(7) m; ⑵ 60(sqrt(2)+sqrt(6)) m",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 02 일반 삼각형의 변의 길이",
+        "page": "31~33",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ c sin B, a, c cos B; ⑵ C, A, B, A",
+        "status": "reviewed",
+        "sourcePage": 10
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 03 삼각형의 높이",
+        "page": "34~35",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 30, tan 30°, (sqrt(3)/3)h ❷ 45, tan 45°, h ❸ (sqrt(3)/3)h, h, sqrt(3)/3+1, 5(3−sqrt(3)); ⑵ ❶ sqrt(3)h ❷ h ❸ 3(sqrt(3)−1)",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 03 삼각형의 높이",
+        "page": "34~35",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 60, tan 60°, sqrt(3)h ❷ 30, tan 30°, (sqrt(3)/3)h ❸ sqrt(3)h, (sqrt(3)/3)h, 2sqrt(3)/3, 9; ⑵ ❶ sqrt(3)h ❷ h ❸ 6(sqrt(3)+1)",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 03 삼각형의 높이",
+        "page": "34~35",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 3(3−sqrt(3)); ⑵ 4(3+sqrt(3))",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 03 삼각형의 높이",
+        "page": "34~35",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ tan x+tan y; ⑵ tan x−tan y",
+        "status": "reviewed",
+        "sourcePage": 11
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2.5",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "130 m",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "30sqrt(3) m",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "sqrt(7) km",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "200(sqrt(3)−1) m",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5(sqrt(3)+1) cm",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "7 cm",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "36~37",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "(10−10sqrt(3)/3) m",
+        "status": "reviewed",
+        "sourcePage": 12
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ sin 30° ❷ sin 30°, 12sqrt(3); ⑵ ❶ 4sqrt(3)×sin 60° ❷ 18sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ sin 30°, 27; ⑵ 35sqrt(2); ⑶ 20sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 60, sin 60° ❷ sin 60°, 15; ⑵ ❶ 6×sin 45° ❷ 15; ⑶ ❶ 7×sin 30° ❷ 7",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 150, 24; ⑵ 6sqrt(3); ⑶ 14sqrt(2); ⑷ 4; ⑸ 75sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 8sqrt(2), sin 45°, 4, 10; ⑵ 8; ⑶ 12; ⑷ 10",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 3sqrt(3) ② sqrt(3) ③ 4sqrt(3); ⑵ ① 3sqrt(3) ② 9sqrt(3) ③ 12sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 04 삼각형의 넓이",
+        "page": "38~40",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ac, B; ⑵ 1/2, sin, B",
+        "status": "reviewed",
+        "sourcePage": 13
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 05 평행사변형의 넓이",
+        "page": "41~42",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2, 2, 4, 4, 12sqrt(3); ⑵ 42; ⑶ 12",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 05 평행사변형의 넓이",
+        "page": "41~42",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2, 2, 8, 8, 30, 40; ⑵ 72; ⑶ 6sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 05 평행사변형의 넓이",
+        "page": "41~42",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 6, 6, 120, 18sqrt(3); ⑵ 8sqrt(2); ⑶ 25/2; ⑷ 32sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 05 평행사변형의 넓이",
+        "page": "41~42",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 5, 150, 5/2, 8; ⑵ 4; ⑶ 6",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 05 평행사변형의 넓이",
+        "page": "41~42",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ab, B; ⑵ sin, B",
+        "status": "reviewed",
+        "sourcePage": 14
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 06 사각형의 넓이",
+        "page": "43",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 1/2, 1/2, 4, 60, 3sqrt(3); ⑵ 30sqrt(3); ⑶ 21sqrt(2)/2; ⑷ 7; ⑸ 36sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "5sqrt(3)",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅰ. 삼각비 / 2. 삼각비의 활용 / 스스로 점검하기",
+        "page": "44",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 15
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 이등분, 선분 AM, 2; ⑵ 8; ⑶ 5",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 수직이등분선, 중심, 지름, 1/2, 1/2, 10; ⑵ 9; ⑶ 7",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 1/2, 8, 8, 6; ⑵ 5; ⑶ sqrt(13); ⑷ 18",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 1/2, 2, r−1, r−1, 5, 5/2; ⑵ 10; ⑶ 13; ⑷ 8",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ r−6 / r−6, r−6, 180, 15, 15; ⑵ 5; ⑶ 6; ⑷ 13",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 01 현의 수직이등분선",
+        "page": "47~49",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 10, 5 / 10, 5, 10, 5, 75, 10sqrt(3); ⑵ 2sqrt(3); ⑶ 4",
+        "status": "reviewed",
+        "sourcePage": 16
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 02 원의 중심과 현의 길이",
+        "page": "50~51",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 8; ⑵ 12; ⑶ 5",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 02 원의 중심과 현의 길이",
+        "page": "50~51",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 8; ⑵ 6; ⑶ 4",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 02 원의 중심과 현의 길이",
+        "page": "50~51",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 3, 4, 4, 8, 8; ⑵ 4sqrt(6); ⑶ 10; ⑷ sqrt(7)",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 02 원의 중심과 현의 길이",
+        "page": "50~51",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 AC, 65, 50; ⑵ 40°; ⑶ 50°; ⑷ 55°",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 02 원의 중심과 현의 길이",
+        "page": "50~51",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 CD; ⑵ 선분 ON",
+        "status": "reviewed",
+        "sourcePage": 17
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4sqrt(5) cm",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "10 cm",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "52",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "18 cm",
+        "status": "reviewed",
+        "sourcePage": 18
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 90, 360, 135; ⑵ 60°; ⑶ 155°; ⑷ 선분 PB, 75, 180, 30; ⑸ 70°; ⑹ 35°",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 10; ⑵ 6; ⑶ 6; ⑷ 3",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 90, 6, 8; ⑵ 2sqrt(5); ⑶ 3sqrt(7); ⑷ 3sqrt(5)",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 90, 9, 12, 12; ⑵ 15; ⑶ 5; ⑷ 4",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 11, 11, 3, 11, 2, 3, 2, 5; ⑵ 5; ⑶ 4",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 03 원의 접선의 길이",
+        "page": "53~55",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2; ⑵ 선분 OA; ⑶ 선분 PB",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 04 삼각형의 내접원",
+        "page": "56~57",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2, 5, 3, 8; ⑵ 9; ⑶ 10; ⑷ x, 10−x, 12−x, 10−x, 14, 7; ⑸ 5; ⑹ 4",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 04 삼각형의 내접원",
+        "page": "56~57",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 4, 3, 3−r, 4−r, 3−r, 2, 1; ⑵ 2; ⑶ 3",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 04 삼각형의 내접원",
+        "page": "56~57",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 8, 34, 2, 34, 17; ⑵ 6; ⑶ 20",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 04 삼각형의 내접원",
+        "page": "56~57",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 AF, 선분 BE, 선분 CF; ⑵ x+y+z",
+        "status": "reviewed",
+        "sourcePage": 19
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 05 원에 외접하는 사각형",
+        "page": "58~59",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 BC, x, 12; ⑵ 5; ⑶ 7; ⑷ 5; ⑸ 11; ⑹ 10; ⑺ 2; ⑻ 8",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 05 원에 외접하는 사각형",
+        "page": "58~59",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 선분 AB, 6, 14, 14, 28; ⑵ 38; ⑶ 30; ⑷ 26",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 05 원에 외접하는 사각형",
+        "page": "58~59",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 8 ② x+8 ③ 선분 AE, x, x+8, 12; ⑵ ① 6 ② x+6 ③ 6",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 05 원에 외접하는 사각형",
+        "page": "58~59",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "선분 AD, 선분 BC",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "36π cm²",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "24 cm",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "9 cm",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "2 cm",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "80 cm²",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 1. 원과 직선 / 스스로 점검하기",
+        "page": "60~61",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "4",
+        "status": "reviewed",
+        "sourcePage": 20
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 01 원주각과 중심각",
+        "page": "63~64",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "이등변, ∠OAP, 1/2",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 01 원주각과 중심각",
+        "page": "63~64",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 중심각, 원주각, 1/2, 1/2, 55; ⑵ 35°; ⑶ 45°; ⑷ 110°; ⑸ 60°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 01 원주각과 중심각",
+        "page": "63~64",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 중심각, 원주각, 2, 2, 60; ⑵ 80°; ⑶ 100°; ⑷ 240°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 01 원주각과 중심각",
+        "page": "63~64",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 360, 160, 160, 80; ⑵ 130°; ⑶ 115°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 01 원주각과 중심각",
+        "page": "63~64",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 원주, 1/2; ⑵ 중심, 2",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 35°; ⑵ 55°; ⑶ 60°; ⑷ 72°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 36, 2, 72; ⑵ ∠x=40°, ∠y=80°; ⑶ ∠x=24°, ∠y=24°; ⑷ ∠x=110°, ∠y=220°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ APB, 35, BRC, 20, 35, 20, 55; ⑵ 50°; ⑶ 15°; ⑷ 42°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 40, 110, 70; ⑵ ∠x=45°, ∠y=40°; ⑶ ∠x=30°, ∠y=80°; ⑷ ∠x=50°, ∠y=92°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 30°; ⑵ 45°; ⑶ 90, 90, 70, 70; ⑷ 35°; ⑸ 60°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 90, ACD, 50, 90, 50, 40; ⑵ 38°; ⑶ 25°; ⑷ 65°",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 02 원주각의 성질",
+        "page": "65~67",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 같다; ⑵ 90",
+        "status": "reviewed",
+        "sourcePage": 22
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 20°; ⑵ 33°; ⑶ 28°; ⑷ 30°; ⑸ 1/2, 1/2, 42; ⑹ 60°; ⑺ 72°",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 4; ⑵ 7; ⑶ 1/2, 35, 10; ⑷ 12",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 23, 46; ⑵ 18°; ⑶ 60°; ⑷ 30, 30, 30, 15",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 52, 8; ⑵ 6; ⑶ 12; ⑷ 20, 20, 32",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2, 3, 60; ⑵ 75°; ⑶ 20°",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 03 원주각의 크기와 호의 길이",
+        "page": "68~70",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 같다; ⑵ 같다; ⑶ 정비례",
+        "status": "reviewed",
+        "sourcePage": 23
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "∠x=115°, ∠y=65°",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "15π cm²",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "105°",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "50°",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "11",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "57°",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "12",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "13",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "14",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "71~72",
+        "number": "15",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 24
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 04 네 점이 한 원 위에 있을 조건",
+        "page": "73",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ×; ⑶ ×; ⑷ ○; ⑸ ×; ⑹ ○",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 04 네 점이 한 원 위에 있을 조건",
+        "page": "73",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 25, 25, 75; ⑵ 60°; ⑶ 80°",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 04 네 점이 한 원 위에 있을 조건",
+        "page": "73",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "=",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 05 원에 내접하는 사각형의 성질",
+        "page": "74~75",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 90, 90, 120, 60; ⑵ ∠x=115°, ∠y=50°; ⑶ 180, 85, 85, 95; ⑷ ∠x=75°, ∠y=60°; ⑸ 70, 70, 110, 110, 220; ⑹ ∠x=80°, ∠y=100°",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 05 원에 내접하는 사각형의 성질",
+        "page": "74~75",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 75; ⑵ 108°; ⑶ 85, 95, 95; ⑷ 80°; ⑸ 86, 86, 58; ⑹ 75°; ⑺ 17°",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 05 원에 내접하는 사각형의 성질",
+        "page": "74~75",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ∠C, ∠B; ⑵ ∠A",
+        "status": "reviewed",
+        "sourcePage": 25
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 06 사각형이 원에 내접하기 위한 조건",
+        "page": "76",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ○; ⑶ ×; ⑷ ×; ⑸ ○; ⑹ ×",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 06 사각형이 원에 내접하기 위한 조건",
+        "page": "76",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 한다, 180, 62; ⑵ 한다, 72, 108",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 06 사각형이 원에 내접하기 위한 조건",
+        "page": "76",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 180; ⑵ 대각",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "90, 90, BCA, 90, BCA, BCA",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 74°; ⑵ 38°; ⑶ 84°",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 52, 40; ⑵ ∠x=90°, ∠y=60°; ⑶ ∠x=34°, ∠y=100°; ⑷ ∠x=60°, ∠y=35°",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 70, 70, 140; ⑵ 60°; ⑶ 50°; ⑷ 40°",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 180, 180, 110, 30, 110, 40; ⑵ 32°; ⑶ 70°; ⑷ 45°",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 60, 90, 90, 30, 30, 30; ⑵ 66°; ⑶ 46°",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 07 접선과 현이 이루는 각",
+        "page": "77~79",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ∠BCA; ⑵ ∠CBA",
+        "status": "reviewed",
+        "sourcePage": 26
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "94°",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "∠x=116°, ∠y=20°",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "34°",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅱ. 원의 성질 / 2. 원주각 / 스스로 점검하기",
+        "page": "80",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 27
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 01 편차",
+        "page": "83~84",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 편차(왼쪽부터): 0, −2, −1, 3; ⑵ 0; ⑶ 9, 양수; ⑷ 4, 5, 음수; ⑸ 가깝다",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 01 편차",
+        "page": "83~84",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "편차(왼쪽부터): ⑴ 0, −2, −1, 3; ⑵ 1, −1, −2, −4, 6; ⑶ 1, −1, 4, −4; ⑷ 2, −1, 4, −2, 1, −4",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 01 편차",
+        "page": "83~84",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 편차(왼쪽부터): 4, −1, −3, 0 / 4, 8; ⑵ 편차(왼쪽부터): 4, −2, 1, 0, −3 / 5, 6; ⑶ 편차(왼쪽부터): −2, 2, −1, 4, −3 / 5, 16; ⑷ 편차(왼쪽부터): 7, 2, −4, −2, −3 / 5, 13; ⑸ 편차(왼쪽부터): −1, 1, −4, 3, 4, −3 / 6, 19",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 01 편차",
+        "page": "83~84",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 0, 0, 3; ⑵ −6; ⑶ −4; ⑷ 6",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 01 편차",
+        "page": "83~84",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 산포도; ⑵ 편차, 0",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 02 분산과 표준편차",
+        "page": "85~86",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 편차: −3, 3, −4, 5, −1 / (편차)²: 9, 9, 16, 25, 1 / ❶ 60, 5, 12 ❷ 12, 2sqrt(3); ⑵ 편차: 2, −1, 1, −2, 0 / (편차)²: 4, 1, 1, 4, 0 / ❶ 10, 5, 2 ❷ 2; ⑶ 편차: −2, 1, 5, 4, −7, −1 / (편차)²: 4, 1, 25, 16, 49, 1 / ❶ 96, 6, 16 ❷ 16, 4",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 02 분산과 표준편차",
+        "page": "85~86",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 20, 5 ❷ 편차: −1, 1, −3, 3 ❸ (편차)²: 1, 1, 9, 9 ❹ 20 ❺ 20, 5 ❻ sqrt(5); ⑵ ❶ 35, 7 ❷ 편차: −4, 0, 3, 2, −1 ❸ (편차)²: 16, 0, 9, 4, 1 ❹ 30 ❺ 30, 5, 6 ❻ sqrt(6)",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 02 분산과 표준편차",
+        "page": "85~86",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ❶ 0, −1 ❷ 20, 5 ❸ sqrt(5); ⑵ ❶ 2 ❷ 16, 4, 4 ❸ 2; ⑶ ❶ 0 ❷ 40, 5, 8 ❸ 2sqrt(2); ⑷ ❶ 4 ❷ 24, 6, 4 ❸ 2",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 02 분산과 표준편차",
+        "page": "85~86",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ① 5, 5, 1 ② −4, 16, 60 ③ 60, 12 ④ 2sqrt(3); ⑵ ① 7 ② 50 ③ 50, 5, 10 ④ sqrt(10); ⑶ ① 3 ② 48 ③ 48, 6, 8 ④ 2sqrt(2)",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 02 분산과 표준편차",
+        "page": "85~86",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 제곱, 편차, 변량; ⑵ 분산",
+        "status": "reviewed",
+        "sourcePage": 28
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ×; ⑵ ○; ⑶ ×; ⑷ ○",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ×; ⑶ ○; ⑷ ×; ⑸ ○",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ A 농장: 14 Brix, B 농장: 14 Brix; ⑵ A 농장: 26/5, B 농장: 14/5; ⑶ B 농장; ⑷ B 농장",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ A 동호회: 3시간, B 동호회: 3시간, C 동호회: 3시간; ⑵ A 동호회: 12/5, B 동호회: 2, C 동호회: 22/15; ⑶ C 동호회",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ×; ⑶ ×; ⑷ ○; ⑸ ×; ⑹ ○; ⑺ ○",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 03 자료의 해석",
+        "page": "87~88",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "<, <, A, B, A, B",
+        "status": "reviewed",
+        "sourcePage": 29
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "6회",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "78점",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "85",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "분산: 6, 표준편차: sqrt(6)회",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄴ, ㄷ",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 1. 산포도 / 스스로 점검하기",
+        "page": "89",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④, ⑤",
+        "status": "reviewed",
+        "sourcePage": 30
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 01 사분위수",
+        "page": "91",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 17; ⑵ 13; ⑶ 18",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 01 사분위수",
+        "page": "91",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 7; ⑵ 1, 2; ⑶ 9, 9",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 01 사분위수",
+        "page": "91",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 2, 4, 6, 7, 7, 10, 12, 12, 12, 14, 17, 20; ⑵ 2회; ⑶ 20회; ⑷ 11회; ⑸ 6.5회; ⑹ 13회",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 01 사분위수",
+        "page": "91",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "사분위수, 1, 2, 3",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 02 상자그림으로 나타내기",
+        "page": "92",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 02 상자그림으로 나타내기",
+        "page": "92",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 03 상자그림의 이해",
+        "page": "93~94",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 10개; ⑵ 20개; ⑶ 약 25%; ⑷ 약 50%; ⑸ ㉢; ⑹ ㉠",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 03 상자그림의 이해",
+        "page": "93~94",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 100점; ⑵ 45점; ⑶ 90점; ⑷ 55점; ⑸ 약 50%; ⑹ ㉡",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 03 상자그림의 이해",
+        "page": "93~94",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ×; ⑵ ○; ⑶ ×; ⑷ ○; ⑸ ×; ⑹ ×; ⑺ ×",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 03 상자그림의 이해",
+        "page": "93~94",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ○; ⑶ ×; ⑷ ○; ⑸ ×; ⑹ ○",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 03 상자그림의 이해",
+        "page": "93~94",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 최솟값, 제1사분위수, 중앙값(제2사분위수), 제3사분위수, 최댓값; ⑵ 25; ⑶ 짧을수록, 길수록",
+        "status": "reviewed",
+        "sourcePage": 31
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "95",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "95",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "29",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "95",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "50",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "95",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "ㄱ, ㄹ",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "95",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③, ④",
+        "status": "reviewed",
+        "sourcePage": 32
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 04 산점도",
+        "page": "96",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 04 산점도",
+        "page": "96",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": null
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 04 산점도",
+        "page": "96",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "산점도",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 05 산점도의 이해",
+        "page": "97~98",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 점, 9; ⑵ 점, 8; ⑶ 직선, 점, 6",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 05 산점도의 이해",
+        "page": "97~98",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 20명; ⑵ 80점; ⑶ 4명; ⑷ 45%; ⑸ 6명; ⑹ 30%",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 05 산점도의 이해",
+        "page": "97~98",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ C; ⑵ A, D; ⑶ 30%; ⑷ 3명; ⑸ 4명; ⑹ 30%",
+        "status": "reviewed",
+        "sourcePage": 33
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 06 상관관계",
+        "page": "99~100",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ㄱ, ㅂ; ⑵ ㄷ, ㄹ; ⑶ ㅂ; ⑷ ㄷ; ⑸ ㄴ, ㅁ",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 06 상관관계",
+        "page": "99~100",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 양; ⑵ 없다; ⑶ 음; ⑷ 음; ⑸ 양; ⑹ 없다; ⑺ 음; ⑻ 없다; ⑼ 양",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 06 상관관계",
+        "page": "99~100",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ㄱ; ⑵ ㄷ; ⑶ ㄴ",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 06 상관관계",
+        "page": "99~100",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 산점도, 양의; ⑵ 산점도, 음의; ⑶ 산점도, 없다",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 07 산점도와 상관관계의 이해",
+        "page": "101",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ ○; ⑵ ×; ⑶ ×; ⑷ ○",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 07 산점도와 상관관계의 이해",
+        "page": "101",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑴ 양의 상관관계; ⑵ A; ⑶ B; ⑷ D",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "1",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "20명",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "2",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "④",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "3",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "4",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "⑤",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "5",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "①, ③",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "6",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②, ④",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "7",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "8",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "②",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "9",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    },
+    {
+      "address": {
+        "volume": "진도북",
+        "section": "Ⅲ. 통계 / 2. 상자그림과 산점도 / 스스로 점검하기",
+        "page": "102~103",
+        "number": "10",
+        "subpart": ""
+      },
+      "key": {
+        "answerText": "③",
+        "status": "reviewed",
+        "sourcePage": 34
+      }
+    }
+  ]
+}
