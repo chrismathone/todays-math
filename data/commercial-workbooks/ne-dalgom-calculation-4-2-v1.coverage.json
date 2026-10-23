@@ -1,0 +1,3221 @@
+{
+  "packId": "ne-dalgom-calculation-4-2-v1",
+  "reviewDate": "2026-10-24",
+  "grading": "manual-reference-only",
+  "scope": {
+    "wholeRequestedQuickAnswerScope": false,
+    "allExpectedAddressesPresent": true,
+    "allAnswersPresent": false,
+    "wholeBookAddressAudit": false,
+    "definition": "본문 쪽이 인쇄된 Day 01~48의 모든 번호 문항",
+    "sourceQuickAnswerPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+    ],
+    "rowGranularity": "one row per printed numbered exercise; multiple answer parts combined"
+  },
+  "source": {
+    "productUrl": "https://www.nebooks.co.kr/pages/book/view.asp?c=BH02050008",
+    "pdfUrl": "https://upfile.neungyule.com/upload_admin/2023/10/%EB%8B%AC%EA%B3%B0%ED%95%9C%EA%B3%84%EC%82%B0%EB%A0%A5%20%EB%B9%A0%EB%A5%B8%EC%A0%95%EB%8B%B5_4-2(0).pdf",
+    "sha256": "bcb165c907d9586d9168465b7c96c4662c79b676c8328c2fe114f5c25e3122c4",
+    "pageCount": 40,
+    "byteCount": 4531239,
+    "sourceRelativePath": "elementary/pdfs/ne_dalgom_4-2.pdf",
+    "editionEvidence": {
+      "title": "달곰한 계산력 4-2",
+      "isbn": "9791125343110",
+      "publicationDate": "2023.11",
+      "curriculum": null,
+      "impression": null,
+      "productHtmlSha256": "eaccf75af3e29931898ccddc0fe99b5714a3aafdb5ea2ce99d592c39e8898f13"
+    },
+    "reviewedImages": [
+      {
+        "sourcePage": 1,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-001.png",
+        "sha256": "d214592f3a1a20cb3075557f978f3650f1482d7c045abfa95bbaee2ae6f5df4d"
+      },
+      {
+        "sourcePage": 2,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-002.png",
+        "sha256": "5eaf0f544fecf5a75319cd3e4a0ea9908eb8d1ac2ac6b660d16906dcf18c1f42"
+      },
+      {
+        "sourcePage": 3,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-003.png",
+        "sha256": "3cb028cd5dc361f03b38559686c1fae696ab5b03573297490c387f9f080612d9"
+      },
+      {
+        "sourcePage": 4,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-004.png",
+        "sha256": "e86c72fa1b992b638884e2cf43ec9043d701d3d573a847a5a7062436f6ec4958"
+      },
+      {
+        "sourcePage": 5,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-005.png",
+        "sha256": "11b4bca742e71034bc7740cf3298e62d5e549743ad5ef86431c043dc8246e06c"
+      },
+      {
+        "sourcePage": 6,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-006.png",
+        "sha256": "1bdc251a5dfe68a8216e16a9af1dfb212b8e872ec4150388e837b12b28f50919"
+      },
+      {
+        "sourcePage": 7,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-007.png",
+        "sha256": "831922967032055e01ff1c7697e032dce5d36eaf3c99156bc628567953db59cd"
+      },
+      {
+        "sourcePage": 8,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-008.png",
+        "sha256": "3a6721ab2a070d9b929b53e9004c420b880d3736ce13f7b2a81b9677181b91eb"
+      },
+      {
+        "sourcePage": 9,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-009.png",
+        "sha256": "6c91de8cddc04686e6eea4e55bec69d90fa62a9fa024ac8ea70af5176b60cbc6"
+      },
+      {
+        "sourcePage": 10,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-010.png",
+        "sha256": "c25ee2c325fa68ccca2616e2a92e43bd1fa846976eb8f0ab25cee62a617771a9"
+      },
+      {
+        "sourcePage": 11,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-011.png",
+        "sha256": "7cf590da1de4dc66395ecdfc39e4cad140c9e2f9881bc3760d17d09725651b7a"
+      },
+      {
+        "sourcePage": 12,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-012.png",
+        "sha256": "b3c844b48a5db87f148682dc707f19c209c674fc207110f6c754d4d00d4440bd"
+      },
+      {
+        "sourcePage": 13,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-013.png",
+        "sha256": "1717bb6d2e26af2d248bf2fc52fe4793b964c8a6110505de9c5d9cce11a29e74"
+      },
+      {
+        "sourcePage": 14,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-014.png",
+        "sha256": "5bb43a569ff3d2d76ff63552e5436999a00a5ec8bf7fca88235653a4fa216e4e"
+      },
+      {
+        "sourcePage": 15,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-015.png",
+        "sha256": "fc8228bae8644cc5eb6764922f6e02b65b70ca96261e87b7858c13f5659df33c"
+      },
+      {
+        "sourcePage": 16,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-016.png",
+        "sha256": "cceeb94ce291a78d68ee71298340ede57ebb9677e511795433eccbb8824fa5c2"
+      },
+      {
+        "sourcePage": 17,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-017.png",
+        "sha256": "de738caefe4add636d5ca7624d71b7c60994b3a9e2cc4cd83f13fcf1b5d20306"
+      },
+      {
+        "sourcePage": 18,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-018.png",
+        "sha256": "0c8ac35c669c198e6cbe1d3465e73d2de54c33603a3ba08fa29b46cd4339cfbf"
+      },
+      {
+        "sourcePage": 19,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-019.png",
+        "sha256": "9783160f6755f68107cf02facf32daad31f4e6f5a703d86ff2306b1f106e51de"
+      },
+      {
+        "sourcePage": 20,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-020.png",
+        "sha256": "121a916ddb7d70006dc22b56614cb43113ab3f68fa12071484e05bd52633c958"
+      },
+      {
+        "sourcePage": 21,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-021.png",
+        "sha256": "b6294792e6c70ff84003198df5246de5fda072fe2990f7ad9c028ef429ff3079"
+      },
+      {
+        "sourcePage": 22,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-022.png",
+        "sha256": "897e35cdae4d105693e081d199c012b0eefa4762165c6caff12585116a96461e"
+      },
+      {
+        "sourcePage": 23,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-023.png",
+        "sha256": "88264f4d6c0af59c488b73494e3dbee3f3f74c4e31ab9a5a778584c92b04ae5b"
+      },
+      {
+        "sourcePage": 24,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-024.png",
+        "sha256": "15f18b6ebfefb45645f394a3d83ae97ecacd2bdac220154f0cc51ac66a476999"
+      },
+      {
+        "sourcePage": 25,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-025.png",
+        "sha256": "722212614e3eb86f62cb8a7505b3c08d5496b8f4180bddcf41f9c12ba7d28337"
+      },
+      {
+        "sourcePage": 26,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-026.png",
+        "sha256": "4d8c548cfae2be8200e5bb2e9f4c51d41235b2da8916aa70b29368a293bf3a12"
+      },
+      {
+        "sourcePage": 27,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-027.png",
+        "sha256": "af2d1d5d3ef3d772b92787197db6e100342b04caf75b5d83a0741a7d793b7471"
+      },
+      {
+        "sourcePage": 28,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-028.png",
+        "sha256": "23d0c8cdb01a0354f47517f898140099ff0b77d873958fd21874551b93fd1f6a"
+      },
+      {
+        "sourcePage": 29,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-029.png",
+        "sha256": "f91e2e425a867c88a6221f5422513d2940dc597fdce493983da8d996bc74462f"
+      },
+      {
+        "sourcePage": 30,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-030.png",
+        "sha256": "3010229a21773b898cf8dab53ffc0eecd96b2d15a99053c3c8da5b20ccb21467"
+      },
+      {
+        "sourcePage": 31,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-031.png",
+        "sha256": "af6a6831fe98c918810d141b6c4e08611980c71e6d4749901c218ad465aa3f74"
+      },
+      {
+        "sourcePage": 32,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-032.png",
+        "sha256": "60cb283ba7f33dc9f0536f4d2e0282d1a2e104cdb3bc1e78cad0748b7abaf3ca"
+      },
+      {
+        "sourcePage": 33,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-033.png",
+        "sha256": "b57fa45a287094a64ad74608adb8e3a8d3f90cc5ccd0cdb3a65a667e155f3983"
+      },
+      {
+        "sourcePage": 34,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-034.png",
+        "sha256": "fb98c97aa5acb3021f888b1e6002990d72b40a85584aba58cbe218c22344f6fa"
+      },
+      {
+        "sourcePage": 35,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-035.png",
+        "sha256": "af963a5d5a19745661a129c7e2c2b57d66d094fae71ac69f84be39dc95c14bba"
+      },
+      {
+        "sourcePage": 36,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-036.png",
+        "sha256": "3a73f466fe2f8fda9701b503f1d7a84b38fcb08d70831828d7e4928f97ded8e6"
+      },
+      {
+        "sourcePage": 37,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-037.png",
+        "sha256": "1c9b0c85203e3729f80e07467294548e7be1a57d11db59e6e94c112c844e1385"
+      },
+      {
+        "sourcePage": 38,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-038.png",
+        "sha256": "d21b61d421f44779e228d0a3077a3e6d9c5a178e09a7e8a1184682b164b24b78"
+      },
+      {
+        "sourcePage": 39,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-039.png",
+        "sha256": "fd4ce10742a8bacc474680216bd78861e0c4aad2078ab6b897b1bcbabbd2ad91"
+      },
+      {
+        "sourcePage": 40,
+        "path": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/page-040.png",
+        "sha256": "c9070cb6e12c5c0ee90fd4c1c7f23445ddf4d2e4ea823a29e132b290d0b26638"
+      }
+    ]
+  },
+  "counts": {
+    "exercises": 975,
+    "reviewedKeys": 916,
+    "nullKeys": 59,
+    "unreviewedKeys": 0,
+    "omittedInScopeAddresses": 0,
+    "pageGroups": 96
+  },
+  "pageGroups": [
+    {
+      "volume": "4-2",
+      "section": "Day 01",
+      "page": "10",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 01",
+      "page": "11",
+      "expectedNumbers": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 02",
+      "page": "12",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 02",
+      "page": "13",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        1
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 03",
+      "page": "14",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 03",
+      "page": "15",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "exerciseCount": 13,
+      "reviewedKeyCount": 13,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 04",
+      "page": "16",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 04",
+      "page": "17",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 05",
+      "page": "22",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 05",
+      "page": "23",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 06",
+      "page": "24",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 06",
+      "page": "25",
+      "expectedNumbers": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 07",
+      "page": "26",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 07",
+      "page": "27",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 08",
+      "page": "28",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 08",
+      "page": "29",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 09",
+      "page": "34",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 09",
+      "page": "35",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 10",
+      "page": "36",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 10",
+      "page": "37",
+      "expectedNumbers": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 11",
+      "page": "38",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 11",
+      "page": "39",
+      "expectedNumbers": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 12",
+      "page": "40",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 12",
+      "page": "41",
+      "expectedNumbers": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 13",
+      "page": "46",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 7,
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 13",
+      "page": "47",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 14",
+      "page": "48",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 14",
+      "page": "49",
+      "expectedNumbers": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "exerciseCount": 9,
+      "reviewedKeyCount": 9,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 15",
+      "page": "50",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 15",
+      "page": "51",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 16",
+      "page": "52",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 16",
+      "page": "53",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 17",
+      "page": "58",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 17",
+      "page": "59",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 5,
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 18",
+      "page": "60",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "exerciseCount": 6,
+      "reviewedKeyCount": 6,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 18",
+      "page": "61",
+      "expectedNumbers": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        15,
+        16
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 19",
+      "page": "62",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 19",
+      "page": "63",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 20",
+      "page": "64",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 20",
+      "page": "65",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 21",
+      "page": "70",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 21",
+      "page": "71",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 3,
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 22",
+      "page": "72",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 22",
+      "page": "73",
+      "expectedNumbers": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 23",
+      "page": "74",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 23",
+      "page": "75",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 24",
+      "page": "76",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 24",
+      "page": "77",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 25",
+      "page": "82",
+      "expectedNumbers": [
+        "1",
+        "2"
+      ],
+      "exerciseCount": 2,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 1,
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 25",
+      "page": "83",
+      "expectedNumbers": [
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 3,
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 26",
+      "page": "84",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 4,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        21,
+        22
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 26",
+      "page": "85",
+      "expectedNumbers": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 27",
+      "page": "86",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        22
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 27",
+      "page": "87",
+      "expectedNumbers": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 7,
+      "reviewedKeyCount": 7,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 28",
+      "page": "88",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 28",
+      "page": "89",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        23
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 29",
+      "page": "94",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        24,
+        25
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 29",
+      "page": "95",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 30",
+      "page": "96",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 30",
+      "page": "97",
+      "expectedNumbers": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 31",
+      "page": "98",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 31",
+      "page": "99",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 32",
+      "page": "100",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 32",
+      "page": "101",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 33",
+      "page": "102",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 33",
+      "page": "103",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "exerciseCount": 19,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        27
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 34",
+      "page": "108",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 5,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 34",
+      "page": "109",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "exerciseCount": 4,
+      "reviewedKeyCount": 0,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        28
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 35",
+      "page": "110",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 35",
+      "page": "111",
+      "expectedNumbers": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 36",
+      "page": "112",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 36",
+      "page": "113",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 37",
+      "page": "114",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 37",
+      "page": "115",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 38",
+      "page": "116",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 38",
+      "page": "117",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "exerciseCount": 19,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        30
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 39",
+      "page": "122",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        31
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 39",
+      "page": "123",
+      "expectedNumbers": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 5,
+      "reviewedKeyCount": 1,
+      "nullKeyCount": 4,
+      "sourcePages": [
+        31,
+        32
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 40",
+      "page": "124",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 40",
+      "page": "125",
+      "expectedNumbers": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 41",
+      "page": "126",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "exerciseCount": 14,
+      "reviewedKeyCount": 14,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 41",
+      "page": "127",
+      "expectedNumbers": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 42",
+      "page": "128",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 42",
+      "page": "129",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 43",
+      "page": "130",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 43",
+      "page": "131",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "exerciseCount": 19,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 44",
+      "page": "136",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 44",
+      "page": "137",
+      "expectedNumbers": [
+        "4",
+        "5",
+        "6"
+      ],
+      "exerciseCount": 3,
+      "reviewedKeyCount": 3,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 45",
+      "page": "138",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "exerciseCount": 10,
+      "reviewedKeyCount": 10,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 45",
+      "page": "139",
+      "expectedNumbers": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "exerciseCount": 11,
+      "reviewedKeyCount": 11,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 46",
+      "page": "140",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 46",
+      "page": "141",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 47",
+      "page": "142",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 47",
+      "page": "143",
+      "expectedNumbers": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "exerciseCount": 8,
+      "reviewedKeyCount": 8,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        36
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 48",
+      "page": "144",
+      "expectedNumbers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "exerciseCount": 15,
+      "reviewedKeyCount": 15,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        37
+      ]
+    },
+    {
+      "volume": "4-2",
+      "section": "Day 48",
+      "page": "145",
+      "expectedNumbers": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "exerciseCount": 19,
+      "reviewedKeyCount": 19,
+      "nullKeyCount": 0,
+      "sourcePages": [
+        37
+      ]
+    }
+  ],
+  "nullKeyLedger": [
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 05",
+        "page": "22",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 05",
+        "page": "22",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 05",
+        "page": "22",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 05",
+        "page": "22",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 4,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "34",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "34",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "34",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "34",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "35",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "35",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "35",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 09",
+        "page": "35",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 7,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 13",
+        "page": "46",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 11,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "58",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "58",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "58",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "58",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "59",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "59",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "59",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 14,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "59",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 17",
+        "page": "59",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 15,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "70",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "70",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "70",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "70",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "71",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "71",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 21",
+        "page": "71",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 18,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 25",
+        "page": "82",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 25",
+        "page": "83",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 25",
+        "page": "83",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 25",
+        "page": "83",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 21,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "94",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 24,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "94",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "94",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "94",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "95",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "95",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "95",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 29",
+        "page": "95",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 25,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 34",
+        "page": "109",
+        "number": "6",
+        "subpart": ""
+      },
+      "sourcePage": 28,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 34",
+        "page": "109",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 28,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 34",
+        "page": "109",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 28,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 34",
+        "page": "109",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 28,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "122",
+        "number": "2",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "122",
+        "number": "3",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "122",
+        "number": "4",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "122",
+        "number": "5",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "123",
+        "number": "7",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "123",
+        "number": "8",
+        "subpart": ""
+      },
+      "sourcePage": 31,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "123",
+        "number": "9",
+        "subpart": ""
+      },
+      "sourcePage": 32,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    },
+    {
+      "address": {
+        "volume": "4-2",
+        "section": "Day 39",
+        "page": "123",
+        "number": "10",
+        "subpart": ""
+      },
+      "sourcePage": 32,
+      "reason": "색칠·가르기·지우기 그림이 답의 일부인 문항; 함께 적힌 수만으로 전체 답을 대체하지 않음"
+    }
+  ],
+  "outOfScope": [
+    {
+      "sourcePages": [
+        3,
+        6,
+        10,
+        13,
+        17,
+        20,
+        24,
+        27,
+        30,
+        34,
+        37
+      ],
+      "printedPages": [
+        "18",
+        "30",
+        "42",
+        "54",
+        "66",
+        "78",
+        "90",
+        "104",
+        "118",
+        "132",
+        "146"
+      ],
+      "reason": "연산 놀이터는 인쇄 문항 번호가 없음"
+    },
+    {
+      "sourcePages": [
+        38,
+        39,
+        40
+      ],
+      "sections": [
+        "연산 실력 점검하기 범위 1단계~7단계",
+        "연산 실력 점검하기 범위 8단계~11단계",
+        "연산 실력 점검하기 범위 1단계~11단계"
+      ],
+      "numberCounts": [
+        52,
+        56,
+        51
+      ],
+      "reason": "번호는 있으나 본문 쪽이 미기재되어 정확한 page 주소를 확정할 수 없음; 정답지 쪽을 본문 쪽으로 사용하지 않음"
+    },
+    {
+      "sourcePages": [
+        40
+      ],
+      "reason": "네모네모 로직은 번호 없는 그림 답"
+    }
+  ],
+  "reviewMethod": {
+    "coordinateFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/native-coordinates.json",
+    "extractionFile": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/extracted.json",
+    "correspondenceLedger": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/reviewed-correspondence.json",
+    "independentAddressInventory": "/Volumes/TodayWork/commercial-workbook-sources/expansion-20261024/elementary/ne_dalgom_4-2/independent-address-counts.json",
+    "allAnswerRegionsVisuallyInspected": true
+  }
+}
