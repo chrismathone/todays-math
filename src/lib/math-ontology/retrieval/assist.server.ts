@@ -4,7 +4,10 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { DataFactory } from "n3";
 import { db } from "@/lib/db";
-import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import {
+  ontologyCourseSectionLabel,
+  ontologyPlanSection,
+} from "./planIdentity";
 import { maskInsightQuery } from "@/lib/math-insight/inference";
 import { mathOntologyAssertionSchema } from "@/contracts/mathOntology.contract";
 import {
@@ -133,18 +136,13 @@ export async function handleOntologyAssist(request: Request) {
             ? await session.runtime.materialize(query, session.context)
             : session.runtime;
           const registry = slice.datasets().registry;
-          const nativeId = registry.getObjects(
-            nn(sectionIri),
-            nn(TM + "nativeId"),
-            null,
-          )[0]?.value;
-          requireOperation(
-            nativeId &&
-              registry
-                .getObjects(nn(sectionIri), nn(TM + "nativeNamespace"), null)
-                .some((v) => v.value === "course-section"),
-            "BINDING_MISMATCH",
+          const section = ontologyPlanSection(
+            registry,
+            slice.proofs(),
+            sectionIri,
           );
+          requireOperation(section, "BINDING_MISMATCH");
+          const nativeId = section.nativeId;
           const evidence = await ops.evidence.capture(actor, {
             target,
             graphVersion: session.runtime.identity.graphVersion,
@@ -177,11 +175,11 @@ export async function handleOntologyAssist(request: Request) {
                 {
                   label: "시작 단원",
                   before: p.preview.before?.startSectionId
-                    ? (getCourseSection(p.preview.before.startSectionId)
-                        ?.title ?? "이전 단원 표기 미확인")
+                    ? ontologyCourseSectionLabel(
+                        p.preview.before.startSectionId,
+                      )
                     : "설정 없음",
-                  after:
-                    getCourseSection(nativeId)?.title ?? "단원 표기 미확인",
+                  after: section.path,
                 },
                 {
                   label: "하루 문항 수",
