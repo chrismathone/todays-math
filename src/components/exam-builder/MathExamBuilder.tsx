@@ -233,6 +233,7 @@ export default function MathExamBuilder({
   return (
     <ExamBuilder
       source={source}
+      reviewSorting
       namedConditions={namedConditions}
       questions={editor.selected}
       onQuestionsChange={onQuestionsChange}

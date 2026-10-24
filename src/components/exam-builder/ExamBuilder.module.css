@@ -1249,6 +1249,36 @@ label.sequenceLesson {
 .orderPanel .conditionNote {
   padding-inline: 0;
 }
+.reviewSort {
+  display: grid;
+  gap: 4px;
+  margin-block: 4px 12px;
+}
+.reviewSort > label {
+  font-size: var(--text-caption);
+  color: var(--learn-muted);
+}
+.reviewSort > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.reviewSort select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-size: var(--text-body);
+}
+.reviewSort select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 .orderTable {
   width: 100%;
   table-layout: fixed;

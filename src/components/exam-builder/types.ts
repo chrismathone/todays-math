@@ -70,6 +70,8 @@ export interface ExamQuestionInfo {
   questionId?: string;
   scopeId: string;
   scopeLabel: string;
+  /** Curriculum order from the unit catalogue; absent means not yet confirmed. */
+  scopeOrder?: number;
   difficulty: string;
   detail?: string;
   /**
@@ -171,6 +173,8 @@ export interface ExamBuilderProps<T> {
   renderCandidate?: (item: T) => ReactNode;
   /** Answer and solution beside each reviewed question (math only). */
   renderAnswer?: (item: T) => ReactNode;
+  /** One-time reordering controls for the math review; manual moves remain available. */
+  reviewSorting?: boolean;
   renderOutput: (props: ExamBuilderOutputProps<T>) => ReactNode;
   /** Optional seed from the surrounding workspace; subject is already selected there. */
   initialScopeIds?: string[];

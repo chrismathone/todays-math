@@ -57,6 +57,11 @@ import QuestionPicker from "./QuestionPicker";
 import ReplaceDialog from "./ReplaceDialog";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
 import { useBuilderScrollFrame } from "./useBuilderScrollFrame";
+import {
+  REVIEW_SORT_OPTIONS,
+  sortReviewQuestions,
+  type ReviewSort,
+} from "./reviewSort";
 import s from "./ExamBuilder.module.css";
 
 export default function ExamBuilder<T>({
@@ -70,6 +75,7 @@ export default function ExamBuilder<T>({
   renderQuestion,
   renderCandidate,
   renderAnswer,
+  reviewSorting = false,
   renderOutput,
   initialScopeIds,
   initialGroup,
@@ -263,6 +269,7 @@ export default function ExamBuilder<T>({
   const [scopePage, setScopePage] = useState(1);
   const [scopeRestoreRequest, setScopeRestoreRequest] = useState(0);
   const [reviewPage, setReviewPage] = useState(0);
+  const [reviewSort, setReviewSort] = useState<ReviewSort>("difficulty-asc");
   const [picker, setPicker] = useState<{
     replaceId?: string;
     scopeId?: string;
@@ -759,6 +766,38 @@ export default function ExamBuilder<T>({
     setSwappedId(null);
     setHistory((current) => [...current.slice(-9), questions]);
     onQuestionsChange(next);
+  }
+  function applyReviewSort() {
+    const unknownScopes = questions.filter(
+      (item) => !Number.isFinite(source.info(item).scopeOrder),
+    ).length;
+    if (reviewSort === "scope" && unknownScopes === questions.length) {
+      setNotice("단원 정보를 확인한 뒤 정렬해 주세요.");
+      return;
+    }
+    const next = sortReviewQuestions(
+      questions,
+      source.info,
+      reviewSort,
+      difficulties,
+    );
+    const label = REVIEW_SORT_OPTIONS.find(
+      (option) => option.value === reviewSort,
+    )!.label;
+    change(next);
+    setReviewPage(0);
+    setNotice(
+      [
+        next === questions
+          ? `현재 문항은 이미 ${label}입니다.`
+          : `${label}으로 ${questions.length}문항을 정렬했습니다.`,
+        reviewSort === "scope" && unknownScopes
+          ? `단원 미확인 ${unknownScopes}문항은 뒤에 두었습니다.`
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
+    );
   }
   const reorder = useQuestionReorder(questions, change, reviewRef);
   const orderReorder = useQuestionReorder(
@@ -2074,6 +2113,34 @@ export default function ExamBuilder<T>({
                 <header className={s.panelHeader}>
                   <h2>문항 순서</h2>
                 </header>
+                {reviewSorting && (
+                  <div className={s.reviewSort}>
+                    <label htmlFor={`${uid}-review-sort`}>문항 정렬</label>
+                    <div>
+                      <select
+                        id={`${uid}-review-sort`}
+                        value={reviewSort}
+                        disabled={actionsDisabled || questions.length < 2}
+                        onChange={(event) =>
+                          setReviewSort(event.target.value as ReviewSort)
+                        }
+                      >
+                        {REVIEW_SORT_OPTIONS.map(({ value, label }) => (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
+                      <button
+                        type="button"
+                        disabled={actionsDisabled || questions.length < 2}
+                        onClick={applyReviewSort}
+                      >
+                        정렬
+                      </button>
+                    </div>
+                  </div>
+                )}
                 <p className={s.conditionNote}>
                   번호를 끌어 옮깁니다. 번호에서 Alt+위·아래 키로도 옮길 수
                   있습니다.
@@ -2248,6 +2315,7 @@ export default function ExamBuilder<T>({
                         }
                         onQuestionsChange(previous);
                         setHistory((current) => current.slice(0, -1));
+                        setNotice("이전 문항 구성으로 되돌렸습니다.");
                       }
                     }}
                   >

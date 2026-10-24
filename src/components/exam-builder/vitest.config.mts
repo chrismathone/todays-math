@@ -19,6 +19,7 @@ export default defineConfig({
       "src/__tests__/components/ArithmeticWorkbench.test.tsx",
       "src/__tests__/components/ArithmeticWorkbenchRouting.test.tsx",
       "src/__tests__/unit/mathExamBuilderSource.test.ts",
+      "src/__tests__/unit/examReviewSort.test.ts",
       "src/__tests__/unit/examComposeConditions.test.ts",
       "src/__tests__/unit/examConditionContract.test.ts",
       "src/__tests__/unit/exportPerMenu.test.ts",

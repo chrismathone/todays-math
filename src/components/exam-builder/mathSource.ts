@@ -588,6 +588,7 @@ export function createMathExamBuilderSource(
                 .familyKey,
             }),
         scopeLabel: item.section,
+        scopeOrder: unitsById.get(scopeId(item))?.orderIndex,
         difficulty: item.difficulty,
         format: formatOf(item),
         origin:

@@ -60,6 +60,7 @@ function Harness({
   onStepChange,
   canOutput = true,
   renderAnswer,
+  reviewSorting,
 }: {
   adapter: ExamBuilderSource<Item>;
   initial?: Item[];
@@ -67,6 +68,7 @@ function Harness({
   onStepChange?: (step: ExamBuilderStep) => void;
   canOutput?: boolean;
   renderAnswer?: (item: Item) => React.ReactNode;
+  reviewSorting?: boolean;
 }) {
   const [items, setItems] = useState(initial);
   const [title, setTitle] = useState("단원 평가");
@@ -88,6 +90,7 @@ function Harness({
         maxQuestions={80}
         renderQuestion={(item) => <p>문항 내용 {item.id}</p>}
         renderAnswer={renderAnswer}
+        reviewSorting={reviewSorting}
         renderOutput={({
           questions: current,
           title: heading,
@@ -1413,5 +1416,138 @@ describe("문항 교체 (W3 · Hi-fi 1)", () => {
       screen.queryByRole("dialog", { name: "문항 교체 · 01번" }),
     ).toBeNull();
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+  });
+});
+
+describe("math review sorting", () => {
+  it("sorts the actual sheet, supports undo and manual moves, and keeps the order in output", async () => {
+    const adapter = source();
+    render(
+      <Harness
+        adapter={adapter}
+        initial={questions}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    fireEvent.change(screen.getByLabelText("문항 정렬"), {
+      target: { value: "difficulty-desc" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("b,a,c");
+    fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    const order = within(screen.getByRole("region", { name: "문항 순서표" }));
+    fireEvent.keyDown(order.getByRole("button", { name: /^1번 문항 본문/ }), {
+      altKey: true,
+      key: "ArrowDown",
+    });
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    await screen.findByRole("region", { name: "실제 출력 연결" });
+    expect(vi.mocked(adapter.prepareOutput!).mock.lastCall![0]).toEqual([
+      questions[1],
+      questions[0],
+      questions[2],
+    ]);
+    expect(vi.mocked(adapter.prepareOutput!).mock.lastCall![0][0]).toBe(
+      questions[1],
+    );
+    fireEvent.click(screen.getByRole("button", { name: "검토로 돌아가기" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("b,a,c");
+  });
+
+  it("sorts all pages by confirmed curriculum order and returns both lists to the first page", async () => {
+    const sheet: Item[] = Array.from({ length: 8 }, (_, index) => ({
+      id: `q${8 - index}`,
+      scope: `u${8 - index}`,
+      difficulty: "기본",
+    }));
+    const adapter = source();
+    const baseInfo = adapter.info;
+    adapter.info = (item) => ({
+      ...baseInfo(item),
+      scopeOrder: Number(item.scope.slice(1)),
+    });
+    render(
+      <Harness
+        adapter={adapter}
+        initial={sheet}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    fireEvent.click(
+      within(
+        screen.getByRole("navigation", { name: "순서표 쪽 이동" }),
+      ).getByRole("button", { name: "다음" }),
+    );
+    expect(screen.getByText("문항 내용 q1")).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("문항 정렬"), {
+      target: { value: "scope" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent(
+      "q1,q2,q3,q4,q5,q6,q7,q8",
+    );
+    expect(screen.getByText("문항 내용 q1")).toBeInTheDocument();
+    expect(screen.queryByText("문항 내용 q8")).toBeNull();
+    expect(
+      within(
+        screen.getByRole("navigation", { name: "순서표 쪽 이동" }),
+      ).getByRole("button", { name: "이전" }),
+    ).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent(
+      "q8,q7,q6,q5,q4,q3,q2,q1",
+    );
+  });
+
+  it("keeps unknown unit ordering and unchanged lists out of undo history", () => {
+    render(
+      <Harness
+        adapter={source()}
+        initial={questions}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    const undo = screen.getByRole("button", { name: "↶ 되돌리기" });
+    fireEvent.change(screen.getByLabelText("문항 정렬"), {
+      target: { value: "scope" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    expect(
+      screen.getByText("단원 정보를 확인한 뒤 정렬해 주세요."),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    expect(undo).toBeDisabled();
+    fireEvent.change(screen.getByLabelText("문항 정렬"), {
+      target: { value: "difficulty-asc" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,c,b");
+    fireEvent.click(undo);
+    expect(undo).toBeDisabled();
+  });
+
+  it("keeps the controls opt-in and disables sorting with only one question", () => {
+    const view = render(
+      <Harness adapter={source()} initial={questions} initialStep="review" />,
+    );
+    expect(screen.queryByLabelText("문항 정렬")).toBeNull();
+    view.unmount();
+    render(
+      <Harness
+        adapter={source()}
+        initial={[questions[0]]}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    expect(screen.getByLabelText("문항 정렬")).toBeDisabled();
+    expect(screen.getByRole("button", { name: "정렬" })).toBeDisabled();
   });
 });

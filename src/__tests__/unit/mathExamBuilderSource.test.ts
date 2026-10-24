@@ -408,6 +408,7 @@ describe("Math exam builder source", () => {
       id: legacy.id,
       scopeId: unit.id,
       scopeLabel: unit.section,
+      scopeOrder: unit.orderIndex,
       difficulty: "기본",
     });
   });
