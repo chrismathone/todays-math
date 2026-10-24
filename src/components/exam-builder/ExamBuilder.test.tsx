@@ -1550,4 +1550,64 @@ describe("math review sorting", () => {
     expect(screen.getByLabelText("문항 정렬")).toBeDisabled();
     expect(screen.getByRole("button", { name: "정렬" })).toBeDisabled();
   });
+
+  it("does not announce a rejected sort or add it to undo history", () => {
+    const adapter = source({
+      info: (item) => ({
+        id: item.id,
+        questionId: "same-question",
+        scopeId: item.scope,
+        scopeLabel: "범위",
+        difficulty: item.difficulty,
+      }),
+    });
+    render(
+      <Harness
+        adapter={adapter}
+        initial={questions}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    fireEvent.change(screen.getByLabelText("문항 정렬"), {
+      target: { value: "difficulty-desc" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "정렬" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    expect(
+      screen.getByText(
+        "같은 문항의 형식이 함께 있습니다. 유지할 표현을 먼저 선택해 주세요.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/정렬했습니다|현재 문항은 이미/)).toBeNull();
+    expect(screen.getByRole("button", { name: "↶ 되돌리기" })).toBeDisabled();
+  });
+
+  it("clears the current-order notice after a later manual move", () => {
+    render(
+      <Harness
+        adapter={source()}
+        initial={questions}
+        initialStep="review"
+        reviewSorting
+      />,
+    );
+    const apply = screen.getByRole("button", { name: "정렬" });
+    fireEvent.click(apply);
+    fireEvent.click(apply);
+    expect(
+      screen.getByText("현재 문항은 이미 난이도 낮은 순입니다."),
+    ).toBeInTheDocument();
+    fireEvent.keyDown(
+      within(screen.getByRole("region", { name: "문항 순서표" })).getByRole(
+        "button",
+        { name: /^2번 문항 본문/ },
+      ),
+      { altKey: true, key: "ArrowDown" },
+    );
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    expect(
+      screen.queryByText("현재 문항은 이미 난이도 낮은 순입니다."),
+    ).toBeNull();
+  });
 });

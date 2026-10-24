@@ -756,16 +756,19 @@ export default function ExamBuilder<T>({
     group.items.push({ item, index });
   });
   function change(next: T[]) {
-    if (next === questions) return;
     if (duplicateQuestions(next)) {
+      setNotice("");
       setError(
         "같은 문항의 형식이 함께 있습니다. 유지할 표현을 먼저 선택해 주세요.",
       );
-      return;
+      return false;
     }
+    if (next === questions) return true;
+    setNotice("");
     setSwappedId(null);
     setHistory((current) => [...current.slice(-9), questions]);
     onQuestionsChange(next);
+    return true;
   }
   function applyReviewSort() {
     const unknownScopes = questions.filter(
@@ -784,7 +787,7 @@ export default function ExamBuilder<T>({
     const label = REVIEW_SORT_OPTIONS.find(
       (option) => option.value === reviewSort,
     )!.label;
-    change(next);
+    if (!change(next)) return;
     setReviewPage(0);
     setNotice(
       [
