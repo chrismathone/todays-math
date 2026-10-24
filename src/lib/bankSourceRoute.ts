@@ -15,6 +15,7 @@ import {
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 import { UnifiedBankQueryError } from "@/lib/unifiedPreview";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 
 /**
  * `…/problems/sources` 의 응답 하나 — 운영(`/api/studio`)과 dev 미리보기(`/api/dev/unified`)가 같이 쓴다.
@@ -33,6 +34,7 @@ export async function bankSourcesResponse(
   /** 최근 출제 빼기(`recent=1`)의 계정 — 라우트가 관문을 지난 뒤 넘긴다. */
   context?: BankQueryContext,
 ): Promise<Response> {
+  let view: string | null = null;
   try {
     const post = request?.method === "POST";
     const params = !request
@@ -42,7 +44,7 @@ export async function bankSourcesResponse(
         : new URL(request.url).searchParams;
     if (post && !params.has("view"))
       throw new UnifiedBankQueryError("보기를 정해 주세요.");
-    const view = params.get("view");
+    view = params.get("view");
     if (params.has("identity") && params.get("identity") !== "question")
       throw new UnifiedBankQueryError("알 수 없는 문항 보기입니다.");
     let value;
@@ -78,6 +80,20 @@ export async function bankSourcesResponse(
   } catch (error) {
     if (error instanceof UnifiedBankQueryError)
       return Response.json({ error: error.message }, { status: 400, headers });
+    const code =
+      error && typeof error === "object" && "code" in error
+        ? error.code
+        : undefined;
+    noteErrorLog({
+      detail:
+        error instanceof Error
+          ? (error.stack ?? `${error.name}: ${error.message}`)
+          : String(error),
+      context: {
+        bankSourceView: view ?? "counts",
+        ...(typeof code === "string" ? { bankSourceErrorCode: code } : {}),
+      },
+    });
     return Response.json(
       { error: "출처별 문항 수를 불러오지 못했습니다." },
       { status: 503, headers },

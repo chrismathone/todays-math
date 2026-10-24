@@ -125,6 +125,14 @@ export async function loadQuestionScopeCounts(
   );
 }
 
+// Opening the picker starts several reads together. Allow a queued read to
+// acquire a pooled connection before applying the separate 30-second read limit.
+const pickerTransactionOptions = {
+  isolationLevel: "RepeatableRead",
+  maxWait: 10_000,
+  timeout: 30_000,
+} as const;
+
 /** The first source-picker row needs no hidden book/kind/material aggregates. */
 export async function loadQuestionPickerGroups(params: URLSearchParams) {
   check(params);
@@ -141,7 +149,7 @@ export async function loadQuestionPickerGroups(params: URLSearchParams) {
       };
     };
     return key === null ? read() : cachedBankRead(`picker-groups:${key}`, read);
-  }), { isolationLevel: "RepeatableRead", timeout: 30000 });
+  }), pickerTransactionOptions);
 }
 
 const pickerBookFields = { id: true, grade: true, publisher: true, author: true, title: true } as const;
@@ -177,7 +185,7 @@ export async function loadQuestionPickerBooks(params: URLSearchParams) {
     return { view: "picker-books" as const, ...questionReadMetadata(params), grades, kinds: [...SOURCE_MATERIAL_KINDS],
       books: books.sort((a, b) => grades.indexOf(a.grade) - grades.indexOf(b.grade)
         || a.publisher.localeCompare(b.publisher, "ko") || (a.author ?? "").localeCompare(b.author ?? "", "ko") || a.id.localeCompare(b.id)) };
-  }, { isolationLevel: "RepeatableRead", timeout: 30000 });
+  }, pickerTransactionOptions);
 }
 
 /** Counts for the visible textbook grade plus already selected books only. */
@@ -203,7 +211,7 @@ export async function loadQuestionPickerBookCounts(params: URLSearchParams) {
     return process.env.BANK_READ_REVISION === "on" && key !== null
       ? withBankReadFingerprint(tx, () => cachedBankRead(`picker-book-counts:${key}`, read))
       : read();
-  }, { isolationLevel: "RepeatableRead", timeout: 30000 });
+  }, pickerTransactionOptions);
 }
 
 /** The kind column before any book is chosen: held questions per kind over every
@@ -224,7 +232,7 @@ export async function loadQuestionPickerKindCounts(params: URLSearchParams) {
     return process.env.BANK_READ_REVISION === "on" && key !== null
       ? withBankReadFingerprint(tx, () => cachedBankRead(`picker-kind-counts:${key}`, read))
       : read();
-  }, { isolationLevel: "RepeatableRead", timeout: 30000 });
+  }, pickerTransactionOptions);
 }
 
 const materialFields = {
@@ -276,7 +284,7 @@ export async function loadQuestionMaterialsPage(params: URLSearchParams, context
     return { view: "materials-page" as const, ...questionReadMetadata(params), total: sorted.length, page, pageSize: 20 as const,
       materials: materials.sort((a, b) => positions.get(a.id)! - positions.get(b.id)!).map((material) => ({ ...material, ...tally(buckets, "material", material.id) })),
       selectedAvailable: selectedIds.filter((id) => tally(buckets, "material", id).available > 0) };
-  }), { isolationLevel: "RepeatableRead", timeout: 30000 });
+  }), pickerTransactionOptions);
 }
 
 /** One repeatable read and one content-classification cache for all facet scopes. */

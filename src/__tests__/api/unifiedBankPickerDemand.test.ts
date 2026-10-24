@@ -26,8 +26,9 @@ import {
 import type { CountSql } from "@/lib/problem/questionCountSql";
 import { ACTUAL_FORMAT_VERSION, actualFormatDigest } from "@/lib/problem/actualFormat";
 import { classifyFormat } from "@/lib/problem/provenance";
+import { createErrorLogNotes, runWithErrorLogNotes } from "@/lib/errorLog/scope";
 vi.mock("server-only", () => ({}));
-afterEach(() => { vi.restoreAllMocks(); vi.unstubAllEnvs(); });
+afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllEnvs(); });
 const bookIds = [builderId(90001), builderId(90002), builderId(90003)];
 const materialId = (index: number) => builderId(91000 + index);
 const params = (view: string, extra: Record<string, string> = {}) =>
@@ -92,6 +93,104 @@ beforeEach(async () => {
 });
 
 describe("source picker scope and parity", () => {
+  it("waits for a busy connection before reading source panes and material pages", async () => {
+    vi.useFakeTimers();
+    let release!: () => void;
+    const busyConnection = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const transact = prismaTestDouble.$transaction.bind(prismaTestDouble);
+    // Model Prisma's acquisition deadline separately from the transaction's
+    // execution timeout. A live single-connection READ ONLY reproduction held
+    // the connection for 2.4s and returned P2028 with the old default (2s).
+    vi.spyOn(prismaTestDouble, "$transaction").mockImplementation(
+      async (read, options?: { maxWait?: number }) => {
+        await new Promise<void>((resolve, reject) => {
+          const deadline = setTimeout(
+            () =>
+              reject(
+                new Error(
+                  "P2028: Unable to start a transaction in the given time.",
+                ),
+              ),
+            options?.maxWait ?? 2000,
+          );
+          void busyConnection.then(() => {
+            clearTimeout(deadline);
+            resolve();
+          });
+        });
+        return transact(read);
+      },
+    );
+    const cases = [
+      [params("picker-groups"), unifiedBankPickerGroupsSchema],
+      [params("picker-books"), unifiedBankPickerBooksSchema],
+      [
+        params("picker-book-counts", { grade: "중2", books: bookIds[0] }),
+        unifiedBankPickerBookCountsSchema,
+      ],
+      [params("picker-kind-counts"), unifiedBankPickerKindCountsSchema],
+      [
+        params("materials-page", { books: bookIds[0], materials: materialId(1) }),
+        unifiedBankMaterialsPageSchema,
+      ],
+    ] as const;
+    const pending = cases.map(([query]) =>
+      bankSourcesResponse(
+        new Request("http://localhost/api/studio/problems/sources", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(query)),
+        }),
+        { "Cache-Control": "no-store" },
+      ),
+    );
+    await vi.advanceTimersByTimeAsync(2400);
+    release();
+    const responses = await Promise.all(pending);
+    for (const [index, response] of responses.entries()) {
+      expect(response.status).toBe(200);
+      expect(response.headers.get("cache-control")).toBe("no-store");
+      const value = cases[index][1].parse(await response.json());
+      expect(value.countUnit).toBe("question");
+      if (value.view === "picker-book-counts")
+        expect(value.books.map((book) => book.id).sort()).toEqual(
+          bookIds.slice(0, 2),
+        );
+      if (value.view === "materials-page")
+        expect(value.selectedAvailable).toEqual([materialId(1)]);
+    }
+  });
+
+  it("retains the failing pane and actual exception in server notes while returning the safe 503", async () => {
+    const cause = Object.assign(
+      new Error("Unable to start a transaction in the given time."),
+      { code: "P2028" },
+    );
+    vi.spyOn(prismaTestDouble, "$transaction").mockRejectedValueOnce(cause);
+    const notes = createErrorLogNotes();
+    const response = await runWithErrorLogNotes(notes, () =>
+      bankSourcesResponse(
+        new Request("http://localhost/api/studio/problems/sources", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ identity: "question", view: "picker-books" }),
+        }),
+        { "Cache-Control": "no-store" },
+      ),
+    );
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error: "출처별 문항 수를 불러오지 못했습니다.",
+    });
+    expect(notes.context).toEqual({
+      bankSourceView: "picker-books",
+      bankSourceErrorCode: "P2028",
+    });
+    expect(notes.details).toEqual([cause.stack]);
+  });
+
   it("reuses selected-book results only after a fresh enabled revision check and refreshes changed eligibility", async () => {
     // The enabled-production fast path requires the already backfilled format
     // facts. The other fixture cases deliberately exercise uncomputed facts.

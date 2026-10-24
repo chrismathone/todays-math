@@ -205,6 +205,104 @@ describe("source picker demand reads", () => {
     next.unmount();
     expect(signal?.aborted).toBe(true);
   });
+
+  it("retries a failed first textbook read with the saved books across grades and material kinds intact", async () => {
+    const chosenBooks = books.slice(0, 2).map((book) => book.id);
+    const calls: Record<string, string>[] = [];
+    let failBooks = true;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (_, init) => {
+        const body = JSON.parse(String(init?.body)) as Record<string, string>;
+        calls.push(body);
+        if (body.view === "picker-groups")
+          return Response.json({
+            ...metadata,
+            view: body.view,
+            sources: {
+              total: 60,
+              engine: 0,
+              school_textbook: 60,
+              past_exam: 0,
+              other: 0,
+            },
+          });
+        const visible = books.filter(
+          (book) =>
+            book.grade === body.grade || body.books?.split(",").includes(book.id),
+        );
+        if (body.view === "picker-books") {
+          if (failBooks) {
+            failBooks = false;
+            return Response.json(
+              { error: "출처별 문항 수를 불러오지 못했습니다." },
+              { status: 503 },
+            );
+          }
+          return Response.json({
+            ...metadata,
+            view: body.view,
+            grades: books.map((book) => book.grade),
+            kinds: ["형성 평가"],
+            books: visible,
+          });
+        }
+        if (body.view === "picker-book-counts")
+          return Response.json({
+            ...metadata,
+            view: body.view,
+            books: visible.map((book) => ({
+              id: book.id,
+              count: 20,
+              open: 18,
+              kinds: { "형성 평가": 20 },
+            })),
+          });
+        throw new Error(`Unexpected view: ${body.view}`);
+      }),
+    );
+    const apply = vi.fn();
+    render(
+      <SourcePicker
+        value={{
+          group: "school_textbook",
+          books: chosenBooks,
+          kinds: ["형성 평가"],
+        }}
+        filterGrade="중1"
+        returnFocus={createRef()}
+        onApply={apply}
+        onCancel={vi.fn()}
+        onCatalog={vi.fn()}
+      />,
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "출처별 문항 수를 불러오지 못했습니다.",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "다시 시도" }));
+    expect(await screen.findByRole("checkbox", { name: /^출판1/ })).toBeChecked();
+    const grades = screen.getByRole("group", { name: "과목" });
+    fireEvent.click(within(grades).getByRole("button", { name: /^중2/ }));
+    expect(await screen.findByRole("checkbox", { name: /^출판2/ })).toBeChecked();
+    await waitFor(() =>
+      expect(
+        screen.getByRole("checkbox", { name: /^형성 평가/ }),
+      ).toHaveAccessibleName(/40/),
+    );
+    expect(screen.getByRole("checkbox", { name: /^형성 평가/ })).toBeChecked();
+    expect(screen.queryByRole("alert")).toBeNull();
+    for (const call of calls.filter((call) => call.view !== "picker-groups"))
+      expect(call).toMatchObject({
+        identity: "question",
+        books: chosenBooks.join(","),
+      });
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    expect(apply).toHaveBeenCalledWith({
+      group: "school_textbook",
+      books: chosenBooks,
+      kinds: ["형성 평가"],
+    });
+  });
 });
 
 describe("자료 종류 · 교과서 전부 · 걸리는 문항 — 고른 책들의 합, 안 고르면 교과서 전부", () => {
