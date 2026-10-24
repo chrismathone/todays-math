@@ -13,8 +13,12 @@
 - `npx vitest run --config src/components/exam-builder/vitest.config.mts`: 20파일, 294시험 통과. 신규 정렬 단위/컴포넌트 회귀 외에 공통 검토·영어·연산·출력 관련 기존 회귀 포함.
 - `npx tsc --noEmit --project src/components/exam-builder/tsconfig.check.json`: 통과.
 - 변경 TypeScript/TSX ESLint: 통과.
-- 변경 파일의 어포던스 검사: 통과. 전역 `lint:affordance`는 변경하지 않은 `CommercialWorkbooks.module.css:292`의 `.workspace .checkbox` 선택자 1건으로 실패했다.
+- 변경 파일의 어포던스 검사: 통과. 최초 전역 `lint:affordance` 실패는 기존 `CommercialWorkbooks.module.css:292`의 선택자 1건이었다. 실제 사용처 5개가 모두 label임을 확인하고 `.workspace label.checkbox`로 좁힌 뒤 전역 검사도 통과했다.
 - `node scripts/qa/measure-builder-review-sort.mjs`: 실제 `MathExamBuilder`와 합성 문항 40개로 Chrome에서 1920/1280/1050/768/760/390/320px의 다섯 정렬, 전체 문항 보존, 되돌리기, 첫 쪽 복귀, 최소 44px 조작, 문서 가로 넘침 없음을 확인했다. 페이지 오류 0건. 결과는 [measurements.json](measurements.json), 캡처는 이 폴더의 `review-sort-*.png`다.
 - 1280px 및 390px 캡처를 직접 확인했다. 공통 인쇄 레이아웃은 수정하지 않았다.
 
 브라우저 검증은 자체 작성 예시 데이터와 로컬 컴포넌트 대상이다. 운영 계정의 시험지 저장·실제 출력 API 호출·운영 배포 성공으로 확대하지 않는다. API·DB·저장 형식·권한은 이 정렬 변경의 범위에 포함하지 않는다.
+
+## 적대적 리뷰 후속
+
+`060a562fd`에서 독립 재현으로 발견한 안내 결함 2건을 수정했다. 문항 중복 검사로 변경을 거부하면 정렬 성공을 알리지 않고, 이후 실제 문항 변경에는 이전 정렬 안내를 지운다. 중복 거부 시 문항·되돌리기 기록 보존과 정렬 후 Alt+방향키 이동의 안내 제거 회귀를 추가했다. 해당 검토 컴포넌트 46시험이 통과했다.
