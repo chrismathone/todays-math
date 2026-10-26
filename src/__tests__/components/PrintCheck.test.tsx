@@ -261,7 +261,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 151: 초등 엔진 D-164 — 식 뒤 조사 붙임 · 합쇼체 · 세로셈 틀(2026-10-21).
     // 152: D-164(2026-10-21) — 그림 자리 `[그림:n]`(③④).
     // 153: D-164(2026-10-21) — 한글 어절 줄바꿈 keep-all(②).
-    expect(ITEMS.length).toBe(153);
+    // 154: HWPX 수식 대수회 작업 규정 표준 맞춤(2026-10-26 — 시험지 한글화 패치 02 · 03).
+    expect(ITEMS.length).toBe(154);
     for (const id of [
       "question-smart-spacing-20261020",
       "answer-quick-key-h2",

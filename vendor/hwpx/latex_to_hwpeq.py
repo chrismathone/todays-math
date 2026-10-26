@@ -38,7 +38,8 @@ _TALL_INNER_RE = re.compile(
 
 
 def _upgrade_tall_set_braces(s: str) -> str:
-    """키 큰 내용을 품은 맨 ``\\{…\\}`` 를 ``\\left\\{…\\right\\}`` 로 승격."""
+    """짝이 맞는 맨 ``\\{…\\}`` 를 ``\\left\\{…\\right\\}`` 로 승격(표준 #36 — 2026-10-26 부터 전부,
+    그 전엔 키 큰 내용만)."""
     i = 0
     while True:
         j = s.find(r"\{", i)
@@ -62,7 +63,9 @@ def _upgrade_tall_set_braces(s: str) -> str:
         if depth:                      # 짝 없음 — 그대로 두고 종료
             return s
         inner = s[j + 2:k - 2]
-        if _TALL_INNER_RE.search(inner):
+        # 대수회 작업 규정 표준 #36 ``A=left{1,~2,~3 right}`` — 집합·수열 중괄호는 **전부** 자동크기
+        # (2026-10-26). 종전엔 키 큰 내용(_TALL_INNER_RE)일 때만 올리고 ``\{7,13\}`` 은 고정 리터럴.
+        if inner.strip():
             s = s[:j] + r"\left\{" + inner + r"\right\}" + s[k:]
             i = j + 7                  # \left\{ 뒤부터 재개
         else:
@@ -166,8 +169,10 @@ _SIM_RE = re.compile(r"\\sim(?![a-zA-Z])")
 # 앞 토큰이 LaTeX 명령(``\rightarrow``·``\wedge`` 등 관계·논리 연산자)이면 단항이다 —
 # 문자로 끝나 보이지만 피연산자가 아니다.
 _SIM_CMD_TAIL_RE = re.compile(r"\\[a-zA-Z]+$")
-_SIM_OPERAND_TAIL = "})]\\"        # 피연산자의 끝 — 이항(닮음).
+_SIM_OPERAND_TAIL = "})]\\'′"      # 피연산자의 끝 — 이항(닮음).
 # 끝의 역슬래시는 **과이스케이프**(``\\sim``) 잔재 — 판단 불가이므로 종전 동작(∽)을 쓴다.
+# 프라임(``'``)도 피연산자의 끝이다 — ``\triangle AGG' \sim \triangle AEF``·``\triangle A'B'C' \sim …``
+# 가 부정(∼)으로 떨어져 닮음 기호가 틸드로 인쇄됐다(사대부중2 25-2 서답형6 해설, 2026-10-06).
 
 
 def _split_negation_sim(s: str) -> str:
@@ -275,15 +280,149 @@ def _romanize_units(s: str) -> str:
 # 중괄호 형태 ``rm {g}`` 도 같이 받는다 — 단일 소문자 ``\mathrm{}`` 는 `_mathrm_repl` 이
 # 중괄호로 감싸므로(`_stop_roman_bleed` 오작동 차단, 2026-08-11) 백틱 보정을 놓치면 bare
 # ``20g``(→``20 rm`g``)와 간격이 달라진다. 중괄호는 벗기고 백틱 형태로 통일.
+# 앞이 닫는 괄호(``sqrt {3}``·``over {2}``·``)``)여도 단위다 — ``8\sqrt{3}\mathrm{cm}`` 가
+# ``8 sqrt {3}rm cm`` 로 붙어 나가던 것(대구일중3 26-2, 2026-09-30).
 _RM_UNIT_RE = re.compile(
-    r"([A-Za-z0-9])\s+rm\s+\{?("
+    r"([A-Za-z0-9]\s+|[})]\s*)rm\s+\{?("
     + "|".join(re.escape(u) for u in _NUM_TAIL_UNITS) + r")\}?(?![A-Za-z0-9])"
 )
 
 
 def _backtick_rm_units(s: str) -> str:
     """``<글자/숫자> rm <단위>`` → ``<글자/숫자> rm`<단위>`` (단위 앞 백틱 얇은공백)."""
-    return _RM_UNIT_RE.sub(lambda m: m.group(1) + " rm`" + m.group(2), s)
+    return _RM_UNIT_RE.sub(lambda m: m.group(1).rstrip() + " rm`" + m.group(2), s)
+
+
+# ── 대수회 작업 규정 표준(26.03.12) 맞춤 — 사용자 2026-10-26 "표준에 전부 맞출 것" ──────────
+# 확률 P·평균 E·분산 V 는 정자, 확률변수·사건은 이탤릭(표준 #38 ``rm P(it A cap B)``·#44
+# ``rm E(it X)=27``). 괄호 안에 **대문자**(확률변수 X·Z, 사건 A·B)가 있을 때만 확률 연산자로
+# 본다 — 다항식 ``P(x)``·``P(2)``·점 ``P(a, b)`` 는 소문자·숫자라 미매치. 이미 ``\mathrm`` 인 것은
+# 그대로 두고(점 좌표 ``\mathrm{P}(2,3)`` 보존), 맨 글자만 ``\mathrm`` 을 붙인다.
+_PROB_OP_RE = re.compile(r"(?<![A-Za-z\\])([PEV])(?=\s*(?:\\left\s*)?\()")
+_STYLE_OPEN_RE = re.compile(r"\\(?:mathrm|mathit|mathbf|text|operatorname)\s*\{\s*$")
+
+
+def _mark_prob_operators(s: str) -> str:
+    """``P(A\\cap B)``·``E(X)``·``V(X)`` 의 연산자 글자를 ``\\mathrm{…}`` 로(괄호 안 대문자일 때만)."""
+    if not re.search(r"[PEV]\s*(?:\\left\s*)?\(", s):
+        return s
+    out: list[str] = []
+    last = 0
+    for m in _PROB_OP_RE.finditer(s):
+        if _STYLE_OPEN_RE.search(s[:m.start()]):   # 이미 \mathrm{P} 등 — 그대로
+            continue
+        k = s.index("(", m.end())
+        depth, close = 0, None
+        for p in range(k, len(s)):
+            if s[p] == "(":
+                depth += 1
+            elif s[p] == ")":
+                depth -= 1
+                if depth == 0:
+                    close = p
+                    break
+        if close is None:
+            continue
+        inner = re.sub(r"\\[A-Za-z]+", "", s[k + 1:close])
+        if re.search(r"[A-Z]", inner):
+            out.append(s[last:m.start()])
+            out.append(r"\mathrm{" + m.group(1) + "}")
+            last = m.end()
+    out.append(s[last:])
+    return "".join(out)
+
+
+# 여집합은 대문자 C(표준 #37 ``(A-B ^{C} ) CUP X=X``). 원본·OCR 은 ``A^c`` 소문자도 섞여 온다
+# (corpus ^C 76 · ^c 48). 집합 뒤 — 대문자(프라임 허용)거나 **대문자만** 든 괄호 — 의 ``^c`` 만
+# 바꾼다. 숫자 지수 ``5^c``·식 ``(x+1)^c`` 는 그대로.
+_COMPLEMENT_RE = re.compile(r"\^\s*(?:\{\s*c\s*\}|c(?![A-Za-z]))")
+
+
+def _upper_complement(s: str) -> str:
+    """집합 뒤의 여집합 첨자 ``^c``·``^{c}`` → ``^{C}``."""
+    if "^" not in s or "c" not in s:
+        return s
+    out: list[str] = []
+    last = 0
+    for m in _COMPLEMENT_RE.finditer(s):
+        j = m.start()
+        while j > 0 and s[j - 1] == " ":
+            j -= 1
+        while j > 0 and s[j - 1] == "'":             # A'^c
+            j -= 1
+        prev = s[j - 1] if j else ""
+        ok = "A" <= prev <= "Z" and not (j >= 2 and s[j - 2].isalpha())   # 단독 대문자(Ac·AB 제외)
+        if prev in ")}":
+            pair, depth, k = {")": "(", "}": "{"}[prev], 0, j - 1
+            while k >= 0:
+                if s[k] == prev:
+                    depth += 1
+                elif s[k] == pair:
+                    depth -= 1
+                    if depth == 0:
+                        break
+                k -= 1
+            inner = s[k + 1:j - 1] if k >= 0 else ""
+            inner = re.sub(r"\\[A-Za-z]+", "", _COMPLEMENT_RE.sub("", inner))   # (A∩B^c)^c
+            ok = bool(re.search(r"[A-Z]", inner)) and not re.search(r"[a-z0-9]", inner)
+        if ok:
+            out.append(s[last:m.start()])
+            out.append("^{C}")
+            last = m.end()
+    out.append(s[last:])
+    return "".join(out)
+
+
+# ``rm P(`` 의 정자가 괄호 안 사건·확률변수까지 번지는 것 차단 — HWP rm 은 명시적 it 까지
+# 뒤 전체에 적용된다(도원중 실증). 표준 표기 그대로 ``rm P it (A cap B)``.
+_PROB_RM_BLEED_RE = re.compile(r"\brm\s+([PEV])\s*(?=(?:LEFT\s*)?\()")
+# 섭씨·화씨: 숫자와 ° 사이 1/4칸(표준 #47 ``15`° rm C``). 각도 ``60°`` 는 그대로(#26).
+_TEMP_UNIT_RE = re.compile(r"(\d)\s*°\s*(?:rm\s+)?([CF])(?![A-Za-z])")
+# 삼각함수의 각(대문자 한 글자)은 이탤릭 + 1/4칸(표준 #49 ``tan`A``).
+_TRIG_ANGLE_SPACE_RE = re.compile(r"\b(sin|cos|tan|cot|sec|csc)\s+([A-Z])(?![A-Za-z'])")
+
+
+def _vector_dot_product(s: str) -> str:
+    """벡터 내적 ``CDOT`` → ``⦁``(U+2981, 표준 #29 — 수식 BULLET·CDOT 대신 문자표 ⦁).
+
+    양쪽 피연산자 중 하나라도 벡터(``VEC {…}`` 또는 그것을 품은 괄호)면 내적으로 본다.
+    """
+    if "CDOT" not in s or "VEC" not in s:
+        return s
+
+    def _operand_has_vec(text: str, left: bool) -> bool:
+        t = text.rstrip() if left else text.lstrip()
+        if left:
+            if re.search(r"VEC\s*\{(?:[^{}]|\{[^{}]*\})*\}$", t):
+                return True
+            if t.endswith(")"):
+                depth = 0
+                for p in range(len(t) - 1, -1, -1):
+                    depth += t[p] == ")"
+                    depth -= t[p] == "("
+                    if depth == 0:
+                        return "VEC" in t[p:]
+            return False
+        if re.match(r"(?:LEFT\s*)?\(?\s*VEC\b", t):
+            return True
+        m = re.match(r"(?:LEFT\s*)?\(", t)
+        if m:
+            depth = 0
+            for p in range(m.end() - 1, len(t)):
+                depth += t[p] == "("
+                depth -= t[p] == ")"
+                if depth == 0:
+                    return "VEC" in t[:p]
+        return False
+
+    out, last = [], 0
+    for m in re.finditer(r"\s*\bCDOT\b\s*", s):
+        if _operand_has_vec(s[:m.start()], True) or _operand_has_vec(s[m.end():], False):
+            out.append(s[last:m.start()])
+            out.append(" ⦁ ")
+            last = m.end()
+    out.append(s[last:])
+    return "".join(out)
 
 
 def _space_value_commas(s: str) -> str:
@@ -301,6 +440,21 @@ def _space_value_commas(s: str) -> str:
     i, n = 0, len(s)
     while i < n:
         c = s[i]
+        # 집합 중괄호(리터럴 ``"{"…"}"``·자동크기 ``LEFT {…RIGHT }``)도 괄호와 같이 — 원소
+        # 나열 ``{1, 2, 3}`` 의 쉼표 뒤 띄우기(표준 #16·#36 ``A=left{1,~2,~3 right}``).
+        tok = next((t for t in ('"{"', "LEFT {") if s.startswith(t, i)), None)
+        if tok:
+            paren += 1
+            out.append(tok)
+            i += len(tok)
+            continue
+        tok = next((t for t in ('"}"', "RIGHT }") if s.startswith(t, i)), None)
+        if tok:
+            if paren > 0:
+                paren -= 1
+            out.append(tok)
+            i += len(tok)
+            continue
         if c == "(":
             paren += 1
             out.append(c)
@@ -777,9 +931,12 @@ class LaTeXToHWPConverter:
     # 그래서 ``TRIANGLE rm {ANC} = p TIMES …`` 의 변수 ``p`` 가 정자로 나갔다(왕선중 #9,
     # 사용자 2026-07-27 "it{p} 같은 느낌으로"). 라벨 뒤의 **단일 소문자 변수**만 ``it {p}`` 로
     # 감싸 이탤릭을 되살린다 — HWP 키워드(bar·angle·sqrt·lim …)는 모두 2자 이상이라 무영향.
+    # ⚠️ ``소문자/`` 바로 뒤 글자는 제외 — 복합 단위 ``km/h``·``m/s`` 의 분모 단위다
+    # (경북사대부고 미적분 #19 ``x rm`km/h`` 의 h 가 ``it {h}`` 로 기울던 것, 2026-09-18).
+    # ``rm A/x`` 처럼 대문자 라벨 뒤 나눗셈 변수는 종전대로 이탤릭 복원.
     _ROMAN_BLEED_SCAN = re.compile(
         r"(?P<style>(?<![A-Za-z])(?:rm|it)(?![A-Za-z]))"
-        r"|(?P<var>(?<![A-Za-z0-9_`{])[a-z](?![A-Za-z0-9_]))")
+        r"|(?P<var>(?<![A-Za-z0-9_`{])(?<![a-z]/)[a-z](?![A-Za-z0-9_]))")
 
     def _stop_roman_bleed(self, script: str) -> str:
         """``rm`` 이후 단일 소문자 변수를 ``it {x}`` 로 감싸 정자 번짐을 끊는다."""
@@ -967,6 +1124,10 @@ class LaTeXToHWPConverter:
         # 제외). 본문(italicize_stat=False)은 기하 \mathrm{P} 보존을 위해 건너뛴다.
         if italicize_stat:
             s = _STAT_ITALIC_RE.sub(r"\1", s)
+        # 확률 P·평균 E·분산 V 는 정자(표준 #38·#44) — 괄호 안 대문자(사건·확률변수)일 때만.
+        s = _mark_prob_operators(s)
+        # 여집합 첨자는 대문자 C(표준 #37) — 집합 뒤의 ``^c`` 만.
+        s = _upper_complement(s)
 
         # 순환소수 정규화: 소수점 뒤 \dot{} 연쇄를 \overline{...}로 합침.
         # (HWP는 dot 키워드의 over-dot를 렌더하지 못함 — bar(overline)만 정상. 실측 확정.)
@@ -1014,6 +1175,8 @@ class LaTeXToHWPConverter:
         # 도형 라벨(연속 대문자 2자+) 정자화: HWP 기본 이탤릭이라 선분/삼각형/
         # 사각형 라벨(AB, ABC, ABCD)이 기울어 보이는 것을 rm {…} 로 바로세운다.
         result = self._apply_roman_labels(result)
+        # ``rm P(A cap B)`` → ``rm P it (A cap B)`` — 사건·확률변수는 이탤릭(표준 #38).
+        result = _PROB_RM_BLEED_RE.sub(r"rm \1 it ", result)
 
         result = self._stop_roman_bleed(result)   # rm 번짐 차단(단일 소문자 변수)
         # 단위 정자화: 숫자 뒤 단위(kg, cm …)를 rm`<단위>로 (정자 + 살짝 띄움).
@@ -1040,6 +1203,10 @@ class LaTeXToHWPConverter:
         # 되어 ``,[ \t]+`` 가 못 잡았다(#16 정규분포 좌표, 2026-06-09) → 백틱도 매칭에 포함.
         # 괄호 안(좌표·인자) 쉼표는 공백 없이 붙은 ``(25,3)`` 도 ``,~`` 로(경상여고 대수 #11).
         result = _space_value_commas(result)
+        # 표준 #47·#49·#29: 섭씨·화씨 1/4칸, 삼각함수의 각 1/4칸, 벡터 내적 ⦁.
+        result = _TEMP_UNIT_RE.sub(lambda m: m.group(1) + "`°rm " + m.group(2), result)
+        result = _TRIG_ANGLE_SPACE_RE.sub(r"\1`\2", result)
+        result = _vector_dot_product(result)
 
         # 후처리: 다중 공백 정리
         result = re.sub(r"  +", " ", result).strip()
@@ -1101,6 +1268,13 @@ class LaTeXToHWPConverter:
             # "APMATRIX" 로 붙어 literal + 다글자 대문자 오로만화(rm {APMATRIX})로
             # 깨졌다(상원고 공수1 서답형4, 2026-06-12).
             lead = " " if m.start() > 0 and m.string[m.start() - 1].isalnum() else ""
+            if env == "pmatrix":
+                # 대수회 작업 규정 표준 #54 ``LEFT ( ``2~~3``#``4~~5 RIGHT )`` — 괄호 안 1/4칸×2
+                # 여백 + 열 사이 두 칸. PMATRIX 는 괄호에 붙고 열 간격이 좁아 3×3 이 "207135 82"
+                # 처럼 붙어 읽혔다(2026-10-26 렌더 비교). 열 맞춤은 MATRIX 에 맡긴다(표준 예처럼
+                # 칸을 손으로 세지 않아도 음수·식 항목까지 가지런하다).
+                content = re.sub(r"\s*&\s*", " ~~& ", content)
+                return lead + "LEFT ( `` MATRIX {" + content + "} `` RIGHT )"
             return lead + hwp_env + " {" + content + "}"
 
         s = self._env_pattern.sub(_env_repl, s)
@@ -1152,7 +1326,9 @@ class LaTeXToHWPConverter:
         def _mathrm_repl(m: "re.Match") -> str:
             lead = " " if (m.start() > 0 and m.string[m.start() - 1].isalnum()) else ""
             txt = m.group("txt")
-            if re.fullmatch(r"[a-z]", txt):
+            # 단일 소문자(``m``·``g``) 또는 한 글자 분자 복합 단위(``m/s``)는 중괄호로 감싸
+            # 번짐 차단기(_stop_roman_bleed)가 rm 자신의 피연산자를 기울이지 않게 한다.
+            if re.fullmatch(r"[a-z]", txt) or re.match(r"[a-z]/[A-Za-z]", txt):
                 txt = "{" + txt + "}"
             base = lead + "rm " + txt
             tail = m.string[m.end():]
