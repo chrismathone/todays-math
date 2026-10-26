@@ -1,3 +1,5 @@
+끝 — 가지 `chrismathone/topic-vocab-261020` · 커밋 `3817b1288afc945b3a5e9e923fa19b1c9f11d53e`
+
 # 단원 분류표 새 판(큰분류ver.261020) 사용처 대조
 
 2026-10-26. 기준 가지 `chrismathone/topic-vocab-261020`, 시작점 `a0129ae31`(origin/main). 전달본 `D:/시험지 한글화/docs/export/todays-math/04-단원분류표-261020.md`와 `drop-in/topic-vocab/topic_vocab.json`·`topic_vocab.py`·`test_topic_vocab.py`를 읽기 전용으로 대조했다. 이번 표는 **중등 ①을 `[중단원]`, 고등 ⅰ)를 `[소단원]`** 메타에 쓰는 대수회 어휘다. DB의 `Unit.chapter`·`Unit.section`, RPM 중단원, 화면의 단원 표시는 각각 다른 출처다.
