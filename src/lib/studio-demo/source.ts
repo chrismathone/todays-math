@@ -11,5 +11,8 @@ export const STUDIO_DEMO_SOURCE = {
   sha256: "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
 } as const;
 
-/** 녹화한 응답을 실제 걸린 시간의 몇 배 뒤에 돌려주나 — 원장님 «일반 분석시간의 절반정도 속도». */
-export const STUDIO_DEMO_SPEED = 0.5;
+/**
+ * 녹화한 응답을 실제 걸린 시간의 몇 배 뒤에 돌려주나 — 처음은 원장님 «일반 분석시간의 절반정도 속도»(0.5).
+ * 2026-11-11 «시연속도를 30%만 줄여줘» — 실제 시간에서 30%만 줄인 0.7.
+ */
+export const STUDIO_DEMO_SPEED = 0.7;
