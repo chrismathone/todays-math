@@ -1,0 +1,254 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쪽 순서 조정 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백 · 상자 · 실제 글자 크기만. 색 · 장식은 Hi-fi 단계(05 §0-3).
+   기준 화면: 문제 추출 ② 영역 지정 · ③ 검수(StudioView.tsx 2026-11-11 main).
+   지금 쪽 이동 줄 = «이전 쪽 | 쪽 선택 1 / 8 | 다음 쪽 | 회전(②만) | 확대 비율(②만)». 쪽 차례를 바꾸는 곳은 없다.
+   점선 상자 = 이번에 더하는 자리. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --sheet: #fff; --ink: #161616; --ink-2: #61615e; --rule: #b9b9b6; --soft: #e7e7e4; --pick: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+.board { max-width: 1240px; margin: 0 auto; padding: 28px 24px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+h1 { margin: 0 0 8px; font-family: var(--serif); font-weight: 800; font-size: 30px; letter-spacing: -.02em; }
+.lede { margin: 0 0 18px; max-width: 78ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 16px 20px; margin-bottom: 28px; }
+.ask h2 { margin: 0 0 8px; font-family: var(--serif); font-size: 19px; font-weight: 800; }
+.ask ul { margin: 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 6px; }
+.ask b { color: var(--ink); }
+
+section.opt { border-top: 2px solid var(--ink); padding-top: 18px; margin-top: 36px; }
+.opt h2 { margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 800; }
+.opt h2 small { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink-2); margin-left: 8px; }
+.opt .what { margin: 6px 0 14px; color: var(--ink-2); max-width: 80ch; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+.notes { font-size: 13px; color: var(--ink-2); display: grid; gap: 10px; }
+.notes h3 { margin: 0 0 2px; font-size: 13px; color: var(--ink); }
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; }
+
+/* 화면 틀 */
+.screen { border: 1px solid var(--ink); border-radius: 6px; background: var(--sheet); overflow: hidden; }
+.bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 12px; border-bottom: 1px solid var(--rule); font-size: 13px; }
+.bar .title { font-weight: 700; margin-right: auto; }
+.btn { display: inline-flex; align-items: center; height: 30px; padding: 0 10px; border: 1px solid var(--ink); border-radius: 5px; background: var(--sheet); font-size: 13px; white-space: nowrap; }
+.btn.primary { background: var(--ink); color: #fff; }
+.btn.ghost { border-color: var(--rule); color: var(--ink-2); }
+.sel { display: inline-flex; align-items: center; height: 30px; padding: 0 8px; border: 1px solid var(--rule); border-radius: 5px; font-size: 13px; gap: 6px; }
+.div { width: 1px; height: 20px; background: var(--rule); }
+.new { outline: 2px dashed var(--ink); outline-offset: 3px; }
+.body { display: grid; grid-template-columns: 1fr 260px; min-height: 300px; }
+.body.full { grid-template-columns: 1fr; }
+.canvas { padding: 14px; display: grid; place-items: center; background: #f2f2ef; border-right: 1px solid var(--rule); }
+.side { padding: 12px; font-size: 12px; color: var(--ink-2); display: grid; gap: 8px; align-content: start; }
+.side .row { border: 1px solid var(--rule); border-radius: 4px; height: 34px; display: flex; align-items: center; padding: 0 8px; }
+
+/* 쪽 그림 */
+.page { width: 120px; aspect-ratio: 210 / 297; background: var(--sheet); border: 1px solid var(--ink); border-radius: 2px; display: grid; align-content: start; gap: 5px; padding: 10px 9px; position: relative; }
+.page i { display: block; height: 4px; background: var(--soft); border-radius: 2px; }
+.page i.w60 { width: 60%; } .page i.w80 { width: 80%; }
+.page .num { position: absolute; left: 6px; bottom: 5px; font-size: 11px; font-style: normal; color: var(--ink-2); }
+.page.big { width: 210px; }
+.page.sm { width: 64px; padding: 6px; gap: 3px; }
+.page.sm i { height: 3px; }
+.page.xs { width: 44px; padding: 4px; gap: 2px; }
+.page.xs i { height: 2px; }
+.page.lift { transform: rotate(-3deg) translateY(-6px); box-shadow: 0 6px 0 var(--rule); }
+.page.out { opacity: .35; }
+.cap { font-size: 12px; text-align: center; margin-top: 4px; }
+.cap b { font-weight: 700; }
+.cap .orig { color: var(--ink-2); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 18px 14px; padding: 16px; }
+.cell { display: grid; justify-items: center; }
+.drop { width: 4px; align-self: stretch; background: var(--pick); border-radius: 2px; }
+.strip { display: flex; gap: 14px; padding: 14px; overflow-x: auto; align-items: end; }
+.mini { display: flex; gap: 4px; margin-top: 4px; }
+.mini .btn { height: 24px; padding: 0 6px; font-size: 12px; }
+
+/* 창 */
+.dim { background: #00000014; padding: 22px; display: grid; place-items: center; }
+.dialog { width: min(760px, 100%); border: 1px solid var(--ink); border-radius: 8px; background: var(--sheet); }
+.dialog.narrow { width: min(520px, 100%); }
+.dialog header { padding: 14px 18px 6px; }
+.dialog header h4 { margin: 0; font-size: 17px; }
+.dialog header p { margin: 2px 0 0; font-size: 12px; color: var(--ink-2); }
+.dialog footer { display: flex; gap: 8px; justify-content: flex-end; padding: 12px 18px; border-top: 1px solid var(--rule); }
+.dialog footer .left { margin-right: auto; display: flex; gap: 8px; }
+.list { padding: 6px 18px 12px; display: grid; gap: 6px; }
+.lrow { display: grid; grid-template-columns: 26px 44px 1fr auto; gap: 10px; align-items: center; border: 1px solid var(--rule); border-radius: 5px; padding: 6px 8px; font-size: 13px; }
+.lrow .n { font-weight: 700; text-align: center; }
+.lrow small { color: var(--ink-2); }
+.field { margin: 8px 18px; display: grid; gap: 4px; font-size: 13px; }
+.field .input { height: 36px; border: 1px solid var(--ink); border-radius: 5px; display: flex; align-items: center; padding: 0 10px; font-family: ui-monospace, Menlo, monospace; }
+.field small { color: var(--ink-2); }
+
+.rail { display: grid; grid-template-columns: 96px 1fr 240px; min-height: 360px; }
+.rail .thumbs { border-right: 1px solid var(--rule); padding: 10px 8px; display: grid; gap: 10px; align-content: start; justify-items: center; background: #f7f7f4; }
+.rail .thumbs .cur { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.chips { display: flex; gap: 6px; align-items: center; padding: 8px 12px; border-top: 1px solid var(--rule); font-size: 12px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--ink); border-radius: 12px; padding: 1px 9px; background: var(--sheet); }
+.chip.ghosting { border-style: dashed; color: var(--ink-2); }
+.callout { font-size: 12px; color: var(--ink-2); padding: 0 12px 10px; }
+</style>
+
+<div class="board">
+  <h1>문제 추출 — 쪽 순서 조정 (Wire 5안)</h1>
+  <p class="lede">원장님 2026-11-11 «페이지 순서가 이상하게 되어 있을 때 페이지 순서를 조정할 수 있는 기능». 지금은 쪽 이동 줄에 <b>이전 쪽 · 쪽 선택(1 / 8) · 다음 쪽 · 회전</b>만 있고 쪽 차례를 바꾸는 곳은 없다. 쪽 차례는 <b>자른 문제의 차례 · 시험지에 담기는 차례 · «원본 차례로»</b>를 정하므로, 스캔이 2·1·4·3으로 섞이면 문제 번호도 섞여 담긴다. 점선 상자가 이번에 더하는 자리다.</p>
+
+  <div class="ask">
+    <h2>고르실 것</h2>
+    <ul>
+      <li><b>어느 안의 짜임으로 갈지</b> (섞어도 된다 — 예: B의 창 + D의 빠른 단추)</li>
+      <li>공통 동작은 다섯 안이 같다 — 차례를 바꿔도 <b>이미 자른 영역 · 인식 결과 · 해설은 그 쪽을 따라간다</b>(지우지 않는다). 쪽 번호 «3쪽»은 <b>새 차례</b>로 부른다. 원래 번호는 작게 «원본 5쪽».</li>
+      <li>Hi-fi 전에 따로 여쭐 것: 빈 쪽 · 정답표 쪽을 <b>빼기</b>도 같이 넣을지, 파일이 여럿일 때 <b>파일끼리도</b> 차례를 바꿀지</li>
+    </ul>
+  </div>
+
+  <!-- A -->
+  <section class="opt">
+    <h2>A · 올린 직후 «쪽 순서 확인» 한 장 <small>격자 + 끌어 놓기</small></h2>
+    <p class="what">PDF를 올리면 ② 영역 지정 전에 쪽 전체를 격자로 한 번 보여 준다. 쪽을 끌어 자리를 바꾸고 «이 순서로 시작». 이상이 없으면 바로 «이 순서로 시작»만 누르면 된다. 나중에 바꾸려면 쪽 이동 줄의 «쪽 순서»로 이 화면을 다시 연다.</p>
+    <div class="cols">
+      <div class="screen">
+        <div class="bar"><span class="title">쪽 순서 확인 · 경명여고 공수2 26-2 중간.pdf · 8쪽</span><span class="btn ghost">원래 순서로</span><span class="btn primary">이 순서로 시작</span></div>
+        <div class="grid new">
+          <div class="cell"><div class="page"><i class="w80"></i><i></i><i class="w60"></i><i></i><em class="num"></em></div><div class="cap"><b>1</b></div></div>
+          <div class="cell"><div class="page lift"><i></i><i class="w60"></i><i></i><i class="w80"></i></div><div class="cap"><b>2</b> <span class="orig">· 원본 3쪽</span></div></div>
+          <div class="cell" style="grid-auto-flow:column;display:flex;gap:6px;align-items:stretch"><span class="drop"></span><div><div class="page"><i class="w60"></i><i></i><i></i><i class="w80"></i></div><div class="cap"><b>3</b> <span class="orig">· 원본 2쪽</span></div></div></div>
+          <div class="cell"><div class="page"><i></i><i class="w80"></i><i></i><i class="w60"></i></div><div class="cap"><b>4</b></div></div>
+          <div class="cell"><div class="page"><i class="w80"></i><i></i><i class="w60"></i></div><div class="cap"><b>5</b></div></div>
+          <div class="cell"><div class="page"><i></i><i></i><i class="w80"></i><i class="w60"></i></div><div class="cap"><b>6</b></div></div>
+          <div class="cell"><div class="page"><i class="w60"></i><i></i><i class="w80"></i></div><div class="cap"><b>7</b></div></div>
+          <div class="cell"><div class="page"><i></i><i class="w80"></i></div><div class="cap"><b>8</b></div></div>
+        </div>
+        <div class="callout">쪽을 누르면 크게(지면 띠의 크게 보기) · 끌어서 자리 바꾸기 · 키보드는 쪽에 초점을 두고 ← →</div>
+      </div>
+      <div class="notes">
+        <div><h3>좋은 점</h3><ul><li>섞인 차례를 <b>자르기 전에</b> 잡는다 — 뒤 단계가 다 맞는 차례로 시작</li><li>8쪽이 한눈에 — 섞인 곳이 바로 보인다</li></ul></div>
+        <div><h3>걸리는 점</h3><ul><li>매번 한 장이 더 끼어든다(이상 없을 때도 한 번 누름)</li><li>끌어 놓기는 노트북 터치패드에서 번거롭다</li></ul></div>
+        <div><h3>부품</h3><ul><li>쪽 그림 · 크게 보기 = <b>PaperStrip</b>을 격자 모양으로 넓힌다</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="opt">
+    <h2>B · 쪽 이동 줄의 «쪽 순서» 단추 → 목록 창 <small>↑ ↓ 단추</small></h2>
+    <p class="what">평소엔 단추 하나만 더 보인다. 누르면 창에 쪽이 한 줄씩 — 작은 그림 · 새 번호 · 원본 번호 · ↑ ↓. 끌기 없이 단추로만 옮긴다. 시연 · 노트북에서도 확실하다.</p>
+    <div class="cols">
+      <div class="screen">
+        <div class="bar"><span class="title">② 영역 지정</span><span class="btn">이전 쪽</span><span class="sel">3 ▾ / 8</span><span class="btn">다음 쪽</span><span class="btn new">쪽 순서</span><span class="div"></span><span class="btn">회전</span></div>
+        <div class="dim">
+          <div class="dialog narrow new">
+            <header><h4>쪽 순서</h4><p>바꾼 순서는 자른 영역 · 인식 결과와 함께 옮겨집니다.</p></header>
+            <div class="list">
+              <div class="lrow"><span class="n">1</span><div class="page xs"><i></i><i class="w60"></i><i></i></div><span>원본 1쪽 <small>· 문제 4</small></span><span class="mini"><span class="btn ghost">↑</span><span class="btn">↓</span></span></div>
+              <div class="lrow" style="outline:2px solid var(--ink)"><span class="n">2</span><div class="page xs"><i class="w80"></i><i></i><i></i></div><span>원본 3쪽 <small>· 문제 3</small></span><span class="mini"><span class="btn">↑</span><span class="btn">↓</span></span></div>
+              <div class="lrow"><span class="n">3</span><div class="page xs"><i></i><i></i><i class="w60"></i></div><span>원본 2쪽 <small>· 문제 3</small></span><span class="mini"><span class="btn">↑</span><span class="btn">↓</span></span></div>
+              <div class="lrow"><span class="n">4</span><div class="page xs"><i class="w60"></i><i></i></div><span>원본 4쪽 <small>· 문제 2</small></span><span class="mini"><span class="btn">↑</span><span class="btn">↓</span></span></div>
+              <div class="lrow" style="opacity:.6"><span class="n">…</span><span></span><span>5 ~ 8쪽</span><span></span></div>
+            </div>
+            <footer><span class="left"><span class="btn ghost">원래 순서로</span></span><span class="btn">취소</span><span class="btn primary">적용</span></footer>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <div><h3>좋은 점</h3><ul><li>지금 화면에 단추 하나만 는다 — 평소 흐름은 그대로</li><li>↑ ↓ 라 실수가 적고 키보드로도 된다</li><li>쪽마다 «문제 4» 처럼 자른 수가 보여 확인이 쉽다</li></ul></div>
+        <div><h3>걸리는 점</h3><ul><li>그림이 작아 «어느 쪽이 먼저인지»를 그림만으로 가리기 어렵다(줄을 누르면 크게)</li><li>20쪽 넘으면 ↑ ↓ 를 여러 번 눌러야 한다</li></ul></div>
+        <div><h3>부품</h3><ul><li>창 = <b>PickerDialog</b>를 «차례 바꾸기» 모드로 넓힌다</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="opt">
+    <h2>C · «쪽별 진행» 칩 줄에서 바로 끌기 <small>새 화면 없음</small></h2>
+    <p class="what">이미 인식 현황 아래에 «쪽별 진행 1 2 3 … 8» 칩이 늘어서 있다. 그 칩을 끌어 자리를 바꾸면 쪽 차례가 바뀐다. 칩에 마우스를 올리면 그 쪽의 작은 그림.</p>
+    <div class="cols">
+      <div class="screen">
+        <div class="bar"><span class="title">③ 검수</span><span class="btn">이전 쪽</span><span class="sel">2 ▾ / 8</span><span class="btn">다음 쪽</span></div>
+        <div class="body"><div class="canvas"><div class="page big"><i class="w80"></i><i></i><i></i><i class="w60"></i><i></i><i class="w80"></i></div></div><div class="side"><div class="row">문제 01</div><div class="row">문제 02</div><div class="row">문제 03</div></div></div>
+        <div class="chips new"><span>쪽별 진행</span><span class="chip">1쪽 완료</span><span class="chip ghosting">3쪽 완료 ⇠ 끄는 중</span><span class="drop" style="height:20px;width:3px"></span><span class="chip">2쪽 완료</span><span class="chip">4쪽 완료</span><span class="chip">5쪽 인식 중</span><span class="chip">6쪽 대기</span><span>…</span><span class="btn ghost" style="height:24px">원래 순서로</span></div>
+      </div>
+      <div class="notes">
+        <div><h3>좋은 점</h3><ul><li>새 단추 · 새 창이 없다 — 있는 자리를 쓴다</li><li>인식 중에도 바로 고칠 수 있다</li></ul></div>
+        <div><h3>걸리는 점</h3><ul><li>칩이 작아 끌기가 어렵고, 그림이 안 보여 «무엇을 끄는지» 확인이 약하다</li><li>칩 줄은 인식을 돌려야 생긴다 — 직접 자르는 경우엔 자리가 없다</li><li>지금 칩은 «누르면 그 쪽으로 이동» — 누름과 끌기가 겹친다</li></ul></div>
+        <div><h3>부품</h3><ul><li>쪽별 진행(StudioQueueStatus)을 넓힌다</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="opt">
+    <h2>D · 숫자로 차례 입력 + 빠른 단추 <small>양면 스캔 대비</small></h2>
+    <p class="what">«쪽 순서» 창에 새 차례를 숫자로 적는다(예: 1, 3, 2, 4–8). 흔한 섞임은 단추 하나로 — <b>거꾸로</b>(뒤에서부터 스캔), <b>앞뒷면 맞추기</b>(양면을 홀수 쪽 먼저 · 짝수 쪽 나중에 스캔한 것). 아래 띠에서 결과를 바로 본다.</p>
+    <div class="cols">
+      <div class="screen">
+        <div class="bar"><span class="title">② 영역 지정</span><span class="btn">이전 쪽</span><span class="sel">1 ▾ / 8</span><span class="btn">다음 쪽</span><span class="btn new">쪽 순서</span></div>
+        <div class="dim">
+          <div class="dialog new">
+            <header><h4>쪽 순서</h4><p>원본 쪽 번호를 새 차례대로 적습니다. 범위는 4–8 처럼 씁니다.</p></header>
+            <div class="field"><span>새 차례</span><span class="input">1, 3, 2, 4–8</span><small>8쪽 중 8쪽 · 빠진 쪽 없음</small></div>
+            <div class="field" style="grid-auto-flow:column;justify-content:start;gap:8px"><span class="btn">거꾸로</span><span class="btn">앞뒷면 맞추기</span><span class="btn ghost">원래 순서로</span></div>
+            <div class="strip">
+              <div class="cell"><div class="page sm"><i></i><i class="w60"></i><i></i></div><div class="cap"><b>1</b></div></div>
+              <div class="cell"><div class="page sm"><i class="w80"></i><i></i></div><div class="cap"><b>2</b> <span class="orig">· 원본 3</span></div></div>
+              <div class="cell"><div class="page sm"><i></i><i class="w80"></i><i></i></div><div class="cap"><b>3</b> <span class="orig">· 원본 2</span></div></div>
+              <div class="cell"><div class="page sm"><i class="w60"></i><i></i></div><div class="cap"><b>4</b></div></div>
+              <div class="cell"><div class="page sm"><i></i><i></i></div><div class="cap"><b>5</b></div></div>
+              <div class="cell"><div class="page sm"><i class="w80"></i></div><div class="cap"><b>6</b></div></div>
+              <div class="cell"><div class="page sm"><i></i><i class="w60"></i></div><div class="cap"><b>7</b></div></div>
+              <div class="cell"><div class="page sm"><i></i></div><div class="cap"><b>8</b></div></div>
+            </div>
+            <footer><span class="btn">취소</span><span class="btn primary">적용</span></footer>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <div><h3>좋은 점</h3><ul><li>쪽이 많아도 한 줄 입력으로 끝 — 30쪽 기출 묶음에도 빠르다</li><li>양면 스캔 · 거꾸로 스캔이 단추 하나</li></ul></div>
+        <div><h3>걸리는 점</h3><ul><li>숫자 입력은 낯설 수 있다 — 빠른 단추에 안 맞는 섞임만 쓰게 된다</li><li>잘못 적으면(빠진 쪽 · 겹친 쪽) 알려 줘야 한다</li></ul></div>
+        <div><h3>부품</h3><ul><li>결과 띠 = <b>PaperStrip</b> · 창 = <b>PickerDialog</b> 틀</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E -->
+  <section class="opt">
+    <h2>E · 왼쪽 세로 쪽 목록 (PDF 보기처럼) <small>늘 보임 · 끌기</small></h2>
+    <p class="what">원본 왼쪽에 쪽 그림을 세로로 늘 세운다. 누르면 그 쪽으로 가고, 끌면 차례가 바뀐다. 쪽마다 오른쪽 아래 작은 «⋯»에 «위로 · 아래로 · 회전».</p>
+    <div class="cols">
+      <div class="screen">
+        <div class="bar"><span class="title">② 영역 지정</span><span class="btn">이전 쪽</span><span class="sel">2 ▾ / 8</span><span class="btn">다음 쪽</span><span class="btn">회전</span></div>
+        <div class="rail">
+          <div class="thumbs new">
+            <div class="cell"><div class="page sm"><i></i><i class="w60"></i></div><div class="cap">1</div></div>
+            <div class="cell"><div class="page sm cur"><i class="w80"></i><i></i></div><div class="cap"><b>2</b> <span class="orig">원본 3</span></div></div>
+            <div class="cell"><div class="page sm"><i></i><i class="w80"></i></div><div class="cap">3 <span class="orig">원본 2</span></div></div>
+            <div class="cell"><div class="page sm"><i class="w60"></i></div><div class="cap">4</div></div>
+            <div class="cap">⋮</div>
+          </div>
+          <div class="canvas"><div class="page big"><i class="w80"></i><i></i><i class="w60"></i><i></i><i class="w80"></i></div></div>
+          <div class="side"><div class="row">문제 영역 3개</div><div class="row">내부 도형 1개</div></div>
+        </div>
+      </div>
+      <div class="notes">
+        <div><h3>좋은 점</h3><ul><li>익숙하다(PDF 보기 · 한글 쪽 보기와 같은 짜임)</li><li>쪽 이동과 차례 바꾸기가 한 자리</li></ul></div>
+        <div><h3>걸리는 점</h3><ul><li>원본 칸이 약 100px 좁아진다 — 1920 화면에선 괜찮고 1366 노트북에선 빡빡하다</li><li>지금의 «이전 쪽 · 쪽 선택 · 다음 쪽»과 겹친다(어느 것을 걷을지 정해야)</li></ul></div>
+        <div><h3>부품</h3><ul><li>세로 띠 = <b>PaperStrip</b>을 세로로 넓힌다</li></ul></div>
+      </div>
+    </div>
+  </section>
+</div>
