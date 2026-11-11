@@ -262,7 +262,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 152: D-164(2026-10-21) — 그림 자리 `[그림:n]`(③④).
     // 153: D-164(2026-10-21) — 한글 어절 줄바꿈 keep-all(②).
     // 154: HWPX 수식 대수회 작업 규정 표준 맞춤(2026-10-26 — 시험지 한글화 패치 02 · 03).
-    expect(ITEMS.length).toBe(154);
+    // 155: HWPX 수식 팩토리얼 뒤 등호(2026-11-10 — 시험지 한글화 패치 04).
+    expect(ITEMS.length).toBe(155);
     for (const id of [
       "question-smart-spacing-20261020",
       "answer-quick-key-h2",
