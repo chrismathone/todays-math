@@ -102,7 +102,8 @@ beforeEach(() => {
     "ENGLISH_READ_VENDOR",
   ])
     vi.stubEnv(key, "");
-  vi.stubEnv("GEMINI_API_KEY", "test-key");
+  // 기본 읽는 모델은 Claude Sonnet 5.5(원장님 2026-11-11 «전부 sonnet 으로»)
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-key");
   // 한 번만 읽는다 — 대조 · 따로 읽기는 아래에서 따로 켜고 본다(뒷단의 갈래는 englishReadPhoto.test.ts)
   vi.stubEnv("ENGLISH_READ_VERIFY", "off");
   vi.stubEnv("ENGLISH_READ_TWICE", "off");
@@ -239,9 +240,13 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     expect(model.run).toHaveBeenCalledTimes(1);
     const input = model.run.mock.calls[0]![0] as {
       vendor: string;
+      model: string;
+      effort?: string;
       imageDataUrl: string;
     };
-    expect(input.vendor).toBe("gemini");
+    expect(input.vendor).toBe("anthropic");
+    expect(input.model).toBe("claude-sonnet-5-5");
+    expect(input.effort).toBe("low");
     // 올린 바이트 그대로 — 빈 사진이나 다른 사진을 보내지 않는다
     expect(input.imageDataUrl).toBe(
       `data:image/jpeg;base64,${Buffer.from(JPEG).toString("base64")}`,
@@ -249,7 +254,7 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     expect(res.headers.get("Cache-Control")).toBe("private, no-store");
   });
 
-  it("200 — 기본 설정(Gemini)이면 읽기 둘 · 대조 하나를 부르고, 빈칸을 맞추고 다듬은 글을 돌려준다", async () => {
+  it("200 — 기본 설정(Sonnet 5.5)이면 읽기 둘 · 대조 하나를 부르고, 빈칸을 맞추고 다듬은 글을 돌려준다", async () => {
     vi.stubEnv("ENGLISH_READ_VERIFY", "");
     vi.stubEnv("ENGLISH_READ_TWICE", "");
     const first =
@@ -350,8 +355,9 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     );
   });
 
-  it("503 — 사진을 보는 모델의 키가 없다", async () => {
-    vi.stubEnv("GEMINI_API_KEY", "");
+  it("503 — 사진을 보는 모델의 키가 없다 · 다른 제공자 키가 있어도 조용히 넘어가지 않는다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
+    vi.stubEnv("GEMINI_API_KEY", "other-vendor");
     vi.stubEnv("DEEPSEEK_API_KEY", "only-text");
     const res = await readMaterial(request(photoId), withId(photoId));
     expect(res.status).toBe(503);

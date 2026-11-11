@@ -16,7 +16,7 @@
  *   GET    /api/english/sets/{id}                — 세트 전체
  *   PUT    /api/english/sets/{id}                — 고치기 (revision CAS — 어긋나면 409 REVISION_MISMATCH)
  *   DELETE /api/english/sets/{id}
- *   POST   /api/english/generate                 — DeepSeek 직접 생성(저장하지 않고 초안을 돌려준다)
+ *   POST   /api/english/generate                 — AI 직접 생성(기본 Claude Sonnet 5.5 · 저장하지 않고 초안을 돌려준다)
  *
  * 정책: 모든 object 는 `z.strictObject`(common.contract.ts 머리말). 세트의 `questions` 는 저장 표에서
  * jsonb 이지만 **쓰기 때 이 계약으로 잠근다** — 개인 작업물 계약(`z.record`)과 다르다(25 §2).
@@ -358,7 +358,7 @@ export const englishSetListResponseSchema = dataResponseSchema(
 export const englishSetResponseSchema = dataResponseSchema(englishSetSchema);
 
 // ─────────────────────────────────────────────
-// DeepSeek 직접 생성 (25 §4.3) — ChatGPT 요청문(§4.1)도 같은 입력을 쓴다
+// AI 직접 생성 (25 §4.3 — 기본 Claude Sonnet 5.5, 2026-11-11) — ChatGPT 요청문(§4.1)도 같은 입력을 쓴다
 // ─────────────────────────────────────────────
 
 export const englishGenerateRequestSchema = z

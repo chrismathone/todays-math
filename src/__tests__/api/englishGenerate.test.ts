@@ -23,7 +23,9 @@ const {
   mockModels,
   mockBankReference,
   mockBankExam,
+  mockRun,
 } = vi.hoisted(() => ({
+  mockRun: vi.fn(),
   mockCreate: vi.fn(),
   mockSession: vi.fn(),
   mockRequireOwned: vi.fn(),
@@ -49,6 +51,9 @@ vi.mock("openai", () => ({
     return { chat: { completions: { create: mockCreate } } };
   }),
 }));
+
+// Claude 배관 — vitest 는 .env 를 읽어 진짜 키가 들어올 수 있다. 실호출 금지(절대 규칙 7)
+vi.mock("@/lib/studio-ai/api", () => ({ runModelApi: mockRun }));
 
 vi.mock("@/lib/session", () => ({ getSessionUser: mockSession }));
 
@@ -159,6 +164,7 @@ async function errorOf(response: Response) {
 
 beforeEach(() => {
   mockCreate.mockReset();
+  mockRun.mockReset();
   mockCli.mockReset().mockResolvedValue(JSON.stringify(draft));
   mockModels.mockReset().mockResolvedValue({
     models: ["sonnet"],
@@ -177,9 +183,11 @@ beforeEach(() => {
   vi.unstubAllEnvs();
   vi.stubEnv("AUTH_URL", ORIGIN);
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
-  // OpenAI 키가 있으면 영어는 luna 로 간다 — 이 파일은 DeepSeek 경로를 본다
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-anthropic-key");
   vi.stubEnv("OPENAI_API_KEY", "");
-  vi.stubEnv("ENGLISH_AI_VENDOR", "");
+  // 기본은 Claude Sonnet 5.5 다(2026-11-11). 이 파일의 대부분은 문지기 · 오류 순서를 OpenAI 호환 대역으로 재므로
+  // 되돌리는 길(DeepSeek)로 돌린다 — Claude 기본 경로는 아래 «기본 공급자» 묶음이 본다
+  vi.stubEnv("ENGLISH_AI_VENDOR", "deepseek");
   vi.stubEnv("DEV_AI_CODEX_HOME", "");
 });
 afterEach(() => vi.unstubAllEnvs());
@@ -719,5 +727,75 @@ describe("🔴 한 사람이 동시에 띄우는 생성은 둘까지 (2026-10-07
     mockCreate.mockReset().mockRejectedValue(new Error("again"));
     expect((await call(body)).status).toBe(502);
     expect(mockCreate).toHaveBeenCalled();
+  });
+});
+
+describe("기본 공급자 — Claude Sonnet 5.5 (원장님 2026-11-11 «전부 sonnet 으로»)", () => {
+  beforeEach(() => {
+    vi.stubEnv("ENGLISH_AI_VENDOR", "");
+  });
+
+  it("200 — 작업실 배관으로 Sonnet 5.5 를 부르고 «만든 조건»에 그 이름을 싣는다", async () => {
+    mockRun.mockResolvedValueOnce(JSON.stringify(draft));
+    const res = await call(body);
+    expect(res.status).toBe(200);
+    const parsed = englishGenerateResponseSchema.parse(await res.json());
+    expect(parsed.model).toEqual({
+      name: "claude-sonnet-5-5",
+      promptVersion: "v7",
+    });
+    expect(parsed.data.source).toBe("deepseek");
+    expect(mockRun).toHaveBeenCalledOnce();
+    const sent = mockRun.mock.calls[0]![0] as {
+      vendor: string;
+      model: string;
+      effort: string;
+      prompt: string;
+    };
+    expect(sent).toMatchObject({
+      vendor: "anthropic",
+      model: "claude-sonnet-5-5",
+      effort: "medium",
+    });
+    expect(sent.prompt).toContain(buildEnglishSystemPrompt());
+    expect(sent.prompt).toContain("대상 학년: 고3");
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  it("출력 한도로 잘리면 502 «길이 한도»", async () => {
+    const { StudioApiError } = await import("@/lib/studio-ai/errors");
+    mockRun.mockRejectedValueOnce(
+      new StudioApiError(
+        "Claude 응답이 출력 토큰 한도로 잘렸습니다. 문항을 나누어 다시 시도해 주세요.",
+      ),
+    );
+    const res = await call(body);
+    expect(res.status).toBe(502);
+    expect((await errorOf(res)).message).toMatch(/길이 한도/);
+  });
+
+  it("상류 실패는 502 일반 실패 — 상류의 문장은 응답에 없다", async () => {
+    const { StudioApiError } = await import("@/lib/studio-ai/errors");
+    mockRun.mockRejectedValueOnce(
+      new StudioApiError("모델 API 요청에 실패했습니다.", 500, true),
+    );
+    const res = await call(body);
+    expect(res.status).toBe(502);
+    const error = await errorOf(res);
+    expect(error.code).toBe("AI_GENERATION_FAILED");
+    expect(error.message).toBe(
+      "AI 지문·문제 생성에 실패했습니다. 다시 시도해 주세요.",
+    );
+  });
+
+  it("ANTHROPIC_API_KEY 가 없으면 503 — 부르지 않고, 키 이름도 응답에 없다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
+    const res = await call(body);
+    expect(res.status).toBe(503);
+    const error = await errorOf(res);
+    expect(error.message).toBe("AI 연결이 설정되지 않았습니다.");
+    expect(JSON.stringify(error)).not.toContain("ANTHROPIC");
+    expect(mockRun).not.toHaveBeenCalled();
+    expect(mockCreate).not.toHaveBeenCalled();
   });
 });

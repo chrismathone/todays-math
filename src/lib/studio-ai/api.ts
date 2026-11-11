@@ -57,6 +57,11 @@ type InferenceInput = {
    * 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9).
    */
   effort?: "low" | "medium" | "high";
+  /**
+   * 재시도까지 합친 전체 시간 상한(밀리초) — 없으면 110초. 긴 글을 한 번에 만드는 쪽(오늘의 영어 세트 생성 · 경로 상한
+   * 300초)이 Sonnet 5.5 로 바뀌며 110초를 넘을 수 있어 부르는 쪽이 정한다(2026-11-11).
+   */
+  timeoutMs?: number;
 };
 function nonempty(text: string | null | undefined) {
   if (!text?.trim()) throw new StudioApiError("AI가 빈 응답을 반환했습니다.");
@@ -229,7 +234,10 @@ export async function runModelApi(input: InferenceInput): Promise<string> {
   let receipt: Readonly<ModelApiReceipt> | undefined;
   input = {
     ...input,
-    signal: AbortSignal.any([input.signal, AbortSignal.timeout(110_000)]),
+    signal: AbortSignal.any([
+      input.signal,
+      AbortSignal.timeout(input.timeoutMs ?? 110_000),
+    ]),
     onReceipt: onReceipt
       ? (value) => {
           receipt = value;
@@ -420,7 +428,7 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
     const client = new OpenAI({
       apiKey: key,
       maxRetries: 0,
-      timeout: 110_000,
+      timeout: input.timeoutMs ?? 110_000,
       baseURL:
         input.vendor === "deepseek"
           ? "https://api.deepseek.com"

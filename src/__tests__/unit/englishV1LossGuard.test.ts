@@ -10,7 +10,13 @@
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
+const { mockCreate, mockRun } = vi.hoisted(() => ({
+  mockCreate: vi.fn(),
+  mockRun: vi.fn(),
+}));
+
+// Claude 배관 — vitest 는 .env 를 읽는다. 기본 공급자(Claude)로 새어도 실호출이 나가지 않게
+vi.mock("@/lib/studio-ai/api", () => ({ runModelApi: mockRun }));
 
 vi.mock("openai", () => ({
   default: vi.fn().mockImplementation(function OpenAIMock() {
@@ -211,7 +217,8 @@ describe("서버 AI — generateEnglishDraft", () => {
     vi.unstubAllEnvs();
     vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
     vi.stubEnv("OPENAI_API_KEY", "");
-    vi.stubEnv("ENGLISH_AI_VENDOR", "");
+    // 거절 규칙은 공급자와 무관하다 — OpenAI 호환 대역을 쓰는 되돌리는 길(DeepSeek)로 잰다
+    vi.stubEnv("ENGLISH_AI_VENDOR", "deepseek");
   });
 
   it("🔴 AI 가 표적이 든 답을 내면 초안으로 받지 않는다 — 고쳐 쓴 답도 같으면 거절", async () => {

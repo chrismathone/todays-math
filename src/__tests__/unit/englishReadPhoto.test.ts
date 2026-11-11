@@ -10,6 +10,7 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 
 import { ENGLISH_MATERIAL_CONTENT_MAX } from "@/contracts/english.contract";
+import { CLAUDE_DEFAULT_MODEL } from "@/lib/ai/claudeModels";
 import {
   ENGLISH_READ_PROMPT_VERSION,
   buildEnglishReadPrompt,
@@ -132,28 +133,39 @@ describe("받은 글 다듬기", () => {
 });
 
 describe("읽는 모델 고르기", () => {
-  it("사진을 보는 키 가운데 Gemini → OpenAI → Claude 차례로 고른다", () => {
-    expect(
-      resolveEnglishReadModel({ GEMINI_API_KEY: "g", OPENAI_API_KEY: "o" }),
-    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
-    // Claude 는 읽기를 잰 모델(Opus 5.5 — 가장 덜 틀렸다)이 기본이다. 작업실의 기본(Opus 5)이 아니다
+  it("기본은 Claude Sonnet 5.5 다 — 원장님 2026-11-11 «전부 sonnet 으로». 다른 키가 있어도 그리로 가지 않는다", () => {
     expect(resolveEnglishReadModel({ ANTHROPIC_API_KEY: "a" })).toEqual({
       vendor: "anthropic",
-      model: "claude-opus-5-5",
+      model: CLAUDE_DEFAULT_MODEL,
     });
-    expect(resolveEnglishReadModel({ OPENAI_API_KEY: "o" }).vendor).toBe(
-      "openai",
-    );
-    expect(resolveEnglishReadModel({ ANTHROPIC_API_KEY: "a" }).vendor).toBe(
-      "anthropic",
-    );
+    expect(CLAUDE_DEFAULT_MODEL).toBe("claude-sonnet-5-5");
+    expect(
+      resolveEnglishReadModel({
+        GEMINI_API_KEY: "g",
+        OPENAI_API_KEY: "o",
+        ANTHROPIC_API_KEY: "a",
+      }),
+    ).toEqual({ vendor: "anthropic", model: CLAUDE_DEFAULT_MODEL });
   });
 
-  it("사진을 못 보는 DeepSeek 키뿐이면 설정 오류다", () => {
-    expect(() => resolveEnglishReadModel({ DEEPSEEK_API_KEY: "d" })).toThrow(
-      EnglishReadConfigError,
-    );
-    expect(() => resolveEnglishReadModel({})).toThrow(EnglishReadConfigError);
+  it("Claude 키가 없으면 설정 오류다 — Gemini · OpenAI 키가 있어도 조용히 넘어가지 않는다", () => {
+    for (const env of [
+      { GEMINI_API_KEY: "g", OPENAI_API_KEY: "o" },
+      { DEEPSEEK_API_KEY: "d" },
+      {},
+    ])
+      expect(() => resolveEnglishReadModel(env)).toThrow(
+        EnglishReadConfigError,
+      );
+  });
+
+  it("되돌리는 길 — ENGLISH_READ_VENDOR=gemini 면 잰 모델(Gemini 3.8 Flash)로 읽는다", () => {
+    expect(
+      resolveEnglishReadModel({
+        GEMINI_API_KEY: "g",
+        ENGLISH_READ_VENDOR: "gemini",
+      }),
+    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
   });
 
   it("ENGLISH_READ_VENDOR 로 고르고, 낯선 값은 설정 오류다", () => {
@@ -194,16 +206,17 @@ describe("읽는 모델 고르기", () => {
         ANTHROPIC_API_KEY: "a",
         STUDIO_AI_ANTHROPIC_MODEL: "claude-opus-4-7",
       }).model,
-    ).toBe("claude-opus-5-5");
-    expect(
-      resolveEnglishReadModel({
-        ANTHROPIC_API_KEY: "a",
-        ENGLISH_READ_MODEL: "claude-sonnet-5-5",
-      }).model,
     ).toBe("claude-sonnet-5-5");
     expect(
       resolveEnglishReadModel({
+        ANTHROPIC_API_KEY: "a",
+        ENGLISH_READ_MODEL: "claude-opus-5-5",
+      }).model,
+    ).toBe("claude-opus-5-5");
+    expect(
+      resolveEnglishReadModel({
         GEMINI_API_KEY: "g",
+        ENGLISH_READ_VENDOR: "gemini",
         STUDIO_AI_GEMINI_MODEL: "gemini-2.5-pro",
       }).model,
     ).toBe("gemini-3.8-flash");
@@ -234,9 +247,16 @@ describe("읽는 모델 고르기", () => {
       resolveEnglishReadModel({
         GEMINI_API_KEY: "g",
         ANTHROPIC_API_KEY: "a",
-        ENGLISH_READ_MODEL: "claude-sonnet-5-5",
+        ENGLISH_READ_MODEL: "claude-opus-5-5",
       }),
-    ).toEqual({ vendor: "anthropic", model: "claude-sonnet-5-5" });
+    ).toEqual({ vendor: "anthropic", model: "claude-opus-5-5" });
+    expect(
+      resolveEnglishReadModel({
+        GEMINI_API_KEY: "g",
+        ANTHROPIC_API_KEY: "a",
+        ENGLISH_READ_MODEL: "gemini-3.8-flash",
+      }),
+    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
   });
 
   it("Claude 는 읽기를 재서 쓸 만했던 것만 고를 수 있다 — Haiku 4.5 는 열한 장을 다 틀렸다", () => {
@@ -281,7 +301,7 @@ describe("readEnglishPhoto", () => {
   const signal = new AbortController().signal;
   /** 한 번만 읽는 설정 — 대조 · 두 번 읽기는 아래에서 따로 본다 */
   const ONCE = {
-    GEMINI_API_KEY: "g",
+    ANTHROPIC_API_KEY: "a",
     ENGLISH_READ_VERIFY: "off",
     ENGLISH_READ_TWICE: "off",
   };
@@ -292,8 +312,9 @@ describe("readEnglishPhoto", () => {
     expect(text).toBe("Upcycling is fun.");
     expect(run).toHaveBeenCalledTimes(1);
     expect(run.mock.calls[0]![0]).toMatchObject({
-      vendor: "gemini",
-      model: "gemini-3.8-flash",
+      vendor: "anthropic",
+      model: "claude-sonnet-5-5",
+      effort: "low",
       prompt: buildEnglishReadPrompt(),
       imageDataUrl: `data:image/jpeg;base64,${Buffer.from(JPEG).toString("base64")}`,
       signal,
@@ -357,17 +378,26 @@ const isVerify = (prompt: string) => prompt.includes("[옮긴 글]");
 describe("한 번 더 대조", () => {
   const photo = { mimeType: "image/jpeg", bytes: JPEG };
   const signal = new AbortController().signal;
-  /** 대조만 본다 — 두 번 읽기는 끈다 */
-  const env = { GEMINI_API_KEY: "g", ENGLISH_READ_TWICE: "off" };
+  /** 대조만 본다 — 두 번 읽기는 끈다(기본 모델 Sonnet 5.5) */
+  const env = { ANTHROPIC_API_KEY: "a", ENGLISH_READ_TWICE: "off" };
   const FIRST =
     "Droughts are caused by hot weather. Trees add water to the air.";
   const FIXED =
     "Droughts are caused by h________ weather. Trees add w________ to the air.";
 
-  it("기본은 잰 대로다 — Gemini 는 켬, 다른 제공자는 끔. ENGLISH_READ_VERIFY 가 있으면 그것을 따른다", () => {
-    expect(resolveEnglishReadVerify({}, "gemini")).toBe(true);
-    expect(resolveEnglishReadVerify({}, "anthropic")).toBe(false);
-    expect(resolveEnglishReadVerify({}, "openai")).toBe(false);
+  it("기본은 켬 — 기본 모델(Sonnet 5.5)과 Gemini 는 읽는 길(대조 · 따로 읽기 · 후보정)을 그대로 탄다. 그 밖은 끔. ENGLISH_READ_VERIFY 가 있으면 그것을 따른다", () => {
+    expect(resolveEnglishReadVerify({})).toBe(true);
+    expect(
+      resolveEnglishReadVerify({}, "anthropic", CLAUDE_DEFAULT_MODEL),
+    ).toBe(true);
+    expect(resolveEnglishReadVerify({}, "gemini", "gemini-3.8-flash")).toBe(
+      true,
+    );
+    // Opus 5.5 는 한 번으로 다 맞혔다(값만 두 배) · OpenAI 는 재지 않았다
+    expect(resolveEnglishReadVerify({}, "anthropic", "claude-opus-5-5")).toBe(
+      false,
+    );
+    expect(resolveEnglishReadVerify({}, "openai", "gpt-5.5")).toBe(false);
     expect(
       resolveEnglishReadVerify({ ENGLISH_READ_VERIFY: "" }, "gemini"),
     ).toBe(true);
@@ -377,7 +407,11 @@ describe("한 번 더 대조", () => {
       ).toBe(false);
     for (const value of ["on", "1", "true", " ON "])
       expect(
-        resolveEnglishReadVerify({ ENGLISH_READ_VERIFY: value }, "anthropic"),
+        resolveEnglishReadVerify(
+          { ENGLISH_READ_VERIFY: value },
+          "anthropic",
+          "claude-opus-5-5",
+        ),
       ).toBe(true);
   });
 
@@ -405,17 +439,17 @@ describe("한 번 더 대조", () => {
     expect(second.model).toBe(run.mock.calls[0]![0].model);
   });
 
-  it("Claude 로 읽으면 한 번만 부른다 — 켜면 두 번", async () => {
+  it("Opus 5.5 로 읽으면 한 번만 부른다 — 켜면 두 번", async () => {
+    const opus = {
+      ANTHROPIC_API_KEY: "a",
+      ENGLISH_READ_MODEL: "claude-opus-5-5",
+    };
     const once = vi.fn<Run>(async () => FIRST);
-    await readEnglishPhoto(photo, {
-      env: { ANTHROPIC_API_KEY: "a" },
-      run: once,
-      signal,
-    });
+    await readEnglishPhoto(photo, { env: opus, run: once, signal });
     expect(once).toHaveBeenCalledTimes(1);
     const twice = vi.fn<Run>(async () => FIRST);
     await readEnglishPhoto(photo, {
-      env: { ANTHROPIC_API_KEY: "a", ENGLISH_READ_VERIFY: "on" },
+      env: { ...opus, ENGLISH_READ_VERIFY: "on" },
       run: twice,
       signal,
     });
@@ -426,13 +460,17 @@ describe("한 번 더 대조", () => {
     const effortOf = async (vars: Record<string, string>) => {
       const run = vi.fn<Run>(async () => FIRST);
       await readEnglishPhoto(photo, { env: vars, run, signal });
+      // 대조까지 같은 강도로 부른다
+      expect(new Set(run.mock.calls.map(([input]) => input.effort)).size).toBe(
+        1,
+      );
       return run.mock.calls[0]![0].effort;
     };
     expect(await effortOf({ ANTHROPIC_API_KEY: "a" })).toBe("low");
     expect(
       await effortOf({
         ANTHROPIC_API_KEY: "a",
-        ENGLISH_READ_MODEL: "claude-sonnet-5-5",
+        ENGLISH_READ_MODEL: "claude-opus-5-5",
       }),
     ).toBe("low");
     // Opus 5 는 배관이 제 강도(medium)로 부른다 · Gemini 3.8 Flash 는 배관이 LOW 로 부른다
@@ -445,6 +483,7 @@ describe("한 번 더 대조", () => {
     expect(
       await effortOf({
         GEMINI_API_KEY: "g",
+        ENGLISH_READ_VENDOR: "gemini",
         ENGLISH_READ_VERIFY: "off",
         ENGLISH_READ_TWICE: "off",
       }),
@@ -582,7 +621,8 @@ describe("한 번 더 대조", () => {
 describe("두 번 읽어 빈칸 맞추기", () => {
   const photo = { mimeType: "image/jpeg", bytes: JPEG };
   const signal = new AbortController().signal;
-  const env = { GEMINI_API_KEY: "g" };
+  /** 기본 설정 그대로 — Sonnet 5.5 · 대조 켬 · 따로 읽기 켬 */
+  const env = { ANTHROPIC_API_KEY: "a" };
   const A = "The Earth gets hot________. When the ________ goes up.";
   const B = "The Earth gets h________. When the t________ goes up.";
   const FIXED = "The Earth gets h________. When the t________ goes up.";
@@ -598,18 +638,34 @@ describe("두 번 읽어 빈칸 맞추기", () => {
     });
   };
 
-  it("기본은 잰 대로다 — Gemini 는 켬, 다른 제공자는 끔. ENGLISH_READ_TWICE 로 켜고 끈다", () => {
-    expect(resolveEnglishReadTwice({}, "gemini")).toBe(true);
-    expect(resolveEnglishReadTwice({}, "anthropic")).toBe(false);
+  it("기본은 켬 — 기본 모델(Sonnet 5.5)과 Gemini. 그 밖은 끔. ENGLISH_READ_TWICE 로 켜고 끈다", () => {
+    expect(resolveEnglishReadTwice({})).toBe(true);
+    expect(resolveEnglishReadTwice({}, "anthropic", CLAUDE_DEFAULT_MODEL)).toBe(
+      true,
+    );
+    expect(resolveEnglishReadTwice({}, "gemini", "gemini-3.8-flash")).toBe(
+      true,
+    );
+    expect(resolveEnglishReadTwice({}, "anthropic", "claude-opus-5-5")).toBe(
+      false,
+    );
     expect(
-      resolveEnglishReadTwice({ ENGLISH_READ_TWICE: "off" }, "gemini"),
+      resolveEnglishReadTwice(
+        { ENGLISH_READ_TWICE: "off" },
+        "anthropic",
+        CLAUDE_DEFAULT_MODEL,
+      ),
     ).toBe(false);
     expect(
-      resolveEnglishReadTwice({ ENGLISH_READ_TWICE: "on" }, "anthropic"),
+      resolveEnglishReadTwice(
+        { ENGLISH_READ_TWICE: "on" },
+        "anthropic",
+        "claude-opus-5-5",
+      ),
     ).toBe(true);
   });
 
-  it("Gemini 는 같은 사진을 따로 한 번 더 읽어, 빈칸 자리를 맞춘다 — 호출 셋(읽기 둘 + 대조)", async () => {
+  it("기본 모델은 같은 사진을 따로 한 번 더 읽어, 빈칸 자리를 맞춘다 — 호출 셋(읽기 둘 + 대조)", async () => {
     const run = reader([A, B]);
     expect(await readEnglishPhoto(photo, { env, run, signal })).toBe(FIXED);
     expect(run).toHaveBeenCalledTimes(3);

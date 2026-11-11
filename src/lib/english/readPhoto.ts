@@ -8,7 +8,8 @@
  * 거기 있다. 🔴 작업실의 **라우트**(`/api/studio/ai`)나 메뉴 권한은 쓰지 않는다(영어 계정은 `studio` 메뉴가 없다 ·
  * 자료 개선 계획 §A-4). 수학 문항 인식 작업(`page-ocr`)의 프롬프트도 쓰지 않는다 — 영어 글의 전사는 다른 일이다.
  *
- * **읽는 길**(기본 — Gemini 3.8 Flash · 원장님 2026-10-06 «gemini 3.8 flash 로 하고 강력한 후보정으로 추측 보정»):
+ * **읽는 길**(원장님 2026-10-06 «gemini 3.8 flash 로 하고 강력한 후보정으로 추측 보정»에서 섰다 — 2026-11-11 부터
+ * 모델은 Claude Sonnet 5.5 · 길은 그대로):
  *
  *     읽기 A ──→ 대조(A 를 같은 사진과 다시 맞춰 본다) ─┐
  *     읽기 B(따로 한 번 더 · A 와 나란히) ────────────┴→ 빈칸 맞추기 → 추측 보정 → 글
@@ -17,17 +18,19 @@
  * 대조나 따로 읽기가 실패해도 읽기는 성공이다 — 처음 읽은 글로 간다.
  * 구독 CLI 로 받아 둔 글로 잰 것(§13.10): 한 번 읽기 79% → 이 길 92%(흠 없이 옮긴 쪽), 큰 흠은 쪽당 0.42 → 0.08.
  *
- * 읽는 모델: 사진을 보는 키 가운데 Gemini → OpenAI → Claude 차례. `ENGLISH_READ_VENDOR` 로 코드 없이 고른다
- * (`STUDIO_AI_FIGURE_VENDOR` 와 같은 결). DeepSeek 는 사진을 못 본다. 모델은 읽기를 잰 것이 기본이고(`READ_MODELS` 의 첫째),
- * `ENGLISH_READ_MODEL` 로 그 제공자의 목록 안에서 바꾼다. 작업실의 모델 설정(`STUDIO_AI_{VENDOR}_MODEL`)은 읽기를
- * 바꾸지 않는다 — 문항 인식의 모델을 바꿨다고 영어 읽기가 조용히 달라지지 않게.
- * 잰 것(§13.9 — 흠 없이 옮긴 쪽): Opus 5.5 98/99 · Gemini 3.8 Flash 88%(대조까지) · Sonnet 5.5 73 ~ 82% · Opus 5 70% ·
- * Sonnet 4.6 50% · Haiku 4.5 0/11. 원장님이 Opus 는 «너무 비싸 · 과하다»고 하셨다 — 기본은 Gemini 다.
- * 🔴 전부 구독 CLI 로 잰 것이다. 운영 API 로는 아직 부르지 않았다.
+ * 읽는 모델: 기본은 Claude Sonnet 5.5(`CLAUDE_DEFAULT_MODEL` — 원장님 2026-11-11 «gemini · deepseek 사용처를 전부
+ * sonnet 으로»). 키로 고르지 않는다 — Claude 키가 없으면 503 이다. `ENGLISH_READ_VENDOR`(anthropic · gemini · openai)로
+ * 코드 없이 되돌린다(gemini 면 전에 쓰던 Gemini 3.8 Flash). DeepSeek 는 사진을 못 본다. 모델은 `READ_MODELS` 의 첫째가
+ * 기본이고, `ENGLISH_READ_MODEL` 로 그 제공자의 목록 안에서 바꾼다(Opus 5.5 는 `claude-opus-5-5`). 작업실의 모델
+ * 설정(`STUDIO_AI_{VENDOR}_MODEL`)은 읽기를 바꾸지 않는다 — 문항 인식의 모델을 바꿨다고 영어 읽기가 조용히 달라지지 않게.
+ * 잰 것(§13.9 — 흠 없이 옮긴 쪽): Opus 5.5 98/99 · Gemini 3.8 Flash 88%(대조까지) · Sonnet 5.5 73 ~ 82%(한 번 읽기) · Opus 5 70% ·
+ * Sonnet 4.6 50% · Haiku 4.5 0/11. 원장님이 Opus 는 «너무 비싸 · 과하다»고 하셨다.
+ * 🔴 전부 구독 CLI 로 잰 것이다. Sonnet 5.5 + 대조 · 따로 읽기 · 후보정의 길은 재지 않았다.
  */
 import "server-only";
 
 import { ENGLISH_MATERIAL_CONTENT_MAX } from "@/contracts/english.contract";
+import { CLAUDE_DEFAULT_MODEL } from "@/lib/ai/claudeModels";
 import {
   buildEnglishReadPrompt,
   buildEnglishReadVerifyPrompt,
@@ -89,23 +92,27 @@ export function isReadablePhoto(photo: {
   );
 }
 
-const READ_VENDORS = ["gemini", "openai", "anthropic"] as const;
+const READ_VENDORS = ["anthropic", "gemini", "openai"] as const;
 type ReadVendor = (typeof READ_VENDORS)[number];
 
+/** 변수가 없을 때의 제공자 — 키로 고르지 않는다(Claude 키가 없으면 Gemini 로 조용히 넘어가지 않고 503) */
+const DEFAULT_READ_VENDOR: ReadVendor = "anthropic";
+
 /**
- * 읽기에 쓸 수 있는 모델 — 첫째가 기본이다.
+ * 읽기에 쓸 수 있는 모델 — 첫째가 그 제공자의 기본이다.
  * Gemini · OpenAI 는 작업실의 목록 그대로다(Gemini 3.8 Flash 는 배관이 생각 강도 LOW 로 부른다 — 잰 것도 Low 다).
  * Claude 는 **읽기를 재서 쓸 만했던 것만** 둔다 — 작업실 목록의 Haiku 4.5 는 열한 장을 다 틀렸고, Opus 4.7 은 재지 않았다.
+ * Claude 의 기본은 앱 전체의 기본(`CLAUDE_DEFAULT_MODEL` — Sonnet 5.5)이다(원장님 2026-11-11).
  */
 const READ_MODELS: Record<ReadVendor, readonly string[]> = {
-  gemini: API_MODELS.gemini,
-  openai: API_MODELS.openai,
   anthropic: [
+    CLAUDE_DEFAULT_MODEL,
     "claude-opus-5-5",
-    "claude-sonnet-5-5",
     "claude-opus-5",
     "claude-sonnet-4-6",
   ],
+  gemini: API_MODELS.gemini,
+  openai: API_MODELS.openai,
 };
 
 /**
@@ -128,7 +135,7 @@ export function resolveEnglishReadModel(env: Env = process.env): {
     : named
       ? // 모델만 적었으면 그 모델의 제공자 — 제공자 변수를 빠뜨렸다고 전부 503 이 되지 않게
         READ_VENDORS.find((item) => READ_MODELS[item].includes(named))
-      : READ_VENDORS.find((item) => env[API_KEY_NAMES[item]]?.trim());
+      : DEFAULT_READ_VENDOR;
   if (!vendor || !env[API_KEY_NAMES[vendor]]?.trim())
     throw new EnglishReadConfigError();
   const model = named || READ_MODELS[vendor][0]!;
@@ -146,27 +153,39 @@ function toggle(value: string | undefined, fallback: boolean) {
 }
 
 /**
- * 읽은 글을 사진과 한 번 더 대조할 것인가 — `ENGLISH_READ_VERIFY`(on · off)가 있으면 그것, 없으면 **잰 대로**다(25 §13.9):
- * Gemini 3.8 Flash 는 켬 — 대조를 붙이자 흠 없이 옮긴 쪽이 73% → 88%, 큰 흠이 19 → 8 곳이 됐다(33번 읽기).
- * 다른 제공자는 끔 — Sonnet 5.5 는 좋아졌다 나빠졌다 해 차이를 말할 수 없었고, Opus 5.5 는 한 번으로 다 맞혔다(값만 두 배).
+ * 기본 읽는 길(대조 · 따로 읽기 · 후보정)을 다 타는 모델인가 — 기본 모델(Sonnet 5.5)과, 그 길을 잰 Gemini 3.8 Flash.
+ * 원장님 2026-11-11 «전부 sonnet 으로» — 모델만 바꾸고 길은 그대로 둔다. Opus 5.5 는 한 번으로 다 맞혀(값만 두 배) 끈다.
+ */
+const takesFullPath = (vendor: ApiVendor, model: string) =>
+  vendor === "gemini" ||
+  (vendor === "anthropic" && model === CLAUDE_DEFAULT_MODEL);
+
+/**
+ * 읽은 글을 사진과 한 번 더 대조할 것인가 — `ENGLISH_READ_VERIFY`(on · off)가 있으면 그것, 없으면 기본 모델과 Gemini 는 켬(25 §13.9):
+ * Gemini 3.8 Flash 는 대조를 붙이자 흠 없이 옮긴 쪽이 73% → 88%, 큰 흠이 19 → 8 곳이 됐다(33번 읽기).
+ * 🔴 Sonnet 5.5 는 대조로 좋아졌다 나빠졌다 해 차이를 말할 수 없었다(구독 CLI) — 길을 그대로 두라는 결정이라 켜 두고,
+ * 운영 API 로 재서 득이 없으면 `ENGLISH_READ_VERIFY=off` 로 끈다. 그 밖의 모델은 끔.
  */
 export function resolveEnglishReadVerify(
   env: Env = process.env,
-  vendor: ApiVendor = "gemini",
+  vendor: ApiVendor = DEFAULT_READ_VENDOR,
+  model: string = READ_MODELS[DEFAULT_READ_VENDOR][0]!,
 ): boolean {
-  return toggle(env.ENGLISH_READ_VERIFY, vendor === "gemini");
+  return toggle(env.ENGLISH_READ_VERIFY, takesFullPath(vendor, model));
 }
 
 /**
- * 같은 사진을 **따로 한 번 더** 읽어 빈칸 자리를 맞출 것인가 — `ENGLISH_READ_TWICE`(on · off), 없으면 Gemini 일 때만 켬.
+ * 같은 사진을 **따로 한 번 더** 읽어 빈칸 자리를 맞출 것인가 — `ENGLISH_READ_TWICE`(on · off), 없으면 기본 모델과 Gemini 는 켬.
  * Gemini 의 읽기는 틀리는 자리가 회차마다 달랐다(빈칸 앞 글자). 대조는 처음 읽은 글에 끌려가 그 자리를 못 고쳤고
- * (세 번에 세 번 그대로), 따로 읽은 글과 맞추면 고쳐졌다(§13.10). 다른 제공자는 재지 않아 끈다.
+ * (세 번에 세 번 그대로), 따로 읽은 글과 맞추면 고쳐졌다(§13.10). Sonnet 5.5 도 회차마다 73 ~ 82% 로 흔들렸다 —
+ * 같은 길을 태운다(🔴 Sonnet 으로는 이 길을 재지 않았다). 그 밖의 모델은 재지 않아 끈다.
  */
 export function resolveEnglishReadTwice(
   env: Env = process.env,
-  vendor: ApiVendor = "gemini",
+  vendor: ApiVendor = DEFAULT_READ_VENDOR,
+  model: string = READ_MODELS[DEFAULT_READ_VENDOR][0]!,
 ): boolean {
-  return toggle(env.ENGLISH_READ_TWICE, vendor === "gemini");
+  return toggle(env.ENGLISH_READ_TWICE, takesFullPath(vendor, model));
 }
 
 /** 대조 호출의 시간 한도 — 처음 읽기가 길었어도 요청 전체가 라우트의 제한(`maxDuration`)을 넘지 않게 */
@@ -276,7 +295,7 @@ export async function readEnglishPhoto(
   // 따로 읽기 — 처음 읽기와 나란히 띄운다(기다리는 시간이 늘지 않는다). 던지지 않는 약속으로 감싸 둔다:
   // 처음 읽기가 먼저 실패해 아무도 기다리지 않게 돼도 «처리 안 된 거절»이 남지 않게
   const companion = new AbortController();
-  const other = resolveEnglishReadTwice(env, vendor)
+  const other = resolveEnglishReadTwice(env, vendor, model)
     ? call(
         buildEnglishReadPrompt(),
         AbortSignal.any([signal, companion.signal]),
@@ -296,7 +315,7 @@ export async function readEnglishPhoto(
     throw error;
   }
 
-  if (resolveEnglishReadVerify(env, vendor)) {
+  if (resolveEnglishReadVerify(env, vendor, model)) {
     try {
       const verified = cleanEnglishReadText(
         await call(

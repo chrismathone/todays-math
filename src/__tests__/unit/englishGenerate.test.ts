@@ -1,15 +1,19 @@
 /**
- * 오늘의 영어 — DeepSeek 직접 생성 (D-148 · 25 §4.3).
+ * 오늘의 영어 — AI 직접 생성 (D-148 · 25 §4.3). 기본은 Claude Sonnet 5.5(원장님 2026-11-11 «전부 sonnet 으로»),
+ * DeepSeek · luna 는 `ENGLISH_AI_VENDOR` 로 되돌리는 길이다.
  *
- * ⚠️ `openai` SDK 는 항상 `vi.mock` — 실제 AI API 를 부르지 않는다(CLAUDE.md 절대 규칙 7).
- *    본보기: src/__tests__/unit/aiGenerator.test.ts. 워크트리에는 `.env` 가 없어 «키가 있는 분기»는
- *    `vi.stubEnv` 로 켠다(20번 교훈 2026-09-20).
+ * ⚠️ `openai` SDK · `runModelApi`(Claude 배관)는 항상 `vi.mock` — 실제 AI API 를 부르지 않는다(CLAUDE.md 절대 규칙 7).
+ *    vitest 는 `.env` 를 읽는다(진짜 키가 들어올 수 있다) — 그래서 배관을 통째로 대역으로 바꾼다.
+ *    «키가 있는 분기»는 `vi.stubEnv` 로 켠다(20번 교훈 2026-09-20).
  *
  * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
+const { mockCreate, mockRun } = vi.hoisted(() => ({
+  mockCreate: vi.fn(),
+  mockRun: vi.fn(),
+}));
 
 vi.mock("openai", () => ({
   default: vi.fn().mockImplementation(function OpenAIMock() {
@@ -17,8 +21,11 @@ vi.mock("openai", () => ({
   }),
 }));
 
+vi.mock("@/lib/studio-ai/api", () => ({ runModelApi: mockRun }));
+
 import OpenAI from "openai";
 
+import { CLAUDE_DEFAULT_MODEL } from "@/lib/ai/claudeModels";
 import { DEEPSEEK_MODEL } from "@/lib/ai/client";
 import {
   AiCapacityError,
@@ -34,11 +41,16 @@ import {
   ENGLISH_TYPE_GUIDE,
 } from "@/lib/ai/prompts/englishExam";
 import {
+  ENGLISH_CLAUDE_EFFORT,
+  ENGLISH_CLAUDE_MAX_OUTPUT_TOKENS,
+  ENGLISH_CLAUDE_TIMEOUT_MS,
   ENGLISH_REFINE_BUDGET_MS,
   EnglishDraftRejectedError,
+  englishGenerationModel,
   generateEnglishDraft,
   resolveEnglishVendor,
 } from "@/lib/english/generate";
+import { StudioApiError } from "@/lib/studio-ai/errors";
 
 const passage =
   "Every Saturday Jun visits the library near the river. He does not borrow many books, but he reads the same page of an old atlas and imagines a different journey each time. The librarian says that imagination needs a quiet room more than a fast train.";
@@ -112,10 +124,11 @@ const CONDITIONAL =
 
 beforeEach(() => {
   mockCreate.mockReset();
+  mockRun.mockReset();
   vi.mocked(OpenAI).mockClear();
   vi.unstubAllEnvs();
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-anthropic-key");
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
-  // OpenAI 키가 있으면 영어는 luna 로 간다 — 셸에 키가 있어도 아래 DeepSeek 시험이 흔들리지 않게 비운다
   vi.stubEnv("OPENAI_API_KEY", "");
   vi.stubEnv("ENGLISH_AI_VENDOR", "");
 });
@@ -255,7 +268,161 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
   });
 });
 
-describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
+describe("generateEnglishDraft — 모킹된 Claude Sonnet 5.5 (기본 · 원장님 2026-11-11)", () => {
+  it("요청 — 작업실 배관(runModelApi) · anthropic · Sonnet 5.5 · 생각 강도 medium · 넉넉한 출력 한도 · 사진 없음", async () => {
+    mockRun.mockResolvedValueOnce(JSON.stringify(draft));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions).toHaveLength(2);
+    expect(mockRun).toHaveBeenCalledTimes(1);
+    const sent = mockRun.mock.calls[0]![0] as {
+      vendor: string;
+      model: string;
+      effort: string;
+      maxOutputTokens: number;
+      timeoutMs: number;
+      prompt: string;
+      imageDataUrl?: string;
+      signal: AbortSignal;
+    };
+    expect(sent.vendor).toBe("anthropic");
+    expect(sent.model).toBe(CLAUDE_DEFAULT_MODEL);
+    expect(CLAUDE_DEFAULT_MODEL).toBe("claude-sonnet-5-5");
+    // Sonnet 5.5 는 temperature 를 받지 않는다 — 강도를 주면 배관이 temperature 를 뺀다
+    expect(sent.effort).toBe(ENGLISH_CLAUDE_EFFORT);
+    expect(ENGLISH_CLAUDE_EFFORT).toBe("medium");
+    expect(sent.maxOutputTokens).toBe(ENGLISH_CLAUDE_MAX_OUTPUT_TOKENS);
+    expect(ENGLISH_CLAUDE_MAX_OUTPUT_TOKENS).toBeGreaterThanOrEqual(32000);
+    // 배관 기본 110초로는 한 세트가 잘린다 — 경로 상한(300초) 안에서 더 길게
+    expect(sent.timeoutMs).toBe(ENGLISH_CLAUDE_TIMEOUT_MS);
+    expect(ENGLISH_CLAUDE_TIMEOUT_MS).toBeGreaterThan(110_000);
+    expect(ENGLISH_CLAUDE_TIMEOUT_MS).toBeLessThan(300_000);
+    expect(sent.imageDataUrl).toBeUndefined();
+    expect(sent.signal).toBeInstanceOf(AbortSignal);
+    // 배관에는 system 칸이 없다 — 규칙(system)을 앞에, 요청을 뒤에 한 글로 싣는다
+    expect(sent.prompt).toBe(
+      `${buildEnglishSystemPrompt()}\n\n${buildEnglishUserPrompt(input, "고1")}`,
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  it("객체 하나를 읽어 초안을 돌려준다 — source 는 공급자와 무관하게 deepseek(화면 이름 «AI 생성»)", async () => {
+    mockRun.mockResolvedValueOnce(
+      "결과:\n```json\n" +
+        JSON.stringify({ ...draft, source: "manual" }) +
+        "\n```",
+    );
+    const result = await generateEnglishDraft(input, "고1");
+    expect(result.source).toBe("deepseek");
+    expect(result.title).toBe("도서관의 상상");
+  });
+
+  it("못 읽으면 한 번 더 · 거절되면 고쳐 쓰기도 Claude 로 부른다", async () => {
+    const fourOptions = {
+      ...draft,
+      questions: [
+        {
+          ...draft.questions[0],
+          options: draft.questions[0]!.options.slice(0, 4),
+        },
+        draft.questions[1],
+      ],
+    };
+    mockRun
+      .mockResolvedValueOnce("JSON 이 아닙니다.")
+      .mockResolvedValueOnce(JSON.stringify(fourOptions))
+      .mockResolvedValueOnce(JSON.stringify(draft));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions[0]!.options).toHaveLength(5);
+    expect(mockRun).toHaveBeenCalledTimes(3);
+    for (const [sent] of mockRun.mock.calls)
+      expect(sent).toMatchObject({
+        vendor: "anthropic",
+        model: CLAUDE_DEFAULT_MODEL,
+        effort: "medium",
+      });
+    const refine = (mockRun.mock.calls[2]![0] as { prompt: string }).prompt;
+    expect(refine.startsWith(buildEnglishSystemPrompt())).toBe(true);
+    expect(refine).toContain("[앞서 낸 답]");
+    expect(refine).toContain("지적된 문항만");
+  });
+
+  it("출력 한도로 잘리면 AiCapacityError — 재시도하지 않는다", async () => {
+    mockRun.mockRejectedValueOnce(
+      new StudioApiError(
+        "Claude 응답이 출력 토큰 한도로 잘렸습니다. 문항을 나누어 다시 시도해 주세요.",
+      ),
+    );
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiCapacityError,
+    );
+    expect(mockRun).toHaveBeenCalledTimes(1);
+  });
+
+  it("상류 실패 · 시간 한도는 AiGenerationError(설정 · 길이 오류가 아니다) — 라우트가 502 로 낸다", async () => {
+    for (const error of [
+      new StudioApiError("모델 API 요청에 실패했습니다.", 502, true),
+      new StudioApiError("Claude 응답이 완료되지 않았습니다."),
+      new DOMException("The operation timed out.", "TimeoutError"),
+    ]) {
+      mockRun.mockReset().mockRejectedValueOnce(error);
+      const failure = await generateEnglishDraft(input, "고1").catch(
+        (caught: unknown) => caught,
+      );
+      expect(failure).toBeInstanceOf(AiGenerationError);
+      expect(failure).not.toBeInstanceOf(AiConfigError);
+      expect(failure).not.toBeInstanceOf(AiCapacityError);
+      expect(mockRun).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it("배관이 키 없음(503)을 알리면 AiConfigError", async () => {
+    mockRun.mockRejectedValueOnce(
+      new StudioApiError(
+        "선택한 모델의 서버 API 키가 설정되지 않았습니다.",
+        503,
+      ),
+    );
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiConfigError,
+    );
+  });
+
+  it("ANTHROPIC_API_KEY 가 없으면 AI 를 부르지 않고 AiConfigError — 다른 공급자로 조용히 넘어가지 않는다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
+    vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiConfigError,
+    );
+    expect(mockRun).not.toHaveBeenCalled();
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+});
+
+describe("generateEnglishDraft — 모킹된 DeepSeek (되돌리는 길 ENGLISH_AI_VENDOR=deepseek)", () => {
+  beforeEach(() => {
+    vi.stubEnv("ENGLISH_AI_VENDOR", "deepseek");
+  });
+
+  it("문제 생성의 공급자 변수(PROBLEM_AI_VENDOR)와 무관하게 DeepSeek 주소로 간다 — Claude 로 새지 않는다", async () => {
+    vi.stubEnv("PROBLEM_AI_VENDOR", "");
+    mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    await generateEnglishDraft(input, "고1");
+
+    expect(mockRun).not.toHaveBeenCalled();
+    const made = vi.mocked(OpenAI).mock.calls.at(-1)![0] as {
+      apiKey: string;
+      baseURL?: string;
+    };
+    expect(made.apiKey).toBe("test-api-key");
+    expect(made.baseURL).toBe("https://api.deepseek.com");
+  });
+
   it("요청 본문 — system · user · max_tokens(추론 예산 하한) · 모델", async () => {
     mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
 
@@ -493,25 +660,26 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
   });
 });
 
-describe("영어 AI 공급자 — OPENAI_API_KEY 가 있으면 luna (원장님 2026-09-30 «luna 로» · 25 §12.7)", () => {
-  it("키가 없으면 DeepSeek — 운영에 키를 넣기 전까지 지금 동작 그대로", () => {
-    expect(resolveEnglishVendor({})).toBe("deepseek");
-    expect(resolveEnglishVendor({ OPENAI_API_KEY: "  " })).toBe("deepseek");
+describe("영어 AI 공급자 — 기본은 Claude Sonnet 5.5 (원장님 2026-11-11 «전부 sonnet 으로»)", () => {
+  it("변수가 없으면 어떤 키가 있든 anthropic — 키로 공급자를 고르지 않는다", () => {
+    expect(resolveEnglishVendor({})).toBe("anthropic");
+    expect(resolveEnglishVendor({ OPENAI_API_KEY: "k" })).toBe("anthropic");
+    expect(resolveEnglishVendor({ DEEPSEEK_API_KEY: "d" })).toBe("anthropic");
+    expect(resolveEnglishVendor({ ENGLISH_AI_VENDOR: "  " })).toBe("anthropic");
   });
 
-  it("키가 있으면 openai", () => {
-    expect(resolveEnglishVendor({ OPENAI_API_KEY: "k" })).toBe("openai");
-  });
-
-  it("ENGLISH_AI_VENDOR 로 코드 없이 고른다 — deepseek 면 키가 있어도 DeepSeek", () => {
+  it("ENGLISH_AI_VENDOR 로 코드 없이 되돌린다 — openai(luna) · deepseek", () => {
     expect(
       resolveEnglishVendor({
-        OPENAI_API_KEY: "k",
+        ANTHROPIC_API_KEY: "a",
         ENGLISH_AI_VENDOR: "deepseek",
       }),
     ).toBe("deepseek");
     expect(resolveEnglishVendor({ ENGLISH_AI_VENDOR: " openai " })).toBe(
       "openai",
+    );
+    expect(resolveEnglishVendor({ ENGLISH_AI_VENDOR: " Anthropic " })).toBe(
+      "anthropic",
     );
   });
 
@@ -520,10 +688,24 @@ describe("영어 AI 공급자 — OPENAI_API_KEY 가 있으면 luna (원장님 2
       AiConfigError,
     );
   });
+
+  it("«만든 조건»에 싣는 모델 이름도 같은 공급자를 따른다", () => {
+    expect(englishGenerationModel({}).name).toBe(CLAUDE_DEFAULT_MODEL);
+    expect(englishGenerationModel({ ENGLISH_AI_VENDOR: "openai" }).name).toBe(
+      ENGLISH_OPENAI_MODEL,
+    );
+    expect(englishGenerationModel({ ENGLISH_AI_VENDOR: "deepseek" }).name).toBe(
+      DEEPSEEK_MODEL,
+    );
+    expect(englishGenerationModel({}).promptVersion).toBe(
+      ENGLISH_EXAM_PROMPT_VERSION,
+    );
+  });
 });
 
-describe("generateEnglishDraft — 모킹된 OpenAI (gpt-6-luna)", () => {
+describe("generateEnglishDraft — 모킹된 OpenAI (되돌리는 길 ENGLISH_AI_VENDOR=openai · gpt-6-luna)", () => {
   beforeEach(() => {
+    vi.stubEnv("ENGLISH_AI_VENDOR", "openai");
     vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
     vi.stubEnv("DEEPSEEK_API_KEY", "");
   });
@@ -608,6 +790,7 @@ describe("English injected generation transport", () => {
       AiConfigError,
     );
     expect(mockCreate).not.toHaveBeenCalled();
+    expect(mockRun).not.toHaveBeenCalled();
   });
 
   it("retains the refinement time budget for an injected transport", async () => {
