@@ -169,7 +169,7 @@ export default function StudioCartPanel({
               <span className={s.number}>
                 {row.removed ? "–" : String(row.order).padStart(2, "0")}
               </span>
-              <div>
+              <div className={s.main}>
                 {crop ? (
                   <button
                     type="button"
@@ -184,7 +184,9 @@ export default function StudioCartPanel({
                   </strong>
                 )}
                 <span className={s.source}>{source}</span>
-                <small>
+                <small
+                  title={stale ? `${detail} · 고친 내용 반영 전` : undefined}
+                >
                   {row.removed
                     ? "뺐습니다"
                     : stale

@@ -98,34 +98,47 @@
   color: var(--learn-muted, #596c86);
   text-align: center;
 }
-/* 줄 자체는 누르는 표면이 아니다 — 이름(이 원본)·×·다시 담기만 단추다(D-30). */
+/* 줄 자체는 누르는 표면이 아니다 — 이름(이 원본)·×·다시 담기만 단추다(D-30).
+   한 문항은 한 줄(원장님 2026-11-11 «하나의 행으로 여러 줄 하지 말고») — 번호 · 이름 · 출처 · 쪽/학년 · ×. */
 .row {
   display: grid;
   grid-template-columns: 26px minmax(0, 1fr) auto;
   align-items: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 4px 8px;
+  min-height: 36px;
+  padding: 2px 8px;
   border-bottom: 1px solid #eef1f6;
   font-size: 13px;
+}
+.main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  white-space: nowrap;
 }
 .row[data-removed="true"] {
   color: #8a97ab;
 }
+/* 쪽 · 학년(· 반영 전)은 이름 뒤에 같은 줄 — 넘치면 말줄임, 전체 글은 마우스 올림. */
 .row small {
-  display: block;
+  min-width: 0;
+  overflow: hidden;
   color: #52617a;
   font-size: var(--text-caption, 12px);
+  text-overflow: ellipsis;
 }
 .number {
   color: #52617a;
   font-variant-numeric: tabular-nums;
 }
 .name {
+  flex: none;
   font-weight: 600;
 }
 /* 이 원본 문항의 이름 — 누르면 그 검수 카드로 간다(진짜 단추). */
 .jump {
+  flex: none;
   padding: 0;
   border: 0;
   background: none;
@@ -141,7 +154,7 @@
   color: inherit;
 }
 .source {
-  margin-left: 6px;
+  flex: none;
   padding: 0 5px;
   border-radius: 4px;
   background: #eef1f6;
@@ -155,8 +168,8 @@
   gap: 4px;
 }
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border: 1px solid #d4dce8;
   border-radius: 6px;
@@ -167,7 +180,7 @@
   background: #edf2ff;
 }
 .text {
-  height: 32px;
+  height: 28px;
   padding: 0 10px;
   border: 1px solid #d4dce8;
   border-radius: 6px;
