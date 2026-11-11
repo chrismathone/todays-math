@@ -44,6 +44,7 @@ import {
   FIGURE_HATCH_GAPS,
   figureHatchOf,
   setFigureHatch,
+  type FigureHatch,
 } from "./figureHatch";
 import {
   figureAngleKinds,
@@ -215,6 +216,55 @@ const FIELD_NAMES: Record<string, string> = {
   height: "높이",
 };
 
+type HatchShape = Omit<FigureHatch, "color">;
+/** 빗금의 방향(／ ＼ ×) · 간격(촘촘 · 보통 · 성김) 줄 — 선택한 도형 칸과 채우기 통 칸이 같이 쓴다. */
+function FigureHatchRow({
+  hatch,
+  onChange,
+}: {
+  hatch: HatchShape;
+  onChange: (next: Partial<HatchShape>) => void;
+}) {
+  return (
+    <div data-hatch-row="" className="flex items-center justify-between gap-2">
+      <span
+        role="group"
+        aria-label="빗금 방향"
+        className="flex items-center gap-1"
+      >
+        {FIGURE_HATCH_DIRECTIONS.map((direction) => (
+          <button
+            key={direction}
+            type="button"
+            aria-pressed={hatch.direction === direction}
+            onClick={() => onChange({ direction })}
+            className={formatToggleClass(hatch.direction === direction)}
+          >
+            {FIGURE_HATCH_DIRECTION_LABELS[direction]}
+          </button>
+        ))}
+      </span>
+      <span
+        role="group"
+        aria-label="빗금 간격"
+        className="flex items-center gap-1"
+      >
+        {FIGURE_HATCH_GAPS.map((gap) => (
+          <button
+            key={gap}
+            type="button"
+            aria-pressed={hatch.gap === gap}
+            onClick={() => onChange({ gap })}
+            className={formatToggleClass(hatch.gap === gap)}
+          >
+            {FIGURE_HATCH_GAP_LABELS[gap]}
+          </button>
+        ))}
+      </span>
+    </div>
+  );
+}
+
 export function FigureEditor({
   image,
   originalImage,
@@ -316,6 +366,31 @@ export function FigureEditor({
   const [midLabel, setMidLabel] = useState("");
   // 채우기 통·다각형 도구가 칠할 색 — 편집기를 연 동안 기억한다.
   const [faceColor, setFaceColor] = useState(DEFAULT_FACE_FILL);
+  // 채우기 통·다각형 도구의 빗금(원장님 2026-11-11 «여긴 빗금 선택 없네») — null 이면 보통 채우기.
+  // 빗금 선 색은 따로 둔다(면 채우기의 연한 회색으로는 빗금이 안 보인다).
+  const [faceHatch, setFaceHatch] = useState<Omit<FigureHatch, "color"> | null>(
+    null,
+  );
+  const [faceHatchColor, setFaceHatchColor] = useState("#111111");
+  /** 통·다각형이 막 칠한 면에 빗금을 입힌다 — 빗금이 꺼져 있으면 그 면의 옛 빗금을 걷고 보통 색으로. */
+  const paintFace = (
+    before: string,
+    result: { svg: string; id?: string },
+  ): string => {
+    if (!result.id) return result.svg;
+    const hatched = figureHatchOf(before, result.id);
+    // 이미 빗금인 면을 다시 누르면 그 패턴을 고친다(새 패턴을 만들면 옛 것이 defs 에 남는다).
+    if (faceHatch)
+      return setFigureHatch(hatched ? before : result.svg, result.id, {
+        ...faceHatch,
+        color: faceHatchColor,
+      });
+    return hatched
+      ? editFigureObject(setFigureHatch(before, result.id, null), result.id, {
+          fill: faceColor,
+        })
+      : result.svg;
+  };
   // 다각형 도구가 그리는 중인 점들 · 마우스 자리(달라붙었나) · 화면 px/도형 단위
   const [draft, setDraft] = useState<{
     points: Point[];
@@ -763,7 +838,7 @@ export function FigureEditor({
       unique.pop();
     if (unique.length < 3) return;
     const result = addPolygonFace(svg, unique, faceColor);
-    commit(result.svg);
+    commit(paintFace(svg, result));
     setDraft(null);
   };
   const paste = (source: string, duplicate = false) => {
@@ -1174,7 +1249,7 @@ export function FigureEditor({
       // 채우기 통 — 누른 칸에 면(선 뒤에), 칠한 면이면 색만. 칸이 없으면 안내만 하고 아무것도 안 만든다.
       const result = bucketFill(svg, { x: start.x, y: start.y }, faceColor);
       setClipboardNotice(result.notice ?? "");
-      if (!result.notice) commit(result.svg);
+      if (!result.notice) commit(paintFace(svg, result));
       e.preventDefault();
       return;
     } else if (tool === "polygon") {
@@ -2288,15 +2363,39 @@ export function FigureEditor({
                 onSymbolGroup={setSymbolGroup}
               />
             ) : tool === "fill" || tool === "polygon" ? (
-              <label className="flex items-center justify-between text-xs">
-                면 채우기 색
-                <input
-                  type="color"
-                  aria-label="면 채우기 색"
-                  value={faceColor}
-                  onChange={(e) => setFaceColor(e.target.value)}
-                />
-              </label>
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center justify-between">
+                  <span>{faceHatch ? "빗금 색" : "면 채우기 색"}</span>
+                  <span className="flex items-center gap-2.5">
+                    <button
+                      type="button"
+                      aria-pressed={!!faceHatch}
+                      onClick={() =>
+                        setFaceHatch(faceHatch ? null : DEFAULT_FIGURE_HATCH)
+                      }
+                      className={formatToggleClass(!!faceHatch)}
+                    >
+                      빗금
+                    </button>
+                    <input
+                      type="color"
+                      aria-label={faceHatch ? "빗금 색" : "면 채우기 색"}
+                      value={faceHatch ? faceHatchColor : faceColor}
+                      onChange={(e) =>
+                        faceHatch
+                          ? setFaceHatchColor(e.target.value)
+                          : setFaceColor(e.target.value)
+                      }
+                    />
+                  </span>
+                </div>
+                {faceHatch && (
+                  <FigureHatchRow
+                    hatch={faceHatch}
+                    onChange={(next) => setFaceHatch({ ...faceHatch, ...next })}
+                  />
+                )}
+              </div>
             ) : selectedIds.length > 1 ? null : (
               <div className="rounded-lg border border-dashed border-control p-4 text-center text-xs leading-relaxed text-muted">
                 캔버스의 선, 곡선, 글자를 클릭하면
@@ -2594,65 +2693,17 @@ export function FigureEditor({
                         </span>
                       </div>
                       {currentHatch && (
-                        <div
-                          data-hatch-row=""
-                          className="flex items-center justify-between gap-2"
-                        >
-                          <span
-                            role="group"
-                            aria-label="빗금 방향"
-                            className="flex items-center gap-1"
-                          >
-                            {FIGURE_HATCH_DIRECTIONS.map((direction) => (
-                              <button
-                                key={direction}
-                                type="button"
-                                aria-pressed={
-                                  currentHatch.direction === direction
-                                }
-                                onClick={() =>
-                                  commit(
-                                    setFigureHatch(svg, current.id, {
-                                      ...currentHatch,
-                                      direction,
-                                    }),
-                                  )
-                                }
-                                className={formatToggleClass(
-                                  currentHatch.direction === direction,
-                                )}
-                              >
-                                {FIGURE_HATCH_DIRECTION_LABELS[direction]}
-                              </button>
-                            ))}
-                          </span>
-                          <span
-                            role="group"
-                            aria-label="빗금 간격"
-                            className="flex items-center gap-1"
-                          >
-                            {FIGURE_HATCH_GAPS.map((gap) => (
-                              <button
-                                key={gap}
-                                type="button"
-                                aria-pressed={currentHatch.gap === gap}
-                                onClick={() =>
-                                  commit(
-                                    setFigureHatch(svg, current.id, {
-                                      ...currentHatch,
-                                      gap,
-                                    }),
-                                  )
-                                }
-                                className={formatToggleClass(
-                                  currentHatch.gap === gap,
-                                )}
-                              >
-                                {FIGURE_HATCH_GAP_LABELS[gap]}
-                              </button>
-                            ))}
-                          </span>
-                        </div>
+                        <FigureHatchRow
+                          hatch={currentHatch}
+                          onChange={(next) =>
+                            commit(
+                              setFigureHatch(svg, current.id, {
+                                ...currentHatch,
+                                ...next,
+                              }),
+                            )
+                          }
+                        />
                       )}
                     </>
                   )}

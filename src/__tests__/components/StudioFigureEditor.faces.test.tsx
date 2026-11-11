@@ -238,6 +238,39 @@ describe("채우기 통", () => {
     expect(faces()[0].getAttribute("fill")).toBe("#d5e8f0");
   });
 
+  it("빗금을 켜고 누르면 빗금 면, 다시 끄고 누르면 옛 빗금을 걷고 보통 색 — 패턴이 남지 않는다", () => {
+    // 원장님 2026-11-11 «여긴 빗금 선택 없네» — 채우기 통 칸에도 빗금 · 방향 · 간격
+    open();
+    tool("채우기");
+    fireEvent.click(screen.getByRole("button", { name: "빗금" }));
+    fireEvent.click(screen.getByRole("button", { name: "＼" }));
+    fireEvent.click(screen.getByRole("button", { name: "성김" }));
+    fireEvent.change(screen.getByLabelText("빗금 색"), {
+      target: { value: "#2255aa" },
+    });
+    click(120, 150);
+    const fill = faces()[0].getAttribute("fill")!;
+    expect(fill).toMatch(/^url\(#hatch-/);
+    const pattern = canvas().querySelector("pattern")!;
+    expect(pattern.getAttribute("data-hatch")).toBe("left");
+    expect(pattern.getAttribute("data-hatch-gap")).toBe("wide");
+    expect(pattern.querySelector("line")!.getAttribute("stroke")).toBe(
+      "#2255aa",
+    );
+    // 같은 면을 다시 누르면 그 패턴을 고친다(새로 쌓지 않는다)
+    fireEvent.click(screen.getByRole("button", { name: "×" }));
+    click(120, 150);
+    expect(canvas().querySelectorAll("pattern")).toHaveLength(1);
+    expect(faces()[0].getAttribute("fill")).toBe(fill);
+    // 빗금을 끄고 누르면 보통 색 · 패턴은 걷힌다
+    fireEvent.click(screen.getByRole("button", { name: "빗금" }));
+    expect(screen.queryByRole("group", { name: "빗금 방향" })).toBeNull();
+    click(120, 150);
+    expect(faces()).toHaveLength(1);
+    expect(faces()[0].getAttribute("fill")).toBe("#d9d9d9");
+    expect(canvas().querySelector("pattern")).toBeNull();
+  });
+
   it("면은 선을 따라간다 — 선을 옮기면(정밀 수치) 면 경로가 바뀐다", () => {
     open();
     tool("채우기");
