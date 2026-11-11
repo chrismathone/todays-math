@@ -398,6 +398,38 @@ describe("cloud extraction sessions", () => {
     expect(next.documentId).not.toBe(id);
     expect(server.documents.size).toBe(1);
   });
+  // 원장님 2026-11-11(웨일) — 이 브라우저의 복구 사본(IndexedDB)이 «Failed to write blobs (IOError)»로 거부되자
+  // 계정 저장까지 멈추고 영어 원문이 화면에 떴다. 복구 사본은 보조다 — 실패해도 계정 저장은 끝까지 간다.
+  it("still saves to the account when the local recovery copy cannot be written", async () => {
+    const server = privateServer();
+    const memory = memoryRecovery();
+    const broken = {
+      get: memory.get,
+      put: vi.fn(async () => {
+        throw new DOMException(
+          "Failed to write blobs (IOError)",
+          "UnknownError",
+        );
+      }),
+    };
+    const studio = new PrivateStudioSessionStore(
+      "owner-a",
+      undefined,
+      undefined,
+      new PrivateCloudClient("owner-a", server.transport),
+      broken,
+    );
+    await studio.load();
+    const originals = new Map([
+      ["source1", new Blob(["PDF"], { type: "application/pdf" })],
+    ]);
+    await expect(
+      studio.save(sessionData(), originals),
+    ).resolves.toBeUndefined();
+    expect(broken.put).toHaveBeenCalled();
+    expect(server.documents.size).toBe(1);
+    expect([...server.documents.values()][0].revision).toBe(1);
+  });
   it("recovers pending materialized crop images with portable URLs after a failed save", async () => {
     vi.spyOn(URL, "createObjectURL")
       .mockReturnValueOnce("blob:old-page")

@@ -51,6 +51,28 @@ describe("account approval and menu route policy", () => {
     ).toBe(false);
   });
 
+  // 사용 표시(읽기 전용)는 시험지 만들기(bank)와 연산대장이 같이 쓴다 — 문제은행을 끈 지점(인재원 침산)의
+  // 연산대장이 열 때마다 403 이었다(2026-11-11 운영 기록). 문제은행의 다른 경로는 그대로 bank 만.
+  it("opens usage labels to arithmetic accounts without opening the problem bank", () => {
+    const arithmetic = {
+      ...account,
+      menus: ["arithmetic"] as AccountAccess["menus"],
+    };
+    expect(
+      accountRouteAllowed(arithmetic, "POST", "/api/studio/problems/labels"),
+    ).toBe(true);
+    expect(accountRouteAllowed(arithmetic, "GET", "/api/studio/problems")).toBe(
+      false,
+    );
+    expect(
+      accountRouteAllowed(
+        { ...account, menus: ["library"] as AccountAccess["menus"] },
+        "POST",
+        "/api/studio/problems/labels",
+      ),
+    ).toBe(false);
+  });
+
   // 문제 추출 시연 녹화본(원장님 2026-11-11) — 작업실 AI 와 같은 메뉴(studio)다. 시연 계정인지는 라우트가 본다.
   it("opens the studio demo recording only to studio accounts", () => {
     for (const method of ["GET", "POST"]) {

@@ -182,7 +182,7 @@ export class PrivateStudioSessionStore {
       if (current?.id === null) return null;
       const latest = (await this.client.list("extraction"))[0];
       if (!latest) {
-        if (!this.released) await this.recovery.put("current", { id: null });
+        if (!this.released) await this.keep("current", { id: null });
         return null;
       }
       this.id = latest.id;
@@ -215,7 +215,7 @@ export class PrivateStudioSessionStore {
         cause instanceof PrivateCloudError &&
         cause.status === 404
       ) {
-        if (!this.released) await this.recovery.put("current", { id: null });
+        if (!this.released) await this.keep("current", { id: null });
         this.id = undefined;
         return null;
       }
@@ -250,7 +250,7 @@ export class PrivateStudioSessionStore {
     this.title = document.title;
     this.assets = assets;
     this.lastSaved = JSON.stringify(displayed);
-    if (!this.released) await this.recovery.put("current", { id: this.id });
+    if (!this.released) await this.keep("current", { id: this.id });
     return { data: displayed, originals };
   }
   save(
@@ -283,9 +283,11 @@ export class PrivateStudioSessionStore {
           data: portable,
           originals: files,
         };
-        // Keep recoverable originals before sending any remote writes.
-        await this.recovery.put(id, cache);
-        if (!this.released) await this.recovery.put("current", { id });
+        // Keep recoverable originals before sending any remote writes. The local copy is a
+        // safety net only — a browser that refuses it («Failed to write blobs (IOError)»,
+        // 원장님 웨일 2026-11-11) must not stop the account save.
+        await this.keep(id, cache);
+        if (!this.released) await this.keep("current", { id });
         // Preserve subsequent edits and originals locally without retrying a
         // revision the server has already rejected.
         if (this.conflictError) throw this.conflictError;
@@ -320,7 +322,7 @@ export class PrivateStudioSessionStore {
         this.lastSaved = signature;
         this.lastError = null;
         // Cache portable URLs after acknowledgment; no expiring object URLs are needed to recover.
-        await this.recovery.put(id, {
+        await this.keep(id, {
           ...cache,
           data: externalized,
           revision: saved.revision,
@@ -351,10 +353,21 @@ export class PrivateStudioSessionStore {
       .catch(() => {});
     return pending;
   }
+  /** 이 브라우저의 복구 사본 — 쓰지 못해도 계정 저장은 이어 간다. */
+  private async keep(key: string, value: unknown) {
+    try {
+      await this.recovery.put(key, value);
+    } catch (cause) {
+      console.warn(
+        "문제 추출 복구 사본을 이 브라우저에 쓰지 못했습니다.",
+        cause,
+      );
+    }
+  }
   async clear(): Promise<void> {
     await this.tail;
     if (this.lastError) throw this.lastError;
-    await this.recovery.put("current", { id: null });
+    await this.keep("current", { id: null });
     this.id = undefined;
     this.revision = null;
     this.visibility = "private";

@@ -222,6 +222,8 @@ export function accountRouteAllowed(
   )
     return any("studio");
   if (path === "/api/studio/overview") return any("home", "teaching");
+  // 사용 표시(읽기 전용)는 시험지 만들기와 연산대장이 같이 쓴다 — 문제은행을 끈 지점의 연산대장도 연다(2026-11-11).
+  if (path === "/api/studio/problems/labels") return any("bank", "arithmetic");
   // SRS teacher management: explorer summaries stay read-only; class routes use teaching below.
   if (
     path === "/api/math-ontology" ||
