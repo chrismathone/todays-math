@@ -35,7 +35,7 @@ import {
   maskInsightQuery,
   parseInsightSelection,
 } from "./inference";
-import { insightModelConfig } from "./config";
+import { insightMaxOutputTokens, insightModelConfig } from "./config";
 import { admitInsight } from "./admission";
 
 const badRequest = () =>
@@ -195,7 +195,8 @@ export async function handleInsightRequest(
         ...config!,
         prompt: buildInsightPrompt(snapshot, maskedQuery),
         signal,
-        maxOutputTokens: 700,
+        // Claude 는 생각이 출력 한도를 같이 쓴다 — 생각 몫을 얹는다(`insightMaxOutputTokens`).
+        maxOutputTokens: insightMaxOutputTokens(config!.vendor, 700),
         singleAttempt: true,
         suppressUpstreamDetails: true,
       });

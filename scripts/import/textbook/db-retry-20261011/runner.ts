@@ -177,8 +177,8 @@ export async function runDbRetryCli(
   }
   if (options.mode === "insert" && process.env.ALLOW_SHARED_IMPORT !== "1")
     throw new Error("allow-shared-import-required");
-  if (options.mode === "generate" && !process.env.DEEPSEEK_API_KEY)
-    throw new Error("deepseek-key-missing");
+  if (options.mode === "generate" && !process.env.ANTHROPIC_API_KEY?.trim())
+    throw new Error("anthropic-key-missing");
   const store = new DbRetryCheckpointStore(
     options.out,
     snapshot.digest,

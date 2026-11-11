@@ -257,7 +257,7 @@ describe("POST /api/problems/transform — 후보만 만든다", () => {
   it("설정 누락(AiConfigError)은 503과 **무엇이 없는지** 알려 주는 사유를 돌려준다", async () => {
     const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
     mockTransformProblem.mockRejectedValueOnce(
-      new AiConfigError("DEEPSEEK_API_KEY가 설정되어 있지 않습니다."),
+      new AiConfigError("ANTHROPIC_API_KEY가 설정되어 있지 않습니다."),
     );
 
     const res = await transformRoute(
@@ -271,7 +271,30 @@ describe("POST /api/problems/transform — 후보만 만든다", () => {
     // 여기서 502/일반 문구가 나온다 — 2026-08-19 에 실제로 원인을 가렸던 자리다.
     expect(res.status).toBe(503);
     const body = errorResponseSchema.parse(await res.json());
+    // 문항 AI 는 Claude 다(원장님 2026-11-11) — 키 이름도 지금 공급자의 것
+    expect(body.error.message).toContain("ANTHROPIC_API_KEY");
+    log.mockRestore();
+  });
+
+  it("PROBLEM_AI_VENDOR=deepseek 로 되돌렸으면 사유도 DEEPSEEK_API_KEY 를 가리킨다", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    vi.stubEnv("PROBLEM_AI_VENDOR", "deepseek");
+    mockTransformProblem.mockRejectedValueOnce(
+      new AiConfigError("DEEPSEEK_API_KEY가 설정되어 있지 않습니다."),
+    );
+
+    const res = await transformRoute(
+      jsonRequest("http://localhost/api/problems/transform", {
+        originProblemId: MOCK_PROBLEMS[0]!.id,
+        count: 1,
+      }),
+    );
+
+    expect(res.status).toBe(503);
+    const body = errorResponseSchema.parse(await res.json());
     expect(body.error.message).toContain("DEEPSEEK_API_KEY");
+    expect(body.error.message).not.toContain("ANTHROPIC_API_KEY");
+    vi.unstubAllEnvs();
     log.mockRestore();
   });
 });

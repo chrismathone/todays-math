@@ -1,14 +1,14 @@
 // @vitest-environment node
 import { createHash } from "node:crypto";
-import { describe, expect, it, vi } from "vitest";
-import { DEEPSEEK_MODEL } from "@/lib/ai/client";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { CLAUDE_DEFAULT_MODEL, CLAUDE_HARD_MODEL } from "@/lib/ai/claudeModels";
 import type {
   DbRetryFigures,
   DbRetryOrigin,
 } from "@/lib/import/schoolTextbook/dbRetry.types";
 import {
   buildDbRetryPrompts,
-  DB_RETRY_VISION_MODEL,
+  completeDbRetry,
   generateDbRetryPair,
   prepareDbRetryInsertion,
   type DbRetryCompletion,
@@ -54,7 +54,7 @@ export function retryCompletion(
   fields: Record<string, unknown> = {},
 ): DbRetryCompletion {
   return {
-    model: DEEPSEEK_MODEL,
+    model: CLAUDE_DEFAULT_MODEL,
     content: JSON.stringify([
       {
         content: `$${slot + 3}+3$을 계산하시오.`,
@@ -116,7 +116,8 @@ describe("DB-source generation is a pending draft, not approval", () => {
     expect(complete).toHaveBeenCalledTimes(2);
     expect(
       complete.mock.calls.every(
-        ([r]) => r.model === DEEPSEEK_MODEL && r.figures.images.length === 0,
+        ([r]) =>
+          r.model === CLAUDE_DEFAULT_MODEL && r.figures.images.length === 0,
       ),
     ).toBe(true);
     for (const candidate of pair.candidates) {
@@ -138,8 +139,8 @@ describe("DB-source generation is a pending draft, not approval", () => {
     ]);
     expect(pair.calls).toHaveLength(2);
     expect(pair.calls[0]).toMatchObject({
-      model: DEEPSEEK_MODEL,
-      requestedModel: DEEPSEEK_MODEL,
+      model: CLAUDE_DEFAULT_MODEL,
+      requestedModel: CLAUDE_DEFAULT_MODEL,
       latencyMs: 100,
       usage: { totalTokens: 30, reasoningTokens: 5, cacheHitTokens: 2 },
     });
@@ -367,7 +368,8 @@ describe("DB-source generation is a pending draft, not approval", () => {
       renderFigure,
     });
     expect(complete.mock.calls[0]![0]).toMatchObject({
-      model: DB_RETRY_VISION_MODEL,
+      // 그림이 있어도 같은 모델이다(Claude 는 글 · 그림을 한 모델이 읽는다 — 원장님 2026-11-11)
+      model: CLAUDE_DEFAULT_MODEL,
       figures,
     });
     expect(complete.mock.calls[0]![0].prompt).toContain(
@@ -393,5 +395,107 @@ describe("DB-source generation is a pending draft, not approval", () => {
         { complete },
       ),
     ).rejects.toThrow("source-figure-hash-mismatch");
+  });
+});
+
+describe("DB 재시도 생성의 모델 — Claude Sonnet 5.5 · 심화상 Opus 5.5 (원장님 2026-11-11)", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
+
+  it("원문이 심화상이면 Opus 5.5 로 부른다", async () => {
+    const origin = structuredClone(retryOrigin);
+    origin.problem.difficulty = "심화상";
+    const complete = retryTransport();
+    await generateDbRetryPair(origin, noRetryFigures, { complete });
+    expect(complete.mock.calls.map(([r]) => r.model)).toEqual([
+      CLAUDE_HARD_MODEL,
+      CLAUDE_HARD_MODEL,
+    ]);
+  });
+
+  it("전송은 Messages API 한 번 — 그림은 base64 블록, effort 를 싣고 temperature 는 없다, 끝난 까닭을 옮긴다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "test-key");
+    vi.stubEnv("TEXTBOOK_RETRY_MAX_TOKENS", "");
+    const bodies: Record<string, unknown>[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url: unknown, init?: RequestInit) => {
+        bodies.push(JSON.parse(String(init?.body)));
+        return new Response(
+          JSON.stringify({
+            model: CLAUDE_HARD_MODEL,
+            stop_reason: bodies.length === 1 ? "end_turn" : "max_tokens",
+            content: [
+              { type: "thinking", thinking: "", signature: "s" },
+              { type: "text", text: "[]" },
+            ],
+            usage: { input_tokens: 7, output_tokens: 11 },
+          }),
+          { status: 200 },
+        );
+      }),
+    );
+    const request = {
+      model: CLAUDE_HARD_MODEL,
+      system: "지시",
+      prompt: "요청",
+      figures: {
+        images: [
+          {
+            dataUrl: "data:image/png;base64,YWJj",
+            sha256: "x",
+            choiceIndex: 2,
+            origin: "database-raster",
+          },
+        ],
+        digest: "d",
+      } as unknown as DbRetryFigures,
+    };
+    const first = await completeDbRetry(request);
+    expect(first).toEqual({
+      content: "[]",
+      model: CLAUDE_HARD_MODEL,
+      finishReason: "stop",
+      usage: { promptTokens: 7, completionTokens: 11, totalTokens: 18 },
+    });
+    const body = bodies[0] as {
+      model: string;
+      system: string;
+      max_tokens: number;
+      output_config: { effort: string };
+      messages: { content: { type: string }[] }[];
+    };
+    expect(body.model).toBe(CLAUDE_HARD_MODEL);
+    expect(body.system).toBe("지시");
+    expect(body.max_tokens).toBe(64000);
+    expect(body.output_config).toEqual({ effort: "high" });
+    expect(body).not.toHaveProperty("temperature");
+    expect(body.messages[0]!.content).toEqual([
+      { type: "text", text: "요청" },
+      { type: "text", text: "DB 그림 1, 보기 2" },
+      {
+        type: "image",
+        source: { type: "base64", media_type: "image/png", data: "YWJj" },
+      },
+    ]);
+    // 한도에서 잘린 것은 이 도구의 말로 "length" — 생성기가 generation-truncated 로 멈춘다
+    expect((await completeDbRetry(request)).finishReason).toBe("length");
+  });
+
+  it("ANTHROPIC_API_KEY 가 없으면 부르지 않는다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    await expect(
+      completeDbRetry({
+        model: CLAUDE_DEFAULT_MODEL,
+        system: "",
+        prompt: "",
+        figures: noRetryFigures,
+      }),
+    ).rejects.toMatchObject({ code: "anthropic-key-missing" });
+    expect(fetcher).not.toHaveBeenCalled();
   });
 });

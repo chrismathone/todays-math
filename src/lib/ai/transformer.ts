@@ -12,11 +12,12 @@
  *    유일한 판별자라(D-51) 여기서 흘리면 안 된다.
  */
 import type { Difficulty } from "@/contracts/common.contract";
-import type {
-  DifficultyShift,
-  ProblemType,
-  TransformCandidate,
-  TransformMode,
+import {
+  shiftDifficulty,
+  type DifficultyShift,
+  type ProblemType,
+  type TransformCandidate,
+  type TransformMode,
 } from "@/contracts/problem.contract";
 import { z } from "zod";
 
@@ -105,7 +106,7 @@ export async function transformProblem(
     figureRequired = false,
   } = input;
 
-  // 생성기(`generateProblems`)와 같은 모의 분기 — E2E 와, `DEEPSEEK_API_KEY` 가 아직 없는
+  // 생성기(`generateProblems`)와 같은 모의 분기 — E2E 와, AI 키(`ANTHROPIC_API_KEY`)가 아직 없는
   // 환경에서 **화면 흐름 자체**를 확인하기 위한 것이다. 마지막 하나를 일부러 검사 탈락으로
   // 두어 「폐기」 표시와 사유 경로가 반드시 한 번은 밟히게 한다.
   if (process.env.E2E_MOCK_AI === "1") {
@@ -147,6 +148,8 @@ export async function transformProblem(
         difficultyShift,
         figureRequired,
       }),
+      // 만들 후보의 난이도(원본에서 한 단계 옮긴 것)가 «심화상»이면 Claude Opus 5.5(원장님 2026-11-11).
+      difficulty: shiftDifficulty(origin.difficulty, difficultyShift),
     }).then((raw) => parseAiJsonArray(raw, transformedItemSchema));
 
   const items = await withOneRetryOnParseFailure(attempt);

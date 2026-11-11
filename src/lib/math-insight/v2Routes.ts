@@ -21,7 +21,7 @@ import {
   composeInsightV2Result,
   parseInsightV2Selection,
 } from "./v2Inference";
-import { insightModelConfig } from "./config";
+import { insightMaxOutputTokens, insightModelConfig } from "./config";
 import { admitInsight } from "./admission";
 import { maskInsightQuery } from "./inference";
 import { freshInsightV2Access, freshInsightV2Student } from "./v2Access";
@@ -179,7 +179,8 @@ export async function handleInsightV2Request(
         ...config!,
         prompt: buildInsightV2Prompt(snapshot, maskedQuery),
         signal,
-        maxOutputTokens: 700,
+        // Claude 는 생각이 출력 한도를 같이 쓴다 — 생각 몫을 얹는다(`insightMaxOutputTokens`).
+        maxOutputTokens: insightMaxOutputTokens(config!.vendor, 700),
         singleAttempt: true,
         suppressUpstreamDetails: true,
       });

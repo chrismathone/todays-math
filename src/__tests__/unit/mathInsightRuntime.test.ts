@@ -88,12 +88,35 @@ describe("pilot transport controls preserve existing defaults", () => {
   });
 });
 describe("feature config and bounded admission", () => {
+  it("defaults to Claude Sonnet 5.5 (원장님 2026-11-11) — Gemini only by explicit rollback", () => {
+    const env = { NODE_ENV: "test" as const, ANTHROPIC_API_KEY: "synthetic" };
+    expect(insightModelConfig(env)).toEqual({
+      vendor: "anthropic",
+      model: "claude-sonnet-5-5",
+    });
+    // 문제 추출의 모델 변수는 이 기능을 끌고 가지 않는다
+    expect(
+      insightModelConfig({
+        ...env,
+        STUDIO_AI_ANTHROPIC_MODEL: "claude-opus-5",
+      }),
+    ).toEqual({ vendor: "anthropic", model: "claude-sonnet-5-5" });
+    // 되돌리기: MATH_INSIGHT_VENDOR=gemini (키가 있어야 한다 — 없으면 다른 공급자로 새지 않고 null)
+    expect(
+      insightModelConfig({ ...env, MATH_INSIGHT_VENDOR: "gemini" }),
+    ).toBeNull();
+    expect(
+      insightModelConfig({
+        ...env,
+        MATH_INSIGHT_VENDOR: "gemini",
+        GEMINI_API_KEY: "synthetic",
+      }),
+    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
+  });
   it("uses only feature/allowed existing models, with no provider fallback", () => {
     const env = { NODE_ENV: "test" as const, GEMINI_API_KEY: "synthetic" };
-    expect(insightModelConfig(env)).toEqual({
-      vendor: "gemini",
-      model: "gemini-3.8-flash",
-    });
+    // 기본(Claude) 키가 없으면 Gemini 키가 있어도 그리로 가지 않는다
+    expect(insightModelConfig(env)).toBeNull();
     expect(
       insightModelConfig({ ...env, MATH_INSIGHT_VENDOR: "anthropic" }),
     ).toBeNull();

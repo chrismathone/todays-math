@@ -40,7 +40,7 @@ beforeEach(() => {
   );
   vi.clearAllMocks();
   vi.stubEnv("AUTH_URL", "http://localhost:3000");
-  vi.stubEnv("GEMINI_API_KEY", "");
+  vi.stubEnv("ANTHROPIC_API_KEY", "");
   world.session = teacherSession();
 });
 afterEach(() => {
@@ -122,7 +122,7 @@ describe("teacher-only insight admission", () => {
     expect(runModelApi).not.toHaveBeenCalled();
   });
   it("rejects identity-bearing inquiry and masks known teacher/student names before model", async () => {
-    vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+    vi.stubEnv("ANTHROPIC_API_KEY", "synthetic-key");
     expect(
       (await post({ query: "메일 student@example.com을 분석" })).status,
     ).toBe(400);
@@ -144,7 +144,7 @@ describe("teacher-only insight admission", () => {
     expect((await readSrsState(ids.studied)).revision).toBe(0);
   });
   it("refuses model unknown facts and releases concurrency admission after failure", async () => {
-    vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+    vi.stubEnv("ANTHROPIC_API_KEY", "synthetic-key");
     vi.mocked(runModelApi).mockResolvedValue('{"diagnosis":"unsupported"}');
     expect((await post()).status).toBe(502);
     expect((await post()).status).toBe(502);
@@ -153,7 +153,7 @@ describe("teacher-only insight admission", () => {
 });
 
 it("denies overlapping calls and releases on client cancellation", async () => {
-  vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "synthetic-key");
   let started!: () => void;
   const ready = new Promise<void>((r) => {
     started = r;

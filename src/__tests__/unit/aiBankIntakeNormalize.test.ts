@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * 문제은행으로 들어가는 AI 글(생성·변형)도 작업실 입구와 **같은 후보정**을 거친다
  * (2026-09-26 후보정 감사 report-paths.md K).
@@ -8,17 +9,16 @@
  * 화면은 렌더 때 다시 후보정하지만 DB 값은 날것이라 DB 를 읽는 다른 자리(내보내기·
  * 채점)는 다른 글을 봤다(원장님 원칙 «같은 데이터는 모든 화면에서 같은 모양»).
  *
- * ⚠️ `openai` SDK 는 항상 모킹한다(절대 규칙 7).
+ * ⚠️ AI 호출(`fetch` → Anthropic Messages API)은 항상 모킹한다(절대 규칙 7).
  */
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 
-vi.mock("openai", () => ({
-  default: vi.fn().mockImplementation(function OpenAIMock() {
-    return { chat: { completions: { create: mockCreate } } };
-  }),
-}));
+// 문항 AI 는 Claude(Anthropic Messages API)다(원장님 2026-11-11) — `fetch` 를 갈아 끼운다.
+vi.mock("server-only", () => ({}));
+
+import { claudeText, stubClaudeFetch } from "../helpers/claudeMessagesMock";
 
 import { generateProblems } from "@/lib/ai/generator";
 import { transformProblem } from "@/lib/ai/transformer";
@@ -31,7 +31,7 @@ import { MOCK_EMPTY_PROBLEM_UNIT, MOCK_PROBLEMS } from "@/mocks/data";
 const R = String.raw;
 
 function aiTextResponse(text: string) {
-  return { choices: [{ message: { content: text }, finish_reason: "stop" }] };
+  return claudeText(text);
 }
 
 /** 작업실 신고 모양 — 가짜 바깥 디스플레이 · 닫히지 않은 `$$` · 제어문자 손상. */
@@ -47,7 +47,13 @@ const LEAKY = /\\displaystyle|\$\$이동|[\f\t\x08]/;
 beforeEach(() => {
   mockCreate.mockReset();
   vi.unstubAllEnvs();
-  vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-api-key");
+  vi.stubEnv("PROBLEM_AI_VENDOR", "");
+  stubClaudeFetch(mockCreate);
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
 });
 
 describe("generateProblems — 저장 전 후보정", () => {

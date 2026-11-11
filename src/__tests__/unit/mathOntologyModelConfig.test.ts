@@ -27,6 +27,22 @@ it("keeps the existing feature untouched and falls back exactly when ontology ov
   });
   expect(env.MATH_INSIGHT_VENDOR).toBe("gemini");
 });
+it("inherits the Claude default when neither feature names a vendor (원장님 2026-11-11)", () => {
+  const env: NodeJS.ProcessEnv = {
+    NODE_ENV: "test",
+    [API_KEY_NAMES.anthropic]: "synthetic-test-only",
+  };
+  expect(ontologyModelConfig(env)).toEqual({
+    vendor: "anthropic",
+    model: "claude-sonnet-5-5",
+  });
+  // 온톨로지만 모델을 바꾸면 물려받는 공급자(Claude) 안에서 바꾼다
+  env.MATH_ONTOLOGY_MODEL = "claude-opus-5-5";
+  expect(ontologyModelConfig(env)).toEqual({
+    vendor: "anthropic",
+    model: "claude-opus-5-5",
+  });
+});
 it("selects a vendor-local default for a vendor-only override and fails closed on invalid explicit config", () => {
   const env = environment();
   env.MATH_ONTOLOGY_VENDOR = "anthropic";

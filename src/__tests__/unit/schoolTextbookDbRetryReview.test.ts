@@ -173,6 +173,17 @@ describe("DB retry independent reasoning gate", () => {
     expect(JSON.stringify(review)).not.toContain("SECRET_PROVIDER_BODY");
     expect(input.deps.reviewSolutions).not.toHaveBeenCalled();
   });
+  it("solves and reviews a 심화상 original with Claude Opus 5.5 (원장님 2026-11-11)", async () => {
+    const input = fixture();
+    input.source.problem.difficulty = "심화상";
+    input.candidates = pair(input.source);
+    const review = await run(input);
+    expect(vi.mocked(input.deps.solveBlind).mock.calls[0]![0].model).toBe(
+      "claude-opus-5-5",
+    );
+    expect(review.solverModel).toBe("claude-opus-5-5");
+    expect(review.solutionReviewerModel).toBe("claude-opus-5-5");
+  });
   it("records three independent answers, two worked-solution reviews, six Noul probabilities and model usage", async () => {
     const input = fixture();
     const before = structuredClone(input.candidates);
@@ -180,8 +191,9 @@ describe("DB retry independent reasoning gate", () => {
     expect(review).toMatchObject({
       passed: true,
       kind: "machine-blind-reasoning-review",
-      solverModel: "deepseek-v4-pro",
-      solutionReviewerModel: "deepseek-v4-pro",
+      // 풀이 · 검토 모델은 Claude(원장님 2026-11-11) — 원문 난이도가 «기본»이라 Sonnet 5.5
+      solverModel: "claude-sonnet-5-5",
+      solutionReviewerModel: "claude-sonnet-5-5",
       semanticModel: "jev-1.13.0",
       sourceDigest: textbookVariantSourceDigest(input.source.problem),
       candidatePayloadDigest: reviewDigest(input.candidates),
@@ -198,8 +210,8 @@ describe("DB retry independent reasoning gate", () => {
       review.communications.map((communication) => communication.phase),
     ).toEqual(["blind-solve", "solution-review", "semantic-review"]);
     expect(review.communications[0]).toMatchObject({
-      requestedModel: "deepseek-v4-pro",
-      returnedModel: "deepseek-v4-pro",
+      requestedModel: "claude-sonnet-5-5",
+      returnedModel: "claude-sonnet-5-5",
       inputTokens: 100,
       outputTokens: 60,
       status: "succeeded",
@@ -546,7 +558,7 @@ describe("source, full pair and actual figure binding", () => {
     expect(review.issues).toContain("original:missing-figure");
     expect(input.deps.solveBlind).not.toHaveBeenCalled();
   });
-  it("sends actual source/candidate pictures to flash, preserving choice indices", async () => {
+  it("sends actual source/candidate pictures to the same Claude solver, preserving choice indices", async () => {
     const input = fixture();
     input.source.problem.figure_svg = "<svg>source</svg>";
     input.candidates = pair(input.source);
@@ -563,8 +575,9 @@ describe("source, full pair and actual figure binding", () => {
       { dependencies: input.deps },
     );
     expect(review.passed).toBe(true);
-    expect(review.solverModel).toBe("deepseek-flash");
-    expect(review.solutionReviewerModel).toBe("deepseek-flash");
+    // 그림이 있어도 같은 모델(전에는 DeepSeek 그림 모델로 갈렸다)
+    expect(review.solverModel).toBe("claude-sonnet-5-5");
+    expect(review.solutionReviewerModel).toBe("claude-sonnet-5-5");
     const request = vi.mocked(input.deps.solveBlind).mock.calls[0][0];
     expect(request.problems[0].figures.images[0].dataUrl).toEqual(
       sourceFigure.images[0].dataUrl,

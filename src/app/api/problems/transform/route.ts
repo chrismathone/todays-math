@@ -18,6 +18,7 @@ import {
   AiConfigError,
   AiGenerationError,
 } from "@/lib/ai/errors";
+import { problemAiKeyName } from "@/lib/ai/client";
 import { transformProblem } from "@/lib/ai/transformer";
 import { AI_BUSY_MESSAGE, admitAiWork } from "@/lib/aiAdmission";
 import {
@@ -153,7 +154,8 @@ async function handlePost(request: NextRequest) {
       console.error("[POST /api/problems/transform] AI not configured");
       return jsonError(
         "AI_GENERATION_FAILED",
-        "AI 설정이 없습니다 — 서버 환경변수 DEEPSEEK_API_KEY 를 확인해주세요.",
+        // 키 이름은 지금 공급자의 것(기본 ANTHROPIC_API_KEY · 되돌리면 DEEPSEEK_API_KEY) — 값은 싣지 않는다.
+        `AI 설정이 없습니다 — 서버 환경변수 ${problemAiKeyName()} 를 확인해주세요.`,
         503,
       );
     }

@@ -1,11 +1,10 @@
 /** Server/offline DB-source drafts. Self-reproduction is evidence, never mathematical approval. */
-import OpenAI from "openai";
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import type { Prisma, Problem } from "@prisma/client";
 import { difficultySchema } from "@/contracts/common.contract";
 import { problemTypeSchema } from "@/contracts/problem.contract";
-import { DEEPSEEK_MODEL } from "@/lib/ai/client";
+import { CLAUDE_HARD_MODEL, claudeModelFor } from "@/lib/ai/claudeModels";
 import { AiParseError } from "@/lib/ai/errors";
 import {
   normalizeAiAnswer,
@@ -21,6 +20,10 @@ import {
 } from "@/lib/ai/prompts/transform";
 import { speakWordyOperators } from "@/lib/ai/wordyOperators";
 import { originNeedsFigure } from "@/lib/figure/transformFigureBlock";
+import {
+  callClaudeMessages,
+  type ClaudeTransportPart,
+} from "./claudeTransport";
 import type {
   DbRetryCandidate,
   DbRetryFigures,
@@ -39,7 +42,15 @@ import {
 } from "./variants";
 
 export const DB_RETRY_GENERATION_VERSION = "db-retry-generation-v1";
-export const DB_RETRY_VISION_MODEL = "deepseek-flash";
+
+/**
+ * 생성 모델 — 원문 문항의 난이도로 고른다(원장님 2026-11-11): «심화상»이면 Claude Opus 5.5, 그 밖은 Sonnet 5.5.
+ * 그림이 있든 없든 같은 모델이다(전에는 DeepSeek 글 모델 · 그림 모델이 갈렸다). 기록에 남은 옛 `deepseek-*`
+ * 이름은 그때 만든 것이라는 뜻 그대로 둔다.
+ */
+export function dbRetryGenerationModel(difficulty: string | null | undefined) {
+  return claudeModelFor(difficulty);
+}
 
 export interface DbRetryCall {
   slot: 1 | 2;
@@ -220,54 +231,60 @@ export function buildDbRetryPrompts(
   };
 }
 
-/** Same OpenAI-compatible DeepSeek stack and token floor; metadata is retained without raw responses. */
+/**
+ * Claude 한 번 — 재시도 없이(부르는 쪽이 시도를 세어 기록한다), 원문 응답 없이 메타데이터만 남긴다.
+ * 끝난 까닭은 이 도구가 쓰던 말로 옮긴다: `end_turn` → `"stop"` · `max_tokens` → `"length"`(그 밖은 그대로 —
+ * `refusal` 따위는 `generation-no-final-answer` 가 된다). 생각도 출력 한도를 같이 쓴다.
+ * 한도는 `TEXTBOOK_RETRY_MAX_TOKENS`(4096 ~ 128000, 기본 64000).
+ */
 export async function completeDbRetry(
   request: DbRetryRequest,
 ): Promise<DbRetryCompletion> {
-  if (!process.env.DEEPSEEK_API_KEY)
-    throw new DbRetryGenerationError("deepseek-key-missing");
-  const maxTokens = Number(process.env.DEEPSEEK_MAX_TOKENS ?? 64000);
-  if (!Number.isInteger(maxTokens) || maxTokens < 4096 || maxTokens > 200000)
-    throw new DbRetryGenerationError("deepseek-token-limit");
-  const client = new OpenAI({
-    apiKey: process.env.DEEPSEEK_API_KEY,
-    baseURL: "https://api.deepseek.com",
-    maxRetries: 0,
-    timeout: 600000,
-  });
-  const parts: OpenAI.Chat.Completions.ChatCompletionContentPart[] = [
-    { type: "text", text: request.prompt },
-  ];
+  if (!process.env.ANTHROPIC_API_KEY?.trim())
+    throw new DbRetryGenerationError("anthropic-key-missing");
+  const maxTokens = Number(
+    process.env.TEXTBOOK_RETRY_MAX_TOKENS?.trim() || 64000,
+  );
+  if (!Number.isInteger(maxTokens) || maxTokens < 4096 || maxTokens > 128000)
+    throw new DbRetryGenerationError("claude-token-limit");
+  const parts: ClaudeTransportPart[] = [{ type: "text", text: request.prompt }];
   request.figures.images.forEach((image, index) => {
     parts.push({
       type: "text",
       text: `DB 그림 ${index + 1}, ${image.choiceIndex ? `보기 ${image.choiceIndex}` : "발문 그림"}`,
     });
-    parts.push({ type: "image_url", image_url: { url: image.dataUrl } });
+    parts.push({ type: "image", dataUrl: image.dataUrl });
   });
-  const response = await client.chat.completions.create({
+  const response = await callClaudeMessages({
     model: request.model,
-    max_tokens: maxTokens,
-    messages: [
-      { role: "system", content: request.system },
-      { role: "user", content: parts },
-    ],
+    system: request.system,
+    parts,
+    maxTokens,
+    // 문항 생성과 같은 깊이 — 심화상(Opus)은 high, 그 밖은 medium
+    effort: request.model === CLAUDE_HARD_MODEL ? "high" : "medium",
+    signal: AbortSignal.timeout(600000),
   });
-  const usage = response.usage as
-    (OpenAI.CompletionUsage & { prompt_cache_hit_tokens?: number }) | undefined;
+  const inputTokens = response.usage?.inputTokens;
+  const outputTokens = response.usage?.outputTokens;
+  const cacheHitTokens = response.usage?.cacheReadInputTokens;
   return {
-    content: response.choices[0]?.message.content ?? "",
+    content: response.text,
     model: response.model,
-    finishReason: response.choices[0]?.finish_reason ?? null,
-    usage: usage
-      ? {
-          promptTokens: usage.prompt_tokens,
-          completionTokens: usage.completion_tokens,
-          totalTokens: usage.total_tokens,
-          reasoningTokens: usage.completion_tokens_details?.reasoning_tokens,
-          cacheHitTokens: usage.prompt_cache_hit_tokens,
-        }
-      : null,
+    finishReason:
+      response.stopReason === "end_turn"
+        ? "stop"
+        : response.stopReason === "max_tokens"
+          ? "length"
+          : response.stopReason,
+    usage:
+      inputTokens !== undefined && outputTokens !== undefined
+        ? {
+            promptTokens: inputTokens,
+            completionTokens: outputTokens,
+            totalTokens: inputTokens + outputTokens,
+            ...(cacheHitTokens === undefined ? {} : { cacheHitTokens }),
+          }
+        : null,
   };
 }
 
@@ -386,7 +403,9 @@ export async function generateDbRetryPair(
       );
       const model =
         options.requestedModel ??
-        (required ? DB_RETRY_VISION_MODEL : DEEPSEEK_MODEL);
+        dbRetryGenerationModel(
+          typeof p.difficulty === "string" ? p.difficulty : null,
+        );
       let item: z.infer<typeof itemSchema> | undefined;
       for (let attempt = 1; attempt <= 2; attempt++) {
         const start = now();

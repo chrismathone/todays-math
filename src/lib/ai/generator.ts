@@ -111,6 +111,8 @@ export async function generateProblems(
     const raw = await callAi({
       system: buildGenerateSystemPrompt(),
       prompt: buildGenerateUserPrompt({ unitLabel, difficulty, count }),
+      // «심화상»이면 Claude Opus 5.5, 그 밖은 Sonnet 5.5(원장님 2026-11-11 — `claudeModels.ts`).
+      difficulty,
     });
     const parsed = parseAiJsonArray(raw, generatedItemSchema);
     if (parsed.length < count) {

@@ -61,7 +61,7 @@ const draftTransport = () => {
           originalAnswerRecomputed: "$5$",
         },
       ]),
-      model: "deepseek-v4-pro",
+      model: "claude-sonnet-5-5",
       finishReason: "stop",
       usage: { promptTokens: 1, completionTokens: 2, totalTokens: 3 },
     };

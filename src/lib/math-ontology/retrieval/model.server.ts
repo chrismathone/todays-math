@@ -4,6 +4,7 @@ import {
 } from "./modelSchemas";
 import "server-only";
 import { ontologyModelConfig } from "./config.server";
+import { insightMaxOutputTokens } from "@/lib/math-insight/config";
 import { maskInsightQuery } from "@/lib/math-insight/inference";
 import { runModelApi, type ModelApiReceipt } from "@/lib/studio-ai/api";
 import {
@@ -26,7 +27,8 @@ export async function requestOntologyCompletion(
     ...(jsonSchema ? { jsonSchema } : {}),
     prompt,
     signal: boundedSignal,
-    maxOutputTokens: 1600,
+    // Claude 는 생각이 출력 한도를 같이 쓴다 — 생각 몫을 얹는다(`insightMaxOutputTokens`).
+    maxOutputTokens: insightMaxOutputTokens(config.vendor, 1600),
     singleAttempt: true,
     suppressUpstreamDetails: true,
     onReceipt: (value) => {

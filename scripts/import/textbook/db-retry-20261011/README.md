@@ -22,14 +22,16 @@ npx tsx --env-file=.env scripts/import/textbook/db-retry-20261011/cli.ts --snaps
 
 Slots 1/2 are numerical/condition variants respectively, each generated from the
 same DB original. Both preserve the question format, unit and solution level.
-Text calls use the existing `DEEPSEEK_MODEL` pro; figure calls use
-`deepseek-flash` with actual C-loaded image bytes and original choice indices.
+Since 2026-11-11 (원장님 «deepseek 사용처를 전부 sonnet 으로») every call — text or figure — uses
+Claude Sonnet 5.5 (`claude-sonnet-5-5`, effort medium), or Claude Opus 5.5 (`claude-opus-5-5`, effort high)
+when the DB original is «심화상»; figure calls carry the actual C-loaded image bytes and original choice
+indices. The key is `ANTHROPIC_API_KEY`. (Runs before that date used `deepseek-v4-pro` / `deepseek-flash`.)
 The existing transform prompts, JSON repair, math normalization and wordy
 operator normalization are reused. The new system prompt uses the actual grade.
 Solutions are required. Each source makes two sequential calls, with at most
 one retry for a parse failure per slot; truncation/transport failures are not
-retried. SDK automatic retries are disabled. The default max token budget is
-64,000, with the existing `DEEPSEEK_MAX_TOKENS` override (4,096–200,000).
+retried. Transport retries are disabled. The default max token budget is
+64,000 (thinking shares it), with the `TEXTBOOK_RETRY_MAX_TOKENS` override (4,096–128,000).
 
 Every call retains requested/returned model, start time, latency, token usage
 (including reasoning/cache hits when returned) and finish reason. Failed

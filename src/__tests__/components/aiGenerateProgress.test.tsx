@@ -167,7 +167,7 @@ describe("AI 생성 — 진행 표시", () => {
             error: {
               code: "AI_GENERATION_FAILED",
               message:
-                "AI 설정이 없습니다 — 서버 환경변수 DEEPSEEK_API_KEY 를 확인해주세요.",
+                "AI 설정이 없습니다 — 서버 환경변수 ANTHROPIC_API_KEY 를 확인해주세요.",
             },
           },
           { status: 503 },
@@ -179,7 +179,7 @@ describe("AI 생성 — 진행 표시", () => {
 
     expect(
       await screen.findByText(
-        "AI 설정이 없습니다 — 서버 환경변수 DEEPSEEK_API_KEY 를 확인해주세요.",
+        "AI 설정이 없습니다 — 서버 환경변수 ANTHROPIC_API_KEY 를 확인해주세요.",
       ),
     ).toBeInTheDocument();
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();

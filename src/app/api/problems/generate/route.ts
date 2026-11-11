@@ -8,6 +8,7 @@ import {
   problemGenerateRequestSchema,
   problemGenerateResponseSchema,
 } from "@/contracts/problem.contract";
+import { problemAiKeyName } from "@/lib/ai/client";
 import { generateProblems } from "@/lib/ai/generator";
 import {
   AiCapacityError,
@@ -29,7 +30,7 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 /**
  * 🔴 **실측하니 기본 제한을 넘는다.** 2026-08-26
- * (`scripts/qa/probe-ai-generate-live.ts`, 중1 소인수분해, deepseek-v4-pro):
+ * (`scripts/qa/probe-ai-generate-live.ts`, 중1 소인수분해, deepseek-v4-pro — 2026-11-11 Claude 로 바뀌기 전 값):
  *
  *   · 3문항 → **40.0초**
  *   · 10문항 → **127.8초**   ← 화면 기본값이 여기 가깝다(「필요 − 가용」, 상한 10)
@@ -111,7 +112,8 @@ async function handlePost(request: NextRequest) {
       console.error("[POST /api/problems/generate] AI not configured");
       return jsonError(
         "AI_GENERATION_FAILED",
-        "AI 설정이 없습니다 — 서버 환경변수 DEEPSEEK_API_KEY 를 확인해주세요.",
+        // 키 이름은 지금 공급자의 것(기본 ANTHROPIC_API_KEY · 되돌리면 DEEPSEEK_API_KEY) — 값은 싣지 않는다.
+        `AI 설정이 없습니다 — 서버 환경변수 ${problemAiKeyName()} 를 확인해주세요.`,
         503,
       );
     }

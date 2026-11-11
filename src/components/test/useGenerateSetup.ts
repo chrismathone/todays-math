@@ -501,7 +501,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       const json: unknown = await res.json();
       if (!res.ok) {
         // 🔴 예전에는 여기서 **서버가 보낸 사유를 통째로 버렸다.** 라우트는 일부러
-        //    행동 가능한 말을 보낸다 — 「AI 설정이 없습니다 — DEEPSEEK_API_KEY 를…」·
+        //    행동 가능한 말을 보낸다 — 「AI 설정이 없습니다 — ANTHROPIC_API_KEY 를…」·
         //    「길이 한도에 걸렸습니다 — 개수를 줄이거나…」. 그걸 「AI 문제 생성에
         //    실패했습니다」로 뭉개면 원장님은 무엇을 고쳐야 하는지 알 길이 없다.
         const { errorResponseSchema } = await commonContract();

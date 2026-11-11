@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * 🔴→🟢 **AI 가 낸 해설도 「말 대신 기호」를 안 쓴다** — 원장님 지시 2026-08-26.
  *
@@ -20,15 +21,14 @@
  *   ㉤ 규칙이 두 벌이 아니다 — 판정도 바꾸기도 `scripts/qa/wordyOperator.ts` 하나가 한다
  *   ㉥ 프롬프트도 같은 말을 한다(AI 는 지시를 어기지만, 안 시키면 반드시 어긴다)
  */
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 
-vi.mock("openai", () => ({
-  default: vi.fn().mockImplementation(function OpenAIMock() {
-    return { chat: { completions: { create: mockCreate } } };
-  }),
-}));
+// 문항 AI 는 Claude(Anthropic Messages API)다(원장님 2026-11-11) — `fetch` 를 갈아 끼운다.
+vi.mock("server-only", () => ({}));
+
+import { claudeText, stubClaudeFetch } from "../helpers/claudeMessagesMock";
 
 import { generateProblems } from "@/lib/ai/generator";
 import {
@@ -45,7 +45,7 @@ const BS = String.fromCharCode(92);
 const tex = (s: string) => s.split("§").join(BS);
 
 function aiTextResponse(text: string) {
-  return { choices: [{ message: { content: text }, finish_reason: "stop" }] };
+  return claudeText(text);
 }
 
 const UNIT_ID = "00000000-0000-4000-8000-0000000000aa";
@@ -53,7 +53,13 @@ const UNIT_ID = "00000000-0000-4000-8000-0000000000aa";
 beforeEach(() => {
   mockCreate.mockReset();
   vi.unstubAllEnvs();
-  vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-api-key");
+  vi.stubEnv("PROBLEM_AI_VENDOR", "");
+  stubClaudeFetch(mockCreate);
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
 });
 
 describe("speakWordyOperators — 걸리는 입력에서 실제로 바뀐다", () => {

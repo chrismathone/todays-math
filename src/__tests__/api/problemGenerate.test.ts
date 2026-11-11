@@ -27,7 +27,7 @@ vi.mock("@/lib/ai/generator", () => ({
 }));
 
 import { POST as generateProblemsRoute } from "@/app/api/problems/generate/route";
-import { AiGenerationError } from "@/lib/ai/errors";
+import { AiConfigError, AiGenerationError } from "@/lib/ai/errors";
 import { AI_BUSY_MESSAGE, resetAiAdmission } from "@/lib/aiAdmission";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import { problemGenerateResponseSchema } from "@/contracts/problem.contract";
@@ -107,7 +107,7 @@ describe("[T3.2] POST /api/problems/generate", () => {
   it("생성 실패는 AI_GENERATION_FAILED(502)로 매핑한다", async () => {
     const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
     mockGenerateProblems.mockRejectedValueOnce(
-      new AiGenerationError("DEEPSEEK_API_KEY=top-secret"),
+      new AiGenerationError("ANTHROPIC_API_KEY=top-secret"),
     );
 
     const res = await generateProblemsRoute(
@@ -122,6 +122,27 @@ describe("[T3.2] POST /api/problems/generate", () => {
     expect(body.error.code).toBe("AI_GENERATION_FAILED");
     expect(body.error.message).toBe("AI 문제 생성에 실패했습니다.");
     expect(JSON.stringify(body)).not.toContain("top-secret");
+    log.mockRestore();
+  });
+
+  it("설정 누락(AiConfigError)은 503과 지금 공급자의 키 이름(ANTHROPIC_API_KEY)을 알려 준다", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    mockGenerateProblems.mockRejectedValueOnce(
+      new AiConfigError("ANTHROPIC_API_KEY가 설정되어 있지 않습니다."),
+    );
+
+    const res = await generateProblemsRoute(
+      jsonRequest("http://localhost/api/problems/generate", {
+        unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
+        difficulty: "기본",
+        count: 1,
+      }),
+    );
+    // AiConfigError 는 AiGenerationError 의 하위 타입 — 검사 순서가 뒤집히면 502/일반 문구가 된다
+    expect(res.status).toBe(503);
+    const body = errorResponseSchema.parse(await res.json());
+    expect(body.error.message).toContain("ANTHROPIC_API_KEY");
+    expect(body.error.message).not.toContain("DEEPSEEK");
     log.mockRestore();
   });
 

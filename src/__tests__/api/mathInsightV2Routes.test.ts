@@ -93,7 +93,7 @@ beforeEach(() => {
   classPatch = {};
   onModel = () => {};
   vi.stubEnv("AUTH_URL", "http://localhost:3000");
-  vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "synthetic-key");
   world.session = teacherSession();
   vi.spyOn(Date, "now").mockReturnValue(2_000_000_000_000 + ++tick * 60_001);
   const originalUser = db.user.findUnique;
@@ -388,7 +388,10 @@ it("unchanged authoritative state does not conflict when time/asOf advances", as
 it("masks current/cached identities and transmits only privacy-bounded selector input", async () => {
   vi.mocked(runModelApi).mockImplementationOnce(async (input) => {
     expect(input).toMatchObject({
-      maxOutputTokens: 700,
+      // 기본 공급자는 Claude(원장님 2026-11-11) — 생각이 한도를 같이 써서 답 글 700 에 생각 몫 6000 을 얹는다
+      vendor: "anthropic",
+      model: "claude-sonnet-5-5",
+      maxOutputTokens: 6700,
       singleAttempt: true,
       suppressUpstreamDetails: true,
     });
@@ -419,10 +422,10 @@ it("masks current/cached identities and transmits only privacy-bounded selector 
   expect(runModelApi).toHaveBeenCalledTimes(1);
 });
 it("keeps missing-config GET available and POST safe, and suppresses upstream failures", async () => {
-  vi.stubEnv("GEMINI_API_KEY", "");
+  vi.stubEnv("ANTHROPIC_API_KEY", "");
   expect((await post()).status).toBe(503);
   expect((await get()).status).toBe(200);
-  vi.stubEnv("GEMINI_API_KEY", "synthetic-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "synthetic-key");
   vi.mocked(runModelApi).mockRejectedValueOnce(
     new Error("SECRET upstream raw answer"),
   );

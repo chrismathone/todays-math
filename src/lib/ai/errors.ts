@@ -1,5 +1,5 @@
 /**
- * AI(DeepSeek) API 래퍼(src/lib/ai/**) 공용 에러 타입.
+ * AI API 래퍼(src/lib/ai/** — 기본 Claude Sonnet 5.5 · 심화상 Opus 5.5, 되돌리면 DeepSeek) 공용 에러 타입.
  *
  * 호출자(T3.1의 `src/app/api/problems/generate|transform/route.ts`)는
  * `AiGenerationError` 하나만 잡으면 된다 — 파싱 실패/네트워크 실패/검증 실패를 모두 이
@@ -27,7 +27,8 @@ export class AiGenerationError extends Error {
 }
 
 /**
- * **설정**이 없어서 AI 를 아예 부르지 못한 경우 — `DEEPSEEK_API_KEY` 미설정 등.
+ * **설정**이 없어서 AI 를 아예 부르지 못한 경우 — `ANTHROPIC_API_KEY`(되돌렸으면 `DEEPSEEK_API_KEY`) 미설정 ·
+ * `PROBLEM_AI_VENDOR` 오타 등.
  *
  * `AiGenerationError` 를 상속하므로 기존 `instanceof AiGenerationError` 검사는 그대로
  * 잡는다(안전). 다만 라우트는 이것을 **먼저** 검사해 원장님이 화면에서 바로 알아볼 수 있는
@@ -45,7 +46,8 @@ export class AiConfigError extends AiGenerationError {
 }
 
 /**
- * 모델이 **답을 내기 전에 최대 길이에 도달**한 경우(`finish_reason === "length"`).
+ * 모델이 **답을 내기 전에 최대 길이에 도달**한 경우(Claude `stop_reason === "max_tokens"` ·
+ * DeepSeek `finish_reason === "length"`). Claude 도 생각이 같은 한도를 쓴다 — 아래 사정은 그대로다.
  *
  * v4-pro 는 사고과정(`reasoning_content`)이 `max_tokens` 를 함께 소모한다. 어려운 문항에서는
  * 추론만으로 예산을 다 써서 정작 답변(`content`)이 비어 버린다 — 2026-08-19 실측:

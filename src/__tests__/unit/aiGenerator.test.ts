@@ -1,35 +1,55 @@
+// @vitest-environment node
 /**
- * 🔴→🟢 Phase 3, T3.2 (DeepSeek API 래퍼 — 문제 생성/변형 RED→GREEN).
+ * 🔴→🟢 Phase 3, T3.2 (AI 래퍼 — 문제 생성/변형 RED→GREEN).
+ * 2026-11-11 공급자를 DeepSeek → Claude Sonnet 5.5(심화상은 Opus 5.5)로 바꿨다(원장님).
  *
  * 대응 구현: src/lib/ai/generator.ts, src/lib/ai/transformer.ts, src/lib/ai/client.ts,
  *           src/lib/ai/jsonRepair.ts, src/lib/ai/retry.ts, src/lib/ai/prompts/{generate,transform}.ts
  * 대응 계약: src/contracts/problem.contract.ts (problemGenerateRequestSchema/transformRequestSchema)
  *
- * ⚠️ 이 파일은 `openai` SDK(= DeepSeek OpenAI 호환 엔드포인트)를 항상 `vi.mock`으로 모킹한다 —
- * 실제 AI API를 호출하지 않는다(07-coding-convention.md §5, CLAUDE.md 절대 규칙 7). 고정 픽스처는
+ * ⚠️ 이 파일은 `fetch`(= Anthropic Messages API)를 항상 갈아 끼우고, 되돌리기 경로의 `openai` SDK
+ * (= DeepSeek OpenAI 호환 엔드포인트)도 `vi.mock`으로 모킹한다 — 실제 AI API를 호출하지 않는다(07-coding-convention.md §5, CLAUDE.md 절대 규칙 7). 고정 픽스처는
  * src/mocks/data/aiProblems.ts(T0.5.2 산출물)를 재사용한다.
  *
  * `src/lib/ai/**`는 DB/Route Handler와 분리된 순수 래퍼이므로 이 파일도 인메모리로만
  * 검증한다 — T3.1(문제 CRUD API)의 RED 파일(src/__tests__/api/problem.test.ts)은 건드리지 않는다.
  */
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
+const { mockCreate, mockDeepseekCreate } = vi.hoisted(() => ({
+  mockCreate: vi.fn(),
+  mockDeepseekCreate: vi.fn(),
+}));
 
+vi.mock("server-only", () => ({}));
 vi.mock("openai", () => ({
   // Vitest 4에서는 `new`로 호출되는 mock 구현도 실제 constructor 함수여야 한다.
   default: vi.fn().mockImplementation(function OpenAIMock() {
     return {
-      chat: { completions: { create: mockCreate } },
+      chat: { completions: { create: mockDeepseekCreate } },
     };
   }),
 }));
+
+import {
+  claudeText,
+  sentPrompt,
+  sentRequest,
+  sentText,
+  stubClaudeFetch,
+} from "../helpers/claudeMessagesMock";
 
 import { generateProblems } from "@/lib/ai/generator";
 import { transformProblem } from "@/lib/ai/transformer";
 import { verifiesOriginalReproduction } from "@/lib/ai/originalReproduction";
 import { buildTransformSystemPrompt } from "@/lib/ai/prompts/transform";
-import { AiCapacityError, AiGenerationError } from "@/lib/ai/errors";
+import { buildGenerateSystemPrompt } from "@/lib/ai/prompts/generate";
+import {
+  AiCapacityError,
+  AiConfigError,
+  AiGenerationError,
+} from "@/lib/ai/errors";
+import { problemAiKeyName, problemAiModel } from "@/lib/ai/client";
 import {
   normalizeLatex,
   parseAiJsonArray,
@@ -44,11 +64,9 @@ import {
 } from "@/mocks/data";
 import { z } from "zod";
 
-/** DeepSeek(OpenAI 호환) `chat.completions.create` 응답 형태로 감싼다. */
+/** Anthropic Messages 응답 형태로 감싼다(생각 블록 + 답 글). */
 function aiTextResponse(text: string) {
-  return {
-    choices: [{ message: { content: text }, finish_reason: "stop" }],
-  };
+  return claudeText(text);
 }
 
 const GENERATE_UNIT_ID = MOCK_EMPTY_PROBLEM_UNIT.id;
@@ -63,8 +81,15 @@ const ORIGIN = MOCK_PROBLEMS[0]!; // "$\frac{7}{25}$를 유한소수로 나타�
 
 beforeEach(() => {
   mockCreate.mockReset();
+  mockDeepseekCreate.mockReset();
   vi.unstubAllEnvs();
-  vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  vi.stubEnv("ANTHROPIC_API_KEY", "test-api-key");
+  vi.stubEnv("PROBLEM_AI_VENDOR", "");
+  stubClaudeFetch(mockCreate);
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
 });
 
 describe("[T3.2] generateProblems — AI 문제 생성", () => {
@@ -249,8 +274,8 @@ describe("[T3.2] generateProblems — AI 문제 생성", () => {
     expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 
-  it("DEEPSEEK_API_KEY가 없으면 AI를 호출하지 않고 AiGenerationError를 던진다", async () => {
-    vi.stubEnv("DEEPSEEK_API_KEY", "");
+  it("ANTHROPIC_API_KEY가 없으면 AI를 호출하지 않고 AiGenerationError를 던진다", async () => {
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
 
     await expect(
       generateProblems({
@@ -373,7 +398,7 @@ describe("transformProblem — AI 문제 변형(후보 반환, 2026-08-19 고도
       difficultyShift: "up",
     });
 
-    const sent = mockCreate.mock.calls[0]![0]!.messages[1]!.content as string;
+    const sent = sentPrompt(mockCreate, 0);
     expect(sent).toContain("조건과 상황 설정까지");
     expect(sent).toContain("한 단계 어렵게");
     expect(sent).not.toContain("숫자만** 바꾸십시오");
@@ -394,62 +419,62 @@ describe("transformProblem — AI 문제 변형(후보 반환, 2026-08-19 고도
 
     mockCreate.mockResolvedValueOnce(reply);
     await transformProblem({ origin: ORIGIN, count: 1, figureRequired: true });
-    const withFigure = mockCreate.mock.calls[0]![0]!.messages[1]!
-      .content as string;
+    const withFigure = sentPrompt(mockCreate, 0);
     expect(withFigure).toContain("figureSpec");
     // 「못 그리면 null」이 빠지면 AI 가 도형을 지어내고, 본문과 어긋난 그림이 나간다.
     expect(withFigure).toContain("지어내지 마십시오");
 
     mockCreate.mockResolvedValueOnce(reply);
     await transformProblem({ origin: ORIGIN, count: 1 });
-    const without = mockCreate.mock.calls[1]![0]!.messages[1]!
-      .content as string;
+    const without = sentPrompt(mockCreate, 1);
     expect(without).not.toContain("figureSpec");
   });
 
-  it("답을 내기 전에 길이 한도에 걸리면 AiCapacityError 다 — 생각을 답으로 넘기지 않는다", async () => {
-    // 2026-08-19 실측: 그림 문항에서 추론이 예산을 다 써 `content` 가 비고
-    // `reasoning_content` 54KB 가 문장 중간에 끊긴 채 왔다(JSON 배열 0개).
-    // 이 검사가 없으면 그 «생각»이 답으로 넘어가 "유효한 JSON 이 아닙니다"로만 남는다.
-    mockCreate.mockResolvedValueOnce({
-      choices: [
-        {
-          finish_reason: "length",
-          message: {
-            content: "",
-            reasoning_content: "우리는 한국어로 된 지시를…",
-          },
-        },
-      ],
-    });
+  it("답을 내기 전에 길이 한도에 걸리면 AiCapacityError 다 — 재시도하지 않는다", async () => {
+    // 2026-08-19 실측(DeepSeek 때): 그림 문항에서 추론이 예산을 다 써 JSON 배열이 0개였다.
+    // Claude 도 생각이 같은 한도를 쓴다 — `stop_reason: "max_tokens"` 는 일반 파싱 실패가 아니다.
+    mockCreate.mockResolvedValueOnce(claudeText('[{"content":', "max_tokens"));
 
     await expect(
       transformProblem({ origin: ORIGIN, count: 1 }),
     ).rejects.toBeInstanceOf(AiCapacityError);
+    expect(mockCreate).toHaveBeenCalledTimes(1);
   });
 
-  it("잘리지 않았으면 reasoning_content 폴백은 그대로 산다", async () => {
+  it("생각 블록은 답으로 읽지 않는다 — 답 글만 파싱한다", async () => {
     mockCreate.mockResolvedValueOnce({
-      choices: [
-        {
-          finish_reason: "stop",
-          message: {
-            content: "",
-            reasoning_content: JSON.stringify([
-              {
-                content: "폴백 변형",
-                answer: "0.275",
-                solution: null,
-                originalAnswerRecomputed: "0.28",
-              },
-            ]),
+      ...claudeText(
+        JSON.stringify([
+          {
+            content: "답 글의 변형",
+            answer: "0.275",
+            solution: null,
+            originalAnswerRecomputed: "0.28",
           },
+        ]),
+      ),
+      content: [
+        {
+          type: "thinking",
+          thinking: '[{"content":"생각 속 초안"}]',
+          signature: "s",
+        },
+        {
+          type: "text",
+          text: JSON.stringify([
+            {
+              content: "답 글의 변형",
+              answer: "0.275",
+              solution: null,
+              originalAnswerRecomputed: "0.28",
+            },
+          ]),
         },
       ],
     });
 
     const [candidate] = await transformProblem({ origin: ORIGIN, count: 1 });
-    expect(candidate!.answer).toBe("0.275");
+    expect(candidate!.content).toBe("답 글의 변형");
   });
 
   it("시스템 프롬프트가 필드 **개수**를 못 박지 않는다 (사용자 프롬프트와 어긋난다)", async () => {
@@ -495,7 +520,7 @@ describe("transformProblem — AI 문제 변형(후보 반환, 2026-08-19 고도
 
     await transformProblem({ origin: ORIGIN, count: 1 });
 
-    const sent = mockCreate.mock.calls[0]![0]!.messages[1]!.content as string;
+    const sent = sentPrompt(mockCreate, 0);
     expect(sent).toContain("숫자만");
     expect(sent).toContain("원본과 같은 수준을 유지");
   });
@@ -633,5 +658,118 @@ describe("[T3.2] jsonRepair — AI 응답 salvage 유틸", () => {
     expect(() =>
       parseAiJsonArray(JSON.stringify([{ a: "숫자아님" }]), schema),
     ).toThrow();
+  });
+});
+
+describe("문항 AI 의 모델 — 기본 Sonnet 5.5 · 심화상 Opus 5.5 (원장님 2026-11-11)", () => {
+  const GENERATED = JSON.stringify([
+    { problemType: "계산", content: "문제", answer: "1", solution: null },
+  ]);
+  const TRANSFORMED = JSON.stringify([
+    {
+      content: "변형",
+      answer: "0.275",
+      solution: null,
+      originalAnswerRecomputed: "0.28",
+    },
+  ]);
+
+  it("기본 난이도의 생성은 Sonnet 5.5 · effort medium 이고 temperature 를 보내지 않는다(보내면 400)", async () => {
+    mockCreate.mockResolvedValueOnce(aiTextResponse(GENERATED));
+    await generateProblems({
+      unitId: GENERATE_UNIT_ID,
+      unitLabel: "일차부등식의 활용(농도)",
+      difficulty: "심화중",
+      count: 1,
+    });
+
+    const sent = sentRequest(mockCreate);
+    expect(sent.model).toBe("claude-sonnet-5-5");
+    expect(sent.output_config?.effort).toBe("medium");
+    expect(sent).not.toHaveProperty("temperature");
+    // 호출부 값(4096)으로는 생각만으로 바닥난다 — 하한이 실린다
+    expect(sent.max_tokens).toBeGreaterThanOrEqual(32000);
+    // 지시(system)가 앞, 요청이 뒤 — 한 메시지에 실린다(runModelApi 에 system 칸이 없다)
+    expect(sentText(mockCreate).startsWith(buildGenerateSystemPrompt())).toBe(
+      true,
+    );
+    expect(sentPrompt(mockCreate)).toContain("일차부등식의 활용(농도)");
+  });
+
+  it("심화상 생성은 Opus 5.5 · effort high", async () => {
+    mockCreate.mockResolvedValueOnce(aiTextResponse(GENERATED));
+    await generateProblems({
+      unitId: GENERATE_UNIT_ID,
+      unitLabel: "일차부등식의 활용(농도)",
+      difficulty: "심화상",
+      count: 1,
+    });
+
+    const sent = sentRequest(mockCreate);
+    expect(sent.model).toBe("claude-opus-5-5");
+    expect(sent.output_config?.effort).toBe("high");
+    expect(sent).not.toHaveProperty("temperature");
+  });
+
+  it("변형은 **만들 후보의** 난이도로 고른다 — 심화중을 한 단계 올리면 Opus, 그대로면 Sonnet", async () => {
+    const origin = { ...ORIGIN, difficulty: "심화중" as const };
+    mockCreate.mockResolvedValueOnce(aiTextResponse(TRANSFORMED));
+    await transformProblem({ origin, count: 1, difficultyShift: "up" });
+    expect(sentRequest(mockCreate, 0).model).toBe("claude-opus-5-5");
+
+    mockCreate.mockResolvedValueOnce(aiTextResponse(TRANSFORMED));
+    await transformProblem({ origin, count: 1 });
+    expect(sentRequest(mockCreate, 1).model).toBe("claude-sonnet-5-5");
+
+    // 심화상 원본을 한 단계 내리면 심화중 — Sonnet
+    mockCreate.mockResolvedValueOnce(aiTextResponse(TRANSFORMED));
+    await transformProblem({
+      origin: { ...ORIGIN, difficulty: "심화상" },
+      count: 1,
+      difficultyShift: "down",
+    });
+    expect(sentRequest(mockCreate, 2).model).toBe("claude-sonnet-5-5");
+  });
+
+  it("PROBLEM_AI_VENDOR=deepseek 이면 옛 DeepSeek 경로로 되돌아간다", async () => {
+    vi.stubEnv("PROBLEM_AI_VENDOR", "deepseek");
+    vi.stubEnv("DEEPSEEK_API_KEY", "test-deepseek-key");
+    mockDeepseekCreate.mockResolvedValueOnce({
+      choices: [{ message: { content: GENERATED }, finish_reason: "stop" }],
+    });
+
+    await generateProblems({
+      unitId: GENERATE_UNIT_ID,
+      unitLabel: "일차부등식의 활용(농도)",
+      difficulty: "심화상",
+      count: 1,
+    });
+
+    expect(mockCreate).not.toHaveBeenCalled();
+    expect(mockDeepseekCreate.mock.calls[0]![0]!.model).toBe("deepseek-v4-pro");
+    expect(problemAiModel("심화상")).toBe("deepseek-v4-pro");
+    expect(problemAiKeyName()).toBe("DEEPSEEK_API_KEY");
+  });
+
+  it("PROBLEM_AI_VENDOR 오타는 설정 오류다 — 조용히 다른 공급자로 가지 않는다", async () => {
+    vi.stubEnv("PROBLEM_AI_VENDOR", "gemini");
+
+    const failure = generateProblems({
+      unitId: GENERATE_UNIT_ID,
+      unitLabel: "일차부등식의 활용(농도)",
+      difficulty: "기본",
+      count: 1,
+    });
+    await expect(failure).rejects.toBeInstanceOf(AiConfigError);
+    expect(mockCreate).not.toHaveBeenCalled();
+    expect(mockDeepseekCreate).not.toHaveBeenCalled();
+    expect(problemAiKeyName()).toBe("PROBLEM_AI_VENDOR");
+  });
+
+  it("표시용 모델 이름과 키 이름도 같은 규칙이다", () => {
+    expect(problemAiModel("기본")).toBe("claude-sonnet-5-5");
+    expect(problemAiModel("심화상")).toBe("claude-opus-5-5");
+    expect(problemAiModel(null)).toBe("claude-sonnet-5-5");
+    expect(problemAiKeyName()).toBe("ANTHROPIC_API_KEY");
   });
 });
