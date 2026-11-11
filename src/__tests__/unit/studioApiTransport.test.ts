@@ -16,7 +16,10 @@ vi.mock("openai", () => ({
   },
 }));
 import { getModelApiStatus, runModelApi } from "@/lib/studio-ai/api";
-import { resolveApiModel } from "@/lib/studio-ai/routing";
+import {
+  autoFigureReviewModel,
+  resolveApiModel,
+} from "@/lib/studio-ai/routing";
 
 const signal = () => new AbortController().signal;
 const imageDataUrl = "data:image/png;base64,YWJj";
@@ -37,41 +40,57 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 describe("source model API routing and compatibility", () => {
-  it("routes OCR/detection and figures to current Gemini, solutions to DeepSeek", () => {
+  it("routes every auto task — OCR · figures · solutions — to Claude Sonnet 5.5 (원장님 2026-11-11)", () => {
     const env = { NODE_ENV: "test" as const };
-    for (const action of ["ocr", "page-ocr", "figures"] as const)
+    for (const action of [
+      "ocr",
+      "page-ocr",
+      "figures",
+      "figure-redraw",
+      "figure-edit",
+      "solution",
+    ] as const)
       expect(resolveApiModel("auto", action, env)).toEqual({
-        vendor: "gemini",
-        model: "gemini-3.8-flash",
+        vendor: "anthropic",
+        model: "claude-sonnet-5-5",
       });
-    expect(resolveApiModel("auto", "solution", env).model).toBe(
-      "deepseek-flash",
-    );
-    // 2026-09-18 실측(그림 3장): 사양 생성이 Flash LOW 4~7초 · Opus 5 medium 8~40초 · Codex 10~72초
-    expect(resolveApiModel("auto", "figure-redraw", env)).toEqual({
-      vendor: "gemini",
-      model: "gemini-3.8-flash",
+    // 다시 보는 모델도 그리는 모델과 같다
+    expect(autoFigureReviewModel(env)).toEqual({
+      vendor: "anthropic",
+      model: "claude-sonnet-5-5",
     });
     expect(() => resolveApiModel("deepseek", "ocr", env)).toThrow("해설");
-    // 되돌리기는 코드 없이 운영 환경변수 하나로 — 이미지를 못 보는 DeepSeek·목록 밖 이름은 받지 않는다
+    // 되돌리기는 코드 없이 작업 무리마다 운영 환경변수 하나로
+    expect(
+      resolveApiModel("auto", "page-ocr", {
+        ...env,
+        STUDIO_AI_OCR_VENDOR: "gemini",
+      }),
+    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
     expect(
       resolveApiModel("auto", "figure-redraw", {
         ...env,
-        STUDIO_AI_FIGURE_VENDOR: "anthropic",
+        STUDIO_AI_FIGURE_VENDOR: "gemini",
       }),
-    ).toEqual({ vendor: "anthropic", model: "claude-opus-5" });
+    ).toEqual({ vendor: "gemini", model: "gemini-3.8-flash" });
     expect(
-      resolveApiModel("auto", "ocr", {
+      resolveApiModel("auto", "solution", {
         ...env,
-        STUDIO_AI_FIGURE_VENDOR: "anthropic",
-      }).vendor,
-    ).toBe("gemini");
-    for (const bad of ["deepseek", "claude", "auto"])
-      expect(() =>
-        resolveApiModel("auto", "figure-redraw", {
-          ...env,
-          STUDIO_AI_FIGURE_VENDOR: bad,
-        }),
+        STUDIO_AI_SOLUTION_VENDOR: "deepseek",
+      }),
+    ).toEqual({ vendor: "deepseek", model: "deepseek-flash" });
+    // 이미지를 못 보는 DeepSeek · 목록 밖 이름은 받지 않는다
+    for (const [name, bad] of [
+      ["STUDIO_AI_FIGURE_VENDOR", "deepseek"],
+      ["STUDIO_AI_OCR_VENDOR", "deepseek"],
+      ["STUDIO_AI_FIGURE_VENDOR", "claude"],
+      ["STUDIO_AI_SOLUTION_VENDOR", "auto"],
+    ] as const)
+      expect(
+        () =>
+          resolveApiModel("auto", "figure-redraw", { ...env, [name]: bad }) &&
+          resolveApiModel("auto", "ocr", { ...env, [name]: bad }) &&
+          resolveApiModel("auto", "solution", { ...env, [name]: bad }),
       ).toThrow("서버의 AI 모델 설정");
     expect(() =>
       resolveApiModel("openai", "ocr", {
@@ -79,6 +98,37 @@ describe("source model API routing and compatibility", () => {
         STUDIO_AI_OPENAI_MODEL: "https://evil.test",
       }),
     ).toThrow();
+  });
+  it("sends Sonnet 5.5 without temperature — effort medium for solutions, low otherwise", async () => {
+    const fetcher = vi.fn().mockImplementation(async () =>
+      Response.json({
+        stop_reason: "end_turn",
+        content: [
+          { type: "thinking", thinking: "" },
+          { type: "text", text: "done" },
+        ],
+      }),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    for (const [action, effort] of [
+      ["solution", "medium"],
+      ["page-ocr", "low"],
+    ] as const) {
+      fetcher.mockClear();
+      await expect(
+        runModelApi({
+          vendor: "anthropic",
+          model: "claude-sonnet-5-5",
+          action,
+          prompt: "p",
+          signal: new AbortController().signal,
+        } as never),
+      ).resolves.toContain("done");
+      const body = JSON.parse(fetcher.mock.calls[0][1].body);
+      expect(body.model).toBe("claude-sonnet-5-5");
+      expect(body.output_config.effort).toBe(effort);
+      expect(body).not.toHaveProperty("temperature");
+    }
   });
   it("uses Gemini 3.8 thinkingLevel without unsupported sampling or budget", async () => {
     const fetcher = vi.fn().mockResolvedValue(
@@ -195,31 +245,48 @@ describe("source model API routing and compatibility", () => {
       temperature: 0.1,
     });
   });
-  it.each(["deepseek-v4-pro", "deepseek-flash"])("keeps %s text-only with 16000 tokens, low effort and no nested SDK retries", async (model) => {
-    await runModelApi({
-      vendor: "deepseek",
-      model,
-      prompt: "solve",
-      imageDataUrl,
-      signal: signal(),
-    });
-    expect(sdk.construct).toHaveBeenCalledWith(
-      expect.objectContaining({
-        baseURL: "https://api.deepseek.com",
-        maxRetries: 0,
-      }),
-    );
-    expect(sdk.chat.mock.calls[0][0]).toMatchObject({
-      max_tokens: 16000,
-      reasoning_effort: "low",
-      messages: [{ role: "user", content: "solve" }],
-    });
-  });
-  it.each(["deepseek-v4-pro", "deepseek-flash"])("selects %s through the server override for auto and explicit solutions", (model) => {
-    const env = { NODE_ENV: "test" as const, STUDIO_AI_DEEPSEEK_MODEL: model };
-    for (const provider of ["auto", "deepseek"] as const)
-      expect(resolveApiModel(provider, "solution", env)).toEqual({ vendor: "deepseek", model });
-  });
+  it.each(["deepseek-v4-pro", "deepseek-flash"])(
+    "keeps %s text-only with 16000 tokens, low effort and no nested SDK retries",
+    async (model) => {
+      await runModelApi({
+        vendor: "deepseek",
+        model,
+        prompt: "solve",
+        imageDataUrl,
+        signal: signal(),
+      });
+      expect(sdk.construct).toHaveBeenCalledWith(
+        expect.objectContaining({
+          baseURL: "https://api.deepseek.com",
+          maxRetries: 0,
+        }),
+      );
+      expect(sdk.chat.mock.calls[0][0]).toMatchObject({
+        max_tokens: 16000,
+        reasoning_effort: "low",
+        messages: [{ role: "user", content: "solve" }],
+      });
+    },
+  );
+  it.each(["deepseek-v4-pro", "deepseek-flash"])(
+    "selects %s through the server override for auto and explicit solutions",
+    (model) => {
+      const env = {
+        NODE_ENV: "test" as const,
+        STUDIO_AI_DEEPSEEK_MODEL: model,
+      };
+      expect(resolveApiModel("deepseek", "solution", env)).toEqual({
+        vendor: "deepseek",
+        model,
+      });
+      expect(
+        resolveApiModel("auto", "solution", {
+          ...env,
+          STUDIO_AI_SOLUTION_VENDOR: "deepseek",
+        }),
+      ).toEqual({ vendor: "deepseek", model });
+    },
+  );
   it("recovers Responses message text and explicitly reports incomplete token output", async () => {
     sdk.responses.mockResolvedValueOnce({
       status: "completed",
@@ -311,16 +378,18 @@ describe("source model API routing and compatibility", () => {
       getModelApiStatus().providers.find((provider) => provider.id === "auto")
         ?.detail;
     expect(detail()).toBe(
-      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek Flash · 도형 Gemini 3.8 Flash (작업별 서버 키 필요)",
+      "문항 인식 Claude Sonnet 5.5 · 해설 Claude Sonnet 5.5 · 도형 Claude Sonnet 5.5 (작업별 서버 키 필요)",
     );
-    vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "anthropic");
+    vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "gemini");
     expect(detail()).toBe(
-      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek Flash · 도형 Claude Opus 5 · 검토 Gemini 3.8 Flash (작업별 서버 키 필요)",
+      "문항 인식 Claude Sonnet 5.5 · 해설 Claude Sonnet 5.5 · 도형 Gemini 3.8 Flash (작업별 서버 키 필요)",
     );
     vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "");
+    vi.stubEnv("STUDIO_AI_OCR_VENDOR", "gemini");
+    vi.stubEnv("STUDIO_AI_SOLUTION_VENDOR", "deepseek");
     vi.stubEnv("STUDIO_AI_GEMINI_MODEL", "gemini-2.5-pro");
     expect(detail()).toBe(
-      "문항 인식 Gemini 2.5 Pro · 해설 DeepSeek Flash · 도형 Gemini 2.5 Pro (작업별 서버 키 필요)",
+      "문항 인식 Gemini 2.5 Pro · 해설 DeepSeek Flash · 도형 Claude Sonnet 5.5 (작업별 서버 키 필요)",
     );
     vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "deepseek");
     expect(detail()).toBe("서버의 AI 모델 설정을 확인해 주세요.");

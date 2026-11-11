@@ -319,9 +319,17 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
       );
     }
     if (input.vendor === "anthropic") {
+      // Sonnet 5.5 는 temperature 를 받지 않는다(400) — effort 를 주면 temperature 를 빼고 보낸다.
+      // 해설은 medium, 읽기 · 도형은 low(전에 쓰던 Gemini 3.8 Flash 도 생각 LOW 였다 — 쪽 인식이 늦어지지 않게).
       const effort =
         input.effort ??
-        (input.model === "claude-opus-5" ? "medium" : undefined);
+        (input.model === "claude-opus-5"
+          ? "medium"
+          : input.model === "claude-sonnet-5-5"
+            ? input.action === "solution"
+              ? "medium"
+              : "low"
+            : undefined);
       const result = await rest(
         "https://api.anthropic.com/v1/messages",
         {

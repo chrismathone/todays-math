@@ -124,17 +124,17 @@ describe("authenticated production AI execution", () => {
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({
       provider: "auto",
-      model: "deepseek-flash",
+      model: "claude-sonnet-5-5",
       result: { answer: "2", solution: "1+1=2" },
     });
     expect(runModelApi).toHaveBeenCalledWith(
       expect.objectContaining({
-        vendor: "deepseek",
-        model: "deepseek-flash",
+        vendor: "anthropic",
+        model: "claude-sonnet-5-5",
         signal: expect.any(AbortSignal),
       }),
     );
-    vi.stubEnv("DEEPSEEK_API_KEY", "");
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
     expect((await POST(request())).status).toBe(503);
     expect(runSubscriptionCli).not.toHaveBeenCalled();
     expect(
@@ -178,7 +178,7 @@ describe("authenticated production AI execution", () => {
     expect(response.status).toBe(200);
     expect(runSubscriptionCli).not.toHaveBeenCalled();
   });
-  it("uses injected Gemini inference for both figure phases with the real deterministic Python figure engine", async () => {
+  it("uses injected Claude inference for both figure phases with the real deterministic Python figure engine", async () => {
     vi.mocked(runModelApi)
       .mockResolvedValueOnce(JSON.stringify({ spec: catalog.v2_example }))
       .mockResolvedValueOnce(JSON.stringify({ passed: true, issues: [] }));
@@ -200,7 +200,7 @@ describe("authenticated production AI execution", () => {
     expect(body.result.svg).toContain("<svg");
     expect(
       vi.mocked(runModelApi).mock.calls.map(([arg]) => arg.vendor),
-    ).toEqual(["gemini", "gemini"]);
+    ).toEqual(["anthropic", "anthropic"]);
     expect(runSubscriptionCli).not.toHaveBeenCalled();
   });
   it("bounds concurrent requests per user and frees admission after cancellation", async () => {

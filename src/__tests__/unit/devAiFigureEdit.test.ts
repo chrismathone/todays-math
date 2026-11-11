@@ -172,7 +172,7 @@ describe("요청 형식", () => {
         ...env,
         STUDIO_AI_FIGURE_VENDOR: "anthropic",
       }),
-    ).toEqual({ vendor: "anthropic", model: "claude-opus-5" });
+    ).toEqual({ vendor: "anthropic", model: "claude-sonnet-5-5" });
   });
 });
 
