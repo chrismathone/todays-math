@@ -3990,6 +3990,26 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-21",
   },
+  {
+    id: "figure-hatch-fill-20261111",
+    title: "도형 빗금 채우기 — 방향 셋 · 간격 셋이 종이에서 갈리는가",
+    changed:
+      "도형 편집기의 채우기 줄에 «빗금» 단추를 더했다(원장님 2026-11-11 «채우기에 빗금으로 채우기 추가»). 켜면 그 도형만의 SVG 패턴(바탕 투명)으로 칠하고, " +
+      "방향 ／ · ＼ · ×(격자)와 간격 촘촘 · 보통 · 성김(그림 긴 변의 1/90 · 1/60 · 1/40, 선 굵기는 간격의 12%)을 고른다. 색 칸은 빗금 선 색이다. " +
+      "시험지 · HWPX 는 브라우저가 그린 그림을 그대로 싣는다.",
+    look:
+      "(시안) ① 세 방향이 종이에서 눈으로 갈리는가 — 특히 «촘촘»이 회색 면처럼 뭉개지지 않는가. ② «성김»이 작은 도형 안에서 두세 줄만 남아 빗금으로 안 읽히지 않는가. " +
+      "③ 빗금 선이 도형 테두리보다 눈에 띄게 가늘어 경계가 묻히지 않는가. ④ 빗금 사이로 뒤의 선 · 면이 비쳐 보이는가(투명 바탕). ⑤ HWPX 를 한글에서 열어도 같은가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/unified/figure-editor/figureHatch.ts · src/components/unified/figure-editor/FigureEditor.tsx(채우기 줄) · src/components/unified/figure-editor/figureSvgEditing.ts(METADATA hatch · hatch-gap)",
+      "src/__tests__/unit/figureHatch.test.ts · src/__tests__/components/StudioFigureEditor.panelFolds.test.tsx(«빗금»)",
+    ],
+    needs:
+      "문제 추출에서 도형 하나에 빗금을 방향 셋 × 간격 셋으로 칠한 시험지(작은 도형 · 큰 도형 각각) — 인쇄 한 장 + HWPX 한 부",
+    status: "대기",
+    changedOn: "2026-11-11",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

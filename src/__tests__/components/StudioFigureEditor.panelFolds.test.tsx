@@ -271,6 +271,63 @@ describe("오른쪽 칸 — 접는 무리 셋", () => {
     ).toBeInTheDocument();
   });
 
+  // 원장님 2026-11-11 «채우기에 빗금으로 채우기 추가» — «빗금» 단추 하나 · 방향과 간격을 고른다 · 바탕은 투명.
+  it("채우기 줄의 «빗금» — 켜면 방향 · 간격 줄이 나오고 색 칸은 빗금 선 색, 다시 누르면 보통 채우기", () => {
+    render(
+      <StudioFigureEditor
+        image={crop}
+        initialSvg={figure}
+        index={0}
+        onSave={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+    pickNumber(1);
+    const row = () =>
+      screen.getByLabelText("도형 채우기 색").closest("[data-fill-row]")!;
+    const hatch = within(row() as HTMLElement).getByRole("button", {
+      name: "빗금",
+    });
+    expect(hatch).toHaveAttribute("aria-pressed", "false");
+    expect(screen.queryByRole("group", { name: "빗금 방향" })).toBeNull();
+
+    fireEvent.click(hatch);
+    const polygon = () => document.querySelector("polygon")!;
+    expect(polygon().getAttribute("fill")).toMatch(/^url\(#/);
+    expect(screen.getByRole("button", { name: "빗금" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "빗금 방향" })).getByRole(
+        "button",
+        { name: "×" },
+      ),
+    );
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "빗금 간격" })).getByRole(
+        "button",
+        { name: "촘촘" },
+      ),
+    );
+    const pattern = document.querySelector("pattern[data-hatch]")!;
+    expect(pattern.getAttribute("data-hatch")).toBe("cross");
+    expect(pattern.getAttribute("data-hatch-gap")).toBe("fine");
+    fireEvent.change(screen.getByLabelText("도형 채우기 색"), {
+      target: { value: "#2255aa" },
+    });
+    expect(
+      document
+        .querySelector("pattern[data-hatch] line")!
+        .getAttribute("stroke"),
+    ).toBe("#2255aa");
+
+    fireEvent.click(screen.getByRole("button", { name: "빗금" }));
+    expect(document.querySelector("pattern[data-hatch]")).toBeNull();
+    expect(polygon().getAttribute("fill")).toBe("#2255aa");
+    expect(screen.queryByRole("group", { name: "빗금 방향" })).toBeNull();
+  });
+
   it("아무것도 안 고르면 틀·세부만 — 접혀 있고, 펴면 다 보이게", () => {
     open();
     expect(fold("배치")).toBeNull();

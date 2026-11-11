@@ -37,6 +37,15 @@ import {
   withoutFigureNumbers,
 } from "./figureSvgEditing";
 import {
+  DEFAULT_FIGURE_HATCH,
+  FIGURE_HATCH_DIRECTION_LABELS,
+  FIGURE_HATCH_DIRECTIONS,
+  FIGURE_HATCH_GAP_LABELS,
+  FIGURE_HATCH_GAPS,
+  figureHatchOf,
+  setFigureHatch,
+} from "./figureHatch";
+import {
   figureAngleKinds,
   groupFigureObjects,
   nextGroupName,
@@ -422,6 +431,11 @@ export function FigureEditor({
   // 선을 따라가는 면(채우기 통·안쪽 채우기)은 조절점이 없다 — 모양은 선이 정한다.
   const currentTied = !!current && isTiedFace(current);
   const currentFace = !!current && isFaceObject(current);
+  // 빗금 채우기(2026-11-11) — 채우기가 그 도형만의 빗금 패턴을 가리키면 그 빗금.
+  const currentHatch =
+    current && /^url\(/.test(current.attrs.fill ?? "")
+      ? figureHatchOf(svg, current.id)
+      : null;
   const handles = useMemo(
     () =>
       current && !current.attrs["data-function"] && !isTiedFace(current)
@@ -2518,24 +2532,128 @@ export function FigureEditor({
                               type="button"
                               aria-label="채우기 없애기"
                               disabled={noFill(current.attrs.fill)}
-                              onClick={() => change({ fill: "none" })}
+                              onClick={() =>
+                                commit(
+                                  editFigureObject(
+                                    setFigureHatch(svg, current.id, null),
+                                    current.id,
+                                    { fill: "none" },
+                                  ),
+                                )
+                              }
                               className="underline text-muted disabled:opacity-40"
                             >
                               없애기
                             </button>
                           )}
+                          {/* 빗금(원장님 2026-11-11) — 켜면 색 칸은 빗금 선 색, 다시 누르면 그 색의 보통 채우기 */}
+                          <button
+                            type="button"
+                            aria-pressed={!!currentHatch}
+                            onClick={() =>
+                              commit(
+                                setFigureHatch(
+                                  svg,
+                                  current.id,
+                                  currentHatch
+                                    ? null
+                                    : {
+                                        ...DEFAULT_FIGURE_HATCH,
+                                        color: "#111111",
+                                      },
+                                ),
+                              )
+                            }
+                            className={formatToggleClass(!!currentHatch)}
+                          >
+                            빗금
+                          </button>
                           <ColorInput
                             aria-label="도형 채우기 색"
-                            none={noFill(current.attrs.fill)}
+                            none={!currentHatch && noFill(current.attrs.fill)}
                             value={
-                              /^#[\da-f]{6}$/i.test(current.attrs.fill ?? "")
-                                ? current.attrs.fill
-                                : "#ffffff"
+                              currentHatch
+                                ? currentHatch.color
+                                : /^#[\da-f]{6}$/i.test(
+                                      current.attrs.fill ?? "",
+                                    )
+                                  ? current.attrs.fill
+                                  : "#ffffff"
                             }
-                            onChange={(e) => change({ fill: e.target.value })}
+                            onChange={(e) =>
+                              currentHatch
+                                ? commit(
+                                    setFigureHatch(svg, current.id, {
+                                      ...currentHatch,
+                                      color: e.target.value,
+                                    }),
+                                  )
+                                : change({ fill: e.target.value })
+                            }
                           />
                         </span>
                       </div>
+                      {currentHatch && (
+                        <div
+                          data-hatch-row=""
+                          className="flex items-center justify-between gap-2"
+                        >
+                          <span
+                            role="group"
+                            aria-label="빗금 방향"
+                            className="flex items-center gap-1"
+                          >
+                            {FIGURE_HATCH_DIRECTIONS.map((direction) => (
+                              <button
+                                key={direction}
+                                type="button"
+                                aria-pressed={
+                                  currentHatch.direction === direction
+                                }
+                                onClick={() =>
+                                  commit(
+                                    setFigureHatch(svg, current.id, {
+                                      ...currentHatch,
+                                      direction,
+                                    }),
+                                  )
+                                }
+                                className={formatToggleClass(
+                                  currentHatch.direction === direction,
+                                )}
+                              >
+                                {FIGURE_HATCH_DIRECTION_LABELS[direction]}
+                              </button>
+                            ))}
+                          </span>
+                          <span
+                            role="group"
+                            aria-label="빗금 간격"
+                            className="flex items-center gap-1"
+                          >
+                            {FIGURE_HATCH_GAPS.map((gap) => (
+                              <button
+                                key={gap}
+                                type="button"
+                                aria-pressed={currentHatch.gap === gap}
+                                onClick={() =>
+                                  commit(
+                                    setFigureHatch(svg, current.id, {
+                                      ...currentHatch,
+                                      gap,
+                                    }),
+                                  )
+                                }
+                                className={formatToggleClass(
+                                  currentHatch.gap === gap,
+                                )}
+                              >
+                                {FIGURE_HATCH_GAP_LABELS[gap]}
+                              </button>
+                            ))}
+                          </span>
+                        </div>
+                      )}
                     </>
                   )}
                 </div>
