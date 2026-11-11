@@ -217,8 +217,41 @@ const inlineTable = (rows: string[][]): string => {
   return cells.flat().filter(Boolean).join(" ").trim();
 };
 
+/**
+ * 인라인 조각 잇기 — 맞닿은 두 인라인 수식 사이에는 빈칸 하나를 둔다. `$s,$` 뒤에 `$t$` 를 그대로 붙이면
+ * `$s,$$t$` 의 `$$` 가 가운데 수식의 여닫이로 읽혀 그 뒤의 짝이 통째로 어긋난다(원장님 2026-11-11 «15번
+ * 문제 이상하게 됨» — 수식 사이의 빈칸 조각이 정규화에서 빠진 탓).
+ */
+const joinInline = (left: string, piece: string): string =>
+  left.endsWith("$") && piece.startsWith("$")
+    ? `${left} ${piece}`
+    : left + piece;
+
 const serializeChoiceContents = (contents: ContentBlock[]): string =>
-  (contents ?? []).map(inlinePiece).join("").trim();
+  (contents ?? []).map(inlinePiece).reduce(joinInline, "").trim();
+
+/** 문장 끝 — 이 뒤에 오는 수식은 문장 한가운데가 아니다. */
+const SENTENCE_END = /(?:[.?!:。]|\n)\s*$/;
+
+/**
+ * 문장 한가운데의 equation_block — 앞 글이 문장 끝이 아니고, 뒤 글이 빈칸 · 줄바꿈 없이 문장을 이어 가면
+ * («의 두 부분집합», «를 만족시키는» …) 원본에서 줄머리에 왔을 뿐인 인라인 수식이다. 가운데 수식으로 두면
+ * 문장 하나가 세 덩이로 갈라져 수식이 혼자 한 줄을 차지한다(원장님 2026-11-11 «왜 일부 수식에서 이렇게
+ * 혼자 거대한 공간 차지하는지»). 인식 지시문에도 같은 규칙이 있지만 모델이 어긴다 — 여기서 결정적으로 고친다.
+ */
+const midSentenceBlock = (
+  previous: NBlock | undefined,
+  next: NBlock | undefined,
+): boolean =>
+  !!previous &&
+  !!next &&
+  !previous.boxMember &&
+  !next.boxMember &&
+  (previous.type === "text" || previous.type === "equation") &&
+  next.type === "text" &&
+  previous.value.trim() !== "" &&
+  !SENTENCE_END.test(previous.value) &&
+  /^[가-힣,.)]/.test(next.value);
 
 /**
  * 블록 + 보기 → markdown (`OCRProblem.text` 파생값).
@@ -251,12 +284,12 @@ export const blocksToMarkdown = (
     if (boxRun.length === 0) return;
     // 박스 멤버 블록들을 인라인 직렬화 후 한 blockquote 로 — 멀티블록 보기 박스가
     // 마커 블록만 박스화되고 항목이 유출되던 "박스 미완"(사용자 보고) 차단.
-    const concat = boxRun.map(inlinePiece).join("").trim();
+    const concat = boxRun.map(inlinePiece).reduce(joinInline, "").trim();
     if (concat) out.push(boxToBlockquote(concat));
     boxRun = [];
   };
 
-  for (const b of norm) {
+  for (const [index, b] of norm.entries()) {
     if (!b || typeof b.type !== "string") continue;
     if (b.boxMember) {
       flushInline();
@@ -264,7 +297,12 @@ export const blocksToMarkdown = (
       continue;
     }
     flushBoxRun();
-    if (b.type === "equation_block") {
+    if (
+      b.type === "equation_block" &&
+      midSentenceBlock(norm[index - 1], norm[index + 1])
+    ) {
+      inline = joinInline(inline, inlinePiece(b));
+    } else if (b.type === "equation_block") {
       flushInline();
       const v = b.value.trim();
       if (v) out.push(`$$${v}$$`);
@@ -286,7 +324,7 @@ export const blocksToMarkdown = (
       out.push(b.value.trim());
     } else {
       // text 또는 equation — 인라인 런에 누적
-      inline += inlinePiece(b);
+      inline = joinInline(inline, inlinePiece(b));
     }
   }
   flushInline();
