@@ -269,7 +269,7 @@ describe("⑵ 400 계약 실패 — 어느 칸이 왜", () => {
 });
 
 describe("⑶ 모델 응답을 못 읽었을 때 — 응답 앞부분", () => {
-  it("OCR — 모델이 JSON 대신 글을 냈다 · 화면은 여전히 일반 문구", async () => {
+  it("OCR — 모델이 두 번 다 JSON 대신 글을 냈다 · 한 번 다시 보내고 «다시 시도» 문구", async () => {
     const said = "죄송합니다. 이 이미지는 읽을 수 없습니다.";
     vi.mocked(runModelApi).mockResolvedValue(said);
     const response = await post({
@@ -279,8 +279,10 @@ describe("⑶ 모델 응답을 못 읽었을 때 — 응답 앞부분", () => {
       imageDataUrl: "data:image/png;base64,YWJj",
     });
     expect(response.status).toBe(502);
+    expect(vi.mocked(runModelApi)).toHaveBeenCalledTimes(2);
     expect(await response.json()).toEqual({
-      error: "AI 결과를 처리하지 못했습니다. 입력과 모델 설정을 확인해 주세요.",
+      error:
+        "AI 응답을 읽지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
     });
     const [row] = await logged();
     expect(row).toMatchObject({

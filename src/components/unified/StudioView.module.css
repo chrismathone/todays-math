@@ -324,6 +324,34 @@
   overflow-wrap: anywhere;
   word-break: keep-all;
 }
+/* 쪽별 경고 요약(원장님 2026-11-11) — 쪽당 한 줄, 원문은 «자세히»로 펼친다. 공통 안내는 위에 한 번. */
+.aiWarningsCommon {
+  margin: 0;
+  padding: 0 2px;
+  color: #87410c;
+  font-size: var(--text-caption, 12px);
+}
+.aiWarningsPage > summary {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  list-style: none;
+  cursor: pointer;
+}
+.aiWarningsPage > summary::-webkit-details-marker {
+  display: none;
+}
+.aiWarningsMore {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.aiWarningsPage > p {
+  margin-top: 4px;
+}
 /* 빠진 낱말 줄 — «PDF 낱말 N%» 경고 밑에(원장님 2026-09-21 «이 경고가 어떤 문제인지 알려주면»). */
 .aiWarnings p.missingWords {
   margin-top: 2px;

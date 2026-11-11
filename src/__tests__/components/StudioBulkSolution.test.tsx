@@ -10,7 +10,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudioView from "@/components/unified/StudioView";
 import { DevAiProvider } from "@/components/unified/useDevAi";
 import type { StudioSessionData } from "@/components/unified/studioSessionStore";
-import type { StudioCrop } from "@/components/unified/studioHelpers";
+import {
+  studioProblem,
+  type StudioCrop,
+} from "@/components/unified/studioHelpers";
+import type { StudioProblem } from "@/components/unified/types";
 
 /**
  * 원장님 2026-09-20 «상단 열을 줄여서 «전체 해설 생성» 버튼 추가. 순서대로 해설 생성».
@@ -128,7 +132,13 @@ afterEach(() => {
   saved.current = new Promise(() => {});
 });
 
-async function openStudio(crops: StudioCrop[]) {
+async function openStudio(
+  crops: StudioCrop[],
+  cart?: {
+    picked: StudioProblem[];
+    onAdd: (problems: StudioProblem[]) => void;
+  },
+) {
   saved.current = Promise.resolve({
     data: {
       sources: [{ id: "s1", name: "예제 지면", kind: "sample", pages: 1 }],
@@ -146,7 +156,9 @@ async function openStudio(crops: StudioCrop[]) {
   render(
     <DevAiProvider>
       <StudioView
-        onAdd={() => {}}
+        picked={cart?.picked}
+        removed={cart ? [] : undefined}
+        onAdd={cart?.onAdd ?? (() => {})}
         onExport={() => {}}
         canExport
         storageScope="owner-a"
@@ -235,6 +247,32 @@ describe("전체 해설 생성 — 원장님 2026-09-20 «순서대로 해설 �
     expect(button).toHaveAttribute(
       "title",
       expect.stringContaining("해설이 없는 문항"),
+    );
+  });
+});
+
+describe("담은 뒤 만든 해설 — 원장님 2026-11-11 «해설은 자동 반영»", () => {
+  it("담은 문항도 해설을 만들고, 만든 해설이 시험지의 같은 자리에 들어간다", async () => {
+    const crops = [crop("c1"), crop("c2")];
+    const onAdd = vi.fn();
+    const button = await openStudio(crops, {
+      picked: crops.map(studioProblem),
+      onAdd,
+    });
+    await waitFor(() => expect(button).toBeEnabled());
+    fireEvent.click(button);
+    await waitFor(() => expect(solutionOrder()).toHaveLength(2));
+    await waitFor(() =>
+      expect(
+        onAdd.mock.calls
+          .flatMap(([problems]) => problems as StudioProblem[])
+          .map((problem) => [problem.id, problem.solution]),
+      ).toEqual(
+        expect.arrayContaining([
+          ["c1", "c1 본문 해설"],
+          ["c2", "c2 본문 해설"],
+        ]),
+      ),
     );
   });
 });

@@ -19,6 +19,7 @@ import {
   addToCart,
   forgetRemovals,
   rememberRemoval,
+  removeAllFromCart,
   restoreToCart,
   type StudioCartRemoval,
 } from "@/components/unified/studioCart";
@@ -182,6 +183,11 @@ function Workspace({
             );
           }}
           onRemove={remove}
+          onRemoveAll={() => {
+            const next = removeAllFromCart(picked, removed);
+            setPicked(next.picked);
+            setRemoved(next.removed);
+          }}
           onRestore={(problem) => {
             const index =
               removed.find((item) => item.problem.id === problem.id)?.index ??
@@ -534,6 +540,28 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     );
     expect(onExport).toHaveBeenCalledOnce();
     expect(worksheet().map((row) => row.id)).toEqual(["b", "c"]);
+  });
+
+  it("목록 머리의 «모두 빼기» — 전부 «뺌»으로 흐리게 남고, 빈 목록에서는 단추가 없다", async () => {
+    await openReview([crop("a"), crop("b"), crop("c")]);
+    fireEvent.click(addButton());
+    fireEvent.click(cartToggle());
+    fireEvent.click(within(panel()).getByRole("button", { name: "모두 빼기" }));
+    expect(worksheet()).toEqual([]);
+    expect([chip(1), chip(2), chip(3)]).toEqual(["뺌", "뺌", "뺌"]);
+    const rows = within(panel()).getAllByRole("listitem");
+    expect(rows.map((row) => row.dataset.removed)).toEqual([
+      "true",
+      "true",
+      "true",
+    ]);
+    expect(
+      within(panel()).queryByRole("button", { name: "모두 빼기" }),
+    ).toBeNull();
+    fireEvent.click(
+      within(panel()).getByRole("button", { name: "문제 02 다시 담기" }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["b"]);
   });
 
   it("새 시험지를 열면 «담음»이 풀리고 다시 담을 수 있다 (어긋남 2)", async () => {

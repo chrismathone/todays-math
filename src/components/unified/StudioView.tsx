@@ -9,6 +9,7 @@ import StudioStepBar from "./StudioStepBar";
 import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
+import { summarizePageWarnings } from "./pageWarningSummary";
 import StudioProgressStrip from "./StudioProgressStrip";
 import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
 import { applyStudioCropEdit, studioCropStatusOnly } from "./studioCropEdit";
@@ -58,6 +59,7 @@ import {
   studioCartAddLabel,
   studioCartPending,
   studioCartState,
+  onlySolutionChanged,
   useStudioCart,
   type StudioCartRemoval,
 } from "./studioCart";
@@ -308,6 +310,7 @@ export default function StudioView({
   picked,
   removed,
   onRemove,
+  onRemoveAll,
   onRestore,
   pickedCount,
   stepRequest,
@@ -326,6 +329,8 @@ export default function StudioView({
   removed?: StudioCartRemoval[];
   /** 목록 줄의 × — ④·문제은행과 같은 빼기 길(`UnifiedWorkspace` 의 `toggle`). */
   onRemove?: (problem: StudioProblem) => void;
+  /** «담은 문항» 목록의 «모두 빼기» — 시험지 전체를 뺀다. */
+  onRemoveAll?: () => void;
   /** 목록 줄의 «다시 담기» — 뺀 자리로. */
   onRestore?: (problem: StudioProblem) => void;
   /**
@@ -497,7 +502,14 @@ export default function StudioView({
   });
   const recognizingPage = studioAi.isPageBusy(sourceId, pageNumber);
   /** 담은 문항 장부 — 시험지의 담은 목록 하나에서 센다(`studioCart.ts`). */
-  const cart = useStudioCart({ picked, removed, onAdd, onRemove, onRestore });
+  const cart = useStudioCart({
+    picked,
+    removed,
+    onAdd,
+    onRemove,
+    onRemoveAll,
+    onRestore,
+  });
   const cartState = (crop: StudioCrop) =>
     studioCartState(crop, cart.picked, cart.removed);
   const [cartOpen, setCartOpen] = useState(false);
@@ -507,12 +519,39 @@ export default function StudioView({
   const unreadCrops = crops.filter(
     (crop) => !crop.content.trim() && cartState(crop) !== "picked",
   );
+  // 해설은 담은 뒤에 만들어도 시험지에 저절로 들어간다(아래 효과) — 담은 문항도 «해설 없는 N개 생성»에 든다.
+  // 뺀 문항만 건너뛴다(원장님 2026-11-11).
   const unsolvedCrops = crops.filter(
     (crop) =>
       crop.content.trim() &&
       !crop.solution.trim() &&
-      cartState(crop) !== "picked",
+      cartState(crop) !== "removed",
   );
+  /**
+   * 해설 생성이 끝난 담은 문항은 시험지의 같은 자리에 새 판을 넣는다(원장님 2026-11-11 «해설은 자동 반영»).
+   * 전에는 해설이 작업실에만 들어가고 시험지에는 해설 없는 판이 남아 «해설 없음»으로 나갔다.
+   * 본문·보기·그림까지 바뀐 문항은 그대로 «반영 전» — 원장님이 «반영»을 누른다.
+   */
+  const solutionJobsDone = studioAi.cropJobs
+    .filter((job) => job.action === "solution" && job.state === "complete")
+    .map((job) => job.cropId)
+    .join(",");
+  useEffect(() => {
+    if (!solutionJobsDone) return;
+    const done = new Set(solutionJobsDone.split(","));
+    const reflect = crops.filter((crop) => {
+      if (!done.has(crop.id) || !crop.solution.trim()) return false;
+      const entry = cart.picked.find((problem) => problem.id === crop.id);
+      return Boolean(
+        entry?.studioCrop &&
+        (entry.studioCrop.revision ?? 0) !== (crop.revision ?? 0) &&
+        onlySolutionChanged(entry.studioCrop, crop),
+      );
+    });
+    if (reflect.length) cart.add(reflect.map(studioProblem));
+    // 장부(`cart`)는 매 렌더 새 객체다 — 판이 바뀐 문항이 있을 때만 위에서 걸러 넣는다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [solutionJobsDone, crops, cart.picked]);
 
   // The workspace keeps inactive views mounted; leaving must release modal state.
   if (!active && focusMode) setFocusMode(false);
@@ -2011,6 +2050,14 @@ export default function StudioView({
     setNotice("시험지에서 문제를 뺐습니다.");
   }
 
+  /** 목록 머리의 «모두 빼기» — 시험지 전체를 뺀다. 뺀 줄은 흐리게 남아 하나씩 «다시 담기»로 돌린다. */
+  function removeAllFromStudioCart() {
+    const count = cart.picked.length;
+    if (!count) return;
+    cart.removeAll();
+    setNotice(`시험지에서 ${count}문항을 모두 뺐습니다.`);
+  }
+
   /** 목록 줄의 «다시 담기» — 작업실에 그 문항이 있으면 지금 판을, 없으면 뺄 때의 판을 되돌린다. */
   function restoreToCartFromStudio(problem: StudioProblem) {
     const crop = crops.find((item) => item.id === problem.id);
@@ -2411,7 +2458,10 @@ export default function StudioView({
         studioAi.pageJobs.reduce(
           (count, job) =>
             count +
-            (job.warnings?.length ?? 0) +
+            // 쪽당 한 줄로 요약하니 개수도 쪽 단위 — 공통 안내(자동 인식 후보)는 세지 않는다.
+            Number(
+              summarizePageWarnings(job.warnings ?? []).details.length > 0,
+            ) +
             Number(!!job.textLayerWarning) +
             Number(job.state === "error"),
           0,
@@ -3314,6 +3364,7 @@ export default function StudioView({
               selectCrop(id);
             }}
             onRemove={removeFromCart}
+            onRemoveAll={removeAllFromStudioCart}
             onRestore={restoreToCartFromStudio}
             onClose={(returnFocus) => {
               setCartOpen(false);

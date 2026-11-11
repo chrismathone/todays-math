@@ -3,6 +3,10 @@
 import { Fragment } from "react";
 import WorkProgress from "./WorkProgress";
 import { studioWorkName } from "./studioWorkNames";
+import {
+  COMMON_CROP_NOTICE,
+  summarizePageWarnings,
+} from "./pageWarningSummary";
 import styles from "./StudioView.module.css";
 
 interface PageJob {
@@ -111,12 +115,20 @@ export default function StudioQueueStatus({
           ) : null}
         </div>
       )}
+      {jobs.some((job) => summarizePageWarnings(job.warnings ?? []).common) ? (
+        <p className={styles.aiWarningsCommon}>{COMMON_CROP_NOTICE}</p>
+      ) : null}
       {jobs
-        .filter((job) => job.textLayerWarning || job.warnings?.length)
+        .filter(
+          (job) =>
+            job.textLayerWarning ||
+            summarizePageWarnings(job.warnings ?? []).details.length,
+        )
         .map((job) => {
           const missing = job.textLayerWarning
             ? missingWordsLine(job.textLayerWarning)
             : null;
+          const summary = summarizePageWarnings(job.warnings ?? []);
           return (
             <div
               key={`warning:${job.key}`}
@@ -131,11 +143,18 @@ export default function StudioQueueStatus({
               {missing ? (
                 <p className={styles.missingWords}>{missing}</p>
               ) : null}
-              {job.warnings?.map((warning, index) => (
-                <p key={index}>
-                  {job.page}쪽 · {warning}
-                </p>
-              ))}
+              {/* 쪽당 한 줄 — 원문은 «자세히»에서(원장님 2026-11-11). */}
+              {summary.details.length ? (
+                <details className={styles.aiWarningsPage}>
+                  <summary>
+                    {job.page}쪽 · {summary.labels.join(" · ")}
+                    <span className={styles.aiWarningsMore}>자세히</span>
+                  </summary>
+                  {summary.details.map((warning, index) => (
+                    <p key={index}>{warning}</p>
+                  ))}
+                </details>
+              ) : null}
             </div>
           );
         })}

@@ -57,6 +57,7 @@ export default function StudioCartPanel({
   canExport,
   onJump,
   onRemove,
+  onRemoveAll,
   onRestore,
   onClose,
   onExport,
@@ -68,6 +69,8 @@ export default function StudioCartPanel({
   canExport: boolean;
   onJump: (cropId: string) => void;
   onRemove: (problem: StudioProblem) => void;
+  /** 머리의 «모두 빼기» — 시험지 전체(원장님 2026-11-11). 확인 창 없이 빼고, 뺀 줄은 흐리게 남는다. */
+  onRemoveAll: () => void;
   onRestore: (problem: StudioProblem) => void;
   /** `returnFocus` — 키보드로 닫으면 여는 단추로 초점을 돌린다. */
   onClose: (returnFocus: boolean) => void;
@@ -117,6 +120,18 @@ export default function StudioCartPanel({
         <span>
           이 원본 {here} · 다른 곳 {picked.length - here}
         </span>
+        {picked.length > 0 && (
+          <button
+            type="button"
+            className={`${s.text} ${s.headAction}`}
+            onClick={() => {
+              onRemoveAll();
+              heading.current?.focus({ preventScroll: true });
+            }}
+          >
+            모두 빼기
+          </button>
+        )}
       </div>
       <ol ref={list} className={s.list}>
         {rows.length === 0 && (

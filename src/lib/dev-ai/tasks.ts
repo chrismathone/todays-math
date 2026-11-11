@@ -529,16 +529,33 @@ function parseAuxiliaryText(
 export async function executeMathgenTask(
   request: DevAiRequest,
   invoke: (prompt: string) => Promise<string>,
+  /**
+   * 못 읽은 응답을 한 번 다시 묻는다 — 운영의 모델 API 길만 켠다(2026-11-11). 구독 CLI 길은 다시 묻지 않는다
+   * (`devAiRoute.test.ts` «does not retry … on invalid model output»).
+   */
+  options: { retryUnreadable?: boolean } = {},
 ): Promise<DevAiResult> {
   const prompt = buildDevAiPrompt(request);
-  const raw = await invoke(prompt);
+  let raw = await invoke(prompt);
   let result: DevAiResult;
   try {
     result = parseDevAiResult(raw, request.action);
   } catch (error) {
     // 모델 응답을 못 읽었다 — 무엇을 냈는지(앞부분)가 오류 기록에 남아야 지시문·파서를 고친다
     noteErrorLog({ context: { modelResponse: textHead(raw) } });
-    throw error;
+    if (!options.retryUnreadable || !(error instanceof DevAiParseError))
+      throw error;
+    // 2026-11-11 운영 — Gemini 가 보기 배열의 닫는 괄호를 빠뜨린 응답 한 번에 502 가 났다. 같은 요청을
+    // 한 번만 다시 보낸다(두 번째도 못 읽으면 그 응답을 기록하고 그대로 실패).
+    raw = await invoke(prompt);
+    try {
+      result = parseDevAiResult(raw, request.action);
+    } catch (retryError) {
+      noteErrorLog({
+        context: { modelResponse: textHead(raw), parseRetried: true },
+      });
+      throw retryError;
+    }
   }
   if (request.action === "ocr" && result.ocr) {
     const items = [nativeFromMetadata(result.ocr)];

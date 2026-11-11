@@ -153,15 +153,19 @@ export async function executeStudioTask(
     };
   return {
     model: route.model,
-    result: await executeMathgenTask(request, (prompt) => {
-      signal.throwIfAborted();
-      return runModelApi({
-        ...route,
-        prompt,
-        imageDataUrl: request.imageDataUrl,
-        signal,
-        action: request.action,
-      });
-    }),
+    result: await executeMathgenTask(
+      request,
+      (prompt) => {
+        signal.throwIfAborted();
+        return runModelApi({
+          ...route,
+          prompt,
+          imageDataUrl: request.imageDataUrl,
+          signal,
+          action: request.action,
+        });
+      },
+      { retryUnreadable: true },
+    ),
   };
 }

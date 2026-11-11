@@ -151,6 +151,47 @@ export function rememberRemoval(
   ];
 }
 
+/**
+ * 담은 판과 지금 판이 **해설·답**(과 그 부속 — AI 경고·검수 표시·판 번호)만 다른가.
+ * 해설 생성이 끝난 문항을 시험지에 저절로 반영할지 가른다(원장님 2026-11-11 «해설은 자동 반영»).
+ * 본문·보기·그림·형식이 바뀌었으면 거짓 — 그때는 지금처럼 «반영»을 눌러야 들어간다.
+ */
+export function onlySolutionChanged(cartCrop: StudioCrop, crop: StudioCrop) {
+  const ignored = new Set([
+    "answer",
+    "solution",
+    "aiWarnings",
+    "reviewed",
+    "revision",
+    "added",
+  ]);
+  // 맨 위 칸만 뺀다 — 안쪽(예: 인식 결과 `ocr`)의 같은 이름 칸은 견준다.
+  const strip = (value: StudioCrop) =>
+    JSON.stringify(
+      Object.fromEntries(
+        Object.entries(value).filter(([key]) => !ignored.has(key)),
+      ),
+    );
+  return strip(cartCrop) === strip(crop);
+}
+
+/**
+ * «모두 빼기» — 담긴 것을 전부 빼고, 하나하나를 뺀 자리와 함께 기억한다. 목록에는 흐린 줄로 남아
+ * «다시 담기»로 제자리에 돌릴 수 있다.
+ */
+export function removeAllFromCart(
+  picked: StudioProblem[],
+  removed: StudioCartRemoval[],
+) {
+  return {
+    picked: [] as StudioProblem[],
+    removed: picked.reduce(
+      (memory, problem, index) => rememberRemoval(memory, problem, index),
+      removed,
+    ),
+  };
+}
+
 /** 다시 담긴 것은 기억에서 지운다. 지울 것이 없으면 같은 배열을 돌려준다(상태를 흔들지 않게). */
 export function forgetRemovals(removed: StudioCartRemoval[], ids: string[]) {
   return removed.some((item) => ids.includes(item.problem.id))
@@ -194,12 +235,15 @@ export function useStudioCart({
   removed,
   onAdd,
   onRemove,
+  onRemoveAll,
   onRestore,
 }: {
   picked?: StudioProblem[];
   removed?: StudioCartRemoval[];
   onAdd: (problems: StudioProblem[]) => void;
   onRemove?: (problem: StudioProblem) => void;
+  /** «모두 빼기» — 시험지에 담긴 것을 전부 뺀다(원장님 2026-11-11 «시험지 전체»). */
+  onRemoveAll?: () => void;
   onRestore?: (problem: StudioProblem) => void;
 }) {
   const [local, setLocal] = useState<{
@@ -241,6 +285,13 @@ export function useStudioCart({
           ),
         };
       });
+    },
+    removeAll() {
+      if (controlled) {
+        onRemoveAll?.();
+        return;
+      }
+      setLocal((current) => removeAllFromCart(current.picked, current.removed));
     },
     restore(problem: StudioProblem) {
       if (controlled) {

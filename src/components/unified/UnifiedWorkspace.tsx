@@ -55,6 +55,7 @@ import {
   addToCart,
   forgetRemovals,
   rememberRemoval,
+  removeAllFromCart,
   restoreToCart,
 } from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
@@ -163,7 +164,15 @@ const CourseDashboard = dynamic(
 );
 const OntologyWorkspace = dynamic(
   () => import("@/components/math-ontology/OntologyWorkspace"),
-  { ssr: false, loading: () => <WorkProgress className={s.loading} label="지식 작업실을 여는 중입니다…" /> },
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress
+        className={s.loading}
+        label="지식 작업실을 여는 중입니다…"
+      />
+    ),
+  },
 );
 const EnglishStudio = dynamic(
   () => import("@/components/english/EnglishStudio"),
@@ -291,7 +300,13 @@ const mathNav: NavItem[] = [
     icon: "clock",
     group: "own",
   },
-  { id: "ontology", label: "지식 작업실", short: "지식", icon: "search", group: "own" },
+  {
+    id: "ontology",
+    label: "지식 작업실",
+    short: "지식",
+    icon: "search",
+    group: "own",
+  },
 ];
 /** 오늘의 영어 옆 메뉴 — 위 넷은 수학의 같은 자리와 짝이고, 영어듣기 · 자료은행은 영어만의 메뉴다. */
 const englishNav: NavItem[] = [
@@ -356,7 +371,11 @@ const viewValid = (value: string): value is View =>
   allNavItems.some((item) => item.id === value);
 /** 뷰가 딸린 메뉴 — 권한은 이것으로 본다. «연산대장»은 제 메뉴 `arithmetic` 을 본다(2026-10-16 — bank 에 딸리지 않는다). */
 const menuOf = (view: View): WorkspaceMenu =>
-  view === "ontology" ? "srs" : isEnglishView(view) ? englishViewMenu(view) : view;
+  view === "ontology"
+    ? "srs"
+    : isEnglishView(view)
+      ? englishViewMenu(view)
+      : view;
 const productOf = (view: View | null): WorkspaceProduct =>
   view &&
   (isEnglishView(view) ||
@@ -457,10 +476,14 @@ function UnifiedWorkspaceContent({
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const reportView: View | null = examReportTestId && canOutput
-    ? (can("library") ? "library" : "export")
-    : null;
-  const view = reportView ??
+  const reportView: View | null =
+    examReportTestId && canOutput
+      ? can("library")
+        ? "library"
+        : "export"
+      : null;
+  const view =
+    reportView ??
     (requestedView && can(requestedView) ? requestedView : defaultView);
   const product = productOf(view);
   const productLabel =
@@ -474,10 +497,7 @@ function UnifiedWorkspaceContent({
   );
   // 출력은 각 출처 메뉴의 마지막 단계이며, 공용 export 뷰는 빠른 검색과 현재 시험지에서 연다.
   const availableNav = navItemsOf[product]
-    .filter(
-      (item) =>
-        can(item.id) && workspaceMenuInSidebar(menuOf(item.id)),
-    )
+    .filter((item) => can(item.id) && workspaceMenuInSidebar(menuOf(item.id)))
     .map((item) =>
       item.id === "library" ? { ...item, label: libraryLabel } : item,
     );
@@ -662,6 +682,7 @@ function UnifiedWorkspaceContent({
   const [undo, setUndo] = useState<
     | { kind: "remove"; problem: StudioProblem; index: number; draftId: string }
     | { kind: "order"; previous: StudioProblem[]; draftId: string }
+    | { kind: "clear"; previous: StudioProblem[]; draftId: string }
     | null
   >(null);
   // «english-exam»(영어 «새 시험 등록»)은 셸의 <dialog> 가 아니라 영어 뷰가 제 창을 그린다.
@@ -697,9 +718,11 @@ function UnifiedWorkspaceContent({
     (next: View): boolean => {
       if (!can(next)) return false;
       if (examReportTestId) {
-        if (!window.dispatchEvent(
-          new Event("exam-report-before-leave", { cancelable: true }),
-        ))
+        if (
+          !window.dispatchEvent(
+            new Event("exam-report-before-leave", { cancelable: true }),
+          )
+        )
           return false;
         router.push(`/${next === "home" ? "" : `#${next}`}`);
         return true;
@@ -1015,6 +1038,26 @@ function UnifiedWorkspaceContent({
   }
   function undoLast() {
     if (!undo || undo.draftId !== draft.id) return;
+    if (undo.kind === "clear") {
+      // 뺀 뒤에 새로 담은 것은 뒤에 그대로 둔다.
+      const previousIds = new Set(undo.previous.map((item) => item.id));
+      const next = [
+        ...undo.previous,
+        ...selected.filter((item) => !previousIds.has(item.id)),
+      ];
+      if (questionConflicts(next).length) {
+        setNotice(
+          "같은 문항이 이미 담겨 있어 되돌릴 수 없습니다. 현재 선택은 유지했습니다.",
+          true,
+        );
+        return;
+      }
+      setSelected(next);
+      updateRemovals((items) => forgetRemovals(items, [...previousIds]));
+      setUndo(null);
+      setNotice("뺀 문제를 다시 담았습니다.");
+      return;
+    }
     if (undo.kind === "order") {
       if (questionConflicts(undo.previous).length) {
         setNotice(
@@ -1093,6 +1136,15 @@ function UnifiedWorkspaceContent({
       ),
     );
   };
+  /** 작업실 «담은 문항» 목록의 «모두 빼기» — 시험지 전체를 뺀다. 알림 줄의 «되돌리기»로 한꺼번에 돌린다. */
+  function removeAll() {
+    if (!selected.length) return;
+    const previous = selected;
+    updateRemovals((items) => removeAllFromCart(previous, items).removed);
+    setSelected([]);
+    setUndo({ kind: "clear", previous, draftId: draft.id });
+    setNotice(`시험지에서 ${previous.length}문항을 모두 뺐습니다.`);
+  }
   /** 작업실 «담은 문항» 목록의 ×. 시험지에 있을 때만 뺀다 — 없는 것을 `toggle` 하면 담긴다. */
   function remove(problem: StudioProblem) {
     if (selected.some((item) => item.id === problem.id)) toggle(problem);
@@ -1229,7 +1281,9 @@ function UnifiedWorkspaceContent({
     if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
       return;
     if (await openDraft(id)) {
-      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+      if (
+        !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+      )
         return;
       setUndo(null);
       const openedDraft = getCurrentDraft();
@@ -1274,7 +1328,9 @@ function UnifiedWorkspaceContent({
     await prepareDrafts();
     if (
       next === "export"
-        ? !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+        ? !WORKSHEET_DRAFT_MENUS.some((menu) =>
+            permissionsRef.current.has(menu),
+          )
         : !permissionsRef.current.has(next)
     )
       return;
@@ -1296,13 +1352,21 @@ function UnifiedWorkspaceContent({
       if (file.size > 20 * 1024 * 1024)
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
-      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+      if (
+        !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+      )
         return;
       await prepareDrafts();
-      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+      if (
+        !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+      )
         return;
       if (await importDraft(value)) {
-        if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        if (
+          !WORKSHEET_DRAFT_MENUS.some((menu) =>
+            permissionsRef.current.has(menu),
+          )
+        )
           return;
         setUndo(null);
         navigate("export");
@@ -1372,15 +1436,16 @@ function UnifiedWorkspaceContent({
     reorder,
     navigate,
     allowedMenus,
-    cloudSaveStatus: storageScope && canUseWorksheetDrafts
-      ? saveStatus === "saved"
-        ? savedAt
-          ? "계정에 저장됨"
-          : "작업 준비 완료"
-        : saveStatus === "error"
-          ? "계정 저장 실패 · 다시 저장해 주세요"
-          : "계정에 저장 중…"
-      : undefined,
+    cloudSaveStatus:
+      storageScope && canUseWorksheetDrafts
+        ? saveStatus === "saved"
+          ? savedAt
+            ? "계정에 저장됨"
+            : "작업 준비 완료"
+          : saveStatus === "error"
+            ? "계정 저장 실패 · 다시 저장해 주세요"
+            : "계정에 저장 중…"
+        : undefined,
     onImportFiles: can("studio") ? () => fileRef.current?.click() : undefined,
     onEditSource: can("studio")
       ? (problem) => {
@@ -1611,30 +1676,43 @@ function UnifiedWorkspaceContent({
                 <span>새 시험지 만들기</span>
               </button>
             )}
-        <WorkspaceNavigation items={availableNav} view={view} ownStart={ownStart} collapsed={sidebarCollapsed} outputCount={selected.length} onNavigate={navigate} onPrepare={id => {
-          if (id === "bank" || id === "studio") {
-            void (id === "bank" ? loadMathBuilder() : loadStudioView()).catch(() => {});
-            void prepareDrafts();
-          }
-        }} />
+        <WorkspaceNavigation
+          items={availableNav}
+          view={view}
+          ownStart={ownStart}
+          collapsed={sidebarCollapsed}
+          outputCount={selected.length}
+          onNavigate={navigate}
+          onPrepare={(id) => {
+            if (id === "bank" || id === "studio") {
+              void (id === "bank" ? loadMathBuilder() : loadStudioView()).catch(
+                () => {},
+              );
+              void prepareDrafts();
+            }
+          }}
+        />
         {/* 담은 문항이 없으면 숨긴다 — 새로고침은 빈 시험지로 시작하는데 «0문항» 카드가 방금 만든 시험지가
             사라진 것처럼 보였다(원장님 2026-10-20). 지난 시험지는 «내 시험지»에서 연다 */}
-        {worksheetView && hydrated && canUseWorksheetDrafts && (selected.length > 0 || view === "studio") && (
-          <div className={s.sideDraft}>
-            <div>
-              <span className={s.sideDraftIcon}>
-                <Icon name="paper" size={18} />
-              </span>
-              <span>현재 시험지</span>
-              <b>{selected.length}문항</b>
+        {worksheetView &&
+          hydrated &&
+          canUseWorksheetDrafts &&
+          (selected.length > 0 || view === "studio") && (
+            <div className={s.sideDraft}>
+              <div>
+                <span className={s.sideDraftIcon}>
+                  <Icon name="paper" size={18} />
+                </span>
+                <span>현재 시험지</span>
+                <b>{selected.length}문항</b>
+              </div>
+              <strong>{title || "제목 없는 시험지"}</strong>
+              <button onClick={() => navigate("export")}>
+                편집 이어가기
+                <Icon name="arrow" size={17} />
+              </button>
             </div>
-            <strong>{title || "제목 없는 시험지"}</strong>
-            <button onClick={() => navigate("export")}>
-              편집 이어가기
-              <Icon name="arrow" size={17} />
-            </button>
-          </div>
-        )}
+          )}
         {/* 자료 제작의 연결 상태는 지식 작업실의 서버 판단 경로와 별개다. */}
         {product === "math" && view !== "ontology" && can("studio") && (
           <DevAiStatusPanel
@@ -1749,595 +1827,632 @@ function UnifiedWorkspaceContent({
         <div id="workspace-content" className={s.content} tabIndex={-1}>
           {examReportTestId ? (
             canOutput ? (
-              <ExamReportWorkspace key={examReportTestId} testId={examReportTestId} />
+              <ExamReportWorkspace
+                key={examReportTestId}
+                testId={examReportTestId}
+              />
             ) : (
               <main className={s.noMenus}>
                 <h1>성적표를 열 권한이 없습니다.</h1>
               </main>
             )
-          ) : <>
-          {worksheetView && canCreate && saveError && (
-            <div className={s.draftFeedback}>
-              {dismissedSaveError === saveErrorKey ? (
-                <button
-                  type="button"
-                  className={s.saveErrorTrigger}
-                  onClick={() => setDismissedSaveError(null)}
-                  aria-label="저장 오류 자세히 보기"
-                >
-                  <Icon name="warning" size={16} />
-                  시험지 저장 확인 필요
-                </button>
-              ) : (
-                <div
-                  className={
-                    storageScope ? cloudStyles.cloudError : s.saveError
-                  }
-                  role="alert"
-                >
-                  <Icon name="warning" size={19} />
-                  <p>{saveError}</p>
-                  {canOutput && (
-                    <button onClick={download}>작업 파일 내려받기</button>
-                  )}
-                  <button onClick={save}>다시 저장</button>
-                  <button
-                    type="button"
-                    className={s.saveErrorDismiss}
-                    aria-label="저장 오류 알림 닫기"
-                    title="알림 닫기"
-                    onClick={() => setDismissedSaveError(saveErrorKey)}
-                  >
-                    <Icon name="close" size={18} />
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-          {!hasMenus && (
-            <main className={s.noMenus}>
-              <h1>사용할 수 있는 메뉴가 없습니다</h1>
-              <p>
-                관리자에게 메뉴 이용 권한을 요청해 주세요. 권한이 변경되면 이
-                화면에 자동으로 반영됩니다.
-              </p>
-            </main>
-          )}
-          {view === "home" && (
-            <WorkroomHome
-              data={initialData}
-              deferBankMetadata={deferBankMetadata}
-              navigationReady={navigationReady}
-              draft={draft}
-              recent={recent}
-              hydrated={hydrated}
-              cloudStorage={Boolean(storageScope)}
-              allowedMenus={allowedMenus}
-              onNew={() => setModal("new")}
-              onBank={openBank}
-              onImport={() => fileRef.current?.click()}
-              onFiles={receiveFiles}
-              onOpen={openSaved}
-              onNavigate={navigate}
-            />
-          )}
-          {navigationReady &&
-            worksheetView &&
-            view !== "library" &&
-            !hydrated && (
-              <WorkProgress
-                className={s.loading}
-                label="시험지 작업을 불러오는 중입니다…"
-              />
-            )}
-          {hydrated &&
-            can("bank") &&
-            (opened.has("bank") || view === "bank") && (
-              <main hidden={view !== "bank"} className={s.viewContent}>
-                <MathExamBuilder
-                  key={`${draft.id}:${bankEntry.version}`}
-                  initialData={initialData}
-                  initialGroup={bankEntry.grade}
-                  initialStep={bankEntry.initialStep}
-                  preserveStoredOutput={bankEntry.preserveStoredOutput}
-                  onBeginEdit={async () => {
-                    const stored = getCurrentDraft();
-                    const copied = await importDraft({
-                      ...stored,
-                      version: 1,
-                      title: `${stored.title.slice(0, 75)} 사본`,
-                    });
-                    if (!copied) return false;
-                    setBankEntry((current) => ({
-                      ...current,
-                      preserveStoredOutput: false,
-                      initialStep: "review",
-                    }));
-                    setNotice("저장본을 유지하고 편집할 사본을 만들었습니다.");
-                    return true;
-                  }}
-                  onStepChange={(step) => {
-                    if (view === "bank") setWorkflow({ source: "bank", step });
-                  }}
-                  onIntentIssueChange={receiveBankIntentIssue}
-                  editor={editorProps}
-                  onQuestionsChange={changeBankSelection}
-                  canOutput={canOutputFrom(allowedMenus, "bank")}
-                  sheetTag={{
-                    value: draft.tag ?? null,
-                    onChange: setSheetTag,
-                  }}
-                  printPresets={
-                    canPrintPresets
-                      ? {
-                          client: printPresetClient,
-                          onDefaultChange: seedFromDefault,
-                        }
-                      : undefined
-                  }
-                />
-              </main>
-            )}
-          {navigationReady &&
-            can("arithmetic") &&
-            (opened.has("arithmetic") || view === "arithmetic") && (
-              <main hidden={view !== "arithmetic"} className={s.viewContent}>
-                <ArithmeticWorkbench
-                  key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
-                  storageScope={storageScope}
-                  initialDocumentId={arithmeticDocument.id}
-                  initialStep={arithmeticDocument.initialStep}
-                  canOutput={canOutputFrom(allowedMenus, "arithmetic")}
-                  academyName={printMeta.academyName || "오늘 수학"}
-                  preview={!storageScope}
-                  onDirtyChange={setArithmeticDirty}
-                  onDocumentChange={(id) =>
-                    setArithmeticDocument((current) => ({ ...current, id }))
-                  }
-                />
-              </main>
-            )}
-          {hydrated &&
-            can("studio") &&
-            (opened.has("studio") || view === "studio") && (
-              <main hidden={view !== "studio"} className={s.studioContent}>
-                <StudioView
-                  key={`${storageScope ?? "preview"}:${extraction.version}`}
-                  active={view === "studio"}
-                  picked={selected}
-                  removed={removed}
-                  onAdd={add}
-                  onRemove={remove}
-                  onRestore={restoreRemoved}
-                  onExport={() => {
-                    setWorkflow({
-                      source: "extraction",
-                      step: "output",
-                      sourceDocumentId: extraction.id,
-                    });
-                    performNavigation("export");
-                  }}
-                  exportRequest={studioExportRequest}
-                  canExport={canOutputFrom(allowedMenus, "studio")}
-                  importRequest={importRequest}
-                  stepRequest={studioStepRequest}
-                  onCropCountChange={setStudioCropCount}
-                  restoreRequest={studioRestoreRequest}
-                  storageScope={storageScope}
-                  documentId={extraction.id}
-                  branchId={branchId}
-                  onDocumentChange={(id) => {
-                    if (!storageScope) return;
-                    setExtraction((current) =>
-                      current.id === id ? current : { ...current, id },
-                    );
-                    const url = new URL(window.location.href);
-                    if (id) url.searchParams.set("extraction", id);
-                    else url.searchParams.delete("extraction");
-                    window.history.replaceState(null, "", url);
-                  }}
-                />
-              </main>
-            )}
-          {can("teaching") &&
-            (opened.has("teaching") || view === "teaching") && (
-              <div hidden={view !== "teaching"} className={s.teachingContent}>
-                <TeachingView />
-              </div>
-            )}
-          {can("concept") && (opened.has("concept") || view === "concept") && (
-            <main hidden={view !== "concept"} className={s.viewContent}>
-              <ConceptView />
-            </main>
-          )}
-          {can("conceptBlank") &&
-            (opened.has("conceptBlank") || view === "conceptBlank") && (
-              <main hidden={view !== "conceptBlank"} className={s.viewContent}>
-                <ConceptBlankView
-                  active={view === "conceptBlank"}
-                  textbookEnabled={can("textbook")}
-                  storageScope={storageScope}
-                  openDocument={blankDocument}
-                  branchId={branchId}
-                />
-              </main>
-            )}
-          {can("srs") && (opened.has("srs") || view === "srs") && (
-            <main hidden={view !== "srs"} className={s.viewContent}>
-              <SrsWorkspaceView
-                fadingGate={fadingGate}
-                branchId={branchId}
-                legacy={<CourseDashboard textbookEnabled={can("textbook")} />}
-              />
-            </main>
-          )}
-          {can("ontology") && (opened.has("ontology") || view === "ontology") && (
-            <main hidden={view !== "ontology"} className={s.viewContent}>
-              <OntologyWorkspace branchId={branchId ?? undefined} scopeKey={storageScope ?? "anonymous"} canPublish={currentUser?.isSuperAdmin === true} />
-            </main>
-          )}
-          {can("textbook") &&
-            (opened.has("textbook") || view === "textbook") && (
-              <main hidden={view !== "textbook"} className={s.viewContent}>
-                <TextbookView />
-              </main>
-            )}
-          {/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}
-          {canEnglish &&
-            ([...opened].some((item) => isEnglishView(item)) ||
-              (view !== null && isEnglishView(view))) && (
-              <main
-                hidden={view === null || !isEnglishView(view)}
-                className={s.viewContent}
-              >
-                <EnglishStudio
-                  key={workspaceMenusOf("english")
-                    .filter((menu) => enabledMenus.has(menu))
-                    .join(",")}
-                  view={englishView}
-                  allowedMenus={allowedMenus}
-                  onNavigate={navigate}
-                  newExamOpen={modal === "english-exam"}
-                  onNewExam={openNewExam}
-                  onNewExamClose={closeModal}
-                  openSetRequest={
-                    canOpenEnglishSet && openSet.id
-                      ? (openSet as { id: string; version: number })
-                      : undefined
-                  }
-                  onSetOpened={forgetSetLink}
-                  bankSeed={can("english-maker") ? bankMakerSeed : undefined}
-                  onBankSeedHandled={(requestId) =>
-                    setBankMakerSeed((current) =>
-                      current?.requestId === requestId ? undefined : current,
-                    )
-                  }
-                  onNotice={englishNotice}
-                />
-              </main>
-            )}
-          {can("english-listening") &&
-            (opened.has("english-listening") ||
-              view === "english-listening") && (
-              <main
-                hidden={view !== "english-listening"}
-                className={s.viewContent}
-              >
-                <ListeningStudio
-                  active={view === "english-listening"}
-                  openSetRequest={openListening}
-                  onSetOpened={(version) =>
-                    setOpenListening((current) =>
-                      current?.version === version ? undefined : current,
-                    )
-                  }
-                />
-              </main>
-            )}
-          {can("english-bank") &&
-            (opened.has("english-bank") || view === "english-bank") && (
-              <main hidden={view !== "english-bank"} className={s.viewContent}>
-                <EnglishResourceBank
-                  active={view === "english-bank"}
-                  allowedMenus={allowedMenus}
-                  onUsePassage={(seed) => {
-                    if (navigate("english-maker")) setBankMakerSeed(seed);
-                  }}
-                  onOpenListening={(id) => {
-                    if (navigate("english-listening"))
-                      setOpenListening({ id, version: Date.now() });
-                  }}
-                  onOpenSet={(id) => {
-                    if (navigate("english-library"))
-                      setOpenSet((current) => ({
-                        id,
-                        version: current.version + 1,
-                      }));
-                  }}
-                  onNewExam={
-                    canCreateEnglishExam
-                      ? () => {
-                          if (navigate("english")) setModal("english-exam");
-                        }
-                      : undefined
-                  }
-                  onNotice={setNotice}
-                />
-              </main>
-            )}
-          {view === "export" && hydrated && (
-            <WorksheetEditor {...editorProps} />
-          )}
-          {view === "library" && storageScope && (
-            <PrivateLibrary
-              storageScope={storageScope}
-              branchId={branchId}
-              canExport={canOutputFrom(allowedMenus, "library")}
-              canStudio={can("studio")}
-              canBank={can("bank")}
-              canArithmetic={can("arithmetic")}
-              onOpenArithmetic={(id, options) => {
-                if (!can("arithmetic")) return;
-                if (
-                  arithmeticDirty &&
-                  !window.confirm(
-                    "저장하지 않은 연산 연습지를 닫고 선택한 자료를 여시겠습니까?",
-                  )
-                )
-                  return;
-                setArithmeticDocument((current) => ({
-                  id,
-                  version: current.version + 1,
-                  initialStep:
-                    options?.mode === "resume" ? undefined : "output",
-                }));
-                setArithmeticDirty(false);
-                navigate("arithmetic");
-              }}
-              onOpenDraft={openSaved}
-              onOpenExtraction={(id, options) => {
-                if (!can("studio")) return;
-                setStudioExportRequest(undefined);
-                setStudioStepRequest(
-                  options?.mode === "resume"
-                    ? undefined
-                    : { id: Date.now(), step: "review" },
-                );
-                setExtraction((current) => ({
-                  id,
-                  version: current.version + 1,
-                }));
-                const url = new URL(window.location.href);
-                url.searchParams.set("extraction", id);
-                window.history.replaceState(null, "", url);
-                navigate("studio");
-              }}
-              canConceptBlank={can("conceptBlank")}
-              onOpenConceptBlank={(id) => {
-                if (!can("conceptBlank")) return;
-                setBlankDocument((current) => ({
-                  id,
-                  version: (current?.version ?? 0) + 1,
-                }));
-                navigate("conceptBlank");
-              }}
-              onImport={
-                canOutputFrom(allowedMenus, "library")
-                  ? () => draftFileRef.current?.click()
-                  : undefined
-              }
-              onNew={canCreate ? () => setModal("new") : undefined}
-              onDeleted={async (item) => {
-                if (item.kind === "draft") {
-                  forgetPrivateDraft(item.id);
-                  return;
-                }
-                // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다. 열어 둔 것이었으면 개념 백지 탭이 돌아올 때 다시 읽어 «저장됨»을 풀고, 다음 저장은 새 자료로 간다.
-                if (item.kind === "conceptBlank") return;
-                if (item.kind === "arithmeticSheet") {
-                  if (arithmeticDocument.id === item.id) {
-                    setArithmeticDocument((current) => ({
-                      version: current.version + 1,
-                    }));
-                    setArithmeticDirty(false);
-                  }
-                  return;
-                }
-                await forgetPrivateExtraction(storageScope, item.id);
-                const url = new URL(window.location.href);
-                if (
-                  url.searchParams.get("extraction") === item.id ||
-                  extraction.id === item.id
-                ) {
-                  url.searchParams.delete("extraction");
-                  window.history.replaceState(null, "", url);
-                  setExtraction((current) => ({
-                    version: current.version + 1,
-                  }));
-                }
-              }}
-            />
-          )}
-          {view === "library" && !storageScope && (
-            <main className={cloudStyles.library}>
-              <WorkspacePageHeader
-                title="내 시험지"
-                description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
-              >
-                {canOutputFrom(allowedMenus, "library") && (
-                  <button
-                    className={s.outlineButton}
-                    onClick={() => draftFileRef.current?.click()}
-                  >
-                    <Icon name="upload" size={18} />
-                    작업 파일 불러오기
-                  </button>
-                )}
-                {canCreate && (
-                  <button
-                    className={s.primaryButton}
-                    disabled={!hydrated}
-                    onClick={() => setModal("new")}
-                  >
-                    <Icon name="plus" size={18} />새 시험지
-                  </button>
-                )}
-              </WorkspacePageHeader>
-              <div className={s.libraryTools}>
-                <strong>
-                  저장한 시험지 <span>{recent.length}</span>
-                </strong>
-                <label>
-                  <Icon name="search" size={18} />
-                  <input
-                    value={libraryQuery}
-                    onChange={(event) => setLibraryQuery(event.target.value)}
-                    placeholder="시험지 이름으로 찾기"
-                    aria-label="저장한 시험지 검색"
-                  />
-                  {libraryQuery && (
+          ) : (
+            <>
+              {worksheetView && canCreate && saveError && (
+                <div className={s.draftFeedback}>
+                  {dismissedSaveError === saveErrorKey ? (
                     <button
                       type="button"
-                      aria-label="시험지 검색 지우기"
-                      onClick={() => setLibraryQuery("")}
+                      className={s.saveErrorTrigger}
+                      onClick={() => setDismissedSaveError(null)}
+                      aria-label="저장 오류 자세히 보기"
                     >
-                      <Icon name="close" size={17} />
+                      <Icon name="warning" size={16} />
+                      시험지 저장 확인 필요
                     </button>
-                  )}
-                </label>
-              </div>
-              {!hydrated ? (
-                <WorkProgress
-                  className={s.loading}
-                  label="저장한 시험지를 불러오는 중입니다…"
-                />
-              ) : filteredDrafts.length ? (
-                <div className={cloudStyles.board}>
-                  <table
-                    className={cloudStyles.table}
-                    aria-label="저장한 시험지 목록"
-                  >
-                    <thead>
-                      <tr>
-                        <th scope="col" className={cloudStyles.numberCell}>
-                          번호
-                        </th>
-                        <th scope="col" className={cloudStyles.kindCell}>
-                          구분
-                        </th>
-                        <th scope="col" className={cloudStyles.titleCell}>
-                          시험지 이름
-                        </th>
-                        <th scope="col" className={cloudStyles.countCell}>
-                          문항 수
-                        </th>
-                        <th scope="col" className={cloudStyles.updatedCell}>
-                          수정일
-                        </th>
-                        <th scope="col" className={cloudStyles.actionsCell}>
-                          관리
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredDrafts.map((item, index) => (
-                        <tr key={item.id}>
-                          <td className={cloudStyles.numberCell}>
-                            {index + 1}
-                          </td>
-                          <td className={cloudStyles.kindCell}>
-                            <span className={cloudStyles.kindBadge}>
-                              {item.id === draft.id ? "현재 작업" : "시험지"}
-                            </span>
-                          </td>
-                          <td className={cloudStyles.titleCell}>
-                            {canOutputFrom(allowedMenus, "library") ? (
-                              <button
-                                type="button"
-                                className={cloudStyles.titleButton}
-                                aria-label={`${item.title || "제목 없는 시험지"} 편집`}
-                                onClick={() => openSaved(item.id)}
-                              >
-                                {item.title || "제목 없는 시험지"}
-                              </button>
-                            ) : (
-                              <span className={cloudStyles.titleText}>
-                                {item.title || "제목 없는 시험지"}
-                              </span>
-                            )}
-                          </td>
-                          <td className={cloudStyles.countCell}>
-                            {item.problemCount}
-                            <span className={cloudStyles.mobileLabel}>
-                              문항
-                            </span>
-                          </td>
-                          <td className={cloudStyles.updatedCell}>
-                            {formatDraftDate(item.updatedAt)}
-                          </td>
-                          <td className={cloudStyles.actionsCell}>
-                            <SavedWorksheetActions
-                              compact
-                              title={item.title || "제목 없는 시험지"}
-                              current={item.id === draft.id}
-                              error={saveError}
-                              onRename={(name) => {
-                                const saved = renameDraft(item.id, name);
-                                if (saved)
-                                  setNotice("시험지 이름을 변경했습니다.");
-                                return saved;
-                              }}
-                              onDelete={() => {
-                                const removed = deleteDraft(item.id);
-                                if (removed) {
-                                  setUndo(null);
-                                  setNotice("시험지를 삭제했습니다.");
-                                }
-                                return removed;
-                              }}
-                            />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <div className={s.libraryEmpty}>
-                  <span>
-                    <Icon name="folder" size={42} />
-                  </span>
-                  <h2>
-                    {libraryQuery
-                      ? "검색한 시험지가 없습니다"
-                      : "아직 저장한 시험지가 없어요"}
-                  </h2>
-                  <p>
-                    {libraryQuery
-                      ? "다른 이름으로 검색해 보세요."
-                      : "문제를 담거나 편집하면 작업이 자동으로 저장됩니다."}
-                  </p>
-                  {(libraryQuery || canCreate) && (
-                    <button
-                      className={s.primaryButton}
-                      onClick={() =>
-                        libraryQuery ? setLibraryQuery("") : setModal("new")
+                  ) : (
+                    <div
+                      className={
+                        storageScope ? cloudStyles.cloudError : s.saveError
                       }
+                      role="alert"
                     >
-                      {libraryQuery ? "검색 초기화" : "첫 시험지 만들기"}
-                      <Icon name="arrow" size={18} />
-                    </button>
+                      <Icon name="warning" size={19} />
+                      <p>{saveError}</p>
+                      {canOutput && (
+                        <button onClick={download}>작업 파일 내려받기</button>
+                      )}
+                      <button onClick={save}>다시 저장</button>
+                      <button
+                        type="button"
+                        className={s.saveErrorDismiss}
+                        aria-label="저장 오류 알림 닫기"
+                        title="알림 닫기"
+                        onClick={() => setDismissedSaveError(saveErrorKey)}
+                      >
+                        <Icon name="close" size={18} />
+                      </button>
+                    </div>
                   )}
                 </div>
               )}
-              <p className={s.libraryNote}>
-                <Icon name="save" size={15} />이 브라우저의 저장 공간을
-                사용합니다. 다른 기기로 옮길 때는 편집 화면에서 ‘작업 파일
-                내보내기’를 사용하세요.
-              </p>
-            </main>
+              {!hasMenus && (
+                <main className={s.noMenus}>
+                  <h1>사용할 수 있는 메뉴가 없습니다</h1>
+                  <p>
+                    관리자에게 메뉴 이용 권한을 요청해 주세요. 권한이 변경되면
+                    이 화면에 자동으로 반영됩니다.
+                  </p>
+                </main>
+              )}
+              {view === "home" && (
+                <WorkroomHome
+                  data={initialData}
+                  deferBankMetadata={deferBankMetadata}
+                  navigationReady={navigationReady}
+                  draft={draft}
+                  recent={recent}
+                  hydrated={hydrated}
+                  cloudStorage={Boolean(storageScope)}
+                  allowedMenus={allowedMenus}
+                  onNew={() => setModal("new")}
+                  onBank={openBank}
+                  onImport={() => fileRef.current?.click()}
+                  onFiles={receiveFiles}
+                  onOpen={openSaved}
+                  onNavigate={navigate}
+                />
+              )}
+              {navigationReady &&
+                worksheetView &&
+                view !== "library" &&
+                !hydrated && (
+                  <WorkProgress
+                    className={s.loading}
+                    label="시험지 작업을 불러오는 중입니다…"
+                  />
+                )}
+              {hydrated &&
+                can("bank") &&
+                (opened.has("bank") || view === "bank") && (
+                  <main hidden={view !== "bank"} className={s.viewContent}>
+                    <MathExamBuilder
+                      key={`${draft.id}:${bankEntry.version}`}
+                      initialData={initialData}
+                      initialGroup={bankEntry.grade}
+                      initialStep={bankEntry.initialStep}
+                      preserveStoredOutput={bankEntry.preserveStoredOutput}
+                      onBeginEdit={async () => {
+                        const stored = getCurrentDraft();
+                        const copied = await importDraft({
+                          ...stored,
+                          version: 1,
+                          title: `${stored.title.slice(0, 75)} 사본`,
+                        });
+                        if (!copied) return false;
+                        setBankEntry((current) => ({
+                          ...current,
+                          preserveStoredOutput: false,
+                          initialStep: "review",
+                        }));
+                        setNotice(
+                          "저장본을 유지하고 편집할 사본을 만들었습니다.",
+                        );
+                        return true;
+                      }}
+                      onStepChange={(step) => {
+                        if (view === "bank")
+                          setWorkflow({ source: "bank", step });
+                      }}
+                      onIntentIssueChange={receiveBankIntentIssue}
+                      editor={editorProps}
+                      onQuestionsChange={changeBankSelection}
+                      canOutput={canOutputFrom(allowedMenus, "bank")}
+                      sheetTag={{
+                        value: draft.tag ?? null,
+                        onChange: setSheetTag,
+                      }}
+                      printPresets={
+                        canPrintPresets
+                          ? {
+                              client: printPresetClient,
+                              onDefaultChange: seedFromDefault,
+                            }
+                          : undefined
+                      }
+                    />
+                  </main>
+                )}
+              {navigationReady &&
+                can("arithmetic") &&
+                (opened.has("arithmetic") || view === "arithmetic") && (
+                  <main
+                    hidden={view !== "arithmetic"}
+                    className={s.viewContent}
+                  >
+                    <ArithmeticWorkbench
+                      key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
+                      storageScope={storageScope}
+                      initialDocumentId={arithmeticDocument.id}
+                      initialStep={arithmeticDocument.initialStep}
+                      canOutput={canOutputFrom(allowedMenus, "arithmetic")}
+                      academyName={printMeta.academyName || "오늘 수학"}
+                      preview={!storageScope}
+                      onDirtyChange={setArithmeticDirty}
+                      onDocumentChange={(id) =>
+                        setArithmeticDocument((current) => ({ ...current, id }))
+                      }
+                    />
+                  </main>
+                )}
+              {hydrated &&
+                can("studio") &&
+                (opened.has("studio") || view === "studio") && (
+                  <main hidden={view !== "studio"} className={s.studioContent}>
+                    <StudioView
+                      key={`${storageScope ?? "preview"}:${extraction.version}`}
+                      active={view === "studio"}
+                      picked={selected}
+                      removed={removed}
+                      onAdd={add}
+                      onRemove={remove}
+                      onRemoveAll={removeAll}
+                      onRestore={restoreRemoved}
+                      onExport={() => {
+                        setWorkflow({
+                          source: "extraction",
+                          step: "output",
+                          sourceDocumentId: extraction.id,
+                        });
+                        performNavigation("export");
+                      }}
+                      exportRequest={studioExportRequest}
+                      canExport={canOutputFrom(allowedMenus, "studio")}
+                      importRequest={importRequest}
+                      stepRequest={studioStepRequest}
+                      onCropCountChange={setStudioCropCount}
+                      restoreRequest={studioRestoreRequest}
+                      storageScope={storageScope}
+                      documentId={extraction.id}
+                      branchId={branchId}
+                      onDocumentChange={(id) => {
+                        if (!storageScope) return;
+                        setExtraction((current) =>
+                          current.id === id ? current : { ...current, id },
+                        );
+                        const url = new URL(window.location.href);
+                        if (id) url.searchParams.set("extraction", id);
+                        else url.searchParams.delete("extraction");
+                        window.history.replaceState(null, "", url);
+                      }}
+                    />
+                  </main>
+                )}
+              {can("teaching") &&
+                (opened.has("teaching") || view === "teaching") && (
+                  <div
+                    hidden={view !== "teaching"}
+                    className={s.teachingContent}
+                  >
+                    <TeachingView />
+                  </div>
+                )}
+              {can("concept") &&
+                (opened.has("concept") || view === "concept") && (
+                  <main hidden={view !== "concept"} className={s.viewContent}>
+                    <ConceptView />
+                  </main>
+                )}
+              {can("conceptBlank") &&
+                (opened.has("conceptBlank") || view === "conceptBlank") && (
+                  <main
+                    hidden={view !== "conceptBlank"}
+                    className={s.viewContent}
+                  >
+                    <ConceptBlankView
+                      active={view === "conceptBlank"}
+                      textbookEnabled={can("textbook")}
+                      storageScope={storageScope}
+                      openDocument={blankDocument}
+                      branchId={branchId}
+                    />
+                  </main>
+                )}
+              {can("srs") && (opened.has("srs") || view === "srs") && (
+                <main hidden={view !== "srs"} className={s.viewContent}>
+                  <SrsWorkspaceView
+                    fadingGate={fadingGate}
+                    branchId={branchId}
+                    legacy={
+                      <CourseDashboard textbookEnabled={can("textbook")} />
+                    }
+                  />
+                </main>
+              )}
+              {can("ontology") &&
+                (opened.has("ontology") || view === "ontology") && (
+                  <main hidden={view !== "ontology"} className={s.viewContent}>
+                    <OntologyWorkspace
+                      branchId={branchId ?? undefined}
+                      scopeKey={storageScope ?? "anonymous"}
+                      canPublish={currentUser?.isSuperAdmin === true}
+                    />
+                  </main>
+                )}
+              {can("textbook") &&
+                (opened.has("textbook") || view === "textbook") && (
+                  <main hidden={view !== "textbook"} className={s.viewContent}>
+                    <TextbookView />
+                  </main>
+                )}
+              {/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}
+              {canEnglish &&
+                ([...opened].some((item) => isEnglishView(item)) ||
+                  (view !== null && isEnglishView(view))) && (
+                  <main
+                    hidden={view === null || !isEnglishView(view)}
+                    className={s.viewContent}
+                  >
+                    <EnglishStudio
+                      key={workspaceMenusOf("english")
+                        .filter((menu) => enabledMenus.has(menu))
+                        .join(",")}
+                      view={englishView}
+                      allowedMenus={allowedMenus}
+                      onNavigate={navigate}
+                      newExamOpen={modal === "english-exam"}
+                      onNewExam={openNewExam}
+                      onNewExamClose={closeModal}
+                      openSetRequest={
+                        canOpenEnglishSet && openSet.id
+                          ? (openSet as { id: string; version: number })
+                          : undefined
+                      }
+                      onSetOpened={forgetSetLink}
+                      bankSeed={
+                        can("english-maker") ? bankMakerSeed : undefined
+                      }
+                      onBankSeedHandled={(requestId) =>
+                        setBankMakerSeed((current) =>
+                          current?.requestId === requestId
+                            ? undefined
+                            : current,
+                        )
+                      }
+                      onNotice={englishNotice}
+                    />
+                  </main>
+                )}
+              {can("english-listening") &&
+                (opened.has("english-listening") ||
+                  view === "english-listening") && (
+                  <main
+                    hidden={view !== "english-listening"}
+                    className={s.viewContent}
+                  >
+                    <ListeningStudio
+                      active={view === "english-listening"}
+                      openSetRequest={openListening}
+                      onSetOpened={(version) =>
+                        setOpenListening((current) =>
+                          current?.version === version ? undefined : current,
+                        )
+                      }
+                    />
+                  </main>
+                )}
+              {can("english-bank") &&
+                (opened.has("english-bank") || view === "english-bank") && (
+                  <main
+                    hidden={view !== "english-bank"}
+                    className={s.viewContent}
+                  >
+                    <EnglishResourceBank
+                      active={view === "english-bank"}
+                      allowedMenus={allowedMenus}
+                      onUsePassage={(seed) => {
+                        if (navigate("english-maker")) setBankMakerSeed(seed);
+                      }}
+                      onOpenListening={(id) => {
+                        if (navigate("english-listening"))
+                          setOpenListening({ id, version: Date.now() });
+                      }}
+                      onOpenSet={(id) => {
+                        if (navigate("english-library"))
+                          setOpenSet((current) => ({
+                            id,
+                            version: current.version + 1,
+                          }));
+                      }}
+                      onNewExam={
+                        canCreateEnglishExam
+                          ? () => {
+                              if (navigate("english")) setModal("english-exam");
+                            }
+                          : undefined
+                      }
+                      onNotice={setNotice}
+                    />
+                  </main>
+                )}
+              {view === "export" && hydrated && (
+                <WorksheetEditor {...editorProps} />
+              )}
+              {view === "library" && storageScope && (
+                <PrivateLibrary
+                  storageScope={storageScope}
+                  branchId={branchId}
+                  canExport={canOutputFrom(allowedMenus, "library")}
+                  canStudio={can("studio")}
+                  canBank={can("bank")}
+                  canArithmetic={can("arithmetic")}
+                  onOpenArithmetic={(id, options) => {
+                    if (!can("arithmetic")) return;
+                    if (
+                      arithmeticDirty &&
+                      !window.confirm(
+                        "저장하지 않은 연산 연습지를 닫고 선택한 자료를 여시겠습니까?",
+                      )
+                    )
+                      return;
+                    setArithmeticDocument((current) => ({
+                      id,
+                      version: current.version + 1,
+                      initialStep:
+                        options?.mode === "resume" ? undefined : "output",
+                    }));
+                    setArithmeticDirty(false);
+                    navigate("arithmetic");
+                  }}
+                  onOpenDraft={openSaved}
+                  onOpenExtraction={(id, options) => {
+                    if (!can("studio")) return;
+                    setStudioExportRequest(undefined);
+                    setStudioStepRequest(
+                      options?.mode === "resume"
+                        ? undefined
+                        : { id: Date.now(), step: "review" },
+                    );
+                    setExtraction((current) => ({
+                      id,
+                      version: current.version + 1,
+                    }));
+                    const url = new URL(window.location.href);
+                    url.searchParams.set("extraction", id);
+                    window.history.replaceState(null, "", url);
+                    navigate("studio");
+                  }}
+                  canConceptBlank={can("conceptBlank")}
+                  onOpenConceptBlank={(id) => {
+                    if (!can("conceptBlank")) return;
+                    setBlankDocument((current) => ({
+                      id,
+                      version: (current?.version ?? 0) + 1,
+                    }));
+                    navigate("conceptBlank");
+                  }}
+                  onImport={
+                    canOutputFrom(allowedMenus, "library")
+                      ? () => draftFileRef.current?.click()
+                      : undefined
+                  }
+                  onNew={canCreate ? () => setModal("new") : undefined}
+                  onDeleted={async (item) => {
+                    if (item.kind === "draft") {
+                      forgetPrivateDraft(item.id);
+                      return;
+                    }
+                    // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다. 열어 둔 것이었으면 개념 백지 탭이 돌아올 때 다시 읽어 «저장됨»을 풀고, 다음 저장은 새 자료로 간다.
+                    if (item.kind === "conceptBlank") return;
+                    if (item.kind === "arithmeticSheet") {
+                      if (arithmeticDocument.id === item.id) {
+                        setArithmeticDocument((current) => ({
+                          version: current.version + 1,
+                        }));
+                        setArithmeticDirty(false);
+                      }
+                      return;
+                    }
+                    await forgetPrivateExtraction(storageScope, item.id);
+                    const url = new URL(window.location.href);
+                    if (
+                      url.searchParams.get("extraction") === item.id ||
+                      extraction.id === item.id
+                    ) {
+                      url.searchParams.delete("extraction");
+                      window.history.replaceState(null, "", url);
+                      setExtraction((current) => ({
+                        version: current.version + 1,
+                      }));
+                    }
+                  }}
+                />
+              )}
+              {view === "library" && !storageScope && (
+                <main className={cloudStyles.library}>
+                  <WorkspacePageHeader
+                    title="내 시험지"
+                    description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
+                  >
+                    {canOutputFrom(allowedMenus, "library") && (
+                      <button
+                        className={s.outlineButton}
+                        onClick={() => draftFileRef.current?.click()}
+                      >
+                        <Icon name="upload" size={18} />
+                        작업 파일 불러오기
+                      </button>
+                    )}
+                    {canCreate && (
+                      <button
+                        className={s.primaryButton}
+                        disabled={!hydrated}
+                        onClick={() => setModal("new")}
+                      >
+                        <Icon name="plus" size={18} />새 시험지
+                      </button>
+                    )}
+                  </WorkspacePageHeader>
+                  <div className={s.libraryTools}>
+                    <strong>
+                      저장한 시험지 <span>{recent.length}</span>
+                    </strong>
+                    <label>
+                      <Icon name="search" size={18} />
+                      <input
+                        value={libraryQuery}
+                        onChange={(event) =>
+                          setLibraryQuery(event.target.value)
+                        }
+                        placeholder="시험지 이름으로 찾기"
+                        aria-label="저장한 시험지 검색"
+                      />
+                      {libraryQuery && (
+                        <button
+                          type="button"
+                          aria-label="시험지 검색 지우기"
+                          onClick={() => setLibraryQuery("")}
+                        >
+                          <Icon name="close" size={17} />
+                        </button>
+                      )}
+                    </label>
+                  </div>
+                  {!hydrated ? (
+                    <WorkProgress
+                      className={s.loading}
+                      label="저장한 시험지를 불러오는 중입니다…"
+                    />
+                  ) : filteredDrafts.length ? (
+                    <div className={cloudStyles.board}>
+                      <table
+                        className={cloudStyles.table}
+                        aria-label="저장한 시험지 목록"
+                      >
+                        <thead>
+                          <tr>
+                            <th scope="col" className={cloudStyles.numberCell}>
+                              번호
+                            </th>
+                            <th scope="col" className={cloudStyles.kindCell}>
+                              구분
+                            </th>
+                            <th scope="col" className={cloudStyles.titleCell}>
+                              시험지 이름
+                            </th>
+                            <th scope="col" className={cloudStyles.countCell}>
+                              문항 수
+                            </th>
+                            <th scope="col" className={cloudStyles.updatedCell}>
+                              수정일
+                            </th>
+                            <th scope="col" className={cloudStyles.actionsCell}>
+                              관리
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredDrafts.map((item, index) => (
+                            <tr key={item.id}>
+                              <td className={cloudStyles.numberCell}>
+                                {index + 1}
+                              </td>
+                              <td className={cloudStyles.kindCell}>
+                                <span className={cloudStyles.kindBadge}>
+                                  {item.id === draft.id
+                                    ? "현재 작업"
+                                    : "시험지"}
+                                </span>
+                              </td>
+                              <td className={cloudStyles.titleCell}>
+                                {canOutputFrom(allowedMenus, "library") ? (
+                                  <button
+                                    type="button"
+                                    className={cloudStyles.titleButton}
+                                    aria-label={`${item.title || "제목 없는 시험지"} 편집`}
+                                    onClick={() => openSaved(item.id)}
+                                  >
+                                    {item.title || "제목 없는 시험지"}
+                                  </button>
+                                ) : (
+                                  <span className={cloudStyles.titleText}>
+                                    {item.title || "제목 없는 시험지"}
+                                  </span>
+                                )}
+                              </td>
+                              <td className={cloudStyles.countCell}>
+                                {item.problemCount}
+                                <span className={cloudStyles.mobileLabel}>
+                                  문항
+                                </span>
+                              </td>
+                              <td className={cloudStyles.updatedCell}>
+                                {formatDraftDate(item.updatedAt)}
+                              </td>
+                              <td className={cloudStyles.actionsCell}>
+                                <SavedWorksheetActions
+                                  compact
+                                  title={item.title || "제목 없는 시험지"}
+                                  current={item.id === draft.id}
+                                  error={saveError}
+                                  onRename={(name) => {
+                                    const saved = renameDraft(item.id, name);
+                                    if (saved)
+                                      setNotice("시험지 이름을 변경했습니다.");
+                                    return saved;
+                                  }}
+                                  onDelete={() => {
+                                    const removed = deleteDraft(item.id);
+                                    if (removed) {
+                                      setUndo(null);
+                                      setNotice("시험지를 삭제했습니다.");
+                                    }
+                                    return removed;
+                                  }}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <div className={s.libraryEmpty}>
+                      <span>
+                        <Icon name="folder" size={42} />
+                      </span>
+                      <h2>
+                        {libraryQuery
+                          ? "검색한 시험지가 없습니다"
+                          : "아직 저장한 시험지가 없어요"}
+                      </h2>
+                      <p>
+                        {libraryQuery
+                          ? "다른 이름으로 검색해 보세요."
+                          : "문제를 담거나 편집하면 작업이 자동으로 저장됩니다."}
+                      </p>
+                      {(libraryQuery || canCreate) && (
+                        <button
+                          className={s.primaryButton}
+                          onClick={() =>
+                            libraryQuery ? setLibraryQuery("") : setModal("new")
+                          }
+                        >
+                          {libraryQuery ? "검색 초기화" : "첫 시험지 만들기"}
+                          <Icon name="arrow" size={18} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  <p className={s.libraryNote}>
+                    <Icon name="save" size={15} />이 브라우저의 저장 공간을
+                    사용합니다. 다른 기기로 옮길 때는 편집 화면에서 ‘작업 파일
+                    내보내기’를 사용하세요.
+                  </p>
+                </main>
+              )}
+            </>
           )}
-          </>}
         </div>
       </div>
       <dialog

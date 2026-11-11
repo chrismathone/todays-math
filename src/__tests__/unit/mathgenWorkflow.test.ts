@@ -141,19 +141,37 @@ describe("source Mathgen OCR and solution workflow", () => {
     expect(invoke).toHaveBeenCalledTimes(2);
   });
 
+  it("re-asks once when the model's reply cannot be read, then uses the second reply", async () => {
+    const invoke = vi
+      .fn()
+      // 2026-11-11 운영 — 보기 배열의 닫는 괄호가 빠진 응답
+      .mockResolvedValueOnce('{"answer":"3","solution":"값은 $3$')
+      .mockResolvedValueOnce(
+        JSON.stringify({
+          answer: "3",
+          solution: "주어진 식에 값을 대입하면 $1+2=3$이다.",
+        }),
+      );
+    const result = await executeMathgenTask(
+      { ...request, action: "solution", content: "합을 구하시오." },
+      invoke,
+      { retryUnreadable: true },
+    );
+    expect(result.solution).toContain("1+2=3");
+    expect(invoke).toHaveBeenCalledTimes(2);
+  });
+
   it("matches solution answers against visually edited choices", async () => {
     const ocr = parseDevAiResult(
       JSON.stringify({ items: [native()] }),
       "ocr",
     ).ocr!;
-    const invoke = vi
-      .fn()
-      .mockResolvedValue(
-        JSON.stringify({
-          answer: "7",
-          solution: "주어진 식을 계산하면 $3+4=7$이므로 정답은 7이다.",
-        }),
-      );
+    const invoke = vi.fn().mockResolvedValue(
+      JSON.stringify({
+        answer: "7",
+        solution: "주어진 식을 계산하면 $3+4=7$이므로 정답은 7이다.",
+      }),
+    );
     const result = await executeMathgenTask(
       {
         ...request,
@@ -184,14 +202,23 @@ describe("source Mathgen OCR and solution workflow", () => {
   });
 
   it("keeps solutions concise while showing the key transformation and unambiguous fractions", () => {
-    const prompt = buildDevAiPrompt({ ...request, action: "solution", grade: "고1", content: "문항" });
+    const prompt = buildDevAiPrompt({
+      ...request,
+      action: "solution",
+      grade: "고1",
+      content: "문항",
+    });
     expect(prompt).toContain("고등도 핵심 단계만 대략 2~5 step");
-    expect(prompt).toContain("같은 말 반복·검산 나열·일반론 설명은 쓰지 않는다");
+    expect(prompt).toContain(
+      "같은 말 반복·검산 나열·일반론 설명은 쓰지 않는다",
+    );
     expect(prompt).toContain("인수분해의 묶는 법·완전제곱·치환·경우 나누기");
     expect(prompt).toContain("분수는 항상 \\frac{분자}{분모}");
     expect(prompt).toContain("곱셈 앞 계수 분수는 괄호로 감싸");
     expect(prompt).toContain("step1), step2)");
-    expect(prompt).toContain('JSON 객체 {"content":"","answer":"정답","solution":"풀이","warnings":[]}');
+    expect(prompt).toContain(
+      'JSON 객체 {"content":"","answer":"정답","solution":"풀이","warnings":[]}',
+    );
     expect(prompt).not.toContain("###ANSWER###");
   });
 

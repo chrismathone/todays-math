@@ -2,7 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { STUDIO_API_PROVIDERS } from "@/lib/dev-ai/contracts";
 import { FigureRedrawError } from "@/lib/dev-ai/figure-spec";
-import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
+import { DevAiParseError, DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 import {
   badRequestDetail,
   bodyShape,
@@ -128,7 +128,11 @@ export async function studioApiPost(request: Request, owner: string) {
         error:
           error instanceof StudioApiError
             ? error.message
-            : "AI 결과를 처리하지 못했습니다. 입력과 모델 설정을 확인해 주세요.",
+            : // 모델이 낸 응답을 두 번 다 못 읽었다(한 번은 자동으로 다시 보낸다 — `executeMathgenTask`).
+              // 입력·설정 탓이 아니니 «설정을 확인»으로 보내지 않는다.
+              error instanceof DevAiParseError
+              ? "AI 응답을 읽지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요."
+              : "AI 결과를 처리하지 못했습니다. 입력과 모델 설정을 확인해 주세요.",
       },
       {
         status: error instanceof StudioApiError ? error.status : 502,

@@ -11,6 +11,7 @@ import {
   studioCartRows,
   studioCartState,
   type StudioCartRemoval,
+  onlySolutionChanged,
 } from "@/components/unified/studioCart";
 import { applyStudioCropEdit } from "@/components/unified/studioCropEdit";
 import {
@@ -226,5 +227,32 @@ describe("studioCartAddLabel — 바닥 «담기» 단추 글자", () => {
         [{ problem: bank("elsewhere"), index: 1 }],
       ),
     ).toBe("모두 담았습니다");
+  });
+});
+
+describe("onlySolutionChanged — 해설 자동 반영의 문", () => {
+  const base = studioProblem(crop("x")).studioCrop!;
+  it("해설·답·판 번호만 바뀌면 참", () => {
+    expect(
+      onlySolutionChanged(base, {
+        ...base,
+        added: false,
+        solution: "새 해설",
+        answer: "3",
+        revision: 1,
+        reviewed: false,
+        aiWarnings: ["경고"],
+      }),
+    ).toBe(true);
+  });
+  it("본문이 바뀌었으면 거짓 — «반영»을 눌러야 한다", () => {
+    expect(
+      onlySolutionChanged(base, {
+        ...base,
+        content: "고친 본문",
+        solution: "새 해설",
+        revision: 1,
+      }),
+    ).toBe(false);
   });
 });

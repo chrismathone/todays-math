@@ -157,3 +157,49 @@ describe("«PDF 원문과 N% 만 일치» 경고 — 원장님 2026-09-21 «이 
     ).toBeInTheDocument();
   });
 });
+
+describe("쪽별 경고 요약 — 원장님 2026-11-11 «페이지별로 요약»", () => {
+  const edge =
+    "크롭 경계에 원본 잉크가 닿아 있습니다. 잘린 글자·보기·답란이 없는지 확인해 주세요.";
+  const outside =
+    "크롭 밖에 원본 잉크가 남아 있습니다. 빠진 보기·인쇄된 답란인지 머리말·정답표인지 원본에서 확인해 주세요. 영역을 자동으로 넓히지 않았습니다.";
+  const candidate =
+    "크롭은 자동 인식한 후보입니다. 각 영역에 해당 문항의 모든 보기·인쇄된 답란이 있고 이웃 문항·정답표가 없는지 원본에서 확인해 주세요.";
+
+  it("쪽당 한 줄로 줄이고, 공통 안내는 위에 한 번만 · 원문은 «자세히»에", () => {
+    renderStatus([
+      { ...job(1, "complete"), warnings: [edge, outside, candidate] },
+      { ...job(2, "complete"), warnings: [edge, outside, candidate] },
+      { ...job(3, "complete"), warnings: [candidate] },
+    ]);
+    expect(
+      screen.getAllByText(
+        "크롭은 자동 인식 후보입니다 — 원본과 대조해 주세요.",
+      ),
+    ).toHaveLength(1);
+    const summaries = Array.from(document.querySelectorAll("summary")).map(
+      (item) => item.textContent,
+    );
+    expect(summaries).toEqual([
+      "1쪽 · 경계 잉크 · 크롭 밖 잉크자세히",
+      "2쪽 · 경계 잉크 · 크롭 밖 잉크자세히",
+    ]);
+    // 원문은 접힌 칸 안에 그대로 있다 — 지워지지 않는다.
+    const first = document.querySelector("details")!;
+    expect(first).not.toHaveAttribute("open");
+    expect(first).toHaveTextContent(outside);
+    expect(screen.queryByText(candidate)).toBeNull();
+  });
+
+  it("모르는 경고는 «확인 N건»으로 세고 원문을 남긴다", () => {
+    renderStatus([
+      { ...job(1, "complete"), warnings: ["표의 칸 수가 원본과 다릅니다."] },
+    ]);
+    expect(document.querySelector("summary")).toHaveTextContent(
+      "1쪽 · 확인 1건",
+    );
+    expect(document.querySelector("details")).toHaveTextContent(
+      "표의 칸 수가 원본과 다릅니다.",
+    );
+  });
+});

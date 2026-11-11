@@ -105,6 +105,7 @@ vi.mock("@/components/unified/StudioView", () => ({
     removed = [],
     onAdd,
     onRemove,
+    onRemoveAll,
     onRestore,
     onExport,
     exportRequest,
@@ -113,6 +114,7 @@ vi.mock("@/components/unified/StudioView", () => ({
     removed?: StudioCartRemoval[];
     onAdd: (problems: StudioProblem[]) => void;
     onRemove?: (problem: StudioProblem) => void;
+    onRemoveAll?: () => void;
     onRestore?: (problem: StudioProblem) => void;
     onExport: () => void;
     exportRequest?: { id: number };
@@ -133,6 +135,7 @@ vi.mock("@/components/unified/StudioView", () => ({
         <output aria-label="작업실이 받은 뺀 기억">
           {removed.map((item) => `${item.problem.id}@${item.index}`).join(",")}
         </output>
+        <button onClick={() => onRemoveAll?.()}>모두 빼기</button>
         {picked.map((problem) => (
           <button key={problem.id} onClick={() => onRemove?.(problem)}>
             {problem.id} 빼기
@@ -283,7 +286,9 @@ describe("현재 시험지 카드 노출", () => {
       else if (view === "export")
         await screen.findByRole("button", { name: "저장한 작업 불러오기" });
       else if (view === "library")
-        await screen.findByRole("heading", { name: "아직 저장한 시험지가 없어요" });
+        await screen.findByRole("heading", {
+          name: "아직 저장한 시험지가 없어요",
+        });
       else await screen.findByRole("heading", { name: "오늘의 작업" });
       expect(screen.queryByText("현재 시험지")).not.toBeInTheDocument();
       expect(
@@ -335,9 +340,9 @@ describe("현재 시험지 카드 노출", () => {
       await screen.findByRole("button", { name: "담은 시험지 편집" }),
     );
     await waitFor(() =>
-      expect(screen.getByRole("region", { name: "문제은행 대역" })).toHaveTextContent(
-        "문제은행 담은 문제 3",
-      ),
+      expect(
+        screen.getByRole("region", { name: "문제은행 대역" }),
+      ).toHaveTextContent("문제은행 담은 문제 3"),
     );
     expect(screen.getByText("현재 시험지")).toBeVisible();
     expect(screen.getByText("3문항", { exact: true })).toBeVisible();
@@ -380,6 +385,25 @@ describe("담은 문항 장부 배선", () => {
     fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
     expect(studioPicked()).toBe("a,b,c");
     expect(studioRemoved()).toBe("");
+  });
+
+  it("작업실의 «모두 빼기» — 시험지 전체를 뺀 자리와 함께 기억하고, «되돌리기»가 한꺼번에 돌린다", async () => {
+    seed();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "모두 빼기" }));
+    expect(studioPicked()).toBe("");
+    expect(studioRemoved()).toBe("a@0,b@1,c@2");
+    expect(screen.getByText("시험지에서 3문항을 모두 뺐습니다.")).toBeVisible();
+    // 하나씩 다시 담기도 된다 — 뺀 자리로.
+    fireEvent.click(screen.getByRole("button", { name: "b 다시 담기" }));
+    expect(studioPicked()).toBe("b");
+    fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
+    expect(studioPicked()).toBe("a,b,c");
+    expect(studioRemoved()).toBe("");
+    await toOrder();
+    expect(orderIds()).toEqual(["1쪽", "2쪽", "3쪽"]);
   });
 
   it("반영은 같은 자리에서 갈고, 문제은행에서 다시 담으면 뺀 기억이 풀린다", async () => {
