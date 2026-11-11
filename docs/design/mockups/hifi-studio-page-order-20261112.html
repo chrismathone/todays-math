@@ -1,0 +1,308 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쪽 순서 확인 Hi-fi</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* Hi-fi — Wire A(올린 직후 «쪽 순서 확인» 한 장) + 쪽 빼기 + 여러 파일. 원장님 2026-11-12.
+   색 · 치수는 제품에서 읽었다(StudioView.module.css · globals.css 2026-11-12 main):
+   --studio-primary #3159df · ink #172b4d · muted #596c86 · line #dde3ec · bg #f4f6fa · 단추 높이 34 · 둥글기 8 · 글자 14/12.
+   D-30: 쪽 카드 자체는 누르는 표면이 아니다 — 손잡이(⠿) · 확대 · 빼기 단추만 손가락 커서. */
+:root {
+  --primary: #3159df; --primary-hover: #2445bb; --ink: #172b4d; --muted: #596c86; --line: #dde3ec;
+  --bg: #f4f6fa; --tint: #edf2ff; --warn: #974923; --warn-bg: #fff6e9; --off: #8a97ab;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9ecf2; color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+.board { max-width: 1320px; margin: 0 auto; padding: 28px 24px 80px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -.02em; }
+.lede { margin: 0 0 14px; color: var(--muted); max-width: 86ch; }
+.lede b { color: var(--ink); }
+.ask { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 8px; }
+.ask ul { margin: 6px 0 0; padding-left: 18px; color: var(--muted); display: grid; gap: 4px; }
+.ask b { color: var(--ink); }
+
+section.opt { margin-top: 44px; }
+.opt > h2 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
+.opt > h2 span { display: inline-block; min-width: 34px; height: 26px; line-height: 26px; text-align: center; border-radius: 6px; background: var(--ink); color: #fff; font-size: 14px; margin-right: 8px; }
+.opt > p.what { margin: 4px 0 12px; color: var(--muted); max-width: 90ch; }
+.opt > p.what b { color: var(--ink); }
+.pros { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--muted); }
+.pros li::before { content: "· "; }
+.pros b { color: var(--ink); }
+
+/* 앱 틀 */
+.app { background: var(--bg); border: 1px solid #cfd6e2; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 24px #172b4d14; }
+.top { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.steps { display: flex; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.steps span { padding: 4px 10px; border-radius: 999px; }
+.steps .on { background: var(--tint); color: var(--primary); }
+.top .grow { flex: 1; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--ink); font: 600 13px/1 var(--sans); white-space: nowrap; cursor: pointer; }
+.btn:hover { background: var(--tint); border-color: #a7b8e9; }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 2px 3px #172b4d0d; }
+.btn.primary:hover { background: var(--primary-hover); }
+.btn.quiet { border-color: transparent; background: transparent; color: var(--muted); }
+.btn.sm { height: 28px; padding: 0 10px; font-size: 12px; }
+.hint { font-size: 12px; color: var(--muted); }
+.count { font-size: 13px; color: var(--muted); }
+.count b { color: var(--ink); }
+
+.work { padding: 18px 20px 20px; }
+.filehead { display: flex; align-items: center; gap: 10px; margin: 6px 0 10px; }
+.filehead .name { font-weight: 700; }
+.filehead .meta { font-size: 12px; color: var(--muted); }
+.filehead .tag { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; color: #fff; font: 700 12px/1 var(--sans); }
+.handle { width: 26px; height: 26px; border-radius: 6px; display: grid; place-items: center; color: var(--muted); border: 1px solid var(--line); background: #fff; cursor: grab; font-size: 14px; }
+.t1 { background: #3159df; } .t2 { background: #0f8a6a; } .t3 { background: #b05a12; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 16px 14px; }
+.pc { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px 6px; display: grid; gap: 6px; }
+.pc .sheet { aspect-ratio: 210/297; border: 1px solid #e3e7ef; border-radius: 3px; background: #fff; padding: 9px 8px; display: grid; gap: 5px; align-content: start; }
+.sheet i { display: block; height: 4px; border-radius: 2px; background: #e6eaf1; }
+.sheet i.h { height: 6px; background: #c9d1de; width: 70%; }
+.sheet i.s { width: 55%; } .sheet i.m { width: 80%; }
+.sheet.answer i { height: 3px; } .sheet.blank i { display: none; }
+.pc .foot { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.pc .no { font-weight: 800; font-size: 14px; }
+.pc .orig { color: var(--muted); }
+.pc .acts { margin-left: auto; display: flex; gap: 4px; }
+.ico { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; font-size: 13px; color: var(--ink); cursor: pointer; }
+.ico:hover { background: var(--tint); }
+.pc .grip { position: absolute; top: 12px; left: 12px; width: 24px; height: 24px; border-radius: 6px; background: #ffffffe6; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); cursor: grab; font-size: 13px; }
+.pc.moved { border-color: var(--primary); box-shadow: 0 0 0 2px #3159df33; }
+.pc .foot { flex-wrap: nowrap; white-space: nowrap; }
+.pc.lifted { transform: rotate(-2deg) translateY(-6px); box-shadow: 0 12px 24px #172b4d29; border-color: var(--primary); z-index: 2; }
+.pc.out { background: #f7f8fa; border-style: dashed; }
+.pc.out .sheet { opacity: .35; }
+.pc.out .no { color: var(--off); text-decoration: line-through; }
+.badge { position: absolute; top: 12px; right: 12px; font: 700 11px/1 var(--sans); padding: 4px 6px; border-radius: 5px; }
+.badge.out { background: #eef1f6; color: #52617a; }
+.badge.sug { background: var(--warn-bg); color: var(--warn); border: 1px solid #f0d2b3; }
+.slot { border: 2px dashed var(--primary); border-radius: 10px; background: #3159df0d; display: grid; place-items: center; color: var(--primary); font-size: 12px; font-weight: 600; }
+.ftag { position: absolute; bottom: 34px; left: 12px; width: 18px; height: 18px; border-radius: 5px; color: #fff; font: 700 11px/18px var(--sans); text-align: center; }
+
+.tray { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.tray .label { font-size: 13px; font-weight: 700; }
+.mini { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px dashed #c3ccda; border-radius: 8px; padding: 4px 8px 4px 4px; font-size: 12px; }
+.mini .sheet { width: 30px; aspect-ratio: 210/297; border: 1px solid #e3e7ef; border-radius: 2px; padding: 3px; gap: 2px; display: grid; align-content: start; background: #fff; }
+.mini .sheet i { height: 2px; }
+
+.notice { display: flex; gap: 8px; align-items: center; background: var(--warn-bg); border: 1px solid #f0d2b3; color: var(--warn); border-radius: 8px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px; }
+.notice .btn { margin-left: auto; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+@media (max-width: 960px) { .split { grid-template-columns: 1fr; } }
+.side { background: #fff; border-left: 1px solid var(--line); padding: 16px; display: grid; gap: 14px; align-content: start; }
+.side h3 { margin: 0; font-size: 14px; }
+.flist { display: grid; gap: 6px; }
+.frow { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font-size: 13px; }
+.frow small { color: var(--muted); margin-left: auto; }
+.big { aspect-ratio: 210/297; border: 1px solid var(--line); border-radius: 6px; padding: 18px 16px; display: grid; gap: 8px; align-content: start; background: #fff; }
+.big i { display: block; height: 7px; border-radius: 3px; background: #e6eaf1; }
+.big i.h { height: 10px; background: #c9d1de; width: 60%; }
+.row2 { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.lane { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.lane:last-of-type { border-bottom: 0; }
+.lane .lhead { display: grid; gap: 4px; }
+.lane .strip { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 8px; }
+.lane .strip .pc { width: 112px; flex: none; }
+.lane .lhead .row2 .btn { height: 26px; padding: 0 8px; }
+
+dialog-mock { display: block; }
+.scrim { background: #172b4d59; padding: 26px; }
+.dlg { background: #fff; border-radius: 14px; box-shadow: 0 24px 64px #172b4d40; max-width: 1060px; margin: 0 auto; overflow: hidden; }
+.dlg header { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.dlg header h4 { margin: 0; font-size: 17px; }
+.dlg footer { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--line); background: #fafbfd; }
+.dlg footer .grow { flex: 1; }
+.behind { padding: 14px 18px; filter: blur(1.5px); opacity: .7; }
+.behind .bar { height: 34px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+</style>
+
+<div class="board">
+  <h1>문제 추출 — 쪽 순서 확인 · Hi-fi 5안</h1>
+  <p class="lede">Wire <b>A</b>(올린 직후 «쪽 순서 확인» 한 장)로 정하셨다(원장님 2026-11-12). 여기에 <b>쪽 빼기</b>와 <b>여러 파일</b>을 넣었다. 다섯 안 모두 동작은 같다 — 손잡이 ⠿ 를 끌어 자리를 바꾸고, ⤢ 로 크게 보고, − 로 뺀다. 뺀 쪽은 인식 · 자르기 · 시험지에서 빠지고 <b>«되살리기»로 언제든 돌아온다</b>(원본 파일은 그대로). 이미 자른 영역 · 인식 · 해설은 쪽을 따라간다. 쪽 번호는 새 차례로 부르고 원래 번호는 «원본 3»으로 작게.</p>
+  <div class="ask">
+    <b>고르실 것</b> — 어느 안의 모양으로 갈지 (섞어도 된다).
+    <ul>
+      <li>여러 파일: <b>H3</b>만 «파일끼리 쪽을 섞어» 한 줄로 잇는다. 나머지는 «파일 차례 + 파일 안 쪽 차례»로 둘을 나눈다.</li>
+      <li>정답표 · 빈 쪽은 <b>H2</b>만 «빼기 권장»을 미리 붙여 준다(AI 없이 — 잉크가 거의 없는 쪽 · 표만 있는 쪽). 다른 안에도 붙일 수 있다.</li>
+    </ul>
+  </div>
+
+  <!-- H1 -->
+  <section class="opt">
+    <h2><span>H1</span>한 장 전체 · 파일별 묶음</h2>
+    <p class="what">단계 띠 앞에 <b>«쪽 순서»</b>가 한 칸 선다. 파일마다 묶음이 서고, 묶음 머리의 ⠿ 로 파일 차례를, 쪽의 ⠿ 로 쪽 차례를 바꾼다. 뺀 쪽은 맨 아래 <b>«뺀 쪽»</b> 줄로 모인다.</p>
+    <div class="app">
+      <div class="top">
+        <div class="steps"><span class="on">쪽 순서</span><span>1 영역 지정</span><span>2 검수</span><span>3 양식 구성·출력</span></div>
+        <span class="grow"></span>
+        <span class="count">2개 파일 · <b>11쪽</b> 사용 · 1쪽 뺌</span>
+        <button class="btn quiet">원래대로</button>
+        <button class="btn primary">이 순서로 시작 →</button>
+      </div>
+      <div class="work">
+        <div class="filehead"><span class="handle">⠿</span><span class="tag t1">1</span><span class="name">경명여고 공수2 26-2 중간.pdf</span><span class="meta">8쪽</span></div>
+        <div class="grid">
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i><i class="m"></i><i></i><i class="s"></i></div><div class="foot"><span class="no">1</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i><i></i><i class="s"></i></div><div class="foot"><span class="no">2</span><span class="orig">원본 3</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i><i></i><i class="s"></i></div><div class="foot"><span class="no">3</span><span class="orig">원본 2</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="s"></i><i></i><i class="m"></i></div><div class="foot"><span class="no">4</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i><i class="s"></i></div><div class="foot"><span class="no">5</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i></i><i class="m"></i></div><div class="foot"><span class="no">6</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="s"></i><i></i><i class="m"></i></div><div class="foot"><span class="no">7</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+        </div>
+        <div class="filehead" style="margin-top:18px"><span class="handle">⠿</span><span class="tag t2">2</span><span class="name">경명여고 공수2 서술형.pdf</span><span class="meta">4쪽</span></div>
+        <div class="grid">
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i><i class="m"></i></div><div class="foot"><span class="no">8</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i><i class="s"></i></div><div class="foot"><span class="no">9</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i></div><div class="foot"><span class="no">10</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="s"></i></div><div class="foot"><span class="no">11</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+        </div>
+        <div class="tray"><span class="label">뺀 쪽 1</span><span class="mini"><span class="sheet answer"><i></i><i></i><i></i></span>파일 1 · 원본 8쪽 <button class="btn sm">되살리기</button></span><span class="hint">뺀 쪽은 인식 · 자르기 · 시험지에서 빠집니다.</span></div>
+      </div>
+    </div>
+    <ul class="pros"><li><b>가장 단순</b> — 한 장에 다 보이고 위아래로 훑으면 끝</li><li>파일 묶음이 분명하다</li><li>쪽이 30쪽을 넘으면 길어진다</li></ul>
+  </section>
+
+  <!-- H2 -->
+  <section class="opt">
+    <h2><span>H2</span>격자 + 오른쪽 크게 보기 · 빼기 권장</h2>
+    <p class="what">고른 쪽이 오른쪽에 크게 선다 — <b>«앞으로 · 뒤로 · 빼기 · 회전»</b>을 거기서 누른다(끌기가 불편할 때). 잉크가 거의 없는 쪽 · 표만 있는 쪽에는 <b>«빼기 권장»</b> 딱지를 미리 붙여 «권장한 쪽 모두 빼기» 한 번으로 정리한다.</p>
+    <div class="app">
+      <div class="top">
+        <div class="steps"><span class="on">쪽 순서</span><span>1 영역 지정</span><span>2 검수</span><span>3 양식 구성·출력</span></div>
+        <span class="grow"></span>
+        <span class="count"><b>8쪽</b> 중 7쪽 사용</span>
+        <button class="btn quiet">원래대로</button>
+        <button class="btn primary">이 순서로 시작 →</button>
+      </div>
+      <div class="split">
+        <div class="work">
+          <div class="notice">빼기 권장 2쪽 — 정답표 1 · 빈 쪽 1 <button class="btn sm">권장한 쪽 모두 빼기</button></div>
+          <div class="grid">
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i><i class="m"></i><i></i></div><div class="foot"><span class="no">1</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc moved" style="outline:2px solid var(--primary);outline-offset:2px"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i><i></i></div><div class="foot"><span class="no">2</span><span class="orig">원본 3</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i><i class="s"></i></div><div class="foot"><span class="no">3</span><span class="orig">원본 2</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="s"></i><i class="m"></i></div><div class="foot"><span class="no">4</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i></div><div class="foot"><span class="no">5</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i></i><i class="s"></i></div><div class="foot"><span class="no">6</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><span class="badge sug">빼기 권장</span><div class="sheet blank"><i></i></div><div class="foot"><span class="no">7</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc out"><span class="badge out">뺌</span><div class="sheet answer"><i></i><i></i><i></i><i></i><i></i></div><div class="foot"><span class="no">원본 8</span><span class="acts"><button class="btn sm">되살리기</button></span></div></div>
+          </div>
+        </div>
+        <aside class="side">
+          <h3>2쪽 <span class="hint">· 원본 3쪽 · 문제 3</span></h3>
+          <div class="big"><i class="h"></i><i></i><i></i><i style="width:80%"></i><i></i><i style="width:55%"></i><i></i><i></i></div>
+          <div class="row2"><button class="btn">← 앞으로</button><button class="btn">뒤로 →</button><button class="btn">↻ 회전</button><button class="btn">빼기</button></div>
+          <span class="hint">키보드: ← → 로 옮기기 · Delete 로 빼기</span>
+        </aside>
+      </div>
+    </div>
+    <ul class="pros"><li><b>끌지 않아도 된다</b> — 노트북 · 시연에서 확실</li><li>크게 보며 «이게 몇 번 문제 쪽인지» 확인</li><li>정답표가 섞인 기출 PDF에 특히 편하다</li><li>오른쪽 칸만큼 격자가 좁다</li></ul>
+  </section>
+
+  <!-- H3 -->
+  <section class="opt">
+    <h2><span>H3</span>한 줄로 이은 차례 · 파일끼리 섞기</h2>
+    <p class="what">모든 파일의 쪽을 <b>한 줄 차례</b>로 잇는다. 쪽마다 파일 색 딱지(1 · 2)가 붙고, 파일이 달라도 쪽을 섞어 놓을 수 있다(본문 파일 사이에 서술형 쪽을 끼우기). 뺀 쪽은 <b>제자리에서 흐리게</b> 남는다.</p>
+    <div class="app">
+      <div class="top">
+        <div class="steps"><span class="on">쪽 순서</span><span>1 영역 지정</span><span>2 검수</span><span>3 양식 구성·출력</span></div>
+        <span class="grow"></span>
+        <span class="hint"><span class="tag t1" style="display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px"></span> 본문.pdf &nbsp;<span class="tag t2" style="display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px"></span> 서술형.pdf</span>
+        <button class="btn quiet">파일 차례대로</button>
+        <button class="btn primary">이 순서로 시작 →</button>
+      </div>
+      <div class="work">
+        <div class="grid">
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t1">1</span><div class="sheet"><i class="h"></i><i></i><i class="m"></i></div><div class="foot"><span class="no">1</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t1">1</span><div class="sheet"><i></i><i class="m"></i><i></i></div><div class="foot"><span class="no">2</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t1">1</span><div class="sheet"><i class="m"></i><i></i></div><div class="foot"><span class="no">3</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="slot">여기에 놓기</div>
+          <div class="pc lifted"><span class="grip">⠿</span><span class="ftag t2">2</span><div class="sheet"><i class="h"></i><i></i><i class="s"></i></div><div class="foot"><span class="no">5</span><span class="orig">파일 2 · 원본 1</span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t1">1</span><div class="sheet"><i></i><i class="s"></i></div><div class="foot"><span class="no">4</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc out"><span class="badge out">뺌</span><span class="ftag t1">1</span><div class="sheet blank"><i></i></div><div class="foot"><span class="no">원본 5</span><span class="acts"><button class="btn sm">되살리기</button></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t1">1</span><div class="sheet"><i class="m"></i><i></i><i></i></div><div class="foot"><span class="no">6</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t2">2</span><div class="sheet"><i></i><i class="m"></i></div><div class="foot"><span class="no">7</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+          <div class="pc"><span class="grip">⠿</span><span class="ftag t2">2</span><div class="sheet"><i class="s"></i><i></i></div><div class="foot"><span class="no">8</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+        </div>
+      </div>
+    </div>
+    <ul class="pros"><li><b>가장 자유롭다</b> — 시험지 한 부가 파일 여럿으로 나뉜 스캔에 맞다</li><li>뺀 쪽이 제자리에 남아 «어디서 뺐는지» 보인다</li><li>파일이 섞이면 «원본 몇 쪽인지» 읽기가 한 단계 더 든다</li></ul>
+  </section>
+
+  <!-- H4 -->
+  <section class="opt">
+    <h2><span>H4</span>파일마다 한 줄 띠</h2>
+    <p class="what">파일 하나가 <b>가로 한 줄 띠</b>다(지면 띠 PaperStrip 결). 줄 머리에 파일 이름 · <b>↑ ↓</b> 파일 차례 · <b>«거꾸로»</b>(뒤에서부터 스캔한 파일). 줄 안에서 쪽을 끌어 바꾼다. 쪽이 많아도 화면 높이가 파일 수만큼만 는다.</p>
+    <div class="app">
+      <div class="top">
+        <div class="steps"><span class="on">쪽 순서</span><span>1 영역 지정</span><span>2 검수</span><span>3 양식 구성·출력</span></div>
+        <span class="grow"></span>
+        <span class="count">2개 파일 · <b>12쪽</b> 중 11쪽</span>
+        <button class="btn quiet">원래대로</button>
+        <button class="btn primary">이 순서로 시작 →</button>
+      </div>
+      <div class="work">
+        <div class="lane">
+          <div class="lhead"><div class="filehead" style="margin:0"><span class="tag t1">1</span><span class="name" style="font-size:13px">본문.pdf</span></div><span class="hint">8쪽 · 1쪽 뺌</span><div class="row2"><button class="btn sm">↑</button><button class="btn sm">↓</button><button class="btn sm">거꾸로</button></div></div>
+          <div class="strip">
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i><i class="m"></i></div><div class="foot"><span class="no">1</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i></div><div class="foot"><span class="no">2</span><span class="orig">원본 3</span></div></div>
+            <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i class="m"></i><i></i></div><div class="foot"><span class="no">3</span><span class="orig">원본 2</span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="s"></i></div><div class="foot"><span class="no">4</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i></div><div class="foot"><span class="no">5</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i></i></div><div class="foot"><span class="no">6</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="s"></i></div><div class="foot"><span class="no">7</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc out"><span class="badge out">뺌</span><div class="sheet answer"><i></i><i></i><i></i></div><div class="foot"><span class="no">원본 8</span><span class="acts"><button class="btn sm">되살리기</button></span></div></div>
+          </div>
+        </div>
+        <div class="lane">
+          <div class="lhead"><div class="filehead" style="margin:0"><span class="tag t2">2</span><span class="name" style="font-size:13px">서술형.pdf</span></div><span class="hint">4쪽</span><div class="row2"><button class="btn sm">↑</button><button class="btn sm">↓</button><button class="btn sm">거꾸로</button></div></div>
+          <div class="strip">
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i></div><div class="foot"><span class="no">8</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i></div><div class="foot"><span class="no">9</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i></div><div class="foot"><span class="no">10</span><span class="acts"><span class="ico">−</span></span></div></div>
+            <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i></div><div class="foot"><span class="no">11</span><span class="acts"><span class="ico">−</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="pros"><li><b>파일이 많을 때 강하다</b> — 파일 차례를 ↑↓ 로 확실하게</li><li>«거꾸로» 한 번에 역순 스캔 해결</li><li>한 파일 안 쪽이 많으면 띠를 옆으로 넘겨야 한다</li></ul>
+  </section>
+
+  <!-- H5 -->
+  <section class="opt">
+    <h2><span>H5</span>큰 창 — 영역 지정 위에 뜬다</h2>
+    <p class="what">따로 단계를 두지 않고, 올리면 <b>영역 지정 화면 위에 큰 창</b>으로 뜬다. 닫으면 바로 영역 지정. 나중에는 쪽 이동 줄의 <b>«쪽 순서»</b> 단추로 같은 창을 다시 연다. 처음 올릴 때 «다음부터 묻지 않기»를 고를 수 있다.</p>
+    <div class="app">
+      <div class="scrim">
+        <div class="dlg">
+          <header><h4>쪽 순서</h4><span class="hint">경명여고 공수2 26-2 중간.pdf 외 1개 · 12쪽</span><span style="flex:1"></span><button class="btn quiet">원래대로</button></header>
+          <div class="work" style="padding:14px 20px">
+            <div class="filehead" style="margin-top:0"><span class="handle">⠿</span><span class="tag t1">1</span><span class="name">본문.pdf</span><span class="meta">8쪽 · 1쪽 뺌</span></div>
+            <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr))">
+              <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="h"></i><i></i></div><div class="foot"><span class="no">1</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+              <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i></i><i class="m"></i></div><div class="foot"><span class="no">2</span><span class="orig">원본 3</span></div></div>
+              <div class="pc moved"><span class="grip">⠿</span><div class="sheet"><i class="m"></i></div><div class="foot"><span class="no">3</span><span class="orig">원본 2</span></div></div>
+              <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i><i class="s"></i></div><div class="foot"><span class="no">4</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+              <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="s"></i></div><div class="foot"><span class="no">5</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+              <div class="pc"><span class="grip">⠿</span><div class="sheet"><i></i></div><div class="foot"><span class="no">6</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+              <div class="pc"><span class="grip">⠿</span><div class="sheet"><i class="m"></i></div><div class="foot"><span class="no">7</span><span class="acts"><span class="ico">⤢</span><span class="ico">−</span></span></div></div>
+              <div class="pc out"><span class="badge out">뺌</span><div class="sheet answer"><i></i><i></i></div><div class="foot"><span class="no">원본 8</span><span class="acts"><button class="btn sm">되살리기</button></span></div></div>
+            </div>
+            <div class="filehead" style="margin-top:14px"><span class="handle">⠿</span><span class="tag t2">2</span><span class="name">서술형.pdf</span><span class="meta">4쪽 · 접힘</span><button class="btn sm">펼치기</button></div>
+          </div>
+          <footer><label class="hint"><input type="checkbox"> 다음부터 올릴 때 묻지 않기</label><span class="grow"></span><span class="count"><b>11쪽</b> 사용</span><button class="btn">닫기</button><button class="btn primary">적용</button></footer>
+        </div>
+      </div>
+    </div>
+    <ul class="pros"><li><b>단계 띠를 안 바꾼다</b> — 지금 흐름에 창 하나만</li><li>파일 묶음을 접어 긴 목록도 짧게</li><li>창이라 화면이 좁게 느껴질 수 있다</li></ul>
+  </section>
+</div>
