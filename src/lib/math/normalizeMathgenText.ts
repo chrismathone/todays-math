@@ -540,6 +540,9 @@ export function normalizeMathgenText(text: string): string {
         // they were cut in half at the Hangul (`$\left($넓이$\right)$`).
         .replace(SIZED_PROSE, "$1$2$3")
         .replace(/(?<!\\)\\n\\n/g, "\n\n")
+        // 해설의 줄머리 «step2)» 앞 글자 그대로의 `\n` — 영문자가 뒤따라 아래 규칙(`\neq` 같은 명령을
+        // 살린다)이 건너뛰었다. 2026-11-11 시연 해설 19개 중 8개가 «…이다.\nstep2)»로 찍혔다.
+        .replace(/(?<!\\)\\n(?=step\d)/g, "\n")
         .replace(/(?<!\\)\\n(?![A-Za-z])/g, "\n")
         .replace(/(?<!\\)\\t(?![A-Za-z])/g, "\t");
       return protectLooseLatex(fixed);

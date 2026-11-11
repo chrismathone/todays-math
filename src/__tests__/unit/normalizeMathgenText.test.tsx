@@ -238,3 +238,18 @@ describe("new dev-ai responses use the same text normalization", () => {
     expect(result.solution).toBe(clean);
   });
 });
+
+describe("해설 줄머리 앞 글자 그대로의 \\n — 원장님 2026-11-11 «일부 해설에서 \\n 으로 나온다»", () => {
+  it("«…이다.\\nstep2)»는 줄바꿈 · 수식 안의 \\neq · \\notin 은 그대로", () => {
+    const raw =
+      "step1) $B\\cap X=\\{4\\}$이므로 $2\\notin X$, $a\\neq b$이다.\\nstep2) 따라서 $a+b=-2$이다.\\nstep10) 끝.";
+    const out = normalizeMathgenText(raw);
+    expect(out).toBe(
+      "step1) $B\\cap X=\\{4\\}$이므로 $2\\notin X$, $a\\neq b$이다.\nstep2) 따라서 $a+b=-2$이다.\nstep10) 끝.",
+    );
+    // 화면에도 글자 \n 이 남지 않는다.
+    expect(renderToStaticMarkup(<ProblemContent content={raw} />)).not.toMatch(
+      /\\nstep/,
+    );
+  });
+});
