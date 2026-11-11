@@ -66,6 +66,8 @@ export interface DevAiRequest {
   /** Untrusted source filename; trimmed, 1–255 characters, no control characters. */
   sourceName?: string;
   grade: string;
+  /** 해설만: 문항 인식이 판정한 난이도 — «심화상»이면 서버가 Opus 로 푼다(원장님 2026-11-11). */
+  difficulty?: import("@/contracts/difficulty").Difficulty;
 }
 export interface DevAiDetectedGrade {
   grade:
@@ -112,6 +114,8 @@ export interface DevAiResult {
   warnings: string[];
   /** Crop OCR only; omitted when the source does not establish a type. */
   questionType?: DevAiQuestionType;
+  /** Crop OCR only: AI 가 판정한 난이도(사다리 안의 값만) — 해설 모델을 고르는 데 쓴다. */
+  difficulty?: import("@/contracts/difficulty").Difficulty;
   /** Figure redraw only; must still be sanitized by the browser before applying. */
   svg?: string;
   /** Figure redraw only: validated input to the local deterministic Python renderer. */

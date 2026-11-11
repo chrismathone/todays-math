@@ -161,6 +161,7 @@ export function onlySolutionChanged(cartCrop: StudioCrop, crop: StudioCrop) {
     "answer",
     "solution",
     "aiWarnings",
+    "difficulty",
     "reviewed",
     "revision",
     "added",

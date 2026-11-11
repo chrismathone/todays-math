@@ -325,11 +325,14 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         input.effort ??
         (input.model === "claude-opus-5"
           ? "medium"
-          : input.model === "claude-sonnet-5-5"
-            ? input.action === "solution"
-              ? "medium"
-              : "low"
-            : undefined);
+          : // 초고난이도 해설(심화상)만 Opus 5.5 로 온다 — 깊게 푼다
+            input.model === "claude-opus-5-5" && input.action === "solution"
+            ? "high"
+            : input.model === "claude-sonnet-5-5"
+              ? input.action === "solution"
+                ? "medium"
+                : "low"
+              : undefined);
       const result = await rest(
         "https://api.anthropic.com/v1/messages",
         {

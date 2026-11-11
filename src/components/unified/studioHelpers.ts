@@ -55,6 +55,11 @@ export interface StudioCrop {
   revision?: number;
   aiWarnings?: string[];
   questionType?: "multiple-choice" | "short-answer" | "descriptive";
+  /**
+   * 문항 인식이 판정한 난이도(원장님 2026-11-11 «초고난이도면 opus»). 해설 요청에 실어 보내 «심화상»이면 서버가
+   * Opus 로 푼다. 화면 · 시험지 · 문제은행에는 쓰지 않는다(AI 판정이라 저장 난이도로 삼지 않는다).
+   */
+  difficulty?: import("@/contracts/difficulty").Difficulty;
 }
 
 export const STUDIO_QUESTION_TYPES = {

@@ -32,6 +32,19 @@ const request = {
 };
 
 describe("source Mathgen OCR and solution workflow", () => {
+  it("문항 인식이 난이도를 함께 판정한다 — 사다리 안의 값만 받는다(원장님 2026-11-11 «초고난이도면 opus»)", () => {
+    expect(buildDevAiPrompt(request)).toContain("심화상");
+    const read = (difficulty: unknown) =>
+      parseDevAiResult(
+        JSON.stringify({ items: [native()], upsideDown: false, difficulty }),
+        "ocr",
+      );
+    expect(read("심화상").difficulty).toBe("심화상");
+    expect(read("응용").difficulty).toBe("응용");
+    expect(read("킬러")).not.toHaveProperty("difficulty");
+    expect(read(undefined)).not.toHaveProperty("difficulty");
+  });
+
   it("preserves native tables, subquestions, printed metadata and raw fractions", () => {
     const item = native({
       printedScore: "[4점]",

@@ -204,6 +204,25 @@ describe("Studio AI owner", () => {
     });
   });
 
+  it("keeps the OCR difficulty on the crop and sends it only with solution requests", async () => {
+    const value = response();
+    Object.assign(value.result, { difficulty: "심화상" });
+    bridge.run.mockResolvedValueOnce(value).mockResolvedValue(response());
+    const { result } = mount([crop("a", "문제")]);
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0].difficulty).toBe("심화상");
+    expect(bridge.run.mock.calls[0][0]).not.toHaveProperty("difficulty");
+    await act(async () => {
+      await result.current.processCrops("solution", ["a"]);
+    });
+    expect(bridge.run.mock.calls.at(-1)![0]).toMatchObject({
+      action: "solution",
+      difficulty: "심화상",
+    });
+  });
+
   it("applies optional OCR classification and retains the original image and edited figures", async () => {
     const value = response();
     Object.assign(value.result, { questionType: "multiple-choice" });

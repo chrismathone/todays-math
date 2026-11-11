@@ -99,6 +99,46 @@ describe("source model API routing and compatibility", () => {
       }),
     ).toThrow();
   });
+  it("solves only «심화상» problems with Claude Opus 5.5 at high effort", async () => {
+    const env = { NODE_ENV: "test" as const };
+    expect(resolveApiModel("auto", "solution", env, "심화상")).toEqual({
+      vendor: "anthropic",
+      model: "claude-opus-5-5",
+    });
+    for (const difficulty of ["심화중", "응용", undefined])
+      expect(resolveApiModel("auto", "solution", env, difficulty).model).toBe(
+        "claude-sonnet-5-5",
+      );
+    // 읽기 · 도형은 난이도와 상관없다 · 되돌린 제공자는 그대로
+    expect(resolveApiModel("auto", "ocr", env, "심화상").model).toBe(
+      "claude-sonnet-5-5",
+    );
+    expect(
+      resolveApiModel(
+        "auto",
+        "solution",
+        { ...env, STUDIO_AI_SOLUTION_VENDOR: "deepseek" },
+        "심화상",
+      ).vendor,
+    ).toBe("deepseek");
+    const fetcher = vi.fn().mockImplementation(async () =>
+      Response.json({
+        stop_reason: "end_turn",
+        content: [{ type: "text", text: "done" }],
+      }),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    await runModelApi({
+      vendor: "anthropic",
+      model: "claude-opus-5-5",
+      action: "solution",
+      prompt: "p",
+      signal: new AbortController().signal,
+    });
+    const body = JSON.parse(fetcher.mock.calls[0][1].body);
+    expect(body.output_config.effort).toBe("high");
+    expect(body).not.toHaveProperty("temperature");
+  });
   it("sends Sonnet 5.5 without temperature — effort medium for solutions, low otherwise", async () => {
     const fetcher = vi.fn().mockImplementation(async () =>
       Response.json({

@@ -78,6 +78,7 @@ export async function executeStudioTask(
     transport.provider,
     request.action,
     process.env,
+    request.difficulty,
   );
   const reviewRoute =
     transport.provider === "auto" && request.action === "figure-redraw"

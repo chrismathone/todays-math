@@ -892,6 +892,9 @@ export function useStudioAi({
           imageDataUrl: snapshot.image,
           content: snapshot.content,
           ...(snapshot.ocr ? { ocr: snapshot.ocr } : {}),
+          ...(job.action === "solution" && snapshot.difficulty
+            ? { difficulty: snapshot.difficulty }
+            : {}),
           grade: snapshot.grade,
           sourceName: snapshot.sourceLabel,
         },
@@ -964,6 +967,8 @@ export function useStudioAi({
                   : undefined,
                 ...(!snapshot.modeManual ? { mode: "text" as const } : {}),
                 ...questionTypePatch(result as CropQuestionType),
+                // 다시 읽으면 새 판정으로 바꾼다(못 정했으면 옛 값을 지운다)
+                difficulty: result.difficulty,
                 answer: result.answer,
                 solution: "",
               }

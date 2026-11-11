@@ -1,4 +1,5 @@
 import type { DevAiAction, StudioApiProvider } from "@/lib/dev-ai/contracts";
+import { CLAUDE_HARD_MODEL, isHardDifficulty } from "@/lib/ai/claudeModels";
 
 // Current Mathgen hooks/services, not their older descriptive comments.
 export const API_MODELS = {
@@ -14,6 +15,7 @@ export const API_MODELS = {
   // 자동 배정의 기본(원장님 2026-11-11) — 맨 앞이 기본이다.
   anthropic: [
     "claude-sonnet-5-5",
+    "claude-opus-5-5",
     "claude-opus-5",
     "claude-opus-4-7",
     "claude-sonnet-4-6",
@@ -70,6 +72,8 @@ export function resolveApiModel(
   provider: StudioApiProvider,
   action: DevAiAction,
   env: NodeJS.ProcessEnv,
+  /** 해설의 난이도 — 자동 배정이 Claude 로 풀 때 «심화상»이면 Opus 5.5(원장님 2026-11-11 «초고난이도면 opus»). */
+  difficulty?: string,
 ) {
   const vendor: ApiVendor =
     provider === "auto" ? autoVendor(action, env) : provider;
@@ -78,7 +82,12 @@ export function resolveApiModel(
       "DeepSeek는 해설 생성에만 사용할 수 있습니다. 이미지 인식 모델을 선택해 주세요.",
     );
   const model =
-    env[`STUDIO_AI_${vendor.toUpperCase()}_MODEL`] || API_MODELS[vendor][0];
+    provider === "auto" &&
+    vendor === "anthropic" &&
+    action === "solution" &&
+    isHardDifficulty(difficulty)
+      ? CLAUDE_HARD_MODEL
+      : env[`STUDIO_AI_${vendor.toUpperCase()}_MODEL`] || API_MODELS[vendor][0];
   if (!(API_MODELS[vendor] as readonly string[]).includes(model))
     throw new Error("서버의 AI 모델 설정을 확인해 주세요.");
   return { vendor, model };
