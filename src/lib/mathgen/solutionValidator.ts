@@ -122,6 +122,10 @@ const detectDistinctRequirement = (problemText: string): number | null => {
  * **검증 강도**: 위반 튜플 *3 개 이상* 일 때만 warning. 1~2 개는 풀이 안에서
  * *명시적 무효 처리* 가능성 高.
  */
+/** 풀이가 어떤 경우를 조건에 안 맞는다고 버리는 말 */
+const REJECTS_CASE =
+  /(?:맞지\s*않|만족하지\s*않|성립하지\s*않|적합하지\s*않|제외|모순|불가능|버린다|버리고|안\s*된다|될\s*수\s*없)/;
+
 export const validateDistinctTuples = (
   problemText: string,
   solutionText: string,
@@ -137,6 +141,9 @@ export const validateDistinctTuples = (
     .filter((t) => new Set(t).size < t.length);
 
   if (violations.length === 0) return null;
+  // 풀이가 중복 경우를 **스스로 버렸으면** 경고하지 않는다 — 위 «False positive 위험»이 실제로 났다
+  // (2026-11-11 시연 7번: «$(a,b)=(1,1)$이면 두 직선이 일치하므로 … 조건에 맞지 않는다» 인데 «재생성 권장»).
+  if (REJECTS_CASE.test(solutionText)) return null;
 
   // 위반 튜플을 풀이 본문에서 발견한 그대로 표시.
   const violationStrs = violations

@@ -331,6 +331,48 @@ export class DevAiParseError extends Error {
   }
 }
 
+/**
+ * 글 사이에 든 마지막 결과 객체 — 운영 2026-11-11: Claude Sonnet 5.5 가 해설에서 JSON 앞에 «풀이를 먼저 정리한다 …»를
+ * 길게 썼다. 그 글에 든 `{5,6}` 같은 집합 때문에 «첫 `{` 부터 읽는» 복구(`recoverJson`)도 실패했다.
+ * 도형 다시 그리기의 같은 고침(`figure-spec.ts` `lastSpecObject`)과 같은 결 — 결과 칸 이름으로 여는 덩어리만 찾고,
+ * 따옴표 안의 괄호는 세지 않는다. 읽지 못하면 undefined.
+ */
+const RESULT_OPENING =
+  /^\{\s*"(?:answer|solution|items|content|problems|detectedGrade|questionType|figures|warnings)"\s*:/;
+function embeddedResultObject(raw: string): unknown {
+  // `lastIndexOf("{", -1)` 은 맨 앞 `{` 를 다시 돌려준다 — 0 에서 멈춰야 끝난다.
+  for (
+    let start = raw.lastIndexOf("{");
+    start >= 0;
+    start = start === 0 ? -1 : raw.lastIndexOf("{", start - 1)
+  ) {
+    if (!RESULT_OPENING.test(raw.slice(start, start + 40))) continue;
+    let depth = 0;
+    let inString = false;
+    for (let at = start; at < raw.length; at++) {
+      const char = raw[at];
+      if (inString) {
+        if (char === "\\") at++;
+        else if (char === '"') inString = false;
+      } else if (char === '"') inString = true;
+      else if (char === "{") depth++;
+      else if (char === "}" && --depth === 0) {
+        const block = raw.slice(start, at + 1);
+        try {
+          return JSON.parse(block);
+        } catch {
+          try {
+            return JSON.parse(repairJsonString(block));
+          } catch {
+            break;
+          }
+        }
+      }
+    }
+  }
+  return undefined;
+}
+
 export function parseDevAiResult(
   raw: string,
   action: DevAiRequest["action"],
@@ -344,7 +386,7 @@ export function parseDevAiResult(
     try {
       json = JSON.parse(repairJsonString(raw));
     } catch {
-      json = recoverJson(raw);
+      json = embeddedResultObject(raw) ?? recoverJson(raw);
       if (json === undefined) throw new DevAiParseError("json", action);
     }
   }

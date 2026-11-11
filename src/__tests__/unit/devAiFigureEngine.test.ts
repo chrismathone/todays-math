@@ -638,6 +638,10 @@ describe("figure spec transport boundary", () => {
     ).toEqual(spec.spec);
     // 글만 있고 spec 덩어리가 없으면 여전히 읽지 못한다
     expect(() => parseFigureSpecResult("I could not draw it.")).toThrow("스펙");
+    // 맨 앞이 `{` 인 잘린 응답 — 끝없이 돌지 않고 «읽지 못했다»로 끝난다(2026-11-11 무한 반복)
+    expect(() =>
+      parseFigureSpecResult('{"spec": {"version": "graph-1"'),
+    ).toThrow("스펙");
   });
   it("rejects nesting before recursive metrics work", () => {
     let nested: object = {};

@@ -154,6 +154,18 @@ describe("source Mathgen OCR and solution workflow", () => {
     expect(invoke).toHaveBeenCalledTimes(2);
   });
 
+  it("reads the result object a model wrote after prose that contains set braces (운영 2026-11-11)", () => {
+    const raw =
+      "풀이를 먼저 정리한다.\n\nB−A={5,6}이므로 5, 6은 B에 속하고 A에는 속하지 않는다. 따라서 s≥6이다.\n" +
+      'A∪B^c=(B−A)^c 이다.\n\n{"answer":"③","solution":"step1) $B-A=\\{5,6\\}$이다.\\nstep2) 따라서 $s=10$이다."}';
+    const result = parseDevAiResult(raw, "solution");
+    expect(result.answer).toBe("③");
+    expect(result.solution).toContain("s=10");
+    expect(() =>
+      parseDevAiResult("풀이만 쓰고 끝났다 {5,6}", "solution"),
+    ).toThrow(/읽지 못했습니다/);
+  });
+
   it("re-asks once when the model's reply cannot be read, then uses the second reply", async () => {
     const invoke = vi
       .fn()
@@ -302,6 +314,27 @@ describe("source Mathgen OCR and solution workflow", () => {
       name: "AbortError",
     });
     expect(cancelled).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not warn when the solution itself rejects the duplicate case (시연 7번, 2026-11-11)", async () => {
+    const invoke = vi.fn().mockResolvedValue(
+      JSON.stringify({
+        answer: "-2",
+        solution:
+          "step1) $ab=1$이므로 $(a,b)=(1,1)$ 또는 $(-1,-1)$이다.\nstep2) $(a,b)=(1,1)$이면 두 직선이 일치하므로 서로 다른 두 직선이라는 조건에 맞지 않는다.\nstep3) $(a,b)=(-1,-1)$이면 서로 다른 평행선이다.\nstep4) 따라서 $a+b=-2$이다.",
+      }),
+    );
+    const result = await executeMathgenTask(
+      {
+        ...request,
+        action: "solution",
+        content:
+          "서로 다른 두 직선 $ax+y+1=0$, $x+by-1=0$이 평행할 때 $a+b$의 값은?",
+      },
+      invoke,
+    );
+    expect(invoke).toHaveBeenCalledTimes(1);
+    expect(result.warnings.join(" ")).not.toContain("재생성 권장");
   });
 
   it("regenerates a distinct-tuple violation once then keeps the warning for review", async () => {

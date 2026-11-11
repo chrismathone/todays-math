@@ -59,7 +59,8 @@ function lastSpecObject(raw: string): string | null {
   for (
     let start = raw.lastIndexOf("{");
     start >= 0;
-    start = raw.lastIndexOf("{", start - 1)
+    // `lastIndexOf("{", -1)` 은 맨 앞 `{` 를 다시 돌려준다 — 0 에서 멈춰야 끝난다(2026-11-11 무한 반복).
+    start = start === 0 ? -1 : raw.lastIndexOf("{", start - 1)
   ) {
     if (!/^\{\s*"spec"\s*:/.test(raw.slice(start, start + 40))) continue;
     let depth = 0;
