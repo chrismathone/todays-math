@@ -28,6 +28,16 @@ import {
 import { readAiJson } from "./aiResponse";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
+/**
+ * AI 요청이 나가는 한 자리를 가로챈다 — 문제 추출 시연(원장님 2026-11-11)이 녹화본으로 답할 때 쓴다.
+ * `payload` 는 서버로 갈 본문 그대로, `forward` 는 그 본문을 실제로 보낸다.
+ */
+export type StudioAiInterceptor = (
+  payload: Omit<DevAiRequest, "provider"> & { provider: StudioAiProvider },
+  forward: () => Promise<Response>,
+  signal: AbortSignal,
+) => Promise<Response>;
+
 export interface DevAiActivity {
   id: number;
   action: DevAiAction;
@@ -61,6 +71,8 @@ interface DevAiContextValue {
   cancel: () => void;
   /** Owners stop queued work synchronously before in-flight calls are aborted. */
   subscribeCancel: (listener: () => void) => () => void;
+  /** 비우면(null) 전과 같이 바로 보낸다. */
+  setInterceptor: (interceptor: StudioAiInterceptor | null) => void;
 }
 const Context = createContext<DevAiContextValue>({
   status: null,
@@ -82,6 +94,7 @@ const Context = createContext<DevAiContextValue>({
   },
   cancel: () => {},
   subscribeCancel: () => () => {},
+  setInterceptor: () => {},
 });
 export const useDevAi = () => useContext(Context);
 const STORAGE_KEY = "today-math-dev-ai-provider";
@@ -125,6 +138,10 @@ export function DevAiProvider({
   const activeRequests = useRef(new Map<number, AbortController>());
   const nextRequestId = useRef(0);
   const cancelListeners = useRef(new Set<() => void>());
+  const interceptor = useRef<StudioAiInterceptor | null>(null);
+  const setInterceptor = useCallback((next: StudioAiInterceptor | null) => {
+    interceptor.current = next;
+  }, []);
   const subscribeCancel = useCallback((listener: () => void) => {
     cancelListeners.current.add(listener);
     return () => {
@@ -314,19 +331,24 @@ export function DevAiProvider({
             : original.length <= AI_IMAGE_BUDGET
               ? { dataUrl: original }
               : await fitAiImageDataUrl(original, undefined, controller.signal);
-        const send = () =>
-          fetch(endpoint(), {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            // 모델은 구독 CLI 에서 고른 때만 — 비우면 서버가 원장님 CLI 설정을 쓴다
-            body: JSON.stringify({
-              ...request,
-              imageDataUrl: image?.dataUrl,
-              provider,
-              ...(model ? { model } : {}),
-            }),
-            signal: controller.signal,
-          });
+        const send = () => {
+          // 모델은 구독 CLI 에서 고른 때만 — 비우면 서버가 원장님 CLI 설정을 쓴다
+          const payload = {
+            ...request,
+            imageDataUrl: image?.dataUrl,
+            provider,
+            ...(model ? { model } : {}),
+          };
+          const forward = () =>
+            fetch(endpoint(), {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+              signal: controller.signal,
+            });
+          const hook = interceptor.current;
+          return hook ? hook(payload, forward, controller.signal) : forward();
+        };
         let response = await send();
         if (response.status === 413 && original !== undefined && image) {
           // 예산 안인데도 잘렸다 — 실제 천장이 더 낮다. 절반 예산으로 한 번만 더 보낸다.
@@ -427,6 +449,7 @@ export function DevAiProvider({
       run,
       cancel,
       subscribeCancel,
+      setInterceptor,
     }),
     [
       status,
@@ -446,6 +469,7 @@ export function DevAiProvider({
       run,
       cancel,
       subscribeCancel,
+      setInterceptor,
     ],
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;

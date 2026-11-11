@@ -48,6 +48,7 @@ import type {
   RenderTask,
 } from "pdfjs-dist";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
+import { useStudioDemo } from "./useStudioDemo";
 import {
   studioCropImage,
   studioImageCanvas,
@@ -500,6 +501,8 @@ export default function StudioView({
       setInspectorOpen(true);
     },
   });
+  // 문제 추출 시연(원장님 2026-11-11) — 시연 계정이 시연 PDF 를 열면 AI 응답을 녹화본으로 답한다(`useStudioDemo.ts`).
+  useStudioDemo(sources);
   const recognizingPage = studioAi.isPageBusy(sourceId, pageNumber);
   /** 담은 문항 장부 — 시험지의 담은 목록 하나에서 센다(`studioCart.ts`). */
   const cart = useStudioCart({

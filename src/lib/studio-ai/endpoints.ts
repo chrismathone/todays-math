@@ -26,6 +26,8 @@ export function getStudioEndpoints(pathname?: string) {
     problems: `${base}/problems`,
     overview: `${base}/overview`,
     teaching: `${base}/teaching`,
+    /** 문제 추출 시연 녹화본(2026-11-11) — 로그인한 시연 계정만 쓰는 운영 경로 하나. */
+    demo: "/api/studio/demo",
     pdfWorker: `${base}/pdf-worker`,
     pdfAssets: `${base}/pdf-assets/`,
   };

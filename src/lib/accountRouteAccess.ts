@@ -215,6 +215,8 @@ export function accountRouteAllowed(
     );
   if (
     under(path, "/api/studio/ai") ||
+    // 문제 추출 시연 녹화본(2026-11-11) — 시연 계정 · 시연 PDF 인지는 라우트가 본다.
+    under(path, "/api/studio/demo") ||
     under(path, "/api/studio/pdf-worker") ||
     under(path, "/api/studio/pdf-assets")
   )

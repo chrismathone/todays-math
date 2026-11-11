@@ -51,6 +51,26 @@ describe("account approval and menu route policy", () => {
     ).toBe(false);
   });
 
+  // 문제 추출 시연 녹화본(원장님 2026-11-11) — 작업실 AI 와 같은 메뉴(studio)다. 시연 계정인지는 라우트가 본다.
+  it("opens the studio demo recording only to studio accounts", () => {
+    for (const method of ["GET", "POST"]) {
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["studio"] },
+          method,
+          "/api/studio/demo",
+        ),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["bank", "library"] },
+          method,
+          "/api/studio/demo",
+        ),
+      ).toBe(false);
+    }
+  });
+
   it("opens only GET/POST of exact teacher insight endpoint to SRS accounts or superadmin", () => {
     const path = "/api/students/student/math-srs/insight";
     for (const method of ["GET", "POST"]) {
