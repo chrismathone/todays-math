@@ -51,6 +51,32 @@ const FigureSpecEnvelope = z.object({
   warnings: z.array(z.string().max(1000)).max(30).default([]),
 });
 
+/**
+ * 글 사이에 든 마지막 `{"spec" …}` 덩어리 — 운영 2026-11-11: Claude Sonnet 5.5 가 고쳐 그리기에서 JSON 앞에 계산 과정을
+ * 글로 길게 썼다(«I estimated pixel positions …» 뒤에 JSON). 따옴표 안의 괄호는 세지 않는다. 없으면 null.
+ */
+function lastSpecObject(raw: string): string | null {
+  for (
+    let start = raw.lastIndexOf("{");
+    start >= 0;
+    start = raw.lastIndexOf("{", start - 1)
+  ) {
+    if (!/^\{\s*"spec"\s*:/.test(raw.slice(start, start + 40))) continue;
+    let depth = 0;
+    let inString = false;
+    for (let at = start; at < raw.length; at++) {
+      const char = raw[at];
+      if (inString) {
+        if (char === "\\") at++;
+        else if (char === '"') inString = false;
+      } else if (char === '"') inString = true;
+      else if (char === "{") depth++;
+      else if (char === "}" && --depth === 0) return raw.slice(start, at + 1);
+    }
+  }
+  return null;
+}
+
 export function parseFigureSpecResult(raw: string): {
   spec: DevAiFigureSpec | null;
   note: string;
@@ -68,7 +94,13 @@ export function parseFigureSpecResult(raw: string): {
     try {
       json = JSON.parse(repairJsonString(raw));
     } catch {
-      throw invalid();
+      const embedded = lastSpecObject(raw);
+      if (!embedded) throw invalid();
+      try {
+        json = JSON.parse(embedded);
+      } catch {
+        throw invalid();
+      }
     }
   }
   const parsed = FigureSpecEnvelope.safeParse(json);

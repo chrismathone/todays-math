@@ -620,6 +620,25 @@ describe("figure spec transport boundary", () => {
   ])("rejects missing, unsupported and oversized specs", (value) => {
     expect(() => parseFigureSpecResult(JSON.stringify(value))).toThrow("스펙");
   });
+  it("reads the last spec object when the model writes its reasoning first (운영 2026-11-11 Sonnet 5.5)", () => {
+    const spec = {
+      spec: {
+        version: "graph-1",
+        xRange: [-7.2, 6.2],
+        labels: [{ text: "{x}" }],
+      },
+      note: "",
+      warnings: [],
+    };
+    const raw = `I estimated pixel positions {roughly}. Recomputing: {"spec": draft} was wrong.\n\n${JSON.stringify(spec)}`;
+    expect(parseFigureSpecResult(raw).spec).toEqual(spec.spec);
+    // 코드펜스로 감싸도 읽는다
+    expect(
+      parseFigureSpecResult("```json\n" + JSON.stringify(spec) + "\n```").spec,
+    ).toEqual(spec.spec);
+    // 글만 있고 spec 덩어리가 없으면 여전히 읽지 못한다
+    expect(() => parseFigureSpecResult("I could not draw it.")).toThrow("스펙");
+  });
   it("rejects nesting before recursive metrics work", () => {
     let nested: object = {};
     for (let i = 0; i < 40; i++) nested = { child: nested };
