@@ -1,7 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { DevAiProvider, useDevAi } from "@/components/unified/useDevAi";
-import { useStudioDemo } from "@/components/unified/useStudioDemo";
+import {
+  useStudioDemo,
+  useStudioDemoFile,
+} from "@/components/unified/useStudioDemo";
 import { sha256OfFile, sha256OfText } from "@/components/unified/studioDemo";
 
 /**
@@ -199,5 +202,59 @@ describe("시연 PDF 가 열리면 녹화본으로 답한다", () => {
       </DevAiProvider>,
     );
     expect(await run()).toBe("서버 해설");
+  });
+});
+
+function FileProbe() {
+  const demo = useStudioDemoFile();
+  return demo ? (
+    <button
+      onClick={() =>
+        void demo
+          .open()
+          .then(async (file) =>
+            document.body.setAttribute(
+              "data-outcome",
+              `${file.name}|${file.type}|${await file.text()}`,
+            ),
+          )
+      }
+    >
+      {demo.name}
+    </button>
+  ) : (
+    <span>없음</span>
+  );
+}
+
+describe("시연 시험지 파일 — 어디서든 아이디로(원장님 2026-11-11)", () => {
+  it("시연 계정이면 서버에 둔 시연 PDF 의 이름을 알고, 누르면 그 파일을 받는다", async () => {
+    fetcher.mockImplementation(async (url: string) =>
+      String(url) === "/api/studio/demo?file=info"
+        ? Response.json({ name: "시연.pdf", bytes: 3 })
+        : String(url) === "/api/studio/demo?file=pdf"
+          ? new Response("pdf", {
+              headers: { "Content-Type": "application/pdf" },
+            })
+          : Response.json(cli),
+    );
+    render(<FileProbe />);
+    (await screen.findByText("시연.pdf")).click();
+    await waitFor(() =>
+      expect(document.body.getAttribute("data-outcome")).toBe(
+        "시연.pdf|application/pdf|pdf",
+      ),
+    );
+  });
+
+  it("시연 계정이 아니거나 올려 둔 파일이 없으면(404) 아무것도 보이지 않는다", async () => {
+    fetcher.mockImplementation(async () =>
+      Response.json({ error: "없음" }, { status: 404 }),
+    );
+    render(<FileProbe />);
+    await waitFor(() =>
+      expect(calls(/^\/api\/studio\/demo\?file=info$/)).toHaveLength(1),
+    );
+    expect(screen.getByText("없음")).toBeInTheDocument();
   });
 });

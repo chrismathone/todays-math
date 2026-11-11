@@ -48,7 +48,7 @@ import type {
   RenderTask,
 } from "pdfjs-dist";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
-import { useStudioDemo } from "./useStudioDemo";
+import { useStudioDemo, useStudioDemoFile } from "./useStudioDemo";
 import {
   studioCropImage,
   studioImageCanvas,
@@ -503,6 +503,8 @@ export default function StudioView({
   });
   // 문제 추출 시연(원장님 2026-11-11) — 시연 계정이 시연 PDF 를 열면 AI 응답을 녹화본으로 답한다(`useStudioDemo.ts`).
   useStudioDemo(sources);
+  // 시연 계정에게만 — 서버에 둔 시연 시험지를 이 PC 에 파일 없이 연다(원장님 2026-11-11 «어디서든 아이디로»)
+  const demoFile = useStudioDemoFile();
   const recognizingPage = studioAi.isPageBusy(sourceId, pageNumber);
   /** 담은 문항 장부 — 시험지의 담은 목록 하나에서 센다(`studioCart.ts`). */
   const cart = useStudioCart({
@@ -2879,6 +2881,28 @@ export default function StudioView({
                   예제 지면 둘러보기 <span aria-hidden="true">↗</span>
                 </button>
               </div>
+              {demoFile ? (
+                <div className={styles.sampleLink}>
+                  시연 계정{" "}
+                  <button
+                    type="button"
+                    title={demoFile.name}
+                    disabled={busy}
+                    onClick={() =>
+                      void demoFile
+                        .open()
+                        .then((file) => importFiles([file]))
+                        .catch(() =>
+                          setError(
+                            "시연 시험지를 받지 못했습니다. 다시 시도해 주세요.",
+                          ),
+                        )
+                    }
+                  >
+                    시연 시험지 열기
+                  </button>
+                </div>
+              ) : null}
               {currentSource ? (
                 <BackButton type="button" onClick={() => setStep("crop")}>
                   열어 둔 원본으로 돌아가기

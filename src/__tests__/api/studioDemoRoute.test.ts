@@ -6,11 +6,16 @@ vi.mock("@/lib/auth", () => ({ auth: vi.fn() }));
 vi.mock("@/lib/studio-demo/store", () => ({
   readStudioDemo: vi.fn(),
   writeStudioDemo: vi.fn(),
+  readStudioDemoPdf: vi.fn(),
 }));
 import { GET, POST } from "@/app/api/studio/demo/route";
 import { getSessionUser } from "@/lib/session";
 import { auth } from "@/lib/auth";
-import { readStudioDemo, writeStudioDemo } from "@/lib/studio-demo/store";
+import {
+  readStudioDemo,
+  readStudioDemoPdf,
+  writeStudioDemo,
+} from "@/lib/studio-demo/store";
 import { STUDIO_DEMO_SOURCE } from "@/lib/studio-demo/source";
 
 /**
@@ -82,6 +87,44 @@ describe("시연 녹화본 읽기", () => {
   it("로그인하지 않으면 401", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(null);
     expect((await get()).status).toBe(401);
+  });
+});
+
+describe("시연 시험지 파일 — 어디서든 아이디로(원장님 2026-11-11)", () => {
+  const file = (kind: string) =>
+    GET(new Request(`${origin}/api/studio/demo?file=${kind}`));
+  const pdf = Buffer.from("%PDF-1.7 시연");
+  beforeEach(() => {
+    vi.mocked(readStudioDemoPdf).mockResolvedValue({
+      name: "[경명여고] 시험지.pdf",
+      bytes: new Uint8Array(pdf),
+    });
+  });
+
+  it("시연 계정에게 이름을 알려 주고, 파일을 PDF 로 내려준다", async () => {
+    const info = await file("info");
+    expect(info.status).toBe(200);
+    expect(await info.json()).toEqual({
+      name: "[경명여고] 시험지.pdf",
+      bytes: pdf.length,
+    });
+    const body = await file("pdf");
+    expect(body.status).toBe(200);
+    expect(body.headers.get("content-type")).toBe("application/pdf");
+    expect(body.headers.get("cache-control")).toContain("no-store");
+    expect(Buffer.from(await body.arrayBuffer()).equals(pdf)).toBe(true);
+    expect(readStudioDemoPdf).toHaveBeenCalledWith(sha);
+  });
+
+  it("다른 계정은 없는 것처럼 404 이고 파일을 읽지도 않는다 · 올려 둔 파일이 없어도 404", async () => {
+    signIn("teacher@example.test");
+    expect((await file("info")).status).toBe(404);
+    expect((await file("pdf")).status).toBe(404);
+    expect(readStudioDemoPdf).not.toHaveBeenCalled();
+    signIn("chrismathone@gmail.com");
+    vi.mocked(readStudioDemoPdf).mockResolvedValue(null);
+    expect((await file("info")).status).toBe(404);
+    expect((await file("pdf")).status).toBe(404);
   });
 });
 

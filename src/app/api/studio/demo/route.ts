@@ -4,7 +4,11 @@ import {
 } from "@/lib/studio-ai/guard";
 import { isStudioDemoAccount } from "@/lib/studio-demo/accounts";
 import { STUDIO_DEMO_SOURCE } from "@/lib/studio-demo/source";
-import { readStudioDemo, writeStudioDemo } from "@/lib/studio-demo/store";
+import {
+  readStudioDemo,
+  readStudioDemoPdf,
+  writeStudioDemo,
+} from "@/lib/studio-demo/store";
 import {
   STUDIO_DEMO_MAX_BODY_BYTES,
   StudioDemoSaveSchema,
@@ -21,10 +25,36 @@ const notFound = () =>
 const demoSource = (email: string, sha256: unknown) =>
   isStudioDemoAccount(email) && sha256 === STUDIO_DEMO_SOURCE.sha256;
 
+/**
+ * `?file=info` · `?file=pdf` — 시연 시험지 파일(원장님 2026-11-11 «어디서든 아이디로 접속해 시연»).
+ * 시연 계정만 받는다. 다른 계정 · 올려 둔 파일이 없으면 404.
+ */
+async function demoFile(email: string, kind: string) {
+  if (!isStudioDemoAccount(email)) return notFound();
+  const pdf = await readStudioDemoPdf(STUDIO_DEMO_SOURCE.sha256);
+  if (!pdf) return notFound();
+  if (kind === "info")
+    return Response.json(
+      { name: pdf.name, bytes: pdf.bytes.byteLength },
+      { headers },
+    );
+  return new Response(pdf.bytes as BodyInit, {
+    headers: {
+      ...headers,
+      "Content-Type": "application/pdf",
+      "Content-Length": String(pdf.bytes.byteLength),
+    },
+  });
+}
+
 async function handleGet(request: Request) {
   const access = await authorizeStudio(request);
   if (access.response) return access.response;
-  const sha256 = new URL(request.url).searchParams.get("sha256");
+  const params = new URL(request.url).searchParams;
+  const kind = params.get("file");
+  if (kind === "info" || kind === "pdf")
+    return demoFile(access.user!.email, kind);
+  const sha256 = params.get("sha256");
   if (!demoSource(access.user!.email, sha256)) return notFound();
   return Response.json(
     { entries: await readStudioDemo(STUDIO_DEMO_SOURCE.sha256) },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDevAi } from "./useDevAi";
 import {
   createStudioDemoSession,
@@ -83,4 +83,45 @@ export function useStudioDemo(
       }
     };
   }, [file, source.sha256, saveDelay, setInterceptor]);
+}
+
+/**
+ * 서버에 둔 시연 시험지(원장님 2026-11-11 «어디서든 아이디로 접속해 시연할 수 있게») — 발표하는 PC 에 파일이 없어도
+ * 시연 계정이면 받아 연다. 시연 계정이 아니거나 올려 둔 파일이 없으면 서버가 404 라 null(아무것도 안 보인다).
+ * 받은 파일은 «내 컴퓨터에서 선택»과 같은 길로 연다 — 그 뒤는 위 `useStudioDemo` 가 지문으로 알아본다.
+ */
+export function useStudioDemoFile(): {
+  name: string;
+  open: () => Promise<File>;
+} | null {
+  const [name, setName] = useState<string | null>(null);
+  useEffect(() => {
+    let closed = false;
+    void (async () => {
+      const response = await fetch(`${getStudioEndpoints().demo}?file=info`, {
+        cache: "no-store",
+      }).catch(() => null);
+      if (closed || !response?.ok) return;
+      const info = (await response.json().catch(() => null)) as {
+        name?: unknown;
+      } | null;
+      if (!closed && typeof info?.name === "string") setName(info.name);
+    })();
+    return () => {
+      closed = true;
+    };
+  }, []);
+  if (!name) return null;
+  return {
+    name,
+    open: async () => {
+      const response = await fetch(`${getStudioEndpoints().demo}?file=pdf`, {
+        cache: "no-store",
+      });
+      if (!response.ok) throw new Error("시연 시험지를 받지 못했습니다.");
+      return new File([await response.arrayBuffer()], name, {
+        type: "application/pdf",
+      });
+    },
+  };
 }
