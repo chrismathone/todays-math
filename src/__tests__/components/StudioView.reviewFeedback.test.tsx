@@ -529,33 +529,46 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
   });
 });
 
-describe("6 · 확대를 풀어도 제목 줄이 꺾인 만큼 작업 칸이 양보한다", () => {
-  it("작업실 머리(제목 줄 + 둘째 줄)의 실제 높이를 --studio-band-height 로 알린다", async () => {
+describe("6 · 작업 칸은 화면 높이에서 그 밖의 줄만 빼고 다 쓴다", () => {
+  // 원장님 2026-11-11 «하단 여백이 너무 쓸데없이 많은데 페이지 확장시켜 · 1920x1080 최적화».
+  // 전에는 머리 띠만 재고 나머지(없어진 위 띠 52 · 바닥 줄 · 안내 줄)를 상수로 빼서 아래가 비었다.
+  it("작업 칸 밖의 실제 높이(머리 띠 · 안내 줄 · 바닥 줄)를 --studio-chrome-height 로 알린다", async () => {
     await openStudio([crop("p1")], { step: "review" });
-    // 안 A(2026-09-21) — 둘째 줄이 캔버스 밖으로 나오면서 재는 대상이 «머리 칸 전체»가 됐다.
-    const band = document.querySelector("[data-studio-header]") as HTMLElement;
-    Object.defineProperty(band, "offsetHeight", {
-      configurable: true,
-      value: 144,
-    });
-    // 복원 안내 글이 뜬 뒤에도 띠를 재는 효과(useEffect)는 아직 안 돌았을 수 있다 — 바로 세면
+    const root = screen.getByRole("region", { name: "문제 제작 스튜디오" });
+    const workspace = document.querySelector(
+      "[data-studio-workspace]",
+    ) as HTMLElement;
+    const height = (element: HTMLElement, value: number) =>
+      Object.defineProperty(element, "offsetHeight", {
+        configurable: true,
+        value,
+      });
+    height(root, 900);
+    height(workspace, 700);
+    // 복원 안내 글이 뜬 뒤에도 재는 효과(useEffect)는 아직 안 돌았을 수 있다 — 바로 세면
     // 전체 시험 부하에서만 0 으로 빨개졌다(2026-09-19 병합 검수). 관찰자가 붙을 때까지 기다린다.
     await waitFor(() =>
       expect(
-        observers.filter((item) => item.target === band).length,
+        observers.filter((item) => item.target === root).length,
       ).toBeGreaterThan(0),
     );
-    const observed = observers.filter((item) => item.target === band);
-    act(() => observed.forEach((item) => item.callback()));
-    // 확대 전(검수도 확대로 시작하지 않는다 — 2026-09-21)과 확대 중 모두 같은 값을 알린다.
-    const root = screen.getByRole("region", { name: "문제 제작 스튜디오" });
-    expect(root.style.getPropertyValue("--studio-band-height")).toBe("144px");
+    const fire = () =>
+      act(() =>
+        observers
+          .filter((item) => item.target === root)
+          .forEach((item) => item.callback()),
+      );
+    fire();
+    expect(root.style.getPropertyValue("--studio-chrome-height")).toBe("200px");
+    // 확대 중에는 스튜디오가 화면을 덮는 고정 칸이라 «전체 − 작업 칸»이 바깥 줄 높이가 아니다 —
+    // 그 값으로 고치면 작업 칸이 줄고 다시 재는 되먹임이 된다. 확대 전 값을 그대로 둔다.
     fireEvent.click(screen.getByRole("button", { name: "편집창 확대" }));
-    expect(
-      screen
-        .getByRole("dialog", { name: "문제 제작 스튜디오" })
-        .style.getPropertyValue("--studio-band-height"),
-    ).toBe("144px");
+    const dialog = screen.getByRole("dialog", { name: "문제 제작 스튜디오" });
+    height(dialog, 1080);
+    fire();
+    expect(dialog.style.getPropertyValue("--studio-chrome-height")).toBe(
+      "200px",
+    );
   });
 });
 

@@ -445,8 +445,8 @@ export default function StudioView({
   const restartDialog = useRef<HTMLDialogElement>(null);
   const cancelRestartButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
-  const band = useRef<HTMLDivElement>(null);
-  const [bandHeight, setBandHeight] = useState(0);
+  const workspace = useRef<HTMLDivElement>(null);
+  const [chromeHeight, setChromeHeight] = useState(0);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; pointerId: number } | null>(null);
@@ -671,18 +671,6 @@ export default function StudioView({
     return () => observer.disconnect();
   }, [editing, step, pageReady]);
 
-  // 제목 줄이 좁아 꺾이면 작업 칸 높이가 그 실제 높이를 빼도록 알린다.
-  // 띠는 네 단계에 다 서므로(안 A) 관찰자도 늘 붙어 있다.
-  useEffect(() => {
-    const element = band.current;
-    if (!element) return;
-    const observer = new ResizeObserver(() =>
-      setBandHeight(element.offsetHeight),
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
   useEffect(() => {
     if (!focusMode) return;
     const background: { element: HTMLElement; inert: boolean }[] = [];
@@ -722,6 +710,23 @@ export default function StudioView({
         trigger.focus({ preventScroll: true });
     };
   }, [focusMode]);
+
+  // 작업 칸이 화면 높이에서 빼야 하는 것은 그 밖의 줄 전부다 — 머리 띠(꺾이면 두 줄) · 안내 줄 ·
+  // 오류 줄 · 바닥 줄. 머리 띠만 재고 나머지를 상수로 빼던 때는 없어진 위 띠까지 빼서 아래가 비었다
+  // (원장님 2026-11-11 «하단 여백이 너무 쓸데없이 많은데 페이지 확장시켜»). 확대 중에는 스튜디오가
+  // 화면을 덮는 고정 칸이라 «전체 − 작업 칸»이 줄 높이가 아니다 — 재지 않고 확대 전 값을 둔다.
+  // 확대 효과(위)가 `studio` 둘레를 바꾸므로 이 효과는 그 뒤에 둔다(react-hooks/immutability).
+  useEffect(() => {
+    const root = studio.current;
+    const area = workspace.current;
+    if (!root || !area) return;
+    const observer = new ResizeObserver(() => {
+      if (root.getAttribute("role") === "dialog") return;
+      setChromeHeight(root.offsetHeight - area.offsetHeight);
+    });
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     mounted.current = true;
@@ -2548,9 +2553,9 @@ export default function StudioView({
       className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""} ${step === "review" ? styles.reviewMode : ""}`}
       aria-label="문제 제작 스튜디오"
       style={
-        bandHeight
+        chromeHeight
           ? ({
-              "--studio-band-height": `${bandHeight}px`,
+              "--studio-chrome-height": `${chromeHeight}px`,
             } as CSSProperties)
           : undefined
       }
@@ -2587,7 +2592,7 @@ export default function StudioView({
         전에 여기 있던 큰 제목(「내 자료로 만드는 문제」)·설명 줄·원형 체크 막대(.workflow)는
         없앴다 — 탭 넷이 그 일을 한다. 되살리지 말 것.
       */}
-      <div ref={band} className={styles.studioHeader} data-studio-header>
+      <div className={styles.studioHeader} data-studio-header>
         <StudioStepBar
           step={step}
           cropCount={crops.length}
@@ -2716,7 +2721,7 @@ export default function StudioView({
         </span>
       </div>
 
-      <div className={styles.workspace}>
+      <div ref={workspace} className={styles.workspace} data-studio-workspace>
         <div className={styles.canvasColumn}>
           {importProgress ? (
             <WorkProgress

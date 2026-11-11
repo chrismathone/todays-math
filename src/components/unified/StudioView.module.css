@@ -447,8 +447,17 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
-  height: max(530px, calc(100dvh - 355px));
-  max-height: 1000px;
+  /* 화면 높이에서 쪽 위 띠(지금 작업실엔 없어 0) · 쪽 위아래 여백 16·16 · 이 칸 밖의 줄 전부
+     (`--studio-chrome-height` — 머리 띠 · 안내 줄 · 바닥 줄을 잰 값)를 뺀 나머지를 다 쓴다.
+     원장님 2026-11-11 «하단 여백이 너무 쓸데없이 많은데 페이지 확장시켜 · 1920x1080 최적화» —
+     전에는 상수 355px 를 빼고 1000px 에서 멈춰 아래가 비었다. */
+  height: max(
+    530px,
+    calc(
+      100dvh - var(--workspace-sticky-inset, 0px) - 32px -
+        var(--studio-chrome-height, 160px)
+    )
+  );
   border: 1px solid var(--studio-line);
   background: #e4e9f1;
 }
@@ -1448,7 +1457,6 @@
 @container (max-width: 1030px) {
   .workspace {
     grid-template-columns: minmax(0, 1fr) 330px;
-    height: max(530px, calc(100dvh - 400px));
   }
   .sourcePicker {
     flex-basis: 100%;
@@ -1623,9 +1631,9 @@
     min-width: 0;
   }
 }
-/* 작업실의 머리 — 제목 줄과 둘째 줄을 한 칸에 담는다. 작업 칸 높이가 빼는 것이 이 칸의
-   **실제** 높이다(`--studio-band-height`). `flow-root` 는 제목 줄의 아래 여백을 이 칸 안에
-   가두려고 둔다 — 밖으로 새면 잰 높이가 8px 모자란다. */
+/* 작업실의 머리 — 제목 줄과 둘째 줄을 한 칸에 담는다. 작업 칸 높이가 빼는 «밖의 줄»에 이 칸의
+   **실제** 높이가 든다(`--studio-chrome-height`). `flow-root` 는 제목 줄의 아래 여백을 이 칸 안에
+   가두려고 둔다. */
 .studioHeader {
   display: flow-root;
 }
@@ -1694,10 +1702,12 @@
 }
 .editing .workspace {
   grid-template-columns: minmax(0, 1fr) 320px;
-  /* 머리줄 52 + 쪽 여백 16·16 + 바닥 줄 63(위 테두리 2px) = 155, 거기에 작업실 머리(제목 줄 +
-     둘째 줄)의 **실제** 높이를 뺀다. 안 A 로 둘째 줄이 캔버스 밖으로 나오면서 그 높이도 셈에 든다.
-     1px 모자라면 창 전체가 스크롤된다. */
-  height: calc(100dvh - 155px - var(--studio-band-height, 52px));
+  /* 위 `.workspace` 와 같은 셈 — 이 칸 밖의 줄(머리 띠 · 바닥 줄)은 잰 값으로 뺀다. 전에는
+     없어진 머리줄 52 를 상수로 빼 그만큼 아래가 비었다. 1px 모자라면 창 전체가 스크롤된다. */
+  height: calc(
+    100dvh - var(--workspace-sticky-inset, 0px) - 32px -
+      var(--studio-chrome-height, 160px)
+  );
   min-height: 240px;
   max-height: none;
   border-radius: 9px 9px 0 0;
