@@ -2176,7 +2176,10 @@ function UnifiedWorkspaceContent({
                   </main>
                 )}
               {view === "export" && hydrated && (
-                <WorksheetEditor {...editorProps} />
+                // 문제 추출 → 시험지도 시험지 만들기와 같은 틀 — 설정 칸 · 미리보기가 창 높이를 채운다
+                // (원장님 2026-11-11 «서식 설정 칸이 페이지 공간에 비해 너무 이상하게» · «1920x1080 기준»).
+                // 전에는 설정 칸만 높이 680px 상한에 안쪽 스크롤이라, 미리보기보다 한참 위에서 끝났다.
+                <WorksheetEditor {...editorProps} builderScrollFrame />
               )}
               {view === "library" && storageScope && (
                 <PrivateLibrary
