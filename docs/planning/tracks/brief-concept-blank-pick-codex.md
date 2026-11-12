@@ -110,3 +110,18 @@ npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/u
 npm run type-check
 npm run lint:affordance
 ```
+
+### 5차 리뷰 반영
+
+- 대상: `scratch/review/review-pick5.md`의 홈 뒤로가기 초안 유실. 코드 커밋은 **`9f927d71e`**이며 이 절은 후속 문서 커밋에 담았다.
+- **TDD:** 제품 코드 수정 전에 실제 `history.back()` 재현을 추가하여 **2실패·6통과** RED를 확인했다(`scratch/review/pick5-history-red.log`). `/`와 `/?other=1`로 뒤로 갔다 메뉴로 돌아오면 미저장 제목이 빈 문자열이 되어 실패했다. `/#library` 왕복과 개념 백지 주소 탐색 6개는 대조 시험으로 처음부터 통과했다.
+- **주소 탐색 범위:** `popstate`는 `#conceptBlank` 해시, `blank` 인수, `blankDoc` 인수 중 하나가 있는 주소만 개념 백지의 새 선택으로 읽는다. 나머지 주소에서는 주소 관측값·초안·저장 문서·문서 세대를 바꾸는 처리에 들어가기 전에 반환한다. 다른 작업실 화면으로의 이동은 숨겨 둔 초안을 유지하고, 명시적 개념 백지 주소의 복원 동작은 유지한다.
+- **왕복 검증:** 실제 제품 고르기 창에서 체크한 2문항을 적용하고 제목을 고친 뒤, 홈·내 시험지·일반 쿼리 주소로 `history.back()` → 메뉴의 `pushState`/화면 활성으로 돌아왔다. 세 경우 모두 미저장 직접 모드·문항 2개·제목·인쇄 선택·다시 싣는 주소가 동일하다. 별도로 `blank` 주소 두 개와 `blankDoc` 주소 두 개 사이의 실제 뒤로/앞으로를 해시 있음/없음 각각 확인했으며, 저장본은 해당 문서 id를 다시 읽는다. 인수 없는 `/#conceptBlank`로의 명시적 탐색은 빈 선택으로 열리고 앞으로 가면 이전 선택을 복원한다. 새 회귀 시험은 총 **8개**다.
+- **최종 검증:** 아래 관련 시험 **17파일·245시험 통과**(`--maxWorkers=3`), `npm run type-check`, `npm run lint:affordance`, 변경 2파일 ESLint(경고·오류 0)·Prettier·`git diff --check` 통과. 최종 로그는 로컬 `scratch/review/pick5-related-tests.log`·`pick5-type-check.log`·`pick5-affordance.log`·`pick5-eslint.log`다. 전체 시험은 이번에 다시 실행하지 않았으며 앞선 전체 관문 미통과 이력은 그대로다.
+- **검증 범위:** RTL/jsdom의 실제 history 이벤트와 제품 View를 유지하는 숨김/활성 호스트, 저장본의 메모리 fetch로 검증했다. 작업실 전체 브라우저·실계정·실물 인쇄 검수는 하지 않았다. CSS·저장 계약·DB와 3차 참고 4번은 수정하지 않았다. 푸시·main 병합·공유 DB 쓰기·`.env` 복사·운영 빌드 없이 현재 가지에 커밋하고 미병합 작업트리는 보존한다.
+
+```sh
+npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/unit/conceptBlankSelectionCodec.test.ts src/__tests__/unit/conceptBlankExactPick.test.ts src/__tests__/unit/conceptBlankSheetCode.test.ts src/__tests__/unit/conceptBlankBankLoad.test.ts src/__tests__/unit/pickerDialog.test.tsx src/__tests__/unit/textbookConcepts.test.ts src/__tests__/components/ConceptBlankPick.test.tsx src/__tests__/components/ConceptBlankAutoOrder.test.tsx src/__tests__/components/ConceptBlankPickDocument.test.tsx src/__tests__/components/ConceptBlankPickEdges.test.tsx src/__tests__/components/ConceptBlankDocumentGeneration.test.tsx src/__tests__/components/ConceptBlankHistory.test.tsx src/__tests__/components/LibrarySaveDialog.test.tsx src/__tests__/components/ConceptBlankView.test.tsx src/__tests__/components/PrintCheck.test.tsx src/__tests__/api/conceptBlankPrintPage.test.ts --maxWorkers=3
+npm run type-check
+npm run lint:affordance
+```
