@@ -2252,3 +2252,59 @@
 .reviewNavigation [data-strip-warning-label] {
   display: none;
 }
+.pageOrderMode .workspace,
+.pageOrderMode .actionBar,
+.pageOrderMode .announcement,
+.studio button[hidden] {
+  display: none;
+}
+
+.pageOrderToast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 60;
+  max-width: calc(100vw - 32px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--learn-ink, #172b4d);
+  color: var(--learn-on-nav, #fff);
+  box-shadow: 0 6px 24px #172b4d26;
+  font-size: 13px;
+}
+.pageOrderToast button {
+  flex: none;
+  min-height: 34px;
+  padding: 0 12px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pageOrderToast button:enabled:hover {
+  background: #ffffff22;
+}
+.pageOrderToast button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .pageOrderToast {
+    bottom: 80px;
+  }
+  .pageOrderToast button {
+    min-height: 44px;
+  }
+}
+
+@media (min-width: 761px) and (pointer: fine) {
+  .pageOrderMode .editorBar button {
+    height: 34px;
+    min-height: 34px;
+  }
+}

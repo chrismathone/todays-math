@@ -58,6 +58,19 @@ beforeEach(() => {
 });
 
 describe("bounded authorized workflow projection", () => {
+  it("includes the saved page-order stage in the private library list", async () => {
+    mocks.query.mockResolvedValue([
+      { ...shared, metadata: { data: { step: "order" } } },
+    ]);
+    const response = await listDocuments(
+      new Request("https://example.test/api/library/documents"),
+    );
+    expect((await response.json()).data[1].workflow).toEqual({
+      source: "extraction",
+      step: "order",
+    });
+  });
+
   it("projects only bounded JSON scalars for already authorized owner/id/revision tuples", async () => {
     mocks.query.mockResolvedValue([
       { ...mine, metadata: { workflow: { source: "bank", step: "review" } } },

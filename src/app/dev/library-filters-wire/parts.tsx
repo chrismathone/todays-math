@@ -54,6 +54,7 @@ const PHONE = { width: 390, height: 844, nav: 77 };
 
 const STAGE_LABEL: Record<DocumentWorkflow["step"], string> = {
   import: "원본 가져오기",
+  order: "쪽 순서",
   crop: "문제 잘라내기",
   scope: "1 범위 설정",
   review: "2 문항 검토",

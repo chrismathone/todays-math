@@ -12,6 +12,8 @@ import {
   studioCartState,
   type StudioCartRemoval,
   onlySolutionChanged,
+  reconcileStudioPageCart,
+  removeAllFromCart,
 } from "@/components/unified/studioCart";
 import { applyStudioCropEdit } from "@/components/unified/studioCropEdit";
 import {
@@ -57,6 +59,157 @@ const bank = (id: string): StudioProblem => ({
   figureSvg: null,
   figureDims: [],
   figureSourceMm: [],
+});
+
+describe("쪽 제외와 담은 문항 보존", () => {
+  const abc = () =>
+    [1, 2, 3].map((page) =>
+      studioProblem(crop(String.fromCharCode(64 + page), { page })),
+    );
+  const pageOrder = (out: boolean) =>
+    [1, 2, 3].map((page) => ({ sourceId: "s1", page, out: out && page === 2 }));
+
+  it("3차 재현: B쪽 제외·C 직접 빼기·B 되살리기 뒤 C의 표시와 복원 자리가 같다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const removed = rememberRemoval(
+      excluded.removed,
+      initial[2],
+      1,
+      excluded.picked,
+    );
+    expect(removed.find((item) => item.problem.id === "C")).toMatchObject({
+      index: 1,
+      previousId: "B",
+    });
+    const restored = reconcileStudioPageCart(
+      [initial[0]],
+      removed,
+      pageOrder(false),
+    );
+    expect(restored.picked).toEqual(initial.slice(0, 2));
+    expect(
+      studioCartRows(restored.picked, restored.removed).map((row) => [
+        row.problem.id,
+        row.removed,
+        row.order ?? null,
+      ]),
+    ).toEqual([
+      ["A", false, 1],
+      ["B", false, 2],
+      ["C", true, null],
+    ]);
+    const complete = restoreToCart(
+      restored.picked,
+      initial[2],
+      1,
+      restored.removed,
+    );
+    expect(complete).toEqual(initial);
+    expect(
+      studioCartRows(complete, forgetRemovals(restored.removed, ["C"])).map(
+        (row) => [row.problem.id, row.removed, row.order],
+      ),
+    ).toEqual([
+      ["A", false, 1],
+      ["B", false, 2],
+      ["C", false, 3],
+    ]);
+  });
+
+  it("2차 재현 A: B쪽 제외 후 A를 직접 빼도 B 되살리기는 C 앞으로 간다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const afterRemoval = reconcileStudioPageCart(
+      [initial[2]],
+      rememberRemoval(excluded.removed, initial[0], 0, excluded.picked),
+      pageOrder(true),
+    );
+    const restored = reconcileStudioPageCart(
+      afterRemoval.picked,
+      afterRemoval.removed,
+      pageOrder(false),
+    );
+    expect(restored.picked.map((p) => p.id)).toEqual(["B", "C"]);
+    expect(
+      restoreToCart(restored.picked, initial[0], 0, restored.removed).map(
+        (p) => p.id,
+      ),
+    ).toEqual(["A", "B", "C"]);
+  });
+
+  it("2차 재현 B: B쪽 제외·모두 빼기·실행 취소 뒤 B 되살리기는 A와 C 사이로 간다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const cleared = removeAllFromCart(excluded.picked, excluded.removed);
+    const whileEmpty = reconcileStudioPageCart(
+      cleared.picked,
+      cleared.removed,
+      pageOrder(true),
+    );
+    const undone = reconcileStudioPageCart(
+      excluded.picked,
+      forgetRemovals(
+        whileEmpty.removed,
+        excluded.picked.map((p) => p.id),
+      ),
+      pageOrder(true),
+    );
+    const restored = reconcileStudioPageCart(
+      undone.picked,
+      undone.removed,
+      pageOrder(false),
+    );
+    expect(restored.picked.map((p) => p.id)).toEqual(["A", "B", "C"]);
+  });
+
+  it("연속 제외·복원은 원래 자리와 원본 객체를 보존하며 다른 파일·은행·직접 뺀 문항에 간섭하지 않는다", () => {
+    const a = studioProblem(crop("a", { page: 1, solution: "보존할 해설" }));
+    const b = studioProblem(crop("b", { page: 2 }));
+    const other = studioProblem(crop("other", { sourceId: "s2", page: 1 }));
+    const manual = {
+      problem: studioProblem(crop("manual", { page: 1 })),
+      index: 3,
+    };
+    const initial = [a, bank("bank"), b, other];
+    const order = (out: number[]) =>
+      [1, 2].map((page) => ({ sourceId: "s1", page, out: out.includes(page) }));
+    const first = reconcileStudioPageCart(initial, [manual], order([1]));
+    const both = reconcileStudioPageCart(
+      first.picked,
+      first.removed,
+      order([1, 2]),
+    );
+    expect(both.picked.map((p) => p.id)).toEqual(["bank", "other"]);
+    const partial = reconcileStudioPageCart(
+      both.picked,
+      both.removed,
+      order([1]),
+    );
+    expect(partial.picked.map((p) => p.id)).toEqual(["bank", "b", "other"]);
+    const restored = reconcileStudioPageCart(
+      partial.picked,
+      partial.removed,
+      order([]),
+    );
+    expect(restored.picked).toEqual(initial);
+    expect(restored.picked[0]).toBe(a);
+    expect(restored.removed).toEqual([manual]);
+    expect(
+      reconcileStudioPageCart(restored.picked, restored.removed, order([]))
+        .picked,
+    ).toBe(restored.picked);
+  });
+
+  it("다른 추출 작업을 열어도 제외된 쪽을 임의로 되살리지 않는다", () => {
+    const problem = studioProblem(crop("a"));
+    const removed = [{ problem, index: 0, pageExcluded: true }];
+    expect(
+      reconcileStudioPageCart([], removed, [
+        { sourceId: "other", page: 1, out: false },
+      ]).removed,
+    ).toBe(removed);
+  });
 });
 
 describe("studioCartState — 작업실 한 문항이 시험지에서 어떤 상태인가", () => {
@@ -153,6 +306,58 @@ describe("장부 고치기 — 담기·빼기·되돌리기", () => {
 });
 
 describe("studioCartRows — 목록 줄", () => {
+  it("연속·반복 직접 빼기는 빠진 이웃을 따라 표시하고 담긴 문항의 차례와 번호를 보존한다", () => {
+    const [a, b, c, d] = ["a", "b", "c", "d"].map(bank);
+    let removed = rememberRemoval([], b, 1, [a, b, c, d]);
+    removed = rememberRemoval(removed, c, 1, [a, c, d]);
+    const restoredB = restoreToCart([a, d], b, 1, removed);
+    removed = forgetRemovals(removed, ["b"]);
+    removed = rememberRemoval(removed, b, 1, restoredB);
+    expect(removed.filter((item) => item.problem.id === "b")).toHaveLength(1);
+
+    // A visible reorder is authoritative; removed neighbors do not renumber it.
+    const picked = [d, a];
+    const rows = studioCartRows(picked, removed);
+    expect(
+      rows.map((row) => [row.problem.id, row.removed, row.order ?? null]),
+    ).toEqual([
+      ["d", false, 1],
+      ["a", false, 2],
+      ["b", true, null],
+      ["c", true, null],
+    ]);
+    expect(
+      rows.filter((row) => !row.removed).map((row) => row.problem),
+    ).toEqual(picked);
+    for (const problem of [b, c]) {
+      expect(
+        restoreToCart(picked, problem, 1, removed).map((item) => item.id),
+      ).toEqual(
+        rows
+          .filter((row) => !row.removed || row.problem === problem)
+          .map((row) => row.problem.id),
+      );
+    }
+    expect(picked).toEqual([d, a]);
+  });
+
+  it("맨 앞 이웃과 이미 담긴 문항의 뺀 기억도 복원과 같은 규칙으로 처리한다", () => {
+    const [a, b, c] = ["a", "b", "c"].map(bank);
+    expect(
+      studioCartRows(
+        [b, c],
+        [
+          { problem: a, index: 9, previousId: null },
+          { problem: b, index: 0, previousId: null },
+        ],
+      ).map((row) => [row.problem.id, row.removed, row.order ?? null]),
+    ).toEqual([
+      ["a", true, null],
+      ["b", false, 1],
+      ["c", false, 2],
+    ]);
+  });
+
   it("담긴 것은 시험지 차례대로 번호, 뺀 것은 뺀 자리에 흐리게(번호 없음)", () => {
     const [a, b, c, d] = ["a", "b", "c", "d"].map(bank);
     const rows = studioCartRows(

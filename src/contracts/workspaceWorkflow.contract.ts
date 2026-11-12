@@ -7,7 +7,7 @@ export type WorkspaceWorkflow = {
 };
 export type DocumentWorkflow = {
   source: WorkspaceWorkflow["source"] | "arithmetic";
-  step: WorkspaceWorkflowStep | "import" | "crop";
+  step: WorkspaceWorkflowStep | "import" | "order" | "crop";
   sourceDocumentId?: string;
 };
 
@@ -58,7 +58,12 @@ export function documentWorkflow(
   if (kind !== "extraction" || !record(payload.data)) return undefined;
   const step = payload.data.step;
   if (step === "upload") return { source: "extraction", step: "import" };
-  if (step === "import" || step === "crop" || step === "review")
+  if (
+    step === "import" ||
+    step === "order" ||
+    step === "crop" ||
+    step === "review"
+  )
     return { source: "extraction", step };
   if (step === "export") return { source: "extraction", step: "output" };
   return undefined;

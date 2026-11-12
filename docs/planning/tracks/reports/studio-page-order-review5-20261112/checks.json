@@ -1,0 +1,37 @@
+{
+  "implementationCommit": "d5347651f",
+  "relatedTests": {
+    "files": 34,
+    "passed": 688,
+    "maxWorkers": 3
+  },
+  "postTypeFixPreviewTests": {
+    "passed": 66,
+    "maxWorkers": 3
+  },
+  "typeCheck": {
+    "command": "npm run type-check",
+    "heapMiB": 8192,
+    "exitCode": 0
+  },
+  "affordance": {
+    "command": "npm run lint:affordance",
+    "exitCode": 0
+  },
+  "changedTsEslint": {
+    "files": 6,
+    "exitCode": 0
+  },
+  "diffCheck": {
+    "exitCode": 0
+  },
+  "normalCommitHook": "passed: ESLint, Prettier, affordance",
+  "runtimeUnchangedByTypeCorrection": true,
+  "previewSourceSha256": "558db3accbf08e8fe151e3602aeadec333bef8b05fc55fb1a519335de8bd54b5",
+  "firstTypeCheck": "Failed: helper generic inference, getPage test mock signature, scratch measurement types; corrected before successful full type-check",
+  "limits": [
+    "Related suite only; no whole-repository Vitest rerun",
+    "Actual PDF checks in Node/PDF.js/@napi-rs/canvas; no new browser E2E",
+    "No production build, shared DB writes, push or main merge"
+  ]
+}

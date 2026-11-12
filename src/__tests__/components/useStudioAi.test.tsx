@@ -82,16 +82,18 @@ function mount(
   interface MountProps {
     contextKey: string;
     active: boolean;
+    activePages?: readonly Pick<StudioAiPage, "sourceId" | "page">[];
     figuresDeferred?: boolean;
   }
   return renderHook(
-    ({ contextKey, active, figuresDeferred }: MountProps) => {
+    ({ contextKey, active, activePages, figuresDeferred }: MountProps) => {
       const [crops, setCrops] = useState(initial);
       const studio = useStudioAi({
         crops,
         setCrops,
         contextKey,
         active,
+        activePages,
         figuresDeferred,
         onDetected,
         onRotatePage,
@@ -1951,6 +1953,90 @@ describe("Studio background page queue", () => {
     });
     expect(result.current.pageJobs[0].state).toBe("complete");
     expect(result.current.crops).toHaveLength(4);
+  });
+
+  it.each(["retryPages", "retry"] as const)(
+    "%s retries only the latest active pages and retains excluded failures for restoration",
+    async (method) => {
+      bridge.run.mockResolvedValue(pageResponse());
+      const tasks = [task(1), task(2)];
+      for (const input of tasks)
+        input.load.mockRejectedValueOnce(new Error("render failed"));
+      const { result, rerender } = mount([]);
+      rerender({
+        contextKey: "source:1",
+        active: true,
+        activePages: tasks,
+      });
+      await act(async () => {
+        await result.current.recognizePages(tasks);
+      });
+      expect(result.current.pageJobs.map((job) => job.state)).toEqual([
+        "error",
+        "error",
+      ]);
+      const retry = result.current[method];
+      rerender({
+        contextKey: "source:2",
+        active: true,
+        // Page 1 of another source must not activate the failed source's page 1.
+        activePages: [{ sourceId: "other", page: 1 }, tasks[1]],
+      });
+      await act(async () => {
+        await retry();
+      });
+      expect(tasks.map((input) => input.load.mock.calls.length)).toEqual([
+        1, 2,
+      ]);
+      expect(result.current.pageJobs.map((job) => job.state)).toEqual([
+        "error",
+        "complete",
+      ]);
+      expect(bridge.run).toHaveBeenCalledTimes(1);
+      expect(bridge.run.mock.calls[0][0].imageDataUrl).toBe(
+        pixels(2).imageDataUrl,
+      );
+      rerender({
+        contextKey: "source:1",
+        active: true,
+        activePages: tasks,
+      });
+      await act(async () => {
+        await retry();
+      });
+      expect(tasks.map((input) => input.load.mock.calls.length)).toEqual([
+        2, 2,
+      ]);
+      expect(result.current.pageJobs.map((job) => job.state)).toEqual([
+        "complete",
+        "complete",
+      ]);
+      expect(bridge.run).toHaveBeenCalledTimes(2);
+    },
+  );
+
+  it("keeps failures when no pages are active and restores legacy retries when the scope is omitted", async () => {
+    bridge.run.mockResolvedValue(pageResponse());
+    const input = task(1);
+    input.load.mockRejectedValueOnce(new Error("render failed"));
+    const { result, rerender } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([input]);
+    });
+    rerender({ contextKey: "source:1", active: true, activePages: [] });
+    await act(async () => {
+      await result.current.retryPages();
+      await result.current.retry();
+    });
+    expect(input.load).toHaveBeenCalledTimes(1);
+    expect(result.current.pageJobs[0].state).toBe("error");
+    expect(bridge.run).not.toHaveBeenCalled();
+    rerender({ contextKey: "source:1", active: true });
+    await act(async () => {
+      await result.current.retryPages();
+    });
+    expect(input.load).toHaveBeenCalledTimes(2);
+    expect(result.current.pageJobs[0].state).toBe("complete");
   });
 
   it("drains after a render failure and retries that page with its captured loader", async () => {

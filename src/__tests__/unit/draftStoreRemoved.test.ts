@@ -93,6 +93,40 @@ afterEach(() => {
 });
 
 describe("뺀 기억은 시험지와 같이 저장된다", () => {
+  it("쪽 제외로 보관한 문항은 저장 왕복에도 자동 복원 이유와 원래 자리를 보존한다", () => {
+    const { create } = memory();
+    const store = create();
+    store.hydrate();
+    store.importDraft({
+      version: 1,
+      title: "쪽 제외",
+      problems: [shot("b", 2)],
+      removed: [
+        {
+          problem: shot("a", 1),
+          index: 0,
+          pageExcluded: true,
+          previousId: null,
+        },
+        { problem: shot("c", 3), index: 2, previousId: "b" },
+      ],
+    });
+    expect(store.saveNow()).toBe(true);
+    const reload = create();
+    reload.hydrate();
+    expect(reload.getSnapshot().draft.removed[0]).toMatchObject({
+      index: 0,
+      pageExcluded: true,
+      previousId: null,
+      problem: { id: "a" },
+    });
+    expect(reload.getSnapshot().draft.problems.map((p) => p.id)).toEqual(["b"]);
+    expect(reload.getSnapshot().draft.removed[1]).toMatchObject({
+      previousId: "b",
+      problem: { id: "c" },
+    });
+  });
+
   it("새로 고친 뒤에도 뺀 문항과 뺀 자리가 남는다", () => {
     const { create } = memory();
     const store = create();

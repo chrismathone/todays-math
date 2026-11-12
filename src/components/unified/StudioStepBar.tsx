@@ -8,7 +8,7 @@ import type { ReactNode, Ref } from "react";
  */
 import styles from "./StudioView.module.css";
 
-export type StudioStep = "upload" | "crop" | "review" | "export";
+export type StudioStep = "upload" | "order" | "crop" | "review" | "export";
 
 /** Optional navigation for callers that share output but own another workflow. */
 export interface StudioStepNavigation {
@@ -40,6 +40,7 @@ export default function StudioStepBar({
   cropCount,
   pickedCount,
   canCrop,
+  canOrder,
   canReview,
   canExport = true,
   canCompose,
@@ -65,6 +66,7 @@ export default function StudioStepBar({
    * 셈으로 막으면 시험지 화면에서 검수로 돌아가는 길이 «셈을 모른다»는 이유로 막힌다.
    */
   canCrop: boolean;
+  canOrder?: boolean;
   canReview: boolean;
   canExport?: boolean;
   /** Extraction may add pending crops on entry while the badge keeps the current picked count. */
@@ -110,12 +112,25 @@ export default function StudioStepBar({
           <nav className={styles.stepTabs} aria-label="제작 단계 이동">
             {canStudio && (
               <>
+                {canOrder !== undefined && (
+                  <button
+                    type="button"
+                    aria-pressed={step === "order"}
+                    disabled={!canOrder}
+                    onClick={() => onStep("order")}
+                  >
+                    쪽 순서
+                  </button>
+                )}
                 <button
                   type="button"
                   aria-pressed={step === "upload" || step === "crop"}
-                  onClick={() => onStep("upload")}
+                  onClick={() =>
+                    onStep(canOrder !== undefined ? "crop" : "upload")
+                  }
+                  disabled={canOrder !== undefined && !canCrop}
                 >
-                  1 범위 설정
+                  {canOrder !== undefined ? "1 영역 지정" : "1 범위 설정"}
                 </button>
                 <button
                   type="button"

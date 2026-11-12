@@ -1,0 +1,12 @@
+{
+  "pdfConfirmationScale": 2.5,
+  "pdfScaleFloor": "Do not go below the thumbnail scale",
+  "imageConfirmation": "At least native pixel dimensions",
+  "keepAtNonwhitePixels": 1,
+  "channelComparison": "Composite on white; any RGB channel <255",
+  "pageDeadlineMs": 3000,
+  "scope": "One cumulative deadline from preview start, not a separate timer per phase",
+  "decision": "Calibration worker identified scale2 as lowest measured sufficient. Coordinator selected measured scale2.5 because exact B has295 nonwhite pixels instead of1 at2; candidate-only processing and the common deadline bound added cost.",
+  "measurementRef": "calibration.json",
+  "scopeLimit": "Node PDF.js/@napi-rs/canvas measurements; not browser performance guarantees"
+}

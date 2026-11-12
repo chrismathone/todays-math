@@ -9,6 +9,7 @@ import {
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
+import { documentWorkflow } from "@/contracts/workspaceWorkflow.contract";
 import PrivateLibrary from "@/components/unified/PrivateLibrary";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
 import { privateServer, sessionData } from "../fixtures/privateCloud";
@@ -98,6 +99,36 @@ const titles = () =>
     .map((button) => button.textContent);
 
 describe("private library board", () => {
+  it("keeps a saved page-order extraction in my working documents and resumes that stage", async () => {
+    const working = {
+      ...boardItems[2],
+      title: "쪽 순서 작업",
+      workflow: documentWorkflow("extraction", {
+        data: { ...sessionData(), step: "order" },
+      }),
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse([working, boardItems[0]])),
+    );
+    const props = boardProps();
+    render(<PrivateLibrary {...props} />);
+    await screen.findByRole("button", { name: "쪽 순서 작업 열기" });
+    expect(workingOption()).toBe("내 작업 중만 (1)");
+    choose("보기 범위", "working");
+    expect(titles()).toEqual(["쪽 순서 작업"]);
+    expect(screen.getByText("쪽 순서")).toBeVisible();
+    fireEvent.click(
+      screen.getByRole("button", { name: "쪽 순서 작업 이어서 작업" }),
+    );
+    await waitFor(() =>
+      expect(props.onOpenExtraction).toHaveBeenCalledExactlyOnceWith("gamma", {
+        mode: "resume",
+        workflow: { source: "extraction", step: "order" },
+      }),
+    );
+  });
+
   it("keeps saved arithmetic output in its library category, outside autosaved work", async () => {
     const arithmetic: PrivateDocumentSummary = {
       ...boardItems[0],

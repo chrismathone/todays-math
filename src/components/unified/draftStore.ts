@@ -426,13 +426,30 @@ function parseRemovals(
       (item: unknown) =>
         record(item) &&
         Number.isInteger(item.index) &&
-        (item.index as number) >= 0,
+        (item.index as number) >= 0 &&
+        (item.pageExcluded === undefined ||
+          typeof item.pageExcluded === "boolean") &&
+        (item.previousId === undefined ||
+          item.previousId === null ||
+          (typeof item.previousId === "string" && item.previousId.length > 0)),
     )
   )
     throw new DraftError(INVALID_IMPORT);
-  const items = value as { problem: unknown; index: number }[];
+  const items = value as {
+    problem: unknown;
+    index: number;
+    pageExcluded?: boolean;
+    previousId?: string | null;
+  }[];
   return parseProblems(items.map((item) => item.problem))
-    .map((problem, at) => ({ problem, index: items[at].index }))
+    .map((problem, at) => ({
+      problem,
+      index: items[at].index,
+      ...(items[at].pageExcluded ? { pageExcluded: true } : {}),
+      ...(items[at].previousId !== undefined
+        ? { previousId: items[at].previousId }
+        : {}),
+    }))
     .filter((item) => !problems.some((kept) => kept.id === item.problem.id));
 }
 

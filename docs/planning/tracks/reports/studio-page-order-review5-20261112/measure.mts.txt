@@ -1,0 +1,187 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
+import type { BinaryLike } from "node:crypto";
+import assert from "node:assert/strict";
+import { createCanvas, DOMMatrix, ImageData, Path2D, Image } from "@napi-rs/canvas";
+import type { PDFPageProxy } from "pdfjs-dist";
+const directory = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+const pdfRoot = path.dirname(require.resolve("pdfjs-dist/package.json"));
+Object.assign(globalThis, {
+  DOMMatrix, ImageData, Path2D, HTMLImageElement: Image,
+  document: { createElement: () => createCanvas(1, 1) },
+});
+const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+const { renderStudioPagePreview } = await import("../../../src/components/unified/studioPagePreview.ts");
+const mode = process.argv[2];
+assert(["baseline", "after"].includes(mode));
+const hash = (bytes: BinaryLike) => createHash("sha256").update(bytes).digest("hex");
+const source = await fs.readFile(path.join(directory, "../../../src/components/unified/studioPagePreview.ts"), "utf8");
+await fs.writeFile(path.join(directory, `${mode}-source.ts.txt`), source);
+
+async function open(file: string) {
+  const bytes = await fs.readFile(path.join(directory, file));
+  const pdf = await pdfjs.getDocument({
+    data: new Uint8Array(bytes), useSystemFonts: false,
+    standardFontDataUrl: path.join(pdfRoot, "standard_fonts") + path.sep,
+    wasmUrl: path.join(pdfRoot, "wasm") + path.sep,
+  }).promise;
+  return { pdf, bytes };
+}
+
+function objects(page: any) {
+  // Read-only instrumentation of actual PDFPageProxy.objs, not process RSS.
+  // Installed PDFObjects exposes a resolved-object iterator; data is not copied here.
+  const images = Array.from(page.objs as Iterable<[string, any]>).flatMap(([id, object]) =>
+    object?.width && object?.height && object?.data?.byteLength
+      ? [{ id, width: object.width, height: object.height, decodedBytes: object.data.byteLength }]
+      : [],
+  );
+  return { resolvedObjects: Array.from(page.objs).length, images,
+    decodedBytes: images.reduce((total, image) => total + image.decodedBytes, 0) };
+}
+
+function instrument(page: any, cleanupEvents: any[], renderEvents: any[]) {
+  return new Proxy(page, { get(target, key) {
+    if (key === "cleanup") return (...args: any[]) => {
+      const before = objects(target);
+      const success = target.cleanup(...args);
+      cleanupEvents.push({ page: page.pageNumber, success, before, after: objects(target) });
+      return success;
+    };
+    if (key === "render") return (...args: any[]) => {
+      const start = performance.now();
+      const task = target.render(...args);
+      task.promise.then(() => renderEvents.push({ page: page.pageNumber,
+        scale: args[0].viewport.scale, elapsedMs: performance.now() - start,
+        retained: objects(target) }), () => {});
+      return task;
+    };
+    const value = Reflect.get(target, key);
+    return typeof value === "function" ? value.bind(target) : value;
+  } });
+}
+
+const { pdf, bytes } = await open("white-scan-16.pdf");
+const pages: PDFPageProxy[] = [];
+const rows = [];
+const cleanupEvents: any[] = [];
+const renderEvents: any[] = [];
+const start = performance.now();
+for (let number = 1; number <= pdf.numPages; number++) {
+  const page = await pdf.getPage(number);
+  pages.push(page);
+  const wrapped = instrument(page, cleanupEvents, renderEvents);
+  const wrappedPdf = { getPage: async () => wrapped };
+  const published: any[] = [];
+  const preview = await renderStudioPagePreview({ pdf: wrappedPdf as any }, number,
+    new AbortController().signal, { onPreview: (preview: any) => {
+      published.push({ urlReady: preview.url.startsWith("data:image/"),
+        inkRatio: preview.inkRatio, autoOut: preview.autoOut ?? null,
+        elapsedMs: performance.now() - start });
+    } });
+  rows.push({ page: number, inkRatio: preview.inkRatio, autoOut: preview.autoOut ?? null,
+    error: preview.error ?? null, retainedAfterInvocation: objects(page), published });
+}
+const total = () => pages.reduce((sum, page) => sum + objects(page).decodedBytes, 0);
+const retainedDecodedBytesAfterPreviews = total();
+const elapsedMs = performance.now() - start;
+await fs.writeFile(path.join(directory, `${mode}-scan.json`), JSON.stringify({
+  mode, sourceSha256: hash(source), fixtureBytes: bytes.length,
+  retainedDecodedBytesAfterPreviews, elapsedMs, rows, cleanupEvents, renderEvents,
+}, null, 2) + "\n");
+const explicitCleanup = pages.map((page) => ({ page: page.pageNumber,
+  success: page.cleanup(), after: objects(page) }));
+const retainedDecodedBytesAfterExplicitCleanup = total();
+
+async function region(page: any) {
+  const canvas = createCanvas(230, 190);
+  const viewport = page.getViewport({ scale: 1.7 });
+  await page.render({ canvas, canvasContext: canvas.getContext("2d"), viewport,
+    transform: [1, 0, 0, 1, -90, -140] }).promise;
+  const data = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data;
+  let nonwhitePixels = 0;
+  for (let i = 0; i < data.length; i += 4)
+    if (data[i] < 255 || data[i + 1] < 255 || data[i + 2] < 255) nonwhitePixels++;
+  const result = { sha256: hash(data), width: canvas.width, height: canvas.height, nonwhitePixels };
+  canvas.width = canvas.height = 0;
+  return result;
+}
+// Revisit the exact shared scan document after all page caches have been released.
+const revisitedPage = await pdf.getPage(1);
+const scanRegionBefore = await region(revisitedPage);
+assert(revisitedPage.cleanup());
+const scanRegionAfter = await region(await pdf.getPage(1));
+assert.deepEqual(scanRegionAfter, scanRegionBefore);
+assert(revisitedPage.cleanup());
+await pdf.loadingTask.destroy();
+
+// Also compare a meaningful, nonwhite raster before and after product cleanup.
+const { pdf: probePdf } = await open("patterned-probe.pdf");
+const probePage = await probePdf.getPage(1);
+const probeBefore = await region(probePage);
+assert(probeBefore.nonwhitePixels > 0);
+const probeCleanupEvents: any[] = [];
+const probeRenderEvents: any[] = [];
+const probePreview = await renderStudioPagePreview({ pdf: {
+  getPage: async () => instrument(probePage, probeCleanupEvents, probeRenderEvents),
+} as any }, 1, new AbortController().signal);
+const probeAfterProduct = objects(probePage);
+const probeAfter = await region(await probePdf.getPage(1));
+assert.deepEqual(probeAfter, probeBefore);
+assert(probePage.cleanup());
+
+// Exercise real supported deferred cleanup: pause a renderer at its public onContinue.
+const activeCanvas = createCanvas(595, 842);
+let resume!: () => void;
+let pausedResolve!: () => void;
+const paused = new Promise<void>((resolve) => { pausedResolve = resolve; });
+const active = probePage.render({ canvas: activeCanvas as unknown as HTMLCanvasElement,
+  canvasContext: activeCanvas.getContext("2d") as unknown as CanvasRenderingContext2D,
+  viewport: probePage.getViewport({ scale: 1 }) });
+active.onContinue = (continueRender: () => void) => {
+  active.onContinue = null as unknown as typeof active.onContinue;
+  resume = continueRender;
+  pausedResolve();
+};
+await paused;
+const deferredCleanupResult = probePage.cleanup();
+assert.equal(deferredCleanupResult, false);
+resume();
+await active.promise;
+const afterDeferredCleanup = objects(probePage);
+assert.equal(afterDeferredCleanup.decodedBytes, 0);
+assert.equal(afterDeferredCleanup.resolvedObjects, 0);
+activeCanvas.width = activeCanvas.height = 0;
+await probePdf.loadingTask.destroy();
+
+const output = {
+  mode, node: process.version, pdfjs: pdfjs.version, sourceSha256: hash(source),
+  fixture: { fileBytes: bytes.length, sha256: hash(bytes),
+    inputs: JSON.parse(await fs.readFile(path.join(directory, "fixture-inputs.json"), "utf8")) },
+  instrumentation: "Read-only PDFPageProxy.objs resolved-object iterator; sum image.data.byteLength for actual decoded RGB arrays; no process RSS, GC, mocks, or mutation of PDF.js internals",
+  limitation: "Node 24 + PDF.js legacy build + @napi-rs/canvas, not browser E2E; browser ImageBitmap/GPU/worker/allocator retention is not measured",
+  elapsedMs, expectedDecodedBytes: 2480 * 3508 * 3 * 16,
+  retainedDecodedBytesAfterPreviews, retainedMiBAfterPreviews: retainedDecodedBytesAfterPreviews / 1024 ** 2,
+  retainedDecodedBytesAfterExplicitCleanup, rows, renderEvents, cleanupEvents, explicitCleanup,
+  rerender: { sameSharedPageObject: revisitedPage === pages[0], scanRegionBefore, scanRegionAfter,
+    patternedProbe: { preview: { inkRatio: probePreview.inkRatio, error: probePreview.error ?? null },
+      before: probeBefore, after: probeAfter, afterProduct: probeAfterProduct, cleanupEvents: probeCleanupEvents },
+    deferredCleanup: { initialResult: deferredCleanupResult, afterRendererFinished: afterDeferredCleanup } },
+};
+await fs.writeFile(path.join(directory, `${mode}.json`), JSON.stringify(output, null, 2) + "\n");
+console.log(JSON.stringify({ mode, fixtureBytes: bytes.length, elapsedMs,
+  retainedDecodedBytesAfterPreviews, retainedDecodedBytesAfterExplicitCleanup,
+  cleanupCalls: cleanupEvents.length, probeBefore, probeAfter, deferredCleanupResult }, null, 2));
+assert(rows.every((row) => row.autoOut === "빈 쪽" && row.error === null));
+assert(explicitCleanup.every((event) => event.success && event.after.resolvedObjects === 0));
+assert.equal(retainedDecodedBytesAfterPreviews, mode === "baseline" ? 417592320 : 0);
+if (mode === "after") {
+  assert.equal(cleanupEvents.length, 16);
+  assert(cleanupEvents.every((event) => event.success && event.after.resolvedObjects === 0));
+  assert.equal(probeAfterProduct.decodedBytes, 0);
+  assert(rows.every((row) => row.published.length === 1 && row.published[0].autoOut === null));
+}
