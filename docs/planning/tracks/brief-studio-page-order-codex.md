@@ -133,3 +133,43 @@ npx vitest run StudioView UnifiedWorkspace useStudioAi StudioBulkSolution Studio
 | 같은 정답표 + 문항 그림 | 2 | `paintImageXObject` | 0.00347603 | 없음 |
 
 Orca 새 작업트리는 설정된 `/Volumes/TodayWork/today_`의 권한 오류로 만들지 못했다. 기존 작업트리의 Codex 워커 세 개가 서로 다른 파일을 맡고, 조정자가 현재 쪽·담기·출력 연결과 최종 통합을 맡았다. 현재 가지에만 커밋했으며 **푸시·main 병합·공유 DB 쓰기·운영 빌드·시연 녹화본 변경은 하지 않았다.** 미병합 작업트리는 정리하지 않는다. 이번 여섯 건에 남은 수정은 없다.
+
+### 2차 리뷰 반영
+
+2026-11-12 · Codex · `scratch/review/review-order2.md`와 리드의 후속 결정을 반영했다. 구현·시험 12파일의 커밋은 **`54c5e6aec` — `fix(studio): close second page-order review regressions`**다. 수정 대상 1·2·4·5는 재현 시험의 RED를 먼저 확인했고, 3은 지시대로 참고 사항과 배포 갱신 장치 조사로 남겼다. [RED·GREEN 근거와 조사 범위](reports/studio-page-order-review2-20261112/validation.md).
+
+| 건 | 구현 전 RED | 수정·확인 결과 |
+|---|---|---|
+| 1 · 저장 시험지의 원본 복원 | 실제 `restoreRequest`로 복원한 뒤 첫 쪽을 제외해도 담은 목록이 `[c1,c2]` | 문항 id로 현재 `storedCrops`의 `sourceId+page`를 찾아 장부와 출력 제외에 사용한다. 같은 옛 원본·쪽에서 서로 다른 새 원본으로 복원된 두 문항도 각각 구분한다. 첫 쪽 제외 시 실제 장부·출력은 `[c2]`, 되살리면 `[c1,c2]`. 담은 문항의 내용 스냅샷은 바꾸지 않는다. 이미 제외한 상자도 원본 복원 시 기존 상자로 찾는다. |
+| 2 · 벡터 본문의 거짓 제외 | `fill`·`eoFill`·`fillStroke` 계열을 넣어도 표지·정답표로 제외 | 이미지와 칠하기가 모두 없다고 확인한 경우에만 텍스트 자동 제외를 허용한다. `fill`, `eoFill`, `fillStroke`, `eoFillStroke`, `closeFillStroke`, `closeEOFillStroke`, `shadingFill`, `rawFillPath`와 PDF.js 6의 `constructPath` 인수에 접힌 칠하기를 검사한다. 별도 글자 프로그램을 쓰는 Type3 글꼴과 알 수 없는 path paint도 보존한다. 알려진 칠하기가 있으면 빈 쪽 판정도 하지 않는다. 표 선·장식 때문에 정답표가 남는 것은 허용한다. |
+| 4 · 직접 빼기·모두 빼기·되돌리기 | 순수 함수와 `UnifiedWorkspace`＋실제 `useStudioCart` 모두 A는 `[C,B]`, B는 `[B,A,C]` | 제외·직접 빼기·모두 빼기 때 `previousId`로 원래 앞 문항의 신분을 기억한다. 앞 문항도 빠졌으면 그 문항의 이웃을 따라 복원 자리를 찾는다. A는 B 복원 시 `[B,C]`, A까지 복원 시 `[A,B,C]`; B는 모두 빼기 취소 뒤 B 복원 시 `[A,B,C]`. 이웃 정보의 저장 왕복도 RED→GREEN. |
+| 5 · 연산 목록 대기 | 3초를 넘기거나 abort해도 Promise가 끝나지 않음 | 쪽마다 연산 목록 검사 대기를 3초로 제한하고 `AbortSignal`을 받는다. 시간 초과·실패 시 제외 없이 렌더된 미리보기를 반환하고, 취소 시 즉시 `AbortError`로 종료한다. 뒤늦은 성공·실패는 결과를 바꾸지 않고 소비하며 타이머·리스너를 정리한다. 실제 `StudioView` 시험에서 응답 없는 연산 목록도 3초 뒤 활성 1쪽·제외 0쪽으로 남고 ‘빼기’·‘이 순서로 시작’이 열린다. |
+
+`previousId: null`은 맨 앞을 뜻한다. 새 제거 기록은 숫자 인덱스 대신 이웃으로 복원하며, 이 필드가 없는 옛 기록에만 기존 숫자 위치를 대체 경로로 쓴다. 시간 제한은 **판정용 연산 목록 대기**에 적용한다. PDF 렌더·텍스트 추출 전체를 3초 안에 끝낸다는 보장은 아니며, PDF.js의 내부 Promise 자체를 파괴하지 않는다.
+
+**3 · 구버전 재저장과 열린 탭 조사:** 리드 결정에 따라 구버전 쓰기 차단·버전 관문·새 마이그레이션을 추가하지 않았다. 구버전 파서가 `pageOrder`·`pageExcluded` 등 새 정보를 버릴 수 있다는 사실은 참고로 남는다. 저장소에서 **배포 판 변경을 주기적으로 확인해 열린 탭에 새로 고침을 알리는 자체 장치는 찾지 못했다.** 새 장치도 만들지 않았다.
+
+- `useWorkspaceAccess.ts`의 30초·focus·visibility 재조회는 `/api/account/access`의 권한 확인이며 배포 판을 비교하지 않는다.
+- 루트 `ClientErrorLog`가 쓰는 `NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA`는 오류 로그의 release 값이다. 알림·갱신에 쓰이지 않는다. `RouteRecovery`의 ‘다시 시도’도 일반 오류 복구다.
+- 설치된 Next 16.3.8은 RSC 탐색 응답에서 배포/빌드 신분이 달라지면 전체 페이지 이동으로 복구한다(`fetch-server-response.js` → `app-router.js`). 이는 열린 탭의 주기적 새로 고침 안내가 아니다. 작업실의 로컬 상태·hash 전환과 계속되는 편집·자동저장은 이 탐색을 반드시 일으키지 않는다. 운영 환경의 배포 보호 설정은 조사하지 않았다.
+
+최종 관련 시험은 아래 명령으로 **34파일·687시험 통과**했다. `npm run type-check`, `npm run lint:affordance`, 변경 12파일 ESLint와 `git diff --check`도 통과했으며 정상 커밋 훅의 ESLint·Prettier·affordance 검사를 거쳤다. 이번에는 관련 시험을 실행했고, 앞 보고에 기록한 전체 시험 결과를 새로 통과했다고 주장하지 않는다.
+
+```sh
+npx vitest run StudioView UnifiedWorkspace useStudioAi StudioBulkSolution StudioPageOrder studioPageAnalysis studioPagePreview studioPageOrder studioCart draftStore workspaceDraftStore workspaceExplicitResume studioExplicitResume privateWorkspacePersistence privateDocumentWorkflow PrivateLibrary StudioQueueStatus StudioStepBar PaperStrip --maxWorkers=3
+```
+
+실제 PDF 검증은 기존 표지·정답표에 래스터 문항 또는 `1. 2 + 3 = ?`·`2. 6 - 2 = ?`의 글자 윤곽을 칠한 벡터 문항을 넣어 실행했다. Node의 PDF.js legacy 로더·`@napi-rs/canvas`와 제품 `renderStudioPagePreview`를 사용했다. [원시 측정값](reports/studio-page-order-review2-20261112/vector-pages-verification.json). 새 브라우저 시각 검수나 운영 성능 측정으로 기록하지 않는다.
+
+| 실제 PDF 구성 | 쪽 | 이미지 연산 | 칠하기 연산 수 | 잉크 비율 | 자동 제외 |
+|---|---:|---|---:|---:|---|
+| 기존 텍스트 표지 | 1 | 없음 | 0 | 0.00199982 | 없음 |
+| 기존 텍스트 정답표 | 2 | 없음 | 0 | 0.00285251 | 없음 |
+| 같은 표지 + 문항 그림 | 1 | `paintImageXObject` | 0 | 0.00262335 | 없음 |
+| 같은 정답표 + 문항 그림 | 2 | `paintImageXObject` | 0 | 0.00347603 | 없음 |
+| 같은 표지 + 칠한 벡터 글자 | 1 | 없음 | 14 | 0.00376115 | 없음 |
+| 같은 정답표 + 칠한 벡터 글자 | 2 | 없음 | 14 | 0.00461384 | 없음 |
+
+앞선 보고와 달리 **기존 합성 텍스트 표지·정답표도 이제 유지**한다. 이 PDF에는 페이지 연산 목록 밖의 Type3 글자 프로그램이 각각 11·19개 있어 칠하기 부재를 확정할 수 없기 때문이다. 표의 칠하기 수는 페이지 연산과 `constructPath` 인수만 센 값이며, 글꼴 내부 프로그램의 칠하기 수가 아니다. 거짓 제외를 막으라는 결정에 따른 보수적 결과다. 이미지·칠하기가 없다고 확인된 표지·정답표의 정상 자동 제외는 단위 시험으로 유지했다.
+
+이전 작업트리 생성 오류 때문에 기존 작업트리에서 서로 다른 파일을 맡는 Codex 워커를 사용했다. PDF 수정과 읽기 전용 배포 조사는 완료됐고, 조정자가 원본 복원·차례·통합을 맡았다. 요청된 수정과 조사는 완료했다. **푸시·main 병합·공유 DB 쓰기·운영 빌드·시연 녹화본 변경은 하지 않았고**, 미병합 작업트리와 가지는 보존한다.
