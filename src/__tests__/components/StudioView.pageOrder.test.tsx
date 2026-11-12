@@ -665,9 +665,7 @@ describe("Studio 쪽 차례 연결", () => {
       ];
       const target = figures()[1];
       if (location === "aside")
-        fireEvent.click(
-          within(target).getByRole("button", { name: /크게 보기/ }),
-        );
+        fireEvent.click(within(target).getByRole("button", { name: /선택/ }));
       const region =
         location === "card"
           ? target
@@ -1071,7 +1069,7 @@ describe("Studio 쪽 차례 연결", () => {
     );
     fireEvent.click(await screen.findByRole("button", { name: "2문항 담기" }));
     await excludeFirstWorkedPage();
-    fireEvent.click(screen.getByRole("button", { name: /원본 2쪽 크게 보기/ }));
+    fireEvent.click(screen.getByRole("button", { name: /원본 2쪽 선택/ }));
     fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
     expect(screen.getByRole("button", { name: /3 양식 구성/ })).toBeDisabled();
     view.rerender(
@@ -1217,7 +1215,7 @@ describe("Studio 쪽 차례 연결", () => {
 
   it("한 파일을 올려도 쪽 순서에서 시작하고 단추 이동·빼기·되돌리기가 인식 대상에 반영된다", async () => {
     await upload();
-    const choose = screen.getAllByRole("button", { name: /크게 보기/ });
+    const choose = screen.getAllByRole("button", { name: /선택/ });
     fireEvent.click(choose[1]);
     fireEvent.click(screen.getByRole("button", { name: "맨 앞" }));
     fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));

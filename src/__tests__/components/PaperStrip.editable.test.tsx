@@ -13,7 +13,7 @@ const pages: PaperStripPage[] = [1, 2].map((n) => ({
 }));
 
 describe("PaperStrip 편집 격자", () => {
-  it("카드 본체는 누르지 않고 명시적 크게 보기로 선택하며, 선택은 제어된다", () => {
+  it("카드 선택은 독립된 native 단추로 제어되며 확대 창을 열지 않는다", () => {
     const onSelect = vi.fn();
     const { rerender } = render(
       <PaperStrip

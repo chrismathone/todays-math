@@ -30,7 +30,12 @@ type PagePreview = {
 };
 
 export type StudioPageOrderProps = {
-  sources: readonly { id: string; name: string; pages: number }[];
+  sources: readonly {
+    id: string;
+    name: string;
+    pages: number;
+    kind?: "pdf" | "image" | "sample";
+  }[];
   order: readonly StudioOrderedPage[];
   previews: Readonly<Record<string, PagePreview>>;
   busy?: boolean;
@@ -132,6 +137,7 @@ export default function StudioPageOrder({
   );
   const [dragging, setDragging] = useState<string | null>(null);
   const dragKey = useRef<string | null>(null);
+  const dragged = useRef(false);
   const [drop, setDrop] = useState<{
     target: string;
     edge: "before" | "after";
@@ -140,7 +146,11 @@ export default function StudioPageOrder({
   const sourceMap = new Map(
     sources.map((source, index) => [
       source.id,
-      { ...source, color: FILE_COLORS[index % FILE_COLORS.length] },
+      {
+        ...source,
+        number: index + 1,
+        color: FILE_COLORS[index % FILE_COLORS.length],
+      },
     ]),
   );
   const orderedPages = new Map(
@@ -150,8 +160,14 @@ export default function StudioPageOrder({
   const isReady = (key: string) => !!previews[key]?.url;
   const selectedReady = !!selectedId && isReady(selectedId);
   const sourceOf = (page: StudioOrderedPage) => sourceMap.get(page.sourceId);
-  const identity = (page: StudioOrderedPage) =>
-    `${sourceOf(page)?.name ?? "원본 파일"} 원본 ${page.page}쪽`;
+  const originalLabel = (page: StudioOrderedPage) =>
+    sourceOf(page)?.kind === "image" ? "원본 이미지" : `원본 ${page.page}쪽`;
+  const identity = (page: StudioOrderedPage) => {
+    const source = sourceOf(page);
+    const duplicate =
+      sources.filter((item) => item.name === source?.name).length > 1;
+    return `${source?.name ?? "원본 파일"}${duplicate ? ` (파일 ${source?.number})` : ""} ${originalLabel(page)}`;
+  };
   const accent = (page: StudioOrderedPage) =>
     sourceOf(page)?.color ?? FILE_COLORS[0];
   const canMoveBack =
@@ -245,6 +261,7 @@ export default function StudioPageOrder({
       return;
     }
     const key = studioPageKey(page);
+    dragged.current = true;
     dragKey.current = key;
     setDragging(key);
     setSelectedKey(key);
@@ -315,7 +332,6 @@ export default function StudioPageOrder({
   const cards: PaperStripPage[] = order.map((page) => {
     const key = studioPageKey(page);
     const number = pageNumber(order, key);
-    const name = sourceOf(page)?.name ?? "원본 파일";
     return {
       key,
       node: (
@@ -326,15 +342,14 @@ export default function StudioPageOrder({
           onRetry={onRetryPreview ? () => onRetryPreview(key) : undefined}
         />
       ),
-      enlargeLabel: `${identity(page)} 크게 보기`,
+      enlargeLabel: `${identity(page)} 선택`,
       caption: (
         <div key={key} className={s.caption}>
           <div className={s.captionIdentity} title={identity(page)}>
-            <strong className={s.number}>
-              {page.out ? "뺀 쪽" : `새 ${number}쪽`}
-            </strong>
+            <strong className={s.number}>{originalLabel(page)}</strong>
             <span className={s.original}>
-              {name.replace(/\.[^.]+$/, "")} 원본 {page.page}쪽
+              {sources.length > 1 && `파일 ${sourceOf(page)?.number} · `}
+              {page.out ? "뺀 쪽" : `새 ${number}쪽`}
             </span>
           </div>
           <button
@@ -370,7 +385,10 @@ export default function StudioPageOrder({
                 style={{ background: FILE_COLORS[index % FILE_COLORS.length] }}
                 aria-hidden="true"
               />
-              <b>{source.name}</b>
+              <b>
+                {sources.length > 1 && `파일 ${index + 1} · `}
+                {source.name}
+              </b>
               <span className={s.filePages}>{source.pages}쪽</span>
             </span>
           ))}
@@ -417,26 +435,23 @@ export default function StudioPageOrder({
               )}
             </>
           ),
-          toolbar: (card) => {
+          selectionProps: (card) => {
             const page = byKey(card.key);
-            return (
-              !page.out && (
-                <button
-                  type="button"
-                  className={s.grip}
-                  draggable={!busy && isReady(card.key)}
-                  disabled={busy || !isReady(card.key)}
-                  data-studio-page-key={card.key}
-                  aria-label={`${identity(page)} 끌어서 옮기기`}
-                  title="끌어서 옮기기"
-                  onClick={() => setSelectedKey(card.key)}
-                  onDragStart={(event) => dragStart(event, page)}
-                  onDragEnd={clearDrag}
-                >
-                  <span aria-hidden="true">⠿</span>
-                </button>
-              )
-            );
+            return {
+              draggable: !busy && !page.out && isReady(card.key),
+              "data-studio-page-key": card.key,
+              title: `${identity(page)} · 눌러서 보기${page.out ? "" : " · 끌어서 옮기기"}`,
+              onPointerDown: () => {
+                dragged.current = false;
+              },
+              onClick: (event) => {
+                // A browser may emit a pointer click after dragend. Keyboard clicks still work.
+                if (dragged.current && event.detail !== 0)
+                  event.preventDefault();
+              },
+              onDragStart: (event) => dragStart(event, page),
+              onDragEnd: clearDrag,
+            };
           },
           overlay: (card) =>
             byKey(card.key).out ? <span className={s.badge}>뺌</span> : null,

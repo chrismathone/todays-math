@@ -1,0 +1,345 @@
+{
+  "start": {
+    "key": "[\"9f7f4759-5506-4954-85c5-29713991b697\",1]",
+    "x": 924.921875,
+    "y": 537.546875,
+    "w": 201.640625,
+    "h": 328.546875
+  },
+  "target": {
+    "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",2]",
+    "x": 493.640625,
+    "y": 195,
+    "w": 201.640625,
+    "h": 328.546875
+  },
+  "after": {
+    "order": [
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",1]",
+      "[\"9f7f4759-5506-4954-85c5-29713991b697\",1]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",2]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",3]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",4]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",5]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",6]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",7]",
+      "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",8]",
+      "[\"9f7f4759-5506-4954-85c5-29713991b697\",2]",
+      "[\"9f7f4759-5506-4954-85c5-29713991b697\",3]"
+    ],
+    "selected": "[\"9f7f4759-5506-4954-85c5-29713991b697\",1]",
+    "preview": "source-b.pdf 원본 1쪽"
+  },
+  "actions": [
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify(Array.from(document.querySelectorAll(\"[data-strip-key]\")).map(e=>({key:e.dataset.stripKey,x:e.getBoundingClientRect().x,y:e.getBoundingClientRect().y,w:e.getBoundingClientRect().width,h:e.getBoundingClientRect().height})))"
+      ],
+      "result": {
+        "result": "[{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",1]\",\"x\":278,\"y\":195,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",2]\",\"x\":493.640625,\"y\":195,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",3]\",\"x\":709.28125,\"y\":195,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",4]\",\"x\":924.921875,\"y\":195,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",5]\",\"x\":1140.5625,\"y\":195,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",6]\",\"x\":278,\"y\":537.546875,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",7]\",\"x\":493.640625,\"y\":537.546875,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",8]\",\"x\":709.28125,\"y\":537.546875,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",1]\",\"x\":924.921875,\"y\":537.546875,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",2]\",\"x\":1140.5625,\"y\":537.546875,\"w\":201.640625,\"h\":328.546875},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",3]\",\"x\":278,\"y\":880.09375,\"w\":201.640625,\"h\":328.546875}]",
+        "origin": "http://localhost:3106/dev/workspace-alignment#studio"
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "1026",
+        "--y",
+        "702"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "down"
+      ],
+      "result": {
+        "pressed": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "1038",
+        "--y",
+        "690"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "512",
+        "--y",
+        "359"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "518",
+        "--y",
+        "363"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "screenshot"
+      ],
+      "result": {
+        "format": "png",
+        "path": "/var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/orca-browser-screenshots/96876a3c-94f6-47e3-a902-980e4384fd4f-screenshot.png",
+        "expiresAt": "2026-11-13T10:28:26.684Z"
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "up"
+      ],
+      "result": {
+        "released": true,
+        "effects": {
+          "settled": true,
+          "page": {
+            "lines": [
+              "- generic",
+              "  - generic",
+              "    - button \"Open issues overlay\" [ref=e97]",
+              "      - image",
+              "      - StaticText \"6\"",
+              "      - StaticText \"Issue\"",
+              "    - button \"Collapse issues badge\" [ref=e98]",
+              "      - image",
+              "  - alert",
+              "  - link \"본문으로 건너뛰기\" [ref=e1]",
+              "  - complementary",
+              "    - button \"제품 고르기 — 오늘 수학\" [expanded=false, ref=e6]",
+              "      - StaticText \"오늘 수학\"",
+              "    - button \"왼쪽 메뉴 접기\" [expanded=true, ref=e7]",
+              "    - navigation \"작업실 메뉴\" [ref=e2]",
+              "      - button \"오늘의 작업\" [ref=e8]",
+              "        - StaticText \"오늘의 작업\"",
+              "      - button \"시험지 만들기\" [ref=e9]",
+              "        - StaticText \"시험지 만들기\"",
+              "      - button \"연산대장\" [ref=e10]",
+              "        - StaticText \"연산대장\"",
+              "      - button \"문제 추출\" [ref=e11]",
+              "        - StaticText \"문제 추출\"",
+              "      - button \"내 시험지\" [ref=e12]",
+              "        - StaticText \"내 시험지\"",
+              "      - button \"교재 제작\" [ref=e13]",
+              "        - StaticText \"교재 제작\"",
+              "      - button \"수업 · 학생 관리\" [ref=e14]",
+              "        - StaticText \"수업 · 학생 관리\"",
+              "      - button \"오늘의 개념\" [ref=e15]",
+              "        - StaticText \"오늘의 개념\"",
+              "      - button \"개념 백지\" [ref=e16]",
+              "        - StaticText \"개념 백지\"",
+              "      - button \"오늘의 기억 · SRS\" [ref=e17]",
+              "        - StaticText \"오늘의 기억 · SRS\"",
+              "      - button \"지식 작업실\" [ref=e18]",
+              "        - StaticText \"지식 작업실\"",
+              "    - StaticText \"현재 시험지\"",
+              "    - generic",
+              "      - StaticText \"0문항\"",
+              "    - strong",
+              "      - StaticText \"오늘 수학 학습지\"",
+              "    - button \"편집 이어가기\" [ref=e3]",
+              "    - region \"AI 상태판\" [ref=e4]",
+              "      - strong",
+              "        - StaticText \"AI 작업 연결\"",
+              "      - StaticText \"CLI\"",
+              "      - LabelText [ref=e19] clickable [cursor:pointer]",
+              "        - combobox \"AI 연결 방식\" [expanded=false, ref=e23]: 구독 CLI",
+              "          - MenuListPopup",
+              "            - option \"구독 CLI\" [selected, ref=e46]",
+              "            - option \"서버 모델 API\" [ref=e47]",
+              "      - LabelText",
+              "        - combobox \"개발용 AI 도구\" [expanded=false, disabled, ref=e24]: 연결 확인 중…",
+              "          - MenuListPopup",
+              "            - option \"연결 확인 중…\" [disabled, ref=e48]",
+              "      - button \"연결 다시 확인\" [ref=e20]",
+              "      - StaticText \"연결 확인 필요\"",
+              "    - button \"작업실 사용 안내\" [ref=e5]",
+              "    - button \"내정보 메뉴\" [expanded=false, ref=e21]",
+              "      - strong",
+              "        - StaticText \"내정보\"",
+              "      - StaticText \"프로필 · 비밀번호 설정\"",
+              "  - main",
+              "    - region \"문제 제작 스튜디오\" [ref=e22]",
+              "      - heading \"문제 추출\" [level=1, ref=e25]",
+              "      - navigation \"제작 단계 이동\" [ref=e26]",
+              "        - button \"쪽 순서\" [ref=e33]",
+              "        - button \"1 영역 지정\" [ref=e34]",
+              "        - button \"2 문항 검토 0\" [disabled, ref=e35]",
+              "          - StaticText \"2 문항 검토\"",
+              "          - StaticText \"0\"",
+              "        - button \"3 양식 구성·출력 0\" [disabled, ref=e36]",
+              "          - StaticText \"3 양식 구성·출력\"",
+              "          - StaticText \"0\"",
+              "      - button \"되돌리기\" [ref=e50]",
+              "      - button \"처음 차례로\" [ref=e51]",
+              "      - button \"이 순서로 시작 →\" [ref=e52]",
+              "      - button \"PDF 또는 이미지 파일 가져오기\" [ref=e32]: 선택된 파일 없음",
+              "      - alert",
+              "        - StaticText \"미리보기에서는 저장하거나 제작하지 않습니다.\"",
+              "        - button \"오류 메시지 닫기\" [ref=e99]",
+              "          - StaticText \"×\"",
+              "      - region \"쪽 순서 편집\" [ref=e96] focusable [tabindex]",
+              "        - generic \"원본 파일\"",
+              "          - generic",
+              "            - StaticText \"파일 1 · source-a.pdf\"",
+              "          - StaticText \"8\"",
+              "          - StaticText \"쪽\"",
+              "          - generic",
+              "            - StaticText \"파일 2 · source-b.pdf\"",
+              "          - StaticText \"3\"",
+              "          - StaticText \"쪽\"",
+              "        - StaticText \"시작할 쪽 \"",
+              "        - StaticText \"11\"",
+              "        - StaticText \" · 뺀 쪽 \"",
+              "        - StaticText \"0\"",
+              "        - region \"쪽 카드\" [ref=e100] focusable [tabindex]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 1쪽\"",
+              "            - button \"source-a.pdf 원본 1쪽 선택\" [ref=e109]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 1쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 1쪽\"",
+              "              - button \"source-a.pdf 원본 1쪽 빼기\" [ref=e120]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-b.pdf 원본 1쪽\"",
+              "            - button \"source-b.pdf 원본 1쪽 선택\" [ref=e117]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 1쪽\"",
+              "                - StaticText \"파일 2 · \"",
+              "                - StaticText \"새 2쪽\"",
+              "              - button \"source-b.pdf 원본 1쪽 빼기\" [ref=e128]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 2쪽\"",
+              "            - button \"source-a.pdf 원본 2쪽 선택\" [ref=e110]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 2쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 3쪽\"",
+              "              - button \"source-a.pdf 원본 2쪽 빼기\" [ref=e121]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 3쪽\"",
+              "            - button \"source-a.pdf 원본 3쪽 선택\" [ref=e111]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 3쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 4쪽\"",
+              "              - button \"source-a.pdf 원본 3쪽 빼기\" [ref=e122]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 4쪽\"",
+              "            - button \"source-a.pdf 원본 4쪽 선택\" [ref=e112]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 4쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 5쪽\"",
+              "              - button \"source-a.pdf 원본 4쪽 빼기\" [ref=e123]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 5쪽\"",
+              "            - button \"source-a.pdf 원본 5쪽 선택\" [ref=e113]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 5쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 6쪽\"",
+              "              - button \"source-a.pdf 원본 5쪽 빼기\" [ref=e124]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 6쪽\"",
+              "            - button \"source-a.pdf 원본 6쪽 선택\" [ref=e114]",
+              "            - Figcaption",
+              "              - generic",
+              "                - strong",
+              "                  - StaticText \"원본 6쪽\"",
+              "                - StaticText \"파일 1 · \"",
+              "                - StaticText \"새 7쪽\"",
+              "              - button \"source-a.pdf 원본 6쪽 빼기\" [ref=e125]",
+              "          - figure",
+              "            - generic",
+              "              - image \"source-a.pdf 원본 7쪽\""
+            ],
+            "removedLines": 0,
+            "full": true,
+            "truncated": true
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify({order:Array.from(document.querySelectorAll(\"[data-strip-key]\")).map(e=>e.dataset.stripKey),selected:document.querySelector(\"[data-strip-key][data-selected=true]\")?.dataset.stripKey,preview:document.querySelector(\"[class*=sideHeading]\")?.parentElement.querySelector(\"img\")?.alt})"
+      ],
+      "result": {
+        "result": "{\"order\":[\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",1]\",\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",1]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",2]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",3]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",4]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",5]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",6]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",7]\",\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",8]\",\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",2]\",\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",3]\"],\"selected\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",1]\",\"preview\":\"source-b.pdf 원본 1쪽\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment#studio"
+      }
+    }
+  ]
+}

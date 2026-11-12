@@ -1,0 +1,546 @@
+{
+  "initial": {
+    "order": [
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",1]",
+        "out": "true"
+      },
+      {
+        "key": "[\"9f7f4759-5506-4954-85c5-29713991b697\",1]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",4]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",2]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",3]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",5]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",6]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",7]",
+        "out": "false"
+      },
+      {
+        "key": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",8]",
+        "out": "false"
+      },
+      {
+        "key": "[\"9f7f4759-5506-4954-85c5-29713991b697\",2]",
+        "out": "false"
+      },
+      {
+        "key": "[\"9f7f4759-5506-4954-85c5-29713991b697\",3]",
+        "out": "false"
+      },
+      {
+        "key": "[\"2dd14446-29fa-4522-84fa-e5bc7e8a0e0e\",1]",
+        "out": "false"
+      },
+      {
+        "key": "s-0-0"
+      }
+    ],
+    "selected": "[\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\",1]"
+  },
+  "trials": [
+    {
+      "before": {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "excluded": "true",
+        "retryRect": {
+          "x": 339.953125,
+          "y": 324.265625,
+          "width": 77.734375,
+          "height": 44,
+          "top": 324.265625,
+          "right": 417.6875,
+          "bottom": 368.265625,
+          "left": 339.953125
+        },
+        "retryLabel": "source-a.pdf 원본 1쪽 미리보기 다시 시도",
+        "disabled": false,
+        "hitLabel": "source-a.pdf 원본 1쪽 미리보기 다시 시도",
+        "thumbnail": {
+          "z": "2",
+          "pointerEvents": "none"
+        }
+      },
+      "after": {
+        "retryClicks": 1,
+        "excluded": "true",
+        "cardImage": "source-a.pdf 원본 1쪽",
+        "imageAfterWait": "source-a.pdf 원본 1쪽"
+      }
+    },
+    {
+      "before": {
+        "viewport": [
+          390,
+          844
+        ],
+        "excluded": "true",
+        "retryRect": {
+          "x": 66.375,
+          "y": 537.71875,
+          "width": 77.734375,
+          "height": 44,
+          "top": 537.71875,
+          "right": 144.109375,
+          "bottom": 581.71875,
+          "left": 66.375
+        },
+        "retryLabel": "source-a.pdf 원본 1쪽 미리보기 다시 시도",
+        "disabled": false,
+        "hitLabel": "source-a.pdf 원본 1쪽 미리보기 다시 시도",
+        "thumbnail": {
+          "z": "2",
+          "pointerEvents": "none"
+        }
+      },
+      "after": {
+        "retryClicks": 1,
+        "excluded": "true",
+        "cardImage": "source-a.pdf 원본 1쪽",
+        "imageAfterWait": "source-a.pdf 원본 1쪽"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "args": [
+        "viewport",
+        "--width",
+        "1920",
+        "--height",
+        "1080"
+      ],
+      "result": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "(async()=>{window.scrollTo(0,0);document.querySelector(\"[aria-label=\\\"쪽 카드\\\"]\").parentElement.scrollTo(0,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));return JSON.stringify(true)})()"
+      ],
+      "result": {
+        "result": "true",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify({order:Array.from(document.querySelectorAll('[data-strip-key]')).map(c=>({key:c.dataset.stripKey,out:c.dataset.excluded})),selected:document.querySelector('[data-selected=true]')?.dataset.stripKey})"
+      ],
+      "result": {
+        "result": "{\"order\":[{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",1]\",\"out\":\"true\"},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",1]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",4]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",2]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",3]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",5]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",6]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",7]\",\"out\":\"false\"},{\"key\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",8]\",\"out\":\"false\"},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",2]\",\"out\":\"false\"},{\"key\":\"[\\\"9f7f4759-5506-4954-85c5-29713991b697\\\",3]\",\"out\":\"false\"},{\"key\":\"[\\\"2dd14446-29fa-4522-84fa-e5bc7e8a0e0e\\\",1]\",\"out\":\"false\"},{\"key\":\"s-0-0\"}],\"selected\":\"[\\\"34d62191-e6bd-4c34-9653-82f9ea2b6f73\\\",1]\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "viewport",
+        "--width",
+        "1920",
+        "--height",
+        "1080"
+      ],
+      "result": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "(async()=>{window.scrollTo(0,0);document.querySelector(\"[aria-label=\\\"쪽 카드\\\"]\").parentElement.scrollTo(0,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));return JSON.stringify(true)})()"
+      ],
+      "result": {
+        "result": "true",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify((()=>{const c=document.querySelector('[data-strip-key]');c.querySelector('img').dispatchEvent(new Event('error'));return {excluded:c.dataset.excluded}})())"
+      ],
+      "result": {
+        "result": "{\"excluded\":\"true\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify((()=>{const c=document.querySelector('[data-strip-key]'),b=Array.from(c.querySelectorAll('button')).find(b=>b.ariaLabel?.includes('다시 시도'));window.__independentFixedRetryClicks=0;b.addEventListener('click',()=>window.__independentFixedRetryClicks++);const r=b.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2),thumb=c.querySelector('[class*=thumbnail]');return {viewport:[innerWidth,innerHeight],excluded:c.dataset.excluded,retryRect:r.toJSON(),retryLabel:b.ariaLabel,disabled:b.disabled,hitLabel:hit?.closest('button')?.ariaLabel,thumbnail:{z:getComputedStyle(thumb).zIndex,pointerEvents:getComputedStyle(thumb).pointerEvents}}})())"
+      ],
+      "result": {
+        "result": "{\"viewport\":[1920,1080],\"excluded\":\"true\",\"retryRect\":{\"x\":339.953125,\"y\":324.265625,\"width\":77.734375,\"height\":44,\"top\":324.265625,\"right\":417.6875,\"bottom\":368.265625,\"left\":339.953125},\"retryLabel\":\"source-a.pdf 원본 1쪽 미리보기 다시 시도\",\"disabled\":false,\"hitLabel\":\"source-a.pdf 원본 1쪽 미리보기 다시 시도\",\"thumbnail\":{\"z\":\"2\",\"pointerEvents\":\"none\"}}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "screenshot"
+      ],
+      "result": {
+        "format": "png",
+        "path": "/var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/orca-browser-screenshots/480c057a-d736-4732-9e16-9b2b7b10bcbf-screenshot.png",
+        "expiresAt": "2026-11-13T10:49:35.115Z"
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "378.8203125",
+        "--y",
+        "346.265625"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "down"
+      ],
+      "result": {
+        "pressed": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "up"
+      ],
+      "result": {
+        "released": true,
+        "effects": {
+          "settled": true,
+          "page": {
+            "lines": [
+              "                - image \"source-a.pdf 원본 1쪽\""
+            ],
+            "removedLines": 4,
+            "full": false,
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify({retryClicks:window.__independentFixedRetryClicks,excluded:document.querySelector('[data-strip-key]').dataset.excluded,cardImage:document.querySelector('[data-strip-key] img')?.alt})"
+      ],
+      "result": {
+        "result": "{\"retryClicks\":1,\"excluded\":\"true\",\"cardImage\":\"source-a.pdf 원본 1쪽\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "wait",
+        "--selector",
+        "[data-strip-key] img"
+      ],
+      "result": {
+        "selector": "[data-strip-key] img",
+        "waited": "selector"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify(document.querySelector(\"[data-strip-key] img\")?.alt)"
+      ],
+      "result": {
+        "result": "\"source-a.pdf 원본 1쪽\"",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "viewport",
+        "--width",
+        "390",
+        "--height",
+        "844"
+      ],
+      "result": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "(async()=>{window.scrollTo(0,0);document.querySelector(\"[aria-label=\\\"쪽 카드\\\"]\").parentElement.scrollTo(0,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));return JSON.stringify(true)})()"
+      ],
+      "result": {
+        "result": "true",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify((()=>{const c=document.querySelector('[data-strip-key]');c.querySelector('img').dispatchEvent(new Event('error'));return {excluded:c.dataset.excluded}})())"
+      ],
+      "result": {
+        "result": "{\"excluded\":\"true\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify((()=>{const c=document.querySelector('[data-strip-key]'),b=Array.from(c.querySelectorAll('button')).find(b=>b.ariaLabel?.includes('다시 시도'));window.__independentFixedRetryClicks=0;b.addEventListener('click',()=>window.__independentFixedRetryClicks++);const r=b.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2),thumb=c.querySelector('[class*=thumbnail]');return {viewport:[innerWidth,innerHeight],excluded:c.dataset.excluded,retryRect:r.toJSON(),retryLabel:b.ariaLabel,disabled:b.disabled,hitLabel:hit?.closest('button')?.ariaLabel,thumbnail:{z:getComputedStyle(thumb).zIndex,pointerEvents:getComputedStyle(thumb).pointerEvents}}})())"
+      ],
+      "result": {
+        "result": "{\"viewport\":[390,844],\"excluded\":\"true\",\"retryRect\":{\"x\":66.375,\"y\":537.71875,\"width\":77.734375,\"height\":44,\"top\":537.71875,\"right\":144.109375,\"bottom\":581.71875,\"left\":66.375},\"retryLabel\":\"source-a.pdf 원본 1쪽 미리보기 다시 시도\",\"disabled\":false,\"hitLabel\":\"source-a.pdf 원본 1쪽 미리보기 다시 시도\",\"thumbnail\":{\"z\":\"2\",\"pointerEvents\":\"none\"}}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "screenshot"
+      ],
+      "result": {
+        "format": "png",
+        "path": "/var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/orca-browser-screenshots/d93cbc3b-d7d6-4012-84a9-c3d1ca995179-screenshot.png",
+        "expiresAt": "2026-11-13T10:49:37.173Z"
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "move",
+        "--x",
+        "105.2421875",
+        "--y",
+        "559.71875"
+      ],
+      "result": {
+        "moved": true,
+        "effects": {
+          "settled": true,
+          "page": {
+            "lines": [
+              "    - navigation \"작업실 메뉴\" [ref=e2]",
+              "      - button \"오늘의 작업\" [ref=e8]",
+              "        - StaticText \"홈\"",
+              "      - button \"시험지 만들기\" [ref=e9]",
+              "        - StaticText \"만들기\"",
+              "      - button \"연산대장\" [ref=e10]",
+              "        - StaticText \"연산대장\"",
+              "      - button \"문제 추출\" [ref=e11]",
+              "        - StaticText \"문제 추출\"",
+              "      - button \"내 시험지\" [ref=e12]",
+              "        - StaticText \"보관함\"",
+              "      - button \"교재 제작\" [ref=e13]",
+              "        - StaticText \"교재 제작\"",
+              "      - button \"수업 · 학생 관리\" [ref=e14]",
+              "        - StaticText \"수업·학생\"",
+              "      - button \"오늘의 개념\" [ref=e15]",
+              "        - StaticText \"개념\"",
+              "      - button \"개념 백지\" [ref=e16]",
+              "        - StaticText \"백지\"",
+              "      - button \"오늘의 기억 · SRS\" [ref=e17]",
+              "        - StaticText \"기억 학습\"",
+              "      - button \"지식 작업실\" [ref=e18]",
+              "        - StaticText \"지식\"",
+              "    - button \"내정보 메뉴\" [expanded=false, ref=e21]",
+              "  - generic",
+              "    - main",
+              "      - region \"문제 제작 스튜디오\" [ref=e22]",
+              "        - navigation \"제작 단계 이동\" [ref=e26]",
+              "          - button \"쪽 순서\" [ref=e33]",
+              "          - button \"1 영역 지정\" [ref=e34]",
+              "          - button \"2 문항 검토 0\" [disabled, ref=e35]",
+              "            - StaticText \"2 문항 검토\"",
+              "            - StaticText \"0\"",
+              "          - button \"3 양식 구성·출력 0\" [disabled, ref=e36]",
+              "            - StaticText \"3 양식 구성·출력\"",
+              "            - StaticText \"0\"",
+              "        - button \"되돌리기\" [ref=e50]",
+              "        - button \"처음 차례로\" [ref=e51]",
+              "        - button \"이 순서로 시작 →\" [ref=e52]",
+              "        - button \"PDF 또는 이미지 파일 가져오기\" [ref=e32]: 선택된 파일 없음",
+              "        - alert",
+              "          - StaticText \"미리보기에서는 저장하거나 제작하지 않습니다.\"",
+              "          - button \"오류 메시지 닫기\" [ref=e1052]",
+              "            - StaticText \"×\"",
+              "        - region \"쪽 순서 편집\" [ref=e96] focusable [tabindex]",
+              "          - generic \"원본 파일\"",
+              "            - generic",
+              "              - StaticText \"파일 1 · source-a.pdf\"",
+              "            - StaticText \"8\"",
+              "            - StaticText \"쪽\"",
+              "            - generic",
+              "              - StaticText \"파일 2 · source-b.pdf\"",
+              "            - StaticText \"3\"",
+              "            - StaticText \"쪽\"",
+              "            - generic",
+              "              - StaticText \"파일 3 · image.jpg\"",
+              "            - StaticText \"1\"",
+              "            - StaticText \"쪽\"",
+              "          - StaticText \"시작할 쪽 \"",
+              "          - StaticText \"11\"",
+              "          - StaticText \" · 뺀 쪽 \"",
+              "          - StaticText \"1\"",
+              "          - region \"쪽 카드\" [ref=e100] focusable [tabindex]",
+              "            - figure",
+              "              - generic",
+              "                - alert",
+              "                  - StaticText \"미리보기를 불러오지 못했습니다.\"",
+              "                - button \"source-a.pdf 원본 1쪽 미리보기 다시 시도\" [ref=e1902]",
+              "                  - StaticText \"다시 시도\""
+            ],
+            "removedLines": 93,
+            "full": false,
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "down"
+      ],
+      "result": {
+        "pressed": true,
+        "effects": {
+          "settled": true,
+          "page": "unchanged"
+        }
+      }
+    },
+    {
+      "args": [
+        "mouse",
+        "up"
+      ],
+      "result": {
+        "released": true,
+        "effects": {
+          "settled": true,
+          "page": {
+            "lines": [
+              "                - image \"source-a.pdf 원본 1쪽\""
+            ],
+            "removedLines": 4,
+            "full": false,
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify({retryClicks:window.__independentFixedRetryClicks,excluded:document.querySelector('[data-strip-key]').dataset.excluded,cardImage:document.querySelector('[data-strip-key] img')?.alt})"
+      ],
+      "result": {
+        "result": "{\"retryClicks\":1,\"excluded\":\"true\",\"cardImage\":\"source-a.pdf 원본 1쪽\"}",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "wait",
+        "--selector",
+        "[data-strip-key] img"
+      ],
+      "result": {
+        "selector": "[data-strip-key] img",
+        "waited": "selector"
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "JSON.stringify(document.querySelector(\"[data-strip-key] img\")?.alt)"
+      ],
+      "result": {
+        "result": "\"source-a.pdf 원본 1쪽\"",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    },
+    {
+      "args": [
+        "viewport",
+        "--width",
+        "1920",
+        "--height",
+        "1080"
+      ],
+      "result": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      }
+    },
+    {
+      "args": [
+        "eval",
+        "--expression",
+        "(async()=>{window.scrollTo(0,0);document.querySelector(\"[aria-label=\\\"쪽 카드\\\"]\").parentElement.scrollTo(0,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));return JSON.stringify(true)})()"
+      ],
+      "result": {
+        "result": "true",
+        "origin": "http://localhost:3106/dev/workspace-alignment?blank=eyJ2IjoxLCJzIjp7InNlY3Rpb25zIjpbIuy0iDU6OjEtMiDslb3siJjsmYAg67Cw7IiYOjoxLTItMSDslb3siJjsmYAg67Cw7IiYIl0sImZvcm1zIjpbeyJmb3JtIjoidGVybSIsImNvdW50cyI6eyLtlZgiOjIsIuykkSI6MCwi7IOBIjowfSwiZXh0cmFzIjp7Iu2VmCI6MCwi7KSRIjowLCLsg4EiOjB9fV0sImRhdGUiOiIyMDI2LTExLTEyIn0sImkiOlsiZTUtMS0yLTEtYzEiLCJlNS0xLTItMS1jMiJdLCJwIjpbWzAsMCwwLDAsMF0sWzAsMCwxLDAsMF1dfQ#studio"
+      }
+    }
+  ]
+}

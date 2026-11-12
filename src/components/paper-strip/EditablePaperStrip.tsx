@@ -1,6 +1,12 @@
 "use client";
 
-import type { HTMLAttributes, ReactNode } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  type ButtonHTMLAttributes,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import type { PaperStripPage, PaperStripProps } from "./PaperStrip";
 import s from "./editable-paper-strip.module.css";
 
@@ -17,6 +23,10 @@ export type PaperStripEditable = {
   aside: ReactNode;
   before?: ReactNode;
   toolbar?: (page: PaperStripPage) => ReactNode;
+  /** Native card selection button; independent retry/remove buttons stay above it. */
+  selectionProps?: (
+    page: PaperStripPage,
+  ) => ButtonHTMLAttributes<HTMLButtonElement>;
   overlay?: (page: PaperStripPage) => ReactNode;
   itemProps?: (page: PaperStripPage) => PaperStripItemProps;
 };
@@ -29,8 +39,51 @@ export function EditablePaperStrip({
   label = "지면 미리보기",
   editable,
 }: PaperStripProps & { editable: PaperStripEditable }) {
+  const shellRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return;
+    const measure = () => {
+      if (!shell.getClientRects().length) return;
+      shell.style.setProperty(
+        "--paper-editor-top",
+        `${Math.ceil(shell.getBoundingClientRect().top)}px`,
+      );
+      let bottom = 0;
+      for (let node = shell.parentElement; node; node = node.parentElement) {
+        const style = getComputedStyle(node);
+        bottom +=
+          (parseFloat(style.paddingBottom) || 0) +
+          (parseFloat(style.marginBottom) || 0);
+      }
+      shell.style.setProperty(
+        "--paper-editor-bottom",
+        `${Math.ceil(bottom)}px`,
+      );
+    };
+    measure();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    for (let node: HTMLElement | null = shell; node; node = node.parentElement)
+      observer?.observe(node);
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    };
+    window.addEventListener("resize", schedule);
+    window.addEventListener("scroll", schedule, { passive: true });
+    return () => {
+      observer?.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("scroll", schedule);
+    };
+  }, []);
   return (
-    <div className={s.shell}>
+    <div className={s.shell} ref={shellRef}>
       <div className={s.split}>
         <div className={s.work}>
           {editable.before}
@@ -45,6 +98,7 @@ export function EditablePaperStrip({
           >
             {pages.map((page) => {
               const itemProps = editable.itemProps?.(page);
+              const selectionProps = editable.selectionProps?.(page);
               return (
                 <figure
                   key={page.key}
@@ -60,22 +114,24 @@ export function EditablePaperStrip({
                     </div>
                     <div className={s.overlay}>{editable.overlay?.(page)}</div>
                   </div>
-                  <div className={s.toolbar}>
-                    {editable.toolbar?.(page)}
-                    {page.enlargeLabel !== undefined && (
-                      <button
-                        type="button"
-                        className={s.select}
-                        aria-label={page.enlargeLabel}
-                        title="크게 보기"
-                        aria-pressed={page.key === editable.selectedKey}
-                        disabled={busy}
-                        onClick={() => editable.onSelect(page.key)}
-                      >
-                        <span aria-hidden="true">⤢</span>
-                      </button>
-                    )}
-                  </div>
+                  {page.enlargeLabel !== undefined && (
+                    <button
+                      {...selectionProps}
+                      type="button"
+                      className={s.select}
+                      aria-label={
+                        selectionProps?.["aria-label"] ?? page.enlargeLabel
+                      }
+                      aria-pressed={page.key === editable.selectedKey}
+                      disabled={busy}
+                      onClick={(event) => {
+                        selectionProps?.onClick?.(event);
+                        if (!event.defaultPrevented)
+                          editable.onSelect(page.key);
+                      }}
+                    />
+                  )}
+                  <div className={s.toolbar}>{editable.toolbar?.(page)}</div>
                   <figcaption className={s.caption}>{page.caption}</figcaption>
                 </figure>
               );

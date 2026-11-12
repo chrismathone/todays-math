@@ -45,7 +45,7 @@ const panel = () => screen.getByRole("complementary", { name: "선택한 쪽" })
 const grid = () => screen.getByRole("region", { name: "쪽 카드" });
 const select = (identity: string) =>
   fireEvent.click(
-    within(grid()).getByRole("button", { name: `${identity} 크게 보기` }),
+    within(grid()).getByRole("button", { name: `${identity} 선택` }),
   );
 // jsdom has no native DragEvent, so assign the pointer coordinate explicitly.
 const dragAt = (
@@ -60,6 +60,87 @@ const dragAt = (
 };
 
 describe("H3-B 쪽 순서", () => {
+  it("카드 전체 선택 단추는 옆 미리보기만 바꾸며 확대·손잡이 단추가 없다", () => {
+    const { onMove, onToggle } = setup();
+    const second = within(grid()).getByRole("button", {
+      name: "서술형 스캔.pdf 원본 1쪽 선택",
+    });
+    fireEvent.click(second);
+    expect(within(panel()).getByRole("img")).toHaveAttribute(
+      "alt",
+      "서술형 스캔.pdf 원본 1쪽",
+    );
+    expect(second).toHaveAttribute("aria-pressed", "true");
+    expect(second).toHaveAttribute("draggable", "true");
+    expect(
+      screen.queryByRole("button", { name: /크게 보기|끌어서 옮기기/ }),
+    ).toBeNull();
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(onMove).not.toHaveBeenCalled();
+    expect(onToggle).not.toHaveBeenCalled();
+  });
+
+  it("끌기 뒤 발생한 포인터 클릭은 선택을 옮기지 않고 다음 클릭과 키보드 선택은 받는다", () => {
+    setup();
+    const first = within(grid()).getByRole("button", {
+      name: "본문.pdf 원본 2쪽 선택",
+    });
+    const second = within(grid()).getByRole("button", {
+      name: "서술형 스캔.pdf 원본 1쪽 선택",
+    });
+    const dataTransfer = { setData: vi.fn(), setDragImage: vi.fn() };
+    fireEvent.dragStart(second, { dataTransfer });
+    fireEvent.dragEnd(second, { dataTransfer });
+    fireEvent.click(first, { detail: 1 });
+    expect(second).toHaveAttribute("aria-pressed", "true");
+    fireEvent.pointerDown(first);
+    fireEvent.click(first, { detail: 1 });
+    expect(first).toHaveAttribute("aria-pressed", "true");
+    fireEvent.dragStart(first, { dataTransfer });
+    fireEvent.dragEnd(first, { dataTransfer });
+    fireEvent.click(second, { detail: 0 });
+    expect(second).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("겹치는 파일명과 원본 쪽은 파일 번호로 구분하고 재배열·제외 뒤에도 원본 캡션을 유지한다", () => {
+    const files = [
+      { id: "a", name: "문제.pdf", pages: 2 },
+      { id: "b", name: "문제.pdf", pages: 1 },
+    ];
+    const { props, rerender } = setup({ sources: files });
+    const caption = (index: number) =>
+      grid().querySelectorAll("figcaption")[index];
+    expect(caption(0)).toHaveTextContent("원본 1쪽파일 1 · 뺀 쪽");
+    expect(caption(2)).toHaveTextContent("원본 1쪽파일 2 · 새 2쪽");
+    expect(caption(2)).not.toHaveTextContent("문제.pdf");
+    select("문제.pdf (파일 2) 원본 1쪽");
+    rerender(
+      <StudioPageOrder
+        {...props}
+        order={[{ ...order[2], out: true }, order[1], order[0]]}
+      />,
+    );
+    expect(caption(0)).toHaveTextContent("원본 1쪽파일 2 · 뺀 쪽");
+    expect(caption(1)).toHaveTextContent("원본 2쪽파일 1 · 새 1쪽");
+    expect(within(panel()).getByRole("img")).toHaveAttribute(
+      "alt",
+      "문제.pdf (파일 2) 원본 1쪽",
+    );
+  });
+
+  it("단일 이미지에는 가짜 파일 쪽 번호 대신 원본 이미지를 표시하고 파일 출처를 남긴다", () => {
+    setup({
+      sources: [{ id: "b", name: "문제.jpg", pages: 1, kind: "image" }],
+      order: [order[2]],
+    });
+    const caption = grid().querySelector("figcaption")!;
+    expect(caption).toHaveTextContent("원본 이미지새 1쪽");
+    expect(caption).not.toHaveTextContent(/파일 1|문제.jpg/);
+    expect(
+      within(grid()).getByRole("button", { name: "문제.jpg 원본 이미지 선택" }),
+    ).toHaveAttribute("title", expect.stringContaining("문제.jpg"));
+  });
+
   it("실패한 카드와 옆 미리보기의 다시 시도 단추만 정확한 원본 키를 보내고 카드 표면은 조작하지 않는다", () => {
     const onRetryPreview = vi.fn();
     const failed = {
@@ -220,7 +301,7 @@ describe("H3-B 쪽 순서", () => {
     });
     const cards = [...grid().querySelectorAll("figure")];
     const grip = within(cards[1]).getByRole("button", {
-      name: /끌어서 옮기기/,
+      name: /선택/,
     });
     expect(grip).toBeEnabled();
     expect(grip).toHaveAttribute("draggable", "true");
@@ -266,9 +347,9 @@ describe("H3-B 쪽 순서", () => {
       const { onMove, onToggle } = setup({ previews: nextPreviews });
       const cards = [...grid().querySelectorAll("figure")];
       const grip = within(cards[1]).getByRole("button", {
-        name: /끌어서 옮기기/,
+        name: /선택/,
       });
-      expect(grip).toBeDisabled();
+      expect(grip).toBeEnabled();
       expect(grip).toHaveAttribute("draggable", "false");
       for (const button of [
         within(cards[1]).getByRole("button", {
@@ -294,7 +375,7 @@ describe("H3-B 쪽 순서", () => {
       fireEvent.dragStart(grip, { dataTransfer });
       expect(dataTransfer.setData).not.toHaveBeenCalled();
       const readyGrip = within(cards[2]).getByRole("button", {
-        name: /끌어서 옮기기/,
+        name: /선택/,
       });
       fireEvent.dragStart(readyGrip, { dataTransfer });
       dragAt("dragOver", cards[1], 0, dataTransfer);
@@ -381,7 +462,7 @@ describe("H3-B 쪽 순서", () => {
       render(<Reorder />);
       const user = userEvent.setup();
       const secondHandle = screen.getByRole("button", {
-        name: "본문.pdf 원본 2쪽 끌어서 옮기기",
+        name: "본문.pdf 원본 2쪽 선택",
       });
       // Reach the actual handle by Tab without selecting the second page first.
       for (let i = 0; i < 12 && document.activeElement !== secondHandle; i++)
@@ -569,12 +650,12 @@ describe("H3-B 쪽 순서", () => {
     );
   });
 
-  it("손잡이로만 끌고 파란 놓일 자리를 표시해 파일 사이 이동을 요청한다", () => {
+  it("카드의 선택 표면을 끌고 파란 놓일 자리를 표시해 파일 사이 이동을 요청한다", () => {
     const { onMove } = setup();
     const cards = [...grid().querySelectorAll("figure")];
     expect(cards.every((card) => !card.draggable)).toBe(true);
     const grip = within(cards[2]).getByRole("button", {
-      name: "서술형 스캔.pdf 원본 1쪽 끌어서 옮기기",
+      name: "서술형 스캔.pdf 원본 1쪽 선택",
     });
     const dataTransfer = {
       setData: vi.fn(),
@@ -676,7 +757,7 @@ describe("H3-B 쪽 순서", () => {
     dragAt("drop", cards[2], 110, dataTransfer);
     expect(onMove).not.toHaveBeenCalled();
     const grip = within(cards[1]).getByRole("button", {
-      name: "본문.pdf 원본 2쪽 끌어서 옮기기",
+      name: "본문.pdf 원본 2쪽 선택",
     });
     fireEvent.dragStart(grip, { dataTransfer });
     dragAt("dragOver", cards[2], 110, dataTransfer);
