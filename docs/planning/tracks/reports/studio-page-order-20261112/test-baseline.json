@@ -1,0 +1,277 @@
+{
+  "mainRevision": "78eedb0ed",
+  "command": "npx vitest run <listed files> --maxWorkers=3",
+  "config": "Main Vitest configuration; env replaced with unreachable localhost DATABASE_URL and temporary AUTH_SECRET; no environment file copied.",
+  "fullRun": {
+    "filesPassed": 1740,
+    "filesFailed": 65,
+    "filesSkipped": 33,
+    "testsPassed": 43212,
+    "testsFailed": 57,
+    "testsSkipped": 1030,
+    "errors": 1,
+    "seconds": 951.73
+  },
+  "files": [
+    {
+      "file": "src/__tests__/api/studentSessionSweep.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/api/studioAiFigureEdit.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/api/textbookQuickCreateIntegration.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/api/textbookRouteWalk.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/api/textbookRoutes.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/components/CurriculumGraphPanel.test.tsx",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/integration/sourceMaterialMigration.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookAdminUsability.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookCapture.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookConceptForms.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookDraft.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookFrozenSources.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookManagedOperations.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookOperationalScope.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookPublish.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookPublishArtifacts.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookRealValidator.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookRegisterAndRefs.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookReplayScope.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookSectionPreview.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookTeacherFlows.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookVisualLibrary.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankHeldSourceSql.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankReadFingerprint.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankReadRevision.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/conceptSentenceFixes.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/devAiResponseValidation.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/elemTiersG5.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/englishFence.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/englishSchemaVersionDraft.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/errorLogRouteCoverage.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/examDecisionCorpus.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examDecisionRules.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examReportMigration.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examWiringAudit.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/figureSlotsHwpx.test.tsx",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxEquationHeight.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxExport.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxGridRows.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxHancomLayout.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxReviewFindings.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/learningSoundAssets.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/mathInsightV2Access.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathOntologyModelPort.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathSrsQuickFence.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathSrsRecordIsolation.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathgenEngineHttp.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/mutateHarnessWideList.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/noRmSync.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/problemActualFormatMigration.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/problemActualFormatReader.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/proxyStudentGate.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/srsStoredContractWalk.test.ts",
+      "main": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlLifecycle.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlPublish.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlReferences.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDialogueUnitPasses.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookFrozenBlank.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookQuickCreate.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookQuickCreateAvailability.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookRecoveryWriter.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookSqlStatements.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookStudentAttemptsSql.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookStudentConceptVideo.test.ts",
+      "main": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookTeacherBlank.test.ts",
+      "main": "passed"
+    }
+  ]
+}

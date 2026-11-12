@@ -6,6 +6,22 @@ import { BackButton } from "@/components/ui/BackLink";
 /* eslint-disable @next/next/no-img-element */
 
 import StudioStepBar from "./StudioStepBar";
+import StudioPageOrder from "./StudioPageOrderStep";
+import {
+  activePageOrder,
+  commitPageOrder,
+  createPageOrderHistory,
+  initialPageOrder,
+  movePage,
+  reconcilePageOrder,
+  studioPageKey,
+  togglePageOut,
+  undoPageOrder,
+} from "./studioPageOrder";
+import {
+  renderStudioPagePreview,
+  type StudioPagePreview,
+} from "./studioPagePreview";
 import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
@@ -359,7 +375,35 @@ export default function StudioView({
   const [pageNumber, setPageNumber] = useState(1);
   const [rendered, setRendered] = useState<RenderedPage | null>(null);
   const [selection, setSelection] = useState<StudioRect | null>(null);
-  const [crops, setCrops] = useState<StudioCrop[]>([]);
+  const [storedCrops, setCrops] = useState<StudioCrop[]>([]);
+  const [orderHistory, setOrderHistory] = useState(() =>
+    createPageOrderHistory([]),
+  );
+  const pageOrder = useMemo(
+    () => reconcilePageOrder(orderHistory.present, sources),
+    [orderHistory.present, sources],
+  );
+  const livePages = useMemo(() => activePageOrder(pageOrder), [pageOrder]);
+  const currentPageIndex = livePages.findIndex(
+    (page) => page.sourceId === sourceId && page.page === pageNumber,
+  );
+  const crops = useMemo(() => {
+    const ranks = new Map(
+      livePages.map((page, index) => [studioPageKey(page), index]),
+    );
+    return storedCrops
+      .filter((crop) => ranks.has(studioPageKey(crop)))
+      .sort(
+        (a, b) => ranks.get(studioPageKey(a))! - ranks.get(studioPageKey(b))!,
+      );
+  }, [storedCrops, livePages]);
+  const [previews, setPreviews] = useState<Record<string, StudioPagePreview>>(
+    {},
+  );
+  const previewCache = useRef(new Map<string, StudioPagePreview>());
+  const autoAnalyzeSources = useRef(new Set<string>());
+  const analyzedPages = useRef(new Set<string>());
+  const [orderToast, setOrderToast] = useState("");
   const [activeCropId, setActiveCropId] = useState("");
   const [cropTool, setCropTool] = useState<
     "select" | "add-problem" | "add-figure" | "delete"
@@ -368,7 +412,21 @@ export default function StudioView({
   const [inspectedPages, setInspectedPages] = useState<Record<string, string>>(
     {},
   );
-  const [step, setStep] = useState<"upload" | "crop" | "review">("upload");
+  const [step, setStep] = useState<"upload" | "order" | "crop" | "review">(
+    "upload",
+  );
+  const isPageOrder = step === "order";
+  const previewBusy =
+    isPageOrder &&
+    sources.some((source) =>
+      initialPageOrder([source]).some((page) => {
+        const preview = previews[studioPageKey(page)];
+        return (
+          !preview ||
+          preview.rotation !== (source.pageRotations?.[page.page] ?? 0)
+        );
+      }),
+    );
   /*
    * 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. 2026-09-21 안 A 전에는
    * 「이전 검토 단계」 단추만 있어 `reviewRequest`(검수로만 가는 셈)였다. 탭이 넷이 되면서
@@ -470,7 +528,7 @@ export default function StudioView({
     contextKey: `${sourceId}:${pageNumber}`,
     active,
     // 도형 생성은 ② 영역 지정이 끝난 뒤에 — 크롭과 같이 돌리면 칸을 고친 뒤 두 번 만든다(원장님 2026-09-21).
-    figuresDeferred: step === "crop",
+    figuresDeferred: step !== "review",
     onRotatePage: (id, page, delta) => {
       setSources((previous) =>
         previous.map((source) =>
@@ -571,7 +629,9 @@ export default function StudioView({
     ["queued", "rendering", "running"].includes(job.state),
   );
   const currentPageJob = sourceJobs.find((job) => job.page === pageNumber);
-  const editing = Boolean(currentSource && step !== "upload");
+  const editing = Boolean(
+    currentSource && (step === "crop" || step === "review"),
+  );
   /*
    * 편집창 확대는 원장님 선택에만 따른다 — 단계가 바뀐다고 건드리지 않는다.
    * 원장님 2026-09-21 «편집창 확대/축소도 자동으로 하지말고 사용자 선택에 놔둘것»:
@@ -784,7 +844,7 @@ export default function StudioView({
   }, []);
 
   useEffect(() => {
-    if (!currentSource) return;
+    if (!currentSource || isPageOrder) return;
     const resources = session.current;
     const generation = resources.generation;
     let cancelled = false;
@@ -847,9 +907,16 @@ export default function StudioView({
       task?.cancel();
       if (resources.renderTask === task) resources.renderTask = null;
     };
-  }, [currentSource, pageNumber]);
+  }, [currentSource, pageNumber, isPageOrder]);
 
-  function chooseSource(id: string, page = 1) {
+  function chooseSource(id: string, requestedPage?: number) {
+    const first = livePages.find(
+      (item) =>
+        item.sourceId === id &&
+        (requestedPage === undefined || item.page === requestedPage),
+    );
+    if (sources.some((source) => source.id === id) && !first) return;
+    const page = first?.page ?? requestedPage ?? 1;
     const next =
       (activeCrop?.sourceId === id && activeCrop.page === page
         ? activeCrop
@@ -908,6 +975,109 @@ export default function StudioView({
     setStep("crop");
     setNotice(`${pageNumber}쪽을 시계 방향으로 90도 회전했습니다.`);
   }
+
+  function orderedLabel(key: string) {
+    const page = pageOrder.find((item) => studioPageKey(item) === key);
+    return page
+      ? `${sources.find((source) => source.id === page.sourceId)?.name} 원본 ${page.page}쪽`
+      : "쪽";
+  }
+  function changeOrder(next: typeof pageOrder, message: string) {
+    if (
+      studioAi.running ||
+      busy ||
+      previewBusy ||
+      JSON.stringify(next) === JSON.stringify(pageOrder)
+    )
+      return;
+    setOrderHistory((history) =>
+      commitPageOrder({ ...history, present: pageOrder }, next),
+    );
+    setOrderToast(message);
+  }
+  function undoOrder() {
+    setOrderHistory((history) => undoPageOrder(history));
+    setOrderToast("");
+  }
+  function startOrderedPages() {
+    if (busy || previewBusy || !livePages.length) return;
+    const first = livePages[0];
+    chooseSource(first.sourceId, first.page);
+    setStep("crop");
+    setOrderToast("");
+  }
+  useEffect(() => {
+    if (!orderToast) return;
+    const timer = window.setTimeout(() => setOrderToast(""), 6000);
+    return () => window.clearTimeout(timer);
+  }, [orderToast, orderHistory.present]);
+
+  const acceptPagePreview = useEffectEvent(
+    (source: StudioSource, page: number, preview: StudioPagePreview) => {
+      const key = studioPageKey({ sourceId: source.id, page });
+      setPreviews((previous) => ({
+        ...previous,
+        [key]: { ...preview, rotation: source.pageRotations?.[page] ?? 0 },
+      }));
+      if (
+        !autoAnalyzeSources.current.has(source.id) ||
+        analyzedPages.current.has(key)
+      )
+        return;
+      analyzedPages.current.add(key);
+      if (preview.autoOut)
+        setOrderHistory((history) => ({
+          ...history,
+          present: reconcilePageOrder(history.present, sources).map((entry) =>
+            studioPageKey(entry) === key
+              ? { ...entry, out: true, autoOut: preview.autoOut }
+              : entry,
+          ),
+          past: history.past.map((past) =>
+            reconcilePageOrder(past, sources).map((entry) =>
+              studioPageKey(entry) === key
+                ? { ...entry, out: true, autoOut: preview.autoOut }
+                : entry,
+            ),
+          ),
+        }));
+    },
+  );
+  useEffect(() => {
+    if (!isPageOrder) return;
+    const controller = new AbortController();
+    void (async () => {
+      for (const source of sources) {
+        for (let page = 1; page <= source.pages; page++) {
+          const key = `${studioPageKey({ sourceId: source.id, page })}:${source.pageRotations?.[page] ?? 0}`;
+          let preview = previewCache.current.get(key);
+          if (!preview) {
+            try {
+              preview = await renderStudioPagePreview(
+                source,
+                page,
+                controller.signal,
+              );
+            } catch (cause) {
+              if (controller.signal.aborted) return;
+              preview = {
+                url: "",
+                error:
+                  cause instanceof Error
+                    ? cause.message
+                    : "쪽 그림을 불러오지 못했습니다.",
+              };
+            }
+            if (controller.signal.aborted) return;
+            previewCache.current.set(key, preview);
+          }
+          if (controller.signal.aborted) return;
+          acceptPagePreview(source, page, preview);
+        }
+      }
+    })();
+    return () => controller.abort();
+  }, [sources, isPageOrder]);
 
   async function importFiles(files: File[], restored?: StudioSessionData) {
     const resources = session.current;
@@ -1030,30 +1200,55 @@ export default function StudioView({
           `이전 원본을 복원하지 못했습니다. 저장된 작업은 유지됩니다. ${errors.join(" ")}`,
         );
       }
+      const ordered = restored
+        ? restored.sources.map((source) =>
+            loaded.find((item) => item.id === source.id)!,
+          )
+        : loaded;
       if (loaded.length) {
-        const ordered = restored
-          ? restored.sources.map((source) =>
-              loaded.find((item) => item.id === source.id)!,
-            )
-          : loaded;
         setSources((previous) =>
           restored ? ordered : [...previous, ...ordered],
         );
-        if (!restored) chooseSource(loaded[0].id);
+        if (!restored) {
+          loaded.forEach((source) => autoAnalyzeSources.current.add(source.id));
+          setOrderHistory((history) => ({
+            present: reconcilePageOrder(history.present, [
+              ...sources,
+              ...ordered,
+            ]),
+            past: history.past.map((past) =>
+              reconcilePageOrder(past, [...sources, ...ordered]),
+            ),
+          }));
+          chooseSource(loaded[0].id);
+          setStep("order");
+        }
         setNotice(
-          `원본 ${loaded.length}개를 열었습니다. 문제 영역을 드래그해 주세요.`,
+          `원본 ${loaded.length}개를 열었습니다. 쪽 순서를 확인해 주세요.`,
         );
       }
       if (restored) {
+        const restoredOrder = reconcilePageOrder(restored.pageOrder, ordered);
+        setOrderHistory(createPageOrderHistory(restoredOrder));
         setCrops(restored.crops);
-        setSourceId(restored.sourceId);
-        setPageNumber(restored.pageNumber);
+        const restoredPage =
+          activePageOrder(restoredOrder).find(
+            (page) =>
+              page.sourceId === restored.sourceId &&
+              page.page === restored.pageNumber,
+          ) ?? activePageOrder(restoredOrder)[0];
+        setSourceId(restoredPage?.sourceId ?? restored.sourceId);
+        setPageNumber(restoredPage?.page ?? restored.pageNumber);
         setActiveCropId(restored.activeCropId);
         setSelectedBoxId(restored.activeCropId);
         setInspectedPages(restored.inspectedPages);
         setGrade(restored.grade);
         setLevel(restored.level);
-        setStep(restored.step);
+        setStep(
+          !activePageOrder(restoredOrder).length && restored.step !== "upload"
+            ? "order"
+            : restored.step,
+        );
         studioAi.restorePageJobs(restored.completedPages ?? []);
         setNotice("이전 문제 추출 작업을 복원했습니다.");
       }
@@ -1132,7 +1327,8 @@ export default function StudioView({
           pageRotations,
         }),
       ),
-      crops,
+      crops: storedCrops,
+      pageOrder,
       sourceId,
       pageNumber,
       activeCropId,
@@ -1146,7 +1342,8 @@ export default function StudioView({
     }),
     [
       sources,
-      crops,
+      storedCrops,
+      pageOrder,
       sourceId,
       pageNumber,
       activeCropId,
@@ -1332,6 +1529,12 @@ export default function StudioView({
       surface.current.releasePointerCapture(pointerId);
     if (fileInput.current) fileInput.current.value = "";
     setSources([]);
+    setOrderHistory(createPageOrderHistory([]));
+    setPreviews({});
+    previewCache.current.clear();
+    autoAnalyzeSources.current.clear();
+    analyzedPages.current.clear();
+    setOrderToast("");
     setImportProgress(null);
     setSourceId("");
     setPageNumber(1);
@@ -1943,8 +2146,9 @@ export default function StudioView({
       ...previous,
       [pageKey]: pageSignature,
     }));
-    if (currentSource && pageNumber < currentSource.pages) {
-      chooseSource(sourceId, pageNumber + 1);
+    if (currentPageIndex >= 0 && currentPageIndex < livePages.length - 1) {
+      const next = livePages[currentPageIndex + 1];
+      chooseSource(next.sourceId, next.page);
     } else {
       selectCrop(pageCrops[0].id);
       // 다른 쪽이나 도형이 아직 도는 동안에는 넘기지 않는다 — 아래 막대 단추로 넘어간다.
@@ -1994,21 +2198,24 @@ export default function StudioView({
   function recognizeSource(allPages = true) {
     if (!currentSource) return;
     const pages = allPages
-      ? Array.from({ length: currentSource.pages }, (_, index) => index + 1)
-      : [pageNumber];
-    const tasks: StudioAiPageTask[] = pages.map((page) => ({
-      sourceId: currentSource.id,
-      sourceLabel: currentSource.name,
-      page,
-      grade: currentSource.gradeManual
-        ? (currentSource.grade ?? "미지정")
-        : "미지정",
-      level: currentSource.level ?? level,
-      load: (signal, extraRotation = 0) =>
-        renderAiPage(currentSource, page, signal, extraRotation),
-    }));
+      ? livePages
+      : livePages.filter(
+          (page) => page.sourceId === sourceId && page.page === pageNumber,
+        );
+    const tasks: StudioAiPageTask[] = pages.map(({ sourceId: id, page }) => {
+      const source = sources.find((item) => item.id === id)!;
+      return {
+        sourceId: id,
+        sourceLabel: source.name,
+        page,
+        grade: source.gradeManual ? (source.grade ?? "미지정") : "미지정",
+        level: source.level ?? level,
+        load: (signal, extraRotation = 0) =>
+          renderAiPage(source, page, signal, extraRotation),
+      };
+    });
     void studioAi.recognizePages(tasks, {
-      force: !allPages || currentSource.pages === 1,
+      force: !allPages || livePages.length === 1,
     });
   }
 
@@ -2139,7 +2346,8 @@ export default function StudioView({
    * 둘째 줄은 캔버스 칸 «밖» 전폭에 선다 — 안에 두면 검수 패널만큼 좁아져 ②만 먼저 꺾였다
    * (실측 1516px: 캔버스 안 1170px vs 전폭 1490px).
    */
-  const toolRowShown = Boolean(currentSource) && step !== "upload";
+  const toolRowShown =
+    Boolean(currentSource) && (step === "crop" || step === "review");
   /*
    * 학년은 자동 인식이 서면 조용히 둔다(원장님 2026-09-21 «확인 필요할 때만 드러내기»).
    * 고칠 길은 어느 상태에서도 남는다 — 학년은 문항에 저장되는 실제 데이터이고(대분수 표시·출제
@@ -2153,8 +2361,11 @@ export default function StudioView({
         type="button"
         className={styles.pageNavigationButton}
         aria-label="이전 페이지"
-        disabled={pageNumber <= 1}
-        onClick={() => chooseSource(sourceId, pageNumber - 1)}
+        disabled={currentPageIndex <= 0}
+        onClick={() => {
+          const page = livePages[currentPageIndex - 1];
+          if (page) chooseSource(page.sourceId, page.page);
+        }}
       >
         이전 쪽
       </button>
@@ -2162,25 +2373,33 @@ export default function StudioView({
         <span className={styles.srOnly}>페이지</span>
         <select
           aria-label="페이지 선택"
-          value={pageNumber}
-          onChange={(event) =>
-            chooseSource(sourceId, Number(event.target.value))
-          }
+          value={currentPageIndex}
+          onChange={(event) => {
+            const page = livePages[Number(event.target.value)];
+            if (page) chooseSource(page.sourceId, page.page);
+          }}
         >
-          {Array.from({ length: currentSource.pages }, (_, index) => (
-            <option key={index + 1} value={index + 1}>
-              {index + 1}
+          {livePages.map((page, index) => (
+            <option key={studioPageKey(page)} value={index}>
+              새 {index + 1}쪽 ·{" "}
+              {sources.find((source) => source.id === page.sourceId)?.name} 원본{" "}
+              {page.page}쪽
             </option>
           ))}
         </select>
-        <span>/ {currentSource.pages}</span>
+        <span>/ {livePages.length}</span>
       </label>
       <button
         type="button"
         className={styles.pageNavigationButton}
         aria-label="다음 페이지"
-        disabled={pageNumber >= currentSource.pages}
-        onClick={() => chooseSource(sourceId, pageNumber + 1)}
+        disabled={
+          currentPageIndex < 0 || currentPageIndex >= livePages.length - 1
+        }
+        onClick={() => {
+          const page = livePages[currentPageIndex + 1];
+          if (page) chooseSource(page.sourceId, page.page);
+        }}
       >
         다음 쪽
       </button>
@@ -2238,9 +2457,9 @@ export default function StudioView({
         aria-busy={sourceRecognizing}
         onClick={() => recognizeSource()}
       >
-        {currentSource.pages > 1 ? "전체 페이지 자동 인식" : "페이지 자동 인식"}
+        {livePages.length > 1 ? "전체 페이지 자동 인식" : "페이지 자동 인식"}
       </button>
-      {currentSource.pages > 1 ? (
+      {livePages.length > 1 ? (
         <button
           type="button"
           className={styles.secondaryButton}
@@ -2322,7 +2541,13 @@ export default function StudioView({
             onChange={(event) => chooseSource(event.target.value)}
           >
             {sources.map((source) => (
-              <option key={source.id} value={source.id}>
+              <option
+                key={source.id}
+                value={source.id}
+                disabled={
+                  !livePages.some((page) => page.sourceId === source.id)
+                }
+              >
                 {source.name}
               </option>
             ))}
@@ -2605,7 +2830,7 @@ export default function StudioView({
   return (
     <section
       ref={studio}
-      className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""} ${step === "review" ? styles.reviewMode : ""}`}
+      className={`${styles.studio} ${step === "order" ? styles.pageOrderMode : ""} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""} ${step === "review" ? styles.reviewMode : ""}`}
       aria-label="문제 제작 스튜디오"
       style={
         chromeHeight
@@ -2656,7 +2881,8 @@ export default function StudioView({
               ? cart.picked.length
               : (pickedCount ?? cart.picked.length)
           }
-          canCrop={Boolean(currentSource)}
+          canOrder={sources.length > 0 && !studioAi.running && !busy}
+          canCrop={livePages.length > 0 && !previewBusy}
           canReview={crops.length > 0}
           canExport={canExport && !compositionBlocked}
           canCompose={cart.picked.length + pendingCount > 0}
@@ -2665,10 +2891,46 @@ export default function StudioView({
               addProblems(true);
               return;
             }
-            setStep(next);
+            if (next === "crop" && step === "order") startOrderedPages();
+            else setStep(next);
             if (next === "review") setInspectorOpen(true);
           }}
         >
+          {step === "order" && (
+            <>
+              <button
+                type="button"
+                disabled={!orderHistory.past.length || previewBusy}
+                onClick={undoOrder}
+              >
+                되돌리기
+              </button>
+              <button
+                type="button"
+                disabled={
+                  previewBusy ||
+                  JSON.stringify(pageOrder) ===
+                    JSON.stringify(initialPageOrder(sources))
+                }
+                onClick={() =>
+                  changeOrder(
+                    initialPageOrder(sources),
+                    "처음 차례로 돌렸습니다.",
+                  )
+                }
+              >
+                처음 차례로
+              </button>
+              <button
+                type="button"
+                className={styles.primaryButton}
+                disabled={busy || previewBusy || !livePages.length}
+                onClick={startOrderedPages}
+              >
+                이 순서로 시작 →
+              </button>
+            </>
+          )}
           {step === "upload" ? (
             <>
               <button type="button" onClick={loadSample} disabled={busy}>
@@ -2690,7 +2952,12 @@ export default function StudioView({
               </button>
             </>
           ) : null}
-          <button ref={restartButton} type="button" onClick={requestStartOver}>
+          <button
+            hidden={step === "order"}
+            ref={restartButton}
+            type="button"
+            onClick={requestStartOver}
+          >
             <Icon name="restart" />
             새로 시작
           </button>
@@ -2709,6 +2976,7 @@ export default function StudioView({
         */}
           <button
             ref={focusButton}
+            hidden={step === "order"}
             className={styles.primaryButton}
             aria-pressed={focusMode}
             onClick={() => setFocusMode((value) => !value)}
@@ -2776,7 +3044,47 @@ export default function StudioView({
         </span>
       </div>
 
-      <div ref={workspace} className={styles.workspace} data-studio-workspace>
+      {step === "order" && (
+        <>
+          <StudioPageOrder
+            sources={sources}
+            order={pageOrder}
+            previews={previews}
+            busy={busy || previewBusy}
+            onMove={(key, direction) =>
+              changeOrder(
+                movePage(pageOrder, key, direction),
+                `${orderedLabel(key)}을 옮겼습니다.`,
+              )
+            }
+            onToggle={(key) =>
+              changeOrder(
+                togglePageOut(pageOrder, key),
+                `${orderedLabel(key)}을 ${pageOrder.find((page) => studioPageKey(page) === key)?.out ? "되살렸습니다." : "뺐습니다."}`,
+              )
+            }
+          />
+          {previewBusy && <p role="status">쪽 그림을 불러오는 중…</p>}
+          {orderToast && (
+            <div className={styles.pageOrderToast} role="status">
+              <span>{orderToast}</span>
+              <button
+                type="button"
+                disabled={!orderHistory.past.length}
+                onClick={undoOrder}
+              >
+                되돌리기
+              </button>
+            </div>
+          )}
+        </>
+      )}
+      <div
+        hidden={step === "order"}
+        ref={workspace}
+        className={styles.workspace}
+        data-studio-workspace
+      >
         <div className={styles.canvasColumn}>
           {importProgress ? (
             <WorkProgress
@@ -3517,7 +3825,11 @@ export default function StudioView({
           />
         </Suspense>
       )}
-      <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
+      <footer
+        hidden={step === "order"}
+        className={styles.actionBar}
+        aria-label="문제 제작 주요 작업"
+      >
         {saveDialog}
         {storageScope && (
           <button onClick={saveLibrary} disabled={busy || !sources.length}>
@@ -3613,7 +3925,7 @@ export default function StudioView({
                 disabled={!pageCrops.length || !pageReady || recognizingPage}
                 onClick={inspectPage}
               >
-                {pageNumber < currentSource.pages
+                {currentPageIndex < livePages.length - 1
                   ? "영역 확인 · 다음 쪽"
                   : "영역 확인 · 문항 검수"}
               </button>

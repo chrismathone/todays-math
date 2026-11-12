@@ -594,7 +594,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       within(chipOf(1)!).getByText("담음 · 고친 내용 반영 전"),
     ).not.toHaveAttribute("aria-hidden");
     // ② 자른 문제 목록 배지도 같은 표시 — 목록 단추의 이름에 긴 뜻이 실린다(목록은 ② 단계에서 보인다).
-    fireEvent.click(stepTab(/1 범위 설정/));
+    fireEvent.click(stepTab(/1 영역 지정/));
     fireEvent.click(screen.getByRole("button", { name: "문제&도형 잘라내기" }));
     const listItem = within(screen.getByLabelText("자른 문제 목록")).getByRole(
       "button",

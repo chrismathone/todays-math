@@ -18,7 +18,7 @@ import type { StudioProblem } from "@/components/unified/types";
  * 원장님 2026-09-21 «4단계 헤더 구성 일치화 시킬것. 대신 각 단계에서 필요없는 헤더는 지울것.
  * 단계마다 헤더 구조가 바뀌는 치명적인 ux 고칠것» → **안 A 확정**(2026-09-21).
  *
- * 뼈대: 제목 줄은 네 단계가 똑같다 — 「자료 제작」 + 단계 탭 셋 + 그 단계의 큰 단추.
+ * 뼈대: 제목 줄은 네 단계가 똑같다 — 「자료 제작」 + 단계 탭 넷 + 그 단계의 큰 단추.
  * 파일·학년을 포함한 모든 도구는 둘째 줄. 큰 제목·설명 줄·원형 체크 막대는 없앴다.
  *
  * 계산된 모양(높이·꺾임)은 jsdom 이 못 잰다 — `e2e/studio-ai/step-header.spec.ts` 가 브라우저에서 잰다.
@@ -173,24 +173,24 @@ describe("1 · 뼈대 — 세 단계가 같은 제목 줄을 쓴다", () => {
     expect(document.querySelector("[data-workspace-page-header]")).toBeNull();
   });
 
-  it("단계 탭은 늘 셋이고 눌린 것은 정확히 하나다", async () => {
+  it("쪽 순서를 포함한 단계 탭은 넷이고 눌린 것은 정확히 하나다", async () => {
     await openStudio([crop("c1")], { step: "upload" });
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
     expect(pressed()).toHaveLength(1);
-    expect(pressed()[0]).toMatch(/^1 범위 설정$/);
+    expect(pressed()[0]).toMatch(/^1 영역 지정$/);
     fireEvent.click(
       within(
         screen.getByRole("navigation", { name: "원본 범위 작업" }),
       ).getByRole("button", { name: "문제&도형 잘라내기" }),
     );
-    expect(pressed()[0]).toMatch(/^1 범위 설정$/);
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
+    expect(pressed()[0]).toMatch(/^1 영역 지정$/);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
     fireEvent.click(tab(/^2 문항 검토/));
     expect(pressed()[0]).toMatch(/^2 문항 검토/);
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
   });
 
-  it("네 단계 어디서나 제목 줄의 구성이 같다 — 제목 하나 · 탭 셋 · 단추 묶음 하나", async () => {
+  it("네 단계 어디서나 제목 줄의 구성이 같다 — 제목 하나 · 탭 넷 · 단추 묶음 하나", async () => {
     await openStudio([crop("c1")], { step: "upload" });
     const shape = () => ({
       제목: within(bar()).getAllByRole("heading").length,
@@ -260,7 +260,7 @@ describe("3 · 확대를 켠 채 ①로 가도 풀 길이 남는다 (2026-09-21 
     await openStudio([crop("c1")], { step: "crop" });
     fireEvent.click(within(bar()).getByRole("button", { name: "편집창 확대" }));
     expect(focused()).toBe(true);
-    fireEvent.click(tab("1 범위 설정"));
+    fireEvent.click(tab("1 영역 지정"));
     expect(focused()).toBe(true);
     const shrink = within(bar()).getByRole("button", { name: "편집창 축소" });
     fireEvent.click(shrink);

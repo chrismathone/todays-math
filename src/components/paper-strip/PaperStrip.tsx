@@ -12,7 +12,13 @@ import {
   type RefObject,
 } from "react";
 import { A4_DIMENSIONS } from "@/components/print/tokens";
+import {
+  EditablePaperStrip,
+  type PaperStripEditable,
+} from "./EditablePaperStrip";
 import s from "./paper-strip.module.css";
+
+export type { PaperStripEditable } from "./EditablePaperStrip";
 
 /**
  * 지면 띠 — 여러 쪽을 옆으로 넘겨 보고, 쪽을 누르면 크게 보는 공용 부품.
@@ -20,7 +26,8 @@ import s from "./paper-strip.module.css";
  * 개념 백지 미리보기에서 떼어 냈다(원장님 2026-10-07 «비슷한 류는 하나의 방식으로 묶기»). 지면을 여러 쪽 보여 주는 화면은
  * 이 부품을 쓴다 — 이전 · 다음 단추나 배율 단추를 따로 짓지 않는다. 지금 쓰는 곳: 개념 백지 · 교재 제작의 완성 보기.
  *
- * 지면은 부르는 쪽이 그린다. 이 부품은 배율을 CSS 변수 `--paper-strip-scale` 로 내려 주고(띠에서는 줄여서, 크게 보기에서는 한 쪽에 맞춰),
+ * H3-B의 편집 격자는 `editable`로 선택한다. 선택·도구·상태·옆 미리보기는 부르는 쪽이 제공하고 기존 띠는 그대로 둔다.
+ * 지면은 부르는 쪽이 그린다. 띠 모드는 배율을 CSS 변수 `--paper-strip-scale` 로 내려 주고(띠에서는 줄여서, 크게 보기에서는 한 쪽에 맞춰),
  * 지면이 그 값으로 제 크기를 줄인다. 다른 이름을 읽는 지면이면 `scaleVars` 에 그 이름을 더한다.
  */
 export type PaperStripPage = {
@@ -188,7 +195,38 @@ function leadingItem(desk: HTMLElement) {
   return null;
 }
 
-export function PaperStrip({
+export type PaperStripProps = {
+  pages: readonly PaperStripPage[];
+  /** 띠 위의 안내 한 줄. */
+  hint: ReactNode;
+  /** 외부의 미리보기 바로가기가 초점을 옮길 영역. */
+  id?: string;
+  busy?: boolean;
+  /** 띠 또는 편집 격자 영역의 이름. */
+  label?: string;
+  /** 띠에서의 최대 배율 — 가용 폭과 높이에 맞춰 더 줄인다. */
+  maxScale?: number;
+  /** 배율을 같이 내려 줄 CSS 변수 이름(`--paper-strip-scale` 은 늘 내려 준다). */
+  scaleVars?: readonly string[];
+  /** 띠를 이 쪽으로 옮긴다. 같은 쪽을 다시 가리키려면 `nonce` 를 바꾼다. */
+  scrollTo?: { key: string; nonce: number } | null;
+  /** 넘길 때마다 맨 앞에 보이는 쪽을 알린다. */
+  onVisible?: (key: string) => void;
+  /** 높이가 정해진 세로 flex 칸 안에서 띠가 남은 높이를 채운다(원장님 2026-10-21). 쌓일 때는 창 높이에 맞춘다. */
+  fill?: boolean;
+  /** Editable cards with a controlled selection and an inline aside preview. Existing strip callers are unchanged. */
+  editable?: PaperStripEditable;
+};
+
+export function PaperStrip(props: PaperStripProps) {
+  return props.editable ? (
+    <EditablePaperStrip {...props} editable={props.editable} />
+  ) : (
+    <HorizontalPaperStrip {...props} />
+  );
+}
+
+function HorizontalPaperStrip({
   pages,
   hint,
   id,
@@ -200,29 +238,7 @@ export function PaperStrip({
   scrollTo,
   onVisible,
   fill = false,
-}: {
-  pages: readonly PaperStripPage[];
-  /** 띠 위의 안내 한 줄. */
-  hint: ReactNode;
-  /** 외부의 미리보기 바로가기가 초점을 옮길 영역. */
-  id?: string;
-  busy?: boolean;
-  /** 띠 영역의 이름. */
-  label?: string;
-  /** 띠에서의 최대 배율 — 가용 폭과 높이에 맞춰 더 줄인다. */
-  maxScale?: number;
-  /** 배율을 같이 내려 줄 CSS 변수 이름(`--paper-strip-scale` 은 늘 내려 준다). */
-  scaleVars?: readonly string[];
-  /** 띠를 이 쪽으로 옮긴다. 같은 쪽을 다시 가리키려면 `nonce` 를 바꾼다. */
-  scrollTo?: { key: string; nonce: number } | null;
-  /** 넘길 때마다 맨 앞에 보이는 쪽을 알린다. */
-  onVisible?: (key: string) => void;
-  /**
-   * 높이가 정해진 세로 flex 칸 안에서 띠가 남은 높이를 채운다 — 쪽 크기를 그 높이에 맞추고 가로 막대도 칸 안에 둔다
-   * (시험지 만들기 3단계 미리보기 · 원장님 2026-10-21). 띠의 바깥이 flex 가 아니면(좁은 화면에서 쌓일 때) 창 높이에 맞추던 대로다.
-   */
-  fill?: boolean;
-}) {
+}: PaperStripProps) {
   const {
     ref: deskRef,
     style,

@@ -315,6 +315,45 @@ describe("cloud worksheet persistence", () => {
   });
 });
 describe("cloud extraction sessions", () => {
+  it("round-trips the additive page-order field and order step through a fresh session reader", async () => {
+    const server = privateServer();
+    const client = () => new PrivateCloudClient("owner-a", server.transport);
+    const store = new PrivateStudioSessionStore(
+      "owner-a",
+      undefined,
+      undefined,
+      client(),
+      memoryRecovery(),
+    );
+    await store.load();
+    const data = {
+      ...sessionData("쪽 순서.pdf"),
+      step: "order" as const,
+      pageOrder: [
+        { sourceId: "source1", page: 2, out: false },
+        { sourceId: "source1", page: 1, out: true, autoOut: "표지" as const },
+      ],
+    };
+    await store.save(
+      data,
+      new Map([
+        [
+          "source1",
+          new Blob(["local fixture PDF"], { type: "application/pdf" }),
+        ],
+      ]),
+    );
+    const fresh = new PrivateStudioSessionStore(
+      "owner-a",
+      store.documentId,
+      undefined,
+      client(),
+      memoryRecovery(),
+    );
+    const restored = await fresh.load();
+    expect(restored?.data.step).toBe("order");
+    expect(restored?.data.pageOrder).toEqual(data.pageOrder);
+  });
   it("waits for a departing extraction save before restoring its pending revision", async () => {
     const server = privateServer();
     const recovery = memoryRecovery();

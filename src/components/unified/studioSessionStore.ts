@@ -1,3 +1,4 @@
+import type { StudioOrderedPage } from "./studioPageOrder";
 import type { StudioCrop } from "./studioHelpers";
 import type { SchoolLevel } from "./types";
 import type { StudioAiPageJob } from "./useStudioAi";
@@ -22,7 +23,8 @@ export interface StudioSessionData {
   pageNumber: number;
   activeCropId: string;
   inspectedPages: Record<string, string>;
-  step: "upload" | "crop" | "review";
+  step: "upload" | "order" | "crop" | "review";
+  pageOrder?: StudioOrderedPage[];
   grade: string;
   level: SchoolLevel;
   completedPages?: StudioAiPageJob[];
@@ -100,7 +102,7 @@ export class LocalStudioSessionStore {
           !data ||
           !Array.isArray(data.sources) ||
           !Array.isArray(data.crops) ||
-          !["upload", "crop", "review"].includes(data.step) ||
+          !["upload", "order", "crop", "review"].includes(data.step) ||
           data.sources.some(
             (source) =>
               !source.id ||

@@ -86,7 +86,7 @@ function validate(value: unknown): StudioSessionData {
     !data ||
     !Array.isArray(data.sources) ||
     !Array.isArray(data.crops) ||
-    !["upload", "crop", "review"].includes(data.step) ||
+    !["upload", "order", "crop", "review"].includes(data.step) ||
     data.sources.some(
       (source) =>
         !source.id ||

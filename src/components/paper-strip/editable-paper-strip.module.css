@@ -1,0 +1,207 @@
+.shell {
+  container: paper-editor / inline-size;
+  min-width: 0;
+  color: var(--learn-ink);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  min-width: 0;
+  background: var(--learn-bg);
+}
+
+.work {
+  min-width: 0;
+  padding: 16px 18px 18px;
+}
+
+.hint {
+  margin: 0 0 14px;
+  color: var(--learn-muted);
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 144px), 1fr));
+  gap: 14px;
+  min-width: 0;
+  align-items: start;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 7px;
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  background: var(--learn-surface);
+}
+
+.card[data-selected="true"] {
+  border-color: var(--learn-accent);
+  box-shadow: 0 0 0 2px var(--learn-accent);
+}
+
+.thumbnail {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 210 / 297;
+  overflow: hidden;
+  border: 1px solid var(--learn-track);
+  border-radius: 3px;
+  background: var(--learn-surface);
+}
+
+.ribbon {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--paper-strip-accent, var(--learn-accent));
+  pointer-events: none;
+}
+
+.visual {
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar {
+  position: absolute;
+  inset: 12px 12px auto;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.toolbar > * {
+  pointer-events: auto;
+}
+
+.select {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid var(--learn-control);
+  border-radius: 6px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.select:hover:not(:disabled) {
+  background: var(--learn-soft);
+}
+
+.select:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.select:focus-visible,
+.grid:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+
+.overlay {
+  position: absolute;
+  inset: auto auto 8px 6px;
+  pointer-events: none;
+}
+
+.caption {
+  min-width: 0;
+}
+
+.card[data-excluded="true"] {
+  border-style: dashed;
+  background: var(--learn-neutral);
+}
+
+.card[data-excluded="true"] .visual {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+.card[data-dragging="true"] {
+  opacity: 0.35;
+}
+
+.card[data-drop="before"]::before,
+.card[data-drop="after"]::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--learn-accent);
+  box-shadow: 0 0 0 3px var(--learn-soft);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card[data-drop="before"]::before {
+  left: -9px;
+}
+.card[data-drop="after"]::after {
+  right: -9px;
+}
+
+.aside {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border-left: 1px solid var(--learn-track);
+  background: var(--learn-surface);
+}
+
+@container paper-editor (max-width: 980px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .aside {
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+  }
+}
+
+@container paper-editor (max-width: 420px) {
+  .work {
+    padding: 14px 12px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+  .toolbar {
+    inset: 10px 10px auto;
+  }
+}
+
+.toolbar .select {
+  min-width: 26px;
+  min-height: 26px;
+  font-size: 14px;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .toolbar .select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

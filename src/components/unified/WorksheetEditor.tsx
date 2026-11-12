@@ -325,7 +325,7 @@ export default function WorksheetEditor({
         canExport
         onStep={(next) => {
           if (next === "export") return;
-          onGoToStep?.(next);
+          onGoToStep?.(next === "order" ? "crop" : next);
         }}
       >
         {draftActions && (
