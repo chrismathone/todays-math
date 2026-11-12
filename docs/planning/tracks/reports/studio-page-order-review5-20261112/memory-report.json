@@ -1,0 +1,106 @@
+{
+  "task": "Review5 #1 and incremental preview API for #2",
+  "outcome": "succeeded",
+  "productFilesModified": [
+    "src/components/unified/studioPagePreview.ts",
+    "src/__tests__/unit/studioPagePreview.test.ts"
+  ],
+  "api": {
+    "signature": "renderStudioPagePreview(source, page, signal, options?: { onPreview?: (preview: StudioPagePreview) => void }): Promise<StudioPagePreview>",
+    "callback": "Publishes an independent URL + inkRatio snapshot for each completed thumbnail, including noncandidates and standalone images, before candidate text/high rendering. It never includes autoOut; the final Promise carries classification or retryable verification error.",
+    "abort": "Abort from or after callback rejects AbortError, never publishes final autoOut, cancels active rendering, and cleans page resources. A late getPage resolution is cleaned too.",
+    "budgetAndKeepPolicy": "Unchanged single whole-operation 3000 ms deadline; confirmation scale >= 2.5 and >= thumbnail scale; any high-resolution ink retains the page."
+  },
+  "cleanup": {
+    "supportedAPI": "PDFPageProxy.cleanup(), never document cleanup/destroy and never private cleanup state mutation",
+    "installedSource": "pdfjs-dist 6.2.108 legacy/build/pdf.mjs PDFPageProxy.cleanup/#tryCleanup lines 22197-22220; render completion retries #tryCleanup and render start clears pending cleanup",
+    "installedDocs": "pdfjs-dist/types/src/display/api.d.ts lines 1519-1526: page cleanup returns boolean success; document cleanup at 1157-1165 warns about active rendering and is not used",
+    "deferral": "Real public RenderTask.onContinue paused an active render; page.cleanup() returned false, then its resolved image objects and decoded bytes were both zero when the render finished, without polling/retry/private mutation."
+  },
+  "tdd": {
+    "redCapturedBeforeProductChange": true,
+    "red": {
+      "failed": 25,
+      "passed": 41,
+      "total": 66,
+      "log": "/tmp/studio-order5-pdf-red.log"
+    },
+    "baselineCapturedBeforeProductChange": true,
+    "green": {
+      "passed": 66,
+      "total": 66,
+      "log": "/tmp/studio-order5-pdf-green.log"
+    },
+    "testCommand": "npx vitest run src/__tests__/unit/studioPagePreview.test.ts --maxWorkers=3",
+    "eslintCommand": "npx eslint src/components/unified/studioPagePreview.ts src/__tests__/unit/studioPagePreview.test.ts",
+    "eslint": "passed; /tmp/studio-order5-pdf-eslint.log and local eslint.log",
+    "coverage": "Early thumbnail before pending text/high rendering, PDF/image noncandidates, callback abort, late white render suppression, remaining shared deadline, page cleanup on success/text veto/failure/abort/timeout/late getPage, deferred cleanup acceptance, shared document preserved, existing scale2.5/single-pixel tests.",
+    "typeCheck": {
+      "command": "npm run type-check",
+      "maxOldSpaceSizeMiB": 8192,
+      "result": "passed",
+      "log": "/tmp/studio-order5-pdf-types.log",
+      "copiedLog": "types.log"
+    }
+  },
+  "measurement": {
+    "fixture": "white-scan-16.pdf",
+    "fixtureScript": "fixture.mts",
+    "measurementScript": "measure.mts",
+    "fixtureBytes": 415444,
+    "reviewFixtureBytes": 412130,
+    "fixtureSha256": "edc37e05d283c279c8559002376807e0f167b5c0a5e824fa76d54c3be8ed5d21",
+    "inputs": "16 pages of 595x842 PDF points, each with a distinct 2480x3508 RGB white (all 255) 8-bit image XObject, FlateDecode via pdf-lib context.flateStream (pako.deflate defaults), no shared image refs, object streams disabled, fixed creation/modification dates. Actual file size differs from the review reproduction because this fixture is newly serialized; the decoded dimensions/count/bytes match exactly.",
+    "instrumentation": "Read-only iteration over each actual PDFPageProxy.objs; sum resolved image.data.byteLength and record image dimensions/ids. Page references remain retained until measurement and explicit cleanup. This is decoded-image byte retention, not process RSS, GC inference, or mocked pages.",
+    "before": {
+      "decodedBytes": 417592320,
+      "MiB": 398.2470703125,
+      "perPageDecodedBytes": 26099520,
+      "elapsedMs": 25515.247709,
+      "productCleanupCalls": 0,
+      "raw": "baseline.json",
+      "sourceSha256": "81c3607566e9ff085467b78ea849129022f21b0d6f288783deaacc66cab5a4a3"
+    },
+    "after": {
+      "decodedBytes": 0,
+      "elapsedMs": 26233.705209,
+      "productCleanupCalls": 16,
+      "successfulCleanupCalls": 16,
+      "resolvedObjectsAfterEachCleanup": 0,
+      "raw": "after.json",
+      "sourceSha256": "2c8a8e19c80d0b222f9de25ad7ddbc0a4aa10a75472bc10a48ed53b40914718e"
+    },
+    "explicitCleanupBaseline": "All 16 cleanup() calls returned true and left zero resolved objects / decoded image bytes.",
+    "rerender": "Same shared PDFDocumentProxy returns the same page object after cleanup; getPage + translated/cropped scale1.7 render reproduces byte-identical RGBA. A separate colored probe avoids a vacuous white-vs-white comparison: 230x190 crop, 37060 nonwhite pixels, before/after SHA256 1cd52b349f6b21261a94812c36bc53cf7ae00182b41d50181463fd3a6f22e0cf. Product cleanup removed its image objects before the later render.",
+    "limitation": "Node v24.22.0, PDF.js 6.2.108 legacy Node mode and @napi-rs/canvas; not browser E2E. Browser ImageBitmap, GPU, worker/allocator and total process memory retention are outside this instrumentation. Timings are local Node observations, not browser performance claims."
+  },
+  "left": "Coordinator-owned documentation and final integration; no work remains in this worker scope.",
+  "notRun": [
+    "whole test suite",
+    "build",
+    "shared database",
+    "commit",
+    "push",
+    "main merge"
+  ],
+  "typeFollowUp": {
+    "result": "succeeded",
+    "changes": [
+      "Explicit PDFPageProxy generic for operation.wait; no emitted JavaScript change",
+      "Typed one-argument getPage test mock; runtime implementation unchanged",
+      "Typed measurement pages array and hash BinaryLike input; type-only Node-canvas/DOM bridge",
+      "Preserved runtime onContinue=null via a type assertion; installed PDF.js RenderTask initializes this public hook to null and tests its truthiness"
+    ],
+    "unitTests": "66 passed",
+    "scopedEslint": "passed",
+    "fullTypeCheck": "passed",
+    "finalSourceSha256": "558db3accbf08e8fe151e3602aeadec333bef8b05fc55fb1a519335de8bd54b5",
+    "measuredSourceSha256": "2c8a8e19c80d0b222f9de25ad7ddbc0a4aa10a75472bc10a48ed53b40914718e",
+    "emittedJavaScriptMatchesMeasuredSource": true,
+    "emittedJavaScriptSha256": "bba1b0a81943641a6ad7f580ce1e661cf5f2c6ddc4f3437ac6ead7e61e25698d",
+    "measuredSourceSnapshot": "after-measured-source.ts.txt",
+    "finalSourceSnapshot": "after-source.ts.txt",
+    "measurementScriptSnapshot": "measure-source.mts.txt",
+    "measurementRerun": "Not needed: product emitted JavaScript is byte-identical, and measurement corrections erase from JavaScript"
+  }
+}

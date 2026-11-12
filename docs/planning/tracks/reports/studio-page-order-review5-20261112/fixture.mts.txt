@@ -1,0 +1,51 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { PDFDocument, PDFName, rgb } from "pdf-lib";
+
+const directory = path.dirname(fileURLToPath(import.meta.url));
+export const inputs = {
+  pages: 16,
+  imageWidth: 2480,
+  imageHeight: 3508,
+  channels: 3,
+  channelValue: 255,
+  mediaBox: [595, 842],
+  compression: "pdf-lib context.flateStream (pako.deflate defaults, FlateDecode)",
+  distinctImageObjectPerPage: true,
+};
+
+async function fixture(pages: number, probe: boolean) {
+  const document = await PDFDocument.create();
+  const pixels = new Uint8Array(inputs.imageWidth * inputs.imageHeight * 3).fill(255);
+  const imageRefs: string[] = [];
+  for (let i = 0; i < pages; i++) {
+    const page = document.addPage(inputs.mediaBox as [number, number]);
+    // Register a new indirect image for every page, even though the pixels match.
+    const image = document.context.flateStream(pixels, {
+      Type: "XObject", Subtype: "Image", Width: inputs.imageWidth,
+      Height: inputs.imageHeight, ColorSpace: "DeviceRGB", BitsPerComponent: 8,
+    });
+    const ref = document.context.register(image);
+    imageRefs.push(ref.toString());
+    page.node.setXObject(PDFName.of("Scan"), ref);
+    page.node.addContentStream(document.context.register(document.context.flateStream(
+      "q 595 0 0 842 0 0 cm /Scan Do Q\n",
+    )));
+    if (probe) {
+      // A nonwhite crop makes replay failures observable rather than white == white.
+      page.drawRectangle({ x: 60, y: 655, width: 130, height: 100, color: rgb(0.1, 0.4, 0.8) });
+      page.drawRectangle({ x: 90, y: 680, width: 60, height: 40, color: rgb(0.8, 0.2, 0.1) });
+    }
+  }
+  document.setCreationDate(new Date("2026-11-12T00:00:00Z"));
+  document.setModificationDate(new Date("2026-11-12T00:00:00Z"));
+  const bytes = await document.save({ useObjectStreams: false });
+  const file = probe ? "patterned-probe.pdf" : "white-scan-16.pdf";
+  await fs.writeFile(path.join(directory, file), bytes);
+  return { file, fileBytes: bytes.length, imageRefs };
+}
+
+const files = [await fixture(16, false), await fixture(1, true)];
+await fs.writeFile(path.join(directory, "fixture-inputs.json"), JSON.stringify({ inputs, files }, null, 2) + "\n");
+console.log(JSON.stringify({ inputs, files }, null, 2));

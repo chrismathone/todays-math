@@ -1,0 +1,1116 @@
+{
+  "mode": "baseline",
+  "node": "v24.22.0",
+  "pdfjs": "6.2.108",
+  "sourceSha256": "81c3607566e9ff085467b78ea849129022f21b0d6f288783deaacc66cab5a4a3",
+  "fixture": {
+    "fileBytes": 415444,
+    "sha256": "edc37e05d283c279c8559002376807e0f167b5c0a5e824fa76d54c3be8ed5d21",
+    "inputs": {
+      "inputs": {
+        "pages": 16,
+        "imageWidth": 2480,
+        "imageHeight": 3508,
+        "channels": 3,
+        "channelValue": 255,
+        "mediaBox": [
+          595,
+          842
+        ],
+        "compression": "pdf-lib context.flateStream (default zlib/FlateDecode)",
+        "distinctImageObjectPerPage": true
+      },
+      "files": [
+        {
+          "file": "white-scan-16.pdf",
+          "fileBytes": 415444,
+          "imageRefs": [
+            "5 0 R",
+            "8 0 R",
+            "11 0 R",
+            "14 0 R",
+            "17 0 R",
+            "20 0 R",
+            "23 0 R",
+            "26 0 R",
+            "29 0 R",
+            "32 0 R",
+            "35 0 R",
+            "38 0 R",
+            "41 0 R",
+            "44 0 R",
+            "47 0 R",
+            "50 0 R"
+          ]
+        },
+        {
+          "file": "patterned-probe.pdf",
+          "fileBytes": 26863,
+          "imageRefs": [
+            "5 0 R"
+          ]
+        }
+      ]
+    }
+  },
+  "instrumentation": "Read-only PDFPageProxy.objs resolved-object iterator; sum image.data.byteLength for actual decoded RGB arrays; no process RSS, GC, mocks, or mutation of PDF.js internals",
+  "limitation": "Node 24 + PDF.js legacy build + @napi-rs/canvas, not browser E2E; browser ImageBitmap/GPU/worker/allocator retention is not measured",
+  "elapsedMs": 25515.247709,
+  "expectedDecodedBytes": 417592320,
+  "retainedDecodedBytesAfterPreviews": 417592320,
+  "retainedMiBAfterPreviews": 398.2470703125,
+  "retainedDecodedBytesAfterExplicitCleanup": 0,
+  "rows": [
+    {
+      "page": 1,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p0_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 2,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p1_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 3,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p2_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 4,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p3_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 5,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p4_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 6,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p5_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 7,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p6_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 8,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p7_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 9,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p8_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 10,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p9_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 11,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p10_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 12,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p11_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 13,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p12_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 14,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p13_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 15,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p14_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    },
+    {
+      "page": 16,
+      "inkRatio": 0,
+      "autoOut": "빈 쪽",
+      "error": null,
+      "retainedAfterInvocation": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p15_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "published": []
+    }
+  ],
+  "renderEvents": [
+    {
+      "page": 1,
+      "scale": 1.223529411764706,
+      "elapsedMs": 786.4705000000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p0_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 1,
+      "scale": 2.5,
+      "elapsedMs": 768.9884999999999,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p0_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 2,
+      "scale": 1.223529411764706,
+      "elapsedMs": 937.4603339999999,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p1_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 2,
+      "scale": 2.5,
+      "elapsedMs": 793.5489590000002,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p1_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 3,
+      "scale": 1.223529411764706,
+      "elapsedMs": 775.6672910000002,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p2_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 3,
+      "scale": 2.5,
+      "elapsedMs": 758.2733330000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p2_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 4,
+      "scale": 1.223529411764706,
+      "elapsedMs": 778.6874170000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p3_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 4,
+      "scale": 2.5,
+      "elapsedMs": 756.5715419999997,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p3_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 5,
+      "scale": 1.223529411764706,
+      "elapsedMs": 784.3733750000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p4_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 5,
+      "scale": 2.5,
+      "elapsedMs": 769.2231249999995,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p4_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 6,
+      "scale": 1.223529411764706,
+      "elapsedMs": 780.7897079999984,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p5_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 6,
+      "scale": 2.5,
+      "elapsedMs": 759.0164999999997,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p5_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 7,
+      "scale": 1.223529411764706,
+      "elapsedMs": 786.3596660000003,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p6_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 7,
+      "scale": 2.5,
+      "elapsedMs": 763.315458000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p6_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 8,
+      "scale": 1.223529411764706,
+      "elapsedMs": 780.3451669999995,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p7_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 8,
+      "scale": 2.5,
+      "elapsedMs": 760.1802920000009,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p7_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 9,
+      "scale": 1.223529411764706,
+      "elapsedMs": 789.5640829999993,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p8_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 9,
+      "scale": 2.5,
+      "elapsedMs": 769.9341669999994,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p8_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 10,
+      "scale": 1.223529411764706,
+      "elapsedMs": 782.7747909999998,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p9_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 10,
+      "scale": 2.5,
+      "elapsedMs": 792.234375,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p9_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 11,
+      "scale": 1.223529411764706,
+      "elapsedMs": 780.4363750000011,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p10_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 11,
+      "scale": 2.5,
+      "elapsedMs": 760.2435829999995,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p10_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 12,
+      "scale": 1.223529411764706,
+      "elapsedMs": 779.966457999999,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p11_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 12,
+      "scale": 2.5,
+      "elapsedMs": 761.3680419999982,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p11_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 13,
+      "scale": 1.223529411764706,
+      "elapsedMs": 780.8279589999984,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p12_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 13,
+      "scale": 2.5,
+      "elapsedMs": 759.2976249999992,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p12_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 14,
+      "scale": 1.223529411764706,
+      "elapsedMs": 781.4469590000008,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p13_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 14,
+      "scale": 2.5,
+      "elapsedMs": 916.4912499999991,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p13_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 15,
+      "scale": 1.223529411764706,
+      "elapsedMs": 837.7301249999982,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p14_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 15,
+      "scale": 2.5,
+      "elapsedMs": 790.0041249999995,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p14_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 16,
+      "scale": 1.223529411764706,
+      "elapsedMs": 806.713917000001,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p15_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    },
+    {
+      "page": 16,
+      "scale": 2.5,
+      "elapsedMs": 771.2388749999991,
+      "retained": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p15_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      }
+    }
+  ],
+  "cleanupEvents": [],
+  "explicitCleanup": [
+    {
+      "page": 1,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 2,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 3,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 4,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 5,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 6,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 7,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 8,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 9,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 10,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 11,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 12,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 13,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 14,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 15,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    },
+    {
+      "page": 16,
+      "success": true,
+      "after": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    }
+  ],
+  "rerender": {
+    "sameSharedPageObject": true,
+    "scanRegionBefore": {
+      "sha256": "c33ecf457c6dc799e9095d0872bbed426fbbb59dc95d37b41f955883448014b9",
+      "width": 230,
+      "height": 190,
+      "nonwhitePixels": 0
+    },
+    "scanRegionAfter": {
+      "sha256": "c33ecf457c6dc799e9095d0872bbed426fbbb59dc95d37b41f955883448014b9",
+      "width": 230,
+      "height": 190,
+      "nonwhitePixels": 0
+    },
+    "patternedProbe": {
+      "preview": {
+        "inkRatio": 0.026220142611995182,
+        "error": null
+      },
+      "before": {
+        "sha256": "1cd52b349f6b21261a94812c36bc53cf7ae00182b41d50181463fd3a6f22e0cf",
+        "width": 230,
+        "height": 190,
+        "nonwhitePixels": 37060
+      },
+      "after": {
+        "sha256": "1cd52b349f6b21261a94812c36bc53cf7ae00182b41d50181463fd3a6f22e0cf",
+        "width": 230,
+        "height": 190,
+        "nonwhitePixels": 37060
+      },
+      "afterProduct": {
+        "resolvedObjects": 1,
+        "images": [
+          {
+            "id": "img_p0_1",
+            "width": 2480,
+            "height": 3508,
+            "decodedBytes": 26099520
+          }
+        ],
+        "decodedBytes": 26099520
+      },
+      "cleanupEvents": []
+    },
+    "deferredCleanup": {
+      "initialResult": false,
+      "afterRendererFinished": {
+        "resolvedObjects": 0,
+        "images": [],
+        "decodedBytes": 0
+      }
+    }
+  }
+}
