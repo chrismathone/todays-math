@@ -1,4 +1,5 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -7,6 +8,7 @@ import {
   within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { useState } from "react";
 import StudioView from "@/components/unified/StudioView";
 import { DevAiProvider } from "@/components/unified/useDevAi";
 import type { StudioSessionData } from "@/components/unified/studioSessionStore";
@@ -14,7 +16,16 @@ import type {
   StudioAiPageTask,
   StudioAiPageJob,
 } from "@/components/unified/useStudioAi";
-import type { StudioCrop } from "@/components/unified/studioHelpers";
+import {
+  studioProblem,
+  type StudioCrop,
+} from "@/components/unified/studioHelpers";
+import {
+  addToCart,
+  reconcileStudioPageCart,
+  type StudioCartRemoval,
+} from "@/components/unified/studioCart";
+import * as imageHelpers from "@/components/unified/studioAiHelpers";
 
 const state = vi.hoisted(() => ({
   saved: null as unknown,
@@ -22,6 +33,8 @@ const state = vi.hoisted(() => ({
   recognize: vi.fn(),
   jobs: null as StudioAiPageJob[] | null,
   activePages: [] as readonly { sourceId: string; page: number }[],
+  pdfPages: 2,
+  readOperators: vi.fn(),
 }));
 vi.mock("@/components/unified/studioSessionStore", () => ({
   StudioSessionStore: class {
@@ -50,9 +63,10 @@ vi.mock("@/components/unified/useStudioAi", async (original) => {
 vi.mock("pdfjs-dist", () => ({
   version: "test",
   GlobalWorkerOptions: {},
+  OPS: {},
   getDocument: () => ({
     promise: Promise.resolve({
-      numPages: 2,
+      numPages: state.pdfPages,
       getPage: async () => ({
         getViewport: ({ scale }: { scale: number }) => ({
           width: 100 * scale,
@@ -61,6 +75,7 @@ vi.mock("pdfjs-dist", () => ({
         getTextContent: async () => ({
           items: [{ str: "1. 값을 구하시오.", hasEOL: true }],
         }),
+        getOperatorList: state.readOperators,
         render: () => ({ promise: Promise.resolve(), cancel() {} }),
       }),
       loadingTask: { destroy: async () => {} },
@@ -78,6 +93,10 @@ beforeEach(() => {
   state.recognize.mockReset();
   state.jobs = null;
   state.activePages = [];
+  state.pdfPages = 2;
+  state.readOperators
+    .mockReset()
+    .mockResolvedValue({ fnArray: [], argsArray: [] });
   vi.stubGlobal(
     "ResizeObserver",
     class {
@@ -115,6 +134,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });
@@ -192,6 +212,113 @@ async function excludeFirstWorkedPage() {
 }
 
 describe("Studio 쪽 차례 연결", () => {
+  it("연산 목록 응답이 없어도 3초 뒤 쪽을 유지하고 쪽 순서 조작·시작을 연다", async () => {
+    state.pdfPages = 1;
+    state.readOperators.mockReturnValue(new Promise(() => {}));
+    open();
+    const input = screen.getByLabelText("PDF 또는 이미지 파일 가져오기");
+    await waitFor(() => expect(input).toBeEnabled());
+    const file = new File(["pdf"], "지연.pdf", { type: "application/pdf" });
+    Object.defineProperty(file, "arrayBuffer", {
+      value: async () => new ArrayBuffer(8),
+    });
+    vi.useFakeTimers();
+    await act(async () => {
+      fireEvent.change(input, { target: { files: [file] } });
+    });
+    expect(state.readOperators).toHaveBeenCalledOnce();
+    expect(
+      screen.getByRole("button", { name: "이 순서로 시작 →" }),
+    ).toBeDisabled();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(3000);
+    });
+    expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "이 순서로 시작 →" }),
+    ).toBeEnabled();
+    expect(screen.getByText(/시작할 쪽 1 · 뺀 쪽 0/)).toBeVisible();
+  });
+
+  it("2차 원본 복원: 같은 옛 쪽에서 각각 새 원본이 된 담은 문항도 제외·출력·되살리기가 연결된다", async () => {
+    const originals = workedPages().map((crop) => ({
+      ...crop,
+      sourceId: "old-source",
+      page: 7,
+    }));
+    vi.spyOn(imageHelpers, "studioImageCanvas").mockImplementation(async () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 120;
+      canvas.height = 80;
+      return canvas;
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "toBlob").mockImplementation(
+      (callback) => callback(new Blob(["image"], { type: "image/png" })),
+    );
+    const output = vi.fn();
+    function RestoredWorksheet() {
+      const [cart, setCart] = useState({
+        picked: originals.map(studioProblem),
+        removed: [] as StudioCartRemoval[],
+      });
+      return (
+        <>
+          <StudioView
+            picked={cart.picked}
+            removed={cart.removed}
+            onAdd={(problems) =>
+              setCart((current) => ({
+                ...current,
+                picked: addToCart(current.picked, problems),
+              }))
+            }
+            onPageOrderChange={(order, pageCrops) =>
+              setCart((current) => {
+                const next = reconcileStudioPageCart(
+                  current.picked,
+                  current.removed,
+                  order,
+                  pageCrops,
+                );
+                return next.picked === current.picked &&
+                  next.removed === current.removed
+                  ? current
+                  : next;
+              })
+            }
+            onExport={() => output(cart.picked.map((p) => p.id))}
+            storageScope="local-test"
+            restoreRequest={{ id: 1, crops: originals }}
+          />
+          <output aria-label="복원 시험지 목록">
+            {cart.picked.map((p) => p.id).join(",")}
+          </output>
+        </>
+      );
+    }
+    render(
+      <DevAiProvider>
+        <RestoredWorksheet />
+      </DevAiProvider>,
+    );
+    await screen.findByText("저장한 문제의 원본과 검수 내용을 열었습니다.");
+    await excludeFirstWorkedPage();
+    fireEvent.click(screen.getByRole("button", { name: /2 문항 검토/ }));
+    expect(screen.getByLabelText("복원 시험지 목록")).toHaveTextContent(/^c2$/);
+    fireEvent.click(screen.getByRole("button", { name: /3 양식 구성/ }));
+    expect(output).toHaveBeenLastCalledWith(["c2"]);
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    fireEvent.click(screen.getByRole("button", { name: "처음 차례로" }));
+    expect(screen.getByLabelText("복원 시험지 목록")).toHaveTextContent(
+      /^c1,c2$/,
+    );
+    expect(
+      originals.every(
+        (crop) => crop.sourceId === "old-source" && crop.page === 7,
+      ),
+    ).toBe(true);
+  });
+
   it("모든 쪽을 빼면 남은 작업을 지우거나 빈 시험지 출력으로 넘어갈 수 없다", async () => {
     const crops = workedPages();
     state.saved = {

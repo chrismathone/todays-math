@@ -25,51 +25,91 @@ export interface StudioCartRemoval {
   index: number;
   /** A reversible page exclusion, distinct from a teacher removing a question. */
   pageExcluded?: boolean;
+  /** Original predecessor; null means the beginning. Missing is a legacy numeric position. */
+  previousId?: string | null;
 }
 
-/** Move excluded-page picks into saved removal memory; restore only those picks. */
+/** Materialize removed neighbors as placeholders without changing the visible order. */
+function cartWithRemovedNeighbors(
+  picked: readonly StudioProblem[],
+  removed: readonly StudioCartRemoval[],
+): StudioProblem[] {
+  const sequence = [...picked];
+  const present = new Set(picked.map((problem) => problem.id));
+  const memories = new Map(removed.map((item) => [item.problem.id, item]));
+  const visiting = new Set<string>();
+  const insert = (item: StudioCartRemoval) => {
+    const id = item.problem.id;
+    if (present.has(id) || visiting.has(id)) return;
+    visiting.add(id);
+    if (typeof item.previousId === "string") {
+      const predecessor = memories.get(item.previousId);
+      if (predecessor) insert(predecessor);
+    }
+    const index =
+      item.previousId === undefined
+        ? Math.min(item.index, sequence.length)
+        : item.previousId === null
+          ? 0
+          : sequence.findIndex((problem) => problem.id === item.previousId) + 1;
+    sequence.splice(index, 0, item.problem);
+    present.add(id);
+    visiting.delete(id);
+  };
+  [...removed].sort((a, b) => a.index - b.index).forEach(insert);
+  return sequence;
+}
+
+export type StudioCartPageIdentity = Pick<
+  StudioCrop,
+  "id" | "sourceId" | "page"
+>;
+
+/** Move excluded picks into saved memory; use current crop identity after portable restoration. */
 export function reconcileStudioPageCart(
   picked: StudioProblem[],
   removed: StudioCartRemoval[],
   order: readonly StudioOrderedPage[],
+  pageCrops: readonly StudioCartPageIdentity[] = [],
 ) {
   const pages = new Map(order.map((page) => [studioPageKey(page), page.out]));
-  const pageOut = (problem: StudioProblem) =>
-    problem.studioCrop
-      ? pages.get(studioPageKey(problem.studioCrop))
-      : undefined;
-  const hidden = removed.filter((item) => item.pageExcluded);
-  const original = [...picked];
-  for (const item of [...hidden].sort((a, b) => a.index - b.index)) {
-    if (!original.some((problem) => problem.id === item.problem.id))
-      original.splice(Math.min(item.index, original.length), 0, item.problem);
-  }
+  const identities = new Map(pageCrops.map((crop) => [crop.id, crop]));
+  const pageOut = (problem: StudioProblem) => {
+    const identity = identities.get(problem.id) ?? problem.studioCrop;
+    return identity ? pages.get(studioPageKey(identity)) : undefined;
+  };
+  const pickedIds = new Set(picked.map((problem) => problem.id));
+  const restoredIds = new Set(
+    removed
+      .filter((item) => item.pageExcluded && pageOut(item.problem) === false)
+      .map((item) => item.problem.id),
+  );
+  const original = cartWithRemovedNeighbors(picked, removed);
   const nextPicked: StudioProblem[] = [];
-  const nextRemoved = removed.filter((item) => !item.pageExcluded);
+  const nextRemoved = removed.filter(
+    (item) =>
+      !restoredIds.has(item.problem.id) && !pickedIds.has(item.problem.id),
+  );
   original.forEach((problem, index) => {
-    const excluded = pageOut(problem);
-    if (
-      excluded === true ||
-      (excluded === undefined &&
-        hidden.some((item) => item.problem.id === problem.id))
-    )
-      nextRemoved.push({ problem, index, pageExcluded: true });
+    if (!pickedIds.has(problem.id) && !restoredIds.has(problem.id)) return;
+    if (pageOut(problem) === true)
+      nextRemoved.push({
+        problem,
+        index,
+        previousId: original[index - 1]?.id ?? null,
+        pageExcluded: true,
+      });
     else nextPicked.push(problem);
   });
   return {
     picked:
       nextPicked.length === picked.length &&
-      nextPicked.every((p, i) => p === picked[i])
+      nextPicked.every((problem, index) => problem === picked[index])
         ? picked
         : nextPicked,
     removed:
       nextRemoved.length === removed.length &&
-      nextRemoved.every(
-        (item, i) =>
-          item.problem === removed[i].problem &&
-          item.index === removed[i].index &&
-          item.pageExcluded === removed[i].pageExcluded,
-      )
+      nextRemoved.every((item, index) => item === removed[index])
         ? removed
         : nextRemoved,
   };
@@ -176,16 +216,25 @@ export function addToCart(current: StudioProblem[], problems: StudioProblem[]) {
   ];
 }
 
-/** 뺀 자리로 되돌린다. 목록이 그새 줄었으면 끝에. 이미 있으면 그대로. */
+/** Restore beside saved neighbors. Numeric insertion is only for legacy removals. */
 export function restoreToCart(
   current: StudioProblem[],
   problem: StudioProblem,
   index: number,
+  removed: readonly StudioCartRemoval[] = [],
 ) {
   if (
     current.some((item) => questionIdentity(item) === questionIdentity(problem))
   )
     return current;
+  const memory = removed.find((item) => item.problem.id === problem.id);
+  if (memory?.previousId !== undefined) {
+    const ids = new Set([...current.map((item) => item.id), problem.id]);
+    return cartWithRemovedNeighbors(
+      current,
+      removed.map((item) => (item === memory ? { ...item, problem } : item)),
+    ).filter((item) => ids.has(item.id));
+  }
   const next = [...current];
   next.splice(Math.min(index, next.length), 0, problem);
   return next;
@@ -195,10 +244,19 @@ export function rememberRemoval(
   removed: StudioCartRemoval[],
   problem: StudioProblem,
   index: number,
+  picked?: readonly StudioProblem[],
 ) {
+  const original = picked && cartWithRemovedNeighbors(picked, removed);
+  const position = original?.findIndex((item) => item.id === problem.id);
   return [
     ...removed.filter((item) => item.problem.id !== problem.id),
-    { problem, index },
+    {
+      problem,
+      index,
+      ...(original && position !== undefined && position >= 0
+        ? { previousId: original[position - 1]?.id ?? null }
+        : {}),
+    },
   ];
 }
 
@@ -235,12 +293,24 @@ export function removeAllFromCart(
   picked: StudioProblem[],
   removed: StudioCartRemoval[],
 ) {
+  const original = cartWithRemovedNeighbors(picked, removed);
+  const predecessors = new Map(
+    original.map((problem, index) => [
+      problem.id,
+      original[index - 1]?.id ?? null,
+    ]),
+  );
+  const ids = new Set(picked.map((problem) => problem.id));
   return {
     picked: [] as StudioProblem[],
-    removed: picked.reduce(
-      (memory, problem, index) => rememberRemoval(memory, problem, index),
-      removed,
-    ),
+    removed: [
+      ...removed.filter((item) => !ids.has(item.problem.id)),
+      ...picked.map((problem, index) => ({
+        problem,
+        index,
+        previousId: predecessors.get(problem.id) ?? null,
+      })),
+    ],
   };
 }
 
@@ -283,6 +353,7 @@ export function studioCartRows(
  * 하네스가 담은 뒤의 작업실을 제품과 같게 보게 하려는 것이지 제품의 두 번째 장부가 아니다.
  */
 const NO_PAGE_ORDER: readonly StudioOrderedPage[] = [];
+const NO_PAGE_CROPS: readonly StudioCartPageIdentity[] = [];
 
 export function useStudioCart({
   picked,
@@ -292,6 +363,7 @@ export function useStudioCart({
   onRemoveAll,
   onRestore,
   pageOrder = NO_PAGE_ORDER,
+  pageCrops = NO_PAGE_CROPS,
   onPageOrderChange,
 }: {
   picked?: StudioProblem[];
@@ -302,7 +374,11 @@ export function useStudioCart({
   onRemoveAll?: () => void;
   onRestore?: (problem: StudioProblem) => void;
   pageOrder?: readonly StudioOrderedPage[];
-  onPageOrderChange?: (order: readonly StudioOrderedPage[]) => void;
+  pageCrops?: readonly StudioCartPageIdentity[];
+  onPageOrderChange?: (
+    order: readonly StudioOrderedPage[],
+    pageCrops: readonly StudioCartPageIdentity[],
+  ) => void;
 }) {
   const [local, setLocal] = useState<{
     picked: StudioProblem[];
@@ -313,6 +389,7 @@ export function useStudioCart({
     picked ?? local.picked,
     controlled ? (removed ?? []) : local.removed,
     pageOrder,
+    pageCrops,
   );
   if (
     !controlled &&
@@ -321,27 +398,28 @@ export function useStudioCart({
     setLocal(projected);
   // The controlled ledger is an external draft store. Reconcile it after page/ledger changes.
   const syncPageOrder = useEffectEvent(() => {
-    if (controlled) onPageOrderChange?.(pageOrder);
+    if (controlled) onPageOrderChange?.(pageOrder, pageCrops);
   });
   useEffect(() => {
     syncPageOrder();
-  }, [pageOrder, picked, removed]);
+  }, [pageOrder, pageCrops, picked, removed]);
   const excluded = new Set(
     pageOrder.filter((page) => page.out).map(studioPageKey),
   );
+  const identities = new Map(pageCrops.map((crop) => [crop.id, crop]));
   return {
     controlled,
     picked: projected.picked,
-    removed: projected.removed.filter(
-      (item) =>
+    removed: projected.removed.filter((item) => {
+      const identity =
+        identities.get(item.problem.id) ?? item.problem.studioCrop;
+      return (
         !item.pageExcluded &&
-        !(
-          item.problem.studioCrop &&
-          excluded.has(studioPageKey(item.problem.studioCrop))
-        ),
-    ),
+        !(identity && excluded.has(studioPageKey(identity)))
+      );
+    }),
     syncPageOrder() {
-      if (controlled) onPageOrderChange?.(pageOrder);
+      if (controlled) onPageOrderChange?.(pageOrder, pageCrops);
     },
     add(problems: StudioProblem[]) {
       onAdd(problems);
@@ -370,6 +448,7 @@ export function useStudioCart({
             current.removed,
             current.picked[index],
             index,
+            current.picked,
           ),
         };
       });
@@ -395,6 +474,7 @@ export function useStudioCart({
             current.picked,
             problem,
             memory?.index ?? current.picked.length,
+            current.removed,
           ),
           removed: forgetRemovals(current.removed, [problem.id]),
         };

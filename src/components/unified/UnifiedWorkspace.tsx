@@ -58,6 +58,7 @@ import {
   removeAllFromCart,
   restoreToCart,
   reconcileStudioPageCart,
+  type StudioCartPageIdentity,
 } from "./studioCart";
 import type { StudioOrderedPage } from "./studioPageOrder";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
@@ -1030,7 +1031,9 @@ function UnifiedWorkspaceContent({
       setNotice("시험지에서 문제를 뺐습니다.");
       // 시험지에 있던 판을 기억한다 — 문제은행 카드가 넘기는 것은 은행 쪽 판일 수 있다.
       const removedProblem = selected[index];
-      updateRemovals((items) => rememberRemoval(items, removedProblem, index));
+      updateRemovals((items) =>
+        rememberRemoval(items, removedProblem, index, selected),
+      );
     } else updateRemovals((items) => forgetRemovals(items, [problem.id]));
     setSelected((current) =>
       current.some((p) => p.id === problem.id)
@@ -1082,7 +1085,9 @@ function UnifiedWorkspaceContent({
       setNotice("같은 문항이 이미 담겨 있어 되돌릴 수 없습니다.", true);
       return;
     }
-    setSelected((current) => restoreToCart(current, undo.problem, undo.index));
+    setSelected((current) =>
+      restoreToCart(current, undo.problem, undo.index, removed),
+    );
     updateRemovals((items) => forgetRemovals(items, [undo.problem.id]));
     setUndo(null);
     setNotice("문제를 다시 담았습니다.");
@@ -1116,7 +1121,7 @@ function UnifiedWorkspaceContent({
       let changed = items;
       selected.forEach((problem, index) => {
         if (!nextIds.has(problem.id))
-          changed = rememberRemoval(changed, problem, index);
+          changed = rememberRemoval(changed, problem, index, selected);
       });
       return forgetRemovals(changed, [...nextIds]);
     });
@@ -1139,12 +1144,16 @@ function UnifiedWorkspaceContent({
     );
   };
   const changeStudioPageOrder = useCallback(
-    (order: readonly StudioOrderedPage[]) => {
+    (
+      order: readonly StudioOrderedPage[],
+      pageCrops: readonly StudioCartPageIdentity[],
+    ) => {
       const current = getCurrentDraft();
       const next = reconcileStudioPageCart(
         current.problems,
         current.removed,
         order,
+        pageCrops,
       );
       if (next.picked !== current.problems) setSelected(next.picked);
       if (next.removed !== current.removed) updateRemovals(next.removed);
@@ -1181,7 +1190,7 @@ function UnifiedWorkspaceContent({
     const index =
       removed.find((item) => item.problem.id === problem.id)?.index ??
       selected.length;
-    setSelected((current) => restoreToCart(current, problem, index));
+    setSelected((current) => restoreToCart(current, problem, index, removed));
     updateRemovals((items) => forgetRemovals(items, [problem.id]));
     if (undo?.kind === "remove" && undo.problem.id === problem.id)
       setUndo(null);

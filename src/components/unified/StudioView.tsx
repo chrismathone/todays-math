@@ -80,6 +80,7 @@ import {
   onlySolutionChanged,
   useStudioCart,
   type StudioCartRemoval,
+  type StudioCartPageIdentity,
 } from "./studioCart";
 import StudioCartPanel, { StudioCartChip } from "./StudioCartPanel";
 import {
@@ -362,7 +363,10 @@ export default function StudioView({
   exportRequest?: { id: number };
   /** 자른 문제 수를 밖에 알린다 — 시험지 화면의 탭 배지가 쓴다(안 A). */
   onCropCountChange?: (count: number) => void;
-  onPageOrderChange?: (order: readonly StudioOrderedPage[]) => void;
+  onPageOrderChange?: (
+    order: readonly StudioOrderedPage[],
+    pageCrops: readonly StudioCartPageIdentity[],
+  ) => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
   storageScope?: string;
   branchId?: string | null;
@@ -585,6 +589,7 @@ export default function StudioView({
     onRemoveAll,
     onRestore,
     pageOrder,
+    pageCrops: storedCrops,
     onPageOrderChange,
   });
   const cartState = (crop: StudioCrop) =>
@@ -1632,7 +1637,7 @@ export default function StudioView({
       const restoredCrops: StudioCrop[] = [];
       const restoredSources: StudioSource[] = [];
       for (const snapshot of snapshots) {
-        const existing = crops.find((crop) => crop.id === snapshot.id);
+        const existing = storedCrops.find((crop) => crop.id === snapshot.id);
         if (existing) {
           restoredCrops.push(existing);
           continue;

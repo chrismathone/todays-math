@@ -101,7 +101,15 @@ describe("뺀 기억은 시험지와 같이 저장된다", () => {
       version: 1,
       title: "쪽 제외",
       problems: [shot("b", 2)],
-      removed: [{ problem: shot("a", 1), index: 0, pageExcluded: true }],
+      removed: [
+        {
+          problem: shot("a", 1),
+          index: 0,
+          pageExcluded: true,
+          previousId: null,
+        },
+        { problem: shot("c", 3), index: 2, previousId: "b" },
+      ],
     });
     expect(store.saveNow()).toBe(true);
     const reload = create();
@@ -109,9 +117,14 @@ describe("뺀 기억은 시험지와 같이 저장된다", () => {
     expect(reload.getSnapshot().draft.removed[0]).toMatchObject({
       index: 0,
       pageExcluded: true,
+      previousId: null,
       problem: { id: "a" },
     });
     expect(reload.getSnapshot().draft.problems.map((p) => p.id)).toEqual(["b"]);
+    expect(reload.getSnapshot().draft.removed[1]).toMatchObject({
+      previousId: "b",
+      problem: { id: "c" },
+    });
   });
 
   it("새로 고친 뒤에도 뺀 문항과 뺀 자리가 남는다", () => {

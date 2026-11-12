@@ -3,6 +3,7 @@ import {
   Suspense,
   useEffect,
   useRef,
+  useState,
   type ComponentType,
   type ReactNode,
 } from "react";
@@ -16,7 +17,10 @@ import {
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
 import { createWorkspaceDraftStore } from "@/components/unified/draftStore";
-import type { StudioCartRemoval } from "@/components/unified/studioCart";
+import {
+  useStudioCart,
+  type StudioCartRemoval,
+} from "@/components/unified/studioCart";
 import type { StudioProblem } from "@/components/unified/types";
 import type { StudioOrderedPage } from "@/components/unified/studioPageOrder";
 
@@ -120,8 +124,22 @@ vi.mock("@/components/unified/StudioView", () => ({
     onRestore?: (problem: StudioProblem) => void;
     onExport: () => void;
     exportRequest?: { id: number };
-    onPageOrderChange?: (order: StudioOrderedPage[]) => void;
+    onPageOrderChange?: (
+      order: readonly StudioOrderedPage[],
+      pageCrops: readonly import("@/components/unified/studioCart").StudioCartPageIdentity[],
+    ) => void;
   }) {
+    const [pageOrder, setPageOrder] = useState<StudioOrderedPage[]>([]);
+    useStudioCart({
+      picked,
+      removed,
+      onAdd,
+      onRemove,
+      onRemoveAll,
+      onRestore,
+      pageOrder,
+      onPageOrderChange,
+    });
     // 작업실에 있을 때 «편집 이어가기»는 작업실에 출력 요청을 보낸다 — 작업실이 담고 나서
     // `onExport` 로 넘긴다(4842701cd, 2026-10-15). 대역은 요청마다 한 번 넘기기만 한다.
     const handled = useRef<number | undefined>(undefined);
@@ -134,7 +152,7 @@ vi.mock("@/components/unified/StudioView", () => ({
       <section aria-label="작업실 대역">
         <button
           onClick={() =>
-            onPageOrderChange?.(
+            setPageOrder(
               [1, 2, 3].map((page) => ({
                 sourceId: "source-a",
                 page,
@@ -147,7 +165,7 @@ vi.mock("@/components/unified/StudioView", () => ({
         </button>
         <button
           onClick={() =>
-            onPageOrderChange?.(
+            setPageOrder(
               [1, 2, 3].map((page) => ({
                 sourceId: "source-a",
                 page,
@@ -157,6 +175,19 @@ vi.mock("@/components/unified/StudioView", () => ({
           }
         >
           원본 쪽 되살리기
+        </button>
+        <button
+          onClick={() =>
+            setPageOrder(
+              [1, 2, 3].map((page) => ({
+                sourceId: "source-a",
+                page,
+                out: page === 2,
+              })),
+            )
+          }
+        >
+          원본 2쪽 제외
         </button>
         <output aria-label="작업실이 받은 담은 목록">
           {picked.map((problem) => problem.id).join(",")}
@@ -383,6 +414,33 @@ describe("현재 시험지 카드 노출", () => {
 });
 
 describe("담은 문항 장부 배선", () => {
+  it("2차 재현 A: 실제 장부와 훅에서 B 제외·A 직접 빼기 뒤 B와 A를 원래 차례로 되살린다", async () => {
+    seed();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "원본 2쪽 제외" }));
+    fireEvent.click(screen.getByRole("button", { name: "a 빼기" }));
+    fireEvent.click(screen.getByRole("button", { name: "원본 쪽 되살리기" }));
+    expect(studioPicked()).toBe("b,c");
+    fireEvent.click(screen.getByRole("button", { name: "a 다시 담기" }));
+    expect(studioPicked()).toBe("a,b,c");
+  });
+
+  it("2차 재현 B: 실제 장부와 훅에서 B 제외·모두 빼기·되돌리기 뒤 B를 원래 차례로 되살린다", async () => {
+    seed();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "원본 2쪽 제외" }));
+    fireEvent.click(screen.getByRole("button", { name: "모두 빼기" }));
+    expect(studioPicked()).toBe("");
+    fireEvent.click(screen.getByRole("button", { name: "되돌리기" }));
+    expect(studioPicked()).toBe("a,c");
+    fireEvent.click(screen.getByRole("button", { name: "원본 쪽 되살리기" }));
+    expect(studioPicked()).toBe("a,b,c");
+  });
+
   it("쪽 제외는 실제 출력 목록에서도 빠지고, 되살리면 사용자 제거 문항을 제외한 원래 자리에 복원된다", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);

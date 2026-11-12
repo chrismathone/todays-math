@@ -13,9 +13,44 @@ function raster(pixels: number, value = 255) {
   return data;
 }
 const analyze = (textLines: readonly string[], inkRatio = 0.02) =>
-  analyzeStudioPage({ textLines, inkRatio, hasImagePaint: false });
+  analyzeStudioPage({
+    textLines,
+    inkRatio,
+    hasImagePaint: false,
+    hasFillPaint: false,
+  });
 
 describe("mixed or unknown PDF content", () => {
+  it("retains any known vector fill even when the raster reports no ink", () => {
+    expect(
+      analyzeStudioPage({
+        textLines: [],
+        inkRatio: 0,
+        hasImagePaint: false,
+        hasFillPaint: true,
+      }),
+    ).toBeUndefined();
+  });
+
+  it.each([true, undefined])(
+    "retains cover and answer-key candidates when vector fill evidence is %s",
+    (hasFillPaint) => {
+      for (const textLines of [
+        ["문제지", "2학년", "유의 사항"],
+        ["정답표", "1. ③", "2. ⑤"],
+      ]) {
+        expect(
+          analyzeStudioPage({
+            textLines,
+            inkRatio: 0.02,
+            hasImagePaint: false,
+            hasFillPaint,
+          }),
+        ).toBeUndefined();
+      }
+    },
+  );
+
   it.each([true, undefined])(
     "retains cover-like text when image paint evidence is %s",
     (hasImagePaint) => {

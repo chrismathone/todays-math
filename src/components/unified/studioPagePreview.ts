@@ -11,6 +11,41 @@ export interface StudioPagePreview {
   inkRatio?: number;
 }
 
+/** getOperatorList has no AbortSignal API in PDF.js; bound our wait without destroying it. */
+function inspectPageOperators<T>(
+  inspect: () => Promise<T>,
+  signal: AbortSignal,
+): Promise<T | undefined> {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const finish = (value?: T, aborted = false) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      signal.removeEventListener("abort", abort);
+      if (aborted) reject(new DOMException("작업 취소", "AbortError"));
+      else resolve(value);
+    };
+    const abort = () => finish(undefined, true);
+    const timer = setTimeout(() => finish(), 3000);
+    signal.addEventListener("abort", abort, { once: true });
+    if (signal.aborted) {
+      abort();
+      return;
+    }
+    try {
+      // Both handlers stay attached after timeout/abort, consuming late rejection
+      // without changing the settled result or creating another timer/listener.
+      inspect().then(
+        (value) => finish(value),
+        () => finish(),
+      );
+    } catch {
+      finish();
+    }
+  });
+}
+
 /** PDF.js may split a single line into several text items. Keep its line starts. */
 export function studioPdfTextLines(
   items: readonly {
@@ -66,6 +101,8 @@ export async function renderStudioPagePreview(
   if (!context) throw new Error("쪽 그림을 불러오지 못했습니다.");
   let textLines: string[] = [];
   let hasImagePaint: boolean | undefined;
+  let hasFillPaint: boolean | undefined;
+  let canAnalyze = true;
   if (source.pdf) {
     const pdfPage = await source.pdf.getPage(page);
     check();
@@ -91,11 +128,15 @@ export async function renderStudioPagePreview(
     } catch {
       /* A scan may not have usable text. */
     }
-    try {
-      const [operators, { OPS }] = await Promise.all([
-        pdfPage.getOperatorList(),
-        import("pdfjs-dist"),
-      ]);
+    check();
+    const inspection = await inspectPageOperators(
+      () => Promise.all([pdfPage.getOperatorList(), import("pdfjs-dist")]),
+      signal,
+    );
+    check();
+    canAnalyze = inspection !== undefined;
+    if (inspection) {
+      const [operators, { OPS }] = inspection;
       // Include inline, grouped, repeated and mask paints, even inside form XObjects.
       const imagePaints = new Set(
         Object.entries(OPS)
@@ -105,8 +146,51 @@ export async function renderStudioPagePreview(
       hasImagePaint = operators.fnArray.some((operation) =>
         imagePaints.has(operation),
       );
-    } catch {
-      /* Unknown operator content must not allow text-based exclusion. */
+      const fills = new Set<number>([
+        OPS.fill,
+        OPS.eoFill,
+        OPS.fillStroke,
+        OPS.eoFillStroke,
+        OPS.closeFillStroke,
+        OPS.closeEOFillStroke,
+        OPS.shadingFill,
+        OPS.rawFillPath,
+      ]);
+      let unknownFillPaint = false;
+      hasFillPaint = operators.fnArray.some((operation, index) => {
+        if (fills.has(operation)) return true;
+        if (operation === OPS.showText) {
+          const glyphs: unknown = operators.argsArray[index]?.[0];
+          // Type3 glyphs execute font.charProcOperatorList outside page.fnArray.
+          // Without inspecting that separate program, absence of fills is unknown.
+          if (
+            Array.isArray(glyphs) &&
+            glyphs.some(
+              (glyph: unknown) =>
+                glyph !== null &&
+                typeof glyph === "object" &&
+                "operatorListId" in glyph &&
+                glyph.operatorListId != null,
+            )
+          )
+            unknownFillPaint = true;
+        }
+        if (operation !== OPS.constructPath) return false;
+        // PDF.js 6 folds a path's paint into args[0], including vector glyph fills.
+        const paint: unknown = operators.argsArray[index]?.[0];
+        if (typeof paint === "number" && fills.has(paint)) return true;
+        if (
+          paint !== OPS.stroke &&
+          paint !== OPS.closeStroke &&
+          paint !== OPS.endPath
+        )
+          unknownFillPaint = true;
+        return false;
+      });
+      if (!hasFillPaint && unknownFillPaint) {
+        hasFillPaint = undefined;
+        canAnalyze = false;
+      }
     }
   } else if (source.image) {
     const image = source.image;
@@ -136,8 +220,13 @@ export async function renderStudioPagePreview(
     url: rotated.toDataURL("image/png"),
     inkRatio,
     autoOut:
-      inkRatio === undefined
+      inkRatio === undefined || !canAnalyze
         ? undefined
-        : analyzeStudioPage({ inkRatio, textLines, hasImagePaint }),
+        : analyzeStudioPage({
+            inkRatio,
+            textLines,
+            hasImagePaint,
+            hasFillPaint,
+          }),
   };
 }

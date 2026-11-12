@@ -13,6 +13,7 @@ import {
   type StudioCartRemoval,
   onlySolutionChanged,
   reconcileStudioPageCart,
+  removeAllFromCart,
 } from "@/components/unified/studioCart";
 import { applyStudioCropEdit } from "@/components/unified/studioCropEdit";
 import {
@@ -61,6 +62,59 @@ const bank = (id: string): StudioProblem => ({
 });
 
 describe("쪽 제외와 담은 문항 보존", () => {
+  const abc = () =>
+    [1, 2, 3].map((page) =>
+      studioProblem(crop(String.fromCharCode(64 + page), { page })),
+    );
+  const pageOrder = (out: boolean) =>
+    [1, 2, 3].map((page) => ({ sourceId: "s1", page, out: out && page === 2 }));
+
+  it("2차 재현 A: B쪽 제외 후 A를 직접 빼도 B 되살리기는 C 앞으로 간다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const afterRemoval = reconcileStudioPageCart(
+      [initial[2]],
+      rememberRemoval(excluded.removed, initial[0], 0, excluded.picked),
+      pageOrder(true),
+    );
+    const restored = reconcileStudioPageCart(
+      afterRemoval.picked,
+      afterRemoval.removed,
+      pageOrder(false),
+    );
+    expect(restored.picked.map((p) => p.id)).toEqual(["B", "C"]);
+    expect(
+      restoreToCart(restored.picked, initial[0], 0, restored.removed).map(
+        (p) => p.id,
+      ),
+    ).toEqual(["A", "B", "C"]);
+  });
+
+  it("2차 재현 B: B쪽 제외·모두 빼기·실행 취소 뒤 B 되살리기는 A와 C 사이로 간다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const cleared = removeAllFromCart(excluded.picked, excluded.removed);
+    const whileEmpty = reconcileStudioPageCart(
+      cleared.picked,
+      cleared.removed,
+      pageOrder(true),
+    );
+    const undone = reconcileStudioPageCart(
+      excluded.picked,
+      forgetRemovals(
+        whileEmpty.removed,
+        excluded.picked.map((p) => p.id),
+      ),
+      pageOrder(true),
+    );
+    const restored = reconcileStudioPageCart(
+      undone.picked,
+      undone.removed,
+      pageOrder(false),
+    );
+    expect(restored.picked.map((p) => p.id)).toEqual(["A", "B", "C"]);
+  });
+
   it("연속 제외·복원은 원래 자리와 원본 객체를 보존하며 다른 파일·은행·직접 뺀 문항에 간섭하지 않는다", () => {
     const a = studioProblem(crop("a", { page: 1, solution: "보존할 해설" }));
     const b = studioProblem(crop("b", { page: 2 }));

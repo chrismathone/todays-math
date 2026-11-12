@@ -83,17 +83,21 @@ const coverMetadata = [
   /^(?:시험\s*시간|총\s*문항\s*수|문항\s*수|배점|만점)\s*[:：]?\s*\d+\s*(?:분|문항|점)$/,
 ];
 
-/** Text rules require verified absence of image paints; scans use only the blank rule. */
+/** Text rules require verified absence of image and vector fills; scans use the blank rule. */
 export function analyzeStudioPage({
   inkRatio,
   textLines,
   hasImagePaint,
+  hasFillPaint,
 }: {
   inkRatio: number;
   textLines: readonly string[];
   /** Undefined means the operator list was not verified, so text may omit the body. */
   hasImagePaint?: boolean;
+  /** Includes filled vector glyphs; even decorative fills make text rules unsafe. */
+  hasFillPaint?: boolean;
 }): AutoOut {
+  if (hasFillPaint === true) return undefined;
   const lines = normalizedLines(textLines);
   if (!lines.length) {
     return Number.isFinite(inkRatio) &&
@@ -102,8 +106,8 @@ export function analyzeStudioPage({
       ? "빈 쪽"
       : undefined;
   }
-  // Even a cover heading or complete answer table can sit beside image-only questions.
-  if (hasImagePaint !== false) return undefined;
+  // Extracted headings/tables may omit questions drawn as images or filled outlines.
+  if (hasImagePaint !== false || hasFillPaint !== false) return undefined;
   if (lines.some((line) => questionWording.test(line))) return undefined;
   // Numbered answer keys are a positive table case, before the question-number veto.
   if (isStructuredAnswerTable(lines)) return "정답표";
