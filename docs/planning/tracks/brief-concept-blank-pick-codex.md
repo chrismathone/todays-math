@@ -35,3 +35,18 @@
 - PickerDialog 를 썼나 / 넓혔나: **공용 부품을 확장했다.** 선택적 `width="wide"`·`titleAside`를 더해 H2 창만 1200px, 거르기 268px, 고른 문항 304px로 쓴다. 취소/Escape·초점 복귀는 공용 동작을 따른다. 목록 행/문장은 누르는 표면이 아니며 체크 칸·단추만 동작한다(D-30). `lint:affordance`, 변경 파일 ESLint, 최종 타입 검사 통과.
 - 낱말 가운데 줄바꿈 측정값: **1440·1280·390px, 24장면, 한글 낱말 23,448개 중 0건**, 가로 넘침 0·브라우저 오류 0. 실제 초5 은행·제품 부품·Workroom CSS·제품 글꼴에서 Range로 측정했다. 일부러 꺾은 낱말은 7줄로 검출됐다. A–E·B ○×/답 펼침·C 적용, 모바일 목록/고른 문항 접근을 확인했다. [시안과 나란히](reports/concept-blank-pick-20261112/comparison.png) · [측정 원자료](reports/concept-blank-pick-20261112/measurements.json). 전 학년 문장 전수 검증이라는 뜻은 아니다.
 - 남은 것 · 물을 것: 새로 정할 사항은 없다. **변경 모듈 9파일·155시험 통과**, 메모리 API로 혼합 13문항 저장→재열기→같은 인쇄 주소를 확인했다. 전체 시험은 지시대로 한 번 실행했으며 **1,835파일 중 1,736 통과·66 실패·33 건너뜀**, 시험 43,166 통과·58 실패·1,030 건너뜀·미처리 오류 1로 **미통과**다. 이번 검수 목록 개수 실패는 수정 후 위 155시험에서 통과했다. 나머지 65파일 전부를 기준 커밋 `f71adecb0`에서 대조해 48파일 통과·17파일 기존 실패 재현을 확인했다(외장 볼륨 `._…` 마이그레이션 탐색 오류 등 환경 차이 포함). 후속 실데이터 판정기도 37개 중 빨강 1·울타리 3으로 전체 명령 종료 코드 1. [파일별 대조](reports/concept-blank-pick-20261112/full-test-comparison.json)에 남겼다. **실물 프린터 검수는 대기**(`concept-blank-pick-20261112`, 루트 규칙 6)이며 완료로 표시하지 않았다. 푸시·main 병합·공유 DB 쓰기·`.env` 복사·운영 빌드 없음. 임시 기준 체크아웃과 개발 서버를 정리했고 이 미병합 작업트리는 보존했다.
+
+### 리뷰 반영
+
+- 대상: `scratch/review/review-pick.md`의 막음 1건·고칠 것 2건. 세 건 모두 재현 시험부터 실제 RED를 확인했다. 화면은 지연 은행 3경우와 접근성 1경우가 실패(4실패·7통과), 코덱은 체크섬을 남긴 ID 변조가 `null` 대신 다른 문항으로 해독되어 실패(1실패·40통과)했다. 로컬 원기록은 `scratch/review/pick-red.log`·`codec-red.log`에 남겼다.
+- **미도착 문항 보존:** `ConceptBlankView`가 미도착 소단원을 창에 전달하고, 창은 해당 범위의 기존 선택을 초기화 때 보존한다. 도착 전 적용·도착 후 적용·도착한 문항만 해제하는 세 경우 모두 나머지 선택과 인쇄/미리보기가 일치한다. 은행 도착으로 사용자의 해제를 되돌리지 않는다. 도착한 은행에서 실제로 사라진 문항은 기존 저장·인쇄 차단과 창에서 재확인 후 적용하는 절차를 유지한다.
+- **압축 주소 손상 거절:** `selectionCodec.ts`가 해제한 바이트의 Adler-32를 zlib 끝의 체크섬과 직접 대조하고 다르면 `null`을 반환한다. `z1.` 형식·옛 자동/짧은 v1 주소·64KiB 해제 상한은 유지한다. ID 한 바이트 변조, 체크섬의 네 바이트 각각 손상, 끝부분 1~4바이트 잘림을 거절하며 Node zlib 압축 수준 0·1·6·9와 840문항 주소의 정상 왕복도 통과했다.
+- **체크 칸 본문 설명:** 문항 본문에 창별 `useId`와 문항 키로 ID를 주고 체크 칸의 `aria-describedby`로 연결했다. 답을 펼쳐도 설명에는 본문만 포함된다. 문항 행·본문은 누르는 표면으로 바꾸지 않았다(D-30).
+- **검증:** 관련 Vitest **11파일·194시험 통과**(`--maxWorkers=3`), `npm run type-check`, `npm run lint:affordance`, 변경 파일 ESLint·Prettier·`git diff --check` 통과. 기존 저장·재열기, 옛 자동 주소, 정확한 선택, 지면 코드, 인쇄 페이지, 교재 인쇄, 학년 은행 로딩, 공용 PickerDialog의 회귀를 포함한다. 이번 요청의 관련 시험 범위로 검증했으며 위 보고의 전체 시험 미통과 이력을 통과로 바꾸지 않는다. 레이아웃/CSS 변경은 없고 새 브라우저·실물 인쇄 검수는 하지 않았다.
+- **실행·커밋:** 코드 수정은 `a31944734`이며 이 보고는 후속 문서 커밋에 담았다. Orca 별도 작업트리 생성은 지정 경로의 `Permission denied`로 실패하여 같은 작업트리에서 코덱 파일만 Codex 작업자가 맡고 화면 수정과 합쳤다. 푸시·main 병합·공유 DB 쓰기·운영 빌드 없이 현재 `phase/9-concept-blank-pick` 가지에 커밋했다. 미병합 작업트리는 보존한다.
+
+```sh
+npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/unit/conceptBlankSelectionCodec.test.ts src/__tests__/unit/conceptBlankExactPick.test.ts src/__tests__/unit/conceptBlankSheetCode.test.ts src/__tests__/unit/conceptBlankBankLoad.test.ts src/__tests__/unit/pickerDialog.test.tsx src/__tests__/unit/textbookConcepts.test.ts src/__tests__/components/ConceptBlankPick.test.tsx src/__tests__/components/ConceptBlankView.test.tsx src/__tests__/components/PrintCheck.test.tsx src/__tests__/api/conceptBlankPrintPage.test.ts --maxWorkers=3
+npm run type-check
+npm run lint:affordance
+```
