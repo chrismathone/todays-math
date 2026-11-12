@@ -410,13 +410,24 @@ export default function StudioView({
       );
   }, [storedCrops, livePages]);
   const [previews, setPreviews] = useState<
-    Record<string, StudioPagePreview & { loading?: boolean }>
+    Record<
+      string,
+      StudioPagePreview & { loading?: boolean; checking?: boolean }
+    >
   >({});
   const previewCache = useRef(new Map<string, StudioPagePreview>());
   const previewController = useRef<AbortController | null>(null);
   const previewRequests = useRef(new Map<string, AbortSignal>());
+  // One user-retry lane beside the serial initial pass bounds expensive renders.
+  const previewRetries = useRef<{
+    signal: AbortSignal;
+    pending: { source: StudioSource; page: number }[];
+    running: boolean;
+  } | null>(null);
   const autoAnalyzeSources = useRef(new Set<string>());
   const analyzedPages = useRef(new Set<string>());
+  // Manual inclusion/exclusion survives undo and preview retries for this work.
+  const manualOutPages = useRef(new Set<string>());
   const [orderToast, setOrderToast] = useState("");
   const [activeCropId, setActiveCropId] = useState("");
   const [cropTool, setCropTool] = useState<
@@ -430,7 +441,7 @@ export default function StudioView({
     "upload",
   );
   const isPageOrder = step === "order";
-  const previewBusy =
+  const pendingThumbnails =
     isPageOrder &&
     sources.some((source) =>
       initialPageOrder([source]).some((page) => {
@@ -442,6 +453,8 @@ export default function StudioView({
         );
       }),
     );
+  const pendingConfirmations =
+    isPageOrder && Object.values(previews).some((preview) => preview.checking);
   /*
    * 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. 2026-09-21 안 A 전에는
    * 「이전 검토 단계」 단추만 있어 `reviewRequest`(검수로만 가는 셈)였다. 탭이 넷이 되면서
@@ -455,11 +468,15 @@ export default function StudioView({
   const [restoring, setRestoring] = useState(
     () => Boolean(storageScope) || typeof indexedDB !== "undefined",
   );
+  const stepRequested = useEffectEvent((next: "upload" | "crop" | "review") => {
+    if (next === "crop" && isPageOrder) stopPendingPageAnalysis();
+    setStep(next);
+  });
   useEffect(() => {
     if (restoring || !stepRequest || handledStep.current === stepRequest.id)
       return;
     handledStep.current = stepRequest.id;
-    setStep(stepRequest.step);
+    stepRequested(stepRequest.step);
   }, [stepRequest, restoring]);
   const busy = importingBusy || restoring;
   const [sessionStore] = useState(
@@ -1037,10 +1054,16 @@ export default function StudioView({
     if (
       studioAi.running ||
       busy ||
-      previewBusy ||
       JSON.stringify(next) === JSON.stringify(pageOrder)
     )
       return;
+    const previousOut = new Map(
+      pageOrder.map((page) => [studioPageKey(page), page.out]),
+    );
+    for (const page of next) {
+      const key = studioPageKey(page);
+      if (previousOut.get(key) !== page.out) manualOutPages.current.add(key);
+    }
     setOrderHistory((history) =>
       commitPageOrder({ ...history, present: pageOrder }, next),
     );
@@ -1050,8 +1073,15 @@ export default function StudioView({
     setOrderHistory((history) => undoPageOrder(history));
     setOrderToast("");
   }
+  function stopPendingPageAnalysis() {
+    // Starting takes ownership of all remaining pages. Reopening order may retry
+    // thumbnails, but must never resume automatic exclusions for these sources.
+    for (const source of sources) autoAnalyzeSources.current.delete(source.id);
+    previewController.current?.abort();
+  }
   function startOrderedPages() {
-    if (busy || previewBusy || !livePages.length) return;
+    if (busy || studioAi.running || !livePages.length) return;
+    stopPendingPageAnalysis();
     const first = livePages[0];
     chooseSource(first.sourceId, first.page);
     setStep("crop");
@@ -1068,7 +1098,18 @@ export default function StudioView({
       const key = studioPageKey({ sourceId: source.id, page });
       setPreviews((previous) => ({
         ...previous,
-        [key]: { ...preview, rotation: source.pageRotations?.[page] ?? 0 },
+        [key]: {
+          ...preview,
+          url:
+            preview.url ||
+            (preview.error &&
+            previous[key]?.rotation === (source.pageRotations?.[page] ?? 0)
+              ? (previous[key]?.url ?? "")
+              : ""),
+          rotation: source.pageRotations?.[page] ?? 0,
+          loading: false,
+          checking: false,
+        },
       }));
       if (
         preview.error ||
@@ -1079,21 +1120,22 @@ export default function StudioView({
         return;
       analyzedPages.current.add(key);
       if (preview.autoOut)
-        setOrderHistory((history) => ({
-          ...history,
-          present: reconcilePageOrder(history.present, sources).map((entry) =>
-            studioPageKey(entry) === key
-              ? { ...entry, out: true, autoOut: preview.autoOut }
-              : entry,
-          ),
-          past: history.past.map((past) =>
-            reconcilePageOrder(past, sources).map((entry) =>
-              studioPageKey(entry) === key
-                ? { ...entry, out: true, autoOut: preview.autoOut }
-                : entry,
+        setOrderHistory((history) => {
+          if (
+            manualOutPages.current.has(key) ||
+            !autoAnalyzeSources.current.has(source.id)
+          )
+            return history;
+          return {
+            ...history,
+            present: reconcilePageOrder(history.present, sources).map(
+              (entry) =>
+                studioPageKey(entry) === key
+                  ? { ...entry, out: true, autoOut: preview.autoOut }
+                  : entry,
             ),
-          ),
-        }));
+          };
+        });
     },
     [sources],
   );
@@ -1107,21 +1149,46 @@ export default function StudioView({
       let preview = previewCache.current.get(key);
       if (!preview) {
         previewRequests.current.set(key, signal);
-        setPreviews((previous) => ({
-          ...previous,
-          [pageKey]: {
-            ...previous[pageKey],
-            url: previous[pageKey]?.url ?? "",
-            rotation,
-            loading: true,
-          },
-        }));
+        let thumbnail: StudioPagePreview | undefined;
+        setPreviews((previous) => {
+          const current = previous[pageKey];
+          const url = current?.rotation === rotation ? current.url : "";
+          return {
+            ...previous,
+            [pageKey]: {
+              ...current,
+              url,
+              rotation,
+              loading: !url,
+              checking: Boolean(url),
+            },
+          };
+        });
+        const currentRequest = () =>
+          !signal.aborted && previewRequests.current.get(key) === signal;
         try {
-          preview = await renderStudioPagePreview(source, page, signal);
+          preview = await renderStudioPagePreview(source, page, signal, {
+            onPreview: (value) => {
+              if (!currentRequest()) return;
+              thumbnail = {
+                url: value.url,
+                inkRatio: value.inkRatio,
+                rotation,
+              };
+              const ready = { ...thumbnail, loading: false, checking: true };
+              setPreviews((previous) =>
+                currentRequest() ? { ...previous, [pageKey]: ready } : previous,
+              );
+            },
+          });
+          if (!currentRequest()) return;
+          if (!preview.url && thumbnail?.url)
+            preview = { ...preview, url: thumbnail.url };
         } catch (cause) {
-          if (signal.aborted) return;
+          if (!currentRequest()) return;
           preview = {
-            url: "",
+            ...thumbnail,
+            url: thumbnail?.url ?? "",
             error:
               cause instanceof Error
                 ? cause.message
@@ -1145,6 +1212,8 @@ export default function StudioView({
     if (!isPageOrder) return;
     const controller = new AbortController();
     previewController.current = controller;
+    const retries = { signal: controller.signal, pending: [], running: false };
+    previewRetries.current = retries;
     void (async () => {
       for (const source of sources) {
         for (let page = 1; page <= source.pages; page++) {
@@ -1157,27 +1226,53 @@ export default function StudioView({
       controller.abort();
       if (previewController.current === controller)
         previewController.current = null;
+      if (previewRetries.current === retries) previewRetries.current = null;
     };
   }, [sources, isPageOrder, loadPagePreview]);
 
   function retryPagePreview(key: string) {
     const controller = previewController.current;
-    if (
-      !isPageOrder ||
-      busy ||
-      previewBusy ||
-      !controller ||
-      controller.signal.aborted
-    )
-      return;
+    if (!isPageOrder || !controller || controller.signal.aborted) return;
     const page = pageOrder.find((entry) => studioPageKey(entry) === key);
     const source = sources.find((entry) => entry.id === page?.sourceId);
     if (!source || !page) return;
     const cacheKey = `${key}:${source.pageRotations?.[page.page] ?? 0}`;
     if (previewRequests.current.get(cacheKey)?.aborted === false) return;
+    const retries = previewRetries.current;
+    if (
+      !retries ||
+      retries.signal !== controller.signal ||
+      retries.pending.some(
+        (entry) => entry.source.id === source.id && entry.page === page.page,
+      )
+    )
+      return;
     // Explicit retry also recovers an image that failed to decode in the browser.
     previewCache.current.delete(cacheKey);
-    void loadPagePreview(source, page.page, controller.signal);
+    retries.pending.push({ source, page: page.page });
+    if (retries.running) {
+      setPreviews((previous) => ({
+        ...previous,
+        [key]: {
+          ...previous[key],
+          url: previous[key]?.url ?? "",
+          loading: !previous[key]?.url,
+          checking: Boolean(previous[key]?.url),
+        },
+      }));
+      return;
+    }
+    retries.running = true;
+    void (async () => {
+      try {
+        while (!retries.signal.aborted && retries.pending.length) {
+          const next = retries.pending.shift()!;
+          await loadPagePreview(next.source, next.page, retries.signal);
+        }
+      } finally {
+        retries.running = false;
+      }
+    })();
   }
 
   async function importFiles(files: File[], restored?: StudioSessionData) {
@@ -1635,8 +1730,10 @@ export default function StudioView({
     previewCache.current.clear();
     previewController.current?.abort();
     previewRequests.current.clear();
+    previewRetries.current = null;
     autoAnalyzeSources.current.clear();
     analyzedPages.current.clear();
+    manualOutPages.current.clear();
     setOrderToast("");
     setImportProgress(null);
     setSourceId("");
@@ -2992,7 +3089,7 @@ export default function StudioView({
               : (pickedCount ?? cart.picked.length)
           }
           canOrder={sources.length > 0 && !studioAi.running && !busy}
-          canCrop={livePages.length > 0 && !previewBusy}
+          canCrop={livePages.length > 0 && !busy && !studioAi.running}
           canReview={crops.length > 0}
           canExport={canExport && !compositionBlocked}
           canCompose={cart.picked.length + pendingCount > 0}
@@ -3010,7 +3107,7 @@ export default function StudioView({
             <>
               <button
                 type="button"
-                disabled={!orderHistory.past.length || previewBusy}
+                disabled={!orderHistory.past.length || busy || studioAi.running}
                 onClick={undoOrder}
               >
                 되돌리기
@@ -3018,7 +3115,8 @@ export default function StudioView({
               <button
                 type="button"
                 disabled={
-                  previewBusy ||
+                  busy ||
+                  studioAi.running ||
                   JSON.stringify(pageOrder) ===
                     JSON.stringify(initialPageOrder(sources))
                 }
@@ -3034,7 +3132,7 @@ export default function StudioView({
               <button
                 type="button"
                 className={styles.primaryButton}
-                disabled={busy || previewBusy || !livePages.length}
+                disabled={busy || studioAi.running || !livePages.length}
                 onClick={startOrderedPages}
               >
                 이 순서로 시작 →
@@ -3160,7 +3258,7 @@ export default function StudioView({
             sources={sources}
             order={pageOrder}
             previews={previews}
-            busy={busy || previewBusy}
+            busy={busy || studioAi.running}
             onRetryPreview={retryPagePreview}
             onMove={(key, direction) =>
               changeOrder(
@@ -3175,7 +3273,8 @@ export default function StudioView({
               )
             }
           />
-          {previewBusy && <p role="status">쪽 그림을 불러오는 중…</p>}
+          {pendingThumbnails && <p role="status">쪽 그림을 불러오는 중…</p>}
+          {pendingConfirmations && <p role="status">빈 쪽인지 확인하는 중…</p>}
           {orderToast && (
             <div className={styles.pageOrderToast} role="status">
               <span>{orderToast}</span>

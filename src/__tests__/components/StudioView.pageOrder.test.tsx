@@ -72,6 +72,7 @@ vi.mock("pdfjs-dist", () => ({
     promise: Promise.resolve({
       numPages: state.pdfPages,
       getPage: async (page: number) => ({
+        cleanup() {},
         getViewport: ({ scale }: { scale: number }) => ({
           width: 100 * scale,
           height: 140 * scale,
@@ -170,7 +171,7 @@ function open(onAdd = vi.fn()) {
     </DevAiProvider>,
   );
 }
-async function upload() {
+async function beginUpload() {
   const view = open();
   const input = screen.getByLabelText("PDF 또는 이미지 파일 가져오기");
   await waitFor(() => expect(input).toBeEnabled());
@@ -178,7 +179,13 @@ async function upload() {
   Object.defineProperty(file, "arrayBuffer", {
     value: async () => new ArrayBuffer(8),
   });
-  fireEvent.change(input, { target: { files: [file] } });
+  await act(async () => {
+    fireEvent.change(input, { target: { files: [file] } });
+  });
+  return view;
+}
+async function upload() {
+  const view = await beginUpload();
   await waitFor(() =>
     expect(
       screen.getByRole("button", { name: "이 순서로 시작 →" }),
@@ -237,6 +244,347 @@ async function excludeFirstWorkedPage() {
 }
 
 describe("Studio 쪽 차례 연결", () => {
+  it("정상 쪽 뒤 100개 확인 후보가 멈춰도 이동·실패 재시도·시작은 즉시 가능하다", async () => {
+    state.pdfPages = 102;
+    const pending: {
+      signal: AbortSignal;
+      finish: (value: pagePreviews.StudioPagePreview) => void;
+    }[] = [];
+    let failed = false;
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockImplementation(async (_source, page, signal, options) => {
+        if (page === 1) return { url: "blob:ready" };
+        if (page === 2 && !failed) {
+          failed = true;
+          return { url: "blob:failed", error: "확인 시간 초과" };
+        }
+        options?.onPreview?.({ url: `blob:pending-${page}`, inkRatio: 0 });
+        return new Promise((finish) => pending.push({ signal, finish }));
+      });
+    await beginUpload();
+    const cards = () => [
+      ...screen
+        .getByRole("region", { name: "쪽 카드" })
+        .querySelectorAll("figure"),
+    ];
+    expect(cards()).toHaveLength(102);
+    expect(within(cards()[0]).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:ready",
+    );
+    const retry = within(cards()[1]).getByRole("button", { name: /다시 시도/ });
+    expect(retry).toBeEnabled();
+    fireEvent.click(retry);
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2, 3, 2]);
+    expect(within(cards()[2]).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:pending-3",
+    );
+    expect(screen.getByRole("button", { name: "맨 뒤" })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "맨 뒤" }));
+    expect(JSON.parse(cards().at(-1)!.dataset.stripKey!)[1]).toBe(1);
+    expect(
+      screen.getByRole("button", { name: "이 순서로 시작 →" }),
+    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "1 영역 지정" })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(pending.every((request) => request.signal.aborted)).toBe(true);
+    expect(pageChoices()).toHaveLength(102);
+    expect(preview).toHaveBeenCalledTimes(4);
+  });
+
+  it("여러 실패 쪽을 재시도해도 직렬 확인과 재시도 한 쪽만 함께 실행한다", async () => {
+    state.pdfPages = 4;
+    const failed = new Set<number>();
+    const pending: {
+      page: number;
+      finish: (value: pagePreviews.StudioPagePreview) => void;
+    }[] = [];
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockImplementation(async (_source, page, _signal, options) => {
+        if (page === 1) return { url: "blob:ready" };
+        if ((page === 2 || page === 3) && !failed.has(page)) {
+          failed.add(page);
+          return { url: `blob:failed-${page}`, error: "확인 실패" };
+        }
+        options?.onPreview?.({ url: `blob:pending-${page}`, inkRatio: 0 });
+        return new Promise((finish) => pending.push({ page, finish }));
+      });
+    await beginUpload();
+    const cards = screen
+      .getByRole("region", { name: "쪽 카드" })
+      .querySelectorAll("figure");
+    fireEvent.click(
+      within(cards[1]).getByRole("button", { name: /다시 시도/ }),
+    );
+    fireEvent.click(
+      within(cards[2]).getByRole("button", { name: /다시 시도/ }),
+    );
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2, 3, 4, 2]);
+    expect(
+      within(cards[2]).getByRole("button", { name: /다시 시도/ }),
+    ).toBeDisabled();
+    await act(async () => {
+      pending
+        .find((request) => request.page === 2)!
+        .finish({ url: "blob:recovered-2" });
+    });
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([
+      1, 2, 3, 4, 2, 3,
+    ]);
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(preview.mock.calls.every((call) => call[2].aborted)).toBe(true);
+    expect(pageChoices()).toHaveLength(4);
+  });
+
+  it.each(["start", "crop-tab", "external-crop"] as const)(
+    "%s 시작은 확인을 즉시 취소하고 아직 안 읽은 쪽까지 유지하며 재진입 후에도 자동 제외하지 않는다",
+    async (entry) => {
+      state.pdfPages = 3;
+      const pending: {
+        signal: AbortSignal;
+        emit: (value: pagePreviews.StudioPagePreview) => void;
+        finish: (value: pagePreviews.StudioPagePreview) => void;
+      }[] = [];
+      let checking = true;
+      const preview = vi
+        .spyOn(pagePreviews, "renderStudioPagePreview")
+        .mockImplementation(async (_source, page, signal, options) => {
+          if (page === 1) return { url: "blob:ready" };
+          if (!checking)
+            return { url: `blob:verified-${page}`, autoOut: "빈 쪽" };
+          options?.onPreview?.({ url: `blob:pending-${page}`, inkRatio: 0 });
+          return new Promise((finish) =>
+            pending.push({
+              signal,
+              emit: (value) => options?.onPreview?.(value),
+              finish,
+            }),
+          );
+        });
+      const view = await beginUpload();
+      fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+      if (entry === "external-crop") {
+        view.rerender(
+          <DevAiProvider>
+            <StudioView
+              onAdd={vi.fn()}
+              onExport={() => {}}
+              storageScope="local-test"
+              stepRequest={{ id: 1, step: "crop" }}
+            />
+          </DevAiProvider>,
+        );
+      } else {
+        fireEvent.click(
+          screen.getByRole("button", {
+            name: entry === "start" ? "이 순서로 시작 →" : "1 영역 지정",
+          }),
+        );
+      }
+      expect(pending[0].signal.aborted).toBe(true);
+      expect(pageChoices()).toEqual([
+        expect.stringMatching(/원본 2쪽/),
+        expect.stringMatching(/원본 3쪽/),
+      ]);
+      // The viewport render has a separate owner and remains usable after abort.
+      await screen.findByRole("img", { name: "본문.pdf, 2쪽 원본" });
+      checking = false;
+      fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+      await waitFor(() => expect(preview).toHaveBeenCalledTimes(4));
+      await act(async () => {
+        pending[0].emit({ url: "blob:stale-thumbnail" });
+        pending[0].finish({ url: "blob:stale-confirmation", autoOut: "빈 쪽" });
+      });
+      expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 1")).toBeVisible();
+      const cards = screen
+        .getByRole("region", { name: "쪽 카드" })
+        .querySelectorAll("figure");
+      expect(cards[0]).toHaveAttribute("data-excluded", "true");
+      expect(cards[1]).toHaveAttribute("data-excluded", "false");
+      expect(cards[2]).toHaveAttribute("data-excluded", "false");
+      expect(within(cards[1]).getByRole("img")).toHaveAttribute(
+        "src",
+        "blob:verified-2",
+      );
+    },
+  );
+
+  it.each(["confirmation", "retry"] as const)(
+    "%s가 늦게 빈 쪽을 확인해도 직접 빼기·되살리기와 두 번 되돌리기의 원래 스냅샷을 보존한다",
+    async (mode) => {
+      let finish!: (value: pagePreviews.StudioPagePreview) => void;
+      let first = true;
+      vi.spyOn(pagePreviews, "renderStudioPagePreview").mockImplementation(
+        async (_source, page, _signal, options) => {
+          if (page === 2) return { url: "blob:page2" };
+          if (mode === "retry" && first) {
+            first = false;
+            return { url: "blob:failed", error: "확인 시간 초과" };
+          }
+          options?.onPreview?.({ url: "blob:unconfirmed", inkRatio: 0 });
+          return new Promise((resolve) => {
+            finish = resolve;
+          });
+        },
+      );
+      await beginUpload();
+      const firstCard = () =>
+        screen
+          .getByRole("region", { name: "쪽 카드" })
+          .querySelector("figure")!;
+      if (mode === "confirmation")
+        expect(within(firstCard()).getByRole("img")).toHaveAttribute(
+          "src",
+          "blob:unconfirmed",
+        );
+      fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+      fireEvent.click(screen.getByRole("button", { name: "되살리기" }));
+      if (mode === "retry") {
+        fireEvent.click(
+          within(firstCard()).getByRole("button", { name: /다시 시도/ }),
+        );
+        expect(within(firstCard()).getByRole("img")).toHaveAttribute(
+          "src",
+          "blob:unconfirmed",
+        );
+      }
+      await act(async () => {
+        finish({ url: "blob:verified", autoOut: "빈 쪽" });
+      });
+      expect(firstCard()).toHaveAttribute("data-excluded", "false");
+      fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+      expect(firstCard()).toHaveAttribute("data-excluded", "true");
+      fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+      expect(firstCard()).toHaveAttribute("data-excluded", "false");
+    },
+  );
+
+  it("직접 뺀 선택을 되돌린 뒤에도 늦은 자동 확인이 다시 제외하지 않는다", async () => {
+    let finish!: (value: pagePreviews.StudioPagePreview) => void;
+    vi.spyOn(pagePreviews, "renderStudioPagePreview").mockImplementation(
+      async (_source, page, _signal, options) => {
+        if (page === 2) return { url: "blob:page2" };
+        options?.onPreview?.({ url: "blob:unconfirmed" });
+        return new Promise((resolve) => {
+          finish = resolve;
+        });
+      },
+    );
+    await beginUpload();
+    fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+    fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+    await act(async () => {
+      finish({ url: "blob:verified", autoOut: "빈 쪽" });
+    });
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+  });
+
+  it("자동 제외는 현재만 갱신하고 이전 이동의 되돌리기 스냅샷은 고치지 않는다", async () => {
+    let finish!: (value: pagePreviews.StudioPagePreview) => void;
+    vi.spyOn(pagePreviews, "renderStudioPagePreview").mockImplementation(
+      async (_source, page, _signal, options) => {
+        if (page === 1) return { url: "blob:page1" };
+        options?.onPreview?.({ url: "blob:unconfirmed" });
+        return new Promise((resolve) => {
+          finish = resolve;
+        });
+      },
+    );
+    await beginUpload();
+    fireEvent.click(screen.getByRole("button", { name: "맨 뒤" }));
+    await act(async () => {
+      finish({ url: "blob:blank", autoOut: "빈 쪽" });
+    });
+    expect(screen.getByText("시작할 쪽 1 · 뺀 쪽 1")).toBeVisible();
+    fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+  });
+
+  it("확인 실패와 재시도 실패 후에도 이미 받은 그림을 유지하고 다시 시도할 수 있다", async () => {
+    let reject!: (cause: Error) => void;
+    let first = true;
+    vi.spyOn(pagePreviews, "renderStudioPagePreview").mockImplementation(
+      async (_source, page, _signal, options) => {
+        if (page === 2) return { url: "blob:page2" };
+        if (!first) throw new Error("재시도 실패");
+        first = false;
+        options?.onPreview?.({ url: "blob:thumbnail", inkRatio: 0 });
+        return new Promise((_resolve, fail) => {
+          reject = fail;
+        });
+      },
+    );
+    await beginUpload();
+    const card = () =>
+      screen.getByRole("region", { name: "쪽 카드" }).querySelector("figure")!;
+    expect(within(card()).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:thumbnail",
+    );
+    await act(async () => {
+      reject(new Error("확인 실패"));
+    });
+    expect(within(card()).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:thumbnail",
+    );
+    fireEvent.click(within(card()).getByRole("button", { name: /다시 시도/ }));
+    await within(card()).findByText("재시도 실패");
+    expect(within(card()).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:thumbnail",
+    );
+    expect(
+      within(card()).getByRole("button", { name: /다시 시도/ }),
+    ).toBeEnabled();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+  });
+
+  it("확인이 멈춘 저장 작업도 이동·빼기·되살리기·되돌리기·시작 후 원래 크롭을 모두 보존한다", async () => {
+    const crops = workedPages();
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "sample", pages: 2 }],
+        crops,
+        step: "order",
+      }),
+      originals: new Map(),
+    };
+    let finish!: (value: pagePreviews.StudioPagePreview) => void;
+    vi.spyOn(pagePreviews, "renderStudioPagePreview").mockImplementation(
+      async (_source, page, _signal, options) => {
+        if (page === 1) return { url: "blob:page1" };
+        options?.onPreview?.({ url: "blob:unconfirmed" });
+        return new Promise((resolve) => {
+          finish = resolve;
+        });
+      },
+    );
+    open();
+    const grid = await screen.findByRole("region", { name: "쪽 카드" });
+    await within(grid).findByRole("img", { name: "본문.pdf 원본 1쪽" });
+    fireEvent.click(screen.getByRole("button", { name: "맨 뒤" }));
+    fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+    fireEvent.click(screen.getByRole("button", { name: "되살리기" }));
+    fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: "되돌리기" })[0]);
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    await act(async () => {
+      finish({ url: "blob:stale", autoOut: "빈 쪽" });
+    });
+    expect(pageChoices()).toEqual([
+      expect.stringMatching(/원본 2쪽/),
+      expect.stringMatching(/원본 1쪽/),
+    ]);
+    await waitFor(() =>
+      expect(state.save.mock.calls.at(-1)?.[0].crops).toEqual(crops),
+    );
+    expect(crops).toEqual(workedPages());
+  });
+
   it("시간 초과 뒤 재진입하면 실패한 쪽만 다시 읽고 성공한 미리보기는 캐시에 남긴다", async () => {
     const preview = vi
       .spyOn(pagePreviews, "renderStudioPagePreview")
@@ -324,7 +672,9 @@ describe("Studio 쪽 차례 연결", () => {
         location === "card"
           ? target
           : screen.getByRole("complementary", { name: "선택한 쪽" });
-      const retry = within(region).getByRole("button", { name: /다시 시도/ });
+      const retry = await within(region).findByRole("button", {
+        name: /다시 시도/,
+      });
       expect(retry).toHaveTextContent("다시 시도");
       expect(target).not.toHaveAttribute("role", "button");
       fireEvent.click(target);
@@ -517,13 +867,13 @@ describe("Studio 쪽 차례 연결", () => {
     // Only the zero-ink second page needs text verification.
     expect(state.readText).toHaveBeenCalledTimes(1);
     expect(state.readOperators).not.toHaveBeenCalled();
-    expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeEnabled();
     await act(async () => {
       await vi.advanceTimersByTimeAsync(2999);
     });
     expect(
       screen.getByRole("button", { name: "이 순서로 시작 →" }),
-    ).toBeDisabled();
+    ).toBeEnabled();
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1);
     });

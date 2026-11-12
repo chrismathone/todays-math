@@ -132,9 +132,15 @@ export async function renderStudioPagePreview(
   },
   page: number,
   signal: AbortSignal,
+  options?: {
+    /** A ready thumbnail, before optional blank verification; never carries autoOut. */
+    onPreview?: (preview: StudioPagePreview) => void;
+  },
 ): Promise<StudioPagePreview> {
   const operation = previewOperation(signal);
   const canvases: HTMLCanvasElement[] = [];
+  let pdfPage: PDFPageProxy | undefined;
+  let finished = false;
   let preview: StudioPagePreview | undefined;
   const raster = (width: number, height: number) => {
     operation.check();
@@ -186,13 +192,19 @@ export async function renderStudioPagePreview(
   };
   try {
     operation.check();
-    let pdfPage: PDFPageProxy | undefined;
     let thumbnailScale = 1;
     let imageWidth = 0;
     let imageHeight = 0;
     let thumbnail: ReturnType<typeof raster>;
     if (source.pdf) {
-      pdfPage = await operation.wait(source.pdf.getPage(page));
+      pdfPage = await operation.wait<PDFPageProxy>(
+        source.pdf.getPage(page).then((loadedPage) => {
+          pdfPage = loadedPage;
+          // getPage is not cancellable: release even a page arriving after we stop.
+          if (finished) loadedPage.cleanup();
+          return loadedPage;
+        }),
+      );
       operation.check();
       const base = pdfPage.getViewport({ scale: 1 });
       thumbnailScale = Math.min(728 / base.width, 1031 / base.height);
@@ -225,6 +237,9 @@ export async function renderStudioPagePreview(
     preview = { url };
     operation.check();
     preview.inkRatio = ink(thumbnail);
+    // Publish a snapshot: final verification must not mutate the early result.
+    options?.onPreview?.({ ...preview });
+    operation.check();
     if (preview.inkRatio !== 0) return preview;
 
     // The thumbnail can erase tiny type or faint scan pixels: it is only a candidate.
@@ -277,10 +292,14 @@ export async function renderStudioPagePreview(
           : "빈 쪽 여부를 확인하지 못했습니다. 다시 시도해 주세요.",
     };
   } finally {
+    finished = true;
     operation.dispose();
     for (const canvas of canvases) {
       canvas.width = 0;
       canvas.height = 0;
     }
+    // Page cleanup preserves the shared document for later region/crop renders.
+    // If another renderer is active, PDF.js defers cleanup until it completes.
+    pdfPage?.cleanup();
   }
 }

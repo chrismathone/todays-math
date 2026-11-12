@@ -192,11 +192,41 @@
   color: var(--learn-muted);
 }
 
-.image {
-  display: block;
+.preview {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  min-width: 0;
+}
+
+.image {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 0;
   object-fit: contain;
+}
+
+.previewFeedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.preview > .previewFeedback {
+  flex: none;
+  max-height: 50%;
+  overflow: auto;
+  padding: 8px;
+  border-top: 1px solid var(--learn-track);
 }
 
 .placeholder {

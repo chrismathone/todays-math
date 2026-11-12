@@ -87,6 +87,13 @@ describe("H3-B 쪽 순서", () => {
     select("서술형 스캔.pdf 원본 1쪽");
     fireEvent.click(within(panel()).getByRole("button", { name: /다시 시도/ }));
     expect(onRetryPreview.mock.calls).toEqual([[key(2)], [key(2)]]);
+    for (const region of [card, panel()]) {
+      expect(within(region).getByRole("img")).toHaveAttribute(
+        "src",
+        "blob:unverified",
+      );
+      expect(within(region).getByRole("alert")).toHaveTextContent("시간 초과");
+    }
     rerender(
       <StudioPageOrder
         {...props}
@@ -103,6 +110,205 @@ describe("H3-B 쪽 순서", () => {
     expect(onToggle).not.toHaveBeenCalled();
   });
 
+  it.each([
+    { loading: true, status: "미리보기 준비 중" },
+    { checking: true, status: "빈 쪽 확인 중" },
+  ])(
+    "$status에도 카드와 옆 그림을 유지하고 해당 쪽의 재시도만 잠근다",
+    (pending) => {
+      const onRetryPreview = vi.fn();
+      setup({
+        previews: {
+          ...previews,
+          [key(1)]: {
+            ...previews[key(1)],
+            ...pending,
+            error: "확인 시간 초과",
+          },
+        },
+        onRetryPreview,
+      });
+      const card = [...grid().querySelectorAll("figure")][1];
+      for (const region of [card, panel()]) {
+        expect(within(region).getByRole("img")).toHaveAttribute(
+          "src",
+          "blob:a-2",
+        );
+        expect(within(region).getByRole("status")).toHaveTextContent(
+          pending.status,
+        );
+        expect(within(region).getByRole("alert")).toHaveTextContent(
+          "확인 시간 초과",
+        );
+        const retry = within(region).getByRole("button", {
+          name: /미리보기 다시 시도/,
+        });
+        expect(retry).toBeDisabled();
+        fireEvent.click(retry);
+      }
+      expect(onRetryPreview).not.toHaveBeenCalled();
+    },
+  );
+
+  it("확인 중인 새 URL도 즉시 카드와 옆 칸에 보여 준다", () => {
+    setup({
+      previews: {
+        ...previews,
+        [key(1)]: { url: "blob:early", loading: false, checking: true },
+      },
+    });
+    const card = [...grid().querySelectorAll("figure")][1];
+    for (const region of [card, panel()]) {
+      expect(within(region).getByRole("img")).toHaveAttribute(
+        "src",
+        "blob:early",
+      );
+      expect(within(region).getByRole("status")).toHaveTextContent(
+        "빈 쪽 확인 중",
+      );
+    }
+  });
+
+  it("다른 쪽의 대기와 전역 작업은 실패 쪽 재시도를 막지 않고 해당 쪽 작업 중에는 중복하지 않는다", () => {
+    const onRetryPreview = vi.fn();
+    const pending = {
+      [key(0)]: { url: "", loading: true },
+      [key(1)]: { url: "blob:early", checking: true },
+      [key(2)]: { url: "", error: "그림 읽기 실패" },
+    };
+    const { props, rerender } = setup({ previews: pending, onRetryPreview });
+    select("서술형 스캔.pdf 원본 1쪽");
+    // Import/AI locking remains separate from retrying this failed preview.
+    rerender(<StudioPageOrder {...props} busy />);
+    const card = [...grid().querySelectorAll("figure")][2];
+    for (const region of [card, panel()]) {
+      const retry = within(region).getByRole("button", {
+        name: /미리보기 다시 시도/,
+      });
+      expect(retry).toBeEnabled();
+      fireEvent.click(retry);
+    }
+    expect(onRetryPreview.mock.calls).toEqual([[key(2)], [key(2)]]);
+    for (const ownPending of [{ loading: true }, { checking: true }]) {
+      rerender(
+        <StudioPageOrder
+          {...props}
+          previews={{
+            ...pending,
+            [key(2)]: { ...pending[key(2)], ...ownPending },
+          }}
+        />,
+      );
+      for (const region of [card, panel()]) {
+        const retry = within(region).getByRole("button", {
+          name: /미리보기 다시 시도/,
+        });
+        expect(retry).toBeDisabled();
+        fireEvent.click(retry);
+      }
+    }
+    expect(onRetryPreview).toHaveBeenCalledTimes(2);
+  });
+
+  it("다른 쪽이 준비 중이어도 URL이 있는 확인 중 쪽의 단추·키보드·손잡이·놓기가 동작한다", () => {
+    const { onMove, onToggle } = setup({
+      previews: {
+        ...previews,
+        [key(0)]: { url: "", loading: true },
+        [key(1)]: { url: "blob:early", checking: true },
+      },
+    });
+    const cards = [...grid().querySelectorAll("figure")];
+    const grip = within(cards[1]).getByRole("button", {
+      name: /끌어서 옮기기/,
+    });
+    expect(grip).toBeEnabled();
+    expect(grip).toHaveAttribute("draggable", "true");
+    fireEvent.click(within(panel()).getByRole("button", { name: "뒤로" }));
+    fireEvent.keyDown(grip, { key: "ArrowRight", altKey: true });
+    expect(onMove.mock.calls).toEqual([
+      [key(1), "next"],
+      [key(1), "next"],
+    ]);
+    fireEvent.click(
+      within(cards[1]).getByRole("button", { name: "본문.pdf 원본 2쪽 빼기" }),
+    );
+    fireEvent.click(
+      within(panel()).getByRole("button", { name: "이 쪽 빼기" }),
+    );
+    expect(onToggle.mock.calls).toEqual([[key(1)], [key(1)]]);
+    const dataTransfer = {
+      setData: vi.fn(),
+      setDragImage: vi.fn(),
+      effectAllowed: "",
+      dropEffect: "",
+    };
+    vi.spyOn(cards[2], "getBoundingClientRect").mockReturnValue({
+      left: 100,
+      width: 140,
+    } as DOMRect);
+    fireEvent.dragStart(grip, { dataTransfer });
+    dragAt("dragOver", cards[2], 230, dataTransfer);
+    expect(cards[2]).toHaveAttribute("data-drop", "after");
+    dragAt("drop", cards[2], 230, dataTransfer);
+    expect(onMove).toHaveBeenLastCalledWith(key(1), { before: null });
+    expect(
+      within(panel()).getByRole("heading", { name: "새 1쪽" }),
+    ).toBeVisible();
+  });
+
+  it.each([undefined, { url: "", loading: true }, { url: "", error: "실패" }])(
+    "URL이 없는 쪽의 변경·키보드·끌기·놓기는 막고 선택은 유지한다 (%j)",
+    (unready) => {
+      const nextPreviews = { ...previews };
+      if (unready) nextPreviews[key(1)] = unready;
+      else delete nextPreviews[key(1)];
+      const { onMove, onToggle } = setup({ previews: nextPreviews });
+      const cards = [...grid().querySelectorAll("figure")];
+      const grip = within(cards[1]).getByRole("button", {
+        name: /끌어서 옮기기/,
+      });
+      expect(grip).toBeDisabled();
+      expect(grip).toHaveAttribute("draggable", "false");
+      for (const button of [
+        within(cards[1]).getByRole("button", {
+          name: "본문.pdf 원본 2쪽 빼기",
+        }),
+        within(panel()).getByRole("button", { name: "이 쪽 빼기" }),
+        within(panel()).getByRole("button", { name: "뒤로" }),
+      ]) {
+        expect(button).toBeDisabled();
+        fireEvent.click(button);
+      }
+      fireEvent.keyDown(grip, { key: "ArrowRight", altKey: true });
+      fireEvent.keyDown(screen.getByRole("region", { name: "쪽 순서 편집" }), {
+        key: "ArrowRight",
+        altKey: true,
+      });
+      const dataTransfer = {
+        setData: vi.fn(),
+        setDragImage: vi.fn(),
+        effectAllowed: "",
+        dropEffect: "",
+      };
+      fireEvent.dragStart(grip, { dataTransfer });
+      expect(dataTransfer.setData).not.toHaveBeenCalled();
+      const readyGrip = within(cards[2]).getByRole("button", {
+        name: /끌어서 옮기기/,
+      });
+      fireEvent.dragStart(readyGrip, { dataTransfer });
+      dragAt("dragOver", cards[1], 0, dataTransfer);
+      expect(cards[1]).not.toHaveAttribute("data-drop");
+      dragAt("drop", cards[1], 0, dataTransfer);
+      expect(onMove).not.toHaveBeenCalled();
+      expect(onToggle).not.toHaveBeenCalled();
+      select("본문.pdf 원본 2쪽");
+      expect(
+        within(panel()).getByText(unready?.error ?? "미리보기 준비 중"),
+      ).toBeVisible();
+    },
+  );
+
   it("이미지 읽기 실패에도 다시 시도 단추가 있고 같은 URL의 새 미리보기는 실패 상태를 버린다", () => {
     const onRetryPreview = vi.fn();
     const { props, rerender } = setup({ onRetryPreview });
@@ -110,6 +316,10 @@ describe("H3-B 쪽 순서", () => {
     fireEvent.error(within(card).getByRole("img"));
     fireEvent.error(within(panel()).getByRole("img"));
     for (const region of [card, panel()]) {
+      expect(within(region).queryByRole("img")).toBeNull();
+      expect(within(region).getByRole("alert")).toHaveTextContent(
+        "미리보기를 불러오지 못했습니다.",
+      );
       const retry = within(region).getByRole("button", {
         name: "본문.pdf 원본 2쪽 미리보기 다시 시도",
       });
@@ -117,6 +327,19 @@ describe("H3-B 쪽 순서", () => {
       fireEvent.click(retry);
     }
     expect(onRetryPreview.mock.calls).toEqual([[key(1)], [key(1)]]);
+    rerender(
+      <StudioPageOrder
+        {...props}
+        previews={{ ...previews, [key(2)]: { url: "", loading: true } }}
+      />,
+    );
+    for (const region of [card, panel()]) {
+      // Another page's update is not a fresh result for this failed URL.
+      expect(within(region).queryByRole("img")).toBeNull();
+      expect(
+        within(region).getByRole("button", { name: /미리보기 다시 시도/ }),
+      ).toBeEnabled();
+    }
     rerender(
       <StudioPageOrder
         {...props}
@@ -141,7 +364,12 @@ describe("H3-B 쪽 순서", () => {
           <StudioPageOrder
             sources={oneSource}
             order={pages}
-            previews={{}}
+            previews={Object.fromEntries(
+              pages.map((page) => [
+                studioPageKey(page),
+                { url: `blob:a-${page.page}` },
+              ]),
+            )}
             onToggle={() => {}}
             onMove={(key, direction) => {
               onMove(key, direction);

@@ -20,7 +20,14 @@ import {
 } from "./studioPageOrder";
 import s from "./StudioPageOrder.module.css";
 
-type PagePreview = { url: string; error?: string; loading?: boolean };
+type PagePreview = {
+  url: string;
+  error?: string;
+  /** Thumbnail generation or an explicit retry is in progress. */
+  loading?: boolean;
+  /** Blank-page confirmation continues after the image becomes usable. */
+  checking?: boolean;
+};
 
 export type StudioPageOrderProps = {
   sources: readonly { id: string; name: string; pages: number }[];
@@ -42,49 +49,63 @@ const FILE_COLORS = [
 function Preview({
   preview,
   identity,
-  busy,
   onRetry,
 }: {
   preview?: PagePreview;
   identity: string;
-  busy: boolean;
   onRetry?: () => void;
 }) {
   // A fresh result may have the same URL. Track the failed result, not its bytes.
   const [failedPreview, setFailedPreview] = useState<PagePreview | null>(null);
-  const { url, error, loading } = preview ?? {};
-  const failed = !!error || (!!preview && failedPreview === preview);
-  if (failed || loading) {
-    return (
-      <div className={s.placeholder} aria-busy={loading || undefined}>
-        <span>
-          {loading ? "미리보기 준비 중" : "미리보기를 불러오지 못했습니다."}
-        </span>
-        {!loading && error && <span>{error}</span>}
-        {onRetry && (failed || url) && (
-          <button
-            type="button"
-            className={s.button}
-            aria-label={`${identity} 미리보기 다시 시도`}
-            disabled={busy || loading}
-            onClick={onRetry}
-          >
-            다시 시도
-          </button>
-        )}
-      </div>
-    );
-  }
-  if (!url) return <div className={s.placeholder}>미리보기 준비 중</div>;
+  const { url, error, loading, checking } = preview ?? {};
+  const imageFailed = !!preview && failedPreview === preview;
+  const hasImage = !!url && !imageFailed;
+  const pending = !!(loading || checking);
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- Browser-local blob URLs bypass the image optimizer.
-    <img
-      className={s.image}
-      src={url}
-      alt={identity}
-      draggable={false}
-      onError={() => setFailedPreview(preview!)}
-    />
+    <div
+      className={hasImage ? s.preview : s.placeholder}
+      aria-busy={pending || undefined}
+    >
+      {hasImage ? (
+        // eslint-disable-next-line @next/next/no-img-element -- Browser-local blob URLs bypass the image optimizer.
+        <img
+          className={s.image}
+          src={url}
+          alt={identity}
+          draggable={false}
+          onError={() => setFailedPreview(preview!)}
+        />
+      ) : (
+        (!pending || imageFailed || error) && (
+          <span role={imageFailed && !error ? "alert" : undefined}>
+            {imageFailed || error
+              ? "미리보기를 불러오지 못했습니다."
+              : "미리보기 준비 중"}
+          </span>
+        )
+      )}
+      {(error || pending || imageFailed) && (
+        <div className={s.previewFeedback}>
+          {error && <span role="alert">{error}</span>}
+          {pending && (
+            <span role="status">
+              {loading ? "미리보기 준비 중" : "빈 쪽 확인 중"}
+            </span>
+          )}
+          {onRetry && (error || imageFailed || url) && (
+            <button
+              type="button"
+              className={s.button}
+              aria-label={`${identity} 미리보기 다시 시도`}
+              disabled={pending}
+              onClick={onRetry}
+            >
+              다시 시도
+            </button>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -125,20 +146,27 @@ export default function StudioPageOrder({
   const orderedPages = new Map(
     order.map((page) => [studioPageKey(page), page]),
   );
+  // Background confirmation must not lock pages whose thumbnails are ready.
+  const isReady = (key: string) => !!previews[key]?.url;
+  const selectedReady = !!selectedId && isReady(selectedId);
   const sourceOf = (page: StudioOrderedPage) => sourceMap.get(page.sourceId);
   const identity = (page: StudioOrderedPage) =>
     `${sourceOf(page)?.name ?? "원본 파일"} 원본 ${page.page}쪽`;
   const accent = (page: StudioOrderedPage) =>
     sourceOf(page)?.color ?? FILE_COLORS[0];
-  const canMoveBack = !!selected && !selected.out && selectedActiveIndex > 0;
+  const canMoveBack =
+    selectedReady && !!selected && !selected.out && selectedActiveIndex > 0;
   const canMoveForward =
-    !!selected && !selected.out && selectedActiveIndex < active.length - 1;
+    selectedReady &&
+    !!selected &&
+    !selected.out &&
+    selectedActiveIndex < active.length - 1;
 
   const move = (
     direction: Extract<StudioPageMove, string>,
     key = selectedId,
   ) => {
-    if (busy || !key) return;
+    if (busy || !key || !isReady(key)) return;
     const moving = order.find((page) => studioPageKey(page) === key);
     if (!moving || moving.out) return;
     const index = active.findIndex((page) => studioPageKey(page) === key);
@@ -199,7 +227,7 @@ export default function StudioPageOrder({
     } else navigate(direction);
   };
   const toggle = (key: string) => {
-    if (busy) return;
+    if (busy || !isReady(key)) return;
     setSelectedKey(key);
     onToggle(key);
   };
@@ -212,7 +240,7 @@ export default function StudioPageOrder({
     event: DragEvent<HTMLButtonElement>,
     page: StudioOrderedPage,
   ) => {
-    if (busy || page.out) {
+    if (busy || page.out || !isReady(studioPageKey(page))) {
       event.preventDefault();
       return;
     }
@@ -233,6 +261,8 @@ export default function StudioPageOrder({
     if (
       busy ||
       !moving ||
+      !isReady(moving) ||
+      !isReady(studioPageKey(page)) ||
       studioPageKey(page) === moving ||
       !order.some((item) => studioPageKey(item) === moving && !item.out)
     )
@@ -293,7 +323,6 @@ export default function StudioPageOrder({
           key={key}
           preview={previews[key]}
           identity={identity(page)}
-          busy={busy}
           onRetry={onRetryPreview ? () => onRetryPreview(key) : undefined}
         />
       ),
@@ -311,7 +340,7 @@ export default function StudioPageOrder({
           <button
             type="button"
             className={page.out ? s.restore : s.exclude}
-            disabled={busy}
+            disabled={busy || !isReady(key)}
             aria-label={`${identity(page)} ${page.out ? "되살리기" : "빼기"}`}
             onClick={() => toggle(key)}
           >
@@ -371,7 +400,7 @@ export default function StudioPageOrder({
                   <button
                     type="button"
                     className={s.button}
-                    disabled={busy}
+                    disabled={busy || !isReady(studioPageKey(page))}
                     aria-label={`${identity(page)} ${page.autoOut === "빈 쪽" ? "미리 뺀 쪽" : "이전 작업에서 뺀 쪽"} 되살리기`}
                     onClick={() => toggle(studioPageKey(page))}
                   >
@@ -395,8 +424,8 @@ export default function StudioPageOrder({
                 <button
                   type="button"
                   className={s.grip}
-                  draggable={!busy}
-                  disabled={busy}
+                  draggable={!busy && isReady(card.key)}
+                  disabled={busy || !isReady(card.key)}
                   data-studio-page-key={card.key}
                   aria-label={`${identity(page)} 끌어서 옮기기`}
                   title="끌어서 옮기기"
@@ -458,7 +487,6 @@ export default function StudioPageOrder({
                   key={selectedId}
                   preview={previews[selectedId!]}
                   identity={identity(selected)}
-                  busy={busy}
                   onRetry={
                     onRetryPreview
                       ? () => onRetryPreview(selectedId!)
@@ -514,7 +542,7 @@ export default function StudioPageOrder({
               <button
                 type="button"
                 className={s.button}
-                disabled={busy}
+                disabled={busy || !selectedReady}
                 onClick={() => toggle(selectedId!)}
               >
                 {selected.out ? "되살리기" : "이 쪽 빼기"}
