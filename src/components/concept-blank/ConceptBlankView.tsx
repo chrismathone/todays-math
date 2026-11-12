@@ -540,7 +540,13 @@ export default function ConceptBlankView({
   useEffect(() => {
     const navigate = () => {
       const url = new URL(window.location.href);
-      if (url.hash && url.hash !== "#conceptBlank") return;
+      // 다른 화면으로의 이동은 숨겨 둔 초안을 유지한다. 개념 백지 주소만 새 선택으로 읽는다.
+      if (
+        url.hash !== "#conceptBlank" &&
+        !url.searchParams.has(URL_PARAM) &&
+        !url.searchParams.has(DOC_PARAM)
+      )
+        return;
       const key = addressKey(url);
       if (observedAddress.current === key) return;
       observedAddress.current = key;
