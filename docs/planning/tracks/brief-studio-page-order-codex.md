@@ -101,3 +101,35 @@ D-30에 따라 카드 본체에는 클릭·손가락 커서·hover 배경을 두
 지시서의 구현 범위에 남은 작업과 추가로 물을 결정은 없다. 전체 시험의 기존 실패와 외장 SSD 환경 문제는 별도 정비 대상이다. 실제 공유 저장소의 저장·운영 배포는 검증하지 않았다. 새 `order` 단계를 저장한 자료는 이전 코드의 세션 검증이 거부하므로 구버전 화면으로 되돌려 읽는 것은 지원하지 않는다(옛 저장본을 새 코드로 읽는 시험은 통과).
 
 **푸시·main 병합·공유 DB 쓰기·운영 빌드는 하지 않았다.** 시연 녹화본도 변경하지 않았다. 사용자 지시대로 가지 커밋만 남긴다.
+
+### 리뷰 반영
+
+2026-11-12 · Codex · `scratch/review/review-order.md`의 막음 4건·고칠 것 2건을 모두 수정했다. 구현 커밋은 **`5ca42937b` — `fix(studio): address all six page-order review findings`**이며, 이 절과 검증 근거는 별도 보고 커밋으로 남긴다.
+
+여섯 건 모두 재현 시험을 먼저 추가하고 해당 결함으로 RED인 것을 확인한 뒤 구현했다. [RED·GREEN 실행 기록](reports/studio-page-order-review-20261112/validation.md).
+
+| 건 | 구현 전 RED로 확인한 결과 | 수정과 회귀 검증 |
+|---|---|---|
+| 1 · 현재 쪽과 파괴적 동작 | 1쪽 제외 → 검토 → 영역 지정 → 회전에서 확인창 기대 1회, 실제 0회 | 현재 쪽을 제외하면 차례상 다음 활성 쪽으로 이동하고 끝이면 첫 활성 쪽으로 돌아온다. 활성 쪽이 없으면 선택을 비운다. 활성 쪽만 회전·영역 편집·삭제·일괄 디지털화 대상이 되며, 제외된 상자·인식·해설을 보존한다. 전체 제외 뒤 외부 출력 요청·Delete도 기록을 지우거나 출력으로 넘어가지 않는 시험을 추가했다. |
+| 2 · 실패 재시도 | 두 실패 뒤 한 쪽을 제외해도 로더 호출 횟수 `[1,2]` 대신 `[2,2]`; 활성 쪽 0개여도 재호출 | `useStudioAi.activePages`의 최신 `sourceId+page` 범위를 `retryPages`와 전체 `retry`가 함께 사용한다. 제외된 실패 이력·로더는 남겨 되살린 뒤 재시도할 수 있다. 진행·경고·실패 재시도 버튼의 수량도 활성 쪽만 센다. |
+| 3 · 그림 문항의 거짓 제외 | 그림이 있거나 연산 목록을 확인하지 못한 표지·정답표 후보를 자동 제외 | PDF.js `getOperatorList()`에서 이미지 그리기 연산을 검사한다. `paintImageXObject`·inline·group·repeat·mask 등 설치된 8종을 모두 보존하고, 연산 목록 실패·미확인도 보존한다. 그림이 없다고 확인한 텍스트 쪽만 표지·정답표 규칙을 적용하며 기존 빈 쪽 판정은 유지한다. |
+| 4 · 담은 문항과 출력 | 제외 뒤 배지는 여전히 2문항, 실제 출력 장부는 `a,c` 그대로; 저장 왕복에서 제외 복원 표시 소실 | 기존 뺀 기억에 선택적 `pageExcluded`를 보존한다. 제외한 문항을 실제 시험지 장부에서 옮겨 담은 목록·출력·저장에서도 빠지게 하고, 되살릴 때 원래 자리에 원본 객체 그대로 복원한다. 직접 뺀 문항·다른 원본·은행 문항은 유지한다. 연속 제외·부분 복원·저장 왕복·실제 `WorksheetEditor` 목록으로 확인했다. |
+| 5 · 보관함과 이어서 작업 | `documentWorkflow`·목록 API가 `order`에 `undefined`, 작업 중 수량 0 | `workspaceWorkflow` 계약의 추출 자료 단계에 `order`를 추가하고 보관함·개발 시안의 단계 이름을 «쪽 순서»로 연결했다. ‘내 작업 중만’·‘이어서 작업’과 저장된 `order` 화면 복원을 검증했다. 기존 이어서 작업 경로가 저장 단계를 복원하므로 별도 강제 단계 전환은 추가하지 않았다. |
+| 6 · Alt+방향키 | 둘째 손잡이에 초점을 둔 Alt+→가 `[2,1,3]`; Alt+←는 `[1,2,3]` | 키 이벤트의 손잡이에서 쪽 신분을 읽고 그 쪽으로 이동·경계를 판정한다. 초점이 둘째 손잡이에 있을 때 →는 `[1,3,2]`, ←는 `[2,1,3]`; 재배열 뒤에도 같은 손잡이 초점이 유지된다. |
+
+최종 관련 시험은 아래 명령으로 **34파일·629시험 모두 통과**했다. `npm run type-check`, `npm run lint:affordance`, 변경 22파일 ESLint와 `git diff --check`도 통과했다.
+
+```sh
+npx vitest run StudioView UnifiedWorkspace useStudioAi StudioBulkSolution StudioPageOrder studioPageAnalysis studioPagePreview studioPageOrder studioCart draftStore workspaceDraftStore workspaceExplicitResume studioExplicitResume privateWorkspacePersistence privateDocumentWorkflow PrivateLibrary StudioQueueStatus StudioStepBar PaperStrip --maxWorkers=3
+```
+
+실제 합성 PDF의 표지·정답표 두 쪽에 번호가 있는 문항 그림을 삽입한 뒤, PDF.js의 실제 연산 목록과 제품의 `renderStudioPagePreview`로 다시 확인했다. Node의 PDF.js legacy 로더와 `@napi-rs/canvas`를 사용한 지면 렌더 검증이며 새 브라우저 시각 검수로 기록하지 않는다. [원시 측정값](reports/studio-page-order-review-20261112/image-pages-verification.json).
+
+| 실제 PDF 구성 | 쪽 | 이미지 연산 | 잉크 비율 | 자동 제외 |
+|---|---:|---|---:|---|
+| 텍스트 표지 | 1 | 없음 | 0.00199982 | 표지 |
+| 텍스트 정답표 | 2 | 없음 | 0.00285251 | 정답표 |
+| 같은 표지 + 문항 그림 | 1 | `paintImageXObject` | 0.00262335 | 없음 |
+| 같은 정답표 + 문항 그림 | 2 | `paintImageXObject` | 0.00347603 | 없음 |
+
+Orca 새 작업트리는 설정된 `/Volumes/TodayWork/today_`의 권한 오류로 만들지 못했다. 기존 작업트리의 Codex 워커 세 개가 서로 다른 파일을 맡고, 조정자가 현재 쪽·담기·출력 연결과 최종 통합을 맡았다. 현재 가지에만 커밋했으며 **푸시·main 병합·공유 DB 쓰기·운영 빌드·시연 녹화본 변경은 하지 않았다.** 미병합 작업트리는 정리하지 않는다. 이번 여섯 건에 남은 수정은 없다.
