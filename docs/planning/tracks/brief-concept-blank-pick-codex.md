@@ -50,3 +50,19 @@ npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/u
 npm run type-check
 npm run lint:affordance
 ```
+
+### 2차 리뷰 반영
+
+- 대상: `scratch/review/review-pick2.md`의 세 건. **리드의 방향 변경을 적용하여 위 1차의 창 안 미도착 선택 보존 방식을 폐기했다.** `pendingSections` 전달·보존 분기를 제거하고, 고른 소단원이 걸친 학년 은행이 모두 도착해야 고르기 창을 열도록 바꿨다. 코드 커밋은 `df15da1da`이며 이 절은 후속 문서 커밋에 담았다.
+- **TDD:** 새 로딩 동작 시험 7개가 RED(7실패·8통과), 자동 형식 순서의 유효한 선택을 사용한 회귀 시험 6개가 RED(6실패)임을 수정 전에 확인했다. 이전 미도착 중 편집 시험은 새 결정의 차단 시험으로 교체했다. 원기록은 로컬 `scratch/review/pick2-loading-red.log`·`pick2-order-red.log`, 수정 후 기록은 같은 이름의 `-green.log`에 있다.
+- **1번·3번 — 완전한 은행에서만 고르기:** 처음에 은행이 하나도 없거나 일부만 왔으면 «문항 고르기»를 비활성으로 보이며 바로 옆에 «은행을 불러오는 중»을 연결한다(`aria-describedby`). «직접»으로 바꾸는 경로도 창을 열지 못한다. 필요한 은행이 실패하면 «은행을 불러오지 못했습니다 · 다시 시도»를 보이고, 다시 시도는 이미 도착했거나 요청 중인 학년을 중복 요청하지 않는다. 선택하지 않고 둘러보는 학년의 로딩·실패는 고르기를 막지 않는다.
+- **상한·낡은 선택 검증:** 지연을 제어한 초5·초6 각 20소단원 픽스처에서 기존 하 40문항을 유지한 빈 칸 채우기와 전체 자동 교체 목표 1문항을 확인했다. 적용 후 각각 40/1문항이며 ZodError 없이 정상 주소가 나온다. 지연 은행의 삭제·소단원 변경·난이도 변경 3경우는 모두 도착한 뒤 창을 한 번 열어 적용하면 재확인이 끝나고 저장·인쇄가 가능하다. 실패→재시도→재실패→재시도→성공에서도 선택 주소를 보존한다.
+- **2번 — 자동 저장본의 형식 차례:** `draftFrom`이 `pick` 유무와 관계없이 저장된 `forms` 순서를 먼저 복원한다. C→B와 E→D→C→B→A 각각을 전부 자동으로 바꾼 뒤 주소 새로고침·저장 후 주소 새로고침·내 시험지 재열기의 6경우에서 `pick` 없음, 형식·지면·미리보기·지면 코드·주소 동일, 저장본의 «저장됨» 상태를 확인했다.
+- **최종 검증:** 아래 관련 시험 **12파일·205시험 통과**(`--maxWorkers=3`), `npm run type-check`, `npm run lint:affordance`, Prettier·`git diff --check` 통과. 변경 파일 ESLint는 오류 0이며 기존 `ConceptBlankView.test.tsx`의 미사용 `docs` 경고 1개가 남는다. 1차의 체크섬·접근성 시험도 포함한다. 전체 시험은 이번에 다시 돌리지 않았으며 앞선 전체 관문 미통과 이력은 그대로다.
+- **화면·작업 범위:** 실제 FormTable·Workroom 스타일을 사용하는 임시 하네스를 Orca 내장 브라우저 한 탭에서 확인했다. 대기·실패 상태 × 1440·1280·390px의 6장면에서 안내 문구의 한글 낱말 105개 중 중간 줄바꿈 0, 문서 가로 넘침 0이며 좁은 화면의 표 내부 스크롤은 유지된다. 실패→재시도 안내와 준비 후 단추 활성도 확인했다. 원자료·화면은 로컬 `scratch/review/pick2-{loading,error}-*.json`·`pick2-loading-1440.png`·`pick2-error-390.png`에 남겼다. 로딩 상태 전환은 RTL, 화면 측정은 부품 하네스 검증이며 실계정·공유 DB·실물 프린터 검수가 아니다. 임시 서버·탭·하네스를 정리했고, 푸시·main 병합·공유 DB 쓰기·`.env` 복사·운영 빌드 없이 현재 가지와 미병합 작업트리를 보존했다.
+
+```sh
+npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/unit/conceptBlankSelectionCodec.test.ts src/__tests__/unit/conceptBlankExactPick.test.ts src/__tests__/unit/conceptBlankSheetCode.test.ts src/__tests__/unit/conceptBlankBankLoad.test.ts src/__tests__/unit/pickerDialog.test.tsx src/__tests__/unit/textbookConcepts.test.ts src/__tests__/components/ConceptBlankPick.test.tsx src/__tests__/components/ConceptBlankAutoOrder.test.tsx src/__tests__/components/ConceptBlankView.test.tsx src/__tests__/components/PrintCheck.test.tsx src/__tests__/api/conceptBlankPrintPage.test.ts --maxWorkers=3
+npm run type-check
+npm run lint:affordance
+```
