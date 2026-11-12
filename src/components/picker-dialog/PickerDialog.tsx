@@ -28,6 +28,8 @@ export function PickerDialog({
   returnFocus,
   footer,
   size = "fill",
+  width = "default",
+  titleAside,
   children,
 }: {
   title: string;
@@ -55,6 +57,10 @@ export function PickerDialog({
   footer?: ReactNode;
   /** `fill` 은 지금처럼 높이를 채운다(긴 목록). `fit` 은 내용만큼 — 넘치면 몸통만 스크롤(W4). */
   size?: "fill" | "fit";
+  /** 세 칸 고르기(H2): 기본 창의 폭은 유지하고 요청한 창만 1200px까지 넓힌다. */
+  width?: "default" | "wide";
+  /** 제목 옆 고른 수 등. 대화상자의 접근 가능한 제목에는 포함하지 않는다. */
+  titleAside?: ReactNode;
   children: ReactNode;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -90,6 +96,7 @@ export function PickerDialog({
       ref={dialogRef}
       className={s.dialog}
       data-size={size}
+      data-width={width}
       aria-labelledby={titleId}
       onCancel={(event) => {
         event.preventDefault();
@@ -98,6 +105,7 @@ export function PickerDialog({
     >
       <header>
         <h2 id={titleId}>{title}</h2>
+        {titleAside}
         {cancelLabel ? (
           <div className={s.headActions}>
             <button

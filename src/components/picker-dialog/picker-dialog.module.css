@@ -17,6 +17,27 @@
   display: flex;
   flex-direction: column;
 }
+.dialog[data-width="wide"] {
+  width: min(1200px, calc(100vw - 32px));
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.dialog[data-width="wide"] > header {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.dialog[data-width="wide"] > header h2 {
+  font-weight: 700;
+}
+.dialog[data-width="wide"] .headActions {
+  margin-left: auto;
+}
+.dialog[data-width="wide"] > header button {
+  white-space: nowrap;
+}
+.dialog[data-width="wide"] .body {
+  scrollbar-gutter: auto;
+}
 .dialog::backdrop {
   background: #10213fb3;
 }
@@ -111,6 +132,7 @@
 }
 @media (max-width: 520px) {
   .dialog,
+  .dialog[data-width="wide"],
   .dialog[data-size="fit"] {
     width: calc(100vw - 12px);
     height: calc(100dvh - 12px);

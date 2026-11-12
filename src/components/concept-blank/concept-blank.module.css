@@ -10,6 +10,8 @@
   --b-accent: var(--learn-accent, #3159df);
   --b-soft: var(--learn-soft, #edf2ff);
   min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   color: var(--b-ink);
   font-size: var(--text-body, 14px);
 }
@@ -718,4 +720,111 @@ button.secondaryButton:disabled {
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+.modeRow {
+  --control-height: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 6px;
+}
+.modeSegment {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: #fff;
+}
+.modeSegment button {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  background: none;
+  color: var(--learn-muted, #596c86);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.modeSegment button + button {
+  border-left: 1px solid var(--learn-control, #b8c4d6);
+}
+.modeSegment button[aria-pressed="true"] {
+  background: var(--learn-accent, #3159df);
+  color: #fff;
+}
+.modeSegment button:enabled:hover:not([aria-pressed="true"]),
+.pickOpen:enabled:hover {
+  background: var(--learn-soft, #edf2ff);
+}
+button.pickOpen {
+  min-height: 36px;
+  padding: 5px 10px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.modeSegment button:focus-visible,
+.pickOpen:focus-visible {
+  outline: 2px solid var(--learn-accent, #3159df);
+  outline-offset: -3px;
+}
+.pickedCount {
+  display: grid;
+  place-items: center end;
+  min-width: 44px;
+  max-width: 64px;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sheetOutline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 14px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.outlineCard {
+  margin-block: 16px;
+}
+.outlineDetail {
+  color: var(--learn-muted, #596c86);
+}
+.codeSlot {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  color: var(--learn-muted, #596c86);
+  font-size: 13px;
+}
+.codeValue {
+  padding: 5px 8px;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: 6px;
+  color: var(--learn-ink, #172b4d);
+  font-variant-numeric: tabular-nums;
+}
+.codeValue[data-none="true"] {
+  background: #fff4df;
+  border-color: #f0d2b3;
+  color: #8a4b0f;
 }

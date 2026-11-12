@@ -83,6 +83,24 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "concept-blank-pick-20261112",
+    title: "개념 백지 H2 — 직접 고른 문항의 학생지·채점표",
+    changed:
+      "형식별 직접 고르기를 추가했다. 직접 형식이 포함된 지면은 자동 형식의 문항도 정확한 선택으로 저장하며 지면 코드를 찍지 않는다. 기존 exact 합치기의 형식·소단원 묶음을 사용한다.",
+    look: "B 직접(질문 1개·○× 1개)과 C 자동(문장·적용)을 섞어 저장하고 다시 연 뒤 학생지·채점표를 A4 100%로 출력한다. 고르지 않은 B 문항이 나오거나 두 지면의 문항이 다르거나 지면 코드가 찍히면 불합격이다. A·D·E도 각각 직접 고른 항목만 나오는지 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-concept-blank-pick-codex.md",
+      "docs/planning/tracks/reports/concept-blank-pick-20261112/measurements.json",
+      "src/lib/concept-blank/manualPick.ts",
+    ],
+    needs:
+      "서로 다른 소단원의 A~E 직접 선택, B 직접·C 자동 혼합, 저장 후 재열기.",
+    scale: "직접 고른 형식이 있는 개념 백지. 지면 CSS는 변경하지 않았다.",
+    status: "대기",
+    changedOn: "2026-11-12",
+  },
+  {
     id: "concept-blank-writing-area-20261020",
     title: "개념 백지 공용 답란 — 다섯 형식 · 서술형 B 회귀",
     changed:

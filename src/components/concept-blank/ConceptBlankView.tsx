@@ -72,9 +72,21 @@ import {
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
+import {
+  assertCurrentPicks,
+  materializePicks,
+  pickCounts,
+  pickKey,
+  pickPool,
+  samePick,
+  STALE_PICK_MESSAGE,
+  setPickMode,
+  type FormPicking,
+} from "@/lib/concept-blank/manualPick";
 import { kstDateOf } from "@/lib/kstDate";
 
 import ConceptBlankFormTable from "./ConceptBlankFormTable";
+import ConceptBlankQuestionPicker from "./ConceptBlankQuestionPicker";
 import ConceptBlankUnitPicker from "./ConceptBlankUnitPicker";
 import TextbookConceptLinks from "@/components/textbook/integration/TextbookConceptLinks";
 import s from "./concept-blank.module.css";
@@ -156,7 +168,7 @@ const EMPTY_REASON: Record<ConceptBlankForm, string> = {
   figure: "고른 소단원에 그림 문항이 없습니다.",
 };
 
-type FormDraft = {
+type FormDraft = FormPicking & {
   on: boolean;
   /** 원장님이 고친 수만 — 없으면 10(재고가 적으면 재고만큼). */
   counts: Partial<LevelCounts>;
@@ -165,6 +177,7 @@ type FormDraft = {
 type Draft = {
   sections: string[];
   forms: Record<ConceptBlankForm, FormDraft>;
+  formOrder: ConceptBlankForm[];
   title: string;
   date: string;
 };
@@ -187,9 +200,9 @@ function initialDraft(): Draft {
 /** 고르기 → 화면의 초안. 저장한 개념 백지에는 날짜가 없다 — 그때는 오늘. */
 function draftFrom(saved: ConceptBlankSelection | null): Draft {
   const forms = Object.fromEntries(
-    CONCEPT_BLANK_FORMS.map((form) => [
+    CONCEPT_BLANK_FORMS.map((form): [ConceptBlankForm, FormDraft] => [
       form,
-      { on: false, counts: {}, extras: {} },
+      { on: false, counts: {}, extras: {}, mode: "auto", picks: [] },
     ]),
   ) as Record<ConceptBlankForm, FormDraft>;
   for (const f of saved?.forms ?? [])
@@ -197,10 +210,24 @@ function draftFrom(saved: ConceptBlankSelection | null): Draft {
       on: true,
       counts: { ...f.counts },
       extras: { ...f.extras },
+      mode: saved?.pick ? "pick" : "auto",
+      picks: saved?.pick?.filter((pick) => pick.form === f.form) ?? [],
     };
   return {
-    sections: saved ? orderedSections(saved.sections) : [],
+    sections: saved?.pick
+      ? [...saved.sections]
+      : saved
+        ? orderedSections(saved.sections)
+        : [],
     forms,
+    formOrder: saved?.pick
+      ? [
+          ...saved.forms.map(({ form }) => form),
+          ...CONCEPT_BLANK_FORMS.filter(
+            (form) => !saved.forms.some((f) => f.form === form),
+          ),
+        ]
+      : [...CONCEPT_BLANK_FORMS],
     title: saved?.title ?? "",
     // 원장님 2026-10-01 «디폴트 오늘 날짜» — 주소에 날짜가 없으면 오늘(한국 시간). 비우면 지면의 학습일은 손으로 쓰는 줄.
     date: saved?.date ?? kstDateOf(new Date()),
@@ -219,6 +246,7 @@ function documentSelection(
   return {
     sections: selection.sections,
     forms: selection.forms,
+    ...(selection.pick ? { pick: selection.pick } : {}),
     ...(selection.title ? { title: selection.title } : {}),
   };
 }
@@ -367,6 +395,8 @@ export default function ConceptBlankView({
 }: ConceptBlankViewProps) {
   const uid = useId();
   const [draft, setDraft] = useState<Draft>(initialDraft);
+  const [pickingForm, setPickingForm] = useState<ConceptBlankForm | null>(null);
+  const pickOpener = useRef<HTMLButtonElement>(null);
   const [openGrade, setOpenGrade] = useState<string | null>(() =>
     gradeOf(draft),
   );
@@ -482,25 +512,65 @@ export default function ConceptBlankView({
   const isOn = (form: ConceptBlankForm) =>
     availableOf(chosen, caps, form) && draft.forms[form].on;
 
+  const selectionError = useMemo(() => {
+    if (!ready) return "";
+    try {
+      for (const form of CONCEPT_BLANK_FORMS) {
+        const state = draft.forms[form];
+        if (state.on && state.mode === "pick")
+          assertCurrentPicks(bank, draft.sections, form, state.picks);
+      }
+      return "";
+    } catch {
+      return STALE_PICK_MESSAGE;
+    }
+  }, [ready, bank, draft.sections, draft.forms]);
+
   const selection = useMemo<ConceptBlankSelection | null>(() => {
-    if (!ready || !chosen.length) return null;
-    const forms = CONCEPT_BLANK_FORMS.flatMap((form) => {
+    if (!ready || selectionError || !chosen.length) return null;
+    const forms = draft.formOrder.flatMap((form) => {
       if (!availableOf(chosen, caps, form) || !draft.forms[form].on) return [];
       const counts = valueOf(draft, caps, form, "main");
       const extras = ROWS[form].extra
         ? valueOf(draft, caps, form, "extra")
         : { ...ZERO };
-      return sum(counts) + sum(extras) > 0 ? [{ form, counts, extras }] : [];
+      return draft.forms[form].mode === "pick" || sum(counts) + sum(extras) > 0
+        ? [{ form, counts, extras }]
+        : [];
     });
     if (!forms.length) return null;
     const title = draft.title.trim().slice(0, TITLE_MAX);
-    return {
-      sections: chosen.slice(0, SECTION_CAP),
-      forms,
-      ...(title ? { title } : {}),
-      ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
-    };
-  }, [ready, chosen, caps, draft]);
+    return materializePicks(
+      {
+        sections: chosen.slice(0, SECTION_CAP),
+        forms,
+        ...(title ? { title } : {}),
+        ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
+      },
+      draft.forms,
+      bank,
+    );
+  }, [ready, selectionError, chosen, caps, draft, bank]);
+
+  const hasDirect = CONCEPT_BLANK_FORMS.some(
+    (form) => isOn(form) && draft.forms[form].mode === "pick",
+  );
+  const effectivePicks = (form: ConceptBlankForm) => {
+    const valid = new Map(
+      [
+        ...pickPool(bank, chosen, form, "main"),
+        ...pickPool(bank, chosen, form, "extra"),
+      ].map((pick) => [pickKey(pick), pick]),
+    );
+    return draft.forms[form].picks.filter((pick) => {
+      const current = valid.get(pickKey(pick));
+      return current && samePick(pick, current);
+    });
+  };
+  const openPicker = (form: ConceptBlankForm, opener: HTMLButtonElement) => {
+    pickOpener.current = opener;
+    setPickingForm(form);
+  };
 
   const code = useMemo(() => {
     if (!selection) return null;
@@ -517,7 +587,9 @@ export default function ConceptBlankView({
   /** 지면 코드(트랙 cb-code) — 인쇄와 같은 코드 줄을 미리보기에도(같은 문제는 같은 뷰). */
   const sheetCode = useMemo(
     () =>
-      selection && sheets.length ? encodeSheetCode(selection, bank) : undefined,
+      selection && !selection.pick && sheets.length
+        ? encodeSheetCode(selection, bank)
+        : undefined,
     [selection, sheets.length, bank],
   );
   const items = sheets.reduce((n, sheet) => n + sheetItemCount(sheet), 0);
@@ -525,14 +597,14 @@ export default function ConceptBlankView({
   // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
   // 학년 은행이 오는 동안은 건드리지 않는다 — 오기 전의 빈 고르기로 주소의 고르기를 지우면 새로 고침이 고르기를 잃는다.
   useEffect(() => {
-    if (active && !ready) return;
+    if (active && (!ready || selectionError)) return;
     const url = new URL(window.location.href);
     const next = active ? code : null;
     if (url.searchParams.get(URL_PARAM) === next) return;
     if (next) url.searchParams.set(URL_PARAM, next);
     else url.searchParams.delete(URL_PARAM);
     window.history.replaceState(window.history.state, "", url);
-  }, [active, ready, code]);
+  }, [active, ready, selectionError, code]);
 
   // 주소 `?blankDoc=` — 내 시험지에 있는 자료면 그 id 를 같은 규칙으로 싣는다(새로 고쳐도 같은 자료에 저장).
   const savedId = savedDocument?.id ?? null;
@@ -777,6 +849,36 @@ export default function ConceptBlankView({
   return (
     <div className={s.view}>
       {saveDialog}
+      {pickingForm && (
+        <ConceptBlankQuestionPicker
+          key={pickingForm}
+          bank={bank}
+          sections={chosen}
+          form={pickingForm}
+          picks={draft.forms[pickingForm].picks}
+          targets={{
+            main: valueOf(draft, caps, pickingForm, "main"),
+            extra: valueOf(draft, caps, pickingForm, "extra"),
+          }}
+          returnFocus={pickOpener}
+          onCancel={() => setPickingForm(null)}
+          onApply={(picks, targets) => {
+            setDraft((current) => ({
+              ...current,
+              forms: {
+                ...current.forms,
+                [pickingForm]: {
+                  ...current.forms[pickingForm],
+                  picks,
+                  counts: targets.main,
+                  extras: targets.extra,
+                },
+              },
+            }));
+            setPickingForm(null);
+          }}
+        />
+      )}
       <WorkspacePageHeader
         title="개념 백지"
         description="학년 · 대단원 · 소단원을 고르고 형식마다 난이도별 문항 수를 정합니다. 같은 고르기는 언제나 같은 지면입니다."
@@ -890,6 +992,26 @@ export default function ConceptBlankView({
         <p className={s.saveError} role="alert">
           {saveError}
         </p>
+      )}
+      {selectionError && (
+        <div className={s.saveError} role="alert">
+          <p>{selectionError}</p>
+          {draft.formOrder
+            .filter(
+              (form) =>
+                draft.forms[form].on && draft.forms[form].mode === "pick",
+            )
+            .map((form) => (
+              <button
+                key={form}
+                type="button"
+                className={s.secondaryButton}
+                onClick={(event) => openPicker(form, event.currentTarget)}
+              >
+                {CONCEPT_BLANK_FORM_LABELS[form]} 다시 고르기
+              </button>
+            ))}
+        </div>
       )}
 
       <div className={s.grid}>
@@ -1053,6 +1175,7 @@ export default function ConceptBlankView({
               letter: LETTER[form],
               help: HELP[form],
               on: isOn(form),
+              mode: draft.forms[form].mode,
               available: availableOf(chosen, caps, form),
               reason: !chosen.length
                 ? "소단원을 먼저 고르세요."
@@ -1066,11 +1189,25 @@ export default function ConceptBlankView({
                   label: (row === "main" ? ROWS[form].main : ROWS[form].extra!)
                     .label,
                   max: maxOf(caps, form, row),
-                  value: valueOf(draft, caps, form, row),
+                  value:
+                    draft.forms[form].mode === "pick"
+                      ? pickCounts(effectivePicks(form), row)
+                      : valueOf(draft, caps, form, row),
                 })),
             }))}
             onToggle={toggleForm}
             onCount={setCount}
+            onMode={(form, mode, opener) => {
+              setDraft((current) => ({
+                ...current,
+                forms: {
+                  ...current.forms,
+                  [form]: setPickMode(current.forms[form], mode),
+                },
+              }));
+              if (mode === "pick") openPicker(form, opener);
+            }}
+            onPick={openPicker}
           />
 
           <section className={s.card} aria-labelledby={`${uid}-meta`}>
@@ -1098,6 +1235,35 @@ export default function ConceptBlankView({
         </div>
       </div>
 
+      <section className={`${s.card} ${s.outlineCard}`} aria-label="만들 지면">
+        <div className={s.cardHead}>
+          <h2 className={s.cardTitle}>만들 지면</h2>
+          <span className={s.num}>문항 {items}</span>
+        </div>
+        <div className={s.sheetOutline}>
+          {selection?.forms.map(({ form, counts, extras }) => (
+            <span key={form}>
+              <b>{LETTER[form]}</b> {CONCEPT_BLANK_FORM_LABELS[form]}{" "}
+              <span className={s.outlineDetail}>
+                {ROWS[form].main.label} {sum(counts)}
+                {ROWS[form].extra
+                  ? ` · ${ROWS[form].extra.label} ${sum(extras)}`
+                  : ""}{" "}
+                · {draft.forms[form].mode === "pick" ? "직접" : "자동"}
+              </span>
+            </span>
+          ))}
+          <span className={s.codeSlot}>
+            지면 코드{" "}
+            <span className={s.codeValue} data-none={hasDirect}>
+              {hasDirect
+                ? "없음 — 직접 고른 형식이 있습니다"
+                : (sheetCode ?? "없음")}
+            </span>
+          </span>
+        </div>
+      </section>
+
       <section
         className={`${s.card} ${s.previewCard}`}
         aria-labelledby={`${uid}-preview`}
@@ -1108,7 +1274,7 @@ export default function ConceptBlankView({
           </h2>
           {sheets.length > 0 && (
             <span className={s.num}>
-              형식 {sheets.length} · 문항 {items}
+              형식 {selection?.forms.length ?? 0} · 문항 {items}
             </span>
           )}
           <div className={s.segment} role="group" aria-label="미리보기 지면">

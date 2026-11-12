@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { zlibSync } from "fflate";
 import {
   conceptBlankSelectionSchema,
+  CONCEPT_BLANK_FORMS,
+  CONCEPT_BLANK_LEVELS,
   type ConceptBlankPick,
   type ConceptBlankSelection,
 } from "@/contracts/conceptBlank.contract";
@@ -10,6 +13,45 @@ import {
   decodeSelection,
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
+
+it("60개 소단원·840문항도 압축된 인쇄 주소 하나로 왕복한다", () => {
+  const picks: ConceptBlankPick[] = CONCEPT_BLANK_FORMS.flatMap((form) =>
+    Array.from({ length: 60 }, (_, section) => {
+      const kinds: ConceptBlankPick["entryKind"][] =
+        form === "figure"
+          ? ["figure"]
+          : form === "term"
+            ? ["concept", "ox"]
+            : form === "cloze"
+              ? ["concept", "apply"]
+              : ["concept"];
+      return kinds.flatMap((kind) =>
+        [0, 1].map((i) => ({
+          form,
+          entryKind: kind,
+          entryId: `question-${form}-${kind}-${section}-${i}`,
+          level: CONCEPT_BLANK_LEVELS[(section * 2 + i) % 3],
+          blankSectionKey: `초5::여러 단원의 개념을 모아 복습하기::${section}번째 소단원의 뜻과 성질을 설명하기`,
+        })),
+      );
+    }).flat(),
+  );
+  const selection = selectionFromPicks(picks);
+  const code = encodeSelection(selection);
+  expect(picks).toHaveLength(840);
+  expect(code.startsWith("z1.")).toBe(true);
+  // 16KiB 요청 헤더 안에서 인증 쿠키·경로의 자리를 남긴다.
+  expect(code.length).toBeLessThan(12 * 1024);
+  expect(decodeSelection(code)).toEqual(selection);
+});
+
+it("깨진 압축 주소와 과대 해제 결과를 제한된 버퍼에서 거절한다", () => {
+  expect(decodeSelection("z1.bad")).toBeNull();
+  const bomb = Buffer.from(
+    zlibSync(new TextEncoder().encode(" ".repeat(200_000))),
+  ).toString("base64url");
+  expect(decodeSelection(`z1.${bomb}`)).toBeNull();
+});
 
 function encodeJson(value: unknown): string {
   return Buffer.from(JSON.stringify(value), "utf8").toString("base64url");

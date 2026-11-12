@@ -8,6 +8,7 @@
  * ⚠️ 페이지는 `<ConceptBlankPaper …/>` **요소**를 돌려줄 뿐 컴포넌트를 부르지 않는다 — 돌려받은 요소의 `props` 를 본다.
  */
 import { isValidElement, type ReactElement } from "react";
+import { zlibSync } from "fflate";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({ session: vi.fn() }));
@@ -188,31 +189,45 @@ describe("/concept-blank/print", () => {
     expect(renamed!.props.code).toBe(paper!.props.code);
   });
 
-  it("prints exact picks in their original order, with title/date and no sheet code", async () => {
-    mocks.session.mockResolvedValue(OWNER);
-    const selection = {
-      ...selectionFromPicks(EXACT_PICKS, "직접 고른 개념"),
-      date: "2026-11-12",
-    };
-    const code = encodeSelection(selection);
-    const paper = findPaper(await call({ s: code, view: "student" }));
-    expect(paper).not.toBeNull();
-    expect(paper!.props.code).toBeUndefined();
-    expect(paper!.props.view).toBe("student");
-    expect(paper!.props.sheets).toEqual(composeSheets(selection, FIXTURE_BANK));
-    const [term] = paper!.props.sheets;
-    expect(term.form === "term" && term.entryOrder).toEqual([
-      { entryKind: "concept", entryId: property.id },
-      { entryKind: "ox", entryId: ox.id },
-      { entryKind: "concept", entryId: line.id },
-    ]);
-    expect(paper!.props.sheets.map((sheet) => sheet.header)).toEqual([
-      expect.objectContaining({ title: selection.title, date: selection.date }),
-      expect.objectContaining({ title: selection.title, date: selection.date }),
-    ]);
-    const again = findPaper(await call({ s: code }));
-    expect(again!.props.sheets).toEqual(paper!.props.sheets);
-  });
+  it.each([false, true])(
+    "prints exact picks in their original order, with title/date and no sheet code (compressed=%s)",
+    async (compressed) => {
+      mocks.session.mockResolvedValue(OWNER);
+      const selection = {
+        ...selectionFromPicks(EXACT_PICKS, "직접 고른 개념"),
+        date: "2026-11-12",
+      };
+      const encoded = encodeSelection(selection);
+      const code = compressed
+        ? `z1.${Buffer.from(zlibSync(Buffer.from(encoded, "base64url"))).toString("base64url")}`
+        : encoded;
+      const paper = findPaper(await call({ s: code, view: "student" }));
+      expect(paper).not.toBeNull();
+      expect(paper!.props.code).toBeUndefined();
+      expect(paper!.props.view).toBe("student");
+      expect(paper!.props.sheets).toEqual(
+        composeSheets(selection, FIXTURE_BANK),
+      );
+      const [term] = paper!.props.sheets;
+      expect(term.form === "term" && term.entryOrder).toEqual([
+        { entryKind: "concept", entryId: property.id },
+        { entryKind: "ox", entryId: ox.id },
+        { entryKind: "concept", entryId: line.id },
+      ]);
+      expect(paper!.props.sheets.map((sheet) => sheet.header)).toEqual([
+        expect.objectContaining({
+          title: selection.title,
+          date: selection.date,
+        }),
+        expect.objectContaining({
+          title: selection.title,
+          date: selection.date,
+        }),
+      ]);
+      const again = findPaper(await call({ s: code }));
+      expect(again!.props.sheets).toEqual(paper!.props.sheets);
+    },
+  );
 
   it.each([
     ["missing bank ID", { entryId: "no-longer-in-bank" }],

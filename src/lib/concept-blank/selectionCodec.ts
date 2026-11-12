@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { unzlibSync, zlibSync } from "fflate";
 
 import {
   conceptBlankSelectionSchema,
@@ -7,6 +8,8 @@ import {
 
 // URL 한 개의 디코딩 작업량을 제한한다(문항 수는 기존 계약의 2,000개 상한과 같다).
 const MAX_CODE_LENGTH = 64 * 1024;
+const COMPRESS_AFTER = 8 * 1024;
+const MAX_EXACT_BYTES = 64 * 1024;
 const MAX_PICKS = 2000;
 // v1의 인덱스 순서다. 계약의 표시 순서가 바뀌어도 이 순서는 바꾸지 않는다.
 const PICK_KINDS = ["concept", "ox", "apply", "figure"] as const;
@@ -36,23 +39,29 @@ const exactUrlSchema = z.strictObject({
  * 고르기 ↔ 주소 `?s=`(D-150). 같은 링크 = 같은 지면(고정 문항). base64url(JSON) — 브라우저 · 서버 둘 다.
  * 자동 선택은 기존 JSON 바이트 그대로. 정확한 선택은 v1 {v,s,i,p}: 선택(소단원·형식·수·제목·날짜),
  * ID 사전, [소단원, 종류, ID, 형식, 난이도] 인덱스 튜플로 실어 긴 소단원 이름을 반복하지 않는다.
+ * 8KiB를 넘는 정확한 선택만 z1. + base64url(zlib)로 압축하며 해제 크기는 64KiB로 제한한다.
  * 읽다 틀리면 null(인쇄 페이지는 «잘못된 주소»를 보인다).
  */
 function toBase64Url(text: string): string {
-  const bytes = new TextEncoder().encode(text);
+  return bytesToBase64Url(new TextEncoder().encode(text));
+}
+
+function bytesToBase64Url(bytes: Uint8Array): string {
   let bin = "";
   for (const b of bytes) bin += String.fromCharCode(b);
   return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 function fromBase64Url(code: string): string {
+  return new TextDecoder("utf-8", { fatal: true }).decode(base64UrlBytes(code));
+}
+
+function base64UrlBytes(code: string): Uint8Array {
   const b64 =
     code.replace(/-/g, "+").replace(/_/g, "/") +
     "===".slice((code.length + 3) % 4);
   const bin = atob(b64);
-  return new TextDecoder("utf-8", { fatal: true }).decode(
-    Uint8Array.from(bin, (c) => c.charCodeAt(0)),
-  );
+  return Uint8Array.from(bin, (c) => c.charCodeAt(0));
 }
 
 export function encodeSelection(selection: ConceptBlankSelection): string {
@@ -74,7 +83,15 @@ export function encodeSelection(selection: ConceptBlankSelection): string {
       ]),
     };
   }
-  const code = toBase64Url(JSON.stringify(value));
+  const json = JSON.stringify(value);
+  let code = toBase64Url(json);
+  // 큰 정확한 선택도 GET 인쇄 경로에 들어가게 한다. 기존 자동·짧은 v1 주소는 바이트 그대로다.
+  if (pick && code.length > COMPRESS_AFTER) {
+    const bytes = new TextEncoder().encode(json);
+    if (bytes.length > MAX_EXACT_BYTES)
+      throw new RangeError("인쇄 주소가 너무 깁니다. 문항 수를 줄여 주세요.");
+    code = `z1.${bytesToBase64Url(zlibSync(bytes))}`;
+  }
   if (code.length > MAX_CODE_LENGTH)
     throw new RangeError("인쇄 주소가 너무 깁니다. 문항 수를 줄여 주세요.");
   return code;
@@ -85,7 +102,21 @@ export function decodeSelection(
 ): ConceptBlankSelection | null {
   if (!code || code.length > MAX_CODE_LENGTH) return null;
   try {
-    const value: unknown = JSON.parse(fromBase64Url(code));
+    let json: string;
+    if (code.startsWith("z1.")) {
+      // fflate의 고정 출력 버퍼는 과대 해제를 잘라 낸다. 상한+1이면 잘린 결과까지 확실히 거절한다.
+      const bytes = unzlibSync(base64UrlBytes(code.slice(3)), {
+        out: new Uint8Array(MAX_EXACT_BYTES + 1),
+      });
+      if (bytes.length > MAX_EXACT_BYTES) return null;
+      json = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    } else json = fromBase64Url(code);
+    const value: unknown = JSON.parse(json);
+    if (
+      code.startsWith("z1.") &&
+      !(typeof value === "object" && value !== null && "v" in value)
+    )
+      return null;
     if (typeof value === "object" && value !== null && "v" in value) {
       const compact = exactUrlSchema.safeParse(value);
       if (!compact.success) return null;
