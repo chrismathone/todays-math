@@ -77,6 +77,8 @@
 
 개념 백지의 채택 H2는 별도 제작 단계가 아니다. `개념 백지 → 단원 고르기 → 학년·단원 선택 → 선택 완료 → 형식 켜기 → 직접`에서 바로 열리고, 이후 같은 형식의 `문항 고르기`로 다시 연다. 기존 W1 형식 표와 W2 왼쪽 목록을 유지한다. [후속 검증 기록](../planning/tracks/reports/studio-page-order-polish-20261112/README.md)에 실제 작업실의 화면·측정·회귀 범위를 둔다.
 
+같은 날 추가 결정: 개념 백지 아래 미리보기에도 상단과 같은 `학생지 · 채점표 · 전체`를 제공한다. 두 조작은 기존 상단의 지면 상태를 공유하며, 기본 `전체`는 학생지 뒤에 채점표를 보여 준다. 위나 아래에서 바꾸면 양쪽 선택·미리보기·인쇄 주소가 함께 바뀐다. 저장 계약과 H2는 유지한다. [추가 검증](../planning/tracks/reports/concept-blank-preview-view-20261112/README.md)을 참고한다.
+
 ### 연산대장과 수학 출처 탐색 — 2026-10-14
 
 2026-10-24 수학 시험지 문항 검토에는 [reviewSort](../../src/components/exam-builder/reviewSort.ts)의 난이도 오름·내림, 객관식/주관식 우선, 교육과정 단원순 정렬을 추가했다. [MathExamBuilder](../../src/components/exam-builder/MathExamBuilder.tsx)에서만 활성화하고 공통 검토의 왼쪽 순서표 위에 표시한다. 전체 담은 문항에 적용하며 같은 기준 안의 수동 순서·정답·문항 객체를 보존한다. 단원 순은 서버에서 읽은 `Unit.orderIndex`를 사용한다. 기존 되돌리기와 단계 왕복·저장·출력에 연결하며, 분류 미확인은 뒤에 유지한다. [구현·화면 검증](../planning/tracks/reports/builder-review-sort-codex-20261024/README.md)은 합성 데이터 검증과 운영 확인을 구분한다.

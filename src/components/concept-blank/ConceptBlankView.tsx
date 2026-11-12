@@ -128,6 +128,12 @@ type StockKind =
   "concepts" | "term" | "cloze" | "map" | "recall" | "ox" | "apply" | "figures";
 type Row = "main" | "extra";
 
+const PAPER_VIEWS = [
+  ["student", "학생지"],
+  ["key", "채점표"],
+  ["both", "전체"],
+] as const;
+
 const LETTER: Record<ConceptBlankForm, string> = {
   recall: "A",
   term: "B",
@@ -569,8 +575,7 @@ export default function ConceptBlankView({
     return () => window.removeEventListener("popstate", navigate);
   }, [openId, openVersion, setDocument]);
   const [capHit, setCapHit] = useState(false);
-  const [paperView, setPaperView] = useState<"student" | "key">("student");
-  /** 인쇄할 지면 — 학생지 · 채점표 · 전체(학생지 뒤에 채점표). 원장님 2026-10-01 «본문/답지/전체 따로». */
+  /** 상단·하단 미리보기·인쇄가 같은 지면을 본다 — 전체는 학생지 뒤에 채점표. */
   const [printView, setPrintView] = useState<"student" | "key" | "both">(
     "both",
   );
@@ -1085,13 +1090,7 @@ export default function ConceptBlankView({
             />
           </label>
           <div className={s.printSegment} role="group" aria-label="인쇄할 지면">
-            {(
-              [
-                ["student", "학생지"],
-                ["key", "채점표"],
-                ["both", "전체"],
-              ] as const
-            ).map(([value, label]) => (
+            {PAPER_VIEWS.map(([value, label]) => (
               <button
                 key={value}
                 type="button"
@@ -1486,28 +1485,24 @@ export default function ConceptBlankView({
             </span>
           )}
           <div className={s.segment} role="group" aria-label="미리보기 지면">
-            <button
-              type="button"
-              aria-pressed={paperView === "student"}
-              onClick={() => setPaperView("student")}
-            >
-              학생지
-            </button>
-            <button
-              type="button"
-              aria-pressed={paperView === "key"}
-              onClick={() => setPaperView("key")}
-            >
-              채점표
-            </button>
+            {PAPER_VIEWS.map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={printView === value}
+                onClick={() => setPrintView(value)}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
         {sheets.length > 0 ? (
           <ConceptBlankPreview
-            key={`${paperView}-${sheetCode}`}
+            key={`${printView}-${sheetCode}`}
             code={sheetCode}
             sheets={sheets}
-            view={paperView}
+            view={printView}
           />
         ) : (
           <p className={s.empty}>

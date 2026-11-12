@@ -495,19 +495,24 @@ describe("인쇄 · 미리보기", () => {
     expect(printedSelection()!.sections).toEqual([S.atLeast, S.round]);
   });
 
-  it("미리보기는 고른 지면을 그리고 학생지 · 채점표를 바꾼다", () => {
+  it("미리보기는 기본 전체 지면을 그리고 학생지 · 채점표 · 전체를 바꾼다", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
     enableAvailableForms();
     const paper = screen.getByTestId("paper");
     expect(paper).toHaveTextContent("recall,term,cloze,map,figure");
-    expect(paper).toHaveAttribute("data-view", "student");
+    expect(paper).toHaveAttribute("data-view", "both");
     const preview = within(
       screen.getByRole("group", { name: "미리보기 지면" }),
     );
     const student = preview.getByRole("button", { name: "학생지" });
     const key = preview.getByRole("button", { name: "채점표" });
+    expect(preview.getByRole("button", { name: "전체" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    fireEvent.click(student);
     expect(student).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(key);
     expect(key).toHaveAttribute("aria-pressed", "true");

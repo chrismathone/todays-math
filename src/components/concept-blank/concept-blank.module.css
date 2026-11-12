@@ -516,6 +516,11 @@ button.secondaryButton:disabled {
   color: var(--b-accent);
   box-shadow: 0 0 0 1px var(--b-line);
 }
+.view .segment button:focus-visible,
+.view .printSegment button:focus-visible {
+  outline: 3px solid var(--b-accent);
+  outline-offset: 2px;
+}
 .empty {
   margin: 14px 0 0;
   padding: 28px 16px;

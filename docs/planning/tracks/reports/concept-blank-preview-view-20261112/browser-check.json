@@ -1,0 +1,3178 @@
+[
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 1461.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 1631.234375,
+          "bottom": 60,
+          "left": 1461.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1465.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1523.03125,
+              "bottom": 56,
+              "left": 1465.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1523.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 1580.75,
+              "bottom": 56,
+              "left": 1523.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1580.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 1627.234375,
+              "bottom": 56,
+              "left": 1580.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1682.078125,
+          "y": 914,
+          "width": 181.921875,
+          "height": 52,
+          "top": 914,
+          "right": 1864,
+          "bottom": 966,
+          "left": 1682.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1686.078125,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1747.796875,
+              "bottom": 962,
+              "left": 1686.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1747.796875,
+              "y": 918,
+              "width": 61.71875,
+              "height": 44,
+              "top": 918,
+              "right": 1809.515625,
+              "bottom": 962,
+              "left": 1747.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1809.515625,
+              "y": 918,
+              "width": 50.484375,
+              "height": 44,
+              "top": 918,
+              "right": 1860,
+              "bottom": 962,
+              "left": 1809.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 991.234375,
+          "bottom": 60,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 825.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 883.03125,
+              "bottom": 56,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 883.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 940.75,
+              "bottom": 56,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 940.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 987.234375,
+              "bottom": 56,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 1023.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1023.1875,
+          "right": 1224,
+          "bottom": 1075.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1046.078125,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1107.796875,
+              "bottom": 1071.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1107.796875,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1169.515625,
+              "bottom": 1071.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1169.515625,
+              "y": 1027.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1220,
+              "bottom": 1071.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 991.234375,
+          "bottom": 60,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 825.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 883.03125,
+              "bottom": 56,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 883.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 940.75,
+              "bottom": 56,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 940.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 987.234375,
+              "bottom": 56,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 1023.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1023.1875,
+          "right": 1224,
+          "bottom": 1075.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1046.078125,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1107.796875,
+              "bottom": 1071.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1107.796875,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1169.515625,
+              "bottom": 1071.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1169.515625,
+              "y": 1027.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1220,
+              "bottom": 1071.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": 16,
+          "width": 169.921875,
+          "height": 44,
+          "top": 16,
+          "right": 991.234375,
+          "bottom": 60,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 825.3125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 883.03125,
+              "bottom": 56,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 883.03125,
+              "y": 20,
+              "width": 57.71875,
+              "height": 36,
+              "top": 20,
+              "right": 940.75,
+              "bottom": 56,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 940.75,
+              "y": 20,
+              "width": 46.484375,
+              "height": 36,
+              "top": 20,
+              "right": 987.234375,
+              "bottom": 56,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 1023.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1023.1875,
+          "right": 1224,
+          "bottom": 1075.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1046.078125,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1107.796875,
+              "bottom": 1071.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1107.796875,
+              "y": 1027.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1169.515625,
+              "bottom": 1071.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1169.515625,
+              "y": 1027.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1027.1875,
+              "right": 1220,
+              "bottom": 1071.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": -633,
+          "width": 169.921875,
+          "height": 44,
+          "top": -633,
+          "right": 991.234375,
+          "bottom": -589,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 825.3125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 883.03125,
+              "bottom": -593,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 883.03125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 940.75,
+              "bottom": -593,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 940.75,
+              "y": -629,
+              "width": 46.484375,
+              "height": 36,
+              "top": -629,
+              "right": 987.234375,
+              "bottom": -593,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 374.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 374.1875,
+          "right": 1224,
+          "bottom": 426.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 1046.078125,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1107.796875,
+              "bottom": 422.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1107.796875,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1169.515625,
+              "bottom": 422.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1169.515625,
+              "y": 378.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1220,
+              "bottom": 422.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": -633,
+          "width": 169.921875,
+          "height": 44,
+          "top": -633,
+          "right": 991.234375,
+          "bottom": -589,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 825.3125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 883.03125,
+              "bottom": -593,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 883.03125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 940.75,
+              "bottom": -593,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 940.75,
+              "y": -629,
+              "width": 46.484375,
+              "height": 36,
+              "top": -629,
+              "right": 987.234375,
+              "bottom": -593,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 374.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 374.1875,
+          "right": 1224,
+          "bottom": 426.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1046.078125,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1107.796875,
+              "bottom": 422.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 1107.796875,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1169.515625,
+              "bottom": 422.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 1169.515625,
+              "y": 378.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1220,
+              "bottom": 422.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 821.3125,
+          "y": -633,
+          "width": 169.921875,
+          "height": 44,
+          "top": -633,
+          "right": 991.234375,
+          "bottom": -589,
+          "left": 821.3125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 825.3125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 883.03125,
+              "bottom": -593,
+              "left": 825.3125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 883.03125,
+              "y": -629,
+              "width": 57.71875,
+              "height": 36,
+              "top": -629,
+              "right": 940.75,
+              "bottom": -593,
+              "left": 883.03125
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 940.75,
+              "y": -629,
+              "width": 46.484375,
+              "height": 36,
+              "top": -629,
+              "right": 987.234375,
+              "bottom": -593,
+              "left": 940.75
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 1042.078125,
+          "y": 374.1875,
+          "width": 181.921875,
+          "height": 52,
+          "top": 374.1875,
+          "right": 1224,
+          "bottom": 426.1875,
+          "left": 1042.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 1046.078125,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1107.796875,
+              "bottom": 422.1875,
+              "left": 1046.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 1107.796875,
+              "y": 378.1875,
+              "width": 61.71875,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1169.515625,
+              "bottom": 422.1875,
+              "left": 1107.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 1169.515625,
+              "y": 378.1875,
+              "width": 50.484375,
+              "height": 44,
+              "top": 378.1875,
+              "right": 1220,
+              "bottom": 422.1875,
+              "left": 1169.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": 220.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 220.1875,
+          "right": 225.640625,
+          "bottom": 264.1875,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 59.71875,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 117.4375,
+              "bottom": 260.1875,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 117.4375,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 175.15625,
+              "bottom": 260.1875,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 175.15625,
+              "y": 224.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 224.1875,
+              "right": 221.640625,
+              "bottom": 260.1875,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 1532.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1532.75,
+          "right": 342,
+          "bottom": 1584.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 164.078125,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 225.796875,
+              "bottom": 1580.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 225.796875,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 287.515625,
+              "bottom": 1580.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 287.515625,
+              "y": 1536.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1536.75,
+              "right": 338,
+              "bottom": 1580.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": 220.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 220.1875,
+          "right": 225.640625,
+          "bottom": 264.1875,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 59.71875,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 117.4375,
+              "bottom": 260.1875,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 117.4375,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 175.15625,
+              "bottom": 260.1875,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 175.15625,
+              "y": 224.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 224.1875,
+              "right": 221.640625,
+              "bottom": 260.1875,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 1532.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1532.75,
+          "right": 342,
+          "bottom": 1584.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 164.078125,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 225.796875,
+              "bottom": 1580.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 225.796875,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 287.515625,
+              "bottom": 1580.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 287.515625,
+              "y": 1536.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1536.75,
+              "right": 338,
+              "bottom": 1580.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": 220.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 220.1875,
+          "right": 225.640625,
+          "bottom": 264.1875,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 59.71875,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 117.4375,
+              "bottom": 260.1875,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 117.4375,
+              "y": 224.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 224.1875,
+              "right": 175.15625,
+              "bottom": 260.1875,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 175.15625,
+              "y": 224.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 224.1875,
+              "right": 221.640625,
+              "bottom": 260.1875,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 1532.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1532.75,
+          "right": 342,
+          "bottom": 1584.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 164.078125,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 225.796875,
+              "bottom": 1580.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 225.796875,
+              "y": 1536.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1536.75,
+              "right": 287.515625,
+              "bottom": 1580.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 287.515625,
+              "y": 1536.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1536.75,
+              "right": 338,
+              "bottom": 1580.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": -916.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -916.8125,
+          "right": 225.640625,
+          "bottom": -872.8125,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 59.71875,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 117.4375,
+              "bottom": -876.8125,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 117.4375,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 175.15625,
+              "bottom": -876.8125,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 175.15625,
+              "y": -912.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -912.8125,
+              "right": 221.640625,
+              "bottom": -876.8125,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 395.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 395.75,
+          "right": 342,
+          "bottom": 447.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 164.078125,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 225.796875,
+              "bottom": 443.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 225.796875,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 287.515625,
+              "bottom": 443.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 287.515625,
+              "y": 399.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 399.75,
+              "right": 338,
+              "bottom": 443.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": -916.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -916.8125,
+          "right": 225.640625,
+          "bottom": -872.8125,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 59.71875,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 117.4375,
+              "bottom": -876.8125,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 117.4375,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 175.15625,
+              "bottom": -876.8125,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 175.15625,
+              "y": -912.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -912.8125,
+              "right": 221.640625,
+              "bottom": -876.8125,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 395.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 395.75,
+          "right": 342,
+          "bottom": 447.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 164.078125,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 225.796875,
+              "bottom": 443.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 225.796875,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 287.515625,
+              "bottom": 443.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 287.515625,
+              "y": 399.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 399.75,
+              "right": 338,
+              "bottom": 443.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 55.71875,
+          "y": -916.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -916.8125,
+          "right": 225.640625,
+          "bottom": -872.8125,
+          "left": 55.71875
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 59.71875,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 117.4375,
+              "bottom": -876.8125,
+              "left": 59.71875
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 117.4375,
+              "y": -912.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -912.8125,
+              "right": 175.15625,
+              "bottom": -876.8125,
+              "left": 117.4375
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 175.15625,
+              "y": -912.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -912.8125,
+              "right": 221.640625,
+              "bottom": -876.8125,
+              "left": 175.15625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 160.078125,
+          "y": 395.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 395.75,
+          "right": 342,
+          "bottom": 447.75,
+          "left": 160.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 164.078125,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 225.796875,
+              "bottom": 443.75,
+              "left": 164.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 225.796875,
+              "y": 399.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 399.75,
+              "right": 287.515625,
+              "bottom": 443.75,
+              "left": 225.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 287.515625,
+              "y": 399.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 399.75,
+              "right": 338,
+              "bottom": 443.75,
+              "left": 287.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": 241.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 241.1875,
+          "right": 289,
+          "bottom": 285.1875,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 123.078125,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 180.796875,
+              "bottom": 281.1875,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 180.796875,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 238.515625,
+              "bottom": 281.1875,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 238.515625,
+              "y": 245.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 245.1875,
+              "right": 285,
+              "bottom": 281.1875,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 1553.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1553.75,
+          "right": 272,
+          "bottom": 1605.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 94.078125,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 155.796875,
+              "bottom": 1601.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 155.796875,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 217.515625,
+              "bottom": 1601.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 217.515625,
+              "y": 1557.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1557.75,
+              "right": 268,
+              "bottom": 1601.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": 241.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 241.1875,
+          "right": 289,
+          "bottom": 285.1875,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 123.078125,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 180.796875,
+              "bottom": 281.1875,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 180.796875,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 238.515625,
+              "bottom": 281.1875,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 238.515625,
+              "y": 245.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 245.1875,
+              "right": 285,
+              "bottom": 281.1875,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 1553.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1553.75,
+          "right": 272,
+          "bottom": 1605.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 94.078125,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 155.796875,
+              "bottom": 1601.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 155.796875,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 217.515625,
+              "bottom": 1601.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 217.515625,
+              "y": 1557.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1557.75,
+              "right": 268,
+              "bottom": 1601.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": 241.1875,
+          "width": 169.921875,
+          "height": 44,
+          "top": 241.1875,
+          "right": 289,
+          "bottom": 285.1875,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 123.078125,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 180.796875,
+              "bottom": 281.1875,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 180.796875,
+              "y": 245.1875,
+              "width": 57.71875,
+              "height": 36,
+              "top": 245.1875,
+              "right": 238.515625,
+              "bottom": 281.1875,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 238.515625,
+              "y": 245.1875,
+              "width": 46.484375,
+              "height": 36,
+              "top": 245.1875,
+              "right": 285,
+              "bottom": 281.1875,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 1553.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 1553.75,
+          "right": 272,
+          "bottom": 1605.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 94.078125,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 155.796875,
+              "bottom": 1601.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 155.796875,
+              "y": 1557.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 1557.75,
+              "right": 217.515625,
+              "bottom": 1601.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 217.515625,
+              "y": 1557.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 1557.75,
+              "right": 268,
+              "bottom": 1601.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) none 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "top",
+    "choice": "전체"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": -968.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -968.8125,
+          "right": 289,
+          "bottom": -924.8125,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 123.078125,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 180.796875,
+              "bottom": -928.8125,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 180.796875,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 238.515625,
+              "bottom": -928.8125,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 238.515625,
+              "y": -964.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -964.8125,
+              "right": 285,
+              "bottom": -928.8125,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 343.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 343.75,
+          "right": 272,
+          "bottom": 395.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "true",
+            "rect": {
+              "x": 94.078125,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 155.796875,
+              "bottom": 391.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 155.796875,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 217.515625,
+              "bottom": 391.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 217.515625,
+              "y": 347.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 347.75,
+              "right": 268,
+              "bottom": 391.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student"
+    ],
+    "printView": "student",
+    "focus": "학생지",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "학생지"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": -968.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -968.8125,
+          "right": 289,
+          "bottom": -924.8125,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 123.078125,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 180.796875,
+              "bottom": -928.8125,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 180.796875,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 238.515625,
+              "bottom": -928.8125,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 238.515625,
+              "y": -964.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -964.8125,
+              "right": 285,
+              "bottom": -928.8125,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 343.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 343.75,
+          "right": 272,
+          "bottom": 395.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 94.078125,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 155.796875,
+              "bottom": 391.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "true",
+            "rect": {
+              "x": 155.796875,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 217.515625,
+              "bottom": 391.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "false",
+            "rect": {
+              "x": 217.515625,
+              "y": 347.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 347.75,
+              "right": 268,
+              "bottom": 391.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "key"
+    ],
+    "printView": "key",
+    "focus": "채점표",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "채점표"
+  },
+  {
+    "viewport": [
+      320,
+      740
+    ],
+    "groups": [
+      {
+        "name": "인쇄할 지면",
+        "rect": {
+          "x": 119.078125,
+          "y": -968.8125,
+          "width": 169.921875,
+          "height": 44,
+          "top": -968.8125,
+          "right": 289,
+          "bottom": -924.8125,
+          "left": 119.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 123.078125,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 180.796875,
+              "bottom": -928.8125,
+              "left": 123.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 180.796875,
+              "y": -964.8125,
+              "width": 57.71875,
+              "height": 36,
+              "top": -964.8125,
+              "right": 238.515625,
+              "bottom": -928.8125,
+              "left": 180.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 238.515625,
+              "y": -964.8125,
+              "width": 46.484375,
+              "height": 36,
+              "top": -964.8125,
+              "right": 285,
+              "bottom": -928.8125,
+              "left": 238.515625
+            }
+          }
+        ]
+      },
+      {
+        "name": "미리보기 지면",
+        "rect": {
+          "x": 90.078125,
+          "y": 343.75,
+          "width": 181.921875,
+          "height": 52,
+          "top": 343.75,
+          "right": 272,
+          "bottom": 395.75,
+          "left": 90.078125
+        },
+        "buttons": [
+          {
+            "text": "학생지",
+            "pressed": "false",
+            "rect": {
+              "x": 94.078125,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 155.796875,
+              "bottom": 391.75,
+              "left": 94.078125
+            }
+          },
+          {
+            "text": "채점표",
+            "pressed": "false",
+            "rect": {
+              "x": 155.796875,
+              "y": 347.75,
+              "width": 61.71875,
+              "height": 44,
+              "top": 347.75,
+              "right": 217.515625,
+              "bottom": 391.75,
+              "left": 155.796875
+            }
+          },
+          {
+            "text": "전체",
+            "pressed": "true",
+            "rect": {
+              "x": 217.515625,
+              "y": 347.75,
+              "width": 50.484375,
+              "height": 44,
+              "top": 347.75,
+              "right": 268,
+              "bottom": 391.75,
+              "left": 217.515625
+            }
+          }
+        ]
+      }
+    ],
+    "parts": [
+      "student",
+      "key"
+    ],
+    "printView": "both",
+    "focus": "전체",
+    "focusOutline": "rgb(49, 89, 223) solid 3px",
+    "search": "?blank=eyJzZWN0aW9ucyI6WyLstIg1OjoyLTMg7ZWp64-Z6rO8IOuMgOy5rTo6Mi0zLTEg64-E7ZiV7J2YIO2VqeuPmSDslYzslYTrs7TquLAiXSwiZm9ybXMiOlt7ImZvcm0iOiJ0ZXJtIiwiY291bnRzIjp7Iu2VmCI6MSwi7KSRIjowLCLsg4EiOjB9LCJleHRyYXMiOnsi7ZWYIjowLCLspJEiOjAsIuyDgSI6MH19XSwiZGF0ZSI6IjIwMjYtMTEtMTIifQ",
+    "overflowX": false,
+    "origin": "bottom",
+    "choice": "전체"
+  }
+]

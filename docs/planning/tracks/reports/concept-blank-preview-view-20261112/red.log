@@ -1,0 +1,37 @@
+
+ RUN  v4.1.11 /Users/pss/Desktop/creative/today_
+
+ ❯ src/__tests__/components/ConceptBlankView.paperView.test.tsx (2 tests | 2 failed) 129ms
+     × 인쇄할 지면에서 바꾸면 양쪽 선택·실제 지면·인쇄 주소가 함께 바뀐다 113ms
+     × 미리보기 지면에서 바꾸면 양쪽 선택·실제 지면·인쇄 주소가 함께 바뀐다 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/components/ConceptBlankView.paperView.test.tsx > 개념 백지의 상단·하단 지면 전환 > 인쇄할 지면에서 바꾸면 양쪽 선택·실제 지면·인쇄 주소가 함께 바뀐다
+ FAIL  src/__tests__/components/ConceptBlankView.paperView.test.tsx > 개념 백지의 상단·하단 지면 전환 > 미리보기 지면에서 바꾸면 양쪽 선택·실제 지면·인쇄 주소가 함께 바뀐다
+AssertionError: expected [ 'student' ] to deeply equal [ 'student', 'key' ]
+
+- Expected
++ Received
+
+  [
+    "student",
+-   "key",
+  ]
+
+ ❯ src/__tests__/components/ConceptBlankView.paperView.test.tsx:35:23
+     33|           (page) => page.dataset.cbPart,
+     34|         );
+     35|       expect(parts()).toEqual(["student", "key"]);
+       |                       ^
+     36|       const selection = window.location.search;
+     37|       for (const [label, view, expected] of [
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  20:04:39
+   Duration  894ms (transform 327ms, setup 249ms, import 304ms, tests 129ms, environment 165ms)
+
