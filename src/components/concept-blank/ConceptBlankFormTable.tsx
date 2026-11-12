@@ -41,7 +41,8 @@ export default function ConceptBlankFormTable({
     opener: HTMLButtonElement,
   ) => void;
   onPick?: (form: ConceptBlankForm, opener: HTMLButtonElement) => void;
-  pickStatus?: "ready" | "loading" | "error";
+  pickStatus?:
+    "ready" | "loading" | "error" | "document-loading" | "document-error";
   onRetry?: () => void;
   onCount: (
     form: ConceptBlankForm,
@@ -152,6 +153,10 @@ export default function ConceptBlankFormTable({
                                     다시 시도
                                   </button>
                                 </>
+                              ) : pickStatus === "document-loading" ? (
+                                "문서를 불러오는 중"
+                              ) : pickStatus === "document-error" ? (
+                                "문서를 불러오지 못했습니다"
                               ) : (
                                 "은행을 불러오는 중"
                               )}
