@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type RefObject } from "react";
+import { useId, useMemo, useState, type RefObject } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { BlankSentence, KeySentence, PaperText } from "./paper/PaperParts";
 import {
@@ -45,6 +45,7 @@ const sectionTitle = (key: string) =>
 export default function ConceptBlankQuestionPicker({
   bank,
   sections,
+  pendingSections = [],
   form,
   picks,
   targets,
@@ -54,6 +55,8 @@ export default function ConceptBlankQuestionPicker({
 }: {
   bank: ConceptBlankBank;
   sections: string[];
+  /** 아직 은행이 오지 않은 범위는 사라진 문항으로 판단하지 않는다. */
+  pendingSections?: readonly string[];
   form: ConceptBlankForm;
   picks: ConceptBlankPick[];
   targets: FillTargets;
@@ -61,6 +64,7 @@ export default function ConceptBlankQuestionPicker({
   onCancel: () => void;
   onApply: (picks: ConceptBlankPick[], targets: FillTargets) => void;
 }) {
+  const promptId = useId();
   const pools = useMemo(
     () => ({
       main: pickPool(bank, sections, form, "main"),
@@ -72,6 +76,8 @@ export default function ConceptBlankQuestionPicker({
   const [chosen, setChosen] = useState(() => {
     const current = new Map(all.map((pick) => [pickKey(pick), pick]));
     return picks.filter((pick) => {
+      if (!sections.includes(pick.blankSectionKey)) return false;
+      if (pendingSections.includes(pick.blankSectionKey)) return true;
       const candidate = current.get(pickKey(pick));
       return candidate && samePick(pick, candidate);
     });
@@ -365,6 +371,7 @@ export default function ConceptBlankQuestionPicker({
                   <input
                     type="checkbox"
                     aria-label={`${pools[row].indexOf(pick) + 1}번 문항 고르기`}
+                    aria-describedby={`${promptId}-${key}`}
                     checked={selected}
                     disabled={
                       !selected && currentCounts[pick.level] >= PICK_COUNT_CAP
@@ -372,7 +379,9 @@ export default function ConceptBlankQuestionPicker({
                     onChange={() => (selected ? remove(pick) : add([pick]))}
                   />
                   <div className={s.text}>
-                    <span data-pick-prompt="">{showPrompt(pick)}</span>{" "}
+                    <span id={`${promptId}-${key}`} data-pick-prompt="">
+                      {showPrompt(pick)}
+                    </span>{" "}
                     {shown.has(key) ? (
                       <div className={s.answer}>
                         <b>답</b> <KeySentence sentence={value.answer} />

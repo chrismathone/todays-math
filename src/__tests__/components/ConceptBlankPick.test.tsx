@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -16,7 +17,10 @@ import {
 } from "vitest";
 import ConceptBlankView from "@/components/concept-blank/ConceptBlankView";
 import type { ConceptBlankPaperProps } from "@/components/concept-blank/ConceptBlankPaper";
-import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
+import type {
+  ConceptBlankBank,
+  ConceptBlankSelection,
+} from "@/contracts/conceptBlank.contract";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
 import {
   decodeSelection,
@@ -25,6 +29,12 @@ import {
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { pickPool } from "@/lib/concept-blank/manualPick";
 import { selectionFromPicks } from "@/lib/concept-blank/exactPick";
+import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+import { BLANK_TREE } from "@/lib/concept-blank/sections";
+
+vi.mock("@/lib/concept-blank/bank/load", () => ({
+  loadGradeBank: vi.fn(),
+}));
 
 vi.mock("@/components/concept-blank/ConceptBlankPreview", () => ({
   default: ({ sheets, code }: ConceptBlankPaperProps) => (
@@ -47,6 +57,7 @@ beforeAll(() => {
   };
 });
 beforeEach(() => {
+  vi.mocked(loadGradeBank).mockReset();
   window.history.replaceState(
     null,
     "",
@@ -77,6 +88,74 @@ const printed = () =>
   )!;
 
 describe("H2 문제 고르기", () => {
+  it.each(["도착 전 적용", "도착 후 적용", "도착한 문항만 해제"])(
+    "은행 로딩 중 연 창은 미도착 학년의 고른 문항을 보존한다: %s",
+    async (scenario) => {
+      const e6Section = BLANK_TREE.find((grade) => grade.grade === "초6")!
+        .chapters[0].sections[0].key;
+      const e6Bank: ConceptBlankBank = {
+        concepts: [
+          { ...FIXTURE_BANK.concepts[0], id: "fx-e6", section: e6Section },
+        ],
+        ox: [],
+        apply: [],
+        figures: [],
+      };
+      const pending = new Map<string, (bank: ConceptBlankBank) => void>();
+      vi.mocked(loadGradeBank).mockImplementation(
+        (grade) => new Promise((resolve) => pending.set(grade, resolve)),
+      );
+      const saved = selectionFromPicks([
+        pickPool(FIXTURE_BANK, initial.sections, "term", "main")[0],
+        pickPool(e6Bank, [e6Section], "term", "main")[0],
+      ]);
+      const code = encodeSelection(saved);
+      window.history.replaceState(null, "", `/?blank=${code}`);
+      render(<ConceptBlankView />);
+      await act(async () => pending.get("초5")!(FIXTURE_BANK));
+      fireEvent.click(
+        screen.getByRole("button", { name: "개념 질문 문항 고르기" }),
+      );
+      const dialog = within(
+        screen.getByRole("dialog", { name: "B 개념 질문 — 문항 고르기" }),
+      );
+      if (scenario === "도착한 문항만 해제") {
+        fireEvent.click(dialog.getByRole("checkbox"));
+      }
+      if (scenario === "도착 전 적용") {
+        fireEvent.click(dialog.getByRole("button", { name: "적용" }));
+        expect(new URL(location.href).searchParams.get("blank")).toBe(code);
+      }
+      await act(async () => pending.get("초6")!(e6Bank));
+      if (scenario !== "도착 전 적용") {
+        fireEvent.click(dialog.getByRole("button", { name: "적용" }));
+      }
+      const expected =
+        scenario === "도착한 문항만 해제" ? saved.pick!.slice(1) : saved.pick;
+      expect(printed().pick).toEqual(expected);
+      expect(JSON.parse(screen.getByTestId("preview").textContent!)).toEqual(
+        composeSheets(printed(), {
+          ...FIXTURE_BANK,
+          concepts: [...FIXTURE_BANK.concepts, ...e6Bank.concepts],
+        }),
+      );
+    },
+  );
+
+  it("체크 칸은 해당 문항 본문을 접근성 설명으로 읽고 답은 포함하지 않는다", () => {
+    render(<ConceptBlankView bank={FIXTURE_BANK} />);
+    const dialog = open();
+    for (const checkbox of dialog.getAllByRole("checkbox")) {
+      const row = checkbox.closest("li")!;
+      const prompt = row.querySelector("[data-pick-prompt]")!;
+      expect(checkbox).toHaveAccessibleDescription(prompt.textContent!);
+      expect(prompt.id).not.toBe("");
+      expect(checkbox).toHaveAttribute("aria-describedby", prompt.id);
+      fireEvent.click(within(row).getByRole("button", { name: "답 보기" }));
+      expect(checkbox).toHaveAccessibleDescription(prompt.textContent!);
+    }
+  });
+
   it("이전 exact 주소의 형식·문항 순서를 미리보기와 인쇄에 보존한다", () => {
     const term = pickPool(FIXTURE_BANK, initial.sections, "term", "main");
     const cloze = pickPool(FIXTURE_BANK, initial.sections, "cloze", "main");
@@ -114,6 +193,11 @@ describe("H2 문제 고르기", () => {
       screen.getByRole("button", { name: "내 시험지에 저장" }),
     ).toBeDisabled();
     expect(new URL(location.href).searchParams.get("blank")).toBe(code);
+    fireEvent.click(
+      screen.getByRole("button", { name: "개념 질문 문항 고르기" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    expect(printed().pick).toEqual(picks.slice(1));
   });
   it("직접 → 고르기 → 적용: 파란 읽기 칸·만들 지면 수·코드 없음·미리보기가 정확한 문항을 따른다", () => {
     render(<ConceptBlankView bank={FIXTURE_BANK} />);

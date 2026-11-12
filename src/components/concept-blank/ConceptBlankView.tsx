@@ -854,6 +854,9 @@ export default function ConceptBlankView({
           key={pickingForm}
           bank={bank}
           sections={chosen}
+          pendingSections={chosen.filter(
+            (key) => !hasGrade(getBlankSection(key)?.grade),
+          )}
           form={pickingForm}
           picks={draft.forms[pickingForm].picks}
           targets={{

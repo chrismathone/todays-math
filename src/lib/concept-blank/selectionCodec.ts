@@ -64,6 +64,16 @@ function base64UrlBytes(code: string): Uint8Array {
   return Uint8Array.from(bin, (c) => c.charCodeAt(0));
 }
 
+function adler32(bytes: Uint8Array): number {
+  let a = 1;
+  let b = 0;
+  for (const byte of bytes) {
+    a = (a + byte) % 65521;
+    b = (b + a) % 65521;
+  }
+  return b * 65536 + a;
+}
+
 export function encodeSelection(selection: ConceptBlankSelection): string {
   const { pick, ...base } = conceptBlankSelectionSchema.parse(selection);
   let value: unknown = base;
@@ -104,11 +114,20 @@ export function decodeSelection(
   try {
     let json: string;
     if (code.startsWith("z1.")) {
+      const compressed = base64UrlBytes(code.slice(3));
+      if (compressed.length < 6) return null; // zlib 헤더 2바이트 + Adler-32 4바이트
       // fflate의 고정 출력 버퍼는 과대 해제를 잘라 낸다. 상한+1이면 잘린 결과까지 확실히 거절한다.
-      const bytes = unzlibSync(base64UrlBytes(code.slice(3)), {
+      const bytes = unzlibSync(compressed, {
         out: new Uint8Array(MAX_EXACT_BYTES + 1),
       });
       if (bytes.length > MAX_EXACT_BYTES) return null;
+      // unzlibSync는 체크섬을 검증하지 않는다. 손상된 ID가 유효한 다른 문항이 되기 전에 거절한다.
+      const checksum = new DataView(
+        compressed.buffer,
+        compressed.byteOffset,
+        compressed.byteLength,
+      ).getUint32(compressed.length - 4, false);
+      if (adler32(bytes) !== checksum) return null;
       json = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
     } else json = fromBase64Url(code);
     const value: unknown = JSON.parse(json);

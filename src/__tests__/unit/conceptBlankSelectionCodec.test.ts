@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { zlibSync } from "fflate";
+import { deflateSync } from "node:zlib";
 import {
   conceptBlankSelectionSchema,
   CONCEPT_BLANK_FORMS,
@@ -113,6 +114,66 @@ const EXACT: ConceptBlankSelection = {
 };
 
 describe("concept blank selection URL compatibility", () => {
+  it("rejects a stored zlib payload whose picked ID changed without updating Adler-32", () => {
+    const selection = selectionFromPicks([
+      { ...conceptPick(), entryId: "e3-1-2-1-c1" },
+    ]);
+    const json = Buffer.from(encodeSelection(selection), "base64url");
+    const compressed = Buffer.from(zlibSync(json, { level: 0 }));
+    expect(decodeSelection(`z1.${compressed.toString("base64url")}`)).toEqual(
+      selection,
+    );
+
+    const corrupted = Buffer.from(compressed);
+    const idOffset = corrupted.indexOf("e3-1-2-1-c1");
+    expect(idOffset).toBeGreaterThanOrEqual(0);
+    corrupted[idOffset + "e3-1-2-1-c1".length - 1] = "2".charCodeAt(0);
+    expect(corrupted.subarray(-4)).toEqual(compressed.subarray(-4));
+    expect(decodeSelection(`z1.${corrupted.toString("base64url")}`)).toBeNull();
+
+    const changedJson = Buffer.from(
+      json.toString("utf8").replace("e3-1-2-1-c1", "e3-1-2-1-c2"),
+    );
+    const repaired = deflateSync(changedJson, { level: 0 });
+    expect(decodeSelection(`z1.${repaired.toString("base64url")}`)).toEqual(
+      selectionFromPicks([{ ...conceptPick(), entryId: "e3-1-2-1-c2" }]),
+    );
+  });
+
+  it.each([0, 1, 6, 9])(
+    "accepts valid z1 checksums from Node zlib at level %i",
+    (level) => {
+      const json = Buffer.from(encodeSelection(EXACT), "base64url");
+      const compressed = deflateSync(json, { level });
+      expect(decodeSelection(`z1.${compressed.toString("base64url")}`)).toEqual(
+        EXACT,
+      );
+    },
+  );
+
+  it.each([1, 2, 3, 4])(
+    "rejects corruption in Adler-32 byte %i even when the payload is intact",
+    (fromEnd) => {
+      const json = Buffer.from(encodeSelection(EXACT), "base64url");
+      const compressed = deflateSync(json);
+      compressed[compressed.length - fromEnd] ^= 1;
+      expect(
+        decodeSelection(`z1.${compressed.toString("base64url")}`),
+      ).toBeNull();
+    },
+  );
+
+  it.each([1, 2, 3, 4])(
+    "rejects a zlib trailer missing %i bytes",
+    (missing) => {
+      const json = Buffer.from(encodeSelection(EXACT), "base64url");
+      const truncated = deflateSync(json).subarray(0, -missing);
+      expect(
+        decodeSelection(`z1.${truncated.toString("base64url")}`),
+      ).toBeNull();
+    },
+  );
+
   it("preserves the original automatic JSON bytes and title/date", () => {
     const { sections, forms, title, date } = EXACT;
     const automatic = { sections, forms, title, date };
