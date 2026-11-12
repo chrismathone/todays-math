@@ -220,7 +220,7 @@ function draftFrom(saved: ConceptBlankSelection | null): Draft {
         ? orderedSections(saved.sections)
         : [],
     forms,
-    formOrder: saved?.pick
+    formOrder: saved
       ? [
           ...saved.forms.map(({ form }) => form),
           ...CONCEPT_BLANK_FORMS.filter(
@@ -337,27 +337,33 @@ function useGradeBanks(grades: readonly string[] | null) {
   const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
   const asked = useRef(new Set<string>());
   const wanted = grades ? grades.filter(isReadyGrade).join("|") : "";
+  const requestGrade = useCallback((grade: string) => {
+    if (asked.current.has(grade)) return;
+    asked.current.add(grade);
+    setFailed((current) => {
+      if (!current.has(grade)) return current;
+      const next = new Set(current);
+      next.delete(grade);
+      return next;
+    });
+    loadGradeBank(grade).then(
+      (bank) => {
+        setParts((current) => new Map(current).set(grade, bank));
+      },
+      () => {
+        asked.current.delete(grade);
+        setFailed((current) => new Set(current).add(grade));
+      },
+    );
+  }, []);
   useEffect(() => {
     for (const grade of wanted ? wanted.split("|") : []) {
-      if (asked.current.has(grade)) continue;
-      asked.current.add(grade);
-      loadGradeBank(grade).then(
-        (bank) => {
-          setParts((current) => new Map(current).set(grade, bank));
-          setFailed((current) => {
-            if (!current.has(grade)) return current;
-            const next = new Set(current);
-            next.delete(grade);
-            return next;
-          });
-        },
-        () => {
-          asked.current.delete(grade);
-          setFailed((current) => new Set(current).add(grade));
-        },
-      );
+      requestGrade(grade);
     }
-  }, [wanted]);
+  }, [wanted, requestGrade]);
+  const retry = () => {
+    for (const grade of wanted ? wanted.split("|") : []) requestGrade(grade);
+  };
   // 학년 차례로 잇는다 — 학년 안은 원래 파일 뒤에 보강(소단원 안 차례가 서버의 은행 전체와 같다).
   const bank = useMemo(
     () =>
@@ -369,7 +375,7 @@ function useGradeBanks(grades: readonly string[] | null) {
       ),
     [parts],
   );
-  return { bank, loaded: parts, failed: failed.size > 0 };
+  return { bank, loaded: parts, failed, retry };
 }
 
 export type ConceptBlankViewProps = {
@@ -449,6 +455,9 @@ export default function ConceptBlankView({
   /** 고른 소단원의 학년이 다 왔나 — 오기 전에는 고르기를 정하지 않는다(주소 · 저장 · 인쇄를 건드리지 않는다). */
   const ready = draft.sections.every((key) =>
     hasGrade(getBlankSection(key)?.grade),
+  );
+  const selectedBankFailed = draft.sections.some((key) =>
+    live.failed.has(getBlankSection(key)?.grade ?? ""),
   );
 
   /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3) 가운데 온 학년만. */
@@ -568,6 +577,7 @@ export default function ConceptBlankView({
     });
   };
   const openPicker = (form: ConceptBlankForm, opener: HTMLButtonElement) => {
+    if (!ready) return;
     pickOpener.current = opener;
     setPickingForm(form);
   };
@@ -849,14 +859,11 @@ export default function ConceptBlankView({
   return (
     <div className={s.view}>
       {saveDialog}
-      {pickingForm && (
+      {pickingForm && ready && (
         <ConceptBlankQuestionPicker
           key={pickingForm}
           bank={bank}
           sections={chosen}
-          pendingSections={chosen.filter(
-            (key) => !hasGrade(getBlankSection(key)?.grade),
-          )}
           form={pickingForm}
           picks={draft.forms[pickingForm].picks}
           targets={{
@@ -986,9 +993,16 @@ export default function ConceptBlankView({
       {textbookEnabled && (
         <TextbookConceptLinks sections={chosen} active={active} />
       )}
-      {live.failed && (
+      {live.failed.size > 0 && (
         <p className={s.saveError} role="alert">
-          문항을 불러오지 못했습니다. 새로 고쳐 주세요.
+          은행을 불러오지 못했습니다 ·{" "}
+          <button
+            type="button"
+            className={s.secondaryButton}
+            onClick={live.retry}
+          >
+            다시 시도
+          </button>
         </p>
       )}
       {saveError && (
@@ -1177,12 +1191,14 @@ export default function ConceptBlankView({
               label: CONCEPT_BLANK_FORM_LABELS[form],
               letter: LETTER[form],
               help: HELP[form],
-              on: isOn(form),
+              on:
+                draft.forms[form].on &&
+                (!ready || availableOf(chosen, caps, form)),
               mode: draft.forms[form].mode,
               available: availableOf(chosen, caps, form),
               reason: !chosen.length
                 ? "소단원을 먼저 고르세요."
-                : availableOf(chosen, caps, form)
+                : !ready || availableOf(chosen, caps, form)
                   ? null
                   : EMPTY_REASON[form],
               fields: (["main", "extra"] as const)
@@ -1211,6 +1227,10 @@ export default function ConceptBlankView({
               if (mode === "pick") openPicker(form, opener);
             }}
             onPick={openPicker}
+            pickStatus={
+              ready ? "ready" : selectedBankFailed ? "error" : "loading"
+            }
+            onRetry={live.retry}
           />
 
           <section className={s.card} aria-labelledby={`${uid}-meta`}>

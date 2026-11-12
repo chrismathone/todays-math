@@ -88,59 +88,215 @@ const printed = () =>
   )!;
 
 describe("H2 문제 고르기", () => {
-  it.each(["도착 전 적용", "도착 후 적용", "도착한 문항만 해제"])(
-    "은행 로딩 중 연 창은 미도착 학년의 고른 문항을 보존한다: %s",
-    async (scenario) => {
-      const e6Section = BLANK_TREE.find((grade) => grade.grade === "초6")!
-        .chapters[0].sections[0].key;
-      const e6Bank: ConceptBlankBank = {
-        concepts: [
-          { ...FIXTURE_BANK.concepts[0], id: "fx-e6", section: e6Section },
-        ],
-        ox: [],
-        apply: [],
-        figures: [],
-      };
-      const pending = new Map<string, (bank: ConceptBlankBank) => void>();
-      vi.mocked(loadGradeBank).mockImplementation(
-        (grade) => new Promise((resolve) => pending.set(grade, resolve)),
-      );
-      const saved = selectionFromPicks([
-        pickPool(FIXTURE_BANK, initial.sections, "term", "main")[0],
-        pickPool(e6Bank, [e6Section], "term", "main")[0],
-      ]);
-      const code = encodeSelection(saved);
-      window.history.replaceState(null, "", `/?blank=${code}`);
-      render(<ConceptBlankView />);
-      await act(async () => pending.get("초5")!(FIXTURE_BANK));
-      fireEvent.click(
-        screen.getByRole("button", { name: "개념 질문 문항 고르기" }),
-      );
-      const dialog = within(
-        screen.getByRole("dialog", { name: "B 개념 질문 — 문항 고르기" }),
-      );
-      if (scenario === "도착한 문항만 해제") {
-        fireEvent.click(dialog.getByRole("checkbox"));
+  const delayedBanks = () => {
+    const pending = new Map<
+      string,
+      {
+        resolve: (bank: ConceptBlankBank) => void;
+        reject: (error: Error) => void;
       }
-      if (scenario === "도착 전 적용") {
-        fireEvent.click(dialog.getByRole("button", { name: "적용" }));
-        expect(new URL(location.href).searchParams.get("blank")).toBe(code);
-      }
-      await act(async () => pending.get("초6")!(e6Bank));
-      if (scenario !== "도착 전 적용") {
-        fireEvent.click(dialog.getByRole("button", { name: "적용" }));
-      }
-      const expected =
-        scenario === "도착한 문항만 해제" ? saved.pick!.slice(1) : saved.pick;
-      expect(printed().pick).toEqual(expected);
-      expect(JSON.parse(screen.getByTestId("preview").textContent!)).toEqual(
-        composeSheets(printed(), {
-          ...FIXTURE_BANK,
-          concepts: [...FIXTURE_BANK.concepts, ...e6Bank.concepts],
-        }),
-      );
+    >();
+    vi.mocked(loadGradeBank).mockImplementation(
+      (grade) =>
+        new Promise((resolve, reject) =>
+          pending.set(grade, { resolve, reject }),
+        ),
+    );
+    return {
+      arrive: async (grade: string, bank: ConceptBlankBank) => {
+        await act(async () => pending.get(grade)!.resolve(bank));
+      },
+      fail: async (grade: string) => {
+        await act(async () =>
+          pending.get(grade)!.reject(new Error("chunk unavailable")),
+        );
+      },
+    };
+  };
+  const gradeFixture = (
+    grade: string,
+    sectionCount: number,
+  ): ConceptBlankBank => ({
+    concepts: BLANK_TREE.find((item) => item.grade === grade)!
+      .chapters.flatMap((chapter) => chapter.sections)
+      .slice(0, sectionCount)
+      .flatMap(({ key }, index) =>
+        [0, 1].map((copy) => ({
+          ...FIXTURE_BANK.concepts[0],
+          id: `fx-${grade === "초5" ? "e5" : "e6"}-${index}-${copy}`,
+          section: key,
+        })),
+      ),
+    ox: [],
+    apply: [],
+    figures: [],
+  });
+  const savedFromBanks = (...banks: ConceptBlankBank[]) =>
+    selectionFromPicks(
+      banks.flatMap((bank) =>
+        pickPool(
+          bank,
+          [...new Set(bank.concepts.map((entry) => entry.section))],
+          "term",
+          "main",
+        ).filter((_, index) => index % 2 === 0),
+      ),
+    );
+  const pickerButton = () =>
+    screen.getByRole("button", { name: "개념 질문 문항 고르기" });
+  const showSaved = (saved: ConceptBlankSelection) => {
+    const code = encodeSelection(saved);
+    window.history.replaceState(null, "", `/?blank=${code}`);
+    render(<ConceptBlankView storageScope="pick-test" />);
+    return code;
+  };
+
+  it.each(["빈 칸만 자동으로", "모두 비우고 자동으로"])(
+    "두 학년의 은행이 모두 온 뒤에만 고르기를 열어 40문항 상한을 지킨다: %s",
+    async (action) => {
+      const e5 = gradeFixture("초5", 20),
+        e6 = gradeFixture("초6", 20);
+      const saved = savedFromBanks(e5, e6);
+      expect(saved.pick).toHaveLength(40);
+      const loads = delayedBanks();
+      const code = showSaved(saved);
+      await loads.arrive("초5", e5);
+      expect(pickerButton()).toBeDisabled();
+      expect(pickerButton()).toHaveAccessibleDescription("은행을 불러오는 중");
+      fireEvent.click(pickerButton());
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(new URL(location.href).searchParams.get("blank")).toBe(code);
+      await loads.arrive("초6", e6);
+      expect(pickerButton()).toBeEnabled();
+      fireEvent.click(pickerButton());
+      const dialog = within(screen.getByRole("dialog"));
+      expect(dialog.getByText("고름 40")).toBeInTheDocument();
+      const target = action === "빈 칸만 자동으로" ? 40 : 1;
+      fireEvent.change(dialog.getByRole("spinbutton", { name: "채울 수 하" }), {
+        target: { value: String(target) },
+      });
+      fireEvent.click(dialog.getByRole("button", { name: action }));
+      expect(dialog.getByText(`고름 ${target}`)).toBeInTheDocument();
+      fireEvent.click(dialog.getByRole("button", { name: "적용" }));
+      expect(printed().pick).toHaveLength(target);
+      expect(printed().forms[0].counts.하).toBe(target);
+      if (target === 40) expect(printed().pick).toEqual(saved.pick);
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     },
   );
+
+  it.each(["삭제", "소단원 변경", "난이도 변경"])(
+    "지연 은행의 낡은 선택을 모두 도착한 뒤 창 한 번으로 재확인한다: %s",
+    async (change) => {
+      const e5 = gradeFixture("초5", 1),
+        e6 = gradeFixture("초6", 2);
+      const saved = savedFromBanks(e5, {
+        ...e6,
+        concepts: e6.concepts.slice(0, 2),
+      });
+      const loads = delayedBanks();
+      showSaved(saved);
+      await loads.arrive("초5", e5);
+      expect(pickerButton()).toBeDisabled();
+      fireEvent.click(pickerButton());
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      const changed: ConceptBlankBank = {
+        ...e6,
+        concepts:
+          change === "삭제"
+            ? e6.concepts.slice(1)
+            : e6.concepts.map((entry, index) =>
+                index
+                  ? entry
+                  : {
+                      ...entry,
+                      ...(change === "소단원 변경"
+                        ? { section: e6.concepts[2].section }
+                        : { level: "중" as const }),
+                    },
+              ),
+      };
+      await loads.arrive("초6", changed);
+      expect(screen.getByRole("alert")).toHaveTextContent("다시 확인");
+      fireEvent.click(pickerButton());
+      expect(screen.getByText("고름 1")).toBeInTheDocument();
+      fireEvent.click(screen.getByRole("button", { name: "적용" }));
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+      expect(printed().pick).toEqual(saved.pick!.slice(0, 1));
+      expect(
+        screen.getByRole("button", { name: "내 시험지에 저장" }),
+      ).toBeEnabled();
+    },
+  );
+
+  it("아직 은행이 하나도 없어도 고르기를 잠그고 실패한 학년만 다시 시도한다", async () => {
+    const e5 = gradeFixture("초5", 1),
+      e6 = gradeFixture("초6", 1);
+    const loads = delayedBanks();
+    const saved = savedFromBanks(e5, e6);
+    const code = showSaved(saved);
+    expect(pickerButton()).toBeDisabled();
+    expect(pickerButton()).toHaveAccessibleDescription("은행을 불러오는 중");
+    await loads.arrive("초5", e5);
+    await loads.fail("초6");
+    expect(pickerButton()).toBeDisabled();
+    expect(pickerButton()).toHaveAccessibleDescription(
+      "은행을 불러오지 못했습니다 · 다시 시도",
+    );
+    const retry = within(pickerButton().parentElement!).getByRole("button", {
+      name: "다시 시도",
+    });
+    fireEvent.click(retry);
+    expect(pickerButton()).toHaveAccessibleDescription("은행을 불러오는 중");
+    expect(vi.mocked(loadGradeBank).mock.calls.map(([grade]) => grade)).toEqual(
+      ["초5", "초6", "초6"],
+    );
+    expect(new URL(location.href).searchParams.get("blank")).toBe(code);
+    await loads.fail("초6");
+    fireEvent.click(
+      within(pickerButton().parentElement!).getByRole("button", {
+        name: "다시 시도",
+      }),
+    );
+    await loads.arrive("초6", e6);
+    expect(pickerButton()).toBeEnabled();
+    expect(printed().pick).toEqual(saved.pick);
+    expect(screen.queryByText("은행을 불러오는 중")).not.toBeInTheDocument();
+  });
+
+  it("은행 로딩 중 직접으로 바꿔도 고르기 창을 열지 않는다", async () => {
+    const e5 = gradeFixture("초5", 1),
+      e6 = gradeFixture("초6", 1);
+    const loads = delayedBanks();
+    const automatic = { ...savedFromBanks(e5, e6) };
+    delete automatic.pick;
+    showSaved(automatic);
+    await loads.arrive("초5", e5);
+    fireEvent.click(mode("직접"));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(pickerButton()).toBeDisabled();
+    await loads.arrive("초6", e6);
+    fireEvent.click(pickerButton());
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("선택하지 않고 둘러보는 학년의 로딩·실패는 준비된 범위의 고르기를 막지 않는다", async () => {
+    const e5 = gradeFixture("초5", 1);
+    const loads = delayedBanks();
+    showSaved(savedFromBanks(e5));
+    await loads.arrive("초5", e5);
+    fireEvent.click(screen.getByRole("button", { name: "단원 고르기 열기" }));
+    const units = within(screen.getByRole("dialog", { name: "단원 선택" }));
+    fireEvent.click(units.getByRole("button", { name: /^초6/ }));
+    fireEvent.click(units.getByRole("button", { name: "선택 완료" }));
+    expect(pickerButton()).toBeEnabled();
+    await loads.fail("초6");
+    expect(pickerButton()).toBeEnabled();
+    fireEvent.click(pickerButton());
+    expect(
+      screen.getByRole("dialog", { name: /문항 고르기/ }),
+    ).toBeInTheDocument();
+  });
 
   it("체크 칸은 해당 문항 본문을 접근성 설명으로 읽고 답은 포함하지 않는다", () => {
     render(<ConceptBlankView bank={FIXTURE_BANK} />);

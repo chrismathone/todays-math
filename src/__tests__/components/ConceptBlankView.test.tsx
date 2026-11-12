@@ -1173,7 +1173,7 @@ describe("학년 은행 늦게 불러오기", () => {
       loads.failing.get("초5")!(new Error("chunk"));
     });
     expect(screen.getByRole("alert")).toHaveTextContent(
-      "문항을 불러오지 못했습니다",
+      "은행을 불러오지 못했습니다",
     );
     // 다른 학년을 펼치면 못 온 학년도 다시 부른다(접힌 초5 는 고른 소단원이 없어 안 부른다 — 다시 펼친다)
     fireEvent.click(tree().getByRole("button", { name: /^초5/ }));

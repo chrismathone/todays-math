@@ -30,6 +30,8 @@ export default function ConceptBlankFormTable({
   onCount,
   onMode,
   onPick,
+  pickStatus = "ready",
+  onRetry,
 }: {
   columns: FormColumn[];
   onToggle: (form: ConceptBlankForm) => void;
@@ -39,6 +41,8 @@ export default function ConceptBlankFormTable({
     opener: HTMLButtonElement,
   ) => void;
   onPick?: (form: ConceptBlankForm, opener: HTMLButtonElement) => void;
+  pickStatus?: "ready" | "loading" | "error";
+  onRetry?: () => void;
   onCount: (
     form: ConceptBlankForm,
     row: "main" | "extra",
@@ -114,16 +118,46 @@ export default function ConceptBlankFormTable({
                         ))}
                       </div>
                       {column.mode === "pick" && (
-                        <button
-                          type="button"
-                          className={s.pickOpen}
-                          aria-label={`${column.label} 문항 고르기`}
-                          onClick={(event) =>
-                            onPick?.(column.form, event.currentTarget)
-                          }
-                        >
-                          문항 고르기
-                        </button>
+                        <>
+                          <button
+                            type="button"
+                            className={s.pickOpen}
+                            aria-label={`${column.label} 문항 고르기`}
+                            disabled={pickStatus !== "ready"}
+                            aria-describedby={
+                              pickStatus !== "ready"
+                                ? `${uid}-${column.form}-bank`
+                                : undefined
+                            }
+                            onClick={(event) =>
+                              onPick?.(column.form, event.currentTarget)
+                            }
+                          >
+                            문항 고르기
+                          </button>
+                          {pickStatus !== "ready" && (
+                            <span
+                              id={`${uid}-${column.form}-bank`}
+                              className={s.pickStatus}
+                              role="status"
+                            >
+                              {pickStatus === "error" ? (
+                                <>
+                                  은행을 불러오지 못했습니다 ·{" "}
+                                  <button
+                                    type="button"
+                                    className={s.pickOpen}
+                                    onClick={onRetry}
+                                  >
+                                    다시 시도
+                                  </button>
+                                </>
+                              ) : (
+                                "은행을 불러오는 중"
+                              )}
+                            </span>
+                          )}
+                        </>
                       )}
                     </div>
                   )}

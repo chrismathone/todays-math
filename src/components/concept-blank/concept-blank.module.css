@@ -736,6 +736,18 @@ button.secondaryButton:disabled {
   border-radius: 8px;
   background: #fff;
 }
+.pickStatus {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  color: var(--learn-muted, #596c86);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
 .modeSegment button {
   min-height: 36px;
   padding: 0 10px;

@@ -45,7 +45,6 @@ const sectionTitle = (key: string) =>
 export default function ConceptBlankQuestionPicker({
   bank,
   sections,
-  pendingSections = [],
   form,
   picks,
   targets,
@@ -55,8 +54,6 @@ export default function ConceptBlankQuestionPicker({
 }: {
   bank: ConceptBlankBank;
   sections: string[];
-  /** 아직 은행이 오지 않은 범위는 사라진 문항으로 판단하지 않는다. */
-  pendingSections?: readonly string[];
   form: ConceptBlankForm;
   picks: ConceptBlankPick[];
   targets: FillTargets;
@@ -77,7 +74,6 @@ export default function ConceptBlankQuestionPicker({
     const current = new Map(all.map((pick) => [pickKey(pick), pick]));
     return picks.filter((pick) => {
       if (!sections.includes(pick.blankSectionKey)) return false;
-      if (pendingSections.includes(pick.blankSectionKey)) return true;
       const candidate = current.get(pickKey(pick));
       return candidate && samePick(pick, candidate);
     });
