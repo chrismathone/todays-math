@@ -1,10 +1,41 @@
+import { z } from "zod";
+
 import {
   conceptBlankSelectionSchema,
   type ConceptBlankSelection,
 } from "@/contracts/conceptBlank.contract";
 
+// URL 한 개의 디코딩 작업량을 제한한다(문항 수는 기존 계약의 2,000개 상한과 같다).
+const MAX_CODE_LENGTH = 64 * 1024;
+const MAX_PICKS = 2000;
+// v1의 인덱스 순서다. 계약의 표시 순서가 바뀌어도 이 순서는 바꾸지 않는다.
+const PICK_KINDS = ["concept", "ox", "apply", "figure"] as const;
+const PICK_LEVELS = ["하", "중", "상"] as const;
+const index = z.number().int().nonnegative();
+const exactUrlSchema = z.strictObject({
+  v: z.literal(1),
+  s: conceptBlankSelectionSchema.refine(
+    (selection) => selection.pick === undefined,
+  ),
+  i: z.array(z.string()).min(1).max(MAX_PICKS),
+  p: z
+    .array(
+      z.tuple([
+        index.max(59), // s.sections
+        index.max(3), // PICK_KINDS
+        index.max(MAX_PICKS - 1), // i (entry IDs, first occurrence order)
+        index.max(4), // s.forms
+        index.max(2), // PICK_LEVELS
+      ]),
+    )
+    .min(1)
+    .max(MAX_PICKS),
+});
+
 /**
  * 고르기 ↔ 주소 `?s=`(D-150). 같은 링크 = 같은 지면(고정 문항). base64url(JSON) — 브라우저 · 서버 둘 다.
+ * 자동 선택은 기존 JSON 바이트 그대로. 정확한 선택은 v1 {v,s,i,p}: 선택(소단원·형식·수·제목·날짜),
+ * ID 사전, [소단원, 종류, ID, 형식, 난이도] 인덱스 튜플로 실어 긴 소단원 이름을 반복하지 않는다.
  * 읽다 틀리면 null(인쇄 페이지는 «잘못된 주소»를 보인다).
  */
 function toBase64Url(text: string): string {
@@ -19,27 +50,58 @@ function fromBase64Url(code: string): string {
     code.replace(/-/g, "+").replace(/_/g, "/") +
     "===".slice((code.length + 3) % 4);
   const bin = atob(b64);
-  return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+  return new TextDecoder("utf-8", { fatal: true }).decode(
+    Uint8Array.from(bin, (c) => c.charCodeAt(0)),
+  );
 }
 
 export function encodeSelection(selection: ConceptBlankSelection): string {
-  if (selection.pick !== undefined)
-    throw new RangeError(
-      "정확한 선택은 저장 문서 또는 교재 참조로 인쇄하세요.",
-    );
-  return toBase64Url(
-    JSON.stringify(conceptBlankSelectionSchema.parse(selection)),
-  );
+  const { pick, ...base } = conceptBlankSelectionSchema.parse(selection);
+  let value: unknown = base;
+  if (pick !== undefined) {
+    const ids = [...new Set(pick.map((entry) => entry.entryId))];
+    const idIndexes = new Map(ids.map((id, position) => [id, position]));
+    value = {
+      v: 1,
+      s: base,
+      i: ids,
+      p: pick.map((entry) => [
+        base.sections.indexOf(entry.blankSectionKey),
+        PICK_KINDS.indexOf(entry.entryKind),
+        idIndexes.get(entry.entryId)!,
+        base.forms.findIndex(({ form }) => form === entry.form),
+        PICK_LEVELS.indexOf(entry.level),
+      ]),
+    };
+  }
+  const code = toBase64Url(JSON.stringify(value));
+  if (code.length > MAX_CODE_LENGTH)
+    throw new RangeError("인쇄 주소가 너무 깁니다. 문항 수를 줄여 주세요.");
+  return code;
 }
 
 export function decodeSelection(
   code: string | null | undefined,
 ): ConceptBlankSelection | null {
-  if (!code) return null;
+  if (!code || code.length > MAX_CODE_LENGTH) return null;
   try {
-    const parsed = conceptBlankSelectionSchema.safeParse(
-      JSON.parse(fromBase64Url(code)),
-    );
+    const value: unknown = JSON.parse(fromBase64Url(code));
+    if (typeof value === "object" && value !== null && "v" in value) {
+      const compact = exactUrlSchema.safeParse(value);
+      if (!compact.success) return null;
+      const { s, i, p } = compact.data;
+      const pick = p.map(([section, kind, id, form, level]) => ({
+        blankSectionKey: s.sections[section],
+        entryKind: PICK_KINDS[kind],
+        entryId: i[id],
+        form: s.forms[form]?.form,
+        level: PICK_LEVELS[level],
+      }));
+      // 실제 사전 크기 밖의 인덱스 · 잘못된 ID · 중복 · 수 불일치는 원래 계약이 거른다.
+      const parsed = conceptBlankSelectionSchema.safeParse({ ...s, pick });
+      return parsed.success ? parsed.data : null;
+    }
+    const parsed = conceptBlankSelectionSchema.safeParse(value);
     return parsed.success && parsed.data.pick === undefined
       ? parsed.data
       : null;

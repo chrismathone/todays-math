@@ -33,8 +33,12 @@ import ConceptBlankPaper, {
   type ConceptBlankPaperProps,
 } from "@/components/concept-blank/ConceptBlankPaper";
 import PrintNow from "@/components/concept-blank/paper/PrintNow";
-import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
+import type {
+  ConceptBlankPick,
+  ConceptBlankSelection,
+} from "@/contracts/conceptBlank.contract";
 import { composeSheets } from "@/lib/concept-blank/compose";
+import { selectionFromPicks } from "@/lib/concept-blank/exactPick";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
 import { encodeSelection } from "@/lib/concept-blank/selectionCodec";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
@@ -68,6 +72,42 @@ const SELECTION: ConceptBlankSelection = {
 function call(query: Record<string, string | string[] | undefined>) {
   return ConceptBlankPrintPage({ searchParams: Promise.resolve(query) });
 }
+
+const line = FIXTURE_BANK.concepts.find((entry) => entry.id === "fx-line")!;
+const property = FIXTURE_BANK.concepts.find(
+  (entry) => entry.id === "fx-line-prop",
+)!;
+const ox = FIXTURE_BANK.ox[0];
+const EXACT_PICKS: ConceptBlankPick[] = [
+  {
+    blankSectionKey: property.section,
+    entryKind: "concept",
+    entryId: property.id,
+    form: "term",
+    level: property.level,
+  },
+  {
+    blankSectionKey: ox.section,
+    entryKind: "ox",
+    entryId: ox.id,
+    form: "term",
+    level: ox.level,
+  },
+  {
+    blankSectionKey: line.section,
+    entryKind: "concept",
+    entryId: line.id,
+    form: "term",
+    level: line.level,
+  },
+  {
+    blankSectionKey: line.section,
+    entryKind: "concept",
+    entryId: line.id,
+    form: "cloze",
+    level: line.level,
+  },
+];
 
 /** 돌려받은 트리에서 `ConceptBlankPaper` 요소를 찾는다. */
 function findPaper(node: unknown): ReactElement<ConceptBlankPaperProps> | null {
@@ -147,6 +187,59 @@ describe("/concept-blank/print", () => {
     );
     expect(renamed!.props.code).toBe(paper!.props.code);
   });
+
+  it("prints exact picks in their original order, with title/date and no sheet code", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    const selection = {
+      ...selectionFromPicks(EXACT_PICKS, "직접 고른 개념"),
+      date: "2026-11-12",
+    };
+    const code = encodeSelection(selection);
+    const paper = findPaper(await call({ s: code, view: "student" }));
+    expect(paper).not.toBeNull();
+    expect(paper!.props.code).toBeUndefined();
+    expect(paper!.props.view).toBe("student");
+    expect(paper!.props.sheets).toEqual(composeSheets(selection, FIXTURE_BANK));
+    const [term] = paper!.props.sheets;
+    expect(term.form === "term" && term.entryOrder).toEqual([
+      { entryKind: "concept", entryId: property.id },
+      { entryKind: "ox", entryId: ox.id },
+      { entryKind: "concept", entryId: line.id },
+    ]);
+    expect(paper!.props.sheets.map((sheet) => sheet.header)).toEqual([
+      expect.objectContaining({ title: selection.title, date: selection.date }),
+      expect.objectContaining({ title: selection.title, date: selection.date }),
+    ]);
+    const again = findPaper(await call({ s: code }));
+    expect(again!.props.sheets).toEqual(paper!.props.sheets);
+  });
+
+  it.each([
+    ["missing bank ID", { entryId: "no-longer-in-bank" }],
+    ["changed bank level", { level: "하" as const }],
+    [
+      "changed bank section",
+      { blankSectionKey: FIXTURE_BANK.concepts[0].section },
+    ],
+    [
+      "missing curriculum section",
+      { blankSectionKey: "초5::없는 단원::없는 소단원" },
+    ],
+  ])(
+    "shows a clear notice for %s instead of rendering or throwing",
+    async (_, change) => {
+      mocks.session.mockResolvedValue(OWNER);
+      const selection = selectionFromPicks([{ ...EXACT_PICKS[0], ...change }]);
+      const page = (await call({
+        s: encodeSelection(selection),
+        print: "1",
+      })) as ReactElement<{ role: string; children: string }>;
+      expect(findPaper(page)).toBeNull();
+      expect(page.props.role).toBe("alert");
+      expect(page.props.children).toMatch(/선택한 문항.*확인할 수 없습니다/);
+      expect(page.props.children).toMatch(/다시 골라/);
+    },
+  );
 
   it("나무에 없는 소단원뿐이라 지면이 없으면 코드도 없다(던지지 않는다)", async () => {
     mocks.session.mockResolvedValue(OWNER);
