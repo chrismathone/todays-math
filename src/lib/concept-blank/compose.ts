@@ -26,12 +26,12 @@ const LEVEL_ORDER = CONCEPT_BLANK_LEVELS; // 하, 중, 상
 /**
  * 난이도별 n 개씩 — 하 블록, 중 블록, 상 블록 순서. 고른 소단원이 여럿이면 **소단원 차례로 하나씩 돌려** 뽑는다
  * (은행 3차 · 26 §9 — 소단원마다 10개씩이라 «앞에서부터 n 개»면 첫 소단원만 찍힌다). 다 쓴 소단원은 건너뛰고
- * 남은 소단원이 마저 채운다. 뽑은 것은 들어온 차례(소단원 → 은행) 그대로 놓는다 — 무작위 없음(고정).
+ * 남은 소단원이 마저 채운다. 마지막 바퀴에서 수가 모자라면 범위 전체에 고르게 편다(앞 소단원만 채우지 않는다). 뽑은 것은 들어온 차례(소단원 → 은행) 그대로 놓는다 — 무작위 없음(고정).
  */
 export function takeByLevel<
   T extends { level: (typeof LEVEL_ORDER)[number]; section?: string },
 >(items: readonly T[], counts: LevelCounts): T[] {
-  return LEVEL_ORDER.flatMap((level) => {
+  return LEVEL_ORDER.flatMap((level, levelIndex) => {
     const queues = new Map<string, T[]>();
     for (const x of items)
       if (x.level === level) {
@@ -41,16 +41,22 @@ export function takeByLevel<
     const taken = new Set<T>();
     let left = counts[level];
     for (let round = 0; left > 0; round++) {
-      const before = left;
-      for (const queue of queues.values()) {
-        if (left === 0) break;
-        const x = queue[round];
-        if (x) {
-          taken.add(x);
-          left--;
-        }
+      const candidates = [...queues.values()]
+        .map((queue) => queue[round])
+        .filter((x): x is T => x !== undefined);
+      if (candidates.length === 0) break;
+      if (left >= candidates.length) {
+        for (const x of candidates) taken.add(x);
+        left -= candidates.length;
+        continue;
       }
-      if (left === before) break;
+      // 남은 수가 이 바퀴의 소단원 수보다 적다 — 앞에서부터 채우면 뒤 소단원이 영영 빠진다
+      // (인재원 2026-11-12). 범위 전체에 고르게 펴고, 난이도마다 자리를 비켜 하 · 중 · 상이 서로 다른 소단원을 짚게 한다.
+      const m = candidates.length;
+      const shift = (levelIndex + 0.5) / LEVEL_ORDER.length;
+      for (let j = 0; j < left; j++)
+        taken.add(candidates[Math.floor(((j + shift) * m) / left)]!);
+      left = 0;
     }
     return items.filter((x) => taken.has(x));
   });

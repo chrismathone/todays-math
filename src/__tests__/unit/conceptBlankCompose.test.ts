@@ -131,6 +131,29 @@ describe("composeSheets", () => {
     ).toEqual(["a1", "a2"]);
   });
 
+  // 인재원 선생님 2026-11-12 «범위를 넓게 하니까 문제 수를 줄였을 때 뒷 단원 문제는 안 나와요» —
+  // 문항 수가 소단원 수보다 적으면 앞 소단원부터 채워 뒤 소단원이 영영 빠졌다. 범위 전체에 고르게 펴고,
+  // 난이도마다 자리를 조금씩 비켜 같은 소단원만 거듭 뽑히지 않게 한다(무작위 없이 고정).
+  it("spreads a short count over the whole range, not just the first sections", () => {
+    const sections = "ABCDEFGHIJ".split("");
+    const items = sections.flatMap((s) =>
+      (["하", "중", "상"] as const).map((level) => ({
+        id: `${s}${level}`,
+        section: s,
+        level,
+      })),
+    );
+    const picked = takeByLevel(items, { 하: 3, 중: 3, 상: 3 });
+    const covered = new Set(picked.map((x) => x.section));
+    expect(picked).toHaveLength(9);
+    expect(covered.size).toBe(9);
+    expect(covered.has("J")).toBe(true);
+    expect(takeByLevel(items, { 하: 1, 중: 0, 상: 0 })[0]!.section).not.toBe(
+      "A",
+    );
+    expect(takeByLevel(items, { 하: 3, 중: 3, 상: 3 })).toEqual(picked);
+  });
+
   // 은행 3차로 문항이 열 배 — 나무의 재고는 소단원마다 은행 전체를 훑지 않고 한 번에 센다.
   it("builds the whole stock table in one pass, equal to counting each section", () => {
     const table = stockTable(FIXTURE_BANK);
