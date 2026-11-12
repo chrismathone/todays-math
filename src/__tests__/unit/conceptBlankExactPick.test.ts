@@ -136,12 +136,12 @@ describe("frozen exact concept selection", () => {
         .success,
     ).toBe(false);
   });
-  it("persists picks but never squeezes them into a legacy URL or code", () => {
+  it("persists picks in documents and versioned URLs, but never in sheet codes", () => {
     const selection = selectionFromPicks([pick()]);
     expect(conceptBlankDocumentSchema.parse({ selection }).selection).toEqual(
       selection,
     );
-    expect(() => encodeSelection(selection)).toThrow();
+    expect(decodeSelection(encodeSelection(selection))).toEqual(selection);
     expect(() => encodeSheetCode(selection, FIXTURE_BANK)).toThrow();
     const bytes = new TextEncoder().encode(JSON.stringify(selection));
     const url = btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join(""));

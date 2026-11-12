@@ -16,6 +16,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -72,11 +73,28 @@ import {
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
+import {
+  assertCurrentPicks,
+  materializePicks,
+  pickCounts,
+  pickKey,
+  pickPool,
+  samePick,
+  STALE_PICK_MESSAGE,
+  setPickMode,
+  type FormPicking,
+} from "@/lib/concept-blank/manualPick";
 import { kstDateOf } from "@/lib/kstDate";
 
 import ConceptBlankFormTable from "./ConceptBlankFormTable";
+import ConceptBlankQuestionPicker from "./ConceptBlankQuestionPicker";
 import ConceptBlankUnitPicker from "./ConceptBlankUnitPicker";
 import TextbookConceptLinks from "@/components/textbook/integration/TextbookConceptLinks";
+import {
+  useDocumentGeneration,
+  type DocumentGeneration,
+  type DocumentWork,
+} from "./useDocumentGeneration";
 import s from "./concept-blank.module.css";
 
 /** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
@@ -156,7 +174,7 @@ const EMPTY_REASON: Record<ConceptBlankForm, string> = {
   figure: "고른 소단원에 그림 문항이 없습니다.",
 };
 
-type FormDraft = {
+type FormDraft = FormPicking & {
   on: boolean;
   /** 원장님이 고친 수만 — 없으면 10(재고가 적으면 재고만큼). */
   counts: Partial<LevelCounts>;
@@ -165,6 +183,7 @@ type FormDraft = {
 type Draft = {
   sections: string[];
   forms: Record<ConceptBlankForm, FormDraft>;
+  formOrder: ConceptBlankForm[];
   title: string;
   date: string;
 };
@@ -187,20 +206,35 @@ function initialDraft(): Draft {
 /** 고르기 → 화면의 초안. 저장한 개념 백지에는 날짜가 없다 — 그때는 오늘. */
 function draftFrom(saved: ConceptBlankSelection | null): Draft {
   const forms = Object.fromEntries(
-    CONCEPT_BLANK_FORMS.map((form) => [
+    CONCEPT_BLANK_FORMS.map((form): [ConceptBlankForm, FormDraft] => [
       form,
-      { on: false, counts: {}, extras: {} },
+      { on: false, counts: {}, extras: {}, mode: "auto", picks: [] },
     ]),
   ) as Record<ConceptBlankForm, FormDraft>;
-  for (const f of saved?.forms ?? [])
+  const formOrder: ConceptBlankForm[] = [];
+  for (const f of saved?.forms ?? []) {
+    // 옛 자동 주소는 같은 형식을 여러 번 가질 수 있다 — 첫 항목의 순서와 수를 보존한다.
+    if (forms[f.form].on) continue;
+    formOrder.push(f.form);
     forms[f.form] = {
       on: true,
       counts: { ...f.counts },
       extras: { ...f.extras },
+      mode: saved?.pick ? "pick" : "auto",
+      picks: saved?.pick?.filter((pick) => pick.form === f.form) ?? [],
     };
+  }
   return {
-    sections: saved ? orderedSections(saved.sections) : [],
+    sections: saved?.pick
+      ? [...saved.sections]
+      : saved
+        ? orderedSections(saved.sections)
+        : [],
     forms,
+    formOrder: [
+      ...formOrder,
+      ...CONCEPT_BLANK_FORMS.filter((form) => !forms[form].on),
+    ],
     title: saved?.title ?? "",
     // 원장님 2026-10-01 «디폴트 오늘 날짜» — 주소에 날짜가 없으면 오늘(한국 시간). 비우면 지면의 학습일은 손으로 쓰는 줄.
     date: saved?.date ?? kstDateOf(new Date()),
@@ -219,6 +253,7 @@ function documentSelection(
   return {
     sections: selection.sections,
     forms: selection.forms,
+    ...(selection.pick ? { pick: selection.pick } : {}),
     ...(selection.title ? { title: selection.title } : {}),
   };
 }
@@ -235,6 +270,16 @@ type SavedDocument = {
   title: string;
 };
 type BlankDocument = Awaited<ReturnType<typeof readBlankDocument>>;
+type DocumentSource = { id: string; keepDraft: boolean };
+type DocumentRequest = DocumentSource & {
+  attempt: number;
+  client: PrivateCloudClient | null;
+};
+const addressKey = (url: URL) =>
+  JSON.stringify([
+    url.searchParams.get(DOC_PARAM),
+    url.searchParams.get(URL_PARAM),
+  ]);
 const savedFrom = (document: BlankDocument): SavedDocument => ({
   visibility: document.visibility,
   sharedBranchId: document.sharedBranchId,
@@ -301,35 +346,72 @@ function availableOf(chosen: string[], caps: Caps, form: ConceptBlankForm) {
  * 학년 은행을 늦게 불러온다(은행 3차 · `bank/load.ts`) — 소단원마다 10개씩이라 은행이 열 배, 화면 조각에 은행 전체를 싣지 않는다.
  * `grades` 의 학년만 부르고, 한 번 부른 학년은 다시 부르지 않는다. `null` 이면 부르지 않는다(은행을 props 로 받은 시험 · 시안).
  */
-function useGradeBanks(grades: readonly string[] | null) {
+function useGradeBanks(
+  grades: readonly string[] | null,
+  scope: DocumentGeneration,
+) {
   const [parts, setParts] = useState<ReadonlyMap<string, ConceptBlankBank>>(
     () => new Map(),
   );
-  /** 못 온 학년 — 다시 불러 오면 뺀다(알림은 못 온 학년이 남아 있는 동안만). */
-  const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
-  const asked = useRef(new Set<string>());
+  const completed = useRef(parts);
+  const [failures, setFailures] = useState<ReadonlyMap<string, number>>(
+    () => new Map(),
+  );
+  const requests = useRef(
+    new Map<string, ReturnType<DocumentGeneration["start"]>>(),
+  );
+  const { generation, start, finish, isCurrent } = scope;
+  const failed = useMemo(
+    () =>
+      new Set(
+        [...failures]
+          .filter(([, owner]) => owner === generation)
+          .map(([grade]) => grade),
+      ),
+    [failures, generation],
+  );
   const wanted = grades ? grades.filter(isReadyGrade).join("|") : "";
+  const requestGrade = useCallback(
+    (grade: string) => {
+      const pending = requests.current.get(grade);
+      if (completed.current.has(grade) || (pending && isCurrent(pending)))
+        return;
+      const work = start("bank");
+      requests.current.set(grade, work);
+      setFailures((current) => {
+        if (!current.has(grade)) return current;
+        const next = new Map(current);
+        next.delete(grade);
+        return next;
+      });
+      loadGradeBank(grade)
+        .then(
+          (bank) => {
+            if (!isCurrent(work)) return;
+            completed.current = new Map(completed.current).set(grade, bank);
+            setParts(completed.current);
+          },
+          () => {
+            if (isCurrent(work))
+              setFailures((current) =>
+                new Map(current).set(grade, work.generation),
+              );
+          },
+        )
+        .finally(() => {
+          if (requests.current.get(grade) === work)
+            requests.current.delete(grade);
+          finish(work);
+        });
+    },
+    [start, finish, isCurrent],
+  );
   useEffect(() => {
-    for (const grade of wanted ? wanted.split("|") : []) {
-      if (asked.current.has(grade)) continue;
-      asked.current.add(grade);
-      loadGradeBank(grade).then(
-        (bank) => {
-          setParts((current) => new Map(current).set(grade, bank));
-          setFailed((current) => {
-            if (!current.has(grade)) return current;
-            const next = new Set(current);
-            next.delete(grade);
-            return next;
-          });
-        },
-        () => {
-          asked.current.delete(grade);
-          setFailed((current) => new Set(current).add(grade));
-        },
-      );
-    }
-  }, [wanted]);
+    for (const grade of wanted ? wanted.split("|") : []) requestGrade(grade);
+  }, [wanted, generation, requestGrade]);
+  const retry = () => {
+    for (const grade of failed) requestGrade(grade);
+  };
   // 학년 차례로 잇는다 — 학년 안은 원래 파일 뒤에 보강(소단원 안 차례가 서버의 은행 전체와 같다).
   const bank = useMemo(
     () =>
@@ -341,7 +423,7 @@ function useGradeBanks(grades: readonly string[] | null) {
       ),
     [parts],
   );
-  return { bank, loaded: parts, failed: failed.size > 0 };
+  return { bank, loaded: parts, failed, retry };
 }
 
 export type ConceptBlankViewProps = {
@@ -367,6 +449,22 @@ export default function ConceptBlankView({
 }: ConceptBlankViewProps) {
   const uid = useId();
   const [draft, setDraft] = useState<Draft>(initialDraft);
+  const scope = useDocumentGeneration();
+  const {
+    generation,
+    reading,
+    saving,
+    advance,
+    start,
+    finish,
+    isCurrent,
+    isGeneration,
+  } = scope;
+  const [picking, setPicking] = useState<{
+    form: ConceptBlankForm;
+    generation: number;
+  } | null>(null);
+  const pickOpener = useRef<HTMLButtonElement>(null);
   const [openGrade, setOpenGrade] = useState<string | null>(() =>
     gradeOf(draft),
   );
@@ -374,7 +472,23 @@ export default function ConceptBlankView({
   const [savedDocument, setSavedDocument] = useState<SavedDocument | null>(
     null,
   );
-  const [saving, setSaving] = useState(false);
+  const savedDocumentRef = useRef<SavedDocument | null>(null);
+  const setDocument = useCallback((next: SavedDocument | null) => {
+    savedDocumentRef.current = next;
+    setSavedDocument(next);
+  }, []);
+  // 모든 비동기 메타데이터 반영은 세대와 revision을 함께 확인한다.
+  const acceptDocument = useCallback(
+    (work: DocumentWork, next: SavedDocument) => {
+      if (!isCurrent(work)) return false;
+      const previous = savedDocumentRef.current;
+      if (previous?.id === next.id && previous.revision > next.revision)
+        return false;
+      setDocument(next);
+      return true;
+    },
+    [isCurrent, setDocument],
+  );
   const [saveError, setSaveError] = useState("");
   /** 처음 열 때 주소에 있던 자료 id(새로 고침) — 그 자료에 이어서 저장한다. 주소의 고르기(`?blank=`)는 그대로 둔다. */
   const [urlDocument] = useState(() => {
@@ -388,10 +502,72 @@ export default function ConceptBlankView({
     [storageScope],
   );
   const [restoreAttempt, setRestoreAttempt] = useState(0);
+  const openId = openDocument?.id;
+  const openVersion = openDocument?.version;
+  // 주소 탐색 이후에는 그 주소가 우선이며, 내 시험지의 다음 열기 요청이 오면 다시 그 요청을 따른다.
+  const [urlNavigation, setUrlNavigation] = useState<{
+    openId: string | undefined;
+    openVersion: number | undefined;
+    document: DocumentSource | null;
+  } | null>(null);
+  const documentRequest = useMemo<DocumentRequest | null>(() => {
+    const source =
+      urlNavigation &&
+      urlNavigation.openId === openId &&
+      urlNavigation.openVersion === openVersion
+        ? urlNavigation.document
+        : openId
+          ? { id: openId, keepDraft: false }
+          : urlDocument;
+    return source ? { ...source, attempt: restoreAttempt, client } : null;
+  }, [openId, openVersion, urlDocument, urlNavigation, restoreAttempt, client]);
   const [restoreState, setRestoreState] = useState<{
+    request: DocumentRequest | null;
     status: "loading" | "ready" | "error";
     message?: string;
-  }>(() => ({ status: urlDocument ? "loading" : "ready" }));
+  }>({ request: null, status: "ready" });
+  const documentReady =
+    !documentRequest ||
+    (restoreState.request === documentRequest &&
+      restoreState.status === "ready");
+  const documentError =
+    restoreState.request === documentRequest && restoreState.status === "error";
+  const observedAddress = useRef(
+    typeof window === "undefined"
+      ? ""
+      : addressKey(new URL(window.location.href)),
+  );
+  useEffect(() => {
+    const navigate = () => {
+      const url = new URL(window.location.href);
+      // 다른 화면으로의 이동은 숨겨 둔 초안을 유지한다. 개념 백지 주소만 새 선택으로 읽는다.
+      if (
+        url.hash !== "#conceptBlank" &&
+        !url.searchParams.has(URL_PARAM) &&
+        !url.searchParams.has(DOC_PARAM)
+      )
+        return;
+      const key = addressKey(url);
+      if (observedAddress.current === key) return;
+      observedAddress.current = key;
+      const id = url.searchParams.get(DOC_PARAM);
+      const encoded = url.searchParams.get(URL_PARAM);
+      setUrlNavigation({
+        openId,
+        openVersion,
+        document: id ? { id, keepDraft: Boolean(encoded) } : null,
+      });
+      setDocument(null);
+      setSaveError("");
+      if (encoded || !id) {
+        const next = draftFrom(decodeSelection(encoded));
+        setDraft(next);
+        setOpenGrade(gradeOf(next));
+      }
+    };
+    window.addEventListener("popstate", navigate);
+    return () => window.removeEventListener("popstate", navigate);
+  }, [openId, openVersion, setDocument]);
   const [capHit, setCapHit] = useState(false);
   const [paperView, setPaperView] = useState<"student" | "key">("student");
   /** 인쇄할 지면 — 학생지 · 채점표 · 전체(학생지 뒤에 채점표). 원장님 2026-10-01 «본문/답지/전체 따로». */
@@ -410,7 +586,7 @@ export default function ConceptBlankView({
     if (openGrade) grades.add(openGrade);
     return [...grades];
   }, [fixedBank, draft.sections, openGrade]);
-  const live = useGradeBanks(neededGrades);
+  const live = useGradeBanks(neededGrades, scope);
   const bank = fixedBank ?? live.bank;
   /** 온 학년(props 은행이면 null — 다 있다). */
   const loadedGrades = fixedBank ? null : live.loaded;
@@ -420,6 +596,12 @@ export default function ConceptBlankView({
   const ready = draft.sections.every((key) =>
     hasGrade(getBlankSection(key)?.grade),
   );
+  const selectedBankFailed = draft.sections.some((key) =>
+    live.failed.has(getBlankSection(key)?.grade ?? ""),
+  );
+  const canPick = ready && documentReady && !reading;
+  const visiblePicking =
+    canPick && picking && picking.generation === generation ? picking : null;
 
   /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3) 가운데 온 학년만. */
   const stockIndex = useMemo(() => {
@@ -482,25 +664,66 @@ export default function ConceptBlankView({
   const isOn = (form: ConceptBlankForm) =>
     availableOf(chosen, caps, form) && draft.forms[form].on;
 
+  const selectionError = useMemo(() => {
+    if (!ready) return "";
+    try {
+      for (const form of CONCEPT_BLANK_FORMS) {
+        const state = draft.forms[form];
+        if (state.on && state.mode === "pick")
+          assertCurrentPicks(bank, draft.sections, form, state.picks);
+      }
+      return "";
+    } catch {
+      return STALE_PICK_MESSAGE;
+    }
+  }, [ready, bank, draft.sections, draft.forms]);
+
   const selection = useMemo<ConceptBlankSelection | null>(() => {
-    if (!ready || !chosen.length) return null;
-    const forms = CONCEPT_BLANK_FORMS.flatMap((form) => {
+    if (!ready || selectionError || !chosen.length) return null;
+    const forms = draft.formOrder.flatMap((form) => {
       if (!availableOf(chosen, caps, form) || !draft.forms[form].on) return [];
       const counts = valueOf(draft, caps, form, "main");
       const extras = ROWS[form].extra
         ? valueOf(draft, caps, form, "extra")
         : { ...ZERO };
-      return sum(counts) + sum(extras) > 0 ? [{ form, counts, extras }] : [];
+      return draft.forms[form].mode === "pick" || sum(counts) + sum(extras) > 0
+        ? [{ form, counts, extras }]
+        : [];
     });
     if (!forms.length) return null;
     const title = draft.title.trim().slice(0, TITLE_MAX);
-    return {
-      sections: chosen.slice(0, SECTION_CAP),
-      forms,
-      ...(title ? { title } : {}),
-      ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
-    };
-  }, [ready, chosen, caps, draft]);
+    return materializePicks(
+      {
+        sections: chosen.slice(0, SECTION_CAP),
+        forms,
+        ...(title ? { title } : {}),
+        ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
+      },
+      draft.forms,
+      bank,
+    );
+  }, [ready, selectionError, chosen, caps, draft, bank]);
+
+  const hasDirect = CONCEPT_BLANK_FORMS.some(
+    (form) => isOn(form) && draft.forms[form].mode === "pick",
+  );
+  const effectivePicks = (form: ConceptBlankForm) => {
+    const valid = new Map(
+      [
+        ...pickPool(bank, chosen, form, "main"),
+        ...pickPool(bank, chosen, form, "extra"),
+      ].map((pick) => [pickKey(pick), pick]),
+    );
+    return draft.forms[form].picks.filter((pick) => {
+      const current = valid.get(pickKey(pick));
+      return current && samePick(pick, current);
+    });
+  };
+  const openPicker = (form: ConceptBlankForm, opener: HTMLButtonElement) => {
+    if (!canPick) return;
+    pickOpener.current = opener;
+    setPicking({ form, generation });
+  };
 
   const code = useMemo(() => {
     if (!selection) return null;
@@ -517,118 +740,149 @@ export default function ConceptBlankView({
   /** 지면 코드(트랙 cb-code) — 인쇄와 같은 코드 줄을 미리보기에도(같은 문제는 같은 뷰). */
   const sheetCode = useMemo(
     () =>
-      selection && sheets.length ? encodeSheetCode(selection, bank) : undefined,
+      selection && !selection.pick && sheets.length
+        ? encodeSheetCode(selection, bank)
+        : undefined,
     [selection, sheets.length, bank],
   );
   const items = sheets.reduce((n, sheet) => n + sheetItemCount(sheet), 0);
 
-  // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
-  // 학년 은행이 오는 동안은 건드리지 않는다 — 오기 전의 빈 고르기로 주소의 고르기를 지우면 새로 고침이 고르기를 잃는다.
-  useEffect(() => {
-    if (active && !ready) return;
-    const url = new URL(window.location.href);
-    const next = active ? code : null;
-    if (url.searchParams.get(URL_PARAM) === next) return;
-    if (next) url.searchParams.set(URL_PARAM, next);
-    else url.searchParams.delete(URL_PARAM);
-    window.history.replaceState(window.history.state, "", url);
-  }, [active, ready, code]);
-
-  // 주소 `?blankDoc=` — 내 시험지에 있는 자료면 그 id 를 같은 규칙으로 싣는다(새로 고쳐도 같은 자료에 저장).
+  // id와 선택은 한 번의 replaceState로 쓴다. 새 문서가 오기 전에는 옛 선택을 싣지 않는다.
   const savedId = savedDocument?.id ?? null;
   useEffect(() => {
     const url = new URL(window.location.href);
-    const next = active
-      ? (savedId ??
-        (restoreState.status !== "ready" ? (urlDocument?.id ?? null) : null))
-      : null;
-    if (url.searchParams.get(DOC_PARAM) === next) return;
-    if (next) url.searchParams.set(DOC_PARAM, next);
-    else url.searchParams.delete(DOC_PARAM);
-    window.history.replaceState(window.history.state, "", url);
-  }, [active, savedId, restoreState.status, urlDocument]);
+    if (!active) {
+      url.searchParams.delete(URL_PARAM);
+      url.searchParams.delete(DOC_PARAM);
+    } else if (!documentReady) {
+      if (!documentRequest) return;
+      url.searchParams.set(DOC_PARAM, documentRequest.id);
+      if (!documentRequest.keepDraft) url.searchParams.delete(URL_PARAM);
+    } else {
+      if (!ready || selectionError || reading) return;
+      if (savedId) url.searchParams.set(DOC_PARAM, savedId);
+      else url.searchParams.delete(DOC_PARAM);
+      if (code) url.searchParams.set(URL_PARAM, code);
+      else url.searchParams.delete(URL_PARAM);
+    }
+    if (addressKey(url) !== addressKey(new URL(window.location.href)))
+      window.history.replaceState(window.history.state, "", url);
+    observedAddress.current = addressKey(url);
+  }, [
+    active,
+    ready,
+    selectionError,
+    code,
+    documentReady,
+    reading,
+    savedId,
+    documentRequest,
+  ]);
 
-  /** 내 시험지에서 읽은 자료를 받는다 — `keepDraft` 면 지금 고르기(주소의 아직 저장 안 한 고침)를 그대로 둔다. */
-  const adopt = useCallback((document: BlankDocument, keepDraft: boolean) => {
-    setSavedDocument(savedFrom(document));
+  const adopt = useCallback(
+    (work: DocumentWork, document: BlankDocument, keepDraft: boolean) => {
+      if (!acceptDocument(work, savedFrom(document))) return;
+      setSaveError("");
+      if (keepDraft) return;
+      const next = draftFrom(document.selection);
+      setDraft(next);
+      setOpenGrade(gradeOf(next));
+    },
+    [acceptDocument],
+  );
+
+  // 문서 열기/주소 탐색이 세대를 소유한다. 같은 id를 다시 열어도 이전 작업은 모두 무효다.
+  useLayoutEffect(() => {
+    advance();
+    setDocument(null);
+    setPicking(null);
     setSaveError("");
-    if (keepDraft) return;
-    const next = draftFrom(document.selection);
-    setDraft(next);
-    setOpenGrade(gradeOf(next));
-  }, []);
-  // 탭으로 돌아오면 그 자료를 다시 읽는다 — 이 화면은 숨은 채 살아 있어, 내 시험지에서 이름을 바꾸거나 지우면 판이 낡는다
-  // (리뷰 2026-10-01). 지워졌으면 «저장됨»을 풀고(다음 저장은 새 자료), 이름이 바뀌었으면 제목 칸도 새 이름으로.
+    if (!documentRequest?.client) return;
+    const work = start("read");
+    setRestoreState({ request: documentRequest, status: "loading" });
+    readBlankDocument(documentRequest.client, documentRequest.id)
+      .then(
+        (document) => {
+          if (!isCurrent(work)) return;
+          adopt(work, document, documentRequest.keepDraft);
+          setRestoreState({ request: documentRequest, status: "ready" });
+        },
+        (cause) => {
+          if (!isCurrent(work)) return;
+          const message =
+            cause instanceof PrivateCloudError && cause.status === 403
+              ? "이 자료를 열 권한이 없습니다. 자료 공유와 소속을 확인해 주세요."
+              : cause instanceof PrivateCloudError && cause.status === 404
+                ? "자료가 삭제되었거나 찾을 수 없습니다. 목록에서 다시 선택해 주세요."
+                : `자료를 불러오지 못했습니다. ${cloudError(cause)}`;
+          setRestoreState({
+            request: documentRequest,
+            status: "error",
+            message,
+          });
+        },
+      )
+      .finally(() => finish(work));
+    return () => finish(work);
+  }, [
+    documentRequest,
+    urlNavigation,
+    client,
+    advance,
+    start,
+    finish,
+    isCurrent,
+    setDocument,
+    adopt,
+  ]);
+
+  // 탭 복귀 조회는 같은 세대의 작업이다. PUT이 끝나도 이 조회를 취소하거나 세대를 바꾸지 않는다.
   const wasActive = useRef(active);
   useEffect(() => {
     const back = active && !wasActive.current;
     wasActive.current = active;
-    if (!back || !client || !savedDocument) return;
-    const previous = savedDocument;
-    let live = true;
-    readBlankDocument(client, previous.id).then(
-      (document) => {
-        if (!live) return;
-        const next = savedFrom(document);
-        setSavedDocument(next);
-        if (next.title !== previous.title)
-          setDraft((current) => ({ ...current, title: next.title }));
-      },
-      (cause) => {
-        if (live && cause instanceof PrivateCloudError && cause.status === 404)
-          setSavedDocument((current) =>
-            current?.id === previous.id ? null : current,
-          );
-      },
-    );
-    return () => {
-      live = false;
-    };
-  }, [active, client, savedDocument]);
-  // 내 시험지의 [열기] — 판이 바뀔 때마다 다시 읽는다(같은 자료를 두 번 열어도).
-  const openId = openDocument?.id;
-  const openVersion = openDocument?.version;
-  useEffect(() => {
-    if (!client || !openId) return;
-    let live = true;
-    readBlankDocument(client, openId).then(
-      (document) => {
-        if (live) adopt(document, false);
-      },
-      (cause) => {
-        if (live) setSaveError(cloudError(cause));
-      },
-    );
-    return () => {
-      live = false;
-    };
-  }, [client, openId, openVersion, adopt]);
-  // 새로 고침 — 주소의 자료 id 를 읽어 판만 받는다. 지워졌으면 다음 저장이 새 자료가 된다.
-  useEffect(() => {
-    if (!client || !urlDocument) return;
-    let live = true;
-    readBlankDocument(client, urlDocument.id).then(
-      (document) => {
-        if (live) {
-          adopt(document, urlDocument.keepDraft);
-          setRestoreState({ status: "ready" });
-        }
-      },
-      (cause) => {
-        if (!live) return;
-        const message =
-          cause instanceof PrivateCloudError && cause.status === 403
-            ? "이 자료를 열 권한이 없습니다. 자료 공유와 소속을 확인해 주세요."
-            : cause instanceof PrivateCloudError && cause.status === 404
-              ? "자료가 삭제되었거나 찾을 수 없습니다. 목록에서 다시 선택해 주세요."
-              : `자료를 불러오지 못했습니다. ${cloudError(cause)}`;
-        setRestoreState({ status: "error", message });
-      },
-    );
-    return () => {
-      live = false;
-    };
-  }, [client, urlDocument, adopt, restoreAttempt]);
+    const previous = savedDocumentRef.current;
+    if (!back || !client || !previous || !documentReady) return;
+    const work = start("read");
+    setPicking(null);
+    readBlankDocument(client, previous.id)
+      .then(
+        (document) => {
+          if (!isCurrent(work)) return;
+          if (savedDocumentRef.current?.id !== document.id) return;
+          const next = savedFrom(document);
+          if (!acceptDocument(work, next)) return;
+          if (next.title !== previous.title)
+            setDraft((current) =>
+              current.title === previous.title
+                ? { ...current, title: next.title }
+                : current,
+            );
+        },
+        (cause) => {
+          if (!isCurrent(work)) return;
+          if (
+            cause instanceof PrivateCloudError &&
+            cause.status === 404 &&
+            savedDocumentRef.current?.id === previous.id &&
+            savedDocumentRef.current.revision === previous.revision
+          )
+            setDocument(null);
+        },
+      )
+      .finally(() => finish(work));
+    return () => finish(work);
+  }, [
+    active,
+    client,
+    documentRequest,
+    documentReady,
+    start,
+    finish,
+    isCurrent,
+    setDocument,
+    acceptDocument,
+  ]);
 
   /** 고른 소단원을 바꾼다 — 기준은 지금 고른 것(재고 있는 것만). 상한 60 을 넘으면 앞에서 자르고 한 줄 알린다. */
   const changeSections = (next: string[], hit = false) => {
@@ -694,14 +948,8 @@ export default function ConceptBlankView({
     !!toSave && !!savedDocument && savedDocument.key === selectionKey(toSave);
   /** [내 시험지에 저장] — 처음이면 새 자료, 내 시험지에 있는 자료면 그 다음 판. 자료 이름은 지면 제목. */
   const save = async (sharing?: DocumentSharing) => {
-    if (
-      !client ||
-      !toSave ||
-      saving ||
-      (urlDocument && restoreState.status !== "ready")
-    )
-      return false;
-    setSaving(true);
+    if (!client || !toSave || saving || !documentReady || reading) return false;
+    const work = start("save");
     setSaveError("");
     const title = (
       toSave.title ??
@@ -725,6 +973,7 @@ export default function ConceptBlankView({
           savedDocument?.revision ?? null,
         );
       } catch (cause) {
+        if (!isCurrent(work)) return false;
         // 판이 안 맞으면(409) 다시 읽는다. 지워졌으면(404) 새 자료로 담는다 — 고르기뿐이라 잃을 것이 없다.
         // 다른 곳에서 먼저 저장했으면 새 판을 받고 알린다 — 다시 누르면 이 화면의 고르기로 저장한다.
         if (
@@ -739,13 +988,15 @@ export default function ConceptBlankView({
               ? null
               : Promise.reject(cause),
         );
+        if (!isCurrent(work)) return false;
         if (latest) {
-          setSavedDocument(savedFrom(latest));
+          acceptDocument(work, savedFrom(latest));
           throw new Error(CHANGED_ELSEWHERE);
         }
         document = await put(privateDocumentId(), null);
       }
-      setSavedDocument({
+      if (!isCurrent(work)) return false;
+      acceptDocument(work, {
         id: document.id,
         visibility: document.visibility,
         sharedBranchId: document.sharedBranchId,
@@ -755,10 +1006,10 @@ export default function ConceptBlankView({
       });
       return true;
     } catch (cause) {
-      setSaveError(cloudError(cause));
+      if (isCurrent(work)) setSaveError(cloudError(cause));
       return false;
     } finally {
-      setSaving(false);
+      finish(work);
     }
   };
   const { requestSave, dialog: saveDialog } = useLibrarySaveConfirmation(
@@ -768,15 +1019,53 @@ export default function ConceptBlankView({
     savedDocument?.sharedBranchId === branchId
       ? savedDocument?.visibility
       : "private",
+    generation,
   );
   // `print=1` — 인쇄 페이지가 지면을 다 그린 뒤 인쇄 창을 바로 띄운다(원장님 2026-10-01 «ctrl+p 말고 인쇄버튼으로»)
-  const printHref = code
-    ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
-    : null;
+  const printHref =
+    code && documentReady && !reading
+      ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
+      : null;
 
   return (
     <div className={s.view}>
       {saveDialog}
+      {visiblePicking && (
+        <ConceptBlankQuestionPicker
+          key={`${visiblePicking.generation}:${visiblePicking.form}`}
+          bank={bank}
+          sections={chosen}
+          form={visiblePicking.form}
+          picks={draft.forms[visiblePicking.form].picks}
+          targets={{
+            main: valueOf(draft, caps, visiblePicking.form, "main"),
+            extra: valueOf(draft, caps, visiblePicking.form, "extra"),
+          }}
+          returnFocus={pickOpener}
+          onCancel={() => setPicking(null)}
+          onApply={(picks, targets) => {
+            if (!isGeneration(visiblePicking.generation) || reading) return;
+            const form = visiblePicking.form;
+            setDraft((current) =>
+              isGeneration(visiblePicking.generation)
+                ? {
+                    ...current,
+                    forms: {
+                      ...current.forms,
+                      [form]: {
+                        ...current.forms[form],
+                        picks,
+                        counts: targets.main,
+                        extras: targets.extra,
+                      },
+                    },
+                  }
+                : current,
+            );
+            setPicking(null);
+          }}
+        />
+      )}
       <WorkspacePageHeader
         title="개념 백지"
         description="학년 · 대단원 · 소단원을 고르고 형식마다 난이도별 문항 수를 정합니다. 같은 고르기는 언제나 같은 지면입니다."
@@ -821,7 +1110,7 @@ export default function ConceptBlankView({
                 !toSave ||
                 saving ||
                 (saved && !branchId) ||
-                Boolean(urlDocument && restoreState.status !== "ready")
+                Boolean(!documentReady || reading)
               }
               onClick={requestSave}
             >
@@ -850,14 +1139,14 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
-      {urlDocument && restoreState.status === "loading" ? (
+      {(!documentReady && !documentError) || reading ? (
         <p role="status" className="mb-4 text-sm">
           {client
             ? "저장된 자료를 불러오는 중…"
             : "저장된 자료를 열려면 로그인과 자료 접근 권한을 확인해 주세요."}
         </p>
       ) : null}
-      {restoreState.status === "error" ? (
+      {documentError ? (
         <div
           role="alert"
           className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-control p-4 text-sm"
@@ -867,7 +1156,7 @@ export default function ConceptBlankView({
             type="button"
             className={s.secondaryButton}
             onClick={() => {
-              setRestoreState({ status: "loading" });
+              setRestoreState({ request: documentRequest, status: "loading" });
               setRestoreAttempt((value) => value + 1);
             }}
           >
@@ -881,15 +1170,42 @@ export default function ConceptBlankView({
       {textbookEnabled && (
         <TextbookConceptLinks sections={chosen} active={active} />
       )}
-      {live.failed && (
+      {live.failed.size > 0 && (
         <p className={s.saveError} role="alert">
-          문항을 불러오지 못했습니다. 새로 고쳐 주세요.
+          은행을 불러오지 못했습니다 ·{" "}
+          <button
+            type="button"
+            className={s.secondaryButton}
+            onClick={live.retry}
+          >
+            다시 시도
+          </button>
         </p>
       )}
       {saveError && (
         <p className={s.saveError} role="alert">
           {saveError}
         </p>
+      )}
+      {selectionError && (
+        <div className={s.saveError} role="alert">
+          <p>{selectionError}</p>
+          {draft.formOrder
+            .filter(
+              (form) =>
+                draft.forms[form].on && draft.forms[form].mode === "pick",
+            )
+            .map((form) => (
+              <button
+                key={form}
+                type="button"
+                className={s.secondaryButton}
+                onClick={(event) => openPicker(form, event.currentTarget)}
+              >
+                {CONCEPT_BLANK_FORM_LABELS[form]} 다시 고르기
+              </button>
+            ))}
+        </div>
       )}
 
       <div className={s.grid}>
@@ -1052,11 +1368,14 @@ export default function ConceptBlankView({
               label: CONCEPT_BLANK_FORM_LABELS[form],
               letter: LETTER[form],
               help: HELP[form],
-              on: isOn(form),
+              on:
+                draft.forms[form].on &&
+                (!ready || availableOf(chosen, caps, form)),
+              mode: draft.forms[form].mode,
               available: availableOf(chosen, caps, form),
               reason: !chosen.length
                 ? "소단원을 먼저 고르세요."
-                : availableOf(chosen, caps, form)
+                : !ready || availableOf(chosen, caps, form)
                   ? null
                   : EMPTY_REASON[form],
               fields: (["main", "extra"] as const)
@@ -1066,11 +1385,37 @@ export default function ConceptBlankView({
                   label: (row === "main" ? ROWS[form].main : ROWS[form].extra!)
                     .label,
                   max: maxOf(caps, form, row),
-                  value: valueOf(draft, caps, form, row),
+                  value:
+                    draft.forms[form].mode === "pick"
+                      ? pickCounts(effectivePicks(form), row)
+                      : valueOf(draft, caps, form, row),
                 })),
             }))}
             onToggle={toggleForm}
             onCount={setCount}
+            onMode={(form, mode, opener) => {
+              setDraft((current) => ({
+                ...current,
+                forms: {
+                  ...current.forms,
+                  [form]: setPickMode(current.forms[form], mode),
+                },
+              }));
+              if (mode === "pick") openPicker(form, opener);
+            }}
+            onPick={openPicker}
+            pickStatus={
+              !documentReady || reading
+                ? documentError
+                  ? "document-error"
+                  : "document-loading"
+                : ready
+                  ? "ready"
+                  : selectedBankFailed
+                    ? "error"
+                    : "loading"
+            }
+            onRetry={live.retry}
           />
 
           <section className={s.card} aria-labelledby={`${uid}-meta`}>
@@ -1098,6 +1443,35 @@ export default function ConceptBlankView({
         </div>
       </div>
 
+      <section className={`${s.card} ${s.outlineCard}`} aria-label="만들 지면">
+        <div className={s.cardHead}>
+          <h2 className={s.cardTitle}>만들 지면</h2>
+          <span className={s.num}>문항 {items}</span>
+        </div>
+        <div className={s.sheetOutline}>
+          {selection?.forms.map(({ form, counts, extras }) => (
+            <span key={form}>
+              <b>{LETTER[form]}</b> {CONCEPT_BLANK_FORM_LABELS[form]}{" "}
+              <span className={s.outlineDetail}>
+                {ROWS[form].main.label} {sum(counts)}
+                {ROWS[form].extra
+                  ? ` · ${ROWS[form].extra.label} ${sum(extras)}`
+                  : ""}{" "}
+                · {draft.forms[form].mode === "pick" ? "직접" : "자동"}
+              </span>
+            </span>
+          ))}
+          <span className={s.codeSlot}>
+            지면 코드{" "}
+            <span className={s.codeValue} data-none={hasDirect}>
+              {hasDirect
+                ? "없음 — 직접 고른 형식이 있습니다"
+                : (sheetCode ?? "없음")}
+            </span>
+          </span>
+        </div>
+      </section>
+
       <section
         className={`${s.card} ${s.previewCard}`}
         aria-labelledby={`${uid}-preview`}
@@ -1108,7 +1482,7 @@ export default function ConceptBlankView({
           </h2>
           {sheets.length > 0 && (
             <span className={s.num}>
-              형식 {sheets.length} · 문항 {items}
+              형식 {selection?.forms.length ?? 0} · 문항 {items}
             </span>
           )}
           <div className={s.segment} role="group" aria-label="미리보기 지면">

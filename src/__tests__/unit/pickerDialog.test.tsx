@@ -38,6 +38,14 @@ function Opened(props: Partial<React.ComponentProps<typeof PickerDialog>>) {
 }
 
 describe("PickerDialog", () => {
+  it("offers an opt-in wide frame and a title-side count without changing its accessible name", () => {
+    render(<Opened width="wide" titleAside={<span>고름 3</span>} />);
+    expect(screen.getByRole("dialog", { name: "구성 조건" })).toHaveAttribute(
+      "data-width",
+      "wide",
+    );
+    expect(screen.getByText("고름 3")).toBeInTheDocument();
+  });
   it("keeps the one-button form for existing pickers (focus on done · Esc closes)", () => {
     const onClose = vi.fn();
     render(<Opened onClose={onClose} />);

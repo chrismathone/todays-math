@@ -11,6 +11,7 @@
  */
 import { notFound, redirect } from "next/navigation";
 
+import type { ConceptBlankSheet } from "@/contracts/conceptBlank.contract";
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import PrintNow from "@/components/concept-blank/paper/PrintNow";
 import { parseConceptBlankView } from "@/components/concept-blank/paper/view";
@@ -48,13 +49,26 @@ export default async function ConceptBlankPrintPage({
       </p>
     );
 
-  // 지면 코드(트랙 cb-code) — 지면이 있을 때만(나무에 없는 소단원뿐이면 합치기가 빈 지면을 준다)
-  const sheets = composeSheets(selection, CONCEPT_BLANK_BANK);
+  let sheets: ConceptBlankSheet[];
+  try {
+    sheets = composeSheets(selection, CONCEPT_BLANK_BANK);
+  } catch (error) {
+    if (selection.pick === undefined || !(error instanceof RangeError))
+      throw error;
+    return (
+      <p className={styles.notice} role="alert">
+        선택한 문항을 현재 문항 은행에서 확인할 수 없습니다. 개념 백지에서
+        문항을 다시 골라 주세요.
+      </p>
+    );
+  }
+
+  // 자동 선택만 지면 코드로 표현할 수 있다. 정확한 선택은 주소의 문항 ID를 그대로 인쇄한다.
   return (
     <main className={styles.shell}>
       <ConceptBlankPaper
         code={
-          sheets.length
+          sheets.length && selection.pick === undefined
             ? encodeSheetCode(selection, CONCEPT_BLANK_BANK)
             : undefined
         }

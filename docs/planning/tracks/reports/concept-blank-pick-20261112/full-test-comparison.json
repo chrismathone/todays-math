@@ -1,0 +1,380 @@
+{
+  "baseCommit": "f71adecb0",
+  "fullRun": {
+    "files": {
+      "total": 1835,
+      "passed": 1736,
+      "failed": 66,
+      "skipped": 33
+    },
+    "tests": {
+      "total": 44255,
+      "passed": 43166,
+      "failed": 58,
+      "skipped": 1030
+    },
+    "unhandledErrors": 1,
+    "durationSeconds": 950.67
+  },
+  "scopedFinal": {
+    "filesPassed": 9,
+    "testsPassed": 155
+  },
+  "typeCheck": "passed",
+  "affordanceLint": "passed",
+  "changedFileEslint": "passed",
+  "baselineRecheck": {
+    "location": "temporary internal-volume checkout, same node_modules, no env file",
+    "files": 65,
+    "passed": 48,
+    "failed": 17,
+    "testsPassed": 1163,
+    "testsFailed": 24,
+    "testsSkipped": 3,
+    "unhandledErrors": 1
+  },
+  "failures": [
+    {
+      "file": "src/__tests__/api/textbookQuickCreateIntegration.test.ts",
+      "firstFailure": "[ src/__tests__/api/textbookQuickCreateIntegration.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/api/textbookRouteWalk.test.ts",
+      "firstFailure": "[ src/__tests__/api/textbookRouteWalk.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/api/textbookRoutes.test.ts",
+      "firstFailure": "[ src/__tests__/api/textbookRoutes.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/integration/sourceMaterialMigration.test.ts",
+      "firstFailure": "> 출처 책 · 자료 마이그레이션 — 적용 도구가 하는 그대로 > 적용한 뒤",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookAdminUsability.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookAdminUsability.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookCapture.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookCapture.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookConceptForms.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookConceptForms.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookDraft.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookDraft.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookFrozenSources.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookFrozenSources.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookManagedOperations.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookManagedOperations.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookOperationalScope.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookOperationalScope.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookPublish.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookPublish.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookPublishArtifacts.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookPublishArtifacts.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookRealValidator.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookRealValidator.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookRegisterAndRefs.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookRegisterAndRefs.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookReplayScope.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookReplayScope.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookSectionPreview.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookSectionPreview.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookTeacherFlows.test.ts",
+      "firstFailure": "[ src/__tests__/lib/textbookTeacherFlows.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/lib/textbookVisualLibrary.test.ts",
+      "firstFailure": "> native transactional visual asset freezing",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankReadFingerprint.test.ts",
+      "firstFailure": "[ src/__tests__/unit/bankReadFingerprint.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankReadRevision.test.ts",
+      "firstFailure": "[ src/__tests__/unit/bankReadRevision.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examReportMigration.test.ts",
+      "firstFailure": "[ src/__tests__/unit/examReportMigration.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/problemActualFormatMigration.test.ts",
+      "firstFailure": "[ src/__tests__/unit/problemActualFormatMigration.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/problemActualFormatReader.test.ts",
+      "firstFailure": "[ src/__tests__/unit/problemActualFormatReader.test.ts ]",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlLifecycle.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookDdlLifecycle.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlPublish.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookDdlPublish.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDdlReferences.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookDdlReferences.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookDialogueUnitPasses.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookDialogueUnitPasses.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookFrozenBlank.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookFrozenBlank.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookQuickCreate.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookQuickCreate.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookQuickCreateAvailability.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookQuickCreateAvailability.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookRecoveryWriter.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookRecoveryWriter.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookSqlStatements.test.ts",
+      "firstFailure": "> 문장씩 적용한 DB 는 통째로 적용한 DB 와 같다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookStudentAttemptsSql.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookStudentAttemptsSql.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookStudentConceptVideo.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookStudentConceptVideo.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/textbookTeacherBlank.test.ts",
+      "firstFailure": "[ src/__tests__/unit/textbookTeacherBlank.test.ts ]",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/api/studentSessionSweep.test.ts",
+      "firstFailure": "> ② 모집단 — auth() 를 부르는 파일은 전부 어딘가에서 시험된다 > 🔴 갈래를 못 받은 auth() 호출 파일이 없다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/api/studioAiFigureEdit.test.ts",
+      "firstFailure": "> POST /api/studio/ai figure-edit > returns edit commands from one figure-model call",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/components/CurriculumGraphPanel.test.tsx",
+      "firstFailure": "> SRS 현황의 연결도 진입 > refetches graph evidence when a plan save raises the roster revision",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/components/PrintCheck.test.tsx",
+      "firstFailure": "> 실물 출력 검수 목록 — 데이터 > 항목 수가 바뀌면 알아차린다",
+      "baselineResult": "fixed: print-check inventory 156 → 157; scoped suite passed"
+    },
+    {
+      "file": "src/__tests__/unit/bankHeldSourceSql.test.ts",
+      "firstFailure": "> counts only held question unions, including cross-source and same-group siblings, private exclusion and NULL singletons",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/conceptSentenceFixes.test.ts",
+      "firstFailure": "> 카드 보정 표 — 확정 파일 그대로 > 원본 파일은 옮겨 온 판 그대로다(고치지 않는다 — 고칠 것은 이 표로)",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/devAiResponseValidation.test.ts",
+      "firstFailure": "> OCR parsing preserves whole pages and reports safe failure stages > does not recover a truncated page as an empty or partial successful page",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/elemTiersG5.test.ts",
+      "firstFailure": "> [초5 1-2] 난이도 4단 확대 (D-72 3차) > 1-2-2 — 관계가 발문의 수로 다시 선다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/englishFence.test.ts",
+      "firstFailure": "> 영어 울타리 — ⑴ import 사슬 > 문제은행·시험지·엔진·AI·자동 출제·복습·탐험·스크립트 쪽에서는 몇 단계를 돌아가도 영어 모듈에 닿지 않는다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/englishSchemaVersionDraft.test.ts",
+      "firstFailure": "> 🔴 형식 판 SQL 초안 — 미적용인 동안의 문 > 초안은 prisma/migrations 밖에 있다 — prisma migrate 가 모른다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/errorLogRouteCoverage.test.ts",
+      "firstFailure": "> 🔴 모든 route.ts 의 모든 메서드가 withErrorLog 를 지난다 > ⑴ 소스 — 빠뜨린 메서드·틀린 경로가 없다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/examDecisionCorpus.test.ts",
+      "firstFailure": "> bank-decide 전수 지문 — 고정 기출 25편 533행 > 합의 5행과 퍼센트 7행만 달라지고 모든 정답·식별자·나머지 521행은 그대로다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examDecisionRules.test.ts",
+      "firstFailure": "> 안심 8: 원본 색인과 파일을 확인한 보기 이동 > 실제 설정이 7번의 그림 다섯을 8번 읽기 차례로 옮기고 나머지 메타·PNG는 보존한다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/examWiringAudit.test.ts",
+      "firstFailure": "> auditCodePaths — 저장소 전수 > ⭐ 기출을 넣는 경로 중 배선 없는 곳이 하나도 없다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/figureSlotsHwpx.test.tsx",
+      "firstFailure": "> writer — 칸의 첫 줄끼리(그림들) · 둘째 줄끼리(캡션들) 한 문단 > 높이가 다른 그림 둘 + 캡션 둘 — 그림 한 문단, 캡션 한 문단(제 칸 차례대로)",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxEquationHeight.test.ts",
+      "firstFailure": "> HWPX 수식 상자 — 높이·기준선은 한글이 잰 값 > 🔴 분수·첨자·루트: KaTeX 상자가 아니라 한글 실측(10.5pt)",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxGridRows.test.ts",
+      "firstFailure": "> HWPX 격자 — 한 행은 한 문단, 칸은 원문 차례대로 > 9번 저장본: (가)~(바) 가 한글에서 원문 차례로, 격자 한 행이 한 문단이다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxHancomLayout.test.ts",
+      "firstFailure": "> HWPX 배치 — 한글에서 미리보기와 같게 (mathg-gen 144ac19·b289619) > ① 수식 상자 폭은 KaTeX 폭이 아니라 한글이 잰 폭이다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxExport.test.ts",
+      "firstFailure": "> native HWPX export > uses the real writer to retain editable Korean, native equations, images and columns",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/hwpxReviewFindings.test.ts",
+      "firstFailure": "> ⑷ 수식 상자가 위로 커져도 — 구역 위 여백·줄 정보는 본문 원점 아래다 > 🔴 본문 첫 줄의 겹분수: 구역 위 여백이 본문 위 끝보다 올라가지 않고, 줄 정보의 세로 자리가 음수가 아니다",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/learningSoundAssets.test.ts",
+      "firstFailure": "> shipped CC0 learning samples > ships exactly the reviewed samples with their original license",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/mathInsightV2Access.test.ts",
+      "firstFailure": "> POST revalidates current managed membership after inference",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathOntologyModelPort.test.ts",
+      "firstFailure": "> forwards the static provider grammar and captures the exact original returned-text receipt once",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathSrsQuickFence.test.ts",
+      "firstFailure": "> 한 걸음 문항 격리 울타리 > 문제은행·시험지·엔진·스크립트 쪽에서는 몇 단계를 돌아가도 quick 에 닿지 않는다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathSrsRecordIsolation.test.ts",
+      "firstFailure": "> 보기형 전용 문항이 사는 기록의 격리 > 복습 기록 모듈을 부르는 곳은 허용 목록 안에만 있다 (문제은행·시험지·작업실·내보내기·자동 출제 없음)",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/mathgenEngineHttp.test.ts",
+      "firstFailure": "> signed Python HTTP engine > returns native editable HWPX parts through bounded gzip transport",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/mutateHarnessWideList.test.ts",
+      "firstFailure": "> mutate-elem-tiers — wide list > leaves out a test that locks table contents, keeps the guard tests",
+      "baselineResult": "passed"
+    },
+    {
+      "file": "src/__tests__/unit/noRmSync.test.ts",
+      "firstFailure": "> `rmSync` 금지 — 한글 경로에서 노드가 죽는다 > 저장소 어디에도 `rmSync` 호출이 없다",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/proxyStudentGate.test.ts",
+      "firstFailure": "> 🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다 > 학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐",
+      "baselineResult": "failed"
+    },
+    {
+      "file": "src/__tests__/unit/srsStoredContractWalk.test.ts",
+      "firstFailure": "> a 초5 student walking the expedition keeps a readable record > chooses 초5 and a unit in the settings, then studies every day without a teacher plan",
+      "baselineResult": "failed"
+    }
+  ],
+  "fullCommandExitCode": 1,
+  "realDataProbeSweep": {
+    "total": 37,
+    "failed": 1,
+    "blocked": 3,
+    "failedProbe": "probe-elem-section-conditions.ts",
+    "blockedProbes": [
+      "probe-figure-dependent.ts",
+      "probe-middle-algebra-combo.ts",
+      "probe-middle-combo.ts"
+    ]
+  }
+}

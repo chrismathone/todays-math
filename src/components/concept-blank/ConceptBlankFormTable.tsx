@@ -13,6 +13,7 @@ export type FormColumn = {
   label: string;
   help: string;
   on: boolean;
+  mode?: "auto" | "pick";
   available: boolean;
   reason: string | null;
   fields: {
@@ -27,9 +28,22 @@ export default function ConceptBlankFormTable({
   columns,
   onToggle,
   onCount,
+  onMode,
+  onPick,
+  pickStatus = "ready",
+  onRetry,
 }: {
   columns: FormColumn[];
   onToggle: (form: ConceptBlankForm) => void;
+  onMode?: (
+    form: ConceptBlankForm,
+    mode: "auto" | "pick",
+    opener: HTMLButtonElement,
+  ) => void;
+  onPick?: (form: ConceptBlankForm, opener: HTMLButtonElement) => void;
+  pickStatus?:
+    "ready" | "loading" | "error" | "document-loading" | "document-error";
+  onRetry?: () => void;
   onCount: (
     form: ConceptBlankForm,
     row: "main" | "extra",
@@ -84,6 +98,74 @@ export default function ConceptBlankFormTable({
                       <span className={s.track} aria-hidden="true" />
                     </button>
                   </div>
+                  {column.on && onMode && (
+                    <div className={s.modeRow}>
+                      <div
+                        className={s.modeSegment}
+                        role="group"
+                        aria-label={`${column.label} 싣는 방법`}
+                      >
+                        {(["auto", "pick"] as const).map((mode) => (
+                          <button
+                            key={mode}
+                            type="button"
+                            aria-pressed={(column.mode ?? "auto") === mode}
+                            onClick={(event) =>
+                              onMode(column.form, mode, event.currentTarget)
+                            }
+                          >
+                            {mode === "auto" ? "자동" : "직접"}
+                          </button>
+                        ))}
+                      </div>
+                      {column.mode === "pick" && (
+                        <>
+                          <button
+                            type="button"
+                            className={s.pickOpen}
+                            aria-label={`${column.label} 문항 고르기`}
+                            disabled={pickStatus !== "ready"}
+                            aria-describedby={
+                              pickStatus !== "ready"
+                                ? `${uid}-${column.form}-bank`
+                                : undefined
+                            }
+                            onClick={(event) =>
+                              onPick?.(column.form, event.currentTarget)
+                            }
+                          >
+                            문항 고르기
+                          </button>
+                          {pickStatus !== "ready" && (
+                            <span
+                              id={`${uid}-${column.form}-bank`}
+                              className={s.pickStatus}
+                              role="status"
+                            >
+                              {pickStatus === "error" ? (
+                                <>
+                                  은행을 불러오지 못했습니다 ·{" "}
+                                  <button
+                                    type="button"
+                                    className={s.pickOpen}
+                                    onClick={onRetry}
+                                  >
+                                    다시 시도
+                                  </button>
+                                </>
+                              ) : pickStatus === "document-loading" ? (
+                                "문서를 불러오는 중"
+                              ) : pickStatus === "document-error" ? (
+                                "문서를 불러오지 못했습니다"
+                              ) : (
+                                "은행을 불러오는 중"
+                              )}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )}
                 </th>
               ))}
             </tr>
@@ -109,24 +191,33 @@ export default function ConceptBlankFormTable({
                       className={s.tableField}
                     >
                       <span className={s.levelField}>
-                        <input
-                          type="number"
-                          inputMode="numeric"
-                          min={0}
-                          max={field.max[level]}
-                          step={1}
-                          value={field.value[level]}
-                          disabled={!column.on || field.max[level] === 0}
-                          aria-label={`${column.label} ${field.label} ${level}`}
-                          onChange={(event) =>
-                            onCount(
-                              column.form,
-                              field.row,
-                              level,
-                              event.target.value,
-                            )
-                          }
-                        />
+                        {column.on && column.mode === "pick" ? (
+                          <span
+                            className={s.pickedCount}
+                            aria-label={`${column.label} ${field.label} ${level} 고른 수`}
+                          >
+                            {field.value[level]}
+                          </span>
+                        ) : (
+                          <input
+                            type="number"
+                            inputMode="numeric"
+                            min={0}
+                            max={field.max[level]}
+                            step={1}
+                            value={field.value[level]}
+                            disabled={!column.on || field.max[level] === 0}
+                            aria-label={`${column.label} ${field.label} ${level}`}
+                            onChange={(event) =>
+                              onCount(
+                                column.form,
+                                field.row,
+                                level,
+                                event.target.value,
+                              )
+                            }
+                          />
+                        )}
                         <span className={s.levelMax}>/ {field.max[level]}</span>
                       </span>
                     </td>
