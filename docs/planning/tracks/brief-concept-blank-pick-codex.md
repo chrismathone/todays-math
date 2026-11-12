@@ -83,3 +83,30 @@ npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/u
 npm run type-check
 npm run lint:affordance
 ```
+
+### 4차 리뷰 반영
+
+- 대상: `scratch/review/review-pick4.md`의 세 건. 코드 커밋은 **`70e472fa0`**이며 이 절은 후속 문서 커밋에 담았다. 리드 결정대로 읽기만 별도 무효화하던 `SelectionContext`를 걷어내고 **공통 문서 세대**로 비동기 작업의 수명을 관리한다. 3차 참고 4번의 교차 형식 exact 순서는 수정하지 않았다.
+- **TDD:** 새로고침·늦은 PUT·PUT 뒤 복귀 GET의 세 원래 재현을 포함한 최초 시험은 **6실패·1통과**로 RED였다(`scratch/review/pick4-generation-red.log`). 역순 GET→PUT은 대조 시험으로 처음부터 통과했다. 독립 검토에서 찾은 «충돌 재조회 revision 3이 복귀 조회 revision 4를 되돌림»도 정식 시험에 먼저 추가하여 **1실패·14통과** RED를 확인했다(`pick4-conflict-red.log`). 두 RED의 실패 원인은 각각 혼합 주소·저장 대상 역전·남은 잠금, 이후 저장의 `expectedRevision: 3`이었다.
+- **공통 문서 세대:** 새 `useDocumentGeneration`이 문서 열기·같은 문서 재열기·주소 탐색·읽기 재시도에서 세대를 올린다. 읽기, PUT 및 충돌 재조회, 탭 복귀 GET, 은행 요청은 시작 세대와 작업 표지를 쥐고 완료 시 둘 다 확인한다. 고르기 적용과 저장 확인 창도 같은 세대에 묶는다. 옛 세대의 성공·실패·완료 처리는 현재 문서 상태를 바꾸지 않는다. 이미 받은 정적 학년 은행은 재사용하되, 이전 세대에서 대기하던 응답은 버리고 필요한 은행은 새 세대의 작업으로 받는다.
+- **세대별 잠금:** 읽기·저장 상태는 공용 불리언 대신 현재 세대의 미완료 작업에서 계산한다. 전환은 이전 작업 목록을 비우며, 각 작업의 완료와 effect 정리는 자기 표지만 제거한다. 이전 PUT이 끝나지 않아도 새 문서는 저장할 수 있고, 옛 실패·완료가 새 저장이나 조회의 잠금을 풀지 않는다. 탭 복귀 조회는 같은 세대에 속하므로 PUT 완료가 조회 effect를 취소하지 않는다. 중도 취소된 조회도 자기 로딩 표지를 정리한다.
+- **주소의 문서 일치:** `blankDoc`와 `blank`를 하나의 effect에서 한 번의 `replaceState`로 쓴다. 다른 문서를 읽는 중에는 새 문서 id만 남기고 이전 `blank`를 제거한다. 새 선택과 필요한 은행이 준비된 뒤 같은 문서의 두 값을 함께 싣는다. 이 사이 실제 unmount/remount로 새로고침을 모사한 시험에서 문서 2 revision 7에 문서 2의 `fx-cong-prop`가 저장된다. `blankDoc`와 해당 문서의 미저장 `blank`를 함께 여는 기존 기능은 유지한다.
+- **같은 세대의 응답 순서:** 읽기·PUT·복귀 GET·충돌 GET의 메타데이터는 `acceptDocument` 한 곳을 거친다. 세대가 같아도 이미 받은 동일 문서의 더 높은 revision을 낮추지 않는다. PUT→GET, GET→PUT 각각에서 GET revision 1/9를 대조했고, 복귀 GET 4 뒤 충돌 GET 3이 도착해도 다음 저장이 revision 4를 사용하도록 고쳤다. 공용 `LibrarySaveDialog`에는 선택적 확인 대상 신분을 더해 문서 전환 시 옛 확인 창을 닫고, 옛 완료 콜백이 새 확인 창을 닫지 못하게 했다. 다른 호출자는 기존 기본 동작을 유지한다.
+
+`main` 기준 **`78eedb0ed33df573c190a1e1f9bfe22eb38ec2d8`** 대조는 Orca Codex 작업자가 `git show`로 필요한 33파일을 격리 추출하여 수행했다. 현재 제품 소스를 읽으면 실패하는 하네스와 파일 해시/원본 바이트 대조를 사용했다.
+
+| 재현 | 기준 커밋에도 있었나 | 실행 근거와 구분 |
+| --- | --- | --- |
+| 1. 전환 중 새로고침의 혼합 주소 | **없음 — 새 회귀** | 문서 2 GET 대기 중 주소는 문서 1 id + 문서 1 선택을 유지했다. 새로고침 후 PUT도 문서 1 id·revision 1·내용이었다. 외부에서 혼합 주소를 직접 공급하면 미저장 편집으로 읽는 기존 메커니즘은 있지만, 전환 중 그 주소를 생성하는 결함은 없었다. |
+| 2. 이전 저장의 늦은 PUT | **있음 — 기존 결함** | 기준의 내 시험지 `openDocument` 경로로 문서 2를 연 뒤 옛 PUT을 완료하면, 다음 PUT이 문서 1 id·revision 2에 문서 2 내용을 보냈다. 기준에는 `popstate` 주소 탐색과 고르기 UI가 없으므로 원문의 주소 탐색 단계를 그대로 재현했다는 뜻은 아니다. 기존 저장·열기 경로에서 같은 교차 저장을 확인했다. |
+| 3. PUT과 복귀 GET 겹침의 영구 잠금 | **없음 — 새 회귀** | 기준도 PUT이 먼저 끝나면 복귀 GET은 cleanup으로 무시했다. 그러나 이 경로에 읽기 잠금을 세우지 않아 미완료 요청 0개에서 저장 활성·인쇄 링크 존재·로딩 안내 없음, 추가 저장 성공이었다. 기준에는 고르기 UI가 없어 공통 저장·인쇄 동작으로 대조했다. |
+
+- **기준점·독립 검토 증거:** 기준 하네스는 **4통과·기존 결함 안전성 단언 1실패(exit 1)**로, 2번이 기존에도 있었음을 확인한 의도된 결과다. 세부 보고는 로컬 `scratch/review/pick4-baseline-report.md`, 원본·실행 기록·요청/주소 증거는 `pick4-baseline-harness.tar.gz`에 보존했다. 수정본 독립 검토의 3통과·1실패는 `pick4-generation-review.md`·`pick4-generation-harness.tar.gz`에 있으며, 그 한 건을 위 정식 RED→GREEN으로 반영했다. 하네스는 `scratch/rescued/`에 풀어 재실행할 수 있다. 임시 스냅샷이 타입 검사에 섞인 두 번의 실패는 하네스를 제품 밖의 검사 제외 경로로 분리하고 보관한 뒤 재검증했다. 제품 `tsconfig`는 바꾸지 않았다.
+- **최종 검증:** 아래 관련 시험 **16파일·237시험 통과**(`--maxWorkers=3`), `npm run type-check`, `npm run lint:affordance`, 변경 4파일 ESLint(경고·오류 0)·Prettier·`git diff --check` 통과. 새 세대 시험 15개, 기존 문서/고르기/자동 순서/은행/코덱/인쇄와 공용 저장 확인 창 시험을 포함한다. 최종 로그는 로컬 `scratch/review/pick4-related-tests.log`·`pick4-type-check.log`·`pick4-affordance.log`·`pick4-eslint.log`다. 전체 시험은 이번에 다시 실행하지 않았으며 앞선 전체 관문 미통과 이력은 그대로다.
+- **작업 범위:** 메모리 fetch와 RTL/jsdom에서 응답 시점·순서를 제어했다. 새 브라우저 측정·실물 인쇄 검수는 하지 않았다. CSS·지면 구성·저장 계약·DB 변경, 푸시·main 병합·공유 DB 쓰기·`.env` 복사·운영 빌드 없이 현재 가지에 커밋했다. 독립 작업자는 모두 보고를 마쳤고 미병합 작업트리는 보존한다.
+
+```sh
+npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/unit/conceptBlankSelectionCodec.test.ts src/__tests__/unit/conceptBlankExactPick.test.ts src/__tests__/unit/conceptBlankSheetCode.test.ts src/__tests__/unit/conceptBlankBankLoad.test.ts src/__tests__/unit/pickerDialog.test.tsx src/__tests__/unit/textbookConcepts.test.ts src/__tests__/components/ConceptBlankPick.test.tsx src/__tests__/components/ConceptBlankAutoOrder.test.tsx src/__tests__/components/ConceptBlankPickDocument.test.tsx src/__tests__/components/ConceptBlankPickEdges.test.tsx src/__tests__/components/ConceptBlankDocumentGeneration.test.tsx src/__tests__/components/LibrarySaveDialog.test.tsx src/__tests__/components/ConceptBlankView.test.tsx src/__tests__/components/PrintCheck.test.tsx src/__tests__/api/conceptBlankPrintPage.test.ts --maxWorkers=3
+npm run type-check
+npm run lint:affordance
+```
