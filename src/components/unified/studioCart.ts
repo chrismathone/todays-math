@@ -329,22 +329,16 @@ export function studioCartRows(
   picked: StudioProblem[],
   removed: StudioCartRemoval[],
 ) {
-  const rows: { problem: StudioProblem; removed: boolean; order?: number }[] =
-    picked.map((problem, index) => ({
-      problem,
-      removed: false,
-      order: index + 1,
-    }));
-  [...removed]
-    .filter((item) => !picked.some((problem) => problem.id === item.problem.id))
-    .sort((a, b) => a.index - b.index)
-    .forEach((item) =>
-      rows.splice(Math.min(item.index, rows.length), 0, {
-        problem: item.problem,
-        removed: true,
-      }),
-    );
-  return rows;
+  const orders = new Map(
+    picked.map((problem, index) => [problem.id, index + 1]),
+  );
+  // Show each removed row where restoring it would put it, including legacy positions.
+  return cartWithRemovedNeighbors(picked, removed).map((problem) => {
+    const order = orders.get(problem.id);
+    return order === undefined
+      ? { problem, removed: true }
+      : { problem, removed: false, order };
+  });
 }
 
 /**

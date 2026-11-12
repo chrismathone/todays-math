@@ -335,18 +335,14 @@ export default function StudioPageOrder({
                   <span>
                     {identity(page)}은{" "}
                     {page.autoOut === "빈 쪽"
-                      ? "빈 쪽으로"
-                      : `${page.autoOut}로`}{" "}
-                    보여 미리 뺐습니다 —{" "}
-                    {page.autoOut === "빈 쪽"
-                      ? "인쇄된 내용이 거의 없습니다."
-                      : "문항 번호가 없습니다."}
+                      ? "빈 쪽으로 보여 미리 뺐습니다 — 인쇄된 내용이 거의 없습니다."
+                      : "이전 작업에서 뺀 쪽입니다."}
                   </span>
                   <button
                     type="button"
                     className={s.button}
                     disabled={busy}
-                    aria-label={`${identity(page)} 미리 뺀 쪽 되살리기`}
+                    aria-label={`${identity(page)} ${page.autoOut === "빈 쪽" ? "미리 뺀 쪽" : "이전 작업에서 뺀 쪽"} 되살리기`}
                     onClick={() => toggle(studioPageKey(page))}
                   >
                     되살리기

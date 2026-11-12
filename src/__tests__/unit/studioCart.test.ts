@@ -69,6 +69,54 @@ describe("쪽 제외와 담은 문항 보존", () => {
   const pageOrder = (out: boolean) =>
     [1, 2, 3].map((page) => ({ sourceId: "s1", page, out: out && page === 2 }));
 
+  it("3차 재현: B쪽 제외·C 직접 빼기·B 되살리기 뒤 C의 표시와 복원 자리가 같다", () => {
+    const initial = abc();
+    const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
+    const removed = rememberRemoval(
+      excluded.removed,
+      initial[2],
+      1,
+      excluded.picked,
+    );
+    expect(removed.find((item) => item.problem.id === "C")).toMatchObject({
+      index: 1,
+      previousId: "B",
+    });
+    const restored = reconcileStudioPageCart(
+      [initial[0]],
+      removed,
+      pageOrder(false),
+    );
+    expect(restored.picked).toEqual(initial.slice(0, 2));
+    expect(
+      studioCartRows(restored.picked, restored.removed).map((row) => [
+        row.problem.id,
+        row.removed,
+        row.order ?? null,
+      ]),
+    ).toEqual([
+      ["A", false, 1],
+      ["B", false, 2],
+      ["C", true, null],
+    ]);
+    const complete = restoreToCart(
+      restored.picked,
+      initial[2],
+      1,
+      restored.removed,
+    );
+    expect(complete).toEqual(initial);
+    expect(
+      studioCartRows(complete, forgetRemovals(restored.removed, ["C"])).map(
+        (row) => [row.problem.id, row.removed, row.order],
+      ),
+    ).toEqual([
+      ["A", false, 1],
+      ["B", false, 2],
+      ["C", false, 3],
+    ]);
+  });
+
   it("2차 재현 A: B쪽 제외 후 A를 직접 빼도 B 되살리기는 C 앞으로 간다", () => {
     const initial = abc();
     const excluded = reconcileStudioPageCart(initial, [], pageOrder(true));
@@ -258,6 +306,58 @@ describe("장부 고치기 — 담기·빼기·되돌리기", () => {
 });
 
 describe("studioCartRows — 목록 줄", () => {
+  it("연속·반복 직접 빼기는 빠진 이웃을 따라 표시하고 담긴 문항의 차례와 번호를 보존한다", () => {
+    const [a, b, c, d] = ["a", "b", "c", "d"].map(bank);
+    let removed = rememberRemoval([], b, 1, [a, b, c, d]);
+    removed = rememberRemoval(removed, c, 1, [a, c, d]);
+    const restoredB = restoreToCart([a, d], b, 1, removed);
+    removed = forgetRemovals(removed, ["b"]);
+    removed = rememberRemoval(removed, b, 1, restoredB);
+    expect(removed.filter((item) => item.problem.id === "b")).toHaveLength(1);
+
+    // A visible reorder is authoritative; removed neighbors do not renumber it.
+    const picked = [d, a];
+    const rows = studioCartRows(picked, removed);
+    expect(
+      rows.map((row) => [row.problem.id, row.removed, row.order ?? null]),
+    ).toEqual([
+      ["d", false, 1],
+      ["a", false, 2],
+      ["b", true, null],
+      ["c", true, null],
+    ]);
+    expect(
+      rows.filter((row) => !row.removed).map((row) => row.problem),
+    ).toEqual(picked);
+    for (const problem of [b, c]) {
+      expect(
+        restoreToCart(picked, problem, 1, removed).map((item) => item.id),
+      ).toEqual(
+        rows
+          .filter((row) => !row.removed || row.problem === problem)
+          .map((row) => row.problem.id),
+      );
+    }
+    expect(picked).toEqual([d, a]);
+  });
+
+  it("맨 앞 이웃과 이미 담긴 문항의 뺀 기억도 복원과 같은 규칙으로 처리한다", () => {
+    const [a, b, c] = ["a", "b", "c"].map(bank);
+    expect(
+      studioCartRows(
+        [b, c],
+        [
+          { problem: a, index: 9, previousId: null },
+          { problem: b, index: 0, previousId: null },
+        ],
+      ).map((row) => [row.problem.id, row.removed, row.order ?? null]),
+    ).toEqual([
+      ["a", true, null],
+      ["b", false, 1],
+      ["c", false, 2],
+    ]);
+  });
+
   it("담긴 것은 시험지 차례대로 번호, 뺀 것은 뺀 자리에 흐리게(번호 없음)", () => {
     const [a, b, c, d] = ["a", "b", "c", "d"].map(bank);
     const rows = studioCartRows(

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, expectTypeOf, it } from "vitest";
 import {
   activePageOrder,
   commitPageOrder,
@@ -10,6 +10,7 @@ import {
   studioPageKey,
   togglePageOut,
   undoPageOrder,
+  type StudioAutoOut,
   type StudioOrderedPage,
 } from "@/components/unified/studioPageOrder";
 
@@ -27,6 +28,33 @@ const key = (sourceId: string, number: number) =>
   studioPageKey({ sourceId, page: number });
 
 describe("studio page identity and reconciliation", () => {
+  it("limits new automatic reasons to blank while reading legacy stored reasons", () => {
+    expectTypeOf<StudioAutoOut>().toEqualTypeOf<"빈 쪽">();
+    const saved: StudioOrderedPage[] = [
+      { ...page("a", 3, true), autoOut: "정답표" },
+      { ...page("a", 1, true), autoOut: "표지" },
+      { ...page("b", 1, true), autoOut: "빈 쪽" },
+      { ...page("a", 2), autoOut: "표지" },
+    ];
+    const serialized = JSON.stringify(saved);
+    const restored = reconcilePageOrder(JSON.parse(serialized), sources);
+    expect(restored).toEqual([...saved, page("b", 2)]);
+    const history = createPageOrderHistory(restored);
+    const edited = commitPageOrder(
+      history,
+      togglePageOut(history.present, key("a", 3)),
+    );
+    expect(edited.present[0]).toEqual({ ...saved[0], out: false });
+    expect(undoPageOrder(edited)).toEqual(history);
+    expect(
+      reconcilePageOrder(JSON.parse(JSON.stringify(edited.present)), sources),
+    ).toEqual(edited.present);
+    expect(JSON.stringify(saved)).toBe(serialized);
+    expect(
+      initialPageOrder(sources).every((entry) => entry.autoOut === undefined),
+    ).toBe(true);
+  });
+
   it("keeps original page identity separate from its new position", () => {
     expect(studioPageKey(page("a", 1))).toBe(studioPageKey(page("a", 1, true)));
     expect(studioPageKey(page("a", 1))).not.toBe(studioPageKey(page("a", 2)));

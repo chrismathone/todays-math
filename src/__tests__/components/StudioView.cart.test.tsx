@@ -18,6 +18,7 @@ import {
 import {
   addToCart,
   forgetRemovals,
+  reconcileStudioPageCart,
   rememberRemoval,
   removeAllFromCart,
   restoreToCart,
@@ -164,7 +165,7 @@ function Workspace({
   const remove = (problem: StudioProblem) => {
     const index = picked.findIndex((item) => item.id === problem.id);
     if (index < 0) return;
-    setRemoved((items) => rememberRemoval(items, picked[index], index));
+    setRemoved((items) => rememberRemoval(items, picked[index], index, picked));
     setPicked((items) => items.filter((item) => item.id !== problem.id));
   };
   return (
@@ -173,6 +174,16 @@ function Workspace({
         <StudioView
           picked={picked}
           removed={removed}
+          onPageOrderChange={(order, pageCrops) => {
+            const next = reconcileStudioPageCart(
+              picked,
+              removed,
+              order,
+              pageCrops,
+            );
+            setPicked(next.picked);
+            setRemoved(next.removed);
+          }}
           onAdd={(problems) => {
             setPicked((items) => addToCart(items, problems));
             setRemoved((items) =>
@@ -192,7 +203,7 @@ function Workspace({
             const index =
               removed.find((item) => item.problem.id === problem.id)?.index ??
               picked.length;
-            setPicked((items) => restoreToCart(items, problem, index));
+            setPicked((items) => restoreToCart(items, problem, index, removed));
             setRemoved((items) => forgetRemovals(items, [problem.id]));
           }}
           onExport={onExport ?? (() => {})}
@@ -238,7 +249,14 @@ async function openReview(
 ) {
   saved.current = Promise.resolve({
     data: {
-      sources: [{ id: "s1", name: "예제 지면", kind: "sample", pages: 1 }],
+      sources: [
+        {
+          id: "s1",
+          name: "예제 지면",
+          kind: "sample",
+          pages: Math.max(1, ...crops.map((item) => item.page)),
+        },
+      ],
       crops,
       sourceId: "s1",
       pageNumber: 1,
@@ -293,6 +311,72 @@ const tabBadge = () =>
 const panel = () => screen.getByRole("region", { name: "담은 문항 목록" });
 
 describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () => {
+  it("3차 재현: B쪽 제외·C 직접 빼기 뒤 B를 되살리면 C의 뺀 줄과 다시 담는 자리가 같다", async () => {
+    await openReview([
+      crop("A", { page: 1 }),
+      crop("B", { page: 2 }),
+      crop("C", { page: 3 }),
+    ]);
+    fireEvent.click(addButton());
+    expect(worksheet().map((row) => row.id)).toEqual(["A", "B", "C"]);
+
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    const excludeB = screen.getByRole("button", {
+      name: "예제 지면 원본 2쪽 빼기",
+    });
+    await waitFor(() => expect(excludeB).toBeEnabled());
+    fireEvent.click(excludeB);
+    expect(worksheet().map((row) => row.id)).toEqual(["A", "C"]);
+
+    fireEvent.click(stepTab(/2 문항 검토/));
+    fireEvent.click(cartToggle());
+    fireEvent.click(
+      within(
+        panel().querySelector<HTMLElement>('[data-cart-row="C"]')!,
+      ).getByRole("button", { name: /빼기$/ }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["A"]);
+    fireEvent.click(within(panel()).getByRole("button", { name: "닫기" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "예제 지면 원본 2쪽 되살리기",
+      }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["A", "B"]);
+    fireEvent.click(stepTab(/2 문항 검토/));
+    fireEvent.click(cartToggle());
+
+    const rows = () => within(panel()).getAllByRole("listitem");
+    expect(
+      rows().map((row) => [
+        row.dataset.cartRow,
+        row.dataset.removed,
+        row.firstElementChild?.textContent,
+      ]),
+    ).toEqual([
+      ["A", "false", "01"],
+      ["B", "false", "02"],
+      ["C", "true", "–"],
+    ]);
+    fireEvent.click(
+      within(panel()).getByRole("button", { name: "문제 03 다시 담기" }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["A", "B", "C"]);
+    expect(
+      rows().map((row) => [
+        row.dataset.cartRow,
+        row.dataset.removed,
+        row.firstElementChild?.textContent,
+      ]),
+    ).toEqual([
+      ["A", "false", "01"],
+      ["B", "false", "02"],
+      ["C", "false", "03"],
+    ]);
+  });
+
   it("구성 탭도 현재 추출 18문항을 넘기고 기존 은행 20문항을 보존한다", async () => {
     const onExport = vi.fn();
     const existing = Array.from({ length: 20 }, (_, index) => ({

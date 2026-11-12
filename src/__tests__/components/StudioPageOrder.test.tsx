@@ -106,13 +106,11 @@ describe("H3-B 쪽 순서", () => {
     },
   );
 
-  it("파일 딱지·활성 수·원본 신분을 표시하며 자동 제외 쪽을 제자리에 남긴다", () => {
+  it("파일 딱지·활성 수·원본 신분을 표시하며 이전 작업에서 뺀 쪽을 제자리에 남긴다", () => {
     const { onToggle } = setup();
     expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 1")).toBeVisible();
     expect(
-      screen.getByText(
-        "본문.pdf 원본 1쪽은 표지로 보여 미리 뺐습니다 — 문항 번호가 없습니다.",
-      ),
+      screen.getByText("본문.pdf 원본 1쪽은 이전 작업에서 뺀 쪽입니다."),
     ).toBeVisible();
     const figures = [...grid().querySelectorAll("figure")];
     expect(figures.map((figure) => figure.dataset.stripKey)).toEqual(
@@ -135,6 +133,62 @@ describe("H3-B 쪽 순서", () => {
         name: /이 순서로 시작|되돌리기|처음 차례로/,
       }),
     ).toBeNull();
+  });
+
+  it.each(["표지", "정답표"] as const)(
+    "저장된 %s 제외는 이전 작업으로 알리고 새 판정 근거를 주장하지 않는다",
+    (autoOut) => {
+      const { onToggle } = setup({
+        order: [{ ...order[0], autoOut }, ...order.slice(1)],
+      });
+      expect(
+        screen.getByText("본문.pdf 원본 1쪽은 이전 작업에서 뺀 쪽입니다."),
+      ).toBeVisible();
+      expect(
+        screen.getByRole("region", { name: "쪽 순서 편집" }),
+      ).not.toHaveTextContent(
+        /표지|정답표|문항 번호가 없습니다|보여 미리 뺐습니다/,
+      );
+      fireEvent.click(
+        screen.getByRole("button", {
+          name: "본문.pdf 원본 1쪽 이전 작업에서 뺀 쪽 되살리기",
+        }),
+      );
+      expect(onToggle).toHaveBeenCalledExactlyOnceWith(key(0));
+    },
+  );
+
+  it("새 자동 제외의 빈 쪽 표시와 이전 작업의 제외를 구분하며 되살린 쪽에는 안내를 남기지 않는다", () => {
+    const pages: StudioOrderedPage[] = [
+      { ...order[0], autoOut: "빈 쪽" },
+      { ...order[1], out: true, autoOut: "정답표" },
+      order[2],
+    ];
+    const { props, rerender, onToggle } = setup({ order: pages });
+    expect(
+      screen.getByText(
+        "본문.pdf 원본 1쪽은 빈 쪽으로 보여 미리 뺐습니다 — 인쇄된 내용이 거의 없습니다.",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText("본문.pdf 원본 2쪽은 이전 작업에서 뺀 쪽입니다."),
+    ).toBeVisible();
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "본문.pdf 원본 1쪽 미리 뺀 쪽 되살리기",
+      }),
+    );
+    expect(onToggle).toHaveBeenCalledExactlyOnceWith(key(0));
+    rerender(
+      <StudioPageOrder
+        {...props}
+        order={pages.map((page) => ({ ...page, out: false }))}
+      />,
+    );
+    expect(
+      screen.queryByText(/미리 뺐습니다|이전 작업에서 뺀 쪽입니다/),
+    ).toBeNull();
+    expect(screen.getByText("시작할 쪽 3 · 뺀 쪽 0")).toBeVisible();
   });
 
   it("단추 이동은 모델 키를 전달하고 경계는 막으며 재배열 뒤에도 선택한 원본을 유지한다", () => {

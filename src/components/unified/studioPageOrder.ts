@@ -1,9 +1,16 @@
+/** Newly analyzed pages may only be automatically excluded as rendered blanks. */
+export type StudioAutoOut = "빈 쪽";
+
+/** Read-only provenance from older saved work; never generate these reasons. */
+type LegacyStudioAutoOut = "표지" | "정답표";
+
 /** Original page identity never changes when pages move or are excluded. */
 export interface StudioOrderedPage {
   sourceId: string;
   page: number;
   out: boolean;
-  autoOut?: "표지" | "정답표" | "빈 쪽";
+  /** Preserve legacy exclusions on restore without classifying those pages again. */
+  autoOut?: StudioAutoOut | LegacyStudioAutoOut;
 }
 
 export interface StudioPageSource {

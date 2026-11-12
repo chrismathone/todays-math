@@ -34,7 +34,10 @@ const state = vi.hoisted(() => ({
   jobs: null as StudioAiPageJob[] | null,
   activePages: [] as readonly { sourceId: string; page: number }[],
   pdfPages: 2,
+  readText: vi.fn(),
   readOperators: vi.fn(),
+  blankPages: [] as number[],
+  renderedPages: new WeakMap<HTMLCanvasElement, number>(),
 }));
 vi.mock("@/components/unified/studioSessionStore", () => ({
   StudioSessionStore: class {
@@ -67,16 +70,17 @@ vi.mock("pdfjs-dist", () => ({
   getDocument: () => ({
     promise: Promise.resolve({
       numPages: state.pdfPages,
-      getPage: async () => ({
+      getPage: async (page: number) => ({
         getViewport: ({ scale }: { scale: number }) => ({
           width: 100 * scale,
           height: 140 * scale,
         }),
-        getTextContent: async () => ({
-          items: [{ str: "1. 값을 구하시오.", hasEOL: true }],
-        }),
+        getTextContent: state.readText,
         getOperatorList: state.readOperators,
-        render: () => ({ promise: Promise.resolve(), cancel() {} }),
+        render: ({ canvas }: { canvas: HTMLCanvasElement }) => {
+          state.renderedPages.set(canvas, page);
+          return { promise: Promise.resolve(), cancel() {} };
+        },
       }),
       loadingTask: { destroy: async () => {} },
     }),
@@ -94,6 +98,11 @@ beforeEach(() => {
   state.jobs = null;
   state.activePages = [];
   state.pdfPages = 2;
+  state.blankPages = [];
+  state.renderedPages = new WeakMap();
+  state.readText.mockReset().mockResolvedValue({
+    items: [{ str: "1. 값을 구하시오.", hasEOL: true }],
+  });
   state.readOperators
     .mockReset()
     .mockResolvedValue({ fnArray: [], argsArray: [] });
@@ -117,16 +126,26 @@ beforeEach(() => {
       }),
     ),
   );
-  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(
-    new Proxy(
-      {},
-      {
-        get: (_, key) =>
-          key === "getImageData"
-            ? () => ({ data: new Uint8ClampedArray([0, 0, 0, 255]) })
-            : vi.fn(),
-      },
-    ) as CanvasRenderingContext2D,
+  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation(
+    function (this: HTMLCanvasElement) {
+      return new Proxy(
+        {},
+        {
+          get: (_, key) =>
+            key === "getImageData"
+              ? () => ({
+                  data: new Uint8ClampedArray(
+                    state.blankPages.includes(
+                      state.renderedPages.get(this) ?? 0,
+                    )
+                      ? [255, 255, 255, 255]
+                      : [0, 0, 0, 255],
+                  ),
+                })
+              : vi.fn(),
+        },
+      ) as CanvasRenderingContext2D;
+    },
   );
   vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
     "data:image/png;base64,c291cmNl",
@@ -212,8 +231,9 @@ async function excludeFirstWorkedPage() {
 }
 
 describe("Studio 쪽 차례 연결", () => {
-  it("연산 목록 응답이 없어도 3초 뒤 쪽을 유지하고 쪽 순서 조작·시작을 연다", async () => {
-    state.pdfPages = 1;
+  it("텍스트·연산 목록 응답이 영원히 없어도 두 API를 부르지 않고 렌더의 빈 쪽만 빼고 즉시 조작·시작을 연다", async () => {
+    state.blankPages = [2];
+    state.readText.mockReturnValue(new Promise(() => {}));
     state.readOperators.mockReturnValue(new Promise(() => {}));
     open();
     const input = screen.getByLabelText("PDF 또는 이미지 파일 가져오기");
@@ -226,18 +246,86 @@ describe("Studio 쪽 차례 연결", () => {
     await act(async () => {
       fireEvent.change(input, { target: { files: [file] } });
     });
-    expect(state.readOperators).toHaveBeenCalledOnce();
-    expect(
-      screen.getByRole("button", { name: "이 순서로 시작 →" }),
-    ).toBeDisabled();
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(3000);
-    });
+    // No timer advance: rendering alone must unlock the controls.
+    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readOperators).not.toHaveBeenCalled();
     expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeEnabled();
     expect(
       screen.getByRole("button", { name: "이 순서로 시작 →" }),
     ).toBeEnabled();
-    expect(screen.getByText(/시작할 쪽 1 · 뺀 쪽 0/)).toBeVisible();
+    expect(screen.getByText("시작할 쪽 1 · 뺀 쪽 1")).toBeVisible();
+    expect(
+      screen.getByText(
+        "지연.pdf 원본 2쪽은 빈 쪽으로 보여 미리 뺐습니다 — 인쇄된 내용이 거의 없습니다.",
+      ),
+    ).toBeVisible();
+    const cards = screen
+      .getByRole("region", { name: "쪽 카드" })
+      .querySelectorAll("figure");
+    expect(cards[0]).toHaveAttribute("data-excluded", "false");
+    expect(cards[1]).toHaveAttribute("data-excluded", "true");
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(pageChoices()).toEqual([
+      expect.stringMatching(/지연.pdf.*원본 1쪽/),
+    ]);
+    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readOperators).not.toHaveBeenCalled();
+  });
+
+  it("저장한 표지·정답표 사유와 되살린 상태를 그대로 읽고 빈 PDF 미리보기로 다시 제외하지 않는다", async () => {
+    state.pdfPages = 4;
+    state.blankPages = [1, 2, 3, 4];
+    vi.stubGlobal(
+      "File",
+      class extends File {
+        async arrayBuffer() {
+          return new ArrayBuffer(8);
+        }
+      },
+    );
+    const pageOrder = [
+      { sourceId: "a", page: 2, out: true, autoOut: "정답표" as const },
+      { sourceId: "a", page: 4, out: false },
+      { sourceId: "a", page: 1, out: true, autoOut: "표지" as const },
+      { sourceId: "a", page: 3, out: false, autoOut: "표지" as const },
+    ];
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "pdf", pages: 4 }],
+        step: "order",
+        pageOrder,
+      }),
+      originals: new Map([
+        ["a", new Blob(["pdf"], { type: "application/pdf" })],
+      ]),
+    };
+    open();
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "이 순서로 시작 →" }),
+      ).toBeEnabled(),
+    );
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 2")).toBeVisible();
+    for (const page of [1, 2]) {
+      expect(
+        screen.getByText(
+          `본문.pdf 원본 ${page}쪽은 이전 작업에서 뺀 쪽입니다.`,
+        ),
+      ).toBeVisible();
+    }
+    expect(
+      screen.queryByText(/빈 쪽으로 보여|문항 번호가 없습니다/),
+    ).toBeNull();
+    await waitFor(() =>
+      expect(state.save.mock.calls.at(-1)?.[0].pageOrder).toEqual(pageOrder),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(pageChoices()).toEqual([
+      expect.stringMatching(/본문.pdf.*원본 4쪽/),
+      expect.stringMatching(/본문.pdf.*원본 3쪽/),
+    ]);
+    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readOperators).not.toHaveBeenCalled();
   });
 
   it("2차 원본 복원: 같은 옛 쪽에서 각각 새 원본이 된 담은 문항도 제외·출력·되살리기가 연결된다", async () => {
