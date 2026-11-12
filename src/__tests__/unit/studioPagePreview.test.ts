@@ -1,8 +1,27 @@
-import { beforeEach, afterEach, expect, it, vi } from "vitest";
+import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
+import { OPS } from "pdfjs-dist";
 import {
   renderStudioPagePreview,
   studioPdfTextLines,
 } from "@/components/unified/studioPagePreview";
+
+vi.mock("pdfjs-dist", () => ({
+  OPS: {
+    save: 10,
+    restore: 11,
+    showText: 44,
+    paintFormXObjectBegin: 74,
+    paintFormXObjectEnd: 75,
+    paintImageMaskXObject: 83,
+    paintImageMaskXObjectGroup: 84,
+    paintImageXObject: 85,
+    paintInlineImageXObject: 86,
+    paintInlineImageXObjectGroup: 87,
+    paintImageXObjectRepeat: 88,
+    paintImageMaskXObjectRepeat: 89,
+    paintSolidColorImageMask: 90,
+  },
+}));
 
 beforeEach(() => {
   vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
@@ -13,6 +32,103 @@ beforeEach(() => {
   );
 });
 afterEach(() => vi.restoreAllMocks());
+
+function pdfSource(
+  textLines: readonly string[],
+  getOperatorList: () => Promise<{ fnArray: number[]; argsArray: unknown[] }>,
+) {
+  return {
+    pdf: {
+      getPage: async () => ({
+        getViewport: ({ scale }: { scale: number }) => ({
+          width: 200 * scale,
+          height: 300 * scale,
+        }),
+        getTextContent: async () => ({
+          items: textLines.map((str) => ({ str, hasEOL: true })),
+        }),
+        getOperatorList,
+        render: () => ({ promise: Promise.resolve(), cancel: vi.fn() }),
+      }),
+    },
+  } as never;
+}
+
+const textCandidates = [
+  { textLines: ["문제지", "2학년", "유의 사항"], expected: "표지" },
+  { textLines: ["빠른 정답", "01 ③", "02 ⑤"], expected: "정답표" },
+] as const;
+
+describe.each(textCandidates)(
+  "$expected text with PDF image questions",
+  ({ textLines, expected }) => {
+    it.each([
+      "paintImageXObject",
+      "paintInlineImageXObject",
+      "paintInlineImageXObjectGroup",
+      "paintImageXObjectRepeat",
+      "paintImageMaskXObject",
+      "paintImageMaskXObjectGroup",
+      "paintImageMaskXObjectRepeat",
+      "paintSolidColorImageMask",
+    ] as const)(
+      "retains the page for %s anywhere in the operator list",
+      async (operation) => {
+        const getOperatorList = vi.fn(async () => ({
+          // Include nested form markers and preceding text: neither may hide the image.
+          fnArray: [
+            OPS.showText,
+            OPS.paintFormXObjectBegin,
+            OPS[operation],
+            OPS.paintFormXObjectEnd,
+          ],
+          argsArray: [[], [], [], []],
+        }));
+        const result = await renderStudioPagePreview(
+          pdfSource(textLines, getOperatorList),
+          1,
+          new AbortController().signal,
+        );
+        expect(result.autoOut).toBeUndefined();
+        expect(result.url).toMatch(/^data:image/);
+        expect(getOperatorList).toHaveBeenCalledOnce();
+      },
+    );
+
+    it("retains the page if the operator list cannot be read", async () => {
+      const result = await renderStudioPagePreview(
+        pdfSource(textLines, async () => {
+          throw new Error("operator list unavailable");
+        }),
+        1,
+        new AbortController().signal,
+      );
+      expect(result.autoOut).toBeUndefined();
+      expect(result.url).toMatch(/^data:image/);
+    });
+
+    it("still excludes an explicit text-only page after checking the operator list", async () => {
+      const getOperatorList = vi.fn(async () => ({
+        fnArray: [
+          OPS.save,
+          OPS.paintFormXObjectBegin,
+          OPS.showText,
+          OPS.paintFormXObjectEnd,
+          OPS.restore,
+        ],
+        argsArray: [[], [], [], [], []],
+      }));
+      const result = await renderStudioPagePreview(
+        pdfSource(textLines, getOperatorList),
+        1,
+        new AbortController().signal,
+      );
+      expect(result.autoOut).toBe(expected);
+      expect(getOperatorList).toHaveBeenCalledOnce();
+    });
+  },
+);
+
 it("keeps touching PDF fragments together, including Korean grade labels", () => {
   expect(
     studioPdfTextLines([

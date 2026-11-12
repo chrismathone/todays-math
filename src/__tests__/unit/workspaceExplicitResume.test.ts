@@ -181,7 +181,7 @@ describe("legacy progress metadata", () => {
     ).toBeUndefined();
     expect(documentWorkflow("arithmeticSheet", {})).toBeUndefined();
   });
-  it.each(["upload", "import", "crop", "review", "export"])(
+  it.each(["upload", "import", "order", "crop", "review", "export"])(
     "uses the actual saved extraction %s stage",
     (step) => {
       expect(documentWorkflow("extraction", { data: { step } })).toEqual({

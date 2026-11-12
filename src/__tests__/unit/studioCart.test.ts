@@ -12,6 +12,7 @@ import {
   studioCartState,
   type StudioCartRemoval,
   onlySolutionChanged,
+  reconcileStudioPageCart,
 } from "@/components/unified/studioCart";
 import { applyStudioCropEdit } from "@/components/unified/studioCropEdit";
 import {
@@ -57,6 +58,56 @@ const bank = (id: string): StudioProblem => ({
   figureSvg: null,
   figureDims: [],
   figureSourceMm: [],
+});
+
+describe("쪽 제외와 담은 문항 보존", () => {
+  it("연속 제외·복원은 원래 자리와 원본 객체를 보존하며 다른 파일·은행·직접 뺀 문항에 간섭하지 않는다", () => {
+    const a = studioProblem(crop("a", { page: 1, solution: "보존할 해설" }));
+    const b = studioProblem(crop("b", { page: 2 }));
+    const other = studioProblem(crop("other", { sourceId: "s2", page: 1 }));
+    const manual = {
+      problem: studioProblem(crop("manual", { page: 1 })),
+      index: 3,
+    };
+    const initial = [a, bank("bank"), b, other];
+    const order = (out: number[]) =>
+      [1, 2].map((page) => ({ sourceId: "s1", page, out: out.includes(page) }));
+    const first = reconcileStudioPageCart(initial, [manual], order([1]));
+    const both = reconcileStudioPageCart(
+      first.picked,
+      first.removed,
+      order([1, 2]),
+    );
+    expect(both.picked.map((p) => p.id)).toEqual(["bank", "other"]);
+    const partial = reconcileStudioPageCart(
+      both.picked,
+      both.removed,
+      order([1]),
+    );
+    expect(partial.picked.map((p) => p.id)).toEqual(["bank", "b", "other"]);
+    const restored = reconcileStudioPageCart(
+      partial.picked,
+      partial.removed,
+      order([]),
+    );
+    expect(restored.picked).toEqual(initial);
+    expect(restored.picked[0]).toBe(a);
+    expect(restored.removed).toEqual([manual]);
+    expect(
+      reconcileStudioPageCart(restored.picked, restored.removed, order([]))
+        .picked,
+    ).toBe(restored.picked);
+  });
+
+  it("다른 추출 작업을 열어도 제외된 쪽을 임의로 되살리지 않는다", () => {
+    const problem = studioProblem(crop("a"));
+    const removed = [{ problem, index: 0, pageExcluded: true }];
+    expect(
+      reconcileStudioPageCart([], removed, [
+        { sourceId: "other", page: 1, out: false },
+      ]).removed,
+    ).toBe(removed);
+  });
 });
 
 describe("studioCartState — 작업실 한 문항이 시험지에서 어떤 상태인가", () => {

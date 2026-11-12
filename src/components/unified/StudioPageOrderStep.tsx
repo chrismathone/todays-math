@@ -112,16 +112,22 @@ export default function StudioPageOrder({
   const canMoveForward =
     !!selected && !selected.out && selectedActiveIndex < active.length - 1;
 
-  const move = (direction: Extract<StudioPageMove, string>) => {
-    if (busy || !selectedId || selected?.out) return;
+  const move = (
+    direction: Extract<StudioPageMove, string>,
+    key = selectedId,
+  ) => {
+    if (busy || !key) return;
+    const moving = order.find((page) => studioPageKey(page) === key);
+    if (!moving || moving.out) return;
+    const index = active.findIndex((page) => studioPageKey(page) === key);
     if (
       direction === "first" || direction === "previous"
-        ? !canMoveBack
-        : !canMoveForward
+        ? index <= 0
+        : index >= active.length - 1
     )
       return;
-    setSelectedKey(selectedId);
-    onMove(selectedId, direction);
+    setSelectedKey(key);
+    onMove(key, direction);
   };
 
   // Excluded pages remain selectable, but navigation goes to a live neighbor.
@@ -159,8 +165,16 @@ export default function StudioPageOrder({
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
     event.preventDefault();
     const direction = event.key === "ArrowLeft" ? -1 : 1;
-    if (event.altKey) move(direction === -1 ? "previous" : "next");
-    else navigate(direction);
+    if (event.altKey) {
+      const handle =
+        target instanceof HTMLElement
+          ? target.closest<HTMLElement>("button[data-studio-page-key]")
+          : null;
+      move(
+        direction === -1 ? "previous" : "next",
+        handle?.dataset.studioPageKey ?? selectedId,
+      );
+    } else navigate(direction);
   };
   const toggle = (key: string) => {
     if (busy) return;
@@ -357,6 +371,7 @@ export default function StudioPageOrder({
                   className={s.grip}
                   draggable={!busy}
                   disabled={busy}
+                  data-studio-page-key={card.key}
                   aria-label={`${identity(page)} 끌어서 옮기기`}
                   title="끌어서 옮기기"
                   onClick={() => setSelectedKey(card.key)}

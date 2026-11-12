@@ -10,12 +10,18 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudioView from "@/components/unified/StudioView";
 import { DevAiProvider } from "@/components/unified/useDevAi";
 import type { StudioSessionData } from "@/components/unified/studioSessionStore";
-import type { StudioAiPageTask } from "@/components/unified/useStudioAi";
+import type {
+  StudioAiPageTask,
+  StudioAiPageJob,
+} from "@/components/unified/useStudioAi";
+import type { StudioCrop } from "@/components/unified/studioHelpers";
 
 const state = vi.hoisted(() => ({
   saved: null as unknown,
   save: vi.fn(),
   recognize: vi.fn(),
+  jobs: null as StudioAiPageJob[] | null,
+  activePages: [] as readonly { sourceId: string; page: number }[],
 }));
 vi.mock("@/components/unified/studioSessionStore", () => ({
   StudioSessionStore: class {
@@ -31,10 +37,14 @@ vi.mock("@/components/unified/useStudioAi", async (original) => {
     await original<typeof import("@/components/unified/useStudioAi")>();
   return {
     ...actual,
-    useStudioAi: (...args: Parameters<typeof actual.useStudioAi>) => ({
-      ...actual.useStudioAi(...args),
-      recognizePages: state.recognize,
-    }),
+    useStudioAi: (...args: Parameters<typeof actual.useStudioAi>) => {
+      state.activePages = args[0].activePages ?? [];
+      return {
+        ...actual.useStudioAi(...args),
+        ...(state.jobs ? { pageJobs: state.jobs } : {}),
+        recognizePages: state.recognize,
+      };
+    },
   };
 });
 vi.mock("pdfjs-dist", () => ({
@@ -66,6 +76,8 @@ beforeEach(() => {
   state.saved = null;
   state.save.mockReset().mockResolvedValue(undefined);
   state.recognize.mockReset();
+  state.jobs = null;
+  state.activePages = [];
   vi.stubGlobal(
     "ResizeObserver",
     class {
@@ -153,7 +165,196 @@ const pageChoices = () =>
     .getAllByRole("option")
     .map((el) => el.textContent);
 
+function workedPages(): StudioCrop[] {
+  return [1, 2].map((page) => ({
+    id: `c${page}`,
+    sourceId: "a",
+    sourceLabel: "본문.pdf",
+    page,
+    rect: { x: 0.1, y: 0.1, width: 0.8, height: 0.2 },
+    image: "data:image/png;base64,c291cmNl",
+    content: `인식 ${page}`,
+    answer: "2",
+    solution: `해설 ${page}`,
+    grade: "중1",
+    level: "secondary",
+    mode: "image",
+    reviewed: true,
+  }));
+}
+
+async function excludeFirstWorkedPage() {
+  fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+  await waitFor(() =>
+    expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeEnabled(),
+  );
+  fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+}
+
 describe("Studio 쪽 차례 연결", () => {
+  it("모든 쪽을 빼면 남은 작업을 지우거나 빈 시험지 출력으로 넘어갈 수 없다", async () => {
+    const crops = workedPages();
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "sample", pages: 2 }],
+        crops,
+        step: "review",
+      }),
+      originals: new Map(),
+    };
+    const onExport = vi.fn();
+    const props = { onAdd: vi.fn(), onExport, storageScope: "local-test" };
+    const view = render(
+      <DevAiProvider>
+        <StudioView {...props} />
+      </DevAiProvider>,
+    );
+    fireEvent.click(await screen.findByRole("button", { name: "2문항 담기" }));
+    await excludeFirstWorkedPage();
+    fireEvent.click(screen.getByRole("button", { name: /원본 2쪽 크게 보기/ }));
+    fireEvent.click(screen.getByRole("button", { name: "이 쪽 빼기" }));
+    expect(screen.getByRole("button", { name: /3 양식 구성/ })).toBeDisabled();
+    view.rerender(
+      <DevAiProvider>
+        <StudioView
+          {...props}
+          stepRequest={{ id: 1, step: "crop" }}
+          exportRequest={{ id: 1 }}
+        />
+      </DevAiProvider>,
+    );
+    const rotate = screen.queryByRole("button", { name: /90도 회전/ });
+    if (rotate) expect(rotate).toBeDisabled();
+    fireEvent.keyDown(window, { key: "Delete" });
+    await waitFor(() =>
+      expect(state.save.mock.calls.at(-1)?.[0].crops).toEqual(crops),
+    );
+    expect(onExport).not.toHaveBeenCalled();
+  });
+
+  it("실패 목록과 재시도 범위가 함께 활성 쪽만 가리킨다", async () => {
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "sample", pages: 2 }],
+      }),
+      originals: new Map(),
+    };
+    state.jobs = [1, 2].map((page) => ({
+      key: `a:${page}`,
+      sourceId: "a",
+      page,
+      state: "error",
+    }));
+    open();
+    await screen.findByRole("combobox", { name: "페이지 선택" });
+    await excludeFirstWorkedPage();
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(state.activePages).toEqual([{ sourceId: "a", page: 2, out: false }]);
+    fireEvent.click(screen.getByRole("button", { name: /작업 진행 상세/ }));
+    expect(
+      screen.getByRole("button", { name: "실패 1쪽 재시도" }),
+    ).toBeEnabled();
+    expect(
+      screen.queryByRole("button", { name: "실패 2쪽 재시도" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("쪽 순서에서 저장한 작업은 문항 검토를 건너뛰고 저장한 차례 편집으로 복원한다", async () => {
+    const pageOrder = [
+      { sourceId: "a", page: 2, out: false },
+      { sourceId: "b", page: 1, out: false },
+      { sourceId: "a", page: 1, out: true },
+    ];
+    state.saved = {
+      data: savedSession({ step: "order", pageOrder }),
+      originals: new Map(),
+    };
+    open();
+    const cards = await screen.findByRole("region", { name: "쪽 카드" });
+    expect(
+      [...cards.querySelectorAll("figure")].map((card) =>
+        JSON.parse(card.dataset.stripKey!),
+      ),
+    ).toEqual(pageOrder.map((page) => [page.sourceId, page.page]));
+    expect(screen.queryByRole("combobox", { name: "페이지 선택" })).toBeNull();
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "이 순서로 시작 →" }),
+      ).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    expect(pageChoices()).toEqual([
+      expect.stringMatching(/본문.pdf.*원본 2쪽/),
+      expect.stringMatching(/서술형.pdf.*원본 1쪽/),
+    ]);
+  });
+
+  it("현재 쪽을 빼고 검토를 거쳐 회전해도 뺀 쪽의 상자·인식·해설을 보존한다", async () => {
+    const crops = workedPages();
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "sample", pages: 2 }],
+        crops,
+        activeCropId: "c1",
+      }),
+      originals: new Map(),
+    };
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+    open();
+    await screen.findByRole("combobox", { name: "페이지 선택" });
+    await excludeFirstWorkedPage();
+    fireEvent.click(screen.getByRole("button", { name: /2 문항 검토/ }));
+    fireEvent.click(screen.getByRole("button", { name: "1 영역 지정" }));
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: /90도 회전/ })).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: /90도 회전/ }));
+    expect(confirm).toHaveBeenCalledTimes(1);
+    await waitFor(() =>
+      expect(state.save.mock.calls.at(-1)?.[0]).toMatchObject({
+        sourceId: "a",
+        pageNumber: 2,
+        crops,
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    fireEvent.click(screen.getByRole("button", { name: "처음 차례로" }));
+    fireEvent.click(screen.getByRole("button", { name: /2 문항 검토/ }));
+    expect(screen.getByRole("button", { name: "2문항 담기" })).toBeEnabled();
+  });
+
+  it("담은 뒤 쪽을 빼면 담은 목록·출력 배지에서 빠지고 되살리면 돌아온다", async () => {
+    state.saved = {
+      data: savedSession({
+        sources: [{ id: "a", name: "본문.pdf", kind: "sample", pages: 2 }],
+        crops: workedPages(),
+        activeCropId: "c1",
+        step: "review",
+      }),
+      originals: new Map(),
+    };
+    open();
+    fireEvent.click(await screen.findByRole("button", { name: "2문항 담기" }));
+    await excludeFirstWorkedPage();
+    fireEvent.click(screen.getByRole("button", { name: /2 문항 검토/ }));
+    expect(
+      screen.getByRole("button", { name: /^담은 문항/ }),
+    ).toHaveTextContent("담은 문항 1");
+    expect(
+      screen.getByRole("button", { name: /3 양식 구성/ }),
+    ).toHaveTextContent("1");
+    fireEvent.click(screen.getByRole("button", { name: /^담은 문항/ }));
+    const list = screen.getByRole("region", { name: /담은 문항/ });
+    expect(within(list).queryByText("인식 1")).not.toBeInTheDocument();
+    fireEvent.click(within(list).getByRole("button", { name: /닫기/ }));
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    fireEvent.click(screen.getByRole("button", { name: "처음 차례로" }));
+    fireEvent.click(screen.getByRole("button", { name: /2 문항 검토/ }));
+    expect(
+      screen.getByRole("button", { name: /^담은 문항/ }),
+    ).toHaveTextContent("담은 문항 2");
+  });
+
   it("한 파일을 올려도 쪽 순서에서 시작하고 단추 이동·빼기·되돌리기가 인식 대상에 반영된다", async () => {
     await upload();
     const choose = screen.getAllByRole("button", { name: /크게 보기/ });

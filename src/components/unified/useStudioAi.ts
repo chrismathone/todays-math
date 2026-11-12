@@ -147,6 +147,7 @@ export function useStudioAi({
   setCrops,
   contextKey,
   active,
+  activePages,
   figuresDeferred = false,
   onDetected,
   onRotatePage,
@@ -155,6 +156,8 @@ export function useStudioAi({
   setCrops: Dispatch<SetStateAction<StudioCrop[]>>;
   contextKey: string;
   active: boolean;
+  /** Scope page retries without discarding excluded pages' failure history. */
+  activePages?: readonly Pick<StudioAiPage, "sourceId" | "page">[];
   /**
    * ② 영역 지정에 있는 동안 참 — 인식이 찾아낸 도형을 **바로 만들지 않고** 미뤄 둔다(원장님 2026-09-21).
    * 도형 칸은 ② 에서 고치는 일이 잦은데, 인식과 같이 돌리면 고친 뒤에 같은 도형을 한 번 더 만든다(유료 호출).
@@ -197,11 +200,19 @@ export function useStudioAi({
     crops,
     contextKey,
     active,
+    activePages,
     onDetected,
     onRotatePage,
   });
   useLayoutEffect(() => {
-    latest.current = { crops, contextKey, active, onDetected, onRotatePage };
+    latest.current = {
+      crops,
+      contextKey,
+      active,
+      activePages,
+      onDetected,
+      onRotatePage,
+    };
     for (const { entry, owned } of pendingRotations.current.splice(0)) {
       if (
         entry.controller.signal.aborted ||
@@ -851,9 +862,20 @@ export function useStudioAi({
   }
 
   async function retryPages() {
+    const activePageKeys = latest.current.activePages
+      ? new Set(
+          latest.current.activePages.map(({ sourceId, page }) =>
+            pageKey(sourceId, page),
+          ),
+        )
+      : undefined;
     await recognizePages(
       Array.from(pages.current.values()).flatMap((entry) =>
-        entry.job.state === "error" && entry.task ? [entry.task] : [],
+        entry.job.state === "error" &&
+        entry.task &&
+        (!activePageKeys || activePageKeys.has(entry.job.key))
+          ? [entry.task]
+          : [],
       ),
     );
   }

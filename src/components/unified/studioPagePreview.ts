@@ -65,6 +65,7 @@ export async function renderStudioPagePreview(
   const context = canvas.getContext("2d", { willReadFrequently: true });
   if (!context) throw new Error("쪽 그림을 불러오지 못했습니다.");
   let textLines: string[] = [];
+  let hasImagePaint: boolean | undefined;
   if (source.pdf) {
     const pdfPage = await source.pdf.getPage(page);
     check();
@@ -89,6 +90,23 @@ export async function renderStudioPagePreview(
       );
     } catch {
       /* A scan may not have usable text. */
+    }
+    try {
+      const [operators, { OPS }] = await Promise.all([
+        pdfPage.getOperatorList(),
+        import("pdfjs-dist"),
+      ]);
+      // Include inline, grouped, repeated and mask paints, even inside form XObjects.
+      const imagePaints = new Set(
+        Object.entries(OPS)
+          .filter(([name]) => /^paint.*Image/.test(name))
+          .map(([, operation]) => operation),
+      );
+      hasImagePaint = operators.fnArray.some((operation) =>
+        imagePaints.has(operation),
+      );
+    } catch {
+      /* Unknown operator content must not allow text-based exclusion. */
     }
   } else if (source.image) {
     const image = source.image;
@@ -120,6 +138,6 @@ export async function renderStudioPagePreview(
     autoOut:
       inkRatio === undefined
         ? undefined
-        : analyzeStudioPage({ inkRatio, textLines }),
+        : analyzeStudioPage({ inkRatio, textLines, hasImagePaint }),
   };
 }

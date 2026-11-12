@@ -18,6 +18,7 @@ import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
 import { createWorkspaceDraftStore } from "@/components/unified/draftStore";
 import type { StudioCartRemoval } from "@/components/unified/studioCart";
 import type { StudioProblem } from "@/components/unified/types";
+import type { StudioOrderedPage } from "@/components/unified/studioPageOrder";
 
 /**
  * 담은 문항 장부의 배선 — 원장님 2026-09-21 확정(트랙 41 안 D, 트랙 44 구현).
@@ -109,6 +110,7 @@ vi.mock("@/components/unified/StudioView", () => ({
     onRestore,
     onExport,
     exportRequest,
+    onPageOrderChange,
   }: {
     picked?: StudioProblem[];
     removed?: StudioCartRemoval[];
@@ -118,6 +120,7 @@ vi.mock("@/components/unified/StudioView", () => ({
     onRestore?: (problem: StudioProblem) => void;
     onExport: () => void;
     exportRequest?: { id: number };
+    onPageOrderChange?: (order: StudioOrderedPage[]) => void;
   }) {
     // 작업실에 있을 때 «편집 이어가기»는 작업실에 출력 요청을 보낸다 — 작업실이 담고 나서
     // `onExport` 로 넘긴다(4842701cd, 2026-10-15). 대역은 요청마다 한 번 넘기기만 한다.
@@ -129,6 +132,32 @@ vi.mock("@/components/unified/StudioView", () => ({
     }, [exportRequest, onExport]);
     return (
       <section aria-label="작업실 대역">
+        <button
+          onClick={() =>
+            onPageOrderChange?.(
+              [1, 2, 3].map((page) => ({
+                sourceId: "source-a",
+                page,
+                out: page === 1,
+              })),
+            )
+          }
+        >
+          원본 1쪽 제외
+        </button>
+        <button
+          onClick={() =>
+            onPageOrderChange?.(
+              [1, 2, 3].map((page) => ({
+                sourceId: "source-a",
+                page,
+                out: false,
+              })),
+            )
+          }
+        >
+          원본 쪽 되살리기
+        </button>
         <output aria-label="작업실이 받은 담은 목록">
           {picked.map((problem) => problem.id).join(",")}
         </output>
@@ -354,6 +383,24 @@ describe("현재 시험지 카드 노출", () => {
 });
 
 describe("담은 문항 장부 배선", () => {
+  it("쪽 제외는 실제 출력 목록에서도 빠지고, 되살리면 사용자 제거 문항을 제외한 원래 자리에 복원된다", async () => {
+    seed();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "b 빼기" }));
+    fireEvent.click(screen.getByRole("button", { name: "원본 1쪽 제외" }));
+    expect(studioPicked()).toBe("c");
+    await toOrder();
+    expect(orderIds()).toEqual(["3쪽"]);
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "원본 쪽 되살리기" }));
+    expect(studioPicked()).toBe("a,c");
+    expect(studioRemoved()).toBe("b@1");
+    await toOrder();
+    expect(orderIds()).toEqual(["1쪽", "3쪽"]);
+  });
+
   it("작업실은 시험지 목록을 그대로 받고, ④ 에서 뺀 것을 뺀 자리와 함께 안다 (어긋남 1)", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);

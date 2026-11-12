@@ -5,10 +5,14 @@ import {
   screen,
   within,
 } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 // A distinct basename keeps this component separate from the model on case-insensitive volumes.
 import StudioPageOrder from "@/components/unified/StudioPageOrderStep";
 import {
+  initialPageOrder,
+  movePage,
   studioPageKey,
   type StudioOrderedPage,
 } from "@/components/unified/studioPageOrder";
@@ -56,6 +60,52 @@ const dragAt = (
 };
 
 describe("H3-B 쪽 순서", () => {
+  it.each([
+    ["ArrowRight", [1, 3, 2]],
+    ["ArrowLeft", [2, 1, 3]],
+  ] as const)(
+    "Alt+%s moves the focused second handle instead of the previously selected first page",
+    async (arrow, expected) => {
+      const oneSource = [{ id: "a", name: "본문.pdf", pages: 3 }];
+      const onMove = vi.fn();
+      function Reorder() {
+        const [pages, setPages] = useState(() => initialPageOrder(oneSource));
+        return (
+          <StudioPageOrder
+            sources={oneSource}
+            order={pages}
+            previews={{}}
+            onToggle={() => {}}
+            onMove={(key, direction) => {
+              onMove(key, direction);
+              setPages((current) => movePage(current, key, direction));
+            }}
+          />
+        );
+      }
+      render(<Reorder />);
+      const user = userEvent.setup();
+      const secondHandle = screen.getByRole("button", {
+        name: "본문.pdf 원본 2쪽 끌어서 옮기기",
+      });
+      // Reach the actual handle by Tab without selecting the second page first.
+      for (let i = 0; i < 12 && document.activeElement !== secondHandle; i++)
+        await user.tab();
+      expect(secondHandle).toHaveFocus();
+      await user.keyboard(`{Alt>}{${arrow}}{/Alt}`);
+      expect(
+        [...grid().querySelectorAll("figure")].map(
+          (card) => JSON.parse(card.dataset.stripKey!)[1],
+        ),
+      ).toEqual(expected);
+      expect(secondHandle).toHaveFocus();
+      expect(onMove).toHaveBeenCalledExactlyOnceWith(
+        studioPageKey({ sourceId: "a", page: 2 }),
+        arrow === "ArrowRight" ? "next" : "previous",
+      );
+    },
+  );
+
   it("파일 딱지·활성 수·원본 신분을 표시하며 자동 제외 쪽을 제자리에 남긴다", () => {
     const { onToggle } = setup();
     expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 1")).toBeVisible();

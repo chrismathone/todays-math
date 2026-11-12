@@ -1,5 +1,6 @@
 import { questionIdentity } from "@/lib/problem/questionSelectionClient";
-import { useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
+import { studioPageKey, type StudioOrderedPage } from "./studioPageOrder";
 import type { StudioCrop } from "./studioHelpers";
 import type { StudioProblem } from "./types";
 
@@ -22,6 +23,56 @@ import type { StudioProblem } from "./types";
 export interface StudioCartRemoval {
   problem: StudioProblem;
   index: number;
+  /** A reversible page exclusion, distinct from a teacher removing a question. */
+  pageExcluded?: boolean;
+}
+
+/** Move excluded-page picks into saved removal memory; restore only those picks. */
+export function reconcileStudioPageCart(
+  picked: StudioProblem[],
+  removed: StudioCartRemoval[],
+  order: readonly StudioOrderedPage[],
+) {
+  const pages = new Map(order.map((page) => [studioPageKey(page), page.out]));
+  const pageOut = (problem: StudioProblem) =>
+    problem.studioCrop
+      ? pages.get(studioPageKey(problem.studioCrop))
+      : undefined;
+  const hidden = removed.filter((item) => item.pageExcluded);
+  const original = [...picked];
+  for (const item of [...hidden].sort((a, b) => a.index - b.index)) {
+    if (!original.some((problem) => problem.id === item.problem.id))
+      original.splice(Math.min(item.index, original.length), 0, item.problem);
+  }
+  const nextPicked: StudioProblem[] = [];
+  const nextRemoved = removed.filter((item) => !item.pageExcluded);
+  original.forEach((problem, index) => {
+    const excluded = pageOut(problem);
+    if (
+      excluded === true ||
+      (excluded === undefined &&
+        hidden.some((item) => item.problem.id === problem.id))
+    )
+      nextRemoved.push({ problem, index, pageExcluded: true });
+    else nextPicked.push(problem);
+  });
+  return {
+    picked:
+      nextPicked.length === picked.length &&
+      nextPicked.every((p, i) => p === picked[i])
+        ? picked
+        : nextPicked,
+    removed:
+      nextRemoved.length === removed.length &&
+      nextRemoved.every(
+        (item, i) =>
+          item.problem === removed[i].problem &&
+          item.index === removed[i].index &&
+          item.pageExcluded === removed[i].pageExcluded,
+      )
+        ? removed
+        : nextRemoved,
+  };
 }
 
 /**
@@ -231,6 +282,8 @@ export function studioCartRows(
  * 고치는 일은 부모에게 맡긴다. 안 넘기면(작업실만 띄우는 시험 하네스) 같은 규칙으로 제 안에 한 벌 둔다 —
  * 하네스가 담은 뒤의 작업실을 제품과 같게 보게 하려는 것이지 제품의 두 번째 장부가 아니다.
  */
+const NO_PAGE_ORDER: readonly StudioOrderedPage[] = [];
+
 export function useStudioCart({
   picked,
   removed,
@@ -238,6 +291,8 @@ export function useStudioCart({
   onRemove,
   onRemoveAll,
   onRestore,
+  pageOrder = NO_PAGE_ORDER,
+  onPageOrderChange,
 }: {
   picked?: StudioProblem[];
   removed?: StudioCartRemoval[];
@@ -246,16 +301,48 @@ export function useStudioCart({
   /** «모두 빼기» — 시험지에 담긴 것을 전부 뺀다(원장님 2026-11-11 «시험지 전체»). */
   onRemoveAll?: () => void;
   onRestore?: (problem: StudioProblem) => void;
+  pageOrder?: readonly StudioOrderedPage[];
+  onPageOrderChange?: (order: readonly StudioOrderedPage[]) => void;
 }) {
   const [local, setLocal] = useState<{
     picked: StudioProblem[];
     removed: StudioCartRemoval[];
   }>({ picked: [], removed: [] });
   const controlled = picked !== undefined;
+  const projected = reconcileStudioPageCart(
+    picked ?? local.picked,
+    controlled ? (removed ?? []) : local.removed,
+    pageOrder,
+  );
+  if (
+    !controlled &&
+    (projected.picked !== local.picked || projected.removed !== local.removed)
+  )
+    setLocal(projected);
+  // The controlled ledger is an external draft store. Reconcile it after page/ledger changes.
+  const syncPageOrder = useEffectEvent(() => {
+    if (controlled) onPageOrderChange?.(pageOrder);
+  });
+  useEffect(() => {
+    syncPageOrder();
+  }, [pageOrder, picked, removed]);
+  const excluded = new Set(
+    pageOrder.filter((page) => page.out).map(studioPageKey),
+  );
   return {
     controlled,
-    picked: picked ?? local.picked,
-    removed: controlled ? (removed ?? []) : local.removed,
+    picked: projected.picked,
+    removed: projected.removed.filter(
+      (item) =>
+        !item.pageExcluded &&
+        !(
+          item.problem.studioCrop &&
+          excluded.has(studioPageKey(item.problem.studioCrop))
+        ),
+    ),
+    syncPageOrder() {
+      if (controlled) onPageOrderChange?.(pageOrder);
+    },
     add(problems: StudioProblem[]) {
       onAdd(problems);
       if (!controlled)

@@ -17,6 +17,7 @@ import {
   studioPageKey,
   togglePageOut,
   undoPageOrder,
+  type StudioOrderedPage,
 } from "./studioPageOrder";
 import {
   renderStudioPagePreview,
@@ -332,6 +333,7 @@ export default function StudioView({
   pickedCount,
   stepRequest,
   exportRequest,
+  onPageOrderChange,
 }: StudioViewProps & {
   canExport?: boolean;
   active?: boolean;
@@ -360,6 +362,7 @@ export default function StudioView({
   exportRequest?: { id: number };
   /** 자른 문제 수를 밖에 알린다 — 시험지 화면의 탭 배지가 쓴다(안 A). */
   onCropCountChange?: (count: number) => void;
+  onPageOrderChange?: (order: readonly StudioOrderedPage[]) => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
   storageScope?: string;
   branchId?: string | null;
@@ -386,6 +389,10 @@ export default function StudioView({
   const livePages = useMemo(() => activePageOrder(pageOrder), [pageOrder]);
   const currentPageIndex = livePages.findIndex(
     (page) => page.sourceId === sourceId && page.page === pageNumber,
+  );
+  const livePageKeys = useMemo(
+    () => new Set(livePages.map(studioPageKey)),
+    [livePages],
   );
   const crops = useMemo(() => {
     const ranks = new Map(
@@ -525,11 +532,13 @@ export default function StudioView({
   const studioAi = useStudioAi({
     crops,
     setCrops,
+    activePages: livePages,
     contextKey: `${sourceId}:${pageNumber}`,
     active,
     // 도형 생성은 ② 영역 지정이 끝난 뒤에 — 크롭과 같이 돌리면 칸을 고친 뒤 두 번 만든다(원장님 2026-09-21).
     figuresDeferred: step !== "review",
     onRotatePage: (id, page, delta) => {
+      if (!livePageKeys.has(studioPageKey({ sourceId: id, page }))) return;
       setSources((previous) =>
         previous.map((source) =>
           source.id === id
@@ -559,6 +568,9 @@ export default function StudioView({
       setInspectorOpen(true);
     },
   });
+  const activePageJobs = studioAi.pageJobs.filter((job) =>
+    livePageKeys.has(studioPageKey(job)),
+  );
   // 문제 추출 시연(원장님 2026-11-11) — 시연 계정이 시연 PDF 를 열면 AI 응답을 녹화본으로 답한다(`useStudioDemo.ts`).
   useStudioDemo(sources);
   // 시연 계정에게만 — 서버에 둔 시연 시험지를 이 PC 에 파일 없이 연다(원장님 2026-11-11 «어디서든 아이디로»)
@@ -572,6 +584,8 @@ export default function StudioView({
     onRemove,
     onRemoveAll,
     onRestore,
+    pageOrder,
+    onPageOrderChange,
   });
   const cartState = (crop: StudioCrop) =>
     studioCartState(crop, cart.picked, cart.removed);
@@ -622,9 +636,7 @@ export default function StudioView({
   if (!active && cartOpen) setCartOpen(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
-  const sourceJobs = studioAi.pageJobs.filter(
-    (job) => job.sourceId === sourceId,
-  );
+  const sourceJobs = activePageJobs.filter((job) => job.sourceId === sourceId);
   const sourceRecognizing = sourceJobs.some((job) =>
     ["queued", "rendering", "running"].includes(job.state),
   );
@@ -666,6 +678,7 @@ export default function StudioView({
     pageCrops.length && inspectedPages[pageKey] === pageSignature,
   );
   const pageReady = Boolean(
+    currentPageIndex >= 0 &&
     rendered &&
     rendered.sourceId === sourceId &&
     rendered.number === pageNumber,
@@ -699,9 +712,7 @@ export default function StudioView({
   const reconcileGrades = useEffectEvent(() => {
     const decisions = new Map(
       sources.flatMap((source) => {
-        const jobs = studioAi.pageJobs.filter(
-          (job) => job.sourceId === source.id,
-        );
+        const jobs = activePageJobs.filter((job) => job.sourceId === source.id);
         if (
           source.gradeManual ||
           !jobs.length ||
@@ -730,7 +741,9 @@ export default function StudioView({
       previous.map((crop) => {
         const result = decisions.get(crop.sourceId);
         const nextGrade = result?.grade ?? "미지정";
-        return result && crop.grade !== nextGrade
+        return livePageKeys.has(studioPageKey(crop)) &&
+          result &&
+          crop.grade !== nextGrade
           ? {
               ...crop,
               grade: nextGrade,
@@ -936,7 +949,14 @@ export default function StudioView({
   }
 
   function rotateCurrentPage() {
-    if (!currentSource || !pageReady || busy || studioAi.running) return;
+    if (
+      currentPageIndex < 0 ||
+      !currentSource ||
+      !pageReady ||
+      busy ||
+      studioAi.running
+    )
+      return;
     if (
       pageCrops.length &&
       !window.confirm(
@@ -981,6 +1001,28 @@ export default function StudioView({
     return page
       ? `${sources.find((source) => source.id === page.sourceId)?.name} 원본 ${page.page}쪽`
       : "쪽";
+  }
+  // Settle an excluded selection before any crop controls commit to the screen.
+  if (
+    sources.length &&
+    currentPageIndex < 0 &&
+    (sourceId || livePages.length)
+  ) {
+    const index = pageOrder.findIndex(
+      (page) => page.sourceId === sourceId && page.page === pageNumber,
+    );
+    const next =
+      pageOrder.slice(index + 1).find((page) => !page.out) ?? livePages[0];
+    const crop =
+      next && crops.find((item) => studioPageKey(item) === studioPageKey(next));
+    setSourceId(next?.sourceId ?? "");
+    setPageNumber(next?.page ?? 1);
+    const source = sources.find((item) => item.id === next?.sourceId);
+    setGrade(source?.grade ?? "미지정");
+    setLevel(source?.level ?? "secondary");
+    setActiveCropId(crop?.id ?? "");
+    setSelectedBoxId(crop?.id ?? "");
+    setSelection(null);
   }
   function changeOrder(next: typeof pageOrder, message: string) {
     if (
@@ -2113,6 +2155,7 @@ export default function StudioView({
   }
 
   function updateCropById(id: string, patch: Partial<StudioCrop>) {
+    if (!crops.some((crop) => crop.id === id)) return;
     setCrops((previous) =>
       previous.map((crop) =>
         crop.id === id ? applyStudioCropEdit(crop, patch) : crop,
@@ -2182,7 +2225,9 @@ export default function StudioView({
     );
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.sourceId === sourceId && crop.grade !== (nextGrade ?? "미지정")
+        livePageKeys.has(studioPageKey(crop)) &&
+        crop.sourceId === sourceId &&
+        crop.grade !== (nextGrade ?? "미지정")
           ? {
               ...crop,
               grade: nextGrade ?? "미지정",
@@ -2224,6 +2269,7 @@ export default function StudioView({
     if (exportAfter && !canExport) return;
     if (compositionBlocked) return;
     if (!crops.length && !exportAfter) return;
+    cart.syncPageOrder();
     // 뺀 것은 건너뛴다 — 원장님 2026-09-21 확정 «안 넣는다». 뺀 것은 목록의 «다시 담기»로만.
     if (pendingCrops.length) {
       cart.add(pendingCrops.map(studioProblem));
@@ -2281,7 +2327,10 @@ export default function StudioView({
     setStep("review");
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.content.trim() && !crop.modeManual && crop.mode !== "text"
+        livePageKeys.has(studioPageKey(crop)) &&
+        crop.content.trim() &&
+        !crop.modeManual &&
+        crop.mode !== "text"
           ? // 출력 방식이 바뀌면 시험지에 실리는 것이 바뀐다 — 판을 올려 «고친 뒤 반영 전»이 보이게.
             {
               ...crop,
@@ -2632,16 +2681,16 @@ export default function StudioView({
     <StudioProgressStrip
       hasFeedback={!!studioAi.message || !!studioAi.error}
       summaries={[
-        ...(studioAi.pageJobs.length
+        ...(activePageJobs.length
           ? [
               {
                 id: "pages",
                 label: studioWorkName("pages").short,
-                done: studioAi.pageJobs.filter(
+                done: activePageJobs.filter(
                   (job) => job.state === "complete" || job.state === "empty",
                 ).length,
-                total: studioAi.pageJobs.length,
-                active: studioAi.pageJobs.some((job) =>
+                total: activePageJobs.length,
+                active: activePageJobs.some((job) =>
                   ["queued", "rendering", "running"].includes(job.state),
                 ),
               },
@@ -2685,7 +2734,7 @@ export default function StudioView({
           : []),
       ]}
       warningCount={
-        studioAi.pageJobs.reduce(
+        activePageJobs.reduce(
           (count, job) =>
             count +
             // 쪽당 한 줄로 요약하니 개수도 쪽 단위 — 공통 안내(자동 인식 후보)는 세지 않는다.
@@ -2701,7 +2750,7 @@ export default function StudioView({
       }
     >
       <StudioQueueStatus
-        jobs={studioAi.pageJobs}
+        jobs={activePageJobs}
         startedAt={studioAi.pageProgress.startedAt ?? undefined}
         sources={sources}
         onCancel={() => studioAi.cancel()}

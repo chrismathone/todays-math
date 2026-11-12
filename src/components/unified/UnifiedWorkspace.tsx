@@ -57,7 +57,9 @@ import {
   rememberRemoval,
   removeAllFromCart,
   restoreToCart,
+  reconcileStudioPageCart,
 } from "./studioCart";
+import type { StudioOrderedPage } from "./studioPageOrder";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import { createPrintPresetsClient } from "./print/printPresetsClient";
 import type { PrintPreset } from "@/contracts/printPreset.contract";
@@ -1136,6 +1138,19 @@ function UnifiedWorkspaceContent({
       ),
     );
   };
+  const changeStudioPageOrder = useCallback(
+    (order: readonly StudioOrderedPage[]) => {
+      const current = getCurrentDraft();
+      const next = reconcileStudioPageCart(
+        current.problems,
+        current.removed,
+        order,
+      );
+      if (next.picked !== current.problems) setSelected(next.picked);
+      if (next.removed !== current.removed) updateRemovals(next.removed);
+    },
+    [getCurrentDraft, setSelected, updateRemovals],
+  );
   /** 작업실 «담은 문항» 목록의 «모두 빼기» — 시험지 전체를 뺀다. 알림 줄의 «되돌리기»로 한꺼번에 돌린다. */
   function removeAll() {
     if (!selected.length) return;
@@ -1993,6 +2008,7 @@ function UnifiedWorkspaceContent({
                       key={`${storageScope ?? "preview"}:${extraction.version}`}
                       active={view === "studio"}
                       picked={selected}
+                      onPageOrderChange={changeStudioPageOrder}
                       removed={removed}
                       onAdd={add}
                       onRemove={remove}

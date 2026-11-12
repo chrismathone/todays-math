@@ -13,7 +13,47 @@ function raster(pixels: number, value = 255) {
   return data;
 }
 const analyze = (textLines: readonly string[], inkRatio = 0.02) =>
-  analyzeStudioPage({ textLines, inkRatio });
+  analyzeStudioPage({ textLines, inkRatio, hasImagePaint: false });
+
+describe("mixed or unknown PDF content", () => {
+  it.each([true, undefined])(
+    "retains cover-like text when image paint evidence is %s",
+    (hasImagePaint) => {
+      expect(
+        analyzeStudioPage({
+          textLines: ["문제지", "2학년", "유의 사항"],
+          inkRatio: 0.005613,
+          hasImagePaint,
+        }),
+      ).toBeUndefined();
+    },
+  );
+
+  it.each([true, undefined])(
+    "retains answer-key text when image paint evidence is %s",
+    (hasImagePaint) => {
+      expect(
+        analyzeStudioPage({
+          textLines: ["정답표", "1. ③", "2. ⑤"],
+          inkRatio: 0.02,
+          hasImagePaint,
+        }),
+      ).toBeUndefined();
+    },
+  );
+
+  it.each([true, undefined])(
+    "still judges text-free blanks by raster evidence when image paint evidence is %s",
+    (hasImagePaint) => {
+      expect(
+        analyzeStudioPage({ textLines: [], inkRatio: 0, hasImagePaint }),
+      ).toBe("빈 쪽");
+      expect(
+        analyzeStudioPage({ textLines: [], inkRatio: 0.03, hasImagePaint }),
+      ).toBeUndefined();
+    },
+  );
+});
 
 describe("measurePageInk", () => {
   it("measures pixels rather than RGBA channels", () => {

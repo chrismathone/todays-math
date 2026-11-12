@@ -83,13 +83,16 @@ const coverMetadata = [
   /^(?:시험\s*시간|총\s*문항\s*수|문항\s*수|배점|만점)\s*[:：]?\s*\d+\s*(?:분|문항|점)$/,
 ];
 
-/** No visual cover inference: text-free scans can only qualify as almost-white blanks. */
+/** Text rules require verified absence of image paints; scans use only the blank rule. */
 export function analyzeStudioPage({
   inkRatio,
   textLines,
+  hasImagePaint,
 }: {
   inkRatio: number;
   textLines: readonly string[];
+  /** Undefined means the operator list was not verified, so text may omit the body. */
+  hasImagePaint?: boolean;
 }): AutoOut {
   const lines = normalizedLines(textLines);
   if (!lines.length) {
@@ -99,6 +102,8 @@ export function analyzeStudioPage({
       ? "빈 쪽"
       : undefined;
   }
+  // Even a cover heading or complete answer table can sit beside image-only questions.
+  if (hasImagePaint !== false) return undefined;
   if (lines.some((line) => questionWording.test(line))) return undefined;
   // Numbered answer keys are a positive table case, before the question-number veto.
   if (isStructuredAnswerTable(lines)) return "정답표";
