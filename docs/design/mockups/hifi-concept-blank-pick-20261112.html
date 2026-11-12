@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개념 백지 문제 고르기 Hi-fi</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+/* 개념 백지 · 문제 고르기 Hi-fi — W1(형식 칸의 «자동 · 직접») + W2(고르기 창 · 왼쪽 거르기 목록). 원장님 2026-11-12 «w1» · «w2도 섞어줘 · 왼쪽 리스트는 w2가 나아 보이네».
+   색 · 치수는 제품에서 읽었다: concept-blank.module.css(--learn-* · 카드 12 · 제목 17 · 입력 36 · 스위치 40×22 · 표 머리 #f4f6fa)
+   · picker-dialog.module.css(창 880 · 머리 16/20 · 둥글기 14 · 바탕 #10213fb3 · 머리 단추 44).
+   문항 글 · 재고는 실제 은행(초5 · 2-3 합동과 대칭 — 소단원 넷)에서 그대로 옮겼다.
+   D-30: 손가락 커서 · hover 바탕은 단추 · 체크 칸 · 스위치에만. */
+:root {
+  --line: #dde3ec; --ink: #172b4d; --muted: #596c86; --accent: #3159df; --accent-hover: #2448bd; --soft: #edf2ff;
+  --bg: #f4f6fa; --neutral: #edf0f6; --control: #b8c4d6; --warn-bg: #fff4df; --warn: #8a4b0f; --ok: #0f7a5c; --ok-bg: #e6f6f0;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #e8ecf2; color: var(--ink); font: 15px/1.6 var(--sans); }
+.page { max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px; }
+@media (max-width: 600px) { .page { padding: 20px 16px 60px; } }
+h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -.02em; line-height: 1.3; }
+.lead { margin: 0 0 14px; color: var(--muted); max-width: 92ch; }
+.lead b { color: var(--ink); }
+.ask, .facts { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+.ask { border-color: #b9c8f2; box-shadow: inset 4px 0 0 var(--accent); }
+.ask > b, .facts > b { font-size: 15px; }
+.ask ol, .facts ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; color: var(--muted); font-size: 14px; }
+.ask li b, .facts li b { color: var(--ink); }
+nav.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
+nav.tabs a { font-size: 13px; font-weight: 600; color: var(--accent); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; text-decoration: none; }
+
+section.opt { margin-top: 48px; scroll-margin-top: 16px; }
+.opt > h2 { margin: 0; font-size: 21px; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.opt > h2 .no { display: inline-grid; place-items: center; min-width: 36px; height: 26px; padding: 0 6px; border-radius: 6px; background: var(--ink); color: #fff; font-size: 14px; }
+.opt > p.what { margin: 6px 0 4px; color: var(--muted); max-width: 96ch; font-size: 14px; }
+.opt > p.what b { color: var(--ink); }
+.diffs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px 14px; margin: 8px 0 10px; padding: 0; list-style: none; font-size: 13px; }
+.diffs li { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; color: var(--muted); }
+.diffs li b { display: block; color: var(--ink); font-size: 12px; }
+.try { font-size: 13px; color: var(--accent); font-weight: 600; margin: 0 0 8px; }
+.pros { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px 20px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.pros b { color: var(--ink); }
+.pros ul { margin: 2px 0 0; padding-left: 18px; }
+
+/* 작업실 틀 */
+.app { position: relative; background: var(--bg); border: 1px solid #cfd6e2; border-radius: 14px; padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; container-type: inline-size; }
+@media (max-width: 600px) { .app { padding: 10px; } }
+.card { min-width: 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+@container (max-width: 560px) { .card { padding: 14px 12px; } }
+.cardHead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 10px; }
+.cardTitle { margin: 0; font-size: 17px; font-weight: 700; }
+.tableHint { color: var(--muted); font-size: 13px; }
+.num { padding: 1px 8px; border-radius: 5px; background: var(--soft); color: var(--accent); font-size: 13px; font-weight: 700; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 0 14px; border: 1px solid var(--control); border-radius: 8px; background: #fff; color: var(--ink); font: 600 14px/1.2 var(--sans); white-space: nowrap; cursor: pointer; }
+.btn:hover:not(:disabled) { background: var(--soft); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover:not(:disabled) { background: var(--accent-hover); }
+.btn.quiet { border-color: transparent; background: transparent; color: var(--muted); }
+.btn.quiet:hover:not(:disabled) { background: var(--soft); color: var(--ink); }
+.btn.sm { min-height: 30px; padding: 0 10px; font-size: 13px; }
+.btn.lg { min-height: 44px; }
+
+/* 형식 표 — 제품 그대로(형식은 열, 난이도는 행) */
+.tableScroll { overflow-x: auto; }
+table.ft { width: 100%; border-collapse: collapse; }
+.ft th, .ft td { padding: 10px clamp(4px, .8vw, 10px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); vertical-align: middle; }
+.ft th:last-child, .ft td:last-child { border-right: 0; }
+.ft tbody tr:last-child > * { border-bottom: 0; }
+.ft thead th { background: var(--bg); text-align: left; }
+.ft thead tr:first-child > th:first-child, .ft tbody th { width: 56px; text-align: center; font-size: 15px; white-space: nowrap; background: var(--bg); }
+.ft .sub th { color: var(--muted); font-size: 13px; font-weight: 600; text-align: center; padding-block: 6px; }
+.ft [data-on="false"] { color: var(--muted); }
+.colTitle { display: flex; align-items: center; gap: 6px 8px; min-height: 40px; flex-wrap: wrap; }
+.colTitle h3 { margin: 0; font-size: 15px; line-height: 1.35; word-break: keep-all; }
+.letter { display: grid; place-items: center; flex-shrink: 0; width: 26px; height: 26px; border-radius: 7px; background: var(--soft); color: var(--accent); font-weight: 800; font-size: 14px; }
+[data-on="false"] .letter { background: var(--neutral); color: var(--muted); }
+.switch { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 40px; margin-left: auto; padding: 0; border: 0; background: none; cursor: pointer; }
+.track { position: relative; width: 40px; height: 22px; border-radius: 11px; background: #7c8da7; }
+.track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+.switch[aria-checked="true"] .track { background: var(--accent); }
+.switch[aria-checked="true"] .track::after { left: auto; right: 3px; }
+.lf { display: flex; align-items: center; gap: 6px; justify-content: center; }
+.lf input { width: 100%; min-width: 44px; max-width: 64px; min-height: 36px; padding: 0 8px; border: 1px solid var(--control); border-radius: 8px; font: 600 15px var(--sans); color: var(--ink); text-align: right; background: #fff; }
+.lf input:disabled { background: var(--neutral); color: var(--muted); }
+.lf .max { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lf .picked { min-width: 44px; max-width: 64px; width: 100%; min-height: 36px; display: grid; place-items: center end; padding: 0 8px; border-radius: 8px; background: var(--soft); color: var(--accent); font-weight: 800; font-variant-numeric: tabular-nums; }
+.lf .must { font-size: 12px; font-weight: 700; color: var(--ok); background: var(--ok-bg); border-radius: 5px; padding: 1px 5px; white-space: nowrap; }
+@container (max-width: 720px) { .lf { flex-direction: column; gap: 2px; } .colTitle h3 { font-size: 13px; } .switch { margin-left: 0; } }
+
+/* 자동 · 직접 칸(W1) */
+.seg { display: inline-flex; border: 1px solid var(--control); border-radius: 8px; overflow: hidden; background: #fff; }
+.seg button { min-height: 30px; padding: 0 10px; border: 0; background: none; font: 600 13px/1 var(--sans); color: var(--muted); cursor: pointer; white-space: nowrap; }
+.seg button + button { border-left: 1px solid var(--control); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.seg button:hover:not([aria-pressed="true"]) { background: var(--soft); color: var(--ink); }
+.modeRow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 6px; }
+.modeRow .sum { font-size: 13px; color: var(--ink); font-weight: 600; }
+.modeRow .sum small { color: var(--muted); font-weight: 500; }
+
+.below { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.codeNote { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); font-size: 13px; }
+.codeNote b { color: var(--warn); }
+
+/* 만들 지면(오른쪽 미리보기 자리의 머리 한 줄만) */
+.outline { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: 14px; }
+.outline .k { color: var(--muted); }
+.outline .codeSlot { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.codeSlot .code { font: 700 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.codeSlot .code.none { color: var(--warn); background: var(--warn-bg); border-color: #f0d2b3; font-family: var(--sans); letter-spacing: 0; }
+
+/* 고르기 창(W2 — PickerDialog 꼴). 시안에서는 화면 위에 펼친 채로 보인다. */
+.scrim { background: #10213fb3; border-radius: 12px; padding: clamp(8px, 2.4vw, 26px); }
+.dlg { width: min(980px, 100%); margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; max-height: 760px; box-shadow: 0 18px 60px #14243d26; }
+.dlg > header { display: flex; align-items: center; gap: 10px 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.dlg > header h4 { margin: 0; font-size: 17px; min-width: 0; }
+.dlg > header .grow { flex: 1; }
+.dlg .body { flex: 1; min-height: 0; display: grid; grid-template-columns: 232px minmax(0, 1fr); }
+.dlg .body.withTray { grid-template-columns: 220px minmax(0, 1fr) 248px; }
+@container (max-width: 860px) { .dlg .body.withTray { grid-template-columns: 200px minmax(0, 1fr); } .dlg .body.withTray .trayCol { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); max-height: 240px; } }
+@container (max-width: 620px) { .dlg { max-height: none; } .dlg .body { flex: none; } .main { max-height: 480px; } .dlg .body, .dlg .body.withTray { grid-template-columns: minmax(0, 1fr); } .side { border-right: 0 !important; border-bottom: 1px solid var(--line); max-height: none !important; } .side .secList { display: flex !important; flex-wrap: wrap; gap: 6px; } .side .secList .secBtn { width: auto !important; } }
+.side { border-right: 1px solid var(--line); padding: 14px; overflow: auto; display: grid; gap: 14px; align-content: start; background: #fbfcfe; max-height: 560px; }
+.side .grp > b { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.secList { display: grid; gap: 2px; }
+.secBtn { display: flex; align-items: baseline; gap: 6px; width: 100%; text-align: left; border: 1px solid transparent; background: none; border-radius: 8px; padding: 6px 8px; font: 500 13px/1.35 var(--sans); color: var(--ink); cursor: pointer; }
+.secBtn:hover { background: var(--soft); }
+.secBtn[aria-pressed="true"] { background: var(--soft); border-color: #b9c8f2; color: var(--accent); font-weight: 700; }
+.secBtn .c { margin-left: auto; color: var(--muted); font-weight: 600; font-size: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.secBtn .c em { font-style: normal; color: var(--accent); }
+.pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.pill { min-height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--control); background: #fff; font: 600 13px/1 var(--sans); color: var(--muted); cursor: pointer; }
+.pill:hover { background: var(--soft); color: var(--ink); }
+.pill[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.main { min-width: 0; display: flex; flex-direction: column; max-height: 560px; }
+.mainHead { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.mainHead b { font-size: 14px; }
+.mainHead .h { font-size: 12px; color: var(--muted); }
+.mainHead .grow { flex: 1; }
+.items { list-style: none; margin: 0; padding: 4px 8px 10px; overflow: auto; }
+.it { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; padding: 9px 8px; border-bottom: 1px solid #edf0f5; }
+.it:last-child { border-bottom: 0; }
+.it input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); cursor: pointer; }
+.it .txt { min-width: 0; font-size: 14px; line-height: 1.6; }
+.it .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-bottom: 2px; }
+.lv { display: inline-grid; place-items: center; min-width: 22px; height: 20px; padding: 0 4px; border-radius: 5px; font-size: 12px; font-weight: 800; }
+.lv.하 { background: #e6f6f0; color: #0f7a5c; } .lv.중 { background: #edf2ff; color: #3159df; } .lv.상 { background: #fdecef; color: #b4234a; }
+.term { font-size: 12px; font-weight: 700; color: var(--muted); }
+.ans { display: block; margin-top: 3px; font-size: 13px; color: var(--muted); }
+.ans b { color: var(--ink); font-weight: 600; }
+.it .tag { font-size: 11px; font-weight: 700; border-radius: 4px; padding: 1px 5px; }
+.tag.auto { background: var(--neutral); color: var(--muted); }
+.tag.hand { background: var(--soft); color: var(--accent); }
+.it.on { background: #f7f9ff; }
+.it.ghost .txt { color: var(--muted); }
+.blank { padding: 0 4px; border-bottom: 1.5px solid var(--ink); font-weight: 700; }
+.blank.empty { display: inline-block; min-width: 3.2em; color: transparent; }
+.ansBtn { border: 0; background: none; color: var(--accent); font: 600 12px var(--sans); padding: 2px 4px; border-radius: 4px; cursor: pointer; }
+.ansBtn:hover { background: var(--soft); }
+.empty { padding: 30px 16px; color: var(--muted); text-align: center; font-size: 14px; }
+
+.trayCol { border-left: 1px solid var(--line); padding: 12px 14px; overflow: auto; max-height: 560px; display: grid; gap: 10px; align-content: start; background: #fbfcfe; }
+.trayCol h5 { margin: 0; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.trayCol .lvGroup { display: grid; gap: 4px; }
+.trayCol .lvHead { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 700; }
+.trayCol .lvHead .grow { flex: 1; }
+.tItem { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px 4px 5px 8px; font-size: 12px; line-height: 1.45; }
+.tItem .x { width: 24px; height: 24px; border: 0; border-radius: 6px; background: none; color: var(--muted); cursor: pointer; font-size: 14px; }
+.tItem .x:hover { background: var(--soft); color: var(--ink); }
+.tItem .s { color: var(--muted); font-size: 11px; display: block; }
+
+.trayBar { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-top: 1px solid var(--line); background: #fbfcfe; overflow-x: auto; }
+.trayBar > b { font-size: 13px; white-space: nowrap; }
+.chipT { display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 220px; height: 28px; padding: 0 2px 0 8px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 12px; }
+.chipT span.t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chipT .x { width: 22px; height: 22px; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+.chipT .x:hover { background: var(--soft); color: var(--ink); }
+
+.dlg > footer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 12px 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.dlg > footer .grow { flex: 1; }
+.fillCounts { display: inline-flex; align-items: center; gap: 4px; }
+.fillCounts label { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; color: var(--ink); }
+.fillCounts input { width: 48px; min-height: 30px; padding: 0 6px; border: 1px solid var(--control); border-radius: 6px; font: 600 13px var(--sans); text-align: right; }
+
+/* 확인 창 */
+.confirmScrim { position: fixed; inset: 0; background: #10213fb3; display: grid; place-items: center; z-index: 60; padding: 16px; }
+.confirmScrim[hidden] { display: none; }
+.confirm { width: min(440px, 100%); background: #fff; border-radius: 14px; overflow: hidden; }
+.confirm h4 { margin: 0; padding: 16px 20px 0; font-size: 17px; }
+.confirm p { margin: 8px 20px 0; color: var(--muted); font-size: 14px; }
+.confirm .acts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding: 16px 20px; }
+
+.toast { font-size: 13px; color: var(--ok); font-weight: 600; min-height: 20px; }
+table.cmp { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 13px; }
+table.cmp th, table.cmp td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.cmp th { background: #f7f9fc; }
+.wrapx { overflow-x: auto; }
+code { font-size: 12px; background: var(--neutral); padding: 1px 4px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>개념 백지 — 문제 고르기 · Hi-fi 4안</h1>
+  <p class="lead">원장님 2026-11-12 «w1» → «w2도 섞어줘 · 왼쪽 리스트는 w2가 나아 보이네». <b>바탕은 W1</b>: 형식 표의 열마다 «자동 · 직접». <b>«직접»을 고르면 W2 의 고르기 창</b>이 뜨고, 창 왼쪽은 W2 의 거르기 목록(소단원 · 난이도 · 종류)이다. 네 안 모두 실제로 움직인다. 체크하면 표의 수가 바뀌고, «자동으로 채우기»는 지금 출제 규칙과 같다. 하 · 중 · 상마다 소단원 차례로 돌려 뽑고, 모자라면 범위 전체에 고르게 편다.</p>
+
+  <div class="ask">
+    <b>세부 질문</b>
+    <ol>
+      <li><b>직접과 자동을 한 형식 안에서 섞을까.</b> H1 · H2 · H4 는 «직접이면 고른 것만» 싣고, <b>H3</b> 은 «꼭 넣을 문항 + 나머지는 표의 수대로 자동»이다.</li>
+      <li><b>«자동»으로 되돌릴 때 고른 문항을 어떻게 할까.</b> 버린다(H1 · H3)로 할지, 말없이 남겨 두었다 «직접»으로 오면 되살린다(H2)로 할지, 묻는다(H4)로 할지.</li>
+      <li><b>«고른 문항» 자리.</b> 창 아래 한 줄 칩(H1 · H3)과 창 오른쪽 칸(H2 · H4) 가운데 어디로 할지.</li>
+      <li><b>목록 한 줄에 답까지 보일까.</b> 문장 + 답 + 난이도(H1 · H3 · H4)로 할지, 문장만 + «답 보기»(H2)로 할지.</li>
+      <li><b>지면 코드가 빠지는 것을 언제 알릴까.</b> 늘 한 줄(H1), 지면 코드 자리에 «없음»(H2), 처음 «직접»을 누를 때 한 번 묻기(H3), «직접» 단추 이름에(H4) 가운데 고르시면 된다.</li>
+    </ol>
+  </div>
+
+  <div class="facts">
+    <b>네 안에 공통인 것</b>
+    <ul>
+      <li>예시 범위: 초5 · <b>2-3 합동과 대칭</b> 소단원 넷. B 개념 질문 70 · ○× 104 · C 문장 빈칸 110 · 적용 50(은행 그대로).</li>
+      <li>뒷단은 이미 «정확히 고른 문항»을 받는다(<code>selection.pick</code>). 이번 일은 화면이다.</li>
+      <li><b>대가</b>: 직접 고른 형식이 하나라도 있으면 그 지면에는 <b>지면 코드(사진 채점용)가 찍히지 않는다</b>. 내 시험지 저장 · 인쇄는 된다.</li>
+      <li>고르기 창은 공용 «고르기 창» <code>PickerDialog</code>(D-159)로 짓는다. 시안에서는 화면 위에 펼친 채로 보인다. «적용»을 누르면 닫히고 [문항 고르기]로 다시 연다.</li>
+    </ul>
+  </div>
+
+  <nav class="tabs"><a href="#h1">H1 고른 것만 · 아래 칩</a><a href="#h2">H2 오른쪽 칸 · 문장만</a><a href="#h3">H3 꼭 넣을 문항 + 자동</a><a href="#h4">H4 자동 결과를 열어 고치기</a><a href="#cmp">견주기</a></nav>
+
+  <section class="opt" id="h1">
+    <h2><span class="no">H1</span>고른 것만 싣기 · 창 아래 칩</h2>
+    <p class="what">«직접»이면 <b>고른 문항만</b> 싣는다. 표의 칸은 «고른 수»로 바뀌고 열 머리 아래에 <b>«직접 고름 8 · 하 3 · 중 3 · 상 2»</b> 한 줄이 붙는다. 창 아래에 고른 문항이 칩으로 줄지어 선다.</p>
+    <ul class="diffs"><li><b>목록 한 줄</b>문장 + 답 + 난이도</li><li><b>고른 문항</b>창 아래 칩 한 줄</li><li><b>바닥 단추</b>자동으로 채우기 하 · 중 · 상 → [고른 것 위에 채우기] [새로 채우기]</li><li><b>지면 코드</b>표 아래 늘 한 줄</li><li><b>자동으로 되돌리기</b>«고른 8문항을 버립니다» 확인</li></ul>
+    <p class="try">해 보기 — 왼쪽에서 2-3-4 · 상을 고르고 몇 개 체크 → «고른 것 위에 채우기» → «적용» → 표에서 «자동»</p>
+    <div class="app" data-opt="H1"></div>
+    <div class="pros"><div><b>좋은 점</b><ul><li>규칙이 하나다 — 직접이면 고른 것만.</li><li>칩 줄이 낮아 목록 칸이 넓다.</li></ul></div><div><b>걱정</b><ul><li>칩이 열 개를 넘으면 옆으로 밀려 다 안 보인다.</li></ul></div></div>
+  </section>
+
+  <section class="opt" id="h2">
+    <h2><span class="no">H2</span>오른쪽 «고른 문항» 칸 · 문장만</h2>
+    <p class="what">창이 세 칸이다. 왼쪽은 거르기, 가운데는 목록, <b>오른쪽은 난이도별로 묶인 «고른 문항»</b>이다. 목록 줄은 <b>문장만</b> 보이고 «답 보기»로 펼친다. 표의 칸에는 고른 수가 파란 칸으로 서고, 지면 코드 자리에는 <b>«없음 — 직접 고른 형식이 있습니다»</b>가 뜬다.</p>
+    <ul class="diffs"><li><b>목록 한 줄</b>문장만 · «답 보기»</li><li><b>고른 문항</b>창 오른쪽 칸(하 · 중 · 상 묶음)</li><li><b>바닥 단추</b>[빈 칸만 자동으로] [모두 비우고 자동으로]</li><li><b>지면 코드</b>만들 지면의 코드 자리에 «없음»</li><li><b>자동으로 되돌리기</b>묻지 않음 · 고른 것은 남겨 두고 «직접»으로 오면 되살림</li></ul>
+    <p class="try">해 보기 — «자동»을 눌렀다가 다시 «직접» — 고른 문항이 그대로 돌아온다</p>
+    <div class="app" data-opt="H2"></div>
+    <div class="pros"><div><b>좋은 점</b><ul><li>목록이 짧아 훑기 빠르다. 고른 것이 늘 한눈에 보인다.</li><li>자동 ↔ 직접을 오가도 잃는 것이 없다.</li></ul></div><div><b>걱정</b><ul><li>창이 넓어야 한다. 좁은 화면에서는 오른쪽 칸이 아래로 내려간다.</li><li>답을 보며 고르려면 한 번 더 누른다.</li></ul></div></div>
+  </section>
+
+  <section class="opt" id="h3">
+    <h2><span class="no">H3</span>꼭 넣을 문항 + 나머지는 자동</h2>
+    <p class="what">«직접»이 표의 수를 없애지 않는다. 고른 문항은 <b>«꼭 넣을 문항»</b>이 되고, 하 · 중 · 상의 남은 자리는 표의 수대로 <b>자동</b>이 채운다. 칸에는 <b>«5 / 꼭 2»</b>, 열 머리 아래에는 «꼭 넣을 문항 4 · 나머지 자동»이 붙는다. 목록에서 자동으로 들어갈 문항은 흐린 «자동» 딱지로 미리 보인다.</p>
+    <ul class="diffs"><li><b>목록 한 줄</b>문장 + 답 + 난이도 + «꼭 · 자동» 딱지</li><li><b>고른 문항</b>창 아래 칩 한 줄</li><li><b>바닥</b>«나머지 6문항은 표의 수대로 자동으로 채웁니다» (채우기 단추 없음)</li><li><b>지면 코드</b>처음 «직접»을 누를 때 한 번 묻기</li><li><b>자동으로 되돌리기</b>«꼭 넣을 문항 4개를 풉니다» 확인</li></ul>
+    <p class="try">해 보기 — 표에서 B «중»을 바꾸면 목록의 흐린 «자동»이 따라 바뀐다</p>
+    <div class="app" data-opt="H3"></div>
+    <div class="pros"><div><b>좋은 점</b><ul><li>«이 문제는 꼭» 몇 개만 집으면 된다. 숫자를 다시 셀 일이 없다.</li><li>표의 수가 그대로라 지금 화면의 뜻이 바뀌지 않는다.</li></ul></div><div><b>걱정</b><ul><li>자동 몫이 섞이므로 «정확히 이것만»을 원하면 수를 꼭 넣을 문항 수에 맞춰야 한다.</li></ul></div></div>
+  </section>
+
+  <section class="opt" id="h4">
+    <h2><span class="no">H4</span>자동 결과를 열어 고치기</h2>
+    <p class="what">«직접»을 누르면 창이 <b>지금 자동이 고른 문항을 체크한 채로</b> 열린다. 빼고 더해서 고친다. 줄마다 «자동» · «직접» 딱지가 붙고, 오른쪽 칸에는 난이도마다 <b>«직접 2 · 자동 3»</b>이 선다. «직접» 단추 이름 자체가 <b>«직접 · 코드 없음»</b>이다.</p>
+    <ul class="diffs"><li><b>목록 한 줄</b>문장 + 답 + 난이도 + «자동 · 직접» 딱지</li><li><b>고른 문항</b>창 오른쪽 칸(하 · 중 · 상마다 직접 n · 자동 n)</li><li><b>바닥 단추</b>[고른 것 위에 채우기] [새로 채우기]</li><li><b>지면 코드</b>단추 이름 «직접 · 코드 없음»</li><li><b>자동으로 되돌리기</b>[고른 것 두기] [버리기] 둘 중 묻기</li></ul>
+    <p class="try">해 보기 — C 열 «직접 · 코드 없음» → 자동이 고른 10문항이 체크된 채 열린다 → 몇 개 빼고 «적용»</p>
+    <div class="app" data-opt="H4"></div>
+    <div class="pros"><div><b>좋은 점</b><ul><li>빈 목록에서 시작하지 않는다 — «대개 자동이 좋은데 두세 개만 바꾸고 싶다»에 가장 빠르다.</li></ul></div><div><b>걱정</b><ul><li>«자동 · 직접» 딱지가 섞여 목록이 조금 시끄럽다.</li></ul></div></div>
+  </section>
+
+  <section class="opt" id="cmp">
+    <h2>견주기</h2>
+    <div class="wrapx"><table class="cmp">
+      <tr><th></th><th>H1</th><th>H2</th><th>H3</th><th>H4</th></tr>
+      <tr><td>직접의 뜻</td><td>고른 것만</td><td>고른 것만</td><td>꼭 넣을 것 + 나머지 자동</td><td>자동 결과에서 출발해 고친 것만</td></tr>
+      <tr><td>표 칸</td><td>고른 수</td><td>고른 수(파란 칸)</td><td>수 / 꼭 n</td><td>고른 수</td></tr>
+      <tr><td>섞인 상태</td><td>열 머리 아래 «직접 고름 8 · 하 3 · 중 3 · 상 2»</td><td>오른쪽 칸의 난이도 묶음</td><td>«꼭 넣을 문항 4 · 나머지 자동»</td><td>난이도마다 «직접 2 · 자동 3»</td></tr>
+      <tr><td>목록 한 줄</td><td>문장 + 답 + 난이도</td><td>문장 · 답 보기</td><td>문장 + 답 + 꼭/자동</td><td>문장 + 답 + 자동/직접</td></tr>
+      <tr><td>고른 문항 자리</td><td>창 아래 칩</td><td>창 오른쪽 칸</td><td>창 아래 칩</td><td>창 오른쪽 칸</td></tr>
+      <tr><td>지면 코드 알림</td><td>표 아래 한 줄</td><td>코드 자리 «없음»</td><td>처음 한 번 묻기</td><td>단추 이름</td></tr>
+      <tr><td>자동으로 되돌리기</td><td>버림(확인)</td><td>남겨 둠</td><td>풂(확인)</td><td>두기 · 버리기 묻기</td></tr>
+    </table></div>
+  </section>
+</div>
+
+<div class="confirmScrim" hidden><div class="confirm" role="dialog" aria-modal="true"><h4></h4><p></p><div class="acts"></div></div></div>
+
+<script>
+const BANK = {"secs":[["2-3-1","도형의 합동 알아보기"],["2-3-2","합동인 도형의 성질 알아보기"],["2-3-3","선대칭도형과 그 성질 알아보기"],["2-3-4","점대칭도형과 그 성질 알아보기"]],"B":{"main":[["e5-2-3-1-c1",0,"하","합동","두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.","두 도형의 모양과 크기가 같아서 포개었을 때 완전히 겹친다는 뜻이다."],["e5-2-3-1-c3",0,"상","넓이와 합동 구별","넓이가 같은 두 도형은 항상 합동인지 쓰고, 가로 $6\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 예로 들어 그 까닭을 설명하시오.","항상 합동인 것은 아니다. 두 직사각형은 넓이가 모두 $12\\,\\mathrm{cm} ^2$이지만 변의 길이가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다."],["e5-2-3-1-xc2",0,"하","포개어 확인하기","종이에 그려진 두 도형이 합동인지 직접 확인하려면 어떻게 하면 되는지 쓰고, 어떤 결과가 나오면 합동인지 설명하시오.","한 도형을 오리거나 투명 종이에 본떠서 다른 도형 위에 포개어 본다. 완전히 겹치면 두 도형은 합동이다."],["e5-2-3-1-xc5",0,"하","한 변이 같은 정사각형","한 변의 길이가 같은 두 정사각형은 항상 합동인지 쓰고, 정사각형의 변과 각의 성질을 이용해 그 까닭을 설명하시오.","항상 합동이다. 정사각형은 네 변의 길이가 모두 같고 네 각이 모두 직각이므로, 한 변의 길이가 같으면 모든 변과 각이 같아서 포개었을 때 완전히 겹친다."],["e5-2-3-1-xc6",0,"하","반지름이 같은 원","두 원이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 그것만 비교해도 되는 까닭을 설명하시오.","반지름(또는 지름)의 길이를 비교한다. 원은 모양이 모두 같아서 반지름이 같으면 크기도 같아 포개었을 때 완전히 겹친다."],["e5-2-3-1-xc8",0,"하","크기가 다른 같은 모양","모양이 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정사각형과 한 변이 $3\\,\\mathrm{cm}$인 정사각형을 예로 들어 그 까닭을 설명하시오.","항상 합동인 것은 아니다. 두 정사각형은 모양은 같지만 크기가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다."],["e5-2-3-1-xc10",0,"중","합동인 도형의 넓이","합동인 두 도형의 넓이와 둘레를 각각 비교하면 어떻게 되는지 쓰고, 두 도형을 포개었을 때의 모습을 이용해 그 까닭을 설명하시오.","넓이도 서로 같고 둘레도 서로 같다. 합동인 두 도형은 포개었을 때 완전히 겹치기 때문이다."],["e5-2-3-1-xc12",0,"중","둘레만 같은 도형","둘레가 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.","항상 합동인 것은 아니다. 두 도형은 둘레가 모두 $12\\,\\mathrm{cm}$이지만 모양이 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다."],["e5-2-3-1-xc13",0,"중","직사각형끼리의 합동","두 직사각형이 합동인지 알아보려면 어떤 길이를 비교하면 되는지 쓰고, 가로 $3\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형과 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이 합동인지 까닭과 함께 판단하시오.","가로와 세로의 길이를 비교한다. 두 직사각형은 합동이다. 한 직사각형을 돌리면 긴 변끼리, 짧은 변끼리 길이가 같아 완전히 겹친다."],["e5-2-3-1-xc15",0,"중","대각선으로 자른 직사각형","직사각형을 대각선 하나를 따라 자르면 어떤 도형이 몇 개 생기는지 쓰고, 그 도형들이 서로 합동인지 어떻게 확인할 수 있는지 설명하시오.","삼각형(직각삼각형)이 $2$개 생긴다. 한 조각을 돌려서 다른 조각 위에 포개면 완전히 겹치므로 두 삼각형은 합동이다."],["e5-2-3-1-xc18",0,"중","합동이 아님을 보이기","두 도형이 합동이 아니라는 것을 보이려면 무엇을 찾으면 되는지 쓰고, 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$인 삼각형과 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 합동인지 판단하시오.","어떻게 포개어도 겹치지 않는 부분, 곧 길이가 맞지 않는 변이나 크기가 맞지 않는 각을 찾으면 된다. 두 삼각형은 $5\\,\\mathrm{cm}$인 변과 $6\\,\\mathrm{cm}$인 변의 길이가 달라서 합동이 아니다."],["e5-2-3-1-xc21",0,"상","정다각형끼리의 합동","변의 수가 같은 두 정다각형이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정육각형과 한 변이 $5\\,\\mathrm{cm}$인 정육각형이 합동인지 판단하시오.","한 변의 길이를 비교한다. 두 정육각형은 한 변의 길이가 달라 크기가 다르므로 합동이 아니다."],["e5-2-3-1-xc23",0,"상","마름모끼리의 합동","한 변의 길이가 같은 두 마름모는 항상 합동인지 쓰고, 그렇게 판단한 까닭을 마름모의 각과 관련지어 설명하시오.","항상 합동인 것은 아니다. 한 변의 길이가 같아도 두 마름모에서 가장 작은 각의 크기가 서로 다를 수 있다. 이때는 어떻게 포개어도 완전히 겹치지 않는다."],["e5-2-3-1-xc25",0,"상","합동인 네 조각으로 나누기","직사각형 모양의 종이를 서로 합동인 직사각형 $4$개로 나누는 방법을 한 가지 설명하시오.","마주 보는 변의 한가운데끼리 이은 두 선을 따라 자른다. 또는 한 변을 똑같이 $4$칸으로 나누고 이웃한 변과 평행한 선으로 잘라도 된다."],["e5-2-3-1-xc26",0,"상","합동과 놓인 방향","어떤 도형을 다른 자리로 옮기고 방향을 돌려 놓았습니다. 옮긴 도형이 처음 도형과 합동인지 쓰고, 도형의 무엇이 변하지 않았기 때문인지 설명하시오.","합동이다. 놓인 자리와 방향은 달라졌지만 도형의 모양과 크기는 변하지 않아서 다시 포개면 완전히 겹친다."],["e5-2-3-1-xc27",0,"상","세 각만 같은 삼각형","세 각의 크기가 각각 같은 두 삼각형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정삼각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.","항상 합동인 것은 아니다. 두 정삼각형은 세 각이 모두 $60 ^\\circ$로 같지만 변의 길이가 달라 크기가 다르므로 포개어도 완전히 겹치지 않는다."],["e5-2-3-2-c1",1,"하","대응점","서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오.","서로 합동인 두 도형을 완전히 포개었을 때 서로 겹치는 두 점이다."],["e5-2-3-2-c2",1,"하","대응변","서로 합동인 두 도형에서 대응변은 어떤 변을 말하는지 설명하시오.","두 도형을 완전히 포개었을 때 서로 겹치는 변이다."],["e5-2-3-2-c3",1,"하","대응각","서로 합동인 두 도형에서 대응각은 어떤 각을 말하는지 설명하시오.","두 도형을 완전히 포개었을 때 서로 겹치는 각이다."],["e5-2-3-2-c4",1,"중","합동인 도형의 성질","서로 합동인 두 도형에서 대응변의 길이끼리, 대응각의 크기끼리는 각각 어떤 관계인지 쓰시오.","대응변의 길이는 서로 같고, 대응각의 크기도 서로 같다."],["e5-2-3-2-c5",1,"상","대응 순서 확인","서로 합동인 두 도형 중 하나가 돌아가 있을 때, 놓인 위치만 보고 짝을 정하면 틀릴 수 있다. 무엇을 비교하거나 어떻게 포개어서 대응하는 부분을 찾을 수 있는지 설명하시오.","변의 길이와 각의 크기가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다. 한 도형을 돌려 다른 도형과 완전히 포갠 뒤 겹치는 부분을 찾아도 된다."],["e5-2-3-2-xc1",1,"하","삼각형의 대응점 수","서로 합동인 두 다각형에서 대응점, 대응변, 대응각이 각각 몇 쌍인지는 도형의 무엇을 세면 알 수 있는지 쓰고, 서로 합동인 두 사각형에서는 각각 몇 쌍인지 쓰시오.","한 도형의 꼭짓점(변, 각)의 수를 세면 된다. 사각형에서는 대응점, 대응변, 대응각이 각각 $4$쌍이다."],["e5-2-3-2-xc7",1,"하","대응변으로 길이 알기","서로 합동인 두 도형에서 한 도형의 어떤 변의 길이를 모를 때, 다른 도형의 무엇을 보면 그 길이를 알 수 있는지와 그 까닭을 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 변 ㄱㄴ의 대응변이 변 ㄹㅁ이며 변 ㄱㄴ이 $6\\,\\mathrm{cm}$일 때, 변 ㄹㅁ의 길이를 쓰시오.","그 변의 대응변의 길이를 보면 된다. 합동인 도형에서 대응변의 길이는 서로 같기 때문이다. 변 ㄹㅁ은 $6\\,\\mathrm{cm}$이다."],["e5-2-3-2-xc9",1,"중","합동인 삼각형의 나머지 각","삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ은 서로 합동이고, 각 ㄱ의 대응각은 각 ㄹ, 각 ㄴ의 대응각은 각 ㅁ이다. 각 ㄱ이 $50 ^\\circ$, 각 ㄴ이 $60 ^\\circ$일 때 각 ㅂ의 크기를 구하는 방법을 설명하고 답을 쓰시오.","대응각의 크기는 같으므로 각 ㄹ은 $50 ^\\circ$, 각 ㅁ은 $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 $180 ^\\circ$이므로 각 ㅂ은 $180 ^\\circ - 50 ^\\circ - 60 ^\\circ = 70 ^\\circ$이다. (각 ㄷ을 $70 ^\\circ$로 먼저 구하고 그 대응각인 각 ㅂ도 $70 ^\\circ$라고 해도 된다.)"],["e5-2-3-2-xc11",1,"중","대응점 두 쌍과 대응변","서로 합동인 두 도형에서 대응점을 모두 알고 있을 때, 한 변의 대응변을 어떻게 찾을 수 있는지 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ, ㄴ, ㄷ의 대응점이 차례로 점 ㅁ, ㅂ, ㄹ일 때, 변 ㄴㄷ의 대응변을 쓰시오.","그 변의 양 끝 점의 대응점을 각각 찾아 이은 변이 대응변이다. 변 ㄴㄷ의 대응변은 변 ㅂㄹ이다."],["e5-2-3-2-xc15",1,"중","가장 긴 변끼리","세 변의 길이가 모두 다른 두 삼각형이 서로 합동일 때, 한 삼각형의 가장 긴 변의 대응변은 다른 삼각형의 어느 변인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.","다른 삼각형의 가장 긴 변이다. 대응변은 길이가 같아야 하는데, 세 변의 길이가 모두 다르므로 길이가 같은 변은 가장 긴 변 하나뿐이기 때문이다."],["e5-2-3-2-xc17",1,"상","대응각 맞은편의 변","서로 합동인 두 삼각형에서 한 쌍의 대응각을 알 때, 두 삼각형에서 그 각과 마주 보는 변끼리는 어떤 관계인지 쓰시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄴ의 대응각이 각 ㅂ일 때, 변 ㄱㄷ의 대응변을 쓰시오.","서로 대응변이다(길이가 같다). 변 ㄱㄷ의 대응변은 각 ㅂ과 마주 보는 변 ㄹㅁ이다."],["e5-2-3-2-xc19",1,"상","이등변삼각형과 합동인 삼각형","이등변삼각형과 합동인 삼각형은 어떤 삼각형인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.","이등변삼각형이다. 이등변삼각형의 길이가 같은 두 변의 대응변도 각각 길이가 같아서, 합동인 삼각형에도 길이가 같은 두 변이 있기 때문이다."],["e5-2-3-2-xc20",1,"상","합동인 직사각형의 넓이","서로 합동인 두 직사각형의 넓이는 서로 어떤 관계인지 쓰고, 그 까닭을 가로와 세로의 길이로 설명하시오.","넓이가 서로 같다. 두 직사각형을 완전히 겹치도록 돌려 놓으면 가로끼리, 세로끼리 길이가 같다. 그러므로 가로와 세로를 곱한 넓이도 같다."],["e5-2-3-2-xc23",1,"상","대각선으로 나눈 직사각형의 대응변","변 ㄱㄴ이 $5\\,\\mathrm{cm}$, 변 ㄴㄷ이 $8\\,\\mathrm{cm}$인 직사각형 ㄱㄴㄷㄹ을 대각선 ㄱㄷ으로 자르면 서로 합동인 삼각형 ㄱㄴㄷ과 삼각형 ㄷㄹㄱ이 생긴다. 삼각형 ㄱㄴㄷ의 변 ㄱㄴ의 대응변은 삼각형 ㄷㄹㄱ의 어느 변인지 쓰고, 그 까닭을 변의 길이로 설명하시오.","변 ㄷㄹ이다. 대응변은 길이가 같아야 하는데, 직사각형에서 마주 보는 변 ㄱㄴ과 변 ㄷㄹ의 길이가 $5\\,\\mathrm{cm}$로 같기 때문이다. (변 ㄹㄱ은 $8\\,\\mathrm{cm}$이고 대각선은 그보다 길다.)"],["e5-2-3-2-xc24",1,"상","둘레가 같은 까닭","서로 합동인 두 도형의 둘레는 서로 어떤 관계인지 쓰고, 그 까닭을 변의 길이와 관련지어 설명하시오.","둘레가 서로 같다. 대응변끼리 길이가 각각 같으므로 변의 길이를 모두 더한 값도 같기 때문이다."],["e5-2-3-2-xc25",1,"상","크기가 같은 각이 여럿일 때","서로 합동인 두 도형에 크기가 같은 각이 여러 개 있을 때, 각의 크기만 보고 대응각을 정하면 안 되는 까닭과 대응각을 바르게 정하는 방법을 설명하시오.","크기가 같은 각이 여럿이면 크기만으로는 어느 각이 짝인지 하나로 정할 수 없기 때문이다. 두 도형을 완전히 포개어 겹치는 각끼리 대응각으로 정한다(대응점을 먼저 찾아도 된다)."],["e5-2-3-3-c1",2,"하","선대칭도형","어떤 도형을 선대칭도형이라고 하나요? 도형을 접었을 때 어떻게 되는지를 넣어 설명하세요.","한 직선을 따라 접었을 때 양쪽 부분이 완전히 겹치는 도형이다."],["e5-2-3-3-c2",2,"하","대칭축","선대칭도형에서 대칭축은 어떤 직선을 말하나요?","그 직선을 따라 접으면 도형의 양쪽이 완전히 겹치는 직선이다."],["e5-2-3-3-c3",2,"하","대응점","선대칭도형에서 대응점은 어떤 점을 말하나요?","대칭축을 따라 접었을 때 서로 겹치는 점이다."],["e5-2-3-3-c6",2,"상","선대칭도형의 성질","선대칭도형에서 대칭축 밖의 한 점과 그 대응점을 선분으로 이었습니다. 이 선분은 대칭축과 어떻게 만나는지, 대칭축은 이 선분을 어떻게 나누는지 설명하세요.","선분은 대칭축과 수직으로 만나고, 대칭축은 이 선분을 길이가 같은 두 부분으로 나눈다."],["e5-2-3-3-c7",2,"중","선대칭에서 같은 부분","선대칭도형에서 대응변끼리, 대응각끼리는 각각 무엇이 같은가요? 그렇게 되는 까닭을 도형을 접는 것과 관련지어 설명하세요.","대응변은 길이가 같고 대응각은 크기가 같다. 대칭축을 따라 접으면 대응변끼리, 대응각끼리 완전히 겹치기 때문이다."],["e5-2-3-3-xc2",2,"하","정사각형의 대칭축 수","정사각형의 대칭축은 모두 몇 개인지 쓰고, 각각 어떤 직선인지 설명하세요.","$4$개이다. 두 대각선과, 마주 보는 변의 한가운데끼리 이은 두 직선이다."],["e5-2-3-3-xc3",2,"하","정삼각형의 대칭축 수","정삼각형의 대칭축은 모두 몇 개인지 쓰고, 각 대칭축이 정삼각형의 어디와 어디를 지나는지 설명하세요.","$3$개이다. 각 대칭축은 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 한가운데를 지난다."],["e5-2-3-3-xc4",2,"하","원의 대칭축","원의 대칭축은 어떤 직선이고, 모두 몇 개인지 설명하세요.","원의 중심을 지나는 직선은 모두 대칭축이고, 그런 직선은 셀 수 없이 많다."],["e5-2-3-3-xc5",2,"하","직사각형의 대칭축 수","가로와 세로의 길이가 다른 직사각형의 대칭축은 모두 몇 개인지 쓰세요. 또 이 직사각형의 대각선이 대칭축이 되는지를 접는 것과 관련지어 설명하세요.","$2$개이다(마주 보는 변의 한가운데끼리 이은 두 직선). 대각선을 따라 접으면 양쪽이 완전히 겹치지 않으므로 대각선은 대칭축이 아니다."],["e5-2-3-3-xc6",2,"중","대칭축 위의 점","선대칭도형에서 대칭축 위에 있는 점의 대응점은 어느 점인가요? 도형을 접는 것과 관련지어 설명하세요.","자기 자신이다. 대칭축을 따라 접을 때 접는 선 위의 점은 다른 점과 겹치지 않고 제자리에 있기 때문이다."],["e5-2-3-3-xc8",2,"중","이등변삼각형의 대칭축","정삼각형이 아닌 이등변삼각형의 대칭축은 몇 개인지 쓰고, 그 대칭축이 삼각형의 어디와 어디를 지나는지 설명하세요.","$1$개이다. 길이가 같은 두 변이 만나는 꼭짓점과 나머지 한 변의 한가운데를 지난다."],["e5-2-3-3-xc9",2,"중","마름모의 대칭축","정사각형이 아닌 마름모의 대칭축은 몇 개이고 어떤 직선인가요? 또 마주 보는 변의 한가운데끼리 이은 직선은 이 마름모의 대칭축이 되는지 쓰세요.","$2$개이고 두 대각선을 각각 포함하는 직선이다. 마주 보는 변의 한가운데끼리 이은 직선은 접어도 완전히 겹치지 않으므로 대칭축이 아니다."],["e5-2-3-3-xc10",2,"중","평행사변형과 선대칭","직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지 아닌지 쓰고, 그렇게 판단한 까닭을 도형을 접는 것과 관련지어 설명하세요.","선대칭도형이 아니다. 대각선을 포함해 어떤 직선을 따라 접어도 양쪽이 완전히 겹치지 않기 때문이다."],["e5-2-3-3-xc11",2,"중","정다각형의 대칭축 수","정다각형의 대칭축의 수는 그 도형의 무엇의 수와 같은가요? 이를 이용해 정팔각형의 대칭축은 몇 개인지도 쓰세요.","변의 수와 같다. 정팔각형은 변이 $8$개이므로 대칭축도 $8$개이다."],["e5-2-3-3-xc12",2,"중","선대칭도형 완성하기","선대칭인 다각형의 반쪽과 대칭축이 그려져 있습니다. 나머지 반쪽을 그려 도형을 완성하는 방법을 순서대로 설명하세요.","각 꼭짓점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편의 같은 거리에 대응점을 찍는다. 축 위의 꼭짓점은 그대로 둔다. 찍은 대응점들을 원래 꼭짓점 순서대로 선분으로 잇는다."],["e5-2-3-3-xc13",2,"중","대칭축으로 나뉜 두 부분","선대칭도형을 대칭축으로 나누면 두 부분이 생깁니다. 이 두 부분은 서로 어떤 관계인지 쓰고, 그렇게 말할 수 있는 까닭을 설명하세요.","서로 합동이다. 대칭축을 따라 접으면 두 부분이 완전히 겹치기 때문이다."],["e5-2-3-3-xc15",2,"상","대응점 찍는 법","대칭축과 대칭축 밖의 한 점이 그려져 있습니다. 이 점의 대응점을 찍으려면 어떻게 해야 하는지 설명하세요.","그 점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편으로 그 점에서 대칭축까지의 거리와 같은 거리만큼 떨어진 곳에 점을 찍는다."],["e5-2-3-3-xc16",2,"상","선대칭도형의 넓이","선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이만 알 때, 전체 넓이를 어떻게 구할 수 있는지 까닭과 함께 설명하세요. 한쪽 부분의 넓이가 $12\\,\\mathrm{cm} ^2$이면 전체 넓이는 얼마인가요?","두 부분은 합동이라 넓이가 같으므로 한쪽 넓이를 $2$배 하면 된다. $12 \\times 2 = 24$이므로 $24\\,\\mathrm{cm} ^2$이다."],["e5-2-3-3-xc19",2,"상","정육각형의 대칭축","정육각형의 대칭축은 모두 몇 개인지 쓰고, 그 대칭축들이 어떤 두 종류의 직선으로 이루어져 있는지 설명하세요.","$6$개이다. 마주 보는 꼭짓점끼리 이은 직선 $3$개와 마주 보는 변의 한가운데끼리 이은 직선 $3$개이다."],["e5-2-3-3-xc20",2,"상","대응점을 이은 선분들","선대칭도형에서 대칭축 밖에 있는 대응점끼리 이은 선분을 여러 개 그렸습니다. 서로 겹치지 않는 이 선분들은 서로 어떤 관계인지, 각 선분과 대칭축의 관계를 이용해 설명하세요.","선분들은 모두 대칭축에 수직이다. 한 직선에 수직인 선분들이므로 서로 평행하다."],["e5-2-3-3-xc21",2,"상","대칭축이 지나는 꼭짓점의 각","선대칭도형에서 대칭축이 한 꼭짓점을 지납니다. 대칭축은 그 꼭짓점의 각을 어떻게 나누는지 쓰고, 그 까닭을 도형을 접는 것과 관련지어 설명하세요.","크기가 같은 두 각으로 나눈다. 대칭축을 따라 접으면 나뉜 두 각이 완전히 겹치기 때문이다."],["e5-2-3-4-c1",3,"하","점대칭도형","점대칭도형은 어떤 도형입니까? 도형을 어떻게 움직였을 때 어떻게 되는 도형인지 설명하시오.","한 점을 중심으로 $180 ^\\circ$(반 바퀴) 돌렸을 때 처음 도형과 완전히 겹치는 도형이다."],["e5-2-3-4-c2",3,"하","대칭의 중심","점대칭도형에서 대칭의 중심은 어떤 점을 말합니까?","점대칭도형을 $180 ^\\circ$ 돌려 처음 도형과 완전히 겹치게 할 때 중심이 되는 점이다."],["e5-2-3-4-c3",3,"하","대응점","점대칭도형에서 대응점, 대응변, 대응각은 각각 무엇을 말합니까? 도형을 어떻게 움직였을 때의 점, 변, 각인지 설명하시오.","대칭의 중심을 중심으로 $180 ^\\circ$ 돌렸을 때 겹치는 점이 대응점, 겹치는 변이 대응변, 겹치는 각이 대응각이다."],["e5-2-3-4-c6",3,"상","점대칭도형의 성질","점대칭도형에서 대응점끼리 이은 선분과 대칭의 중심은 어떤 관계입니까? 대응점 ㄱ과 ㄹ을 이은 선분의 길이가 $10\\,\\mathrm{cm}$일 때, 점 ㄱ에서 대칭의 중심까지의 거리도 구하시오.","대칭의 중심은 대응점끼리 이은 선분을 똑같이 둘로 나눈다(선분의 한가운데에 있다). 점 ㄱ에서 대칭의 중심까지의 거리는 $5\\,\\mathrm{cm}$이다."],["e5-2-3-4-c7",3,"중","점대칭에서 같은 부분","점대칭도형에서 대응변끼리, 대응각끼리는 각각 어떤 관계입니까? 변 ㄱㄴ의 대응변이 변 ㄹㅁ이고 변 ㄱㄴ의 길이가 $7\\,\\mathrm{cm}$일 때 변 ㄹㅁ의 길이도 쓰시오.","대응변의 길이는 서로 같고, 대응각의 크기도 서로 같다. 변 ㄹㅁ의 길이는 $7\\,\\mathrm{cm}$이다."],["e5-2-3-4-xc3",3,"하","정사각형의 대칭의 중심","정사각형과 직사각형은 점대칭도형입니다. 이 도형들에서 대칭의 중심은 어디에 있는지 설명하시오.","두 대각선이 만나는 점이 대칭의 중심이다. (마주 보는 꼭짓점이 대응점이라, 대응점끼리 이은 두 선분이 만나는 점이다.)"],["e5-2-3-4-xc5",3,"하","정삼각형과 점대칭","정삼각형은 점대칭도형입니까? 반 바퀴 돌렸을 때 처음 도형과 어떻게 되는지를 들어 설명하시오.","점대칭도형이 아니다. 어느 점을 중심으로 $180 ^\\circ$ 돌려도 꼭짓점의 방향이 반대로 되어 처음 도형과 완전히 겹치지 않는다."],["e5-2-3-4-xc7",3,"중","평행사변형과 점대칭","직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지, 점대칭도형인지 각각 답하시오. 점대칭도형이라면 대칭의 중심이 어디인지도 쓰시오.","선대칭도형은 아니고 점대칭도형이다. 대칭의 중심은 두 대각선이 만나는 점이다."],["e5-2-3-4-xc11",3,"중","대응점 찾는 법","점대칭도형에서 대칭의 중심 ㅇ과 도형 위에서 점 ㅇ과 다른 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.","점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다."],["e5-2-3-4-xc15",3,"상","변의 수가 짝수인 정다각형","정다각형이 점대칭도형인지 아닌지는 변의 수에 따라 어떻게 달라집니까? 정오각형과 정육각형이 각각 점대칭도형인지도 쓰시오.","변의 수가 짝수인 정다각형은 점대칭도형이고, 홀수인 정다각형은 점대칭도형이 아니다. 정오각형은 점대칭도형이 아니고 정육각형은 점대칭도형이다."],["e5-2-3-4-xc17",3,"상","점대칭도형 완성하기","다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.","주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다."],["e5-2-3-4-xc18",3,"상","두 가지 대칭을 모두 가진 도형","정사각형, 직사각형, 마름모, 원, 정삼각형 중에서 선대칭도형이면서 점대칭도형인 것을 모두 고르시오. 고르지 않은 도형은 두 대칭 중 어느 쪽이 아닌지 쓰시오.","정사각형, 직사각형, 마름모, 원이다. 정삼각형은 선대칭도형이지만 점대칭도형이 아니다."],["e5-2-3-4-xc19",3,"상","대응변끼리의 평행","점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.","서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다."],["e5-2-3-4-xc20",3,"상","대칭의 중심 찾기","점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.","한 직선 위에 있지 않은 대응점 두 쌍을 골라 각각 선분으로 잇고, 두 선분이 만나는 점을 찾는다. 또는 서로 다른 두 대응점을 이은 선분 하나의 한가운데 점을 찾아도 된다."],["e5-2-3-4-xc21",3,"상","중심을 지나는 직선과 넓이","점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 $24\\,\\mathrm{cm} ^2$인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.","두 부분의 넓이는 서로 같다. 한 부분의 넓이는 $24 \\div 2 = 12$ ($\\mathrm{cm} ^2$)이다."],["e5-2-3-4-xc22",3,"상","점대칭인 육각형의 둘레","점대칭도형인 육각형은 이웃한 세 변의 길이만 알아도 둘레를 구할 수 있습니다. 대응변의 어떤 성질 때문인지 설명하고, 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$일 때 둘레를 구하시오.","대응변의 길이가 서로 같아 나머지 세 변도 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이다. 둘레는 ($3 + 4 + 5$)$\\times 2 = 24$ ($\\mathrm{cm}$)이다."],["e5-2-3-4-xc23",3,"상","반 바퀴와 한 바퀴","어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.","할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다."]],"extra":[["e5-2-3-1-o1",0,"중","○×","한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $5\\,\\mathrm{cm}$인 정사각형은 합동이다.","× — 모양은 같아도 크기가 달라 포갤 수 없다."],["e5-2-3-1-xo1",0,"하","○×","모양과 크기가 같은 두 도형은 서로 합동이다.","○ — 포개면 꼭 맞게 겹친다."],["e5-2-3-1-xo2",0,"하","○×","모양이 같으면 크기가 달라도 합동이다.","× — 크기까지 같아야 포개어진다."],["e5-2-3-1-xo3",0,"하","○×","한 도형을 뒤집어 놓은 도형은 처음 도형과 합동이다.","○ — 뒤집어도 모양과 크기는 그대로이다."],["e5-2-3-1-xo4",0,"하","○×","한 도형을 돌려 놓으면 처음 도형과 합동이 아니게 된다.","× — 돌려도 모양과 크기는 바뀌지 않는다."],["e5-2-3-1-xo5",0,"하","○×","반지름이 같은 두 원은 합동이다.","○ — 반지름이 같으면 포개어진다."],["e5-2-3-1-xo7",0,"하","○×","한 변의 길이가 같은 두 정사각형은 합동이다.","○ — 모양과 크기가 같다."],["e5-2-3-1-xo8",0,"하","○×","모든 직사각형은 서로 합동이다.","× — 한 직사각형을 더 크게 그린 직사각형은 크기가 달라 꼭 맞게 포개어지지 않는다."],["e5-2-3-1-xo9",0,"하","○×","종이 두 장을 겹쳐 한 번에 오린 두 조각은 합동이다.","○ — 같은 선을 따라 함께 오렸다."],["e5-2-3-1-xo10",0,"하","○×","두 도형이 합동인지 알려면 색깔을 견주어 본다.","× — 모양과 크기를 포개어 견준다."],["e5-2-3-1-xo11",0,"중","○×","합동인 두 도형은 넓이가 같다.","○ — 포개면 겹치므로 넓이도 같다."],["e5-2-3-1-xo12",0,"중","○×","넓이가 같은 두 도형은 언제나 합동이다.","× — 모양이 다르면 합동이 아니다."],["e5-2-3-1-xo13",0,"중","○×","합동인 두 도형은 둘레의 길이가 같다.","○ — 대응하는 변의 길이가 모두 같다."],["e5-2-3-1-xo14",0,"중","○×","둘레가 같은 두 도형은 언제나 합동이다.","× — 둘레가 같아도 모양이 다를 수 있다."],["e5-2-3-1-xo15",0,"중","○×","가로와 세로의 길이가 각각 같은 두 직사각형은 합동이다.","○ — 포개면 꼭 맞는다."],["e5-2-3-1-xo16",0,"중","○×","한 변의 길이가 같은 정삼각형과 정사각형은 합동이다.","× — 변의 수가 달라 모양이 다르다."],["e5-2-3-1-xo17",0,"중","○×","직사각형을 대각선 하나로 자른 두 삼각형은 합동이다.","○ — 한 삼각형을 돌리면 다른 삼각형에 포개진다."],["e5-2-3-1-xo18",0,"중","○×","정사각형을 두 대각선으로 자르면 크기가 다른 삼각형이 생긴다.","× — 네 삼각형은 모두 합동이다."],["e5-2-3-1-xo19",0,"중","○×","평행사변형을 대각선 하나로 자른 두 삼각형은 합동이다.","○ — 한 삼각형을 반 바퀴 돌리면 포개진다."],["e5-2-3-1-xo21",0,"상","○×","한 변의 길이가 같고 변의 수도 같은 두 정다각형은 서로 합동이다.","○ — 모양과 크기가 같아진다."],["e5-2-3-1-xo22",0,"상","○×","한 변의 길이가 같은 두 마름모는 언제나 합동이다.","× — 각의 크기가 다르면 포개지지 않는다."],["e5-2-3-1-xo23",0,"상","○×","원을 지름으로 자른 두 조각은 합동이다.","○ — 한 조각을 뒤집으면 다른 조각에 포개진다."],["e5-2-3-1-xo24",0,"상","○×","세 각의 크기가 같은 두 삼각형은 언제나 합동이다.","× — 크기가 다르면 포개지지 않는다."],["e5-2-3-1-xo25",0,"상","○×","합동인지는 도형이 놓인 방향과 관계없다.","○ — 돌리거나 뒤집어 포개어 볼 수 있다."],["e5-2-3-1-xo28",0,"상","○×","변의 수가 다른 두 정다각형도 한 변의 길이가 같으면 합동이다.","× — 변의 수가 다르면 모양이 다르다."],["e5-2-3-1-xo29",0,"상","○×","마주 보는 변의 한가운데끼리 이은 두 선으로 자른 직사각형 네 조각은 모두 합동이다.","○ — 네 조각의 가로와 세로가 모두 같다."],["e5-2-3-2-o1",1,"중","○×","두 삼각형이 합동이면 짝이 되는 각의 크기도 일치한다.","○ — 포개지는 각이므로 벌어진 정도도 같다."],["e5-2-3-2-xo1",1,"하","○×","합동인 두 삼각형의 대응점은 모두 세 쌍이다.","○ — 꼭짓점이 셋이다."],["e5-2-3-2-xo2",1,"하","○×","합동인 두 사각형에는 대응변이 세 쌍 있다.","× — 변이 넷이므로 네 쌍이다."],["e5-2-3-2-xo3",1,"하","○×","합동인 두 도형의 대응변끼리는 길이가 같다.","○ — 포개면 대응변끼리 겹친다."],["e5-2-3-2-xo4",1,"하","○×","합동인 두 도형에서 대응각의 크기는 서로 다를 수 있다.","× — 대응각은 크기가 같다."],["e5-2-3-2-xo5",1,"하","○×","합동인 두 오각형의 대응각은 모두 다섯 쌍이다.","○ — 각이 다섯이다."],["e5-2-3-2-xo6",1,"하","○×","대응점은 두 도형을 포개었을 때 서로 다른 자리에 오는 점이다.","× — 같은 자리에 겹치는 점이다."],["e5-2-3-2-xo9",1,"하","○×","합동인 두 도형을 포개면 대응변끼리 겹친다.","○ — 같은 자리에 오는 변의 짝이다."],["e5-2-3-2-xo10",1,"하","○×","합동인 두 삼각형의 대응각은 두 쌍뿐이다.","× — 각이 셋이므로 세 쌍이다."],["e5-2-3-2-xo11",1,"중","○×","합동인 삼각형에서 두 각을 알면 나머지 각도 구할 수 있다.","○ — 세 각의 합이 $180^\\circ$이다."],["e5-2-3-2-xo12",1,"중","○×","세 변의 길이가 모두 다른 합동인 두 삼각형에서 한쪽의 가장 긴 변과 다른 쪽의 가장 짧은 변은 대응변이다.","× — 대응변은 길이가 같아야 한다."],["e5-2-3-2-xo13",1,"중","○×","대응점을 꼭짓점으로 하는 각끼리는 대응각이다.","○ — 포개면 그 각끼리 겹친다."],["e5-2-3-2-xo14",1,"중","○×","돌아가 있는 도형에서는 대응점을 찾을 수 없다.","× — 돌려 놓고 견주면 찾을 수 있다."],["e5-2-3-2-xo15",1,"중","○×","대응점 두 쌍을 각각 이은 변끼리는 대응변이다.","○ — 양 끝이 함께 겹친다."],["e5-2-3-2-xo16",1,"중","○×","합동인 두 사각형의 대응각 네 쌍 중 한 쌍은 크기가 다를 수 있다.","× — 네 쌍 모두 크기가 같다."],["e5-2-3-2-xo18",1,"중","○×","합동인 두 도형의 대응변은 놓인 방향도 같아야 한다.","× — 도형을 돌려 놓으면 방향은 달라진다."],["e5-2-3-2-xo19",1,"중","○×","뒤집혀 있는 도형도 대응점을 찾을 수 있다.","○ — 한 번 뒤집어 놓고 견주면 된다."],["e5-2-3-2-xo20",1,"상","○×","합동인 두 삼각형에서 대응각끼리 마주 보는 두 변은 서로 대응변이다.","○ — 그 각을 뺀 두 대응점을 이은 변끼리이기 때문이다."],["e5-2-3-2-xo22",1,"상","○×","이등변삼각형과 합동인 삼각형은 길이가 같은 두 변을 가진다.","○ — 대응변의 길이가 같기 때문이다."],["e5-2-3-2-xo23",1,"상","○×","가로와 세로가 다른 직사각형을 대각선으로 자른 두 삼각형에서는 이웃한 두 변이 대응변이다.","× — 마주 보는 변끼리 대응한다."],["e5-2-3-2-xo24",1,"상","○×","이웃한 꼭짓점의 대응점끼리도 이웃한다.","○ — 포개도 꼭짓점의 이웃 관계는 그대로이다."],["e5-2-3-2-xo25",1,"상","○×","합동인 두 도형에서 크기가 같은 두 각은 언제나 대응각이다.","× — 직각이 두 개씩인 합동인 두 사다리꼴에서도 포갤 때 겹치지 않는 직각끼리는 대응각이 아니다."],["e5-2-3-2-xo26",1,"상","○×","합동인 사각형에서 세 각을 알면 나머지 한 각도 구할 수 있다.","○ — 네 각의 합이 $360^\\circ$이다."],["e5-2-3-2-xo27",1,"상","○×","합동인 두 도형은 대응변끼리 길이가 같아도 대응각끼리 크기는 다를 수 있다.","× — 대응각의 크기도 모두 같다."],["e5-2-3-3-o1",2,"중","○×","선대칭도형의 대칭축은 언제나 하나뿐이다.","× — 정사각형은 대칭축이 네 개이다."],["e5-2-3-3-xo2",2,"하","○×","정삼각형의 대칭축은 하나뿐이다.","× — 세 개이다."],["e5-2-3-3-xo3",2,"하","○×","원은 중심을 지나는 직선이면 모두 대칭축이 된다.","○ — 어느 쪽으로 접어도 꼭 맞게 겹친다."],["e5-2-3-3-xo4",2,"하","○×","모든 삼각형은 선대칭도형이다.","× — 세 변이 모두 다른 삼각형은 대칭축이 없다."],["e5-2-3-3-xo5",2,"하","○×","선대칭도형을 대칭축으로 접으면 양쪽이 꼭 맞게 겹친다.","○ — 대칭축의 뜻이다."],["e5-2-3-3-xo6",2,"하","○×","대칭축은 선대칭도형의 바깥에 그어진다.","× — 대칭축은 도형을 가로지른다."],["e5-2-3-3-xo7",2,"하","○×","선대칭도형의 대응변끼리는 길이가 같다.","○ — 접으면 대응변끼리 겹친다."],["e5-2-3-3-xo8",2,"하","○×","선대칭도형에서 대응각의 크기는 다를 수 있다.","× — 접으면 겹치므로 크기가 같다."],["e5-2-3-3-xo9",2,"하","○×","정삼각형은 선대칭도형이다.","○ — 대칭축이 세 개 있다."],["e5-2-3-3-xo10",2,"하","○×","가로와 세로가 다른 직사각형의 대각선은 대칭축이다.","× — 대각선으로 접으면 꼭 맞게 겹치지 않는다."],["e5-2-3-3-xo11",2,"중","○×","대칭축 위의 점은 자기 자신이 대응점이다.","○ — 접어도 그 자리에 그대로 있다."],["e5-2-3-3-xo12",2,"중","○×","짝이 되는 두 점은 대칭축에서 떨어진 거리가 다를 수 있다.","× — 같은 거리만큼 떨어져 있다."],["e5-2-3-3-xo13",2,"중","○×","정사각형이 아닌 마름모는 두 대각선이 각각 대칭축이 된다.","○ — 대각선으로 접으면 꼭 맞게 겹친다."],["e5-2-3-3-xo14",2,"중","○×","직사각형도 마름모도 아닌 평행사변형은 선대칭도형이다.","× — 어느 직선으로 접어도 겹치지 않는다."],["e5-2-3-3-xo15",2,"중","○×","정다각형은 변의 수만큼 대칭축이 있다.","○ — 변의 수가 홀수이면 꼭짓점마다 축이 하나씩, 짝수이면 마주 보는 꼭짓점끼리와 마주 보는 변의 한가운데끼리 잇는 축이 절반씩 있다."],["e5-2-3-3-xo16",2,"중","○×","정오각형의 대칭축은 네 개이다.","× — 다섯 개이다."],["e5-2-3-3-xo17",2,"중","○×","선대칭도형을 대칭축으로 나눈 두 부분은 합동이다.","○ — 접으면 꼭 맞게 포개진다."],["e5-2-3-3-xo18",2,"중","○×","세 변이 다 같지는 않은 이등변삼각형의 대칭축은 두 개이다.","× — 한 개이다."],["e5-2-3-3-xo19",2,"중","○×","선대칭인 다각형의 반쪽과 대칭축이 있으면 나머지 반쪽을 그릴 수 있다.","○ — 꼭짓점마다 대응점을 찍어 잇는다."],["e5-2-3-3-xo20",2,"상","○×","원의 대칭축은 끝없이 많아서 개수를 다 셀 수 없다.","○ — 중심을 지나는 직선은 모두 대칭축이다."],["e5-2-3-3-xo21",2,"상","○×","정육각형의 대칭축은 세 개이다.","× — 여섯 개이다."],["e5-2-3-3-xo22",2,"상","○×","선대칭도형에서 대칭축 밖의 점과 그 대응점을 이은 선분들은 모두 대칭축에 수직이다.","○ — 접으면 두 점이 포개지므로 두 점을 이은 선분이 대칭축과 직각으로 만난다."],["e5-2-3-3-xo23",2,"상","○×","대칭축이 지나는 꼭짓점의 각은 크기가 다른 두 각으로 나뉜다.","× — 크기가 같은 두 각으로 나뉜다."],["e5-2-3-3-xo24",2,"상","○×","두 변의 길이가 같은 직각삼각형은 선대칭도형이다.","○ — 대칭축이 한 개 있다."],["e5-2-3-3-xo25",2,"상","○×","선대칭도형의 넓이는 대칭축 한쪽의 넓이와 같다.","× — 한쪽 넓이의 두 배이다."],["e5-2-3-3-xo29",2,"상","○×","정사각형의 대각선 중 대칭축은 하나뿐이다.","× — 두 대각선이 모두 대칭축이다."],["e5-2-3-4-o1",3,"중","○×","점대칭도형은 한 점 둘레로 $90^\\circ$만 돌려도 반드시 포개진다.","× — 가로와 세로가 다른 직사각형은 점대칭도형이지만 $90^\\circ$ 돌리면 처음 모양과 포개지지 않는다."],["e5-2-3-4-xo1",3,"하","○×","점대칭도형은 대칭의 중심 둘레로 반 바퀴 돌리면 처음 모양과 겹친다.","○ — 점대칭도형의 뜻이다."],["e5-2-3-4-xo3",3,"하","○×","정사각형은 점대칭도형이다.","○ — 두 대각선이 만나는 점이 대칭의 중심이다."],["e5-2-3-4-xo4",3,"하","○×","정삼각형은 점대칭도형이다.","× — 어느 점 둘레로 반 바퀴 돌려도 처음 모양과 꼭 맞게 겹치지 않는다."],["e5-2-3-4-xo5",3,"하","○×","원은 점대칭도형이다.","○ — 원의 중심이 대칭의 중심이다."],["e5-2-3-4-xo6",3,"하","○×","점대칭도형의 대응변끼리는 길이가 서로 다르다.","× — 대응변끼리 길이가 같다."],["e5-2-3-4-xo7",3,"하","○×","점대칭도형에서 대응각의 크기는 같다.","○ — 돌려서 겹치는 각이다."],["e5-2-3-4-xo8",3,"하","○×","원의 대칭의 중심은 원 위의 한 점이다.","× — 원의 중심이다."],["e5-2-3-4-xo9",3,"하","○×","직사각형은 점대칭도형이다.","○ — 대각선 두 개가 만나는 점이 대칭의 중심이다."],["e5-2-3-4-xo10",3,"하","○×","점대칭도형은 한 바퀴를 다 돌려야만 처음 모양과 겹친다.","× — 반 바퀴만 돌려도 겹친다."],["e5-2-3-4-xo11",3,"중","○×","직사각형도 마름모도 아닌 평행사변형은 점대칭도형이다.","○ — 반 바퀴 돌리면 꼭 맞게 겹친다."],["e5-2-3-4-xo12",3,"중","○×","다각형이나 원처럼 한없이 뻗지 않는 점대칭도형의 대칭의 중심은 두 개일 수 있다.","× — 하나뿐이다."],["e5-2-3-4-xo13",3,"중","○×","점대칭도형의 두 대응점은 대칭의 중심에서 떨어진 거리가 같다.","○ — 대칭의 중심이 두 점 사이의 한가운데이다."],["e5-2-3-4-xo14",3,"중","○×","정오각형은 점대칭도형이다.","× — 반 바퀴 돌리면 겹치지 않는다."],["e5-2-3-4-xo15",3,"중","○×","정육각형은 점대칭도형이다.","○ — 마주 보는 꼭짓점끼리 대응한다."],["e5-2-3-4-xo16",3,"중","○×","마름모는 선대칭도형이지만 점대칭도형은 아니다.","× — 마름모는 점대칭도형이기도 하다."],["e5-2-3-4-xo17",3,"중","○×","직사각형의 대칭의 중심은 두 대각선이 만나는 점이다.","○ — 그 점 둘레로 반 바퀴 돌리면 겹친다."],["e5-2-3-4-xo19",3,"중","○×","점대칭인 다각형의 반쪽과 대칭의 중심이 있으면 나머지를 그릴 수 있다.","○ — 대응점을 중심 건너편에 찍어 잇는다."],["e5-2-3-4-xo20",3,"상","○×","정사각형, 정육각형처럼 변의 수가 짝수인 정다각형은 점대칭도형이다.","○ — 마주 보는 꼭짓점끼리 대응한다."],["e5-2-3-4-xo21",3,"상","○×","변의 수가 홀수인 정다각형도 점대칭도형이다.","× — 반 바퀴 돌리면 꼭짓점이 변 쪽에 와서 겹치지 않는다."],["e5-2-3-4-xo22",3,"상","○×","점대칭도형에서 짝이 되는 두 변은 한 직선 위에 놓이지 않으면 서로 평행하다.","○ — 반 바퀴 돌리면 변은 방향만 정반대로 바뀌어, 놓인 직선이 처음 직선과 겹치거나 나란하다."],["e5-2-3-4-xo23",3,"상","○×","선대칭도형은 모두 점대칭도형이다.","× — 정삼각형은 선대칭도형이지만 점대칭도형이 아니다."],["e5-2-3-4-xo24",3,"상","○×","점대칭도형을 대칭의 중심을 지나는 직선으로 자르면 두 부분의 넓이가 같다.","○ — 두 부분은 반 바퀴 돌리면 서로 겹친다."],["e5-2-3-4-xo25",3,"상","○×","점대칭도형은 모두 선대칭도형이다.","× — 직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니다."],["e5-2-3-4-xo26",3,"상","○×","대칭의 중심은 한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 만나는 자리에 있다.","○ — 두 선분 모두 대칭의 중심을 지난다."],["e5-2-3-4-xo27",3,"상","○×","점대칭인 육각형의 둘레는 이웃한 세 변의 합과 같다.","× — 그 합의 두 배이다."],["e5-2-3-4-xo28",3,"상","○×","원은 선대칭도형이면서 점대칭도형이다.","○ — 대칭축이 셀 수 없이 많고 중심이 대칭의 중심이다."],["e5-2-3-4-xo29",3,"상","○×","점대칭도형의 대응각은 크기가 같지만 대응변은 길이가 다를 수 있다.","× — 대응변도 길이가 같다."]]},"C":{"main":[["e5-2-3-1-c1",0,"하","합동","모양과 크기가 같아서 포개었을 때 완전히 {겹치는} 두 도형을 서로 {합동}이라고 한다.",""],["e5-2-3-1-c2",0,"중","합동과 크기","합동인 두 도형은 모양뿐 아니라 {크기}도 같아야 한다.",""],["e5-2-3-1-c3",0,"상","넓이와 합동 구별","가로 $6\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 서로 {같다}. 그러나 포개어도 완전히 겹치지 않으므로 두 직사각형은 합동이 {아니다}.",""],["e5-2-3-1-xc2",0,"하","포개어 확인하기","두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 {포개어} 보고, 완전히 {겹치는지} 확인한다.",""],["e5-2-3-1-xc3",0,"하","뒤집어 놓은 도형","한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",""],["e5-2-3-1-xc4",0,"하","돌려 놓은 도형","한 도형을 돌려 놓아도 모양과 {크기}가 변하지 않으므로 처음 도형과 합동이다.",""],["e5-2-3-1-xc5",0,"하","한 변이 같은 정사각형","한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",""],["e5-2-3-1-xc6",0,"하","반지름이 같은 원","반지름이 같은 두 원은 서로 {합동}이다.",""],["e5-2-3-1-xc7",0,"하","겹쳐 오린 조각","종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",""],["e5-2-3-1-xc8",0,"하","크기가 다른 같은 모양","모양이 같아도 {크기}가 다르면 서로 합동이 아니다.",""],["e5-2-3-1-xc10",0,"중","합동인 도형의 넓이","합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 {같다}. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 {$20$} $\\mathrm{cm} ^2$이다.",""],["e5-2-3-1-xc11",0,"중","합동인 도형의 둘레","합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 {같다}. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 {$18$} $\\mathrm{cm}$이다.",""],["e5-2-3-1-xc12",0,"중","둘레만 같은 도형","한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 모양이 달라서 합동이 {아니다}.",""],["e5-2-3-1-xc13",0,"중","직사각형끼리의 합동","두 직사각형은 가로의 길이가 같고 {세로}의 길이도 같으면 합동이다.",""],["e5-2-3-1-xc14",0,"중","정삼각형끼리의 합동","두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 {변}의 길이만 같으면 합동이다.",""],["e5-2-3-1-xc15",0,"중","대각선으로 자른 직사각형","직사각형을 대각선 하나를 따라 자르면 삼각형이 {$2$}개 생기고, 이 두 삼각형은 서로 {합동}이다.",""],["e5-2-3-1-xc16",0,"중","두 대각선으로 자른 정사각형","정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",""],["e5-2-3-1-xc17",0,"중","대각선으로 자른 평행사변형","평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",""],["e5-2-3-1-xc18",0,"중","합동이 아님을 보이기","두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",""],["e5-2-3-1-xc19",0,"상","넓이만 같은 직사각형과 정사각형","가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 {$36$} $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 {아니다}.",""],["e5-2-3-1-xc20",0,"상","둘레가 같은 직사각형들","가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 {아니다}.",""],["e5-2-3-1-xc21",0,"상","정다각형끼리의 합동","변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",""],["e5-2-3-1-xc22",0,"상","변의 수가 다른 정다각형","변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",""],["e5-2-3-1-xc23",0,"상","마름모끼리의 합동","한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 {크기}가 다르면 합동이 아니다.",""],["e5-2-3-1-xc24",0,"상","지름으로 자른 원","원을 지름으로 자른 두 조각은 서로 {합동}이다.",""],["e5-2-3-1-xc25",0,"상","합동인 네 조각으로 나누기","직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 {$4$}개 생긴다.",""],["e5-2-3-1-xc27",0,"상","세 각만 같은 삼각형","세 각의 크기가 각각 같은 두 삼각형이라도 변의 {길이}가 다르면 합동이 아니다.",""],["e5-2-3-2-c1",1,"하","대응점","서로 합동인 두 도형을 완전히 포개었을 때 겹치는 꼭짓점을 {대응점}이라고 한다.",""],["e5-2-3-2-c2",1,"하","대응변","서로 합동인 두 도형을 완전히 포개었을 때 겹치는 변을 {대응변}이라고 한다.",""],["e5-2-3-2-c3",1,"하","대응각","서로 합동인 두 도형을 완전히 포개었을 때 겹치는 각을 {대응각}이라고 한다.",""],["e5-2-3-2-c4",1,"중","합동인 도형의 성질","합동이면 대응변들의 {길이}와 대응각들의 {크기}가 각각 일치한다.",""],["e5-2-3-2-c5",1,"상","대응 순서 확인","합동인 두 도형 중 하나가 돌아가 있으면, 변의 {길이}와 각의 {크기}가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다.",""],["e5-2-3-2-xc1",1,"하","삼각형의 대응점 수","합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",""],["e5-2-3-2-xc2",1,"하","사각형의 대응변 수","합동인 두 사각형에는 대응변이 {네 쌍} 있다.",""],["e5-2-3-2-xc3",1,"하","오각형의 대응각 수","합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",""],["e5-2-3-2-xc4",1,"하","대응변끼리의 길이","합동인 두 도형에서 대응변끼리는 길이가 {같다}.",""],["e5-2-3-2-xc5",1,"하","대응각끼리의 크기","합동인 두 도형에서 대응각끼리는 크기가 {같다}.",""],["e5-2-3-2-xc6",1,"하","포개어 대응점 찾기","서로 합동인 두 도형을 완전히 포개었을 때 겹치는 {꼭짓점}끼리 짝지으면 대응점을 찾을 수 있다.",""],["e5-2-3-2-xc7",1,"하","대응변으로 길이 알기","서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",""],["e5-2-3-2-xc8",1,"중","대응각으로 각도 알기","서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",""],["e5-2-3-2-xc9",1,"중","합동인 삼각형의 나머지 각","서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 {$180$}$°$이므로 이 삼각형의 나머지 한 각은 {$70$}$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",""],["e5-2-3-2-xc10",1,"중","합동인 도형의 둘레 구하기","서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 {같으므로} 다른 삼각형의 둘레는 {$21$} $\\mathrm{cm}$이다.",""],["e5-2-3-2-xc11",1,"중","대응점 두 쌍과 대응변","삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 {ㄹㅁ}이다.",""],["e5-2-3-2-xc12",1,"중","대응점과 대응각","삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 {ㅁ}을 꼭짓점으로 하는 각이다.",""],["e5-2-3-2-xc13",1,"중","돌아간 도형의 대응 찾기","서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 {방향}이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",""],["e5-2-3-2-xc15",1,"중","가장 긴 변끼리","세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",""],["e5-2-3-2-xc16",1,"중","가장 큰 각끼리","세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",""],["e5-2-3-2-xc17",1,"상","대응각 맞은편의 변","삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 {ㅁㅂ}이다.",""],["e5-2-3-2-xc18",1,"상","합동인 사각형의 나머지 각","서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 {$360$}$^\\circ$이므로 이 사각형의 나머지 한 각은 {$110$}$^\\circ$이고, 그 대응각의 크기도 이와 같다.",""],["e5-2-3-2-xc19",1,"상","이등변삼각형과 합동인 삼각형","이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",""],["e5-2-3-2-xc20",1,"상","합동인 직사각형의 넓이","가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",""],["e5-2-3-2-xc21",1,"상","꼭짓점의 짝부터 정하기","서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 {대응점}을 찾고, 그 점들을 이은 변끼리 짝짓는다.",""],["e5-2-3-2-xc22",1,"상","이웃한 꼭짓점의 대응","서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 {변}의 양 끝에 있다.",""],["e5-2-3-2-xc23",1,"상","대각선으로 나눈 직사각형의 대응변","가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",""],["e5-2-3-2-xc24",1,"상","둘레가 같은 까닭","합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",""],["e5-2-3-2-xc25",1,"상","크기가 같은 각이 여럿일 때","크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",""],["e5-2-3-3-c1",2,"하","선대칭도형","한 직선을 따라 접었을 때 양쪽 부분이 완전히 {겹치는} 도형을 {선대칭도형}이라고 한다.",""],["e5-2-3-3-c2",2,"하","대칭축","선대칭도형을 완전히 겹치도록 접을 때 접는 선이 되는 직선을 {대칭축}이라고 한다.",""],["e5-2-3-3-c3",2,"하","대응점","선대칭도형을 대칭축을 따라 접었을 때 겹치는 점을 {대응점}이라고 한다.",""],["e5-2-3-3-c4",2,"하","대응변","선대칭도형을 대칭축을 따라 접었을 때 겹치는 변을 {대응변}이라고 한다.",""],["e5-2-3-3-c5",2,"하","대응각","선대칭도형을 대칭축을 따라 접었을 때 겹치는 각을 {대응각}이라고 한다.",""],["e5-2-3-3-c6",2,"상","선대칭도형의 성질","대칭축 밖의 한 점과 그 대응점을 이은 선분은 대칭축과 {수직}으로 만나고, 대칭축은 이 선분을 길이가 {같은} 두 부분으로 나눈다.",""],["e5-2-3-3-c7",2,"중","선대칭에서 같은 부분","선대칭도형의 대응변은 {길이}가 같고 대응각은 {크기}가 같다.",""],["e5-2-3-3-xc2",2,"하","정사각형의 대칭축 수","정사각형에는 대칭축이 {네 개} 있다.",""],["e5-2-3-3-xc3",2,"하","정삼각형의 대칭축 수","정삼각형에는 대칭축이 {세 개} 있다.",""],["e5-2-3-3-xc4",2,"하","원의 대칭축","원의 {중심}을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",""],["e5-2-3-3-xc5",2,"하","직사각형의 대칭축 수","가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",""],["e5-2-3-3-xc6",2,"중","대칭축 위의 점","대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",""],["e5-2-3-3-xc7",2,"중","대응점과 대칭축 사이","선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 {$3$} $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 {$6$} $\\mathrm{cm}$이다.",""],["e5-2-3-3-xc8",2,"중","이등변삼각형의 대칭축","세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",""],["e5-2-3-3-xc9",2,"중","마름모의 대칭축","정사각형이 아닌 마름모의 대칭축은 두 {대각선}을 각각 포함하는 직선이다.",""],["e5-2-3-3-xc10",2,"중","평행사변형과 선대칭","직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",""],["e5-2-3-3-xc11",2,"중","정다각형의 대칭축 수","정다각형의 대칭축 수는 {변의 수}와 같다.",""],["e5-2-3-3-xc12",2,"중","선대칭도형 완성하기","선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",""],["e5-2-3-3-xc13",2,"중","대칭축으로 나뉜 두 부분","대칭축으로 나뉜 두 부분은 서로 {합동}이다.",""],["e5-2-3-3-xc14",2,"중","대칭축 건너편의 대응각","선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 {$70$}$^\\circ$이다.",""],["e5-2-3-3-xc15",2,"상","대응점 찍는 법","대칭축 밖의 한 점에서 대칭축에 {수직}인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 {같은} 거리만큼 떨어진 곳에 대응점을 찍는다.",""],["e5-2-3-3-xc16",2,"상","선대칭도형의 넓이","선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 {$30$} $\\mathrm{cm} ^2$이다.",""],["e5-2-3-3-xc17",2,"상","원의 대칭축 수","원의 대칭축의 개수는 {셀 수 없이 많다}.",""],["e5-2-3-3-xc18",2,"상","정오각형의 대칭축","정오각형의 대칭축은 {$5$}개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 {한가운데}를 지난다.",""],["e5-2-3-3-xc19",2,"상","정육각형의 대칭축","정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",""],["e5-2-3-3-xc20",2,"상","대응점을 이은 선분들","대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 {수직}이므로, 겹치지 않으면 서로 {평행}하다.",""],["e5-2-3-3-xc21",2,"상","대칭축이 지나는 꼭짓점의 각","선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 {$40$}$^\\circ$인 두 각으로 나눈다.",""],["e5-2-3-3-xc22",2,"상","선대칭도형이 아닌 것 가려내기","접었을 때 양쪽이 완전히 겹치는 직선이 {하나}라도 있으면 선대칭도형이고, 그런 직선이 {없으면} 선대칭도형이 아니다.",""],["e5-2-3-3-xc23",2,"상","두 변이 같은 직각삼각형","두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",""],["e5-2-3-4-c1",3,"하","점대칭도형","점대칭도형은 한 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 {겹치는} 도형이다.",""],["e5-2-3-4-c2",3,"하","대칭의 중심","점대칭도형을 반 바퀴 돌려 처음 도형과 겹치게 할 때 중심이 되는 점을 {대칭의 중심}이라고 한다.",""],["e5-2-3-4-c3",3,"하","대응점","점대칭도형을 대칭의 중심을 중심으로 $180 ^\\circ$ 돌렸을 때 겹치는 점을 {대응점}, 겹치는 변을 {대응변}, 겹치는 각을 {대응각}이라고 한다.",""],["e5-2-3-4-c6",3,"상","점대칭도형의 성질","점대칭도형의 대응점 두 점 사이의 거리가 $12\\,\\mathrm{cm}$일 때, 한 대응점에서 대칭의 중심까지의 거리는 {$6$}$\\,\\mathrm{cm}$이다.",""],["e5-2-3-4-c7",3,"중","점대칭에서 같은 부분","점대칭도형에서 대응변의 {길이}는 서로 같고, 대응각의 {크기}도 서로 같다.",""],["e5-2-3-4-xc2",3,"하","반 바퀴의 각도","반 바퀴 돌리는 각도는 {$180$}도이다.",""],["e5-2-3-4-xc3",3,"하","정사각형의 대칭의 중심","정사각형과 직사각형의 대칭의 중심은 두 {대각선}이 만나는 점이다.",""],["e5-2-3-4-xc4",3,"하","원의 대칭의 중심","원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",""],["e5-2-3-4-xc5",3,"하","정삼각형과 점대칭","정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 {아니다}.",""],["e5-2-3-4-xc7",3,"중","평행사변형과 점대칭","직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",""],["e5-2-3-4-xc8",3,"중","마름모와 점대칭","마름모는 선대칭도형이면서 {점대칭도형}이다.",""],["e5-2-3-4-xc9",3,"중","대칭의 중심의 개수","점대칭도형인 다각형이나 원에서 대칭의 중심은 {$1$}개이다.",""],["e5-2-3-4-xc10",3,"중","대응점과 대칭의 중심 사이","대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",""],["e5-2-3-4-xc11",3,"중","대응점 찾는 법","점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 {같은} 거리만큼 더 간 곳에 대응점을 찍는다.",""],["e5-2-3-4-xc12",3,"중","정육각형과 점대칭","정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",""],["e5-2-3-4-xc14",3,"중","중심 건너편의 대응각","점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 {$70 ^\\circ$}이다.",""],["e5-2-3-4-xc15",3,"상","변의 수가 짝수인 정다각형","변의 수가 {짝수}인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",""],["e5-2-3-4-xc16",3,"상","변의 수가 홀수인 정다각형","정삼각형, 정오각형처럼 변의 수가 {홀수}인 정다각형은 점대칭도형이 아니다.",""],["e5-2-3-4-xc17",3,"상","점대칭도형 완성하기","다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",""],["e5-2-3-4-xc18",3,"상","두 가지 대칭을 모두 가진 도형","정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",""],["e5-2-3-4-xc19",3,"상","대응변끼리의 평행","점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",""],["e5-2-3-4-xc20",3,"상","대칭의 중심 찾기","한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",""],["e5-2-3-4-xc21",3,"상","중심을 지나는 직선과 넓이","대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",""],["e5-2-3-4-xc22",3,"상","점대칭인 육각형의 둘레","점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times${$2$}$=${$24$} ($\\mathrm{cm}$)이다.",""],["e5-2-3-4-xc23",3,"상","반 바퀴와 한 바퀴","어떤 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌리면 어떤 도형이든 처음 도형과 완전히 겹친다.",""]],"extra":[["e5-2-3-1-a1",0,"중","적용","한 도형을 크기 변화 없이 뒤집어 얻은 도형과 원래 도형의 관계를 쓰고 까닭을 설명하시오.","합동 — 뒤집어도 모양과 크기가 그대로라 원래 도형에 꼭 맞게 포개어지기 때문이다."],["e5-2-3-1-xa1",0,"하","적용","모양과 크기가 같아 꼭 맞게 포개지는 두 도형의 관계를 무엇이라 하는가?","합동"],["e5-2-3-1-xa6",0,"하","적용","겹쳐 오린 두 조각 가운데 하나의 넓이가 $12\\,\\mathrm{cm}^2$일 때 다른 조각의 넓이도 $12\\,\\mathrm{cm}^2$인 까닭을 쓰시오.","겹쳐 오린 두 조각은 합동이라 꼭 포개지므로 넓이가 같기 때문이다."],["e5-2-3-1-xa9",0,"하","적용","한 도형을 돌려 놓은 도형이 처음 도형과 합동인지 쓰고 까닭을 설명하시오.","합동이다 — 돌려도 모양과 크기가 그대로라 처음 도형에 포개어진다."],["e5-2-3-1-xa10",0,"하","적용","모양은 같고 크기가 다른 두 도형이 합동인지 쓰고 까닭을 설명하시오.","합동이 아니다 — 크기가 달라 꼭 맞게 포개어지지 않는다."],["e5-2-3-1-xa12",0,"중","적용","직사각형을 대각선 하나로 잘라 생긴 삼각형의 넓이를 두 배 하면 직사각형의 넓이가 되는 까닭을 쓰시오.","대각선으로 자른 두 삼각형은 합동이라 넓이가 같고, 둘을 합치면 직사각형이 되기 때문이다."],["e5-2-3-1-xa16",0,"중","적용","한 변이 $5\\,\\mathrm{cm}$인 정삼각형과 한 변이 $5\\,\\mathrm{cm}$인 정사각형은 합동인가? 까닭도 쓰시오.","아니다 — 변의 수가 달라 모양이 다르다"],["e5-2-3-1-xa21",0,"상","적용","넓이가 $16\\,\\mathrm{cm}^2$이고 가로와 세로가 자연수인 직사각형을 셀 때, 가로 $16$·세로 $1$과 가로 $1$·세로 $16$을 한 가지로 세는 까닭을 쓰시오.","돌려 놓으면 꼭 포개어지는 합동인 도형이기 때문이다."],["e5-2-3-1-xa22",0,"상","적용","가로 $10\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형을 가로의 한가운데에서 잘라 만든 두 정사각형이 합동인 까닭을 쓰시오.","두 조각 모두 한 변이 $5\\,\\mathrm{cm}$인 정사각형이라 모양과 크기가 같기 때문이다."],["e5-2-3-1-xa25",0,"상","적용","세 각이 모두 $60^\\circ$인 삼각형 두 개의 한 변이 각각 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$이다. 두 삼각형이 합동인지 쓰고 까닭을 설명하시오.","합동이 아니다 — 모양은 같아도 크기가 달라 포개어지지 않는다."],["e5-2-3-1-xa29",0,"상","적용","가로 $6\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형 두 장을 변끼리 맞붙여 만든 직사각형이 서로 합동이 아닌 두 가지로 나뉘는 까닭을 쓰시오.","가로끼리 붙이면 가로 $6$·세로 $8$, 세로끼리 붙이면 가로 $12$·세로 $4$로 가로와 세로의 짝이 다르기 때문이다."],["e5-2-3-2-a1",1,"중","적용","합동인 두 삼각형에서 변 ㄱㄴ의 대응변이 변 ㄹㅁ일 때, 변 ㄹㅁ을 재지 않고도 길이를 알 수 있는 까닭을 쓰시오.","합동이면 포갤 때 대응변끼리 꼭 겹쳐 길이가 같기 때문이다."],["e5-2-3-2-xa3",1,"하","적용","합동인 두 육각형에서 대응점, 대응변, 대응각이 모두 $6$쌍인 까닭을 쓰시오.","육각형은 꼭짓점, 변, 각이 각각 $6$개이고 포개면 하나씩 짝이 지어지기 때문이다."],["e5-2-3-2-xa6",1,"하","적용","점 ㄷ의 대응점이 점 ㅂ일 때 점 ㅂ의 대응점을 쓰고 까닭을 설명하시오.","점 ㄷ — 대응점은 포갤 때 서로 겹치는 짝이라 어느 쪽에서 보아도 짝이 같다."],["e5-2-3-2-xa7",1,"하","적용","꼭짓점 ㄱ, ㄴ의 대응점이 각각 ㄹ, ㅁ일 때 변 ㄱㄴ의 대응변을 쓰고 까닭을 설명하시오.","변 ㄹㅁ — 양 끝 꼭짓점이 각각 대응점이라 포개면 두 변이 함께 겹친다."],["e5-2-3-2-xa10",1,"하","적용","합동인 두 도형에서 대응각의 크기를 견주고 까닭을 쓰시오.","서로 같다 — 포개면 대응각끼리 꼭 겹치기 때문이다."],["e5-2-3-2-xa11",1,"중","적용","합동인 두 삼각형의 한쪽에서 두 각이 $50^\\circ$, $70^\\circ$일 때, 다른 쪽에서 나머지 각의 대응각을 구할 수 있는 까닭을 쓰시오.","한 삼각형의 세 각의 합이 $180^\\circ$라 나머지 각을 알 수 있고, 그 대응각은 크기가 같기 때문이다."],["e5-2-3-2-xa14",1,"중","적용","삼각형 ㄱㄴㄷ과 합동인 삼각형 ㄹㅁㅂ에서 ㄱ과 ㄹ, ㄴ과 ㅁ이 대응점이다. 변 ㄱㄷ의 대응변을 쓰고 까닭을 설명하시오.","변 ㄹㅂ — ㄷ의 대응점은 남은 ㅂ이고, 대응점끼리 이은 변이 대응변이기 때문이다."],["e5-2-3-2-xa15",1,"중","적용","꼭짓점 ㄱ, ㄴ, ㄷ의 대응점이 차례로 ㄹ, ㅁ, ㅂ인 합동인 두 삼각형에서 각 ㄴㄷㄱ의 대응각을 쓰고 까닭을 설명하시오.","각 ㅁㅂㄹ — 포개면 꼭짓점 ㄷ과 ㅂ이 겹치고, 각을 이루는 두 변도 각각 겹치기 때문이다."],["e5-2-3-2-xa20",1,"상","적용","합동인 두 삼각형의 한쪽에서 두 각이 $35^\\circ$, $85^\\circ$일 때, 다른 쪽에서 가장 작은 각이 $35^\\circ$인 까닭을 쓰시오.","한쪽의 세 각이 $35^\\circ$, $85^\\circ$, $60^\\circ$이고 대응각의 크기가 같아 다른 쪽도 같은 세 각을 가지기 때문이다."],["e5-2-3-2-xa21",1,"상","적용","가로와 세로가 다른 직사각형 ㄱㄴㄷㄹ을 대각선 ㄱㄷ으로 잘라 합동인 두 삼각형을 얻었다. 변 ㄱㄴ의 대응변을 쓰고 까닭을 설명하시오.","변 ㄷㄹ — 한 삼각형을 반 바퀴 돌려 포개면 직사각형의 마주 보는 변끼리 겹치기 때문이다."],["e5-2-3-2-xa25",1,"상","적용","꼭짓점이 적힌 차례대로 대응하는 합동인 사각형 ㄱㄴㄷㄹ과 ㅁㅂㅅㅇ에서 각 ㄹ을 구할 때 각 ㅂ, ㅅ을 각 ㄴ, ㄷ의 크기로 옮겨 쓰는 까닭을 쓰시오.","각 ㅂ은 각 ㄴ, 각 ㅅ은 각 ㄷ의 대응각이라 크기가 같기 때문이다."],["e5-2-3-2-xa26",1,"상","적용","합동인 두 직사각형을 긴 변끼리 완전히 맞대어 붙였더니 정사각형이 되었다. 직사각형의 긴 변과 짧은 변의 길이 관계를 쓰고 까닭을 설명하시오.","긴 변이 짧은 변의 $2$배 — 정사각형의 이웃한 두 변이 각각 긴 변 하나, 길이가 같은 짧은 변 두 개로 이루어지기 때문이다."],["e5-2-3-2-xa29",1,"상","적용","합동인 두 도형에서 변 ㄱㄴ과 변 ㄹㅁ이 대응변이면 점 ㄱ의 대응점은 반드시 점 ㄹ인지 쓰고 까닭을 설명하시오.","아니다 — ㄱ이 ㅁ에, ㄴ이 ㄹ에 겹쳐도 두 변은 포개지므로 양 끝의 짝은 따로 확인해야 한다."],["e5-2-3-3-a1",2,"상","적용","선대칭도형에서 대칭축 밖의 점 ㄱ과 대응점 ㄴ 사이의 거리가 점 ㄱ에서 대칭축까지 거리의 두 배인 까닭을 쓰시오.","대응점을 이은 선분은 대칭축과 직각으로 만나고 반씩 나뉘므로, 그 길이는 점에서 대칭축까지 거리의 두 배이다."],["e5-2-3-3-xa1",2,"하","적용","정사각형의 대칭축이 가로와 세로가 다른 직사각형보다 두 개 많은 까닭을 쓰시오.","네 변의 길이가 같아 두 대각선으로 접어도 양쪽이 꼭 맞게 겹치기 때문이다."],["e5-2-3-3-xa6",2,"하","적용","도형을 접어 양쪽이 꼭 맞게 겹치게 하는 직선을 무엇이라 하는가?","대칭축"],["e5-2-3-3-xa7",2,"하","적용","원과, 가로와 세로가 다른 직사각형 가운데 대칭축이 더 많은 것을 고르고 까닭을 쓰시오.","원 — 중심을 지나는 직선은 모두 대칭축이라 셀 수 없이 많기 때문이다."],["e5-2-3-3-xa8",2,"하","적용","정사각형과 정삼각형 가운데 대칭축이 더 많은 것을 고르고 까닭을 쓰시오.","정사각형 — 정다각형의 대칭축은 변의 수만큼이라 $4$개가 $3$개보다 많다."],["e5-2-3-3-xa9",2,"하","적용","대칭축 위에 있는 점 ㅁ의 대응점을 쓰고 까닭을 설명하시오.","점 ㅁ — 대칭축으로 접어도 그 자리에 그대로 있기 때문이다."],["e5-2-3-3-xa10",2,"하","적용","선대칭도형에서 대응변끼리의 길이를 견주고 까닭을 쓰시오.","서로 같다 — 대칭축으로 접으면 대응변끼리 꼭 겹치기 때문이다."],["e5-2-3-3-xa15",2,"중","적용","선대칭도형의 넓이를 대칭축 한쪽 넓이의 두 배로 구할 수 있는 까닭을 쓰시오.","대칭축으로 나뉜 두 부분은 접으면 꼭 포개지는 합동이라 넓이가 같기 때문이다."],["e5-2-3-3-xa17",2,"중","적용","정사각형이 아닌 마름모의 대칭축을 쓰고 까닭을 설명하시오.","두 대각선 — 대각선으로 접으면 네 변이 같아 양쪽이 꼭 맞게 겹치기 때문이다."],["e5-2-3-3-xa19",2,"중","적용","대칭축이 꼭짓점만 지나는 선대칭도형에서 대칭축 한쪽에 있는 변들의 길이의 합이 둘레의 절반인 까닭을 쓰시오.","대칭축 양쪽의 변이 대응변끼리 길이가 같아 둘레를 똑같이 나누어 가지기 때문이다."],["e5-2-3-3-xa22",2,"상","적용","대각선 ㄱㄷ이 대칭축인 사각형 ㄱㄴㄷㄹ에서 각 ㄹ의 크기를 각 ㄴ과 같다고 할 수 있는 까닭을 쓰시오.","각 ㄴ과 각 ㄹ은 대칭축 ㄱㄷ으로 접으면 겹치는 대응각이기 때문이다."],["e5-2-3-3-xa24",2,"상","적용","정사각형의 대각선과 달리 정오각형의 대각선이 대칭축이 아닌 까닭을 쓰시오.","정오각형의 대각선은 한쪽에 꼭짓점 $1$개, 다른 쪽에 $2$개를 남겨, 접어도 양쪽이 꼭 겹치지 않기 때문이다."],["e5-2-3-3-xa26",2,"상","적용","대칭축에 수직인 한 직선 위, 대칭축 같은 쪽에 점 ㄱ(대칭축에서 $3\\,\\mathrm{cm}$)과 점 ㄴ($5\\,\\mathrm{cm}$)이 있다. ㄱ의 대응점에서 ㄴ까지를 $3+5$로 구하는 까닭을 쓰시오.","ㄱ의 대응점은 대칭축 건너편 $3\\,\\mathrm{cm}$에 있어, ㄴ까지는 대칭축을 사이에 두고 두 거리를 더한 것이기 때문이다."],["e5-2-3-3-xa29",2,"상","적용","원을 대칭축 하나로 접었을 때 접힌 선의 길이가 지름과 같은 까닭을 쓰시오.","원의 대칭축은 중심을 지나므로 원 안에 놓인 부분이 지름이기 때문이다."],["e5-2-3-4-a1",3,"상","적용","점대칭도형의 대응점 ㄱ, ㄴ에서 대칭의 중심이 선분 ㄱㄴ의 한가운데에 놓이는 까닭을 쓰시오.","ㄱ을 대칭의 중심 둘레로 반 바퀴 돌리면 중심까지의 거리는 그대로이고 정반대 쪽으로 가 ㄴ에 오기 때문이다."],["e5-2-3-4-xa4",3,"하","적용","정사각형과 정삼각형 가운데 점대칭도형을 고르고 까닭을 쓰시오.","정사각형 — 두 대각선이 만나는 점 둘레로 반 바퀴 돌리면 처음 모양과 꼭 겹치기 때문이다."],["e5-2-3-4-xa5",3,"하","적용","원의 대칭의 중심을 쓰고 까닭을 설명하시오.","원의 중심 — 원 위의 점은 모두 중심에서 같은 거리라, 중심 둘레로 반 바퀴 돌려도 원 위에 놓이기 때문이다."],["e5-2-3-4-xa6",3,"하","적용","직사각형의 대칭의 중심을 쓰고 까닭을 설명하시오.","두 대각선이 만나는 점 — 두 대각선은 그 점에서 반으로 나뉘어, 꼭짓점마다 그 점 건너편 같은 거리에 마주 보는 꼭짓점이 있다."],["e5-2-3-4-xa7",3,"하","적용","점대칭도형을 반 바퀴 돌릴 때 기준이 되는 점을 무엇이라 하는가?","대칭의 중심"],["e5-2-3-4-xa9",3,"하","적용","정삼각형과 직사각형 가운데 점대칭도형이 아닌 것을 고르고 까닭을 쓰시오.","정삼각형 — 반 바퀴 돌리면 꼭짓점끼리 둘씩 자리를 바꾸어야 하는데, 꼭짓점이 세 개라 둘씩 짝지을 수 없다."],["e5-2-3-4-xa13",3,"중","적용","정사각형처럼 변이 $4$개인 도형은 모두 점대칭도형인지 쓰고 까닭을 설명하시오.","아니다 — 점대칭인 사각형은 마주 보는 변끼리 대응변이라 평행해야 하는데, 평행사변형이 아닌 사다리꼴은 그렇지 않다."],["e5-2-3-4-xa17",3,"중","적용","마름모, 정오각형, 원 가운데 점대칭도형이 아닌 것을 고르고 까닭을 쓰시오.","정오각형 — 꼭짓점 맞은편에 꼭짓점이 아니라 변이 있어, 반 바퀴 돌리면 꼭짓점끼리 짝이 맞지 않는다."],["e5-2-3-4-xa18",3,"중","적용","점대칭인 사각형 ㄱㄴㄷㄹ에서 각 ㄱ과 각 ㄷ, 각 ㄴ과 각 ㄹ이 대응각이다. 이웃한 각 ㄱ과 각 ㄴ의 합이 $180^\\circ$인 까닭을 쓰시오.","대응각끼리 크기가 같아, 네 각의 합 $360^\\circ$가 각 ㄱ과 각 ㄴ의 합의 두 배이기 때문이다."],["e5-2-3-4-xa20",3,"중","적용","마름모의 두 대각선이 만나는 점이 대칭의 중심인 까닭을 쓰시오.","마주 보는 꼭짓점끼리 대응점이라 두 대각선이 모두 대칭의 중심을 지나고, 두 대각선이 만나는 점은 하나뿐이기 때문이다."],["e5-2-3-4-xa21",3,"상","적용","점대칭인 육각형의 둘레를 이웃한 세 변의 길이의 합의 두 배로 구하는 까닭을 쓰시오.","마주 보는 변끼리 대응변이라 길이가 같아, 나머지 세 변이 이웃한 세 변과 길이가 하나씩 같기 때문이다."],["e5-2-3-4-xa27",3,"상","적용","정오각형과 정육각형 가운데 대칭축도 있고 대칭의 중심도 있는 것을 고르고 까닭을 쓰시오.","정육각형 — 정다각형은 모두 대칭축이 있지만, 대칭의 중심은 변의 수가 짝수인 정육각형에만 있다."]]}};
+const STOCK = { A: { 하: 40, 중: 40, 상: 40 }, D: { 하: 22, 중: 20, 상: 28 }, E: { 하: 1, 중: 3, 상: 0 } };
+const LV = ["하", "중", "상"];
+const FORMS = {
+  B: { letter: "B", label: "개념 질문", kinds: { main: "질문", extra: "○×" } },
+  C: { letter: "C", label: "문장 빈칸", kinds: { main: "문장", extra: "적용" } },
+};
+const OPT = {
+  H1: { mixed: false, rows: "full", tray: "bar", back: "discard", code: "line", fill: ["고른 것 위에 채우기", "새로 채우기"], summary: "line" },
+  H2: { mixed: false, rows: "short", tray: "col", back: "keep", code: "slot", fill: ["빈 칸만 자동으로", "모두 비우고 자동으로"], summary: "cells" },
+  H3: { mixed: true, rows: "full", tray: "bar", back: "discard", code: "ask", fill: null, summary: "must" },
+  H4: { mixed: false, rows: "full", tray: "col", back: "ask", code: "label", fill: ["고른 것 위에 채우기", "새로 채우기"], summary: "split", seedAuto: true },
+};
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const secShort = (i) => BANK.secs[i][0];
+const secTitle = (i) => BANK.secs[i][1].replace(/ 알아보기$/, "");
+const item = (form, kind, id) => BANK[form][kind].find((x) => x[0] === id);
+const sentence = (form, kind, x, hide) => {
+  let t = esc(x[4]);
+  if (form === "C" && kind === "main") t = t.replace(/\{([^{}]+)\}/g, (_, a) => hide ? `<span class="blank empty">${a}</span>` : `<span class="blank">${a}</span>`);
+  return t;
+};
+
+// 출제 규칙과 같은 뽑기(compose.ts takeByLevel — 3afa2f468): 소단원 차례로 돌리고, 모자란 바퀴는 범위 전체에 고르게.
+function takeByLevel(items, counts) {
+  return LV.flatMap((level, li) => {
+    const queues = new Map();
+    for (const x of items) if (x[2] === level) queues.set(x[1], [...(queues.get(x[1]) || []), x]);
+    const taken = new Set(); let left = counts[level] || 0;
+    for (let round = 0; left > 0; round++) {
+      const cand = [...queues.values()].map((q) => q[round]).filter(Boolean);
+      if (!cand.length) break;
+      if (left >= cand.length) { cand.forEach((x) => taken.add(x)); left -= cand.length; continue; }
+      const m = cand.length, shift = (li + 0.5) / 3;
+      for (let j = 0; j < left; j++) taken.add(cand[Math.floor(((j + shift) * m) / left)]);
+      left = 0;
+    }
+    return items.filter((x) => taken.has(x));
+  });
+}
+const levelCount = (form, kind, ids) => { const c = { 하: 0, 중: 0, 상: 0 }; for (const id of ids) { const x = item(form, kind, id); if (x) c[x[2]]++; } return c; };
+
+const confirmEl = document.querySelector(".confirmScrim");
+function ask(title, body, buttons) {
+  confirmEl.querySelector("h4").textContent = title;
+  confirmEl.querySelector("p").textContent = body;
+  const acts = confirmEl.querySelector(".acts"); acts.innerHTML = "";
+  buttons.forEach(([label, cls, fn]) => { const b = document.createElement("button"); b.type = "button"; b.className = "btn " + cls; b.textContent = label; b.onclick = () => { confirmEl.hidden = true; fn && fn(); }; acts.appendChild(b); });
+  confirmEl.hidden = false; acts.lastChild.focus();
+}
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !confirmEl.hidden) confirmEl.hidden = true; });
+
+function makeOption(root) {
+  const key = root.dataset.opt, o = OPT[key];
+  const st = {
+    forms: {
+      B: { on: true, mode: "auto", counts: { main: { 하: 3, 중: 3, 상: 2 }, extra: { 하: 1, 중: 1, 상: 1 } }, picks: { main: new Set(), extra: new Set() }, stash: null },
+      C: { on: true, mode: "auto", counts: { main: { 하: 4, 중: 4, 상: 2 }, extra: { 하: 1, 중: 1, 상: 0 } }, picks: { main: new Set(), extra: new Set() }, stash: null },
+    },
+    dlg: null, // { form, kind, sec, lv, only, temp:{main,extra}, shown:Set }
+    askedCode: false, toast: "",
+  };
+  const autoIds = (form, kind, counts, exclude = new Set()) => takeByLevel(BANK[form][kind].filter((x) => !exclude.has(x[0])), counts).map((x) => x[0]);
+  // 시작 장면: B 는 «직접»으로 하 3 · 중 3 · 상 2 를 이미 골라 두고 창을 연 채로.
+  const seed = () => {
+    const f = st.forms.B; f.mode = "pick";
+    const base = autoIds("B", "main", { 하: 3, 중: 3, 상: 2 });
+    f.picks.main = new Set(base);
+    f.picks.extra = new Set(autoIds("B", "extra", { 하: 1, 중: 1, 상: 1 }));
+    if (!o.seedAuto) { // 손으로 바꾼 흔적 — 2-3-4 상 하나를 다른 것으로
+      const repl = BANK.B.main.find((x) => x[1] === 3 && x[2] === "상" && !f.picks.main.has(x[0]));
+      const drop = [...f.picks.main].map((id) => item("B", "main", id)).find((x) => x[2] === "상");
+      if (repl && drop) { f.picks.main.delete(drop[0]); f.picks.main.add(repl[0]); }
+    }
+    if (o.mixed) { f.picks.main = new Set([...f.picks.main].slice(0, 3)); f.picks.extra = new Set([...f.picks.extra].slice(0, 1)); }
+    f.auto = { main: new Set(base), extra: new Set(f.picks.extra) };
+    openDlg("B");
+  };
+  function openDlg(form) {
+    const f = st.forms[form];
+    st.dlg = { form, kind: "main", sec: "all", lv: "all", only: false, temp: { main: new Set(f.picks.main), extra: new Set(f.picks.extra) }, shown: new Set() };
+    if (o.seedAuto && f.picks.main.size === 0 && f.picks.extra.size === 0) {
+      for (const k of ["main", "extra"]) st.dlg.temp[k] = new Set(autoIds(form, k, f.counts[k]));
+      f.auto = { main: new Set(st.dlg.temp.main), extra: new Set(st.dlg.temp.extra) };
+    }
+  }
+  // H3: 꼭 넣을 문항 + 표의 수대로 자동
+  const mixedAuto = (form, kind, must) => {
+    const f = st.forms[form]; const have = levelCount(form, kind, must);
+    const rest = {}; for (const l of LV) rest[l] = Math.max(0, f.counts[kind][l] - have[l]);
+    return new Set(autoIds(form, kind, rest, must));
+  };
+  const finalCount = (form, kind) => {
+    const f = st.forms[form];
+    if (!f.on) return { 하: 0, 중: 0, 상: 0 };
+    if (f.mode === "auto") return { ...f.counts[kind] };
+    if (o.mixed) { const c = {}; const must = levelCount(form, kind, f.picks[kind]); for (const l of LV) c[l] = Math.max(f.counts[kind][l], must[l]); return c; }
+    return levelCount(form, kind, f.picks[kind]);
+  };
+  const anyPick = () => Object.values(st.forms).some((f) => f.on && f.mode === "pick");
+  const total = (form) => { const a = finalCount(form, "main"), b = finalCount(form, "extra"); return LV.reduce((n, l) => n + a[l] + b[l], 0); };
+
+  function setMode(form, mode) {
+    const f = st.forms[form]; if (f.mode === mode) return;
+    if (mode === "pick") {
+      const go = () => {
+        f.mode = "pick";
+        if (o.back === "keep" && f.stash) { f.picks = f.stash; f.stash = null; st.toast = `${f === st.forms.B ? "B" : "C"}에 전에 고른 문항을 되살렸습니다.`; }
+        openDlg(form); render();
+      };
+      if (o.code === "ask" && !st.askedCode) return ask("문항을 직접 고를까요?", "직접 고른 형식이 있으면 이 지면에는 지면 코드(사진 채점)가 찍히지 않습니다. 저장 · 인쇄는 됩니다.", [["취소", "quiet"], ["직접 고르기", "primary", () => { st.askedCode = true; go(); }]]);
+      return go();
+    }
+    const n = f.picks.main.size + f.picks.extra.size;
+    const toAuto = () => { f.mode = "auto"; if (st.dlg && st.dlg.form === form) st.dlg = null; render(); };
+    if (n === 0) { f.picks = { main: new Set(), extra: new Set() }; return toAuto(); }
+    if (o.back === "keep") { f.stash = f.picks; f.picks = { main: new Set(), extra: new Set() }; st.toast = `고른 ${n}문항은 남겨 두었습니다. «직접»으로 오면 되살아납니다.`; return toAuto(); }
+    if (o.back === "discard") return ask(o.mixed ? `꼭 넣을 문항 ${n}개를 풀까요?` : `고른 ${n}문항을 버리고 자동으로 돌릴까요?`, o.mixed ? "표의 수대로 모두 자동으로 고릅니다." : "표의 수대로 다시 자동으로 고릅니다. 지면 코드가 다시 찍힙니다.", [["취소", "quiet"], [o.mixed ? "풀고 자동으로" : "버리고 자동으로", "primary", () => { f.picks = { main: new Set(), extra: new Set() }; toAuto(); }]]);
+    return ask(`고른 ${n}문항을 어떻게 할까요?`, "«자동»으로 돌립니다. 고른 문항을 두면 «직접»으로 돌아올 때 되살아납니다.", [["취소", "quiet"], ["버리기", "", () => { f.picks = { main: new Set(), extra: new Set() }; f.stash = null; toAuto(); }], ["고른 것 두기", "primary", () => { f.stash = f.picks; f.picks = { main: new Set(), extra: new Set() }; toAuto(); }]]);
+  }
+
+  /* ───────── 그리기 ───────── */
+  function colHead(form, label, letter, on, extra = "") {
+    return `<div class="colTitle"><span class="letter">${letter}</span><h3>${label}</h3><button type="button" class="switch" role="switch" aria-checked="${on}" aria-label="${label} 켜기" data-sw="${letter}"><span class="track"></span></button></div>${extra}`;
+  }
+  function modeRow(form) {
+    const f = st.forms[form]; if (!f.on) return "";
+    const pickLabel = o.code === "label" ? "직접 · 코드 없음" : "직접";
+    let sum = "";
+    if (f.mode === "pick") {
+      const m = levelCount(form, "main", f.picks.main), e = levelCount(form, "extra", f.picks.extra);
+      const n = f.picks.main.size + f.picks.extra.size;
+      if (o.summary === "line") sum = `<span class="sum">직접 고름 ${n} <small>· 하 ${m.하 + e.하} · 중 ${m.중 + e.중} · 상 ${m.상 + e.상}</small></span>`;
+      else if (o.summary === "must") { const rest = total(form) - n; sum = `<span class="sum">꼭 넣을 문항 ${n} <small>· 나머지 ${rest} 자동</small></span>`; }
+      else if (o.summary === "split") { const a = st.forms[form].auto || { main: new Set(), extra: new Set() }; let hand = 0, auto = 0; for (const k of ["main", "extra"]) for (const id of f.picks[k]) a[k].has(id) ? auto++ : hand++; sum = `<span class="sum">${n}문항 <small>· 직접 ${hand} · 자동 ${auto}</small></span>`; }
+      sum += `<button class="btn sm" type="button" data-open="${form}">문항 고르기</button>`;
+    }
+    return `<div class="modeRow"><span class="seg" role="group" aria-label="${FORMS[form].label} 싣는 방법"><button type="button" aria-pressed="${f.mode === "auto"}" data-mode="${form}:auto">자동</button><button type="button" aria-pressed="${f.mode === "pick"}" data-mode="${form}:pick">${pickLabel}</button></span>${sum}</div>`;
+  }
+  function cell(form, kind, l) {
+    const f = st.forms[form], max = BANK[form][kind].filter((x) => x[2] === l).length;
+    if (!f.on) return `<td data-on="false"><span class="lf"><input type="number" value="0" disabled aria-label="${FORMS[form].label} ${FORMS[form].kinds[kind]} ${l}"><span class="max">/ ${max}</span></span></td>`;
+    if (f.mode === "pick" && !o.mixed) {
+      const n = levelCount(form, kind, f.picks[kind])[l];
+      return `<td><span class="lf"><span class="picked" title="고른 수">${n}</span><span class="max">/ ${max}</span></span></td>`;
+    }
+    const must = f.mode === "pick" ? levelCount(form, kind, f.picks[kind])[l] : 0;
+    return `<td><span class="lf"><input type="number" min="0" max="${max}" value="${f.counts[kind][l]}" data-count="${form}:${kind}:${l}" aria-label="${FORMS[form].label} ${FORMS[form].kinds[kind]} ${l}"><span class="max">/ ${max}</span>${must ? `<span class="must">꼭 ${must}</span>` : ""}</span></td>`;
+  }
+  function table() {
+    const off = (letter, label, stock) => `<th rowspan="1" data-on="false">${colHead(null, label, letter, false)}</th>`;
+    let h = `<table class="ft"><thead><tr><th rowspan="2">난이도</th>
+      <th data-on="false">${colHead(null, "완전 백지", "A", false)}</th>
+      <th colspan="2" data-on="${st.forms.B.on}">${colHead("B", "개념 질문", "B", st.forms.B.on, modeRow("B"))}</th>
+      <th colspan="2" data-on="${st.forms.C.on}">${colHead("C", "문장 빈칸", "C", st.forms.C.on, modeRow("C"))}</th>
+      <th data-on="false">${colHead(null, "개념 지도", "D", false)}</th>
+      <th data-on="false">${colHead(null, "그림 보고 쓰기", "E", false)}</th></tr>
+      <tr class="sub"><th>개념 수</th><th>질문</th><th>○×</th><th>문장</th><th>적용</th><th>개념 수</th><th>그림</th></tr></thead><tbody>`;
+    for (const l of LV) {
+      const offCell = (n) => `<td data-on="false"><span class="lf"><input type="number" value="0" disabled aria-label="${l}"><span class="max">/ ${n}</span></span></td>`;
+      h += `<tr><th>${l}</th>${offCell(STOCK.A[l])}${cell("B", "main", l)}${cell("B", "extra", l)}${cell("C", "main", l)}${cell("C", "extra", l)}${offCell(STOCK.D[l])}${offCell(STOCK.E[l])}</tr>`;
+    }
+    return h + `</tbody></table>`;
+  }
+  function outline() {
+    const parts = ["B", "C"].filter((f) => st.forms[f].on).map((f) => {
+      const a = finalCount(f, "main"), b = finalCount(f, "extra"); const s = (c) => LV.reduce((n, l) => n + c[l], 0);
+      return `<span><b>${f}</b> ${FORMS[f].label} <span class="k">${FORMS[f].kinds.main} ${s(a)} · ${FORMS[f].kinds.extra} ${s(b)}${st.forms[f].mode === "pick" ? (o.mixed ? " · 꼭 넣을 문항 있음" : " · 직접") : " · 자동"}</span></span>`;
+    }).join("");
+    const code = anyPick() ? (o.code === "slot" ? `<span class="code none">없음 — 직접 고른 형식이 있습니다</span>` : `<span class="code none">없음</span>`) : `<span class="code">5KQ2.R7XM.A4</span>`;
+    return `<div class="card"><div class="cardHead"><h3 class="cardTitle">만들 지면</h3><span class="num">문항 ${["B", "C"].reduce((n, f) => n + total(f), 0)}</span><span class="toast">${esc(st.toast)}</span></div><div class="outline">${parts}<span class="codeSlot"><span class="k">지면 코드</span>${code}</span></div></div>`;
+  }
+  function dialog() {
+    const d = st.dlg; if (!d) return "";
+    const form = d.form, f = st.forms[form], kinds = FORMS[form].kinds;
+    const all = BANK[form][d.kind];
+    const mustAuto = o.mixed ? mixedAuto(form, d.kind, d.temp[d.kind]) : new Set();
+    const autoSet = (st.forms[form].auto || {})[d.kind] || new Set();
+    const list = all.filter((x) => (d.sec === "all" || x[1] === d.sec) && (d.lv === "all" || x[2] === d.lv) && (!d.only || d.temp[d.kind].has(x[0])));
+    const secCounts = (i) => { const xs = all.filter((x) => i === "all" || x[1] === i); return `${xs.filter((x) => d.temp[d.kind].has(x[0])).length ? `<em>${xs.filter((x) => d.temp[d.kind].has(x[0])).length}</em> / ` : ""}${xs.length}`; };
+    const side = `<div class="side">
+      <div class="grp"><b>소단원</b><div class="secList">
+        <button type="button" class="secBtn" aria-pressed="${d.sec === "all"}" data-sec="all">전체<span class="c">${secCounts("all")}</span></button>
+        ${BANK.secs.map((s, i) => `<button type="button" class="secBtn" aria-pressed="${d.sec === i}" data-sec="${i}">${s[0]} ${esc(secTitle(i))}<span class="c">${secCounts(i)}</span></button>`).join("")}
+      </div></div>
+      <div class="grp"><b>난이도</b><div class="pills">${["all", ...LV].map((l) => `<button type="button" class="pill" aria-pressed="${d.lv === l}" data-lv="${l}">${l === "all" ? "전체" : l}</button>`).join("")}</div></div>
+      <div class="grp"><b>종류</b><div class="pills">${["main", "extra"].map((k) => `<button type="button" class="pill" aria-pressed="${d.kind === k}" data-kind="${k}">${kinds[k]} ${d.temp[k].size ? d.temp[k].size : ""}</button>`).join("")}</div></div>
+      <div class="grp"><b>보기</b><div class="pills"><button type="button" class="pill" aria-pressed="${d.only}" data-only="1">고른 것만</button></div></div></div>`;
+    const row = (x) => {
+      const on = d.temp[d.kind].has(x[0]), ghost = !on && mustAuto.has(x[0]);
+      const tag = o.mixed ? (on ? `<span class="tag hand">꼭</span>` : ghost ? `<span class="tag auto">자동</span>` : "") : o.summary === "split" && on ? (autoSet.has(x[0]) ? `<span class="tag auto">자동</span>` : `<span class="tag hand">직접</span>`) : "";
+      const hideAns = o.rows === "short" && !d.shown.has(x[0]);
+      const ansText = x[5] ? `<span class="ans"><b>답</b> ${esc(x[5])}</span>` : "";
+      const term = d.kind === "main" && form === "B" ? `<span class="term">${esc(x[3])}</span>` : "";
+      const ans = o.rows === "short" ? (x[5] || (form === "C" && d.kind === "main") ? (hideAns ? `<button type="button" class="ansBtn" data-show="${x[0]}">답 보기</button>` : ansText) : "") : ansText;
+      return `<li class="it ${on ? "on" : ""} ${ghost ? "ghost" : ""}"><input type="checkbox" ${on ? "checked" : ""} data-pick="${x[0]}" aria-label="${esc(x[3])} 고르기" id="${key}-${x[0]}">
+        <div class="txt">${o.rows === "full" ? `<span class="meta"><span class="lv ${x[2]}">${x[2]}</span>${term}<span class="term">${secShort(x[1])}</span>${tag}</span>` : tag ? `<span class="meta">${tag}</span>` : ""}<label for="${key}-${x[0]}">${sentence(form, d.kind, x, o.rows === "short" && hideAns)}</label>${ans}</div></li>`;
+    };
+    const head = `<div class="mainHead"><b>${d.sec === "all" ? "전체 소단원" : `${secShort(d.sec)} ${esc(secTitle(d.sec))}`}</b><span class="h">${kinds[d.kind]} ${list.length}문항</span><span class="grow"></span><button class="btn sm quiet" type="button" data-allshown="1">보이는 것 모두 고르기</button><button class="btn sm quiet" type="button" data-noneshown="1">보이는 것 모두 풀기</button></div>`;
+    const main = `<div class="main">${head}<ul class="items">${list.length ? list.map(row).join("") : `<li class="empty">고른 문항이 없습니다.</li>`}</ul></div>`;
+    const pickedItems = (k) => all === null ? [] : BANK[form][k].filter((x) => d.temp[k].has(x[0]));
+    const short = (x) => { let t = x[4].replace(/\{([^{}]+)\}/g, "$1"); if (t.length > 60) { t = t.slice(0, 60); if ((t.match(/\$/g) || []).length % 2) t = t.slice(0, t.lastIndexOf("$")); t += "…"; } return esc(t); };
+    let tray = "";
+    if (o.tray === "col") {
+      const groups = LV.map((l) => {
+        const xs = ["main", "extra"].flatMap((k) => pickedItems(k).filter((x) => x[2] === l).map((x) => [k, x]));
+        let split = "";
+        if (o.summary === "split") { const a = st.forms[form].auto || { main: new Set(), extra: new Set() }; const auto = xs.filter(([k, x]) => a[k].has(x[0])).length; split = `직접 ${xs.length - auto} · 자동 ${auto}`; }
+        return `<div class="lvGroup"><div class="lvHead"><span class="lv ${l}">${l}</span>${xs.length}문항<span class="grow"></span>${split}</div>${xs.map(([k, x]) => `<div class="tItem"><span>${short(x)}<span class="s">${secShort(x[1])} · ${kinds[k]}</span></span><button class="x" type="button" data-unpick="${k}:${x[0]}" aria-label="빼기">×</button></div>`).join("")}</div>`;
+      }).join("");
+      tray = `<aside class="trayCol"><h5>고른 문항 <span class="num">${d.temp.main.size + d.temp.extra.size}</span></h5>${groups}</aside>`;
+    }
+    const bar = o.tray === "bar" ? `<div class="trayBar"><b>${o.mixed ? "꼭 넣을 문항" : "고른 문항"} ${d.temp.main.size + d.temp.extra.size}</b>${["main", "extra"].flatMap((k) => pickedItems(k).map((x) => `<span class="chipT"><span class="lv ${x[2]}">${x[2]}</span><span class="t">${short(x)}</span><button class="x" type="button" data-unpick="${k}:${x[0]}" aria-label="빼기">×</button></span>`)).join("") || `<span class="h" style="font-size:12px;color:var(--muted)">아직 없습니다.</span>`}</div>` : "";
+    let foot;
+    if (o.mixed) {
+      const restN = ["main", "extra"].reduce((n, k) => n + mixedAuto(form, k, d.temp[k]).size, 0);
+      foot = `<span>나머지 <b style="color:var(--ink)">${restN}문항</b>은 표의 수대로 자동으로 채웁니다.</span><span class="grow"></span>`;
+    } else {
+      const c = f.counts[d.kind];
+      foot = `<span>${o.fill[0] === "빈 칸만 자동으로" ? "자동으로 채울 수" : "자동으로 채우기"} · ${kinds[d.kind]}</span><span class="fillCounts">${LV.map((l) => `<label>${l}<input type="number" min="0" value="${c[l]}" data-fill="${l}" aria-label="채울 수 ${l}"></label>`).join("")}</span>
+        <button class="btn sm" type="button" data-fillmode="over">${o.fill[0]}</button><button class="btn sm quiet" type="button" data-fillmode="new">${o.fill[1]}</button><span class="grow"></span>
+        ${o.code === "line" ? `<span>직접 고르면 지면 코드(사진 채점)가 찍히지 않습니다.</span>` : ""}`;
+    }
+    return `<div class="scrim"><div class="dlg" role="dialog" aria-label="${FORMS[form].label} 문항 고르기">
+      <header><h4>${form} ${FORMS[form].label} — ${o.mixed ? "꼭 넣을 문항 고르기" : "문항 고르기"}</h4><span class="num">${o.mixed ? "꼭" : "고름"} ${d.temp.main.size + d.temp.extra.size}</span><span class="grow"></span><button class="btn lg" type="button" data-dlg="cancel">취소</button><button class="btn lg primary" type="button" data-dlg="apply">적용</button></header>
+      <div class="body ${o.tray === "col" ? "withTray" : ""}">${side}${main}${tray}</div>${bar}<footer>${foot}</footer></div></div>`;
+  }
+  function render() {
+    const keep = [".items", ".trayCol", ".trayBar"].map((q) => [q, root.querySelector(q)?.scrollTop ?? 0, root.querySelector(q)?.scrollLeft ?? 0]);
+    paint();
+    for (const [q, top, left] of keep) { const el = root.querySelector(q); if (el) { el.scrollTop = top; el.scrollLeft = left; } }
+  }
+  function paint() {
+    const below = anyPick() && o.code === "line" ? `<div class="below"><span class="codeNote">직접 고른 형식이 있어 이 지면에는 <b>지면 코드(사진 채점)</b>가 찍히지 않습니다.</span></div>` : "";
+    root.innerHTML = `<div class="card"><div class="cardHead"><h3 class="cardTitle">형식 · 문항 수</h3><span class="tableHint">입력 수 / 선택 가능한 수</span></div><div class="tableScroll">${table()}</div>${below}</div>${dialog()}${outline()}`;
+    if (window.renderMathInElement) renderMathInElement(root, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+  }
+  root.addEventListener("click", (e) => {
+    const t = e.target.closest("button, input[type=checkbox]"); if (!t) return;
+    const ds = t.dataset; st.toast = "";
+    if (ds.mode) { const [form, mode] = ds.mode.split(":"); return setMode(form, mode); }
+    if (ds.sw) { const f = st.forms[ds.sw]; if (!f) return; f.on = !f.on; if (!f.on && st.dlg?.form === ds.sw) st.dlg = null; return render(); }
+    if (ds.open) { openDlg(ds.open); return render(); }
+    const d = st.dlg; if (!d) return;
+    if (ds.sec) { d.sec = ds.sec === "all" ? "all" : +ds.sec; return render(); }
+    if (ds.lv) { d.lv = ds.lv; return render(); }
+    if (ds.kind) { d.kind = ds.kind; return render(); }
+    if (ds.only) { d.only = !d.only; return render(); }
+    if (ds.show) { d.shown.add(ds.show); return render(); }
+    if (ds.pick) { t.checked ? d.temp[d.kind].add(ds.pick) : d.temp[d.kind].delete(ds.pick); return render(); }
+    if (ds.unpick) { const [k, id] = ds.unpick.split(":"); d.temp[k].delete(id); return render(); }
+    if (ds.allshown || ds.noneshown) {
+      const all = BANK[d.form][d.kind].filter((x) => (d.sec === "all" || x[1] === d.sec) && (d.lv === "all" || x[2] === d.lv) && (!d.only || d.temp[d.kind].has(x[0])));
+      all.forEach((x) => (ds.allshown ? d.temp[d.kind].add(x[0]) : d.temp[d.kind].delete(x[0]))); return render();
+    }
+    if (ds.fillmode) {
+      const c = {}; root.querySelectorAll("[data-fill]").forEach((i) => (c[i.dataset.fill] = Math.max(0, +i.value || 0)));
+      st.forms[d.form].counts[d.kind] = { ...c };
+      if (ds.fillmode === "new") d.temp[d.kind] = new Set(autoIds(d.form, d.kind, c));
+      else { const have = levelCount(d.form, d.kind, d.temp[d.kind]); const rest = {}; for (const l of LV) rest[l] = Math.max(0, c[l] - have[l]); autoIds(d.form, d.kind, rest, d.temp[d.kind]).forEach((id) => d.temp[d.kind].add(id)); }
+      if (o.summary === "split") { const a = st.forms[d.form].auto || (st.forms[d.form].auto = { main: new Set(), extra: new Set() }); if (ds.fillmode === "new") a[d.kind] = new Set(d.temp[d.kind]); else d.temp[d.kind].forEach((id) => a[d.kind].add(id)); }
+      return render();
+    }
+    if (ds.dlg === "cancel") { st.dlg = null; return render(); }
+    if (ds.dlg === "apply") { const f = st.forms[d.form]; f.picks = { main: new Set(d.temp.main), extra: new Set(d.temp.extra) }; st.toast = `${d.form} 에 ${f.picks.main.size + f.picks.extra.size}문항을 넣었습니다.`; st.dlg = null; return render(); }
+  });
+  root.addEventListener("change", (e) => {
+    const t = e.target; if (!t.dataset.count) return;
+    const [form, kind, l] = t.dataset.count.split(":"); st.forms[form].counts[kind][l] = Math.max(0, Math.min(+t.max, +t.value || 0)); render();
+  });
+  seed(); render();
+}
+window.addEventListener("load", () => document.querySelectorAll(".app[data-opt]").forEach(makeOption));
+</script>
+</body>
+</html>
