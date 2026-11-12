@@ -66,3 +66,20 @@ npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/u
 npm run type-check
 npm run lint:affordance
 ```
+
+### 3차 리뷰 반영
+
+- 대상: `scratch/review/review-pick3.md`의 **1·2·3번**. 코드 커밋은 `40252c3d7`이며 이 절은 후속 문서 커밋에 담았다. **4번 교차 형식 exact 순서는 지시대로 수정하지 않았다.**
+- **TDD:** 문서 읽기·창 신분 회귀 7개가 모두 RED, 중복 형식·범위 밖 실패 재시도 회귀는 6개 RED·기존 순서 대조 1개 통과임을 수정 전에 확인했다. 로컬 원기록은 `scratch/review/pick3-document-red.log`·`pick3-edges-red.log`다. 수정 후 새 시험 14개를 포함한 관련 시험이 모두 통과했다.
+- **1번 — 문서를 읽는 동안 차단·이전 창 무효화:** 내 시험지 열기와 주소 복원을 하나의 읽기 요청으로 관리하고, 요청 중에는 «문항 고르기»를 비활성화하여 «문서를 불러오는 중»을 연결한다. 저장·인쇄도 새 문서가 준비되어야 가능하다. 창은 **문서 id + 읽기 차례 번호**를 소유하며, 다른 문서·같은 문서 다시 열기·주소 탐색에서 즉시 닫힌다. 이전 창의 적용 콜백과 이전 요청의 늦은 응답은 신분이 다르면 무시한다. 읽기 실패 때도 차단을 유지하고 «자료 다시 불러오기» 성공 뒤 새 선택을 연다.
+- **문서 회귀 검증:** 같은 학년·소단원의 서로 다른 `fx-corr`/`fx-cong-prop` 문서를 메모리 API로 읽고, 요청 지연·응답 역전·같은 id 재열기·열린 창에서 주소 변경·실패 후 재시도를 확인했다. 이전 적용 콜백을 새 문서가 도착한 뒤 직접 호출해도 새 문항이 유지되고 새 문서 id·revision으로 저장된다. `blankDoc`와 미저장 `blank`가 함께 있는 주소는 문서를 읽는 동안 차단하면서 주소의 미저장 선택을 보존한다.
+- **2번 — 옛 자동 주소의 중복 형식:** `draftFrom`에서 형식의 첫 등장만 남긴다. 첫 항목의 차례·`counts`·`extras`를 모두 보존한다. B/B·C/C 주소를 직접 선택 한 문항으로 적용해도 중복 pick이나 ZodError가 발생하지 않으며, C→B의 첫 등장 순서는 직접 적용·주소 재열기에도 유지된다.
+- **3번 — 표시한 실패 전부 재시도:** 재시도는 현재 펼친/선택한 학년 대신 안내에 표시한 `failed` 전체를 순회한다. 초5 선택 후 초6·중1 둘러보기가 실패하고 창을 닫은 경우, 두 실패 학년을 모두 다시 요청한다. 준비된 초5는 다시 요청하지 않고, 재실패한 초6만 다음 시도에서 요청하며 기존 선택·인쇄는 유지한다.
+- **최종 검증:** 아래 관련 시험 **14파일·219시험 통과**(`--maxWorkers=3`), `npm run type-check`, `npm run lint:affordance`, 변경 4파일 ESLint(경고·오류 0)·Prettier·`git diff --check` 통과. 최종 로그는 로컬 `scratch/review/pick3-related-tests.log`·`pick3-type-check.log`·`pick3-affordance.log`·`pick3-eslint.log`다. 전체 시험은 이번에 다시 실행하지 않았으며 앞선 전체 관문 미통과 이력은 그대로다.
+- **작업 범위:** 2·3번은 같은 작업트리의 Orca Codex 작업자가 재현 시험과 수정으로 맡고, 문서 전환 수정과 합쳐 검증했다. CSS·지면 구성·계약·DB 변경은 없으며 새 브라우저 측정·실물 인쇄 검수는 하지 않았다. 푸시·main 병합·공유 DB 쓰기·`.env` 복사·운영 빌드 없이 현재 가지에 커밋했고 미병합 작업트리는 보존한다.
+
+```sh
+npx vitest run src/__tests__/unit/conceptBlankManualPick.test.ts src/__tests__/unit/conceptBlankSelectionCodec.test.ts src/__tests__/unit/conceptBlankExactPick.test.ts src/__tests__/unit/conceptBlankSheetCode.test.ts src/__tests__/unit/conceptBlankBankLoad.test.ts src/__tests__/unit/pickerDialog.test.tsx src/__tests__/unit/textbookConcepts.test.ts src/__tests__/components/ConceptBlankPick.test.tsx src/__tests__/components/ConceptBlankAutoOrder.test.tsx src/__tests__/components/ConceptBlankPickDocument.test.tsx src/__tests__/components/ConceptBlankPickEdges.test.tsx src/__tests__/components/ConceptBlankView.test.tsx src/__tests__/components/PrintCheck.test.tsx src/__tests__/api/conceptBlankPrintPage.test.ts --maxWorkers=3
+npm run type-check
+npm run lint:affordance
+```
