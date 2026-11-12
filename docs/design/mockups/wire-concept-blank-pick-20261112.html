@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개념 백지 문제 고르기 — Wire 5안</title>
+<style>
+  :root {
+    --line: #dde3ec; --ink: #172b4d; --muted: #596c86; --accent: #3159df;
+    --soft: #edf2ff; --bg: #f4f6fa; --surface: #fff; --control: #b8c4d6;
+    --neutral: #edf0f6; --warn-bg: #fff4df; --warn: #8a5a06;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.5 "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 16px; font-size: 13px; }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 18px; margin-bottom: 20px; font-size: 13px; }
+  .facts ul { margin: 6px 0 0; padding-left: 18px; }
+  .facts li + li { margin-top: 3px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 0; z-index: 5;
+    background: var(--bg); padding: 8px 0; }
+  .tabs a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px;
+    border: 1px solid var(--control); border-radius: 8px; background: var(--surface);
+    color: var(--ink); text-decoration: none; font-weight: 600; font-size: 13px; }
+  .tabs a:hover { border-color: var(--accent); color: var(--accent); }
+  section.opt { margin-top: 28px; }
+  .optHead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .optHead h2 { font-size: 19px; margin: 0; }
+  .tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--accent); font-weight: 600; }
+  .optDesc { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+  .frame { border: 2px solid #9aa7ba; border-radius: 12px; background: var(--bg); padding: 14px; overflow: hidden; }
+  .grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: 240px minmax(0, 1fr) 300px; gap: 14px; }
+  .col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .card { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 14px 16px; min-width: 0; }
+  .cardHead { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .cardTitle { font-size: 17px; font-weight: 700; margin: 0; }
+  .num { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--accent); font-weight: 600; }
+  .desc { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 16px;
+    border-radius: 8px; border: 1px solid var(--control); background: var(--surface); color: var(--ink);
+    font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.sm { min-height: 32px; padding: 0 10px; font-size: 13px; }
+  .btn.quiet { border-color: transparent; color: var(--muted); }
+  .btn:hover { border-color: var(--accent); }
+  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .spacer { flex: 1; }
+  .tree { list-style: none; margin: 0; padding: 0; font-size: 13px; border-top: 1px solid var(--line); }
+  .tree li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .tree .sub { padding-left: 18px; color: var(--ink); }
+  .tree .stock { display: block; color: var(--muted); font-size: 12px; padding-left: 22px; }
+  .chk { display: inline-flex; gap: 6px; align-items: flex-start; }
+  .chk input { margin-top: 3px; accent-color: var(--accent); }
+  .lv { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 20px; padding: 0 5px;
+    border-radius: 4px; border: 1px solid var(--control); font-size: 12px; color: var(--muted); flex: none; }
+  .formTable { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .formTable th, .formTable td { border-top: 1px solid var(--line); padding: 8px 6px; text-align: left; vertical-align: middle; }
+  .formTable th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  .cnt { display: inline-flex; width: 46px; height: 32px; border: 1px solid var(--control); border-radius: 6px;
+    align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+  .cnt.off { color: #a3afc0; background: var(--neutral); }
+  .seg { display: inline-flex; border: 1px solid var(--control); border-radius: 8px; overflow: hidden; }
+  .seg span { padding: 6px 12px; font-size: 13px; font-weight: 600; }
+  .seg span.on { background: var(--accent); color: #fff; }
+  .items { list-style: none; margin: 0; padding: 0; }
+  .items li { display: flex; gap: 8px; align-items: flex-start; padding: 7px 0; border-top: 1px dashed var(--line); font-size: 13px; }
+  .items li .txt { flex: 1; min-width: 0; }
+  .items li .term { font-weight: 600; margin-right: 6px; }
+  .items li.out { color: #a3afc0; text-decoration: line-through; }
+  .secLabel { font-size: 12px; font-weight: 700; color: var(--muted); margin: 10px 0 2px; }
+  .note { background: var(--warn-bg); color: var(--warn); font-size: 12px; padding: 6px 10px; border-radius: 6px; }
+  .hint { font-size: 12px; color: var(--muted); }
+  .scroll { max-height: 360px; overflow: auto; padding-right: 4px; }
+  .paper { background: #fff; border: 1px solid var(--control); border-radius: 4px; padding: 18px 22px;
+    font-family: "Noto Serif KR", "AppleMyungjo", serif; font-size: 13.5px; }
+  .paper h4 { font-family: inherit; margin: 0 0 4px; font-size: 16px; }
+  .paper .q { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eef1f5; align-items: flex-start; }
+  .paper .q .n { font-weight: 700; width: 22px; flex: none; }
+  .paper .q .body { flex: 1; min-width: 0; }
+  .paper .q .ln { height: 18px; border-bottom: 1px solid #c9d1dc; margin-top: 6px; }
+  .qTools { display: flex; gap: 4px; flex: none; font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif; }
+  .q.hover { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; background: #f8faff; }
+  .pop { border: 1px solid var(--control); border-radius: 10px; background: #fff; box-shadow: 0 8px 24px rgba(23,43,77,.14);
+    padding: 10px 12px; font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif; font-size: 13px; margin: 6px 0 4px 30px; }
+  .dialogWrap { position: relative; border-radius: 10px; background: rgba(23,43,77,.35); padding: 22px; }
+  .dialog { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .dHead { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .dHead h3 { margin: 0; font-size: 17px; }
+  .dBody { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 380px; }
+  .dSide { border-right: 1px solid var(--line); padding: 12px; font-size: 13px; display: flex; flex-direction: column; gap: 12px; }
+  .dSide .grp b { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .dMain { padding: 12px 16px; min-width: 0; }
+  .dFoot { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--control); font-size: 12px; font-weight: 600; background: #fff; }
+  .pill.on { background: var(--soft); border-color: var(--accent); color: var(--accent); }
+  .cart .grp { border-top: 1px solid var(--line); padding: 8px 0; }
+  .cart .grp h5 { margin: 0 0 4px; font-size: 13px; display: flex; gap: 6px; align-items: center; }
+  .cart ol { margin: 0; padding-left: 18px; font-size: 12.5px; }
+  .cart ol li { padding: 2px 0; }
+  .x { color: var(--muted); font-size: 12px; margin-left: 4px; }
+  .mtx { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .mtx th, .mtx td { border-top: 1px solid var(--line); padding: 7px 6px; }
+  .mtx th { color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; }
+  .mtx td.c { text-align: center; }
+  .mtx tr.open td { background: #f8faff; }
+  .callouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+  .callout { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; }
+  .callout b { display: block; font-size: 13px; margin-bottom: 2px; }
+  .proscons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; font-size: 12.5px; }
+  .proscons div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+  .proscons b { font-size: 12px; color: var(--muted); }
+  .proscons ul { margin: 4px 0 0; padding-left: 16px; }
+  table.cmp { width: 100%; border-collapse: collapse; background: var(--surface); font-size: 13px; border: 1px solid var(--line); border-radius: 12px; }
+  table.cmp th, table.cmp td { border-top: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  table.cmp thead th { background: var(--neutral); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>개념 백지 — 문제 고르기 · Wire 5안</h1>
+  <p class="lead">요청: 원장님 · 인재원 허주연 T «문제 고르기 기능 추가 되나요» — 개념 백지를 만들 때 자동으로 다 싣지 않고 원하는 문항만 골라 싣는다. 2026-11-12.</p>
+
+  <div class="facts">
+    <b>모든 안에 공통인 사실</b>
+    <ul>
+      <li>문항 글은 실제 은행(초5 · 2-3 합동과 대칭 — 소단원 넷, 개념 120(개념 질문이 있는 것 70) · ○× 104 · 적용 50 · 그림 4)에서 그대로 옮겼다.</li>
+      <li>뒷단은 이미 «정확히 고른 문항»을 받는다(<code>selection.pick</code> — 소단원 · 종류 · 문항 · 형식 · 난이도). 화면만 없다.</li>
+      <li><b>대가</b>: 직접 고른 지면에는 <b>지면 코드(사진 채점용)가 찍히지 않는다</b>. 지금 지면 코드는 «고르기 조건»만 싣고 다시 합쳐 맞추는 방식이라 문항 목록을 실을 자리가 없다. 내 시험지 저장 · 인쇄는 된다.</li>
+      <li>직접 고른 문항은 은행 문장이 나중에 고쳐져도 고른 그대로 남는다(자동 지면은 은행을 따라 바뀐다).</li>
+      <li>«자동으로 채우기»는 지금 규칙 그대로 — 소단원 차례로 돌려 뽑고, 모자란 바퀴는 범위 전체에 고르게 편다(오늘 고친 «뒷 단원이 안 나옴»).</li>
+    </ul>
+  </div>
+
+  <nav class="tabs">
+    <a href="#w1">W1 형식 칸 아래 목록</a>
+    <a href="#w2">W2 고르기 창</a>
+    <a href="#w3">W3 미리보기에서 빼고 바꾸기</a>
+    <a href="#w4">W4 담기 목록</a>
+    <a href="#w5">W5 소단원 × 난이도 표</a>
+    <a href="#cmp">비교</a>
+  </nav>
+
+  <!-- ───────────── W1 ───────────── -->
+  <section class="opt" id="w1">
+    <div class="optHead"><h2>W1 · 형식 칸 아래 목록</h2><span class="tag">화면 한 장 · 지금 흐름 그대로</span></div>
+    <p class="optDesc">형식 표의 줄마다 «자동 · 직접» 두 칸. «직접»을 고르면 그 형식 아래에 고른 소단원의 문항이 소단원별로 펼쳐지고 체크한다. 숫자 칸은 «고른 수»로 바뀐다.</p>
+    <div class="frame">
+      <div class="grid">
+        <div class="card">
+          <div class="cardHead"><h3 class="cardTitle">단원 고르기</h3><span class="num">고른 소단원 4</span></div>
+          <ul class="tree">
+            <li><label class="chk"><input type="checkbox" checked> 2-3 합동과 대칭</label></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-1 도형의 합동 알아보기</label><span class="stock">개념 30 · ○× 26 · 적용 11</span></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-2 합동인 도형의 성질</label><span class="stock">개념 30 · ○× 24 · 적용 13</span></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-3 선대칭도형과 그 성질</label><span class="stock">개념 30 · ○× 26 · 적용 14</span></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-4 점대칭도형과 그 성질</label><span class="stock">개념 30 · ○× 28 · 적용 12</span></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="cardHead"><h3 class="cardTitle">형식</h3></div>
+            <table class="formTable">
+              <thead><tr><th>형식</th><th>싣는 방법</th><th>하</th><th>중</th><th>상</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><b>A</b> 완전 백지</td><td><div class="seg"><span class="on">자동</span><span>직접</span></div></td><td><span class="cnt">10</span></td><td><span class="cnt">10</span></td><td><span class="cnt">5</span></td><td></td></tr>
+                <tr><td><b>B</b> 개념 질문</td><td><div class="seg"><span>자동</span><span class="on">직접</span></div></td><td><span class="cnt off">4</span></td><td><span class="cnt off">2</span></td><td><span class="cnt off">2</span></td><td class="hint">고른 수</td></tr>
+              </tbody>
+            </table>
+            <div style="border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px">
+              <div class="row"><b style="font-size:13px">B 개념 질문 — 고른 문항 8</b><span class="spacer"></span>
+                <button class="btn sm">자동으로 채우기</button><button class="btn sm quiet">모두 풀기</button></div>
+              <div class="row" style="margin-top:6px"><span class="pill on">전체</span><span class="pill">하</span><span class="pill">중</span><span class="pill">상</span><span class="pill">고른 것만</span></div>
+              <div class="scroll" style="max-height:300px;margin-top:6px">
+                <div class="secLabel">2-3-1 도형의 합동 알아보기 · 고름 3 / 16</div>
+                <ul class="items">
+                  <li><input type="checkbox" checked><span class="lv">하</span><span class="txt"><span class="term">합동</span>두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.</span></li>
+                  <li><input type="checkbox" checked><span class="lv">상</span><span class="txt"><span class="term">넓이와 합동 구별</span>넓이가 같은 두 도형은 항상 합동인지 쓰고, 가로 6 cm, 세로 2 cm인 직사각형과 가로 4 cm, 세로 3 cm인 직사각형을 예로 들어 그 까닭을 설명하시오.</span></li>
+                  <li><input type="checkbox"><span class="lv">하</span><span class="txt"><span class="term">포개어 확인하기</span>종이에 그려진 두 도형이 합동인지 직접 확인하려면 어떻게 하면 되는지 쓰고, 어떤 결과가 나오면 합동인지 설명하시오.</span></li>
+                  <li><input type="checkbox" checked><span class="lv">하</span><span class="txt"><span class="term">반지름이 같은 원</span>두 원이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 그것만 비교해도 되는 까닭을 설명하시오.</span></li>
+                </ul>
+                <div class="secLabel">2-3-2 합동인 도형의 성질 알아보기 · 고름 2 / 16</div>
+                <ul class="items">
+                  <li><input type="checkbox" checked><span class="lv">하</span><span class="txt"><span class="term">대응점</span>서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오.</span></li>
+                  <li><input type="checkbox"><span class="lv">하</span><span class="txt"><span class="term">대응변</span>서로 합동인 두 도형에서 대응변은 어떤 변을 말하는지 설명하시오.</span></li>
+                  <li><input type="checkbox" checked><span class="lv">중</span><span class="txt"><span class="term">합동인 도형의 성질</span>서로 합동인 두 도형에서 대응변의 길이끼리, 대응각의 크기끼리는 각각 어떤 관계인지 쓰시오.</span></li>
+                </ul>
+                <div class="secLabel">2-3-3 선대칭도형과 그 성질 알아보기 · 고름 2 / 21</div>
+                <div class="secLabel">2-3-4 점대칭도형과 그 성질 알아보기 · 고름 1 / 17</div>
+              </div>
+              <div class="secLabel" style="margin-top:8px">뒤에 붙는 ○× — 고른 문항 3 <button class="btn sm quiet">펼치기</button></div>
+            </div>
+            <p class="note" style="margin:8px 0 0">직접 고른 형식이 있으면 지면 코드(사진 채점)가 찍히지 않습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proscons"><div><b>좋은 점</b><ul><li>지금 화면에 칸 하나만 더한다. 배울 것이 적다.</li><li>형식마다 따로 고른다 — A는 자동, B만 직접도 된다.</li></ul></div>
+      <div><b>걱정</b><ul><li>소단원이 많으면(최대 60) 목록이 매우 길어진다 — 화면에 긴 목록을 펼치는 꼴이라 D-159와 어긋난다.</li><li>C · D 형식도 같은 목록을 한 번 더 고른다.</li></ul></div></div>
+  </section>
+
+  <!-- ───────────── W2 ───────────── -->
+  <section class="opt" id="w2">
+    <div class="optHead"><h2>W2 · 고르기 창 (PickerDialog)</h2><span class="tag">D-159 공용 «고르기 창»</span></div>
+    <p class="optDesc">형식 줄에는 «자동 10 · 10 · 5» 또는 «직접 고름 8»과 [문항 고르기] 단추 하나. 누르면 공용 고르기 창이 뜨고, 왼쪽에서 소단원 · 난이도로 거르고 오른쪽 목록에서 체크한다. 창 바닥에 «자동으로 채우기».</p>
+    <div class="frame">
+      <div class="card" style="margin-bottom:12px">
+        <table class="formTable">
+          <thead><tr><th>형식</th><th>무엇을 싣나</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><b>A</b> 완전 백지</td><td>자동 · 하 10 · 중 10 · 상 5</td><td><button class="btn sm">문항 고르기</button></td></tr>
+            <tr><td><b>B</b> 개념 질문</td><td><b>직접 고름 8</b> · ○× 3 <span class="hint">— 2-3-1 3 · 2-3-2 2 · 2-3-3 2 · 2-3-4 1</span></td><td><button class="btn sm">문항 고르기</button> <button class="btn sm quiet">자동으로 되돌리기</button></td></tr>
+            <tr><td><b>C</b> 문장 빈칸</td><td>자동 · 하 5 · 중 5 · 상 0</td><td><button class="btn sm">문항 고르기</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dialogWrap">
+        <div class="dialog">
+          <div class="dHead"><h3>B 개념 질문 — 문항 고르기</h3><span class="num">고름 8</span><span class="spacer"></span><button class="btn sm">취소</button><button class="btn sm primary">적용</button></div>
+          <div class="dBody">
+            <div class="dSide">
+              <div class="grp"><b>소단원</b>
+                <label class="chk"><input type="radio" name="w2s"> 전체 (70)</label><br>
+                <label class="chk"><input type="radio" name="w2s" checked> 2-3-1 도형의 합동 (16)</label><br>
+                <label class="chk"><input type="radio" name="w2s"> 2-3-2 합동인 도형의 성질 (16)</label><br>
+                <label class="chk"><input type="radio" name="w2s"> 2-3-3 선대칭도형 (21)</label><br>
+                <label class="chk"><input type="radio" name="w2s"> 2-3-4 점대칭도형 (17)</label></div>
+              <div class="grp"><b>난이도</b><div class="row"><span class="pill on">전체</span><span class="pill">하</span><span class="pill">중</span><span class="pill">상</span></div></div>
+              <div class="grp"><b>종류</b><div class="row"><span class="pill on">개념 질문</span><span class="pill">○×</span></div></div>
+              <div class="grp"><b>보기</b><div class="row"><span class="pill">고른 것만</span></div></div>
+            </div>
+            <div class="dMain">
+              <div class="row" style="margin-bottom:4px"><b style="font-size:13px">2-3-1 도형의 합동 알아보기</b><span class="hint">16문항 · 고름 3</span><span class="spacer"></span><button class="btn sm quiet">이 소단원 모두</button></div>
+              <ul class="items scroll" style="max-height:310px">
+                <li><input type="checkbox" checked><span class="lv">하</span><span class="txt"><span class="term">합동</span>두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.<br><span class="hint">답: 두 도형의 모양과 크기가 같아서 포개었을 때 완전히 겹친다는 뜻이다.</span></span></li>
+                <li><input type="checkbox"><span class="lv">하</span><span class="txt"><span class="term">포개어 확인하기</span>종이에 그려진 두 도형이 합동인지 직접 확인하려면 어떻게 하면 되는지 쓰고, 어떤 결과가 나오면 합동인지 설명하시오.</span></li>
+                <li><input type="checkbox" checked><span class="lv">하</span><span class="txt"><span class="term">반지름이 같은 원</span>두 원이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 그것만 비교해도 되는 까닭을 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">하</span><span class="txt"><span class="term">크기가 다른 같은 모양</span>모양이 같은 두 도형은 항상 합동인지 쓰고, 한 변이 2 cm인 정사각형과 한 변이 3 cm인 정사각형을 예로 들어 그 까닭을 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">중</span><span class="txt"><span class="term">합동인 도형의 넓이</span>합동인 두 도형의 넓이와 둘레를 각각 비교하면 어떻게 되는지 쓰고, 두 도형을 포개었을 때의 모습을 이용해 그 까닭을 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">중</span><span class="txt"><span class="term">둘레만 같은 도형</span>둘레가 같은 두 도형은 항상 합동인지 쓰고, 한 변이 3 cm인 정사각형과 한 변이 4 cm인 정삼각형을 예로 들어 그 까닭을 설명하시오.</span></li>
+                <li><input type="checkbox" checked><span class="lv">상</span><span class="txt"><span class="term">넓이와 합동 구별</span>넓이가 같은 두 도형은 항상 합동인지 쓰고, 가로 6 cm, 세로 2 cm인 직사각형과 가로 4 cm, 세로 3 cm인 직사각형을 예로 들어 그 까닭을 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">상</span><span class="txt"><span class="term">세 각만 같은 삼각형</span>세 각의 크기가 각각 같은 두 삼각형은 항상 합동인지 쓰고, 한 변이 2 cm인 정삼각형과 한 변이 4 cm인 정삼각형을 예로 들어 그 까닭을 설명하시오.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="dFoot"><span class="hint">자동으로 채우기</span><span class="cnt">10</span><span class="cnt">10</span><span class="cnt">5</span><button class="btn sm">고른 것 위에 채우기</button><button class="btn sm quiet">새로 채우기</button><span class="spacer"></span><span class="hint">직접 고르면 지면 코드(사진 채점)가 찍히지 않습니다.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proscons"><div><b>좋은 점</b><ul><li>화면은 지금처럼 짧게 남고, 긴 목록은 창 안에서만(D-159).</li><li>답까지 보며 고를 수 있다. 소단원이 60개여도 왼쪽 거르기로 다룬다.</li></ul></div>
+      <div><b>걱정</b><ul><li>고른 것이 지면에서 어떻게 보이는지는 창을 닫아야 안다.</li><li>형식마다 창을 따로 연다.</li></ul></div></div>
+  </section>
+
+  <!-- ───────────── W3 ───────────── -->
+  <section class="opt" id="w3">
+    <div class="optHead"><h2>W3 · 미리보기에서 빼고 바꾸기</h2><span class="tag">자동이 먼저 · 손질은 지면 위에서</span></div>
+    <p class="optDesc">지금처럼 수로 자동 채운 뒤, 미리보기의 문항에 올리면 [바꾸기] [빼기]가 뜬다. 바꾸기는 같은 소단원 · 같은 난이도의 다른 문항 후보를 작은 창으로 보여 준다. 손대는 순간 그 형식은 «직접»이 된다.</p>
+    <div class="frame">
+      <div class="grid" style="grid-template-columns: 300px minmax(0,1fr)">
+        <div class="col">
+          <div class="card">
+            <div class="cardHead"><h3 class="cardTitle">형식</h3></div>
+            <table class="formTable">
+              <tbody>
+                <tr><td><b>B</b> 개념 질문</td><td><span class="cnt">4</span> <span class="cnt">2</span> <span class="cnt">2</span></td></tr>
+              </tbody>
+            </table>
+            <p class="note" style="margin-top:8px">미리보기에서 손질함 — 뺌 1 · 바꿈 1<br>지면 코드가 찍히지 않습니다.</p>
+            <div class="row" style="margin-top:8px"><button class="btn sm">손질 되돌리기</button></div>
+          </div>
+          <div class="card"><div class="cardHead"><h3 class="cardTitle">뺀 문항</h3><span class="num">1</span></div>
+            <ul class="items"><li class="out"><span class="lv">하</span><span class="txt">서로 합동인 두 도형에서 대응변은 어떤 변을 말하는지 설명하시오.</span></li></ul>
+            <button class="btn sm quiet">되살리기</button></div>
+        </div>
+        <div class="card">
+          <div class="cardHead"><h3 class="cardTitle">미리보기</h3><div class="seg" style="margin-left:auto"><span class="on">학생지</span><span>답지</span></div></div>
+          <div class="paper">
+            <h4>합동과 대칭 — 개념 질문</h4>
+            <div class="hint" style="font-family:inherit;margin-bottom:8px">초5 · 2-3 합동과 대칭 · 이름 ________</div>
+            <div class="q"><span class="n">1</span><div class="body">두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.<div class="ln"></div></div></div>
+            <div class="q hover"><span class="n">2</span><div class="body">서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오.<div class="ln"></div></div>
+              <div class="qTools"><button class="btn sm">바꾸기</button><button class="btn sm">빼기</button></div></div>
+            <div class="pop">
+              <div class="row"><b>바꿀 문항 — 2-3-2 · 하</b><span class="spacer"></span><span class="hint">후보 6</span></div>
+              <ul class="items">
+                <li><input type="radio" name="w3"><span class="txt">서로 합동인 두 도형에서 대응각은 어떤 각을 말하는지 설명하시오.</span></li>
+                <li><input type="radio" name="w3"><span class="txt">서로 합동인 두 다각형에서 대응점, 대응변, 대응각이 각각 몇 쌍인지는 도형의 무엇을 세면 알 수 있는지 쓰고, 서로 합동인 두 사각형에서는 각각 몇 쌍인지 쓰시오.</span></li>
+                <li><input type="radio" name="w3"><span class="txt">서로 합동인 두 도형에서 한 도형의 어떤 변의 길이를 모를 때, 다른 도형의 무엇을 보면 그 길이를 알 수 있는지와 그 까닭을 설명하시오.</span></li>
+              </ul>
+              <div class="row" style="justify-content:flex-end"><button class="btn sm quiet">닫기</button><button class="btn sm primary">이 문항으로</button></div>
+            </div>
+            <div class="q"><span class="n">3</span><div class="body">어떤 도형을 선대칭도형이라고 하나요? 도형을 접었을 때 어떻게 되는지를 넣어 설명하세요.<div class="ln"></div></div></div>
+            <div class="q"><span class="n">4</span><div class="body">점대칭도형은 어떤 도형입니까? 도형을 어떻게 움직였을 때 어떻게 되는 도형인지 설명하시오.<div class="ln"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proscons"><div><b>좋은 점</b><ul><li>«자동으로 채우고 몇 개만 고치기»가 제일 짧다. 지면 그대로 보며 고친다.</li><li>뺀 자리를 다른 문항으로 채우는 일도 같은 자리에서.</li></ul></div>
+      <div><b>걱정</b><ul><li>처음부터 원하는 것만 골라 담기는 번거롭다(많이 빼야 한다).</li><li>미리보기가 지면 자를 쓰는 곳이라 단추가 지면 위에 겹친다 — 인쇄 · 쪽 나눔과 갈라 그려야 한다.</li></ul></div></div>
+  </section>
+
+  <!-- ───────────── W4 ───────────── -->
+  <section class="opt" id="w4">
+    <div class="optHead"><h2>W4 · 담기 목록</h2><span class="tag">문제 추출의 «담은 문항»과 같은 꼴</span></div>
+    <p class="optDesc">가운데에 고른 소단원의 문항 은행, 오른쪽에 «담은 문항»이 형식별로 쌓인다. 문항마다 [B에 담기] [C에 담기]처럼 실을 형식을 고른다. «자동으로 채우기»는 담은 목록 머리에서 남은 칸만 채운다.</p>
+    <div class="frame">
+      <div class="grid3">
+        <div class="card">
+          <div class="cardHead"><h3 class="cardTitle">단원</h3><span class="num">4</span></div>
+          <ul class="tree">
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-1 도형의 합동</label></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-2 합동인 도형의 성질</label></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-3 선대칭도형</label></li>
+            <li class="sub"><label class="chk"><input type="checkbox" checked> 2-3-4 점대칭도형</label></li>
+          </ul>
+          <p class="hint" style="margin-top:8px">단원 고르기는 지금처럼 고르기 창으로 연다.</p>
+        </div>
+        <div class="card">
+          <div class="cardHead"><h3 class="cardTitle">문항</h3><span class="spacer"></span>
+            <span class="pill on">개념</span><span class="pill">○×</span><span class="pill">적용</span><span class="pill">그림</span></div>
+          <div class="row" style="margin-bottom:6px"><span class="pill on">2-3-3 선대칭도형</span><span class="pill on">전체</span><span class="pill">하</span><span class="pill">중</span><span class="pill">상</span></div>
+          <ul class="items scroll" style="max-height:340px">
+            <li><span class="lv">하</span><span class="txt"><span class="term">선대칭도형</span>한 직선을 따라 접었을 때 양쪽 부분이 완전히 겹치는 도형을 선대칭도형이라고 한다.<br><span class="hint">실을 수 있는 형식: A · B · C · D</span></span><span class="row"><button class="btn sm">B에 담기</button><button class="btn sm">C</button></span></li>
+            <li><span class="lv">하</span><span class="txt"><span class="term">대칭축</span>선대칭도형을 완전히 겹치도록 접을 때 접는 선이 되는 직선을 대칭축이라고 한다.<br><span class="hint">B에 담김</span></span><span class="row"><button class="btn sm">빼기</button><button class="btn sm">C</button></span></li>
+            <li><span class="lv">하</span><span class="txt"><span class="term">대응변</span>선대칭도형을 대칭축을 따라 접었을 때 겹치는 변을 대응변이라고 한다.<br><span class="hint">실을 수 있는 형식: A · C · D (개념 질문 없음)</span></span><span class="row"><button class="btn sm">C에 담기</button></span></li>
+            <li><span class="lv">상</span><span class="txt"><span class="term">선대칭도형의 성질</span>대칭축 밖의 한 점과 그 대응점을 이은 선분은 대칭축과 수직으로 만나고, 대칭축은 이 선분을 길이가 같은 두 부분으로 나눈다.</span><span class="row"><button class="btn sm">B에 담기</button><button class="btn sm">C</button></span></li>
+            <li><span class="lv">중</span><span class="txt"><span class="term">선대칭에서 같은 부분</span>선대칭도형의 대응변은 길이가 같고 대응각은 크기가 같다.</span><span class="row"><button class="btn sm">B에 담기</button><button class="btn sm">C</button></span></li>
+          </ul>
+        </div>
+        <div class="card cart">
+          <div class="cardHead"><h3 class="cardTitle">담은 문항</h3><span class="num">14</span><span class="spacer"></span><button class="btn sm quiet">모두 빼기</button></div>
+          <div class="row" style="margin-bottom:6px"><button class="btn sm">남은 칸 자동으로 채우기</button></div>
+          <div class="grp"><h5>B 개념 질문 <span class="hint">6</span></h5>
+            <ol><li>합동 <span class="x">하 · 2-3-1</span></li><li>넓이와 합동 구별 <span class="x">상 · 2-3-1</span></li><li>대응점 <span class="x">하 · 2-3-2</span></li><li>합동인 도형의 성질 <span class="x">중 · 2-3-2</span></li><li>대칭축 <span class="x">하 · 2-3-3</span></li><li>점대칭도형 <span class="x">하 · 2-3-4</span></li></ol></div>
+          <div class="grp"><h5>B 뒤 ○× <span class="hint">3</span></h5>
+            <ol><li>모양이 같으면 크기가 달라도 합동이다. <span class="x">하</span></li><li>선대칭도형의 대칭축은 언제나 하나뿐이다. <span class="x">중</span></li><li>점대칭도형은 한 점 둘레로 90°만 돌려도 반드시 포개진다. <span class="x">중</span></li></ol></div>
+          <div class="grp"><h5>C 문장 빈칸 <span class="hint">5</span></h5><ol><li>대응변 <span class="x">하 · 2-3-3</span></li><li>…</li></ol></div>
+          <p class="note">지면 코드가 찍히지 않습니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="proscons"><div><b>좋은 점</b><ul><li>문제 추출의 «담은 문항 · 모두 빼기»와 같은 손버릇.</li><li>한 문항을 여러 형식에 담을 수 있고, 무엇이 실리는지 한눈에.</li></ul></div>
+      <div><b>걱정</b><ul><li>화면이 세 칸으로 넓어진다 — 미리보기를 아래로 내려야 한다.</li><li>지금 «형식 표 + 수» 흐름과 많이 다르다.</li></ul></div></div>
+  </section>
+
+  <!-- ───────────── W5 ───────────── -->
+  <section class="opt" id="w5">
+    <div class="optHead"><h2>W5 · 소단원 × 난이도 표</h2><span class="tag">수를 소단원마다 · 필요하면 칸을 열어 직접</span></div>
+    <p class="optDesc">형식 하나를 고르면 «소단원 × 하 · 중 · 상» 표가 나온다. 칸마다 수를 넣으면 그 소단원에서 그만큼 자동으로 뽑고, 칸을 열면 그 칸의 문항을 직접 체크한다. 범위가 넓을 때 «뒷 단원에서도 몇 개»를 정확히 정할 수 있다.</p>
+    <div class="frame">
+      <div class="card">
+        <div class="cardHead"><h3 class="cardTitle">B 개념 질문 — 소단원마다 몇 문항</h3><span class="num">합계 8</span><span class="spacer"></span>
+          <button class="btn sm">범위 전체에 고르게</button><button class="btn sm quiet">모두 0</button></div>
+        <table class="mtx">
+          <thead><tr><th>소단원</th><th>하</th><th>중</th><th>상</th><th>있는 문항</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>2-3-1 도형의 합동 알아보기</td><td class="c"><span class="cnt">1</span></td><td class="c"><span class="cnt">0</span></td><td class="c"><span class="cnt">1</span></td><td class="hint">하 5 · 중 5 · 상 6</td><td><button class="btn sm quiet">문항 보기</button></td></tr>
+            <tr class="open"><td><b>2-3-2 합동인 도형의 성질</b></td><td class="c"><span class="cnt">2</span></td><td class="c"><span class="cnt">1</span></td><td class="c"><span class="cnt">0</span></td><td class="hint">하 5 · 중 4 · 상 7</td><td><button class="btn sm">접기</button></td></tr>
+            <tr class="open"><td colspan="6">
+              <div class="row"><span class="hint">하 — 직접 고름 2 / 5</span><span class="spacer"></span><button class="btn sm quiet">이 칸 자동으로</button></div>
+              <ul class="items">
+                <li><input type="checkbox" checked><span class="lv">하</span><span class="txt">서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">하</span><span class="txt">서로 합동인 두 도형에서 대응변은 어떤 변을 말하는지 설명하시오.</span></li>
+                <li><input type="checkbox"><span class="lv">하</span><span class="txt">서로 합동인 두 도형에서 대응각은 어떤 각을 말하는지 설명하시오.</span></li>
+                <li><input type="checkbox" checked><span class="lv">하</span><span class="txt">서로 합동인 두 도형에서 한 도형의 어떤 변의 길이를 모를 때, 다른 도형의 무엇을 보면 그 길이를 알 수 있는지와 그 까닭을 설명하시오.</span></li>
+              </ul></td></tr>
+            <tr><td>2-3-3 선대칭도형과 그 성질 알아보기</td><td class="c"><span class="cnt">1</span></td><td class="c"><span class="cnt">0</span></td><td class="c"><span class="cnt">0</span></td><td class="hint">하 7 · 중 8 · 상 6</td><td><button class="btn sm quiet">문항 보기</button></td></tr>
+            <tr><td>2-3-4 점대칭도형과 그 성질 알아보기</td><td class="c"><span class="cnt">1</span></td><td class="c"><span class="cnt">1</span></td><td class="c"><span class="cnt">0</span></td><td class="hint">하 5 · 중 3 · 상 9</td><td><button class="btn sm quiet">문항 보기</button></td></tr>
+          </tbody>
+        </table>
+        <p class="hint" style="margin-top:8px">칸에 수만 넣으면 «자동», 칸을 열어 체크하면 그 칸만 «직접». 직접 칸이 하나라도 있으면 지면 코드가 찍히지 않는다. 수만 넣은 표는 지면 코드를 지키려면 코드에 «소단원별 수»를 실을 판을 새로 내야 한다(뒷단 일).</p>
+      </div>
+    </div>
+    <div class="proscons"><div><b>좋은 점</b><ul><li>오늘 들어온 두 요청(문항 고르기 · 뒷 단원 빠짐)을 한 화면이 다 받는다.</li><li>대부분은 수로 끝내고, 꼭 필요한 칸만 열어 고른다.</li></ul></div>
+      <div><b>걱정</b><ul><li>소단원이 많으면 표가 길다(60줄 × 3칸).</li><li>형식마다 표가 하나씩 — B · C를 같이 쓰면 두 표.</li></ul></div></div>
+  </section>
+
+  <!-- ───────────── 비교 ───────────── -->
+  <section class="opt" id="cmp">
+    <div class="optHead"><h2>비교</h2></div>
+    <table class="cmp">
+      <thead><tr><th>안</th><th>고르는 자리</th><th>자동과 함께</th><th>긴 범위(소단원 60)</th><th>지금 화면과 차이</th></tr></thead>
+      <tbody>
+        <tr><td><b>W1</b> 형식 칸 아래 목록</td><td>형식 표 안에 펼침</td><td>형식마다 «자동 · 직접» 전환</td><td>목록이 길어짐</td><td>작음</td></tr>
+        <tr><td><b>W2</b> 고르기 창</td><td>공용 고르기 창(D-159)</td><td>창 바닥 «고른 것 위에 채우기»</td><td>왼쪽 거르기로 다룸</td><td>작음</td></tr>
+        <tr><td><b>W3</b> 미리보기 손질</td><td>지면 위 [바꾸기] [빼기]</td><td>자동이 먼저, 손대면 직접</td><td>지면이 길 뿐 문제 없음</td><td>미리보기만 바뀜</td></tr>
+        <tr><td><b>W4</b> 담기 목록</td><td>은행 목록 + 담은 문항</td><td>«남은 칸 자동으로 채우기»</td><td>소단원 거르기</td><td>큼(세 칸)</td></tr>
+        <tr><td><b>W5</b> 소단원 × 난이도 표</td><td>표의 칸을 열어 체크</td><td>칸마다 수 = 자동, 연 칸 = 직접</td><td>표가 길어짐</td><td>중간</td></tr>
+      </tbody>
+    </table>
+    <p class="optDesc" style="margin-top:10px">섞기 예: W2(고르기 창으로 직접 고르기) + W3(미리보기에서 바꾸기 · 빼기). 또는 W5의 «소단원마다 수»만 먼저 들이고 직접 고르기는 W2 창으로.</p>
+  </section>
+</div>
+</body>
+</html>
