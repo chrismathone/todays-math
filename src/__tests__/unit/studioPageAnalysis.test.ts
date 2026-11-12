@@ -65,11 +65,30 @@ describe("measurePageInk", () => {
   });
 });
 
-describe("rendered blank pages only", () => {
-  it("excludes only a rendered white page", () => {
-    expect(analyzeStudioPage({ inkRatio: measurePageInk(raster(100)) })).toBe(
+describe("confirmed blank pages only", () => {
+  it("treats a white thumbnail as a candidate, not proof of blankness", () => {
+    expect(analyzeStudioPage({ inkRatio: 0 })).toBeUndefined();
+  });
+
+  it("excludes only a white candidate with a successful white confirmation", () => {
+    expect(analyzeStudioPage({ inkRatio: 0, confirmedInkRatio: 0 })).toBe(
       "빈 쪽",
     );
+  });
+
+  it.each([undefined, NaN, Infinity, -Infinity, -1, 1.1, 1 / 8_000_000])(
+    "retains a candidate with unknown, invalid or nonwhite confirmation %s",
+    (confirmedInkRatio) => {
+      expect(
+        analyzeStudioPage({ inkRatio: 0, confirmedInkRatio }),
+      ).toBeUndefined();
+    },
+  );
+
+  it("never overrides nonwhite thumbnail evidence with a white confirmation", () => {
+    expect(
+      analyzeStudioPage({ inkRatio: 1 / 2_000_000, confirmedInkRatio: 0 }),
+    ).toBeUndefined();
   });
 
   it.each([0.0000005, 0.000001, 0.002, 0.02, 1])(

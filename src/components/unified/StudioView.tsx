@@ -46,6 +46,7 @@ import { resolveStudioGrade, studioGradeLevel } from "./studioGrade";
 import {
   lazy,
   Suspense,
+  useCallback,
   useEffect,
   useEffectEvent,
   useId,
@@ -408,10 +409,12 @@ export default function StudioView({
         (a, b) => ranks.get(studioPageKey(a))! - ranks.get(studioPageKey(b))!,
       );
   }, [storedCrops, livePages]);
-  const [previews, setPreviews] = useState<Record<string, StudioPagePreview>>(
-    {},
-  );
+  const [previews, setPreviews] = useState<
+    Record<string, StudioPagePreview & { loading?: boolean }>
+  >({});
   const previewCache = useRef(new Map<string, StudioPagePreview>());
+  const previewController = useRef<AbortController | null>(null);
+  const previewRequests = useRef(new Map<string, AbortSignal>());
   const autoAnalyzeSources = useRef(new Set<string>());
   const analyzedPages = useRef(new Set<string>());
   const [orderToast, setOrderToast] = useState("");
@@ -434,6 +437,7 @@ export default function StudioView({
         const preview = previews[studioPageKey(page)];
         return (
           !preview ||
+          preview.loading ||
           preview.rotation !== (source.pageRotations?.[page.page] ?? 0)
         );
       }),
@@ -1059,7 +1063,7 @@ export default function StudioView({
     return () => window.clearTimeout(timer);
   }, [orderToast, orderHistory.present]);
 
-  const acceptPagePreview = useEffectEvent(
+  const acceptPagePreview = useCallback(
     (source: StudioSource, page: number, preview: StudioPagePreview) => {
       const key = studioPageKey({ sourceId: source.id, page });
       setPreviews((previous) => ({
@@ -1067,6 +1071,8 @@ export default function StudioView({
         [key]: { ...preview, rotation: source.pageRotations?.[page] ?? 0 },
       }));
       if (
+        preview.error ||
+        !preview.url ||
         !autoAnalyzeSources.current.has(source.id) ||
         analyzedPages.current.has(key)
       )
@@ -1089,42 +1095,90 @@ export default function StudioView({
           ),
         }));
     },
+    [sources],
+  );
+  const loadPagePreview = useCallback(
+    async (source: StudioSource, page: number, signal: AbortSignal) => {
+      const pageKey = studioPageKey({ sourceId: source.id, page });
+      const rotation = source.pageRotations?.[page] ?? 0;
+      const key = `${pageKey}:${rotation}`;
+      if (signal.aborted || previewRequests.current.get(key)?.aborted === false)
+        return;
+      let preview = previewCache.current.get(key);
+      if (!preview) {
+        previewRequests.current.set(key, signal);
+        setPreviews((previous) => ({
+          ...previous,
+          [pageKey]: {
+            ...previous[pageKey],
+            url: previous[pageKey]?.url ?? "",
+            rotation,
+            loading: true,
+          },
+        }));
+        try {
+          preview = await renderStudioPagePreview(source, page, signal);
+        } catch (cause) {
+          if (signal.aborted) return;
+          preview = {
+            url: "",
+            error:
+              cause instanceof Error
+                ? cause.message
+                : "쪽 그림을 불러오지 못했습니다.",
+          };
+        } finally {
+          // An old aborted request must not clear a newer request's lock.
+          if (previewRequests.current.get(key) === signal)
+            previewRequests.current.delete(key);
+        }
+        if (signal.aborted) return;
+        // A rendered thumbnail can still carry a retryable verification error.
+        if (preview.url && !preview.error)
+          previewCache.current.set(key, preview);
+      }
+      if (!signal.aborted) acceptPagePreview(source, page, preview);
+    },
+    [acceptPagePreview],
   );
   useEffect(() => {
     if (!isPageOrder) return;
     const controller = new AbortController();
+    previewController.current = controller;
     void (async () => {
       for (const source of sources) {
         for (let page = 1; page <= source.pages; page++) {
-          const key = `${studioPageKey({ sourceId: source.id, page })}:${source.pageRotations?.[page] ?? 0}`;
-          let preview = previewCache.current.get(key);
-          if (!preview) {
-            try {
-              preview = await renderStudioPagePreview(
-                source,
-                page,
-                controller.signal,
-              );
-            } catch (cause) {
-              if (controller.signal.aborted) return;
-              preview = {
-                url: "",
-                error:
-                  cause instanceof Error
-                    ? cause.message
-                    : "쪽 그림을 불러오지 못했습니다.",
-              };
-            }
-            if (controller.signal.aborted) return;
-            previewCache.current.set(key, preview);
-          }
+          await loadPagePreview(source, page, controller.signal);
           if (controller.signal.aborted) return;
-          acceptPagePreview(source, page, preview);
         }
       }
     })();
-    return () => controller.abort();
-  }, [sources, isPageOrder]);
+    return () => {
+      controller.abort();
+      if (previewController.current === controller)
+        previewController.current = null;
+    };
+  }, [sources, isPageOrder, loadPagePreview]);
+
+  function retryPagePreview(key: string) {
+    const controller = previewController.current;
+    if (
+      !isPageOrder ||
+      busy ||
+      previewBusy ||
+      !controller ||
+      controller.signal.aborted
+    )
+      return;
+    const page = pageOrder.find((entry) => studioPageKey(entry) === key);
+    const source = sources.find((entry) => entry.id === page?.sourceId);
+    if (!source || !page) return;
+    const cacheKey = `${key}:${source.pageRotations?.[page.page] ?? 0}`;
+    if (previewRequests.current.get(cacheKey)?.aborted === false) return;
+    // Explicit retry also recovers an image that failed to decode in the browser.
+    previewCache.current.delete(cacheKey);
+    void loadPagePreview(source, page.page, controller.signal);
+  }
 
   async function importFiles(files: File[], restored?: StudioSessionData) {
     const resources = session.current;
@@ -1579,6 +1633,8 @@ export default function StudioView({
     setOrderHistory(createPageOrderHistory([]));
     setPreviews({});
     previewCache.current.clear();
+    previewController.current?.abort();
+    previewRequests.current.clear();
     autoAnalyzeSources.current.clear();
     analyzedPages.current.clear();
     setOrderToast("");
@@ -3105,6 +3161,7 @@ export default function StudioView({
             order={pageOrder}
             previews={previews}
             busy={busy || previewBusy}
+            onRetryPreview={retryPagePreview}
             onMove={(key, direction) =>
               changeOrder(
                 movePage(pageOrder, key, direction),

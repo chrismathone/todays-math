@@ -60,6 +60,73 @@ const dragAt = (
 };
 
 describe("H3-B 쪽 순서", () => {
+  it("실패한 카드와 옆 미리보기의 다시 시도 단추만 정확한 원본 키를 보내고 카드 표면은 조작하지 않는다", () => {
+    const onRetryPreview = vi.fn();
+    const failed = {
+      ...previews,
+      [key(2)]: { url: "blob:unverified", error: "시간 초과" },
+    };
+    const { props, rerender, onMove, onToggle } = setup({
+      previews: failed,
+      onRetryPreview,
+    });
+    const card = [...grid().querySelectorAll("figure")][2];
+    fireEvent.click(card);
+    expect(onRetryPreview).not.toHaveBeenCalled();
+    expect(within(panel()).getByRole("img")).toHaveAttribute(
+      "alt",
+      "본문.pdf 원본 2쪽",
+    );
+    const retry = within(card).getByRole("button", {
+      name: "서술형 스캔.pdf 원본 1쪽 미리보기 다시 시도",
+    });
+    expect(retry).toHaveTextContent(/^다시 시도$/);
+    expect(retry.closest("[role=button]")).toBeNull();
+    fireEvent.click(retry);
+    expect(onRetryPreview).toHaveBeenLastCalledWith(key(2));
+    select("서술형 스캔.pdf 원본 1쪽");
+    fireEvent.click(within(panel()).getByRole("button", { name: /다시 시도/ }));
+    expect(onRetryPreview.mock.calls).toEqual([[key(2)], [key(2)]]);
+    rerender(
+      <StudioPageOrder
+        {...props}
+        previews={{ ...failed, [key(2)]: { ...failed[key(2)], loading: true } }}
+      />,
+    );
+    for (const region of [card, panel()]) {
+      const button = within(region).getByRole("button", { name: /다시 시도/ });
+      expect(button).toBeDisabled();
+      fireEvent.click(button);
+    }
+    expect(onRetryPreview).toHaveBeenCalledTimes(2);
+    expect(onMove).not.toHaveBeenCalled();
+    expect(onToggle).not.toHaveBeenCalled();
+  });
+
+  it("이미지 읽기 실패에도 다시 시도 단추가 있고 같은 URL의 새 미리보기는 실패 상태를 버린다", () => {
+    const onRetryPreview = vi.fn();
+    const { props, rerender } = setup({ onRetryPreview });
+    const card = [...grid().querySelectorAll("figure")][1];
+    fireEvent.error(within(card).getByRole("img"));
+    fireEvent.error(within(panel()).getByRole("img"));
+    for (const region of [card, panel()]) {
+      const retry = within(region).getByRole("button", {
+        name: "본문.pdf 원본 2쪽 미리보기 다시 시도",
+      });
+      expect(retry).toHaveTextContent(/^다시 시도$/);
+      fireEvent.click(retry);
+    }
+    expect(onRetryPreview.mock.calls).toEqual([[key(1)], [key(1)]]);
+    rerender(
+      <StudioPageOrder
+        {...props}
+        previews={{ ...previews, [key(1)]: { ...previews[key(1)] } }}
+      />,
+    );
+    expect(within(card).getByRole("img")).toHaveAttribute("src", "blob:a-2");
+    expect(within(panel()).getByRole("img")).toHaveAttribute("src", "blob:a-2");
+  });
+
   it.each([
     ["ArrowRight", [1, 3, 2]],
     ["ArrowLeft", [2, 1, 3]],

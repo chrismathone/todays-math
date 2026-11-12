@@ -20,13 +20,16 @@ import {
 } from "./studioPageOrder";
 import s from "./StudioPageOrder.module.css";
 
+type PagePreview = { url: string; error?: string; loading?: boolean };
+
 export type StudioPageOrderProps = {
   sources: readonly { id: string; name: string; pages: number }[];
   order: readonly StudioOrderedPage[];
-  previews: Readonly<Record<string, { url: string; error?: string }>>;
+  previews: Readonly<Record<string, PagePreview>>;
   busy?: boolean;
   onMove: (key: string, direction: StudioPageMove) => void;
   onToggle: (key: string) => void;
+  onRetryPreview?: (key: string) => void;
 };
 
 const FILE_COLORS = [
@@ -37,20 +40,38 @@ const FILE_COLORS = [
 
 /** Browser-local page images must bypass the Next image optimizer. */
 function Preview({
-  url,
-  error,
+  preview,
   identity,
+  busy,
+  onRetry,
 }: {
-  url?: string;
-  error?: string;
+  preview?: PagePreview;
   identity: string;
+  busy: boolean;
+  onRetry?: () => void;
 }) {
-  const [failedUrl, setFailedUrl] = useState<string | null>(null);
-  if (error || (url && failedUrl === url)) {
+  // A fresh result may have the same URL. Track the failed result, not its bytes.
+  const [failedPreview, setFailedPreview] = useState<PagePreview | null>(null);
+  const { url, error, loading } = preview ?? {};
+  const failed = !!error || (!!preview && failedPreview === preview);
+  if (failed || loading) {
     return (
-      <div className={s.placeholder}>
-        <span>미리보기를 불러오지 못했습니다.</span>
-        {error && <span>{error}</span>}
+      <div className={s.placeholder} aria-busy={loading || undefined}>
+        <span>
+          {loading ? "미리보기 준비 중" : "미리보기를 불러오지 못했습니다."}
+        </span>
+        {!loading && error && <span>{error}</span>}
+        {onRetry && (failed || url) && (
+          <button
+            type="button"
+            className={s.button}
+            aria-label={`${identity} 미리보기 다시 시도`}
+            disabled={busy || loading}
+            onClick={onRetry}
+          >
+            다시 시도
+          </button>
+        )}
       </div>
     );
   }
@@ -62,7 +83,7 @@ function Preview({
       src={url}
       alt={identity}
       draggable={false}
-      onError={() => setFailedUrl(url)}
+      onError={() => setFailedPreview(preview!)}
     />
   );
 }
@@ -75,6 +96,7 @@ export default function StudioPageOrder({
   busy = false,
   onMove,
   onToggle,
+  onRetryPreview,
 }: StudioPageOrderProps) {
   const active = activePageOrder(order);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
@@ -266,7 +288,15 @@ export default function StudioPageOrder({
     const name = sourceOf(page)?.name ?? "원본 파일";
     return {
       key,
-      node: <Preview key={key} {...previews[key]} identity={identity(page)} />,
+      node: (
+        <Preview
+          key={key}
+          preview={previews[key]}
+          identity={identity(page)}
+          busy={busy}
+          onRetry={onRetryPreview ? () => onRetryPreview(key) : undefined}
+        />
+      ),
       enlargeLabel: `${identity(page)} 크게 보기`,
       caption: (
         <div key={key} className={s.caption}>
@@ -425,8 +455,15 @@ export default function StudioPageOrder({
               </div>
               <div className={s.big}>
                 <Preview
-                  {...previews[selectedId!]}
+                  key={selectedId}
+                  preview={previews[selectedId!]}
                   identity={identity(selected)}
+                  busy={busy}
+                  onRetry={
+                    onRetryPreview
+                      ? () => onRetryPreview(selectedId!)
+                      : undefined
+                  }
                 />
               </div>
               <p className={s.where}>

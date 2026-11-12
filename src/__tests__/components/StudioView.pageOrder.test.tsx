@@ -26,6 +26,7 @@ import {
   type StudioCartRemoval,
 } from "@/components/unified/studioCart";
 import * as imageHelpers from "@/components/unified/studioAiHelpers";
+import * as pagePreviews from "@/components/unified/studioPagePreview";
 
 const state = vi.hoisted(() => ({
   saved: null as unknown,
@@ -133,15 +134,19 @@ beforeEach(() => {
         {
           get: (_, key) =>
             key === "getImageData"
-              ? () => ({
-                  data: new Uint8ClampedArray(
-                    state.blankPages.includes(
+              ? (_x: number, _y: number, width: number, height: number) => {
+                  // Full pixel buffers also exercise the high-resolution blank check.
+                  const data = new Uint8ClampedArray(width * height * 4).fill(
+                    255,
+                  );
+                  if (
+                    !state.blankPages.includes(
                       state.renderedPages.get(this) ?? 0,
                     )
-                      ? [255, 255, 255, 255]
-                      : [0, 0, 0, 255],
-                  ),
-                })
+                  )
+                    data[0] = data[1] = data[2] = 0;
+                  return { data, width, height };
+                }
               : vi.fn(),
         },
       ) as CanvasRenderingContext2D;
@@ -166,7 +171,7 @@ function open(onAdd = vi.fn()) {
   );
 }
 async function upload() {
-  open();
+  const view = open();
   const input = screen.getByLabelText("PDF 또는 이미지 파일 가져오기");
   await waitFor(() => expect(input).toBeEnabled());
   const file = new File(["pdf"], "본문.pdf", { type: "application/pdf" });
@@ -179,6 +184,7 @@ async function upload() {
       screen.getByRole("button", { name: "이 순서로 시작 →" }),
     ).toBeEnabled(),
   );
+  return view;
 }
 function savedSession(
   extra: Partial<StudioSessionData> = {},
@@ -231,7 +237,269 @@ async function excludeFirstWorkedPage() {
 }
 
 describe("Studio 쪽 차례 연결", () => {
-  it("텍스트·연산 목록 응답이 영원히 없어도 두 API를 부르지 않고 렌더의 빈 쪽만 빼고 즉시 조작·시작을 연다", async () => {
+  it("시간 초과 뒤 재진입하면 실패한 쪽만 다시 읽고 성공한 미리보기는 캐시에 남긴다", async () => {
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockRejectedValueOnce(new DOMException("시간 초과", "TimeoutError"))
+      .mockImplementation(async (_source, page) => ({
+        url: `blob:ok-${page}`,
+      }));
+    await upload();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2]);
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    await waitFor(() => expect(preview).toHaveBeenCalledTimes(3), {
+      timeout: 1000,
+    });
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2, 1]);
+    expect(screen.queryByText("시간 초과")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    await act(async () => {});
+    expect(preview).toHaveBeenCalledTimes(3);
+  });
+
+  it.each(["card", "aside"] as const)(
+    "%s의 다시 시도는 같은 쪽 번호의 다른 파일 대신 정확한 원본·회전을 회복하고 중복 호출을 막는다",
+    async (location) => {
+      const crops = workedPages();
+      const pageOrder = [
+        { sourceId: "a", page: 2, out: false },
+        { sourceId: "b", page: 1, out: false },
+        { sourceId: "a", page: 1, out: false },
+      ];
+      state.saved = {
+        data: savedSession({
+          step: "order",
+          crops,
+          pageOrder,
+          sources: [
+            { id: "a", name: "본문.pdf", kind: "sample", pages: 2 },
+            {
+              id: "b",
+              name: "서술형.pdf",
+              kind: "sample",
+              pages: 1,
+              pageRotations: { 1: 90 },
+            },
+          ],
+        }),
+        originals: new Map(),
+      };
+      let resolveRetry!: (value: pagePreviews.StudioPagePreview) => void;
+      let failed = false;
+      const preview = vi
+        .spyOn(pagePreviews, "renderStudioPagePreview")
+        .mockImplementation(async (source, page) => {
+          if (source.pageRotations?.[page] === 90) {
+            if (!failed) {
+              failed = true;
+              // Candidate verification may fail after the thumbnail was rendered.
+              return { url: "blob:unverified", error: "시간 초과" };
+            }
+            return new Promise((resolve) => {
+              resolveRetry = resolve;
+            });
+          }
+          return { url: `blob:ok-${page}` };
+        });
+      open();
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "이 순서로 시작 →" }),
+        ).toBeEnabled(),
+      );
+      const figures = () => [
+        ...screen
+          .getByRole("region", { name: "쪽 카드" })
+          .querySelectorAll("figure"),
+      ];
+      const target = figures()[1];
+      if (location === "aside")
+        fireEvent.click(
+          within(target).getByRole("button", { name: /크게 보기/ }),
+        );
+      const region =
+        location === "card"
+          ? target
+          : screen.getByRole("complementary", { name: "선택한 쪽" });
+      const retry = within(region).getByRole("button", { name: /다시 시도/ });
+      expect(retry).toHaveTextContent("다시 시도");
+      expect(target).not.toHaveAttribute("role", "button");
+      fireEvent.click(target);
+      expect(preview).toHaveBeenCalledTimes(3);
+      act(() => {
+        fireEvent.click(retry);
+        // Both callbacks can be queued before React commits the loading state.
+        fireEvent.click(retry);
+      });
+      await waitFor(() => expect(preview).toHaveBeenCalledTimes(4));
+      expect(preview.mock.calls[3][0]).toMatchObject({
+        id: "b",
+        pageRotations: { 1: 90 },
+      });
+      expect(preview.mock.calls[3][1]).toBe(1);
+      expect(
+        within(region).getByRole("button", { name: /다시 시도/ }),
+      ).toBeDisabled();
+      fireEvent.click(retry);
+      expect(preview).toHaveBeenCalledTimes(4);
+      await act(async () => {
+        resolveRetry({ url: "blob:recovered-b1-90" });
+      });
+      expect(within(target).getByRole("img")).toHaveAttribute(
+        "src",
+        "blob:recovered-b1-90",
+      );
+      expect(
+        figures().map((figure) => JSON.parse(figure.dataset.stripKey!)),
+      ).toEqual(pageOrder.map((page) => [page.sourceId, page.page]));
+      expect(screen.getByText("시작할 쪽 3 · 뺀 쪽 0")).toBeVisible();
+      await waitFor(() =>
+        expect(state.save.mock.calls.at(-1)?.[0].crops).toEqual(crops),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+      fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+      await act(async () => {});
+      expect(preview).toHaveBeenCalledTimes(4);
+    },
+  );
+
+  it("실패가 계속되어도 저절로 반복하지 않고 클릭 한 번에 한 번만 재시도한다", async () => {
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockImplementation(async (_source, page) => {
+        if (page === 1) throw new DOMException("시간 초과", "TimeoutError");
+        return { url: "blob:page2" };
+      });
+    await upload();
+    const card = screen
+      .getByRole("region", { name: "쪽 카드" })
+      .querySelector("figure")!;
+    fireEvent.click(within(card).getByRole("button", { name: /다시 시도/ }));
+    await waitFor(() => expect(preview).toHaveBeenCalledTimes(3));
+    await act(async () => {});
+    expect(
+      within(card).getByRole("button", { name: /다시 시도/ }),
+    ).toBeEnabled();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+    expect(preview).toHaveBeenCalledTimes(3);
+  });
+
+  it("이미지 디코딩 실패도 다시 시도하며 같은 URL의 새 결과를 다시 보여 준다", async () => {
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockResolvedValue({ url: "blob:same-image" });
+    await upload();
+    const card = screen
+      .getByRole("region", { name: "쪽 카드" })
+      .querySelector("figure")!;
+    const aside = screen.getByRole("complementary", { name: "선택한 쪽" });
+    fireEvent.error(within(card).getByRole("img"));
+    fireEvent.error(within(aside).getByRole("img"));
+    fireEvent.click(within(aside).getByRole("button", { name: /다시 시도/ }));
+    await waitFor(() => expect(preview).toHaveBeenCalledTimes(3));
+    expect(within(card).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:same-image",
+    );
+    expect(within(aside).getByRole("img")).toHaveAttribute(
+      "src",
+      "blob:same-image",
+    );
+  });
+
+  it("재시도 중 떠난 화면의 늦은 결과는 재진입한 쪽의 새 요청·캐시·제외 상태를 덮지 않는다", async () => {
+    const pending: ((value: pagePreviews.StudioPagePreview) => void)[] = [];
+    let first = true;
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockImplementation(async (_source, page) => {
+        if (page === 2) return { url: "blob:page2" };
+        if (first) {
+          first = false;
+          throw new DOMException("시간 초과", "TimeoutError");
+        }
+        // Deliberately ignore abort to exercise the caller's stale-result fence.
+        return new Promise((resolve) => pending.push(resolve));
+      });
+    const view = await upload();
+    const grid = () => screen.getByRole("region", { name: "쪽 카드" });
+    fireEvent.click(within(grid()).getByRole("button", { name: /다시 시도/ }));
+    expect(preview).toHaveBeenCalledTimes(3);
+    view.rerender(
+      <DevAiProvider>
+        <StudioView
+          onAdd={vi.fn()}
+          onExport={() => {}}
+          storageScope="local-test"
+          stepRequest={{ id: 1, step: "crop" }}
+        />
+      </DevAiProvider>,
+    );
+    await screen.findByRole("combobox", { name: "페이지 선택" });
+    expect(preview.mock.calls[2][2].aborted).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    await waitFor(() => expect(preview).toHaveBeenCalledTimes(4));
+    await act(async () => {
+      pending[0]({ url: "blob:stale", autoOut: "빈 쪽" });
+    });
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+    expect(within(grid()).queryByRole("img", { name: /원본 1쪽/ })).toBeNull();
+    expect(
+      within(grid()).getByRole("button", { name: /다시 시도/ }),
+    ).toBeDisabled();
+    await act(async () => {
+      pending[1]({ url: "blob:current" });
+    });
+    expect(
+      within(grid()).getByRole("img", { name: /원본 1쪽/ }),
+    ).toHaveAttribute("src", "blob:current");
+    fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    await act(async () => {});
+    expect(preview).toHaveBeenCalledTimes(4);
+    expect(
+      within(grid()).getByRole("img", { name: /원본 1쪽/ }),
+    ).toHaveAttribute("src", "blob:current");
+  });
+
+  it("내용 있는 PDF 미리보기는 텍스트·연산 목록이 멈춰 있어도 두 API를 부르지 않고 준비된다", async () => {
+    state.readText.mockReturnValue(new Promise(() => {}));
+    state.readOperators.mockReturnValue(new Promise(() => {}));
+    await upload();
+    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readOperators).not.toHaveBeenCalled();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+  });
+
+  it("흰 쪽 확인 실패는 제외 판정을 소비하지 않고 명시적 재시도에 성공한 뒤에만 빈 쪽으로 뺀다", async () => {
+    let first = true;
+    const preview = vi
+      .spyOn(pagePreviews, "renderStudioPagePreview")
+      .mockImplementation(async (_source, page) => {
+        if (page === 2) return { url: "blob:page2" };
+        if (first) {
+          first = false;
+          return { url: "blob:unverified-white", error: "시간 초과" };
+        }
+        return { url: "blob:verified-white", autoOut: "빈 쪽" };
+      });
+    await upload();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
+    const card = screen
+      .getByRole("region", { name: "쪽 카드" })
+      .querySelector("figure")!;
+    fireEvent.click(within(card).getByRole("button", { name: /다시 시도/ }));
+    await screen.findByText(/빈 쪽으로 보여 미리 뺐습니다/);
+    expect(screen.getByText("시작할 쪽 1 · 뺀 쪽 1")).toBeVisible();
+    expect(card).toHaveAttribute("data-excluded", "true");
+    expect(preview).toHaveBeenCalledTimes(3);
+  });
+
+  it("흰 PDF 후보의 텍스트가 응답하지 않으면 3초 안에 쪽을 유지하고 재시도를 연다", async () => {
+    const preview = vi.spyOn(pagePreviews, "renderStudioPagePreview");
     state.blankPages = [2];
     state.readText.mockReturnValue(new Promise(() => {}));
     state.readOperators.mockReturnValue(new Promise(() => {}));
@@ -246,35 +514,62 @@ describe("Studio 쪽 차례 연결", () => {
     await act(async () => {
       fireEvent.change(input, { target: { files: [file] } });
     });
-    // No timer advance: rendering alone must unlock the controls.
-    expect(state.readText).not.toHaveBeenCalled();
+    // Only the zero-ink second page needs text verification.
+    expect(state.readText).toHaveBeenCalledTimes(1);
     expect(state.readOperators).not.toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeDisabled();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2999);
+    });
+    expect(
+      screen.getByRole("button", { name: "이 순서로 시작 →" }),
+    ).toBeDisabled();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1);
+    });
     expect(screen.getByRole("button", { name: "이 쪽 빼기" })).toBeEnabled();
     expect(
       screen.getByRole("button", { name: "이 순서로 시작 →" }),
     ).toBeEnabled();
-    expect(screen.getByText("시작할 쪽 1 · 뺀 쪽 1")).toBeVisible();
-    expect(
-      screen.getByText(
-        "지연.pdf 원본 2쪽은 빈 쪽으로 보여 미리 뺐습니다 — 인쇄된 내용이 거의 없습니다.",
-      ),
-    ).toBeVisible();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
     const cards = screen
       .getByRole("region", { name: "쪽 카드" })
       .querySelectorAll("figure");
     expect(cards[0]).toHaveAttribute("data-excluded", "false");
-    expect(cards[1]).toHaveAttribute("data-excluded", "true");
+    expect(cards[1]).toHaveAttribute("data-excluded", "false");
+    expect(
+      within(cards[1]).getByRole("button", { name: /다시 시도/ }),
+    ).toBeEnabled();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(6000);
+    });
+    expect(state.readText).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole("button", { name: "이 순서로 시작 →" }));
     expect(pageChoices()).toEqual([
       expect.stringMatching(/지연.pdf.*원본 1쪽/),
+      expect.stringMatching(/지연.pdf.*원본 2쪽/),
     ]);
-    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readText).toHaveBeenCalledTimes(1);
     expect(state.readOperators).not.toHaveBeenCalled();
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2]);
+    // Reenter after the real helper's TimeoutError: only the failed white candidate retries.
+    state.readText.mockResolvedValue({ items: [{ str: "작은 글자" }] });
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
+    });
+    expect(preview.mock.calls.map((call) => call[1])).toEqual([1, 2, 2]);
+    expect(state.readText).toHaveBeenCalledTimes(2);
+    expect(
+      screen.getByRole("button", { name: "이 순서로 시작 →" }),
+    ).toBeEnabled();
+    expect(screen.queryByRole("button", { name: /다시 시도/ })).toBeNull();
+    expect(screen.getByText("시작할 쪽 2 · 뺀 쪽 0")).toBeVisible();
   });
 
   it("저장한 표지·정답표 사유와 되살린 상태를 그대로 읽고 빈 PDF 미리보기로 다시 제외하지 않는다", async () => {
     state.pdfPages = 4;
     state.blankPages = [1, 2, 3, 4];
+    state.readText.mockResolvedValue({ items: [] });
     vi.stubGlobal(
       "File",
       class extends File {
@@ -324,7 +619,7 @@ describe("Studio 쪽 차례 연결", () => {
       expect.stringMatching(/본문.pdf.*원본 4쪽/),
       expect.stringMatching(/본문.pdf.*원본 3쪽/),
     ]);
-    expect(state.readText).not.toHaveBeenCalled();
+    expect(state.readText).toHaveBeenCalledTimes(4);
     expect(state.readOperators).not.toHaveBeenCalled();
   });
 

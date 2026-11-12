@@ -14,11 +14,13 @@ export function measurePageInk(data: Uint8ClampedArray): number {
   return ink / (data.length / 4);
 }
 
-/** Only a verified ink-free raster is automatically excluded. No text classification. */
+/** A white thumbnail is only a candidate; confirmation must also be ink-free. */
 export function analyzeStudioPage({
   inkRatio,
+  confirmedInkRatio,
 }: {
   inkRatio: number;
+  confirmedInkRatio?: number;
 }): StudioAutoOut | undefined {
-  return inkRatio === 0 ? "빈 쪽" : undefined;
+  return inkRatio === 0 && confirmedInkRatio === 0 ? "빈 쪽" : undefined;
 }

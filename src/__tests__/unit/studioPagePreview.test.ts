@@ -2,18 +2,48 @@ import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import { renderStudioPagePreview } from "@/components/unified/studioPagePreview";
 
-function raster(value = 255) {
-  return new Uint8ClampedArray([value, value, value, 255]);
-}
+type ReadRaster = (
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+) => { data: Uint8ClampedArray };
 
-let pixels: Uint8ClampedArray;
+interface CanvasRead {
+  canvas: HTMLCanvasElement;
+  read: ReturnType<typeof vi.fn<ReadRaster>>;
+  draw: ReturnType<typeof vi.fn>;
+  value: number;
+}
+let canvases: CanvasRead[];
+let values: number[];
+
 beforeEach(() => {
-  pixels = raster(0);
-  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
-    getImageData: () => ({ data: pixels }),
-    fillRect: vi.fn(),
-    drawImage: vi.fn(),
-  } as unknown as CanvasRenderingContext2D);
+  canvases = [];
+  values = [0, 255];
+  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation(
+    function (this: HTMLCanvasElement) {
+      const state: CanvasRead = {
+        canvas: this,
+        value: values[canvases.length] ?? 255,
+        read: vi.fn<ReadRaster>(),
+        draw: vi.fn(),
+      };
+      state.read.mockImplementation((_x, _y, width: number, height: number) => {
+        const data = new Uint8ClampedArray(width * height * 4).fill(255);
+        data.set([state.value, state.value, state.value, 255]);
+        return { data };
+      });
+      canvases.push(state);
+      return {
+        getImageData: state.read,
+        fillRect: vi.fn(),
+        drawImage: state.draw,
+        translate: vi.fn(),
+        rotate: vi.fn(),
+      } as unknown as CanvasRenderingContext2D;
+    },
+  );
   vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
     "data:image/png;base64,cGFnZQ==",
   );
@@ -34,184 +64,332 @@ function deferred<T>() {
 }
 
 function pdfFixture(textLines: readonly string[] = []) {
-  const task = { promise: Promise.resolve(), cancel: vi.fn() };
+  const thumbnail = { promise: Promise.resolve(), cancel: vi.fn() };
+  const confirmation = { promise: Promise.resolve(), cancel: vi.fn() };
   const pdfPage = {
-    getViewport: ({ scale }: { scale: number }) => ({
-      width: 200 * scale,
-      height: 300 * scale,
-    }),
-    getTextContent: vi.fn(async () => ({
+    getViewport: vi.fn(({ scale }: { scale: number }) => ({
+      width: 595 * scale,
+      height: 842 * scale,
+    })),
+    getTextContent: vi.fn(async (): Promise<unknown> => ({
       items: textLines.map((str) => ({ str, hasEOL: true })),
     })),
-    getOperatorList: vi.fn(
-      async (): Promise<{ fnArray: number[]; argsArray: unknown[] }> => ({
-        fnArray: [],
-        argsArray: [],
-      }),
-    ),
-    render: vi.fn(() => task),
+    getOperatorList: vi.fn(() => new Promise(() => {})),
+    render: vi
+      .fn()
+      .mockReturnValueOnce(thumbnail)
+      .mockReturnValue(confirmation),
   };
   const pdf = { getPage: vi.fn(async () => pdfPage), destroy: vi.fn() };
   return {
     source: { pdf: pdf as unknown as PDFDocumentProxy },
     pdf,
     pdfPage,
-    task,
+    thumbnail,
+    confirmation,
   };
 }
+const signal = () => new AbortController().signal;
 
-const candidates = [
-  { name: "cover", textLines: ["문제지", "2학년", "유의 사항"] },
-  { name: "answer key", textLines: ["빠른 정답", "01 ③", "02 ⑤"] },
-];
+function expectRetryable(
+  result: Awaited<ReturnType<typeof renderStudioPagePreview>>,
+) {
+  expect(result.url).toMatch(/^data:image/);
+  expect(result.error).toEqual(expect.any(String));
+  expect(result.error?.length).toBeGreaterThan(0);
+  expect(result.autoOut).toBeUndefined();
+}
 
-describe("raster-only automatic exclusion", () => {
-  it.each(candidates)("retains a nonblank $name", async ({ textLines }) => {
-    const { source, pdfPage } = pdfFixture(textLines);
-    const result = await renderStudioPagePreview(
-      source,
-      1,
-      new AbortController().signal,
-    );
-    expect(result.autoOut).toBeUndefined();
-    expect(result.url).toMatch(/^data:image/);
-    expect(pdfPage.getTextContent).not.toHaveBeenCalled();
-    expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
-  });
+function expectReleased() {
+  for (const { canvas } of canvases) {
+    expect(canvas.width).toBe(0);
+    expect(canvas.height).toBe(0);
+  }
+}
 
-  it.each(candidates)(
-    "retains a $name with stroke-only vector questions",
-    async ({ textLines }) => {
-      const { source, pdfPage } = pdfFixture(textLines);
-      // Reviewed PDF.js constructPath shape: showText then stroke/closeStroke.
-      // Extracted headings omit the questions; the rendered raster contains ink.
-      pdfPage.getOperatorList.mockResolvedValue({
-        fnArray: [44, 91, 91],
-        argsArray: [[], [20, [null], null], [21, [null], null]],
-      });
-      pixels = new Uint8ClampedArray([255, 255, 255, 255, 0, 0, 0, 255]);
-      const result = await renderStudioPagePreview(
-        source,
-        1,
-        new AbortController().signal,
-      );
-      expect(result.inkRatio).toBe(0.5);
+describe("blank-candidate confirmation", () => {
+  it.each(["문제지 2학년 유의 사항", "빠른 정답 01 ③ 02 ⑤", "1. 2 + 3 = ?"])(
+    "keeps noncandidate ink without text, classifiers, operators or confirmation: %s",
+    async (text) => {
+      const { source, pdfPage } = pdfFixture([text]);
+      const result = await renderStudioPagePreview(source, 1, signal());
       expect(result.autoOut).toBeUndefined();
+      expect(result.error).toBeUndefined();
+      expect(result.inkRatio).toBeGreaterThan(0);
       expect(pdfPage.getTextContent).not.toHaveBeenCalled();
       expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
+      expect(pdfPage.render).toHaveBeenCalledOnce();
     },
   );
 
-  it("excludes rendered white pixels regardless of extractable metadata", async () => {
-    const { source, pdfPage } = pdfFixture(candidates[0].textLines);
-    pixels = raster();
-    const result = await renderStudioPagePreview(
-      source,
-      1,
-      new AbortController().signal,
-    );
+  it("A: keeps a white thumbnail with extracted 0.1pt Helvetica text", async () => {
+    values = [255];
+    const { source, pdfPage } = pdfFixture(["1. 2 + 3 = ?"]);
+    const result = await renderStudioPagePreview(source, 1, signal());
     expect(result.inkRatio).toBe(0);
-    expect(result.autoOut).toBe("빈 쪽");
-    expect(pdfPage.getTextContent).not.toHaveBeenCalled();
-    expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
-  });
-
-  it("retains faint rendered ink", async () => {
-    pixels = raster(254);
-    const { source } = pdfFixture();
-    const result = await renderStudioPagePreview(
-      source,
-      1,
-      new AbortController().signal,
-    );
-    expect(result.inkRatio).toBe(1);
     expect(result.autoOut).toBeUndefined();
+    expect(result.error).toBeUndefined();
+    expect(pdfPage.getTextContent).toHaveBeenCalledOnce();
+    expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
+    expect(pdfPage.render).toHaveBeenCalledOnce();
   });
 
-  it.each(["text", "operators", "both"])(
-    "completes promptly without calling never-settling %s APIs",
-    async (pending) => {
-      vi.useFakeTimers();
-      const { source, pdfPage } = pdfFixture();
-      if (pending !== "operators")
-        pdfPage.getTextContent.mockReturnValue(new Promise(() => {}));
-      if (pending !== "text")
-        pdfPage.getOperatorList.mockReturnValue(new Promise(() => {}));
-      const settled = vi.fn();
-      const preview = renderStudioPagePreview(
-        source,
-        1,
-        new AbortController().signal,
-      );
-      void preview.then(settled, settled);
-      await vi.advanceTimersByTimeAsync(0);
-      expect(settled).toHaveBeenCalledOnce();
-      expect((await preview).url).toMatch(/^data:image/);
-      expect(pdfPage.getTextContent).not.toHaveBeenCalled();
-      expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
-      expect(vi.getTimerCount()).toBe(0);
+  it.each(["문제지", "빠른 정답", "?", "\u200b"])(
+    "keeps any actual extracted character without classifying it: %s",
+    async (text) => {
+      values = [255];
+      const { source, pdfPage } = pdfFixture([text]);
+      const result = await renderStudioPagePreview(source, 1, signal());
+      expect(result.autoOut).toBeUndefined();
+      expect(pdfPage.render).toHaveBeenCalledOnce();
     },
   );
 
-  it("keeps a page if its pixels cannot be read", async () => {
-    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
-      getImageData: () => {
-        throw new Error("raster unavailable");
-      },
-    } as unknown as CanvasRenderingContext2D);
-    const { source } = pdfFixture();
-    const result = await renderStudioPagePreview(
-      source,
-      1,
-      new AbortController().signal,
-    );
+  it("B: keeps a white thumbnail when high-resolution raster has one #fefefe pixel", async () => {
+    values = [255, 254];
+    const { source, pdfPage } = pdfFixture();
+    const result = await renderStudioPagePreview(source, 1, signal());
+    expect(result.inkRatio).toBe(0);
     expect(result.autoOut).toBeUndefined();
-    expect(result.inkRatio).toBeUndefined();
-    expect(result.url).toMatch(/^data:image/);
+    expect(result.error).toBeUndefined();
+    expect(pdfPage.getTextContent).toHaveBeenCalledOnce();
+    expect(pdfPage.render).toHaveBeenCalledTimes(2);
+    const viewport = pdfPage.render.mock.calls[1][0].viewport;
+    expect(viewport.width).toBe(595 * 2.5);
+    expect(viewport.height).toBe(842 * 2.5);
+    expect(pdfPage.getOperatorList).not.toHaveBeenCalled();
+    expectReleased();
   });
 
-  it.each([0, 254, 255])(
-    "uses the same raster rule for an image with channel %i",
-    async (value) => {
-      pixels = raster(value);
-      const image = document.createElement("canvas");
-      image.width = 200;
-      image.height = 300;
-      const result = await renderStudioPagePreview(
-        { image },
-        1,
-        new AbortController().signal,
-      );
-      expect(result.autoOut).toBe(value === 255 ? "빈 쪽" : undefined);
+  it("never confirms a small PDF at a lower scale than its thumbnail", async () => {
+    values = [255, 255];
+    const { source, pdfPage } = pdfFixture();
+    pdfPage.getViewport.mockImplementation(({ scale }) => ({
+      width: 10 * scale,
+      height: 10 * scale,
+    }));
+    expect((await renderStudioPagePreview(source, 1, signal())).autoOut).toBe(
+      "빈 쪽",
+    );
+    expect(pdfPage.render.mock.calls[1][0].viewport).toEqual(
+      pdfPage.render.mock.calls[0][0].viewport,
+    );
+  });
+
+  it("preserves the rotated thumbnail while checking the unrotated original pixels", async () => {
+    values = [255, 255, 254];
+    const { source, pdfPage } = pdfFixture();
+    const result = await renderStudioPagePreview(
+      { ...source, pageRotations: { 1: 90 } },
+      1,
+      signal(),
+    );
+    expect(result.autoOut).toBeUndefined();
+    expect(result.error).toBeUndefined();
+    expect(canvases[1].draw).toHaveBeenCalled();
+    expect(HTMLCanvasElement.prototype.toDataURL).toHaveBeenCalledOnce();
+    expect(pdfPage.render).toHaveBeenCalledTimes(2);
+    expectReleased();
+  });
+
+  it("retains oversized PDF confirmation without downscaling its evidence", async () => {
+    values = [255, 255];
+    const { source, pdfPage } = pdfFixture();
+    pdfPage.getViewport.mockImplementation(({ scale }) => ({
+      width: 100_000 * scale,
+      height: 100_000 * scale,
+    }));
+    expectRetryable(await renderStudioPagePreview(source, 1, signal()));
+    expect(pdfPage.render).toHaveBeenCalledOnce();
+    expectReleased();
+  });
+
+  it("excludes true white only after empty text and a successful high raster", async () => {
+    values = [255, 255];
+    const { source, pdfPage } = pdfFixture(["", " \n\t"]);
+    const result = await renderStudioPagePreview(source, 1, signal());
+    expect(result.autoOut).toBe("빈 쪽");
+    expect(result.error).toBeUndefined();
+    expect(pdfPage.getTextContent).toHaveBeenCalledOnce();
+    expect(pdfPage.render).toHaveBeenCalledTimes(2);
+    expect(pdfPage.getTextContent.mock.invocationCallOrder[0]).toBeGreaterThan(
+      pdfPage.render.mock.invocationCallOrder[0],
+    );
+    expect(pdfPage.render.mock.invocationCallOrder[1]).toBeGreaterThan(
+      pdfPage.getTextContent.mock.invocationCallOrder[0],
+    );
+    expectReleased();
+  });
+
+  it("allows valid marked-content items without treating them as characters", async () => {
+    values = [255, 255];
+    const { source, pdfPage } = pdfFixture();
+    pdfPage.getTextContent.mockResolvedValue({
+      items: [
+        { type: "beginMarkedContent" },
+        { type: "beginMarkedContentProps", id: "x" },
+        { str: " " },
+        { type: "endMarkedContent" },
+      ],
+    });
+    expect((await renderStudioPagePreview(source, 1, signal())).autoOut).toBe(
+      "빈 쪽",
+    );
+  });
+
+  it.each([
+    null,
+    {},
+    { items: null },
+    { items: [null] },
+    { items: [{}] },
+    { items: [{ str: 3 }] },
+  ])(
+    "keeps malformed text and exposes retryable verification failure: %j",
+    async (content) => {
+      values = [255];
+      const { source, pdfPage } = pdfFixture();
+      pdfPage.getTextContent.mockResolvedValue(content);
+      expectRetryable(await renderStudioPagePreview(source, 1, signal()));
+      expect(pdfPage.render).toHaveBeenCalledOnce();
+    },
+  );
+
+  it.each(["thumbnail", "confirmation"])(
+    "keeps unreadable %s pixels and exposes retryable failure",
+    async (stage) => {
+      values = [255, 255];
+      const { source, pdfPage, thumbnail, confirmation } = pdfFixture();
+      pdfPage.render.mockReset().mockImplementation(() => {
+        const index = canvases.length - 1;
+        if (index === (stage === "thumbnail" ? 0 : 1))
+          canvases[index].read.mockImplementation(() => {
+            throw new Error("unreadable");
+          });
+        return index === 0 ? thumbnail : confirmation;
+      });
+      expectRetryable(await renderStudioPagePreview(source, 1, signal()));
+      expectReleased();
+    },
+  );
+
+  it.each([
+    new Uint8ClampedArray(),
+    new Uint8ClampedArray([255]),
+    new Uint8ClampedArray([255, 255, 255, 255]),
+  ])(
+    "never confirms blank with incomplete/mismatched raster data: %j",
+    async (data) => {
+      values = [255, 255];
+      const { source, pdfPage, confirmation } = pdfFixture();
+      pdfPage.render
+        .mockReset()
+        .mockImplementationOnce(() => ({
+          promise: Promise.resolve(),
+          cancel: vi.fn(),
+        }))
+        .mockImplementation(() => {
+          canvases[1].read.mockReturnValue({ data });
+          return confirmation;
+        });
+      expectRetryable(await renderStudioPagePreview(source, 1, signal()));
     },
   );
 });
 
-describe("bounded PDF preview waits", () => {
+describe("native standalone image confirmation", () => {
+  it.each([254, 255])(
+    "uses at least the original 2480x3508 dimensions, channel %i",
+    async (value) => {
+      values = [255, value];
+      const image = document.createElement("canvas");
+      image.width = 2480;
+      image.height = 3508;
+      const result = await renderStudioPagePreview({ image }, 1, signal());
+      expect(result.autoOut).toBe(value === 255 ? "빈 쪽" : undefined);
+      expect(result.error).toBeUndefined();
+      expect(canvases[1].draw).toHaveBeenCalledWith(image, 0, 0, 2480, 3508);
+      expect(image.width).toBe(2480);
+      expect(image.height).toBe(3508);
+      expectReleased();
+    },
+  );
+
+  it("uses natural image dimensions, rather than its display dimensions", async () => {
+    values = [255, 254];
+    const image = new Image();
+    image.width = 100;
+    image.height = 100;
+    Object.defineProperties(image, {
+      naturalWidth: { value: 2480 },
+      naturalHeight: { value: 3508 },
+    });
+    const result = await renderStudioPagePreview({ image }, 1, signal());
+    expect(result.autoOut).toBeUndefined();
+    expect(canvases[1].draw).toHaveBeenCalledWith(image, 0, 0, 2480, 3508);
+  });
+
+  it("does not shrink oversized native confirmation then call it blank", async () => {
+    values = [255, 255];
+    const image = new Image();
+    Object.defineProperties(image, {
+      naturalWidth: { value: 100_000 },
+      naturalHeight: { value: 100_000 },
+    });
+    const result = await renderStudioPagePreview({ image }, 1, signal());
+    expectRetryable(result);
+    expect(canvases.flatMap((state) => state.draw.mock.calls).slice(1)).toEqual(
+      [],
+    );
+    expectReleased();
+  });
+
+  it("skips confirmation when a standalone thumbnail already has ink", async () => {
+    const image = document.createElement("canvas");
+    image.width = 300;
+    image.height = 200;
+    const result = await renderStudioPagePreview({ image }, 1, signal());
+    expect(result.autoOut).toBeUndefined();
+    expect(canvases).toHaveLength(1);
+  });
+});
+
+describe("one 3000ms preview deadline and cancellation", () => {
   it("rejects an already-aborted request without requesting a page", async () => {
-    const { source, pdf, pdfPage } = pdfFixture();
+    const { source, pdf } = pdfFixture();
     const controller = new AbortController();
     controller.abort();
     await expect(
       renderStudioPagePreview(source, 1, controller.signal),
     ).rejects.toMatchObject({ name: "AbortError" });
     expect(pdf.getPage).not.toHaveBeenCalled();
-    expect(pdfPage.render).not.toHaveBeenCalled();
-    expect(pdf.destroy).not.toHaveBeenCalled();
   });
 
-  for (const stage of ["getPage", "render"] as const) {
+  for (const stage of [
+    "getPage",
+    "thumbnail",
+    "text",
+    "confirmation",
+  ] as const) {
     for (const stop of ["abort", "timeout"] as const) {
       it.each(["resolve", "reject"] as const)(
-        `${stop}s a never-settling ${stage} without destroying the shared PDF, ignoring late %s`,
+        `${stop} during ${stage} ignores late %s and releases owned resources`,
         async (late) => {
           vi.useFakeTimers();
-          const { source, pdf, pdfPage, task } = pdfFixture();
-          const pageWait = deferred<typeof pdfPage>();
-          const renderWait = deferred<void>();
+          values = [255, 255];
+          const { source, pdf, pdfPage, thumbnail, confirmation } =
+            pdfFixture();
+          const wait = deferred<unknown>();
           if (stage === "getPage")
-            pdf.getPage.mockReturnValue(pageWait.promise);
-          else task.promise = renderWait.promise;
+            pdf.getPage.mockReturnValue(
+              wait.promise as Promise<typeof pdfPage>,
+            );
+          if (stage === "thumbnail")
+            thumbnail.promise = wait.promise as Promise<void>;
+          if (stage === "text")
+            pdfPage.getTextContent.mockReturnValue(wait.promise);
+          if (stage === "confirmation")
+            confirmation.promise = wait.promise as Promise<void>;
           const controller = new AbortController();
           const add = vi.spyOn(controller.signal, "addEventListener");
           const remove = vi.spyOn(controller.signal, "removeEventListener");
@@ -221,69 +399,228 @@ describe("bounded PDF preview waits", () => {
           await vi.advanceTimersByTimeAsync(0);
           if (stop === "abort") controller.abort();
           else {
-            await vi.advanceTimersByTimeAsync(9999);
+            await vi.advanceTimersByTimeAsync(2999);
             expect(settled).not.toHaveBeenCalled();
+            await vi.advanceTimersByTimeAsync(1);
           }
-          await vi.advanceTimersByTimeAsync(stop === "abort" ? 0 : 1);
+          await vi.advanceTimersByTimeAsync(0);
           expect(settled).toHaveBeenCalledOnce();
-          await expect(preview).rejects.toMatchObject({
-            name: stop === "abort" ? "AbortError" : "TimeoutError",
-          });
-          expect(task.cancel).toHaveBeenCalledTimes(stage === "render" ? 1 : 0);
+          if (
+            stop === "abort" ||
+            stage === "getPage" ||
+            stage === "thumbnail"
+          ) {
+            await expect(preview).rejects.toMatchObject({
+              name: stop === "abort" ? "AbortError" : "TimeoutError",
+            });
+          } else expectRetryable(await preview);
+          expect(thumbnail.cancel).toHaveBeenCalledTimes(
+            stage === "thumbnail" ? 1 : 0,
+          );
+          expect(confirmation.cancel).toHaveBeenCalledTimes(
+            stage === "confirmation" ? 1 : 0,
+          );
           expect(pdf.destroy).not.toHaveBeenCalled();
           expect(vi.getTimerCount()).toBe(0);
           for (const [type, listener] of add.mock.calls)
             expect(remove).toHaveBeenCalledWith(type, listener);
-          if (late === "resolve") {
-            pageWait.resolve(pdfPage);
-            renderWait.resolve();
-          } else if (stage === "getPage")
-            pageWait.reject(new Error("late page failure"));
-          else renderWait.reject(new Error("late render failure"));
+          const renderCalls = pdfPage.render.mock.calls.length;
+          if (late === "reject") wait.reject(new Error("late failure"));
+          else
+            wait.resolve(
+              stage === "getPage"
+                ? pdfPage
+                : stage === "text"
+                  ? { items: [] }
+                  : undefined,
+            );
           controller.abort();
-          await vi.advanceTimersByTimeAsync(20_000);
+          await vi.advanceTimersByTimeAsync(10_000);
           expect(settled).toHaveBeenCalledOnce();
-          if (stage === "getPage")
-            expect(pdfPage.render).not.toHaveBeenCalled();
+          expect(pdfPage.render).toHaveBeenCalledTimes(renderCalls);
           expect(vi.getTimerCount()).toBe(0);
+          expectReleased();
         },
       );
     }
+  }
 
-    it(`cleans up after a ${stage} failure and preserves the original error`, async () => {
+  it("shares the remaining deadline across getPage, thumbnail, text and high render", async () => {
+    vi.useFakeTimers();
+    values = [255, 255];
+    const { source, pdf, pdfPage, thumbnail, confirmation } = pdfFixture();
+    const pageWait = deferred<typeof pdfPage>();
+    const thumbnailWait = deferred<void>();
+    const textWait = deferred<unknown>();
+    pdf.getPage.mockReturnValue(pageWait.promise);
+    thumbnail.promise = thumbnailWait.promise;
+    pdfPage.getTextContent.mockReturnValue(textWait.promise);
+    confirmation.promise = new Promise(() => {});
+    const settled = vi.fn();
+    const preview = renderStudioPagePreview(source, 1, signal());
+    void preview.then(settled, settled);
+    await vi.advanceTimersByTimeAsync(2000);
+    pageWait.resolve(pdfPage);
+    await vi.advanceTimersByTimeAsync(400);
+    thumbnailWait.resolve();
+    await vi.advanceTimersByTimeAsync(400);
+    textWait.resolve({ items: [] });
+    await vi.advanceTimersByTimeAsync(199);
+    expect(pdfPage.render).toHaveBeenCalledTimes(2);
+    expect(settled).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(1);
+    expectRetryable(await preview);
+    expect(confirmation.cancel).toHaveBeenCalledOnce();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("counts synchronous thumbnail serialization against the same deadline", async () => {
+    vi.useFakeTimers();
+    values = [255, 255];
+    const { source, pdfPage } = pdfFixture();
+    vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockImplementation(
+      () => {
+        vi.advanceTimersByTime(3001);
+        return "data:image/png;base64,cGFnZQ==";
+      },
+    );
+    expectRetryable(await renderStudioPagePreview(source, 1, signal()));
+    expect(pdfPage.getTextContent).not.toHaveBeenCalled();
+    expect(pdfPage.render).toHaveBeenCalledOnce();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("checks elapsed time even when the timeout callback has not run yet", async () => {
+    vi.useFakeTimers();
+    let elapsed = 0;
+    vi.spyOn(performance, "now").mockImplementation(() => elapsed);
+    const { source, pdf, pdfPage } = pdfFixture();
+    const wait = deferred<typeof pdfPage>();
+    pdf.getPage.mockReturnValue(wait.promise);
+    const preview = renderStudioPagePreview(source, 1, signal());
+    const settled = vi.fn();
+    void preview.then(settled, settled);
+    elapsed = 3001;
+    wait.resolve(pdfPage);
+    await expect(preview).rejects.toMatchObject({ name: "TimeoutError" });
+    expect(pdfPage.render).not.toHaveBeenCalled();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("does not exclude a white high raster whose synchronous read exceeded the deadline", async () => {
+    vi.useFakeTimers();
+    values = [255, 255];
+    const { source, pdfPage, thumbnail, confirmation } = pdfFixture();
+    pdfPage.render
+      .mockReset()
+      .mockImplementationOnce(() => thumbnail)
+      .mockImplementation(() => {
+        const read = canvases[1].read.getMockImplementation()!;
+        canvases[1].read.mockImplementation((...args) => {
+          const data = read(...args);
+          vi.advanceTimersByTime(3001);
+          return data;
+        });
+        return confirmation;
+      });
+    expectRetryable(await renderStudioPagePreview(source, 1, signal()));
+    expect(vi.getTimerCount()).toBe(0);
+    expectReleased();
+  });
+
+  it("cannot be held by a throwing render cancellation", async () => {
+    vi.useFakeTimers();
+    values = [255, 255];
+    const { source, confirmation } = pdfFixture();
+    confirmation.promise = new Promise(() => {});
+    confirmation.cancel.mockImplementation(() => {
+      throw new Error("cancel failed");
+    });
+    const preview = renderStudioPagePreview(source, 1, signal());
+    await vi.advanceTimersByTimeAsync(3000);
+    expectRetryable(await preview);
+    expect(confirmation.cancel).toHaveBeenCalledOnce();
+    expect(vi.getTimerCount()).toBe(0);
+    expectReleased();
+  });
+
+  it("propagates a render AbortError rather than accepting a stale thumbnail", async () => {
+    values = [255, 255];
+    const { source, confirmation } = pdfFixture();
+    const error = new DOMException("cancelled", "AbortError");
+    confirmation.promise = Promise.reject(error);
+    void confirmation.promise.catch(() => {});
+    await expect(renderStudioPagePreview(source, 1, signal())).rejects.toBe(
+      error,
+    );
+    expectReleased();
+  });
+
+  it.each(["getPage", "thumbnail", "text", "confirmation"] as const)(
+    "cleans up %s failures; only post-thumbnail failures preserve a URL",
+    async (stage) => {
       vi.useFakeTimers();
-      const { source, pdf, task } = pdfFixture();
+      values = [255, 255];
+      const { source, pdf, pdfPage, thumbnail, confirmation } = pdfFixture();
       const failure = new Error(`${stage} failed`);
       if (stage === "getPage") pdf.getPage.mockRejectedValue(failure);
-      else task.promise = Promise.reject(failure);
+      if (stage === "thumbnail") thumbnail.promise = Promise.reject(failure);
+      if (stage === "text") pdfPage.getTextContent.mockRejectedValue(failure);
+      if (stage === "confirmation")
+        confirmation.promise = Promise.reject(failure);
+      // Consume precreated task rejection before the async pipeline reaches it.
+      void thumbnail.promise.catch(() => {});
+      void confirmation.promise.catch(() => {});
       const controller = new AbortController();
       const add = vi.spyOn(controller.signal, "addEventListener");
       const remove = vi.spyOn(controller.signal, "removeEventListener");
-      await expect(
-        renderStudioPagePreview(source, 1, controller.signal),
-      ).rejects.toBe(failure);
+      const preview = renderStudioPagePreview(source, 1, controller.signal);
+      if (stage === "getPage" || stage === "thumbnail")
+        await expect(preview).rejects.toBe(failure);
+      else expectRetryable(await preview);
       expect(vi.getTimerCount()).toBe(0);
       for (const [type, listener] of add.mock.calls)
         expect(remove).toHaveBeenCalledWith(type, listener);
       expect(pdf.destroy).not.toHaveBeenCalled();
-    });
-  }
+      expectReleased();
+    },
+  );
 
-  it("cleans timers/listeners after a normal preview without cancelling the shared PDF", async () => {
+  it("releases timers, listeners and canvases after normal blank confirmation", async () => {
     vi.useFakeTimers();
-    const { source, pdf, pdfPage, task } = pdfFixture();
+    values = [255, 255];
+    const { source, pdf, pdfPage, thumbnail, confirmation } = pdfFixture();
     const controller = new AbortController();
     const add = vi.spyOn(controller.signal, "addEventListener");
     const remove = vi.spyOn(controller.signal, "removeEventListener");
-    const result = await renderStudioPagePreview(source, 2, controller.signal);
-    expect(result.url).toMatch(/^data:image/);
+    expect(
+      (await renderStudioPagePreview(source, 2, controller.signal)).autoOut,
+    ).toBe("빈 쪽");
     expect(pdf.getPage).toHaveBeenCalledWith(2);
-    expect(pdfPage.render).toHaveBeenCalledOnce();
+    expect(pdfPage.render).toHaveBeenCalledTimes(2);
     expect(vi.getTimerCount()).toBe(0);
     for (const [type, listener] of add.mock.calls)
       expect(remove).toHaveBeenCalledWith(type, listener);
     controller.abort();
-    expect(task.cancel).not.toHaveBeenCalled();
-    expect(pdf.destroy).not.toHaveBeenCalled();
+    expect(thumbnail.cancel).not.toHaveBeenCalled();
+    expect(confirmation.cancel).not.toHaveBeenCalled();
+    expectReleased();
+  });
+
+  it("keeps later pages usable after a failed candidate verification", async () => {
+    vi.useFakeTimers();
+    values = [255];
+    const { source, pdfPage } = pdfFixture();
+    pdfPage.getTextContent.mockReturnValue(new Promise(() => {}));
+    const first = renderStudioPagePreview(source, 1, signal());
+    await vi.advanceTimersByTimeAsync(3000);
+    expectRetryable(await first);
+    values = [0];
+    canvases = [];
+    const next = pdfFixture();
+    const result = await renderStudioPagePreview(next.source, 2, signal());
+    expect(result.error).toBeUndefined();
+    expect(result.autoOut).toBeUndefined();
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

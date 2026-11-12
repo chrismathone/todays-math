@@ -339,11 +339,12 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     fireEvent.click(within(panel()).getByRole("button", { name: "닫기" }));
 
     fireEvent.click(screen.getByRole("button", { name: "쪽 순서" }));
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: "예제 지면 원본 2쪽 되살리기",
-      }),
-    );
+    const restoreB = screen.getByRole("button", {
+      name: "예제 지면 원본 2쪽 되살리기",
+    });
+    // Failed sample previews are retried on reentry before order controls reopen.
+    await waitFor(() => expect(restoreB).toBeEnabled());
+    fireEvent.click(restoreB);
     expect(worksheet().map((row) => row.id)).toEqual(["A", "B"]);
     fireEvent.click(stepTab(/2 문항 검토/));
     fireEvent.click(cartToggle());
