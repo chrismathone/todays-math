@@ -21,8 +21,13 @@ export function useLibrarySaveConfirmation(
   kind: DocumentKind,
   save: (sharing?: DocumentSharing) => Promise<boolean | void>,
   initialVisibility: DocumentVisibility = "private",
+  /** 문서가 바뀌면 이전 확인 창과 그 완료 콜백을 새 확인 창에서 분리한다. */
+  identity: unknown = null,
 ) {
-  const [openBranch, setOpenBranch] = useState<string | null>(null);
+  const [opened, setOpened] = useState<{
+    branchId: string;
+    identity: unknown;
+  } | null>(null);
   const opener = useRef<HTMLElement | null>(null);
   return {
     requestSave: () => {
@@ -31,18 +36,19 @@ export function useLibrarySaveConfirmation(
         return;
       }
       opener.current = document.activeElement as HTMLElement | null;
-      setOpenBranch(branchId);
+      setOpened({ branchId, identity });
     },
     dialog:
-      openBranch && openBranch === branchId ? (
+      opened && opened.branchId === branchId && opened.identity === identity ? (
         <LibrarySaveDialog
-          key={openBranch}
-          branchId={openBranch}
+          branchId={opened.branchId}
           kind={kind}
           initialVisibility={initialVisibility}
           save={save}
           opener={opener}
-          onClose={() => setOpenBranch(null)}
+          onClose={() =>
+            setOpened((current) => (current === opened ? null : current))
+          }
         />
       ) : null,
   };

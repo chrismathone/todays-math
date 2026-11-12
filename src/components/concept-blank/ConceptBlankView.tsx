@@ -16,6 +16,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -89,6 +90,11 @@ import ConceptBlankFormTable from "./ConceptBlankFormTable";
 import ConceptBlankQuestionPicker from "./ConceptBlankQuestionPicker";
 import ConceptBlankUnitPicker from "./ConceptBlankUnitPicker";
 import TextbookConceptLinks from "@/components/textbook/integration/TextbookConceptLinks";
+import {
+  useDocumentGeneration,
+  type DocumentGeneration,
+  type DocumentWork,
+} from "./useDocumentGeneration";
 import s from "./concept-blank.module.css";
 
 /** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
@@ -269,11 +275,6 @@ type DocumentRequest = DocumentSource & {
   attempt: number;
   client: PrivateCloudClient | null;
 };
-type SelectionContext = {
-  id: string | null;
-  sequence: number;
-  loading: boolean;
-};
 const addressKey = (url: URL) =>
   JSON.stringify([
     url.searchParams.get(DOC_PARAM),
@@ -345,38 +346,69 @@ function availableOf(chosen: string[], caps: Caps, form: ConceptBlankForm) {
  * 학년 은행을 늦게 불러온다(은행 3차 · `bank/load.ts`) — 소단원마다 10개씩이라 은행이 열 배, 화면 조각에 은행 전체를 싣지 않는다.
  * `grades` 의 학년만 부르고, 한 번 부른 학년은 다시 부르지 않는다. `null` 이면 부르지 않는다(은행을 props 로 받은 시험 · 시안).
  */
-function useGradeBanks(grades: readonly string[] | null) {
+function useGradeBanks(
+  grades: readonly string[] | null,
+  scope: DocumentGeneration,
+) {
   const [parts, setParts] = useState<ReadonlyMap<string, ConceptBlankBank>>(
     () => new Map(),
   );
-  /** 못 온 학년 — 다시 불러 오면 뺀다(알림은 못 온 학년이 남아 있는 동안만). */
-  const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
-  const asked = useRef(new Set<string>());
+  const completed = useRef(parts);
+  const [failures, setFailures] = useState<ReadonlyMap<string, number>>(
+    () => new Map(),
+  );
+  const requests = useRef(
+    new Map<string, ReturnType<DocumentGeneration["start"]>>(),
+  );
+  const { generation, start, finish, isCurrent } = scope;
+  const failed = useMemo(
+    () =>
+      new Set(
+        [...failures]
+          .filter(([, owner]) => owner === generation)
+          .map(([grade]) => grade),
+      ),
+    [failures, generation],
+  );
   const wanted = grades ? grades.filter(isReadyGrade).join("|") : "";
-  const requestGrade = useCallback((grade: string) => {
-    if (asked.current.has(grade)) return;
-    asked.current.add(grade);
-    setFailed((current) => {
-      if (!current.has(grade)) return current;
-      const next = new Set(current);
-      next.delete(grade);
-      return next;
-    });
-    loadGradeBank(grade).then(
-      (bank) => {
-        setParts((current) => new Map(current).set(grade, bank));
-      },
-      () => {
-        asked.current.delete(grade);
-        setFailed((current) => new Set(current).add(grade));
-      },
-    );
-  }, []);
+  const requestGrade = useCallback(
+    (grade: string) => {
+      const pending = requests.current.get(grade);
+      if (completed.current.has(grade) || (pending && isCurrent(pending)))
+        return;
+      const work = start("bank");
+      requests.current.set(grade, work);
+      setFailures((current) => {
+        if (!current.has(grade)) return current;
+        const next = new Map(current);
+        next.delete(grade);
+        return next;
+      });
+      loadGradeBank(grade)
+        .then(
+          (bank) => {
+            if (!isCurrent(work)) return;
+            completed.current = new Map(completed.current).set(grade, bank);
+            setParts(completed.current);
+          },
+          () => {
+            if (isCurrent(work))
+              setFailures((current) =>
+                new Map(current).set(grade, work.generation),
+              );
+          },
+        )
+        .finally(() => {
+          if (requests.current.get(grade) === work)
+            requests.current.delete(grade);
+          finish(work);
+        });
+    },
+    [start, finish, isCurrent],
+  );
   useEffect(() => {
-    for (const grade of wanted ? wanted.split("|") : []) {
-      requestGrade(grade);
-    }
-  }, [wanted, requestGrade]);
+    for (const grade of wanted ? wanted.split("|") : []) requestGrade(grade);
+  }, [wanted, generation, requestGrade]);
   const retry = () => {
     for (const grade of failed) requestGrade(grade);
   };
@@ -417,38 +449,21 @@ export default function ConceptBlankView({
 }: ConceptBlankViewProps) {
   const uid = useId();
   const [draft, setDraft] = useState<Draft>(initialDraft);
+  const scope = useDocumentGeneration();
+  const {
+    generation,
+    reading,
+    saving,
+    advance,
+    start,
+    finish,
+    isCurrent,
+    isGeneration,
+  } = scope;
   const [picking, setPicking] = useState<{
     form: ConceptBlankForm;
-    owner: SelectionContext;
+    generation: number;
   } | null>(null);
-  const [selectionContext, setSelectionContext] = useState<SelectionContext>({
-    id: null,
-    sequence: 0,
-    loading: false,
-  });
-  const currentContext = useRef(selectionContext);
-  const beginRead = useCallback((id: string | null, loading = true) => {
-    const next = { id, sequence: currentContext.current.sequence + 1, loading };
-    currentContext.current = next;
-    setSelectionContext(next);
-    setPicking(null);
-    return next;
-  }, []);
-  const isCurrentRead = useCallback(
-    (owner: SelectionContext) =>
-      currentContext.current.id === owner.id &&
-      currentContext.current.sequence === owner.sequence,
-    [],
-  );
-  const finishRead = useCallback(
-    (owner: SelectionContext) => {
-      if (!isCurrentRead(owner)) return;
-      const next = { ...owner, loading: false };
-      currentContext.current = next;
-      setSelectionContext(next);
-    },
-    [isCurrentRead],
-  );
   const pickOpener = useRef<HTMLButtonElement>(null);
   const [openGrade, setOpenGrade] = useState<string | null>(() =>
     gradeOf(draft),
@@ -457,7 +472,23 @@ export default function ConceptBlankView({
   const [savedDocument, setSavedDocument] = useState<SavedDocument | null>(
     null,
   );
-  const [saving, setSaving] = useState(false);
+  const savedDocumentRef = useRef<SavedDocument | null>(null);
+  const setDocument = useCallback((next: SavedDocument | null) => {
+    savedDocumentRef.current = next;
+    setSavedDocument(next);
+  }, []);
+  // 모든 비동기 메타데이터 반영은 세대와 revision을 함께 확인한다.
+  const acceptDocument = useCallback(
+    (work: DocumentWork, next: SavedDocument) => {
+      if (!isCurrent(work)) return false;
+      const previous = savedDocumentRef.current;
+      if (previous?.id === next.id && previous.revision > next.revision)
+        return false;
+      setDocument(next);
+      return true;
+    },
+    [isCurrent, setDocument],
+  );
   const [saveError, setSaveError] = useState("");
   /** 처음 열 때 주소에 있던 자료 id(새로 고침) — 그 자료에 이어서 저장한다. 주소의 고르기(`?blank=`)는 그대로 둔다. */
   const [urlDocument] = useState(() => {
@@ -515,13 +546,12 @@ export default function ConceptBlankView({
       observedAddress.current = key;
       const id = url.searchParams.get(DOC_PARAM);
       const encoded = url.searchParams.get(URL_PARAM);
-      beginRead(id, Boolean(id));
       setUrlNavigation({
         openId,
         openVersion,
         document: id ? { id, keepDraft: Boolean(encoded) } : null,
       });
-      setSavedDocument(null);
+      setDocument(null);
       setSaveError("");
       if (encoded || !id) {
         const next = draftFrom(decodeSelection(encoded));
@@ -531,7 +561,7 @@ export default function ConceptBlankView({
     };
     window.addEventListener("popstate", navigate);
     return () => window.removeEventListener("popstate", navigate);
-  }, [openId, openVersion, beginRead]);
+  }, [openId, openVersion, setDocument]);
   const [capHit, setCapHit] = useState(false);
   const [paperView, setPaperView] = useState<"student" | "key">("student");
   /** 인쇄할 지면 — 학생지 · 채점표 · 전체(학생지 뒤에 채점표). 원장님 2026-10-01 «본문/답지/전체 따로». */
@@ -550,7 +580,7 @@ export default function ConceptBlankView({
     if (openGrade) grades.add(openGrade);
     return [...grades];
   }, [fixedBank, draft.sections, openGrade]);
-  const live = useGradeBanks(neededGrades);
+  const live = useGradeBanks(neededGrades, scope);
   const bank = fixedBank ?? live.bank;
   /** 온 학년(props 은행이면 null — 다 있다). */
   const loadedGrades = fixedBank ? null : live.loaded;
@@ -563,14 +593,9 @@ export default function ConceptBlankView({
   const selectedBankFailed = draft.sections.some((key) =>
     live.failed.has(getBlankSection(key)?.grade ?? ""),
   );
-  const canPick = ready && documentReady && !selectionContext.loading;
+  const canPick = ready && documentReady && !reading;
   const visiblePicking =
-    canPick &&
-    picking &&
-    picking.owner.id === selectionContext.id &&
-    picking.owner.sequence === selectionContext.sequence
-      ? picking
-      : null;
+    canPick && picking && picking.generation === generation ? picking : null;
 
   /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3) 가운데 온 학년만. */
   const stockIndex = useMemo(() => {
@@ -691,7 +716,7 @@ export default function ConceptBlankView({
   const openPicker = (form: ConceptBlankForm, opener: HTMLButtonElement) => {
     if (!canPick) return;
     pickOpener.current = opener;
-    setPicking({ form, owner: selectionContext });
+    setPicking({ form, generation });
   };
 
   const code = useMemo(() => {
@@ -716,20 +741,26 @@ export default function ConceptBlankView({
   );
   const items = sheets.reduce((n, sheet) => n + sheetItemCount(sheet), 0);
 
-  // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
-  // 학년 은행이 오는 동안은 건드리지 않는다 — 오기 전의 빈 고르기로 주소의 고르기를 지우면 새로 고침이 고르기를 잃는다.
+  // id와 선택은 한 번의 replaceState로 쓴다. 새 문서가 오기 전에는 옛 선택을 싣지 않는다.
+  const savedId = savedDocument?.id ?? null;
   useEffect(() => {
-    if (
-      active &&
-      (!ready || selectionError || !documentReady || selectionContext.loading)
-    )
-      return;
     const url = new URL(window.location.href);
-    const next = active ? code : null;
-    if (url.searchParams.get(URL_PARAM) === next) return;
-    if (next) url.searchParams.set(URL_PARAM, next);
-    else url.searchParams.delete(URL_PARAM);
-    window.history.replaceState(window.history.state, "", url);
+    if (!active) {
+      url.searchParams.delete(URL_PARAM);
+      url.searchParams.delete(DOC_PARAM);
+    } else if (!documentReady) {
+      if (!documentRequest) return;
+      url.searchParams.set(DOC_PARAM, documentRequest.id);
+      if (!documentRequest.keepDraft) url.searchParams.delete(URL_PARAM);
+    } else {
+      if (!ready || selectionError || reading) return;
+      if (savedId) url.searchParams.set(DOC_PARAM, savedId);
+      else url.searchParams.delete(DOC_PARAM);
+      if (code) url.searchParams.set(URL_PARAM, code);
+      else url.searchParams.delete(URL_PARAM);
+    }
+    if (addressKey(url) !== addressKey(new URL(window.location.href)))
+      window.history.replaceState(window.history.state, "", url);
     observedAddress.current = addressKey(url);
   }, [
     active,
@@ -737,103 +768,115 @@ export default function ConceptBlankView({
     selectionError,
     code,
     documentReady,
-    selectionContext.loading,
+    reading,
+    savedId,
+    documentRequest,
   ]);
 
-  // 주소 `?blankDoc=` — 내 시험지에 있는 자료면 그 id 를 같은 규칙으로 싣는다(새로 고쳐도 같은 자료에 저장).
-  const savedId = savedDocument?.id ?? null;
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const next = active
-      ? !documentReady
-        ? (documentRequest?.id ?? null)
-        : savedId
-      : null;
-    if (url.searchParams.get(DOC_PARAM) === next) return;
-    if (next) url.searchParams.set(DOC_PARAM, next);
-    else url.searchParams.delete(DOC_PARAM);
-    window.history.replaceState(window.history.state, "", url);
-    observedAddress.current = addressKey(url);
-  }, [active, savedId, documentReady, documentRequest]);
+  const adopt = useCallback(
+    (work: DocumentWork, document: BlankDocument, keepDraft: boolean) => {
+      if (!acceptDocument(work, savedFrom(document))) return;
+      setSaveError("");
+      if (keepDraft) return;
+      const next = draftFrom(document.selection);
+      setDraft(next);
+      setOpenGrade(gradeOf(next));
+    },
+    [acceptDocument],
+  );
 
-  /** 내 시험지에서 읽은 자료를 받는다 — `keepDraft` 면 지금 고르기(주소의 아직 저장 안 한 고침)를 그대로 둔다. */
-  const adopt = useCallback((document: BlankDocument, keepDraft: boolean) => {
-    setSavedDocument(savedFrom(document));
+  // 문서 열기/주소 탐색이 세대를 소유한다. 같은 id를 다시 열어도 이전 작업은 모두 무효다.
+  useLayoutEffect(() => {
+    advance();
+    setDocument(null);
+    setPicking(null);
     setSaveError("");
-    if (keepDraft) return;
-    const next = draftFrom(document.selection);
-    setDraft(next);
-    setOpenGrade(gradeOf(next));
-  }, []);
-  // 탭으로 돌아오면 그 자료를 다시 읽는다 — 이 화면은 숨은 채 살아 있어, 내 시험지에서 이름을 바꾸거나 지우면 판이 낡는다
-  // (리뷰 2026-10-01). 지워졌으면 «저장됨»을 풀고(다음 저장은 새 자료), 이름이 바뀌었으면 제목 칸도 새 이름으로.
+    if (!documentRequest?.client) return;
+    const work = start("read");
+    setRestoreState({ request: documentRequest, status: "loading" });
+    readBlankDocument(documentRequest.client, documentRequest.id)
+      .then(
+        (document) => {
+          if (!isCurrent(work)) return;
+          adopt(work, document, documentRequest.keepDraft);
+          setRestoreState({ request: documentRequest, status: "ready" });
+        },
+        (cause) => {
+          if (!isCurrent(work)) return;
+          const message =
+            cause instanceof PrivateCloudError && cause.status === 403
+              ? "이 자료를 열 권한이 없습니다. 자료 공유와 소속을 확인해 주세요."
+              : cause instanceof PrivateCloudError && cause.status === 404
+                ? "자료가 삭제되었거나 찾을 수 없습니다. 목록에서 다시 선택해 주세요."
+                : `자료를 불러오지 못했습니다. ${cloudError(cause)}`;
+          setRestoreState({
+            request: documentRequest,
+            status: "error",
+            message,
+          });
+        },
+      )
+      .finally(() => finish(work));
+    return () => finish(work);
+  }, [
+    documentRequest,
+    urlNavigation,
+    client,
+    advance,
+    start,
+    finish,
+    isCurrent,
+    setDocument,
+    adopt,
+  ]);
+
+  // 탭 복귀 조회는 같은 세대의 작업이다. PUT이 끝나도 이 조회를 취소하거나 세대를 바꾸지 않는다.
   const wasActive = useRef(active);
   useEffect(() => {
     const back = active && !wasActive.current;
     wasActive.current = active;
-    if (!back || !client || !savedDocument || !documentReady) return;
-    const owner = beginRead(savedDocument.id);
-    const previous = savedDocument;
-    let live = true;
-    readBlankDocument(client, previous.id).then(
-      (document) => {
-        if (!live || !isCurrentRead(owner)) return;
-        finishRead(owner);
-        const next = savedFrom(document);
-        setSavedDocument(next);
-        if (next.title !== previous.title)
-          setDraft((current) => ({ ...current, title: next.title }));
-      },
-      (cause) => {
-        if (!live || !isCurrentRead(owner)) return;
-        finishRead(owner);
-        if (cause instanceof PrivateCloudError && cause.status === 404)
-          setSavedDocument((current) =>
-            current?.id === previous.id ? null : current,
-          );
-      },
-    );
-    return () => {
-      live = false;
-    };
+    const previous = savedDocumentRef.current;
+    if (!back || !client || !previous || !documentReady) return;
+    const work = start("read");
+    setPicking(null);
+    readBlankDocument(client, previous.id)
+      .then(
+        (document) => {
+          if (!isCurrent(work)) return;
+          if (savedDocumentRef.current?.id !== document.id) return;
+          const next = savedFrom(document);
+          if (!acceptDocument(work, next)) return;
+          if (next.title !== previous.title)
+            setDraft((current) =>
+              current.title === previous.title
+                ? { ...current, title: next.title }
+                : current,
+            );
+        },
+        (cause) => {
+          if (!isCurrent(work)) return;
+          if (
+            cause instanceof PrivateCloudError &&
+            cause.status === 404 &&
+            savedDocumentRef.current?.id === previous.id &&
+            savedDocumentRef.current.revision === previous.revision
+          )
+            setDocument(null);
+        },
+      )
+      .finally(() => finish(work));
+    return () => finish(work);
   }, [
     active,
     client,
-    savedDocument,
+    documentRequest,
     documentReady,
-    beginRead,
-    finishRead,
-    isCurrentRead,
+    start,
+    finish,
+    isCurrent,
+    setDocument,
+    acceptDocument,
   ]);
-  // 내 시험지 열기·주소 복원을 한 요청으로 관리한다. 같은 id를 다시 읽어도 이전 창은 무효다.
-  useEffect(() => {
-    if (!documentRequest?.client) return;
-    const owner = beginRead(documentRequest.id);
-    let live = true;
-    setRestoreState({ request: documentRequest, status: "loading" });
-    readBlankDocument(documentRequest.client, documentRequest.id).then(
-      (document) => {
-        if (!live || !isCurrentRead(owner)) return;
-        adopt(document, documentRequest.keepDraft);
-        finishRead(owner);
-        setRestoreState({ request: documentRequest, status: "ready" });
-      },
-      (cause) => {
-        if (!live || !isCurrentRead(owner)) return;
-        finishRead(owner);
-        const message =
-          cause instanceof PrivateCloudError && cause.status === 403
-            ? "이 자료를 열 권한이 없습니다. 자료 공유와 소속을 확인해 주세요."
-            : cause instanceof PrivateCloudError && cause.status === 404
-              ? "자료가 삭제되었거나 찾을 수 없습니다. 목록에서 다시 선택해 주세요."
-              : `자료를 불러오지 못했습니다. ${cloudError(cause)}`;
-        setRestoreState({ request: documentRequest, status: "error", message });
-      },
-    );
-    return () => {
-      live = false;
-    };
-  }, [documentRequest, adopt, beginRead, finishRead, isCurrentRead]);
 
   /** 고른 소단원을 바꾼다 — 기준은 지금 고른 것(재고 있는 것만). 상한 60 을 넘으면 앞에서 자르고 한 줄 알린다. */
   const changeSections = (next: string[], hit = false) => {
@@ -899,15 +942,8 @@ export default function ConceptBlankView({
     !!toSave && !!savedDocument && savedDocument.key === selectionKey(toSave);
   /** [내 시험지에 저장] — 처음이면 새 자료, 내 시험지에 있는 자료면 그 다음 판. 자료 이름은 지면 제목. */
   const save = async (sharing?: DocumentSharing) => {
-    if (
-      !client ||
-      !toSave ||
-      saving ||
-      !documentReady ||
-      selectionContext.loading
-    )
-      return false;
-    setSaving(true);
+    if (!client || !toSave || saving || !documentReady || reading) return false;
+    const work = start("save");
     setSaveError("");
     const title = (
       toSave.title ??
@@ -931,6 +967,7 @@ export default function ConceptBlankView({
           savedDocument?.revision ?? null,
         );
       } catch (cause) {
+        if (!isCurrent(work)) return false;
         // 판이 안 맞으면(409) 다시 읽는다. 지워졌으면(404) 새 자료로 담는다 — 고르기뿐이라 잃을 것이 없다.
         // 다른 곳에서 먼저 저장했으면 새 판을 받고 알린다 — 다시 누르면 이 화면의 고르기로 저장한다.
         if (
@@ -945,13 +982,15 @@ export default function ConceptBlankView({
               ? null
               : Promise.reject(cause),
         );
+        if (!isCurrent(work)) return false;
         if (latest) {
-          setSavedDocument(savedFrom(latest));
+          acceptDocument(work, savedFrom(latest));
           throw new Error(CHANGED_ELSEWHERE);
         }
         document = await put(privateDocumentId(), null);
       }
-      setSavedDocument({
+      if (!isCurrent(work)) return false;
+      acceptDocument(work, {
         id: document.id,
         visibility: document.visibility,
         sharedBranchId: document.sharedBranchId,
@@ -961,10 +1000,10 @@ export default function ConceptBlankView({
       });
       return true;
     } catch (cause) {
-      setSaveError(cloudError(cause));
+      if (isCurrent(work)) setSaveError(cloudError(cause));
       return false;
     } finally {
-      setSaving(false);
+      finish(work);
     }
   };
   const { requestSave, dialog: saveDialog } = useLibrarySaveConfirmation(
@@ -974,10 +1013,11 @@ export default function ConceptBlankView({
     savedDocument?.sharedBranchId === branchId
       ? savedDocument?.visibility
       : "private",
+    generation,
   );
   // `print=1` — 인쇄 페이지가 지면을 다 그린 뒤 인쇄 창을 바로 띄운다(원장님 2026-10-01 «ctrl+p 말고 인쇄버튼으로»)
   const printHref =
-    code && documentReady && !selectionContext.loading
+    code && documentReady && !reading
       ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
       : null;
 
@@ -986,7 +1026,7 @@ export default function ConceptBlankView({
       {saveDialog}
       {visiblePicking && (
         <ConceptBlankQuestionPicker
-          key={`${visiblePicking.owner.id}:${visiblePicking.owner.sequence}:${visiblePicking.form}`}
+          key={`${visiblePicking.generation}:${visiblePicking.form}`}
           bank={bank}
           sections={chosen}
           form={visiblePicking.form}
@@ -998,15 +1038,10 @@ export default function ConceptBlankView({
           returnFocus={pickOpener}
           onCancel={() => setPicking(null)}
           onApply={(picks, targets) => {
-            if (
-              !isCurrentRead(visiblePicking.owner) ||
-              currentContext.current.loading
-            )
-              return;
+            if (!isGeneration(visiblePicking.generation) || reading) return;
             const form = visiblePicking.form;
             setDraft((current) =>
-              isCurrentRead(visiblePicking.owner) &&
-              !currentContext.current.loading
+              isGeneration(visiblePicking.generation)
                 ? {
                     ...current,
                     forms: {
@@ -1069,7 +1104,7 @@ export default function ConceptBlankView({
                 !toSave ||
                 saving ||
                 (saved && !branchId) ||
-                Boolean(!documentReady || selectionContext.loading)
+                Boolean(!documentReady || reading)
               }
               onClick={requestSave}
             >
@@ -1098,7 +1133,7 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
-      {(!documentReady && !documentError) || selectionContext.loading ? (
+      {(!documentReady && !documentError) || reading ? (
         <p role="status" className="mb-4 text-sm">
           {client
             ? "저장된 자료를 불러오는 중…"
@@ -1364,7 +1399,7 @@ export default function ConceptBlankView({
             }}
             onPick={openPicker}
             pickStatus={
-              !documentReady || selectionContext.loading
+              !documentReady || reading
                 ? documentError
                   ? "document-error"
                   : "document-loading"
