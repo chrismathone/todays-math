@@ -1,0 +1,1015 @@
+{
+  "provenance": {
+    "capturedAt": "2026-11-12T08:29:28.239Z",
+    "runtime": "Node.js; not a browser measurement",
+    "node": "v24.22.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "pdfjsVersion": "6.2.108",
+    "canvasVersion": "1.0.10",
+    "pdfLibVersion": "1.17.1",
+    "renderBackend": "pdfjs-dist/legacy/build/pdf.mjs + @napi-rs/canvas",
+    "imageSmoothing": "PDF.js normal defaults; no custom smoothing overrides",
+    "standardFontDataUrl": "/Users/pss/Desktop/creative/today_/node_modules/pdfjs-dist/standard_fonts/",
+    "wasmUrl": "/Users/pss/Desktop/creative/today_/node_modules/pdfjs-dist/wasm/",
+    "elapsedCaveat": "One sequential local run; page caches warm at later scales; no browser, mobile, deadline or performance guarantees.",
+    "measurementRule": "Count a pixel iff its minimum RGB channel composited onto white is strictly less than 255; preserve >=1 pixel."
+  },
+  "reproduction": {
+    "a": {
+      "pagePt": [
+        595,
+        842
+      ],
+      "font": "Helvetica",
+      "sizePt": 0.1,
+      "text": "1. 2 + 3 = ?",
+      "x": 50,
+      "y": 700
+    },
+    "b": {
+      "pagePt": [
+        595,
+        842
+      ],
+      "sourcePx": [
+        2480,
+        3508
+      ],
+      "background": "#ffffff",
+      "stroke": "#fefefe",
+      "font": "64px sans-serif",
+      "strokeWidthPx": 0.2,
+      "lines": [
+        {
+          "text": "1. 2 + 3 = ?",
+          "x": 100,
+          "y": 200
+        },
+        {
+          "text": "2. 6 - 2 = ?",
+          "x": 100,
+          "y": 300
+        }
+      ],
+      "source": {
+        "width": 2480,
+        "height": 3508,
+        "pixels": 8699840,
+        "inkPixels": 866,
+        "inkRatio": 0.00009954206054364218,
+        "darkest": 254
+      },
+      "sourcePngSha256": "19e801837f40bb7f097ecb6e4fa2a717da486a842c84e6100f615a08d9d13228",
+      "directImageThumbnail": {
+        "width": 728,
+        "height": 1030,
+        "pixels": 749840,
+        "inkPixels": 71,
+        "inkRatio": 0.00009468686653152673,
+        "darkest": 254
+      }
+    },
+    "blankImage": {
+      "width": 2480,
+      "height": 3508,
+      "pixels": 8699840,
+      "inkPixels": 0,
+      "inkRatio": 0,
+      "darkest": 255
+    }
+  },
+  "pages": [
+    {
+      "fixture": "A",
+      "page": 1,
+      "pdfSha256": "e089c338ff2ef6375bfb1dcadef13fa6691f63467faee40cb2fb57d584faf3a8",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/review/order4-measure/a-tiny-text.pdf",
+      "pagePt": [
+        595,
+        842
+      ],
+      "loadElapsedMs": 130.17,
+      "getPageElapsedMs": 0.17,
+      "text": "1. 2 + 3 = ?",
+      "textItems": 1,
+      "textElapsedMs": 1.238,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1.223529411764706,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 13.289,
+          "renderAndCountElapsedMs": 15.234
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 595,
+          "height": 842,
+          "pixels": 500990,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.224,
+          "renderAndCountElapsedMs": 1.05
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1190,
+          "height": 1684,
+          "pixels": 2003960,
+          "inkPixels": 1,
+          "inkRatio": 4.990119563264736e-7,
+          "darkest": 242,
+          "renderElapsedMs": 0.331,
+          "renderAndCountElapsedMs": 3.414
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 1785,
+          "height": 2526,
+          "pixels": 4508910,
+          "inkPixels": 2,
+          "inkRatio": 4.4356618340130983e-7,
+          "darkest": 251,
+          "renderElapsedMs": 0.685,
+          "renderAndCountElapsedMs": 7.739
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2380,
+          "height": 3368,
+          "pixels": 8015840,
+          "inkPixels": 2,
+          "inkRatio": 2.495059781632368e-7,
+          "darkest": 240,
+          "renderElapsedMs": 1.685,
+          "renderAndCountElapsedMs": 14.464
+        }
+      ]
+    },
+    {
+      "fixture": "B",
+      "page": 1,
+      "pdfSha256": "ef3af670eaf4ca8dd3c16d3167085d85d50d7b0a1bfe655cf65f7f5d5c81336f",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/review/order4-measure/b-faint-scan.pdf",
+      "pagePt": [
+        595,
+        842
+      ],
+      "loadElapsedMs": 0.477,
+      "getPageElapsedMs": 0.03,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.705,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1.223529411764706,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 807.855,
+          "renderAndCountElapsedMs": 811.739
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 595,
+          "height": 842,
+          "pixels": 500990,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 769.294,
+          "renderAndCountElapsedMs": 771.32
+        },
+        {
+          "kind": "scale-1.9",
+          "scale": 1.9,
+          "width": 1131,
+          "height": 1600,
+          "pixels": 1809600,
+          "inkPixels": 1,
+          "inkRatio": 5.526083112290008e-7,
+          "darkest": 254,
+          "renderElapsedMs": 765.528,
+          "renderAndCountElapsedMs": 772.617
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1190,
+          "height": 1684,
+          "pixels": 2003960,
+          "inkPixels": 1,
+          "inkRatio": 4.990119563264736e-7,
+          "darkest": 254,
+          "renderElapsedMs": 766.999,
+          "renderAndCountElapsedMs": 774.831
+        },
+        {
+          "kind": "scale-2.1",
+          "scale": 2.1,
+          "width": 1250,
+          "height": 1769,
+          "pixels": 2211250,
+          "inkPixels": 186,
+          "inkRatio": 0.00008411531938948558,
+          "darkest": 254,
+          "renderElapsedMs": 777.096,
+          "renderAndCountElapsedMs": 780.656
+        },
+        {
+          "kind": "scale-2.25",
+          "scale": 2.25,
+          "width": 1339,
+          "height": 1895,
+          "pixels": 2537405,
+          "inkPixels": 267,
+          "inkRatio": 0.00010522561435797596,
+          "darkest": 254,
+          "renderElapsedMs": 775.331,
+          "renderAndCountElapsedMs": 779.802
+        },
+        {
+          "kind": "scale-2.5",
+          "scale": 2.5,
+          "width": 1488,
+          "height": 2105,
+          "pixels": 3132240,
+          "inkPixels": 295,
+          "inkRatio": 0.00009418179960667127,
+          "darkest": 254,
+          "renderElapsedMs": 774.407,
+          "renderAndCountElapsedMs": 778.694
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 1785,
+          "height": 2526,
+          "pixels": 4508910,
+          "inkPixels": 453,
+          "inkRatio": 0.00010046774054039668,
+          "darkest": 254,
+          "renderElapsedMs": 774.886,
+          "renderAndCountElapsedMs": 787.158
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2380,
+          "height": 3368,
+          "pixels": 8015840,
+          "inkPixels": 731,
+          "inkRatio": 0.00009119443501866304,
+          "darkest": 254,
+          "renderElapsedMs": 779.994,
+          "renderAndCountElapsedMs": 791.496
+        },
+        {
+          "kind": "scale-4.168067226890757",
+          "scale": 4.168067226890757,
+          "width": 2480,
+          "height": 3510,
+          "pixels": 8704800,
+          "inkPixels": 866,
+          "inkRatio": 0.00009948534142082529,
+          "darkest": 254,
+          "renderElapsedMs": 779.918,
+          "renderAndCountElapsedMs": 798.082
+        }
+      ]
+    },
+    {
+      "fixture": "blank",
+      "page": 1,
+      "pdfSha256": "e29f7b2188316b487bdeeba18cfb93af1e5dfd7833bdff9e686582b29715a97f",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/review/order4-measure/blank.pdf",
+      "pagePt": [
+        595,
+        842
+      ],
+      "loadElapsedMs": 1.443,
+      "getPageElapsedMs": 0.129,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.258,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1.223529411764706,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.835,
+          "renderAndCountElapsedMs": 2.024
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 595,
+          "height": 842,
+          "pixels": 500990,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.095,
+          "renderAndCountElapsedMs": 0.869
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1190,
+          "height": 1684,
+          "pixels": 2003960,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.191,
+          "renderAndCountElapsedMs": 3.379
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 1785,
+          "height": 2526,
+          "pixels": 4508910,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.538,
+          "renderAndCountElapsedMs": 7.339
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2380,
+          "height": 3368,
+          "pixels": 8015840,
+          "inkPixels": 0,
+          "inkRatio": 0,
+          "darkest": 255,
+          "renderElapsedMs": 0.68,
+          "renderAndCountElapsedMs": 12.328
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 1,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.03,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.872,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 180326,
+          "inkRatio": 0.24025271527696357,
+          "darkest": 51,
+          "renderElapsedMs": 1013.083,
+          "renderAndCountElapsedMs": 1017.246
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 180326,
+          "inkRatio": 0.24025271527696357,
+          "darkest": 51,
+          "renderElapsedMs": 943.121,
+          "renderAndCountElapsedMs": 946.464
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 700320,
+          "inkRatio": 0.23326334189573764,
+          "darkest": 51,
+          "renderElapsedMs": 941.972,
+          "renderAndCountElapsedMs": 955.719
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1567458,
+          "inkRatio": 0.23204026817023907,
+          "darkest": 51,
+          "renderElapsedMs": 955.951,
+          "renderAndCountElapsedMs": 967.2
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 2699267,
+          "inkRatio": 0.22476869184404344,
+          "darkest": 50,
+          "renderElapsedMs": 967.04,
+          "renderAndCountElapsedMs": 993.366
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 2,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.265,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 1.607,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 183532,
+          "inkRatio": 0.24452414704597053,
+          "darkest": 53,
+          "renderElapsedMs": 1010.771,
+          "renderAndCountElapsedMs": 1017.037
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 183532,
+          "inkRatio": 0.24452414704597053,
+          "darkest": 53,
+          "renderElapsedMs": 932.35,
+          "renderAndCountElapsedMs": 935.693
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 711213,
+          "inkRatio": 0.23689159409940205,
+          "darkest": 53,
+          "renderElapsedMs": 914.09,
+          "renderAndCountElapsedMs": 931.872
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1596035,
+          "inkRatio": 0.23627069395740588,
+          "darkest": 53,
+          "renderElapsedMs": 911.68,
+          "renderAndCountElapsedMs": 938.931
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 2751544,
+          "inkRatio": 0.22912181174790291,
+          "darkest": 43,
+          "renderElapsedMs": 928.445,
+          "renderAndCountElapsedMs": 950.773
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 3,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.262,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.835,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 162003,
+          "inkRatio": 0.21584053676682194,
+          "darkest": 55,
+          "renderElapsedMs": 978.61,
+          "renderAndCountElapsedMs": 984.813
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 162003,
+          "inkRatio": 0.21584053676682194,
+          "darkest": 55,
+          "renderElapsedMs": 967.41,
+          "renderAndCountElapsedMs": 973.775
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 625854,
+          "inkRatio": 0.20846012619775955,
+          "darkest": 51,
+          "renderElapsedMs": 1107.901,
+          "renderAndCountElapsedMs": 1141.652
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1396056,
+          "inkRatio": 0.20666659560936962,
+          "darkest": 51,
+          "renderElapsedMs": 2075.618,
+          "renderAndCountElapsedMs": 2098.972
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 2421594,
+          "inkRatio": 0.201646786167276,
+          "darkest": 43,
+          "renderElapsedMs": 1245.452,
+          "renderAndCountElapsedMs": 1270.302
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 4,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.279,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.876,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 187695,
+          "inkRatio": 0.2500706131889449,
+          "darkest": 56,
+          "renderElapsedMs": 992.019,
+          "renderAndCountElapsedMs": 997.389
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 187695,
+          "inkRatio": 0.2500706131889449,
+          "darkest": 56,
+          "renderElapsedMs": 973.323,
+          "renderAndCountElapsedMs": 977.622
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 725383,
+          "inkRatio": 0.24161135300199316,
+          "darkest": 56,
+          "renderElapsedMs": 968.728,
+          "renderAndCountElapsedMs": 981.635
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1619856,
+          "inkRatio": 0.23979706035962098,
+          "darkest": 56,
+          "renderElapsedMs": 984.195,
+          "renderAndCountElapsedMs": 1000.948
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 2806341,
+          "inkRatio": 0.23368477273211755,
+          "darkest": 40,
+          "renderElapsedMs": 989.04,
+          "renderAndCountElapsedMs": 1011.539
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 5,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.259,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.967,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 276555,
+          "inkRatio": 0.3684609522388378,
+          "darkest": 57,
+          "renderElapsedMs": 994.33,
+          "renderAndCountElapsedMs": 998.627
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 276555,
+          "inkRatio": 0.3684609522388378,
+          "darkest": 57,
+          "renderElapsedMs": 933.983,
+          "renderAndCountElapsedMs": 939.337
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 1081350,
+          "inkRatio": 0.3601772257810085,
+          "darkest": 54,
+          "renderElapsedMs": 932.08,
+          "renderAndCountElapsedMs": 945.235
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 2419962,
+          "inkRatio": 0.35824158059851563,
+          "darkest": 54,
+          "renderElapsedMs": 947.221,
+          "renderAndCountElapsedMs": 964.378
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 4187472,
+          "inkRatio": 0.3486919239829036,
+          "darkest": 44,
+          "renderElapsedMs": 951.765,
+          "renderAndCountElapsedMs": 971.977
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 6,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.273,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.752,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 269149,
+          "inkRatio": 0.358593758327027,
+          "darkest": 55,
+          "renderElapsedMs": 984.619,
+          "renderAndCountElapsedMs": 993.421
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 269149,
+          "inkRatio": 0.358593758327027,
+          "darkest": 55,
+          "renderElapsedMs": 967.485,
+          "renderAndCountElapsedMs": 970.809
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 1059516,
+          "inkRatio": 0.3529047334818431,
+          "darkest": 55,
+          "renderElapsedMs": 965.372,
+          "renderAndCountElapsedMs": 983.531
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 2373877,
+          "inkRatio": 0.3514193399013962,
+          "darkest": 55,
+          "renderElapsedMs": 967.442,
+          "renderAndCountElapsedMs": 995.098
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 4146373,
+          "inkRatio": 0.3452695991569052,
+          "darkest": 45,
+          "renderElapsedMs": 979.036,
+          "renderAndCountElapsedMs": 1003.772
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 7,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.273,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.729,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 205553,
+          "inkRatio": 0.273863260890419,
+          "darkest": 54,
+          "renderElapsedMs": 1035.982,
+          "renderAndCountElapsedMs": 1041.904
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 205553,
+          "inkRatio": 0.273863260890419,
+          "darkest": 54,
+          "renderElapsedMs": 936.487,
+          "renderAndCountElapsedMs": 939.989
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 795446,
+          "inkRatio": 0.2649480127050447,
+          "darkest": 54,
+          "renderElapsedMs": 1714.743,
+          "renderAndCountElapsedMs": 1743.376
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1776898,
+          "inkRatio": 0.26304493545036706,
+          "darkest": 54,
+          "renderElapsedMs": 2167.64,
+          "renderAndCountElapsedMs": 2192.81
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 3071970,
+          "inkRatio": 0.25580377127721937,
+          "darkest": 54,
+          "renderElapsedMs": 1332.796,
+          "renderAndCountElapsedMs": 1356.109
+        }
+      ]
+    },
+    {
+      "fixture": "demo-8p",
+      "page": 8,
+      "pdfSha256": "57aee611bec88a48c2ab656be79abb35c1f0c607f4adc348a0d191505b942420",
+      "sourcePath": "/Volumes/새 볼륨/today-worktrees/studio-page-order/scratch/page-order/demo-8p.pdf",
+      "pagePt": [
+        728,
+        1031
+      ],
+      "loadElapsedMs": 0.976,
+      "getPageElapsedMs": 0.205,
+      "text": "",
+      "textItems": 0,
+      "textElapsedMs": 0.598,
+      "renders": [
+        {
+          "kind": "thumbnail-728",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 184188,
+          "inkRatio": 0.2453981517997037,
+          "darkest": 58,
+          "renderElapsedMs": 999.526,
+          "renderAndCountElapsedMs": 1007.921
+        },
+        {
+          "kind": "scale-1",
+          "scale": 1,
+          "width": 728,
+          "height": 1031,
+          "pixels": 750568,
+          "inkPixels": 184188,
+          "inkRatio": 0.2453981517997037,
+          "darkest": 58,
+          "renderElapsedMs": 910.115,
+          "renderAndCountElapsedMs": 913.383
+        },
+        {
+          "kind": "scale-2",
+          "scale": 2,
+          "width": 1456,
+          "height": 2062,
+          "pixels": 3002272,
+          "inkPixels": 724746,
+          "inkRatio": 0.2413991803540785,
+          "darkest": 58,
+          "renderElapsedMs": 910.18,
+          "renderAndCountElapsedMs": 927.893
+        },
+        {
+          "kind": "scale-3",
+          "scale": 3,
+          "width": 2184,
+          "height": 3093,
+          "pixels": 6755112,
+          "inkPixels": 1623421,
+          "inkRatio": 0.24032480882626372,
+          "darkest": 58,
+          "renderElapsedMs": 908.345,
+          "renderAndCountElapsedMs": 935.979
+        },
+        {
+          "kind": "scale-4",
+          "scale": 4,
+          "width": 2912,
+          "height": 4124,
+          "pixels": 12009088,
+          "inkPixels": 2818129,
+          "inkRatio": 0.23466636267466773,
+          "darkest": 49,
+          "renderElapsedMs": 910.775,
+          "renderAndCountElapsedMs": 944.398
+        }
+      ]
+    }
+  ],
+  "recommendation": {
+    "threshold": "Keep at >=1 nonwhite pixel; only exactly 0 may be a blank candidate.",
+    "selectedScale": 2,
+    "decision": "Scale 2 with the >=1-pixel keep threshold retains both specified reproductions in this Node runtime; A is also retained earlier by actual extracted text.",
+    "scale2": {
+      "aInkPixels": 1,
+      "bInkPixels": 1,
+      "bRetained": true
+    },
+    "text": "A must also be retained by its extracted text before any higher-resolution ink decision.",
+    "reviewCountDifference": "B source exactly matches review's 866 pixels; scale4 has 731 rather than 725 for the documented (100,200)/(100,300) placements. The review omitted placements, and the supporting phase measurements show integer translations change these counts.",
+    "limitations": "Scale2 retains B by only one pixel. A finite raster scale cannot prove arbitrary PDF content absence; do not claim universal preservation or browser performance from this calibration."
+  },
+  "validation": {
+    "aThumbnailHasZeroInk": true,
+    "aTextSurvives": true,
+    "bSourceHasInk": true,
+    "bThumbnailHasZeroInk": true,
+    "bHasNoExtractedText": true,
+    "blankImageHasZeroInk": true,
+    "blankPdfAlwaysHasZeroInk": true,
+    "allEightDemoPagesMeasured": true,
+    "allEightDemoPagesRetainedAtEveryMeasuredScale": true
+  }
+}
