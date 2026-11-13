@@ -1,0 +1,7 @@
+# Local compiled probes, not source or production assets.
+*-runtime.*
+performance-baseline.mjs
+performance-current.mjs
+global-runtime.css
+__pycache__/
+._*

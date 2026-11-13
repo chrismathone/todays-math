@@ -613,7 +613,8 @@ def _circle_intersects_box(cx: float, cy: float, radius: float, box: Box) -> boo
 
 
 def _leader_stop_radius(label: str, font_size: float, halo_width: float,
-                        ux: float = 0.0, uy: float = 0.0) -> float:
+                        ux: float = 0.0, uy: float = 0.0,
+                        metrics: Mapping[str, tuple[float, float, float]] | None = None) -> float:
     """지시선이 글자 앞에서 끊기는 거리 — 글자 상자 **경계까지** + 여백 + halo 반폭.
 
     halo 까지 안 비키면 지시선 끝이 흰 테두리에 먹혀 «끊긴 선»로 보인다
@@ -625,7 +626,7 @@ def _leader_stop_radius(label: str, font_size: float, halo_width: float,
        지시선과 글자가 따로 노는 것처럼 보였다. 이제 다가오는 **방향으로** 상자
        경계를 찾는다(ux,uy 를 안 주면 옛 동작 — 가장 먼 쪽).
     """
-    box = _text_box(0.0, 0.0, label, font_size)
+    box = _text_box(0.0, 0.0, label, font_size, metrics)
     half_w = (box[2] - box[0]) / 2.0
     half_h = (box[3] - box[1]) / 2.0
     margin = 2.0 + halo_width / 2.0
@@ -638,7 +639,8 @@ def _leader_stop_radius(label: str, font_size: float, halo_width: float,
 
 
 def _leader_is_drawable(anchor: tuple[float, float], pos: tuple[float, float],
-                        label: str, font_size: float, halo_width: float) -> bool:
+                        label: str, font_size: float, halo_width: float,
+                        metrics: Mapping[str, tuple[float, float, float]] | None = None) -> bool:
     """이 지시선이 **그릴 값어치가 있는 길이**인가.
 
     🔴 **짧은 지시선은 없느니만 못하다.** 호와 라벨이 가까우면 실제로 그려지는
@@ -664,7 +666,7 @@ def _leader_is_drawable(anchor: tuple[float, float], pos: tuple[float, float],
     if length == 0.0:
         return False
     stop_r = _leader_stop_radius(label, font_size, halo_width,
-                                 dx / length, dy / length)
+                                 dx / length, dy / length, metrics)
     return length - stop_r > 2.0 * (_TICK_HALF * 2.0)
 
 
@@ -675,14 +677,15 @@ def _boxes_overlap(a: Box, b: Box, gap: float = 0.0) -> bool:
 
 def _angle_leader_points(anchor: tuple[float, float], pos: tuple[float, float],
                          label: str, font_size: float,
-                         halo_width: float) -> tuple[Point, Point, Point]:
+                         halo_width: float,
+                         metrics: Mapping[str, tuple[float, float, float]] | None = None) -> tuple[Point, Point, Point]:
     """The same curved leader for placement checks and SVG emission."""
     ax, ay = anchor
     lx, ly = pos
     dx, dy = lx - ax, ly - 0.32 * font_size - ay
     length = math.hypot(dx, dy)
     ux, uy = dx / length, dy / length
-    stop_r = _leader_stop_radius(label, font_size, halo_width, ux, uy)
+    stop_r = _leader_stop_radius(label, font_size, halo_width, ux, uy, metrics)
     ex = lx - ux * stop_r
     ey = ly - 0.32 * font_size - uy * stop_r
     bow = 0.18 * (length - stop_r)
@@ -1974,11 +1977,11 @@ class FigureScene:
                     # 밖에 세우는 것과 지시선을 긋는 것은 **한 결정**이다 — 지시선을
                     # 못 그을 자리면 라벨도 여기 세우면 안 된다(주석은 그 함수에).
                     if not _leader_is_drawable(anchor, (x, y), angle.label, fs,
-                                               self.style.halo_width):
+                                               self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None):
                         continue
                     if self.style.clear_angle_labels:
                         curve = _quadratic_samples("", *_angle_leader_points(
-                            anchor, (x, y), angle.label, fs, self.style.halo_width))
+                            anchor, (x, y), angle.label, fs, self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None))
                         if any(_polyline_intersects_box(
                                 curve, _expand_box(other, pad))
                                for other in (*occupied, box)):
@@ -2476,6 +2479,16 @@ class FigureScene:
                                 and _distance_point_line(second, a, b) <= chord_tolerance
                                 and _point_within_segment(first, a, b, chord_tolerance)
                                 and _point_within_segment(second, a, b, chord_tolerance)
+                            ) or (
+                                # Conversely, a complete measured chord may be drawn
+                                # as collinear subsegments (midpoint/equal ticks).
+                                # Their ink is still the measured chord, not a
+                                # crossing. Keep the same actual label-clearance
+                                # check below; never exempt off-chord geometry.
+                                _distance_point_line(a, first, second) <= chord_tolerance
+                                and _distance_point_line(b, first, second) <= chord_tolerance
+                                and _point_within_segment(a, first, second, chord_tolerance)
+                                and _point_within_segment(b, first, second, chord_tolerance)
                             )
                             if own_chord:
                                 # A one-sided quadratic meets its measured chord only
@@ -2497,6 +2510,18 @@ class FigureScene:
                                     for sample in samples)
                                 if clearance < 3.0:
                                     near_geometry += 1
+
+                        # Segment equality/parallel marks remain visible ink even
+                        # when their supporting segment is the measured chord.
+                        # Sharing a chord never exempts tick/arrow intersections.
+                        for marked_segment in self.segments.values():
+                            for i, ((mx1, my1), (mx2, my2)) in enumerate(
+                                    self._segment_mark_lines(marked_segment)):
+                                ma = Point(f"dim-mark:{i}:a", mx1, my1)
+                                mb = Point(f"dim-mark:{i}:b", mx2, my2)
+                                if (_polyline_intersects_segment(samples, ma, mb)
+                                        or _segment_intersects_box(ma, mb, label_box)):
+                                    geometry_crossings += 1
 
                         # 🔴 **각 표시(호·직각 사각형)도 잉크다.**
                         #
@@ -2632,7 +2657,7 @@ class FigureScene:
                     if self.style.clear_angle_labels:
                         leader_curves.append(_quadratic_samples(
                             "", *_angle_leader_points(leader, pos, angle.label,
-                                self.style.angle_font_size, self.style.halo_width)))
+                                self.style.angle_font_size, self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None)))
 
         dimension_layouts: dict[str, DimensionLayout] = {}
         for dimension_name in sorted(self.dimensions):
@@ -2889,11 +2914,11 @@ class FigureScene:
             # 고르는 쪽(`_angle_label_layout`)이 이미 같은 함수로 걸렀다. 여기서 또
             # 보는 것은 **두 벌이 갈라지지 않게** 하기 위해서다 — 규칙은 그 함수 하나다.
             if not _leader_is_drawable((ax, ay), (lx, ly), label_text,
-                                       style.angle_font_size, style.halo_width):
+                                       style.angle_font_size, style.halo_width, self.label_metrics if self.style.clear_angle_labels else None):
                 continue
             # 살짝 휘게 — 곧은 선은 도형의 변으로 읽힌다(원장님 스케치도 곡선이다).
             _, control, end = _angle_leader_points(
-                (ax, ay), (lx, ly), label_text, style.angle_font_size, style.halo_width)
+                (ax, ay), (lx, ly), label_text, style.angle_font_size, style.halo_width, self.label_metrics if self.style.clear_angle_labels else None)
             cx, cy = control.x, control.y
             ex, ey = end.x, end.y
             marks.append(

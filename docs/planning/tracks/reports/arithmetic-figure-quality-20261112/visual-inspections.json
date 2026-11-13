@@ -1,0 +1,215 @@
+{
+  "method": "Each recorded PNG was actually opened with view_image; changed PNGs require a new explicit inspection record",
+  "images": {
+    "contacts/contact-01.png": {
+      "sha256": "95ec748670392a33848e9686bfc229e0794ce263b9b996c86afe87f16330480c",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-02.png": {
+      "sha256": "5c2b1407655042e4fd0f594d2a6270f63a50ab8425351c5a333e4e481a912468",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-03.png": {
+      "sha256": "980c702e2390ff3a29fa4d37ec3ffe85b152a7dc7d15065afeb65081b043375c",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-04.png": {
+      "sha256": "efb7fc53d8c6e9e57b589e7df7c71698270f2e6795114476d2e29fcf0b9be277",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-05.png": {
+      "sha256": "84dae10212db09b8744ad995b1f2b82e9fdfaeae03dc98dc87762693a9bc26aa",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-06.png": {
+      "sha256": "8ce43d224aaebef348bdb3a1a3fb4d6b62dd4a0137b6991ab3cd728fae739545",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-07.png": {
+      "sha256": "7eb03823286c5a8c21f824794862cb0f22ff4fd371ebf882b70469e4ccc477d1",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-08.png": {
+      "sha256": "9b50e88dd0360df95543181fbe9b696dfa0ea8777fb322f3e1dc7ebe91991766",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-09.png": {
+      "sha256": "e42fd36919782bfaed034d38588ce1d1e389b8043b0082f09ec71a1b31bff346",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-10.png": {
+      "sha256": "06012d1fd42c7af25cc3e3c8525146675f2b374156562ba34a8622106ca07b57",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-11.png": {
+      "sha256": "a5f06d01d5d10437bad8a39b0e33427de722ca63b985bcec6291a5c5503f7c0f",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-12.png": {
+      "sha256": "5f54e8eceefbbf6fd674b49e9ab3b23f6ef2f7958c5c957e0f9e02d9b37206be",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-13.png": {
+      "sha256": "2ad6832471143e8d557c3b7563a08b81c868a68c3437033a8254cbbc7cefe737",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-14.png": {
+      "sha256": "a3d9036d243938180f66471cc74ad175bdd1415cfa7ccd4c5875b6581ed68235",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-15.png": {
+      "sha256": "a4980071f95dbd118056bba721003c418b42ab465e968b51feb6ce6cd97da6be",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-16.png": {
+      "sha256": "1eb78c875a1fa53bdce4211f2985cec2820a70a8d4dcf072474fd2a3bc15d86f",
+      "actor": "assistant-view_image",
+      "scope": "2026-11-14 current contact opened; superseded if pictured asset or PNG changes"
+    },
+    "contacts/contact-17.png": {
+      "sha256": "39461abd0106f7150a07036deb5d52424e3e36bc982edc8f4137ab253f82aa12",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-18.png": {
+      "sha256": "07ca06030e788130dbf3f2be4fe020694c78af5a9543ce8ee1f5b8fd49192d0a",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-19.png": {
+      "sha256": "50be4f3f1d244d65596246e2cea9c0b0a141ff6384a6f470429871453bf6f2ab",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-20.png": {
+      "sha256": "bfdfcb7fa4fae85d74abb3fc6f8a90a4b1ab70753ff8860784cb6de275008712",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-21.png": {
+      "sha256": "9cbd8d98c73015d7d5e06014c803bfd7508101aac8bb2eee5f180a6d826ef557",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-22.png": {
+      "sha256": "46512019152d84bfe3ef5b9d3f608bb98ffdcb385dfcd6b62c15ac009ade37a6",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-23.png": {
+      "sha256": "d8cc1966e2d33b8367b660f72f9f9f195d476eb8c303474dbc9988cb2e8636f5",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-24.png": {
+      "sha256": "7f12837ac4e8994e7427058e473e801d5091e615cb7bd619d870fb5a939f76e6",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "contacts/contact-25.png": {
+      "sha256": "7346fbb27cb75373015d4d1084d430372c0f5a7d8c2d645de0094b46d85a9e61",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    },
+    "source-contacts/contact-01.png": {
+      "sha256": "4cf99e652dcdfd948a79f2d6c1177586d727041e1786cdc9e157c5a91c3bf48b",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-02.png": {
+      "sha256": "6e644c95ab3208aa596765e2d8c8438a4ca4698d4f5a35143eaf4969deb23345",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-03.png": {
+      "sha256": "2414da918d51aec4c0c0dfae4bd145d7bc8b4ff73c8cac7cc51ebc17b5c52f90",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-04.png": {
+      "sha256": "abbeac7d9117ef210ca11b65960337de6b25560b7e0a3eb8c2ee4c197126ad53",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-05.png": {
+      "sha256": "cdd50129a3d2f137ad593293b459bb8c41cb3d36ce0a3382500a200574997c1e",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-06.png": {
+      "sha256": "c5a4ca1fb5696ff36216cd170965c53fb7db49933304b48d879dc3ede22246ee",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-07.png": {
+      "sha256": "0c46b9307e4577661d16275234c09c0b8740c93d174642cf03337977b2cb0354",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-08.png": {
+      "sha256": "2e5dcc39224a3838753378ba14c0fe87eca274dc6b51da128e211921cca16878",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-09.png": {
+      "sha256": "cf42008a6b565be352fbef5ead1268c468c9e7c6da49cbc3434cf9a8cf012fa3",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-10.png": {
+      "sha256": "19f531200e179dfcd33d1578ced31e05a7b8c5ea040e8f02822197cf93427175",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-11.png": {
+      "sha256": "51e31a59260d0692b97732a62d3c22e5b102326e5c6ac5af2550202daad6a2a4",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-12.png": {
+      "sha256": "7dace969ea7496a3ca4086c5bb0778c3097b4a252cb81f991c9e15cf76ece2f2",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-13.png": {
+      "sha256": "fbe1745677e8789062acb7c2c69e66e19ad21e48623f3129155b7fae6cefdcc1",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-14.png": {
+      "sha256": "4dad91bf824ae562cf8563531587eb2ddd7ecbb52314f1022228510f31203425",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-15.png": {
+      "sha256": "40223feaf6eec3d220c6dff96ac18c4a23f1ccbe37b3c7bec8b190e0f3f3e923",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "source-contacts/contact-16.png": {
+      "sha256": "45cc17b4845f91ae8d7bd8cda144cefc5a43745e9949024a3903eddd7164bff5",
+      "actor": "assistant-view_image",
+      "scope": "prior opened contact sheet, reusable only if PNG bytes and pictured asset hashes remain current"
+    },
+    "contacts/contact-26.png": {
+      "sha256": "a476ead151e9e019d54a95a41d00eadc3943bb43a5d96a0fdb9d5c009964296b",
+      "actor": "parent Codex /root",
+      "scope": "Actual10 final contact PNGs opened independently; per-ID remarks and exact asset hashes in parent-contact-review.json"
+    }
+  }
+}

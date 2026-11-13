@@ -1,0 +1,1037 @@
+{
+  "rows": [
+    {
+      "afterMixedHeap": 57686123,
+      "afterModuleHeap": 25000117,
+      "afterPreviewHeap": 57686123,
+      "beforeHeap": 25000117,
+      "families": 4,
+      "firstDecodePaintMs": 1.3999999985098839,
+      "firstFigureMs": 18.69999999552965,
+      "images": [
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 78.70000000298023,
+      "moduleMs": 48.20000000298023,
+      "name": "baseline",
+      "preview20Ms": 18.5,
+      "resource": {
+        "decodedBodySize": 6063867,
+        "encodedBodySize": 6063867,
+        "transferSize": 6064167
+      },
+      "sampledPeakHeap": 57686123,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 12997866,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "inline",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 214085558,
+      "afterModuleHeap": 60101481,
+      "afterPreviewHeap": 249241855,
+      "beforeHeap": 35750811,
+      "families": 4,
+      "firstDecodePaintMs": 1.3000000044703484,
+      "firstFigureMs": 15.099999994039536,
+      "images": [
+        {
+          "complete": true,
+          "height": 257,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 168,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 168,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 168,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 180,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 213,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 150,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 246,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 128,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 195,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 149,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 212,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 267
+        },
+        {
+          "complete": true,
+          "height": 262,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 146,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 177,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 142,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 243,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 102,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 143,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 473.19999999552965,
+      "moduleMs": 53.600000001490116,
+      "name": "current",
+      "preview20Ms": 62,
+      "resource": {
+        "decodedBodySize": 11629629,
+        "encodedBodySize": 11629629,
+        "transferSize": 11629929
+      },
+      "sampledPeakHeap": 248084746,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 31637956,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "inline",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 302561330,
+      "afterModuleHeap": 259686156,
+      "afterPreviewHeap": 268796385,
+      "beforeHeap": 259686156,
+      "families": 64,
+      "firstDecodePaintMs": 1.5,
+      "firstFigureMs": 20.299999997019768,
+      "images": [
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 3316.9000000059605,
+      "moduleMs": 21.700000002980232,
+      "name": "baseline",
+      "preview20Ms": 47.399999998509884,
+      "resource": {
+        "decodedBodySize": 6063867,
+        "encodedBodySize": 6063867,
+        "transferSize": 6064167
+      },
+      "sampledPeakHeap": 327081178,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 19481864,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "registered-mixed",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 174869422,
+      "afterModuleHeap": 90668995,
+      "afterPreviewHeap": 174869422,
+      "beforeHeap": 71612245,
+      "families": 64,
+      "firstDecodePaintMs": 1.1999999955296516,
+      "firstFigureMs": 16.80000000447035,
+      "images": [
+        {
+          "complete": true,
+          "height": 186,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 195,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 175,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 224
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 220
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 255
+        },
+        {
+          "complete": true,
+          "height": 229,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 224,
+          "width": 279
+        },
+        {
+          "complete": true,
+          "height": 224,
+          "width": 279
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 218
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 245,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 99.80000000447035,
+      "moduleMs": 53.29999999701977,
+      "name": "current",
+      "preview20Ms": 36.899999998509884,
+      "resource": {
+        "decodedBodySize": 11629629,
+        "encodedBodySize": 11629629,
+        "transferSize": 11629929
+      },
+      "sampledPeakHeap": 174869422,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 41382896,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "registered-mixed",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 180392791,
+      "afterModuleHeap": 101666582,
+      "afterPreviewHeap": 180392791,
+      "beforeHeap": 101666582,
+      "families": 64,
+      "firstDecodePaintMs": 1.2999999970197678,
+      "firstFigureMs": 14.600000001490116,
+      "images": [
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 165.40000000596046,
+      "moduleMs": 25.899999998509884,
+      "name": "baseline",
+      "preview20Ms": 25,
+      "resource": {
+        "decodedBodySize": 6063867,
+        "encodedBodySize": 6063867,
+        "transferSize": 6064167
+      },
+      "sampledPeakHeap": 180392791,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 19481864,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "registered-grouped",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 167154783,
+      "afterModuleHeap": 97791743,
+      "afterPreviewHeap": 201536509,
+      "beforeHeap": 97791743,
+      "families": 64,
+      "firstDecodePaintMs": 1.2999999970197678,
+      "firstFigureMs": 12.800000004470348,
+      "images": [
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 245,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 96.60000000149012,
+      "moduleMs": 43,
+      "name": "current",
+      "preview20Ms": 12.399999998509884,
+      "resource": {
+        "decodedBodySize": 11629629,
+        "encodedBodySize": 11629629,
+        "transferSize": 11629929
+      },
+      "sampledPeakHeap": 167154783,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 41382896,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "registered-grouped",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 194268461,
+      "afterModuleHeap": 125645696,
+      "afterPreviewHeap": 194268461,
+      "beforeHeap": 125645696,
+      "families": 68,
+      "firstDecodePaintMs": 1.5,
+      "firstFigureMs": 13.5,
+      "images": [
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 2430.10000000149,
+      "moduleMs": 23.69999999552965,
+      "name": "baseline",
+      "preview20Ms": 25.799999997019768,
+      "resource": {
+        "decodedBodySize": 6063867,
+        "encodedBodySize": 6063867,
+        "transferSize": 6064167
+      },
+      "sampledPeakHeap": 249096490,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 18373994,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "all-mixed",
+      "worksheetItems": 2000
+    },
+    {
+      "afterMixedHeap": 196253596,
+      "afterModuleHeap": 133848231,
+      "afterPreviewHeap": 196253596,
+      "beforeHeap": 133848231,
+      "families": 68,
+      "firstDecodePaintMs": 1.2000000029802322,
+      "firstFigureMs": 15.5,
+      "images": [
+        {
+          "complete": true,
+          "height": 186,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 195,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 175,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 224
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 220
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 255
+        },
+        {
+          "complete": true,
+          "height": 229,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 224,
+          "width": 279
+        },
+        {
+          "complete": true,
+          "height": 224,
+          "width": 279
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 227
+        },
+        {
+          "complete": true,
+          "height": 280,
+          "width": 218
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 248,
+          "width": 280
+        },
+        {
+          "complete": true,
+          "height": 245,
+          "width": 280
+        }
+      ],
+      "missing": 0,
+      "mixed2000Ms": 161.59999999403954,
+      "moduleMs": 42.29999999701977,
+      "name": "current",
+      "preview20Ms": 34.30000000447035,
+      "resource": {
+        "decodedBodySize": 11629629,
+        "encodedBodySize": 11629629,
+        "transferSize": 11629929
+      },
+      "sampledPeakHeap": 196253596,
+      "scope": "cold unique module import from uncompressed localhost server, actual figureFirstSvg and 20 image decodes; sampled JS heap if exposed, no forced GC, no deployed/mobile claim",
+      "totalSvgChars": 38870899,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.7871.250 Safari/537.36",
+      "workload": "all-mixed",
+      "worksheetItems": 2000
+    }
+  ],
+  "sha256": {
+    "src/lib/arithmetic-v2/presentation/engineFigures.ts": "3f2a49b12417340d2a50248f5c04eef2cb8d46b8431448735c4ed36858c3abe5",
+    "src/lib/arithmetic-v2/presentation/engine-figures-v1.json": "ba9ec5eb49bb8dfa0592c1af96b84b81c4607abf4499d23d5b773f9ad6249fef",
+    "src/lib/arithmetic-v2/presentation/engine-inline-v1.json": "9321fe702de3643955a93fdf1ece059376873509353b28f45826be726393a6c6",
+    "src/lib/arithmetic-v2/presentation/typography.ts": "d0a3a9c37522ce013e4ae27569ca978899376bb9aa348b9f39a90f1ad5b7f043",
+    "src/lib/arithmetic-v2/presentation/engine-typography-v1.json": "92e6f3b41fcd39b0010f636ef1fbf503da3cd8fc62cdbcaf48948ddc92d71ec7",
+    "scripts/qa/arithmetic-figure-quality/browser-benchmark.js": "f9961e3b285409e775584f2abba00785786083c018ad85bbaa54a39d7569a104",
+    "scripts/qa/arithmetic-figure-quality/performance-baseline.mjs": "3cd0efde24dbc304cb8d514500a70000dadee272f0d9f6b57bf4003773aa416a",
+    "scripts/qa/arithmetic-figure-quality/performance-current.mjs": "e9a0e9079b9da55b735f76560cd6410ad018b02ef4b1e9cbecce3b1d06a8e205"
+  },
+  "protocol": "One fresh navigation per cell, unique cold module URL; 2000 identical unique workload inputs baseline/current, actual figureFirstSvg with typography, first and20 real image decodes",
+  "limitations": [
+    "one trial per workload/implementation",
+    "uncompressed localhost transfer, no deployed/mobile/whole Next bundle claim",
+    "browser-reported heap may be coarse/quantized; not RSS or isolated retained heap",
+    "baseline bd759237b84070b51fa444caf69e955bc574d026 same exported facade"
+  ]
+}

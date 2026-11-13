@@ -1,0 +1,531 @@
+{
+  "assetSha256": "ba9ec5eb49bb8dfa0592c1af96b84b81c4607abf4499d23d5b773f9ad6249fef",
+  "auditSha256": "0e55778c012ee7996e4777108f34014d2146d8f15118a2c0452522566cf39a2e",
+  "totals": {
+    "variants": 26693,
+    "requested": 54714,
+    "fitted": 54088,
+    "actualOmissions": 626,
+    "rejectedAttempts": 10008
+  },
+  "selected": [
+    {
+      "id": "gt1-m2-circum-equal-radii-10",
+      "family": "m2-circum-equal-radii",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "OA=10 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "OB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "OA=10 cm"
+      ],
+      "svgSha256": "98a9d706b091f7dc20d764ae5e52489dd4a96444ba0e1e530c3624c2b690a4f3"
+    },
+    {
+      "id": "gt1-m2-right-circumradius-2",
+      "family": "m2-right-circumradius",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "OB=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "OB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "OB=x cm"
+      ],
+      "svgSha256": "6513092fdbe5cbe6a7ec0c5c1553404637f70d210135f0ac8659e7a6a7658d5c"
+    },
+    {
+      "id": "gt1-m2-right-circum-diameter-2",
+      "family": "m2-right-circum-diameter",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "OB=2 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "OB=2 cm"
+      ],
+      "svgSha256": "d97364daf2eb0f04d6e86fb1494e84478fffbdbd5c02a4528e06f0fc454fbf51"
+    },
+    {
+      "id": "gt1-m2-centroid-short-from-vertex-10",
+      "family": "m2-centroid-short-from-vertex",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AG=10 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "GD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AG=10 cm"
+      ],
+      "svgSha256": "ebea3bc30034f933ed7250411ec80082354294544c2c767a44950297d8ff66cb"
+    },
+    {
+      "id": "gt1-m2-centroid-vertex-from-median-2",
+      "family": "m2-centroid-vertex-from-median",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=2 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AG",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=2 cm"
+      ],
+      "svgSha256": "ebed750befd4af123323ba6d33427637ffe1c9d5035112c4012681bf83de1754"
+    },
+    {
+      "id": "gt1-m2-centroid-short-from-median-2",
+      "family": "m2-centroid-short-from-median",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=2 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "GD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=2 cm"
+      ],
+      "svgSha256": "ebea3bc30034f933ed7250411ec80082354294544c2c767a44950297d8ff66cb"
+    },
+    {
+      "id": "gt1-m2-centroid-median-from-vertex-10",
+      "family": "m2-centroid-median-from-vertex",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=x cm",
+        "AG=10 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 2
+      },
+      "target": {
+        "key": "AD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=x cm",
+        "AG=10 cm"
+      ],
+      "svgSha256": "ee26758cc538676547f3c78a50ce2b449147747ef1e5ec3e01d5cdb22f009fb5"
+    },
+    {
+      "id": "gt1-m2-centroid-median-from-short-2",
+      "family": "m2-centroid-median-from-short",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=x cm"
+      ],
+      "svgSha256": "8e083259bba8eeb52419139b5d0617c5f6e3f1e4a645c643aa8b90ead83bd4ff"
+    },
+    {
+      "id": "gt1-m2-iso-bisector-base-2",
+      "family": "m2-iso-bisector-base",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "BD=2 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1,
+        "earlierDimension": 1
+      },
+      "target": {
+        "key": "BC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "BD=2 cm"
+      ],
+      "svgSha256": "f73e36d960dfd61ce1247f8f8a92c0e2b4200af15a456c604e766b4ff1046ffe"
+    },
+    {
+      "id": "gt1-m2-iso-bisector-half-base-2",
+      "family": "m2-iso-bisector-half-base",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "BD=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1,
+        "earlierDimension": 1
+      },
+      "target": {
+        "key": "BD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "BD=x cm"
+      ],
+      "svgSha256": "47c78aeb475727742316eb8a11dd28a7f604c2f5874f93784a846723c88cbab6"
+    },
+    {
+      "id": "gt1-m2-parallelogram-diagonal-half-2",
+      "family": "m2-parallelogram-diagonal-half",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=2 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AO",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=2 cm"
+      ],
+      "svgSha256": "3ac3936b758e5e892a7092b8d5ba7a792dea30edcc48457f78e32968af3617c4"
+    },
+    {
+      "id": "gt1-m2-parallelogram-diagonal-whole-2",
+      "family": "m2-parallelogram-diagonal-whole",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=x cm"
+      ],
+      "svgSha256": "f15c35548662affe06ff45fa9194ecab02d7fd43c14299633dad079a5fe2c282"
+    },
+    {
+      "id": "gt1-m2-rectangle-diagonal-half-2",
+      "family": "m2-rectangle-diagonal-half",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=2 cm",
+        "BO=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 2
+      },
+      "target": {
+        "key": "BO",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=2 cm",
+        "BO=x cm"
+      ],
+      "svgSha256": "385427a8db534efc01b23a3db2c5fb0353db2ca1b45cb096023902572cb205e2"
+    },
+    {
+      "id": "gt1-m2-pythagoras-rhombus-side-integer-3-4",
+      "family": "m2-pythagoras-rhombus-side-integer",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=6 cm",
+        "BD=8 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 2
+      },
+      "target": {
+        "key": "AB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=6 cm",
+        "BD=8 cm"
+      ],
+      "svgSha256": "91f7165acb9eb9574a38cfa941c22f8d821f9095fcb5871c14706763ea7ec984"
+    },
+    {
+      "id": "gt1-m3-pythagoras-rectangle-diagonal-surd-3-9",
+      "family": "m3-pythagoras-rectangle-diagonal-surd",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=x cm"
+      ],
+      "svgSha256": "eb7fe35fc1d20556e26350b0a38c16de33cec9cb23a3248cfa446002c7a76f1f"
+    },
+    {
+      "id": "gt1-m3-pythagoras-rectangle-side-surd-4-11",
+      "family": "m3-pythagoras-rectangle-side-surd",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=11 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "BC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=11 cm"
+      ],
+      "svgSha256": "f2e20fbe022a38f2a91ab70a9e7e9b2d8620f035470304745ca6b652137cd5b2"
+    },
+    {
+      "id": "gt1-m3-pythagoras-isosceles-height-surd-3-9",
+      "family": "m3-pythagoras-isosceles-height-surd",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "AD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=x cm"
+      ],
+      "svgSha256": "ba91022ac7b403b6d1839f0f5355173fa51a09496ef440113907e7a73077792f"
+    },
+    {
+      "id": "gt1-m3-pythagoras-rhombus-side-surd-3-3",
+      "family": "m3-pythagoras-rhombus-side-surd",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AC=6 cm",
+        "BD=6 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 2
+      },
+      "target": {
+        "key": "AB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AC=6 cm",
+        "BD=6 cm"
+      ],
+      "svgSha256": "964d3c38e5025bf119b2f289d2e28a4450a1971d5e9f79d989e818a319791025"
+    },
+    {
+      "id": "gt1-m2-right-radius-from-legs-3-4",
+      "family": "m2-right-radius-from-legs",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "OB=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "OB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "OB=x cm"
+      ],
+      "svgSha256": "daaa8a2d0bf688da60569f62fc08253ef3a3a5fec0897c33db74dabbae6ac02d"
+    },
+    {
+      "id": "gt1-m2-right-triangle-height-3-4",
+      "family": "m2-right-triangle-height",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "BD=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "BD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "BD=x cm"
+      ],
+      "svgSha256": "3d1be57b8095d582cbab8736b7cae7372fd090626b6a2a5a2cb30d8471107439"
+    },
+    {
+      "id": "gt1-m2-right-altitude-product-2-2",
+      "family": "m2-right-altitude-product",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "BD=x cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1
+      },
+      "target": {
+        "key": "BD",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "BD=x cm"
+      ],
+      "svgSha256": "807eca22715787b7adfb2f0f4e2ca947e9082ec1d3aff243c8a6cb860c5ed936"
+    },
+    {
+      "id": "gt1-m3-right-leg-product-2-4",
+      "family": "m3-right-leg-product",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "AD=4 cm"
+      ],
+      "reasonComponents": {
+        "earlierDimension": 1
+      },
+      "target": {
+        "key": "AB",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "AD=4 cm"
+      ],
+      "svgSha256": "7fdc0bb576ac661e793db37f9389d1611a86425106d088a40cee5ef4d4eff402"
+    },
+    {
+      "id": "gt1-m2-external-bisector-base-0-3",
+      "family": "m2-external-bisector-base",
+      "severity": "explicit-dimension-exception",
+      "conditions": [
+        "BD=56 cm"
+      ],
+      "reasonComponents": {
+        "geometry": 1,
+        "earlierDimension": 1
+      },
+      "target": {
+        "key": "BC",
+        "text": "x",
+        "kind": "segment",
+        "dimension": true
+      },
+      "allSharedOptionsTried": true,
+      "lines": [
+        "BD=56 cm"
+      ],
+      "svgSha256": "57d284d1f305047b7d3649c8b0622050c22c6f2c420d2c5c595e980fddfb9e8a"
+    }
+  ],
+  "scope": "One maximum-omission representative per residual family; actual final typed projection at280px max extent, sharp/librsvg. Captions are review annotations, not product UI; no Chromium/print approval."
+}

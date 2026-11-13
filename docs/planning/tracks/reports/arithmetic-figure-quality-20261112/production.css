@@ -1,0 +1,804 @@
+/* src/components/print/TestPrint.module.css */
+.TestPrint_previewShell {
+  min-height: 100vh;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  padding: 24px 28px 64px;
+}
+.TestPrint_previewToolbar {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  width: min(100%, 1000px);
+  margin: 0 auto 28px;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius);
+  background: var(--learn-surface);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  font-family:
+    var(--font-pretendard),
+    Pretendard,
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    sans-serif;
+  box-shadow: 0 6px 18px rgb(23 43 77 / 5%);
+}
+.TestPrint_previewToolbar h1 {
+  margin: 2px 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.TestPrint_previewToolbar p {
+  margin: 0;
+  color: var(--learn-muted);
+  font-size: 14px;
+}
+.TestPrint_previewEyebrow {
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.TestPrint_toolbarActions,
+.TestPrint_modeSwitch {
+  display: flex;
+  align-items: center;
+}
+.TestPrint_toolbarActions {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.TestPrint_modeSwitch button,
+.TestPrint_printButton,
+.TestPrint_backLink {
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.TestPrint_modeSwitch button {
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+}
+.TestPrint_modeSwitch {
+  gap: 6px;
+}
+.TestPrint_modeSwitch button[aria-pressed=true] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+.TestPrint_backLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--learn-ink);
+}
+.TestPrint_previewToolbar :is(button, a):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+.TestPrint_previewToolbar :is(button:not(:disabled), a):hover {
+  border-color: var(--learn-accent);
+}
+.TestPrint_printButton:enabled:hover {
+  background: var(--learn-accent-hover);
+  color: #fff;
+}
+.TestPrint_printButton {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+.TestPrint_printButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.TestPrint_printError {
+  grid-column: 1 / -1;
+  color: var(--learn-danger) !important;
+  font-weight: 700;
+}
+.TestPrint_printWarning {
+  grid-column: 1 / -1;
+  color: var(--learn-warning);
+  font-weight: 600;
+}
+.TestPrint_pageGallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.TestPrint_a4Page {
+  width: var(--a4-width);
+  height: var(--a4-height);
+  flex: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--paper-warm);
+  color: var(--paper-ink);
+  font-family: var(--paper-font-serif);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 25%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.TestPrint_jaseupFirst,
+.TestPrint_jaseupContinuation,
+.TestPrint_answerPage {
+  display: flex;
+  flex-direction: column;
+}
+.TestPrint_jaseupFirst {
+  padding: 36px 50px 20px;
+}
+.TestPrint_jaseupContinuation {
+  padding: 24px 50px 20px;
+}
+.TestPrint_firstHeader {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+.TestPrint_academyName,
+.TestPrint_englishLabel,
+.TestPrint_todayGoal,
+.TestPrint_studentMeta,
+.TestPrint_continuationHeader,
+.TestPrint_answerBlank,
+.TestPrint_scratchPad span,
+.TestPrint_pageFooter,
+.TestPrint_answerEyebrow,
+.TestPrint_answerHeader > span,
+.TestPrint_quickAnswerBox h3,
+.TestPrint_quickAnswerCell,
+.TestPrint_answerFooter {
+  font-family: var(--paper-font-sans);
+}
+.TestPrint_academyName {
+  color: var(--paper-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+.TestPrint_englishLabel {
+  color: var(--paper-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  margin: 3px 0 4px;
+}
+.TestPrint_testTitle {
+  margin: 0;
+  color: var(--paper-ink);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.TestPrint_todayGoal {
+  margin-top: 4px;
+  color: #3a3a40;
+  font-size: 11px;
+}
+.TestPrint_studentMeta {
+  flex: none;
+  min-width: 190px;
+  text-align: right;
+}
+.TestPrint_dateLabel {
+  color: #6b6b72;
+  font-size: 9.5px;
+}
+.TestPrint_dateValue {
+  font-family: var(--paper-font-serif);
+  font-size: 14px;
+  font-weight: 700;
+}
+.TestPrint_nameLine {
+  margin-top: 8px;
+  color: #3a3a40;
+  font-size: 11px;
+}
+.TestPrint_continuationHeader {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--paper-gold);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  font-size: 11px;
+  color: #6b6b72;
+}
+.TestPrint_continuationHeader span:first-child {
+  color: var(--paper-ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.TestPrint_conceptBox {
+  flex: none;
+  border: 1px solid var(--paper-gold);
+  border-left-width: 5px;
+  background: var(--paper-color);
+  margin-bottom: 18px;
+  padding: 12px 16px;
+}
+.TestPrint_conceptTitle {
+  margin: 0 0 6px;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+.TestPrint_conceptText {
+  color: #1f1f23;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.TestPrint_problemList {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.TestPrint_problemItem {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 14px;
+  border-bottom: 1px dashed #d4d4d8;
+  padding-bottom: 14px;
+}
+.TestPrint_problemItem + .TestPrint_problemItem {
+  padding-top: 14px;
+}
+.TestPrint_descriptiveItem {
+  display: block;
+  flex: none;
+  border-bottom: 0;
+}
+.TestPrint_questionArea {
+  min-width: 0;
+}
+.TestPrint_questionNumber {
+  color: var(--paper-gold);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.TestPrint_essayBadge {
+  margin-left: 8px;
+  padding: 2px 6px;
+  border: 1px solid var(--paper-gold);
+  border-radius: 2px;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  vertical-align: 2px;
+}
+.TestPrint_problemCodeBadge {
+  margin-left: 8px;
+  color: #6b6b72;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.TestPrint_problemText {
+  color: var(--paper-ink);
+  font-family: var(--paper-font-serif);
+  font-size: 12.5px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.TestPrint_paperParity {
+  width: calc((210mm - 100px - 14px) * 1.15 / 2.15);
+  flex: none;
+  color: var(--paper-ink);
+  font-family: var(--paper-font-serif);
+  overflow-x: auto;
+  padding-block: 0.6em;
+}
+.TestPrint_answerBlank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d4d4d8;
+  background: var(--paper-warm);
+  margin-top: 8px;
+  padding: 6px 10px;
+  color: #6b6b72;
+  font-size: 10px;
+}
+.TestPrint_answerBlank strong {
+  color: var(--paper-gold);
+  font-size: 11px;
+}
+.TestPrint_answerLine {
+  height: 16px;
+  flex: 1;
+  border-bottom: 1px solid #a0a0a8;
+}
+.TestPrint_checkBox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #a0a0a8;
+}
+.TestPrint_scratchPad {
+  position: relative;
+  min-height: 100px;
+  border: 1px solid #d4d4d8;
+  background-color: var(--paper-color);
+  background-image:
+    linear-gradient(#e8e8eb 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      #e8e8eb 1px,
+      transparent 1px);
+  background-size: 16px 16px;
+}
+.TestPrint_scratchPad span {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: #a0a0a8;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.TestPrint_pageFooter {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: #6b6b72;
+  font-size: 10px;
+}
+.TestPrint_pageFooter strong {
+  color: var(--paper-gold);
+  letter-spacing: 0.12em;
+}
+.TestPrint_memoLine {
+  height: 1px;
+  flex: 1;
+  border-bottom: 1px dashed #a0a0a8;
+}
+.TestPrint_answerPage {
+  padding: 36px 50px 20px;
+}
+.TestPrint_answerHeader {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 2px solid var(--paper-gold);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+}
+.TestPrint_answerEyebrow {
+  color: var(--paper-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 4px;
+}
+.TestPrint_answerHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.TestPrint_answerHeader > span {
+  color: #6b6b72;
+  font-size: 11px;
+}
+.TestPrint_quickAnswerBox {
+  break-inside: avoid;
+  border: 1px solid var(--paper-gold);
+  background: var(--paper-color);
+  margin-bottom: 14px;
+  padding: 8px 10px;
+}
+.TestPrint_quickAnswerBox h3 {
+  margin: 0 0 6px;
+  color: var(--paper-gold);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+.TestPrint_quickAnswerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+.TestPrint_quickAnswerCell {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px;
+  background: var(--paper-warm);
+  padding: 4px 6px 3px;
+  overflow: visible;
+  font-size: 10.5px;
+  line-height: 1.6;
+}
+.TestPrint_quickAnswerCell strong {
+  flex: none;
+  color: var(--paper-gold);
+  font-size: 10px;
+}
+.TestPrint_answerSolutions {
+  min-height: 0;
+  flex: 1;
+  column-gap: 2rem;
+  column-rule: 1px solid #e8e8eb;
+  overflow: hidden;
+  padding-top: 0.6em;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.TestPrint_solutionItem {
+  break-inside: avoid;
+  margin-bottom: 14px;
+  overflow: visible;
+}
+.TestPrint_solutionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 800;
+  margin-bottom: 2px;
+  padding-top: 0.35em;
+  line-height: 1.8;
+  overflow: visible;
+}
+.TestPrint_solutionProblemCode {
+  color: #6b6b72;
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.TestPrint_solutionAnswerRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 4px;
+  font-weight: 700;
+  color: var(--paper-ink);
+  font-size: 11.5px;
+}
+.TestPrint_solutionAnswerLabel {
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.TestPrint_solutionHeading .katex,
+.TestPrint_solutionAnswerRow .katex,
+.TestPrint_quickAnswerCell .katex {
+  overflow: visible;
+}
+.TestPrint_solutionBody {
+  border-left: 2px solid var(--paper-gold);
+  color: #3a3a40;
+  padding-left: 10px;
+  font-size: 11.5px;
+}
+.TestPrint_answerFooter {
+  flex: none;
+  border-top: 1px solid #d4d4d8;
+  color: #6b6b72;
+  padding-top: 6px;
+  text-align: right;
+  font-size: 10px;
+}
+@media screen and (max-width: 860px) {
+  .TestPrint_previewShell {
+    padding-inline: 16px;
+  }
+  .TestPrint_previewToolbar {
+    position: static;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .TestPrint_pageGallery {
+    width: 100%;
+    overflow-x: auto;
+    align-items: flex-start;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  .TestPrint_previewShell {
+    min-height: 0;
+    background: #fff;
+    padding: 0;
+  }
+  .TestPrint_previewToolbar {
+    display: none;
+  }
+  .TestPrint_pageGallery {
+    display: block;
+    outline: none;
+  }
+  .TestPrint_a4Page {
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+  }
+  .TestPrint_a4Page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
+
+/* src/components/arithmetic/ArithmeticPaper.module.css */
+.ArithmeticPaper_scaled {
+  width: calc(794px * var(--paper-strip-scale, 1));
+  height: calc(1123px * var(--paper-strip-scale, 1));
+}
+.ArithmeticPaper_page {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm;
+  display: flex;
+  flex-direction: column;
+  color: var(--paper-ink);
+  background: var(--paper-color);
+  font-family: var(--paper-font-sans);
+  transform: scale(var(--paper-strip-scale, 1));
+  transform-origin: top left;
+  margin: 0;
+  box-sizing: border-box;
+}
+.ArithmeticPaper_head {
+  min-height: 30mm;
+  border-bottom: 0.3mm solid var(--paper-ink);
+  padding-bottom: 4mm;
+}
+.ArithmeticPaper_head small {
+  font-size: 10pt;
+}
+.ArithmeticPaper_head h2 {
+  font-size: 18pt;
+  line-height: 1.4;
+  margin: 3mm 0;
+  overflow-wrap: anywhere;
+}
+.ArithmeticPaper_head h2.ArithmeticPaper_longTitle {
+  font-size: 14pt;
+}
+.ArithmeticPaper_head p {
+  font-size: 10pt;
+  margin: 0;
+}
+.ArithmeticPaper_questions {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  gap: 2mm 5mm;
+  margin-top: 5mm;
+  flex: 1;
+  min-height: 0;
+}
+.ArithmeticPaper_item {
+  display: flex;
+  align-items: flex-start;
+  gap: 3mm;
+  font-size: 19pt;
+  min-width: 0;
+  padding-top: 1mm;
+}
+.ArithmeticPaper_item b {
+  font: 9pt var(--paper-font-sans);
+  min-width: 4mm;
+  padding-top: 1mm;
+  color: #3a3a40;
+}
+.ArithmeticPaper_horizontal {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  gap: 0.15em;
+  font-family: var(--paper-font-serif, Georgia, serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ArithmeticPaper_blank {
+  display: inline-block;
+  width: 1.5em;
+  border-bottom: 0.2mm solid currentColor;
+  height: 1.15em;
+}
+.ArithmeticPaper_vertical {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 3.3em;
+  text-align: right;
+  font: inherit;
+  font-family: var(--paper-font-serif, Georgia, serif);
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1.3;
+}
+.ArithmeticPaper_vertical > span {
+  display: block;
+  position: relative;
+  padding: 0 0.15em 0 0.8em;
+}
+.ArithmeticPaper_vertical i {
+  position: absolute;
+  left: 0.05em;
+  font-style: normal;
+}
+.ArithmeticPaper_verticalBlank {
+  border-top: 0.2mm solid currentColor;
+  height: 1em;
+  margin-top: 0.1em;
+}
+.ArithmeticPaper_questions[data-density="24"] .ArithmeticPaper_item {
+  font-size: 15pt;
+}
+.ArithmeticPaper_questions[data-density="40"] .ArithmeticPaper_item {
+  font-size: 12pt;
+  gap: 2mm;
+}
+.ArithmeticPaper_answers {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: 8mm;
+  gap: 1mm 3mm;
+  margin-top: 7mm;
+  font-size: 12pt;
+}
+.ArithmeticPaper_answers > div {
+  display: flex;
+  gap: 3mm;
+}
+.ArithmeticPaper_answers b {
+  min-width: 5mm;
+  font: 9pt var(--paper-font-sans);
+  color: #3a3a40;
+  padding-top: 1mm;
+}
+.ArithmeticPaper_foot {
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 0.2mm solid #a0a0a8;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9pt;
+}
+@media print {
+  .ArithmeticPaper_scaled {
+    width: 210mm;
+    height: 297mm;
+    break-after: page;
+  }
+  .ArithmeticPaper_scaled:last-child {
+    break-after: auto;
+  }
+  .ArithmeticPaper_page {
+    transform: none;
+    box-shadow: none;
+    border: 0;
+    margin: 0;
+  }
+}
+
+/* src/components/arithmetic/GradeArithmeticPaper.module.css */
+.GradeArithmeticPaper_expression {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+  min-width: 0;
+  max-width: 100%;
+}
+.GradeArithmeticPaper_projected {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.GradeArithmeticPaper_instruction {
+  font: 9pt/1.4 var(--paper-font-sans, sans-serif);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.GradeArithmeticPaper_vertical {
+  align-self: flex-start;
+}
+.GradeArithmeticPaper_formula {
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  min-width: 0;
+}
+.GradeArithmeticPaper_answerSpace {
+  width: 4em;
+  min-height: 0.5em;
+  border-bottom: 0.2mm solid currentColor;
+}
+.GradeArithmeticPaper_questions .GradeArithmeticPaper_expression {
+  font-size: 15pt;
+}
+.GradeArithmeticPaper_questions[data-density="24"] {
+  row-gap: 1mm;
+}
+.GradeArithmeticPaper_questions[data-density="24"] .GradeArithmeticPaper_expression {
+  font-size: 13pt;
+}
+.GradeArithmeticPaper_questions[data-density="24"] .GradeArithmeticPaper_instruction {
+  font-size: 8pt;
+}
+.GradeArithmeticPaper_questions[data-density="24"] .GradeArithmeticPaper_answerSpace {
+  min-height: 0.25em;
+}
+.GradeArithmeticPaper_answers {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 12mm;
+  font-size: 11pt;
+}
+.GradeArithmeticPaper_answers > div {
+  min-width: 0;
+  align-items: center;
+}
+.GradeArithmeticPaper_groupInstruction {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* src/components/arithmetic/GradeArithmeticPrompt.module.css */
+.GradeArithmeticPrompt_prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+  font-weight: 400;
+}
+.GradeArithmeticPrompt_figure {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.GradeArithmeticPrompt_blank {
+  display: inline-block;
+  width: 3em;
+  border-bottom: 1px solid currentColor;
+}
+.GradeArithmeticPrompt_givens {
+  width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

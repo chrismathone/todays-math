@@ -1,0 +1,15 @@
+{
+  "variants": 26693,
+  "families": 68,
+  "reorderedPrompts": 24474,
+  "rejectedMutations": 2239,
+  "pointOwners": 82428,
+  "failures": [],
+  "sourceAndAssets": {
+    "src/lib/arithmetic-v2/presentation/engineFigures.ts": "3f2a49b12417340d2a50248f5c04eef2cb8d46b8431448735c4ed36858c3abe5",
+    "src/lib/arithmetic-v2/presentation/engine-figures-v1.json": "ba9ec5eb49bb8dfa0592c1af96b84b81c4607abf4499d23d5b773f9ad6249fef",
+    "src/lib/arithmetic-v2/presentation/engine-inline-v1.json": "9321fe702de3643955a93fdf1ece059376873509353b28f45826be726393a6c6"
+  },
+  "stableDuringRead": true,
+  "scope": "actual TS decoder against fresh completed offline compiler proofs; no browser, print or performance approval"
+}

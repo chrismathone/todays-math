@@ -1,0 +1,17 @@
+--- compiled-b501-figure_scene.py
++++ final-ordinary-compatible-figure_scene.py
+@@ -1980 +1980 @@
+-                                               self.style.halo_width, self.label_metrics):
++                                               self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None):
+@@ -1984 +1984 @@
+-                            anchor, (x, y), angle.label, fs, self.style.halo_width, self.label_metrics))
++                            anchor, (x, y), angle.label, fs, self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None))
+@@ -2660 +2660 @@
+-                                self.style.angle_font_size, self.style.halo_width, self.label_metrics)))
++                                self.style.angle_font_size, self.style.halo_width, self.label_metrics if self.style.clear_angle_labels else None)))
+@@ -2917 +2917 @@
+-                                       style.angle_font_size, style.halo_width, self.label_metrics):
++                                       style.angle_font_size, style.halo_width, self.label_metrics if self.style.clear_angle_labels else None):
+@@ -2921 +2921 @@
+-                (ax, ay), (lx, ly), label_text, style.angle_font_size, style.halo_width, self.label_metrics)
++                (ax, ay), (lx, ly), label_text, style.angle_font_size, style.halo_width, self.label_metrics if self.style.clear_angle_labels else None)

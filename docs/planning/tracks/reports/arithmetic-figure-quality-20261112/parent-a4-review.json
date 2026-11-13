@@ -1,0 +1,53 @@
+{
+  "time": "2026-11-13T18:17:15.590907+00:00",
+  "actor": "root coordinator independent view_image inspection of all four final A4 raster pages",
+  "manifest": {
+    "actualComponents": [
+      "GradeArithmeticExpression",
+      "arithmeticToStudioProblems",
+      "gradeArithmeticPaperPages",
+      "A4Page",
+      "NativeProblem"
+    ],
+    "catalogItems": 12,
+    "PDFPages": 4,
+    "PDFPageSize": "A4",
+    "printMethod": "Orca embedded Chromium PDF; all4 pages rasterized by Poppler and opened with view_image",
+    "PDFSHA256": "2d1279ae7790aaa385bdbfbe4a5726f31054d72868b70804a02e8262ca897cb6",
+    "pages": [
+      {
+        "file": "production-page-1.png",
+        "sha256": "760d1dd857a6e7ceb157e7b6c8406914a2c45bc0d8323371e60a1e9a20e4efaa",
+        "openedWith": "view_image",
+        "dpi": 120
+      },
+      {
+        "file": "production-page-2.png",
+        "sha256": "9f4536ef0ffc76319dcced2b6561a6dc71f60d80c5630eded1f3ecbdd626f394",
+        "openedWith": "view_image",
+        "dpi": 120
+      },
+      {
+        "file": "production-page-3.png",
+        "sha256": "cd7dbec59e46631aeb8a01579977c83eb9f021108f2b4e093ca8ed2a29359602",
+        "openedWith": "view_image",
+        "dpi": 120
+      },
+      {
+        "file": "production-page-4.png",
+        "sha256": "9a699dcc0275bd46e43a82314ccf35d4207d2d3acd56bf3e1a4810b169a53e08",
+        "openedWith": "view_image",
+        "dpi": 120
+      }
+    ],
+    "limits": "No physical printer, deployed browser or student learning outcome claim"
+  },
+  "observations": [
+    "Page1: both diagonal-midpoint trapezoids carry correct equality/parallel marks, explicit base dimensions and x target; ratio trapezoid preserves AE:EB=1:2 prose; right triangle carries x,9cm,3cm and right-angle marker.",
+    "Page2: compound overview/detail views preserve tan/sin/area givens outside SVG, partial long sides terminate without fake vertex labels; captions, target and cm labels are readable. The worst overview remains thin but the enlarged local view disambiguates its vertices.",
+    "Page3: sine area condition retained; rectangle displays AC=2cm and BO=xcm as explicit prose residuals; external-bisector condition BD=56cm retained; existing thin area diagram 2cm label is visibly smaller but readable in this 120dpi rendering. This does not establish print legibility for every candidate.",
+    "Page4: 12 numbered answers, units and radicals present. Independent spot calculations: trapezoids3cm/1cm/11over3cm, right triangle6sqrt2cm, tan cases24cm each, area cases1over4cm/44cm, sine1over72, rectangle1cm, external bisector21cm, area10cm2 match displayed answer key."
+  ],
+  "confirmedNewVisualDefects": [],
+  "limits": "Actual production-component fixture rendered with embedded Chromium and rasterized at120dpi by lead; parent opened preserved images, did not physically print. This is12 fixture items, not visual approval of every diagram or deployed route."
+}

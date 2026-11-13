@@ -18,6 +18,13 @@ import { TRIG_FIGURE_FIRST } from "./figureFirstTrig";
 import { TRIANGLE_FIGURE_FIRST } from "./figureFirstTriangles";
 import { ANNOTATED_FIGURE_FIRST } from "./figureFirstAnnotated";
 import { ELEMENTARY_FIGURE_FIRST } from "./figureFirstElementary";
+import {
+  arithmeticEngineInlineSvg,
+  arithmeticEngineInlineLines,
+  arithmeticEngineFigureSvg,
+  arithmeticEngineFigureLines,
+  arithmeticEngineOwnsType,
+} from "./engineFigures";
 
 /** Figure-first drills (owner, 2026-10-15 for 내심·외심, 2026-10-16 for the
  * units where a figure is the natural statement): the figure carries every
@@ -82,7 +89,15 @@ export function figureFirstLines(
     math = mathPrompt(prompt);
   if (!family || !math) return [];
   const parsed = family.parse(math);
-  return parsed === undefined ? [] : (family.lines?.(math, parsed) ?? []);
+  return parsed === undefined
+    ? []
+    : [
+        ...(family.lines?.(math, parsed) ?? []),
+        ...arithmeticEngineInlineLines(typeId, math),
+        ...(math.figureId && !Object.hasOwn(TRIANGLE_FIGURE_FIRST, typeId)
+          ? arithmeticEngineFigureLines(math.figureId)
+          : []),
+      ];
 }
 
 /** The pre-typeset figure: redrawn from the prompt, or the family's laid-out
@@ -100,11 +115,18 @@ export function figureFirstDrawing(
   if (Boolean(math.figureId) !== (canonical !== undefined)) return undefined;
   const parsed = family.parse(math);
   if (parsed === undefined) return undefined;
+  if (arithmeticEngineOwnsType(typeId))
+    return math.figureId
+      ? arithmeticEngineFigureSvg(math.figureId, canonical)
+      : arithmeticEngineInlineSvg(typeId, math);
   const laidOut =
     canonical === undefined
       ? undefined
       : arithmeticGeometryLaidOutSvg(math.figureId!, canonical);
-  return family.draw(math, parsed, laidOut, canonical);
+  return (
+    arithmeticEngineInlineSvg(typeId, math) ??
+    family.draw(math, parsed, laidOut, canonical)
+  );
 }
 
 /** The display figure (typeset), or undefined when the problem keeps prose. */
@@ -121,15 +143,20 @@ export function figureFirstSvg(
   if (parsed === undefined) return undefined;
   try {
     return presentArithmeticFigureFirstSvg(
-      math.figureId ?? `figure-first:${typeId}:${math.latex}`,
+      math.figureId ?? `figure-first:${typeId}:${JSON.stringify(math)}`,
       canonical ?? "",
       (laidOut, original) =>
-        family.draw(
-          math,
-          parsed,
-          canonical === undefined ? undefined : laidOut,
-          canonical === undefined ? undefined : original,
-        ),
+        arithmeticEngineOwnsType(typeId)
+          ? math.figureId
+            ? arithmeticEngineFigureSvg(math.figureId, canonical)
+            : arithmeticEngineInlineSvg(typeId, math)
+          : family.draw(
+              math,
+              parsed,
+              canonical === undefined ? undefined : laidOut,
+              canonical === undefined ? undefined : original,
+            ),
+      { skipLayout: arithmeticEngineOwnsType(typeId) },
     );
   } catch {
     // A placement failure must degrade to the prose presentation, never 500.

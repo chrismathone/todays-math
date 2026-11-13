@@ -12,13 +12,20 @@ import {
 import { TRIANGLE_FIGURE_FIRST } from "@/lib/arithmetic-v2/presentation/figureFirstTriangles";
 import { MIDDLE_FIGURE_POLICY } from "@/lib/arithmetic-v2/presentation/figurePolicyMiddle";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
+import { hasArithmeticEngineFigure } from "@/lib/arithmetic-v2/presentation/engineFigures";
 
 const labels = (svg: string) =>
   [
-    ...svg.matchAll(
-      /<text[^>]*data-drill-label="([^"]+)"[^>]*>([^<]*)<\/text>/g,
-    ),
-  ].map((m) => [m[1], m[2]] as const);
+    ...new DOMParser()
+      .parseFromString(svg, "image/svg+xml")
+      .querySelectorAll("text"),
+  ].map(
+    (el) =>
+      [
+        el.getAttribute("data-drill-label") ?? "engine",
+        el.getAttribute("data-mj") ?? el.textContent ?? "",
+      ] as const,
+  );
 const typeIds = Object.keys(TRIANGLE_FIGURE_FIRST);
 
 describe("figure-first gt1 families (피타고라스 · 닮음 · 평행선 · 사각형 · 외심 · 무게중심)", () => {
@@ -58,19 +65,34 @@ describe("figure-first gt1 families (피타고라스 · 닮음 · 평행선 · �
         expect(svg, id).not.toBe(canonical);
         const found = labels(svg!);
         const lines = figureFirstLines(typeId, prompt).join(" ");
+        const engine = hasArithmeticEngineFigure(id);
         for (const m of prompt.text.matchAll(/∠([A-Z]{3})=(\d+)°/g))
           if (m[2] !== "90")
-            expect(found, id).toContainEqual([`angle-${m[1]}`, `${m[2]}°`]);
+            expect(
+              found.some(
+                ([key, value]) =>
+                  value === `${m[2]}°` && (engine || key === `angle-${m[1]}`),
+              ),
+              id,
+            ).toBe(true);
         for (const m of prompt.text.matchAll(
           /(?<![A-Z+])([A-Z]{2})(?:=([A-Z]{2}))?=(\d+) cm(?!²)/g,
         ))
           for (const key of [m[1], m[2]].filter(Boolean))
             if (!lines.includes(`${key}=`))
-              expect(found, id).toContainEqual([`segment-${key}`, m[3]]);
+              expect(
+                found.some(([name, value]) =>
+                  engine
+                    ? value === `${m[3]} cm`
+                    : name === `segment-${key}` && value === m[3],
+                ),
+                id,
+              ).toBe(true);
         expect(
-          found.filter(([, text]) => text === "x"),
+          found.filter(([, text]) => text === "x" || text === "x cm").length +
+            (lines.match(/=x cm/g)?.length ?? 0),
           id,
-        ).toHaveLength(wantsX ? 1 : 0);
+        ).toBe(wantsX ? 1 : 0);
         expect(TRIANGLE_GEOMETRY_FIGURES[id], id).toBe(saved);
         expect(arithmeticGeometryCatalogSvg(id), id).toBe(canonical);
         const presentation = arithmeticFigurePresentation(prompt, typeId);
@@ -82,20 +104,35 @@ describe("figure-first gt1 families (피타고라스 · 닮음 · 평행선 · �
     expect(variants).toBe(1718);
   });
 
-  it("keeps crowded diagonal givens as one line and names a whole-segment target in the instruction", () => {
-    const rhombus = getArithmeticV2Definition(
-      "m2-pythagoras-rhombus-side-integer",
-    ).problemAt(0);
-    expect(
-      figureFirstLines("m2-pythagoras-rhombus-side-integer", rhombus.prompt),
-    ).toEqual(["AC=6 cm, BD=8 cm"]);
-    const whole = getArithmeticV2Definition(
-      "m2-parallel-triangle-whole-side",
-    ).problemAt(0);
-    expect(
-      figureFirstLines("m2-parallel-triangle-whole-side", whole.prompt),
-    ).toEqual([]);
-    expect(figureFirstGroupInstruction("m2-parallel-triangle-whole-side")).toBe(
+  it("attempts crowded diagonal dimensions, retains any refused condition and identifies a whole-segment target", () => {
+    const typeId = "m2-pythagoras-rhombus-side-integer";
+    const rhombus = getArithmeticV2Definition(typeId).problemAt(0);
+    if (rhombus.prompt.layout !== "math") throw Error();
+    const rhombusSvg = figureFirstDrawing(
+      typeId,
+      rhombus.prompt,
+      arithmeticGeometryCatalogSvg(rhombus.prompt.figureId!),
+    )!;
+    const kept = figureFirstLines(typeId, rhombus.prompt).join(" ");
+    for (const [key, value] of [
+      ["AC", "6"],
+      ["BD", "8"],
+    ])
+      expect(
+        kept.includes(`${key}=${value} cm`) ||
+          rhombusSvg.includes(`data-mj="${value} cm"`),
+      ).toBe(true);
+    const wholeType = "m2-parallel-triangle-whole-side";
+    const whole = getArithmeticV2Definition(wholeType).problemAt(0);
+    if (whole.prompt.layout !== "math") throw Error();
+    const wholeSvg = figureFirstDrawing(
+      wholeType,
+      whole.prompt,
+      arithmeticGeometryCatalogSvg(whole.prompt.figureId!),
+    )!;
+    expect(wholeSvg).toContain('stroke-width="2.6"');
+    expect(wholeSvg).not.toContain('data-mj="x cm"');
+    expect(figureFirstGroupInstruction(wholeType)).toBe(
       "다음 그림에서 DE∥BC일 때, AC의 길이를 구하세요.",
     );
     const area = getArithmeticV2Definition("m2-right-triangle-area").problemAt(
@@ -108,7 +145,7 @@ describe("figure-first gt1 families (피타고라스 · 닮음 · 평행선 · �
         (area.prompt as { figureId: string }).figureId,
       ),
     )!;
-    expect(svg).not.toContain('data-drill-label="D"');
+    expect(svg).not.toContain('data-mj="D"');
     expect(svg).not.toContain('data-segment="BD"');
   });
 
@@ -123,7 +160,13 @@ describe("figure-first gt1 families (피타고라스 · 닮음 · 평행선 · �
       arithmeticGeometryCatalogSvg(prompt.figureId!),
     )!;
     expect(display).toContain("arithmetic-geometry-presentation-v1");
-    expect(display).toContain('data-original-label="x"');
+    expect(display).toMatch(/data-original-label="x"|data-mj="x cm"/);
+    // Italic x and roman cm are baked MathJax paths, not native font hints.
+    const target = new DOMParser()
+      .parseFromString(display, "image/svg+xml")
+      .querySelector('g[data-label="x cm"]');
+    expect(target?.querySelector("path")).toBeTruthy();
+    expect(target?.querySelector("text,tspan")).toBeNull();
     expect(figureFirstSvg("m3-pythagoras-leg-surd", prompt)).toBeUndefined();
   });
 });

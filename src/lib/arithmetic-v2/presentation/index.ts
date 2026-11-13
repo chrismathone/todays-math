@@ -77,6 +77,7 @@ export function presentArithmeticFigureFirstSvg(
   id: string,
   originalSvg: string,
   compose: (laidOut: string, canonical: string) => string | undefined,
+  options: { skipLayout?: boolean } = {},
 ): string | undefined {
   const cached = figureFirstDisplays.get(id);
   if (cached?.original === originalSvg) {
@@ -84,7 +85,9 @@ export function presentArithmeticFigureFirstSvg(
     figureFirstDisplays.set(id, cached);
     return cached.display;
   }
-  const laidOut = arithmeticGeometryLaidOutSvg(id, originalSvg);
+  const laidOut = options.skipLayout
+    ? originalSvg
+    : arithmeticGeometryLaidOutSvg(id, originalSvg);
   const composed = compose(laidOut, originalSvg);
   if (composed === undefined) return undefined;
   const display = typesetArithmeticGeometrySvg(composed, {

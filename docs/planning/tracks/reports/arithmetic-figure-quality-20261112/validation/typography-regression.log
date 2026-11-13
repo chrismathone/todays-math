@@ -1,0 +1,16 @@
+✔ exact editor glyph paths, metrics, anchors and baseline for representative math (68.866333ms)
+✔ physical units are roman, uppercase points roman, lowercase variables italic (0.236416ms)
+✔ mixed CJK stays visible; roman quantities, fractions and powers use editor paths (0.738625ms)
+✔ retains rotations, inherited/style layout, original accessibility and dimensions (0.276958ms)
+✔ normalizer is display-only and preserves source wording metadata (0.121917ms)
+✔ unknown, unsupported positioned spans and already typed engine content remain unchanged (2.194958ms)
+✔ XML entities, halos and markup in callback cannot produce active SVG (0.215625ms)
+✔ all 17k current figures retain canonical bytes; every mathematical span is covered (1372.548166ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4865.961959
