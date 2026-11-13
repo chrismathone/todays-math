@@ -117,6 +117,37 @@ describe("arithmetic type preview on hover", () => {
     expect(screen.queryByRole("tooltip")).toBeNull();
   });
 
+  it("opens the next card when pointer movement arrives before the old preview effect is cleaned up", async () => {
+    render(<Catalog />);
+    const first = screen.getByRole("button", { name: numeric.title });
+    const next = screen.getByRole("button", { name: figure.title });
+    fireEvent.pointerEnter(first, { pointerType: "mouse" });
+    act(() => vi.advanceTimersByTime(300));
+    expect(screen.getByRole("tooltip")).toHaveTextContent(numeric.title);
+
+    // A browser can deliver the whole transition before React flushes effects.
+    act(() => {
+      fireEvent.pointerOut(first, {
+        pointerType: "mouse",
+        relatedTarget: next,
+      });
+      fireEvent.pointerOver(next, {
+        pointerType: "mouse",
+        relatedTarget: first,
+      });
+      fireEvent.pointerMove(next, { pointerType: "mouse" });
+    });
+    act(() => vi.advanceTimersByTime(300));
+    await settleExample();
+    expect(screen.getByRole("tooltip")).toHaveTextContent(figure.title);
+    expect(screen.getByRole("tooltip").querySelector("img")).not.toBeNull();
+    expect(first).not.toHaveAttribute("aria-describedby");
+    expect(next).toHaveAttribute(
+      "aria-describedby",
+      screen.getByRole("tooltip").id,
+    );
+  });
+
   it("closes when the pointer is seen off the card or the card leaves the document", () => {
     const { rerender } = render(<Catalog />);
     const card = screen.getByRole("button", { name: numeric.title });
@@ -135,6 +166,28 @@ describe("arithmetic type preview on hover", () => {
     });
     expect(screen.getByRole("tooltip")).toBeInTheDocument();
     rerender(<div />);
+    expect(screen.queryByRole("tooltip")).toBeNull();
+  });
+
+  it("cancels a pending card transition when the pointer continues outside", () => {
+    render(<Catalog />);
+    const first = screen.getByRole("button", { name: numeric.title });
+    const next = screen.getByRole("button", { name: figure.title });
+    fireEvent.pointerEnter(first, { pointerType: "mouse" });
+    act(() => vi.advanceTimersByTime(300));
+    act(() => {
+      fireEvent.pointerOut(first, {
+        pointerType: "mouse",
+        relatedTarget: next,
+      });
+      fireEvent.pointerOver(next, {
+        pointerType: "mouse",
+        relatedTarget: first,
+      });
+      fireEvent.pointerMove(next, { pointerType: "mouse" });
+      fireEvent.pointerMove(document.body, { pointerType: "mouse" });
+    });
+    act(() => vi.advanceTimersByTime(300));
     expect(screen.queryByRole("tooltip")).toBeNull();
   });
 

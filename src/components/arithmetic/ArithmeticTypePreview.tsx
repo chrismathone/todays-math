@@ -76,10 +76,12 @@ export function useArithmeticTypePreview() {
   const tooltipId = useId();
   const [state, setState] = useState<ArithmeticTypePreviewState>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingElement = useRef<HTMLElement | null>(null);
   const keyboard = useRef(false);
   const clear = () => {
     if (timer.current) clearTimeout(timer.current);
     timer.current = null;
+    pendingElement.current = null;
   };
   const close = useCallback(() => {
     clear();
@@ -87,8 +89,10 @@ export function useArithmeticTypePreview() {
   }, []);
   const openLater = (typeId: string, element: HTMLElement) => {
     clear();
+    pendingElement.current = element;
     timer.current = setTimeout(() => {
       timer.current = null;
+      pendingElement.current = null;
       setState({
         typeId,
         anchor: element.getBoundingClientRect(),
@@ -127,7 +131,9 @@ export function useArithmeticTypePreview() {
     // never fires pointerleave: close as soon as the pointer is seen anywhere
     // off the card, or the card itself has left the document.
     const off = (event: Event) => {
-      const { element } = state;
+      // A move to another card can arrive before this old effect is removed.
+      // Respect that card's pending opening instead of cancelling its timer.
+      const element = pendingElement.current ?? state.element;
       if (
         !element.isConnected ||
         !(event.target instanceof Node) ||
