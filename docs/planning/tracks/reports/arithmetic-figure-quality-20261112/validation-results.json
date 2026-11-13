@@ -61,5 +61,31 @@
     "Independent source/assets review is separate from final report/evidence review",
     "Nominal font-size is not glyph ink height or a universal readability guarantee",
     "Remaining626 dimension conditions in451IDs are explicit layout exceptions, not graphic quality passes"
-  ]
+  ],
+  "configuredPreCommitPipeline": {
+    "sourceCommit": "bf699425c0928b1c617e8f18fc93647e6c8e85ea",
+    "initialGeneratedHookWrappersAbsent": true,
+    "initialBypassFlagsUsed": false,
+    "existingConfiguredHooksPath": ".husky/_",
+    "recovery": "Initialized only the ignored wrapper files from already installed Husky9.1.7; existing hooksPath string unchanged, no dependency/environment-file changes",
+    "actualConfiguredPipeline": [
+      "node",
+      "node_modules/lint-staged/bin/lint-staged.js",
+      "--diff",
+      "HEAD^..HEAD",
+      "--concurrent",
+      "false",
+      "--fail-on-changes",
+      "--verbose"
+    ],
+    "pipelineConfiguration": "lint-staged.config.mjs",
+    "pipelineExitCode": 0,
+    "typescriptFiles": 18,
+    "eslintFixPassed": true,
+    "prettierWritePassed": true,
+    "changedTrackedFilesAfterPipeline": false,
+    "evidence": "validation/lint-staged-final.log",
+    "receiptCommitPolicy": "Normal generated Git hook enabled, no bypass flags; metadata-only receipt follows source commit",
+    "scope": "Actual whole source-commit diff, including10QA and8production/unit TS files; all engineering/asset bytes unchanged"
+  }
 }
