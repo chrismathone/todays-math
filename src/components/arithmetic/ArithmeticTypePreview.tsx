@@ -76,12 +76,12 @@ export function useArithmeticTypePreview() {
   const tooltipId = useId();
   const [state, setState] = useState<ArithmeticTypePreviewState>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pendingElement = useRef<HTMLElement | null>(null);
+  const anchorElement = useRef<HTMLElement | null>(null);
   const keyboard = useRef(false);
   const clear = () => {
     if (timer.current) clearTimeout(timer.current);
     timer.current = null;
-    pendingElement.current = null;
+    anchorElement.current = null;
   };
   const close = useCallback(() => {
     clear();
@@ -89,10 +89,11 @@ export function useArithmeticTypePreview() {
   }, []);
   const openLater = (typeId: string, element: HTMLElement) => {
     clear();
-    pendingElement.current = element;
+    anchorElement.current = element;
     timer.current = setTimeout(() => {
       timer.current = null;
-      pendingElement.current = null;
+      // Keep the requested anchor until close/leave, including while React is
+      // committing this state and the previous card's effect still exists.
       setState({
         typeId,
         anchor: element.getBoundingClientRect(),
@@ -108,32 +109,35 @@ export function useArithmeticTypePreview() {
   useEffect(() => {
     // Focus opens the preview only when it came from the keyboard; a click
     // focuses the card too, and the preview must not reappear under it.
-    const key = () => {
+    const key = (event: KeyboardEvent) => {
       keyboard.current = true;
+      if (event.key === "Escape") close();
     };
     const pointer = () => {
       keyboard.current = false;
     };
     document.addEventListener("keydown", key, true);
     document.addEventListener("pointerdown", pointer, true);
+    // These must cancel a first opening too, before a tooltip state exists.
+    window.addEventListener("scroll", close, { capture: true, passive: true });
+    window.addEventListener("resize", close);
     return () => {
       clear();
       document.removeEventListener("keydown", key, true);
       document.removeEventListener("pointerdown", pointer, true);
+      window.removeEventListener("scroll", close, { capture: true });
+      window.removeEventListener("resize", close);
     };
-  }, []);
+  }, [close]);
   useEffect(() => {
     if (!state) return;
-    const dismiss = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
-    };
     // A filter change re-renders the grid under a still pointer, so the card
     // never fires pointerleave: close as soon as the pointer is seen anywhere
     // off the card, or the card itself has left the document.
     const off = (event: Event) => {
       // A move to another card can arrive before this old effect is removed.
-      // Respect that card's pending opening instead of cancelling its timer.
-      const element = pendingElement.current ?? state.element;
+      // Respect the latest requested anchor until React commits its state.
+      const element = anchorElement.current ?? state.element;
       if (
         !element.isConnected ||
         !(event.target instanceof Node) ||
@@ -141,15 +145,9 @@ export function useArithmeticTypePreview() {
       )
         close();
     };
-    window.addEventListener("scroll", close, { capture: true, passive: true });
-    window.addEventListener("resize", close);
-    document.addEventListener("keydown", dismiss, true);
     document.addEventListener("pointerover", off, true);
     document.addEventListener("pointermove", off, true);
     return () => {
-      window.removeEventListener("scroll", close, { capture: true });
-      window.removeEventListener("resize", close);
-      document.removeEventListener("keydown", dismiss, true);
       document.removeEventListener("pointerover", off, true);
       document.removeEventListener("pointermove", off, true);
     };

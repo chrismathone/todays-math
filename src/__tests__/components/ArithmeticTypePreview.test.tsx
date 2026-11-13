@@ -191,6 +191,47 @@ describe("arithmetic type preview on hover", () => {
     expect(screen.queryByRole("tooltip")).toBeNull();
   });
 
+  it.each(["Escape", "scroll", "resize"])(
+    "cancels the first preview before it opens on %s",
+    (action) => {
+      render(<Catalog />);
+      const card = screen.getByRole("button", { name: numeric.title });
+      fireEvent.pointerEnter(card, { pointerType: "mouse" });
+      act(() => vi.advanceTimersByTime(100));
+      if (action === "Escape") fireEvent.keyDown(document, { key: action });
+      else fireEvent(window, new Event(action));
+      act(() => vi.advanceTimersByTime(300));
+      expect(screen.queryByRole("tooltip")).toBeNull();
+      expect(card).not.toHaveAttribute("aria-describedby");
+    },
+  );
+
+  it("keeps the next anchor when its timer fires before React commits the transition", async () => {
+    render(<Catalog />);
+    const first = screen.getByRole("button", { name: numeric.title });
+    const next = screen.getByRole("button", { name: figure.title });
+    fireEvent.pointerEnter(first, { pointerType: "mouse" });
+    act(() => vi.advanceTimersByTime(300));
+    act(() => {
+      fireEvent.pointerOut(first, {
+        pointerType: "mouse",
+        relatedTarget: next,
+      });
+      fireEvent.pointerOver(next, {
+        pointerType: "mouse",
+        relatedTarget: first,
+      });
+      vi.advanceTimersByTime(300);
+      fireEvent.pointerMove(next, { pointerType: "mouse" });
+    });
+    await settleExample();
+    expect(screen.getByRole("tooltip")).toHaveTextContent(figure.title);
+    expect(next).toHaveAttribute(
+      "aria-describedby",
+      screen.getByRole("tooltip").id,
+    );
+  });
+
   it("nests no block element inside a paragraph (hydration-safe markup)", async () => {
     render(<Catalog />);
     fireEvent.pointerEnter(screen.getByRole("button", { name: figure.title }), {
