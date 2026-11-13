@@ -107,6 +107,8 @@ production.tsx는 메모리 sheet를 만들고 동결 snapshot으로 정상 재�
 
 기존 산술 8파일/62테스트 통과 후 compact 자산 변경에 해당하는 3파일/17개 중 새 조건문 테스트의 잘못된 빈 prose 기대를 고쳤다. 공개 tan/넓이/sin 조건은 유지하고 engine의 dimension residual을 별도로 검사한다. 교정된 파일 5개 테스트와 나머지 2파일의 12개가 통과했다. 기존 MathJax 회귀 8개, 공유 dimension/marker 검사와 변경 없는 frozen28/16개, Python dimension 7개·detail 3개·leader 3개가 통과했다. 필요한 focused TypeScript(Next의 실제 CSS module 선언 포함)와 변경 production/unit ESLint도 통과했다. 의미 있는 mutation은 잘못된 leader metrics/contained-chord 검사를 실제 실패시켰다. 전체 Next production build와 무관한 전체 테스트 반복은 하지 않았다. 최초 forks startup timeout은 threads 재실행으로 해소했고 최종 성공으로 숨기지 않는다.
 
+전용 checkout에 기존 hooksPath는 있었지만 생성된 Husky wrapper가 없어 첫 source commit에서 Git 자동 훅은 실행되지 않았다. 우회 옵션은 사용하지 않았다. 이미 설치된 Husky 9.1.7의 무시되는 로컬 wrapper만 초기화하고, **같은 source commit 전체 diff**에 실제 lint-staged 설정을 `--fail-on-changes`로 실행했다. QA 10개와 production/unit 8개 TS 파일의 eslint --fix / prettier --write가 모두 변경 없이 통과했다([훅 기록](hook-validation.json), [실행 로그](validation/lint-staged-final.log)). 최종 기록은 정상 Git 훅을 켠 후속 커밋으로 남겼다. 의존성·환경 파일·기존 hook 경로 값은 바꾸지 않았다.
+
 [초기](review-initial.md)·[중간](review-staged.md)·[source delta](review-source-delta.md)·[최종 고정 소스/자산](review-stable-final-assets.md) 독립 Codex 리뷰를 보존한다. sanitizer 속성, 64개 비 조건 누락, 부분 pack 게시, 가짜 출력 크기, clamp, fallback 집계와 cache churn 등 도입/확인된 actionable 사항을 교정했다. 최종 source/assets 검토는 새 P1/P2가 없었고 P3 명목 font-size와 ink 높이 용어를 바로잡았다. [최종 증거·보고서 독립 검토](review-final-evidence.md)는 173개 해시, 92,596개 관측, 42개 접촉판과 PDF 전 페이지의 재렌더 digest를 대조하고 전후 이미지·네 A4 페이지를 직접 읽어 **명시된 범위와 한계 안에서 승인**했다. 새 actionable P1/P2는 없으며 source 승인도 유지한다. 부모 main UI 통합은 이 승인의 별도 범위다.
 
 ```sh
