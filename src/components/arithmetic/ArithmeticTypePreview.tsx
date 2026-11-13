@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useId,
@@ -13,8 +15,24 @@ import { createPortal } from "react-dom";
 import type { ArithmeticV2CatalogEntry } from "@/lib/arithmetic-v2/types";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
-import { GradeArithmeticExpression } from "./GradeArithmeticPrompt";
+import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
 import s from "./ArithmeticTypePreview.module.css";
+
+// Keep the hook and closed tooltip independent of the catalog figure renderer.
+const PreviewExpression = lazy(() =>
+  import("./GradeArithmeticPrompt")
+    .then((module) => ({ default: module.GradeArithmeticExpression }))
+    .catch(() => ({ default: PreviewUnavailable })),
+);
+
+// A failed lazy import is cached for this page; recovery requires a refresh.
+function PreviewUnavailable() {
+  return (
+    <span role="alert">
+      예시를 불러오지 못했습니다. 페이지를 새로고침해 주세요.
+    </span>
+  );
+}
 
 /** One example problem beside the hovered catalog card (owner, 2026-10-16).
  * Mouse/pen hover and keyboard focus open it after a short delay; touch never
@@ -224,7 +242,16 @@ export function ArithmeticTypePreview({
         예시 · {type.domainSize.toLocaleString("ko-KR")}문항 중 1
       </div>
       <div className={s.body}>
-        <GradeArithmeticExpression prompt={type.example} typeId={type.id} />
+        {type.example.layout !== "math" ||
+        (!type.example.figureId && type.example.answerUnit === undefined) ? (
+          <NumericExpression prompt={type.example} />
+        ) : (
+          <Suspense
+            fallback={<span role="status">예시를 불러오는 중입니다.</span>}
+          >
+            <PreviewExpression prompt={type.example} typeId={type.id} />
+          </Suspense>
+        )}
       </div>
     </div>,
     document.body,

@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   ArithmeticTypePreview,
@@ -24,6 +31,17 @@ function Catalog() {
   );
 }
 
+// Exercise the real lazy import and renderer; only the interaction delay is faked.
+async function settleExample() {
+  vi.useRealTimers();
+  await waitFor(() =>
+    expect(
+      screen.getByRole("tooltip").querySelector('[aria-label="답란"]'),
+    ).not.toBeNull(),
+  );
+  vi.useFakeTimers();
+}
+
 describe("arithmetic type preview on hover", () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -32,7 +50,7 @@ describe("arithmetic type preview on hover", () => {
     vi.useRealTimers();
   });
 
-  it("shows one example problem after a short hover and hides on leave", () => {
+  it("shows a numeric example immediately after the hover delay and hides on leave", () => {
     render(<Catalog />);
     const card = screen.getByRole("button", { name: numeric.title });
     fireEvent.pointerEnter(card, { pointerType: "mouse" });
@@ -41,8 +59,11 @@ describe("arithmetic type preview on hover", () => {
       vi.advanceTimersByTime(300);
     });
     const tooltip = screen.getByRole("tooltip");
+    expect(within(tooltip).queryByRole("status")).toBeNull();
     expect(tooltip).toHaveTextContent(numeric.title);
     expect(tooltip).toHaveTextContent("예시");
+    expect(tooltip.querySelector(".katex")).not.toBeNull();
+    expect(tooltip.parentElement).toBe(document.body);
     expect(card).toHaveAttribute("aria-describedby", tooltip.id);
     fireEvent.pointerLeave(card, { pointerType: "mouse" });
     act(() => {
@@ -52,7 +73,7 @@ describe("arithmetic type preview on hover", () => {
     expect(card).not.toHaveAttribute("aria-describedby");
   });
 
-  it("renders the figure-first example with its figure", () => {
+  it("renders the figure-first example with its figure", async () => {
     render(<Catalog />);
     fireEvent.pointerEnter(screen.getByRole("button", { name: figure.title }), {
       pointerType: "mouse",
@@ -60,7 +81,15 @@ describe("arithmetic type preview on hover", () => {
     act(() => {
       vi.advanceTimersByTime(300);
     });
-    expect(screen.getByRole("tooltip").querySelector("img")).not.toBeNull();
+    const tooltip = screen.getByRole("tooltip");
+    expect(within(tooltip).getByRole("status")).toHaveTextContent(
+      "예시를 불러오는 중입니다.",
+    );
+    const card = screen.getByRole("button", { name: figure.title });
+    expect(card).toHaveAttribute("aria-describedby", tooltip.id);
+    await settleExample();
+    expect(screen.getByRole("tooltip")).toBe(tooltip);
+    expect(tooltip.querySelector("img")).not.toBeNull();
   });
 
   it("never opens for touch, and closes on pointer down and Escape", () => {
@@ -109,7 +138,7 @@ describe("arithmetic type preview on hover", () => {
     expect(screen.queryByRole("tooltip")).toBeNull();
   });
 
-  it("nests no block element inside a paragraph (hydration-safe markup)", () => {
+  it("nests no block element inside a paragraph (hydration-safe markup)", async () => {
     render(<Catalog />);
     fireEvent.pointerEnter(screen.getByRole("button", { name: figure.title }), {
       pointerType: "mouse",
@@ -117,18 +146,23 @@ describe("arithmetic type preview on hover", () => {
     act(() => {
       vi.advanceTimersByTime(300);
     });
+    await settleExample();
     expect(screen.getByRole("tooltip").querySelector("p div, p p")).toBeNull();
   });
 
-  it("opens on keyboard focus and closes on blur", () => {
+  it("opens on keyboard focus and closes on blur", async () => {
     render(<Catalog />);
-    const card = screen.getByRole("button", { name: numeric.title });
+    const card = screen.getByRole("button", { name: figure.title });
     fireEvent.keyDown(document, { key: "Tab" });
     act(() => card.focus());
     act(() => {
       vi.advanceTimersByTime(300);
     });
-    expect(screen.getByRole("tooltip")).toHaveTextContent(numeric.title);
+    await settleExample();
+    const tooltip = screen.getByRole("tooltip");
+    expect(tooltip).toHaveTextContent(figure.title);
+    expect(tooltip.querySelector("img")).not.toBeNull();
+    expect(card).toHaveAttribute("aria-describedby", tooltip.id);
     act(() => card.blur());
     act(() => {
       vi.advanceTimersByTime(300);
