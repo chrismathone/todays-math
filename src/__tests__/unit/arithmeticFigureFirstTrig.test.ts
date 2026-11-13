@@ -29,11 +29,13 @@ const prompts = (typeId: string) => {
   });
 };
 const labels = (svg: string) =>
-  [
-    ...svg.matchAll(
-      /<text[^>]*data-drill-label="([^"]+)"[^>]*>([^<]*)<\/text>/g,
-    ),
-  ].map((m) => [m[1], m[2]] as const);
+  [...svg.matchAll(/<text\b([^>]*)>([\s\S]*?)<\/text>/g)].map(
+    (m) =>
+      [
+        /data-drill-label="([^"]+)"/.exec(m[1])?.[1] ?? "engine",
+        /data-mj="([^"]+)"/.exec(m[1])?.[1] ?? m[2].replace(/<[^>]+>/g, ""),
+      ] as const,
+  );
 
 describe("figure-first trigonometry (중3 삼각비)", () => {
   it("names exactly the trigonometry types the figure can carry", () => {
@@ -70,15 +72,16 @@ describe("figure-first trigonometry (중3 삼각비)", () => {
       expect(svg, prompt.figureId).toBeDefined();
       const found = labels(svg!);
       const [t, k] = parameters;
-      expect(found, prompt.figureId).toContainEqual(["angle-CAB", `${t}°`]);
       expect(
-        found.some(([, text]) => text === String(k)),
+        found.some(([, text]) => text === `${t}°`),
         prompt.figureId,
       ).toBe(true);
       expect(
-        found.some(
-          ([name, text]) => name.startsWith("segment-") && text === "x",
-        ),
+        found.some(([, text]) => text === `${k} cm`),
+        prompt.figureId,
+      ).toBe(true);
+      expect(
+        found.some(([, text]) => text === "x cm"),
         prompt.figureId,
       ).toBe(true);
       expect(arithmeticGeometryCatalogSvg(prompt.figureId!)).toBe(canonical);
@@ -125,19 +128,23 @@ describe("figure-first trigonometry (중3 삼각비)", () => {
         const svg = figureFirstDrawing(typeId, prompt);
         expect(svg, prompt.latex).toBeDefined();
         const found = labels(svg!);
+        const lines = figureFirstLines(typeId, prompt);
         for (const m of prompt.latex.matchAll(
           /\\mathrm\{(AB|AC|BC)\}=(\d+)\\,/g,
         ))
-          expect(found, prompt.latex).toContainEqual([`segment-${m[1]}`, m[2]]);
+          expect(
+            found.some(([, text]) => text === `${m[2]} cm`) ||
+              lines.includes(`${m[1]}=${m[2]} cm`),
+            prompt.latex,
+          ).toBe(true);
         expect(
-          found.some(
-            ([name, text]) => name.startsWith("segment-") && text === "x",
-          ),
+          found.some(([, text]) => text === "x cm") ||
+            lines.some((line) => /^[A-Z]{2}=x cm$/.test(line)),
           prompt.latex,
         ).toBe(hasX);
-        expect(figureFirstLines(typeId, prompt), prompt.latex).toHaveLength(
-          lineCount,
-        );
+        expect(lines.length, prompt.latex).toBeGreaterThanOrEqual(lineCount);
+        for (const residual of lines.slice(lineCount))
+          expect(residual, prompt.latex).toMatch(/^[A-Z]{2}=(?:x|\d+) cm$/);
       }
       expect(all.length).toBeGreaterThan(1000);
     },
@@ -171,6 +178,6 @@ describe("figure-first trigonometry (중3 삼각비)", () => {
       );
     }
     const display = figureFirstSvg(type.id, type.example);
-    expect(display).toContain('data-original-label="x"');
+    expect(display).toMatch(/data-original-label="x"|data-mj="x cm"/);
   });
 });

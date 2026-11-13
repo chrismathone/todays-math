@@ -1,0 +1,65 @@
+{
+  "scope": "Focused deterministic checks; no Next production build or physical printer",
+  "arithmeticBeforeCompact": {
+    "files": 8,
+    "tests": 62,
+    "passed": true,
+    "evidence": "validation/arithmetic-measured-62.log"
+  },
+  "compactRelated": {
+    "files": [
+      "arithmeticEngineFigures.test.ts",
+      "arithmeticFigureFirstTriangles.test.ts",
+      "arithmeticFigureFirstTrig.test.ts"
+    ],
+    "initialFinalAssetResult": "16passed,1 newly authored assertion incorrectly expected all public prose empty",
+    "correction": "Keep public tan/area/sin conditions; assert engine dimension residual separately; target font-size regressions unchanged",
+    "correctedEngineTests": 5,
+    "passed": true,
+    "otherTwoUnchangedFilesTests": 12,
+    "otherTwoPassedWithFinalCompactAsset": true
+  },
+  "typescript": {
+    "entryFilesIncludingInstalledNextCSSDeclaration": 14,
+    "passed": true,
+    "evidence": "validation/typecheck-final.log"
+  },
+  "eslint": {
+    "changedProductionAndUnitFiles": 8,
+    "passed": true,
+    "evidence": "validation/eslint-final.log"
+  },
+  "python": {
+    "dimensions": 7,
+    "details": 3,
+    "leaders": 3,
+    "passed": true,
+    "mutation": "removing actual measured leader metrics fails all3 leader tests; contained-chord mutation fails dimension regressions"
+  },
+  "actualAllAssets": {
+    "structural": 46298,
+    "knownFrozenZeroLeaders": 3,
+    "browserObservations": 92596,
+    "rawEngineReplay": 26693,
+    "rawPointOwners": 82428,
+    "inlineActualSVGGeometry": 24474,
+    "compoundActualSVGInvariants": 2996,
+    "specialLengthPublicInvariants": 342,
+    "geometryFailures": 0
+  },
+  "reusedIndependentChecks": {
+    "parentFinalDecoder": "parent-compiled-replay.json",
+    "parentUniformPointScaling": "parent-compact-geometry.json",
+    "parentActualResidualLines": "parent-residual-public-lines.json",
+    "parentRawFinalPerformance": "decoder-performance-final.json",
+    "legacyPresentationSuites": "3files17tests at unchanged typography/extension hashes",
+    "sharedEditorRegression": "11tests at strict-equivalent vendor path",
+    "ordinaryFrozenBaseline": "Original28 fixture and original16tests unchanged; passed after compatibility guard"
+  },
+  "honestLimits": [
+    "Earlier forks startup timeout recovered with threads, not a final product failure",
+    "Independent source/assets review is separate from final report/evidence review",
+    "Nominal font-size is not glyph ink height or a universal readability guarantee",
+    "Remaining626 dimension conditions in451IDs are explicit layout exceptions, not graphic quality passes"
+  ]
+}

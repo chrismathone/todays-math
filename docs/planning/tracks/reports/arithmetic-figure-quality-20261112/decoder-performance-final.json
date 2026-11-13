@@ -1,0 +1,101 @@
+{
+  "sourceAndAssets": {
+    "src/lib/arithmetic-v2/presentation/engineFigures.ts": "3f2a49b12417340d2a50248f5c04eef2cb8d46b8431448735c4ed36858c3abe5",
+    "src/lib/arithmetic-v2/presentation/engine-figures-v1.json": "ba9ec5eb49bb8dfa0592c1af96b84b81c4607abf4499d23d5b773f9ad6249fef",
+    "src/lib/arithmetic-v2/presentation/engine-inline-v1.json": "9321fe702de3643955a93fdf1ece059376873509353b28f45826be726393a6c6"
+  },
+  "protocolSHA256": "b96882c10d7cbe00b72a254e3ced7d6cbf27852284b52f25c7734341d64f839f",
+  "stableDuringRuns": true,
+  "limits": [
+    "one final trial per workload; shared concurrent machine load can affect absolute timings",
+    "each workload is a fresh Node24.22.0 process, sequential,1GiB heap cap",
+    "exact same2000 input rows as parent cache4 comparison",
+    "public input preload and transpiler/FS coldness excluded",
+    "sampled JS heap with explicitGC,notRSS or true intracall peak",
+    "no typography,DOM,image,network,Next production or mobile claim"
+  ],
+  "inputs": {
+    "inline": {
+      "sha256": "2b16701c6613edd7661682179c0f8cdcd5e12268c0344f31599ad860be99ea06",
+      "items": 2000,
+      "families": 4,
+      "unique": 2000
+    },
+    "registered-mixed": {
+      "sha256": "1f0fbefebd8d9f1e139d937ba5cb1fd52b6245913b413f3d40d6bdad3fd9c63c",
+      "items": 2000,
+      "families": 64,
+      "unique": 2000
+    },
+    "registered-grouped": {
+      "sha256": "5a578185f66eb82ddea156beb8d3f56942d738088231ae873fa21ce23166356f",
+      "items": 2000,
+      "families": 64,
+      "unique": 2000
+    },
+    "all-mixed": {
+      "sha256": "62d2f5ebd694149e1a764ccc99b1c08009d922ebbe785f52cbe0f8546fe77a36",
+      "items": 2000,
+      "families": 68,
+      "unique": 2000
+    }
+  },
+  "results": {
+    "inline": {
+      "nodeVersion": "v24.22.0",
+      "workload": "inline",
+      "families": 4,
+      "initialModuleMs": 10.11137500000001,
+      "firstFigureMs": 1.1102910000000037,
+      "initialHeapDelta": 8954632,
+      "worksheetItems": 2000,
+      "worksheetMs": 237.05537500000003,
+      "svgCharsRead": 4557557,
+      "peakHeapDelta": 39524920,
+      "retainedHeapDelta": 10463648,
+      "source": "Node24 raw production decoder; public inputs preloaded, --expose-gc, no typography/DOM/network/Next build; sampled JS heap only"
+    },
+    "registered-mixed": {
+      "nodeVersion": "v24.22.0",
+      "workload": "registered-mixed",
+      "families": 64,
+      "initialModuleMs": 9.582250000000002,
+      "firstFigureMs": 1.1130830000000032,
+      "initialHeapDelta": 8971304,
+      "worksheetItems": 2000,
+      "worksheetMs": 35.03275000000001,
+      "svgCharsRead": 6479264,
+      "peakHeapDelta": 26277232,
+      "retainedHeapDelta": 20581280,
+      "source": "Node24 raw production decoder; public inputs preloaded, --expose-gc, no typography/DOM/network/Next build; sampled JS heap only"
+    },
+    "registered-grouped": {
+      "nodeVersion": "v24.22.0",
+      "workload": "registered-grouped",
+      "families": 64,
+      "initialModuleMs": 9.700999999999993,
+      "firstFigureMs": 1.1410840000000064,
+      "initialHeapDelta": 8970880,
+      "worksheetItems": 2000,
+      "worksheetMs": 40.31925,
+      "svgCharsRead": 6479264,
+      "peakHeapDelta": 26604344,
+      "retainedHeapDelta": 20549768,
+      "source": "Node24 raw production decoder; public inputs preloaded, --expose-gc, no typography/DOM/network/Next build; sampled JS heap only"
+    },
+    "all-mixed": {
+      "nodeVersion": "v24.22.0",
+      "workload": "all-mixed",
+      "families": 68,
+      "initialModuleMs": 11.347291999999996,
+      "firstFigureMs": 1.3657090000000096,
+      "initialHeapDelta": 8970888,
+      "worksheetItems": 2000,
+      "worksheetMs": 100.83570900000001,
+      "svgCharsRead": 6163428,
+      "peakHeapDelta": 42906024,
+      "retainedHeapDelta": 23223800,
+      "source": "Node24 raw production decoder; public inputs preloaded, --expose-gc, no typography/DOM/network/Next build; sampled JS heap only"
+    }
+  }
+}

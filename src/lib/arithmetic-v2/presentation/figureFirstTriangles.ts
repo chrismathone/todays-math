@@ -8,6 +8,11 @@ import {
   type Spec,
 } from "../families/geometryTriangles/core";
 import { defineFigureFirst, type FigureFirstFamily } from "./figureFirstTypes";
+import {
+  arithmeticEngineFigureSvg,
+  arithmeticEngineFigureLines,
+  hasArithmeticEngineFigure,
+} from "./engineFigures";
 
 /** gt1 families presented figure-first (owner, 2026-10-16). The canonical gt1
  * figure prints one given; here the same validated identity is redrawn with
@@ -198,6 +203,28 @@ function targetOf(target: string): Given | undefined {
   return undefined;
 }
 
+/** Offline engine input. The public statement is the authority for labels;
+ * the answer is deliberately excluded. Frozen gt1 models are never changed. */
+export function triangleFigureFirstPlan(
+  spec: Spec,
+  parameters: readonly number[],
+) {
+  const entry = entries[spec.key];
+  if (!entry) return undefined;
+  const task = spec.task(parameters);
+  entry.adjust?.(task.model);
+  return {
+    model: task.model,
+    // Existing prose-only exceptions must still be attempted by the engine.
+    givens: givensOf(task.text),
+    target: targetOf(task.target) && {
+      ...targetOf(task.target)!,
+      dimension: !entry.noTarget,
+    },
+    text: task.text,
+  };
+}
+
 function family(spec: Spec, entry: Entry): FigureFirstFamily {
   const typeId = typeIdOf(spec);
   const prefix = `gt1-${typeId}-`;
@@ -209,14 +236,27 @@ function family(spec: Spec, entry: Entry): FigureFirstFamily {
         ? rows.get(prompt.figureId.slice(prefix.length))
         : undefined,
     lines: (prompt, parameters) => {
-      if (!entry.proseGivens?.length) return [];
+      const engineLines = arithmeticEngineFigureLines(prompt.figureId!);
+      // A drawing's proportions never replace an explicitly supplied ratio.
+      const ratios = [
+        ...spec
+          .task(parameters)
+          .text.matchAll(/([A-Z]{2}):([A-Z]{2})=(\d+):(\d+)/g),
+      ].map((m) => `${m[1]}:${m[2]}=${m[3]}:${m[4]}`);
+      if (
+        hasArithmeticEngineFigure(prompt.figureId!) ||
+        !entry.proseGivens?.length
+      )
+        return [...ratios, ...engineLines];
       const line = givensOf(spec.task(parameters).text)
         .filter((given) => entry.proseGivens!.includes(given.key))
         .map((given) => `${given.key}=${given.text} cm`)
         .join(", ");
-      return line ? [line] : [];
+      return [...(line ? [line] : []), ...ratios, ...engineLines];
     },
-    draw: (prompt, parameters) => {
+    draw: (prompt, parameters, _laidOut, canonical) => {
+      if (hasArithmeticEngineFigure(prompt.figureId!))
+        return arithmeticEngineFigureSvg(prompt.figureId!, canonical);
       const task = spec.task(parameters);
       const givens = givensOf(task.text).filter(
         (given) => !entry.proseGivens?.includes(given.key),

@@ -1,0 +1,2420 @@
+{
+  "definitions": 737,
+  "enumeratedFamilies": 267,
+  "finiteFigureDomain": 42193,
+  "registeredAssets": 17552,
+  "inlineFigures": 24474,
+  "displayed": 32152,
+  "hidden": 10041,
+  "figureFirst": 32132,
+  "failedVerification": 0,
+  "drawErrors": 0,
+  "uniqueCanonical": 15183,
+  "uniqueDisplay": 31115,
+  "manifestSha256": "45a735266518e5a41253e2ee21bb3e0f7855b8f8b10874ed624a3431b3770575",
+  "families": [
+    {
+      "id": "e4-triangle-missing-angle",
+      "title": "삼각형의 빈 각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 70,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-right-triangle-missing-angle",
+      "title": "직각삼각형의 빈 예각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e2-length-m-cm",
+      "title": "m와 cm 단위 바꾸기",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-length-cm-mm",
+      "title": "cm와 mm 단위 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-length-km-m",
+      "title": "km와 m 단위 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-capacity-l-ml",
+      "title": "L와 mL 단위 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-area-m2-cm2",
+      "title": "m²와 cm² 단위 바꾸기",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-area-km2-m2",
+      "title": "km²와 m² 단위 바꾸기",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-volume-m3-cm3",
+      "title": "m³와 cm³ 단위 바꾸기",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 98,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-length-mixed-cm",
+      "title": "복합 단위를 cm로 바꾸기",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 891,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-length-mixed-mm",
+      "title": "복합 단위를 mm로 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 81,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-length-mixed-m",
+      "title": "복합 단위를 m로 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 171,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-capacity-mixed-ml",
+      "title": "복합 단위를 mL로 바꾸기",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 171,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-volume-decimal-units",
+      "title": "소수인 부피 단위 바꾸기",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 180,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-length-sum",
+      "title": "두 길이의 합",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 253,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-length-difference",
+      "title": "두 길이의 차",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 231,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-length-broken",
+      "title": "꺾인 선의 길이",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 253,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-polygon-sides-total",
+      "title": "여러 도형의 변 수",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 65,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e2-polygon-vertices-total",
+      "title": "여러 도형의 꼭짓점 수",
+      "grade": "초2",
+      "strand": "도형",
+      "domainSize": 65,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-circle-radius",
+      "title": "지름에서 반지름",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 49,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e3-circle-diameter",
+      "title": "반지름에서 지름",
+      "grade": "초3",
+      "strand": "도형",
+      "domainSize": 49,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-unit-square-area",
+      "title": "단위 정사각형으로 넓이 구하기",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 28,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e4-angle-sum",
+      "title": "각도의 합",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 121,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-angle-difference",
+      "title": "각도의 차",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 181,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-angle-right-remainder",
+      "title": "직각에서 남은 각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 51,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-angle-straight-remainder",
+      "title": "평각에서 남은 각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 71,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-angle-turn-remainder",
+      "title": "한 바퀴에서 남은 각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 57,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-quadrilateral-missing-angle",
+      "title": "사각형의 빈 각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 331,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-isosceles-base-angle",
+      "title": "이등변삼각형의 밑각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e4-isosceles-apex-angle",
+      "title": "이등변삼각형의 꼭지각",
+      "grade": "초4",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rectangle-perimeter",
+      "title": "직사각형의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rectangle-perimeter-side",
+      "title": "직사각형의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-parallelogram-perimeter",
+      "title": "평행사변형의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-parallelogram-perimeter-side",
+      "title": "평행사변형의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-square-perimeter",
+      "title": "정사각형의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 39,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-square-perimeter-side",
+      "title": "정사각형의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 39,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rhombus-perimeter",
+      "title": "마름모의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 39,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rhombus-perimeter-side",
+      "title": "마름모의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 39,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-regular-polygon-perimeter",
+      "title": "정다각형의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 120,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-regular-polygon-perimeter-side",
+      "title": "정다각형의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 120,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-triangle-perimeter",
+      "title": "삼각형의 둘레",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 294,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-triangle-perimeter-side",
+      "title": "삼각형의 둘레에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 294,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rectangle-area",
+      "title": "직사각형의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rectangle-area-side",
+      "title": "직사각형의 넓이에서 가로",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-square-area",
+      "title": "정사각형의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-square-area-side",
+      "title": "정사각형의 넓이에서 한 변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-triangle-area",
+      "title": "삼각형의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-triangle-area-base",
+      "title": "삼각형의 넓이에서 밑변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-triangle-area-height",
+      "title": "삼각형의 넓이에서 높이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-parallelogram-area",
+      "title": "평행사변형의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-parallelogram-area-base",
+      "title": "평행사변형의 넓이에서 밑변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-parallelogram-area-height",
+      "title": "평행사변형의 넓이에서 높이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 166,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rhombus-area",
+      "title": "마름모의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-rhombus-area-diagonal",
+      "title": "마름모의 넓이에서 대각선",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 89,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-trapezoid-area",
+      "title": "사다리꼴의 넓이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 265,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-trapezoid-area-height",
+      "title": "사다리꼴의 넓이에서 높이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 265,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-trapezoid-area-top",
+      "title": "사다리꼴의 넓이에서 윗변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 265,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-trapezoid-area-bottom",
+      "title": "사다리꼴의 넓이에서 아랫변",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 265,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e5-cuboid-edges",
+      "title": "직육면체의 모든 모서리 길이의 합",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-cube-edges",
+      "title": "정육면체의 모든 모서리 길이의 합",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-cuboid-edges-height",
+      "title": "직육면체의 모든 모서리 길이의 합에서 높이",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e5-cube-edges-side",
+      "title": "정육면체의 모든 모서리 길이의 합에서 모서리",
+      "grade": "초5",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-surface",
+      "title": "직육면체의 겉넓이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cube-surface",
+      "title": "정육면체의 겉넓이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-surface-height",
+      "title": "직육면체의 겉넓이에서 높이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cube-surface-side",
+      "title": "정육면체의 겉넓이에서 모서리",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-volume",
+      "title": "직육면체의 부피",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cube-volume",
+      "title": "정육면체의 부피",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-volume-height",
+      "title": "직육면체의 부피에서 높이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 264,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cube-volume-side",
+      "title": "정육면체의 부피에서 모서리",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 24,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-base-volume",
+      "title": "밑넓이와 높이로 직육면체의 부피",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 130,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cuboid-base-height",
+      "title": "직육면체의 부피와 밑넓이에서 높이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 130,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-circle-circumference-radius",
+      "title": "원의 반지름에서 원주",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e6-circle-circumference-diameter",
+      "title": "원의 지름에서 원주",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e6-circle-area-radius",
+      "title": "원의 반지름에서 넓이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e6-circle-area-diameter",
+      "title": "원의 지름에서 넓이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "e6-circle-radius-circumference",
+      "title": "원의 원주에서 반지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-circle-diameter-circumference",
+      "title": "원의 원주에서 지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-circle-radius-area",
+      "title": "원의 넓이에서 반지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-circle-diameter-area",
+      "title": "원의 넓이에서 지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 58,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cylinder-net-area",
+      "title": "원기둥의 옆면을 펼친 직사각형의 넓이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 468,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cylinder-net-area-height",
+      "title": "원기둥의 옆면 넓이에서 높이",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 468,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cylinder-net-area-radius",
+      "title": "원기둥의 옆면 넓이에서 밑면의 반지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 234,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "e6-cylinder-net-area-diameter",
+      "title": "원기둥의 옆면 넓이에서 밑면의 지름",
+      "grade": "초6",
+      "strand": "도형",
+      "domainSize": 234,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-vertex-diagonals",
+      "title": "한 꼭짓점에서 그을 수 있는 대각선 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 12,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-fan-triangles",
+      "title": "한 꼭짓점의 대각선으로 나눈 삼각형 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 12,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-sides-vertex-diagonals",
+      "title": "한 꼭짓점의 대각선 수에서 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 17,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-sides-fan-triangles",
+      "title": "나누어진 삼각형 수에서 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 17,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-sides-sum",
+      "title": "내각의 합에서 다각형의 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 18,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-faces-count",
+      "title": "각기둥의 면 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-base-from-faces",
+      "title": "각기둥의 면 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-edges-count",
+      "title": "각기둥의 모서리 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-base-from-edges",
+      "title": "각기둥의 모서리 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-vertices-count",
+      "title": "각기둥의 꼭짓점 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-base-from-vertices",
+      "title": "각기둥의 꼭짓점 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-faces-count",
+      "title": "각뿔의 면 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-base-from-faces",
+      "title": "각뿔의 면 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-edges-count",
+      "title": "각뿔의 모서리 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-base-from-edges",
+      "title": "각뿔의 모서리 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-vertices-count",
+      "title": "각뿔의 꼭짓점 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-base-from-vertices",
+      "title": "각뿔의 꼭짓점 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-faces-count",
+      "title": "각뿔대의 면 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-base-from-faces",
+      "title": "각뿔대의 면 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-edges-count",
+      "title": "각뿔대의 모서리 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-base-from-edges",
+      "title": "각뿔대의 모서리 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-vertices-count",
+      "title": "각뿔대의 꼭짓점 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-frustum-base-from-vertices",
+      "title": "각뿔대의 꼭짓점 수에서 밑면의 변 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-obtuse-circum-central-angle",
+      "title": "둔각삼각형 외심의 작은 중심각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-obtuse-circum-vertex-angle",
+      "title": "둔각삼각형의 작은 중심각에서 꼭짓각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-obtuse-circum-base-angle",
+      "title": "둔각삼각형 외심과 두 반지름의 밑각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-central-angle",
+      "title": "외심의 중심각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-vertex-angle",
+      "title": "외심의 중심각에서 꼭짓각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-radius-base-angle",
+      "title": "두 반지름이 만든 삼각형의 밑각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-base-central-angle",
+      "title": "두 반지름의 밑각에서 중심각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-three-base-angles",
+      "title": "외심에서 나뉜 세 밑각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-circum-equal-radii",
+      "title": "외심에서 꼭짓점까지의 거리",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-circumradius",
+      "title": "빗변에서 외접원 반지름",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-circum-diameter",
+      "title": "외접원 반지름에서 빗변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-half-angle",
+      "title": "내심의 각 이등분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-whole-angle",
+      "title": "내심의 반각에서 전체 각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-central-angle",
+      "title": "내심에서 두 꼭짓점을 잇는 각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-inverse-angle",
+      "title": "내심의 각에서 꼭짓각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-three-half-angles",
+      "title": "내심에서 나뉜 세 반각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 13,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-iso-incenter-base-half",
+      "title": "이등변삼각형의 내심과 밑각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-incenter-area",
+      "title": "내접원 반지름과 둘레에서 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-incenter-radius",
+      "title": "넓이와 둘레에서 내접원 반지름",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-incenter-perimeter",
+      "title": "넓이와 내접원 반지름에서 둘레",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-incenter-part-area",
+      "title": "내심으로 나뉜 삼각형의 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-incenter-right-radius",
+      "title": "직각삼각형의 내접원 반지름",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-centroid-vertex-from-short",
+      "title": "무게중심에서 꼭짓점 쪽 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-short-from-vertex",
+      "title": "무게중심에서 중점 쪽 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-vertex-from-median",
+      "title": "중선에서 꼭짓점 쪽 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-short-from-median",
+      "title": "중선에서 중점 쪽 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-median-from-vertex",
+      "title": "꼭짓점 쪽 선분에서 중선",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-median-from-short",
+      "title": "중점 쪽 선분에서 중선",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-area-3",
+      "title": "무게중심과 한 변이 만드는 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-centroid-area-6",
+      "title": "무게중심과 반 밑변이 만드는 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-iso-bisector-angle",
+      "title": "이등변삼각형의 이등분선과 밑각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-iso-bisector-base",
+      "title": "꼭지각 이등분선과 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-iso-bisector-half-base",
+      "title": "꼭지각 이등분선과 반 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-triangle-midsegment",
+      "title": "삼각형의 중점 연결 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-midsegment-to-base",
+      "title": "중점 연결 선분에서 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-midsegment-area-small",
+      "title": "중점 연결로 생긴 작은 삼각형의 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-midsegment-area-remainder",
+      "title": "중점 연결로 남은 사다리꼴의 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-trapezoid-midline",
+      "title": "사다리꼴의 중점 연결 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-trapezoid-base",
+      "title": "중점 연결 선분에서 사다리꼴 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-trapezoid-diagonal-midpoints",
+      "title": "사다리꼴의 대각선 중점 사이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 20,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-similarity-ratio-power-1",
+      "title": "닮음비에서 길이비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-length-enlarge",
+      "title": "닮은 도형의 길이 확대",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-length-reduce",
+      "title": "닮은 도형의 길이 축소",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-ratio-power-2",
+      "title": "닮음비에서 넓이비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-length-from-power-2",
+      "title": "넓이비에서 대응변의 비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-area-enlarge",
+      "title": "닮은 도형의 넓이 확대",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-area-reduce",
+      "title": "닮은 도형의 넓이 축소",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-ratio-power-3",
+      "title": "닮음비에서 부피비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-length-from-power-3",
+      "title": "부피비에서 대응변의 비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-volume-enlarge",
+      "title": "닮은 도형의 부피 확대",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-volume-reduce",
+      "title": "닮은 도형의 부피 축소",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-similarity-perimeter",
+      "title": "닮은 삼각형의 둘레",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 35,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-parallel-triangle-side-part",
+      "title": "삼각형 평행선의 나머지 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 45,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallel-triangle-base",
+      "title": "삼각형 평행선의 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 12,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallel-triangle-whole-side",
+      "title": "삼각형 평행선의 전체 변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 45,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-triangle-bisector-segment",
+      "title": "내각 이등분선의 선분비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 27,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallelogram-adjacent",
+      "title": "평행사변형의 이웃한 각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 8,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallelogram-diagonal-half",
+      "title": "평행사변형의 반 대각선",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallelogram-diagonal-whole",
+      "title": "평행사변형의 전체 대각선",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-parallelogram-area-quarter",
+      "title": "평행사변형의 대각선과 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-rectangle-diagonal-half",
+      "title": "직사각형의 두 대각선",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-rhombus-diagonal-angle",
+      "title": "마름모의 대각선과 반각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 11,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-isosceles-trapezoid-angle",
+      "title": "등변사다리꼴의 이웃한 각",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-hypotenuse-integer",
+      "title": "직각삼각형의 빗변 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-leg-integer",
+      "title": "직각삼각형의 나머지 직각변 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-rectangle-diagonal-integer",
+      "title": "직사각형의 대각선 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-rectangle-side-integer",
+      "title": "대각선에서 직사각형의 한 변 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-isosceles-height-integer",
+      "title": "이등변삼각형의 높이 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-pythagoras-rhombus-side-integer",
+      "title": "두 대각선에서 마름모의 한 변 (정수)",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-hypotenuse-surd",
+      "title": "직각삼각형의 빗변 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 138,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-leg-surd",
+      "title": "직각삼각형의 나머지 직각변 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 177,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-rectangle-diagonal-surd",
+      "title": "직사각형의 대각선 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 138,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-rectangle-side-surd",
+      "title": "대각선에서 직사각형의 한 변 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 177,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-isosceles-height-surd",
+      "title": "이등변삼각형의 높이 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 177,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-pythagoras-rhombus-side-surd",
+      "title": "두 대각선에서 마름모의 한 변 (근호)",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 138,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-radius-from-legs",
+      "title": "두 직각변에서 외접원 반지름",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-triangle-height",
+      "title": "직각삼각형의 빗변에 내린 높이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-triangle-projection",
+      "title": "직각삼각형의 빗변 위 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-triangle-area",
+      "title": "빗변과 직각변에서 삼각형 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 7,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-right-altitude-product",
+      "title": "빗변의 두 부분에서 높이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-right-leg-product",
+      "title": "빗변과 정사영에서 직각변",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-centroid-median-sum",
+      "title": "세 중선과 꼭짓점 쪽 선분의 합",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 27,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-triangle-median-area",
+      "title": "중선으로 나뉜 삼각형의 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 29,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-same-height-area-ratio",
+      "title": "같은 높이를 가진 삼각형의 넓이",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 36,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-three-parallel-segments",
+      "title": "세 평행선 사이의 선분비",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 32,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-trapezoid-parallel-section",
+      "title": "사다리꼴의 평행한 단면 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 64,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-external-bisector-part",
+      "title": "외각 이등분선의 바깥 선분",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 18,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-external-bisector-base",
+      "title": "외각 이등분선에서 밑변",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 18,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m2-midpoint-triangle-perimeter-part",
+      "title": "세 중점으로 만든 삼각형의 둘레",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 28,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m2-midpoint-triangle-perimeter-whole",
+      "title": "중점 삼각형에서 원래 둘레",
+      "grade": "중2",
+      "strand": "도형",
+      "domainSize": 28,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-parallel-angle",
+      "title": "평행선과 엇갈린 각의 계산",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-triangle-exterior",
+      "title": "삼각형의 외각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 27,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-triangle-interior-exterior",
+      "title": "외각에서 삼각형의 내각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 27,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-polygon-sum",
+      "title": "다각형의 내각의 합",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-interior",
+      "title": "정다각형의 한 내각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-polygon-exterior",
+      "title": "정다각형의 한 외각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-polygon-sides-interior",
+      "title": "한 내각에서 정다각형의 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 8,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-sides-exterior",
+      "title": "한 외각에서 정다각형의 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 8,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-diagonals",
+      "title": "다각형의 대각선 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 10,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-polygon-sides-diagonals",
+      "title": "대각선 수에서 다각형의 변의 수",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-circle-circumference",
+      "title": "원의 둘레",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-circle-area",
+      "title": "원의 넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-circle-radius-circumference",
+      "title": "원주에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-circle-radius-area",
+      "title": "원의 넓이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 14,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-arc",
+      "title": "부채꼴의 호의 길이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-area",
+      "title": "부채꼴의 넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-perimeter",
+      "title": "부채꼴의 둘레",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-angle-arc",
+      "title": "호의 길이에서 중심각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-angle-area",
+      "title": "부채꼴의 넓이에서 중심각",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-radius-arc",
+      "title": "호의 길이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-radius-area",
+      "title": "부채꼴의 넓이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sector-area-arc",
+      "title": "호와 반지름에서 부채꼴 넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-volume",
+      "title": "각기둥의 부피",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 114,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-surface",
+      "title": "직각기둥의 겉넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 75,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-volume",
+      "title": "원기둥의 부피",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-surface",
+      "title": "원기둥의 겉넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-lateral",
+      "title": "원기둥의 옆넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-volume",
+      "title": "각뿔의 부피",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 64,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-surface",
+      "title": "정사각뿔의 겉넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-volume",
+      "title": "원뿔의 부피",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-surface",
+      "title": "원뿔의 겉넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 72,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-lateral",
+      "title": "원뿔의 옆넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 72,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sphere-surface",
+      "title": "구의 겉넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 15,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sphere-volume",
+      "title": "구의 부피",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 15,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m3-circle-inscribed",
+      "title": "중심각에서 원주각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-central",
+      "title": "원주각에서 중심각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-same-arc",
+      "title": "같은 호의 원주각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-cyclic-opposite",
+      "title": "원에 내접하는 사각형의 대각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-chord-length",
+      "title": "중심에서의 거리로 현의 길이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 33,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-chord-distance",
+      "title": "현과 중심 사이의 거리",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 33,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-tangent-angle",
+      "title": "접선과 반지름의 직각에서 빈 각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-ratio",
+      "title": "직각삼각형의 삼각비",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 120,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-special-value",
+      "title": "특수각의 삼각비",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 9,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m3-trig-special-length",
+      "title": "특수각의 삼각비로 변의 길이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 342,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-triangle-area",
+      "title": "두 변과 끼인각으로 삼각형 넓이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 60,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m1-prism-base-area-volume",
+      "title": "각기둥의 부피에서 밑넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 114,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-height-volume",
+      "title": "각기둥의 부피에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 114,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-base-area-volume",
+      "title": "각뿔의 부피에서 밑넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 64,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-height-volume",
+      "title": "각뿔의 부피에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 64,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-base-area-surface",
+      "title": "직각기둥의 겉넓이에서 밑넓이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 75,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-prism-height-surface",
+      "title": "직각기둥의 겉넓이에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 75,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-pyramid-slant-surface",
+      "title": "정사각뿔의 겉넓이에서 옆면 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 50,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-height-volume",
+      "title": "원기둥의 부피에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-radius-volume",
+      "title": "원기둥의 부피에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-height-volume",
+      "title": "원뿔의 부피에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-radius-volume",
+      "title": "원뿔의 부피에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-height-lateral",
+      "title": "원기둥의 옆넓이에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-radius-lateral",
+      "title": "원기둥의 옆넓이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cylinder-height-surface",
+      "title": "원기둥의 겉넓이에서 높이",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 54,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-radius-lateral",
+      "title": "원뿔의 옆넓이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 72,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-generator-lateral",
+      "title": "원뿔의 옆넓이에서 모선",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 72,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-cone-generator-surface",
+      "title": "원뿔의 겉넓이에서 모선",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 72,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sphere-radius-surface",
+      "title": "구의 겉넓이에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 15,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m1-sphere-radius-volume",
+      "title": "구의 부피에서 반지름",
+      "grade": "중1",
+      "strand": "도형",
+      "domainSize": 15,
+      "enumerated": true,
+      "figureFirst": false
+    },
+    {
+      "id": "m3-circle-tangent-chord",
+      "title": "접선과 현이 이루는 각",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 16,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-circle-equal-tangents",
+      "title": "한 점에서 그은 두 접선의 길이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 19,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-length-given-ratio",
+      "title": "주어진 삼각비로 변의 길이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 5068,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-area-given-sine",
+      "title": "주어진 사인값으로 삼각형 넓이",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 2970,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-side-from-area-sine",
+      "title": "넓이와 사인값에서 한 변 구하기",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 14850,
+      "enumerated": true,
+      "figureFirst": true
+    },
+    {
+      "id": "m3-trig-sine-from-area",
+      "title": "두 변과 넓이에서 사인값 구하기",
+      "grade": "중3",
+      "strand": "도형",
+      "domainSize": 1586,
+      "enumerated": true,
+      "figureFirst": true
+    }
+  ]
+}

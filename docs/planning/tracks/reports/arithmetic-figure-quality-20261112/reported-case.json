@@ -1,0 +1,24 @@
+{
+  "typeId": "m2-trapezoid-diagonal-midpoints",
+  "parameters": [
+    4,
+    6
+  ],
+  "prompt": {
+    "layout": "math",
+    "text": "AD∥BC인 사다리꼴 ABCD에서 P, Q는 각각 AC, BD의 중점이다. AD=4 cm, BC=10 cm이다.",
+    "latex": "\\text{m2-trapezoid-diagonal-midpoints:4,6}",
+    "instruction": "PQ의 길이를 구하세요.",
+    "figureId": "gt1-m2-trapezoid-diagonal-midpoints-4-6",
+    "answerUnit": "cm"
+  },
+  "answer": {
+    "kind": "integer",
+    "exact": [
+      "3"
+    ],
+    "text": "3 cm",
+    "latex": "3\\,\\mathrm{cm}"
+  },
+  "lines": []
+}

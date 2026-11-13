@@ -1,0 +1,33 @@
+{
+  "selectedRepresentatives": 23,
+  "actualOpenedSheets": [
+    {
+      "file": "/Users/pss/tmp/arithmetic-parent-review-20261113/final-dimension-residuals/contact-1.png",
+      "sha256": "e69e232a6096d8481bebf39b7691c726d28a11c7587587f3f3153bf79c764399"
+    },
+    {
+      "file": "/Users/pss/tmp/arithmetic-parent-review-20261113/final-dimension-residuals/contact-2.png",
+      "sha256": "67b810321171d5b3c81c81abaa4d7019fdad7d390a0b38fc18757ca3582f6e1d"
+    },
+    {
+      "file": "/Users/pss/tmp/arithmetic-parent-review-20261113/final-dimension-residuals/contact-3.png",
+      "sha256": "eb3ef659be7eff46e50b57da869832912c99862975fec954f1cab20f77ca41c4"
+    },
+    {
+      "file": "/Users/pss/tmp/arithmetic-parent-review-20261113/final-dimension-residuals/contact-4.png",
+      "sha256": "964cf3ca0785176a6296fd76924ed44f846ee773d72d8150017dc3e1c88c191e"
+    }
+  ],
+  "observation": "All four sheets opened at280px max figure extent. Selected diagrams preserve labelled vertices and visible geometric marks/target emphasis without obvious new unreadable overlap.23 families represented; this is not individual visual approval of451 exception variants. Some diagrams such as rectangle-diagonal-half contain no fitted dimension and depend on both named public lines. External-bisector-base has smaller internal15cm text; actual A4/Chromium check remains separate.",
+  "publicLineCheck": {
+    "variants": 451,
+    "conditions": 626,
+    "failures": 0
+  },
+  "limits": [
+    "review captions are annotations, not product layout",
+    "sharp/librsvg rather than Chromium or physical print",
+    "numeric legend selected one maximum-omission representative per family",
+    "seven layout attempts do not prove a dimension is impossible to place"
+  ]
+}

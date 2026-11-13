@@ -1,5 +1,6 @@
 import { strFromU8, unzlibSync } from "fflate";
 import { arithmeticTypographyPacked } from "./typographyData";
+import engineVocabulary from "./engine-typography-v1.json";
 import {
   arithmeticLabelParts,
   escapeTypographyXml as esc,
@@ -42,6 +43,10 @@ function getDictionary(): Dictionary {
       c.charCodeAt(0),
     );
     dictionary = JSON.parse(strFromU8(unzlibSync(bytes))) as Dictionary;
+    if (dictionary.glyphs.length !== engineVocabulary.baseGlyphs)
+      throw new Error("도형 글자 사전의 버전을 확인할 수 없습니다");
+    dictionary.glyphs.push(...engineVocabulary.glyphs);
+    Object.assign(dictionary.entries, engineVocabulary.entries);
   }
   return dictionary;
 }

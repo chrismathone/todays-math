@@ -1,0 +1,55 @@
+{
+  "uniqueByteStringsChecked": 46298,
+  "candidateRows": 42193,
+  "allReferencedHashesPresent": true,
+  "structuralFailures": [
+    {
+      "id": "gt1-m2-same-height-area-ratio-2-3-2",
+      "family": "m2-same-height-area-ratio",
+      "errors": [
+        "zero-length line"
+      ]
+    },
+    {
+      "id": "gt1-m2-same-height-area-ratio-4-3-2",
+      "family": "m2-same-height-area-ratio",
+      "errors": [
+        "zero-length line"
+      ]
+    },
+    {
+      "id": "gt1-m2-same-height-area-ratio-5-3-2",
+      "family": "m2-same-height-area-ratio",
+      "errors": [
+        "zero-length line"
+      ]
+    }
+  ],
+  "customTriangleDisplayCandidates": 1326,
+  "customTriangleDisplayFamilies": {
+    "e4-angle-sum": 121,
+    "e4-angle-difference": 181,
+    "e4-angle-right-remainder": 51,
+    "e4-angle-straight-remainder": 71,
+    "e4-angle-turn-remainder": 57,
+    "e4-quadrilateral-missing-angle": 331,
+    "e4-isosceles-base-angle": 50,
+    "e4-isosceles-apex-angle": 50,
+    "m1-parallel-angle": 14,
+    "m1-triangle-exterior": 27,
+    "m1-triangle-interior-exterior": 27,
+    "m1-polygon-interior": 10,
+    "m1-polygon-exterior": 10,
+    "m3-circle-inscribed": 9,
+    "m3-circle-central": 9,
+    "m3-circle-same-arc": 9,
+    "m3-circle-cyclic-opposite": 9,
+    "m3-circle-chord-length": 33,
+    "m3-circle-chord-distance": 33,
+    "m3-circle-tangent-angle": 9,
+    "m3-trig-ratio": 120,
+    "m3-trig-triangle-area": 60,
+    "m3-circle-tangent-chord": 16,
+    "m3-circle-equal-tangents": 19
+  }
+}
