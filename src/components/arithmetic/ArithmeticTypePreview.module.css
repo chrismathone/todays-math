@@ -9,6 +9,13 @@
   box-shadow: 0 4px 16px #14243d26;
   color: var(--learn-ink, #172b4d);
   pointer-events: none;
+  overflow-y: auto;
+}
+.scrollHint {
+  display: none;
+}
+.preview[data-overflow="true"] .scrollHint {
+  display: inline;
 }
 .title {
   margin: 0;

@@ -6,6 +6,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   type ButtonHTMLAttributes,
@@ -116,19 +117,24 @@ export function useArithmeticTypePreview() {
     const pointer = () => {
       keyboard.current = false;
     };
+    const scroll = (event: Event) => {
+      // The short-viewport fallback scrolls from the focused card's keys.
+      // Scrolling the page or any other container still dismisses the preview.
+      if (event.target !== document.getElementById(tooltipId)) close();
+    };
     document.addEventListener("keydown", key, true);
     document.addEventListener("pointerdown", pointer, true);
     // These must cancel a first opening too, before a tooltip state exists.
-    window.addEventListener("scroll", close, { capture: true, passive: true });
+    window.addEventListener("scroll", scroll, { capture: true, passive: true });
     window.addEventListener("resize", close);
     return () => {
       clear();
       document.removeEventListener("keydown", key, true);
       document.removeEventListener("pointerdown", pointer, true);
-      window.removeEventListener("scroll", close, { capture: true });
+      window.removeEventListener("scroll", scroll, { capture: true });
       window.removeEventListener("resize", close);
     };
-  }, [close]);
+  }, [close, tooltipId]);
   useEffect(() => {
     if (!state) return;
     // A filter change re-renders the grid under a still pointer, so the card
@@ -184,35 +190,40 @@ export function useArithmeticTypePreview() {
   return { state, cardProps, close };
 }
 
-function placement(anchor: DOMRect): CSSProperties {
+function placement(anchor: DOMRect, height = 0): CSSProperties {
   const gap = 8,
     margin = 12;
   const width = Math.min(WIDTH, window.innerWidth - margin * 2);
-  const left =
-    anchor.right + gap + width <= window.innerWidth - margin
-      ? anchor.right + gap
-      : anchor.left - gap - width >= margin
-        ? anchor.left - gap - width
-        : Math.max(
-            margin,
-            Math.min(anchor.left, window.innerWidth - width - margin),
-          );
-  const beside =
-    left !==
-      Math.max(
-        margin,
-        Math.min(anchor.left, window.innerWidth - width - margin),
-      ) || anchor.right + gap + width <= window.innerWidth - margin;
+  const rightFits = anchor.right + gap + width <= window.innerWidth - margin;
+  const leftFits = anchor.left - gap - width >= margin;
+  const left = rightFits
+    ? anchor.right + gap
+    : leftFits
+      ? anchor.left - gap - width
+      : Math.max(
+          margin,
+          Math.min(anchor.left, window.innerWidth - width - margin),
+        );
+  const below = anchor.bottom + gap;
+  const above = anchor.top - gap - height;
+  const preferredTop =
+    rightFits || leftFits
+      ? anchor.top
+      : below + height <= window.innerHeight - margin
+        ? below
+        : above >= margin
+          ? above
+          : window.innerHeight - below >= anchor.top - gap
+            ? below
+            : above;
   return {
     width,
     left,
-    ...(beside
-      ? {
-          top: Math.max(margin, Math.min(anchor.top, window.innerHeight - 260)),
-        }
-      : anchor.bottom + 240 > window.innerHeight
-        ? { bottom: window.innerHeight - anchor.top + gap }
-        : { top: anchor.bottom + gap }),
+    top: Math.max(
+      margin,
+      Math.min(preferredTop, window.innerHeight - margin - height),
+    ),
+    maxHeight: Math.max(0, window.innerHeight - margin * 2),
   };
 }
 
@@ -223,7 +234,71 @@ export function ArithmeticTypePreview({
   state: ArithmeticTypePreviewState;
   types: readonly ArithmeticV2CatalogEntry[];
 }) {
+  const tooltip = useRef<HTMLDivElement>(null);
   const type = state ? types.find((entry) => entry.id === state.typeId) : null;
+  useLayoutEffect(() => {
+    const element = tooltip.current;
+    if (!state || !element) return;
+    let active = true;
+    const measure = () => {
+      if (!active || !element.isConnected) return;
+      // Layout writes stay on this portal node: no state update can reopen a
+      // cancelled hover. Measure again after lazy content, images or fonts grow.
+      element.style.top = `${placement(state.anchor, element.getBoundingClientRect().height).top}px`;
+      element.dataset.overflow = String(
+        element.scrollHeight > element.clientHeight,
+      );
+    };
+    element.scrollTop = 0;
+    measure();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    observer?.observe(element);
+    // A capped tooltip no longer resizes, but its natural content still does.
+    if (element.firstElementChild) observer?.observe(element.firstElementChild);
+    element.addEventListener("load", measure, true);
+    const scrollByKey = (event: KeyboardEvent) => {
+      if (
+        !state.element.contains(document.activeElement) ||
+        event.defaultPrevented ||
+        event.isComposing ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        element.scrollHeight <= element.clientHeight
+      )
+        return;
+      const page = element.clientHeight * 0.8;
+      const distances: Record<string, number | undefined> = {
+        ArrowDown: 40,
+        ArrowUp: -40,
+        PageDown: page,
+        PageUp: -page,
+        Home: -element.scrollHeight,
+        End: element.scrollHeight,
+      };
+      const distance = distances[event.key];
+      if (distance === undefined) return;
+      event.preventDefault();
+      element.scrollTop = Math.max(
+        0,
+        Math.min(
+          element.scrollTop + distance,
+          element.scrollHeight - element.clientHeight,
+        ),
+      );
+    };
+    document.addEventListener("keydown", scrollByKey);
+    return () => {
+      active = false;
+      observer?.disconnect();
+      element.removeEventListener("load", measure, true);
+      document.removeEventListener("keydown", scrollByKey);
+    };
+  }, [state, type]);
   if (
     !state ||
     !type ||
@@ -233,29 +308,35 @@ export function ArithmeticTypePreview({
     return null;
   return createPortal(
     <div
+      ref={tooltip}
       role="tooltip"
       id={state.tooltipId}
       className={s.preview}
       style={placement(state.anchor)}
     >
-      {/* div, not p: MathText renders block elements (p > div is invalid HTML). */}
-      <div className={s.title}>
-        <MathText text={arithmeticTypeTitle(type.title)} />
-      </div>
-      <div className={s.caption}>
-        예시 · {type.domainSize.toLocaleString("ko-KR")}문항 중 1
-      </div>
-      <div className={s.body}>
-        {type.example.layout !== "math" ||
-        (!type.example.figureId && type.example.answerUnit === undefined) ? (
-          <NumericExpression prompt={type.example} />
-        ) : (
-          <Suspense
-            fallback={<span role="status">예시를 불러오는 중입니다.</span>}
-          >
-            <PreviewExpression prompt={type.example} typeId={type.id} />
-          </Suspense>
-        )}
+      <div>
+        {/* div, not p: MathText renders block elements (p > div is invalid HTML). */}
+        <div className={s.title}>
+          <MathText text={arithmeticTypeTitle(type.title)} />
+        </div>
+        <div className={s.caption}>
+          예시 · {type.domainSize.toLocaleString("ko-KR")}문항 중 1
+          <span className={s.scrollHint}>
+            {" · 유형에 초점을 두고 ↑↓ / Page Up·Down으로 예시 이동"}
+          </span>
+        </div>
+        <div className={s.body}>
+          {type.example.layout !== "math" ||
+          (!type.example.figureId && type.example.answerUnit === undefined) ? (
+            <NumericExpression prompt={type.example} />
+          ) : (
+            <Suspense
+              fallback={<span role="status">예시를 불러오는 중입니다.</span>}
+            >
+              <PreviewExpression prompt={type.example} typeId={type.id} />
+            </Suspense>
+          )}
+        </div>
       </div>
     </div>,
     document.body,
