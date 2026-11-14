@@ -1,0 +1,137 @@
+{
+  "buildHead": "7e6dcc23cfe916ce7cd6dcdc226c34451c69509a",
+  "scope": "Standalone esbuild actual React consumer components, offline synthetic v1/v2 saved specs. Not complete Next build, authenticated production or network/performance certification. Desktop6figuretooltips and3document states screenshots opened by root.",
+  "cases": [
+    {
+      "case": "initial",
+      "evidence": "integrated-initial.json",
+      "sha256": "44d7312ff2923015c0f0664436c2ef4977783c4567c0e63a02caaa06b95e97e4",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 0,
+      "tooltipWithinViewport": null,
+      "status": []
+    },
+    {
+      "case": "numeric",
+      "evidence": "integrated-numeric.json",
+      "sha256": "e7f3cf045e8e5e40d837ef3081ce525872a1540dedb0c55cf2e9fc39dc3fb4ad",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 0,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "trapezoid",
+      "evidence": "integrated-trapezoid.json",
+      "sha256": "7363121fcd696b94f1f6eaa9a4ac48c9552483e3b912c086b522dca8da6e35f1",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "rectangle",
+      "evidence": "integrated-rectangle.json",
+      "sha256": "781f30767390ea4da41186b7a3e7b2c023f1e16d9524845a54ba94691fd28cbf",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "rhombus",
+      "evidence": "integrated-rhombus.json",
+      "sha256": "927d045ecd575efe2a96afad95d049f00ab3c62c89daa51e842029b092ff14cb",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "compact-length197",
+      "evidence": "integrated-compact-length197.json",
+      "sha256": "a55d37f0ca272c17d981af332c837df0658c00f49bb3f4a283c67c0f09083951",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "compact-side960",
+      "evidence": "integrated-compact-side960.json",
+      "sha256": "c6c186526de0f0f8b70d1d0b7cae2d35cf82ade8c0c8424219958e8974c2c55d",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "compact-sine1515",
+      "evidence": "integrated-compact-sine1515.json",
+      "sha256": "82562f8ab59d25641882b685c90450a47f3a37084b9b2879ba64fc3c40efe5cc",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": true,
+      "status": []
+    },
+    {
+      "case": "document-legacy",
+      "evidence": "integrated-document-legacy.json",
+      "sha256": "6f952449b0eaadbd5e93e6ec8812b50d3ab66165b34b476aa1e5a24a9bd4f394",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 0,
+      "tooltipWithinViewport": null,
+      "status": []
+    },
+    {
+      "case": "document-grade",
+      "evidence": "integrated-document-grade.json",
+      "sha256": "b57bd55d5b2bc892f5dac25ed764f27e9dfe71d9b2ebcb3bf676a83df3067fde",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 6,
+      "tooltipWithinViewport": null,
+      "status": []
+    },
+    {
+      "case": "document-corrupt",
+      "evidence": "integrated-document-corrupt.json",
+      "sha256": "9c52d57a05227c8084314b8ca02a0e272c3e6bc9bfbe6a6326a90c161c3997fb",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 0,
+      "tooltipWithinViewport": null,
+      "status": [
+        "저장된 연산 명세와 정답을 확인할 수 없습니다."
+      ]
+    },
+    {
+      "case": "narrow-sine",
+      "evidence": "integrated-narrow-sine.json",
+      "sha256": "aab4515d9b968c4be9a20cb036c47a1f98a6d5c45b0ee7ecc042231b3f93a391",
+      "runtimeErrors": [],
+      "fixturesUnchanged": true,
+      "images": 1,
+      "tooltipWithinViewport": false,
+      "status": []
+    }
+  ],
+  "staticJS": [
+    "chunk-7D4ZVGKX.js",
+    "chunk-EI6XGAZR.js",
+    "entry.js"
+  ],
+  "initialStaticBytes": 1203691,
+  "dynamicFigureOnlyAfterOpen": true,
+  "dynamicAdminOnlyAfterOpen": true,
+  "newFinding": "390x844 sine1515 bottom871.4375. Worker ctx_d034a8e7073c correcting measured placement. Do not claim final UI approval until fix reviewed and browser checked."
+}

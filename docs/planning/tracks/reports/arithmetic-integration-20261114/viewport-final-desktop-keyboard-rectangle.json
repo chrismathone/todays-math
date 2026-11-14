@@ -1,0 +1,100 @@
+{
+  "probe": {
+    "documentText": "",
+    "errors": [],
+    "figureAlt": [
+      "직사각형 ABCD의 대각선의 교점은 O, AC=2 cm이다."
+    ],
+    "fixturesUnchanged": true,
+    "images": [
+      {
+        "complete": true,
+        "height": 203.609375,
+        "naturalWidth": 206,
+        "width": 280
+      }
+    ],
+    "regions": [],
+    "resources": [
+      {
+        "duration": 4,
+        "name": "http://127.0.0.1:3198/global.css",
+        "transferSize": 13092
+      },
+      {
+        "duration": 4.299999997019768,
+        "name": "http://127.0.0.1:3198/katex/katex.min.css",
+        "transferSize": 25027
+      },
+      {
+        "duration": 3.5999999940395355,
+        "name": "http://127.0.0.1:3198/entry.css",
+        "transferSize": 42914
+      },
+      {
+        "duration": 4.5999999940395355,
+        "name": "http://127.0.0.1:3198/entry.js",
+        "transferSize": 344442
+      },
+      {
+        "duration": 1.8000000044703484,
+        "name": "http://127.0.0.1:3198/chunk-D4CCVM6L.js",
+        "transferSize": 9288
+      },
+      {
+        "duration": 2.4000000059604645,
+        "name": "http://127.0.0.1:3198/chunk-4ZYOCOMR.js",
+        "transferSize": 852112
+      },
+      {
+        "duration": 3.600000001490116,
+        "name": "http://127.0.0.1:3198/fonts/PretendardVariable.woff2",
+        "transferSize": 2057988
+      },
+      {
+        "duration": 9.900000005960464,
+        "name": "http://127.0.0.1:3198/katex/fonts/KaTeX_Main-Regular.woff2",
+        "transferSize": 26572
+      },
+      {
+        "duration": 1.2000000029802322,
+        "name": "http://127.0.0.1:3198/GradeArithmeticPrompt-G4ZIWXUQ.js",
+        "transferSize": 1299
+      },
+      {
+        "duration": 15.200000002980232,
+        "name": "http://127.0.0.1:3198/chunk-HYX27NDH.js",
+        "transferSize": 11524481
+      },
+      {
+        "duration": 10.399999998509884,
+        "name": "http://127.0.0.1:3198/katex/fonts/KaTeX_Math-Italic.woff2",
+        "transferSize": 16740
+      }
+    ],
+    "statuses": []
+  },
+  "tooltip": {
+    "box": {
+      "bottom": 525.375,
+      "height": 412.625,
+      "left": 509.5625,
+      "right": 829.5625,
+      "top": 112.75,
+      "width": 320,
+      "x": 509.5625,
+      "y": 112.75
+    },
+    "focus": "직사각형의 두 대각선",
+    "linkedCards": [
+      "직사각형의 두 대각선"
+    ],
+    "text": "직사각형의 두 대각선예시 · 19문항 중 1 · 유형에 초점을 두고 ↑↓ / Page Up·Down으로 예시 이동다음 그림의 직사각형 ABCD\\displaystyle \\mathrm{ABCD}ABCD⁠에서 두 대각선의 교점이 O\\displaystyle \\mathrm{O}O⁠일 때, x\\displaystyle xx⁠의 값을 구하세요.AC‾=2 cm\\displaystyle \\overline{\\mathrm{AC}} = 2\\,\\mathrm{cm}AC=2cmBO‾=x\\displaystyle \\overline{\\mathrm{BO}} = xBO=x cm\\displaystyle \\mathrm{cm}cm답:  cm\\displaystyle \\mathrm{cm}cm",
+    "withinViewport": true
+  },
+  "viewport": {
+    "height": 900,
+    "ratio": 1,
+    "width": 1280
+  }
+}

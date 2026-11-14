@@ -1,0 +1,101 @@
+{
+  "head": "5ca5a60d8ad70b608cd925ce2e3562354d43cbd0",
+  "builtAt": "2026-11-14T01:50:11.304Z",
+  "scope": "Standalone esbuild ESM split chunks with actual React consumer components and offline fixture data. No Next build, server behavior, deployed chunk or authentication claim. Rebuild after engine integration.",
+  "sources": {
+    "src/components/admin/AdminArithmeticPreview.tsx": "48ac996c2c52b8d4862de3ee5fd28e86658d7b7769723150738e6de27fab19d4",
+    "src/components/admin/AdminDocumentPreview.tsx": "41d2dfafe557935fb0b0f9a5af5f61d97bd51ba00c65477107c85bc7043d2531",
+    "src/components/arithmetic/GradeArithmeticPrompt.tsx": "aa5c690da6b2e1fafc58e43563a89a5af2604eb68c47a7181bcb87881ae53403",
+    "src/components/arithmetic/ArithmeticTypePreview.tsx": "c0884ac56f0163f8ca7023032aad2a70433fae4838f8d46498588a4938fd4218"
+  },
+  "outputs": {
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/entry.js": {
+      "bytes": 344142,
+      "entryPoint": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/entry.tsx",
+      "imports": [
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-D4CCVM6L.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/AdminArithmeticPreview-T4HVNBQB.js",
+          "kind": "dynamic-import"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/GradeArithmeticPrompt-G4ZIWXUQ.js",
+          "kind": "dynamic-import"
+        }
+      ]
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/AdminArithmeticPreview-T4HVNBQB.js": {
+      "bytes": 312721,
+      "entryPoint": "src/components/admin/AdminArithmeticPreview.tsx",
+      "imports": [
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-D4CCVM6L.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-HYX27NDH.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-D4CCVM6L.js": {
+      "bytes": 8988,
+      "imports": [
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/GradeArithmeticPrompt-G4ZIWXUQ.js": {
+      "bytes": 999,
+      "entryPoint": "src/components/arithmetic/GradeArithmeticPrompt.tsx",
+      "imports": [
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-HYX27NDH.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-HYX27NDH.js": {
+      "bytes": 11524181,
+      "imports": [
+        {
+          "path": "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/chunk-4ZYOCOMR.js": {
+      "bytes": 851812,
+      "imports": []
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/entry.css": {
+      "bytes": 42614,
+      "imports": []
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/AdminArithmeticPreview-VO4KB5RJ.css": {
+      "bytes": 41232,
+      "imports": []
+    },
+    "../../../tmp/arithmetic-parent-review-20261113/lazy-browser/dist/GradeArithmeticPrompt-H63SSLHV.css": {
+      "bytes": 10879,
+      "imports": []
+    }
+  }
+}

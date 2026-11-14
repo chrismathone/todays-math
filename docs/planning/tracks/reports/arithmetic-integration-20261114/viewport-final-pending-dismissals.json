@@ -1,0 +1,74 @@
+{
+  "observations": [
+    {
+      "kind": "Escape",
+      "tooltipAfterOpeningDeadline": false,
+      "tooltipBeforeDismissal": false
+    },
+    {
+      "kind": "body-scroll",
+      "tooltipAfterOpeningDeadline": false,
+      "tooltipBeforeDismissal": false
+    },
+    {
+      "kind": "window-resize",
+      "tooltipAfterOpeningDeadline": false,
+      "tooltipBeforeDismissal": false
+    }
+  ],
+  "positiveControl": "세 정수의 덧셈과 뺄셈예시 · 23,328문항 중 1 · 유형에 초점을 두고 ↑↓ / Page Up·Down으로 예시 이동계산하시오.2−(−9)+4\\displaystyle 2 - (-9) + 42−(−9)+4",
+  "probe": {
+    "documentText": "",
+    "errors": [],
+    "figureAlt": [],
+    "fixturesUnchanged": true,
+    "images": [],
+    "regions": [],
+    "resources": [
+      {
+        "duration": 4,
+        "name": "http://127.0.0.1:3198/global.css",
+        "transferSize": 13092
+      },
+      {
+        "duration": 4.299999997019768,
+        "name": "http://127.0.0.1:3198/katex/katex.min.css",
+        "transferSize": 25027
+      },
+      {
+        "duration": 3.5999999940395355,
+        "name": "http://127.0.0.1:3198/entry.css",
+        "transferSize": 42914
+      },
+      {
+        "duration": 4.5999999940395355,
+        "name": "http://127.0.0.1:3198/entry.js",
+        "transferSize": 344442
+      },
+      {
+        "duration": 1.8000000044703484,
+        "name": "http://127.0.0.1:3198/chunk-D4CCVM6L.js",
+        "transferSize": 9288
+      },
+      {
+        "duration": 2.4000000059604645,
+        "name": "http://127.0.0.1:3198/chunk-4ZYOCOMR.js",
+        "transferSize": 852112
+      },
+      {
+        "duration": 3.600000001490116,
+        "name": "http://127.0.0.1:3198/fonts/PretendardVariable.woff2",
+        "transferSize": 2057988
+      },
+      {
+        "duration": 9.900000005960464,
+        "name": "http://127.0.0.1:3198/katex/fonts/KaTeX_Main-Regular.woff2",
+        "transferSize": 26572
+      }
+    ],
+    "statuses": []
+  },
+  "scope": "Synthetic DOM events dispatched through actual browser React hook; real opening timers. Not native keyboard/mouse timing or a forced React commit race.",
+  "head": "5ca5a60d8ad70b608cd925ce2e3562354d43cbd0",
+  "hookSourceSHA256": "c0884ac56f0163f8ca7023032aad2a70433fae4838f8d46498588a4938fd4218"
+}
