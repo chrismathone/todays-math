@@ -36,6 +36,13 @@ export interface ModelApiReceipt {
     cacheCreationInputTokens: number | null;
   }> | null;
 }
+/** Token evidence also arrives on truncated/refused Claude responses. No thinking double-count. */
+export type AnthropicUsage = Readonly<{
+  inputTokens: number | null;
+  outputTokens: number | null;
+  cachedInputTokens: number | null;
+  cacheCreationInputTokens: number | null;
+}>;
 type InferenceInput = {
   vendor: ApiVendor;
   model: string;
@@ -52,6 +59,8 @@ type InferenceInput = {
   /** Successful provider metadata only; missing reported fields stay null.
    * Called outside the provider retry loop, so a consumer failure never replays inference. */
   onReceipt?: (receipt: Readonly<ModelApiReceipt>) => void;
+  /** Delivered outside retries, including non-end_turn responses; no text/photo in this hook. */
+  onAnthropicUsage?: (usage: AnthropicUsage) => void;
   /**
    * Claude 의 생각 강도(`output_config.effort`) — 부르는 쪽이 정할 때만. 없으면 지금 그대로다(Opus 5 는 medium ·
    * 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9).
@@ -231,6 +240,8 @@ async function rest(
 /** Server credentials and fixed official endpoints only; no CLI fallback or tool access. */
 export async function runModelApi(input: InferenceInput): Promise<string> {
   const onReceipt = input.onReceipt;
+  const onAnthropicUsage = input.onAnthropicUsage;
+  const observedUsage: AnthropicUsage[] = [];
   let receipt: Readonly<ModelApiReceipt> | undefined;
   input = {
     ...input,
@@ -243,12 +254,21 @@ export async function runModelApi(input: InferenceInput): Promise<string> {
           receipt = value;
         }
       : undefined,
+    onAnthropicUsage: onAnthropicUsage
+      ? (usage) => {
+          observedUsage.push(usage);
+        }
+      : undefined,
   };
-  const output = await (input.singleAttempt
-    ? runModelApiOnce(input)
-    : withModelRetry(() => runModelApiOnce(input), input.signal));
-  if (receipt) onReceipt?.(receipt);
-  return output;
+  try {
+    const output = await (input.singleAttempt
+      ? runModelApiOnce(input)
+      : withModelRetry(() => runModelApiOnce(input), input.signal));
+    if (receipt) onReceipt?.(receipt);
+    return output;
+  } finally {
+    for (const usage of observedUsage) onAnthropicUsage?.(usage);
+  }
 }
 
 async function runModelApiOnce(input: InferenceInput): Promise<string> {
@@ -390,6 +410,23 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         input.signal,
         input.suppressUpstreamDetails,
       );
+      if (input.onAnthropicUsage) {
+        const usage = record(result.usage);
+        input.onAnthropicUsage(
+          Object.freeze({
+            inputTokens: reportedTokens(usage?.input_tokens),
+            outputTokens: reportedTokens(usage?.output_tokens),
+            cachedInputTokens:
+              usage?.cache_read_input_tokens === undefined
+                ? 0
+                : reportedTokens(usage.cache_read_input_tokens),
+            cacheCreationInputTokens:
+              usage?.cache_creation_input_tokens === undefined
+                ? 0
+                : reportedTokens(usage.cache_creation_input_tokens),
+          }),
+        );
+      }
       if (result.stop_reason === "max_tokens")
         throw new StudioApiError(
           "Claude 응답이 출력 토큰 한도로 잘렸습니다. 문항을 나누어 다시 시도해 주세요.",
