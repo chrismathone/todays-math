@@ -1,0 +1,25 @@
+{
+  "status": "Assistant visual inventory of printed answer fields; independent of transcription values. Sheet footer totals cover additional pages, so are not page denominators.",
+  "pages": [
+    {
+      "id": "d1-p01",
+      "blanksPerQuestion": [1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "apply": 0
+    },
+    { "id": "d1-p04", "blanksPerQuestion": [1, 1, 1, 1, 2, 2], "apply": 3 },
+    { "id": "d1-p05", "blanksPerQuestion": [1, 1, 1], "apply": 3 },
+    { "id": "d1-p06", "blanksPerQuestion": [1, 1, 1, 1], "apply": 3 },
+    { "id": "d1-p07", "blanksPerQuestion": [1, 1, 2, 1], "apply": 3 },
+    { "id": "d1-p08", "blanksPerQuestion": [1, 1, 1, 2], "apply": 3 },
+    {
+      "id": "d2-p02",
+      "blanksPerQuestion": [1, 2, 1, 1, 1, 1, 1, 1],
+      "apply": 2
+    },
+    {
+      "id": "d2-p05",
+      "blanksPerQuestion": [2, 3, 3, 1, 2, 2, 2, 2, 1, 1],
+      "apply": 0
+    }
+  ]
+}

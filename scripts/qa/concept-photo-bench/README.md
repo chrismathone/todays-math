@@ -2,6 +2,61 @@
 
 학생 답을 사진에서 **읽는 단계**와 읽힌 답을 **채점하는 단계**를 분리해서 평가한다. 현재 앱에 자동 채점을 적용하지 않으며 원본 PDF는 수정하지 않는다.
 
+## 2026-11-24 개념 백지 스캔 확장
+
+기존 파일럿의 PDF 전체 렌더·구독 CLI 길을 확장했다. [사전 등록](scan-protocol.md),
+[결과 보고서](../../../docs/planning/tracks/reports/cb-scan-read.md)를 먼저 읽는다.
+새 스캔은 선택형 파일럿의 참값·정답표를 쓰지 않는다. 원본의 이름 줄을 가린 뒤
+Sonnet/Opus의 독립 판독 일치만 참값 **후보**로 삼고, 불일치는 사람 확인 대기다.
+`scan-inventory.json`은 원본의 인쇄 답란을 별도로 센 비식별 위치 목록이다.
+
+새 도구는 유료 API를 호출하지 않는다. `claude auth status`의 구독 로그인과 실제
+5.5 모델 ID를 확인한다. 기존 Jev/Gateway 실행 명령은 이 측정에 사용하지 않는다.
+한 실행의 모델 호출은 최대 3개이며 서로 다른 모델 실행 스크립트를 동시에 켜지 않는다.
+브라우저나 운영 빌드는 필요 없다. Python PyMuPDF/Pillow/NumPy, macOS Apple Vision,
+로그인한 Claude CLI가 필요하다. 이미지를 포함한 모든 출력 경로는 저장소 밖이어야 한다.
+
+```sh
+# PRIVATE는 원본 폴더 아래 out/scan-read 같은 저장소 밖 전용 폴더다.
+python scan-prepare.py render SOURCE PRIVATE
+# 자동 이름 표지 탐지가 실패하면 가림을 확인한 다음에만 명시적으로 지정한다.
+python scan-prepare.py render SOURCE PRIVATE --reviewed-header-bottom 0.12
+python scan-prepare.py variants SOURCE PRIVATE --pages d1-p01,d1-p04,d1-p05,d1-p06,d1-p07,d1-p08,d2-p02,d2-p05
+node scan-run.mjs reference PRIVATE
+node scan-run.mjs boxes PRIVATE
+python scan-crops.py PRIVATE
+# crop-review.jpg의 실제 크롭 경계를 확인한다.
+node scan-run.mjs screen PRIVATE
+node scan-run.mjs finalists PRIVATE
+node scan-semantic.mjs PRIVATE
+node scan-contamination.mjs PRIVATE
+node scan-run.mjs summarize PRIVATE
+node scan-report.mjs PRIVATE
+```
+
+명령은 이 폴더에서 실행하거나 파일 앞에 `scripts/qa/concept-photo-bench/`를 붙인다.
+`reference`는 16회, `boxes`는 24회, `screen`은 576쪽 시행이다(문항별 팔은 쪽마다
+여러 호출). `finalists`는 사전 등록 순위의 상위 두 조합과 whole/raw-high 대조군을
+세 모델의 low/high로 각 3회 측정한다. 같은 screening 시행을 다시 독립 시행으로 세지 않는다.
+중간 오류 검토에서 발견한 표기 차이는 [채점 수정 v1.1](scan-scoring-v1.1.md)에 따로 고정했다.
+원래 점수와 수정 점수의 상위 두 조합 합집합을 최종 격자에 포함한다. 참값 후보와 독립 2회
+판독의 보류 판정은 수정하지 않는다. 각도 기호만 빠진 경우는 경미한 단위 누락 열로 분리한다.
+전체 측정 후 발견한 `60˚` 1건은 [사후 수정 v1.2](scan-scoring-v1.2.md)로 집계에서만
+면제한다. 시행 파일과 최종 격자 선택의 v1.1 점수는 유지하고 보고서에 두 점수를 남긴다.
+`semantic-cases.json.currentBankSuite`의 36개 합성 답은 현재 은행에서 문항과 루브릭을
+읽는다. 기존 12개 `cases`와 그 시험은 그대로 유지한다.
+
+계획·이미지 해시가 달라지면 새 출력 폴더를 쓴다. 성공 파일을 지우고 같은 실행 번호로
+재호출하지 않는다. JSON 형식 실패도 시행 분모와 비용에 포함한다. `summary.json`의
+`newPage*`는 측정된 읽기와 Opus high 위치 검출의 시간·환산 비용을 합한 **신규 사진
+시나리오**다. CLI 시작·서비스 요청 전송·응답 시간은 포함하고, 이미지 준비와
+폰에서 서버로 보내는 시간은 제외한다. 실제 모바일/운영 API 지연은 아니다.
+두 번 독립 읽기는 호출 상한을 지키기 위해 직렬로 쟀다.
+
+```sh
+node --test scripts/qa/concept-photo-bench/scan-core.test.mjs scripts/qa/concept-photo-bench/scan-artifacts.test.mjs scripts/qa/concept-photo-bench/pipeline.test.mjs
+```
+
 ## 2026-10-02 파일럿
 
 기출 시험지 PDF 3개에서 문항 10개를 잘라 기존 Antigravity / ChatGPT 구독 CLI로 각 1회 실행했다. 두 PDF에는 손글씨가 있고 한 PDF는 미작성 대조군이다. 이름·학교 머리말은 크롭에서 제외했다. 필기자와 실제 채점 시점은 확인되지 않았다.
