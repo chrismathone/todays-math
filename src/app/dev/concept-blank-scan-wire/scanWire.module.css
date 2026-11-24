@@ -1,0 +1,622 @@
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  font-family: var(--font-pretendard), "Apple SD Gothic Neo", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.app *,
+.pickerBody * {
+  box-sizing: border-box;
+}
+.pageHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.pageHead h1 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+.pageHead p,
+.optionNotes p {
+  margin: 4px 0;
+}
+.eyebrow {
+  font-size: 12px;
+  color: var(--learn-muted);
+  letter-spacing: 0.12em;
+}
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--learn-control);
+  font-size: 12px;
+  white-space: normal;
+  background: var(--learn-surface);
+}
+.notice,
+.warning {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--learn-control);
+  background: var(--learn-neutral);
+}
+.warning {
+  border-color: var(--learn-warning);
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.notice p,
+.warning p {
+  margin: 4px 0;
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+.choices button[aria-pressed="true"] {
+  border-color: var(--learn-ink);
+  background: var(--learn-ink);
+  color: var(--learn-on-nav);
+}
+.app :where(button:not([class]), button.primary),
+.pickerBody button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: 6px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.app :where(button:not([class]), button.primary):enabled:hover,
+.pickerBody button:enabled:hover {
+  border-color: var(--learn-ink);
+  background: var(--learn-soft-hover);
+  color: var(--learn-ink);
+}
+.app :where(button:not([class]), button.primary):disabled,
+.pickerBody button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.app button:focus-visible,
+.app select:focus-visible,
+.app textarea:focus-visible,
+.app input:focus-visible,
+.app summary:focus-visible,
+.pickerBody button:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.app .primary {
+  background: var(--learn-ink);
+  color: var(--learn-on-nav);
+  border-color: var(--learn-ink);
+}
+.optionNotes {
+  border-top: 1px solid var(--learn-control);
+  padding: 18px 0 12px;
+}
+.optionNotes h2 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+.meta {
+  font-size: 12px;
+  color: var(--learn-muted);
+  margin: 8px 0;
+}
+.paperSamples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.sample {
+  min-width: 0;
+  border: 1px solid var(--learn-track);
+  background: var(--learn-surface);
+  padding: 16px;
+}
+.sample h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.details {
+  border-top: 1px solid var(--learn-track);
+  padding: 16px 0;
+  margin-top: 20px;
+}
+.app summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+.code {
+  display: block;
+  padding: 12px;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.wirePaper {
+  position: relative;
+}
+.qrHead {
+  position: relative;
+  flex: none;
+}
+.qrBlock {
+  width: var(--qr-size);
+  flex: none;
+  color: #000;
+  text-align: center;
+  font: 9px/1.4 sans-serif;
+  margin-bottom: 10px;
+}
+.qrBlock img {
+  display: block;
+  width: var(--qr-size);
+  height: var(--qr-size);
+  max-width: none;
+  image-rendering: pixelated;
+}
+.qrBlock span {
+  display: block;
+  margin-top: 3px;
+}
+.side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--qr-size);
+  gap: 12px;
+}
+.originalHead {
+  min-width: 0;
+}
+.aboveDate .qrBlock {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.aboveDate .originalHead [data-cb-head="first"] > :last-child {
+  padding-top: calc(var(--qr-size) + 20px);
+}
+.aboveDate[data-first="false"] .originalHead,
+.aboveDate .originalHead [data-cb-head="key"] {
+  min-height: calc(var(--qr-size) + 30px);
+  padding-right: calc(var(--qr-size) + 16px);
+}
+.band {
+  display: flex;
+  flex-direction: column;
+}
+.band .qrBlock {
+  order: -1;
+  align-self: end;
+}
+.belowDate .qrBlock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.belowDate .originalHead [data-cb-head="first"] > :last-child {
+  padding-bottom: calc(var(--qr-size) + 20px);
+}
+.belowDate[data-first="false"] .originalHead {
+  min-height: calc(var(--qr-size) + 30px);
+  padding-right: calc(var(--qr-size) + 16px);
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  margin: 16px 0;
+}
+.app label,
+.pickerBody label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+.app select,
+.app input,
+.app textarea,
+.pickerBody input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 10px;
+  font: inherit;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-control);
+  border-radius: 6px;
+}
+.app textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+.phone {
+  width: 390px;
+  max-width: 100%;
+  border: 1px solid var(--learn-control);
+  background: var(--learn-surface);
+  margin: 20px auto;
+}
+.widePhone {
+  width: 1100px;
+}
+.phoneHead {
+  padding: 18px 16px;
+  border-bottom: 1px solid var(--learn-track);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.phoneHead b {
+  font-size: 18px;
+}
+.phoneHead span {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.phoneBody {
+  padding: 16px;
+  min-width: 0;
+}
+.phoneBody h3 {
+  font-size: 16px;
+  margin: 12px 0;
+}
+.phoneBody > button {
+  width: 100%;
+  margin-top: 12px;
+}
+.owner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learn-track);
+}
+.owner p {
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+.owner button {
+  flex-shrink: 0;
+}
+.camera {
+  border: 2px dashed var(--learn-muted);
+  background: var(--learn-neutral);
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+}
+.cameraPaper {
+  --cb-paper-scale: 0.31;
+  display: flex;
+  justify-content: center;
+}
+.cameraCaption {
+  display: block;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.pageList {
+  padding: 0;
+  margin: 12px 0;
+  list-style: none;
+}
+.pageList li {
+  border-bottom: 1px solid var(--learn-track);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.disclosure {
+  font-size: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--learn-track);
+}
+.codeEntry {
+  margin-top: 12px;
+}
+.pickerBody {
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+  color: var(--learn-ink);
+  font:
+    14px/1.6 var(--font-pretendard),
+    sans-serif;
+}
+.pickerBody p {
+  margin: 0;
+}
+.photoFrame {
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+  background: var(--learn-neutral);
+}
+.photoPaper {
+  width: 100%;
+}
+.photoPaper [data-print-page] {
+  box-shadow: none;
+}
+.answerMark {
+  position: absolute;
+  border-bottom: 3px solid var(--learn-accent);
+}
+.answerMark button {
+  position: absolute;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 1;
+  border: 2px solid var(--learn-accent);
+  color: var(--learn-accent);
+  z-index: 1;
+}
+.photoFrame[data-mark-style="highlight"] .answerMark {
+  border: 0;
+  background: color-mix(in srgb, var(--learn-warning) 20%, transparent);
+}
+.photoFrame[data-mark-style="outline"] .answerMark {
+  border: 2px solid var(--learn-accent);
+}
+.photoFrame[data-mark-style="corners"] .answerMark {
+  border: 0;
+  background:
+    linear-gradient(var(--learn-accent), var(--learn-accent)) left top / 12px
+      2px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) left top / 2px
+      12px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) right top / 12px
+      2px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) right top / 2px
+      12px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) left bottom / 12px
+      2px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) left bottom / 2px
+      12px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) right bottom /
+      12px 2px no-repeat,
+    linear-gradient(var(--learn-accent), var(--learn-accent)) right bottom / 2px
+      12px no-repeat;
+}
+.photoFrame[data-badge-place="left"] .answerMark button {
+  left: -36px;
+  top: -14px;
+}
+.photoFrame[data-badge-place="top"] .answerMark button {
+  left: 0;
+  top: -40px;
+}
+.photoFrame[data-badge-place="right"] .answerMark button {
+  right: -20px;
+  top: -14px;
+}
+.photoFrame[data-badge-place="inside"] .answerMark button {
+  right: 0;
+  top: 0;
+}
+.numberedInputs {
+  margin-top: 20px;
+}
+.answerField {
+  padding: 16px 0;
+  border-top: 1px solid var(--learn-control);
+}
+.answerInput {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+.mathInput {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+}
+.mathInput label {
+  min-width: 0;
+  flex: 1;
+}
+.mathInput button {
+  flex-shrink: 0;
+}
+.prompt {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+.cropScroll {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid var(--learn-track);
+}
+.crop {
+  position: relative;
+  overflow: hidden;
+  zoom: 0.9;
+}
+.cropPage {
+  position: absolute;
+}
+.designNote {
+  padding: 14px 0;
+  border-top: 1px solid var(--learn-track);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.processing {
+  padding: 48px 0;
+}
+.score {
+  margin: 24px 0;
+  border-bottom: 2px solid var(--learn-ink);
+  padding-bottom: 20px;
+}
+.score strong {
+  display: block;
+  font-size: 56px;
+  line-height: 1.3;
+}
+.score small {
+  font-size: 22px;
+}
+.score p {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.formNote {
+  padding: 12px 0;
+  border-top: 1px solid var(--learn-track);
+}
+.legend {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.resultSplit,
+.directSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.resultSplit > *,
+.directSplit > * {
+  min-width: 0;
+}
+.resultRows {
+  min-width: 0;
+}
+.resultRow {
+  padding: 18px 0;
+  border-top: 1px solid var(--learn-track);
+}
+.resultRow header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.resultRow header h3 {
+  margin: 0;
+}
+.verdict {
+  font-size: 24px;
+  white-space: nowrap;
+}
+.verdict[data-verdict="확인 필요"] {
+  color: var(--learn-warning);
+  font-size: 14px;
+}
+.answerReference {
+  padding: 10px 0;
+  font-size: 14px;
+}
+.teacherEdit {
+  background: var(--learn-neutral);
+  padding: 16px;
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.directComparison {
+  padding-top: 20px;
+  margin-top: 24px;
+  border-top: 2px solid var(--learn-ink);
+}
+.manualText {
+  white-space: pre-wrap;
+}
+.pageFoot {
+  padding: 28px 0;
+  margin-top: 24px;
+  border-top: 1px solid var(--learn-track);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+@media (max-width: 1050px) {
+  .paperSamples {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .app {
+    padding: 16px;
+  }
+  .pageHead {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pageHead h1 {
+    font-size: 24px;
+  }
+  .choices {
+    gap: 6px;
+  }
+  .choices button {
+    flex: 1 1 46%;
+    padding: 8px;
+  }
+  .controls > label {
+    width: 100%;
+  }
+  .phone {
+    margin-inline: auto;
+  }
+  .phoneBody {
+    padding: 12px;
+  }
+  .resultSplit,
+  .directSplit {
+    grid-template-columns: 1fr;
+  }
+  .camera {
+    padding: 10px;
+  }
+  .cameraPaper {
+    --cb-paper-scale: 0.29;
+  }
+}
+@media print {
+  .app {
+    max-width: none;
+    padding: 0;
+  }
+  .qrBlock {
+    break-inside: avoid;
+  }
+}
