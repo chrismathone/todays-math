@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-25",
+  "branch": "phase/textbook-engine-census",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/qa/textbook-engine-census",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "output": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.023s\n\nOK"
+    },
+    {
+      "command": [
+        "./node_modules/.bin/eslint",
+        "scripts/qa/textbook-engine-census/export-engine.ts"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "verification": {
+    "rows": 8502,
+    "replay_files": 5,
+    "reviewed": 143,
+    "random_reviewed": 140,
+    "supplementary_reviewed": 3,
+    "sample_corrections": 11,
+    "source_long_fragment_matches": 0,
+    "report_matches": true
+  },
+  "python_tests": 16,
+  "engine_generation_samples": 3618,
+  "engine_generation_errors": 0,
+  "production_build": false,
+  "database_connections": 0,
+  "database_writes": 0,
+  "paid_api_calls": 0,
+  "original_text_or_images_stored": false,
+  "push": false,
+  "merge_main": false,
+  "independent_review": {
+    "agent": "/root/audit (Codex)",
+    "random_A": 80,
+    "supplementary_A": 3,
+    "final_artifact_review": "집계·표본·브리프 필수항목·원문 반출 검사; 수정 반영 후 검증 완료"
+  },
+  "limits": [
+    "유형 대응과 결정적 생성 가능성의 검토이며 원본 정답 전수 검산 아님",
+    "그림 실제 바이트 미제공; 본문 그림 단서3332행은 보수적으로 C",
+    "C는 확정 AI 물량 아님; 표본에서 과소분류11행 회수"
+  ]
+}
