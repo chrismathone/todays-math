@@ -93,7 +93,11 @@ describe("print issuance and unchanged-paper fallback", () => {
         </IssuePrint>,
       );
       await waitFor(() => expect(screen.getByTestId("print-now")).toBeTruthy());
-      expect(screen.getByRole("alert").textContent).toMatch(/QR 없는 지면/);
+      expect(screen.getByRole("alert").textContent).toMatch(/QR 없이 인쇄됨 ·/);
+      if (kind === "server")
+        expect(screen.getByRole("alert").textContent).toContain(
+          "사진 채점 저장소가 준비되지 않았습니다.",
+        );
       expect(screen.getByText("기존 지면")).toBeTruthy();
       expect(mocks.replace).not.toHaveBeenCalled();
     },
@@ -108,4 +112,21 @@ describe("print issuance and unchanged-paper fallback", () => {
     await screen.findByRole("alert");
     expect(screen.queryByTestId("print-now")).toBeNull();
   });
+});
+
+it("shows a useful platform failure instead of a JSON parser exception", async () => {
+  vi.stubGlobal(
+    "fetch",
+    vi
+      .fn()
+      .mockResolvedValue(new Response("<html>timeout</html>", { status: 504 })),
+  );
+  render(
+    <IssuePrint selection={selection} view="student" autoPrint={false}>
+      <div>기존 지면</div>
+    </IssuePrint>,
+  );
+  expect((await screen.findByRole("alert")).textContent).toMatch(
+    /QR 없이 인쇄됨 · .*504/,
+  );
 });

@@ -339,6 +339,7 @@ export async function runScanNameCapture(
         page: issue.snapshot.pages.find((p) => p.number === 1)!,
         imageDataUrl: `data:${photo.mime};base64,${bytes.toString("base64")}`,
         signal,
+        onMalformedOutput: deps.onError,
       },
       deps.model(`name:${job.id}:${photo.id}`, undefined, job.jobId),
     );

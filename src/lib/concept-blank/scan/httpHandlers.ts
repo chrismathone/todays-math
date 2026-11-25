@@ -23,7 +23,11 @@ import {
   scanStartInputSchema,
 } from "@/contracts/conceptBlankScanApi.contract";
 import { cronSecretMatches } from "@/lib/cronSecret";
-import { getScanIssueView, ScanAccessError } from "./issuance";
+import {
+  getScanIssueView,
+  readIssuedScanArtifact,
+  ScanAccessError,
+} from "./issuance";
 import {
   beginScanSubmission,
   getScanSubmission,
@@ -136,6 +140,26 @@ export function createScanHttpHandlers(deps: {
       scanHttp(async () => {
         const who = await actor(request),
           { id } = await context.params;
+        const query = new URL(request.url).searchParams;
+        if (query.get("format") === "css") {
+          const part = query.get("view");
+          if (part !== "student" && part !== "key" && part !== "both")
+            throw new ScanAccessError("지면 종류를 확인해 주세요.", 400);
+          const artifact = await readIssuedScanArtifact(
+            who,
+            id,
+            part,
+            deps.runtime(request).db,
+          );
+          const { browserScanCss } = await import("./fonts.server");
+          return new Response(browserScanCss(artifact), {
+            headers: {
+              ...scanNoStore,
+              "Content-Type": "text/css; charset=utf-8",
+              "X-Content-Type-Options": "nosniff",
+            },
+          });
+        }
         return json(
           await getScanIssueView(
             who,

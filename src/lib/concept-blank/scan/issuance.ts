@@ -185,6 +185,8 @@ export async function issueScanPaper(
   input: { requestId: string; selection: ConceptBlankSelection },
   deps: {
     db: ScanDatabase;
+    /** Bank/content, rendering and font edition supplied by the trusted renderer. */
+    publicationEdition?: string;
     render: (
       id: string,
       selection: ConceptBlankSelection,
@@ -195,6 +197,21 @@ export async function issueScanPaper(
     throw new ScanAccessError("교사만 지면을 발행할 수 있습니다.");
   const parsed = scanIssueInputSchema.parse(input);
   const viewer = await scanTeacher(deps.db, actor.id);
+  const publicationKey = createHash("sha256")
+    .update(
+      JSON.stringify([
+        parsed.selection,
+        deps.publicationEdition ?? "test-injected-renderer",
+      ]),
+    )
+    .digest("hex");
+  const samePaper = async (sql: ScanSql) => {
+    const [row] = await sql.query<{ id: string }>(
+      `SELECT id FROM concept_blank_printed_sheet WHERE user_id=$1::uuid AND branch_id IS NOT DISTINCT FROM $2::uuid AND render_artifact->>'publicationKey'=$3::text ORDER BY created_at,id LIMIT 1`,
+      [actor.id, viewer.branchId ?? null, publicationKey],
+    );
+    return row ?? null;
+  };
   const existing = async () => {
     const [row] = await deps.db
       .query<{ id: string }>(
@@ -215,7 +232,7 @@ export async function issueScanPaper(
       );
     return { id: issue.id };
   };
-  const prior = await existing();
+  const prior = (await existing()) ?? (await samePaper(deps.db));
   if (prior) return prior;
   const id = randomUUID();
   const rendered = await deps.render(id, parsed.selection);
@@ -223,7 +240,10 @@ export async function issueScanPaper(
   if (JSON.stringify(snapshot.selection) !== JSON.stringify(parsed.selection))
     throw new Error("발행한 고르기가 요청과 다릅니다.");
   const layout = matchScanLayout(snapshot, rendered.layout);
-  const artifact = scanPaperArtifactSchema.parse(rendered.artifact);
+  const artifact = scanPaperArtifactSchema.parse({
+    ...rendered.artifact,
+    publicationKey,
+  });
   if (
     artifact.pages.length !== layout.pages.length ||
     artifact.pages.some(
@@ -236,7 +256,7 @@ export async function issueScanPaper(
   const hash = createHash("sha256")
     .update(JSON.stringify(artifact))
     .digest("hex");
-  await deps.db
+  const result = await deps.db
     .transaction(async (tx) => {
       const current = await scanTeacher(tx, actor.id);
       if (current.branchId !== viewer.branchId)
@@ -244,6 +264,14 @@ export async function issueScanPaper(
           "발행 중 소속이 바뀌었습니다. 다시 발행해 주세요.",
           409,
         );
+      // A short transaction only: no database lock is held during Chromium rendering.
+      // Cross-process clicks for the same publication converge to one immutable row.
+      await tx.query(
+        `SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtextextended($1::text,0))`,
+        ["cb-scan-issue:" + actor.id + ":" + publicationKey],
+      );
+      const winner = await samePaper(tx);
+      if (winner) return winner;
       await tx.query(
         `INSERT INTO concept_blank_printed_sheet
       (id,user_id,created_by,branch_id,request_id,sheet_code,snapshot,layout,render_artifact,artifact_sha256)
@@ -260,9 +288,10 @@ export async function issueScanPaper(
           hash,
         ],
       );
+      return null;
     })
     .catch(scanDatabaseError);
-  return (await existing())!;
+  return result ?? (await existing())!;
 }
 
 export async function readIssuedScanArtifact(
@@ -306,7 +335,8 @@ export async function readIssuedScanPaper(
 ) {
   const artifact = await readIssuedScanArtifact(actor, id, part, sql);
   const { scanPaperDocument } = await import("./paperDocument");
-  return scanPaperDocument(artifact);
+  const { browserScanCss } = await import("./fonts.server");
+  return scanPaperDocument({ ...artifact, css: browserScanCss(artifact) });
 }
 
 /** Roster picker intersects issuer and viewer scope. The QR itself grants no access. */

@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { createRequire } from "node:module";
+import { join } from "node:path";
 import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
@@ -9,9 +9,8 @@ export const runtime = "nodejs";
 async function handleGet(request: Request) {
   const access = await authorizeStudio(request);
   if (access.response) return access.response;
-  const require = createRequire(`${process.cwd()}/package.json`);
   const worker = await readFile(
-    require.resolve("pdfjs-dist/build/pdf.worker.min.mjs"),
+    join(process.cwd(), "node_modules/pdfjs-dist/build/pdf.worker.min.mjs"),
   );
   return new Response(worker, {
     headers: { ...headers, "Content-Type": "text/javascript; charset=utf-8" },

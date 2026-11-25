@@ -19,59 +19,99 @@ import { launchExportBrowser } from "@/lib/export/pdfServer";
 import { composeSheets } from "../compose";
 import { createScanSnapshot } from "./snapshot";
 import { matchScanLayout, scanQrUrl } from "./layout";
+import { scanFontCss, scanFontFingerprint } from "./fonts.server";
+import { createScanRenderQueue, ScanPaperError } from "./renderQueue";
 import { scanPaperCss } from "./paperCss.server";
 import { measureScanPaper } from "./paperMeasure";
 import { scanPaperDocument } from "./paperDocument";
 export { scanPaperDocument } from "./paperDocument";
 
 // Keeps our renderer to one Chromium per process. No database lock spans rendering.
-let rendering = false;
+const renderQueue = createScanRenderQueue();
 async function withPage<T>(
   artifact: ScanPaperArtifact,
   run: (page: Page) => Promise<T>,
 ) {
-  if (rendering)
-    throw new Error(
-      "다른 지면을 발행하고 있습니다. 잠시 뒤 다시 발행해 주세요.",
-    );
-  rendering = true;
-  let browser: Awaited<ReturnType<typeof launchExportBrowser>> | undefined;
-  try {
-    browser = await launchExportBrowser();
-    const page = await browser.newPage();
-    await page.setJavaScriptEnabled(false);
-    await page.setRequestInterception(true);
-    page.on("request", (request) => {
-      void (/^(data:|about:blank)/.test(request.url())
-        ? request.continue()
-        : request.abort());
-    });
-    await page.emulateMediaType("print");
-    await page.setContent(scanPaperDocument(artifact), { waitUntil: "load" });
-    await page.evaluate(async () => {
-      await Promise.all(
-        ["Noto Serif KR", "Pretendard"].flatMap((family) =>
-          [400, 700, 800].map(async (weight) => {
-            if (
-              !(
-                await document.fonts.load(
-                  `${weight} 16px "${family}"`,
-                  "가힣국문수학9A",
-                )
-              ).length
-            )
-              throw new Error("발행 글꼴을 읽지 못했습니다.");
-          }),
-        ),
+  if (
+    artifact.fontFingerprint &&
+    artifact.fontFingerprint !== scanFontFingerprint()
+  )
+    throw new ScanPaperError("저장된 지면의 글꼴 판을 확인해야 합니다.");
+  return renderQueue(async (signal) => {
+    let browser: Awaited<ReturnType<typeof launchExportBrowser>> | undefined;
+    try {
+      browser = await launchExportBrowser();
+      signal.throwIfAborted();
+      signal.addEventListener(
+        "abort",
+        () => {
+          void browser?.close().catch(() => undefined);
+        },
+        { once: true },
       );
-      await document.fonts.ready;
-      await Promise.all([...document.images].map((img) => img.decode()));
-    });
-    return await run(page);
-  } finally {
-    await browser?.close();
-    rendering = false;
-  }
+      const page = await browser.newPage();
+      await page.setJavaScriptEnabled(false);
+      await page.setRequestInterception(true);
+      page.on("request", (request) => {
+        void (/^(data:|about:blank)/.test(request.url())
+          ? request.continue()
+          : request.abort());
+      });
+      await page.emulateMediaType("print");
+      await page.setContent(
+        scanPaperDocument(
+          artifact.fontFingerprint
+            ? { ...artifact, css: scanFontCss("embedded") + artifact.css }
+            : artifact,
+        ),
+        { waitUntil: "load" },
+      );
+      await page.evaluate(async () => {
+        await Promise.all(
+          ["Noto Serif KR", "Pretendard"].flatMap((family) =>
+            [400, 700, 800].map(async (weight) => {
+              if (
+                !(
+                  await document.fonts.load(
+                    `${weight} 16px "${family}"`,
+                    "가힣국문수학9A",
+                  )
+                ).length
+              )
+                throw new Error("발행 글꼴을 읽지 못했습니다.");
+            }),
+          ),
+        );
+        await document.fonts.ready;
+        await Promise.all([...document.images].map((img) => img.decode()));
+      });
+      return await run(page);
+    } catch (error) {
+      if (signal.aborted) throw signal.reason;
+      throw error;
+    } finally {
+      await browser?.close();
+    }
+  });
+}
+
+/** Reuse only identical frozen content/layout/font editions, including the QR origin. */
+export function scanPublicationEdition(
+  selection: ConceptBlankSelection,
+  bank: ConceptBlankBank,
+  origin: string,
+) {
+  return createHash("sha256")
+    .update(
+      JSON.stringify([
+        "scan-paper-v2",
+        createScanSnapshot(selection, bank),
+        scanPaperCss(),
+        scanFontFingerprint(),
+        origin,
+      ]),
+    )
+    .digest("hex");
 }
 
 export async function renderScanPaper(input: {
@@ -125,6 +165,7 @@ export async function renderScanPaper(input: {
   const artifact = scanPaperArtifactSchema.parse({
     version: 1,
     css: scanPaperCss(),
+    fontFingerprint: scanFontFingerprint(),
     pages,
   });
   const measured = await withPage(artifact, (page) =>
@@ -132,7 +173,9 @@ export async function renderScanPaper(input: {
   );
   // Subpixel rounding up to one CSS pixel is a measurement tolerance, never a clipped text allowance.
   if (measured.overflow.some((px) => px > 1))
-    throw new Error("발행 지면의 본문이 넘쳐 QR 없이 인쇄합니다.");
+    throw new ScanPaperError(
+      `발행 지면의 본문이 넘칩니다(최대 ${Math.max(...measured.overflow).toFixed(1)}px). 문항 수를 줄여 다시 발행해 주세요.`,
+    );
   const layout = matchScanLayout(snapshot, measured.layout);
   const artifactSha256 = createHash("sha256")
     .update(JSON.stringify(artifact))

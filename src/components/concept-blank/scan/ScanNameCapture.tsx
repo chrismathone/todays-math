@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import type { ScanNameCaptureView } from "@/contracts/conceptBlankScanName.contract";
-import { encodeScanPhoto } from "./image";
+import { encodeScanPhoto, SCAN_PHOTO_ACCEPT } from "./image";
 import type { ScanSource } from "./api";
 import s from "./scan.module.css";
 
@@ -163,7 +163,7 @@ export function ScanNameCapture({
         aria-label="이름 칸 카메라 사진"
         ref={camera}
         type="file"
-        accept="image/jpeg,image/png,image/webp"
+        accept={SCAN_PHOTO_ACCEPT}
         capture="environment"
         disabled={waiting}
         onChange={(e) => {
@@ -177,7 +177,7 @@ export function ScanNameCapture({
         aria-label="이름 칸 1쪽 사진 파일"
         ref={input}
         type="file"
-        accept="image/jpeg,image/png,image/webp"
+        accept={SCAN_PHOTO_ACCEPT}
         disabled={waiting}
         onChange={(e) => {
           photo(e.target.files?.[0]);

@@ -265,6 +265,7 @@ export async function runScanJob(
             page,
             imageDataUrl: `data:${photo.mime_type};base64,${bytes.toString("base64")}`,
             signal,
+            onMalformedOutput: deps.onError,
           },
           deps.model(
             `read:${job.submissionId}:${photo.id}`,
@@ -313,6 +314,7 @@ export async function runScanJob(
             readings,
             corrections: [],
             signal,
+            onMalformedOutput: deps.onError,
             onModelTargets: (ids) => ids.forEach((id) => modelTargets.add(id)),
           },
           deps.model(

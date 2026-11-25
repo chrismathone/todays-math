@@ -430,7 +430,7 @@ export async function migrateListeningWaveAssetToStorage(
         );
         await lockListeningDatabaseCapacity(tx);
         await tx.$executeRaw(
-          Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${record.ownerId}`},0))`,
+          Prisma.sql`SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtextextended(${`listening-media:${record.ownerId}`}::text,0))`,
         );
         await tx.$executeRawUnsafe(
           "LOCK TABLE english_listening_media_asset IN ACCESS EXCLUSIVE MODE",

@@ -84,3 +84,37 @@ it("requires explicit casts at every SQL parameter occurrence across the scan se
   }
   expect(missing).toEqual([]);
 });
+
+it("runs the listening migration advisory lock through the Prisma result decoder without void", async () => {
+  const path = "src/lib/english/listening/runtime/storageMigration.ts";
+  const source = ts.createSourceFile(
+    path,
+    readFileSync(path, "utf8"),
+    ts.ScriptTarget.Latest,
+    true,
+  );
+  const locks: string[] = [];
+  function visit(node: ts.Node) {
+    if (
+      ts.isTaggedTemplateExpression(node) &&
+      ts.isTemplateExpression(node.template) &&
+      node.template.head.text.includes(
+        "pg_advisory_xact_lock(hashtextextended(",
+      )
+    ) {
+      locks.push(
+        node.template.head.text +
+          node.template.templateSpans
+            .map((span, i) => `$${i + 1}` + span.literal.text)
+            .join(""),
+      );
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(source);
+  expect(locks).toHaveLength(1);
+  for (const sql of locks)
+    expect(await db.query(sql, ["listening-media:test"])).toEqual([
+      { locked: 1 },
+    ]);
+});

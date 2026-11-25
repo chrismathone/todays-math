@@ -12,6 +12,7 @@ export type ScanModel = (request: {
   operation: "read" | "grade";
   prompt: string;
   imageDataUrl?: string;
+  jsonSchema?: Readonly<Record<string, unknown>>;
   promptVersion?: string;
   signal: AbortSignal;
 }) => Promise<string>;
@@ -91,6 +92,7 @@ export function createScanModel(deps: {
               request.promptVersion,
               request.prompt,
               request.imageDataUrl ?? null,
+              request.jsonSchema ?? null,
             ]),
           )
           .digest("hex")
@@ -144,6 +146,9 @@ export function createScanModel(deps: {
         vendor: "anthropic",
         model,
         prompt: request.prompt,
+        jsonSchema: request.jsonSchema,
+        // The worker shares a 240s signal across all pages; the route allows 300s.
+        timeoutMs: 240_000,
         ...(request.imageDataUrl ? { imageDataUrl: request.imageDataUrl } : {}),
         effort: config.effort,
         maxOutputTokens: SCAN_MAX_OUTPUT_TOKENS,

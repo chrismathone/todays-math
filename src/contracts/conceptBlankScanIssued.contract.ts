@@ -93,6 +93,15 @@ export const scanIssuedLayoutSchema = z
   });
 export const scanPaperArtifactSchema = z.strictObject({
   version: z.literal(1),
+  // Additive reader: legacy immutable rows keep embedded faces and their original hash.
+  fontFingerprint: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .optional(),
+  publicationKey: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .optional(),
   css: z.string().min(1).max(16_000_000),
   pages: z
     .array(

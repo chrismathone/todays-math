@@ -5,7 +5,7 @@ import paper from "@/components/concept-blank/paper/paper.module.css";
 import issued from "@/components/concept-blank/issuedPaper.module.css";
 import print from "@/components/print/TestPrint.module.css";
 import writing from "@/components/print/WritingArea.module.css";
-import { selfHostedMathCss } from "@/lib/examReport/paperHtml";
+import { scanMathLayoutCss } from "./fonts.server";
 
 /** Translate only local class selectors through the same build's CSS-module map.
  * No parallel hand-maintained copy of paper geometry. :global selectors stay global.
@@ -40,8 +40,6 @@ export function scanPaperCss() {
     ["src/components/concept-blank/paper/paper.module.css", paper],
     ["src/components/concept-blank/issuedPaper.module.css", issued],
   ];
-  const font = (name: string, file: string) =>
-    `@font-face{font-family:"${name}";font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,${readFileSync(path.join(root, "public/fonts", file)).toString("base64")}) format("woff2");}`;
   cached = [
     // `createRequire(import.meta.url).resolve` 는 Turbopack 운영 빌드에서 undefined 가 됐다(2026-11-25 운영 장애).
     // 이 파일은 `next.config.ts` 의 outputFileTracingIncludes 로 함수에 실린다 — cwd 기준으로 읽는다.
@@ -49,9 +47,7 @@ export function scanPaperCss() {
       path.join(root, "node_modules/tailwindcss/preflight.css"),
       "utf8",
     ),
-    font("Noto Serif KR", "NotoSerifKR-subset.woff2"),
-    font("Pretendard", "PretendardVariable.woff2"),
-    selfHostedMathCss(),
+    scanMathLayoutCss(),
     `:root{--font-noto-serif-kr:"Noto Serif KR";--font-pretendard:"Pretendard"}html,body{margin:0;padding:0}`,
     ...modules.map(([file, classes]) =>
       materializeScanCss(readFileSync(path.join(root, file), "utf8"), classes),

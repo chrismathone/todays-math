@@ -39,7 +39,16 @@ const evidence = {
 const objects = new Map(),
   signed = new Map(),
   tasks = new Set();
-let handlers, issuePaper, renderPaper, local, world, selection, bank, browser;
+let handlers,
+  issuePaper,
+  readPaper,
+  paperEdition,
+  renderPaper,
+  local,
+  world,
+  selection,
+  bank,
+  browser;
 const actor = async (request, teacherOnly = false) => {
   const teacher = request.headers
     .get("cookie")
@@ -50,6 +59,7 @@ const actor = async (request, teacherOnly = false) => {
 const server = await createServer({
   configFile: false,
   root: dir,
+  publicDir: path.join(root, "public"),
   appType: "spa",
   resolve: {
     alias: [
@@ -69,6 +79,22 @@ const server = await createServer({
           if (pathname === "/concept-blank/scan") {
             req.url = `/e2e.html${req.url.slice(req.url.indexOf("?"))}`;
             return next();
+          }
+          if (pathname === "/qa-reprint") {
+            try {
+              const html = await readPaper(
+                world.teacher,
+                new URL(req.url, base).searchParams.get("p"),
+                "both",
+                local.db,
+              );
+              res.setHeader("Content-Type", "text/html; charset=utf-8");
+              return res.end(html);
+            } catch (error) {
+              evidence.errors.push(String(error));
+              res.statusCode = 500;
+              return res.end("reprint failed");
+            }
           }
           if (pathname.startsWith("/qa-photo/")) {
             const token = signed.get(pathname),
@@ -101,6 +127,7 @@ const server = await createServer({
               const who = await actor(request, true);
               const result = await issuePaper(who, await request.json(), {
                 db: local.db,
+                publicationEdition: paperEdition(selection, bank, base),
                 render: (id, value) =>
                   renderPaper({ id, selection: value, bank, origin: base }),
               });
@@ -184,13 +211,15 @@ try {
   const { scanConfig } = await server.ssrLoadModule(
     `${root}/src/lib/concept-blank/scan/model.ts`,
   );
-  ({ issueScanPaper: issuePaper } = await server.ssrLoadModule(
-    `${root}/src/lib/concept-blank/scan/issuance.ts`,
-  ));
+  ({ issueScanPaper: issuePaper, readIssuedScanPaper: readPaper } =
+    await server.ssrLoadModule(
+      `${root}/src/lib/concept-blank/scan/issuance.ts`,
+    ));
   const paper = await server.ssrLoadModule(
     `${root}/src/lib/concept-blank/scan/paper.server.ts`,
   );
   renderPaper = paper.renderScanPaper;
+  paperEdition = paper.scanPublicationEdition;
   local = await openScanTestDb();
   world = await scanWorld(local);
   const { loadWireSamples } = await server.ssrLoadModule(
@@ -221,27 +250,36 @@ try {
     evidence.modelCalls.push({
       operation: request.operation,
       promptVersion: request.promptVersion,
+      structured: !!request.jsonSchema,
     });
     const input = JSON.parse(request.prompt.split("\n").at(-1));
     if (request.operation === "read")
-      return JSON.stringify({
-        written_name: input.page === 1 ? writtenName : null,
-        slots: input.slots.map((slot, i) => ({
-          id: slot.id,
-          status: i < 2 ? "unreadable" : "read",
-          text: i < 2 ? "" : "대응하는 변의 길이가 같습니다.",
+      return (
+        "```json\n" +
+        JSON.stringify({
+          written_name: input.page === 1 ? writtenName : null,
+          slots: input.slots.map((slot, i) => ({
+            id: slot.id,
+            status: i < 2 ? "unreadable" : "read",
+            text: i < 2 ? "" : "대응하는 변의 길이가 같습니다.",
+          })),
+        }) +
+        "\n```"
+      );
+    return (
+      "채점 결과입니다.\n" +
+      JSON.stringify({
+        grades: input.map((target, i) => ({
+          id: target.id,
+          label: i % 2 ? "partial" : "correct",
+          reason:
+            i % 2
+              ? "대응하는 각에 대한 설명이 더 필요합니다."
+              : "요구한 뜻을 설명했습니다.",
         })),
-      });
-    return JSON.stringify({
-      grades: input.map((target, i) => ({
-        id: target.id,
-        label: i % 2 ? "partial" : "correct",
-        reason:
-          i % 2
-            ? "대응하는 각에 대한 설명이 더 필요합니다."
-            : "요구한 뜻을 설명했습니다.",
-      })),
-    });
+      }) +
+      "\n확인을 마쳤습니다."
+    );
   };
   handlers = createScanHttpHandlers({
     actor,
@@ -259,21 +297,74 @@ try {
     },
   });
   // Issuance and PDF rendering finish before the only interactive Chromium starts.
-  const issuedResponse = await fetch(`${base}/api/concept-blank/scan/issued`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      origin: base,
-      cookie: "scan-qa-role=teacher",
-    },
-    body: JSON.stringify({ requestId: randomUUID(), selection }),
-  });
+  const firstClicks = await Promise.all(
+    [1, 2].map(() =>
+      fetch(`${base}/api/concept-blank/scan/issued`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          origin: base,
+          cookie: "scan-qa-role=teacher",
+        },
+        body: JSON.stringify({ requestId: randomUUID(), selection }),
+      }),
+    ),
+  );
+  const issuedResponse = firstClicks[0];
+  expect(firstClicks[1].status).toBe(201);
+  const concurrentIssue = await firstClicks[1].json();
   expect(issuedResponse.status).toBe(201);
-  const { data: issued } = await issuedResponse.json();
+  const issueBody = await issuedResponse.text();
+  expect(Buffer.byteLength(issueBody)).toBeLessThan(1_000_000);
+  const { data: issued } = JSON.parse(issueBody);
+  expect(concurrentIssue.data.id).toBe(issued.id);
+  const repeats = await Promise.all(
+    [1, 2].map(() =>
+      fetch(`${base}/api/concept-blank/scan/issued`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          origin: base,
+          cookie: "scan-qa-role=teacher",
+        },
+        body: JSON.stringify({ requestId: randomUUID(), selection }),
+      }).then((r) => r.json()),
+    ),
+  );
+  expect(repeats.map((r) => r.data.id)).toEqual([issued.id, issued.id]);
+  const cssResponse = await fetch(
+    `${base}/api/concept-blank/scan/issued/${issued.id}?format=css&view=both`,
+    { headers: { cookie: "scan-qa-role=teacher" } },
+  );
+  expect(cssResponse.status).toBe(200);
+  const css = await cssResponse.text();
+  expect(css).not.toContain("base64");
+  const htmlResponse = await fetch(`${base}/qa-reprint?p=${issued.id}`);
+  const html = await htmlResponse.text();
+  expect(Buffer.byteLength(html)).toBeLessThan(1_000_000);
+  const [publicationRows] = await local.db.query(
+    "SELECT count(*)::text AS count FROM concept_blank_printed_sheet WHERE user_id=$1::uuid AND snapshot->'selection'=$2::jsonb",
+    [world.teacher.id, JSON.stringify(selection)],
+  );
+  expect(publicationRows.count).toBe("1");
+  evidence.paperBytes = {
+    concurrentFirstClicks: 2,
+    publicationRows: Number(publicationRows.count),
+    issueResponse: Buffer.byteLength(issueBody),
+    reprintHtml: Buffer.byteLength(html),
+    stylesheet: Buffer.byteLength(css),
+  };
+
   const [stored] = await local.db.query(
-    "SELECT render_artifact,layout FROM concept_blank_printed_sheet WHERE id=$1::uuid",
+    "SELECT render_artifact,layout,snapshot FROM concept_blank_printed_sheet WHERE id=$1::uuid",
     [issued.id],
   );
+  expect(stored.render_artifact.css).not.toMatch(/base64|@font-face/);
+  evidence.paperBytes.storedArtifact = Buffer.byteLength(
+    JSON.stringify(stored.render_artifact),
+  );
+  evidence.paperBytes.fontFingerprint = stored.render_artifact.fontFingerprint;
+  await writeFile(path.join(out, "reprint.html"), html);
   await writeFile(
     path.join(out, "flow-issued.pdf"),
     await paper.scanPaperPdf(stored.render_artifact),
@@ -316,6 +407,51 @@ try {
     return route.continue();
   });
   const page = await context.newPage();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ media: "print" });
+  const fontRequests = [];
+  page.on("response", (response) => {
+    if (response.url().includes("/fonts/"))
+      fontRequests.push({ url: response.url(), status: response.status() });
+  });
+  await page.goto(`${base}/qa-reprint?p=${issued.id}`, {
+    waitUntil: "load",
+    timeout: 90_000,
+  });
+  const fontFaces = await page.evaluate(async () => {
+    const results = await Promise.all(
+      ["Noto Serif KR", "Pretendard", "KaTeX_Main", "KaTeX_Math"].map((f) =>
+        document.fonts.load(`400 16px "${f}"`, "수학x1"),
+      ),
+    );
+    await document.fonts.ready;
+    return results.map((faces) => faces.map((f) => f.status));
+  });
+  expect(
+    fontFaces.every(
+      (faces) =>
+        faces.length > 0 && faces.every((status) => status === "loaded"),
+    ),
+  ).toBe(true);
+  expect(fontRequests.every((r) => r.status === 200)).toBe(true);
+  const { measureScanPaper } = await server.ssrLoadModule(
+    `${root}/src/lib/concept-blank/scan/paperMeasure.ts`,
+  );
+  const measured = await page.evaluate(measureScanPaper, stored.snapshot);
+  expect(measured.overflow.every((px) => px <= 1)).toBe(true);
+  expect(measured.layout).toEqual(stored.layout);
+  evidence.reprint = {
+    fontFaces,
+    fontRequests: [...fontRequests],
+    overflow: measured.overflow,
+    layoutMatches: true,
+  };
+  await page.screenshot({
+    path: path.join(out, "reprint-fonts.png"),
+    fullPage: true,
+  });
+  await page.emulateMedia({ media: "screen" });
+  await page.setViewportSize({ width: 390, height: 844 });
   page.on("pageerror", (error) => evidence.errors.push(error.message));
   const capture = async (name) => {
     await page.evaluate(() => document.fonts.ready);
@@ -516,6 +652,7 @@ try {
     corrections,
     photos: photoRows,
   };
+  expect(evidence.modelCalls.every((call) => call.structured)).toBe(true);
   expect(evidence.errors).toEqual([]);
   expect(evidence.external).toEqual([]);
   expect(evidence.requests.filter((r) => r.status >= 400)).toEqual([]);

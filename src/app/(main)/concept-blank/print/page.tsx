@@ -67,10 +67,9 @@ export default async function ConceptBlankPrintPage({
     }
     return (
       <main className={styles.shell}>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: artifact.css.replace(/<\/style/gi, "<\\/style"),
-          }}
+        <link
+          rel="stylesheet"
+          href={`/api/concept-blank/scan/issued/${issuedId}?format=css&view=${view}`}
         />
         <div
           className={styles.frozen}
@@ -78,7 +77,10 @@ export default async function ConceptBlankPrintPage({
             __html: artifact.pages.map((p) => p.html).join(""),
           }}
         />
-        {autoPrint ? <PrintNow /> : null}
+        <PrintNow
+          autoPrint={autoPrint}
+          stylesheetHref={`/api/concept-blank/scan/issued/${issuedId}?format=css&view=${view}`}
+        />
       </main>
     );
   }

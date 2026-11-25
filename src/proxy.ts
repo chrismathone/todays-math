@@ -199,6 +199,7 @@ export const proxy = auth(async (req) => {
       pathname === "/fonts/NotoSerifKR-subset.woff2" ||
       pathname === "/fonts/PretendardVariable.woff2" ||
       pathname === "/fonts/NotoSerifKR-OFL.txt" ||
+      /^\/fonts\/katex\/KaTeX_[A-Za-z0-9-]+\.woff2$/.test(pathname) ||
       pathname.startsWith("/figures/") ||
       pathname.startsWith("/figures-svg/") ||
       pathname.startsWith("/api/shared-figures/"))
