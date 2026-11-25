@@ -246,3 +246,17 @@ Next의 실제 암호화 학생 세션과 소유 범위·proxy는 별도 시험�
 - **아직 적용하지 않은** `20261125120000_concept_blank_scan` SQL과 Prisma 모델을 함께 보완했다. 새 표는 여전히 여덟이며 기존 비공개/RLS 권한은 유지한다. 검수된 최종 SQL을 DB에 먼저, 코드를 나중에 적용한다. `.env.example`과 계획 §13에도 동시 상한·불명 정산·queue cron을 반영했다.
 
 검수 반영 커밋은 `a1755e289`(실제 요청 상계·동시 사용량 원장·불명 확정 정산), `ec2c2153a`(영속 대기와 화면·HTTP/cron 재개), 마지막 `docs(concept-blank): record usage ledger review fixes`(이 절·운영 변수·계획)로 나눴다. 앞 두 커밋의 훅은 통과했고 검사한 코드 바이트를 바꾸지 않았다. 협의 문서와 사용자의 미추적 지시서는 그대로 보존한다.
+
+## 운영 장애 2026-11-25
+
+리드가 배포한 `347844c9c`에서 발행 POST는 PostgreSQL 42883(`uuid = text`), 대기열 cron은 `void` 역직렬화 오류로 실패했다. 발행 행이 생기지 않아 QR도 나오지 않았다.
+
+- **원인:** 운영 `database.server.ts`는 Prisma 6.19.3 `$queryRawUnsafe`를 쓴다. 문자열은 TEXT, 정수는 INT8, 소수/Decimal은 NUMERIC, 객체는 JSONB로 Parse 단계에 형을 지정한다. UUID·시각처럼 보이는 문자열도 TEXT다. 기존 SQL은 문맥 추론에 의존했고, advisory lock의 void 값을 결과 열로 노출했다.
+- **왜 시험이 못 잡았나:** PGlite에 형 없이 값을 전달하면 PostgreSQL이 대상 열에서 UUID·시각 등을 추론했다. 또한 PGlite는 void 결과를 받아 주지만 Prisma는 역직렬화하지 못한다. 같은 SQL·같은 마이그레이션을 쓴다는 사실만으로 드라이버 계약까지 같다고 간주한 것이 검증 공백이었다.
+- **먼저 RED:** 생산 SQL을 바꾸기 전에 `paramTypes`와 void OID(2278) 거절을 넣었다. `conceptBlankScanIssue`·`conceptBlankScanQuotaReview` 두 파일에서 **8 실패·1 통과**, 실제 발행의 `uuid = text`와 원장 잠금의 void 오류가 각각 재현됐다(`/tmp/cb-scan-prod-fix-20261125/red.log`). fixture 준비 SQL만 먼저 형을 명시해 실제 서비스 호출에서 실패하도록 했다.
+- **수정:** 발행·제출·사진·읽기·정정·채점·사용량·대기열·정리의 모든 SQL placeholder에 목적 형을 명시했다. UUID 식별자와 TEXT인 답 칸/판정 대상 식별자를 구분한다. 잠금은 `SELECT 1 AS locked FROM pg_advisory_xact_lock(...)`로 호출해 결과 열에 void가 없다. E2E도 같은 `openScanTestDb` 어댑터를 사용한다.
+- **회귀 방지:** `prismaPglite.ts`는 설치된 엔진 해시 `c2990dca591cba766e3b7ef5d9e8a84796e47ab7`의 클라이언트 직렬화→PrismaValue→Quaint→PG 형 매핑을 출처와 함께 고정했다. 스칼라·배열·null 형, UUID 비교의 음성 대조, 행이 없어도 void 열 거절, 스캔 SQL 전체의 무형변환 placeholder 검사를 추가했다. 모든 Prisma 결과 codec을 모사한다는 뜻은 아니다. PGlite 한 연결은 물리적 다중 연결 잠금 경합을 증명하지 않는다.
+
+형 매핑 근거: [Prisma 클라이언트 직렬화](https://github.com/prisma/prisma/blob/6.19.3/packages/client/src/runtime/utils/serializeRawParameters.ts), [설치된 엔진의 PG 형 매핑](https://github.com/prisma/prisma-engines/blob/c2990dca591cba766e3b7ef5d9e8a84796e47ab7/quaint/src/connector/postgres/native/conversion.rs#L29). SQL 고침에는 마이그레이션 변경이 없다. 공유 DB·push·실제 AI 호출은 하지 않았다.
+
+SQL 수정 최종 검증: 관련 `conceptBlankScan` **21파일·130시험 통과**, type-check와 변경 코드 범위 ESLint 통과. 새 어댑터 E2E는 HTTP **29요청**, 가짜 모델 **6회**, 세 쪽 보관·읽기·학생 확인·21개 최초 판정·교사 수정 1회를 완료했다. 390/1440 화면 **7개 모두 가로 넘침 0px**(`/tmp/cb-scan-prod-fix-20261125/e2e-sql/`). 첫 E2E는 수정 전 모듈을 읽은 실행이었고, 다음 실행은 페이지 load 30초 초과였다. 최종 실행은 DOM 준비 후 기존 화면·글꼴·사진 검사를 모두 통과했다. 전체 시험·운영 빌드는 돌리지 않았다.
