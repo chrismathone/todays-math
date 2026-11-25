@@ -26,6 +26,14 @@
     {
       "path": "/api/logs/purge/cron",
       "schedule": "30 18 * * *"
+    },
+    {
+      "path": "/api/concept-blank/scan/queue/cron",
+      "schedule": "50 18 * * *"
+    },
+    {
+      "path": "/api/concept-blank/scan/purge/cron",
+      "schedule": "45 18 * * *"
     }
   ]
 }

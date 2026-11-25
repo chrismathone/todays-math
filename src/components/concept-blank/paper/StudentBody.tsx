@@ -67,7 +67,12 @@ function RecallBody({
       ) : null}
       <div className={styles.zones} data-cb-fit="">
         {page.zones.map(({ n, zone }) => (
-          <section className={styles.zone} data-cb-zone={zone.side} key={n}>
+          <section
+            className={styles.zone}
+            data-cb-zone={zone.side}
+            data-cb-question={n}
+            key={n}
+          >
             <div className={styles.zoneHead}>
               <span className={styles.zoneNo}>{circled(n)}</span>
               <span className={styles.zoneTitle} data-cb-zone-title="">
@@ -75,7 +80,7 @@ function RecallBody({
               </span>
               <span className={styles.zoneHint}>{zone.hint}</span>
             </div>
-            <div className={styles.zoneBody}>
+            <div className={styles.zoneBody} data-cb-region="region">
               <WritingArea
                 {...RULED_SURFACE}
                 className={styles.ruled}
@@ -108,7 +113,12 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
       {page.blocks.map((block, i) => {
         if (block.kind === "term")
           return (
-            <div className={styles.termItem} data-cb-item="term" key={block.n}>
+            <div
+              className={styles.termItem}
+              data-cb-item="term"
+              data-cb-question={block.n}
+              key={block.n}
+            >
               <div className={styles.qline}>
                 <span className={styles.qn} data-cb-qn="">
                   문 {block.n}
@@ -126,6 +136,7 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                   } as CSSProperties
                 }
                 data-cb-ruled=""
+                data-cb-region="answer"
               />
             </div>
           );
@@ -137,7 +148,11 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                 맞으면 ○, 틀리면 × 에 표시하고 까닭을 쓰시오.
               </div>
             ) : null}
-            <div className={styles.termItem} data-cb-item="ox">
+            <div
+              className={styles.termItem}
+              data-cb-item="ox"
+              data-cb-question={block.n}
+            >
               <div className={styles.qline}>
                 <span className={styles.qn} data-cb-qn="">
                   문 {block.n}
@@ -147,12 +162,17 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                 </span>
               </div>
               <div className={styles.oxRow}>
-                <span className={styles.oxMark}>○</span>
-                <span className={styles.oxMark}>×</span>
+                <span className={styles.oxMark} data-cb-region="mark">
+                  ○
+                </span>
+                <span className={styles.oxMark} data-cb-region="mark">
+                  ×
+                </span>
                 <WritingArea
                   {...RULED_SURFACE}
                   className={`${styles.ruled} ${styles.oxWhy}`}
                   data-cb-ruled=""
+                  data-cb-region="reason"
                 >
                   <span className={styles.oxWhyLabel}>까닭</span>
                 </WritingArea>
@@ -187,7 +207,7 @@ function ClozeBody({
             data-cb-fill={apply.length ? undefined : ""}
           >
             {sentences.map((b) => (
-              <li data-cb-item="sentence" key={b.n}>
+              <li data-cb-item="sentence" data-cb-question={b.n} key={b.n}>
                 <span className={styles.qn} data-cb-qn="">
                   문 {b.n}
                 </span>
@@ -212,6 +232,7 @@ function ClozeBody({
                 pattern="blank"
                 className={styles.ap}
                 data-cb-item="apply"
+                data-cb-question={b.n}
                 key={b.n}
               >
                 <div className={styles.apPrompt}>
@@ -224,7 +245,7 @@ function ClozeBody({
                 </div>
                 <div className={styles.apAnswer}>
                   <span>답</span>
-                  <span className={styles.field} />
+                  <span className={styles.field} data-cb-region="answer" />
                 </div>
               </WritingArea>
             ))}
@@ -290,7 +311,7 @@ function MapNode({
   n?: number;
 }) {
   return (
-    <section className={styles.node} data-cb-node="">
+    <section className={styles.node} data-cb-node="" data-cb-question={n}>
       <div className={styles.nodeTitle}>
         {questionMode ? (
           <span className={styles.nodeNumber}>문 {n}</span>
@@ -312,6 +333,7 @@ function MapNode({
             {...RULED_SURFACE}
             className={`${styles.ruled} ${styles.nodeRuled} ${styles.termRuled}`}
             data-cb-ruled=""
+            data-cb-region="answer"
             style={
               { "--cb-answer-lines": termRuledLines(entry) } as CSSProperties
             }
@@ -324,9 +346,10 @@ function MapNode({
             {...RULED_SURFACE}
             className={`${styles.ruled} ${styles.nodeRuled}`}
             data-cb-ruled=""
+            data-cb-region="answer"
           />
           <div className={styles.nodeLabel}>예</div>
-          <div className={styles.nodeExample}>
+          <div className={styles.nodeExample} data-cb-region="example">
             {entry.example ? (
               <>
                 <PaperText text={entry.example.prompt} />{" "}
@@ -463,6 +486,7 @@ function FigureBody({
           <section
             className={`${styles.card} ${grid.wide(i) ? styles.cardWide : ""}`}
             data-cb-card={grid.wide(i) ? "wide" : "narrow"}
+            data-cb-question={n}
             key={figure.id}
           >
             <div className={styles.cardHead}>
@@ -481,7 +505,10 @@ function FigureBody({
                     <span>
                       <PaperText text={line.label} />
                     </span>
-                    <span className={styles.field} />
+                    <span
+                      className={styles.field}
+                      data-cb-region={`line${k + 1}`}
+                    />
                   </div>
                 ))}
                 <WritingArea

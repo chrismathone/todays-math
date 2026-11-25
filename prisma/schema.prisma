@@ -157,6 +157,8 @@ enum BranchRole {
 }
 
 model Branch {
+  conceptBlankSheets ConceptBlankPrintedSheet[]
+
   id        String   @id @default(uuid()) @db.Uuid
   name      String   @db.VarChar(100)
   createdAt DateTime @default(now()) @map("created_at")
@@ -178,6 +180,12 @@ model Branch {
 // ─────────────────────────────────────────────
 
 model User {
+  conceptBlankSheets ConceptBlankPrintedSheet[] @relation("cbSheetOwner")
+  conceptBlankSheetsCreated ConceptBlankPrintedSheet[] @relation("cbSheetCreator")
+  conceptBlankCaptures ConceptBlankScanSubmission[] @relation("cbCaptureTeacher")
+  conceptBlankCorrections ConceptBlankScanCorrection[] @relation("cbCorrectionTeacher")
+  conceptBlankGrades ConceptBlankScanGrade[] @relation("cbGradeTeacher")
+
   commercialWorkbookEditions CommercialWorkbookEdition[]
   commercialWorkbookAssignments CommercialWorkbookAssignment[]
   commercialWorkbookRequests CommercialWorkbookRequest[]
@@ -406,6 +414,10 @@ model EywaSyncLedger {
 }
 
 model Student {
+  conceptBlankSubmissions ConceptBlankScanSubmission[] @relation("cbSubmissionStudent")
+  conceptBlankCaptures ConceptBlankScanSubmission[] @relation("cbCaptureStudent")
+  conceptBlankCorrections ConceptBlankScanCorrection[] @relation("cbCorrectionStudent")
+
   commercialWorkbookGrades CommercialWorkbookGradeEvent[]
   id                    String              @id @default(uuid()) @db.Uuid
   classId               String              @map("class_id") @db.Uuid
@@ -3143,4 +3155,183 @@ model CommercialWorkbookRequest {
   owner User @relation(fields: [ownerId], references: [id], onDelete: Restrict)
   @@id([ownerId, requestId])
   @@map("commercial_workbook_request")
+}
+
+// Concept blank photo grading — additive migration 20261125120000.
+// Server-only RLS/REVOKE, CHECKs, partial indexes and immutable-evidence triggers are in SQL.
+model ConceptBlankPrintedSheet {
+  id String @id @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  createdBy String @map("created_by") @db.Uuid
+  branchId String? @map("branch_id") @db.Uuid
+  requestId String @map("request_id") @db.Uuid
+  sheetCode String? @map("sheet_code")
+  snapshot Json
+  layout Json
+  renderArtifact Json @map("render_artifact")
+  artifactSha256 String @map("artifact_sha256")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  owner User @relation("cbSheetOwner", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  creator User @relation("cbSheetCreator", fields: [createdBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  submissions ConceptBlankScanSubmission[]
+  @@unique([userId, requestId], map: "concept_blank_printed_sheet_user_id_request_id_key")
+  @@index([userId, createdAt], map: "cb_printed_owner")
+  @@index([branchId, createdAt], map: "cb_printed_branch")
+  @@index([sheetCode], map: "cb_printed_code")
+  @@map("concept_blank_printed_sheet")
+}
+
+model ConceptBlankScanSubmission {
+  id String @id @db.Uuid
+  printedSheetId String @map("printed_sheet_id") @db.Uuid
+  studentId String @map("student_id") @db.Uuid
+  capturedStudentId String? @map("captured_student_id") @db.Uuid
+  capturedTeacherId String? @map("captured_teacher_id") @db.Uuid
+  requestId String @unique @map("request_id") @db.Uuid
+  state String @default("capturing")
+  revision Int @default(0)
+  jobId String? @map("job_id") @db.Uuid
+  jobKind String? @map("job_kind")
+  jobStartedAt DateTime? @map("job_started_at") @db.Timestamptz(3)
+  jobWaiting Boolean @default(false) @map("job_waiting")
+  jobActor Json? @map("job_actor")
+  lastError String? @map("last_error")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(3)
+  gradedAt DateTime? @map("graded_at") @db.Timestamptz(3)
+  printedSheet ConceptBlankPrintedSheet @relation(fields: [printedSheetId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  student Student @relation("cbSubmissionStudent", fields: [studentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  capturedStudent Student? @relation("cbCaptureStudent", fields: [capturedStudentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  capturedTeacher User? @relation("cbCaptureTeacher", fields: [capturedTeacherId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  photos ConceptBlankScanPhoto[]
+  reads ConceptBlankScanRead[]
+  corrections ConceptBlankScanCorrection[]
+  grades ConceptBlankScanGrade[]
+  usageCalls ConceptBlankScanUsageCall[]
+  @@index([studentId, createdAt], map: "cb_scan_student")
+  @@index([printedSheetId], map: "cb_scan_sheet")
+  @@map("concept_blank_scan_submission")
+}
+
+model ConceptBlankScanPhoto {
+  id String @id @db.Uuid
+  submissionId String @map("submission_id") @db.Uuid
+  pageNumber Int @map("page_number")
+  version Int
+  isCurrent Boolean @default(true) @map("is_current")
+  bucket String
+  objectKey String @map("object_key")
+  contentSha256 String @map("content_sha256")
+  mimeType String @map("mime_type")
+  width Int
+  height Int
+  registration Json
+  usedAt DateTime? @map("used_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(3)
+  deleteRequestedAt DateTime? @map("delete_requested_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+  deleteAttempts Int @default(0) @map("delete_attempts")
+  deleteError String? @map("delete_error")
+  submission ConceptBlankScanSubmission @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  reads ConceptBlankScanRead[]
+  @@unique([submissionId, pageNumber, version], map: "concept_blank_scan_photo_submission_id_page_number_version_key")
+  @@unique([bucket, objectKey], map: "concept_blank_scan_photo_bucket_object_key_key")
+  @@unique([id, submissionId], map: "concept_blank_scan_photo_id_submission_id_key")
+  @@map("concept_blank_scan_photo")
+}
+
+model ConceptBlankScanRead {
+  id String @id @db.Uuid
+  submissionId String @map("submission_id") @db.Uuid
+  photoId String @map("photo_id") @db.Uuid
+  slotId String @map("slot_id")
+  status String
+  text String
+  promptVersion String @map("prompt_version")
+  requestedModel String @map("requested_model")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  submission ConceptBlankScanSubmission @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  photo ConceptBlankScanPhoto @relation(fields: [photoId, submissionId], references: [id, submissionId], onDelete: NoAction, onUpdate: NoAction)
+  corrections ConceptBlankScanCorrection[]
+  @@unique([photoId, slotId], map: "concept_blank_scan_read_photo_id_slot_id_key")
+  @@unique([id, submissionId, slotId], map: "concept_blank_scan_read_id_submission_id_slot_id_key")
+  @@map("concept_blank_scan_read")
+}
+
+model ConceptBlankScanCorrection {
+  id String @id @db.Uuid
+  submissionId String @map("submission_id") @db.Uuid
+  readId String @map("read_id") @db.Uuid
+  slotId String @map("slot_id")
+  resolution String
+  text String
+  directlyEntered Boolean @map("directly_entered")
+  studentActorId String? @map("student_actor_id") @db.Uuid
+  teacherActorId String? @map("teacher_actor_id") @db.Uuid
+  sequence Int
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  submission ConceptBlankScanSubmission @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  read ConceptBlankScanRead @relation(fields: [readId, submissionId, slotId], references: [id, submissionId, slotId], onDelete: NoAction, onUpdate: NoAction)
+  studentActor Student? @relation("cbCorrectionStudent", fields: [studentActorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teacherActor User? @relation("cbCorrectionTeacher", fields: [teacherActorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@unique([submissionId, sequence], map: "concept_blank_scan_correction_submission_id_sequence_key")
+  @@map("concept_blank_scan_correction")
+}
+
+model ConceptBlankScanGrade {
+  id String @id @db.Uuid
+  submissionId String @map("submission_id") @db.Uuid
+  targetId String @map("target_id")
+  sequence Int
+  label String
+  reason String
+  directlyEntered Boolean @map("directly_entered")
+  evidence Json
+  origin String
+  teacherId String? @map("teacher_id") @db.Uuid
+  promptVersion String? @map("prompt_version")
+  requestedModel String? @map("requested_model")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  submission ConceptBlankScanSubmission @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teacher User? @relation("cbGradeTeacher", fields: [teacherId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@unique([submissionId, targetId, sequence], map: "concept_blank_scan_grade_submission_id_target_id_sequence_key")
+  @@map("concept_blank_scan_grade")
+}
+
+model ConceptBlankScanUsageMonth {
+  month String @id
+  spentNanoUsd BigInt @default(0) @map("spent_nano_usd")
+  reservedNanoUsd BigInt @default(0) @map("reserved_nano_usd")
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(3)
+  calls ConceptBlankScanUsageCall[] @relation("cbUsageMonth")
+  @@map("concept_blank_scan_usage_month")
+}
+
+model ConceptBlankScanUsageCall {
+  id String @id @db.Uuid
+  month String
+  submissionId String? @map("submission_id") @db.Uuid
+  requestKey String @unique @map("request_key")
+  resultKey String @map("result_key")
+  jobId String? @map("job_id") @db.Uuid
+  bound Json?
+  queueOrder BigInt @default(autoincrement()) @map("queue_order")
+  settlementReason String? @map("settlement_reason")
+  dispatchedAt DateTime? @map("dispatched_at") @db.Timestamptz(3)
+  operation String
+  model String
+  tariffVersion String @map("tariff_version")
+  promptVersion String @map("prompt_version")
+  reservedNanoUsd BigInt @map("reserved_nano_usd")
+  costNanoUsd BigInt? @map("cost_nano_usd")
+  receipt Json?
+  resultText String? @map("result_text")
+  status String
+  startedAt DateTime @default(now()) @map("started_at") @db.Timestamptz(3)
+  settledAt DateTime? @map("settled_at") @db.Timestamptz(3)
+  usageMonth ConceptBlankScanUsageMonth @relation("cbUsageMonth", fields: [month], references: [month], onDelete: NoAction, onUpdate: NoAction)
+  submission ConceptBlankScanSubmission? @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@map("concept_blank_scan_usage_call")
 }

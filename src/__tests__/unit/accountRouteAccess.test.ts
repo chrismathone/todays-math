@@ -14,6 +14,35 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
+  it("keeps scan issuance and photos behind the existing conceptBlank menu", () => {
+    for (const path of [
+      "/concept-blank/print",
+      "/concept-blank/scan",
+      "/api/concept-blank/scan/issued",
+      "/api/concept-blank/scan/submissions/s1/photos",
+    ]) {
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["conceptBlank"] },
+          "POST",
+          path,
+        ),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["teaching", "library"] },
+          "POST",
+          path,
+        ),
+      ).toBe(false);
+      expect(accountRouteAllowed({ ...account, menus: [] }, "GET", path)).toBe(
+        false,
+      );
+    }
+    expect(
+      accountRouteAllowed(account, "POST", "/api/concept-blank/scan-other"),
+    ).toBe(false);
+  });
   it("keeps commercial workbook keys, marks and print behind teaching access", () => {
     const paths = [
       "/api/commercial-workbooks",

@@ -1,0 +1,13 @@
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { scanHandlers } from "@/lib/concept-blank/scan/routes.server";
+
+export const runtime = "nodejs";
+export const maxDuration = 300;
+export const GET = withErrorLog(
+  "/api/concept-blank/scan/submissions/[id]/photos/[photoId]",
+  scanHandlers.sign,
+);
+export const DELETE = withErrorLog(
+  "/api/concept-blank/scan/submissions/[id]/photos/[photoId]",
+  scanHandlers.remove,
+);

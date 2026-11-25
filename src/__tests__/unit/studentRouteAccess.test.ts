@@ -62,6 +62,14 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
     expect(STUDENT_CAPABILITIES).toStrictEqual([
       "GET|HEAD /audio/math-learning/**",
       "GET|HEAD /q/{id}",
+      "GET|HEAD /concept-blank/scan",
+      "GET /api/concept-blank/scan/issued/{id}",
+      "POST /api/concept-blank/scan/submissions",
+      "GET /api/concept-blank/scan/submissions/{id}",
+      "POST /api/concept-blank/scan/submissions/{id}/photos",
+      "GET /api/concept-blank/scan/submissions/{id}/photos/{id}",
+      "POST /api/concept-blank/scan/submissions/{id}/answers",
+      "POST /api/concept-blank/scan/submissions/{id}/jobs",
       "GET|HEAD /learn/textbook/{id}/concepts/{id}",
       "GET /api/learn/textbook/q/{id}",
       "GET|HEAD /api/learn/textbook/q/{id}/assets/{id}",
@@ -143,6 +151,60 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       // 진도판 테마 그림(원장님 2026-09-30) — 공개 그림
       "GET|HEAD /images/journey/**",
     ]);
+  });
+});
+
+describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 전수 검사", () => {
+  it("교사 발행·판정 수정·사진 삭제·cron을 제외한 메서드만 연다", () => {
+    const root = path.join(process.cwd(), "src/app/api/concept-blank/scan");
+    const walk = (dir: string): string[] =>
+      readdirSync(dir).flatMap((name) => {
+        const full = path.join(dir, name);
+        return statSync(full).isDirectory()
+          ? walk(full)
+          : name === "route.ts"
+            ? [full]
+            : [];
+      });
+    const teacherOnly = new Set([
+      "POST /issued",
+      "POST /submissions/x1/override",
+      "DELETE /submissions/x1/photos/x1",
+      "GET /purge/cron",
+      "GET /queue/cron",
+    ]);
+    const found: string[] = [];
+    for (const file of walk(root)) {
+      const suffix =
+        "/" +
+        path
+          .relative(root, path.dirname(file))
+          .split(path.sep)
+          .map((p) => (p.startsWith("[") ? "x1" : p))
+          .join("/");
+      for (const [, method] of readFileSync(file, "utf8").matchAll(
+        /export const (GET|POST|DELETE)\b/g,
+      )) {
+        const key = `${method} ${suffix}`;
+        found.push(key);
+        expect(
+          studentGateFor(false, method, `/api/concept-blank/scan${suffix}`)
+            .kind,
+          key,
+        ).toBe(teacherOnly.has(key) ? "forbidden" : "allow");
+        expect(
+          studentGateFor(true, method, `/api/concept-blank/scan${suffix}`).kind,
+          key,
+        ).toBe("forbidden");
+      }
+    }
+    expect(found).toHaveLength(12);
+    expect(anonymousLearnGate("GET", "/concept-blank/scan")).toEqual({
+      kind: "allow",
+    });
+    expect(studentGateFor(false, "POST", "/concept-blank/scan").kind).toBe(
+      "forbidden",
+    );
   });
 });
 

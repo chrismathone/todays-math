@@ -124,6 +124,9 @@ export function createScanSnapshot(
           [answer],
           questionMode ? termAnswer(entry) : entry.definition,
           conceptIdeas(entry, questionMode),
+          printed.form === "map" && !questionMode
+            ? "옛 뜻·예 지도는 교사가 확인해야 합니다."
+            : undefined,
         );
         return q;
       };
@@ -234,6 +237,8 @@ export function createScanSnapshot(
                 [s],
                 entry.example?.answer ??
                   `다음 뜻에 맞는 예: ${plain(entry.definition)}`,
+                undefined,
+                "옛 뜻·예 지도는 교사가 확인해야 합니다.",
               );
             }
           });

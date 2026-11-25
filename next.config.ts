@@ -142,6 +142,17 @@ const nextConfig: NextConfig = {
     "/api/students/*/math-ontology/**": ontologyTraceExcludes,
   },
   outputFileTracingIncludes: {
+    "/api/concept-blank/scan/**": [
+      "./src/components/concept-blank/paper/paper.module.css",
+      "./src/components/concept-blank/issuedPaper.module.css",
+      "./src/components/print/TestPrint.module.css",
+      "./src/components/print/WritingArea.module.css",
+      "./public/fonts/NotoSerifKR-subset.woff2",
+      "./public/fonts/PretendardVariable.woff2",
+      "./node_modules/tailwindcss/preflight.css",
+      "./node_modules/katex/dist/katex.min.css",
+      "./node_modules/katex/dist/fonts/**/*",
+    ],
     "/api/math-ontology/**": ontologyTraceAssets,
     "/api/students/*/math-ontology/**": ontologyTraceAssets,
     "/api/exam-reports/**": [

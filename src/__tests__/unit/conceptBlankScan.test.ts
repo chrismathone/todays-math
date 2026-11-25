@@ -40,6 +40,34 @@ const make = () => createScanSnapshot(selection, FIXTURE_BANK);
 afterEach(() => vi.unstubAllGlobals());
 
 describe("scan snapshot and contract", () => {
+  it("keeps legacy D visible but manual even when old snapshots lack a review marker", async () => {
+    const page = make().pages.find((p) => p.form === "map")!;
+    expect(page.targets.every((target) => target.manualReviewReason)).toBe(
+      true,
+    );
+    const old = structuredClone(page);
+    for (const target of old.targets) delete target.manualReviewReason;
+    const model = vi.fn<ScanModel>();
+    const grades = await gradeScanPage(
+      {
+        page: old,
+        readings: page.slots.map((slot) => ({
+          id: slot.id,
+          status: "read" as const,
+          text: "읽은 뜻과 예",
+        })),
+        corrections: [],
+      },
+      model,
+    );
+    expect(grades).toHaveLength(page.targets.length);
+    expect(
+      grades.every(
+        (grade) => grade.label === "review" && grade.reason.includes("옛"),
+      ),
+    ).toBe(true);
+    expect(model).not.toHaveBeenCalled();
+  });
   it("freezes the current reviewed B/D questions, rather than substituting general definitions", () => {
     const entry = currentE5.concepts.find((c) => c.bQuestion)!;
     const snapshot = createScanSnapshot(

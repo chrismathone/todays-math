@@ -11,8 +11,14 @@ import { isValidElement, type ReactElement } from "react";
 import { zlibSync } from "fflate";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const mocks = vi.hoisted(() => ({ session: vi.fn() }));
+const mocks = vi.hoisted(() => ({ session: vi.fn(), artifact: vi.fn() }));
 vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
+vi.mock("@/lib/concept-blank/scan/issuance", () => ({
+  readIssuedScanArtifact: mocks.artifact,
+}));
+vi.mock("@/lib/concept-blank/scan/database.server", () => ({
+  scanDatabase: { fakeLocal: true },
+}));
 vi.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NOT_FOUND");
@@ -34,6 +40,7 @@ import ConceptBlankPaper, {
   type ConceptBlankPaperProps,
 } from "@/components/concept-blank/ConceptBlankPaper";
 import PrintNow from "@/components/concept-blank/paper/PrintNow";
+import IssuePrint from "@/components/concept-blank/IssuePrint";
 import type {
   ConceptBlankPick,
   ConceptBlankSelection,
@@ -125,9 +132,49 @@ function findPaper(node: unknown): ReactElement<ConceptBlankPaperProps> | null {
 
 beforeEach(() => {
   mocks.session.mockReset();
+  mocks.artifact.mockReset();
 });
 
 describe("/concept-blank/print", () => {
+  it("reprints the authorized frozen artifact by p, ignoring a different or invalid s selection", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    mocks.artifact.mockResolvedValue({
+      version: 1,
+      css: ".frozen{}",
+      pages: [
+        { part: "student", number: 1, html: "<div>인쇄 때 저장한 내용</div>" },
+      ],
+    });
+    const id = "00000000-0000-4000-8000-000000000001";
+    const page = await call({
+      p: id,
+      s: "invalid-current-selection",
+      view: "student",
+      print: "1",
+    });
+    expect(findPaper(page)).toBeNull();
+    expect(JSON.stringify(page)).toContain("인쇄 때 저장한 내용");
+    expect(mocks.artifact).toHaveBeenCalledWith(
+      { kind: "teacher", id: OWNER.id },
+      id,
+      "student",
+      expect.anything(),
+    );
+  });
+  it("does not replace an unavailable saved issue with today's bank", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    mocks.artifact.mockRejectedValue(
+      Object.assign(new Error("저장된 지면을 읽지 못했습니다."), {
+        status: 503,
+      }),
+    );
+    const page = await call({
+      p: "00000000-0000-4000-8000-000000000001",
+      s: encodeSelection(SELECTION),
+    });
+    expect(findPaper(page)).toBeNull();
+    expect(JSON.stringify(page)).toContain("저장된 지면을 읽지 못했습니다.");
+  });
   it.each([false, true])(
     "denies direct print access with no effective menu, admin=%s",
     async (isAdmin) => {
@@ -284,11 +331,14 @@ describe("/concept-blank/print", () => {
     expect(paper!.props.view).toBe(expected);
   });
 
-  it("print=1 이면 지면을 그린 뒤 인쇄 창을 바로 띄운다(인쇄하기 단추 — Ctrl+P 없이) · 없으면 안 띄운다", async () => {
+  it("print=1 defers automatic printing until issuance or the unchanged-paper fallback finishes", async () => {
     mocks.session.mockResolvedValue(OWNER);
     const has = (node: unknown): boolean => {
       if (!isValidElement(node)) return false;
-      if (node.type === PrintNow) return true;
+      if (node.type === PrintNow)
+        throw new Error("Must not print before issuance finishes");
+      if (node.type === IssuePrint)
+        return (node.props as { autoPrint: boolean }).autoPrint;
       const children = (node.props as { children?: unknown }).children;
       return (Array.isArray(children) ? children : [children]).some(has);
     };
