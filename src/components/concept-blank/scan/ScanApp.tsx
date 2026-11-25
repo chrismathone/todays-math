@@ -17,6 +17,8 @@ import {
   scanDestination,
   type ScanDestination,
 } from "@/lib/concept-blank/scan/navigation";
+import { ScanNameCapture } from "./ScanNameCapture";
+import { ScanWrittenName } from "./ScanWrittenName";
 import { scanSource, type ScanSource } from "./api";
 import { encodeScanPhoto } from "./image";
 import { scanIsPublished, scanNumbers } from "./view";
@@ -284,13 +286,20 @@ export default function ScanApp({
             </div>
           ) : !view ? (
             <>
+              {issue.role === "teacher" ? (
+                <ScanNameCapture
+                  issueId={issue.id}
+                  source={source}
+                  onLinked={open}
+                />
+              ) : null}
               <div className={s.owner}>
                 <div>
                   <b>답안 주인</b>
                   <p>
                     {student
                       ? `${student.name} · ${student.className}`
-                      : "촬영 전에 학생을 골라 주세요."}
+                      : "이름 칸부터 촬영하거나 학생을 먼저 고르세요."}
                   </p>
                 </div>
                 {issue.role === "teacher" ? (
@@ -350,6 +359,17 @@ export default function ScanApp({
                 </p>
                 <span>{stateName[view.state]}</span>
               </div>
+              {!published ? <ScanWrittenName view={view} /> : null}
+              {view.canChangeStudent ? (
+                <button
+                  type="button"
+                  ref={pickerButton}
+                  disabled={locked}
+                  onClick={() => setPicker(true)}
+                >
+                  바꾸기 · 답안 주인
+                </button>
+              ) : null}
               {view.lastError ? (
                 <p className={s.error} role="alert">
                   {view.lastError} 저장된 사진과 읽은 답은 유지됩니다.
@@ -511,7 +531,7 @@ export default function ScanApp({
                   />
                   <p className={s.meta}>
                     읽기·채점을 위해 사진과 답안이 외부 AI 서비스 Claude로
-                    전송됩니다.
+                    전송됩니다(이름 칸 포함).
                   </p>
                   {view.photos.length ? (
                     <PaperStrip
@@ -620,8 +640,16 @@ export default function ScanApp({
           opener={pickerButton}
           close={() => setPicker(false)}
           choose={(value) => {
-            setStudent(value);
             setPicker(false);
+            if (view)
+              void run(async () => {
+                await source.assignStudent(view.id, {
+                  studentId: value.id,
+                  revision: view.revision,
+                });
+                await refresh();
+              });
+            else setStudent(value);
           }}
         />
       ) : null}

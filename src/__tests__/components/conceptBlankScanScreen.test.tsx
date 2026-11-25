@@ -235,3 +235,28 @@ describe("scan confirmation and evidence UI", () => {
     ).not.toBeInTheDocument();
   });
 });
+
+it("shows written-name mismatch and linkage method in teacher results", () => {
+  render(
+    <ScanResults
+      view={{
+        ...view,
+        role: "teacher",
+        state: "graded",
+        writtenName: {
+          text: "김다른",
+          status: "read",
+          result: "mismatch",
+          method: "student-account",
+        },
+      }}
+      busy={false}
+      source={source}
+      save={async () => {}}
+      onPage={() => {}}
+    />,
+  );
+  expect(screen.getByText(/김다른/)).toBeTruthy();
+  expect(screen.getByText(/연결 방식: 학생 계정/)).toBeTruthy();
+  expect(screen.getByText(/이름이 다릅니다/)).toBeTruthy();
+});
