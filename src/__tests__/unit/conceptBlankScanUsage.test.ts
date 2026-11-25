@@ -1,6 +1,10 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { createScanModel, scanConfig } from "@/lib/concept-blank/scan/model";
+import {
+  createScanModel,
+  scanConfig,
+  scanReservation,
+} from "@/lib/concept-blank/scan/model";
 import {
   createMemoryScanUsageStore,
   scanTokenCostNanoUsd,
@@ -80,12 +84,18 @@ describe("scan config, paid API boundary and usage", () => {
     expect(transport).toHaveBeenCalledTimes(2);
   });
 
-  it("never dispatches when remaining money is below input-ceiling plus maximum-output reservation", async () => {
+  it("never dispatches when remaining money is below actual-request plus maximum-output reservation", async () => {
     const transport = vi.fn<typeof runModelApi>();
     const call = createScanModel({
       store: createMemoryScanUsageStore(),
       transport,
-      config: scanConfig({ CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: "4.319999999" }),
+      config: scanConfig({
+        CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: String(
+          ((await scanReservation("claude-opus-5-5", request)).reservedNanoUsd -
+            1) /
+            1e9,
+        ),
+      }),
     });
     await expect(call(request)).rejects.toThrow(/예약액/);
     expect(transport).not.toHaveBeenCalled();
@@ -129,15 +139,23 @@ describe("scan config, paid API boundary and usage", () => {
         reservedNanoUsd: 0,
         busy: false,
         unresolved: false,
+        activeCalls: 0,
+        queuedCalls: 0,
       });
       expect(fetch).toHaveBeenCalledTimes(1);
       const body = JSON.parse(fetch.mock.calls[0]![1].body);
       expect(body.output_config.effort).toBe("high");
       expect(body.model).toBe("claude-opus-5-5");
+      expect(body.max_tokens).toBe(16_000);
+      expect(body.messages).toEqual([
+        { role: "user", content: [{ type: "text", text: request.prompt }] },
+      ]);
+      expect(body.system).toBeUndefined();
+      expect(body.tools).toBeUndefined();
     },
   );
 
-  it("routes grading separately and closes a month on absent/malformed token evidence", async () => {
+  it("routes grading separately and charges the bound on malformed token evidence", async () => {
     const store = createMemoryScanUsageStore();
     const transport = vi
       .fn<typeof runModelApi>()
@@ -157,7 +175,12 @@ describe("scan config, paid API boundary and usage", () => {
       /사용량/,
     );
     expect(transport.mock.calls[0]![0].model).toBe("claude-haiku-5-5");
-    expect(await store.inspect("2026-11")).toMatchObject({ unresolved: true });
+    expect(await store.inspect("2026-11")).toMatchObject({
+      unresolved: false,
+      reservedNanoUsd: 0,
+      spentNanoUsd: (await scanReservation("claude-haiku-5-5", request))
+        .reservedNanoUsd,
+    });
   });
 
   it("settles the admission month at rollover, rejects double settlements and reopens a new month", async () => {
@@ -214,13 +237,19 @@ describe("scan config, paid API boundary and usage", () => {
         input.onAnthropicUsage?.(usage);
         return '{"slots":[]}';
       });
-    const config = scanConfig({ CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: "4.3201" });
+    const config = scanConfig({
+      CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: String(
+        ((await scanReservation("claude-opus-5-5", request)).reservedNanoUsd +
+          831_999) /
+          1e9,
+      ),
+    });
     const first = createScanModel({ store, now, config, transport });
     const second = createScanModel({ store, now, config, transport });
     const pending = first(request);
     await vi.waitFor(() => expect(transport).toHaveBeenCalledTimes(1));
     await expect(second({ ...request, operation: "grade" })).rejects.toThrow(
-      /진행/,
+      /상한/,
     );
     finish();
     await pending;
@@ -260,22 +289,26 @@ describe("scan config, paid API boundary and usage", () => {
     });
   });
 
-  it("holds unknown usage closed, does not release a paid request merely on client cancellation", async () => {
+  it("settles unknown usage conservatively and never auto-repeats the same request", async () => {
     const store = createMemoryScanUsageStore();
     const transport = vi
       .fn<typeof runModelApi>()
       .mockRejectedValue(new Error("connection lost"));
     const call = createScanModel({
       store,
+      requestKey: "unknown-once",
       transport,
       now: () => new Date("2026-11-25T00:00:00Z"),
     });
     await expect(call(request)).rejects.toThrow("connection lost");
     expect(await store.inspect("2026-11")).toMatchObject({
-      unresolved: true,
+      unresolved: false,
+      reservedNanoUsd: 0,
+      spentNanoUsd: (await scanReservation("claude-opus-5-5", request))
+        .reservedNanoUsd,
       busy: false,
     });
-    await expect(call(request)).rejects.toThrow(/사용량.*확인/);
+    await expect(call(request)).rejects.toThrow(/이미/);
     expect(transport).toHaveBeenCalledTimes(1);
   });
 
@@ -302,6 +335,20 @@ describe("scan config, paid API boundary and usage", () => {
         signal: AbortSignal.abort(),
       }),
     ).rejects.toThrow();
+    expect(transport).not.toHaveBeenCalled();
+  });
+
+  it("does not reserve or dispatch if the exact uploaded image cannot be bounded", async () => {
+    const store = createMemoryScanUsageStore(),
+      transport = vi.fn<typeof runModelApi>();
+    const begin = vi.spyOn(store, "begin");
+    await expect(
+      createScanModel({ store, transport })({
+        ...request,
+        imageDataUrl: "data:image/png;base64,AAAA",
+      }),
+    ).rejects.toThrow();
+    expect(begin).not.toHaveBeenCalled();
     expect(transport).not.toHaveBeenCalled();
   });
 });

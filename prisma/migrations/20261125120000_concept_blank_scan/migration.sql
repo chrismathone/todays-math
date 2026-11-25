@@ -43,6 +43,8 @@ CREATE TABLE concept_blank_scan_submission (
   job_id uuid,
   job_kind text CHECK (job_kind IN ('read','grade')),
   job_started_at timestamptz(3),
+  job_waiting boolean NOT NULL DEFAULT false,
+  job_actor jsonb,
   last_error text,
   created_at timestamptz(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at timestamptz(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -153,8 +155,6 @@ CREATE TABLE concept_blank_scan_usage_month (
   month text PRIMARY KEY CHECK (month ~ '^[0-9]{4}-(0[1-9]|1[0-2])$'),
   spent_nano_usd bigint NOT NULL DEFAULT 0 CHECK (spent_nano_usd >= 0),
   reserved_nano_usd bigint NOT NULL DEFAULT 0 CHECK (reserved_nano_usd >= 0),
-  active_call_id uuid,
-  unresolved boolean NOT NULL DEFAULT false,
   updated_at timestamptz(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 -- statement
@@ -163,6 +163,12 @@ CREATE TABLE concept_blank_scan_usage_call (
   month text NOT NULL REFERENCES concept_blank_scan_usage_month(month),
   submission_id uuid REFERENCES concept_blank_scan_submission(id),
   request_key text NOT NULL UNIQUE,
+  result_key text NOT NULL,
+  job_id uuid,
+  bound jsonb,
+  queue_order bigint GENERATED ALWAYS AS IDENTITY,
+  settlement_reason text CHECK (settlement_reason IN ('reported','usage-unknown','bound-exceeded','queue-cancelled','worker-expired')),
+  dispatched_at timestamptz(3),
   operation text NOT NULL CHECK (operation IN ('read','grade')),
   model text NOT NULL,
   tariff_version text NOT NULL CHECK (tariff_version = '2026-11-03'),
@@ -171,17 +177,19 @@ CREATE TABLE concept_blank_scan_usage_call (
   cost_nano_usd bigint CHECK (cost_nano_usd >= 0),
   receipt jsonb,
   result_text text,
-  status text NOT NULL CHECK (status IN ('running','settled','unresolved')),
+  status text NOT NULL CHECK (status IN ('queued','running','settled')),
   started_at timestamptz(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   settled_at timestamptz(3),
   CHECK (status <> 'settled' OR (cost_nano_usd IS NOT NULL AND settled_at IS NOT NULL)),
+  CHECK ((status = 'settled') = (settlement_reason IS NOT NULL)),
+  CHECK (settlement_reason NOT IN ('usage-unknown','worker-expired') OR (cost_nano_usd=reserved_nano_usd AND result_text IS NULL)),
+  CHECK (settlement_reason <> 'queue-cancelled' OR (cost_nano_usd=0 AND result_text IS NULL)),
   CHECK (status = 'settled' OR result_text IS NULL)
 );
 -- statement
-CREATE UNIQUE INDEX cb_scan_one_running_call ON concept_blank_scan_usage_call(month) WHERE status = 'running';
+CREATE INDEX cb_scan_usage_queue ON concept_blank_scan_usage_call(status, queue_order);
 -- statement
-ALTER TABLE concept_blank_scan_usage_month ADD CONSTRAINT cb_scan_active_call_fk
-  FOREIGN KEY (active_call_id) REFERENCES concept_blank_scan_usage_call(id);
+CREATE INDEX cb_scan_usage_result ON concept_blank_scan_usage_call(result_key) WHERE result_text IS NOT NULL;
 
 -- Issued paper, initial readings and audit rows are append-only. Metadata deletion is a separate policy path.
 -- statement

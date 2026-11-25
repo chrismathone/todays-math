@@ -59,12 +59,13 @@ describe("scan migration and durable pre-reservation", () => {
       });
   });
 
-  it("reserves the entire documented input ceiling plus the transmitted output limit", () => {
-    expect(scanReservation(scanConfig({}).model)).toEqual({
-      inputTokens: 1_000_000,
-      outputTokens: 16_000,
-      reservedNanoUsd: 4_320_000_000,
+  it("bounds only the actual request and maximum output", async () => {
+    const bound = await scanReservation(scanConfig({}).model, {
+      prompt: "한 쪽",
     });
+    expect(bound.inputTokens).toBe(Buffer.byteLength("한 쪽") + 1024);
+    expect(bound.outputTokens).toBe(16000);
+    expect(bound.reservedNanoUsd).toBeLessThan(432_000_000);
   });
 
   it("rejects before dispatch when the maximum cannot fit, then frees only the settled difference", async () => {
@@ -83,15 +84,16 @@ describe("scan migration and durable pre-reservation", () => {
       reservedNanoUsd: 80,
       busy: true,
     });
-    await expect(
-      restarted.begin("2031-01", 100, reservation(1)),
-    ).rejects.toThrow(/진행/);
+    const parallel = await restarted.begin("2031-01", 100, reservation(1));
+    await restarted.settle(parallel, 0);
     await restarted.settle(lease, 30, { output: '{"slots":[]}' });
     expect(await store.inspect("2031-01")).toEqual({
       spentNanoUsd: 30,
       reservedNanoUsd: 0,
       busy: false,
       unresolved: false,
+      activeCalls: 0,
+      queuedCalls: 0,
     });
     await expect(store.begin("2031-01", 100, reservation(71))).rejects.toThrow(
       /상한/,
@@ -118,23 +120,20 @@ describe("scan migration and durable pre-reservation", () => {
     expect(await store.inspect("2031-02")).toMatchObject({ spentNanoUsd: 10 });
   });
 
-  it("does not release unknown usage on disconnect, including across UTC rollover", async () => {
+  it("charges unknown usage at its bound, including across UTC rollover", async () => {
     const store = createDatabaseScanUsageStore(local.db);
     const lease = await store.begin("2031-03", 100, reservation(90));
     await store.settle(lease, null);
     expect(await store.inspect("2031-03")).toEqual({
-      spentNanoUsd: 0,
-      reservedNanoUsd: 90,
+      spentNanoUsd: 90,
+      reservedNanoUsd: 0,
       busy: false,
-      unresolved: true,
+      unresolved: false,
+      activeCalls: 0,
+      queuedCalls: 0,
     });
-    await expect(
-      createDatabaseScanUsageStore(local.db).begin(
-        "2031-03",
-        100,
-        reservation(1),
-      ),
-    ).rejects.toThrow(/사용량/);
+    const next = await store.begin("2031-03", 100, reservation(1));
+    await store.settle(next, 1);
     const april = await store.begin("2031-04", 100, reservation(90));
     await store.settle(april, 20);
     expect(await store.inspect("2031-04")).toMatchObject({
@@ -150,9 +149,9 @@ describe("scan migration and durable pre-reservation", () => {
       store.settle(lease, 81, { output: "must not be replayable" }),
     ).rejects.toThrow(/예약/);
     expect(await store.inspect("2031-05")).toMatchObject({
-      unresolved: true,
-      reservedNanoUsd: 80,
-      spentNanoUsd: 0,
+      unresolved: false,
+      reservedNanoUsd: 0,
+      spentNanoUsd: 81,
     });
   });
 

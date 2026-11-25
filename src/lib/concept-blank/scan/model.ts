@@ -21,27 +21,11 @@ export type ScanConfig = Readonly<{
   gradeModel: ScanPricedModel;
   effort: "low" | "medium" | "high";
   monthlyUsdCap: number;
+  maxConcurrent: number;
 }>;
 
-export const SCAN_MAX_OUTPUT_TOKENS = 16_000;
-/** 2026-11-25 official model overview: all three supported 5.5 models have a 1M
- * context ceiling. Reserve the WHOLE input ceiling (including image/overhead),
- * plus max output; do not infer a bound from a mean price or approximate token count.
- * https://platform.claude.com/docs/en/models/overview
- * This intentionally leaves a conservative unspendable tail in the monthly budget. */
-export function scanReservation(model: ScanPricedModel) {
-  const inputTokens = 1_000_000;
-  return {
-    inputTokens,
-    outputTokens: SCAN_MAX_OUTPUT_TOKENS,
-    reservedNanoUsd: scanTokenCostNanoUsd(model, {
-      inputTokens,
-      outputTokens: SCAN_MAX_OUTPUT_TOKENS,
-      cachedInputTokens: 0,
-      cacheCreationInputTokens: 0,
-    }),
-  };
-}
+import { scanReservation, SCAN_MAX_OUTPUT_TOKENS } from "./reservation";
+export { scanReservation, SCAN_MAX_OUTPUT_TOKENS } from "./reservation";
 
 export function scanConfig(
   env: Record<string, string | undefined> = process.env,
@@ -65,7 +49,12 @@ export function scanConfig(
     !Number.isSafeInteger(Math.round(monthlyUsdCap * 1e9))
   )
     throw new RangeError("사진 채점 월 상한이 맞지 않습니다.");
+  const concurrency = env.CONCEPT_BLANK_SCAN_MAX_CONCURRENT ?? "4";
+  const maxConcurrent = Number(concurrency);
+  if (!/^[1-9]\d*$/.test(concurrency) || !Number.isSafeInteger(maxConcurrent))
+    throw new RangeError("사진 채점 동시 호출 상한이 맞지 않습니다.");
   return {
+    maxConcurrent,
     enabled:
       env.CONCEPT_BLANK_SCAN_ENABLED === undefined ||
       env.CONCEPT_BLANK_SCAN_ENABLED === "on",
@@ -84,6 +73,8 @@ export function createScanModel(deps: {
   now?: () => Date;
   /** Trusted durable job identity (submission/photo/revision/operation), never a client answer. */
   requestKey?: string;
+  /** Changes only on an explicit new job; queue resumes keep the same attempt. */
+  attemptKey?: string;
 }): ScanModel {
   return async (request) => {
     const config = deps.config ?? scanConfig();
@@ -121,17 +112,27 @@ export function createScanModel(deps: {
     const transport =
       deps.transport ?? (await import("@/lib/studio-ai/api")).runModelApi;
     request.signal.throwIfAborted();
+    const bound = await scanReservation(model, request);
+    const resultKey = requestKey;
+    const attemptKey = deps.attemptKey
+      ? createHash("sha256")
+          .update(`${requestKey}:${deps.attemptKey}`)
+          .digest("hex")
+      : requestKey;
     const month = (deps.now?.() ?? new Date()).toISOString().slice(0, 7);
     const lease = await deps.store.begin(
       month,
       Math.round(config.monthlyUsdCap * 1e9),
       {
-        requestKey,
+        requestKey: attemptKey,
+        resultKey,
+        bound,
         operation: request.operation,
         model,
         promptVersion: request.promptVersion ?? "injected-unversioned",
-        reservedNanoUsd: scanReservation(model).reservedNanoUsd,
+        reservedNanoUsd: bound.reservedNanoUsd,
       },
+      config.maxConcurrent,
     );
     const receipts: AnthropicUsage[] = [];
     let dispatched = false;

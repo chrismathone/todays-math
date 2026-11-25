@@ -39,11 +39,15 @@ export type ScanUsageMonth = Readonly<{
   reservedNanoUsd: number;
   busy: boolean;
   unresolved: boolean;
+  activeCalls: number;
+  queuedCalls: number;
 }>;
 export type ScanUsageLease = Readonly<{ month: string; token: string }>;
 export type ScanUsageReservation = Readonly<{
   reservedNanoUsd: number;
   requestKey: string;
+  resultKey?: string;
+  bound?: object;
   operation: "read" | "grade";
   model: ScanPricedModel;
   promptVersion: string;
@@ -53,13 +57,13 @@ export type ScanUsageEvidence = Readonly<{
   /** Server-only replay evidence. Never log or project this to a student. */
   output?: string;
 }>;
-/** Both operations share one UTC-month lane across processes. Unknown billing holds its
- * reservation indefinitely; a browser disconnect or TTL is never permission to repay. */
+/** Atomic reservation sums across processes; queued work retains its position and bound. */
 export interface ScanUsageStore {
   begin(
     month: string,
     capNanoUsd: number,
     reservation: ScanUsageReservation,
+    maxConcurrent?: number,
   ): Promise<ScanUsageLease>;
   settle(
     lease: ScanUsageLease,
@@ -100,100 +104,123 @@ export function assertScanCost(cost: number | null) {
     throw new RangeError("사용량 값이 맞지 않습니다.");
 }
 
+/** Internal control flow: persist the job as waiting, never expose this as a busy failure. */
+export class ScanQueuedError extends Error {
+  constructor() {
+    super("차례를 기다리는 중");
+    this.name = "ScanQueuedError";
+  }
+}
+export function assertScanConcurrency(value: number) {
+  if (!Number.isSafeInteger(value) || value < 1)
+    throw new RangeError("동시 호출 상한이 맞지 않습니다.");
+}
+
 /** Tests/local simulation only. Not a production/serverless quota store. */
 export function createMemoryScanUsageStore(): ScanUsageStore {
-  const rows = new Map<
-    string,
-    {
-      spentNanoUsd: number;
-      reservedNanoUsd: number;
-      token: string | null;
-      unresolved: boolean;
-    }
-  >();
-  const calls = new Map<
-    string,
-    { key: string; reserved: number; status: string; output?: string }
-  >();
-  const keys = new Map<string, string>();
-  let sequence = 0;
+  type Call = {
+    token: string;
+    month: string;
+    key: string;
+    resultKey: string;
+    reserved: number;
+    status: string;
+    output?: string;
+  };
+  const months = new Map<string, { spent: number; reserved: number }>();
+  const calls = new Map<string, Call>();
   const row = (month: string) => {
     assertScanMonth(month);
-    let result = rows.get(month);
-    if (!result) {
-      result = {
-        spentNanoUsd: 0,
-        reservedNanoUsd: 0,
-        token: null,
-        unresolved: false,
-      };
-      rows.set(month, result);
-    }
-    return result;
+    if (!months.has(month)) months.set(month, { spent: 0, reserved: 0 });
+    return months.get(month)!;
   };
+  let sequence = 0;
   return {
-    async begin(month, cap, reservation) {
+    async begin(month, cap, reservation, maxConcurrent = 4) {
+      assertScanMonth(month);
       assertScanReservation(cap, reservation);
-      const current = row(month);
-      if (current.unresolved)
-        throw new Error("이전 호출의 사용량을 확인해야 합니다.");
-      if (current.token)
-        throw new Error(
-          "진행 중인 사진 채점 호출이 끝나면 다시 시도해 주세요.",
-        );
-      if (keys.has(reservation.requestKey))
-        throw new Error("이미 실행한 사진 채점 작업입니다.");
+      assertScanConcurrency(maxConcurrent);
+      let call = [...calls.values()].find(
+        (c) => c.key === reservation.requestKey,
+      );
       if (
-        current.spentNanoUsd + current.reservedNanoUsd >
-        cap - reservation.reservedNanoUsd
+        call &&
+        (call.status !== "queued" ||
+          call.reserved !== reservation.reservedNanoUsd ||
+          call.resultKey !== (reservation.resultKey ?? reservation.requestKey))
       )
+        throw new Error("이미 실행한 사진 채점 작업입니다.");
+      if (!call) {
+        const current = row(month);
+        if (
+          current.spent + current.reserved >
+          cap - reservation.reservedNanoUsd
+        )
+          throw new Error(
+            "사진 채점의 월 사용 상한에 필요한 예약액이 남지 않았습니다.",
+          );
+        call = {
+          token: String(++sequence),
+          month,
+          key: reservation.requestKey,
+          resultKey: reservation.resultKey ?? reservation.requestKey,
+          reserved: reservation.reservedNanoUsd,
+          status: "queued",
+        };
+        calls.set(call.token, call);
+        current.reserved += call.reserved;
+      }
+      if (row(call.month).spent + row(call.month).reserved > cap)
         throw new Error(
           "사진 채점의 월 사용 상한에 필요한 예약액이 남지 않았습니다.",
         );
-      current.token = String(++sequence);
-      current.reservedNanoUsd = reservation.reservedNanoUsd;
-      calls.set(current.token, {
-        key: reservation.requestKey,
-        reserved: reservation.reservedNanoUsd,
-        status: "running",
-      });
-      keys.set(reservation.requestKey, current.token);
-      return { month, token: current.token };
+      if (
+        [...calls.values()].filter((c) => c.status === "running").length >=
+          maxConcurrent ||
+        [...calls.values()].find((c) => c.status === "queued") !== call
+      )
+        throw new ScanQueuedError();
+      call.status = "running";
+      return { month: call.month, token: call.token };
     },
     async settle(lease, cost, evidence) {
       assertScanCost(cost);
-      const current = row(lease.month);
       const call = calls.get(lease.token);
-      if (current.token !== lease.token || !call || call.status !== "running")
+      if (!call || call.month !== lease.month || call.status !== "running")
         throw new Error("이미 정산했거나 다른 호출의 사용량입니다.");
+      const current = row(call.month);
+      current.spent += cost ?? call.reserved;
+      current.reserved -= call.reserved;
+      call.status = "settled";
       const exceeded = cost !== null && cost > call.reserved;
-      current.token = null;
-      if (cost === null || exceeded) {
-        current.unresolved = true;
-        call.status = "unresolved";
-      } else {
-        current.spentNanoUsd += cost;
-        current.reservedNanoUsd = 0;
-        call.status = "settled";
-        call.output = evidence?.output;
-      }
+      if (cost !== null && !exceeded) call.output = evidence?.output;
       if (exceeded)
         throw new Error(
-          "실제 사용량이 예약 상계를 넘어 운영 확인이 필요합니다.",
+          "실제 사용량이 예약 상계를 넘었습니다. 실제 사용량을 기록했습니다.",
         );
     },
     async inspect(month) {
-      const current = row(month);
+      const current = row(month),
+        list = [...calls.values()].filter((c) => c.month === month);
+      const activeCalls = list.filter((c) => c.status === "running").length;
       return {
-        spentNanoUsd: current.spentNanoUsd,
-        reservedNanoUsd: current.reservedNanoUsd,
-        busy: current.token !== null,
-        unresolved: current.unresolved,
+        spentNanoUsd: current.spent,
+        reservedNanoUsd: current.reserved,
+        busy: activeCalls > 0,
+        unresolved: false,
+        activeCalls,
+        queuedCalls: list.filter((c) => c.status === "queued").length,
       };
     },
     async findResult(key) {
-      const call = calls.get(keys.get(key) ?? "");
-      return call?.status === "settled" ? (call.output ?? null) : null;
+      return (
+        [...calls.values()].find(
+          (c) =>
+            c.resultKey === key &&
+            c.status === "settled" &&
+            c.output !== undefined,
+        )?.output ?? null
+      );
     },
   };
 }

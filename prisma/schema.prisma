@@ -3194,6 +3194,8 @@ model ConceptBlankScanSubmission {
   jobId String? @map("job_id") @db.Uuid
   jobKind String? @map("job_kind")
   jobStartedAt DateTime? @map("job_started_at") @db.Timestamptz(3)
+  jobWaiting Boolean @default(false) @map("job_waiting")
+  jobActor Json? @map("job_actor")
   lastError String? @map("last_error")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(3)
@@ -3302,10 +3304,7 @@ model ConceptBlankScanUsageMonth {
   month String @id
   spentNanoUsd BigInt @default(0) @map("spent_nano_usd")
   reservedNanoUsd BigInt @default(0) @map("reserved_nano_usd")
-  activeCallId String? @map("active_call_id") @db.Uuid
-  unresolved Boolean @default(false)
   updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(3)
-  activeCall ConceptBlankScanUsageCall? @relation("cbActiveUsageCall", fields: [activeCallId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cb_scan_active_call_fk")
   calls ConceptBlankScanUsageCall[] @relation("cbUsageMonth")
   @@map("concept_blank_scan_usage_month")
 }
@@ -3315,6 +3314,12 @@ model ConceptBlankScanUsageCall {
   month String
   submissionId String? @map("submission_id") @db.Uuid
   requestKey String @unique @map("request_key")
+  resultKey String @map("result_key")
+  jobId String? @map("job_id") @db.Uuid
+  bound Json?
+  queueOrder BigInt @default(autoincrement()) @map("queue_order")
+  settlementReason String? @map("settlement_reason")
+  dispatchedAt DateTime? @map("dispatched_at") @db.Timestamptz(3)
   operation String
   model String
   tariffVersion String @map("tariff_version")
@@ -3327,7 +3332,6 @@ model ConceptBlankScanUsageCall {
   startedAt DateTime @default(now()) @map("started_at") @db.Timestamptz(3)
   settledAt DateTime? @map("settled_at") @db.Timestamptz(3)
   usageMonth ConceptBlankScanUsageMonth @relation("cbUsageMonth", fields: [month], references: [month], onDelete: NoAction, onUpdate: NoAction)
-  activeFor ConceptBlankScanUsageMonth[] @relation("cbActiveUsageCall")
   submission ConceptBlankScanSubmission? @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   @@map("concept_blank_scan_usage_call")
 }
