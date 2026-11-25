@@ -23,7 +23,13 @@ let mathCss: string | undefined;
 /** 실제 KaTeX CSS와 woff2를 함께 싣는다. CDN·Next의 가변 CSS 해시 주소에 의존하지 않는다. */
 export function selfHostedMathCss(): string {
   if (mathCss !== undefined) return mathCss;
-  const cssPath = requireAsset.resolve("katex/dist/katex.min.css");
+  // Turbopack 운영 빌드에서 `resolve` 가 문자열이 아닌 값을 낼 수 있다(2026-11-25 개념 백지 발행 장애) —
+  // 그때는 outputFileTracingIncludes 로 실린 cwd 의 node_modules 경로를 쓴다.
+  const resolved: unknown = requireAsset.resolve("katex/dist/katex.min.css");
+  const cssPath =
+    typeof resolved === "string" && resolved
+      ? resolved
+      : path.join(process.cwd(), "node_modules/katex/dist/katex.min.css");
   mathCss = readFileSync(cssPath, "utf8").replace(
     /src:([^;]+);/g,
     (declaration, sources: string) => {
