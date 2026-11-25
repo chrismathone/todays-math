@@ -149,6 +149,7 @@ const nextConfig: NextConfig = {
       "./src/components/print/WritingArea.module.css",
       "./public/fonts/NotoSerifKR-subset.woff2",
       "./public/fonts/PretendardVariable.woff2",
+      "./public/fonts/katex/**/*",
       "./node_modules/tailwindcss/preflight.css",
       "./node_modules/katex/dist/katex.min.css",
       "./node_modules/katex/dist/fonts/**/*",

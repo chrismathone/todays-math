@@ -4,6 +4,7 @@ const mocks = vi.hoisted(() => ({
   auth: vi.fn(),
   issue: vi.fn(),
   render: vi.fn(),
+  edition: vi.fn(() => "edition"),
   read: vi.fn(),
 }));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
@@ -19,7 +20,11 @@ vi.mock("@/lib/concept-blank/scan/issuance", async () => ({
 }));
 vi.mock("@/lib/concept-blank/scan/paper.server", () => ({
   renderScanPaper: mocks.render,
+  scanPublicationEdition: mocks.edition,
 }));
+import { ScanPaperError } from "@/lib/concept-blank/scan/renderQueue";
+import { recordErrorLog } from "@/lib/errorLog/record";
+import { settleErrorLogWrites } from "@/lib/errorLog/withErrorLog";
 import { POST } from "@/app/api/concept-blank/scan/issued/route";
 import { ScanUnavailableError } from "@/lib/concept-blank/scan/database";
 const teacher = {
@@ -113,4 +118,42 @@ describe("issued scan paper HTTP boundary", () => {
     expect(response.status).toBe(413);
     expect(mocks.issue).not.toHaveBeenCalled();
   });
+});
+
+it.each([
+  new ScanPaperError("본문이 넘칩니다(최대 2.0px)."),
+  new Error("font unavailable"),
+])(
+  "logs renderer failure and exposes the safe print fallback reason",
+  async (error) => {
+    mocks.render.mockRejectedValue(error);
+    mocks.issue.mockImplementation(async (_actor, _input, deps) =>
+      deps.render(payload.requestId, payload.selection),
+    );
+    const response = await POST(request());
+    expect(response.status).toBe(503);
+    const body = await response.json();
+    expect(body.error.message).toMatch(/본문이 넘칩니다|글꼴·배치/);
+    await settleErrorLogWrites();
+    expect(
+      vi
+        .mocked(recordErrorLog)
+        .mock.calls.some(([row]) => row.detail?.includes(error.message)),
+    ).toBe(true);
+  },
+);
+
+it("records a missing asset while computing the publication edition and returns a safe reason", async () => {
+  mocks.edition.mockImplementationOnce(() => {
+    throw new Error("missing font asset");
+  });
+  const response = await POST(request());
+  expect(response.status).toBe(503);
+  expect((await response.json()).error.message).toContain("글꼴·배치");
+  await settleErrorLogWrites();
+  expect(
+    vi
+      .mocked(recordErrorLog)
+      .mock.calls.some(([row]) => row.detail?.includes("missing font asset")),
+  ).toBe(true);
 });

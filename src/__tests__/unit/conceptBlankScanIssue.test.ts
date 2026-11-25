@@ -93,6 +93,12 @@ describe("issued paper identity and current ownerScope", () => {
     const first = await issueScanPaper(actor, { requestId, selection }, deps);
     const again = await issueScanPaper(actor, { requestId, selection }, deps);
     expect(first.id).toBe(again.id);
+    const freshClick = await issueScanPaper(
+      actor,
+      { requestId: randomUUID(), selection },
+      deps,
+    );
+    expect(freshClick.id).toBe(first.id);
     expect(render).toHaveBeenCalledTimes(1);
     expect(
       await readIssuedScanPaper(actor, first.id, "key", local.db),
@@ -104,6 +110,41 @@ describe("issued paper identity and current ownerScope", () => {
         deps,
       ),
     ).rejects.toThrow(/다른 고르기/);
+  });
+
+  it("concurrent first clicks keep exactly one publication row after both renderers finish", async () => {
+    const before = await local.db.query<{ count: string }>(
+      `SELECT count(*)::text AS count FROM concept_blank_printed_sheet`,
+    );
+    let done!: () => void;
+    const barrier = new Promise<void>((resolve) => {
+      done = resolve;
+    });
+    let calls = 0;
+    const deps = {
+      db: local.db,
+      publicationEdition: "concurrent-edition",
+      render: async () => {
+        if (++calls === 2) done();
+        await barrier;
+        return rendered;
+      },
+    };
+    const [a, b] = await Promise.all(
+      [1, 2].map(() =>
+        issueScanPaper(
+          { kind: "teacher", id: world.userA },
+          { requestId: randomUUID(), selection },
+          deps,
+        ),
+      ),
+    );
+    expect(a.id).toBe(b.id);
+    const after = await local.db.query<{ count: string }>(
+      `SELECT count(*)::text AS count FROM concept_blank_printed_sheet`,
+    );
+    expect(Number(after[0].count)).toBe(Number(before[0].count) + 1);
+    expect(calls).toBe(2);
   });
 
   it("permits the issuing teacher's current student only, never any student holding a QR", async () => {
@@ -218,6 +259,7 @@ describe("issued paper identity and current ownerScope", () => {
         { requestId: randomUUID(), selection },
         {
           db: local.db,
+          publicationEdition: "failure",
           render: async () => {
             throw new Error("font unavailable");
           },
@@ -230,7 +272,11 @@ describe("issued paper identity and current ownerScope", () => {
       issueScanPaper(
         actor,
         { requestId: randomUUID(), selection },
-        { db: local.db, render: async () => bad },
+        {
+          db: local.db,
+          publicationEdition: "bad-layout",
+          render: async () => bad,
+        },
       ),
     ).rejects.toThrow(/칸/);
     expect(

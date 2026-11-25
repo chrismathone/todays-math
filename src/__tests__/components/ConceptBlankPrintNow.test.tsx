@@ -39,3 +39,25 @@ describe("PrintNow", () => {
     expect(container.innerHTML).toBe("");
   });
 });
+
+it("waits for the linked stylesheet before auto-print and previews never open a print dialog", async () => {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "/qa-sheet.css";
+  document.head.append(link);
+  Object.defineProperty(document, "fonts", {
+    configurable: true,
+    value: { ready: Promise.resolve(), load: async () => [{}] },
+  });
+  const print = vi.spyOn(window, "print").mockImplementation(() => {});
+  const view = render(
+    <PrintNow stylesheetHref="/qa-sheet.css" autoPrint={false} />,
+  );
+  await new Promise((r) => setTimeout(r, 50));
+  expect(print).not.toHaveBeenCalled();
+  link.dispatchEvent(new Event("load"));
+  await new Promise((r) => setTimeout(r, 100));
+  expect(print).not.toHaveBeenCalled();
+  view.unmount();
+  link.remove();
+});

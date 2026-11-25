@@ -182,6 +182,7 @@ describe("역할 게이트 관문", () => {
       "/fonts/NotoSerifKR-subset.woff2",
       "/fonts/PretendardVariable.woff2",
       "/fonts/NotoSerifKR-OFL.txt",
+      "/fonts/katex/KaTeX_Main-Regular.woff2",
     ])
       for (const method of ["GET", "HEAD"])
         expect((await run(method, font)).status).toBe(200);

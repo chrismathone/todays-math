@@ -25,7 +25,7 @@ export default function IssuePrint({
     let alive = true;
     if (!pending.current)
       pending.current = (async () => {
-        // Reloads of this tab can reuse a completed POST; a fresh print URL starts a fresh issuance.
+        // Keep request retry identity; the server also reuses the same content/font edition across tabs.
         const current = new URL(window.location.href);
         let requestId = current.searchParams.get("issueRequest");
         if (
@@ -42,8 +42,16 @@ export default function IssuePrint({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ requestId, selection }),
+        }).catch(() => {
+          throw new Error(
+            "발행 서버에 연결하지 못했습니다. 연결 상태를 확인해 주세요.",
+          );
         });
-        const body: unknown = await response.json();
+        const body: unknown = await response.json().catch(() => {
+          throw new Error(
+            `발행 서버의 응답을 읽지 못했습니다(${response.status}). 잠시 뒤 다시 발행해 주세요.`,
+          );
+        });
         if (!response.ok) {
           const message = (body as { error?: { message?: unknown } })?.error
             ?.message;
@@ -53,7 +61,12 @@ export default function IssuePrint({
               : "발행 정보를 저장하지 못했습니다.",
           );
         }
-        return scanIssueResponseSchema.parse(body).data.id;
+        const parsed = scanIssueResponseSchema.safeParse(body);
+        if (!parsed.success)
+          throw new Error(
+            "발행 정보의 형식을 확인하지 못했습니다. 다시 발행해 주세요.",
+          );
+        return parsed.data.data.id;
       })();
     void pending.current
       .then((id) => {
@@ -62,10 +75,10 @@ export default function IssuePrint({
             `/concept-blank/print?p=${id}&view=${view}${autoPrint ? "&print=1" : ""}`,
           );
       })
-      .catch(() => {
+      .catch((cause: unknown) => {
         if (alive)
           setError(
-            "사진 채점용 QR을 준비하지 못했습니다. QR 없는 지면으로 인쇄합니다. 사진 채점이 필요하면 나중에 다시 발행해 주세요.",
+            `QR 없이 인쇄됨 · ${cause instanceof Error ? cause.message : "발행 정보를 준비하지 못했습니다."}`,
           );
       });
     // Do not abort an accepted issue when the tab leaves; its request ID can recover the saved artifact.

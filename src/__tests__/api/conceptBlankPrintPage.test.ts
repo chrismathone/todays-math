@@ -8,6 +8,7 @@
  * ⚠️ 페이지는 `<ConceptBlankPaper …/>` **요소**를 돌려줄 뿐 컴포넌트를 부르지 않는다 — 돌려받은 요소의 `props` 를 본다.
  */
 import { isValidElement, type ReactElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { zlibSync } from "fflate";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -140,7 +141,7 @@ describe("/concept-blank/print", () => {
     mocks.session.mockResolvedValue(OWNER);
     mocks.artifact.mockResolvedValue({
       version: 1,
-      css: ".frozen{}",
+      css: ".frozen{}" + " ".repeat(5_600_000),
       pages: [
         { part: "student", number: 1, html: "<div>인쇄 때 저장한 내용</div>" },
       ],
@@ -152,6 +153,13 @@ describe("/concept-blank/print", () => {
       view: "student",
       print: "1",
     });
+    expect(JSON.stringify(page)).not.toContain(".frozen{}");
+    // Upper-bound both SSR markup and the serialized element payload; neither carries CSS.
+    expect(
+      Buffer.byteLength(renderToStaticMarkup(page)) +
+        Buffer.byteLength(JSON.stringify(page)),
+    ).toBeLessThan(1_000_000);
+    expect(JSON.stringify(page)).toContain("format=css");
     expect(findPaper(page)).toBeNull();
     expect(JSON.stringify(page)).toContain("인쇄 때 저장한 내용");
     expect(mocks.artifact).toHaveBeenCalledWith(
