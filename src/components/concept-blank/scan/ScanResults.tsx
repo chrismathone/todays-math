@@ -6,6 +6,7 @@ import type {
   ScanOverrideInput,
   ScanSubmissionView,
 } from "@/contracts/conceptBlankScanApi.contract";
+import { ScanWrittenName } from "./ScanWrittenName";
 import { ScanPhoto } from "./ScanPhoto";
 import type { ScanSource } from "./api";
 import { latestScanGrades, scanNumbers } from "./view";
@@ -43,6 +44,7 @@ export function ScanResults({
   };
   return (
     <section aria-label="답안 결과">
+      <ScanWrittenName view={view} />
       <p>○ 충족 · △ 일부 충족 · × 미충족 · 확인 필요</p>
       <p className={s.meta}>
         확인 필요는 오답으로 세지 않습니다. 교사가 판정과 까닭을 고칠 수

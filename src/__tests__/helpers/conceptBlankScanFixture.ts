@@ -14,13 +14,13 @@ export async function scanWorld(
 ) {
   const world = await seedWorld(local.pg);
   await local.db.query(
-    `UPDATE "user" SET approval_status='approved',branch_id=$1,branch_role='teacher' WHERE id IN ($2,$3)`,
+    `UPDATE "user" SET approval_status='approved',branch_id=$1::uuid,branch_role='teacher' WHERE id IN ($2::uuid,$3::uuid)`,
     [world.branchId, world.userA, world.userB],
   );
-  await local.db.query(`UPDATE "class" SET branch_id=$1 WHERE id=$2`, [
-    world.branchId,
-    world.classA,
-  ]);
+  await local.db.query(
+    `UPDATE "class" SET branch_id=$1::uuid WHERE id=$2::uuid`,
+    [world.branchId, world.classA],
+  );
   const selection = {
     sections: [FIXTURE_BANK.concepts[0].section],
     forms: forms.map((form) => ({

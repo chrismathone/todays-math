@@ -180,6 +180,10 @@ describe("scan submissions, staged photos and immutable answers", () => {
         deps(),
       ),
     ).rejects.toThrow(/최신/);
+    await local.db.query(
+      `UPDATE concept_blank_scan_submission SET written_name='old-name',written_name_status='read',name_match_result='mismatch' WHERE id=$1::uuid`,
+      [a.id],
+    );
     await addScanPhoto(
       world.student,
       a.id,
@@ -189,12 +193,13 @@ describe("scan submissions, staged photos and immutable answers", () => {
     view = await getScanSubmission(world.student, a.id, local.db);
     expect(view.photos).toHaveLength(1);
     expect(view.photos[0].id).not.toBe(first.photoId);
+    expect(view.writtenName).toBeNull();
     const rows = await local.db.query<{
       is_current: boolean;
       expires_at: Date;
       created_at: Date;
     }>(
-      `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1 ORDER BY version`,
+      `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1::uuid ORDER BY version`,
       [a.id],
     );
     expect(rows.map((r) => r.is_current)).toEqual([false, true]);
@@ -225,7 +230,7 @@ describe("scan submissions, staged photos and immutable answers", () => {
       ),
     ).rejects.toThrow("offline");
     const staged = await local.db.query<{ is_current: boolean }>(
-      `SELECT is_current FROM concept_blank_scan_photo WHERE submission_id=$1`,
+      `SELECT is_current FROM concept_blank_scan_photo WHERE submission_id=$1::uuid`,
       [a.id],
     );
     expect(staged).toEqual([{ is_current: false }]);
@@ -279,11 +284,11 @@ describe("scan submissions, staged photos and immutable answers", () => {
     const slot = world.snapshot.pages[0].slots[0];
     const readId = randomUUID();
     await local.db.query(
-      `INSERT INTO concept_blank_scan_read (id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model) VALUES($1,$2,$3,$4,'unreadable','','test','fake')`,
+      `INSERT INTO concept_blank_scan_read (id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model) VALUES($1::uuid,$2::uuid,$3::uuid,$4::text,'unreadable','','test','fake')`,
       [readId, a.id, added.photoId, slot.id],
     );
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET state='checking' WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET state='checking' WHERE id=$1::uuid`,
       [a.id],
     );
     let view = await getScanSubmission(world.student, a.id, local.db);
@@ -309,7 +314,7 @@ describe("scan submissions, staged photos and immutable answers", () => {
       local.db,
     );
     await local.db.query(
-      `INSERT INTO concept_blank_scan_grade (id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin) VALUES($1,$2,$3,1,'review','읽은 답 확인',true,$4::jsonb,'rule')`,
+      `INSERT INTO concept_blank_scan_grade (id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin) VALUES($1::uuid,$2::uuid,$3::text,1,'review','읽은 답 확인',true,$4::jsonb,'rule')`,
       [
         randomUUID(),
         a.id,
@@ -318,7 +323,7 @@ describe("scan submissions, staged photos and immutable answers", () => {
       ],
     );
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET state='graded',graded_at=CURRENT_TIMESTAMP WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET state='graded',graded_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
       [a.id],
     );
     view = await getScanSubmission(world.student, a.id, local.db);

@@ -42,6 +42,12 @@ import {
   DELETE as remove,
 } from "@/app/api/concept-blank/scan/submissions/[id]/photos/[photoId]/route";
 import { GET as purge } from "@/app/api/concept-blank/scan/purge/cron/route";
+import { POST as nameStart } from "@/app/api/concept-blank/scan/name-captures/route";
+import {
+  GET as nameGet,
+  POST as nameAction,
+} from "@/app/api/concept-blank/scan/name-captures/[id]/route";
+import { POST as assignStudent } from "@/app/api/concept-blank/scan/submissions/[id]/student/route";
 import { GET as queue } from "@/app/api/concept-blank/scan/queue/cron/route";
 let local: Awaited<ReturnType<typeof openScanTestDb>>,
   world: Awaited<ReturnType<typeof scanWorld>>;
@@ -341,4 +347,55 @@ describe("authenticated scan HTTP routes with local PostgreSQL", () => {
     expect(response.status).toBe(200);
     vi.unstubAllEnvs();
   });
+});
+
+it("guards every name route and joins an uncertain teacher capture only after explicit choice", async () => {
+  const unknown = randomUUID();
+  for (const response of [
+    await nameStart(req("/name-captures", "POST", {})),
+    await nameGet(req(`/name-captures/${unknown}`), ctx(unknown)),
+    await nameAction(
+      req(`/name-captures/${unknown}`, "POST", { action: "retry" }),
+      ctx(unknown),
+    ),
+    await assignStudent(
+      req(`/submissions/${unknown}/student`, "POST", {}),
+      ctx(unknown),
+    ),
+  ])
+    expect(response.status).toBe(403);
+  mocks.auth.mockResolvedValue(teacher());
+  const imageDataUrl = await QRCode.toDataURL(
+    `${origin}/concept-blank/scan?p=${world.issued.id}&page=1&part=student`,
+    { width: 700 },
+  );
+  const response = await nameStart(
+    req("/name-captures", "POST", { ...payload(), imageDataUrl }),
+  );
+  expect(response.status).toBe(202);
+  const {
+    data: { id },
+  } = await response.json();
+  await flush();
+  const before = (
+    await (await nameGet(req(`/name-captures/${id}`), ctx(id))).json()
+  ).data;
+  expect(before.submissionId).toBeNull();
+  expect(before.writtenName.status).toBe("unreadable");
+  expect((await get(req(`/submissions/${id}`), ctx(id))).status).toBe(404);
+  expect(
+    (
+      await nameAction(
+        req(`/name-captures/${id}`, "POST", {
+          action: "choose",
+          studentId: world.studentA,
+        }),
+        ctx(id),
+      )
+    ).status,
+  ).toBe(200);
+  const linked = (await (await get(req(`/submissions/${id}`), ctx(id))).json())
+    .data;
+  expect(linked.writtenName.method).toBe("teacher-picked");
+  expect(linked.grades).toEqual([]);
 });

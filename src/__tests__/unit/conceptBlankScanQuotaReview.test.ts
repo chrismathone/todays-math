@@ -92,7 +92,7 @@ it("finalizes unknown usage at its whole bound, preserves evidence and permits t
     unresolved: false,
   });
   const [call] = await local.db.query(
-    "SELECT status,cost_nano_usd,settlement_reason,result_text FROM concept_blank_scan_usage_call WHERE id=$1",
+    "SELECT status,cost_nano_usd,settlement_reason,result_text FROM concept_blank_scan_usage_call WHERE id=$1::uuid",
     [lease.token],
   );
   expect(call).toMatchObject({

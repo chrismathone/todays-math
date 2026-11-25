@@ -27,6 +27,7 @@ globalThis.fetch = (input, init) => {
     throw new Error("External fetch forbidden in scan QA");
   return originalFetch(input, init);
 };
+let writtenName = { status: "read", text: "다른학생" };
 const evidence = {
   requests: [],
   screens: [],
@@ -108,25 +109,35 @@ const server = await createServer({
               response = await handlers.issue(request, {
                 params: Promise.resolve({ id: suffix.split("/")[2] }),
               });
+            else if (suffix === "/name-captures")
+              response = await handlers.nameStart(request);
+            else if (suffix.startsWith("/name-captures/"))
+              response = await handlers[
+                req.method === "GET" ? "nameGet" : "nameAction"
+              ](request, {
+                params: Promise.resolve({ id: suffix.split("/")[2] }),
+              });
             else if (suffix === "/submissions")
               response = await handlers.start(request);
             else {
               const [, , id, action, photoId] = suffix.split("/");
               const context = { params: Promise.resolve({ id, photoId }) };
               const name =
-                action === "photos"
-                  ? photoId
-                    ? req.method === "DELETE"
-                      ? "remove"
-                      : "sign"
-                    : "photo"
-                  : action === "answers"
-                    ? "answer"
-                    : action === "jobs"
-                      ? "job"
-                      : action === "override"
-                        ? "override"
-                        : "get";
+                action === "student"
+                  ? "assignStudent"
+                  : action === "photos"
+                    ? photoId
+                      ? req.method === "DELETE"
+                        ? "remove"
+                        : "sign"
+                      : "photo"
+                    : action === "answers"
+                      ? "answer"
+                      : action === "jobs"
+                        ? "job"
+                        : action === "override"
+                          ? "override"
+                          : "get";
               response = await handlers[name](request, context);
             }
             evidence.requests.push({
@@ -214,6 +225,7 @@ try {
     const input = JSON.parse(request.prompt.split("\n").at(-1));
     if (request.operation === "read")
       return JSON.stringify({
+        written_name: input.page === 1 ? writtenName : null,
         slots: input.slots.map((slot, i) => ({
           id: slot.id,
           status: i < 2 ? "unreadable" : "read",
@@ -259,7 +271,7 @@ try {
   expect(issuedResponse.status).toBe(201);
   const { data: issued } = await issuedResponse.json();
   const [stored] = await local.db.query(
-    "SELECT render_artifact,layout FROM concept_blank_printed_sheet WHERE id=$1",
+    "SELECT render_artifact,layout FROM concept_blank_printed_sheet WHERE id=$1::uuid",
     [issued.id],
   );
   await writeFile(
@@ -317,7 +329,7 @@ try {
     });
     expect(overflow).toBeLessThanOrEqual(1);
   };
-  await page.goto(qr.data);
+  await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "새 답안 촬영" }).click();
   await expect(
     page.getByRole("button", { name: "모든 쪽 촬영 완료 · 답 읽기" }),
@@ -398,8 +410,11 @@ try {
     .fill("원본과 직접 입력을 대조했습니다. 각에 대한 설명이 더 필요합니다.");
   await page.getByRole("button", { name: "판정 저장", exact: true }).click();
   await expect(page.getByText(/교사 수정 ·/).first()).toBeVisible();
+  await expect(
+    page.getByText(/이름 칸과 연결한 학생의 이름이 다릅니다/),
+  ).toBeVisible();
   await capture("flow-teacher-result-1440");
-  await page.goto(qr.data);
+  await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "학생 고르기" }).click();
   await expect(
     page.getByRole("dialog", { name: "답안 주인 고르기" }),
@@ -407,19 +422,19 @@ try {
   await capture("flow-teacher-picker-1440");
   const submissionId = new URL(studentUrl).searchParams.get("submission");
   const [submission] = await local.db.query(
-    "SELECT state,revision FROM concept_blank_scan_submission WHERE id=$1",
+    "SELECT state,revision,written_name,name_match_result,name_match_method FROM concept_blank_scan_submission WHERE id=$1::uuid",
     [submissionId],
   );
   const grades = await local.db.query(
-    "SELECT origin,count(*)::int AS count FROM concept_blank_scan_grade WHERE submission_id=$1 GROUP BY origin",
+    "SELECT origin,count(*)::int AS count FROM concept_blank_scan_grade WHERE submission_id=$1::uuid GROUP BY origin",
     [submissionId],
   );
   const corrections = await local.db.query(
-    "SELECT resolution,count(*)::int AS count FROM concept_blank_scan_correction WHERE submission_id=$1 GROUP BY resolution",
+    "SELECT resolution,count(*)::int AS count FROM concept_blank_scan_correction WHERE submission_id=$1::uuid GROUP BY resolution",
     [submissionId],
   );
   const photoRows = await local.db.query(
-    "SELECT page_number,registration->>'status' AS registration,used_at IS NOT NULL AS used,(expires_at-created_at) AS lifetime FROM concept_blank_scan_photo WHERE submission_id=$1",
+    "SELECT page_number,registration->>'status' AS registration,used_at IS NOT NULL AS used,(expires_at-created_at) AS lifetime FROM concept_blank_scan_photo WHERE submission_id=$1::uuid",
     [submissionId],
   );
   expect(submission.state).toBe("teacher-corrected");
@@ -427,7 +442,73 @@ try {
   expect(photoRows.every((p) => p.used && p.registration === "matched")).toBe(
     true,
   );
+  expect(submission.name_match_result).toBe("mismatch");
+  expect(submission.name_match_method).toBe("student-account");
+  await page.keyboard.press("Escape");
+  writtenName = { status: "read", text: "학생" };
+  await expect(page.getByText(/이름 칸 포함/)).toBeVisible();
+  await page
+    .getByLabel("이름 칸 1쪽 사진 파일", { exact: true })
+    .setInputFiles(photos[0]);
+  await expect(page.getByText(/연결 방식: 이름 정확 일치/)).toBeVisible({
+    timeout: 30000,
+  });
+  await capture("flow-name-matched-1440");
+  const matchedId = new URL(page.url()).searchParams.get("submission");
+  const [matched] = await local.db.query(
+    "SELECT student_id,written_name,name_match_result,name_match_method FROM concept_blank_scan_submission WHERE id=$1::uuid",
+    [matchedId],
+  );
+  expect(matched).toMatchObject({
+    student_id: world.studentA,
+    written_name: "학생",
+    name_match_result: "matched",
+    name_match_method: "name-exact",
+  });
+  const duplicate = randomUUID();
+  await local.db.query(
+    "INSERT INTO student(id,class_id,name,updated_at) VALUES($1::uuid,$2::uuid,'학생',CURRENT_TIMESTAMP)",
+    [duplicate, world.classA],
+  );
+  await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page
+    .getByLabel("이름 칸 1쪽 사진 파일", { exact: true })
+    .setInputFiles(photos[0]);
+  await expect(
+    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+  ).toBeVisible({ timeout: 30000 });
+  await expect(page.getByText(/이름 일치 후보/)).toHaveCount(2);
+  await capture("flow-name-ambiguous-picker-390");
+  const pendingId = new URL(page.url()).searchParams.get("nameCapture");
+  const [pending] = await local.db.query(
+    "SELECT submission_id,name_match_result FROM concept_blank_scan_name_capture WHERE id=$1::uuid",
+    [pendingId],
+  );
+  expect(pending).toMatchObject({
+    submission_id: null,
+    name_match_result: "ambiguous",
+  });
+  await page
+    .getByRole("button", { name: "선택 · 학생", exact: true })
+    .first()
+    .click();
+  await expect(page.getByText(/연결 방식: 교사가 선택/)).toBeVisible();
+  await page.getByRole("button", { name: "바꾸기 · 답안 주인" }).click();
+  await expect(
+    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "선택 · 학생", exact: true })
+    .last()
+    .click();
+  await expect(
+    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+  ).toHaveCount(0);
+  await capture("flow-name-teacher-changed-390");
   evidence.data = {
+    matchedName: matched,
+    ambiguousName: pending,
     issuedId: issued.id,
     submissionId,
     submission,
@@ -440,7 +521,7 @@ try {
   expect(evidence.requests.filter((r) => r.status >= 400)).toEqual([]);
   expect(
     evidence.modelCalls.filter((c) => c.operation === "read"),
-  ).toHaveLength(3);
+  ).toHaveLength(5);
   console.log(
     JSON.stringify({
       screens: evidence.screens,

@@ -32,7 +32,7 @@ const amount = (value: bigint | string) => {
  * It serializes queue admission/settlement arithmetic, not paid calls. */
 export const lockScanUsage = (tx: ScanSql) =>
   tx.query(
-    `SELECT pg_advisory_xact_lock(hashtextextended('concept-blank-scan-usage',0))`,
+    `SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtextextended('concept-blank-scan-usage',0))`,
   );
 export function createDatabaseScanUsageStore(
   db: ScanDatabase,
@@ -48,7 +48,7 @@ export function createDatabaseScanUsageStore(
         .transaction(async (tx) => {
           await lockScanUsage(tx);
           let [call] = await tx.query<CallRow>(
-            `SELECT * FROM concept_blank_scan_usage_call WHERE request_key=$1 FOR UPDATE`,
+            `SELECT * FROM concept_blank_scan_usage_call WHERE request_key=$1::text FOR UPDATE`,
             [reservation.requestKey],
           );
           if (
@@ -65,7 +65,7 @@ export function createDatabaseScanUsageStore(
               options.jobId &&
               (
                 await tx.query(
-                  `SELECT id FROM concept_blank_scan_usage_call WHERE job_id=$1 AND status='queued' AND request_key<>$2`,
+                  `SELECT id FROM concept_blank_scan_usage_call WHERE job_id=$1::uuid AND status='queued' AND request_key<>$2::text`,
                   [options.jobId, reservation.requestKey],
                 )
               ).length
@@ -74,11 +74,11 @@ export function createDatabaseScanUsageStore(
                 "대기 중 요청 설정이 바뀌었습니다. 다시 시도해 주세요.",
               );
             await tx.query(
-              `INSERT INTO concept_blank_scan_usage_month(month) VALUES($1) ON CONFLICT DO NOTHING`,
+              `INSERT INTO concept_blank_scan_usage_month(month) VALUES($1::text) ON CONFLICT DO NOTHING`,
               [month],
             );
             const [row] = await tx.query<MonthRow>(
-              `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1 FOR UPDATE`,
+              `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1::text FOR UPDATE`,
               [month],
             );
             if (
@@ -91,7 +91,7 @@ export function createDatabaseScanUsageStore(
             [call] = await tx.query<CallRow>(
               `INSERT INTO concept_blank_scan_usage_call
             (id,month,submission_id,request_key,result_key,operation,model,tariff_version,prompt_version,reserved_nano_usd,status,started_at,bound,job_id)
-            VALUES($1,$2,$3,$4,$5,$6,$7,'2026-11-03',$8,$9,'queued',$10,$11::jsonb,$12) RETURNING *`,
+            VALUES($1::uuid,$2::text,$3::uuid,$4::text,$5::text,$6::text,$7::text,'2026-11-03',$8::text,$9::bigint,'queued',$10::timestamptz,$11::jsonb,$12::uuid) RETURNING *`,
               [
                 randomUUID(),
                 month,
@@ -108,12 +108,12 @@ export function createDatabaseScanUsageStore(
               ],
             );
             await tx.query(
-              `UPDATE concept_blank_scan_usage_month SET reserved_nano_usd=reserved_nano_usd+$2,updated_at=$3 WHERE month=$1`,
+              `UPDATE concept_blank_scan_usage_month SET reserved_nano_usd=reserved_nano_usd+$2::bigint,updated_at=$3::timestamptz WHERE month=$1::text`,
               [month, reservation.reservedNanoUsd, now()],
             );
           }
           const [current] = await tx.query<MonthRow>(
-            `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1`,
+            `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1::text`,
             [call.month],
           );
           if (
@@ -132,7 +132,7 @@ export function createDatabaseScanUsageStore(
           if (counts.running >= maxConcurrent || first?.id !== call.id)
             return null;
           await tx.query(
-            `UPDATE concept_blank_scan_usage_call SET status='running',dispatched_at=$2 WHERE id=$1`,
+            `UPDATE concept_blank_scan_usage_call SET status='running',dispatched_at=$2::timestamptz WHERE id=$1::uuid`,
             [call.id, now()],
           );
           return { month: call.month, token: call.id };
@@ -149,7 +149,7 @@ export function createDatabaseScanUsageStore(
         .transaction(async (tx) => {
           await lockScanUsage(tx);
           const [call] = await tx.query<CallRow>(
-            `SELECT * FROM concept_blank_scan_usage_call WHERE id=$1 AND month=$2 AND submission_id IS NOT DISTINCT FROM $3::uuid FOR UPDATE`,
+            `SELECT * FROM concept_blank_scan_usage_call WHERE id=$1::uuid AND month=$2::text AND submission_id IS NOT DISTINCT FROM $3::uuid FOR UPDATE`,
             [lease.token, lease.month, options.submissionId ?? null],
           );
           if (!call || call.status !== "running")
@@ -157,7 +157,7 @@ export function createDatabaseScanUsageStore(
           const reserved = amount(call.reserved_nano_usd),
             over = cost !== null && cost > reserved;
           await tx.query(
-            `UPDATE concept_blank_scan_usage_call SET status='settled',cost_nano_usd=$2,receipt=$3::jsonb,result_text=$4,settled_at=$5,settlement_reason=$6 WHERE id=$1`,
+            `UPDATE concept_blank_scan_usage_call SET status='settled',cost_nano_usd=$2::bigint,receipt=$3::jsonb,result_text=$4::text,settled_at=$5::timestamptz,settlement_reason=$6::text WHERE id=$1::uuid`,
             [
               lease.token,
               cost ?? reserved,
@@ -172,7 +172,7 @@ export function createDatabaseScanUsageStore(
             ],
           );
           await tx.query(
-            `UPDATE concept_blank_scan_usage_month SET spent_nano_usd=spent_nano_usd+$2,reserved_nano_usd=reserved_nano_usd-$3,updated_at=$4 WHERE month=$1`,
+            `UPDATE concept_blank_scan_usage_month SET spent_nano_usd=spent_nano_usd+$2::bigint,reserved_nano_usd=reserved_nano_usd-$3::bigint,updated_at=$4::timestamptz WHERE month=$1::text`,
             [lease.month, cost ?? reserved, reserved, now()],
           );
           return over;
@@ -187,12 +187,12 @@ export function createDatabaseScanUsageStore(
       assertScanMonth(month);
       const [row] = await db
         .query<MonthRow>(
-          `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1`,
+          `SELECT * FROM concept_blank_scan_usage_month WHERE month=$1::text`,
           [month],
         )
         .catch(scanDatabaseError);
       const [counts] = await db.query<{ active: number; queued: number }>(
-        `SELECT count(*) FILTER(WHERE status='running')::int AS active,count(*) FILTER(WHERE status='queued')::int AS queued FROM concept_blank_scan_usage_call WHERE month=$1`,
+        `SELECT count(*) FILTER(WHERE status='running')::int AS active,count(*) FILTER(WHERE status='queued')::int AS queued FROM concept_blank_scan_usage_call WHERE month=$1::text`,
         [month],
       );
       return {
@@ -207,7 +207,7 @@ export function createDatabaseScanUsageStore(
     async findResult(key) {
       const [row] = await db
         .query<{ result_text: string }>(
-          `SELECT result_text FROM concept_blank_scan_usage_call WHERE result_key=$1 AND submission_id IS NOT DISTINCT FROM $2::uuid AND status='settled' AND result_text IS NOT NULL ORDER BY queue_order DESC LIMIT 1`,
+          `SELECT result_text FROM concept_blank_scan_usage_call WHERE result_key=$1::text AND submission_id IS NOT DISTINCT FROM $2::uuid AND status='settled' AND result_text IS NOT NULL ORDER BY queue_order DESC LIMIT 1`,
           [key, options.submissionId ?? null],
         )
         .catch(scanDatabaseError);

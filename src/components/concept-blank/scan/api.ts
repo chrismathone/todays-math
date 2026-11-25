@@ -1,3 +1,8 @@
+import {
+  scanNameCaptureViewSchema,
+  type scanNameCaptureInputSchema,
+  type scanNameCaptureActionSchema,
+} from "@/contracts/conceptBlankScanName.contract";
 import { z } from "zod";
 import {
   scanIssueViewSchema,
@@ -56,6 +61,24 @@ async function request<T>(
 const id = z.object({ id: z.uuid() });
 const revision = z.object({ revision: z.number().int() });
 export const scanSource = {
+  nameStart: (input: z.infer<typeof scanNameCaptureInputSchema>) =>
+    request("/name-captures", id, "POST", input),
+  nameGet: (captureId: string, query = "", signal?: AbortSignal) =>
+    request(
+      `/name-captures/${captureId}?q=${encodeURIComponent(query)}`,
+      scanNameCaptureViewSchema,
+      "GET",
+      undefined,
+      signal,
+    ),
+  nameAction: (
+    captureId: string,
+    input: z.infer<typeof scanNameCaptureActionSchema>,
+  ) => request(`/name-captures/${captureId}`, id, "POST", input),
+  assignStudent: (
+    submissionId: string,
+    input: { studentId: string; revision: number },
+  ) => request(`/submissions/${submissionId}/student`, revision, "POST", input),
   issue: (issueId: string, query = "", signal?: AbortSignal) =>
     request(
       `/issued/${issueId}?q=${encodeURIComponent(query)}`,

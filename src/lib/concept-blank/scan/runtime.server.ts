@@ -15,7 +15,11 @@ export function scanRuntime(request: Request) {
     ).origin,
     storage: scanPhotoStorage,
     config: scanConfig,
-    model: (requestKey: string, submissionId: string, attemptKey?: string) =>
+    model: (
+      requestKey: string,
+      submissionId: string | undefined,
+      attemptKey?: string,
+    ) =>
       createScanModel({
         store: createDatabaseScanUsageStore(scanDatabase, {
           submissionId,

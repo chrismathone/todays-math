@@ -1,4 +1,5 @@
 import "server-only";
+import { runScanNameCapture } from "./nameCapture";
 import { runScanJob, type ScanJob } from "./jobs";
 import { scanConfig } from "./model";
 import { maintainScanUsage } from "./usageMaintenance";
@@ -28,11 +29,25 @@ export async function runQueuedScanJobs(deps: Dependencies) {
           job_kind: "read" | "grade";
           job_actor: ScanIdentity;
         }>(
-          `SELECT s.id,s.job_id,s.job_kind,s.job_actor FROM concept_blank_scan_submission s JOIN concept_blank_scan_usage_call c ON c.job_id=s.job_id AND c.submission_id=s.id AND c.status='queued' WHERE s.job_waiting AND s.job_actor IS NOT NULL ORDER BY c.queue_order LIMIT 1 FOR UPDATE OF s SKIP LOCKED`,
+          `SELECT s.id,s.job_id,s.job_kind,s.job_actor FROM concept_blank_scan_submission s JOIN concept_blank_scan_usage_call c ON c.job_id=s.job_id AND c.submission_id=s.id AND c.status='queued' WHERE c.id=(SELECT id FROM concept_blank_scan_usage_call WHERE status='queued' ORDER BY queue_order LIMIT 1) AND s.job_waiting AND s.job_actor IS NOT NULL ORDER BY c.queue_order LIMIT 1 FOR UPDATE OF s SKIP LOCKED`,
         );
-        if (!row) return null;
+        if (!row) {
+          const [capture] = await tx.query<{ id: string; job_id: string }>(
+            `SELECT n.id,n.job_id FROM concept_blank_scan_name_capture n JOIN concept_blank_scan_usage_call c ON c.job_id=n.job_id AND c.status='queued' WHERE c.id=(SELECT id FROM concept_blank_scan_usage_call WHERE status='queued' ORDER BY queue_order LIMIT 1) AND n.job_waiting AND n.submission_id IS NULL AND n.deleted_at IS NULL ORDER BY c.queue_order LIMIT 1 FOR UPDATE OF n SKIP LOCKED`,
+          );
+          if (!capture) return null;
+          await tx.query(
+            `UPDATE concept_blank_scan_name_capture SET job_waiting=false,job_started_at=CURRENT_TIMESTAMP WHERE id=$1::uuid AND job_id=$2::uuid`,
+            [capture.id, capture.job_id],
+          );
+          return {
+            nameCapture: true as const,
+            id: capture.id,
+            jobId: capture.job_id,
+          };
+        }
         await tx.query(
-          `UPDATE concept_blank_scan_submission SET job_waiting=false,job_started_at=CURRENT_TIMESTAMP WHERE id=$1 AND job_id=$2`,
+          `UPDATE concept_blank_scan_submission SET job_waiting=false,job_started_at=CURRENT_TIMESTAMP WHERE id=$1::uuid AND job_id=$2::uuid`,
           [row.id, row.job_id],
         );
         return {
@@ -43,9 +58,18 @@ export async function runQueuedScanJobs(deps: Dependencies) {
         };
       });
       if (!job) return;
+      if (job.nameCapture) {
+        await runScanNameCapture(job, { ...deps, signal });
+        const [pending] = await deps.db.query<{ job_waiting: boolean }>(
+          `SELECT job_waiting FROM concept_blank_scan_name_capture WHERE id=$1::uuid AND job_id=$2::uuid`,
+          [job.id, job.jobId],
+        );
+        if (pending?.job_waiting) return;
+        continue;
+      }
       await runScanJob(job, { ...deps, signal });
       const [waiting] = await deps.db.query<{ job_waiting: boolean }>(
-        `SELECT job_waiting FROM concept_blank_scan_submission WHERE id=$1 AND job_id=$2`,
+        `SELECT job_waiting FROM concept_blank_scan_submission WHERE id=$1::uuid AND job_id=$2::uuid`,
         [job.submissionId, job.id],
       );
       if (waiting?.job_waiting) return; // another worker owns the FIFO head/remaining slots

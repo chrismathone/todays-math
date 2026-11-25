@@ -1,4 +1,5 @@
 import "server-only";
+import { saveScanWrittenName } from "./name";
 import { createHash, randomUUID } from "node:crypto";
 import {
   scanJobInputSchema,
@@ -14,7 +15,7 @@ import { ScanQueuedError } from "./usage";
 import { cancelQueuedScanCalls } from "./usageMaintenance";
 import { ScanAccessError, type ScanIdentity } from "./issuance";
 import { gradeScanPage, SCAN_GRADE_PROMPT_VERSION } from "./grade";
-import { readScanPage, SCAN_READ_PROMPT_VERSION } from "./read";
+import { readScanPageWithName, SCAN_READ_PROMPT_VERSION } from "./read";
 import { scanConfig, type ScanConfig, type ScanModel } from "./model";
 import type { ScanPhotoStorage } from "./storage.server";
 import {
@@ -141,7 +142,7 @@ export async function beginScanJob(
             409,
           );
         const uncertain = await tx.query(
-          `SELECT id FROM concept_blank_scan_usage_call WHERE submission_id=$1 AND status IN ('running','queued') LIMIT 1`,
+          `SELECT id FROM concept_blank_scan_usage_call WHERE submission_id=$1::uuid AND status IN ('running','queued') LIMIT 1`,
           [submissionId],
         );
         if (uncertain.length)
@@ -166,7 +167,7 @@ export async function beginScanJob(
           effectiveReadings(page, evidence);
       const id = randomUUID();
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET job_id=$2,job_kind=$3,job_started_at=$4,state=$5,job_waiting=false,job_actor=$6::jsonb,revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET job_id=$2::uuid,job_kind=$3::text,job_started_at=$4::timestamptz,state=$5::text,job_waiting=false,job_actor=$6::jsonb,revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [
           submissionId,
           id,
@@ -178,7 +179,7 @@ export async function beginScanJob(
       );
       if (parsed.kind === "grade")
         await tx.query(
-          `UPDATE concept_blank_scan_photo SET used_at=COALESCE(used_at,$2),expires_at=created_at+interval '1 day'*$3 WHERE submission_id=$1 AND is_current`,
+          `UPDATE concept_blank_scan_photo SET used_at=COALESCE(used_at,$2::timestamptz),expires_at=created_at+interval '1 day'*$3::int WHERE submission_id=$1::uuid AND is_current`,
           [submissionId, now.toISOString(), SCAN_USED_PHOTO_DAYS],
         );
       return { id, submissionId, kind: parsed.kind, actor };
@@ -211,7 +212,7 @@ export async function runScanJob(
     storage: ScanPhotoStorage;
     model: (
       requestKey: string,
-      submissionId: string,
+      submissionId?: string,
       attemptKey?: string,
     ) => ScanModel;
     signal?: AbortSignal;
@@ -259,7 +260,7 @@ export async function runScanJob(
           photo.content_sha256,
           photo.mime_type,
         );
-        const readings = await readScanPage(
+        const { readings, writtenName } = await readScanPageWithName(
           {
             page,
             imageDataUrl: `data:${photo.mime_type};base64,${bytes.toString("base64")}`,
@@ -273,9 +274,16 @@ export async function runScanJob(
         );
         await deps.db.transaction(async (tx) => {
           await context(tx, true);
+          if (writtenName)
+            await saveScanWrittenName(
+              job.actor,
+              job.submissionId,
+              writtenName,
+              tx,
+            );
           for (const reading of readings)
             await tx.query(
-              `INSERT INTO concept_blank_scan_read(id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model) VALUES($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT(photo_id,slot_id) DO NOTHING`,
+              `INSERT INTO concept_blank_scan_read(id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model) VALUES($1::uuid,$2::uuid,$3::uuid,$4::text,$5::text,$6::text,$7::text,$8::text) ON CONFLICT(photo_id,slot_id) DO NOTHING`,
               [
                 randomUUID(),
                 job.submissionId,
@@ -328,7 +336,7 @@ export async function runScanJob(
                     .map((g) => g.sequence),
                 );
             await tx.query(
-              `INSERT INTO concept_blank_scan_grade(id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin,prompt_version,requested_model) VALUES($1,$2,$3,$4,$5,$6,$7,$8::jsonb,$9,$10,$11)`,
+              `INSERT INTO concept_blank_scan_grade(id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin,prompt_version,requested_model) VALUES($1::uuid,$2::uuid,$3::text,$4::int,$5::text,$6::text,$7::boolean,$8::jsonb,$9::text,$10::text,$11::text)`,
               [
                 randomUUID(),
                 job.submissionId,
@@ -360,7 +368,7 @@ export async function runScanJob(
           throw new Error("판정 근거가 모두 저장되지 않았습니다.");
       }
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET state=$2,job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=NULL,graded_at=CASE WHEN $2='graded' THEN CURRENT_TIMESTAMP ELSE graded_at END,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET state=$2::text,job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=NULL,graded_at=CASE WHEN $2::text='graded' THEN CURRENT_TIMESTAMP ELSE graded_at END,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [job.submissionId, job.kind === "read" ? "checking" : "graded"],
       );
     });
@@ -370,13 +378,13 @@ export async function runScanJob(
       (signal.aborted &&
         (
           await deps.db.query(
-            `SELECT id FROM concept_blank_scan_usage_call WHERE job_id=$1 AND status='queued' LIMIT 1`,
+            `SELECT id FROM concept_blank_scan_usage_call WHERE job_id=$1::uuid AND status='queued' LIMIT 1`,
             [job.id],
           )
         ).length > 0);
     if (queued) {
       await deps.db.query(
-        `UPDATE concept_blank_scan_submission SET job_waiting=true,last_error=NULL WHERE id=$1 AND job_id=$2 AND state NOT IN ('graded','teacher-corrected')`,
+        `UPDATE concept_blank_scan_submission SET job_waiting=true,last_error=NULL WHERE id=$1::uuid AND job_id=$2::uuid AND state NOT IN ('graded','teacher-corrected')`,
         [job.submissionId, job.id],
       );
       return;
@@ -385,7 +393,7 @@ export async function runScanJob(
     // CAS prevents an old worker (including a reclaimed lease) from touching newer/public state.
     await deps.db
       .query(
-        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=$3,updated_at=CURRENT_TIMESTAMP WHERE id=$1 AND job_id=$2 AND state NOT IN ('graded','teacher-corrected')`,
+        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=$3::text,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid AND job_id=$2::uuid AND state NOT IN ('graded','teacher-corrected')`,
         [job.submissionId, job.id, scanJobFailureMessage(error)],
       )
       .catch(scanDatabaseError);

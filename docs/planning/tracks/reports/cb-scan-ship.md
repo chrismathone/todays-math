@@ -246,3 +246,48 @@ Next의 실제 암호화 학생 세션과 소유 범위·proxy는 별도 시험�
 - **아직 적용하지 않은** `20261125120000_concept_blank_scan` SQL과 Prisma 모델을 함께 보완했다. 새 표는 여전히 여덟이며 기존 비공개/RLS 권한은 유지한다. 검수된 최종 SQL을 DB에 먼저, 코드를 나중에 적용한다. `.env.example`과 계획 §13에도 동시 상한·불명 정산·queue cron을 반영했다.
 
 검수 반영 커밋은 `a1755e289`(실제 요청 상계·동시 사용량 원장·불명 확정 정산), `ec2c2153a`(영속 대기와 화면·HTTP/cron 재개), 마지막 `docs(concept-blank): record usage ledger review fixes`(이 절·운영 변수·계획)로 나눴다. 앞 두 커밋의 훅은 통과했고 검사한 코드 바이트를 바꾸지 않았다. 협의 문서와 사용자의 미추적 지시서는 그대로 보존한다.
+
+## 운영 장애 2026-11-25
+
+리드가 배포한 `347844c9c`에서 발행 POST는 PostgreSQL 42883(`uuid = text`), 대기열 cron은 `void` 역직렬화 오류로 실패했다. 발행 행이 생기지 않아 QR도 나오지 않았다.
+
+- **원인:** 운영 `database.server.ts`는 Prisma 6.19.3 `$queryRawUnsafe`를 쓴다. 문자열은 TEXT, 정수는 INT8, 소수/Decimal은 NUMERIC, 객체는 JSONB로 Parse 단계에 형을 지정한다. UUID·시각처럼 보이는 문자열도 TEXT다. 기존 SQL은 문맥 추론에 의존했고, advisory lock의 void 값을 결과 열로 노출했다.
+- **왜 시험이 못 잡았나:** PGlite에 형 없이 값을 전달하면 PostgreSQL이 대상 열에서 UUID·시각 등을 추론했다. 또한 PGlite는 void 결과를 받아 주지만 Prisma는 역직렬화하지 못한다. 같은 SQL·같은 마이그레이션을 쓴다는 사실만으로 드라이버 계약까지 같다고 간주한 것이 검증 공백이었다.
+- **먼저 RED:** 생산 SQL을 바꾸기 전에 `paramTypes`와 void OID(2278) 거절을 넣었다. `conceptBlankScanIssue`·`conceptBlankScanQuotaReview` 두 파일에서 **8 실패·1 통과**, 실제 발행의 `uuid = text`와 원장 잠금의 void 오류가 각각 재현됐다(`/tmp/cb-scan-prod-fix-20261125/red.log`). fixture 준비 SQL만 먼저 형을 명시해 실제 서비스 호출에서 실패하도록 했다.
+- **수정:** 발행·제출·사진·읽기·정정·채점·사용량·대기열·정리의 모든 SQL placeholder에 목적 형을 명시했다. UUID 식별자와 TEXT인 답 칸/판정 대상 식별자를 구분한다. 잠금은 `SELECT 1 AS locked FROM pg_advisory_xact_lock(...)`로 호출해 결과 열에 void가 없다. E2E도 같은 `openScanTestDb` 어댑터를 사용한다.
+- **회귀 방지:** `prismaPglite.ts`는 설치된 엔진 해시 `c2990dca591cba766e3b7ef5d9e8a84796e47ab7`의 클라이언트 직렬화→PrismaValue→Quaint→PG 형 매핑을 출처와 함께 고정했다. 스칼라·배열·null 형, UUID 비교의 음성 대조, 행이 없어도 void 열 거절, 스캔 SQL 전체의 무형변환 placeholder 검사를 추가했다. 모든 Prisma 결과 codec을 모사한다는 뜻은 아니다. PGlite 한 연결은 물리적 다중 연결 잠금 경합을 증명하지 않는다.
+
+형 매핑 근거: [Prisma 클라이언트 직렬화](https://github.com/prisma/prisma/blob/6.19.3/packages/client/src/runtime/utils/serializeRawParameters.ts), [설치된 엔진의 PG 형 매핑](https://github.com/prisma/prisma-engines/blob/c2990dca591cba766e3b7ef5d9e8a84796e47ab7/quaint/src/connector/postgres/native/conversion.rs#L29). SQL 고침에는 마이그레이션 변경이 없다. 공유 DB·push·실제 AI 호출은 하지 않았다.
+
+SQL 수정 최종 검증: 관련 `conceptBlankScan` **21파일·130시험 통과**, type-check와 변경 코드 범위 ESLint 통과. 새 어댑터 E2E는 HTTP **29요청**, 가짜 모델 **6회**, 세 쪽 보관·읽기·학생 확인·21개 최초 판정·교사 수정 1회를 완료했다. 390/1440 화면 **7개 모두 가로 넘침 0px**(`/tmp/cb-scan-prod-fix-20261125/e2e-sql/`). 첫 E2E는 수정 전 모듈을 읽은 실행이었고, 다음 실행은 페이지 load 30초 초과였다. 최종 실행은 DOM 준비 후 기존 화면·글꼴·사진 검사를 모두 통과했다. 전체 시험·운영 빌드는 돌리지 않았다.
+
+## 이름으로 학생 잇기
+
+원장님 2026-11-25 추가 지시가 앞선 이름 식별 금지를 대체한다. 협의 문서는 고치지 않았다.
+
+### 구현과 정한 것
+
+1. **1쪽 이름 판독:** `read.ts`의 판을 `cb-scan-whole-20261125-v2-name`으로 올렸다. 답 칸과 별개인 `written_name: {text,status}`를 읽고, read/uncertain/unreadable/blank를 저장한다. 두 번째 쪽 이후는 이름을 받지 않는다. 이름 지시문에 학생 후보 명단을 보내지 않으며 정규화·일치 판정은 코드가 한다. 기존 제품 경로는 사진 전체를 보내고 이름/QR 마스킹 코드가 없었다. 이미지 가림은 변경하지 않았다.
+2. **추가 DB만:** 이미 적용된 `20261125120000`은 바꾸지 않았다. 새 `20261125190000_concept_blank_scan_names`가 제출에 이름·판독 상태·일치 결과·연결 방식 네 칸을 더한다. 기존 제출의 학생 NOT NULL/FK를 보존하기 위해 미연결 1쪽은 별도 서버 전용 촬영 표에 둔다. 가짜 학생·임시로 찍은 학생을 넣지 않는다. 새 표도 RLS와 브라우저 권한 회수를 적용했다. 전체 스캔 표는 로컬 마이그레이션 검사에서 9개다.
+3. **후보와 연결:** 촬영 교사와 발행 교사의 ownerScope 교집합 전체에서 **NFC·공백 제거만** 비교한다(NFKC·발음·유사도·대소문자 변환 없음). 검색 창의 50명 제한은 유일성 판정에 사용하지 않는다. 정확히 하나이고 read일 때 자동 연결, 동명이인·없음·흐림은 후보를 위에 둔 PickerDialog에서 직접 선택한다. 선택 전에는 제출이 없어 채점·공개가 불가능하다. 선택한 뒤 사진·읽은 답을 트랜잭션으로 옮기므로 1쪽은 다시 유료로 읽지 않는다.
+4. **기존 주인 보존:** 촬영 전 교사 선택도 유지한다. 학생 계정으로 낸 답은 계정 학생 소유이며 다른 이름은 mismatch 표시만 한다. 교사 촬영의 주인 변경은 공개 전·작업 중이 아닐 때만, 서버의 최신 권한·revision 검사 아래 허용한다. 교사 결과에는 원래 읽은 이름과 name-exact/teacher-picked/teacher-selected/student-account의 설명을 보인다. 1쪽 재촬영이 성공하면 이전 이름은 현재 화면 값에서 비운다.
+5. **운영 경로:** 미연결 이름 읽기도 기존 서비스 전체 선예약·동시 수·FIFO를 사용한다. unknown은 예약액 전액 정산, 같은 시도를 자동 반복하지 않는다. 학생 계정이 없는 호출은 usage의 submission_id=NULL·job_id로 묶고, 이름/답 대기열을 함께 재개한다. 동일 업로드의 재요청은 실행 중 작업을 다시 예약하지 않는다. 미연결 사진은 7일 보존 후 기존 purge에서 삭제 실패를 재시도한다. 연결한 사진은 원래 제출의 7/30일 규칙으로 넘긴다. 고지에는 «이름 칸 포함»을 추가했다.
+
+### TDD와 확인 범위
+
+- 먼저 없는 이름 판독·정확 일치·미연결 촬영 경로를 시험해 RED를 확인했다(`name-red.log`, `name-capture-red.log`). 교사 결과의 이름·계정 mismatch 표시도 RED 뒤 구현했다(`name-screen-red.log`). 증거 루트는 `/tmp/cb-scan-prod-fix-20261125/`다.
+- PGlite의 **Prisma 형 어댑터**로 유일 일치·동명이인·없음·흐림·다른 지점 배제·학생 계정 mismatch·50명 밖 동명 후보·미연결 채점 거절·사진/판독 이동·권한과 명시적 선택을 검사했다. 네 슬롯 점유 뒤 이름/답 작업이 함께 FIFO로 재개되는 것, 불명 비용 확정 뒤 명시적 재시도, 중복 예약 방지, 7일 삭제 실패 재시도도 확인했다.
+- 최종 E2E(`e2e-name-final/flow-evidence.json`): **HTTP 43요청·가짜 모델 8회**. 기존 학생 세 쪽 흐름과 mismatch → 교사 결과, 이름 단일 일치 자동 연결, 동명이인 선택 창, 교사 주인 변경까지 통과했다. **390/1440px 캡처 10개·가로 넘침 모두 0px**. 이미지 세 장을 열어 이름 연결 줄·동명 후보·mismatch 결과가 보이는 것도 확인했다. 이 숫자는 로컬 합성 계정·사진·가짜 모델의 실행 기록이며 실제 이름 판독 정확도가 아니다.
+- 새 마이그레이션은 로컬 PGlite에서만 적용했다. Prisma validate는 접속하지 않는 로컬 dummy URL로 통과했다. 공유 DB·push·배포·실제 AI 호출·운영 빌드는 하지 않았다.
+
+### 운영 인계와 한계
+
+리드는 **새 마이그레이션을 적용한 뒤 이름 기능 코드를 배포**한다. SQL 긴급 수정은 `78492a18a`로 먼저 분리했고 장애 기록은 `4cc1750a9`다. 이름 작업이 대기 중일 때 옛 worker로 되돌리면 새 촬영 대기를 처리하지 못하므로, 중단/처리/취소 후 코드만 되돌린다. 추가 표·사진·원장 증거를 삭제하지 않는다.
+
+실제 손글씨 이름의 정확도는 **미측정**이다. 기존 cb-scan-read 수치는 이름을 읽지 않던 v1 답 칸 판독의 측정이며 v2 이름 정확도로 옮기지 않는다. 같은 반의 동명이인은 이름·반만으로 구분할 추가 정보가 없으므로 교사가 원본과 학생을 대조해 선택해야 한다. 새로운 식별 정보나 유사 이름 추정은 추가하지 않았다. 사진 사용 30일/미사용 7일과 실제 API 운영 재측정은 기존 인계대로 리드·원장님이 확인한다.
+
+최종 관련 검사: `conceptBlankScan` + 학생 관문 + 인쇄 진입 **25파일·188시험 통과**(`name-final-related.log`), type-check 통과(`name-final-type-check.log`), 변경 코드 범위 ESLint와 수정 화면 범위 affordance 통과. 새 경로의 학생 전용/교사 전용 메서드를 역방향 전수 검사하는 기대 목록은 16메서드로 갱신했다.
+
+별도 전역 `errorLogRouteCoverage` 검사는 **2시험 실패**했다. 기존 `/api/math-ontology/{assist,catalog,coverage,publish/stage,query,validate}`와 `/api/students/[id]/math-ontology/evidence`의 7메서드가 withErrorLog 밖에 있는 문제이며, `git diff 347844c9c --` 해당 경로 결과는 0줄이었다. 이번 스캔 경로는 그 실패 목록에 없다. 범위 밖 라우트를 고치거나 검사를 완화하지 않았다. 전체 Vitest·운영 빌드는 실행하지 않았다.
+
+이름 연결 커밋: `c82e0d229`(추가 DB·판독·범위 일치·대기/정리·권한 시험), `38de2e026`(촬영·후보 선택·결과 증거·확장 E2E), 이어지는 `docs(concept-blank): document written-name linkage and release checks`(이 절·26 §13·CLAUDE 색인). 두 구현 커밋의 lint/prettier/affordance 훅은 통과했다. 기존 지시서·협의 문서는 미추적 상태 그대로 남기고 커밋하지 않았다.

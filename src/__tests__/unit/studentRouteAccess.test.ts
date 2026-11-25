@@ -168,6 +168,10 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
       });
     const teacherOnly = new Set([
       "POST /issued",
+      "POST /name-captures",
+      "GET /name-captures/x1",
+      "POST /name-captures/x1",
+      "POST /submissions/x1/student",
       "POST /submissions/x1/override",
       "DELETE /submissions/x1/photos/x1",
       "GET /purge/cron",
@@ -198,7 +202,7 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
         ).toBe("forbidden");
       }
     }
-    expect(found).toHaveLength(12);
+    expect(found).toHaveLength(16);
     expect(anonymousLearnGate("GET", "/concept-blank/scan")).toEqual({
       kind: "allow",
     });

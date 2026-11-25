@@ -38,7 +38,7 @@ describe("scan migration and durable pre-reservation", () => {
     expect(() => scanDatabaseError(other)).toThrow(other);
     expect(new ScanUnavailableError()).toMatchObject({ status: 503 });
   });
-  it("creates exactly the eight server-only tables and revokes default browser privileges", async () => {
+  it("creates the nine server-only tables including unassigned name captures and revokes default browser privileges", async () => {
     const rows = await local.db.query<{
       name: string;
       rls: boolean;
@@ -50,7 +50,7 @@ describe("scan migration and durable pre-reservation", () => {
         has_table_privilege('authenticated',c.oid,'SELECT,INSERT,UPDATE,DELETE') AS authenticated
       FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
       WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'concept_blank_%'`);
-    expect(rows).toHaveLength(8);
+    expect(rows).toHaveLength(9);
     for (const row of rows)
       expect(row).toMatchObject({
         rls: true,
@@ -176,7 +176,7 @@ describe("scan migration and durable pre-reservation", () => {
     await local.db.query(
       `INSERT INTO concept_blank_printed_sheet
       (id,user_id,created_by,request_id,snapshot,layout,render_artifact,artifact_sha256)
-      VALUES ($1,$2,$2,$3,$4::jsonb,'{"version":1,"pages":[]}','{"version":1}',$5)`,
+      VALUES ($1::uuid,$2::uuid,$2::uuid,$3::uuid,$4::jsonb,'{"version":1,"pages":[]}','{"version":1}',$5::text)`,
       [
         sheet,
         world.userA,
@@ -187,33 +187,33 @@ describe("scan migration and durable pre-reservation", () => {
     );
     await expect(
       local.db.query(
-        `UPDATE concept_blank_printed_sheet SET sheet_code='changed' WHERE id=$1`,
+        `UPDATE concept_blank_printed_sheet SET sheet_code='changed' WHERE id=$1::uuid`,
         [sheet],
       ),
     ).rejects.toThrow(/immutable/);
     await local.db.query(
       `INSERT INTO concept_blank_scan_submission
       (id,printed_sheet_id,student_id,captured_student_id,request_id,state)
-      VALUES ($1,$2,$3,$3,$4,'checking')`,
+      VALUES ($1::uuid,$2::uuid,$3::uuid,$3::uuid,$4::uuid,'checking')`,
       [submission, sheet, world.studentA, randomUUID()],
     );
     await local.db.query(
       `INSERT INTO concept_blank_scan_photo
       (id,submission_id,page_number,version,bucket,object_key,content_sha256,mime_type,width,height,registration,expires_at)
-      VALUES ($1,$2,1,1,'private',$4,$3,'image/jpeg',100,100,'{"status":"uncertain"}',NOW()+INTERVAL '7 days')`,
+      VALUES ($1::uuid,$2::uuid,1,1,'private',$4::text,$3::text,'image/jpeg',100,100,'{"status":"uncertain"}',NOW()+INTERVAL '7 days')`,
       [photo, submission, "b".repeat(64), photo],
     );
     await local.db.query(
       `INSERT INTO concept_blank_scan_read
       (id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model)
-      VALUES ($1,$2,$3,'p1.q1.answer','read','처음 읽은 글','test','test')`,
+      VALUES ($1::uuid,$2::uuid,$3::uuid,'p1.q1.answer','read','처음 읽은 글','test','test')`,
       [read, submission, photo],
     );
     await expect(
       local.db.query(
         `INSERT INTO concept_blank_scan_read
       (id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model)
-      VALUES ($1,$2,$3,'unknown','read','다른 칸','test','test')`,
+      VALUES ($1::uuid,$2::uuid,$3::uuid,'unknown','read','다른 칸','test','test')`,
         [randomUUID(), submission, photo],
       ),
     ).rejects.toThrow(/unknown scan slot/);
@@ -221,29 +221,29 @@ describe("scan migration and durable pre-reservation", () => {
       local.db.query(
         `INSERT INTO concept_blank_scan_correction
       (id,submission_id,read_id,slot_id,resolution,text,directly_entered,student_actor_id,sequence)
-      VALUES ($1,$2,$3,'p1.q1.answer','blank','',true,$4,$5)`,
+      VALUES ($1::uuid,$2::uuid,$3::uuid,'p1.q1.answer','blank','',true,$4::uuid,$5::int)`,
         [randomUUID(), submission, read, world.studentA, sequence],
       );
     await correct(1);
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET job_id=$2,job_kind='grade',job_started_at=NOW() WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET job_id=$2::uuid,job_kind='grade',job_started_at=NOW() WHERE id=$1::uuid`,
       [submission, randomUUID()],
     );
     await expect(correct(2)).rejects.toThrow(/frozen/);
     await local.db.query(
       `UPDATE concept_blank_scan_submission SET state='graded',graded_at=NOW(),
-      job_id=NULL,job_kind=NULL,job_started_at=NULL,revision=revision+1 WHERE id=$1`,
+      job_id=NULL,job_kind=NULL,job_started_at=NULL,revision=revision+1 WHERE id=$1::uuid`,
       [submission],
     );
     await expect(correct(2)).rejects.toThrow(/published/);
     await expect(
       local.db.query(
-        `UPDATE concept_blank_scan_read SET text='overwrite' WHERE id=$1`,
+        `UPDATE concept_blank_scan_read SET text='overwrite' WHERE id=$1::uuid`,
         [read],
       ),
     ).rejects.toThrow(/immutable/);
     const rows = await local.db.query<{ text: string }>(
-      `SELECT text FROM concept_blank_scan_read WHERE id=$1`,
+      `SELECT text FROM concept_blank_scan_read WHERE id=$1::uuid`,
       [read],
     );
     expect(rows[0].text).toBe("처음 읽은 글");

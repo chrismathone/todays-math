@@ -72,13 +72,13 @@ beforeAll(async () => {
   local = await openScanTestDb();
   world = await seedWorld(local.pg);
   await local.db.query(
-    `UPDATE "user" SET approval_status='approved',branch_id=$1,branch_role='teacher' WHERE id IN ($2,$3)`,
+    `UPDATE "user" SET approval_status='approved',branch_id=$1::uuid,branch_role='teacher' WHERE id IN ($2::uuid,$3::uuid)`,
     [world.branchId, world.userA, world.userB],
   );
-  await local.db.query(`UPDATE "class" SET branch_id=$1 WHERE id=$2`, [
-    world.branchId,
-    world.classA,
-  ]);
+  await local.db.query(
+    `UPDATE "class" SET branch_id=$1::uuid WHERE id=$2::uuid`,
+    [world.branchId, world.classA],
+  );
 }, 60_000);
 afterAll(async () => {
   await local?.pg.close();
@@ -152,10 +152,10 @@ describe("issued paper identity and current ownerScope", () => {
         local.db,
       ),
     ).rejects.toThrow(/본인/);
-    await local.db.query(`UPDATE "class" SET user_id=$2 WHERE id=$1`, [
-      world.classA,
-      world.userB,
-    ]);
+    await local.db.query(
+      `UPDATE "class" SET user_id=$2::uuid WHERE id=$1::uuid`,
+      [world.classA, world.userB],
+    );
     await expect(
       scanSubmissionAccess(
         { kind: "student", id: world.studentA },
@@ -164,10 +164,10 @@ describe("issued paper identity and current ownerScope", () => {
         local.db,
       ),
     ).rejects.toThrow(/권한/);
-    await local.db.query(`UPDATE "class" SET user_id=$2 WHERE id=$1`, [
-      world.classA,
-      world.userA,
-    ]);
+    await local.db.query(
+      `UPDATE "class" SET user_id=$2::uuid WHERE id=$1::uuid`,
+      [world.classA, world.userA],
+    );
   });
 
   it("uses the existing menu and does not broaden a NULL branch or a moved issuer", async () => {
@@ -178,7 +178,7 @@ describe("issued paper identity and current ownerScope", () => {
       { db: local.db, render: async () => rendered },
     );
     await local.db.query(
-      `UPDATE "user" SET disabled_menus=ARRAY['conceptBlank'] WHERE id=$1`,
+      `UPDATE "user" SET disabled_menus=ARRAY['conceptBlank'] WHERE id=$1::uuid`,
       [world.userA],
     );
     await expect(
@@ -190,7 +190,7 @@ describe("issued paper identity and current ownerScope", () => {
       ),
     ).rejects.toThrow(/메뉴/);
     await local.db.query(
-      `UPDATE "user" SET disabled_menus=ARRAY[]::text[],branch_id=NULL WHERE id=$1`,
+      `UPDATE "user" SET disabled_menus=ARRAY[]::text[],branch_id=NULL WHERE id=$1::uuid`,
       [world.userA],
     );
     await expect(
@@ -201,10 +201,10 @@ describe("issued paper identity and current ownerScope", () => {
         local.db,
       ),
     ).rejects.toThrow(/권한/);
-    await local.db.query(`UPDATE "user" SET branch_id=$2 WHERE id=$1`, [
-      world.userA,
-      world.branchId,
-    ]);
+    await local.db.query(
+      `UPDATE "user" SET branch_id=$2::uuid WHERE id=$1::uuid`,
+      [world.userA, world.branchId],
+    );
   });
 
   it("does not save an issue on renderer failure or accept missing/foreign coordinates", async () => {

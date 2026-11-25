@@ -1,0 +1,7 @@
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { scanHandlers } from "@/lib/concept-blank/scan/routes.server";
+export const runtime = "nodejs";
+export const POST = withErrorLog(
+  "/api/concept-blank/scan/submissions/[id]/student",
+  scanHandlers.assignStudent,
+);
