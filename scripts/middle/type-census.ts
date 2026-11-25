@@ -12,6 +12,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { registeredTypes } from "../../src/lib/middle/generate";
+import { nonCatalogEntries } from "./listing";
 
 type CatType = { minor: string; number: string; title: string };
 const CATALOG = path.resolve(
@@ -60,6 +61,16 @@ function census(books: string[]): void {
   console.log(
     `\n합계 — 전체 ${grandAll} · 등록 ${grandAll - grandLeft} · 남은 ${grandLeft}`,
   );
+  const catalogKeys = new Set(
+    Object.entries(cat).flatMap(([book, row]) =>
+      row.types.map((t) => `${book}|${t.minor}|${t.number}`),
+    ),
+  );
+  const additions = nonCatalogEntries(registeredTypes(), catalogKeys);
+  console.log(`\nRPM 색인 밖 추가 등록 ${additions.length}개 (위 분모와 별도)`);
+  for (const entry of additions) {
+    console.log(`  ${entry.key}  ${entry.rpmTitle}`);
+  }
 }
 
 function gap(grades: string[]): void {

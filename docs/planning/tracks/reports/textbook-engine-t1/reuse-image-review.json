@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-25",
+  "method": "세 원문의 발문·답·풀이와 순서별 그림 파일 3개를 직접 읽었다. 기존 생성기 소스 및 공개 생성기 3씨앗씩 9개 결과를 대조했다. 그림 파일 해시 확인과 생성 견본 독립 수치 검산은 열람과 별도로 시행했다. 원문 문장·그림 바이트는 보고서에 복사하지 않았다.",
+  "sourceSha256": "eb798a7e18b844b1fe4a2147ac0c3dc10cd8c1b00eb5f72a68432e7107496258",
+  "reviewedRows": 3,
+  "acceptedRows": 2,
+  "deferredRows": 1,
+  "groups": [
+    {
+      "groupId": "v-m1-core-largest-square-tiling-38746a72",
+      "decision": "기존 키 재사용",
+      "reason": "본문과 그림을 직접 읽어 두 변의 길이가 주어진 직사각형을 같은 크기의 가장 큰 정사각형으로 빈틈없이 나누는 문제임을 확인했다. 기존 29도 두 길이의 최대공약수인 한 변 길이를 cm로 요구한다. 그림은 두 길이의 확인용이며 기존 생성기의 본문에 필요한 조건이 모두 있다.",
+      "typeKeys": [
+        "1-1|최대공약수와 최소공배수|29"
+      ],
+      "reviewedCodes": [
+        "J10105-A60-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 1,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "v-m1-core-fixed-position-period-38746a72",
+      "decision": "기존 키의 경과시간 갈래 재사용",
+      "reason": "그림의 두 위성이 각각 출발 위치 A·B로 돌아오는 것임을 직접 확인했다. 상대적으로 다시 만나는 주기가 아니라 각자의 고정 출발 위치로 처음 함께 복귀하는 시간이다. 기존 13의 kind=0도 두 주기의 처음 공동 재발까지 경과시간을 묻는다. 위성/버스 소재는 다르지만 주기·고정 위치 복귀의 최소공배수 구조와 요구 답이 같다. kind=1(시각)·kind=2(횟수)는 이 행의 직접 대응 견본으로 쓰지 않는다.",
+      "typeKeys": [
+        "1-1|최대공약수와 최소공배수|13"
+      ],
+      "reviewedCodes": [
+        "J10105-A63-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 1,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "v-m1-core-card-product-extreme-dea229b9",
+      "decision": "보류: 요구 답의 수가 다름",
+      "reason": "그림의 카드 네 수를 직접 읽고, 원문이 서로 다른 세 카드 곱의 최댓값과 최솟값을 둘 다 각각 요구함을 확인했다. 기존 계산14는 wantMax에 따라 최대 또는 최소 하나만 요구한다. 답의 수와 요구가 달라 현 키로 한 행 전체를 대체한다고 확정하지 않는다. 소수 입력 표현도 기존 생성기에 없어 원문 표현 범위를 모두 덮지 않는다. 새 구현은 하지 않았다.",
+      "typeKeys": [],
+      "candidateTypeKeys": [
+        "1-1|정수와 유리수의 계산|14"
+      ],
+      "reviewedCodes": [
+        "J10204-B83-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 0,
+      "deferredRows": 1
+    }
+  ],
+  "rows": [
+    {
+      "id": "22333df7-efc7-450c-85e5-f75007fb16f9",
+      "problemCode": "J10105-A60-001",
+      "groupId": "v-m1-core-largest-square-tiling-38746a72",
+      "typeKey": "1-1|최대공약수와 최소공배수|29",
+      "reason": "본문과 그림을 직접 읽어 두 변의 길이가 주어진 직사각형을 같은 크기의 가장 큰 정사각형으로 빈틈없이 나누는 문제임을 확인했다. 기존 29도 두 길이의 최대공약수인 한 변 길이를 cm로 요구한다. 그림은 두 길이의 확인용이며 기존 생성기의 본문에 필요한 조건이 모두 있다.",
+      "recordSha256": "80b5e11f52e76734f4bf3f1567ca234a71e59ca307391232f7a89849f0d68da5",
+      "evidence": {
+        "typeKey": "1-1|최대공약수와 최소공배수|29",
+        "seed": 20261125,
+        "variant": 0,
+        "facts": {
+          "a": 20,
+          "b": 36,
+          "g": 4
+        },
+        "contentAnswerSha256": "8a5e8b37d091c7ffa348ec3b7fc738f434132d427085c242d74af6e0bc5e65fd",
+        "difficulty": "기본",
+        "independentCheck": "본문의 두 길이를 읽어 양쪽을 나누는 양의 정수를 전부 열거하고 가장 큰 값을 정답과 대조",
+        "passes": true
+      }
+    },
+    {
+      "id": "9dc18287-3de2-48a9-b19c-848910e2befc",
+      "problemCode": "J10105-A63-001",
+      "groupId": "v-m1-core-fixed-position-period-38746a72",
+      "typeKey": "1-1|최대공약수와 최소공배수|13",
+      "reason": "그림의 두 위성이 각각 출발 위치 A·B로 돌아오는 것임을 직접 확인했다. 상대적으로 다시 만나는 주기가 아니라 각자의 고정 출발 위치로 처음 함께 복귀하는 시간이다. 기존 13의 kind=0도 두 주기의 처음 공동 재발까지 경과시간을 묻는다. 위성/버스 소재는 다르지만 주기·고정 위치 복귀의 최소공배수 구조와 요구 답이 같다. kind=1(시각)·kind=2(횟수)는 이 행의 직접 대응 견본으로 쓰지 않는다.",
+      "recordSha256": "99cf4eae69a7abd6742a022a75ab8d1ed265a0b627292b3710df3af970b32ca7",
+      "coverageConstraint": {
+        "facts": {
+          "kind": 0
+        },
+        "meaning": "첫 공동 주기까지 경과시간을 묻는 갈래 한정. 다른 갈래를 그대로 이 행의 대체 문항으로 사용하지 않는다."
+      },
+      "evidence": {
+        "typeKey": "1-1|최대공약수와 최소공배수|13",
+        "seed": 173,
+        "variant": 0,
+        "facts": {
+          "kind": 0,
+          "a": 15,
+          "b": 10,
+          "L": 30,
+          "startHour": 8,
+          "answer": 30
+        },
+        "contentAnswerSha256": "d7fcdb2c159246f046eae750ab2ea0f9cb9dfec6c6d7e2d518abe87e01cbc136",
+        "difficulty": "응용",
+        "independentCheck": "본문의 두 주기를 읽어 1분씩 전진하며 첫 공동 주기를 찾고, 실제 갈래의 경과시간 또는 횟수 정답을 검산",
+        "passes": true
+      }
+    }
+  ],
+  "deferred": [
+    {
+      "id": "13d36901-e3ca-4e5b-95f2-f677287df5e2",
+      "problemCode": "J10204-B83-001",
+      "groupId": "v-m1-core-card-product-extreme-dea229b9",
+      "candidateTypeKey": "1-1|정수와 유리수의 계산|14",
+      "reason": "그림의 카드 네 수를 직접 읽고, 원문이 서로 다른 세 카드 곱의 최댓값과 최솟값을 둘 다 각각 요구함을 확인했다. 기존 계산14는 wantMax에 따라 최대 또는 최소 하나만 요구한다. 답의 수와 요구가 달라 현 키로 한 행 전체를 대체한다고 확정하지 않는다. 소수 입력 표현도 기존 생성기에 없어 원문 표현 범위를 모두 덮지 않는다. 새 구현은 하지 않았다.",
+      "recordSha256": "885fe7627232b40bfebfe79b6e7ae0a39f902d60213c799684301cba45f69486"
+    }
+  ],
+  "visualEvidence": [
+    {
+      "id": "9dc18287-3de2-48a9-b19c-848910e2befc",
+      "problemCode": "J10105-A63-001",
+      "method": "로컬 이미지 실제 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/7fe045bb7acedfe9/tb-7fe045bb7acedfe9-0-5-1.png",
+          "sha256": "30914a547fc4b653968aa9e7122d72cc6bde64a1ba7088639c2d6b02d9ca73fc",
+          "bytes": 9901
+        }
+      ]
+    },
+    {
+      "id": "22333df7-efc7-450c-85e5-f75007fb16f9",
+      "problemCode": "J10105-A60-001",
+      "method": "로컬 이미지 실제 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/e3c4487be3ed59e9/tb-e3c4487be3ed59e9-0-4-1.png",
+          "sha256": "cc33cb51b91f3b551ae4425274639169389c841c96face12fdd79c0ab3285013",
+          "bytes": 2801
+        }
+      ]
+    },
+    {
+      "id": "13d36901-e3ca-4e5b-95f2-f677287df5e2",
+      "problemCode": "J10204-B83-001",
+      "method": "로컬 이미지 실제 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/591f704ca241627d/tb-591f704ca241627d-0-5-1.png",
+          "sha256": "084100aeb16007751a5767628d279f8c662c116cef70e240408d1ba585c86e84",
+          "bytes": 5933
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|29",
+      "seed": 20261125,
+      "variant": 0,
+      "facts": {
+        "a": 20,
+        "b": 36,
+        "g": 4
+      },
+      "contentAnswerSha256": "8a5e8b37d091c7ffa348ec3b7fc738f434132d427085c242d74af6e0bc5e65fd",
+      "difficulty": "기본",
+      "independentCheck": "본문의 두 길이를 읽어 양쪽을 나누는 양의 정수를 전부 열거하고 가장 큰 값을 정답과 대조",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|29",
+      "seed": 173,
+      "variant": 0,
+      "facts": {
+        "a": 26,
+        "b": 117,
+        "g": 13
+      },
+      "contentAnswerSha256": "5d472c6ad2b50907b860875c80bea8bb70d298233301ffb6e1c6d970bf25602a",
+      "difficulty": "기본",
+      "independentCheck": "본문의 두 길이를 읽어 양쪽을 나누는 양의 정수를 전부 열거하고 가장 큰 값을 정답과 대조",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|29",
+      "seed": 9049,
+      "variant": 0,
+      "facts": {
+        "a": 35,
+        "b": 20,
+        "g": 5
+      },
+      "contentAnswerSha256": "609e3b5e32a64527a7ea8c8c2964816edba26a2425f0037d6fa7c74f59ec66cc",
+      "difficulty": "기본",
+      "independentCheck": "본문의 두 길이를 읽어 양쪽을 나누는 양의 정수를 전부 열거하고 가장 큰 값을 정답과 대조",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|13",
+      "seed": 20261125,
+      "variant": 0,
+      "facts": {
+        "kind": 2,
+        "a": 10,
+        "b": 18,
+        "L": 90,
+        "startHour": 8,
+        "endHour": 13,
+        "totalMin": 300,
+        "answer": 3
+      },
+      "contentAnswerSha256": "37aa1ec4e596ff5041fd59ef9dbf933fcff8f593cb2dce738716b008db0b8d1c",
+      "difficulty": "응용",
+      "independentCheck": "본문의 두 주기를 읽어 1분씩 전진하며 첫 공동 주기를 찾고, 실제 갈래의 경과시간 또는 횟수 정답을 검산",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|13",
+      "seed": 173,
+      "variant": 0,
+      "facts": {
+        "kind": 0,
+        "a": 15,
+        "b": 10,
+        "L": 30,
+        "startHour": 8,
+        "answer": 30
+      },
+      "contentAnswerSha256": "d7fcdb2c159246f046eae750ab2ea0f9cb9dfec6c6d7e2d518abe87e01cbc136",
+      "difficulty": "응용",
+      "independentCheck": "본문의 두 주기를 읽어 1분씩 전진하며 첫 공동 주기를 찾고, 실제 갈래의 경과시간 또는 횟수 정답을 검산",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|최대공약수와 최소공배수|13",
+      "seed": 9049,
+      "variant": 0,
+      "facts": {
+        "kind": 2,
+        "a": 45,
+        "b": 6,
+        "L": 90,
+        "startHour": 8,
+        "endHour": 15,
+        "totalMin": 420,
+        "answer": 4
+      },
+      "contentAnswerSha256": "7ae288062d06e027af80877eb7d1779b9d02758a3cd60e632b7b7d211b0de873",
+      "difficulty": "응용",
+      "independentCheck": "본문의 두 주기를 읽어 1분씩 전진하며 첫 공동 주기를 찾고, 실제 갈래의 경과시간 또는 횟수 정답을 검산",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|정수와 유리수의 계산|14",
+      "seed": 20261125,
+      "variant": 0,
+      "facts": {
+        "v1n": -4,
+        "v1d": 3,
+        "v2n": 8,
+        "v2d": 7,
+        "v3n": 5,
+        "v3d": 1,
+        "v4n": -6,
+        "v4d": 1,
+        "wantMax": 1,
+        "ansn": 40,
+        "ansd": 1
+      },
+      "contentAnswerSha256": "e0ef7d2ffb4c911866f16f97772f4889d8c4e57de6799b37ac14d26a003f30cc",
+      "difficulty": "심화하",
+      "independentCheck": "네 수 중 세 수를 택하는 네 조합의 곱을 약분 없는 BigInt 분수로 계산하고 교차곱 정렬로 해당 극값 검산",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|정수와 유리수의 계산|14",
+      "seed": 173,
+      "variant": 0,
+      "facts": {
+        "v1n": -3,
+        "v1d": 4,
+        "v2n": -1,
+        "v2d": 6,
+        "v3n": 6,
+        "v3d": 1,
+        "v4n": -2,
+        "v4d": 1,
+        "wantMax": 1,
+        "ansn": 9,
+        "ansd": 1
+      },
+      "contentAnswerSha256": "d2f210247f2299903a842a2e0e6e613f4d67b195436d26f7bb9c491a64482bc3",
+      "difficulty": "심화하",
+      "independentCheck": "네 수 중 세 수를 택하는 네 조합의 곱을 약분 없는 BigInt 분수로 계산하고 교차곱 정렬로 해당 극값 검산",
+      "passes": true
+    },
+    {
+      "typeKey": "1-1|정수와 유리수의 계산|14",
+      "seed": 9049,
+      "variant": 0,
+      "facts": {
+        "v1n": -7,
+        "v1d": 6,
+        "v2n": -9,
+        "v2d": 4,
+        "v3n": -3,
+        "v3d": 1,
+        "v4n": 6,
+        "v4d": 1,
+        "wantMax": 0,
+        "ansn": -63,
+        "ansd": 8
+      },
+      "contentAnswerSha256": "178f71751c05989f458d1c6f03389ad88999a495129f8d99b11fb61d2912320d",
+      "difficulty": "심화하",
+      "independentCheck": "네 수 중 세 수를 택하는 네 조합의 곱을 약분 없는 BigInt 분수로 계산하고 교차곱 정렬로 해당 극값 검산",
+      "passes": true
+    }
+  ],
+  "validation": {
+    "independentSampleChecks": 9,
+    "failures": 0,
+    "existingTests": [
+      {
+        "path": "src/__tests__/unit/middleM1Num.test.ts",
+        "line": 612,
+        "typeKey": "1-1|최대공약수와 최소공배수|13",
+        "method": "생성기의 소인수 구성과 다른 호제법 lcm 계산 및 kind별 요구 답 검산"
+      },
+      {
+        "path": "src/__tests__/unit/middleM1Num.test.ts",
+        "line": 851,
+        "typeKey": "1-1|최대공약수와 최소공배수|29",
+        "method": "본문 두 길이를 다시 파싱하고 호제법으로 최대공약수 검산"
+      },
+      {
+        "path": "src/__tests__/unit/middleM1Calc.test.ts",
+        "line": 322,
+        "typeKey": "1-1|정수와 유리수의 계산|14",
+        "method": "네 삼중곱 전수 열거, 약분 없는 분수 교차곱, 극값 유일성 및 발문이 묻는 방향 검사"
+      }
+    ],
+    "testExecution": "기존 독립 검산 시험의 구현을 확인했다. root 최종 관련 묶음에서 실행하며 이 후속 검토에서는 중복 실행하지 않았다.",
+    "figureHashesChecked": 3,
+    "productionChanges": 0,
+    "dbWrites": 0,
+    "paidApiCalls": 0
+  }
+}

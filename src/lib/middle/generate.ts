@@ -21,6 +21,10 @@ import { resolveMiddleTier } from "./tier";
 import { wrapDanClause } from "../problemText";
 
 import { M1_CALC } from "./m1Calc";
+import { M1_TEXTBOOK_CALC } from "./m1TextbookCalc";
+import { M1_TEXTBOOK_NUMBER } from "./m1TextbookNumber";
+import { M1_TEXTBOOK_ORDER } from "./m1TextbookOrder";
+import { M1_TEXTBOOK_FACTOR } from "./m1TextbookFactor";
 import { M1EXTRA_TYPES } from "./m1Extra";
 import { M1_EXPR } from "./m1Expr";
 import { M1_GEO1 } from "./m1Geo1";
@@ -137,6 +141,11 @@ const ALL: TypeEntry[] = [
   ...M3_TOP_5B,
   // R2 계획 B 자작 보강 — RPM 이관 유형과 별도 네임스페이스.
   ...M3_REINFORCEMENT_20261018,
+  // 교과서 T1 확장 — 옛 키의 난수 흐름과 생성 결과는 그대로 둔다.
+  ...M1_TEXTBOOK_CALC,
+  ...M1_TEXTBOOK_NUMBER,
+  ...M1_TEXTBOOK_ORDER,
+  ...M1_TEXTBOOK_FACTOR,
 ];
 
 const BY_KEY = new Map<string, TypeEntry>();

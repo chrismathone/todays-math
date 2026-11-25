@@ -1,0 +1,694 @@
+{
+  "scope": {
+    "groups": 7,
+    "rowsRead": 48,
+    "replacementRows": 46,
+    "deferredRows": 2
+  },
+  "groups": [
+    {
+      "groupId": "m1-b-square-completion",
+      "decision": "reuse-existing",
+      "reason": "기존 소인수분해|09의 세 갈래(곱하기·나누기·최소수와 제곱근의 합)를 재사용한다. 기존 출력 변경은 없다. 식으로 이미 분해된 입력 1행은 남긴다.",
+      "typeKeys": [
+        "1-1|소인수분해|09"
+      ],
+      "reviewedCodes": [
+        "J10102-A30-001",
+        "J10102-A49-001",
+        "J10102-A56-001",
+        "J10102-A59-001",
+        "J10102-A63-001",
+        "J10102-A69-001",
+        "J10102-A76-001",
+        "J10102-A84-001",
+        "J10102-B04-001",
+        "J10102-B08-001",
+        "J10102-B14-001",
+        "J10102-B26-001",
+        "J10102-B43-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10102-A30-001",
+        "typeKey": "1-1|소인수분해|09",
+        "seed": 1,
+        "variant": 0,
+        "comparison": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다."
+      }
+    },
+    {
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "decision": "reuse-existing-and-extend",
+      "reason": "기존 최대공약수와 최소공배수|09의 두 지수 골격은 재사용한다. 나머지 유효한 두 수/세 수·미지 소수·최소공배수 출력 지수는 같은 지수 조건을 F05로 확장한다. 기존 키의 씨앗 호환 때문에 새 키로 등록한다. 조건이 모호한 1행은 제외한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|F05",
+        "1-1|최대공약수와 최소공배수|09"
+      ],
+      "reviewedCodes": [
+        "J10104-A20-001",
+        "J10104-A21-001",
+        "J10104-A36-001",
+        "J10104-A38-001",
+        "J10104-A39-001",
+        "J10104-A46-001",
+        "J10104-A53-001",
+        "J10104-A56-001",
+        "J10104-A58-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10104-A39-001",
+        "typeKey": "1-1|교과서 수와 연산|F05",
+        "seed": 2,
+        "variant": 0,
+        "comparison": "최소공배수만으로 각 소인수의 유일한 최대 지수를 찾는 두 수·세 수 갈래(mode=2)."
+      }
+    },
+    {
+      "groupId": "m1-b-prime-factor-attributes",
+      "decision": "reuse-existing-and-extend",
+      "reason": "단일 소인수 합은 기존 05를 재사용한다. 소인수 통계의 합·비교는 F03 하나로 모으고, 범위에서 자연수를 찾는 역문제는 단계가 달라 F04(응용)로 나눈다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|F03",
+        "1-1|교과서 수와 연산|F04",
+        "1-1|소인수분해|05"
+      ],
+      "reviewedCodes": [
+        "J10102-A46-001",
+        "J10102-A47-001",
+        "J10102-A64-001",
+        "J10102-A68-001",
+        "J10102-A94-001",
+        "J10102-B01-001",
+        "J10102-B25-001",
+        "J10102-B28-001",
+        "J10102-B34-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10102-A46-001",
+        "typeKey": "1-1|교과서 수와 연산|F03",
+        "seed": 2,
+        "variant": 0,
+        "comparison": "다섯 자연수의 서로 다른 소인수의 합을 비교하여 유일한 최댓값을 주는 수를 고른다."
+      }
+    },
+    {
+      "groupId": "m1-b-factor-batch",
+      "decision": "extend-with-new-key",
+      "reason": "기존 04·18은 단일 자연수여서 복수 소문항/순서를 새 F01에 확장한다. 기존 handler를 바꾸지 않는다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|F01"
+      ],
+      "reviewedCodes": [
+        "J10102-A18-001",
+        "J10102-A20-001",
+        "J10102-A52-001",
+        "J10102-A79-001",
+        "J10102-A85-001",
+        "J10102-B17-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10102-A18-001",
+        "typeKey": "1-1|교과서 수와 연산|F01",
+        "seed": 2,
+        "variant": 0,
+        "comparison": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다."
+      }
+    },
+    {
+      "groupId": "m1-b-power-representation",
+      "decision": "extend-with-new-key",
+      "reason": "기존 13·14는 지수를 숫자로 답한다. 지정된 밑의 거듭제곱 전체를 쓰고 분수·복수 밑을 허용하는 F02로 확장한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|F02"
+      ],
+      "reviewedCodes": [
+        "J10101-A46-001",
+        "J10101-A47-001",
+        "J10101-A48-001",
+        "J10101-A49-001",
+        "J10101-A50-001",
+        "J10101-A75-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10101-A46-001",
+        "typeKey": "1-1|교과서 수와 연산|F02",
+        "seed": 1,
+        "variant": 0,
+        "comparison": "자연수를 지정한 밑의 거듭제곱으로 쓴다(mode=0). 지수만 답하는 기존 14와 요구 답이 달라 새 키로 확장한다."
+      }
+    },
+    {
+      "groupId": "m1-b-prime-interval",
+      "decision": "reuse-existing-and-extend",
+      "reason": "구간 내 소수 개수는 기존 02 재사용. 양쪽의 서로 다른 분류의 극값을 구한 뒤 빼는 골격은 F06으로 확장한다.",
+      "typeKeys": [
+        "1-1|소인수분해|02",
+        "1-1|교과서 수와 연산|F06"
+      ],
+      "reviewedCodes": [
+        "J10101-A22-001",
+        "J10101-A33-001",
+        "J10101-A36-001",
+        "J10101-A70-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10101-A22-001",
+        "typeKey": "1-1|소인수분해|02",
+        "seed": 2,
+        "variant": 0,
+        "comparison": "정수 범위에 속하는 소수를 세는 기존 02 kind=0과 계산 골격이 같다. 기존 생성물은 닫힌 정수 구간으로 표시하며 원문의 열린 끝점은 정수 구간 끝을 한 칸 옮겨 표현할 수 있다."
+      }
+    },
+    {
+      "groupId": "m1-b-prime-set-outlier",
+      "decision": "extend-with-new-key",
+      "reason": "기존 05는 한 수의 소인수 통계라 다섯 후보의 집합 일치/불일치 판별을 다루지 않는다. F07에 별도 새 유형을 둔다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|F07"
+      ],
+      "reviewedCodes": [
+        "J10102-B11-001"
+      ],
+      "sampleEvidence": {
+        "problemCode": "J10102-B11-001",
+        "typeKey": "1-1|교과서 수와 연산|F07",
+        "seed": 1,
+        "variant": 0,
+        "comparison": "네 수의 소인수 집합은 같고 한 수만 다른 다섯 후보 중 하나를 고른다. 답을 후보 값으로 쓰며 유일한 이질 집합을 독립 검사했다."
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "d28b62ab-e72c-40da-9830-9dcadefbafcb",
+      "problemCode": "J10102-A30-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "20bd7481adb87f87673fb6f997c0042d63f70722b9822501147aaaa8573d10ea"
+    },
+    {
+      "id": "ff454d97-5c54-40c5-be69-7f997d5d8067",
+      "problemCode": "J10102-A49-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수를 나누어 제곱수로 만드는 최소 나눗수를 묻는다. 기존 09의 kind=1 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "15aeaf046fb227d17eb6dfc137653d02403c5564342b6c4afa5302602db47ba1"
+    },
+    {
+      "id": "8f620f4d-3d14-45ca-b2b8-a630fe33f813",
+      "problemCode": "J10102-A56-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "231a4dd28ca8e492f7adaa4d7ac75ff00c34155bc85fafe22eaf7588e34d57af"
+    },
+    {
+      "id": "d369102f-191a-446a-9a29-5c9e5479ffc5",
+      "problemCode": "J10102-A59-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수를 나누어 제곱수로 만드는 최소 나눗수를 묻는다. 기존 09의 kind=1 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "411b47841fe8b6c93ab0f46ff4132d9648e6d0372accb565c9010f4075da10f6"
+    },
+    {
+      "id": "c63eec08-4410-4787-98e9-c0f56b55f383",
+      "problemCode": "J10102-A63-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수를 나누어 제곱수로 만드는 최소 나눗수를 묻는다. 기존 09의 kind=1 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "9735f295cdaa1a271d6dc760b6706e6b137c9c4759ceb1e450e6c4c1d9efe442"
+    },
+    {
+      "id": "5e57afb8-12d4-40af-944c-5fc0556a67cd",
+      "problemCode": "J10102-A69-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수를 나누어 제곱수로 만드는 최소 나눗수를 묻는다. 기존 09의 kind=1 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "a042d83e7161a5fdb15d557ee02530fe8403e3d1b60657a3f6b59788927d7746"
+    },
+    {
+      "id": "a4536da2-d605-436a-8e3e-31bb692044cc",
+      "problemCode": "J10102-A76-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "0038a976a78dbe1c828ddf322e0bb1bfa877c6ad95ce0c18f4e810384844cca8"
+    },
+    {
+      "id": "5d41f7a6-06ba-4752-b157-90a452c787d1",
+      "problemCode": "J10102-A84-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "61824084ec5b34cbced379000ae668bcd3e9c3afafc15103c234e8cd328cfec2"
+    },
+    {
+      "id": "d81809d3-73c9-481c-8218-600d4c107562",
+      "problemCode": "J10102-B04-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "2678833c6c28c3458713ced1e592c90ffd79df7a78195fc31a028fdc7f5efd0e"
+    },
+    {
+      "id": "354bc7e4-6a58-422d-8670-37e0a125aeff",
+      "problemCode": "J10102-B08-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수에 곱하여 제곱수로 만드는 최소 곱할 수를 묻는다. 기존 09의 kind=0 견본으로 확인했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "9aab91fb0c38804fe9b852633afdbb11a2a6a21ed0afc7fbdbdc13c8162dde10"
+    },
+    {
+      "id": "9963f13d-fcbf-4c28-a42c-560d972dca19",
+      "problemCode": "J10102-B14-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "가장 작은 곱할 수를 찾은 뒤 제곱근과 더한다. 기존 09의 kind=2 견본과 계산 골격·요구 답이 같다.",
+      "sampleSeed": 4,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "3e7a6fb275f895514a90b25f61876e3e260393d39e7094b2e08861a9e2e326ad"
+    },
+    {
+      "id": "4f61c088-b2c1-48f8-bc59-32a8e5cf2484",
+      "problemCode": "J10102-B26-001",
+      "groupId": "m1-b-square-completion",
+      "typeKey": "1-1|소인수분해|09",
+      "reason": "자연수를 나누어 제곱수로 만드는 최소 나눗수를 묻는다. 기존 09의 kind=1 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "c275b5673554967540bdbe5ba4cc53a2703fd549ed3fbc5f7e942d4e51ccf7c4"
+    },
+    {
+      "id": "14c3721b-dd2f-465a-868a-47bfa3bf6b5d",
+      "problemCode": "J10104-A20-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "최소공배수만으로 각 소인수의 유일한 최대 지수를 찾는 두 수·세 수 갈래(mode=2).",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "497f6efaf98678856a9485f001a8f6a035afb789ebdd476548f756fae0a2edf6"
+    },
+    {
+      "id": "ccdc2794-b586-48d1-bd39-214c461c2175",
+      "problemCode": "J10104-A21-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "지수 두 개와 별도 소인수 하나를 최대공약수·최소공배수로 복원한다(mode=1). 새 생성물도 미지 소인수가 소수임을 명시한다.",
+      "sampleSeed": 4,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "41d20ef26fba010844ba2a8495847b087ef917f9bf01df5f45a85d658c8e857d"
+    },
+    {
+      "id": "e21eb810-5ffd-4b12-b626-405b9646130b",
+      "problemCode": "J10104-A38-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "숫자로 주어진 두 수의 최소공배수를 소인수분해하고 지정한 두 지수를 더한다(mode=3).",
+      "sampleSeed": 8,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "7f290e207335878824b19fcc5910c0c8a96ca86a5aef4ee845d33d2061d67971"
+    },
+    {
+      "id": "e92f2fd4-42c6-4731-a3f4-69b6f9834e57",
+      "problemCode": "J10104-A39-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "최소공배수만으로 각 소인수의 유일한 최대 지수를 찾는 두 수·세 수 갈래(mode=2).",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "1e0ed05452de971f1b8684ae4e5e64703b4dbcda3c539a51efe4d061796c8f25"
+    },
+    {
+      "id": "fe3b5819-0ad8-4744-8a78-a182766f0f72",
+      "problemCode": "J10104-A46-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|최대공약수와 최소공배수|09",
+      "reason": "두 수의 최대공약수·최소공배수로 작은 지수 하나와 큰 지수 하나를 정하고 합한다. 기존 09와 같은 골격이다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "9d6a7cc983dc6947116701431332fdbbf2b9af1f0bace30f6788538952e67e37"
+    },
+    {
+      "id": "a9c1e6b0-9f3d-4a59-a62d-7ff90b2b271c",
+      "problemCode": "J10104-A53-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "최대공약수에서 두 미지 지수를 구하고 최소공배수의 두 지수를 더한다(mode=4).",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "0ae989e9eed179a4a6e5c6f686595e8445ca19cc2a8156da22d6e2556e6f2b15"
+    },
+    {
+      "id": "ea24337c-1695-40da-bb6e-35221381a26f",
+      "problemCode": "J10104-A56-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "최대공약수·최소공배수의 지수 조건으로 미지 지수 세 개를 복원하여 더한다(mode=0).",
+      "sampleSeed": 13,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "33b76ebc19107c156f926bc89a076c30d90c9b4992bcdf6e637d9a60f7b46c89"
+    },
+    {
+      "id": "32bdc4e1-3fb3-400c-8141-b56d2c4d38c3",
+      "problemCode": "J10104-A58-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "typeKey": "1-1|교과서 수와 연산|F05",
+      "reason": "최대공약수·최소공배수의 지수 조건으로 미지 지수 세 개를 복원하여 더한다(mode=0).",
+      "sampleSeed": 13,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "f52703d619dc6da899c46979ce6b5c71539c63112179bf8662591722b3f80349"
+    },
+    {
+      "id": "07b65279-8e04-4d20-9336-6f5fbb7443b3",
+      "problemCode": "J10102-A46-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "다섯 자연수의 서로 다른 소인수의 합을 비교하여 유일한 최댓값을 주는 수를 고른다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "ebbc0c316de4779ef827718cd0b9d9574185f7b1dec56ac8b7ad183e095db50b"
+    },
+    {
+      "id": "1036e6a2-df8e-4d5a-9752-e3c122c6d9a0",
+      "problemCode": "J10102-A47-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "자연수를 소인수분해한 지수의 합. 기존 04의 두 소인수 고정을 벗어나 하나부터 세 소인수까지 같은 합 연산을 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "5bbbda66b3b0be665479fefe01378d47616cc0e6d552fe8ee63e0b2cca12d7fc"
+    },
+    {
+      "id": "cf6876bb-ac14-48bb-88a9-86ccca8d8b31",
+      "problemCode": "J10102-A64-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F04",
+      "reason": "소인수 두 개의 합과 열린 정수 범위에서 유일한 자연수를 역으로 찾는다. 생성물은 모든 범위 후보의 유일성을 검사한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "8757820c396d7cd1bd0b74a811b8467940f30b3290c4a6b7240a2ce0fab5773a"
+    },
+    {
+      "id": "ae105cce-2f5e-433f-a28a-88d8ed402874",
+      "problemCode": "J10102-A68-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "자연수를 소인수분해한 지수의 합. 기존 04의 두 소인수 고정을 벗어나 하나부터 세 소인수까지 같은 합 연산을 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "b6d448b482df2d1925692203305093de52287984f2f72c88664cd49219d01031"
+    },
+    {
+      "id": "0f302930-44af-4cb3-a35a-c04dc53192cc",
+      "problemCode": "J10102-A94-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "다섯 자연수의 서로 다른 소인수 개수를 비교하여 유일한 최댓값을 주는 수를 고른다.",
+      "sampleSeed": 7,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "73261204fa9b4a5dd79f4dd47678a9154ecccd8c3c22d1647ddcddcf08414245"
+    },
+    {
+      "id": "6c89f0c0-117f-49dd-a205-28374437d378",
+      "problemCode": "J10102-B01-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "두 자연수 각각의 서로 다른 소인수의 합을 구한 뒤 더한다.",
+      "sampleSeed": 4,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "d56c26733622c2a309c6edcb56eabb96b89ab85269663113a250ece15634d798"
+    },
+    {
+      "id": "49085157-bd31-40cd-afb8-7f70a8f41f5e",
+      "problemCode": "J10102-B25-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|소인수분해|05",
+      "reason": "한 자연수의 서로 다른 소인수의 합을 묻는 기존 05 kind=0과 같다.",
+      "sampleSeed": 3,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "c0aaff5e24e3330cd2bed9f282305ac303908ae17362beceeb960998e458af69"
+    },
+    {
+      "id": "7c8487b6-b759-4fdd-9f50-6052a4d624b5",
+      "problemCode": "J10102-B28-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|소인수분해|05",
+      "reason": "한 자연수의 서로 다른 소인수의 합을 묻는 기존 05 kind=0과 같다.",
+      "sampleSeed": 3,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "8f95b198b66ed7508e92b77d0aaeb635d41cbf585ccff6162220de8ca7c003ff"
+    },
+    {
+      "id": "de1ca3e7-9c97-4243-88e1-1cb4958b5a4a",
+      "problemCode": "J10102-B34-001",
+      "groupId": "m1-b-prime-factor-attributes",
+      "typeKey": "1-1|교과서 수와 연산|F03",
+      "reason": "다섯 자연수의 서로 다른 소인수의 합을 비교하여 유일한 최댓값을 주는 수를 고른다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "97998b5baabd91f3351c8b4d09be4bdca24147c0a5bdafe717d5f0469d99f437"
+    },
+    {
+      "id": "da91df9d-99dd-4fc1-aec7-12cce53e6c30",
+      "problemCode": "J10102-A18-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "4c06c2249bebc2211113d8b7f869c515be7feaba3c32fe4bcdb3cff5e0e1d3bd"
+    },
+    {
+      "id": "e0170b7d-3042-4278-8f48-965c4c3a5e32",
+      "problemCode": "J10102-A20-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "8555bce024977a559817c690d8c3b8e6f2836cc36e6a8eea3eed58eaff1594e3"
+    },
+    {
+      "id": "7f43c711-3350-430a-91b2-cb1e91bdbd89",
+      "problemCode": "J10102-A52-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 5,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "6d32991b4f5739b6dd5939293ab4093f5e059c47744cb7d5b0acf845cf7fb005"
+    },
+    {
+      "id": "41e42194-0e05-46a0-90f8-9c2f4dbc026c",
+      "problemCode": "J10102-A79-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "b64d8b4e9c256526087141b1c090fec3f5405efd8f427d833e6f9a0440dec46f"
+    },
+    {
+      "id": "871d213b-30d9-4603-bb7a-8ffd50db1536",
+      "problemCode": "J10102-A85-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "c51d78a55c80aa299d42c384dfe4d9526cd740bbf81ee05d498cb51d0a052fe5"
+    },
+    {
+      "id": "93e42f89-899a-4680-9212-b45a43a55470",
+      "problemCode": "J10102-B17-001",
+      "groupId": "m1-b-factor-batch",
+      "typeKey": "1-1|교과서 수와 연산|F01",
+      "reason": "각 자연수를 소인수분해하는 소문항 묶음. 새 키는 2~8개를 본문·정답·풀이 같은 순서로 내며, 원문의 4개·8개 구성을 생성 견본으로 확인했다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "d6de9d9ee9ccdbe7e1941c1e6680ac4493fcd117be052cbd4f921a209dbb7ac8"
+    },
+    {
+      "id": "e83421d2-e6d7-465e-aae9-4dca796b0a1e",
+      "problemCode": "J10101-A46-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "자연수를 지정한 밑의 거듭제곱으로 쓴다(mode=0). 지수만 답하는 기존 14와 요구 답이 달라 새 키로 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "c79cd6dca5c00143d32a4a5b8b519139f6c59cec6047d351d302d6aebd39192e"
+    },
+    {
+      "id": "ec1cb23b-b633-470c-9fef-f695ca1a1c92",
+      "problemCode": "J10101-A47-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "자연수를 지정한 밑의 거듭제곱으로 쓴다(mode=0). 지수만 답하는 기존 14와 요구 답이 달라 새 키로 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "f53cf63437624199008553968185788b33ca8c43bbf41ecf4b447694d8d3fc88"
+    },
+    {
+      "id": "abcf4d90-1e4e-4843-a548-f2a6c83ded5c",
+      "problemCode": "J10101-A48-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "자연수를 지정한 밑의 거듭제곱으로 쓴다(mode=0). 지수만 답하는 기존 14와 요구 답이 달라 새 키로 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "4dce9607ff2da55396915c4241b9f484dc6dac9514556aaf710e1441d79d3323"
+    },
+    {
+      "id": "4a299e68-a363-437b-8874-ec58fa5e9f25",
+      "problemCode": "J10101-A49-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "분자가 1인 분수를 지정된 분수 밑의 거듭제곱으로 쓴다(mode=1). 지수만 답하는 기존 13과 요구 답이 달라 새 키로 확장한다.",
+      "sampleSeed": 5,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "5009dbb8c6159995dc656da92241e660242f451f0f619a02e20d412e2857a6b8"
+    },
+    {
+      "id": "91aab24b-755c-46a4-94af-fc5031d276a1",
+      "problemCode": "J10101-A50-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "분자가 1인 분수를 지정된 분수 밑의 거듭제곱으로 쓴다(mode=1). 지수만 답하는 기존 13과 요구 답이 달라 새 키로 확장한다.",
+      "sampleSeed": 5,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "cc09efdec6ab93cec370857f1842097799298362e3d1a09bafa29aebcb9d2b1f"
+    },
+    {
+      "id": "ca8a682e-d051-4d60-860f-e67497641ac0",
+      "problemCode": "J10101-A75-001",
+      "groupId": "m1-b-power-representation",
+      "typeKey": "1-1|교과서 수와 연산|F02",
+      "reason": "같은 자연수를 서로 다른 세 밑의 거듭제곱으로 쓰는 세 소문항 갈래(mode=2).",
+      "sampleSeed": 3,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "c4ab03734a7da6b5df5d43438ccc2244b59e18a9b6125c9904bc37f837f72a73"
+    },
+    {
+      "id": "22c12a47-8a0b-4f39-ad55-9c7e33e8caa4",
+      "problemCode": "J10101-A22-001",
+      "groupId": "m1-b-prime-interval",
+      "typeKey": "1-1|소인수분해|02",
+      "reason": "정수 범위에 속하는 소수를 세는 기존 02 kind=0과 계산 골격이 같다. 기존 생성물은 닫힌 정수 구간으로 표시하며 원문의 열린 끝점은 정수 구간 끝을 한 칸 옮겨 표현할 수 있다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "4522ecc64232f437592f3491753d9665c7b221db2f63530f28488688465dd19f"
+    },
+    {
+      "id": "446e5c47-939a-4115-94ff-1f067210ad0b",
+      "problemCode": "J10101-A33-001",
+      "groupId": "m1-b-prime-interval",
+      "typeKey": "1-1|소인수분해|02",
+      "reason": "정수 범위에 속하는 소수를 세는 기존 02 kind=0과 계산 골격이 같다. 기존 생성물은 닫힌 정수 구간으로 표시하며 원문의 열린 끝점은 정수 구간 끝을 한 칸 옮겨 표현할 수 있다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "dac65fbc1aac06f25cadc1005b4fde27610a64196ee56c876e0b86466037215c"
+    },
+    {
+      "id": "5c31c559-d3c7-4581-b8e6-23d337b1a4b7",
+      "problemCode": "J10101-A36-001",
+      "groupId": "m1-b-prime-interval",
+      "typeKey": "1-1|교과서 수와 연산|F06",
+      "reason": "기준보다 큰 첫 소수와 작은 첫 합성수를 각각 찾고 차를 구한다. 기존 범위 극값 한 개 질문을 두 경계 탐색으로 확장한다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "9d91b58332dd0207ef46ea1c746de33a9174053939097a4a2fc76a0357b9d507"
+    },
+    {
+      "id": "ad1b77d2-1509-4587-93c5-fbc12f508e69",
+      "problemCode": "J10101-A70-001",
+      "groupId": "m1-b-prime-interval",
+      "typeKey": "1-1|소인수분해|02",
+      "reason": "정수 범위에 속하는 소수를 세는 기존 02 kind=0과 계산 골격이 같다. 기존 생성물은 닫힌 정수 구간으로 표시하며 원문의 열린 끝점은 정수 구간 끝을 한 칸 옮겨 표현할 수 있다.",
+      "sampleSeed": 2,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "f6ad761f9c93f7377f35897aee96373eb55fbd415f0a89596fa05aa1e8601706"
+    },
+    {
+      "id": "9534a561-2722-454c-a79f-83e26b220399",
+      "problemCode": "J10102-B11-001",
+      "groupId": "m1-b-prime-set-outlier",
+      "typeKey": "1-1|교과서 수와 연산|F07",
+      "reason": "네 수의 소인수 집합은 같고 한 수만 다른 다섯 후보 중 하나를 고른다. 답을 후보 값으로 쓰며 유일한 이질 집합을 독립 검사했다.",
+      "sampleSeed": 1,
+      "sampleVariant": 0,
+      "sourceRecordSha256": "8ca1301e1909ba0b484894c5fe9b19ffe83ad763350464438d5e165407bffccd"
+    }
+  ],
+  "deferred": [
+    {
+      "id": "ab1fa758-dfdc-4b2f-b99b-9b40dbd5ed6b",
+      "problemCode": "J10102-B43-001",
+      "groupId": "m1-b-square-completion",
+      "reason": "제곱수 조건은 기존 09와 같지만 입력이 이미 소인수분해된 식이다. 09는 정수 하나를 주고 분해하는 단계까지 요구한다. 식 입력을 내는 갈래를 이번에는 추가하지 않아 대체 원장에서 제외한다."
+    },
+    {
+      "id": "2f71cf9c-40ce-412e-8b39-9b595fb9fe2d",
+      "problemCode": "J10104-A36-001",
+      "groupId": "m1-b-gcd-lcm-exponents",
+      "reason": "c를 소수로 제한하지 않아 분해가 유일하지 않다. 같은 둘째 수가 (a,b,c)=(2,3,5)와 (1,3,10)으로 표현되어 a+b+c가 달라진다. 원문 조건 확인 전 대체 원장에 넣지 않는다."
+    }
+  ],
+  "validation": {
+    "red": "npx vitest run src/__tests__/unit/middleTextbookFactor.test.ts --maxWorkers=1: missing module import failed before implementation",
+    "green": "23 tests passed (2026-11-25 20:14 KST); final combined run is owned by root",
+    "independentOracles": [
+      "prime-power construction versus trial division",
+      "displayed products evaluated with BigInt",
+      "unknown exponents exhaustively substituted into displayed expressions, gcd/lcm recomputed with Euclidean algorithm",
+      "all integer candidates checked for uniqueness in factor range",
+      "square completion checks first valid multiplier/divisor by enumerating squares",
+      "seven answer-corruption controls all rejected"
+    ],
+    "sampleSeeds": [
+      20261125,
+      173,
+      9049
+    ],
+    "additionalShapeSeeds": "Per-row sampleSeed records a generated variant with the matching mode; source row bodies are not copied.",
+    "difficultyReview": {
+      "F01": "declared 기본, public tier 연산 (기존 resolver)",
+      "F02": "기본: 지정 밑의 반복 곱",
+      "F03": "기본: 인수분해 뒤 합 또는 비교",
+      "F04": "응용: 소인수의 합과 범위를 동시에 만족하는 역문제",
+      "F05": "응용: 지수의 최솟값·최댓값 조건 복원",
+      "F06": "응용: 두 경계 탐색 후 차",
+      "F07": "기본: 다섯 수의 소인수 집합 비교",
+      "reused02": "기존 응용 유지; census easy는 바꾸지 않고 관측 차이를 남김",
+      "reusedGcd09": "기존 심화하 유지; census mid와 차이 있으나 기존 키 출력 보존"
+    }
+  },
+  "notes": [
+    "기존 키의 같은 씨앗 결과를 바꾸지 않았다.",
+    "F01은 소수 자체를 피하고 합성수만 내어 7=7 같은 무의미한 분해 풀이를 없앴다.",
+    "F01은 2~8개 소문항을 본문·정답·풀이에서 같은 (1)... 순서로 낸다.",
+    "F02 입력은 정수 또는 단위분수, 분수 밑은 괄호로 묶는다. 정수 거듭제곱 최대 1000, 복수 밑 갈래는 64/729다.",
+    "F05 숫자로 직접 제시하는 입력은 1800 이하·서로 다르게 제한한다. 나머지 큰 수는 소인수 거듭제곱 표현으로만 제시한다.",
+    "공용 API/DB/생성 registry/도구는 이 작업자가 수정하지 않았다."
+  ]
+}

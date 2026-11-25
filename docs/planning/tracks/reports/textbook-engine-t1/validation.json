@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-25",
+  "branch": "phase/textbook-engine-t1",
+  "baseCommit": "b12851c3c",
+  "vitest": {
+    "files": 11,
+    "passed": 1243,
+    "skipped": 128,
+    "total": 1371,
+    "workers": 3,
+    "report": "vitest.json",
+    "log": "vitest.log",
+    "skips": "기존 middleM1Extra의 128개. 새 skip은 추가하지 않았다."
+  },
+  "postBundleChange": {
+    "file": "src/__tests__/unit/middleTextbookFactor.test.ts",
+    "reason": "ES2017 target requires BigInt(1), not 1n literals",
+    "runtimeSemanticsChanged": false,
+    "targetedTestsPassed": 23,
+    "log": "factor-es-target.log"
+  },
+  "typecheck": {
+    "command": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "eslint": {
+    "scope": "changed/new TypeScript files",
+    "exitCode": 0
+  },
+  "ledgerReproduction": {
+    "command": "python3 scripts/qa/textbook-engine-t1/build-ledger.py --check",
+    "exitCode": 0
+  },
+  "preview": {
+    "types": 45,
+    "samples": 135,
+    "seeds": [
+      20261125,
+      173,
+      9049
+    ],
+    "viewportWidths": [
+      800,
+      390
+    ],
+    "strictKatexErrors": 0,
+    "figureErrors": 0,
+    "renderKatexErrors": 0,
+    "horizontalOverflows": 0,
+    "fontErrors": 0
+  },
+  "constraints": {
+    "databaseReads": 0,
+    "databaseWrites": 0,
+    "paidApiCalls": 0,
+    "productionBuilds": 0,
+    "pushes": 0,
+    "merges": 0,
+    "otherWorktreesChanged": 0
+  },
+  "previewMetadataFollowUp": "각 HTML 문항에 실제 씨앗을 표시하고 제목에 세 씨앗을 모두 표시했다. 문항 출력은 그대로이며 135견본을 다시 측정했다."
+}

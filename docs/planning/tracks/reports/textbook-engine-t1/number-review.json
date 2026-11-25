@@ -1,0 +1,1370 @@
+{
+  "scope": "T1 자연수 7묶음 105행 전수 원문 재독, 그중 그림 2개 직접 확인",
+  "inputPath": "/Volumes/새 볼륨/today-backups/textbook-mid-rows.jsonl",
+  "inputSha256": "eb798a7e18b844b1fe4a2147ac0c3dc10cd8c1b00eb5f72a68432e7107496258",
+  "groups": [
+    {
+      "groupId": "m1-b-gcd",
+      "decision": "기존 계산 골격의 확장 · 기존 출력 보존을 위해 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N01",
+        "1-1|교과서 수와 연산|N03",
+        "1-1|교과서 수와 연산|N04",
+        "1-1|교과서 수와 연산|N08"
+      ],
+      "reviewedCodes": [
+        "J10103-A13-001",
+        "J10103-A23-001",
+        "J10103-A31-001",
+        "J10103-A37-001",
+        "J10103-A42-001",
+        "J10103-A47-001",
+        "J10103-A50-001",
+        "J10103-A51-001",
+        "J10103-A52-001",
+        "J10103-A53-001",
+        "J10103-A54-001",
+        "J10103-A56-001",
+        "J10103-A59-001",
+        "J10103-A62-001",
+        "J10103-A79-001",
+        "J10103-A80-001",
+        "J10103-A82-001",
+        "J10103-A83-001",
+        "J10103-A86-001",
+        "J10103-A90-001",
+        "J10103-A92-001",
+        "J10103-A93-001",
+        "J10103-A97-001",
+        "J10103-A98-001",
+        "J10103-B02-001",
+        "J10103-B03-001"
+      ],
+      "sourceRows": 26,
+      "mappedRows": 22,
+      "deferredRows": 4,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10103-A13-001",
+          "typeKey": "1-1|교과서 수와 연산|N01",
+          "seed": 1,
+          "variant": 0,
+          "comparison": "두 수 또는 세 수 묶음마다 최대공약수를 하나씩 쓰는 네 소문항과 답의 순서를 확인했으며, 묶음별 수의 개수는 씨앗에 따라 달라진다."
+        },
+        {
+          "sourceCode": "J10103-A23-001",
+          "typeKey": "1-1|교과서 수와 연산|N03",
+          "seed": 4,
+          "variant": 0,
+          "comparison": "두 자연수의 최대공약수와 최소공배수를 각각 쓰므로 요구하는 두 답을 모두 유지한다."
+        },
+        {
+          "sourceCode": "J10103-A37-001",
+          "typeKey": "1-1|교과서 수와 연산|N04",
+          "seed": 0,
+          "variant": 0,
+          "comparison": "두 수의 공약수가 아닌 후보 하나를 다섯 보기에서 고르는 요구가 같다."
+        },
+        {
+          "sourceCode": "J10103-A42-001",
+          "typeKey": "1-1|교과서 수와 연산|N08",
+          "seed": 25,
+          "variant": 0,
+          "comparison": "소인수 거듭제곱으로 제시한 두 수의 공약수 개수를 묻고 개수 하나를 답한다."
+        },
+        {
+          "sourceCode": "J10103-A62-001",
+          "typeKey": "1-1|교과서 수와 연산|N08",
+          "seed": 7,
+          "variant": 0,
+          "comparison": "전체 공약수가 아니라 짝수인 공약수만 세므로 원문의 추가 조건을 유지한다."
+        },
+        {
+          "sourceCode": "J10103-A90-001",
+          "typeKey": "1-1|교과서 수와 연산|N08",
+          "seed": 1,
+          "variant": 0,
+          "comparison": "두 수의 모든 공약수를 순서대로 나열하며 최대공약수 하나로 답을 줄이지 않는다."
+        }
+      ]
+    },
+    {
+      "groupId": "m1-b-lcm",
+      "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N02",
+        "1-1|교과서 수와 연산|N03",
+        "1-1|최대공약수와 최소공배수|25"
+      ],
+      "reviewedCodes": [
+        "J10104-A12-001",
+        "J10104-A13-001",
+        "J10104-A14-001",
+        "J10104-A18-001",
+        "J10104-A22-001",
+        "J10104-A23-001",
+        "J10104-A29-001",
+        "J10104-A47-001",
+        "J10104-A48-001",
+        "J10104-A49-001",
+        "J10104-A51-001",
+        "J10104-A57-001",
+        "J10104-A59-001",
+        "J10104-A60-001",
+        "J10104-A63-001",
+        "J10104-A66-001",
+        "J10104-A67-001",
+        "J10104-A69-001",
+        "J10104-A70-001",
+        "J10104-A71-001",
+        "J10104-A74-001",
+        "J10104-A76-001",
+        "J10104-A77-001"
+      ],
+      "sourceRows": 23,
+      "mappedRows": 20,
+      "deferredRows": 3,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10104-A74-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 7,
+          "variant": 0,
+          "comparison": "두 수의 최소공배수 하나를 구하는 단일 소문항을 확인했다."
+        },
+        {
+          "sourceCode": "J10104-A13-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 1,
+          "variant": 0,
+          "comparison": "각 수 묶음의 최소공배수를 각각 답하는 연습 형태를 확인했으며 소문항 개수와 각 묶음의 항 수까지 원문과 동일하다는 뜻은 아니다."
+        },
+        {
+          "sourceCode": "J10104-A23-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 19,
+          "variant": 0,
+          "comparison": "최소공배수가 주어지고 두 자리 자연수인 공배수의 개수를 세므로 원문의 범위 조건을 유지한다."
+        },
+        {
+          "sourceCode": "J10104-A71-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 11,
+          "variant": 0,
+          "comparison": "주어진 최소공배수의 양의 배수 중 상한 미만인 것만 세며 상한을 포함하지 않는다."
+        },
+        {
+          "sourceCode": "J10104-A29-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 5,
+          "variant": 0,
+          "comparison": "두 수의 공배수에서 목표 수에 가장 가까운 수 하나를 찾는 요구를 유지한다."
+        },
+        {
+          "sourceCode": "J10104-A51-001",
+          "typeKey": "1-1|교과서 수와 연산|N02",
+          "seed": 8,
+          "variant": 0,
+          "comparison": "세 수의 k번째 공배수를 구한 뒤 소인수분해하여 답하므로 수치 답 하나로 요구를 줄이지 않는다."
+        },
+        {
+          "sourceCode": "J10104-A18-001",
+          "typeKey": "1-1|교과서 수와 연산|N03",
+          "seed": 4,
+          "variant": 0,
+          "comparison": "최대공약수와 최소공배수라는 두 결과를 모두 구하되 원문의 보기 선택은 직접 쓰는 답으로 자체 출제한다."
+        },
+        {
+          "sourceCode": "J10104-A49-001",
+          "typeKey": "1-1|최대공약수와 최소공배수|25",
+          "seed": 20261125,
+          "variant": 0,
+          "comparison": "두 자연수의 공배수를 작은 것부터 나열한 k번째 값을 구하는 기존 키의 요구가 같다."
+        }
+      ]
+    },
+    {
+      "groupId": "m1-b-power-product",
+      "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N05",
+        "1-1|소인수분해|03"
+      ],
+      "reviewedCodes": [
+        "J10101-A26-001",
+        "J10101-A44-001",
+        "J10101-A45-001",
+        "J10101-A51-001",
+        "J10101-A74-001",
+        "J10101-A78-001",
+        "J10101-A79-001",
+        "J10101-A83-001",
+        "J10101-A94-001",
+        "J10101-A96-001",
+        "J10101-B02-001",
+        "J10101-B04-001",
+        "J10101-B07-001",
+        "J10101-B11-001"
+      ],
+      "sourceRows": 14,
+      "mappedRows": 12,
+      "deferredRows": 2,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10101-A44-001",
+          "typeKey": "1-1|교과서 수와 연산|N05",
+          "seed": 16,
+          "variant": 0,
+          "comparison": "분모의 반복 곱을 거듭제곱으로 묶은 단위분수를 답하는 단일 소문항이다."
+        },
+        {
+          "sourceCode": "J10101-A74-001",
+          "typeKey": "1-1|교과서 수와 연산|N05",
+          "seed": 0,
+          "variant": 0,
+          "comparison": "생성물의 세 번째 소문항에서 단위분수 반복 곱을 거듭제곱으로 묶는 요구를 확인했으며 나머지 소문항까지 원문과 일대일로 같다는 뜻은 아니다."
+        },
+        {
+          "sourceCode": "J10101-B07-001",
+          "typeKey": "1-1|소인수분해|03",
+          "seed": 20261125,
+          "variant": 0,
+          "comparison": "서로 다른 두 밑의 반복 곱을 두 거듭제곱의 곱으로 나타내는 단일 문제이다."
+        }
+      ]
+    },
+    {
+      "groupId": "m1-b-prime-list",
+      "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N06",
+        "1-1|소인수분해|01"
+      ],
+      "reviewedCodes": [
+        "J10101-A28-001",
+        "J10101-A38-001",
+        "J10101-A53-001",
+        "J10101-A55-001",
+        "J10101-A64-001",
+        "J10101-A67-001",
+        "J10101-A68-001",
+        "J10101-A76-001",
+        "J10101-A84-001",
+        "J10101-A85-001",
+        "J10101-A87-001",
+        "J10101-A90-001",
+        "J10101-A97-001",
+        "J10101-B12-001"
+      ],
+      "sourceRows": 14,
+      "mappedRows": 14,
+      "deferredRows": 0,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10101-A28-001",
+          "typeKey": "1-1|소인수분해|01",
+          "seed": 20261125,
+          "variant": 0,
+          "comparison": "제시한 자연수 목록에서 소수의 개수 하나를 구하며 목록 길이는 새 수치와 함께 바뀔 수 있다."
+        },
+        {
+          "sourceCode": "J10101-A67-001",
+          "typeKey": "1-1|교과서 수와 연산|N06",
+          "seed": 16,
+          "variant": 0,
+          "comparison": "다섯 후보에서 소수 두 개를 모두 고르는 요구와 정답 개수를 유지한다."
+        },
+        {
+          "sourceCode": "J10101-A85-001",
+          "typeKey": "1-1|교과서 수와 연산|N06",
+          "seed": 9,
+          "variant": 0,
+          "comparison": "목록의 합성수 개수 하나를 답하고 목록의 1은 합성수로 세지 않는다."
+        },
+        {
+          "sourceCode": "J10101-B12-001",
+          "typeKey": "1-1|교과서 수와 연산|N06",
+          "seed": 1,
+          "variant": 0,
+          "comparison": "소수와 합성수의 개수를 각각 답하여 원문의 두 결과를 모두 유지한다."
+        }
+      ]
+    },
+    {
+      "groupId": "m1-b-coprime-selection",
+      "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N07",
+        "1-1|최대공약수와 최소공배수|01"
+      ],
+      "reviewedCodes": [
+        "J10103-A14-001",
+        "J10103-A19-001",
+        "J10103-A25-001",
+        "J10103-A30-001",
+        "J10103-A33-001",
+        "J10103-A44-001",
+        "J10103-A67-001",
+        "J10103-A69-001",
+        "J10103-A75-001",
+        "J10103-A81-001",
+        "J10103-A85-001",
+        "J10103-A95-001",
+        "J10103-A96-001"
+      ],
+      "sourceRows": 13,
+      "mappedRows": 11,
+      "deferredRows": 2,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10103-A14-001",
+          "typeKey": "1-1|최대공약수와 최소공배수|01",
+          "seed": 173,
+          "variant": 0,
+          "comparison": "1부터 상한 이하 자연수에서 기준 수와 서로소인 수의 개수라는 동일한 범위와 요구를 확인했다."
+        },
+        {
+          "sourceCode": "J10103-A33-001",
+          "typeKey": "1-1|교과서 수와 연산|N07",
+          "seed": 2,
+          "variant": 0,
+          "comparison": "기준 수와 서로소인 후보 하나를 고르는 요구를 확인했다."
+        },
+        {
+          "sourceCode": "J10103-A25-001",
+          "typeKey": "1-1|교과서 수와 연산|N07",
+          "seed": 1,
+          "variant": 0,
+          "comparison": "다섯 수쌍에서 서로소인 쌍 두 개를 모두 고르는 요구와 답 개수를 유지한다."
+        },
+        {
+          "sourceCode": "J10103-A19-001",
+          "typeKey": "1-1|교과서 수와 연산|N07",
+          "seed": 49,
+          "variant": 0,
+          "comparison": "양 끝을 포함한 구간에서 기준 수와 서로소인 자연수의 개수를 센다."
+        },
+        {
+          "sourceCode": "J10103-A30-001",
+          "typeKey": "1-1|교과서 수와 연산|N07",
+          "seed": 46,
+          "variant": 0,
+          "comparison": "하한 초과와 상한 미만을 함께 적용한 열린 구간의 서로소 개수를 센다."
+        },
+        {
+          "sourceCode": "J10103-A85-001",
+          "typeKey": "1-1|교과서 수와 연산|N07",
+          "seed": 8,
+          "variant": 0,
+          "comparison": "거듭제곱인 기준 수와 서로소이면서 상한 이하인 짝수만 세는 조건을 유지한다."
+        }
+      ]
+    },
+    {
+      "groupId": "m1-b-divisor-selection",
+      "decision": "기존 계산 골격의 확장 · 기존 출력 보존을 위해 새 키",
+      "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|N09"
+      ],
+      "reviewedCodes": [
+        "J10102-A15-001",
+        "J10102-A24-001",
+        "J10102-A29-001",
+        "J10102-A33-001",
+        "J10102-A50-001",
+        "J10102-A57-001",
+        "J10102-A70-001",
+        "J10102-A77-001",
+        "J10102-A93-001",
+        "J10102-A97-001",
+        "J10102-B33-001",
+        "J10102-B42-001",
+        "J10102-B50-001"
+      ],
+      "sourceRows": 13,
+      "mappedRows": 11,
+      "deferredRows": 2,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10102-A15-001",
+          "typeKey": "1-1|교과서 수와 연산|N09",
+          "seed": 0,
+          "variant": 0,
+          "comparison": "소인수분해된 수의 약수가 아닌 후보 하나를 다섯 보기에서 고르는 요구를 확인했다."
+        }
+      ]
+    },
+    {
+      "groupId": "v-m1-core-prime-list-e30a5ede",
+      "decision": "기존 키 재사용 1행 · 조합형 보류 1행",
+      "reason": "대응 그림 두 개를 직접 열어 단순 수 목록(개수)과 이름표 조합 선택을 구별했다. 그림이 있다는 이유만으로 새 엔진 그림을 만들 필요는 없다.",
+      "typeKeys": [
+        "1-1|소인수분해|01"
+      ],
+      "reviewedCodes": [
+        "J10101-B18-001",
+        "J10101-B19-001"
+      ],
+      "sourceRows": 2,
+      "mappedRows": 1,
+      "deferredRows": 1,
+      "sampleEvidence": [
+        {
+          "sourceCode": "J10101-B18-001",
+          "typeKey": "1-1|소인수분해|01",
+          "seed": 20261125,
+          "variant": 0,
+          "comparison": "직접 읽은 원본 그림은 자연수 아홉 개의 목록이며 생성물은 여섯 개의 목록이지만 둘 다 소수의 개수 하나를 묻는다."
+        },
+        {
+          "sourceCode": "J10101-B18-001",
+          "typeKey": "1-1|소인수분해|01",
+          "seed": 173,
+          "variant": 0,
+          "comparison": "두 번째 씨앗도 자연수 목록의 소수 개수를 구하며 그림의 배치나 원본 숫자를 복제하지 않는다."
+        },
+        {
+          "sourceCode": "J10101-B18-001",
+          "typeKey": "1-1|소인수분해|01",
+          "seed": 9049,
+          "variant": 0,
+          "comparison": "세 번째 씨앗도 목록 중 소수의 개수라는 요구를 유지하며 이름표 조합 선택형인 보류 행 B19까지 덮는다는 주장은 아니다."
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "15de4103-9f6a-4fa5-9722-74cb65de7ff0",
+      "problemCode": "J10101-A28-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "494a7eaee97b84e4af59a1ad1826a6154d7f8dfa4da593f25b8dc8bc2a08d1fa",
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "목록에서 소수를 판별하여 개수 하나를 구한다. 기존 생성기의 판별·정답 요구가 같고 보기형 원문은 직접 답하는 형식으로 출제한다."
+    },
+    {
+      "id": "b05edb98-2a76-4cbc-aa01-7dd3bfe61572",
+      "problemCode": "J10101-A38-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "71819870daf367acd9d650cde21ee1473f78510cbb96748206a3f4f5437b2174",
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "목록에서 소수를 판별하여 개수 하나를 구한다. 기존 생성기의 판별·정답 요구가 같고 보기형 원문은 직접 답하는 형식으로 출제한다."
+    },
+    {
+      "id": "ec80583f-90e5-4b59-bc8d-168a4e58aeb9",
+      "problemCode": "J10101-A44-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "285545e97d47985754d1410d3117a6d7031e8d3ec28c2cc700be8922c463f4ea",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "e5ce0ad1-91cb-4c9b-96f7-2b69af594a1c",
+      "problemCode": "J10101-A45-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "58cbb0c6b98789b312fbf5ad1773d4feb05fdaf61237b209c43969d97e57f51d",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "1148f304-b565-4f2d-8f88-ba4c6720a0ef",
+      "problemCode": "J10101-A51-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "2d573b3b48e2bb8e23559e63724e38324eacb88840a728c0280c8e394f5dc09b",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "2ec27c33-f0b1-49b2-abac-b37e546c7c8c",
+      "problemCode": "J10101-A53-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "e4a8ae74c0c8bafdaf8874151b20c12ec92457697c5cca5d4424a4294b3581f5",
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "목록에서 소수를 판별하여 개수 하나를 구한다. 기존 생성기의 판별·정답 요구가 같고 보기형 원문은 직접 답하는 형식으로 출제한다."
+    },
+    {
+      "id": "d5cfa074-dc2e-4848-a61d-802a86404411",
+      "problemCode": "J10101-A55-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "a7aaef71da1572d309e9bc811a096d7ddf10b62c90d61c7bb185c08ad80bde72",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "afdeb74d-a05c-4564-ba7a-7940c6efbc4e",
+      "problemCode": "J10101-A64-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "f899b7b8062645426b9f9f1b371dfec8843658c5e65063be530b3be7420a0ce8",
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "목록에서 소수를 판별하여 개수 하나를 구한다. 기존 생성기의 판별·정답 요구가 같고 보기형 원문은 직접 답하는 형식으로 출제한다."
+    },
+    {
+      "id": "3ffcaa00-d3f2-46b8-b64e-c5ecb96a7d96",
+      "problemCode": "J10101-A67-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "af91ac784391cc404e745043ced8a8afaa1af947de2415cb16b305aec664dcec",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "b8488558-6aff-4d2a-a80b-513598d53612",
+      "problemCode": "J10101-A68-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "8aa8b61a39568d87384ebd1990721e344fa9083c031a047c9b0c968bbd2db8e8",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "1812fee4-a7a5-443a-8f1a-90a2ec5b4a55",
+      "problemCode": "J10101-A74-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "fb656e9c9e591083210da99bb26c1a0718cd9de3bbfb09458eb7e70fa0444192",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "99ae8088-040f-4b2b-919c-cbc92c2d86c5",
+      "problemCode": "J10101-A76-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "1f6ffdc4e9cb83d602265dae4f3bd5f133c2de06ed5d184a942209409a1ca6fe",
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "목록에서 소수를 판별하여 개수 하나를 구한다. 기존 생성기의 판별·정답 요구가 같고 보기형 원문은 직접 답하는 형식으로 출제한다."
+    },
+    {
+      "id": "788c7fb8-6dda-488b-a71f-c5912951e644",
+      "problemCode": "J10101-A78-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "f737ba24348f16f6a062b40615920b2ecc1abb75ec643a009e3e3dfc099f7d1b",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "8c7bb243-b241-4350-beb8-42b036ea06b3",
+      "problemCode": "J10101-A79-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "f254134829cbb529b57ff87584be12798b0c067f5b3e9d962787e148afd4cadf",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "e3ac9f48-6cd8-4ca8-8fae-c3cdfc57f25a",
+      "problemCode": "J10101-A83-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "4ab287f77b3b462abae3b78520f8d16bc053790a74b68d79a922513248ce627d",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "416a55ac-1735-4eaf-87f5-711f42e9c5a8",
+      "problemCode": "J10101-A84-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "0100bba0be72e953c3c3bd50e897587eee5a303262e3c09c5e36fffea41b1519",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "312d1546-a09f-4e27-9a31-125eafa65bae",
+      "problemCode": "J10101-A87-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "729e33dff3491324726f0674ededc0701ab66cda2ae1f22842602eacbe2bfd3a",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "1a58b9fd-a1b4-41a2-a9d9-2eb5d6ebb4c1",
+      "problemCode": "J10101-A90-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "7d0b2f528b894ded11df4b0326d1d3a9e3de6dd68c238895186387ea3e5b31da",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "9d463274-be7e-4225-be76-59791866b5d6",
+      "problemCode": "J10101-A94-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "1e9660a36c6c38f8ca681c4a128e899b82f09989278eb39b57b20a12caa67e2d",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "00b7d7ac-c972-4acd-b8aa-bcbd07ee1bc4",
+      "problemCode": "J10101-A96-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "29c1b31c811bcd2bcbe61fcb1182a51ef699af7dca8f494f699e41a28cacb665",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "9978bbc6-1b84-4fec-9d18-b2c7c33d2b7e",
+      "problemCode": "J10101-A97-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "336e02bfa63c95da3c4783099ec85dedf01c76f93c6dbcb703d474a212f2b2c8",
+      "typeKey": "1-1|교과서 수와 연산|N06",
+      "reason": "소수·합성수·소수가 아닌 수를 후보에서 고른다. 1의 분류를 별도 유지하고 하나 선택 또는 정답 두 개 선택을 지원한다."
+    },
+    {
+      "id": "0e8a7ac4-66bd-4aae-a7cc-2820600bd0ba",
+      "problemCode": "J10101-B02-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "8a10f141c5c358e72784e30ae8d0f7c857b2138f4d85d690b53a3dbc0bf66699",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "b9fd9041-de4d-455f-899c-ba8188c1f6c7",
+      "problemCode": "J10101-B07-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "3cb9976f7360c2eb3d54ced93451a817d1c9c5bd6cdf2c43e8708481f8161e1d",
+      "typeKey": "1-1|소인수분해|03",
+      "reason": "서로 다른 두 밑의 반복 곱을 두 거듭제곱의 곱으로 나타낸다. 기존 키가 같은 골격을 이미 낸다."
+    },
+    {
+      "id": "62b87108-3110-478e-aa79-dc67e26f9225",
+      "problemCode": "J10101-B11-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "9bb8c0ce6b8305a03da643f30c5b64736fa13b8403750c372f0587f22d903fcb",
+      "typeKey": "1-1|교과서 수와 연산|N05",
+      "reason": "반복 곱을 같은 밑의 거듭제곱으로 묶는다. 자연수 곱·분모의 곱·단위분수 곱과 단일·복수 소문항이 새 키의 지원 범위다."
+    },
+    {
+      "id": "f7d6cbe4-bc0c-4083-9bcb-55ae9e28e4de",
+      "problemCode": "J10102-A15-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "61b57b0f70f761461289825e2d18e06a785a3cf759162b2c56e9c5dbbea293a3",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "5753d1c4-460e-46ba-b0f6-d305e91fda68",
+      "problemCode": "J10102-A24-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "d71f2982cd2ad48dcc892a7222e0c622be722c20e30e34169085c68bbd0fc986",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "df634b51-b980-4041-9aa0-028052a0bd07",
+      "problemCode": "J10102-A29-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "9a37f66d11322c967aa6717afe050880535784d6d239eb0b25eb47c461ef24b8",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "eeefc4d3-0da4-4e34-ace5-e0278891ca8c",
+      "problemCode": "J10102-A33-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "cc1f419b4c5dec49cfee97f97fe19c20dad3d2204034e2fe9240aedbf849913c",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "e031b770-1945-45c1-8b1e-90015088d6c1",
+      "problemCode": "J10102-A50-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "7dd323018044d5c0f86b3fe7f02a8e44d527ffdf3d40c56ba50dd5e9a770431e",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "d9572da4-6c81-4019-a0e8-d56f51ef37af",
+      "problemCode": "J10102-A57-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "cc62c31a61c20058b950638ed2b513bcf7e8a862b8fc70b41b69e22f63e6775a",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "0f7b7eeb-457e-4a78-a456-970ed73bdbd0",
+      "problemCode": "J10102-A70-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "e77e0a4a41505acc098b3cb9d0fdfe6fa2187c22d7b326c54b23d2f440a560cc",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "d0da5054-f1eb-41bd-9a94-68820f5a03fe",
+      "problemCode": "J10102-A77-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "3be622bc5fe92d690625bdc641778ecd6744d98911aef7f79d9a197a0236e432",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "746d5476-d218-4aa8-b031-18deccd51f00",
+      "problemCode": "J10102-A93-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "89caf8669fc965624a8d39706c385c47943c64b5282537d1359d5a38263c8644",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "9accb96b-9a13-4cb7-b29a-fec71fda26ea",
+      "problemCode": "J10102-A97-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "4795826d882af352086b1c692fdbac1859971fdbff3c27d761fc9a58cffd86c1",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "523ccc05-0e0f-4d30-99f6-48ae8c8b1263",
+      "problemCode": "J10102-B33-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "dc40320fa3a06878d94ff516e488d4083d9e908c8f8d8b2d3ef403ac4f53e8a2",
+      "typeKey": "1-1|교과서 수와 연산|N09",
+      "reason": "소인수분해된 수 또는 자연수의 약수인지 판별하여 아닌 후보 하나를 고르는 요구를 보존한다."
+    },
+    {
+      "id": "6bceab83-2de0-4d22-91ce-dde37fc8da42",
+      "problemCode": "J10103-A13-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "bf7d5c26666309cdc03adfc5c1caa72b6c677653dc62968ac2d2fec284f4eb2a",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "e6e13958-f994-42a6-9f37-f68ef602f48e",
+      "problemCode": "J10103-A14-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "e87769695bb24b17f72ddd3a1ab3c4529481ff53517b1fc0db05a9223e799617",
+      "typeKey": "1-1|최대공약수와 최소공배수|01",
+      "reason": "1부터 상한 이하 자연수에서 기준 수와 서로소인 수의 개수이다. 기존 키의 범위·요구 답이 같아 변경 없이 재사용한다."
+    },
+    {
+      "id": "a23c9852-c0d4-4c21-886b-69c4d0d81c6f",
+      "problemCode": "J10103-A23-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "d88980ed87d7dc139ac3d8b4632532105bc7556c7dafe0085c7d79fc9f406979",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "같은 수들에서 최대공약수와 최소공배수를 각각 구하는 요구를 함께 보존한다. 보기형 원문은 두 값을 직접 쓰는 형태로 자체 출제한다."
+    },
+    {
+      "id": "fcfb3ca1-332a-499e-9517-72e8c3f2e5b7",
+      "problemCode": "J10103-A25-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "cf2569ca15820fd725a01c91cadb5e81fe0a3ecc6e0035d1904d3d8596eb54b5",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "245c33d2-5d76-48f6-8dfd-0d9ae287cea3",
+      "problemCode": "J10103-A33-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "4c3583ab021f38b78ce6c13415076b64c8ebc62bf6fc16cc6b174bc09d049366",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "7e093c36-2e5a-4df0-9064-5adba5caa636",
+      "problemCode": "J10103-A37-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "a66b914616c0ba40a56b330fca6cb29885ae4a34d729f848a8e4864dfe353008",
+      "typeKey": "1-1|교과서 수와 연산|N04",
+      "reason": "제시된 수들이 공약수인지 판별하여 아닌 하나를 고르는 계산 골격과 소인수 표시를 지원한다."
+    },
+    {
+      "id": "3d75b105-a26f-4e80-8471-7f34d490c683",
+      "problemCode": "J10103-A44-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "86225b2966444ca4ce897c142f0008472bb9e60dc53e2a888a733bf5886b3ea7",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "11b88c2b-c95b-467f-b07c-f3abafba743e",
+      "problemCode": "J10103-A47-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "f91dc33d9954f39ce0a5fb50fc193cca1b5b75a168b28e8b221b458f78bdd13d",
+      "typeKey": "1-1|교과서 수와 연산|N04",
+      "reason": "제시된 수들이 공약수인지 판별하여 아닌 하나를 고르는 계산 골격과 소인수 표시를 지원한다."
+    },
+    {
+      "id": "d31a23f4-7702-4825-8a31-00eaf5c70d44",
+      "problemCode": "J10103-A50-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "6d7465cd4082fd9c8070ef5904b75340f84a209d80459ff1666243d990560d96",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "11df301c-1f22-4ae3-a8de-4904fa956b3c",
+      "problemCode": "J10103-A51-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "98bdb45a007efe7f3fdb55c09829f3c0176d20987afe252f13180c7826c9e799",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "6867b8bb-9c39-42c2-99d9-71a6a9e8bbfe",
+      "problemCode": "J10103-A52-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "e71a915aabce45aa6d8b61cf009446ee01cc78b1fd5e1b8e9b54dfeba5439078",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "db302bc2-b81f-4112-9fdc-755c14b27640",
+      "problemCode": "J10103-A53-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "a83c06e471918a65dd8a0f0e4696924fdfe02c79e19c6622011e5a1e63bbd72b",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "af081acd-d9d7-460c-baea-12ac27ec802d",
+      "problemCode": "J10103-A54-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "ca9cdca923c5dd02b423b8aa922b7309cd8221a500427900eaccb8c9d939a604",
+      "typeKey": "1-1|교과서 수와 연산|N08",
+      "reason": "최대공약수 하나가 아니라 공약수 전체를 나열하는 답을 보존한다."
+    },
+    {
+      "id": "7254ebcc-02c8-43fe-ab4a-0c91eed382a7",
+      "problemCode": "J10103-A56-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "879206051f67bf56c2ed41d0714670fdfd4919792f439262c6d5683f27a8d964",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "516f582e-13a3-464e-a01e-7b434f452540",
+      "problemCode": "J10103-A59-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "7d7dadf7698f67a00fe54d173935d8baeec407fd242d95f4761579b1c9b40edf",
+      "typeKey": "1-1|교과서 수와 연산|N08",
+      "reason": "최대공약수 하나가 아니라 공약수 전체를 나열하는 답을 보존한다."
+    },
+    {
+      "id": "1e2c53fb-5b8f-4c06-b811-0c685362a51e",
+      "problemCode": "J10103-A67-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "618037080b1541332651238d749aa99d1e6302080cb2f0eac79882503aae91d5",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "2fa297a3-4ea7-44e2-bfbb-b60807a3c005",
+      "problemCode": "J10103-A69-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "2af1553db7ff9c83274453b1897edd611c342d65550ee8f463011c1440c59c26",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "474921cc-54a9-4a17-a5ab-1394ab0ec3a8",
+      "problemCode": "J10103-A75-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "3b4ee6909352c1d723d2f8cd6c014c677c1db91a71ca02058d2c8a797d2d2a4e",
+      "typeKey": "1-1|교과서 수와 연산|N07",
+      "reason": "후보 수 또는 두 수의 쌍에서 서로소를 고르는 요구다. 단일 정답·두 정답과 자연수·소인수 표시를 지원한다."
+    },
+    {
+      "id": "87079548-d5b2-4b60-83f7-cd84871ecd6f",
+      "problemCode": "J10103-A79-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "85c20eb0db66f7c4a5ac948c192ed23fff44366452dfaf7f55c9598e597ac996",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "deed7979-2875-4c2c-abce-0992cc085813",
+      "problemCode": "J10103-A80-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "0f1b9a3899799231f4f341129c911f6b208d5dc2412a70bc8731862b99afbd19",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "e6ceb574-5a20-4263-b586-44f9ce59790d",
+      "problemCode": "J10103-A81-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "b2fada8ef2d05ea35ddbd0caf82daadaf43cc94e47a9c2f8c19a0e4846071343",
+      "typeKey": "1-1|최대공약수와 최소공배수|01",
+      "reason": "1부터 상한 이하 자연수에서 기준 수와 서로소인 수의 개수이다. 기존 키의 범위·요구 답이 같아 변경 없이 재사용한다."
+    },
+    {
+      "id": "ce362d09-e0b3-48f0-925d-c41d36e8cd4d",
+      "problemCode": "J10103-A82-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "5d9f877df15b225a38c90732b20f934dbabc7fb26b46e9e96ef7992622cdc9f7",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "0cb75be9-ca77-4ac0-bb0a-ec4e9d6fdf6e",
+      "problemCode": "J10103-A83-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "6a3d28d08840c8844e8dbd000cf6457247a4566fa00a743ae67203a39ceff21b",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "2e6b3a67-bf95-46fe-b1fb-df3caf938c18",
+      "problemCode": "J10103-A90-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "06e890f21f3e1742cde5c6950d4aa41bbc1da3860b3789b32114012cb560d141",
+      "typeKey": "1-1|교과서 수와 연산|N08",
+      "reason": "최대공약수 하나가 아니라 공약수 전체를 나열하는 답을 보존한다."
+    },
+    {
+      "id": "9c5d28d3-2087-457a-b4d6-1f230b05c657",
+      "problemCode": "J10103-A92-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "f2481e59d769b5a9f51eacb4a76350280c7d39364dbebecc369f50d31e5bf35c",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "같은 수들에서 최대공약수와 최소공배수를 각각 구하는 요구를 함께 보존한다. 보기형 원문은 두 값을 직접 쓰는 형태로 자체 출제한다."
+    },
+    {
+      "id": "99aefe36-c253-4cdf-9619-e4bcba439bf8",
+      "problemCode": "J10103-A93-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "416aa0f5258b4b1f103eb5f0a139fc6dead1c49c60bf2c0ac50efc5fe78e1966",
+      "typeKey": "1-1|교과서 수와 연산|N04",
+      "reason": "제시된 수들이 공약수인지 판별하여 아닌 하나를 고르는 계산 골격과 소인수 표시를 지원한다."
+    },
+    {
+      "id": "68481a16-1c08-40ce-90ba-876e4ad99642",
+      "problemCode": "J10103-A97-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "9b4805c15e098b275c779dc4556418bfe8e39ad23d4750d729cb06965029dfa0",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "같은 수들에서 최대공약수와 최소공배수를 각각 구하는 요구를 함께 보존한다. 보기형 원문은 두 값을 직접 쓰는 형태로 자체 출제한다."
+    },
+    {
+      "id": "e80fa89f-2855-49e1-b54c-acbb6b899278",
+      "problemCode": "J10103-A98-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "c1cfe7dadce7a6d9649f7abb210ed58b8c0ba1a50aa26ff5afa3be4903d88fd2",
+      "typeKey": "1-1|교과서 수와 연산|N01",
+      "reason": "두 수·세 수의 최대공약수 계산이며, 자연수·소인수분해 표시와 단일·복수 소문항을 새 키가 지원한다."
+    },
+    {
+      "id": "465c0abb-27f7-4848-86b2-ff091d7b0d78",
+      "problemCode": "J10104-A12-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "6c69c61421862aac6e90a58ddc4f09767aed562f59ad15ab46f347a13c478ef4",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "2a29b183-dcab-4292-8963-7c0bcc870151",
+      "problemCode": "J10104-A13-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "13428a0e37f5789b04db7e2724d303bbaf2e45f1107bd57dd0da3ff5914ac0e2",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "13911de3-6cb9-461b-8ef8-9f3478cc2793",
+      "problemCode": "J10104-A14-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "c6ac28d299288dcaadb6c5425d7ba90a07e75db53b1b92fcec48eb1a4cd1935d",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "9a646d8f-d00b-4759-b539-3ecc3a60692a",
+      "problemCode": "J10104-A18-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "527344d26cc67d0508869b1b49026d6bac79ea456ca1f9b60c4f265bb076e5b7",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "두 값(최대공약수·최소공배수)을 각각 구하는 요구가 같다. 새 유형의 소속은 공약수 단원 하나로 통일했다."
+    },
+    {
+      "id": "d91b987e-7227-424a-ac8c-cb04edc62d58",
+      "problemCode": "J10104-A22-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "f2f755c606359c0fd0efd764366400236b1eb1e6f746ea72719a0da16f23242c",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "두 값(최대공약수·최소공배수)을 각각 구하는 요구가 같다. 새 유형의 소속은 공약수 단원 하나로 통일했다."
+    },
+    {
+      "id": "f0f13dd8-3ca1-46ca-a8dd-8ac91a9f36d9",
+      "problemCode": "J10104-A47-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "9078fd0475cc51dace83ebb6af0881a7f6f49f0aef144ef6fa6489ce593d6e96",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "두 값(최대공약수·최소공배수)을 각각 구하는 요구가 같다. 새 유형의 소속은 공약수 단원 하나로 통일했다."
+    },
+    {
+      "id": "8f2c7a43-2573-42fa-918d-ebbd29363f5d",
+      "problemCode": "J10104-A48-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "fe92e21bde6ee951fb7dfc1d564295574f70591e0fad6823db8588d0779961d3",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "239d3b00-3331-4b91-aa5e-5954da31a1e3",
+      "problemCode": "J10104-A49-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "270800771ba4e182be7705589bfc01203fd683c9906ac15ec9d0ad1788a7b993",
+      "typeKey": "1-1|최대공약수와 최소공배수|25",
+      "reason": "두 자연수의 공배수를 작은 것부터 나열한 k번째 값이다. 기존 키의 발문·정답 형식을 확인하여 변경 없이 재사용한다."
+    },
+    {
+      "id": "050a9a38-cafa-4c24-9ef2-05b283845625",
+      "problemCode": "J10104-A66-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "7a1e201435bdad129c0c3054d3c7c11cbb7f124e2ab7e35432db36c4b94c49e5",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "ad4d8606-3b06-46ca-9249-ee2a915242eb",
+      "problemCode": "J10104-A67-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "f8bdecf3b2161ed8aada3e711f12e2fbfec101ffc36a188f56c502807f6ac11b",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "27e3a4a0-3f39-407f-a1de-9fe3162b142b",
+      "problemCode": "J10104-A69-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "886aa88eea0adc200c3ba5a783fc87a5d58392a8a2a9bda1799e3c60b15cadc6",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "761603ec-d4a8-43c0-8e20-b284e92781d7",
+      "problemCode": "J10104-A70-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "2757a87cae4c8963e224479e9b20208aada610eca4395f4740eba70fc34b91f9",
+      "typeKey": "1-1|교과서 수와 연산|N03",
+      "reason": "두 값(최대공약수·최소공배수)을 각각 구하는 요구가 같다. 새 유형의 소속은 공약수 단원 하나로 통일했다."
+    },
+    {
+      "id": "b2aac07e-fefd-4adb-8102-b6da90cce3d7",
+      "problemCode": "J10104-A74-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "2ab1cfb124970f15f626508cedd733601d1eb205e67494193eec1be2c9719c76",
+      "typeKey": "1-1|교과서 수와 연산|N02",
+      "reason": "두 수·세 수의 최소공배수 계산이며, 자연수·소인수 표시와 단일·복수 소문항을 지원한다."
+    },
+    {
+      "id": "5e0e0875-5aa9-44dc-be64-82ca5d04d02f",
+      "problemCode": "J10101-B18-001",
+      "groupId": "v-m1-core-prime-list-e30a5ede",
+      "recordSha256": "942045e014188127b8c5e6dd3f05c9271b5326636bed71cf5baba1f464a50008",
+      "visualEvidence": {
+        "method": "직접 view_image 로 그림의 모든 숫자와 이름표를 읽음",
+        "files": [
+          {
+            "position": 1,
+            "url": "/figures/tb/cd4c564522ee11d3/tb-cd4c564522ee11d3-0-1-1.png",
+            "sha256": "409c06c65835c6f074e7e319ceb386660a7c86937bef7242d5655119444c76b3",
+            "bytes": 2362
+          }
+        ]
+      },
+      "typeKey": "1-1|소인수분해|01",
+      "reason": "그림은 자연수의 단순 목록이다. 소수의 개수 하나를 묻는 것을 직접 확인하여 기존 목록의 소수 개수 키를 재사용한다. 원본 목록은 옮기지 않는다."
+    },
+    {
+      "id": "e3bf6a5a-5f42-4817-866d-518dd9ffd968",
+      "problemCode": "J10101-A85-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "6fd17fd9b4fea640a11bee4223feed3b1a073bbdc9d5e655be0524ea6e2bf45f",
+      "reason": "목록의 합성수 개수. 1을 소수와 합성수 양쪽에서 제외한다.",
+      "typeKey": "1-1|교과서 수와 연산|N06"
+    },
+    {
+      "id": "a28bd6ef-9ffe-44dd-840e-c0f2c90c2000",
+      "problemCode": "J10101-B12-001",
+      "groupId": "m1-b-prime-list",
+      "recordSha256": "d778e1e6d2a3cfd8497e9a2498c001afe63fd0926b040b1125b2738acfb2e469",
+      "reason": "목록의 소수와 합성수 개수를 각각 쓰는 모드로 두 답을 보존한다.",
+      "typeKey": "1-1|교과서 수와 연산|N06"
+    },
+    {
+      "id": "cfdb7e6f-a7f7-4119-a864-f7258863cded",
+      "problemCode": "J10103-A19-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "8d731607efa02e8b86b1c4e254e02e272d75fa7b78aca5224d5ce7ee85bdb350",
+      "reason": "하한과 상한을 포함한 구간에서 서로소 개수를 세는 모드를 지원한다.",
+      "typeKey": "1-1|교과서 수와 연산|N07"
+    },
+    {
+      "id": "981a37a9-0728-4665-80b0-5bacf8dd468d",
+      "problemCode": "J10103-A30-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "9423a6c15f8c6e7dae787e25a96a018a24f40ca0b40e946ef0cbd7f5be0d9118",
+      "reason": "구간 양 끝을 제외하는 서로소 개수 모드를 지원한다.",
+      "typeKey": "1-1|교과서 수와 연산|N07"
+    },
+    {
+      "id": "8d45adbd-56f8-4f63-ac47-8b7589db1652",
+      "problemCode": "J10103-A42-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "cd5059232c51c23f6eeaa1c77d493e96ac0ddcd6a0ac097c4e116a0cb39820ce",
+      "reason": "소인수 표시 두 수의 공약수 개수 모드를 추가했다. 생성기의 지수 조합과 시험의 약수 전수 탐색을 대조한다.",
+      "typeKey": "1-1|교과서 수와 연산|N08"
+    },
+    {
+      "id": "786799df-c3f4-48c2-bbaa-42d9f0670ff0",
+      "problemCode": "J10103-A62-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "25cd586ef627389fbcd26178552299373569d10055ba1c1d165a4dede0b872da",
+      "reason": "짝수 공약수 개수 모드. 소인수 2의 지수가 양수라는 조건을 유지한다.",
+      "typeKey": "1-1|교과서 수와 연산|N08"
+    },
+    {
+      "id": "4b80ebc9-9288-4af8-9e97-60678d4d81f3",
+      "problemCode": "J10103-A85-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "c7c71136c57bc0652ec72567470eeeabb59735d384cf3e0ebd3d36f86ab8baae",
+      "reason": "서로소인 짝수만 세는 조건을 지원한다. 생성기는 포함과 배제, 시험은 원래 후보 전수 탐색으로 검산한다.",
+      "typeKey": "1-1|교과서 수와 연산|N07"
+    },
+    {
+      "id": "474ae73a-e734-4041-a19f-79e684b6fcb0",
+      "problemCode": "J10104-A23-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "ec1387570383da8d833fc6197073c3c659bb95ff6a50080130008368bc43bd77",
+      "reason": "주어진 최소공배수에서 두 자리 공배수를 세는 모드. 10 이상 99 이하를 전수 검산한다.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "50329921-7881-42b0-90b8-95102a057bdf",
+      "problemCode": "J10104-A29-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "2218dbeed39d83f3edb18f1b16315bb7ecbc05917f98a1afa18d8d4ffc65b42d",
+      "reason": "목표 수에 가장 가까운 공배수 모드. 양쪽 거리가 같아 답이 둘이 되는 생성은 제외한다.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "ecf14df4-01b5-4fe6-9806-6f5c9833ba2c",
+      "problemCode": "J10104-A51-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "9d81580c41c946020e7fbfc47a8f946dc03d935ebde67206bcb18916102a5bf6",
+      "reason": "세 수의 k번째 공배수를 소인수분해하여 쓴다. 수치와 소수 밑 및 중복 없는 지수 표현을 검산한다.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "d77523e1-15cb-4622-b140-9b5746bf50dc",
+      "problemCode": "J10104-A63-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "2b75d3f94c4f7b8e262445c20d5616c1d8e26652bcdabca3a63938b820225f8a",
+      "reason": "목표 수에 가장 가까운 공배수 모드. 후보 전수 열거 및 거리 정렬로 최소성과 유일성을 검산한다.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "9ee7f7a8-870d-4be3-8360-d060f7670d3f",
+      "problemCode": "J10104-A71-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "8667f5a695a1b17532cf9cc9996226d385068c05c17d185c3ec104ecfd7c09b8",
+      "reason": "주어진 최소공배수에서 상한 미만 공배수 개수를 세는 모드.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "6ea4484e-7092-4860-b47c-855d0f20856a",
+      "problemCode": "J10104-A76-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "2f68f0a556cc786452425a98091a0fc4e934a42d00319fd4b982dd9a35314e0b",
+      "reason": "주어진 최소공배수에서 상한 미만 공배수 개수를 세는 모드.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    },
+    {
+      "id": "d074bf66-8ded-4194-aff1-40078c2d051f",
+      "problemCode": "J10104-A77-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "d5780be878a88258ac0b8733aa6ad2e6352c31479d91aaad9c39b3fdcc2ee417",
+      "reason": "주어진 최소공배수에서 상한 미만 공배수 개수를 세는 모드.",
+      "typeKey": "1-1|교과서 수와 연산|N02"
+    }
+  ],
+  "deferred": [
+    {
+      "id": "8502b4be-9b2b-4625-8e84-fffd0a1b1464",
+      "problemCode": "J10101-A26-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "e6cb9249715f313c1d705881a5b65b68567e9014ce5a31635ef8fb57eee3a922",
+      "reason": "거듭제곱의 뜻·읽기를 선택하는 개념 소문항이 섞여 있어 반복 곱 변환만으로 대체하지 않는다."
+    },
+    {
+      "id": "05fb0d19-a365-422b-94f7-23de3204f139",
+      "problemCode": "J10101-B04-001",
+      "groupId": "m1-b-power-product",
+      "recordSha256": "0f5ddb016fda55901a1fe05dfb3a78e67ae9de6486bec81a9c42b9e9476bdbc9",
+      "reason": "거듭제곱으로 묶은 뒤 세 지수의 합을 구해야 한다. 단순 변환 답과 다르다."
+    },
+    {
+      "id": "0814d2e2-251e-4fd9-b385-015fd2765f5e",
+      "problemCode": "J10102-B42-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "3bfd0385d94161e0a9673e0f99a48fc9c12426a04762ba13439c3cf82ed05fda",
+      "reason": "빈칸에 후보를 대입한 뒤 약수 개수가 조건과 같은지 판별한다. 주어진 수의 약수 선택과 다른 요구다."
+    },
+    {
+      "id": "5964f449-5ec5-4d3a-94e7-0f1ec2c443c8",
+      "problemCode": "J10102-B50-001",
+      "groupId": "m1-b-divisor-selection",
+      "recordSha256": "1295c73a65de47005759df022923788ef0164a60d1749b4cae512b0a30c194ab",
+      "reason": "이름표 조합 보기에서 약수 셋을 고른다. 새 키의 직접 후보 선택(정답 둘)과 같다고 확정하지 않는다."
+    },
+    {
+      "id": "5ff5b7a2-4714-4bae-9f41-ebe481e7ce26",
+      "problemCode": "J10103-A31-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "904ad76ec3f2588e9e62a8c9e3fe5df48f31cebb266dfb286422fdac6743297f",
+      "reason": "각 수의 약수→공약수→최대공약수의 단계별 네 물음이다. 독립 계산 묶음으로 줄이면 요구를 잃으므로 보류."
+    },
+    {
+      "id": "8c62a302-44e5-40da-94de-5395bd1e9313",
+      "problemCode": "J10103-A86-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "c8402eb11c8b08057fb68c4faa95a6473dd7dfcd46be0677695f68f28675b388",
+      "reason": "3의 배수인 공약수의 합을 다시 소인수분해하는 복합 요구가 필요하다."
+    },
+    {
+      "id": "6c46b7f1-469b-421e-966f-0b49e86365e6",
+      "problemCode": "J10103-A95-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "a6d36709cacbaeaf5b07ddbdb18ed63bf45fd24da0dc7b104706900fec733795",
+      "reason": "이름표 조합 보기를 고르는 구조다. 직접 수쌍 선택으로의 대응을 이번에 확정하지 않았다."
+    },
+    {
+      "id": "4b4614e5-160e-494e-aab8-5988d8628e9a",
+      "problemCode": "J10103-A96-001",
+      "groupId": "m1-b-coprime-selection",
+      "recordSha256": "2be1c25fd17b314f28ca39ec18a42b291c7cf8a47aa03872eeb1e935e34c2d61",
+      "reason": "정답 셋인 이름표 목록. 제품의 모두 선택 정답 둘 규칙과 직접 대응하지 않는다."
+    },
+    {
+      "id": "b0303517-9c58-4694-9b6b-05dff21940cf",
+      "problemCode": "J10103-B02-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "3785fd92fc58dae4a16dcb21066f76a4b9fe43af5fc0686cace15f80e6de25d5",
+      "reason": "이름표 조합 보기에서 공약수 셋을 고르는 구조다. 새 키의 직접 후보 선택(정답 둘)과 같다고 확정하지 않는다."
+    },
+    {
+      "id": "7739b9a8-2d5e-4bbf-8c18-ab378bb337d3",
+      "problemCode": "J10103-B03-001",
+      "groupId": "m1-b-gcd",
+      "recordSha256": "4fa69e85831c914902e703e076ac08d39b22bc23fd8e84b569bcd6d3f21585d8",
+      "reason": "이름표 조합 보기에서 공약수 셋을 고르는 구조다. 새 키의 직접 후보 선택(정답 둘)과 같다고 확정하지 않는다."
+    },
+    {
+      "id": "c9683198-c63e-48ac-853e-cfdccf68f5db",
+      "problemCode": "J10104-A57-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "a0344cb3e4328603e69552efe0b11dba3ee26e2e694b28ce18434c24c82c8eb8",
+      "reason": "공배수 후보 선택. 새 선택 유형은 약수·공약수이며 배수 후보 판별로 일반화하지 않았다."
+    },
+    {
+      "id": "573d61e7-0bff-475d-8197-8e5f212a71ef",
+      "problemCode": "J10104-A59-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "240d6ec865b385f6a41180b69ea4ded2e8f1d430dcbc4b73a196fffcb5b038c1",
+      "reason": "공배수 후보 선택. 새 선택 유형은 약수·공약수이며 배수 후보 판별로 일반화하지 않았다."
+    },
+    {
+      "id": "0f65f50f-ed3f-48c0-94d2-9dd819623b40",
+      "problemCode": "J10104-A60-001",
+      "groupId": "m1-b-lcm",
+      "recordSha256": "266774b04c2bdd77b470c711c5c30554e8bef6502807fbbccaeeaa754705d4d4",
+      "reason": "각 묶음마다 최소공배수와 첫 세 공배수를 함께 쓰는 단계형 요구가 남아 있다."
+    },
+    {
+      "id": "9c022d79-86fd-4c3c-9385-ee0e3ccde730",
+      "problemCode": "J10101-B19-001",
+      "groupId": "v-m1-core-prime-list-e30a5ede",
+      "recordSha256": "449e17679f8a1436458647b0d598f9ad138b49e686001b2af4afa1372c56f459",
+      "visualEvidence": {
+        "method": "직접 view_image 로 그림의 모든 숫자와 이름표를 읽음",
+        "files": [
+          {
+            "position": 1,
+            "url": "/figures/tb/d1bf1b0d5359120b/tb-d1bf1b0d5359120b-0-5-1.png",
+            "sha256": "2712b99f51e799a8b4fa5f0b589ddea953fff388cb524f33e20449ac817b295a",
+            "bytes": 4641
+          }
+        ]
+      },
+      "reason": "그림의 이름표 목록과 정답은 소수 네 개의 조합을 고르는 형태이다. 기존 소수 개수 또는 새 직접 후보 선택(정답 둘)로 줄이지 않고 보류한다."
+    }
+  ],
+  "validation": {
+    "red": "2026-11-25 20:08 KST: 새 시험의 미구현 모듈 import 실패를 확인",
+    "green": "14 tests passed; 새 9키 × 120씨앗, 재사용 4키 × 60씨앗. --maxWorkers=1",
+    "lint": "eslint 2개 파일 exit 0",
+    "oracle": "생성기: 소인수 지수 합성·약수 지수 조합. 시험: 지면 TeX를 약분 없는 BigInt로 읽고 약수·배수 전수 탐색. 거듭제곱은 양변 교차곱과 밑 중복·지수 0/1 검사를 함께 한다.",
+    "commands": [
+      "npx vitest run src/__tests__/unit/middleTextbookNumber.test.ts --maxWorkers=1",
+      "npx eslint src/lib/middle/m1TextbookNumber.ts src/__tests__/unit/middleTextbookNumber.test.ts"
+    ],
+    "publicSamples": {
+      "seeds": [
+        20261125,
+        173,
+        9049
+      ],
+      "newTypes": 9,
+      "reusedTypes": 4,
+      "generated": 39,
+      "generationErrors": 0,
+      "read": "39개 발문과 정답을 직접 읽어 계산 구조·소문항 차례·유형 난이도를 확인했다. N07 고정 기준 수 갈래는 추가 씨앗 0도 읽었다.",
+      "difficulty": "등록 기본 9개. public entrypoint의 기존 연산 규칙이 N05만 연산으로 내린다. 다른 8키는 기본. 난이도 공용 규칙은 바꾸지 않았다."
+    },
+    "followUp": {
+      "additionalRows": 14,
+      "newKeysAdded": 0,
+      "red": "2026-11-25 20:17 KST 새 개수 모드 부재로 4시험 실패; 20:20 최근접/k번째 모드 부재로 N02 1시험 실패",
+      "green": "14시험 통과, 9키 각 120씨앗과 재사용 4키 각 60씨앗. 신규 모드의 실제 등장도 검사한다.",
+      "publicReread": {
+        "seeds": [
+          20261125,
+          173,
+          9049
+        ],
+        "changedKeys": [
+          "N02",
+          "N06",
+          "N07",
+          "N08"
+        ],
+        "generated": 12,
+        "generationErrors": 0,
+        "extraWitnesses": [
+          [
+            "N02",
+            19,
+            "두 자리 공배수"
+          ],
+          [
+            "N02",
+            5,
+            "최근접 공배수"
+          ],
+          [
+            "N02",
+            8,
+            "세 수 k번째 공배수"
+          ],
+          [
+            "N06",
+            1,
+            "소수/합성수 각각 개수"
+          ],
+          [
+            "N07",
+            0,
+            "서로소인 짝수 개수"
+          ],
+          [
+            "N08",
+            7,
+            "짝수 공약수 개수"
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "groupId": "v-m1-core-rational-division-image-07779dd2",
+      "decision": "기존 계산 골격의 확장·새 키",
+      "reason": "원본에서 식만 래스터로 실린 것을 직접 읽었다. 도형이 아닌 수식이므로 기존 텍스트 계산 꼴로 자체 저작하며, 혼합 소문항 1행은 제외한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|C05"
+      ],
+      "reviewedCodes": [
+        "J10205-C12-001",
+        "J10205-C14-001"
+      ]
+    },
+    {
+      "groupId": "v-m1-core-rational-product-image-dea229b9",
+      "decision": "기존 계산 골격의 확장·새 키",
+      "reason": "원본에서 식만 래스터로 실린 것을 직접 읽었다. 도형이 아닌 수식이므로 기존 텍스트 계산 꼴로 자체 저작하며, 혼합 소문항 1행은 제외한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|C02"
+      ],
+      "reviewedCodes": [
+        "J10204-B89-001",
+        "J10204-B90-001"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "b6ac486a-61c8-46a9-8be6-4184506ef1c9",
+      "problemCode": "J10204-B89-001",
+      "groupId": "v-m1-core-rational-product-image-dea229b9",
+      "typeKey": "1-1|교과서 수와 연산|C02",
+      "reason": "그림에서 소수·분수가 포함된 세 수 곱의 네 소문항을 직접 읽음. C02의 부호·분자·분모 묶어 곱하기와 같은 계산 골격."
+    },
+    {
+      "id": "17393cc7-d647-42a8-9ec6-fae4ec449176",
+      "problemCode": "J10205-C12-001",
+      "groupId": "v-m1-core-rational-division-image-07779dd2",
+      "typeKey": "1-1|교과서 수와 연산|C05",
+      "reason": "그림에서 정수·소수 두 수 나눗셈 네 소문항을 직접 읽음. C05의 소수/분수 표현과 단일/복수 나눗셈으로 대응."
+    },
+    {
+      "id": "97a90345-9e71-42d5-88b0-7842c80673e5",
+      "problemCode": "J10205-C14-001",
+      "groupId": "v-m1-core-rational-division-image-07779dd2",
+      "typeKey": "1-1|교과서 수와 연산|C05",
+      "reason": "그림에서 정수·분수·소수 나눗셈 네 소문항을 직접 읽음. 제수 비영·역수 곱셈인 C05로 대응."
+    }
+  ],
+  "deferred": [
+    {
+      "id": "a196fae3-9be8-4dcb-8081-05cf830dce00",
+      "problemCode": "J10204-B90-001",
+      "groupId": "v-m1-core-rational-product-image-dea229b9",
+      "reason": "그림의 첫 소문항은 네 수의 곱, 둘째는 거듭제곱을 포함한 곱. C02/C03 단일 가족이 이 혼합 소문항을 보장하지 않아 제외."
+    }
+  ],
+  "visualEvidence": [
+    {
+      "problemCode": "J10204-B89-001",
+      "method": "local-image-direct-view",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/c3741ab1e5ee0e94/tb-c3741ab1e5ee0e94-0-1-1.png",
+          "sha256": "ad7047e14e7b8dcbc4ec96e6c01bcc7bd3941671abd6a3732badd292e6c3a1ec",
+          "bytes": 11502
+        }
+      ]
+    },
+    {
+      "problemCode": "J10205-C12-001",
+      "method": "local-image-direct-view",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-1-1.png",
+          "sha256": "acc88766b9a48c629de69047b82cc7c2ee4ac2d45901c2412db234c1e8c09415",
+          "bytes": 6582
+        }
+      ]
+    },
+    {
+      "problemCode": "J10205-C14-001",
+      "method": "local-image-direct-view",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-3-1.png",
+          "sha256": "e17ca987bbb1c21a35720b84d12257cca3fb7b3d451cc8805c45aef8f93d58a0",
+          "bytes": 8683
+        }
+      ]
+    },
+    {
+      "problemCode": "J10204-B90-001",
+      "method": "local-image-direct-view",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/c3741ab1e5ee0e94/tb-c3741ab1e5ee0e94-0-3-1.png",
+          "sha256": "3a04275ae6bd73ca71593e17c587dffe808f0801c5e92817567d30cb2386c3f5",
+          "bytes": 4682
+        }
+      ]
+    }
+  ]
+}

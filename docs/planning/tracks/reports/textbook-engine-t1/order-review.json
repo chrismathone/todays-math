@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": 1,
+  "visualEvidence": [
+    {
+      "id": "31e7adb9-46b2-44ba-a0d3-604367d6b8b0",
+      "problemCode": "J10202-B29-001",
+      "method": "실제 로컬 이미지 직접 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/d0821df3f1a0a971/tb-d0821df3f1a0a971-0-4-1.png",
+          "sha256": "134b28684b0b20201e05a9ce417a268d0f50e474060bf1bf4ff6b866f8fb6432",
+          "bytes": 2992
+        }
+      ]
+    },
+    {
+      "id": "e03b302b-d367-42e1-b714-e75b34d34731",
+      "problemCode": "J10202-B31-001",
+      "method": "실제 로컬 이미지 직접 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/0df9b1da2657d66b/tb-0df9b1da2657d66b-0-2-1.png",
+          "sha256": "ffb1865c814e557112c2bd8d6e0eadabf2c490a20c3244607ec5a0545dd5caf6",
+          "bytes": 13073
+        }
+      ]
+    },
+    {
+      "id": "930ea512-a637-45b1-8ce1-4870e12fe7d6",
+      "problemCode": "J10205-C13-001",
+      "method": "실제 로컬 이미지 직접 열람",
+      "files": [
+        {
+          "position": 1,
+          "url": "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-2-1.png",
+          "sha256": "984c406ce2846581f9d15a16632a99934a64b643766f2159a21d5df571af671e",
+          "bytes": 3201
+        }
+      ]
+    }
+  ],
+  "reviewDate": "2026-11-25",
+  "method": "9개 묶음의 87개 원문 발문·정답을 모두 읽고 직접 생성기 소스와 대조. 이미지 기반 3행은 연결된 로컬 그림 3개도 실제 열람했다. 수학 조건·요구 답이 맞는 행에만 원장 추천. 긴 원문과 출판 문장은 저장하지 않았다. 문항별 씨앗은 공개 generateMiddleProblem(key, seed, 0)로 직접 찾은 구조 견본이며 문항 본문·정답 해시로 확인 가능하다.",
+  "sourceSha256": "eb798a7e18b844b1fe4a2147ac0c3dc10cd8c1b00eb5f72a68432e7107496258",
+  "sourceRows": 8502,
+  "reviewedRows": 87,
+  "acceptedRows": 71,
+  "deferredRows": 16,
+  "groups": [
+    {
+      "groupId": "m1-b-rational-classify",
+      "name": "수 목록을 정수·자연수·유리수로 분류",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "기존 02의 개수 갈래를 재사용한다. 선택·복수 분류·개수의 합은 같은 분류 골격의 확장이지만 기존 씨앗을 보존하려고 O01 새 키로 분리했다. 절댓값 조건 역산 3행은 제외한다.",
+      "typeKeys": [
+        "1-1|정수와 유리수|02",
+        "1-1|교과서 수와 연산|O01"
+      ],
+      "reviewedCodes": [
+        "J10201-A18-001",
+        "J10201-A20-001",
+        "J10201-A23-001",
+        "J10201-A28-001",
+        "J10201-A32-001",
+        "J10201-A36-001",
+        "J10201-A43-001",
+        "J10201-A44-001",
+        "J10201-A48-001",
+        "J10201-A50-001",
+        "J10201-A66-001",
+        "J10201-A71-001",
+        "J10201-A74-001",
+        "J10201-A77-001",
+        "J10201-A90-001",
+        "J10201-A97-001",
+        "J10201-A98-001",
+        "J10201-A99-001",
+        "J10201-B04-001",
+        "J10201-B05-001",
+        "J10201-B08-001",
+        "J10201-B10-001"
+      ],
+      "reviewedRows": 22,
+      "acceptedRows": 19,
+      "deferredRows": 3
+    },
+    {
+      "groupId": "m1-b-inequality-notation",
+      "name": "수의 범위를 부등호로 표현",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "정수 양끝 범위 단일 문항은 기존 12를 재사용한다. 한쪽·분수·소수·절댓값 경계 및 소문항 묶음은 기존 출력을 바꾸므로 O02 새 키로 확장한다. 조건 추론/계수 결합 3행은 제외한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O02",
+        "1-1|정수와 유리수|12"
+      ],
+      "reviewedCodes": [
+        "J10202-A20-001",
+        "J10202-A28-001",
+        "J10202-A31-001",
+        "J10202-A57-001",
+        "J10202-A62-001",
+        "J10202-A63-001",
+        "J10202-A64-001",
+        "J10202-A65-001",
+        "J10202-A66-001",
+        "J10202-A70-001",
+        "J10202-A71-001",
+        "J10202-A84-001",
+        "J10202-A91-001",
+        "J10202-A92-001",
+        "J10202-A95-001",
+        "J10202-A96-001",
+        "J10202-B03-001",
+        "J10202-B05-001",
+        "J10202-B11-001"
+      ],
+      "reviewedRows": 19,
+      "acceptedRows": 16,
+      "deferredRows": 3
+    },
+    {
+      "groupId": "m1-b-order-list",
+      "name": "수 목록의 대소 비교·정렬",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "기존 11의 지정 순위와 20의 절댓값 최대를 재사용한다. 전체 순서·최대최소 및 대분수/절댓값 표현을 O03 새 키로 확장한다. 구간 안 절댓값 최대는 O04에 연결한다. 진술·문자·극값의 추가 계산 5행은 제외한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O03",
+        "1-1|정수와 유리수|20",
+        "1-1|교과서 수와 연산|O04",
+        "1-1|정수와 유리수|11"
+      ],
+      "reviewedCodes": [
+        "J10202-A29-001",
+        "J10202-A38-001",
+        "J10202-A39-001",
+        "J10202-A41-001",
+        "J10202-A52-001",
+        "J10202-A60-001",
+        "J10202-A61-001",
+        "J10202-A72-001",
+        "J10202-A75-001",
+        "J10202-A87-001",
+        "J10202-B08-001",
+        "J10202-B12-001",
+        "J10202-B13-001",
+        "J10202-B15-001",
+        "J10202-B16-001",
+        "J10202-B19-001",
+        "J10202-B21-001",
+        "J10202-B22-001"
+      ],
+      "reviewedRows": 18,
+      "acceptedRows": 13,
+      "deferredRows": 5
+    },
+    {
+      "groupId": "m1-b-integer-interval",
+      "name": "구간·절댓값 조건의 정수 집계",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "열린 유리수 구간의 정수 개수는 기존 13을 재사용한다. 양끝 포함 여부와 유리수 절댓값 경계를 O04 새 키로 확장한다. 부호 조건의 범위·절댓값 모집단 개수 차·범위 차집합도 O04에 더했다. 미구현 범위 계산·두 조건 결합·가우스·기약분수 5행은 제외한다.",
+      "typeKeys": [
+        "1-1|정수와 유리수|13",
+        "1-1|교과서 수와 연산|O04"
+      ],
+      "reviewedCodes": [
+        "J10202-A16-001",
+        "J10202-A18-001",
+        "J10202-A36-001",
+        "J10202-A44-001",
+        "J10202-A45-001",
+        "J10202-A46-001",
+        "J10202-A50-001",
+        "J10202-A76-001",
+        "J10202-A79-001",
+        "J10202-A83-001",
+        "J10202-B01-001",
+        "J10202-B02-001",
+        "J10202-B07-001",
+        "J10202-B17-001",
+        "J10202-B30-001"
+      ],
+      "reviewedRows": 15,
+      "acceptedRows": 10,
+      "deferredRows": 5
+    },
+    {
+      "groupId": "m1-b-abs-direct",
+      "name": "절댓값의 직접 계산과 양·음수 복원",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "기존 07·09·10은 절댓값을 이용한 추가 계산/거리·한쪽 수를 요구한다. 직접 절댓값 및 양음 두 수 복원은 O05 새 키로 좁게 구현한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O05"
+      ],
+      "reviewedCodes": [
+        "J10201-A24-001",
+        "J10201-A25-001",
+        "J10201-A26-001",
+        "J10201-A27-001",
+        "J10201-A56-001",
+        "J10201-A62-001"
+      ],
+      "reviewedRows": 6,
+      "acceptedRows": 6,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "m1-b-reciprocals",
+      "name": "여러 수의 역수를 한꺼번에 쓰기",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "기존 18·72의 역수 골격을 여러 정수·분수·소수 소문항으로 확장한다. 기존 씨앗 출력을 보존하려고 O06 새 키로 분리한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O06"
+      ],
+      "reviewedCodes": [
+        "J10205-A62-001",
+        "J10205-A69-001",
+        "J10205-B23-001",
+        "J10205-B77-001"
+      ],
+      "reviewedRows": 4,
+      "acceptedRows": 4,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "v-m1-core-range-notation-c52f466b",
+      "name": "범위 표현과 부등호",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "그림 1개 직접 열람. 도식이 아니라 세 조건의 문장 이미지이다. O02의 동일한 한쪽/양쪽 부등호 소문항으로 확장해 대체한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O02"
+      ],
+      "reviewedCodes": [
+        "J10202-B31-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 1,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "v-m1-core-absolute-values-c52f466b",
+      "name": "유리수 절댓값 계산",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "그림 1개 직접 열람. 정수·분수·0·소수 네 수의 절댓값 소문항이며 O05 배치로 확장한다. census mid였으나 직접 절댓값만 묻는 실제 생성물 기준 기본으로 정했다. 원문 단원은 수의 대소관계이나 직접 절댓값이라는 동일 수학 유형에 따라 엔진의 정수와 유리수 단원 O05로 연결했다(출판 단원 배치 차이).",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O05"
+      ],
+      "reviewedCodes": [
+        "J10202-B29-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 1,
+      "deferredRows": 0
+    },
+    {
+      "groupId": "v-m1-core-rational-reciprocal-image-07779dd2",
+      "name": "이미지 수식의 역수",
+      "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+      "reason": "그림 1개 직접 열람. 유리수의 역수 네 소문항이므로 O06의 같은 골격과 본문 지면으로 대체한다.",
+      "typeKeys": [
+        "1-1|교과서 수와 연산|O06"
+      ],
+      "reviewedCodes": [
+        "J10205-C13-001"
+      ],
+      "reviewedRows": 1,
+      "acceptedRows": 1,
+      "deferredRows": 0
+    }
+  ],
+  "rows": [
+    {
+      "id": "25932508-2208-4039-9f00-831091a6c466",
+      "problemCode": "J10201-A18-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "b5179b632ba2e96e20ed534b101e82be890f34509ea39dc1dda1523d2a5b7fdb",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "692ad44f-2633-46fd-9ccd-9f00496c1b2a",
+      "problemCode": "J10201-A20-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "fae8bf83a652084a132a32a7afa55754fe3751445634b49c8cf24fefe10683b1",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "64e86277-6fba-4d7d-81e0-83c0483fb449",
+      "problemCode": "J10201-A23-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "be09a4456bd0a20c3928fee4dbe241d3388c4f5afacffe109fc1610c3e713f1c",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "f3f6c4f4-7fc1-4eca-98e0-cf6300a4780a",
+      "problemCode": "J10201-A28-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "양의 정수(자연수)를 목록에서 골라 쓰는 선택 갈래이다. 기존 02는 개수만 물어 새 키에서 선택을 추가했다.",
+      "recordSha256": "70616713ad4b979dc6371334be1c3d095cadbac82a841e1c83bc013f3792c1f7",
+      "evidence": {
+        "seed": 50,
+        "variant": 0,
+        "contentAnswerSha256": "116eb471e3bcbb67bd92087666d39db849715c367c2189762697953e6bec50ad",
+        "facts": {
+          "count": 7,
+          "mode": 0,
+          "category": 0,
+          "otherCategory": 1,
+          "n0": 5,
+          "d0": 1,
+          "form0": 0,
+          "n1": -12,
+          "d1": 2,
+          "form1": 3,
+          "n2": 6,
+          "d2": 6,
+          "form2": 3,
+          "n3": -1,
+          "d3": 6,
+          "form3": 1,
+          "n4": 24,
+          "d4": 4,
+          "form4": 3,
+          "n5": 18,
+          "d5": 6,
+          "form5": 3,
+          "n6": -64,
+          "d6": 10,
+          "form6": 2
+        }
+      }
+    },
+    {
+      "id": "d5265532-3799-4961-8ef6-709c0fc4f498",
+      "problemCode": "J10201-A32-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "정수가 아닌 유리수 하나를 목록에서 판별한다. 대응 견본도 해당 수가 정확히 하나인 선택 갈래로 확인했다.",
+      "recordSha256": "edd92d288c3d519ea0fa578b25328d4ca298cfc3a553cb589328597946d5e5cd",
+      "evidence": {
+        "seed": 152,
+        "variant": 0,
+        "contentAnswerSha256": "b3eede2591aa76c54bdf6b6ae4e75fcda5c9d4d9d34baae5cd5e74ee6d806348",
+        "facts": {
+          "count": 6,
+          "mode": 0,
+          "category": 2,
+          "otherCategory": 0,
+          "n0": -36,
+          "d0": 6,
+          "form0": 3,
+          "n1": -5,
+          "d1": 1,
+          "form1": 0,
+          "n2": -16,
+          "d2": 4,
+          "form2": 3,
+          "n3": 12,
+          "d3": 2,
+          "form3": 3,
+          "n4": -6,
+          "d4": 6,
+          "form4": 3,
+          "n5": 12,
+          "d5": 10,
+          "form5": 2
+        }
+      }
+    },
+    {
+      "id": "41a8ade4-e319-4716-bfbb-bd3e5c9c0528",
+      "problemCode": "J10201-A36-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "음수가 아닌 정수에 0을 포함하는 분류 개수 갈래이다.",
+      "recordSha256": "8704b0afd12ee7d7b2e184231b24370ed011375e81f672de7b9bfdf2aaea39f6",
+      "evidence": {
+        "seed": 141,
+        "variant": 0,
+        "contentAnswerSha256": "4fbd70e947ecb34f16742b68be87a5e343ce5cc68e3aafc9d7da9b4db4d30cd2",
+        "facts": {
+          "count": 8,
+          "mode": 1,
+          "category": 5,
+          "otherCategory": 0,
+          "n0": -6,
+          "d0": 1,
+          "form0": 0,
+          "n1": 32,
+          "d1": 7,
+          "form1": 1,
+          "n2": 4,
+          "d2": 4,
+          "form2": 3,
+          "n3": -53,
+          "d3": 10,
+          "form3": 2,
+          "n4": -21,
+          "d4": 3,
+          "form4": 3,
+          "n5": 7,
+          "d5": 6,
+          "form5": 1,
+          "n6": -8,
+          "d6": 4,
+          "form6": 3,
+          "n7": 0,
+          "d7": 1,
+          "form7": 0
+        }
+      }
+    },
+    {
+      "id": "3542f809-40ad-4626-b99a-98879c3863a0",
+      "problemCode": "J10201-A43-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "정수가 아닌 유리수 하나를 목록에서 판별한다. 대응 견본도 해당 수가 정확히 하나인 선택 갈래로 확인했다.",
+      "recordSha256": "4da3e3c200281234927a500d2e805a07c2411718c4a4fabcea11dd6debf454fb",
+      "evidence": {
+        "seed": 152,
+        "variant": 0,
+        "contentAnswerSha256": "b3eede2591aa76c54bdf6b6ae4e75fcda5c9d4d9d34baae5cd5e74ee6d806348",
+        "facts": {
+          "count": 6,
+          "mode": 0,
+          "category": 2,
+          "otherCategory": 0,
+          "n0": -36,
+          "d0": 6,
+          "form0": 3,
+          "n1": -5,
+          "d1": 1,
+          "form1": 0,
+          "n2": -16,
+          "d2": 4,
+          "form2": 3,
+          "n3": 12,
+          "d3": 2,
+          "form3": 3,
+          "n4": -6,
+          "d4": 6,
+          "form4": 3,
+          "n5": 12,
+          "d5": 10,
+          "form5": 2
+        }
+      }
+    },
+    {
+      "id": "65b9959e-2df1-4431-8901-2993526001a2",
+      "problemCode": "J10201-A44-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "목록의 음의 정수 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "e93046a43d3d73c24171f1151a8b473fde0af11992b8647bc1b09df39ad9ea72",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "173de3c683ee750cbeb1ef200d9b2ac017db352c13f51c7d86eb587ac4de8393",
+        "facts": {
+          "kind": 1,
+          "n": 6,
+          "answer": 1,
+          "n1": 5,
+          "d1": 3,
+          "n2": 16,
+          "d2": 4,
+          "n3": -4,
+          "d3": 2,
+          "n4": 7,
+          "d4": 4,
+          "n5": 13,
+          "d5": 10,
+          "n6": 44,
+          "d6": 10
+        }
+      }
+    },
+    {
+      "id": "5b13c7f7-dda5-4515-821b-4872e7c135d5",
+      "problemCode": "J10201-A48-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "같은 목록에서 양의 정수와 음의 정수를 두 소문항으로 따로 고르는 갈래이다.",
+      "recordSha256": "6fdfff3e1b5c72944d8f8ac7ef7ed892e10b436581a358060fe2348816c284c9",
+      "evidence": {
+        "seed": 12,
+        "variant": 0,
+        "contentAnswerSha256": "2f1bb5c01230c697f638e4550c5983145430cf7c7c1042cdb14c3f384cd25a87",
+        "facts": {
+          "count": 6,
+          "mode": 2,
+          "category": 0,
+          "otherCategory": 1,
+          "n0": -2,
+          "d0": 6,
+          "form0": 1,
+          "n1": 7,
+          "d1": 1,
+          "form1": 0,
+          "n2": -25,
+          "d2": 5,
+          "form2": 3,
+          "n3": -28,
+          "d3": 4,
+          "form3": 3,
+          "n4": 2,
+          "d4": 1,
+          "form4": 0,
+          "n5": 33,
+          "d5": 10,
+          "form5": 2
+        }
+      }
+    },
+    {
+      "id": "89448452-2c79-458d-9c68-4f38ca6944b4",
+      "problemCode": "J10201-A50-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "e53124b25a5a4f838962deb47987c4b0adf583c458afb93284e8815c89b93204",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "6df79faa-8c22-4001-a4df-b63c0db1ae61",
+      "problemCode": "J10201-A71-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "9edeb22a6bedab938640f5771820ee16c3e43dc08bf685c9a3c4a18f8bb77404",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "8e71dffd-e85c-44b4-a264-72429edfc3f3",
+      "problemCode": "J10201-A74-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "061191ebc1cbbed383ec2fa01e38aa1b00e858856a7bd6fb7742e459be023d25",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "b0cfe892-0f23-47b8-8409-59c49285778a",
+      "problemCode": "J10201-A77-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "양·음의 유리수의 개수를 각각 답하는 갈래이며 0은 양쪽에서 제외한다.",
+      "recordSha256": "41dc6cea1e32412b2179317aab984881b64c6b7f0c296babd75bcd0777a7a864",
+      "evidence": {
+        "seed": 25,
+        "variant": 0,
+        "contentAnswerSha256": "8dc52b4886c9175ef737d91277867e45932c6cbbd16cd2c97e35308abc3343e8",
+        "facts": {
+          "count": 8,
+          "mode": 3,
+          "category": 3,
+          "otherCategory": 0,
+          "n0": 2,
+          "d0": 2,
+          "form0": 3,
+          "n1": 0,
+          "d1": 1,
+          "form1": 0,
+          "n2": -6,
+          "d2": 1,
+          "form2": 0,
+          "n3": 69,
+          "d3": 10,
+          "form3": 2,
+          "n4": -20,
+          "d4": 5,
+          "form4": 3,
+          "n5": -17,
+          "d5": 10,
+          "form5": 2,
+          "n6": 12,
+          "d6": 5,
+          "form6": 1,
+          "n7": -6,
+          "d7": 3,
+          "form7": 3
+        }
+      }
+    },
+    {
+      "id": "c72f1f92-a96f-4aab-9d05-c07564a558ef",
+      "problemCode": "J10201-A90-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "자연수가 아닌 정수의 개수와 정수가 아닌 유리수의 개수를 더하는 갈래이다.",
+      "recordSha256": "c271815a73adf53b25ceda135c069b0325aa65bbf96faeab38d5a17e4b8795c8",
+      "evidence": {
+        "seed": 166,
+        "variant": 0,
+        "contentAnswerSha256": "2f48145b04f110238c41abea42d0bb3b27f17f0cacec77bc38ad2feb95137d94",
+        "facts": {
+          "count": 6,
+          "mode": 4,
+          "category": 6,
+          "otherCategory": 0,
+          "n0": 0,
+          "d0": 1,
+          "form0": 0,
+          "n1": 3,
+          "d1": 1,
+          "form1": 0,
+          "n2": 20,
+          "d2": 4,
+          "form2": 3,
+          "n3": -44,
+          "d3": 10,
+          "form3": 2,
+          "n4": 57,
+          "d4": 10,
+          "form4": 2,
+          "n5": -6,
+          "d5": 3,
+          "form5": 3
+        }
+      }
+    },
+    {
+      "id": "c96ef5ae-3278-4a38-aaad-6c5137162d17",
+      "problemCode": "J10201-A97-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "양의 정수(자연수)를 목록에서 골라 쓰는 선택 갈래이다. 기존 02는 개수만 물어 새 키에서 선택을 추가했다.",
+      "recordSha256": "8b1e5b36eb22bc42dff4ef23ca12b22580d5797fd67b7b350018826e060b2e49",
+      "evidence": {
+        "seed": 50,
+        "variant": 0,
+        "contentAnswerSha256": "116eb471e3bcbb67bd92087666d39db849715c367c2189762697953e6bec50ad",
+        "facts": {
+          "count": 7,
+          "mode": 0,
+          "category": 0,
+          "otherCategory": 1,
+          "n0": 5,
+          "d0": 1,
+          "form0": 0,
+          "n1": -12,
+          "d1": 2,
+          "form1": 3,
+          "n2": 6,
+          "d2": 6,
+          "form2": 3,
+          "n3": -1,
+          "d3": 6,
+          "form3": 1,
+          "n4": 24,
+          "d4": 4,
+          "form4": 3,
+          "n5": 18,
+          "d5": 6,
+          "form5": 3,
+          "n6": -64,
+          "d6": 10,
+          "form6": 2
+        }
+      }
+    },
+    {
+      "id": "7e4806e3-21a8-4ba1-9d0b-a531754a1a87",
+      "problemCode": "J10201-A98-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "음의 정수와 정수가 아닌 유리수의 개수를 따로 세어 합하는 갈래이다.",
+      "recordSha256": "3203a538dcd9ce94e598b9ff3b2045da13cbad18777a3fa30366e30823458b6c",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "50a06c41aceef8be557820e77b17f458a7adb2e81e5ae6ab3fb2fc27380ba2fe",
+        "facts": {
+          "count": 7,
+          "mode": 4,
+          "category": 1,
+          "otherCategory": 0,
+          "n0": 30,
+          "d0": 5,
+          "form0": 3,
+          "n1": 53,
+          "d1": 10,
+          "form1": 2,
+          "n2": -8,
+          "d2": 1,
+          "form2": 0,
+          "n3": -25,
+          "d3": 10,
+          "form3": 2,
+          "n4": -45,
+          "d4": 10,
+          "form4": 2,
+          "n5": 13,
+          "d5": 7,
+          "form5": 1,
+          "n6": 9,
+          "d6": 5,
+          "form6": 1
+        }
+      }
+    },
+    {
+      "id": "4b8e855a-374b-4406-b516-e5825203edb6",
+      "problemCode": "J10201-A99-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "양의 유리수를 목록에서 모두 고르는 갈래이다.",
+      "recordSha256": "320e871a6222fa8bdb6055dfd76c64e974fd0432b43d2b0056088d61af114f84",
+      "evidence": {
+        "seed": 59,
+        "variant": 0,
+        "contentAnswerSha256": "3165a1a4192b0419e7cb7ba89b90dec7d5f1ae237e4fe3de9ff4e31f397cd71d",
+        "facts": {
+          "count": 7,
+          "mode": 0,
+          "category": 3,
+          "otherCategory": 0,
+          "n0": -20,
+          "d0": 4,
+          "form0": 3,
+          "n1": 24,
+          "d1": 10,
+          "form1": 2,
+          "n2": 35,
+          "d2": 5,
+          "form2": 3,
+          "n3": -3,
+          "d3": 1,
+          "form3": 0,
+          "n4": -2,
+          "d4": 1,
+          "form4": 0,
+          "n5": 22,
+          "d5": 8,
+          "form5": 1,
+          "n6": -1,
+          "d6": 4,
+          "form6": 1
+        }
+      }
+    },
+    {
+      "id": "44147cf9-78c9-43e7-8776-4007b9544ec9",
+      "problemCode": "J10201-B08-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|정수와 유리수|02",
+      "reason": "정수로 약분되는 분수·소수·정수가 섞인 목록에서 정수가 아닌 유리수의 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "3e0a7b62e85af3a50c81c7f65dcd47e59c6115eace96f7f3e37a66c64d50e53f",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "64ba1b23075f16d6942bb566069db10d2a28f52d9aa89780bfd746183cd773a9",
+        "facts": {
+          "kind": 3,
+          "n": 7,
+          "answer": 4,
+          "n1": -4,
+          "d1": 5,
+          "n2": 31,
+          "d2": 10,
+          "n3": 4,
+          "d3": 3,
+          "n4": -7,
+          "d4": 4,
+          "n5": -8,
+          "d5": 1,
+          "n6": 8,
+          "d6": 4,
+          "n7": -8,
+          "d7": 2
+        }
+      }
+    },
+    {
+      "id": "4a16c4c8-27fa-44af-9e47-3ddca3c9f954",
+      "problemCode": "J10201-B10-001",
+      "groupId": "m1-b-rational-classify",
+      "typeKey": "1-1|교과서 수와 연산|O01",
+      "reason": "정수가 아닌 유리수를 모두 고른다. 대응 견본도 정답이 두 개인 갈래로 확인했다.",
+      "recordSha256": "d2b83e62c4a8b8c216dff7c44a5dfc5f666f37fac38b42e3052d147dff2263f3",
+      "evidence": {
+        "seed": 360,
+        "variant": 0,
+        "contentAnswerSha256": "45fb58d08ebf22ab8afd9cc2d9d8b9c501c86a507fc524ce92c2224cf4d86674",
+        "facts": {
+          "count": 8,
+          "mode": 0,
+          "category": 2,
+          "otherCategory": 0,
+          "n0": -10,
+          "d0": 3,
+          "form0": 1,
+          "n1": 12,
+          "d1": 4,
+          "form1": 3,
+          "n2": -1,
+          "d2": 1,
+          "form2": 0,
+          "n3": -63,
+          "d3": 10,
+          "form3": 2,
+          "n4": 1,
+          "d4": 1,
+          "form4": 0,
+          "n5": 12,
+          "d5": 6,
+          "form5": 3,
+          "n6": -12,
+          "d6": 4,
+          "form6": 3,
+          "n7": 6,
+          "d7": 1,
+          "form7": 0
+        }
+      }
+    },
+    {
+      "id": "2557968c-6c7b-4490-bdd9-3de0e71f9c6d",
+      "problemCode": "J10202-A20-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "양끝의 범위를 부등호로 바꾸는 세 소문항을 한 문항으로 낸다.",
+      "recordSha256": "d58d09232043a901c9f4ea801e30021cd11ed26259503dd53cb23fc2a7d0ab11",
+      "evidence": {
+        "seed": 80,
+        "variant": 0,
+        "contentAnswerSha256": "9d3dbc531e4903b08573ee38f9c8c261285036f6e4b4932abad08f5f238c18d4",
+        "facts": {
+          "count": 3,
+          "kind0": 0,
+          "loN0": -14,
+          "loD0": 2,
+          "hiN0": 7,
+          "hiD0": 1,
+          "loClosed0": 0,
+          "hiClosed0": 0,
+          "kind1": 0,
+          "loN1": -19,
+          "loD1": 10,
+          "hiN1": 14,
+          "hiD1": 6,
+          "loClosed1": 1,
+          "hiClosed1": 0,
+          "kind2": 0,
+          "loN2": 5,
+          "loD2": 5,
+          "hiN2": 3,
+          "hiD2": 1,
+          "loClosed2": 0,
+          "hiClosed2": 0
+        }
+      }
+    },
+    {
+      "id": "33de447c-94e3-462f-b105-8e6d15f9d162",
+      "problemCode": "J10202-A28-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "양끝의 범위를 부등호로 바꾸는 두 소문항을 한 문항으로 낸다.",
+      "recordSha256": "99f38ba6e830d8f739513c2066273809d1d970fed43e2b32a5ddd54aec05b5ce",
+      "evidence": {
+        "seed": 147,
+        "variant": 0,
+        "contentAnswerSha256": "d11a70042c4d81c49968ceb3d6842f29aa7502252bd1dff83cbd9a106d105fb0",
+        "facts": {
+          "count": 2,
+          "kind0": 0,
+          "loN0": -3,
+          "loD0": 3,
+          "hiN0": 14,
+          "hiD0": 10,
+          "loClosed0": 0,
+          "hiClosed0": 0,
+          "kind1": 0,
+          "loN1": -4,
+          "loD1": 1,
+          "hiN1": -15,
+          "hiD1": 10,
+          "loClosed1": 0,
+          "hiClosed1": 1
+        }
+      }
+    },
+    {
+      "id": "3f07da7c-3d26-4821-8a50-9ba54618b9f2",
+      "problemCode": "J10202-A57-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|정수와 유리수|12",
+      "reason": "정수 두 경계와 포함 여부를 부등호로 바꾸는 기존 생성기와 같다.",
+      "recordSha256": "f7312f91a931bee54433e017451dd823b14f2436416d96a4a56f018034665f8b",
+      "evidence": {
+        "seed": 2,
+        "variant": 0,
+        "contentAnswerSha256": "269150eb1647453f2e30e10646045f007d5e407d7aa68b2cbf00e355699e511a",
+        "facts": {
+          "a": -12,
+          "b": 0,
+          "lowIdx": 1,
+          "highIdx": 1,
+          "loStrict": 0,
+          "hiStrict": 0
+        }
+      }
+    },
+    {
+      "id": "318f31d4-c702-4a5b-b162-7af807bf7562",
+      "problemCode": "J10202-A62-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽 경계 및 양쪽 경계를 부등호로 바꾸는 네 소문항의 묶음이다.",
+      "recordSha256": "f51df3529fabb91fe2648a07f9ef8abd5b41eef749849c6e6240387267efefac",
+      "evidence": {
+        "seed": 5,
+        "variant": 0,
+        "contentAnswerSha256": "9ee272e12e5c1406c3a6cec28d158540582429b818deae7c61f9ca35dfc951d8",
+        "facts": {
+          "count": 4,
+          "kind0": 0,
+          "loN0": 36,
+          "loD0": 6,
+          "hiN0": 67,
+          "hiD0": 10,
+          "loClosed0": 0,
+          "hiClosed0": 0,
+          "kind1": 1,
+          "loN1": -6,
+          "loD1": 1,
+          "hiN1": 10,
+          "hiD1": 6,
+          "loClosed1": 0,
+          "hiClosed1": 0,
+          "kind2": 3,
+          "loN2": 8,
+          "loD2": 2,
+          "hiN2": -18,
+          "hiD2": 3,
+          "loClosed2": 0,
+          "hiClosed2": 1,
+          "kind3": 3,
+          "loN3": 26,
+          "loD3": 4,
+          "hiN3": 51,
+          "hiD3": 10,
+          "loClosed3": 0,
+          "hiClosed3": 1
+        }
+      }
+    },
+    {
+      "id": "17d940bb-b604-4247-b3f9-2df0d5af7058",
+      "problemCode": "J10202-A63-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽 아래 경계를 포함하는 범위 표기 갈래이다.",
+      "recordSha256": "55f3389e0e1a9b2db7592521f827cc05bf1513919e90f0e43229a289a35c56fd",
+      "evidence": {
+        "seed": 21,
+        "variant": 0,
+        "contentAnswerSha256": "79f010de2251457c2d3c858ea3866f46b779c4b386d934374a398595f4088171",
+        "facts": {
+          "count": 1,
+          "kind0": 1,
+          "loN0": -23,
+          "loD0": 6,
+          "hiN0": 66,
+          "hiD0": 10,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "8312d40c-8bda-499c-a59c-fa685b80ed6c",
+      "problemCode": "J10202-A64-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수인 위끝을 포함하지 않는 한쪽 범위 표기 갈래이다.",
+      "recordSha256": "e1d21fa15594395b034d09b408c5f7561ea3c125bd7861a07a3467052e94b863",
+      "evidence": {
+        "seed": 210,
+        "variant": 0,
+        "contentAnswerSha256": "0a54ca699ba78f566643f33f8f6adc76e03cd5271f60168a0065a3ead799bae1",
+        "facts": {
+          "count": 1,
+          "kind0": 2,
+          "loN0": -14,
+          "loD0": 6,
+          "hiN0": 3,
+          "hiD0": 1,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "771b8cbd-7e65-4aea-a11c-43185e940d1d",
+      "problemCode": "J10202-A65-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽 아래 경계를 포함하는 범위 표기 갈래이다.",
+      "recordSha256": "70e52318bbaa461007f6c25fa2c19e9bf5ce3889c37657cbf925398f5be65716",
+      "evidence": {
+        "seed": 21,
+        "variant": 0,
+        "contentAnswerSha256": "79f010de2251457c2d3c858ea3866f46b779c4b386d934374a398595f4088171",
+        "facts": {
+          "count": 1,
+          "kind0": 1,
+          "loN0": -23,
+          "loD0": 6,
+          "hiN0": 66,
+          "hiD0": 10,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "94325893-eec0-4dee-97dd-97f9944edd8f",
+      "problemCode": "J10202-A66-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수 경계에서 초과·이하를 구분하는 양쪽 범위 표기 갈래이다.",
+      "recordSha256": "2a0084eb1f41b740e95db6ecb92b550778148d304c37f6b255c43e94b4fdf90b",
+      "evidence": {
+        "seed": 250,
+        "variant": 0,
+        "contentAnswerSha256": "0d9c9516d51e5728e7b3f84f361a5e67096e8245303cabaf25984135986d604b",
+        "facts": {
+          "count": 1,
+          "kind0": 0,
+          "loN0": 22,
+          "loD0": 6,
+          "hiN0": 21,
+          "hiD0": 5,
+          "loClosed0": 0,
+          "hiClosed0": 1
+        }
+      }
+    },
+    {
+      "id": "74ab5d87-ddc6-4e0e-9ee0-cff3b90474b1",
+      "problemCode": "J10202-A84-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽·양쪽 범위와 분수 경계를 섞은 세 소문항을 부등호로 바꾸는 갈래이다.",
+      "recordSha256": "73eba03f15734a22b34fe593c5462bb45a51522c9c49bd186813790b9f11d1eb",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "ff19ed858efaad7d762217da115ed6c2e87e5e52a867ae06607cb8c5891308f2",
+        "facts": {
+          "count": 3,
+          "kind0": 1,
+          "loN0": 23,
+          "loD0": 10,
+          "hiN0": 30,
+          "hiD0": 5,
+          "loClosed0": 0,
+          "hiClosed0": 1,
+          "kind1": 0,
+          "loN1": 3,
+          "loD1": 4,
+          "hiN1": 68,
+          "hiD1": 10,
+          "loClosed1": 0,
+          "hiClosed1": 1,
+          "kind2": 2,
+          "loN2": -20,
+          "loD2": 5,
+          "hiN2": 2,
+          "hiD2": 4,
+          "loClosed2": 1,
+          "hiClosed2": 0
+        }
+      }
+    },
+    {
+      "id": "51aebf84-9c28-499e-b9a8-4e3fcdfc7f53",
+      "problemCode": "J10202-A91-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽 아래 경계를 포함하는 범위 표기 갈래이다.",
+      "recordSha256": "8cdaec31cc15b5b0a44953496d454a061e6a18761dc0c46a32b53ecd5f1f52d7",
+      "evidence": {
+        "seed": 21,
+        "variant": 0,
+        "contentAnswerSha256": "79f010de2251457c2d3c858ea3866f46b779c4b386d934374a398595f4088171",
+        "facts": {
+          "count": 1,
+          "kind0": 1,
+          "loN0": -23,
+          "loD0": 6,
+          "hiN0": 66,
+          "hiD0": 10,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "144e8ee0-cbd7-4a4c-a0fb-b1427554ec56",
+      "problemCode": "J10202-A92-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수인 위끝을 포함하지 않는 한쪽 범위 표기 갈래이다.",
+      "recordSha256": "422feb964270523abcf24eece286aeb4bba7f89f2d4264f39ae10578c5107b1f",
+      "evidence": {
+        "seed": 210,
+        "variant": 0,
+        "contentAnswerSha256": "0a54ca699ba78f566643f33f8f6adc76e03cd5271f60168a0065a3ead799bae1",
+        "facts": {
+          "count": 1,
+          "kind0": 2,
+          "loN0": -14,
+          "loD0": 6,
+          "hiN0": 3,
+          "hiD0": 1,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "674c8938-f4ef-4e57-9152-6408ebcd523c",
+      "problemCode": "J10202-A95-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "한쪽 아래 경계를 포함하는 범위 표기 갈래이다.",
+      "recordSha256": "00406fa89abace0583c5b3c43d760b914ed12ff3e49b1462fa5e556cc4df617c",
+      "evidence": {
+        "seed": 21,
+        "variant": 0,
+        "contentAnswerSha256": "79f010de2251457c2d3c858ea3866f46b779c4b386d934374a398595f4088171",
+        "facts": {
+          "count": 1,
+          "kind0": 1,
+          "loN0": -23,
+          "loD0": 6,
+          "hiN0": 66,
+          "hiD0": 10,
+          "loClosed0": 1,
+          "hiClosed0": 0
+        }
+      }
+    },
+    {
+      "id": "60735978-8179-4068-abb8-f0fc0335654c",
+      "problemCode": "J10202-A96-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수 경계에서 초과·이하를 구분하는 양쪽 범위 표기 갈래이다.",
+      "recordSha256": "dd5ed00e7b21388d1731a69a5938722d70d7403ef1ab1c04d75e5e7045e4ed57",
+      "evidence": {
+        "seed": 250,
+        "variant": 0,
+        "contentAnswerSha256": "0d9c9516d51e5728e7b3f84f361a5e67096e8245303cabaf25984135986d604b",
+        "facts": {
+          "count": 1,
+          "kind0": 0,
+          "loN0": 22,
+          "loD0": 6,
+          "hiN0": 21,
+          "hiD0": 5,
+          "loClosed0": 0,
+          "hiClosed0": 1
+        }
+      }
+    },
+    {
+      "id": "011c7b3a-07c7-4d43-b299-77ecaf835889",
+      "problemCode": "J10202-B03-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수 경계 양쪽을 모두 포함하는 범위를 부등호로 바꾼다.",
+      "recordSha256": "f8cd08a52db26f67dad2e870e5438d143bea6ad051d09cc1a71d065dd3629fa7",
+      "evidence": {
+        "seed": 37,
+        "variant": 0,
+        "contentAnswerSha256": "0fda066bd1531f2bdca2ac4db4726e398ca5a8f92104d283e263e0f81fbf2877",
+        "facts": {
+          "count": 1,
+          "kind0": 0,
+          "loN0": -13,
+          "loD0": 10,
+          "hiN0": -5,
+          "hiD0": 4,
+          "loClosed0": 1,
+          "hiClosed0": 1
+        }
+      }
+    },
+    {
+      "id": "7809bd81-54d7-4291-a995-4e8771bc3899",
+      "problemCode": "J10202-B05-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "양쪽 범위·절댓값 경계·한쪽 경계를 섞은 세 소문항이다.",
+      "recordSha256": "621dcd80b7042417442aad5ec70ffbdeda191bbe011fee7125f0fffe664f29ad",
+      "evidence": {
+        "seed": 96,
+        "variant": 0,
+        "contentAnswerSha256": "8ff3a15f23e017afe45905bb330b3e8f48daf2a4495c2dadbdd72e4772ab50b6",
+        "facts": {
+          "count": 3,
+          "kind0": 0,
+          "loN0": -7,
+          "loD0": 1,
+          "hiN0": 5,
+          "hiD0": 1,
+          "loClosed0": 1,
+          "hiClosed0": 1,
+          "kind1": 3,
+          "loN1": 12,
+          "loD1": 2,
+          "hiN1": 58,
+          "hiD1": 10,
+          "loClosed1": 0,
+          "hiClosed1": 1,
+          "kind2": 2,
+          "loN2": 2,
+          "loD2": 1,
+          "hiN2": 17,
+          "hiD2": 4,
+          "loClosed2": 1,
+          "hiClosed2": 1
+        }
+      }
+    },
+    {
+      "id": "73ba8ff2-c767-436e-bedf-722a025b542a",
+      "problemCode": "J10202-B11-001",
+      "groupId": "m1-b-inequality-notation",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "분수와 소수의 경계값을 포함하는 양쪽 범위의 표기이다.",
+      "recordSha256": "f8417f48422049e534b6d28d4ef6ac01f44f5619dedb85d90a789c2fb3e7f302",
+      "evidence": {
+        "seed": 37,
+        "variant": 0,
+        "contentAnswerSha256": "0fda066bd1531f2bdca2ac4db4726e398ca5a8f92104d283e263e0f81fbf2877",
+        "facts": {
+          "count": 1,
+          "kind0": 0,
+          "loN0": -13,
+          "loD0": 10,
+          "hiN0": -5,
+          "hiD0": 4,
+          "loClosed0": 1,
+          "hiClosed0": 1
+        }
+      }
+    },
+    {
+      "id": "54ffed99-3b6e-42b3-a0b4-126c02caea4d",
+      "problemCode": "J10202-A29-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "절댓값 표현이 섞인 수 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "73f5df7d5a1de59181fa633a60873f43576cd4117079ac9787b8a2debd82687d",
+      "evidence": {
+        "seed": 5,
+        "variant": 0,
+        "contentAnswerSha256": "a17e146951f80aa5af70d1d342482842d70bc68e7748b0ac56188b4fdd4ad08d",
+        "facts": {
+          "mode": 2,
+          "count": 5,
+          "n0": 27,
+          "d0": 1,
+          "form0": 6,
+          "n1": 7,
+          "d1": 3,
+          "form1": 4,
+          "n2": -5,
+          "d2": 1,
+          "form2": 0,
+          "n3": 21,
+          "d3": 10,
+          "form3": 2,
+          "n4": 21,
+          "d4": 5,
+          "form4": 5
+        }
+      }
+    },
+    {
+      "id": "bff37c18-fc0a-4806-a3de-e61b2c40a6e2",
+      "problemCode": "J10202-A39-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "수직선의 가장 오른쪽 수를 고르는 것은 목록 최댓값 선택과 같은 요구이다.",
+      "recordSha256": "75096c934dc8224e5e62bb5eca1814fad46ee59a78fb9a86ab483e4667b6f53e",
+      "evidence": {
+        "seed": 4,
+        "variant": 0,
+        "contentAnswerSha256": "f408982e0c456a6619f18df06c12422a86acabab6526d68c0d1eff1cec585a18",
+        "facts": {
+          "mode": 3,
+          "count": 4,
+          "n0": -9,
+          "d0": 4,
+          "form0": 4,
+          "n1": 13,
+          "d1": 7,
+          "form1": 1,
+          "n2": 33,
+          "d2": 10,
+          "form2": 2,
+          "n3": -11,
+          "d3": 5,
+          "form3": 5
+        }
+      }
+    },
+    {
+      "id": "1372568d-bb72-487f-8dcf-6c6d10a7ed8a",
+      "problemCode": "J10202-A41-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "수 목록 전체를 오름차순으로 나열한다. 기존 11은 n번째 수만 요구하므로 새 키에 전체 순서를 더했다.",
+      "recordSha256": "b25acc1e9cfc0af66bddcd6b50c043f6e8bae5d07287508affb0f4fdfd8a5f5d",
+      "evidence": {
+        "seed": 9,
+        "variant": 0,
+        "contentAnswerSha256": "8a20ed3af9ffe4331ed1f49c9fe4e7242dd73c0b654d983705a569761c165963",
+        "facts": {
+          "mode": 0,
+          "count": 4,
+          "n0": -9,
+          "d0": 1,
+          "form0": 6,
+          "n1": -8,
+          "d1": 2,
+          "form1": 3,
+          "n2": -17,
+          "d2": 5,
+          "form2": 1,
+          "n3": -2,
+          "d3": 1,
+          "form3": 0
+        }
+      }
+    },
+    {
+      "id": "a526e534-078e-462b-a423-fa19d07606ec",
+      "problemCode": "J10202-A52-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|정수와 유리수|20",
+      "reason": "절댓값이 가장 큰 수를 선택하는 기존 갈래와 같다. 절댓값의 최대가 유일한 견본이다.",
+      "recordSha256": "2692adf337b83e89c907baa594fc77ba8519ee193bc336b8f4f8c61f66b1f0ca",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "19636872f0db9ad66d51e12c770407ecf8e2a0aed692e3965c4201fbfc5b44fd",
+        "facts": {
+          "n1": 6,
+          "d1": 1,
+          "n2": -10,
+          "d2": 3,
+          "n3": 5,
+          "d3": 3,
+          "n4": 48,
+          "d4": 10,
+          "n5": -2,
+          "d5": 2
+        }
+      }
+    },
+    {
+      "id": "cab59c1d-b0d8-4dad-8310-75cb26a042f4",
+      "problemCode": "J10202-A61-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "수 목록 전체를 내림차순으로 나열한다.",
+      "recordSha256": "9208fb5697154daa7ce039e877484fd3228fa2b2fbd39105996a9f272f4b9ebd",
+      "evidence": {
+        "seed": 2,
+        "variant": 0,
+        "contentAnswerSha256": "5c3b03dead72340cf28679ba24f5fc386b713e83725899e294badb5eea973dfb",
+        "facts": {
+          "mode": 1,
+          "count": 5,
+          "n0": -6,
+          "d0": 9,
+          "form0": 1,
+          "n1": 4,
+          "d1": 1,
+          "form1": 6,
+          "n2": -10,
+          "d2": 3,
+          "form2": 5,
+          "n3": 24,
+          "d3": 7,
+          "form3": 1,
+          "n4": 9,
+          "d4": 1,
+          "form4": 6
+        }
+      }
+    },
+    {
+      "id": "6941d3dc-255d-4c44-a5f8-02a384df2267",
+      "problemCode": "J10202-A87-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "음의 대분수가 섞인 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "e8ff4045d99420099b84db75d0df4283566e020951da32b8198c53cde0bad465",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "5766b9f3a8daf6b1846d01b94b170c6cec6bc6dc091dea02d39594eaf3d0d35b",
+        "facts": {
+          "mode": 2,
+          "count": 6,
+          "n0": -12,
+          "d0": 2,
+          "form0": 3,
+          "n1": -6,
+          "d1": 3,
+          "form1": 3,
+          "n2": 9,
+          "d2": 1,
+          "form2": 6,
+          "n3": -5,
+          "d3": 10,
+          "form3": 2,
+          "n4": -16,
+          "d4": 5,
+          "form4": 4,
+          "n5": 11,
+          "d5": 5,
+          "form5": 4
+        }
+      }
+    },
+    {
+      "id": "07304440-9ae7-4bdf-9c86-096800a3acce",
+      "problemCode": "J10202-B12-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "절댓값 표현이 섞인 수 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "5b48881e120a67dd514eedeb28fd1b19d88429da96023e59ae9ed31fd0e06b6a",
+      "evidence": {
+        "seed": 5,
+        "variant": 0,
+        "contentAnswerSha256": "a17e146951f80aa5af70d1d342482842d70bc68e7748b0ac56188b4fdd4ad08d",
+        "facts": {
+          "mode": 2,
+          "count": 5,
+          "n0": 27,
+          "d0": 1,
+          "form0": 6,
+          "n1": 7,
+          "d1": 3,
+          "form1": 4,
+          "n2": -5,
+          "d2": 1,
+          "form2": 0,
+          "n3": 21,
+          "d3": 10,
+          "form3": 2,
+          "n4": 21,
+          "d4": 5,
+          "form4": 5
+        }
+      }
+    },
+    {
+      "id": "16a41d9e-a7d1-4858-9b99-dce104f57e5f",
+      "problemCode": "J10202-B13-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "소수·분수·정수 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "b173f8f2ee167fe9e82c56e892209af4fa679769f3761b4d3a58f2d9df0d0006",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "5766b9f3a8daf6b1846d01b94b170c6cec6bc6dc091dea02d39594eaf3d0d35b",
+        "facts": {
+          "mode": 2,
+          "count": 6,
+          "n0": -12,
+          "d0": 2,
+          "form0": 3,
+          "n1": -6,
+          "d1": 3,
+          "form1": 3,
+          "n2": 9,
+          "d2": 1,
+          "form2": 6,
+          "n3": -5,
+          "d3": 10,
+          "form3": 2,
+          "n4": -16,
+          "d4": 5,
+          "form4": 4,
+          "n5": 11,
+          "d5": 5,
+          "form5": 4
+        }
+      }
+    },
+    {
+      "id": "7d4fa003-da84-4744-a175-1c86d807123e",
+      "problemCode": "J10202-B15-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "절댓값 표현이 섞인 수 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "17b3621565f3e0e032d14a2316309b8c15cd664329ae2a4b8b2589d9cb5e6a87",
+      "evidence": {
+        "seed": 5,
+        "variant": 0,
+        "contentAnswerSha256": "a17e146951f80aa5af70d1d342482842d70bc68e7748b0ac56188b4fdd4ad08d",
+        "facts": {
+          "mode": 2,
+          "count": 5,
+          "n0": 27,
+          "d0": 1,
+          "form0": 6,
+          "n1": 7,
+          "d1": 3,
+          "form1": 4,
+          "n2": -5,
+          "d2": 1,
+          "form2": 0,
+          "n3": 21,
+          "d3": 10,
+          "form3": 2,
+          "n4": 21,
+          "d4": 5,
+          "form4": 5
+        }
+      }
+    },
+    {
+      "id": "23bd73e9-7328-42e6-9824-02c0609d458a",
+      "problemCode": "J10202-B16-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O03",
+      "reason": "소수·분수·정수 목록의 최댓값·최솟값을 차례로 구한다.",
+      "recordSha256": "e7101f30c694a2d39282b6f97455f188c73236cb7aab8c74a5cc5d8afb596aa3",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "5766b9f3a8daf6b1846d01b94b170c6cec6bc6dc091dea02d39594eaf3d0d35b",
+        "facts": {
+          "mode": 2,
+          "count": 6,
+          "n0": -12,
+          "d0": 2,
+          "form0": 3,
+          "n1": -6,
+          "d1": 3,
+          "form1": 3,
+          "n2": 9,
+          "d2": 1,
+          "form2": 6,
+          "n3": -5,
+          "d3": 10,
+          "form3": 2,
+          "n4": -16,
+          "d4": 5,
+          "form4": 4,
+          "n5": 11,
+          "d5": 5,
+          "form5": 4
+        }
+      }
+    },
+    {
+      "id": "e69d6406-79e3-4f12-9f3e-5520870a0ab4",
+      "problemCode": "J10202-B19-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "열린 유리수 구간에서 가능한 정수를 구한 뒤 절댓값이 가장 큰 정수를 고른다. 양끝 절댓값의 동률을 제외하여 답이 유일한 갈래이다.",
+      "recordSha256": "34193ecd3b1d02107639c39c5acfcb9db853c9e7cf4dae855f353179c4e09deb",
+      "evidence": {
+        "seed": 2,
+        "variant": 0,
+        "contentAnswerSha256": "d96bced5b17d93e50274e39bc3fd5c08a6ef2f9a61d47dd6dfd70d6eed9ce59e",
+        "facts": {
+          "mode": 3,
+          "ln": -11,
+          "ld": 2,
+          "hn": 10,
+          "hd": 3
+        }
+      }
+    },
+    {
+      "id": "a3947bcc-bff3-49a5-89e9-248f22ccf7e5",
+      "problemCode": "J10202-B21-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|정수와 유리수|11",
+      "reason": "혼합 수 목록을 정렬한 뒤 지정 순위의 수를 구하는 기존 갈래와 같다.",
+      "recordSha256": "f4f880f2c1643a2c30a62f7f3d8172cb6a037d611d28094a45ba8ee6391af4fd",
+      "evidence": {
+        "seed": 3,
+        "variant": 0,
+        "contentAnswerSha256": "83c336714ab988cb102f2ac41e5f08a8bcb78567a3b3c60646dee5cff05aab78",
+        "facts": {
+          "kind": 0,
+          "n": 4,
+          "k": 2,
+          "n1": 6,
+          "d1": 1,
+          "n2": -24,
+          "d2": 10,
+          "n3": -45,
+          "d3": 10,
+          "n4": 9,
+          "d4": 1
+        }
+      }
+    },
+    {
+      "id": "8016a082-247a-4c35-bb77-e875bd31fbfa",
+      "problemCode": "J10202-B22-001",
+      "groupId": "m1-b-order-list",
+      "typeKey": "1-1|정수와 유리수|11",
+      "reason": "혼합 수 목록을 정렬한 뒤 지정 순위의 수를 구하는 기존 갈래와 같다.",
+      "recordSha256": "a84bca1d392d9c2678f8fc940bb5f72c57c02ca43529f8427b2a0d75a0cb7892",
+      "evidence": {
+        "seed": 3,
+        "variant": 0,
+        "contentAnswerSha256": "83c336714ab988cb102f2ac41e5f08a8bcb78567a3b3c60646dee5cff05aab78",
+        "facts": {
+          "kind": 0,
+          "n": 4,
+          "k": 2,
+          "n1": 6,
+          "d1": 1,
+          "n2": -24,
+          "d2": 10,
+          "n3": -45,
+          "d3": 10,
+          "n4": 9,
+          "d4": 1
+        }
+      }
+    },
+    {
+      "id": "e7d31203-6332-4fb6-9916-47db05cdee58",
+      "problemCode": "J10202-A16-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|정수와 유리수|13",
+      "reason": "정수가 아닌 두 유리수 사이에 놓인 정수 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "eb03e0be1a3e1db9ad6b3b0cf397155f336c9f332976002735634c324ce018ed",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "af8f09154e7773c01a714fb1addb05489be4f7bd6d295872053eecd9db04337f",
+        "facts": {
+          "kind": 0,
+          "lo": -3,
+          "hi": -1,
+          "lNum": -18,
+          "lDen": 5,
+          "rNum": -1,
+          "rDen": 4,
+          "answer": 3
+        }
+      }
+    },
+    {
+      "id": "fcf0f675-4f00-4815-a4d1-d879d129c481",
+      "problemCode": "J10202-A18-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "유리수 양끝 사이의 절댓값 범위를 만족하는 정수 개수를 세며, 양수와 음수를 모두 포함한다.",
+      "recordSha256": "8dfb1411d0d9e08c5889b00279c3cacffb6d508cd52926ffbdc907f378cae50c",
+      "evidence": {
+        "seed": 28,
+        "variant": 0,
+        "contentAnswerSha256": "48e9f7d8156d25ba80634ac35315743eb85ffe6e2b44e9edc9ff808125918ae4",
+        "facts": {
+          "mode": 1,
+          "loClosed": 1,
+          "hiClosed": 0,
+          "ln": 5,
+          "ld": 4,
+          "hn": 16,
+          "hd": 3
+        }
+      }
+    },
+    {
+      "id": "7cb4790a-3519-4753-8f74-a1e99693376a",
+      "problemCode": "J10202-A46-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "양의 정수 범위와 부호 있는 정수 범위를 비교하여 후자의 차집합 개수를 구한다.",
+      "recordSha256": "497fb9375040b949e106fe69f2770e2dd054a98be02af7f52caf4c520fd3671d",
+      "evidence": {
+        "seed": 3,
+        "variant": 0,
+        "contentAnswerSha256": "6dc84e2c641a18506098c016368d41944724968d15ef68500d19963defe2e0db",
+        "facts": {
+          "mode": 5,
+          "limit": 3,
+          "lower": -5,
+          "upper": 10
+        }
+      }
+    },
+    {
+      "id": "a69e0576-1b2d-4026-88d9-5ccef7c28385",
+      "problemCode": "J10202-A50-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|정수와 유리수|13",
+      "reason": "정수가 아닌 두 유리수 사이에 놓인 정수 개수를 세는 기존 갈래와 같다.",
+      "recordSha256": "6cdc14492925687611f0043d4545efced8315412d90d90773ec75c029c548bed",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "af8f09154e7773c01a714fb1addb05489be4f7bd6d295872053eecd9db04337f",
+        "facts": {
+          "kind": 0,
+          "lo": -3,
+          "hi": -1,
+          "lNum": -18,
+          "lDen": 5,
+          "rNum": -1,
+          "rDen": 4,
+          "answer": 3
+        }
+      }
+    },
+    {
+      "id": "2d146c29-7052-4e9c-ac40-25307a6313ef",
+      "problemCode": "J10202-A76-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "덧셈 후 양수·뺄셈 후 음수인 조건에서 열린 정수 범위를 얻어 그 개수를 센다.",
+      "recordSha256": "6f971286a520a86fcb396fb12be71c6edd7dc400226b8e92e013b55d108dac9e",
+      "evidence": {
+        "seed": 4,
+        "variant": 0,
+        "contentAnswerSha256": "12732f13e34ff25bb838af31318def926794f3a4efb4796c601f63a5eed5f8ba",
+        "facts": {
+          "mode": 4,
+          "added": 4,
+          "subtracted": 7
+        }
+      }
+    },
+    {
+      "id": "e67fb4af-9b91-4adb-b7ad-39b1d1056ef8",
+      "problemCode": "J10202-A83-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "분수인 아래 경계를 포함하고 위끝은 포함하지 않는 정수 범위의 개수이다.",
+      "recordSha256": "73c610892eb2804e86a6f99c24850bb0f13bc3e9f317fe2bd2a105f252321832",
+      "evidence": {
+        "seed": 120,
+        "variant": 0,
+        "contentAnswerSha256": "f60667a6d2399f9f66484a61a9f1d735d308efd670d840f2644411f20a35ad90",
+        "facts": {
+          "mode": 0,
+          "loClosed": 1,
+          "hiClosed": 0,
+          "ln": -4,
+          "ld": 3,
+          "hn": 2,
+          "hd": 1
+        }
+      }
+    },
+    {
+      "id": "49cdd958-dbf7-43a8-a548-9d7728d41943",
+      "problemCode": "J10202-B01-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "정수인 절댓값 경계에서 아래 초과·위 이하를 구별하여 센다.",
+      "recordSha256": "bbb79053f9036203ed3fd3a02617bfb1d67bdb767b74813ec699de442973ffae",
+      "evidence": {
+        "seed": 318,
+        "variant": 0,
+        "contentAnswerSha256": "ac63b3a83a359ae2ad0b0be58ace3d1a6b38a94154ee5e04a9ec9c25474aae90",
+        "facts": {
+          "mode": 1,
+          "loClosed": 0,
+          "hiClosed": 1,
+          "ln": 8,
+          "ld": 4,
+          "hn": 20,
+          "hd": 4
+        }
+      }
+    },
+    {
+      "id": "37b1fd76-46b5-443b-9210-8128e51c2e66",
+      "problemCode": "J10202-B02-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "정수 절댓값 구간과 자연수 절댓값 구간의 개수를 각각 센 뒤 차를 구하는 갈래이다. 0 포함과 양수만의 모집단을 구분한다.",
+      "recordSha256": "d8351ab7d5e9b1b82e35a6011a618961cc4675b4a91883012222ef872da77841",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "aff7c99234ee2f57cbc229e81a22185361050a0239c582af8ddbf3833f0c1e4f",
+        "facts": {
+          "mode": 2,
+          "an": 16,
+          "ad": 5,
+          "bn": 23,
+          "bd": 3
+        }
+      }
+    },
+    {
+      "id": "fe9310c5-f57d-4ce9-9cb0-df9f873f69da",
+      "problemCode": "J10202-B07-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "정수인 절댓값 경계에서 아래 이상·위 미만을 구별하여 센다.",
+      "recordSha256": "b9d9d081a8a00756662575104cce0b2eac55b8e731861f3384a3ba9378ba55cf",
+      "evidence": {
+        "seed": 128,
+        "variant": 0,
+        "contentAnswerSha256": "7b404707da35d7b726ee4201a61011021ef1808eea20f8c9f7d15804842c50b0",
+        "facts": {
+          "mode": 1,
+          "loClosed": 1,
+          "hiClosed": 0,
+          "ln": 0,
+          "ld": 4,
+          "hn": 3,
+          "hd": 1
+        }
+      }
+    },
+    {
+      "id": "f5a9ff0d-f549-41ca-b4a2-36eb9c93b232",
+      "problemCode": "J10202-B17-001",
+      "groupId": "m1-b-integer-interval",
+      "typeKey": "1-1|교과서 수와 연산|O04",
+      "reason": "정수인 절댓값 경계에서 아래 이상·위 미만을 구별하여 센다.",
+      "recordSha256": "136f4c7b4ac2c3ad83801f25b392d52b8f742534ff1525d5b246f78b044997f1",
+      "evidence": {
+        "seed": 128,
+        "variant": 0,
+        "contentAnswerSha256": "7b404707da35d7b726ee4201a61011021ef1808eea20f8c9f7d15804842c50b0",
+        "facts": {
+          "mode": 1,
+          "loClosed": 1,
+          "hiClosed": 0,
+          "ln": 0,
+          "ld": 4,
+          "hn": 3,
+          "hd": 1
+        }
+      }
+    },
+    {
+      "id": "69365325-0278-4315-95de-bb7082b45f28",
+      "problemCode": "J10201-A24-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "음의 정수 한 수의 절댓값을 직접 구한다.",
+      "recordSha256": "6dd11ac4ab4549caa26b96f122f72fdf15d41a5af6368fe021cd473985523a32",
+      "evidence": {
+        "seed": 7,
+        "variant": 0,
+        "contentAnswerSha256": "208f0fbec3f9d3ace47511d8312ab4803993fa89784637d87eb49062ec87db9e",
+        "facts": {
+          "mode": 0,
+          "n0": -1,
+          "d0": 1,
+          "form0": 0
+        }
+      }
+    },
+    {
+      "id": "140ddc7b-af26-4a25-94c0-c9f5af7d5a8e",
+      "problemCode": "J10201-A25-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "양의 소수 한 수의 절댓값을 직접 구한다.",
+      "recordSha256": "581a4c75e49cfcee0e62d2592fc80f4babca5480ad10553ed18dbf6f837e3682",
+      "evidence": {
+        "seed": 47,
+        "variant": 0,
+        "contentAnswerSha256": "2c2f5e87a0326bccd038d46faacdcb87c0d92a7dda77798613db05e7989c40ef",
+        "facts": {
+          "mode": 0,
+          "n0": 17,
+          "d0": 10,
+          "form0": 2
+        }
+      }
+    },
+    {
+      "id": "582dce05-22a0-4e5a-bb5b-e06ac2a79f89",
+      "problemCode": "J10201-A26-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "양의 정수 한 수의 절댓값을 직접 구한다.",
+      "recordSha256": "ccf3ea23a703f2cc00ac7d47f66de4ed35cb20fe0803625901c2d6543f2cd758",
+      "evidence": {
+        "seed": 10,
+        "variant": 0,
+        "contentAnswerSha256": "582324b4a4c77fc13acf086ce1eb8c2d65196e8adce100d218975694fc439b86",
+        "facts": {
+          "mode": 0,
+          "n0": 5,
+          "d0": 1,
+          "form0": 0
+        }
+      }
+    },
+    {
+      "id": "2694f36f-e8fe-4e72-9854-ed63b6601d30",
+      "problemCode": "J10201-A27-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "분수인 절댓값에 대응하는 양·음 두 수를 모두 구한다.",
+      "recordSha256": "527d743f99f722332afb9125c116c80114ea78af287ae852cedcea9ab66462e9",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "c41483508334fb899e9508afd22ee66efe14fb61fa9983b2dd142f5ec09a7ceb",
+        "facts": {
+          "mode": 1,
+          "n0": 4,
+          "d0": 3,
+          "form0": 1
+        }
+      }
+    },
+    {
+      "id": "24707108-be07-434f-b47f-df8d7d367289",
+      "problemCode": "J10201-A56-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "양의 정수인 절댓값에 대응하는 양·음 두 수를 모두 구한다.",
+      "recordSha256": "008644f68dbb9d140521825942e03c89137064d21a2de1834e5ccd56c7710baf",
+      "evidence": {
+        "seed": 8,
+        "variant": 0,
+        "contentAnswerSha256": "21de8d46ede2b79dd9c30f8f2e9a20e4d417e8031682d34e1312c4a3696fab01",
+        "facts": {
+          "mode": 1,
+          "n0": 1,
+          "d0": 1,
+          "form0": 0
+        }
+      }
+    },
+    {
+      "id": "0eb7aa1a-493e-4f30-9d91-ceda618cb324",
+      "problemCode": "J10201-A62-001",
+      "groupId": "m1-b-abs-direct",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "분수인 절댓값에 대응하는 양·음 두 수를 모두 구한다.",
+      "recordSha256": "a7750b0b698e8fea60e23bb70b6b0276365e260d7499fe877e1284395f820e76",
+      "evidence": {
+        "seed": 1,
+        "variant": 0,
+        "contentAnswerSha256": "c41483508334fb899e9508afd22ee66efe14fb61fa9983b2dd142f5ec09a7ceb",
+        "facts": {
+          "mode": 1,
+          "n0": 4,
+          "d0": 3,
+          "form0": 1
+        }
+      }
+    },
+    {
+      "id": "39c1971b-cca4-42f4-b477-78bdd1c72f00",
+      "problemCode": "J10205-A62-001",
+      "groupId": "m1-b-reciprocals",
+      "typeKey": "1-1|교과서 수와 연산|O06",
+      "reason": "정수·분수·소수의 역수를 네 소문항으로 구한다. 기존 18/72는 여러 원 수에 각각 답하는 묶음이 아니어서 새 키로 확장했다.",
+      "recordSha256": "5446a26c4f08edfd44af802ae708e169a343c1c3672016412623d2cd679ac7b7",
+      "evidence": {
+        "seed": 10,
+        "variant": 0,
+        "contentAnswerSha256": "443159f6cb175b2aff4738e976441a7e8f7c247e9a8c22b047512ddd73d0d59e",
+        "facts": {
+          "count": 4,
+          "n0": 17,
+          "d0": 4,
+          "form0": 1,
+          "n1": -20,
+          "d1": 5,
+          "form1": 3,
+          "n2": 39,
+          "d2": 10,
+          "form2": 2,
+          "n3": -18,
+          "d3": 4,
+          "form3": 1
+        }
+      }
+    },
+    {
+      "id": "7e73fa34-e541-441a-a33f-4eb07499b3cb",
+      "problemCode": "J10205-A69-001",
+      "groupId": "m1-b-reciprocals",
+      "typeKey": "1-1|교과서 수와 연산|O06",
+      "reason": "정수·분수·소수의 역수를 네 소문항으로 구한다. 기존 18/72는 여러 원 수에 각각 답하는 묶음이 아니어서 새 키로 확장했다.",
+      "recordSha256": "f3e2e83aeb15533cc2c1ec4674a0853ad223efb4be03fda267e7a4f12f774a5d",
+      "evidence": {
+        "seed": 10,
+        "variant": 0,
+        "contentAnswerSha256": "443159f6cb175b2aff4738e976441a7e8f7c247e9a8c22b047512ddd73d0d59e",
+        "facts": {
+          "count": 4,
+          "n0": 17,
+          "d0": 4,
+          "form0": 1,
+          "n1": -20,
+          "d1": 5,
+          "form1": 3,
+          "n2": 39,
+          "d2": 10,
+          "form2": 2,
+          "n3": -18,
+          "d3": 4,
+          "form3": 1
+        }
+      }
+    },
+    {
+      "id": "3a63dd0e-922c-43fc-a249-321f6417df3e",
+      "problemCode": "J10205-B23-001",
+      "groupId": "m1-b-reciprocals",
+      "typeKey": "1-1|교과서 수와 연산|O06",
+      "reason": "정수·분수·소수의 역수를 네 소문항으로 구한다. 기존 18/72는 여러 원 수에 각각 답하는 묶음이 아니어서 새 키로 확장했다.",
+      "recordSha256": "9d468264f25edc9e49993bc246a31afee65a8c3c988b2cd6234a67724106eda9",
+      "evidence": {
+        "seed": 10,
+        "variant": 0,
+        "contentAnswerSha256": "443159f6cb175b2aff4738e976441a7e8f7c247e9a8c22b047512ddd73d0d59e",
+        "facts": {
+          "count": 4,
+          "n0": 17,
+          "d0": 4,
+          "form0": 1,
+          "n1": -20,
+          "d1": 5,
+          "form1": 3,
+          "n2": 39,
+          "d2": 10,
+          "form2": 2,
+          "n3": -18,
+          "d3": 4,
+          "form3": 1
+        }
+      }
+    },
+    {
+      "id": "ec5e9ad7-6cdd-41cb-a963-b1b4bb7c39e6",
+      "problemCode": "J10205-B77-001",
+      "groupId": "m1-b-reciprocals",
+      "typeKey": "1-1|교과서 수와 연산|O06",
+      "reason": "정수·분수·소수의 역수를 세 소문항으로 구하고 각 답을 약분한다.",
+      "recordSha256": "3d618a1894267d62db583cb32c697c77d73c3da6c57c7aca39f973931b68aa96",
+      "evidence": {
+        "seed": 17,
+        "variant": 0,
+        "contentAnswerSha256": "d36f2cc265ba0093efe618c733f23bc1f887c0e5e5f3ed6f3a814914e43b719c",
+        "facts": {
+          "count": 3,
+          "n0": -8,
+          "d0": 3,
+          "form0": 1,
+          "n1": 35,
+          "d1": 5,
+          "form1": 3,
+          "n2": 5,
+          "d2": 10,
+          "form2": 2
+        }
+      }
+    },
+    {
+      "id": "e03b302b-d367-42e1-b714-e75b34d34731",
+      "problemCode": "J10202-B31-001",
+      "groupId": "v-m1-core-range-notation-c52f466b",
+      "typeKey": "1-1|교과서 수와 연산|O02",
+      "reason": "연결 그림을 직접 읽어 한쪽 이하·이상 경계와 양끝 범위의 세 소문항임을 확인했다. 수식·문장만인 그림이므로 기존 본문 표기로 낼 수 있다.",
+      "recordSha256": "4d712f10da056b064bf3b33c4e61ce9b3d53a5aca36a03f46b9b06bec2dd90c3",
+      "evidence": {
+        "seed": 6,
+        "variant": 0,
+        "contentAnswerSha256": "ff19ed858efaad7d762217da115ed6c2e87e5e52a867ae06607cb8c5891308f2",
+        "facts": {
+          "count": 3,
+          "kind0": 1,
+          "loN0": 23,
+          "loD0": 10,
+          "hiN0": 30,
+          "hiD0": 5,
+          "loClosed0": 0,
+          "hiClosed0": 1,
+          "kind1": 0,
+          "loN1": 3,
+          "loD1": 4,
+          "hiN1": 68,
+          "hiD1": 10,
+          "loClosed1": 0,
+          "hiClosed1": 1,
+          "kind2": 2,
+          "loN2": -20,
+          "loD2": 5,
+          "hiN2": 2,
+          "hiD2": 4,
+          "loClosed2": 1,
+          "hiClosed2": 0
+        }
+      }
+    },
+    {
+      "id": "31e7adb9-46b2-44ba-a0d3-604367d6b8b0",
+      "problemCode": "J10202-B29-001",
+      "groupId": "v-m1-core-absolute-values-c52f466b",
+      "typeKey": "1-1|교과서 수와 연산|O05",
+      "reason": "연결 그림을 직접 읽어 음의 정수·양의 분수·0·음의 소수의 절댓값 네 소문항임을 확인했다. O05 배치 갈래의 수식 본문 표기로 대체한다.",
+      "recordSha256": "f999c6bc754913385127d8fd2225546f479b795579df9c0bfd1717bd7a24ddcb",
+      "evidence": {
+        "seed": 392,
+        "variant": 0,
+        "contentAnswerSha256": "fffa15b05700bd1be2c999733220da5f2dc875b21752a45142ab8e3a4fc445d7",
+        "facts": {
+          "mode": 2,
+          "count": 4,
+          "n0": -24,
+          "d0": 10,
+          "form0": 2,
+          "n1": 3,
+          "d1": 7,
+          "form1": 1,
+          "n2": 0,
+          "d2": 1,
+          "form2": 0,
+          "n3": -3,
+          "d3": 1,
+          "form3": 0
+        }
+      }
+    },
+    {
+      "id": "930ea512-a637-45b1-8ce1-4870e12fe7d6",
+      "problemCode": "J10205-C13-001",
+      "groupId": "v-m1-core-rational-reciprocal-image-07779dd2",
+      "typeKey": "1-1|교과서 수와 연산|O06",
+      "reason": "연결 그림을 직접 읽어 정수·음의 분수 두 수·양의 소수의 역수 네 소문항임을 확인했다. 도형이 아니라 수식 이미지이므로 기존 본문 표기로 낼 수 있다.",
+      "recordSha256": "c5b6f057cd35b75920f2aeab8ee4c67318a26e4fc0eddc066398af1fe51662f2",
+      "evidence": {
+        "seed": 10,
+        "variant": 0,
+        "contentAnswerSha256": "443159f6cb175b2aff4738e976441a7e8f7c247e9a8c22b047512ddd73d0d59e",
+        "facts": {
+          "count": 4,
+          "n0": 17,
+          "d0": 4,
+          "form0": 1,
+          "n1": -20,
+          "d1": 5,
+          "form1": 3,
+          "n2": 39,
+          "d2": 10,
+          "form2": 2,
+          "n3": -18,
+          "d3": 4,
+          "form3": 1
+        }
+      }
+    }
+  ],
+  "deferred": [
+    {
+      "id": "9150c6b0-ba33-4b41-870d-459fde1b7109",
+      "problemCode": "J10201-A66-001",
+      "groupId": "m1-b-rational-classify",
+      "reason": "분류 목록이 아니라 절댓값 비와 두 점 거리에서 두 정수를 역산한다. 이번 분류 확장으로 대체하지 않는다.",
+      "recordSha256": "c2161640d251da9a737b4dc6087d0227022819e782f627595ac8c3364d264762"
+    },
+    {
+      "id": "3c36d50a-58ad-4dba-9957-f8cc00531b2a",
+      "problemCode": "J10201-B04-001",
+      "groupId": "m1-b-rational-classify",
+      "reason": "절댓값 부등식·등식 조건 아래 두 정수의 차를 최대화한다. 목록 분류 유형과 다르다.",
+      "recordSha256": "59b00887ed680caadd09d70ba7b8e3ef822aa48f9a7692237c77b43f633a82cb"
+    },
+    {
+      "id": "18d22093-fa55-426e-bd7d-6ef8dcf4149e",
+      "problemCode": "J10201-B05-001",
+      "groupId": "m1-b-rational-classify",
+      "reason": "서로 반대인 두 정수의 거리에서 일차결합 값을 구한다. 분류 유형과 다르다.",
+      "recordSha256": "7c23ba5a23e2ad0eede5b265dd436ca46ec8a9036e4e3ac49fdfe2386d20052f"
+    },
+    {
+      "id": "5b2157e5-7ba4-4c48-a84b-41e4962fd93c",
+      "problemCode": "J10202-A31-001",
+      "groupId": "m1-b-inequality-notation",
+      "reason": "절댓값 조건을 식으로 쓰기와 정수 개수 세기를 함께 묻는다. 표기 단독/개수 단독 생성물로 한 행 전체를 대체하지 않는다.",
+      "recordSha256": "3261e6903265b3255c36477fd91d24e9ab6f2efde8852d8ec7385e018763056d"
+    },
+    {
+      "id": "acdd73b0-18eb-411e-a636-face08d85b01",
+      "problemCode": "J10202-A70-001",
+      "groupId": "m1-b-inequality-notation",
+      "reason": "절댓값·거리·부호의 여러 조건으로 세 미지수의 순서를 추론한다. 단순 범위 표기와 다르다.",
+      "recordSha256": "3e7288dbddd9d82b8a30b508a0f355b05ee3917fff39efe99e90430755eee55d"
+    },
+    {
+      "id": "438e5c85-31d5-4f70-a175-36420a7b531f",
+      "problemCode": "J10202-A71-001",
+      "groupId": "m1-b-inequality-notation",
+      "reason": "절댓값·거리·부호의 여러 조건으로 세 미지수의 순서를 추론한다. 단순 범위 표기와 다르다.",
+      "recordSha256": "377b49d0cee94fb090b308454f8d2c65ce187d4dde2b11d6e3658e958466ff08"
+    },
+    {
+      "id": "098cfb1b-9833-42ea-b867-0c5ae8355f92",
+      "problemCode": "J10202-A38-001",
+      "groupId": "m1-b-order-list",
+      "reason": "서로 다른 세 극값 조건으로 고른 수들의 곱을 묻는다. 정렬/최대최소만으로 대체하지 않는다.",
+      "recordSha256": "70f96a0e1764fc959cd9e6ac660f8ef8da8003a20fac98786b624fca5868d879"
+    },
+    {
+      "id": "5c074fd6-724d-4392-9b39-33a2345bc375",
+      "problemCode": "J10202-A60-001",
+      "groupId": "m1-b-order-list",
+      "reason": "수의 대소에 관한 보편 진술의 참·거짓 판단이다. 수치 목록 정렬과 다르다.",
+      "recordSha256": "23fd0523a4be31b09750b20b31b4874292db602cb2ee6e60d17ec57b8b9f419f"
+    },
+    {
+      "id": "4841a080-580d-488c-a7c6-f31c4a5d425c",
+      "problemCode": "J10202-A72-001",
+      "groupId": "m1-b-order-list",
+      "reason": "구간에 놓인 문자와 역수·제곱의 대소를 비교한다. 유한 수치 목록과 다르다.",
+      "recordSha256": "a42fb5f943f78447becb7e9e7492984ef2f503124bbd8848db6e25c86eb45bcb"
+    },
+    {
+      "id": "674934f6-9df1-4488-bcb8-4895cbe946a6",
+      "problemCode": "J10202-A75-001",
+      "groupId": "m1-b-order-list",
+      "reason": "절댓값 극값으로 선택한 원래 수의 합을 구한다. 순서대로 수를 쓰는 생성물과 요구 답이 다르다.",
+      "recordSha256": "c9ccca740117b7ad57906b0db1c3b9f36f200067f31b59670fc640507038ccba"
+    },
+    {
+      "id": "5a7e71a3-fa65-4145-96c4-258573473070",
+      "problemCode": "J10202-B08-001",
+      "groupId": "m1-b-order-list",
+      "reason": "절댓값 극값으로 선택한 원래 수의 합을 구한다. 순서대로 수를 쓰는 생성물과 요구 답이 다르다.",
+      "recordSha256": "9163d46eea6882bb80576fed9f41b6dd2549583203b0f9b0181d3bde575279f9"
+    },
+    {
+      "id": "6b6f1ee7-4ad1-4de2-a1e3-67cc482107f6",
+      "problemCode": "J10202-A36-001",
+      "groupId": "m1-b-integer-interval",
+      "reason": "교집합 범위의 개수와 다른 구간의 최댓값을 각각 구한 뒤 합한다. 두 조건 결합은 이번 범위 유형에 없다.",
+      "recordSha256": "541a02e7749d36cee4d16d3339085874c6573cf74447cd5f97d27f0dedbc8aa0"
+    },
+    {
+      "id": "b945a8fb-bd62-489f-8d96-d38d853841cd",
+      "problemCode": "J10202-A44-001",
+      "groupId": "m1-b-integer-interval",
+      "reason": "부호 있는 덧셈·뺄셈으로 경계를 먼저 구한 뒤 절댓값 구간을 센다. 경계가 직접 주어진 유형으로 확정하지 않는다.",
+      "recordSha256": "1f14e23e7dfa0efde269d0d57fda5b05ba5a579d5a70777123b100c36a0109a9"
+    },
+    {
+      "id": "dca70003-1597-4ab0-8a08-0d500213b465",
+      "problemCode": "J10202-A45-001",
+      "groupId": "m1-b-integer-interval",
+      "reason": "가우스 기호와 분수식에 대한 정수해 개수이다. 범위 직접 제시 유형과 다르다.",
+      "recordSha256": "513359004ce5f28644af77ccfcce80b3cf72f1d3aba4de8e51cadfe6207f1bd3"
+    },
+    {
+      "id": "2cc669d4-c85d-4420-bd99-b4c1032634a7",
+      "problemCode": "J10202-A79-001",
+      "groupId": "m1-b-integer-interval",
+      "reason": "고정 분모의 기약분수를 범위에서 골라 개수/목록을 구한다. 정수 격자와 서로소 조건이 다른 유형이다.",
+      "recordSha256": "aa031a05796005fed742cc4d187470029497b8b2b3f1c8b2bcb8ab1d8eb95d3d"
+    },
+    {
+      "id": "2a090ae0-9f78-4fb8-981f-5f74bbf2cfb0",
+      "problemCode": "J10202-B30-001",
+      "groupId": "m1-b-integer-interval",
+      "reason": "고정 분모의 기약분수를 범위에서 골라 개수/목록을 구한다. 정수 격자와 서로소 조건이 다른 유형이다.",
+      "recordSha256": "1932f348801cf447fa15d43f79b2161f780c168c643c4a695930328a6cf6f6ae"
+    }
+  ],
+  "validation": {
+    "tests": 15,
+    "command": "npx vitest run src/__tests__/unit/middleTextbookOrder.test.ts --maxWorkers=1",
+    "red": "2026-11-25 20:08 KST: new module absent, import-resolution failure",
+    "renderRed": "20:12 KST: strict KaTeX test found merged control sequence \\lea; separated command boundary and retained regression",
+    "green": "20:19 KST: 15 passed (absolute-value batch and four related interval modes each RED→GREEN included)",
+    "arithmetic": "Displayed rational tokens parsed independently with unreduced BigInt fractions; exact cross multiplication; integer interval enumeration; per-subquestion reciprocal product=1; separate coprimality checks.",
+    "sweeps": "Each new key 160 deterministic/render cases; O01 240, O02 220, O03 200, O04 260 simple-interval attempts plus 320 all-mode independent cases, O05 180, O06 200 independent answer cases; reused 02/11/12/13/20 each 80 cases.",
+    "previewSeeds": [
+      20261125,
+      173,
+      9049
+    ],
+    "difficulty": "O01/O02/O03/O05/O06 declared 기본 (census easy); O04 declared 응용 (census mid). No variable difficulty in a handler. Public entrypoint may apply existing 연산 rule.",
+    "evidenceReplay": {
+      "publicEntry": "generateMiddleProblem",
+      "checked": 71,
+      "contentAnswerMismatches": 0
+    }
+  }
+}
