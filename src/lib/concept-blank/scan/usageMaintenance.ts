@@ -42,6 +42,11 @@ export async function maintainScanUsage(db: ScanDatabase, now = new Date()) {
     const orphaned = await tx.query<Row>(
       `SELECT c.* FROM concept_blank_scan_usage_call c LEFT JOIN concept_blank_scan_submission s ON s.id=c.submission_id WHERE c.status='queued' AND c.submission_id IS NOT NULL AND (s.job_id IS DISTINCT FROM c.job_id OR s.state IN ('graded','teacher-corrected')) FOR UPDATE OF c`,
     );
+    const orphanedNames = await tx.query<Row>(
+      `SELECT c.* FROM concept_blank_scan_usage_call c WHERE c.status='queued' AND c.submission_id IS NULL AND c.job_id IS NOT NULL AND NOT EXISTS(SELECT 1 FROM concept_blank_scan_name_capture n WHERE n.job_id=c.job_id AND n.submission_id IS NULL AND n.deleted_at IS NULL) FOR UPDATE OF c`,
+    );
+    for (const row of orphanedNames)
+      await finish(tx, row, false, "queue-cancelled");
     for (const row of orphaned) await finish(tx, row, false, "queue-cancelled");
     return rows;
   });
@@ -56,6 +61,24 @@ export async function maintainScanUsage(db: ScanDatabase, now = new Date()) {
           "이전 호출의 응답을 확인하지 못해 예약액으로 정산했습니다. 사진과 읽은 답은 유지됩니다. 다시 시도해 주세요.",
         ],
       );
+  for (const row of expired)
+    if (!row.submission_id && row.job_id)
+      await db.query(
+        `UPDATE concept_blank_scan_name_capture SET job_id=NULL,job_started_at=NULL,job_waiting=false,last_error=$2::text WHERE job_id=$1::uuid`,
+        [
+          row.job_id,
+          "이전 이름 읽기의 응답을 확인하지 못했습니다. 다시 시도해 주세요.",
+        ],
+      );
+  await db.query(
+    `UPDATE concept_blank_scan_name_capture n SET job_waiting=true WHERE n.job_id IS NOT NULL AND n.job_started_at <= $1::timestamptz - interval '360 seconds' AND EXISTS(SELECT 1 FROM concept_blank_scan_usage_call c WHERE c.job_id=n.job_id AND c.status='queued')`,
+    [now.toISOString()],
+  );
+  // A worker may die before it gets as far as admission. No automatic paid retry.
+  await db.query(
+    `UPDATE concept_blank_scan_name_capture n SET job_id=NULL,job_started_at=NULL,job_waiting=false,last_error=$2::text WHERE n.job_id IS NOT NULL AND n.job_started_at <= $1::timestamptz - interval '360 seconds' AND NOT EXISTS(SELECT 1 FROM concept_blank_scan_usage_call c WHERE c.job_id=n.job_id AND c.status IN ('queued','running'))`,
+    [now.toISOString(), "이름 읽기를 마치지 못했습니다. 다시 시도해 주세요."],
+  );
   // Crash between queue insertion and returning from after(): still no paid call.
   await db.query(
     `UPDATE concept_blank_scan_submission s SET job_waiting=true WHERE s.job_id IS NOT NULL AND s.job_started_at <= $1::timestamptz - interval '360 seconds' AND EXISTS(SELECT 1 FROM concept_blank_scan_usage_call c WHERE c.job_id=s.job_id AND c.status='queued')`,

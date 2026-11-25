@@ -38,7 +38,7 @@ describe("scan migration and durable pre-reservation", () => {
     expect(() => scanDatabaseError(other)).toThrow(other);
     expect(new ScanUnavailableError()).toMatchObject({ status: 503 });
   });
-  it("creates exactly the eight server-only tables and revokes default browser privileges", async () => {
+  it("creates the nine server-only tables including unassigned name captures and revokes default browser privileges", async () => {
     const rows = await local.db.query<{
       name: string;
       rls: boolean;
@@ -50,7 +50,7 @@ describe("scan migration and durable pre-reservation", () => {
         has_table_privilege('authenticated',c.oid,'SELECT,INSERT,UPDATE,DELETE') AS authenticated
       FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
       WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'concept_blank_%'`);
-    expect(rows).toHaveLength(8);
+    expect(rows).toHaveLength(9);
     for (const row of rows)
       expect(row).toMatchObject({
         rls: true,

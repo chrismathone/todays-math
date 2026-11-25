@@ -1,3 +1,4 @@
+import { scanWrittenNameViewSchema } from "./conceptBlankScanName.contract";
 import { z } from "zod";
 import { CONCEPT_BLANK_FORMS } from "./conceptBlank.contract";
 import {
@@ -100,6 +101,8 @@ export const scanSubmissionViewSchema = z.strictObject({
     name: z.string(),
     className: z.string(),
   }),
+  writtenName: scanWrittenNameViewSchema.nullable().optional(),
+  canChangeStudent: z.boolean().optional(),
   role: z.enum(["student", "teacher"]),
   state: scanSubmissionStateSchema,
   revision: scanRevisionSchema,

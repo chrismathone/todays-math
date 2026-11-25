@@ -107,7 +107,11 @@ describe("durable reading, input freeze and immediate publication", () => {
     const id = await captured(),
       job = await begin(id, "read"),
       read = fakeRead();
-    const model = (key: string, submissionId: string, attemptKey?: string) =>
+    const model = (
+      key: string,
+      submissionId: string | undefined,
+      attemptKey?: string,
+    ) =>
       createScanModel({
         store: createDatabaseScanUsageStore(local.db, {
           submissionId,
@@ -151,7 +155,11 @@ describe("durable reading, input freeze and immediate publication", () => {
     const id = await captured(),
       read = fakeRead();
     let calls = 0;
-    const model = (key: string, submissionId: string, attemptKey?: string) =>
+    const model = (
+      key: string,
+      submissionId: string | undefined,
+      attemptKey?: string,
+    ) =>
       createScanModel({
         store: createDatabaseScanUsageStore(local.db, {
           submissionId,

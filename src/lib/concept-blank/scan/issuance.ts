@@ -316,26 +316,8 @@ export async function getScanIssueView(
   sql: ScanSql,
   search = "",
 ) {
-  const issue = await loadScanIssue(id, sql),
-    issuer = await scanTeacher(sql, issue.userId);
-  issueAllowed(issuer, issue);
-  let students: ScanStudent[];
-  if (actor.kind === "student")
-    students = [(await scanSubmissionAccess(actor, id, actor.id, sql)).student];
-  else {
-    const viewer = await scanTeacher(sql, actor.id);
-    issueAllowed(viewer, issue);
-    // Coarse server-side selection first; withinOwnerScope is the sole final authorization predicate.
-    const candidates = await sql.query<ScanStudent>(
-      `SELECT s.id,s.name,s.class_id AS "classId",c.name AS "className",c.user_id AS "ownerId",c.branch_id AS "branchId" FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.eywa_withdrawn_at IS NULL AND (c.user_id=$1::uuid OR c.branch_id=$2::uuid OR $3::boolean) ORDER BY c.name,s.name,s.id`,
-      [issuer.id, issuer.branchId ?? null, issuer.isSuperAdmin === true],
-    );
-    students = candidates.filter(
-      (s) =>
-        withinOwnerScope(issuer, s.ownerId, s.branchId) &&
-        withinOwnerScope(viewer, s.ownerId, s.branchId),
-    );
-  }
+  const issue = await loadScanIssue(id, sql);
+  const students = await scanIssueStudents(actor, id, sql);
   const submissions = students.length
     ? await sql.query<{
         id: string;
@@ -369,4 +351,33 @@ export async function getScanIssueView(
       createdAt: s.created_at.toISOString(),
     })),
   });
+}
+
+/** Full authorized roster; matching must not use the picker window. */
+export async function scanIssueStudents(
+  actor: ScanIdentity,
+  id: string,
+  sql: ScanSql,
+): Promise<ScanStudent[]> {
+  const issue = await loadScanIssue(id, sql),
+    issuer = await scanTeacher(sql, issue.userId);
+  issueAllowed(issuer, issue);
+  let students: ScanStudent[];
+  if (actor.kind === "student")
+    students = [(await scanSubmissionAccess(actor, id, actor.id, sql)).student];
+  else {
+    const viewer = await scanTeacher(sql, actor.id);
+    issueAllowed(viewer, issue);
+    // Coarse server-side selection first; withinOwnerScope is the sole final authorization predicate.
+    const candidates = await sql.query<ScanStudent>(
+      `SELECT s.id,s.name,s.class_id AS "classId",c.name AS "className",c.user_id AS "ownerId",c.branch_id AS "branchId" FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.eywa_withdrawn_at IS NULL AND (c.user_id=$1::uuid OR c.branch_id=$2::uuid OR $3::boolean) ORDER BY c.name,s.name,s.id`,
+      [issuer.id, issuer.branchId ?? null, issuer.isSuperAdmin === true],
+    );
+    students = candidates.filter(
+      (s) =>
+        withinOwnerScope(issuer, s.ownerId, s.branchId) &&
+        withinOwnerScope(viewer, s.ownerId, s.branchId),
+    );
+  }
+  return students;
 }

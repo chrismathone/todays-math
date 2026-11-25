@@ -180,6 +180,10 @@ describe("scan submissions, staged photos and immutable answers", () => {
         deps(),
       ),
     ).rejects.toThrow(/최신/);
+    await local.db.query(
+      `UPDATE concept_blank_scan_submission SET written_name='old-name',written_name_status='read',name_match_result='mismatch' WHERE id=$1::uuid`,
+      [a.id],
+    );
     await addScanPhoto(
       world.student,
       a.id,
@@ -189,6 +193,7 @@ describe("scan submissions, staged photos and immutable answers", () => {
     view = await getScanSubmission(world.student, a.id, local.db);
     expect(view.photos).toHaveLength(1);
     expect(view.photos[0].id).not.toBe(first.photoId);
+    expect(view.writtenName).toBeNull();
     const rows = await local.db.query<{
       is_current: boolean;
       expires_at: Date;

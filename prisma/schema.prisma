@@ -183,6 +183,7 @@ model User {
   conceptBlankSheets ConceptBlankPrintedSheet[] @relation("cbSheetOwner")
   conceptBlankSheetsCreated ConceptBlankPrintedSheet[] @relation("cbSheetCreator")
   conceptBlankCaptures ConceptBlankScanSubmission[] @relation("cbCaptureTeacher")
+  conceptBlankNameCaptures ConceptBlankScanNameCapture[]
   conceptBlankCorrections ConceptBlankScanCorrection[] @relation("cbCorrectionTeacher")
   conceptBlankGrades ConceptBlankScanGrade[] @relation("cbGradeTeacher")
 
@@ -3175,6 +3176,7 @@ model ConceptBlankPrintedSheet {
   creator User @relation("cbSheetCreator", fields: [createdBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
   branch Branch? @relation(fields: [branchId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   submissions ConceptBlankScanSubmission[]
+  nameCaptures ConceptBlankScanNameCapture[]
   @@unique([userId, requestId], map: "concept_blank_printed_sheet_user_id_request_id_key")
   @@index([userId, createdAt], map: "cb_printed_owner")
   @@index([branchId, createdAt], map: "cb_printed_branch")
@@ -3183,6 +3185,11 @@ model ConceptBlankPrintedSheet {
 }
 
 model ConceptBlankScanSubmission {
+  writtenName String? @map("written_name")
+  writtenNameStatus String? @map("written_name_status")
+  nameMatchResult String? @map("name_match_result")
+  nameMatchMethod String? @map("name_match_method")
+  nameCapture ConceptBlankScanNameCapture?
   id String @id @db.Uuid
   printedSheetId String @map("printed_sheet_id") @db.Uuid
   studentId String @map("student_id") @db.Uuid
@@ -3334,4 +3341,31 @@ model ConceptBlankScanUsageCall {
   usageMonth ConceptBlankScanUsageMonth @relation("cbUsageMonth", fields: [month], references: [month], onDelete: NoAction, onUpdate: NoAction)
   submission ConceptBlankScanSubmission? @relation(fields: [submissionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   @@map("concept_blank_scan_usage_call")
+}
+
+model ConceptBlankScanNameCapture {
+  id String @id @db.Uuid
+  printedSheetId String @map("printed_sheet_id") @db.Uuid
+  teacherId String @map("teacher_id") @db.Uuid
+  requestId String @unique @map("request_id") @db.Uuid
+  photo Json
+  readings Json?
+  readPromptVersion String? @map("read_prompt_version")
+  requestedModel String? @map("requested_model")
+  writtenName String? @map("written_name")
+  writtenNameStatus String? @map("written_name_status")
+  nameMatchResult String? @map("name_match_result")
+  jobId String? @map("job_id") @db.Uuid
+  jobStartedAt DateTime? @map("job_started_at") @db.Timestamptz(3)
+  jobWaiting Boolean @default(false) @map("job_waiting")
+  lastError String? @map("last_error")
+  submissionId String? @unique @map("submission_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  expiresAt DateTime @default(dbgenerated("(CURRENT_TIMESTAMP + '7 days'::interval)")) @map("expires_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+  printedSheet ConceptBlankPrintedSheet @relation(fields:[printedSheetId],references:[id],onDelete:NoAction,onUpdate:NoAction)
+  teacher User @relation(fields:[teacherId],references:[id],onDelete:NoAction,onUpdate:NoAction)
+  submission ConceptBlankScanSubmission? @relation(fields:[submissionId],references:[id],onDelete:NoAction,onUpdate:NoAction)
+  @@index([teacherId,printedSheetId,createdAt],map:"cb_scan_name_capture_teacher")
+  @@map("concept_blank_scan_name_capture")
 }

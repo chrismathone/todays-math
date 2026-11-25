@@ -29,6 +29,10 @@ export type ScanSubmissionRow = {
   id: string;
   printed_sheet_id: string;
   student_id: string;
+  written_name: string | null;
+  written_name_status: "read" | "uncertain" | "unreadable" | "blank" | null;
+  name_match_result: string | null;
+  name_match_method: string | null;
   captured_student_id: string | null;
   captured_teacher_id: string | null;
   state: ScanSubmissionState;
@@ -227,6 +231,22 @@ export async function getScanSubmission(
           name: student.name,
           className: student.className,
         },
+        writtenName: row.written_name_status
+          ? {
+              text: row.written_name ?? "",
+              status: row.written_name_status,
+              result: row.name_match_result ?? "none",
+              method:
+                row.name_match_method ??
+                (row.captured_student_id
+                  ? "student-account"
+                  : "teacher-selected"),
+            }
+          : null,
+        canChangeStudent:
+          actor.kind === "teacher" &&
+          !row.captured_student_id &&
+          !scanPublished(row),
         role: actor.kind,
         state: row.state,
         revision: row.revision,
@@ -389,6 +409,11 @@ export async function addScanPhoto(
         `UPDATE concept_blank_scan_photo SET is_current=true WHERE id=$1::uuid`,
         [photoId],
       );
+      if (inspected.qr.page === 1)
+        await tx.query(
+          `UPDATE concept_blank_scan_submission SET written_name=NULL,written_name_status=NULL,name_match_result=NULL WHERE id=$1::uuid`,
+          [id],
+        );
       await tx.query(
         `UPDATE concept_blank_scan_submission SET state='capturing',revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [id],

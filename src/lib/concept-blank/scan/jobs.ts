@@ -1,4 +1,5 @@
 import "server-only";
+import { saveScanWrittenName } from "./name";
 import { createHash, randomUUID } from "node:crypto";
 import {
   scanJobInputSchema,
@@ -14,7 +15,7 @@ import { ScanQueuedError } from "./usage";
 import { cancelQueuedScanCalls } from "./usageMaintenance";
 import { ScanAccessError, type ScanIdentity } from "./issuance";
 import { gradeScanPage, SCAN_GRADE_PROMPT_VERSION } from "./grade";
-import { readScanPage, SCAN_READ_PROMPT_VERSION } from "./read";
+import { readScanPageWithName, SCAN_READ_PROMPT_VERSION } from "./read";
 import { scanConfig, type ScanConfig, type ScanModel } from "./model";
 import type { ScanPhotoStorage } from "./storage.server";
 import {
@@ -211,7 +212,7 @@ export async function runScanJob(
     storage: ScanPhotoStorage;
     model: (
       requestKey: string,
-      submissionId: string,
+      submissionId?: string,
       attemptKey?: string,
     ) => ScanModel;
     signal?: AbortSignal;
@@ -259,7 +260,7 @@ export async function runScanJob(
           photo.content_sha256,
           photo.mime_type,
         );
-        const readings = await readScanPage(
+        const { readings, writtenName } = await readScanPageWithName(
           {
             page,
             imageDataUrl: `data:${photo.mime_type};base64,${bytes.toString("base64")}`,
@@ -273,6 +274,13 @@ export async function runScanJob(
         );
         await deps.db.transaction(async (tx) => {
           await context(tx, true);
+          if (writtenName)
+            await saveScanWrittenName(
+              job.actor,
+              job.submissionId,
+              writtenName,
+              tx,
+            );
           for (const reading of readings)
             await tx.query(
               `INSERT INTO concept_blank_scan_read(id,submission_id,photo_id,slot_id,status,text,prompt_version,requested_model) VALUES($1::uuid,$2::uuid,$3::uuid,$4::text,$5::text,$6::text,$7::text,$8::text) ON CONFLICT(photo_id,slot_id) DO NOTHING`,
