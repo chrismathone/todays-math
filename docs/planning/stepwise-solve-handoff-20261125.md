@@ -24,8 +24,11 @@
 
 - 시안: `docs/design/mockups/stepwise-solve-20261116/`(위 세 판 · 판마다 DOM 상호작용 검사 결과 `*.checks.json` · 검사 `check-interaction.cjs` — 셋째 판으로 `node …/check-interaction.cjs` 가 2026-11-25 에도 통과).
   셋째 판의 글꼴은 앱의 `/fonts/PretendardVariable.woff2` 를 가리킨다 — 파일로 열면 대체 글꼴로 보인다(앱 서버에서 열거나 `/dev` 화면으로 옮겨 볼 것).
-- 원본 · 게시본: `.qa-artifacts/mathstep-prototype-20261116/`(gitignore — 이 기계에만) · 게시 링크 https://math-stepwise-hifi.sholua.chatgpt.site (ChatGPT 계정 로그인 필요 — 원장님 계정).
-- Codex 세션 이어 보기: `cd /Users/pss/Desktop/creative/today_ && codex resume 01a16c61-bb8c-71a1-bc64-6e1ccead8d54`(11/15 18:21 ~ 11/16 01:54 구간).
+- 게시본(브라우저에서 바로 열리는 판): 같은 폴더 `3-hifi-app-aligned.standalone.html`(셋째 판 + 저장 껍데기 — 진행 상태를 브라우저 `localStorage` 에 둔다). 앱 서버에서 열면 글꼴까지 맞는다.
+- **그때의 대화 전체(원장님 · Codex 의 말)**: `tracks/reports/stepwise-solve-codex-session-20261116.md` — 다른 컴퓨터에서는 이것을 읽는다.
+  처음 아이디어는 원장님이 준 ChatGPT 공유 링크(그 기록 첫 줄)에서 왔다.
+- 이 Mac 에만 있는 것(다른 컴퓨터에는 없다 — 위 두 줄로 대신한다): 원본 폴더 `.qa-artifacts/mathstep-prototype-20261116/`(gitignore) ·
+  Codex 세션 파일(`codex resume 01a16c61-bb8c-71a1-bc64-6e1ccead8d54` 은 이 Mac 에서만 열린다) · 게시 링크 https://math-stepwise-hifi.sholua.chatgpt.site (원장님 ChatGPT 계정 로그인).
 
 ## 3. 그때 정한 원칙 (Codex 검토 — 원장님 반대 없음, 확정은 아님)
 
