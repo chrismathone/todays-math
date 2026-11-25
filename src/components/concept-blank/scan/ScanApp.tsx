@@ -20,7 +20,7 @@ import {
 import { ScanNameCapture } from "./ScanNameCapture";
 import { ScanWrittenName } from "./ScanWrittenName";
 import { scanSource, type ScanSource } from "./api";
-import { encodeScanPhoto } from "./image";
+import { encodeScanPhoto, SCAN_PHOTO_ACCEPT } from "./image";
 import { scanIsPublished, scanNumbers } from "./view";
 import { ScanAnswers, type ScanAnswersHandle } from "./ScanAnswers";
 import { ScanPhoto, ScanPhotoPreview } from "./ScanPhoto";
@@ -508,7 +508,7 @@ export default function ScanApp({
                     aria-label="카메라 사진"
                     ref={camera}
                     type="file"
-                    accept="image/jpeg,image/png,image/webp"
+                    accept={SCAN_PHOTO_ACCEPT}
                     capture="environment"
                     disabled={locked || !!dirty.size}
                     onChange={(e) => {
@@ -522,7 +522,7 @@ export default function ScanApp({
                     aria-label="사진 파일"
                     ref={upload}
                     type="file"
-                    accept="image/jpeg,image/png,image/webp"
+                    accept={SCAN_PHOTO_ACCEPT}
                     disabled={locked || !!dirty.size}
                     onChange={(e) => {
                       photoInput(e.target.files?.[0]);
