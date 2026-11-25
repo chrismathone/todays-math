@@ -14,7 +14,10 @@ import {
 import { scanConfig, type ScanModel } from "@/lib/concept-blank/scan/model";
 import { createScanModel } from "@/lib/concept-blank/scan/model";
 import { createDatabaseScanUsageStore } from "@/lib/concept-blank/scan/usageDatabase";
-import { runQueuedScanJobs } from "@/lib/concept-blank/scan/queue";
+import {
+  runQueuedScanJobs,
+  runScanJobAndQueue,
+} from "@/lib/concept-blank/scan/queue";
 import type { ScanPhotoStorage } from "@/lib/concept-blank/scan/storage.server";
 let local: Awaited<ReturnType<typeof openScanTestDb>>,
   world: Awaited<ReturnType<typeof scanWorld>>;
@@ -86,6 +89,22 @@ const begin = async (id: string, kind: "read" | "grade") => {
   );
 };
 describe("durable reading, input freeze and immediate publication", () => {
+  // 원장님 2026-11-25 «지금은 채점만 하면 됨» — 운영 경로는 읽기 뒤 확인 단계 없이 바로 채점한다.
+  it("grades right after reading on the production path, without a confirmation step", async () => {
+    const id = await captured();
+    await runScanJobAndQueue(await begin(id, "read"), {
+      db: local.db,
+      storage,
+      config,
+      model: () => fakeRead("unreadable"),
+      gradeAfterRead: true,
+    });
+    const view = await getScanSubmission(world.student, id, local.db);
+    expect(view.state).toBe("graded");
+    expect(view.job).toBeNull();
+    expect(view.lastError).toBeNull();
+    expect(view.grades.length).toBeGreaterThan(0);
+  });
   it("keeps a fifth job waiting and finishes it without another student click", async () => {
     const store = createDatabaseScanUsageStore(local.db);
     const held = await Promise.all(

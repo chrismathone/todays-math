@@ -1,15 +1,46 @@
 import "server-only";
 import { runScanNameCapture } from "./nameCapture";
-import { runScanJob, type ScanJob } from "./jobs";
+import { beginScanJob, runScanJob, type ScanJob } from "./jobs";
 import { scanConfig } from "./model";
 import { maintainScanUsage } from "./usageMaintenance";
 import type { ScanIdentity } from "./issuance";
 
-type Dependencies = Parameters<typeof runScanJob>[1];
+type Dependencies = Parameters<typeof runScanJob>[1] & {
+  /** 운영 경로: 읽기가 끝나면 확인 단계 없이 바로 채점한다(원장님 2026-11-25 «지금은 채점만 하면 됨»). */
+  gradeAfterRead?: boolean;
+};
+/** 읽기를 오류 없이 마친 답안만 채점으로 잇는다. 실패 · 대기 · 다른 작업이 잡은 답안은 그대로 둔다. */
+async function continueToGrade(job: ScanJob, deps: Dependencies) {
+  if (!deps.gradeAfterRead || job.kind !== "read") return;
+  const [row] = await deps.db.query<{
+    state: string;
+    job_id: string | null;
+    last_error: string | null;
+    revision: number;
+  }>(
+    `SELECT state,job_id,last_error,revision FROM concept_blank_scan_submission WHERE id=$1::uuid`,
+    [job.submissionId],
+  );
+  if (!row || row.state !== "checking" || row.job_id || row.last_error) return;
+  let next: ScanJob;
+  try {
+    next = await beginScanJob(
+      job.actor,
+      job.submissionId,
+      { revision: row.revision, kind: "grade" },
+      deps.db,
+    );
+  } catch (error) {
+    await deps.onError?.(error);
+    return;
+  }
+  await runScanJob(next, deps);
+}
 /** One response/cron has one shared 240s budget, including all continuations. */
 export async function runScanJobAndQueue(job: ScanJob, deps: Dependencies) {
   const signal = deps.signal ?? AbortSignal.timeout(240_000);
   await runScanJob(job, { ...deps, signal });
+  await continueToGrade(job, { ...deps, signal });
   await runQueuedScanJobs({ ...deps, signal });
 }
 export async function runQueuedScanJobs(deps: Dependencies) {
@@ -68,6 +99,7 @@ export async function runQueuedScanJobs(deps: Dependencies) {
         continue;
       }
       await runScanJob(job, { ...deps, signal });
+      await continueToGrade(job, { ...deps, signal });
       const [waiting] = await deps.db.query<{ job_waiting: boolean }>(
         `SELECT job_waiting FROM concept_blank_scan_submission WHERE id=$1::uuid AND job_id=$2::uuid`,
         [job.submissionId, job.id],

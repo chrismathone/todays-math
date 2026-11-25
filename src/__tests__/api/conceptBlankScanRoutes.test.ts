@@ -206,7 +206,7 @@ describe("authenticated scan HTTP routes with local PostgreSQL", () => {
         .status,
     ).toBe(403);
   });
-  it("captures, reads after disconnect, confirms blank, publishes and allows a reasoned teacher correction only", async () => {
+  it("captures, reads after disconnect, grades and publishes without a confirmation step, and allows a reasoned teacher correction only", async () => {
     let response = await start(req("/submissions", "POST", payload()));
     expect(response.status).toBe(201);
     const id = (await response.json()).data.id;
@@ -243,8 +243,9 @@ describe("authenticated scan HTTP routes with local PostgreSQL", () => {
     controller.abort();
     await flush();
     view = (await (await get(req(`/submissions/${id}`), ctx(id))).json()).data;
-    expect(view.state).toBe("checking");
-    expect(view.grades).toEqual([]);
+    // 원장님 2026-11-25 «지금은 채점만 하면 됨» — 읽기 뒤 확인 단계 없이 바로 채점 · 공개한다.
+    expect(view.state).toBe("graded");
+    expect(view.grades.length).toBeGreaterThan(0);
     expect(model).toHaveBeenCalledTimes(1);
     response = await answer(
       req(`/submissions/${id}/answers`, "POST", {
@@ -256,20 +257,7 @@ describe("authenticated scan HTTP routes with local PostgreSQL", () => {
       }),
       ctx(id),
     );
-    expect(response.status).toBe(200);
-    view = (await (await get(req(`/submissions/${id}`), ctx(id))).json()).data;
-    response = await job(
-      req(`/submissions/${id}/jobs`, "POST", {
-        kind: "grade",
-        revision: view.revision,
-      }),
-      ctx(id),
-    );
-    expect(response.status).toBe(202);
-    await flush();
-    view = (await (await get(req(`/submissions/${id}`), ctx(id))).json()).data;
-    expect(view.state).toBe("graded");
-    expect(view.grades[0].label).toBe("incorrect");
+    expect(response.status).toBe(409);
     const change = {
       revision: view.revision,
       targetId: view.grades[0].targetId,

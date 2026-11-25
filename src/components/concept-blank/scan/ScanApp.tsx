@@ -21,9 +21,8 @@ import { ScanNameCapture } from "./ScanNameCapture";
 import { ScanWrittenName } from "./ScanWrittenName";
 import { scanSource, type ScanSource } from "./api";
 import { encodeScanPhoto, SCAN_PHOTO_ACCEPT } from "./image";
-import { scanIsPublished, scanNumbers } from "./view";
-import { ScanAnswers, type ScanAnswersHandle } from "./ScanAnswers";
-import { ScanPhoto, ScanPhotoPreview } from "./ScanPhoto";
+import { scanIsPublished } from "./view";
+import { ScanPhotoPreview } from "./ScanPhoto";
 import { ScanResults } from "./ScanResults";
 import s from "./scan.module.css";
 
@@ -49,7 +48,6 @@ export default function ScanApp({
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
-  const [dirty, setDirty] = useState<Set<string>>(() => new Set());
   const [deleting, setDeleting] = useState(false);
   const [loadVersion, setLoadVersion] = useState(0);
   const [observedAt, setObservedAt] = useState(0);
@@ -58,7 +56,6 @@ export default function ScanApp({
   const deleteButton = useRef<HTMLButtonElement>(null);
   const camera = useRef<HTMLInputElement>(null);
   const upload = useRef<HTMLInputElement>(null);
-  const answers = useRef<ScanAnswersHandle>(null);
   const startKey = useRef<{ studentId?: string; requestId: string }>(undefined);
   const acceptView = useCallback(
     (next: ScanSubmissionView) => {
@@ -130,26 +127,6 @@ export default function ScanApp({
       controller.abort();
     };
   }, [pollingId, pollingKind, source, acceptView]);
-  useEffect(() => {
-    if (!dirty.size) return;
-    const warn = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
-    window.addEventListener("beforeunload", warn);
-    return () => window.removeEventListener("beforeunload", warn);
-  }, [dirty.size]);
-  const onDirty = useCallback(
-    (slot: string, changed: boolean) =>
-      setDirty((old) => {
-        if (old.has(slot) === changed) return old;
-        const next = new Set(old);
-        if (changed) next.add(slot);
-        else next.delete(slot);
-        return next;
-      }),
-    [],
-  );
   const run = async (task: () => Promise<void>, propagate = false) => {
     if (inFlight.current) {
       if (propagate) throw new Error("앞선 저장을 마친 뒤 다시 시도해 주세요.");
@@ -226,6 +203,22 @@ export default function ScanApp({
         await refresh();
       }
     });
+  // 1쪽짜리 지면처럼 읽기가 촬영 때 끝난 답안도 바로 채점한다(운영 작업 줄은 읽기 뒤 채점을 스스로 잇는다).
+  const autoGraded = useRef<string | null>(null);
+  useEffect(() => {
+    if (
+      !view ||
+      view.state !== "checking" ||
+      view.job ||
+      view.lastError ||
+      busy ||
+      autoGraded.current === view.id
+    )
+      return;
+    autoGraded.current = view.id;
+    void job("grade");
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- 답안마다 한 번만 시작한다.
+  }, [view?.id, view?.state, view?.job, view?.lastError, busy]);
   const published = view ? scanIsPublished(view) : false;
   const locked = busy || !!view?.job;
   const photo = view?.photos.find((p) => p.page === page);
@@ -425,49 +418,24 @@ export default function ScanApp({
                     </select>
                   </label>
                   {view.state === "checking" ? (
-                    <>
-                      {photo ? (
-                        <ScanPhoto
-                          photo={photo}
-                          submissionId={view.id}
-                          source={source}
-                          numbers={scanNumbers(view)}
-                          onField={(slotId) => answers.current?.focus(slotId)}
-                        />
-                      ) : null}
-                      <ScanAnswers
-                        ref={answers}
-                        view={view}
-                        page={page}
-                        busy={locked}
-                        onDirty={onDirty}
-                        save={(input) =>
-                          run(async () => {
-                            await source.answer(view.id, input);
-                            await refresh();
-                          }, true)
-                        }
-                      />
-                      <p className={s.notice}>
-                        확인을 마치면 ○·△·×와 까닭이 공개됩니다. 공개 뒤에는
-                        교사만 판정을 고칠 수 있습니다.
-                      </p>
-                      {dirty.size ? (
-                        <p role="status">
-                          입력한 답을 저장한 뒤 채점해 주세요.
-                        </p>
-                      ) : null}
-                      <button
-                        className={s.primary}
-                        type="button"
-                        disabled={locked || !!dirty.size || !!missing.length}
-                        onClick={() => void job("grade")}
-                      >
-                        {view.lastError
-                          ? "다시 채점하기"
-                          : "확인 마침 · 채점하기"}
-                      </button>
-                    </>
+                    // 원장님 2026-11-25 «지금은 채점만 하면 됨» — 읽은 답을 고치는 단계 없이 바로 채점한다.
+                    <div className={s.notice}>
+                      {view.job ? null : view.lastError ? (
+                        <p>답은 읽었습니다. 채점을 다시 시도해 주세요.</p>
+                      ) : (
+                        <p role="status">답을 읽었습니다. 채점을 시작합니다.</p>
+                      )}
+                      {view.job ? null : (
+                        <button
+                          className={s.primary}
+                          type="button"
+                          disabled={locked}
+                          onClick={() => void job("grade")}
+                        >
+                          {view.lastError ? "다시 채점하기" : "채점하기"}
+                        </button>
+                      )}
+                    </div>
                   ) : (
                     <div className={s.camera}>
                       <h2>{page}쪽 찍기</h2>
@@ -502,7 +470,7 @@ export default function ScanApp({
                     type="file"
                     accept={SCAN_PHOTO_ACCEPT}
                     capture="environment"
-                    disabled={locked || !!dirty.size}
+                    disabled={locked}
                     onChange={(e) => {
                       photoInput(e.target.files?.[0]);
                       e.target.value = "";
@@ -515,7 +483,7 @@ export default function ScanApp({
                     ref={upload}
                     type="file"
                     accept={SCAN_PHOTO_ACCEPT}
-                    disabled={locked || !!dirty.size}
+                    disabled={locked}
                     onChange={(e) => {
                       photoInput(e.target.files?.[0]);
                       e.target.value = "";
@@ -555,7 +523,7 @@ export default function ScanApp({
                         </span>
                         <button
                           type="button"
-                          disabled={locked || !!dirty.size}
+                          disabled={locked}
                           onClick={() => {
                             setPage(p.number);
                             upload.current?.click();
@@ -589,7 +557,7 @@ export default function ScanApp({
               <div className={s.actions}>
                 <button
                   type="button"
-                  disabled={busy || !!dirty.size}
+                  disabled={busy}
                   onClick={() =>
                     window.location.assign(
                       scanDestination({
@@ -603,7 +571,7 @@ export default function ScanApp({
                 </button>
                 <button
                   type="button"
-                  disabled={busy || !!dirty.size}
+                  disabled={busy}
                   onClick={() => void run(refresh)}
                 >
                   새로 불러오기
@@ -612,7 +580,7 @@ export default function ScanApp({
                   <button
                     type="button"
                     ref={deleteButton}
-                    disabled={locked || !!dirty.size}
+                    disabled={locked}
                     onClick={() => setDeleting(true)}
                   >
                     {page}쪽 사진 삭제

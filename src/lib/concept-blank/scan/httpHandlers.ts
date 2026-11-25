@@ -62,6 +62,7 @@ export function createScanHttpHandlers(deps: {
       config: runtime.config(),
       model: runtime.model,
       onError: runtime.onError,
+      gradeAfterRead: true,
     };
   };
   const scheduleName = (
@@ -195,6 +196,7 @@ export function createScanHttpHandlers(deps: {
               model: runtime.model,
               config: runtime.config(),
               onError: runtime.onError,
+              gradeAfterRead: true,
             }),
           );
         return json(view);
@@ -248,6 +250,7 @@ export function createScanHttpHandlers(deps: {
           config: runtime.config(),
           model: runtime.model,
           onError: runtime.onError,
+          gradeAfterRead: true,
         };
         const job = await beginScanJob(who, id, input, runtime.db);
         deps.schedule(() => runScanJobAndQueue(job, jobDeps));
@@ -293,6 +296,7 @@ export function createScanHttpHandlers(deps: {
           config: runtime.config(),
           model: runtime.model,
           onError: runtime.onError,
+          gradeAfterRead: true,
         });
         return json({ processed: true });
       }),
