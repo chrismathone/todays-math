@@ -313,9 +313,9 @@ export function accountRouteAllowed(
   // `/api` 밖 경로는 아래에서 기본 통과라, 인쇄 페이지를 여기 적지 않으면 메뉴를 끈 계정도 연다.
   if (under(path, "/api/english") || under(path, "/english"))
     return englishRouteAllowed(account.menus, method, path);
-  // 개념 백지(D-150) — 크롬 없는 인쇄 페이지(`/concept-blank/print`). API 는 없다(은행이 코드 데이터).
-  // `/api` 밖 경로는 아래에서 기본 통과라, 여기 적지 않으면 메뉴를 끈 계정도 인쇄 페이지를 연다.
-  if (under(path, "/concept-blank")) return any("conceptBlank");
+  // 개념 백지 — 발행·사진 채점도 기존 메뉴를 따른다. 각 라우트가 소유/학생 범위를 다시 확인한다.
+  if (under(path, "/concept-blank") || under(path, "/api/concept-blank/scan"))
+    return any("conceptBlank");
   if (under(path, "/api")) return false; // Newly added resource routes must declare their menu.
   return true; // Images/fonts and established static assets are not feature endpoints.
 }

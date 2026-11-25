@@ -95,6 +95,46 @@ const ACTIVE_RULES: readonly Rule[] = [
   },
   {
     methods: PAGE,
+    path: "/concept-blank/scan",
+    why: "개념 백지 QR 촬영 — 발행 교사의 현재 학생만 서버에서 허용",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/concept-blank/scan/issued/{id}",
+    why: "본인에게 허용된 발행 지면",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/concept-blank/scan/submissions",
+    why: "본인의 답안 시작",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/concept-blank/scan/submissions/{id}",
+    why: "본인의 답안 상태·공개된 결과",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/concept-blank/scan/submissions/{id}/photos",
+    why: "본인의 공개 전 답안 사진",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/concept-blank/scan/submissions/{id}/photos/{id}",
+    why: "본인 사진의 짧은 열람 주소",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/concept-blank/scan/submissions/{id}/answers",
+    why: "본인의 공개 전 판독 정정",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/concept-blank/scan/submissions/{id}/jobs",
+    why: "본인 답안 읽기·채점",
+  },
+  {
+    methods: PAGE,
     path: "/learn/textbook/{id}/concepts/{id}",
     why: "교재에 실린 개념의 정확한 백지 활동",
   },
@@ -369,6 +409,8 @@ export function anonymousLearnGate(
   pathname: string,
 ): LearnGate | null {
   const path = normalizeRoutePathname(pathname);
+  if (path === "/concept-blank/scan" && isPageRead(method.toUpperCase()))
+    return { kind: "allow" };
   if (
     /^\/q\/[A-Za-z0-9_-]{16,100}$/.test(path) &&
     isPageRead(method.toUpperCase())

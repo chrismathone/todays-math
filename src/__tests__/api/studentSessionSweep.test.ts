@@ -165,6 +165,19 @@ const ROUTE_FILES = walk(path.join(APP, "api"))
       !rel(f).startsWith("src/app/api/english/learn/"),
   );
 
+// These exact methods intentionally accept students. Their current ownerScope and
+// publication boundary are exercised by conceptBlankScanRoutes/Submission/Jobs;
+// the real encrypted-session path is checked below. Teacher writes stay in the sweep.
+const STUDENT_SCAN_METHODS = new Set([
+  "GET src/app/api/concept-blank/scan/issued/[id]/route.ts",
+  "POST src/app/api/concept-blank/scan/submissions/route.ts",
+  "GET src/app/api/concept-blank/scan/submissions/[id]/route.ts",
+  "POST src/app/api/concept-blank/scan/submissions/[id]/photos/route.ts",
+  "GET src/app/api/concept-blank/scan/submissions/[id]/photos/[photoId]/route.ts",
+  "POST src/app/api/concept-blank/scan/submissions/[id]/answers/route.ts",
+  "POST src/app/api/concept-blank/scan/submissions/[id]/jobs/route.ts",
+]);
+
 const SRC_FILES = walk(path.join(ROOT, "src")).filter(
   (f) =>
     /\.(ts|tsx)$/.test(f) &&
@@ -366,6 +379,39 @@ describe("② 학생 세션 → 기존 API 전수", () => {
       expect([...anonymous.db, ...student.db, ...denied.db]).toEqual([]);
     }
   });
+  it("scan accepts a real student session for submissions and denies teacher writes before storage", async () => {
+    const start = (
+      await import("@/app/api/concept-blank/scan/submissions/route")
+    ).POST;
+    const override = (
+      await import("@/app/api/concept-blank/scan/submissions/[id]/override/route")
+    ).POST;
+    const anonymous = await callRoute(
+      start,
+      "POST",
+      "/api/concept-blank/scan/submissions",
+      {},
+      null,
+    );
+    const student = await callRoute(
+      start,
+      "POST",
+      "/api/concept-blank/scan/submissions",
+      {},
+      studentCookie,
+    );
+    const denied = await callRoute(
+      (request) => override(request, { params: Promise.resolve({ id: UUID }) }),
+      "POST",
+      `/api/concept-blank/scan/submissions/${UUID}/override`,
+      { id: UUID },
+      studentCookie,
+    );
+    expect(anonymous.status).toBe(401);
+    expect(student.status).toBe(400);
+    expect(denied.status).toBe(403);
+    expect([...anonymous.db, ...student.db, ...denied.db]).toEqual([]);
+  });
   it("🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다", async () => {
     expect(
       ROUTE_FILES.length,
@@ -396,7 +442,11 @@ describe("② 학생 세션 → 기존 API 전수", () => {
         importFailures.push(`${rel(file)} — ${(error as Error).message}`);
         continue;
       }
-      const methods = HTTP_METHODS.filter((m) => typeof mod[m] === "function");
+      const methods = HTTP_METHODS.filter(
+        (m) =>
+          typeof mod[m] === "function" &&
+          !STUDENT_SCAN_METHODS.has(`${m} ${rel(file)}`),
+      );
       expectedPairs += methods.length;
       const { url, params } = routeTarget(file);
       for (const method of methods) {
@@ -528,6 +578,8 @@ describe("② 모집단 — auth() 를 부르는 파일은 전부 어딘가에�
       "src/lib/learn/studentRequest.ts",
       // Above: genuine encrypted student session, learner/teacher API role boundary.
       "src/lib/english/listening/runtime/http.ts",
+      // Above: genuine encrypted session; exact student methods, teacher-only correction denied.
+      "src/lib/concept-blank/scan/http.ts",
     ]);
     const uncategorised = callers.filter(
       (f) =>

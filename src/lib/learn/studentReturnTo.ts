@@ -1,7 +1,18 @@
-/** Only textbook destinations survive student login. Teacher callbacks are never reused. */
+import {
+  parseScanDestination,
+  scanDestination,
+} from "@/lib/concept-blank/scan/navigation";
+
+/** Only explicitly allowed student destinations survive login. */
 export function normalizeStudentReturnTo(value: unknown): string {
   if (typeof value !== "string" || value.length > 500) return "/learn";
   if (/^\/q\/[A-Za-z0-9_-]{16,100}$/.test(value)) return value;
+  if (value.startsWith("/concept-blank/scan?") && !value.includes("#")) {
+    const parsed = parseScanDestination(
+      new URLSearchParams(value.slice(value.indexOf("?") + 1)),
+    );
+    if (parsed) return scanDestination(parsed);
+  }
   if (
     /^\/learn\/textbook\/[a-f0-9-]{36}\/concepts\/[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$/.test(
       value,

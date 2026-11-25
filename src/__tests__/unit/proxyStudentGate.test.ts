@@ -222,6 +222,10 @@ const SIGNED_RECEIVER = [
 /** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
 const REPORT = ["POST /api/logs/client"];
 
+// Existing purpose-signed transport, not a student capability. stageHandler rejects
+// unsigned/wrong-key requests before DB; mathOntologyOperationsStageGate tests that boundary.
+const SIGNED_ONTOLOGY = ["POST /api/math-ontology/publish/stage"];
+
 const REMOVED_ENGLISH_REQUESTS = [
   "GET /api/english/learn/listening",
   `GET /api/english/learn/listening/${UUID}`,
@@ -354,6 +358,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
       [
         ...[
           `/q/${UUID}`,
+          "/concept-blank/scan",
           `/learn/textbook/${UUID}/concepts/${UUID}`,
           "/learn",
           "/learn/lectures",
@@ -367,6 +372,13 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           `/learn/fading/concepts/${UUID}`,
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         `GET /api/learn/textbook/q/${UUID}`,
+        `GET /api/concept-blank/scan/issued/${UUID}`,
+        "POST /api/concept-blank/scan/submissions",
+        `GET /api/concept-blank/scan/submissions/${UUID}`,
+        `POST /api/concept-blank/scan/submissions/${UUID}/photos`,
+        `GET /api/concept-blank/scan/submissions/${UUID}/photos/${UUID}`,
+        `POST /api/concept-blank/scan/submissions/${UUID}/answers`,
+        `POST /api/concept-blank/scan/submissions/${UUID}/jobs`,
         `GET /api/learn/textbook/q/${UUID}/assets/${UUID}`,
         `HEAD /api/learn/textbook/q/${UUID}/assets/${UUID}`,
         `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}`,
@@ -407,6 +419,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         ...REPORT,
         ...SSO,
         ...SIGNED_RECEIVER,
+        ...SIGNED_ONTOLOGY,
         ...EXIT,
         ...brand,
         "GET /audio/math-learning/correct.wav",
@@ -466,6 +479,7 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         ...REPORT,
         ...SSO,
         ...SIGNED_RECEIVER,
+        ...SIGNED_ONTOLOGY,
         ...EXIT,
         ...brand,
         ...LAB,
