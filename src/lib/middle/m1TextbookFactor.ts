@@ -10,7 +10,7 @@ import { attempt, defType, pickDistinct, shuffle, type Body } from "./m1Shared";
 import { eulReul } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
-const BOOK = "1-1";
+const BOOK = "textbook-20261125";
 const MINOR = "교과서 수와 연산";
 const PRIME_SECTION = "소수와 거듭제곱";
 const FACTOR_SECTION = "소인수분해";

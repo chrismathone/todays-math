@@ -11,7 +11,7 @@ import type { TypeEntry } from "./types";
 import { eulReul } from "./m2Josa";
 
 type Token = { n: number; d: number; tex: string; form: number };
-const BOOK = "1-1";
+const BOOK = "textbook-20261125";
 const MINOR = "교과서 수와 연산";
 const CLASS_SECTION = "정수와 유리수";
 const ORDER_SECTION = "수의 대소관계";

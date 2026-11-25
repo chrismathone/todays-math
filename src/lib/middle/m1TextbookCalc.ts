@@ -1,5 +1,7 @@
 /**
- * Textbook T1 calculation extensions. A new namespace preserves every old key's
+ * Textbook T1 calculation extensions, not RPM provenance. A dedicated source
+ * (textbook-20261125) uses the historical rpm* fields for interface compatibility.
+ * The namespace preserves every pre-T1 key's
  * RNG stream. Eight mathematical families share exact expressions; the seed
  * selects numbers, notation, signs, shape and one to six ordered subquestions.
  * No source sentences/numbers are used as generation inputs.
@@ -207,7 +209,7 @@ const families = [
 
 export const M1_TEXTBOOK_CALC: TypeEntry[] = families.map((f) =>
   defType(
-    "1-1",
+    "textbook-20261125",
     "교과서 수와 연산",
     f.id,
     f.title,

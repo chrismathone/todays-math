@@ -6,7 +6,7 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C01"
+        "textbook-20261125|교과서 수와 연산|C01"
       ],
       "reviewedCodes": [
         "J10203-A13-001",
@@ -56,8 +56,8 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10203-A13-001",
-          "typeKey": "1-1|교과서 수와 연산|C01",
-          "seed": 0,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C01",
+          "seed": 2786810649,
           "variant": 0,
           "comparison": "정수·분수·소수를 더하고 빼는 네 소문항이며 답도 네 개를 같은 순서로 쓴다. 각 식의 항 수는 원문과 다를 수 있다."
         }
@@ -68,7 +68,7 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C01"
+        "textbook-20261125|교과서 수와 연산|C01"
       ],
       "reviewedCodes": [
         "J10203-A22-001",
@@ -151,8 +151,8 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10203-A22-001",
-          "typeKey": "1-1|교과서 수와 연산|C01",
-          "seed": 5,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C01",
+          "seed": 2786810654,
           "variant": 0,
           "comparison": "부호 있는 수의 덧셈·뺄셈을 한 값으로 계산한다. 견본은 다섯 항이며 원문은 네 항이다."
         }
@@ -163,10 +163,10 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C02",
-        "1-1|교과서 수와 연산|C03",
-        "1-1|교과서 수와 연산|C04",
-        "1-1|교과서 수와 연산|C08"
+        "textbook-20261125|교과서 수와 연산|C02",
+        "textbook-20261125|교과서 수와 연산|C03",
+        "textbook-20261125|교과서 수와 연산|C04",
+        "textbook-20261125|교과서 수와 연산|C08"
       ],
       "reviewedCodes": [
         "J10204-A12-001",
@@ -194,29 +194,29 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10204-A12-001",
-          "typeKey": "1-1|교과서 수와 연산|C02",
-          "seed": 0,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C02",
+          "seed": 2786810649,
           "variant": 0,
           "comparison": "부호·소수·분수가 섞인 곱과 0인 곱을 여러 식으로 묻는다. 견본 세 소문항과 원문 네 소문항의 개수 차이는 남긴다."
         },
         {
           "sourceCode": "J10204-A47-001",
-          "typeKey": "1-1|교과서 수와 연산|C03",
-          "seed": 173,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C03",
+          "seed": 2786810822,
           "variant": 0,
           "comparison": "거듭제곱 뒤 곱을 계산하고 괄호 밖 음의 부호를 구별한다. 견본 여섯 식과 원문 네 식의 소문항 수는 다르다."
         },
         {
           "sourceCode": "J10204-B66-001",
-          "typeKey": "1-1|교과서 수와 연산|C04",
-          "seed": 0,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C04",
+          "seed": 2786810649,
           "variant": 0,
           "comparison": "같은 계수로 묶거나 괄호를 펼쳐 값을 계산하는 여러 식이다. 견본 여섯 식과 원문 세 식의 수는 다르다."
         },
         {
           "sourceCode": "J10204-A17-001",
-          "typeKey": "1-1|교과서 수와 연산|C08",
-          "seed": 173,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C08",
+          "seed": 2786810822,
           "variant": 0,
           "comparison": "0단계는 줄바꿈 때문에 batch로 묶었지만 대표 원문은 하나의 교대합이다. 견본도 음의 일의 연속 거듭제곱에 등차 계수를 곱한 단일 합이며 항 수·계수는 다르다."
         }
@@ -227,10 +227,10 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C02",
-        "1-1|교과서 수와 연산|C03",
-        "1-1|교과서 수와 연산|C04",
-        "1-1|교과서 수와 연산|C08"
+        "textbook-20261125|교과서 수와 연산|C02",
+        "textbook-20261125|교과서 수와 연산|C03",
+        "textbook-20261125|교과서 수와 연산|C04",
+        "textbook-20261125|교과서 수와 연산|C08"
       ],
       "reviewedCodes": [
         "J10204-A41-001",
@@ -297,29 +297,29 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10204-A41-001",
-          "typeKey": "1-1|교과서 수와 연산|C02",
-          "seed": 4,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C02",
+          "seed": 2786810653,
           "variant": 0,
           "comparison": "부호 있는 네 수의 곱을 한 값으로 구한다. 원문의 보기 선택을 값 직접 답하기로 바꿨다."
         },
         {
           "sourceCode": "J10204-A42-001",
-          "typeKey": "1-1|교과서 수와 연산|C03",
-          "seed": 3,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C03",
+          "seed": 2786810652,
           "variant": 0,
           "comparison": "거듭제곱을 먼저 계산한 뒤 곱한다. 곱하는 수의 개수와 정수·분수 표현은 변하며 보기 선택을 값 답으로 바꿨다."
         },
         {
           "sourceCode": "J10204-A43-001",
-          "typeKey": "1-1|교과서 수와 연산|C04",
-          "seed": 2,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C04",
+          "seed": 2786810651,
           "variant": 0,
           "comparison": "공통 계수가 있는 두 곱을 분배법칙으로 묶어 한 값을 구한다. 덧셈·뺄셈과 계수는 바뀌며 보기 선택을 값 답으로 바꿨다."
         },
         {
           "sourceCode": "J10204-A49-001",
-          "typeKey": "1-1|교과서 수와 연산|C08",
-          "seed": 1,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C08",
+          "seed": 2786810650,
           "variant": 0,
           "comparison": "음의 일의 큰 지수에서 홀짝을 판단해 합·차를 계산한다. 견본 두 항과 원문 네 항은 다르고 보기 선택을 값 답으로 바꿨다."
         }
@@ -330,8 +330,8 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C05",
-        "1-1|교과서 수와 연산|C06"
+        "textbook-20261125|교과서 수와 연산|C05",
+        "textbook-20261125|교과서 수와 연산|C06"
       ],
       "reviewedCodes": [
         "J10205-A16-001",
@@ -348,15 +348,15 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10205-A16-001",
-          "typeKey": "1-1|교과서 수와 연산|C05",
-          "seed": 173,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C05",
+          "seed": 2786810822,
           "variant": 0,
           "comparison": "곱셈·나눗셈을 왼쪽부터 계산하여 소문항마다 값을 쓴다. 견본 세 식과 원문 두 식은 다르다."
         },
         {
           "sourceCode": "J10205-A65-001",
-          "typeKey": "1-1|교과서 수와 연산|C06",
-          "seed": 1,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C06",
+          "seed": 2786810650,
           "variant": 0,
           "comparison": "거듭제곱 뒤 곱셈·나눗셈을 계산하며 괄호 밖 음의 부호를 포함한다. 견본 여섯 식과 원문 네 식의 수는 다르다."
         }
@@ -367,9 +367,9 @@
       "decision": "기존 계산 골격의 확장·새 키",
       "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
       "typeKeys": [
-        "1-1|교과서 수와 연산|C05",
-        "1-1|교과서 수와 연산|C06",
-        "1-1|교과서 수와 연산|C07"
+        "textbook-20261125|교과서 수와 연산|C05",
+        "textbook-20261125|교과서 수와 연산|C06",
+        "textbook-20261125|교과서 수와 연산|C07"
       ],
       "reviewedCodes": [
         "J10205-A47-001",
@@ -427,22 +427,22 @@
       "sampleEvidence": [
         {
           "sourceCode": "J10205-A72-001",
-          "typeKey": "1-1|교과서 수와 연산|C05",
-          "seed": 1,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C05",
+          "seed": 2786810650,
           "variant": 0,
           "comparison": "나눗셈을 역수의 곱으로 계산한다. 견본은 곱셈을 포함한 세 수, 원문은 두 수의 나눗셈이다."
         },
         {
           "sourceCode": "J10205-A83-001",
-          "typeKey": "1-1|교과서 수와 연산|C06",
-          "seed": 0,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C06",
+          "seed": 2786810649,
           "variant": 0,
           "comparison": "거듭제곱을 먼저 구한 뒤 곱하고 나누어 한 값을 구한다. 밑·지수·거듭제곱인 피연산자 수는 바뀐다."
         },
         {
           "sourceCode": "J10205-A47-001",
-          "typeKey": "1-1|교과서 수와 연산|C07",
-          "seed": 20261125,
+          "typeKey": "textbook-20261125|교과서 수와 연산|C07",
+          "seed": 2807071774,
           "variant": 0,
           "comparison": "견본의 (3)·(4)가 거듭제곱 뒤 나눗셈·곱셈·뺄셈 순서를 따르는 원문 구조와 대응한다. 원문은 단일 식이며 견본은 네 소문항이므로 소문항 수 동일성은 주장하지 않는다."
         }
@@ -454,1799 +454,1799 @@
       "id": "569e24fc-0e6a-4707-8c29-1f4c131ab6c5",
       "problemCode": "J10203-A13-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "bb54b8a5-5b4d-4e1d-a927-dbcae718be1e",
       "problemCode": "J10203-A14-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "30beeb47-19f5-4cd3-9795-0eef2360d8b8",
       "problemCode": "J10203-A16-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3046bf3e-0312-483e-baec-d2273248f6ca",
       "problemCode": "J10203-A17-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "512e9ecd-dfa5-4392-900e-1c8c78efe3d9",
       "problemCode": "J10203-A18-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "17c15cf9-f9c8-4c1d-82d3-25b5b5a3c87e",
       "problemCode": "J10203-A19-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "e45777f3-6f3b-44b2-8aec-6253e8cdbef4",
       "problemCode": "J10203-A22-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "30070109-7233-432f-a1cf-551b97f0b49e",
       "problemCode": "J10203-A31-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "8fa51369-a0ac-45a3-8bc3-a1279b4a1ea1",
       "problemCode": "J10203-A32-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0d268644-2cac-4687-bd6a-dc97a1eb2580",
       "problemCode": "J10203-A34-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "94f027d3-5c22-4f33-8519-dab78ce75f6b",
       "problemCode": "J10203-A38-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "c7e0ec6b-d646-4d1b-ab4b-5fc49ea8f4f0",
       "problemCode": "J10203-A43-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "fc7b1af0-45f7-4080-a3a8-be7eeaa73a2b",
       "problemCode": "J10203-A45-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "78d73c7c-b925-4ce2-bdc2-25aca2f53545",
       "problemCode": "J10203-A50-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a804eef0-0f0e-46bc-84af-d72c1e11f0f4",
       "problemCode": "J10203-A70-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b1b8d5a6-ba5b-4641-a445-63000ec2f362",
       "problemCode": "J10203-A71-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "21db069f-ca14-47df-9fae-673143169084",
       "problemCode": "J10203-A72-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0a899535-2ad6-42f6-a67b-477bda44da26",
       "problemCode": "J10203-A73-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3c9a3676-097d-4509-b303-86537caa4aca",
       "problemCode": "J10203-A74-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d2267603-61d5-48fb-a071-8c86b09d5923",
       "problemCode": "J10203-A76-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "764ba429-20f6-4af7-a732-a24014e2a935",
       "problemCode": "J10203-A77-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "128c9aeb-ed26-4f26-b219-6f0d906c4b61",
       "problemCode": "J10203-A78-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "7bf84956-284a-4375-b3b5-f0cc0e078f7c",
       "problemCode": "J10203-A79-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d1742931-1bfd-41e0-b175-0ac348bdee13",
       "problemCode": "J10203-A80-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "c6c95c6f-96b2-4bc1-9a75-ae183c62fede",
       "problemCode": "J10203-A81-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "07a758bd-1e2c-4d22-aa53-8adc3ff5978f",
       "problemCode": "J10203-A82-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a0921394-2b9d-4209-b644-e53eba845d0e",
       "problemCode": "J10203-A85-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0958ef12-f81a-420c-a988-03815e29ee51",
       "problemCode": "J10203-A94-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d3010117-4473-432c-878f-fe1533589f17",
       "problemCode": "J10203-A95-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0e353c75-6d43-4822-8947-359d877693c6",
       "problemCode": "J10203-A99-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3e2d4a87-003f-43e8-9b25-141964721d56",
       "problemCode": "J10203-B01-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "16fdd21a-1670-414c-b6ef-c43c5f6699b2",
       "problemCode": "J10203-B02-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d6a8f413-3d92-4e5a-a399-64d08b2283bc",
       "problemCode": "J10203-B03-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a99a615e-0df0-4c6d-93c4-5d7902432de9",
       "problemCode": "J10203-B12-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "6f6e7679-cb43-4077-a3cc-e3a251d8d589",
       "problemCode": "J10203-B13-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "7cd822e5-cbb8-47c0-8e50-68c5a7d3db05",
       "problemCode": "J10203-B17-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b004d9e6-bd34-4080-9e7d-d3df2e455736",
       "problemCode": "J10203-B18-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "8e8b8bf0-3731-4937-ad5e-774d391368fa",
       "problemCode": "J10203-B19-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "65dfa817-fdae-4175-8452-3f6eb5bf2716",
       "problemCode": "J10203-B20-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "495a1327-3da0-4cd9-81d3-99284e30bab3",
       "problemCode": "J10203-B29-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "12748212-f6c5-4ef3-b915-cd26868f2565",
       "problemCode": "J10203-B30-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d6fdc34a-a4cf-457f-acf1-90f64faf9779",
       "problemCode": "J10203-B31-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "616ab37d-f7db-4651-a2f4-56346b7fe3de",
       "problemCode": "J10203-B32-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "455c1c78-0a8d-46c3-b327-cc3e3e74691c",
       "problemCode": "J10203-B33-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "548d4b40-5a2d-4b11-9e41-330388e1d1ed",
       "problemCode": "J10203-B34-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "1bb9e870-597a-47f3-930b-1435857d7344",
       "problemCode": "J10203-B35-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "bc8c0fb9-c972-4aab-ba50-6a98623d0fd9",
       "problemCode": "J10203-B36-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "4d403461-c267-40be-997f-7ab40784a8ef",
       "problemCode": "J10203-B37-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "114206ad-244e-4b13-9b3b-68a185e51a87",
       "problemCode": "J10203-B46-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "5bdcd3d4-4a4b-4b1e-855d-28f854074291",
       "problemCode": "J10203-B47-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "e816b8ef-74c4-4297-bd6a-e93c6c78ad76",
       "problemCode": "J10203-B48-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "52074d1b-334c-4a1b-b9e3-da9cf9bfc726",
       "problemCode": "J10203-B49-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "363115cb-e569-4a18-abe6-6c7c941a885b",
       "problemCode": "J10203-B50-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "58c1492c-2944-4b44-a1d5-b4000efe8e43",
       "problemCode": "J10203-B51-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "c7c2775a-8c26-4ee8-b395-5a303dd44262",
       "problemCode": "J10203-B52-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "546dede2-c39b-45e3-be6f-79ae40be7bef",
       "problemCode": "J10203-B53-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0315d015-dda9-47a4-b76f-f1c22e2139cb",
       "problemCode": "J10203-B54-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "944df510-f8c1-41e2-ac7a-4fbbedf72e9e",
       "problemCode": "J10203-B56-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "c856691b-28e6-45b5-85a3-28d5834f4eff",
       "problemCode": "J10203-B76-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "f2b313bc-85ea-487d-aa8e-f22d21cff555",
       "problemCode": "J10203-B85-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "fa852a7d-3804-40f7-a3ac-38156517b9d0",
       "problemCode": "J10203-B86-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d4e25c3a-d39e-4f86-9714-3fa23a97228f",
       "problemCode": "J10203-B87-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "9530610b-21d4-4ffb-9eff-6618ac7cf425",
       "problemCode": "J10203-B88-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "bc459ccd-d72c-4c4f-89ca-4f524820daf8",
       "problemCode": "J10203-B97-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a53f061e-7b13-4436-969d-d57a257aae0a",
       "problemCode": "J10203-B98-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "af9c0473-92c0-4a65-955c-ba74648b32a7",
       "problemCode": "J10203-C03-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "55a17466-509a-431f-911f-338beaf8b0d6",
       "problemCode": "J10203-C04-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "25fa5f67-0250-4151-ac35-46088fb18618",
       "problemCode": "J10203-C05-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "1c5a974a-6d97-456e-af6b-4aa94e99bed5",
       "problemCode": "J10203-C06-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "275325c1-6ad2-4d4e-ae9f-957e69124da4",
       "problemCode": "J10203-C15-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b983c279-1dbf-477b-9fe3-0c41bad14169",
       "problemCode": "J10203-C16-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "c39628ee-9d99-44ab-9af9-ec6ceb68de55",
       "problemCode": "J10203-C20-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "f50e21ce-e90a-4866-a3a1-a4d05f2c2ee5",
       "problemCode": "J10203-C21-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "09a441ba-f1c9-487b-9c74-d1ecc19a6f63",
       "problemCode": "J10203-C22-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b801baf4-3378-4b70-9096-9583be7dc338",
       "problemCode": "J10203-C23-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "293f3310-57c3-46aa-861c-95a68827a317",
       "problemCode": "J10203-C32-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "781439fa-513e-4dcc-ae3c-b58663619b62",
       "problemCode": "J10203-C33-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "2f40532b-8b89-4dfe-b398-5670102f3def",
       "problemCode": "J10203-C34-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "49056384-f74e-4135-bb9b-d8669a8b36b2",
       "problemCode": "J10203-C35-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "ba88b1d6-5e82-4836-a08c-dffda629897f",
       "problemCode": "J10203-C36-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "1556dab1-3396-4f7d-9fd9-1e9538dff605",
       "problemCode": "J10203-C37-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "ad8be4a2-db7b-4733-a08f-6f593597f5e4",
       "problemCode": "J10203-C38-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "bdd32635-07df-4418-b34f-a74577dd5bab",
       "problemCode": "J10203-C39-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "94107732-23dc-475f-aa18-edb9040535e4",
       "problemCode": "J10203-C40-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b6a9e649-39b8-4696-8333-5f6feb310910",
       "problemCode": "J10203-C48-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "650a29cf-8f93-40b6-85fc-0869d8e333d5",
       "problemCode": "J10203-C49-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "19c1c20a-e26b-4a9d-a367-90988fa60fbf",
       "problemCode": "J10203-C50-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "9cf183c2-9d19-4bfe-a462-6a722f6f223c",
       "problemCode": "J10203-C51-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "9f6fc424-9acc-4915-a136-84a5b6e403fa",
       "problemCode": "J10203-C52-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "115c8593-bcec-4ded-b25f-a042c46c1cda",
       "problemCode": "J10203-C53-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "fd93755a-83cf-4bc0-97b5-45f833dbc0a7",
       "problemCode": "J10203-C54-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "218e0250-5a46-4b44-a1a3-1e018b9bef0f",
       "problemCode": "J10203-C55-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a5e9e054-56c6-48b0-89e0-84e6c1b28860",
       "problemCode": "J10203-C56-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "977c2e08-b3d7-43e7-97cd-cb34ae1e3113",
       "problemCode": "J10203-C58-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "4fdbaf8a-9c2c-4cc8-b28f-6ea82ab5f2cd",
       "problemCode": "J10203-C59-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "493edba9-3e43-4c30-99cf-34c14cdd6906",
       "problemCode": "J10203-C61-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "21572866-bb2f-4ca8-bf36-2d726145313f",
       "problemCode": "J10203-C62-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "e267c047-4355-487f-925f-b410dab41933",
       "problemCode": "J10203-C66-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d6c9e469-d5c8-4fbb-95b6-6f8a0ed890b9",
       "problemCode": "J10203-C68-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "961ebffe-2a98-46d5-adf3-e0ce8ede73c0",
       "problemCode": "J10203-C69-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "b93da8bf-2ccc-49ca-a9a1-5fede0807d13",
       "problemCode": "J10203-C73-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "e1471912-5023-4b05-b25f-34dfba37f4d3",
       "problemCode": "J10203-C78-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3a40f80a-d41d-41c8-8af5-4f04d6f277a8",
       "problemCode": "J10203-C80-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "1464f795-c54b-4daa-9a83-50b1b7cbe515",
       "problemCode": "J10203-C83-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "e575e0c1-4afe-4f2a-ad79-996d116d7020",
       "problemCode": "J10203-C84-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "969714ac-00f7-41aa-a701-a0d9dfd31660",
       "problemCode": "J10203-C85-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "6e5a27fa-84d4-4449-922d-fe2fe4f2762c",
       "problemCode": "J10203-C86-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d8802a99-9cdf-4dd0-a1f4-22d829a7c33a",
       "problemCode": "J10203-C89-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3902ee61-927b-4fe1-beb8-62e7a7ac6a91",
       "problemCode": "J10203-C90-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d67f12c3-55b9-4e0d-a6af-cf2684061a33",
       "problemCode": "J10203-C91-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d0a55754-03ad-454c-85c4-0c63e4cf9bcd",
       "problemCode": "J10203-C92-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "9bf2d635-2dfe-434b-a061-65b1d7c12272",
       "problemCode": "J10203-C97-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "5768bb5d-e710-4abe-8af2-0be820d3da47",
       "problemCode": "J10203-C98-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d39c4903-fa75-4579-b9b3-22b06506f1aa",
       "problemCode": "J10203-C99-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "3ff0ccc2-d6ad-4408-955c-504d04d1ca07",
       "problemCode": "J10203-D01-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "0f4b380f-0be4-4c6e-b093-96ca739aac1c",
       "problemCode": "J10203-D02-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d73231eb-71a7-4283-8d1f-b522755162d5",
       "problemCode": "J10203-D03-001",
       "groupId": "m1-b-calc-0-batch",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "d0f61bb5-da1b-40fe-919a-3addd5b91e06",
       "problemCode": "J10203-D04-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "a5bc82f7-f92d-4ade-b4d2-9af71169e8da",
       "problemCode": "J10203-D05-001",
       "groupId": "m1-b-calc-0-single",
-      "typeKey": "1-1|교과서 수와 연산|C01",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C01",
       "reason": "부호 있는 2~5개 유리수의 덧셈·뺄셈. 정수·소수·분수 표현, 1~6개 소문항을 같은 계산 골격으로 확장."
     },
     {
       "id": "73f8ea2b-276c-4120-959c-d96d36d0fba7",
       "problemCode": "J10204-A12-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "0323eee1-f1d1-4a47-a078-94763cf5639c",
       "problemCode": "J10204-A13-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "899897e1-452c-4f7d-a4d5-04a7d27bf6a7",
       "problemCode": "J10204-A14-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "4b73dcfb-176b-41be-b7e0-b3b8395ea667",
       "problemCode": "J10204-A15-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "db434130-fe2d-4d52-9090-aac394d973c1",
       "problemCode": "J10204-A16-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "c9f832af-c436-42f8-ae82-b6e67071fda4",
       "problemCode": "J10204-A17-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C08",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C08",
       "reason": "음의 일의 거듭제곱 항의 합·차. 항별 부호 또는 등차 계수의 교대합을 계산."
     },
     {
       "id": "8db13089-cab2-42c4-9516-0f93ad1bada6",
       "problemCode": "J10204-A41-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "321e2de5-11cf-453f-8050-b863a6ba8b2c",
       "problemCode": "J10204-A42-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "1b487b18-1bb1-40bb-bcca-dc7406e5731e",
       "problemCode": "J10204-A43-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "95b4b60e-e2db-44bb-b5b5-117bc7e5e36d",
       "problemCode": "J10204-A44-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "71da0f47-062e-4d44-9a27-6e9958bf0bb6",
       "problemCode": "J10204-A45-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "50b0de94-97aa-4fea-8f43-0cdfc365e6e6",
       "problemCode": "J10204-A47-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "f93b2788-3340-4818-8e20-86563f023046",
       "problemCode": "J10204-A49-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C08",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C08",
       "reason": "음의 일의 거듭제곱 항의 합·차. 항별 부호 또는 등차 계수의 교대합을 계산."
     },
     {
       "id": "eabd6bdc-34c2-4098-8876-978972a82c4e",
       "problemCode": "J10204-A50-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "8d73cb84-1339-4446-9a1d-ab1f45951846",
       "problemCode": "J10204-A55-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "dc93003d-4e57-49eb-af1d-206eeb060e63",
       "problemCode": "J10204-A56-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "3d5d3de8-c02a-4d31-a1c8-1f676af8da41",
       "problemCode": "J10204-A59-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "c8b2676f-9763-49ed-91a6-789f7c0f2dbc",
       "problemCode": "J10204-A62-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "1771379d-6755-44f2-b52a-988c04521b3b",
       "problemCode": "J10204-A63-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "b29fc0e3-670c-471b-a5f4-e9ac8fab2ba6",
       "problemCode": "J10204-A64-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "77dcc263-13bc-4f61-b36a-af5283cad0ff",
       "problemCode": "J10204-A65-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "1a7c6e24-fac4-4cdf-b606-72a063fcc0d0",
       "problemCode": "J10204-A66-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "4ffc5e28-9296-42b7-a950-7f6f829f3a33",
       "problemCode": "J10204-A67-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "ed204472-199f-47af-9415-6197621f9b51",
       "problemCode": "J10204-A68-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "05594c1a-b6d3-4473-834a-66bb287f23b0",
       "problemCode": "J10204-A69-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "42ce63ce-ea9f-4543-92c8-24ce89ebf162",
       "problemCode": "J10204-A70-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "0f7eb952-b6bc-4c64-9672-d6b8eab68e90",
       "problemCode": "J10204-A71-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "0c83365a-eb4f-42a4-bb25-3b08f5e64d87",
       "problemCode": "J10204-A74-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "d797a8e5-decf-4fc1-98bb-fde302b31b84",
       "problemCode": "J10204-A75-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "27e81462-6310-4178-a88b-bbd046e86b44",
       "problemCode": "J10204-A79-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "d3ae3a62-78ac-468d-a948-f63bd54e8da4",
       "problemCode": "J10204-A81-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "2e2040e0-3be8-4341-83ae-40591dc58e00",
       "problemCode": "J10204-A82-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "e2d68ff0-489b-4c8f-a43f-01859b236f74",
       "problemCode": "J10204-A83-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "18611a5a-490c-4763-9af0-6946fdec0e46",
       "problemCode": "J10204-A84-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "17fefa23-90ee-4809-8cb5-68839f8e3412",
       "problemCode": "J10204-A85-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "245dc450-efea-419e-aae8-5d76d299584c",
       "problemCode": "J10204-A86-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "2ea416d4-0cb5-4087-8b4a-b3571f5523f7",
       "problemCode": "J10204-A87-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "126eb45c-a60b-4201-95fa-a98fc2e4cf76",
       "problemCode": "J10204-A88-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "ba4fdb6c-29f7-4054-ae4b-78e49ef28831",
       "problemCode": "J10204-A89-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "27594a3b-7f88-421e-8ab6-88f025510b0c",
       "problemCode": "J10204-A90-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "32b2eeb0-57fe-4ffb-9d1c-1f7ef4626cf5",
       "problemCode": "J10204-B09-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "6322064f-5a56-4e76-aed4-83e5ed1af8f3",
       "problemCode": "J10204-B13-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "0688879e-8a51-4568-b393-5d17fcd819b4",
       "problemCode": "J10204-B14-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "3b429aa9-adb4-4e60-8a59-475facc7eb1e",
       "problemCode": "J10204-B17-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "ea6926f8-6144-43aa-9cbe-2b5088189b34",
       "problemCode": "J10204-B20-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "7b0c5e54-2cce-422a-8159-6caa1961dccc",
       "problemCode": "J10204-B21-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "2d9e2cd8-c81b-45ce-b6d5-3b63d960a392",
       "problemCode": "J10204-B22-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "e79f244a-b348-46a4-975e-524a42e5ab28",
       "problemCode": "J10204-B23-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "fa539847-9dcb-4dbb-837d-25d5a96ee34d",
       "problemCode": "J10204-B24-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "0f4bff8c-32c5-41d8-a26d-38af54e16529",
       "problemCode": "J10204-B25-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "4cf6e292-82bc-40d6-9156-2b43f3d41d67",
       "problemCode": "J10204-B26-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "0bd68c80-8aa6-4649-b3aa-5db510a9e697",
       "problemCode": "J10204-B27-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "100e2009-a1fe-454f-8e9b-2ea054d13005",
       "problemCode": "J10204-B28-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "13f2c26d-0e17-4c56-8f20-f97960f6748c",
       "problemCode": "J10204-B29-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "d31362fe-0fa4-4e19-b6e0-4c65ce60c491",
       "problemCode": "J10204-B32-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "11f6ec3e-db33-4639-9c3f-4c6a29ef2d2e",
       "problemCode": "J10204-B33-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "fa0d5a90-10bf-40e3-868c-0ededd207d79",
       "problemCode": "J10204-B37-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "92e0afec-afa2-42ee-9ce0-e5aecef7e2a2",
       "problemCode": "J10204-B39-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "356cd5c6-f272-4de6-bae2-e6ad2f08d729",
       "problemCode": "J10204-B40-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "36e4d355-35d1-4ca4-96de-2833b59c5f96",
       "problemCode": "J10204-B41-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "4c622a3a-afc5-40a2-a2c9-00878653b5f2",
       "problemCode": "J10204-B42-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "2b117227-2edb-4933-bf04-88933c3076d0",
       "problemCode": "J10204-B43-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "0818cb46-b592-4e12-ba48-5c75e0736526",
       "problemCode": "J10204-B44-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "c6afb202-88dc-406b-b4dd-44e9d5f8afc9",
       "problemCode": "J10204-B45-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "e869bb3a-f620-442b-9095-6c66762e5e56",
       "problemCode": "J10204-B46-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "56ddf13f-6072-4e30-9105-fd5b131803c3",
       "problemCode": "J10204-B47-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "525c7cea-5b3b-4509-9136-055b66dbc904",
       "problemCode": "J10204-B48-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "098f02b4-57ad-475b-8c45-cbc09f8fe1e6",
       "problemCode": "J10204-B50-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C08",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C08",
       "reason": "음의 일의 거듭제곱 항의 합·차. 항별 부호 또는 등차 계수의 교대합을 계산."
     },
     {
       "id": "c2060993-6d90-42c3-9594-222e7d60d4c7",
       "problemCode": "J10204-B53-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "4aa313dc-4195-48cd-a4d1-0e828c65e151",
       "problemCode": "J10204-B59-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "881c3efd-5a4e-4467-b41b-289996a41110",
       "problemCode": "J10204-B66-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "bcb93cc6-344d-4529-ac8e-b1876a03d8c7",
       "problemCode": "J10204-B69-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "be0d9ff5-1d8f-47a0-af22-1d6868eb1bb1",
       "problemCode": "J10204-B70-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "544659b4-5969-4122-94c1-7ce5a6e298b2",
       "problemCode": "J10204-B72-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "662b1f84-d7aa-45e5-a7a5-be274898f0c6",
       "problemCode": "J10204-B73-001",
       "groupId": "m1-b-calc-1-single",
-      "typeKey": "1-1|교과서 수와 연산|C04",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C04",
       "reason": "공통인 유리수로 묶거나 괄호를 펼치는 분배법칙 계산. 소수/분수 계수와 거듭제곱 계수 지원."
     },
     {
       "id": "d908d394-00b6-4ec0-87b1-8bcae68ae0d7",
       "problemCode": "J10204-B76-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C03",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C03",
       "reason": "괄호와 음의 부호의 범위를 구별하여 거듭제곱 뒤 곱을 계산. 단일 거듭제곱과 복수 식 지원."
     },
     {
       "id": "0244167a-1856-42d6-adb2-22c10ab28ece",
       "problemCode": "J10204-B77-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "d6952fe7-eb9b-4449-8dad-44a17255ebea",
       "problemCode": "J10204-B78-001",
       "groupId": "m1-b-calc-1-batch",
-      "typeKey": "1-1|교과서 수와 연산|C02",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C02",
       "reason": "2~4개 유리수의 곱과 0을 포함하는 곱. 소수·분수 표현 및 단일/복수 소문항을 지원."
     },
     {
       "id": "ea148634-06a2-48a6-a577-3d68bcaaf160",
       "problemCode": "J10205-A16-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "9cb99dd2-b2f1-4c6f-b943-a196adc54d72",
       "problemCode": "J10205-A47-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "5a6d3275-4481-4135-ade2-46fa0eeea947",
       "problemCode": "J10205-A61-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "9448da05-835c-4cac-a7a8-77bc3510e5e1",
       "problemCode": "J10205-A63-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "7b3a02f3-6258-4999-8c2d-42cbc1a90edf",
       "problemCode": "J10205-A64-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "8505f5c9-a425-4975-ab8e-45bc5028fa77",
       "problemCode": "J10205-A65-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "c120b73d-e71f-4bb6-b60f-1461007d3f15",
       "problemCode": "J10205-A72-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "90c7a22f-e883-47ef-8ab1-d10389a96f03",
       "problemCode": "J10205-A77-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "a962062b-e2d8-484d-ba9f-89fe5132cbda",
       "problemCode": "J10205-A79-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "f566a7cc-d7b7-44fe-9462-3b7941a977cc",
       "problemCode": "J10205-A80-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "8c9472f0-cb7f-465c-b2b4-b843b3286409",
       "problemCode": "J10205-A81-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "d051ac84-6fe8-4cdf-aee8-2a40f00cb929",
       "problemCode": "J10205-A82-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "b8d64580-ee6f-42e3-b2b6-53a90f7b2c93",
       "problemCode": "J10205-A83-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "6d756372-fd0b-4b29-9a8f-e1421ea7d864",
       "problemCode": "J10205-A84-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "4cd1aba7-f549-49f8-9113-217e2eb08989",
       "problemCode": "J10205-A85-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "2b7118ff-0a19-471a-b720-82cb4ebef67e",
       "problemCode": "J10205-A86-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "b0a8a602-b752-4d94-95d2-f1d53e0b46f8",
       "problemCode": "J10205-A87-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "5d9e4ceb-d118-4858-8018-67710cbc27c8",
       "problemCode": "J10205-A90-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "d643fffd-c4e1-41f5-b805-ff47d020dcff",
       "problemCode": "J10205-A95-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "30357f2b-9b47-4eec-8d5f-10209dd898f5",
       "problemCode": "J10205-A97-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "33f6ffd2-1859-419f-8b14-20303696dd7a",
       "problemCode": "J10205-A98-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "45e954d5-56d7-42e1-98e0-c99c3fda3d45",
       "problemCode": "J10205-A99-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "d1bc57dc-3e2e-4d12-8423-1ae228ace723",
       "problemCode": "J10205-B01-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "9330f48f-1257-4062-b372-b938f4d848da",
       "problemCode": "J10205-B02-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "24b5bf86-a139-4039-a36c-ae7e29a0b231",
       "problemCode": "J10205-B03-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "925b9372-1602-40c4-944b-dfb7d3066832",
       "problemCode": "J10205-B04-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "96e0188f-4caa-4898-ba59-29e25da9eb7d",
       "problemCode": "J10205-B05-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "f9b060a6-2ca2-4724-830b-6bdecde29e22",
       "problemCode": "J10205-B06-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "4706f7de-287f-436f-a9b1-539b5b27914f",
       "problemCode": "J10205-B07-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "6eb14b1a-6f94-4881-9c75-b0e4d2ae0939",
       "problemCode": "J10205-B27-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "4ead5cdf-f4bc-4fb0-96a5-2f51bbc09d3d",
       "problemCode": "J10205-B32-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "35fb5e07-d21a-4370-aca6-0fdfd55e202c",
       "problemCode": "J10205-B34-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "e00e46f4-b07c-419e-a5a4-21a899252eb8",
       "problemCode": "J10205-B35-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "a0a6d843-9f54-4b2c-89b6-02b0a1e91ab2",
       "problemCode": "J10205-B36-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "f59490f4-b5e4-4f56-9d99-598d37d1452b",
       "problemCode": "J10205-B37-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "2a050fdd-3ee8-4310-8126-6879a078b877",
       "problemCode": "J10205-B38-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "65725ddb-1cae-4836-9903-a107df0800d7",
       "problemCode": "J10205-B39-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "e1ed0409-213b-42d6-a591-aca70d29337e",
       "problemCode": "J10205-B40-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "aa83bdb5-f6dd-40c4-9e1b-b75db67a0bff",
       "problemCode": "J10205-B41-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "1f439a83-2528-4081-9f0e-597aaae2acd6",
       "problemCode": "J10205-B42-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "dcd7e856-d80f-48fb-8aae-1b703f0d8df2",
       "problemCode": "J10205-B45-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "eb419977-a8c5-4513-9396-109adc3e2cab",
       "problemCode": "J10205-B50-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "b0e57cfb-abc9-4a3b-8863-354cd6b9a2e0",
       "problemCode": "J10205-B52-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "ca3753ae-ce09-4d3d-87fe-5ea391b291d3",
       "problemCode": "J10205-B53-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "5cf159cb-d200-4d4b-bb4c-911f5fcab4bc",
       "problemCode": "J10205-B54-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "688e08c9-c954-42cf-b038-1b7fc6173f66",
       "problemCode": "J10205-B55-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "6a155122-ac44-4cd8-b08a-0aaaf58839dd",
       "problemCode": "J10205-B56-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "b48557a3-4b8a-4a6d-a0bb-6737c819d674",
       "problemCode": "J10205-B57-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C06",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C06",
       "reason": "거듭제곱을 먼저 구한 뒤 곱셈·나눗셈을 수행하는 계산."
     },
     {
       "id": "001c6d17-5376-4033-ae6f-6a36f1b0ad5c",
       "problemCode": "J10205-B58-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "7218de4a-a52d-46f1-aec9-6085e954b6f5",
       "problemCode": "J10205-B59-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "2b1e5723-1408-46d7-9e8b-c99c10f48170",
       "problemCode": "J10205-B60-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "94587ec8-7438-4943-aac9-cb0a48ee466b",
       "problemCode": "J10205-B61-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "e6b480b1-b101-472b-954d-3ff3cd039cf3",
       "problemCode": "J10205-B64-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "050c02ce-73fe-411b-bd9b-5283057ceb96",
       "problemCode": "J10205-B73-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "c91cf34a-42a2-46dc-9b04-a80f4a0de3a7",
       "problemCode": "J10205-B85-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     },
     {
       "id": "b8ee53ec-5457-4f35-a61c-3ef9d0588e8d",
       "problemCode": "J10205-B86-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "663bbda8-dfc2-4489-9ffb-f1d1cfe36ab8",
       "problemCode": "J10205-B87-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "807d09ff-f4ba-4ea3-a529-28196e16c8d1",
       "problemCode": "J10205-B89-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "4aec1def-8e0e-4ced-9d6a-4603e8a92c18",
       "problemCode": "J10205-B90-001",
       "groupId": "m1-b-calc-2-single",
-      "typeKey": "1-1|교과서 수와 연산|C07",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C07",
       "reason": "괄호·거듭제곱과 사칙연산의 우선순위를 따르는 수치 계산. 원래 요구인 값 계산과 같은 연산 단계."
     },
     {
       "id": "de4a8610-8e77-49f7-ac49-08ce47e40cfe",
       "problemCode": "J10205-C02-001",
       "groupId": "m1-b-calc-2-batch",
-      "typeKey": "1-1|교과서 수와 연산|C05",
+      "typeKey": "textbook-20261125|교과서 수와 연산|C05",
       "reason": "유리수 2~3개의 나눗셈·곱셈을 왼쪽부터 계산. 소수/분수, 0인 피제수와 소문항 지원; 제수 0은 금지."
     }
   ],

@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Volumes/새 볼륨/today-worktrees/textbook-engine-t1
+
+ ❯ src/__tests__/unit/middleTypeCoverage.test.ts (3 tests | 1 failed) 99ms
+     × RPM 계열은 색인 정본과 같고, 자작 12유형은 승인된 별도 목록·검산 대상과 같다 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/middleTypeCoverage.test.ts > 중학 유형 시험 커버리지 — 분모를 지킨다 > RPM 계열은 색인 정본과 같고, 자작 12유형은 승인된 별도 목록·검산 대상과 같다
+AssertionError: 정본과 다른 유형 30개: expected [ …(8) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "1-1|교과서 수와 연산|C01: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C02: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C03: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C04: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C05: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C06: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C07: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++   "1-1|교과서 수와 연산|C08: 색인에 없는 중단원 (\"교과서 수와 연산\")",
++ ]
+
+ ❯ src/__tests__/unit/middleTypeCoverage.test.ts:173:57
+    171|       }
+    172|     }
+    173|     expect(bad.slice(0, 8), `정본과 다른 유형 ${bad.length}개`).toEqual([]);
+       |                                                         ^
+    174|   });
+    175|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  20:43:58
+   Duration  1.55s (transform 979ms, setup 342ms, import 860ms, tests 99ms, environment 192ms)

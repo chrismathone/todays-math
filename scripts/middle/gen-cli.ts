@@ -54,7 +54,9 @@ function printList(f: { grade?: string; book?: string; q?: string }): void {
       console.log(`\n${e.grade} ${e.unitSection}`);
       lastSection = e.unitSection;
     }
-    console.log(`  ${e.key}  ${e.rpmTitle}  [${e.rpmBook} p기준 ${e.rpmType}]`);
+    console.log(
+      `  ${e.key}  ${e.rpmTitle}  [출처 ${e.rpmBook} · 유형 ${e.rpmType}]`,
+    );
   }
   const total = registeredTypes().length;
   console.log(

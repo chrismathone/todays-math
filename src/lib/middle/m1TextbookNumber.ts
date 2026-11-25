@@ -8,7 +8,7 @@ import type { Rng } from "../elementary/types";
 import { attempt, defType, pickDistinct, shuffle, type Body } from "./m1Shared";
 import type { TypeEntry } from "./types";
 
-const BOOK = "1-1";
+const BOOK = "textbook-20261125";
 const MINOR = "교과서 수와 연산";
 const MARKS = ["①", "②", "③", "④", "⑤"];
 const PRIMES = [

@@ -1,0 +1,800 @@
+{
+  "success": true,
+  "startTime": 1795607314355,
+  "numTotalTests": 13911,
+  "numPassedTests": 13783,
+  "numFailedTests": 0,
+  "numPendingTests": 128,
+  "format": "Vitest result summary; repetitive individual passing assertions omitted",
+  "rawReportSha256": "a3967a65c0dcf7063f2ba8c8366e5cc219d13228c9c5f22a6d0d0e8b58941b6c",
+  "files": 87,
+  "maxWorkers": 3,
+  "command": "npx vitest run src/__tests__/unit/middle*.test.ts --maxWorkers=3",
+  "durationSeconds": 79.92,
+  "testResults": [
+    {
+      "name": "src/__tests__/unit/middleBankFixChoices.test.ts",
+      "status": "passed",
+      "total": 3,
+      "counts": {
+        "passed": 3
+      },
+      "durationMs": 4803.51
+    },
+    {
+      "name": "src/__tests__/unit/middleBankFixPremises.test.ts",
+      "status": "passed",
+      "total": 7,
+      "counts": {
+        "passed": 7
+      },
+      "durationMs": 109.31
+    },
+    {
+      "name": "src/__tests__/unit/middleBankFixSampling.test.ts",
+      "status": "passed",
+      "total": 4,
+      "counts": {
+        "passed": 4
+      },
+      "durationMs": 531.23
+    },
+    {
+      "name": "src/__tests__/unit/middleCombo.test.ts",
+      "status": "passed",
+      "total": 25,
+      "counts": {
+        "passed": 25
+      },
+      "durationMs": 44.69
+    },
+    {
+      "name": "src/__tests__/unit/middleFigureReference.test.ts",
+      "status": "passed",
+      "total": 3,
+      "counts": {
+        "passed": 3
+      },
+      "durationMs": 1188.38
+    },
+    {
+      "name": "src/__tests__/unit/middleFigureRenderable.test.ts",
+      "status": "passed",
+      "total": 6,
+      "counts": {
+        "passed": 6
+      },
+      "durationMs": 32609.5
+    },
+    {
+      "name": "src/__tests__/unit/middleFloatingLength.test.ts",
+      "status": "passed",
+      "total": 3,
+      "counts": {
+        "passed": 3
+      },
+      "durationMs": 1818.81
+    },
+    {
+      "name": "src/__tests__/unit/middleGenListing.test.ts",
+      "status": "passed",
+      "total": 10,
+      "counts": {
+        "passed": 10
+      },
+      "durationMs": 21.35
+    },
+    {
+      "name": "src/__tests__/unit/middleJosaAll.test.ts",
+      "status": "passed",
+      "total": 1551,
+      "counts": {
+        "passed": 1551
+      },
+      "durationMs": 8822.55
+    },
+    {
+      "name": "src/__tests__/unit/middleLinearApply.test.ts",
+      "status": "passed",
+      "total": 402,
+      "counts": {
+        "passed": 402
+      },
+      "durationMs": 201.38
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Calc.test.ts",
+      "status": "passed",
+      "total": 224,
+      "counts": {
+        "passed": 224
+      },
+      "durationMs": 179.7
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Degenerate.test.ts",
+      "status": "passed",
+      "total": 291,
+      "counts": {
+        "passed": 291
+      },
+      "durationMs": 2642.72
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Expr.test.ts",
+      "status": "passed",
+      "total": 241,
+      "counts": {
+        "passed": 241
+      },
+      "durationMs": 254.15
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Extra.test.ts",
+      "status": "passed",
+      "total": 566,
+      "counts": {
+        "passed": 438,
+        "skipped": 128
+      },
+      "durationMs": 347.1
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Geo1.test.ts",
+      "status": "passed",
+      "total": 211,
+      "counts": {
+        "passed": 211
+      },
+      "durationMs": 1315.4
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Geo2.test.ts",
+      "status": "passed",
+      "total": 198,
+      "counts": {
+        "passed": 198
+      },
+      "durationMs": 1621.07
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Geo3.test.ts",
+      "status": "passed",
+      "total": 106,
+      "counts": {
+        "passed": 106
+      },
+      "durationMs": 5525.92
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Num.test.ts",
+      "status": "passed",
+      "total": 493,
+      "counts": {
+        "passed": 493
+      },
+      "durationMs": 1749.97
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Prop.test.ts",
+      "status": "passed",
+      "total": 154,
+      "counts": {
+        "passed": 154
+      },
+      "durationMs": 2626.48
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Solid.test.ts",
+      "status": "passed",
+      "total": 363,
+      "counts": {
+        "passed": 363
+      },
+      "durationMs": 4026.01
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Stat.test.ts",
+      "status": "passed",
+      "total": 89,
+      "counts": {
+        "passed": 89
+      },
+      "durationMs": 350.87
+    },
+    {
+      "name": "src/__tests__/unit/middleM1StatFig.test.ts",
+      "status": "passed",
+      "total": 86,
+      "counts": {
+        "passed": 86
+      },
+      "durationMs": 5209.21
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top.test.ts",
+      "status": "passed",
+      "total": 44,
+      "counts": {
+        "passed": 44
+      },
+      "durationMs": 594.13
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top2.test.ts",
+      "status": "passed",
+      "total": 67,
+      "counts": {
+        "passed": 67
+      },
+      "durationMs": 309.92
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top3.test.ts",
+      "status": "passed",
+      "total": 99,
+      "counts": {
+        "passed": 99
+      },
+      "durationMs": 2651.64
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top4.test.ts",
+      "status": "passed",
+      "total": 94,
+      "counts": {
+        "passed": 94
+      },
+      "durationMs": 2538.78
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5a.test.ts",
+      "status": "passed",
+      "total": 86,
+      "counts": {
+        "passed": 86
+      },
+      "durationMs": 3247.2
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5b.test.ts",
+      "status": "passed",
+      "total": 105,
+      "counts": {
+        "passed": 105
+      },
+      "durationMs": 2815.78
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5c.test.ts",
+      "status": "passed",
+      "total": 113,
+      "counts": {
+        "passed": 113
+      },
+      "durationMs": 5293.86
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5d.test.ts",
+      "status": "passed",
+      "total": 90,
+      "counts": {
+        "passed": 90
+      },
+      "durationMs": 2832.77
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5e.test.ts",
+      "status": "passed",
+      "total": 102,
+      "counts": {
+        "passed": 102
+      },
+      "durationMs": 7819.19
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5f.test.ts",
+      "status": "passed",
+      "total": 94,
+      "counts": {
+        "passed": 94
+      },
+      "durationMs": 2296.35
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5g.test.ts",
+      "status": "passed",
+      "total": 91,
+      "counts": {
+        "passed": 91
+      },
+      "durationMs": 2460.88
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5h.test.ts",
+      "status": "passed",
+      "total": 99,
+      "counts": {
+        "passed": 99
+      },
+      "durationMs": 2980.47
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Top5i.test.ts",
+      "status": "passed",
+      "total": 79,
+      "counts": {
+        "passed": 79
+      },
+      "durationMs": 2796.29
+    },
+    {
+      "name": "src/__tests__/unit/middleM1Types10.test.ts",
+      "status": "passed",
+      "total": 70,
+      "counts": {
+        "passed": 70
+      },
+      "durationMs": 141.38
+    },
+    {
+      "name": "src/__tests__/unit/middleM2.test.ts",
+      "status": "passed",
+      "total": 150,
+      "counts": {
+        "passed": 150
+      },
+      "durationMs": 67.96
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Center.test.ts",
+      "status": "passed",
+      "total": 172,
+      "counts": {
+        "passed": 172
+      },
+      "durationMs": 76.5
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Func.test.ts",
+      "status": "passed",
+      "total": 82,
+      "counts": {
+        "passed": 82
+      },
+      "durationMs": 508.3
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Geo.test.ts",
+      "status": "passed",
+      "total": 340,
+      "counts": {
+        "passed": 340
+      },
+      "durationMs": 128.83
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Line.test.ts",
+      "status": "passed",
+      "total": 141,
+      "counts": {
+        "passed": 141
+      },
+      "durationMs": 943.26
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Mono.test.ts",
+      "status": "passed",
+      "total": 127,
+      "counts": {
+        "passed": 127
+      },
+      "durationMs": 326.28
+    },
+    {
+      "name": "src/__tests__/unit/middleM2NumProb.test.ts",
+      "status": "passed",
+      "total": 205,
+      "counts": {
+        "passed": 205
+      },
+      "durationMs": 990.56
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Pytha.test.ts",
+      "status": "passed",
+      "total": 84,
+      "counts": {
+        "passed": 84
+      },
+      "durationMs": 58.18
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Quad.test.ts",
+      "status": "passed",
+      "total": 103,
+      "counts": {
+        "passed": 103
+      },
+      "durationMs": 4848.23
+    },
+    {
+      "name": "src/__tests__/unit/middleM2System.test.ts",
+      "status": "passed",
+      "total": 158,
+      "counts": {
+        "passed": 158
+      },
+      "durationMs": 931.35
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top2.test.ts",
+      "status": "passed",
+      "total": 61,
+      "counts": {
+        "passed": 61
+      },
+      "durationMs": 1090.95
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top3.test.ts",
+      "status": "passed",
+      "total": 72,
+      "counts": {
+        "passed": 72
+      },
+      "durationMs": 1059.19
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top4.test.ts",
+      "status": "passed",
+      "total": 106,
+      "counts": {
+        "passed": 106
+      },
+      "durationMs": 1449.62
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5a.test.ts",
+      "status": "passed",
+      "total": 96,
+      "counts": {
+        "passed": 96
+      },
+      "durationMs": 1955.47
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5b.test.ts",
+      "status": "passed",
+      "total": 119,
+      "counts": {
+        "passed": 119
+      },
+      "durationMs": 1733.48
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5c.test.ts",
+      "status": "passed",
+      "total": 107,
+      "counts": {
+        "passed": 107
+      },
+      "durationMs": 3088.1
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5d.test.ts",
+      "status": "passed",
+      "total": 88,
+      "counts": {
+        "passed": 88
+      },
+      "durationMs": 1575.88
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5e.test.ts",
+      "status": "passed",
+      "total": 102,
+      "counts": {
+        "passed": 102
+      },
+      "durationMs": 2434.8
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5f.test.ts",
+      "status": "passed",
+      "total": 113,
+      "counts": {
+        "passed": 113
+      },
+      "durationMs": 3024.95
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5g.test.ts",
+      "status": "passed",
+      "total": 102,
+      "counts": {
+        "passed": 102
+      },
+      "durationMs": 1786.98
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5h.test.ts",
+      "status": "passed",
+      "total": 100,
+      "counts": {
+        "passed": 100
+      },
+      "durationMs": 838.2
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5i.test.ts",
+      "status": "passed",
+      "total": 87,
+      "counts": {
+        "passed": 87
+      },
+      "durationMs": 1768.56
+    },
+    {
+      "name": "src/__tests__/unit/middleM2Top5j.test.ts",
+      "status": "passed",
+      "total": 99,
+      "counts": {
+        "passed": 99
+      },
+      "durationMs": 2411.04
+    },
+    {
+      "name": "src/__tests__/unit/middleM3.test.ts",
+      "status": "passed",
+      "total": 85,
+      "counts": {
+        "passed": 85
+      },
+      "durationMs": 54.32
+    },
+    {
+      "name": "src/__tests__/unit/middleM3AngleApply.test.ts",
+      "status": "passed",
+      "total": 121,
+      "counts": {
+        "passed": 121
+      },
+      "durationMs": 275.61
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Func.test.ts",
+      "status": "passed",
+      "total": 649,
+      "counts": {
+        "passed": 649
+      },
+      "durationMs": 6922.65
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Poly.test.ts",
+      "status": "passed",
+      "total": 537,
+      "counts": {
+        "passed": 537
+      },
+      "durationMs": 899.17
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Quad.test.ts",
+      "status": "passed",
+      "total": 303,
+      "counts": {
+        "passed": 303
+      },
+      "durationMs": 480.2
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Root.test.ts",
+      "status": "passed",
+      "total": 396,
+      "counts": {
+        "passed": 396
+      },
+      "durationMs": 153.2
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Stat2.test.ts",
+      "status": "passed",
+      "total": 83,
+      "counts": {
+        "passed": 83
+      },
+      "durationMs": 2483.6
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Tangent.test.ts",
+      "status": "passed",
+      "total": 86,
+      "counts": {
+        "passed": 86
+      },
+      "durationMs": 295.64
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top.test.ts",
+      "status": "passed",
+      "total": 19,
+      "counts": {
+        "passed": 19
+      },
+      "durationMs": 141.48
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top2.test.ts",
+      "status": "passed",
+      "total": 36,
+      "counts": {
+        "passed": 36
+      },
+      "durationMs": 233.24
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top3.test.ts",
+      "status": "passed",
+      "total": 64,
+      "counts": {
+        "passed": 64
+      },
+      "durationMs": 844.26
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top4.test.ts",
+      "status": "passed",
+      "total": 67,
+      "counts": {
+        "passed": 67
+      },
+      "durationMs": 1363.2
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top5a.test.ts",
+      "status": "passed",
+      "total": 80,
+      "counts": {
+        "passed": 80
+      },
+      "durationMs": 4283.27
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Top5b.test.ts",
+      "status": "passed",
+      "total": 65,
+      "counts": {
+        "passed": 65
+      },
+      "durationMs": 651.17
+    },
+    {
+      "name": "src/__tests__/unit/middleM3Trig.test.ts",
+      "status": "passed",
+      "total": 439,
+      "counts": {
+        "passed": 439
+      },
+      "durationMs": 908.19
+    },
+    {
+      "name": "src/__tests__/unit/middleNotationAll.test.ts",
+      "status": "passed",
+      "total": 1561,
+      "counts": {
+        "passed": 1561
+      },
+      "durationMs": 9701.01
+    },
+    {
+      "name": "src/__tests__/unit/middleRealScene.test.ts",
+      "status": "passed",
+      "total": 44,
+      "counts": {
+        "passed": 44
+      },
+      "durationMs": 1118.5
+    },
+    {
+      "name": "src/__tests__/unit/middleRestDegenerate.test.ts",
+      "status": "passed",
+      "total": 30,
+      "counts": {
+        "passed": 30
+      },
+      "durationMs": 550.65
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookCalc.test.ts",
+      "status": "passed",
+      "total": 13,
+      "counts": {
+        "passed": 13
+      },
+      "durationMs": 312.09
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookFactor.test.ts",
+      "status": "passed",
+      "total": 23,
+      "counts": {
+        "passed": 23
+      },
+      "durationMs": 141.37
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookIntegration.test.ts",
+      "status": "passed",
+      "total": 6,
+      "counts": {
+        "passed": 6
+      },
+      "durationMs": 683.15
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookLedger.test.ts",
+      "status": "passed",
+      "total": 2,
+      "counts": {
+        "passed": 2
+      },
+      "durationMs": 234.67
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookNumber.test.ts",
+      "status": "passed",
+      "total": 14,
+      "counts": {
+        "passed": 14
+      },
+      "durationMs": 161.94
+    },
+    {
+      "name": "src/__tests__/unit/middleTextbookOrder.test.ts",
+      "status": "passed",
+      "total": 15,
+      "counts": {
+        "passed": 15
+      },
+      "durationMs": 496.53
+    },
+    {
+      "name": "src/__tests__/unit/middleTierYeonsan.test.ts",
+      "status": "passed",
+      "total": 7,
+      "counts": {
+        "passed": 7
+      },
+      "durationMs": 597.19
+    },
+    {
+      "name": "src/__tests__/unit/middleTop5XPageLock.test.ts",
+      "status": "passed",
+      "total": 67,
+      "counts": {
+        "passed": 67
+      },
+      "durationMs": 69.61
+    },
+    {
+      "name": "src/__tests__/unit/middleTopM2.test.ts",
+      "status": "passed",
+      "total": 13,
+      "counts": {
+        "passed": 13
+      },
+      "durationMs": 58.47
+    },
+    {
+      "name": "src/__tests__/unit/middleTypeCoverage.test.ts",
+      "status": "passed",
+      "total": 3,
+      "counts": {
+        "passed": 3
+      },
+      "durationMs": 54.73
+    }
+  ]
+}

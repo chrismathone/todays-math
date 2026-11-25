@@ -96,5 +96,16 @@
     "preview": "후속 수정으로 CLI 미리보기의 본문·답에도 소문항 줄바꿈을 보존했다. 최종 C07·N05·F04·O01 PNG를 직접 읽었고, 45유형×3씨앗을 너비 800/390에서 다시 측정한 결과는 preview.json이다. 실제 인쇄 검수와 구분한다.",
     "calcReviewChange": "독립 검토 이후 행별 매핑은 그대로 두고 6묶음에 15개의 대표 원문·공개 생성 씨앗 비교를 추가했다.",
     "calcReviewFinalSha256": "f600d9b845a1577d01a5f227638ef4b83082c263492ed59ac80a76bfdc5c4873"
+  },
+  "reviewedCommit": "d2f72276e",
+  "provenanceCorrection": {
+    "source": "textbook-20261125",
+    "approvedTypes": "approved-types.json",
+    "witnesses": "provenance-migration.json",
+    "witnessCount": 210,
+    "reviewSeedReferencesChecked": 129,
+    "result": "All 210 public-generated results match the before-commit digests with only rpmBook normalized. Arithmetic functions and shared RNG/generate logic are unchanged.",
+    "currentCalcReviewSha256": "80312012b8521c51901c669ed33490d07af498d6309bac07d58770706b40dc79",
+    "currentPreview": "preview.json; new-source standard seeds regenerated, 135 samples, no errors or horizontal overflow"
   }
 }

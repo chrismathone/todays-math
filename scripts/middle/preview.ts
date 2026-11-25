@@ -67,7 +67,7 @@ export async function middlePreviewHtml(
     }
     blocks.push(`
 <section class="item">
-<div class="meta">#${i + 1} · ${p.grade} · ${p.unitSection} · RPM ${p.rpmBook} ${p.rpmMinor} ${p.rpmType} ${p.rpmTitle} · ${p.difficulty}</div>
+<div class="meta">#${i + 1} · ${p.grade} · ${p.unitSection} · 출처 ${p.rpmBook} ${p.rpmMinor} ${p.rpmType} ${p.rpmTitle} · ${p.difficulty}</div>
 <div class="content">${renderLines(p.content)}</div>
 ${figure}
 <div class="ans">정답: ${renderLines(p.answer)}</div>
