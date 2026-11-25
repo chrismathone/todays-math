@@ -83,6 +83,24 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "concept-blank-scan-20261125",
+    title: "개념 백지 사진 채점 — P1 QR·네 모서리 표식",
+    changed:
+      "새로 발행한 학생지·채점표 모든 쪽에 머리 오른쪽 20mm QR과 여백의 모서리 표식 넷을 추가했다. 문항·쪽 나눔은 유지하고 발행 당시 지면을 재인쇄한다.",
+    look: "A4 100%로 짧은 제목·40자 긴 제목·A~E·여러 쪽을 출력한다. 본문·이름 줄·QR·표식이 잘리거나 겹치고, 기존 쪽 수가 달라지면 불합격이다. 폰으로 각 쪽을 읽어 발행물·쪽·학생지/채점표가 맞는지 확인한다. 그림자·기울기·옅은 필기·복사본도 찍어 번호가 다른 답 칸에 붙으면 불합격이다. 표식을 가리거나 지면을 잘랐을 때 불확실한 번호·테두리를 숨기고 재촬영/쪽·문항 확인으로 안내하는지 본다. 실물 합격 전 폰 정확도 수치로 홍보하지 않는다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/26-concept-blank.md",
+      "docs/planning/tracks/reports/cb-scan-ship.md",
+      "scripts/qa/cb-scan-ship/registration.mjs",
+    ],
+    needs:
+      "사진 채점용 QR 발행이 성공한 single/multi/all 지면, 직접 pick 고르기, 학생지와 채점표, 실제 프린터와 학생이 쓸 폰.",
+    scale: "새 발행 지면만. 저장 전 옛 지면은 자동 채점하지 않는다.",
+    status: "대기",
+    changedOn: "2026-11-25",
+  },
+  {
     id: "concept-blank-pick-20261112",
     title: "개념 백지 H2 — 직접 고른 문항의 학생지·채점표",
     changed:

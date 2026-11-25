@@ -265,7 +265,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 155: HWPX 수식 팩토리얼 뒤 등호(2026-11-10 — 시험지 한글화 패치 04).
     // 156: 도형 빗금 채우기(2026-11-11 — 방향 셋 · 간격 셋이 종이에서 갈리는가).
     // 157: 개념 백지 H2 직접 선택 — 저장·재열기·학생지/채점표 실물 검수 대기.
-    expect(ITEMS.length).toBe(157);
+    // 158: 개념 백지 P1 QR·네 모서리 표식의 실물 인쇄/폰 촬영 대기(2026-11-25).
+    expect(ITEMS.length).toBe(158);
     expect(ITEMS).toContainEqual(
       expect.objectContaining({
         id: "concept-blank-pick-20261112",
