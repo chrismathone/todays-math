@@ -59,6 +59,9 @@ const request = (
     body: JSON.stringify(body),
   });
 beforeEach(() => {
+  // 로컬 `.env` 의 AUTH_URL 이 같은 출처 검사에 섞이지 않게.
+  vi.stubEnv("AUTH_URL", "https://today.aywa.co.kr");
+  vi.stubEnv("NEXTAUTH_URL", "");
   vi.clearAllMocks();
   mocks.auth.mockResolvedValue(teacher);
   mocks.issue.mockResolvedValue({ id: payload.requestId });

@@ -102,6 +102,9 @@ afterAll(async () => {
   await local?.pg.close();
 });
 beforeEach(() => {
+  // 로컬 `.env` 의 AUTH_URL 이 같은 출처 검사에 섞이지 않게(워크트리에는 `.env` 가 없어 초록이었다).
+  vi.stubEnv("AUTH_URL", origin);
+  vi.stubEnv("NEXTAUTH_URL", "");
   mocks.tasks.length = 0;
   model.mockClear();
   mocks.auth.mockResolvedValue(student());
