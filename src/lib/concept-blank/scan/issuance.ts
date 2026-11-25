@@ -73,7 +73,7 @@ export async function scanTeacher(
     `SELECT u.id,u.role,u.approval_status AS "approvalStatus",u.deleted_at AS "deletedAt",u.suspended_at AS "suspendedAt",
     u.is_admin AS "isAdmin",u.is_super_admin AS "isSuperAdmin",u.branch_id AS "branchId",u.branch_role AS "branchRole",u.disabled_menus AS "disabledMenus",
     b.disabled_menus AS "branchDisabled",b.owner_disabled_menus AS "ownerDisabled",b.menu_revision AS "branchMenuRevision"
-    FROM "user" u LEFT JOIN branch b ON b.id=u.branch_id WHERE u.id=$1`,
+    FROM "user" u LEFT JOIN branch b ON b.id=u.branch_id WHERE u.id=$1::uuid`,
     [z.uuid().parse(id)],
   );
   if (
@@ -123,7 +123,7 @@ export async function loadScanIssue(
       snapshot: unknown;
       layout: unknown;
     }>(
-      `SELECT id,user_id,branch_id,snapshot,layout FROM concept_blank_printed_sheet WHERE id=$1`,
+      `SELECT id,user_id,branch_id,snapshot,layout FROM concept_blank_printed_sheet WHERE id=$1::uuid`,
       [z.uuid().parse(id)],
     )
     .catch(scanDatabaseError);
@@ -159,7 +159,7 @@ export async function scanSubmissionAccess(
   issueAllowed(issuer, issue);
   const [student] = await sql.query<ScanStudent>(
     `SELECT s.id,s.name,s.class_id AS "classId",c.name AS "className",c.user_id AS "ownerId",c.branch_id AS "branchId"
-    FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.id=$1 AND s.eywa_withdrawn_at IS NULL`,
+    FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.id=$1::uuid AND s.eywa_withdrawn_at IS NULL`,
     [z.uuid().parse(studentId)],
   );
   if (!student || !withinOwnerScope(issuer, student.ownerId, student.branchId))
@@ -198,7 +198,7 @@ export async function issueScanPaper(
   const existing = async () => {
     const [row] = await deps.db
       .query<{ id: string }>(
-        `SELECT id FROM concept_blank_printed_sheet WHERE user_id=$1 AND request_id=$2`,
+        `SELECT id FROM concept_blank_printed_sheet WHERE user_id=$1::uuid AND request_id=$2::uuid`,
         [actor.id, parsed.requestId],
       )
       .catch(scanDatabaseError);
@@ -247,7 +247,7 @@ export async function issueScanPaper(
       await tx.query(
         `INSERT INTO concept_blank_printed_sheet
       (id,user_id,created_by,branch_id,request_id,sheet_code,snapshot,layout,render_artifact,artifact_sha256)
-      VALUES ($1,$2,$2,$3,$4,$5,$6::jsonb,$7::jsonb,$8::jsonb,$9) ON CONFLICT (user_id,request_id) DO NOTHING`,
+      VALUES ($1::uuid,$2::uuid,$2::uuid,$3::uuid,$4::uuid,$5::text,$6::jsonb,$7::jsonb,$8::jsonb,$9::text) ON CONFLICT (user_id,request_id) DO NOTHING`,
         [
           id,
           actor.id,
@@ -282,7 +282,7 @@ export async function readIssuedScanArtifact(
     );
   const [row] = await sql
     .query<{ render_artifact: unknown; artifact_sha256: string }>(
-      `SELECT render_artifact,artifact_sha256 FROM concept_blank_printed_sheet WHERE id=$1`,
+      `SELECT render_artifact,artifact_sha256 FROM concept_blank_printed_sheet WHERE id=$1::uuid`,
       [id],
     )
     .catch(scanDatabaseError);
@@ -327,7 +327,7 @@ export async function getScanIssueView(
     issueAllowed(viewer, issue);
     // Coarse server-side selection first; withinOwnerScope is the sole final authorization predicate.
     const candidates = await sql.query<ScanStudent>(
-      `SELECT s.id,s.name,s.class_id AS "classId",c.name AS "className",c.user_id AS "ownerId",c.branch_id AS "branchId" FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.eywa_withdrawn_at IS NULL AND (c.user_id=$1 OR c.branch_id=$2 OR $3::boolean) ORDER BY c.name,s.name,s.id`,
+      `SELECT s.id,s.name,s.class_id AS "classId",c.name AS "className",c.user_id AS "ownerId",c.branch_id AS "branchId" FROM student s JOIN "class" c ON c.id=s.class_id WHERE s.eywa_withdrawn_at IS NULL AND (c.user_id=$1::uuid OR c.branch_id=$2::uuid OR $3::boolean) ORDER BY c.name,s.name,s.id`,
       [issuer.id, issuer.branchId ?? null, issuer.isSuperAdmin === true],
     );
     students = candidates.filter(
@@ -344,7 +344,7 @@ export async function getScanIssueView(
         state: string;
         created_at: Date;
       }>(
-        `SELECT sub.id,sub.student_id,s.name,sub.state,sub.created_at FROM concept_blank_scan_submission sub JOIN student s ON s.id=sub.student_id WHERE sub.printed_sheet_id=$1 AND sub.student_id=ANY($2::uuid[]) ORDER BY sub.created_at DESC,sub.id DESC LIMIT 50`,
+        `SELECT sub.id,sub.student_id,s.name,sub.state,sub.created_at FROM concept_blank_scan_submission sub JOIN student s ON s.id=sub.student_id WHERE sub.printed_sheet_id=$1::uuid AND sub.student_id=ANY($2::uuid[]) ORDER BY sub.created_at DESC,sub.id DESC LIMIT 50`,
         [id, students.map((s) => s.id)],
       )
     : [];

@@ -121,7 +121,7 @@ export async function loadScanSubmission(
 ) {
   const [row] = await sql
     .query<ScanSubmissionRow>(
-      `SELECT * FROM concept_blank_scan_submission WHERE id=$1${lock ? " FOR UPDATE" : ""}`,
+      `SELECT * FROM concept_blank_scan_submission WHERE id=$1::uuid${lock ? " FOR UPDATE" : ""}`,
       [z.uuid().parse(id)],
     )
     .catch(scanDatabaseError);
@@ -136,19 +136,19 @@ export async function loadScanSubmission(
 }
 export async function scanEvidence(sql: ScanSql, submissionId: string) {
   const photos = await sql.query<ScanPhotoRow>(
-    `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1 AND is_current ORDER BY page_number`,
+    `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1::uuid AND is_current ORDER BY page_number`,
     [submissionId],
   );
   const readings = await sql.query<ScanReadRow>(
-    `SELECT r.* FROM concept_blank_scan_read r JOIN concept_blank_scan_photo p ON p.id=r.photo_id WHERE r.submission_id=$1 AND p.is_current ORDER BY p.page_number,r.slot_id`,
+    `SELECT r.* FROM concept_blank_scan_read r JOIN concept_blank_scan_photo p ON p.id=r.photo_id WHERE r.submission_id=$1::uuid AND p.is_current ORDER BY p.page_number,r.slot_id`,
     [submissionId],
   );
   const corrections = await sql.query<ScanCorrectionRow>(
-    `SELECT c.* FROM concept_blank_scan_correction c JOIN concept_blank_scan_read r ON r.id=c.read_id JOIN concept_blank_scan_photo p ON p.id=r.photo_id WHERE c.submission_id=$1 AND p.is_current ORDER BY c.sequence`,
+    `SELECT c.* FROM concept_blank_scan_correction c JOIN concept_blank_scan_read r ON r.id=c.read_id JOIN concept_blank_scan_photo p ON p.id=r.photo_id WHERE c.submission_id=$1::uuid AND p.is_current ORDER BY c.sequence`,
     [submissionId],
   );
   const grades = await sql.query<ScanGradeRow>(
-    `SELECT * FROM concept_blank_scan_grade WHERE submission_id=$1 ORDER BY sequence,created_at,id`,
+    `SELECT * FROM concept_blank_scan_grade WHERE submission_id=$1::uuid ORDER BY sequence,created_at,id`,
     [submissionId],
   );
   return { photos, readings, corrections, grades };
@@ -169,7 +169,7 @@ export async function beginScanSubmission(
       await scanSubmissionAccess(actor, parsed.printedSheetId, studentId, tx);
       const id = randomUUID();
       await tx.query(
-        `INSERT INTO concept_blank_scan_submission (id,printed_sheet_id,student_id,captured_student_id,captured_teacher_id,request_id) VALUES($1,$2,$3,$4,$5,$6) ON CONFLICT(request_id) DO NOTHING`,
+        `INSERT INTO concept_blank_scan_submission (id,printed_sheet_id,student_id,captured_student_id,captured_teacher_id,request_id) VALUES($1::uuid,$2::uuid,$3::uuid,$4::uuid,$5::uuid,$6::uuid) ON CONFLICT(request_id) DO NOTHING`,
         [
           id,
           parsed.printedSheetId,
@@ -180,7 +180,7 @@ export async function beginScanSubmission(
         ],
       );
       const [row] = await tx.query<ScanSubmissionRow>(
-        `SELECT * FROM concept_blank_scan_submission WHERE request_id=$1`,
+        `SELECT * FROM concept_blank_scan_submission WHERE request_id=$1::uuid`,
         [parsed.requestId],
       );
       if (
@@ -345,11 +345,11 @@ export async function addScanPhoto(
       assertScanRevision(row, parsed.revision);
       assertScanEditable(row);
       const [version] = await tx.query<{ next: number }>(
-        `SELECT COALESCE(MAX(version),0)+1 AS next FROM concept_blank_scan_photo WHERE submission_id=$1 AND page_number=$2`,
+        `SELECT COALESCE(MAX(version),0)+1 AS next FROM concept_blank_scan_photo WHERE submission_id=$1::uuid AND page_number=$2::int`,
         [id, inspected.qr.page],
       );
       await tx.query(
-        `INSERT INTO concept_blank_scan_photo(id,submission_id,page_number,version,is_current,bucket,object_key,content_sha256,mime_type,width,height,registration,created_at,expires_at) VALUES($1,$2,$3,$4,false,$5,$6,$7,$8,$9,$10,$11::jsonb,$12,$13)`,
+        `INSERT INTO concept_blank_scan_photo(id,submission_id,page_number,version,is_current,bucket,object_key,content_sha256,mime_type,width,height,registration,created_at,expires_at) VALUES($1::uuid,$2::uuid,$3::int,$4::int,false,$5::text,$6::text,$7::text,$8::text,$9::int,$10::int,$11::jsonb,$12::timestamptz,$13::timestamptz)`,
         [
           photoId,
           id,
@@ -369,7 +369,7 @@ export async function addScanPhoto(
         ],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [id],
       );
       return row.revision + 1;
@@ -382,15 +382,15 @@ export async function addScanPhoto(
       assertScanRevision(row, stagedRevision);
       assertScanEditable(row);
       await tx.query(
-        `UPDATE concept_blank_scan_photo SET is_current=false WHERE submission_id=$1 AND page_number=$2 AND is_current`,
+        `UPDATE concept_blank_scan_photo SET is_current=false WHERE submission_id=$1::uuid AND page_number=$2::int AND is_current`,
         [id, inspected.qr.page],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_photo SET is_current=true WHERE id=$1`,
+        `UPDATE concept_blank_scan_photo SET is_current=true WHERE id=$1::uuid`,
         [photoId],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET state='capturing',revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET state='capturing',revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [id],
       );
     })
@@ -426,11 +426,11 @@ export async function correctScanAnswer(
           409,
         );
       const [sequence] = await tx.query<{ next: number }>(
-        `SELECT COALESCE(MAX(sequence),0)+1 AS next FROM concept_blank_scan_correction WHERE submission_id=$1`,
+        `SELECT COALESCE(MAX(sequence),0)+1 AS next FROM concept_blank_scan_correction WHERE submission_id=$1::uuid`,
         [id],
       );
       await tx.query(
-        `INSERT INTO concept_blank_scan_correction(id,submission_id,read_id,slot_id,resolution,text,directly_entered,student_actor_id,teacher_actor_id,sequence) VALUES($1,$2,$3,$4,$5,$6,true,$7,$8,$9)`,
+        `INSERT INTO concept_blank_scan_correction(id,submission_id,read_id,slot_id,resolution,text,directly_entered,student_actor_id,teacher_actor_id,sequence) VALUES($1::uuid,$2::uuid,$3::uuid,$4::text,$5::text,$6::text,true,$7::uuid,$8::uuid,$9::int)`,
         [
           randomUUID(),
           id,
@@ -444,7 +444,7 @@ export async function correctScanAnswer(
         ],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [id],
       );
       return { revision: row.revision + 1 };
@@ -474,13 +474,13 @@ export async function overrideScanGrade(
       )
         throw new ScanAccessError("이 지면의 판정 대상이 아닙니다.", 400);
       const [previous] = await tx.query<ScanGradeRow>(
-        `SELECT * FROM concept_blank_scan_grade WHERE submission_id=$1 AND target_id=$2 ORDER BY sequence DESC LIMIT 1`,
+        `SELECT * FROM concept_blank_scan_grade WHERE submission_id=$1::uuid AND target_id=$2::text ORDER BY sequence DESC LIMIT 1`,
         [id, parsed.targetId],
       );
       if (!previous)
         throw new ScanAccessError("처음 판정을 확인한 뒤 고쳐 주세요.", 409);
       await tx.query(
-        `INSERT INTO concept_blank_scan_grade(id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin,teacher_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8::jsonb,'teacher',$9)`,
+        `INSERT INTO concept_blank_scan_grade(id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin,teacher_id) VALUES($1::uuid,$2::uuid,$3::text,$4::int,$5::text,$6::text,$7::boolean,$8::jsonb,'teacher',$9::uuid)`,
         [
           randomUUID(),
           id,
@@ -494,7 +494,7 @@ export async function overrideScanGrade(
         ],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET state='teacher-corrected',revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET state='teacher-corrected',revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [id],
       );
       return { revision: row.revision + 1 };

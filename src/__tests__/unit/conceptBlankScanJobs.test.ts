@@ -191,7 +191,7 @@ describe("durable reading, input freeze and immediate publication", () => {
       request_key: string;
       settlement_reason: string;
     }>(
-      `SELECT * FROM concept_blank_scan_usage_call WHERE submission_id=$1 ORDER BY queue_order`,
+      `SELECT * FROM concept_blank_scan_usage_call WHERE submission_id=$1::uuid ORDER BY queue_order`,
       [id],
     );
     expect(rows[0].settlement_reason).toBe("usage-unknown");
@@ -329,7 +329,7 @@ describe("durable reading, input freeze and immediate publication", () => {
       created_at: Date;
       expires_at: Date;
     }>(
-      `SELECT used_at,created_at,expires_at FROM concept_blank_scan_photo WHERE submission_id=$1 AND is_current`,
+      `SELECT used_at,created_at,expires_at FROM concept_blank_scan_photo WHERE submission_id=$1::uuid AND is_current`,
       [id],
     );
     expect(
@@ -395,13 +395,13 @@ describe("durable reading, input freeze and immediate publication", () => {
     await begin(id, "read");
     await expect(begin(id, "read")).rejects.toThrow(/진행|중/);
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET job_started_at=CURRENT_TIMESTAMP-interval '10 minutes' WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET job_started_at=CURRENT_TIMESTAMP-interval '10 minutes' WHERE id=$1::uuid`,
       [id],
     );
     const next = await begin(id, "read");
     expect(next.kind).toBe("read");
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET job_started_at=CURRENT_TIMESTAMP-interval '10 minutes' WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET job_started_at=CURRENT_TIMESTAMP-interval '10 minutes' WHERE id=$1::uuid`,
       [id],
     );
     const call = randomUUID();
@@ -409,7 +409,7 @@ describe("durable reading, input freeze and immediate publication", () => {
       `INSERT INTO concept_blank_scan_usage_month(month) VALUES('2026-11') ON CONFLICT DO NOTHING`,
     );
     await local.db.query(
-      `INSERT INTO concept_blank_scan_usage_call(id,month,submission_id,request_key,result_key,operation,model,tariff_version,prompt_version,reserved_nano_usd,status) VALUES($1,'2026-11',$2,$3,$3,'read','fake','2026-11-03','test',100,'running')`,
+      `INSERT INTO concept_blank_scan_usage_call(id,month,submission_id,request_key,result_key,operation,model,tariff_version,prompt_version,reserved_nano_usd,status) VALUES($1::uuid,'2026-11',$2::uuid,$3::text,$3::text,'read','fake','2026-11-03','test',100,'running')`,
       [call, id, randomUUID()],
     );
     await expect(begin(id, "read")).rejects.toThrow(/마무리/);

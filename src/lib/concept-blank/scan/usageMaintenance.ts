@@ -11,11 +11,11 @@ type Row = {
 };
 async function finish(tx: ScanSql, row: Row, charged: boolean, reason: string) {
   await tx.query(
-    `UPDATE concept_blank_scan_usage_month SET reserved_nano_usd=reserved_nano_usd-$2,spent_nano_usd=spent_nano_usd+$3,updated_at=CURRENT_TIMESTAMP WHERE month=$1`,
+    `UPDATE concept_blank_scan_usage_month SET reserved_nano_usd=reserved_nano_usd-$2::bigint,spent_nano_usd=spent_nano_usd+$3::bigint,updated_at=CURRENT_TIMESTAMP WHERE month=$1::text`,
     [row.month, row.reserved_nano_usd, charged ? row.reserved_nano_usd : 0],
   );
   await tx.query(
-    `UPDATE concept_blank_scan_usage_call SET status='settled',cost_nano_usd=$2,settlement_reason=$3,settled_at=CURRENT_TIMESTAMP WHERE id=$1`,
+    `UPDATE concept_blank_scan_usage_call SET status='settled',cost_nano_usd=$2::bigint,settlement_reason=$3::text,settled_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
     [row.id, charged ? row.reserved_nano_usd : 0, reason],
   );
 }
@@ -23,7 +23,7 @@ export async function cancelQueuedScanCalls(db: ScanDatabase, jobId: string) {
   await db.transaction(async (tx) => {
     await lockScanUsage(tx);
     const rows = await tx.query<Row>(
-      `SELECT * FROM concept_blank_scan_usage_call WHERE job_id=$1 AND status='queued' FOR UPDATE`,
+      `SELECT * FROM concept_blank_scan_usage_call WHERE job_id=$1::uuid AND status='queued' FOR UPDATE`,
       [jobId],
     );
     for (const row of rows) await finish(tx, row, false, "queue-cancelled");
@@ -49,7 +49,7 @@ export async function maintainScanUsage(db: ScanDatabase, now = new Date()) {
   for (const row of expired)
     if (row.submission_id && row.job_id)
       await db.query(
-        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=$3 WHERE id=$1 AND job_id=$2`,
+        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=$3::text WHERE id=$1::uuid AND job_id=$2::uuid`,
         [
           row.submission_id,
           row.job_id,

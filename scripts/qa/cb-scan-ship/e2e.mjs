@@ -259,7 +259,7 @@ try {
   expect(issuedResponse.status).toBe(201);
   const { data: issued } = await issuedResponse.json();
   const [stored] = await local.db.query(
-    "SELECT render_artifact,layout FROM concept_blank_printed_sheet WHERE id=$1",
+    "SELECT render_artifact,layout FROM concept_blank_printed_sheet WHERE id=$1::uuid",
     [issued.id],
   );
   await writeFile(
@@ -317,7 +317,7 @@ try {
     });
     expect(overflow).toBeLessThanOrEqual(1);
   };
-  await page.goto(qr.data);
+  await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "새 답안 촬영" }).click();
   await expect(
     page.getByRole("button", { name: "모든 쪽 촬영 완료 · 답 읽기" }),
@@ -399,7 +399,7 @@ try {
   await page.getByRole("button", { name: "판정 저장", exact: true }).click();
   await expect(page.getByText(/교사 수정 ·/).first()).toBeVisible();
   await capture("flow-teacher-result-1440");
-  await page.goto(qr.data);
+  await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "학생 고르기" }).click();
   await expect(
     page.getByRole("dialog", { name: "답안 주인 고르기" }),
@@ -407,19 +407,19 @@ try {
   await capture("flow-teacher-picker-1440");
   const submissionId = new URL(studentUrl).searchParams.get("submission");
   const [submission] = await local.db.query(
-    "SELECT state,revision FROM concept_blank_scan_submission WHERE id=$1",
+    "SELECT state,revision FROM concept_blank_scan_submission WHERE id=$1::uuid",
     [submissionId],
   );
   const grades = await local.db.query(
-    "SELECT origin,count(*)::int AS count FROM concept_blank_scan_grade WHERE submission_id=$1 GROUP BY origin",
+    "SELECT origin,count(*)::int AS count FROM concept_blank_scan_grade WHERE submission_id=$1::uuid GROUP BY origin",
     [submissionId],
   );
   const corrections = await local.db.query(
-    "SELECT resolution,count(*)::int AS count FROM concept_blank_scan_correction WHERE submission_id=$1 GROUP BY resolution",
+    "SELECT resolution,count(*)::int AS count FROM concept_blank_scan_correction WHERE submission_id=$1::uuid GROUP BY resolution",
     [submissionId],
   );
   const photoRows = await local.db.query(
-    "SELECT page_number,registration->>'status' AS registration,used_at IS NOT NULL AS used,(expires_at-created_at) AS lifetime FROM concept_blank_scan_photo WHERE submission_id=$1",
+    "SELECT page_number,registration->>'status' AS registration,used_at IS NOT NULL AS used,(expires_at-created_at) AS lifetime FROM concept_blank_scan_photo WHERE submission_id=$1::uuid",
     [submissionId],
   );
   expect(submission.state).toBe("teacher-corrected");

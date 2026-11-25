@@ -32,7 +32,7 @@ export async function runQueuedScanJobs(deps: Dependencies) {
         );
         if (!row) return null;
         await tx.query(
-          `UPDATE concept_blank_scan_submission SET job_waiting=false,job_started_at=CURRENT_TIMESTAMP WHERE id=$1 AND job_id=$2`,
+          `UPDATE concept_blank_scan_submission SET job_waiting=false,job_started_at=CURRENT_TIMESTAMP WHERE id=$1::uuid AND job_id=$2::uuid`,
           [row.id, row.job_id],
         );
         return {
@@ -45,7 +45,7 @@ export async function runQueuedScanJobs(deps: Dependencies) {
       if (!job) return;
       await runScanJob(job, { ...deps, signal });
       const [waiting] = await deps.db.query<{ job_waiting: boolean }>(
-        `SELECT job_waiting FROM concept_blank_scan_submission WHERE id=$1 AND job_id=$2`,
+        `SELECT job_waiting FROM concept_blank_scan_submission WHERE id=$1::uuid AND job_id=$2::uuid`,
         [job.submissionId, job.id],
       );
       if (waiting?.job_waiting) return; // another worker owns the FIFO head/remaining slots

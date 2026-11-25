@@ -17,7 +17,7 @@ type Deps = { db: ScanDatabase; storage: ScanPhotoStorage; now?: () => Date };
 async function loadPhoto(sql: ScanSql, submissionId: string, photoId: string) {
   const [photo] = await sql
     .query<ScanPhotoRow>(
-      `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1 AND id=$2`,
+      `SELECT * FROM concept_blank_scan_photo WHERE submission_id=$1::uuid AND id=$2::uuid`,
       [submissionId, z.uuid().parse(photoId)],
     )
     .catch(scanDatabaseError);
@@ -62,14 +62,14 @@ async function removePhoto(photo: ScanPhotoRow, deps: Deps) {
       throw new Error("사진 저장소 변경 확인 필요");
     await deps.storage.remove(photo.object_key);
     await deps.db.query(
-      `UPDATE concept_blank_scan_photo SET deleted_at=$2,delete_attempts=delete_attempts+1,delete_error=NULL WHERE id=$1 AND deleted_at IS NULL`,
+      `UPDATE concept_blank_scan_photo SET deleted_at=$2::timestamptz,delete_attempts=delete_attempts+1,delete_error=NULL WHERE id=$1::uuid AND deleted_at IS NULL`,
       [photo.id, (deps.now?.() ?? new Date()).toISOString()],
     );
     return true;
   } catch {
     await deps.db
       .query(
-        `UPDATE concept_blank_scan_photo SET delete_attempts=delete_attempts+1,delete_error='사진 삭제를 완료하지 못했습니다. 다음 정리에서 다시 시도합니다.' WHERE id=$1 AND deleted_at IS NULL`,
+        `UPDATE concept_blank_scan_photo SET delete_attempts=delete_attempts+1,delete_error='사진 삭제를 완료하지 못했습니다. 다음 정리에서 다시 시도합니다.' WHERE id=$1::uuid AND deleted_at IS NULL`,
         [photo.id],
       )
       .catch(scanDatabaseError);
@@ -98,11 +98,11 @@ export async function deleteScanPhoto(
         );
       const photo = await loadPhoto(tx, submissionId, photoId);
       await tx.query(
-        `UPDATE concept_blank_scan_photo SET delete_requested_at=COALESCE(delete_requested_at,$2) WHERE id=$1`,
+        `UPDATE concept_blank_scan_photo SET delete_requested_at=COALESCE(delete_requested_at,$2::timestamptz) WHERE id=$1::uuid`,
         [photoId, (deps.now?.() ?? new Date()).toISOString()],
       );
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET revision=revision+1,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
         [submissionId],
       );
       return photo;
@@ -117,7 +117,7 @@ export async function purgeScanPhotos(deps: Deps) {
     started = Date.now();
   const candidates = await deps.db
     .query<Pick<ScanPhotoRow, "id" | "submission_id">>(
-      `SELECT id,submission_id FROM concept_blank_scan_photo WHERE deleted_at IS NULL AND (delete_requested_at IS NOT NULL OR expires_at<=$1) ORDER BY COALESCE(delete_requested_at,expires_at),id LIMIT 50`,
+      `SELECT id,submission_id FROM concept_blank_scan_photo WHERE deleted_at IS NULL AND (delete_requested_at IS NOT NULL OR expires_at<=$1::timestamptz) ORDER BY COALESCE(delete_requested_at,expires_at),id LIMIT 50`,
       [now.toISOString()],
     )
     .catch(scanDatabaseError);
@@ -129,7 +129,7 @@ export async function purgeScanPhotos(deps: Deps) {
     const photo = await deps.db
       .transaction(async (tx) => {
         const [parent] = await tx.query<ScanSubmissionRow>(
-          `SELECT * FROM concept_blank_scan_submission WHERE id=$1 FOR UPDATE`,
+          `SELECT * FROM concept_blank_scan_submission WHERE id=$1::uuid FOR UPDATE`,
           [candidate.submission_id],
         );
         if (
@@ -149,7 +149,7 @@ export async function purgeScanPhotos(deps: Deps) {
         )
           return null;
         await tx.query(
-          `UPDATE concept_blank_scan_photo SET delete_requested_at=COALESCE(delete_requested_at,$2) WHERE id=$1`,
+          `UPDATE concept_blank_scan_photo SET delete_requested_at=COALESCE(delete_requested_at,$2::timestamptz) WHERE id=$1::uuid`,
           [current.id, now.toISOString()],
         );
         return current;

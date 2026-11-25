@@ -67,7 +67,7 @@ describe("private photo retention and deletion", () => {
     ).rejects.toThrow(/사진/);
     const now = new Date();
     await local.db.query(
-      `UPDATE concept_blank_scan_photo SET expires_at=$2 WHERE id=$1`,
+      `UPDATE concept_blank_scan_photo SET expires_at=$2::timestamptz WHERE id=$1::uuid`,
       [a.photoId, new Date(now.getTime() + 20_000).toISOString()],
     );
     expect(
@@ -114,7 +114,7 @@ describe("private photo retention and deletion", () => {
       delete_requested_at: Date | null;
       delete_attempts: number;
       delete_error: string;
-    }>(`SELECT * FROM concept_blank_scan_photo WHERE id=$1`, [a.photoId]);
+    }>(`SELECT * FROM concept_blank_scan_photo WHERE id=$1::uuid`, [a.photoId]);
     expect(row.deleted_at).toBeNull();
     expect(row.delete_requested_at).not.toBeNull();
     expect(row.delete_attempts).toBe(1);
@@ -127,7 +127,7 @@ describe("private photo retention and deletion", () => {
     expect(
       (
         await local.db.query<{ deleted_at: Date | null }>(
-          `SELECT deleted_at FROM concept_blank_scan_photo WHERE id=$1`,
+          `SELECT deleted_at FROM concept_blank_scan_photo WHERE id=$1::uuid`,
           [a.photoId],
         )
       )[0].deleted_at,
@@ -139,15 +139,15 @@ describe("private photo retention and deletion", () => {
       busy = await photo();
     for (const item of [expired, busy])
       await local.db.query(
-        `UPDATE concept_blank_scan_photo SET created_at=CURRENT_TIMESTAMP-interval '8 days',expires_at=CURRENT_TIMESTAMP-interval '1 day' WHERE id=$1`,
+        `UPDATE concept_blank_scan_photo SET created_at=CURRENT_TIMESTAMP-interval '8 days',expires_at=CURRENT_TIMESTAMP-interval '1 day' WHERE id=$1::uuid`,
         [item.photoId],
       );
     await local.db.query(
-      `UPDATE concept_blank_scan_photo SET used_at=CURRENT_TIMESTAMP,expires_at=created_at+interval '30 days' WHERE id=$1`,
+      `UPDATE concept_blank_scan_photo SET used_at=CURRENT_TIMESTAMP,expires_at=created_at+interval '30 days' WHERE id=$1::uuid`,
       [kept.photoId],
     );
     await local.db.query(
-      `UPDATE concept_blank_scan_submission SET state='read',job_id=$2,job_kind='read',job_started_at=CURRENT_TIMESTAMP WHERE id=$1`,
+      `UPDATE concept_blank_scan_submission SET state='read',job_id=$2::uuid,job_kind='read',job_started_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
       [busy.id, randomUUID()],
     );
     await purgeScanPhotos({ db: local.db, storage });
