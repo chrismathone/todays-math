@@ -1,0 +1,129 @@
+
+ RUN  v4.1.11 /Volumes/새 볼륨/today-worktrees/textbook-engine-t1
+
+ ❯ src/__tests__/unit/middleTypeCoverage.test.ts (3 tests | 1 failed) 94ms
+     × RPM은 색인 정본, 자작 12유형·교과서 30유형은 각 승인 목록과 정확히 같다 3ms
+ ❯ src/__tests__/unit/middleTextbookIntegration.test.ts (6 tests | 2 failed) 598ms
+     × keeps the approved grade, section and operation tier under its own source 21ms
+     × replays reviewed evidence after changing its key and seed, preserving every other field 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/middleTextbookIntegration.test.ts > T1 registry and compatibility > keeps the approved grade, section and operation tier under its own source
+AssertionError: expected [] to deeply equal [ …(30) ]
+
+- Expected
++ Received
+
+- [
+-   "textbook-20261125|교과서 수와 연산|C01",
+-   "textbook-20261125|교과서 수와 연산|C02",
+-   "textbook-20261125|교과서 수와 연산|C03",
+-   "textbook-20261125|교과서 수와 연산|C04",
+-   "textbook-20261125|교과서 수와 연산|C05",
+-   "textbook-20261125|교과서 수와 연산|C06",
+-   "textbook-20261125|교과서 수와 연산|C07",
+-   "textbook-20261125|교과서 수와 연산|C08",
+-   "textbook-20261125|교과서 수와 연산|F01",
+-   "textbook-20261125|교과서 수와 연산|F02",
+-   "textbook-20261125|교과서 수와 연산|F03",
+-   "textbook-20261125|교과서 수와 연산|F04",
+-   "textbook-20261125|교과서 수와 연산|F05",
+-   "textbook-20261125|교과서 수와 연산|F06",
+-   "textbook-20261125|교과서 수와 연산|F07",
+-   "textbook-20261125|교과서 수와 연산|N01",
+-   "textbook-20261125|교과서 수와 연산|N02",
+-   "textbook-20261125|교과서 수와 연산|N03",
+-   "textbook-20261125|교과서 수와 연산|N04",
+-   "textbook-20261125|교과서 수와 연산|N05",
+-   "textbook-20261125|교과서 수와 연산|N06",
+-   "textbook-20261125|교과서 수와 연산|N07",
+-   "textbook-20261125|교과서 수와 연산|N08",
+-   "textbook-20261125|교과서 수와 연산|N09",
+-   "textbook-20261125|교과서 수와 연산|O01",
+-   "textbook-20261125|교과서 수와 연산|O02",
+-   "textbook-20261125|교과서 수와 연산|O03",
+-   "textbook-20261125|교과서 수와 연산|O04",
+-   "textbook-20261125|교과서 수와 연산|O05",
+-   "textbook-20261125|교과서 수와 연산|O06",
+- ]
++ []
+
+ ❯ src/__tests__/unit/middleTextbookIntegration.test.ts:23:45
+     21|       grade: "중1", book: "textbook-20261125",
+     22|     });
+     23|     expect(listed.map((e) => e.key).sort()).toEqual(
+       |                                             ^
+     24|       approval.types.map((e) => e.key).sort(),
+     25|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/__tests__/unit/middleTextbookIntegration.test.ts > T1 registry and compatibility > replays reviewed evidence after changing its key and seed, preserving every other field
+Error: 등록되지 않은 유형입니다: textbook-20261125|교과서 수와 연산|C01 — registeredTypes() 로 먼저 확인
+ ❯ generateMiddleProblem src/lib/middle/generate.ts:183:11
+    181|   const entry = BY_KEY.get(key);
+    182|   if (!entry) {
+    183|     throw new Error(
+       |           ^
+    184|       `등록되지 않은 유형입니다: ${key} — registeredTypes() 로 먼저 확인`,
+    185|     );
+ ❯ src/__tests__/unit/middleTextbookIntegration.test.ts:42:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/__tests__/unit/middleTypeCoverage.test.ts > 중학 유형 시험 커버리지 — 분모를 지킨다 > RPM은 색인 정본, 자작 12유형·교과서 30유형은 각 승인 목록과 정확히 같다
+AssertionError: expected [] to deeply equal [ …(30) ]
+
+- Expected
++ Received
+
+- [
+-   "textbook-20261125|교과서 수와 연산|C01",
+-   "textbook-20261125|교과서 수와 연산|C02",
+-   "textbook-20261125|교과서 수와 연산|C03",
+-   "textbook-20261125|교과서 수와 연산|C04",
+-   "textbook-20261125|교과서 수와 연산|C05",
+-   "textbook-20261125|교과서 수와 연산|C06",
+-   "textbook-20261125|교과서 수와 연산|C07",
+-   "textbook-20261125|교과서 수와 연산|C08",
+-   "textbook-20261125|교과서 수와 연산|F01",
+-   "textbook-20261125|교과서 수와 연산|F02",
+-   "textbook-20261125|교과서 수와 연산|F03",
+-   "textbook-20261125|교과서 수와 연산|F04",
+-   "textbook-20261125|교과서 수와 연산|F05",
+-   "textbook-20261125|교과서 수와 연산|F06",
+-   "textbook-20261125|교과서 수와 연산|F07",
+-   "textbook-20261125|교과서 수와 연산|N01",
+-   "textbook-20261125|교과서 수와 연산|N02",
+-   "textbook-20261125|교과서 수와 연산|N03",
+-   "textbook-20261125|교과서 수와 연산|N04",
+-   "textbook-20261125|교과서 수와 연산|N05",
+-   "textbook-20261125|교과서 수와 연산|N06",
+-   "textbook-20261125|교과서 수와 연산|N07",
+-   "textbook-20261125|교과서 수와 연산|N08",
+-   "textbook-20261125|교과서 수와 연산|N09",
+-   "textbook-20261125|교과서 수와 연산|O01",
+-   "textbook-20261125|교과서 수와 연산|O02",
+-   "textbook-20261125|교과서 수와 연산|O03",
+-   "textbook-20261125|교과서 수와 연산|O04",
+-   "textbook-20261125|교과서 수와 연산|O05",
+-   "textbook-20261125|교과서 수와 연산|O06",
+- ]
++ []
+
+ ❯ src/__tests__/unit/middleTypeCoverage.test.ts:122:7
+    120|         .map((e) => e.key)
+    121|         .sort(),
+    122|     ).toEqual([...textbookKeys].sort());
+       |       ^
+    123|     for (const e of registeredTypes()) {
+    124|       if (textbookKeys.has(e.key)) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 6 passed (9)
+   Start at  20:45:56
+   Duration  2.12s (transform 1.82s, setup 626ms, import 1.80s, tests 691ms, environment 402ms)

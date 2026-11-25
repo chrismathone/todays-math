@@ -1,0 +1,927 @@
+[
+  {
+    "groupId": "m1-b-calc-0-single",
+    "name": "항 수·괄호·소수 표현을 넓힌 계산",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 76,
+    "acceptedRows": 76,
+    "deferredRows": 0,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C01"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-calc-1-single",
+    "name": "항 수·괄호·소수 표현을 넓힌 계산",
+    "section": "유리수의 곱셈",
+    "sourceRows": 60,
+    "acceptedRows": 60,
+    "deferredRows": 0,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C02",
+      "textbook-20261125|교과서 수와 연산|C03",
+      "textbook-20261125|교과서 수와 연산|C04",
+      "textbook-20261125|교과서 수와 연산|C08"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-calc-2-single",
+    "name": "항 수·괄호·소수 표현을 넓힌 계산",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 51,
+    "acceptedRows": 51,
+    "deferredRows": 0,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C05",
+      "textbook-20261125|교과서 수와 연산|C06",
+      "textbook-20261125|교과서 수와 연산|C07"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "m1-b-calc-0-batch",
+    "name": "여러 계산식을 함께 묻는 연습 묶음",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 43,
+    "acceptedRows": 43,
+    "deferredRows": 0,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C01"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-gcd",
+    "name": "최대공약수·공약수와 최소공배수의 계산 묶음",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 26,
+    "acceptedRows": 22,
+    "deferredRows": 4,
+    "decision": "기존 계산 골격의 확장 · 기존 출력 보존을 위해 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N01",
+      "textbook-20261125|교과서 수와 연산|N03",
+      "textbook-20261125|교과서 수와 연산|N04",
+      "textbook-20261125|교과서 수와 연산|N08"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-lcm",
+    "name": "최소공배수·범위 공배수 계산",
+    "section": "공배수와 최소공배수",
+    "sourceRows": 23,
+    "acceptedRows": 20,
+    "deferredRows": 3,
+    "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N02",
+      "textbook-20261125|교과서 수와 연산|N03",
+      "1-1|최대공약수와 최소공배수|25"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-rational-classify",
+    "name": "수 목록을 정수·자연수·유리수로 분류",
+    "section": "정수와 유리수",
+    "sourceRows": 22,
+    "acceptedRows": 19,
+    "deferredRows": 3,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "기존 02의 개수 갈래를 재사용한다. 선택·복수 분류·개수의 합은 같은 분류 골격의 확장이지만 기존 씨앗을 보존하려고 O01 새 키로 분리했다. 절댓값 조건 역산 3행은 제외한다.",
+    "typeKeys": [
+      "1-1|정수와 유리수|02",
+      "textbook-20261125|교과서 수와 연산|O01"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-calc-1-batch",
+    "name": "여러 계산식을 함께 묻는 연습 묶음",
+    "section": "유리수의 곱셈",
+    "sourceRows": 21,
+    "acceptedRows": 18,
+    "deferredRows": 3,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C02",
+      "textbook-20261125|교과서 수와 연산|C03",
+      "textbook-20261125|교과서 수와 연산|C04",
+      "textbook-20261125|교과서 수와 연산|C08"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-inequality-notation",
+    "name": "수의 범위를 부등호로 표현",
+    "section": "수의 대소관계",
+    "sourceRows": 19,
+    "acceptedRows": 16,
+    "deferredRows": 3,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "정수 양끝 범위 단일 문항은 기존 12를 재사용한다. 한쪽·분수·소수·절댓값 경계 및 소문항 묶음은 기존 출력을 바꾸므로 O02 새 키로 확장한다. 조건 추론/계수 결합 3행은 제외한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O02",
+      "1-1|정수와 유리수|12"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-order-list",
+    "name": "수 목록의 대소 비교·정렬",
+    "section": "수의 대소관계",
+    "sourceRows": 18,
+    "acceptedRows": 13,
+    "deferredRows": 5,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "기존 11의 지정 순위와 20의 절댓값 최대를 재사용한다. 전체 순서·최대최소 및 대분수/절댓값 표현을 O03 새 키로 확장한다. 구간 안 절댓값 최대는 O04에 연결한다. 진술·문자·극값의 추가 계산 5행은 제외한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O03",
+      "1-1|정수와 유리수|20",
+      "textbook-20261125|교과서 수와 연산|O04",
+      "1-1|정수와 유리수|11"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-integer-interval",
+    "name": "구간·절댓값 조건의 정수 집계",
+    "section": "수의 대소관계",
+    "sourceRows": 15,
+    "acceptedRows": 10,
+    "deferredRows": 5,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "열린 유리수 구간의 정수 개수는 기존 13을 재사용한다. 양끝 포함 여부와 유리수 절댓값 경계를 O04 새 키로 확장한다. 부호 조건의 범위·절댓값 모집단 개수 차·범위 차집합도 O04에 더했다. 미구현 범위 계산·두 조건 결합·가우스·기약분수 5행은 제외한다.",
+    "typeKeys": [
+      "1-1|정수와 유리수|13",
+      "textbook-20261125|교과서 수와 연산|O04"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "m1-b-power-product",
+    "name": "반복 곱을 거듭제곱으로 묶기",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 14,
+    "acceptedRows": 12,
+    "deferredRows": 2,
+    "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N05",
+      "1-1|소인수분해|03"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-prime-list",
+    "name": "수 목록의 소수·합성수 판별",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 14,
+    "acceptedRows": 14,
+    "deferredRows": 0,
+    "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N06",
+      "1-1|소인수분해|01"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-coprime-selection",
+    "name": "서로소인 수나 수쌍 선택",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 13,
+    "acceptedRows": 11,
+    "deferredRows": 2,
+    "decision": "기존 키 재사용 + 출력 보존을 위한 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N07",
+      "1-1|최대공약수와 최소공배수|01"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-divisor-selection",
+    "name": "제시된 후보에서 약수를 고르기",
+    "section": "소인수분해",
+    "sourceRows": 13,
+    "acceptedRows": 11,
+    "deferredRows": 2,
+    "decision": "기존 계산 골격의 확장 · 기존 출력 보존을 위해 새 키",
+    "reason": "기존 단일 생성기에 복수 소문항·표현·판별 요구를 추가하면 같은 씨앗의 내용이 바뀐다. 기존 파일은 수정하지 않고 같은 골격을 묶은 신규 키로 확장하며, 서로 다른 요구는 행별 보류한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|N09"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-square-completion",
+    "name": "곱하거나 나누어 제곱수 만들기와 미지수",
+    "section": "소인수분해",
+    "sourceRows": 13,
+    "acceptedRows": 12,
+    "deferredRows": 1,
+    "decision": "reuse-existing",
+    "reason": "기존 소인수분해|09의 세 갈래(곱하기·나누기·최소수와 제곱근의 합)를 재사용한다. 기존 출력 변경은 없다. 식으로 이미 분해된 입력 1행은 남긴다.",
+    "typeKeys": [
+      "1-1|소인수분해|09"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "m1-b-calc-2-batch",
+    "name": "여러 계산식을 함께 묻는 연습 묶음",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 10,
+    "acceptedRows": 9,
+    "deferredRows": 1,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "기존 정수와 유리수의 계산 키는 항 수·숫자 표현·소문항을 늘리면 같은 씨앗 출력이 달라진다. 기존 파일은 그대로 두고 공용 정확 유리수 식과 여덟 계산 가족으로 확장한다. 여러 구조가 혼재한 묶음은 행별로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C05",
+      "textbook-20261125|교과서 수와 연산|C06"
+    ],
+    "reviewFile": "calc-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "m1-b-gcd-lcm-exponents",
+    "name": "최대공약수·최소공배수에서 지수 역산",
+    "section": "공배수와 최소공배수",
+    "sourceRows": 9,
+    "acceptedRows": 8,
+    "deferredRows": 1,
+    "decision": "reuse-existing-and-extend",
+    "reason": "기존 최대공약수와 최소공배수|09의 두 지수 골격은 재사용한다. 나머지 유효한 두 수/세 수·미지 소수·최소공배수 출력 지수는 같은 지수 조건을 F05로 확장한다. 기존 키의 씨앗 호환 때문에 새 키로 등록한다. 조건이 모호한 1행은 제외한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|F05",
+      "1-1|최대공약수와 최소공배수|09"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "m1-b-prime-factor-attributes",
+    "name": "소인수분해의 지수·소인수 요약값",
+    "section": "소인수분해",
+    "sourceRows": 9,
+    "acceptedRows": 9,
+    "deferredRows": 0,
+    "decision": "reuse-existing-and-extend",
+    "reason": "단일 소인수 합은 기존 05를 재사용한다. 소인수 통계의 합·비교는 F03 하나로 모으고, 범위에서 자연수를 찾는 역문제는 단계가 달라 F04(응용)로 나눈다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|F03",
+      "textbook-20261125|교과서 수와 연산|F04",
+      "1-1|소인수분해|05"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-abs-direct",
+    "name": "절댓값의 직접 계산과 양·음수 복원",
+    "section": "정수와 유리수",
+    "sourceRows": 6,
+    "acceptedRows": 6,
+    "deferredRows": 0,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "기존 07·09·10은 절댓값을 이용한 추가 계산/거리·한쪽 수를 요구한다. 직접 절댓값 및 양음 두 수 복원은 O05 새 키로 좁게 구현한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O05"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-factor-batch",
+    "name": "여러 자연수의 소인수분해",
+    "section": "소인수분해",
+    "sourceRows": 6,
+    "acceptedRows": 6,
+    "deferredRows": 0,
+    "decision": "extend-with-new-key",
+    "reason": "기존 04·18은 단일 자연수여서 복수 소문항/순서를 새 F01에 확장한다. 기존 handler를 바꾸지 않는다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|F01"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-power-representation",
+    "name": "정해진 밑으로 거듭제곱 나타내기",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 6,
+    "acceptedRows": 6,
+    "deferredRows": 0,
+    "decision": "extend-with-new-key",
+    "reason": "기존 13·14는 지수를 숫자로 답한다. 지정된 밑의 거듭제곱 전체를 쓰고 분수·복수 밑을 허용하는 F02로 확장한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|F02"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-prime-interval",
+    "name": "구간의 소수·합성수 개수와 목록",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 4,
+    "acceptedRows": 4,
+    "deferredRows": 0,
+    "decision": "reuse-existing-and-extend",
+    "reason": "구간 내 소수 개수는 기존 02 재사용. 양쪽의 서로 다른 분류의 극값을 구한 뒤 빼는 골격은 F06으로 확장한다.",
+    "typeKeys": [
+      "1-1|소인수분해|02",
+      "textbook-20261125|교과서 수와 연산|F06"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-reciprocals",
+    "name": "여러 수의 역수를 한꺼번에 쓰기",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 4,
+    "acceptedRows": 4,
+    "deferredRows": 0,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "기존 18·72의 역수 골격을 여러 정수·분수·소수 소문항으로 확장한다. 기존 씨앗 출력을 보존하려고 O06 새 키로 분리한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O06"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-numberline-read-91b10edc",
+    "name": "수직선 좌표와 계산",
+    "section": "정수와 유리수",
+    "sourceRows": 4,
+    "acceptedRows": 0,
+    "deferredRows": 4,
+    "decision": "확장 결정·후속 구현",
+    "reason": "수직선의 좌표 읽기(정수와 유리수|05)를 등분·여러 점·식 계산으로 확장. 그림 좌표와 요구 답의 독립 검산은 미완료.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-divisor-product-table-a5ee0cca",
+    "name": "소인수 거듭제곱 약수 표",
+    "section": "소인수분해",
+    "sourceRows": 3,
+    "acceptedRows": 0,
+    "deferredRows": 3,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 소인수 거듭제곱 약수 표 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-numberline-attributes-91b10edc",
+    "name": "수직선의 수 분류",
+    "section": "정수와 유리수",
+    "sourceRows": 2,
+    "acceptedRows": 0,
+    "deferredRows": 2,
+    "decision": "확장 결정·후속 구현",
+    "reason": "수 분류·절댓값을 수직선 표시점에 적용하는 확장. 표시점과 진술을 함께 검증하지 않아 원장 제외.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-prime-list-e30a5ede",
+    "name": "수 목록의 소수 선택",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 2,
+    "acceptedRows": 1,
+    "deferredRows": 1,
+    "decision": "기존 키 재사용 1행 · 조합형 보류 1행",
+    "reason": "대응 그림 두 개를 직접 열어 단순 수 목록(개수)과 이름표 조합 선택을 구별했다. 그림이 있다는 이유만으로 새 엔진 그림을 만들 필요는 없다.",
+    "typeKeys": [
+      "1-1|소인수분해|01"
+    ],
+    "reviewFile": "number-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-rational-division-image-07779dd2",
+    "name": "이미지 수식의 유리수 나눗셈",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 2,
+    "acceptedRows": 2,
+    "deferredRows": 0,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "원본에서 식만 래스터로 실린 것을 직접 읽었다. 도형이 아닌 수식이므로 기존 텍스트 계산 꼴로 자체 저작하며, 혼합 소문항 1행은 제외한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C05"
+    ],
+    "reviewFile": "calc-image-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-rational-product-image-dea229b9",
+    "name": "이미지 수식의 유리수 곱",
+    "section": "유리수의 곱셈",
+    "sourceRows": 2,
+    "acceptedRows": 1,
+    "deferredRows": 1,
+    "decision": "기존 계산 골격의 확장·새 키",
+    "reason": "원본에서 식만 래스터로 실린 것을 직접 읽었다. 도형이 아닌 수식이므로 기존 텍스트 계산 꼴로 자체 저작하며, 혼합 소문항 1행은 제외한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|C02"
+    ],
+    "reviewFile": "calc-image-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "m1-b-prime-set-outlier",
+    "name": "소인수 집합이 다른 자연수 선택",
+    "section": "소인수분해",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "extend-with-new-key",
+    "reason": "기존 05는 한 수의 소인수 통계라 다섯 후보의 집합 일치/불일치 판별을 다루지 않는다. F07에 별도 새 유형을 둔다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|F07"
+    ],
+    "reviewFile": "factor-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-absolute-values-c52f466b",
+    "name": "유리수 절댓값 계산",
+    "section": "수의 대소관계",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "그림 1개 직접 열람. 정수·분수·0·소수 네 수의 절댓값 소문항이며 O05 배치로 확장한다. census mid였으나 직접 절댓값만 묻는 실제 생성물 기준 기본으로 정했다. 원문 단원은 수의 대소관계이나 직접 절댓값이라는 동일 수학 유형에 따라 엔진의 정수와 유리수 단원 O05로 연결했다(출판 단원 배치 차이).",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O05"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-branching-power-e30a5ede",
+    "name": "규칙적 분기 수",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "거듭제곱 표현을 분기·단계 문맥으로 확장. 반복 분기 그림과 단계 수 검증은 미완료.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-card-product-extreme-dea229b9",
+    "name": "유리수 카드 곱의 극값",
+    "section": "유리수의 곱셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "보류: 요구 답의 수가 다름",
+    "reason": "그림의 카드 네 수를 직접 읽고, 원문이 서로 다른 세 카드 곱의 최댓값과 최솟값을 둘 다 각각 요구함을 확인했다. 기존 계산14는 wantMax에 따라 최대 또는 최소 하나만 요구한다. 답의 수와 요구가 달라 현 키로 한 행 전체를 대체한다고 확정하지 않는다. 소수 입력 표현도 기존 생성기에 없어 원문 표현 범위를 모두 덮지 않는다. 새 구현은 하지 않았다.",
+    "typeKeys": [],
+    "reviewFile": "reuse-image-review.json",
+    "censusDifficulty": "hard"
+  },
+  {
+    "groupId": "v-m1-core-card-sum-game-a12b391c",
+    "name": "남은 카드와 합의 절댓값",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 남은 카드와 합의 절댓값 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-common-divisor-denominator-7d374912",
+    "name": "정수 몫이 되는 공통 분모",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "공약수 나열을 공통 분모의 자연수 조건으로 바꾸는 확장. 분수 빈칸과 요구 답의 견본 대응은 미완료.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-coprime-numerators-7d374912",
+    "name": "기약 진분수 분자 개수",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "서로소 개수를 진분수 분자의 범위로 확장. 원본 그림의 분모·조건을 이번에 직접 재독하지 않아 제외.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-factor-ladder-a5ee0cca",
+    "name": "소인수분해 나눗셈 사다리",
+    "section": "소인수분해",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "F01 소인수분해에 중간 몫·빈칸을 추가하는 확장. 사다리 지면은 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-factor-tree-prime-constraint-a5ee0cca",
+    "name": "소수 조건 분해 트리",
+    "section": "소인수분해",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 소수 조건 분해 트리 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-factorization-choice-a5ee0cca",
+    "name": "소인수분해 선택지 검증",
+    "section": "소인수분해",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "소인수분해 결과에 오류 후보를 넣는 확장. 소수 밑 조건·곱의 일치·보기 조합 검증은 미완료.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-first-wrong-arithmetic-step-07779dd2",
+    "name": "계산의 최초 오류 찾기",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "사칙 계산 AST에 오류 변환을 넣고 최초 실패 단계를 묻는 확장. 정답값만 구하는 계산형으로 대체하지 않는다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-fixed-position-period-38746a72",
+    "name": "처음 위치 동시 복귀 주기",
+    "section": "최대공약수와 최소공배수의 활용",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "기존 키의 경과시간 갈래 재사용",
+    "reason": "그림의 두 위성이 각각 출발 위치 A·B로 돌아오는 것임을 직접 확인했다. 상대적으로 다시 만나는 주기가 아니라 각자의 고정 출발 위치로 처음 함께 복귀하는 시간이다. 기존 13의 kind=0도 두 주기의 처음 공동 재발까지 경과시간을 묻는다. 위성/버스 소재는 다르지만 주기·고정 위치 복귀의 최소공배수 구조와 요구 답이 같다. kind=1(시각)·kind=2(횟수)는 이 행의 직접 대응 견본으로 쓰지 않는다.",
+    "typeKeys": [
+      "1-1|최대공약수와 최소공배수|13"
+    ],
+    "reviewFile": "reuse-image-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-gcd-lcm-ladder-7d374912",
+    "name": "공약수 나눗셈 사다리",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "N03의 두 결과 계산을 나눗셈 사다리의 중간 빈칸까지 확장. 사다리 입력 지면은 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-gcd-truth-7d374912",
+    "name": "최대공약수 수치 명제",
+    "section": "공약수와 최대공약수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "공약수 계산 결과를 수치 명제 참거짓으로 확장. 생성 명제와 OX 요구의 독립 검산은 미구현.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-height-difference-network-a12b391c",
+    "name": "높이 차 네트워크",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 높이 차 네트워크 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-largest-square-tiling-38746a72",
+    "name": "가장 큰 정사각형 분할",
+    "section": "최대공약수와 최소공배수의 활용",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "기존 키 재사용",
+    "reason": "본문과 그림을 직접 읽어 두 변의 길이가 주어진 직사각형을 같은 크기의 가장 큰 정사각형으로 빈틈없이 나누는 문제임을 확인했다. 기존 29도 두 길이의 최대공약수인 한 변 길이를 cm로 요구한다. 그림은 두 길이의 확인용이며 기존 생성기의 본문에 필요한 조건이 모두 있다.",
+    "typeKeys": [
+      "1-1|최대공약수와 최소공배수|29"
+    ],
+    "reviewFile": "reuse-image-review.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-lcm-exponents-fd0d2676",
+    "name": "소인수 지수 표의 공약수·공배수",
+    "section": "공배수와 최소공배수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "최대·최소 소인수 지수 역산(F05)의 표 표현 확장. 수치 식만으로 표의 빈칸 요구를 덮었다고 보지 않는다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-lcm-pyramid-fd0d2676",
+    "name": "최소공배수 피라미드",
+    "section": "공배수와 최소공배수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 최소공배수 피라미드 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-lcm-truth-fd0d2676",
+    "name": "최소공배수 수치 명제",
+    "section": "공배수와 최소공배수",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "공배수 계산 결과를 수치 명제 참거짓으로 확장. 생성 명제와 OX 요구의 독립 검산은 미구현.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-neighbor-sum-sequence-a12b391c",
+    "name": "양옆 합 점화 수열",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 양옆 합 점화 수열 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-numberline-span-quotient-07779dd2",
+    "name": "수직선 거리와 좌표 몫",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "수직선 좌표 복원과 나눗셈(C05)의 결합 확장. 유향 거리·좌표·0이 아닌 제수를 함께 검증하지 않아 제외.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-operation-law-label-dea229b9",
+    "name": "곱셈 법칙과 계산 단계",
+    "section": "유리수의 곱셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "곱셈 식의 교환·결합 변환을 판정하는 확장. 계산값만 구하는 C02와 법칙명 답을 구별한다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-operation-machine-07779dd2",
+    "name": "연산 기계 합성",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 연산 기계 합성 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-opposite-face-reciprocals-dea229b9",
+    "name": "주사위 맞은편 수의 합",
+    "section": "유리수의 곱셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 주사위 맞은편 수의 합 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-ordered-label-puzzle-c52f466b",
+    "name": "수의 순서와 문자 연결",
+    "section": "수의 대소관계",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 수의 순서와 문자 연결 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-power-attributes-e30a5ede",
+    "name": "거듭제곱의 밑과 지수",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "F02 거듭제곱의 표현을 밑·지수 읽기로 확장. 암묵적 지수 1을 포함한 요구 답 생성은 미구현.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-prime-stencil-e30a5ede",
+    "name": "소수 칸 격자 모양",
+    "section": "소수와 거듭제곱",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 소수 칸 격자 모양 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-prime-venn-pairs-38746a72",
+    "name": "소인수 벤 도식과 수 쌍",
+    "section": "최대공약수와 최소공배수의 활용",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 소인수 벤 도식과 수 쌍 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-product-pyramid-dea229b9",
+    "name": "곱셈 피라미드 역산",
+    "section": "유리수의 곱셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 곱셈 피라미드 역산 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-range-notation-c52f466b",
+    "name": "범위 표현과 부등호",
+    "section": "수의 대소관계",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "그림 1개 직접 열람. 도식이 아니라 세 조건의 문장 이미지이다. O02의 동일한 한쪽/양쪽 부등호 소문항으로 확장해 대체한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O02"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-rational-reciprocal-image-07779dd2",
+    "name": "이미지 수식의 역수",
+    "section": "유리수의 나눗셈",
+    "sourceRows": 1,
+    "acceptedRows": 1,
+    "deferredRows": 0,
+    "decision": "기존 재사용 / 호환성을 위한 새 키 확장",
+    "reason": "그림 1개 직접 열람. 유리수의 역수 네 소문항이므로 O06의 같은 골격과 본문 지면으로 대체한다.",
+    "typeKeys": [
+      "textbook-20261125|교과서 수와 연산|O06"
+    ],
+    "reviewFile": "order-review.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-rational-sum-order-a12b391c",
+    "name": "덧셈·뺄셈식 결과 정렬",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "계산(C01)과 결과 순서(O03)를 연결하는 확장. 결과가 서로 다른 식과 이름표의 대응은 미구현.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "easy"
+  },
+  {
+    "groupId": "v-m1-core-sum-law-label-a12b391c",
+    "name": "덧셈 법칙과 계산값",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "확장 결정·후속 구현",
+    "reason": "덧셈 식의 교환·결합 변환과 계산값을 함께 판정하는 확장. C01 결과 계산만으로 대체하지 않는다.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  },
+  {
+    "groupId": "v-m1-core-table-range-max-a12b391c",
+    "name": "표의 차와 최댓값",
+    "section": "유리수의 덧셈과 뺄셈",
+    "sourceRows": 1,
+    "acceptedRows": 0,
+    "deferredRows": 1,
+    "decision": "새 유형 결정·후속 구현",
+    "reason": "독립적인 표의 차와 최댓값 골격이 필요하다. 큰 묶음부터 구현한 이번 범위 밖이며 생성·독립 검산·견본 대응을 완료하지 않았다. 기존 계산 지면에 없는 도식·표 배치는 시안 필요.",
+    "typeKeys": [],
+    "reviewFile": "decisions.json",
+    "censusDifficulty": "mid"
+  }
+]

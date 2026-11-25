@@ -24,6 +24,7 @@ import { describe, expect, it } from "vitest";
 
 import { registeredTypes } from "../../lib/middle/generate";
 import { extensionNumberReason } from "../helpers/rpmCatalog";
+import textbookApproval from "../../../docs/planning/tracks/reports/textbook-engine-t1/approved-types.json";
 
 const TEST_DIR = path.resolve(process.cwd(), "src/__tests__/unit");
 const SELF = "middleTypeCoverage.test.ts";
@@ -44,6 +45,8 @@ const authoredStems = JSON.parse(
   grade: string;
   unitSection: string;
 }[];
+const textbookStems = textbookApproval.types;
+const textbookKeys = new Set(textbookStems.map((e) => e.key));
 
 function middleTestSources(): { file: string; src: string }[] {
   return readdirSync(TEST_DIR)
@@ -79,7 +82,7 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
     ).toEqual([]);
   });
 
-  it("RPM 계열은 색인 정본과 같고, 자작 12유형은 승인된 별도 목록·검산 대상과 같다", () => {
+  it("RPM은 색인 정본, 자작 12유형·교과서 30유형은 각 승인 목록과 정확히 같다", () => {
     // 왜: 세션마다 중단원 이름을 **손으로 적는다**. 정본은 「일차함수와 그 그래프」
     // 뒤에 **얇은 공백(U+2009)** 을 쓰는데 보통 공백으로 적으면 어디서도 안 걸린다 —
     // 실제로 m2Func 가 그렇게 등록돼 있었고, 그 자리를 고치는 날 다른 시험의
@@ -101,7 +104,67 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
         .map((e) => e.key)
         .sort(),
     ).toEqual([...authoredKeys].sort());
+    expect(textbookApproval.rpmBook).toBe("textbook-20261125");
+    expect(textbookStems).toHaveLength(30);
+    expect([...textbookKeys].sort()).toEqual(
+      [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O05",
+        "O06",
+      ]
+        .map((id) => `textbook-20261125|교과서 수와 연산|${id}`)
+        .sort(),
+    );
+    expect(
+      registeredTypes()
+        .filter((e) => e.rpmBook === "textbook-20261125")
+        .map((e) => e.key)
+        .sort(),
+    ).toEqual([...textbookKeys].sort());
     for (const e of registeredTypes()) {
+      if (textbookKeys.has(e.key)) {
+        const approved = textbookStems.find((s) => s.key === e.key);
+        expect(approved, e.key).toBeDefined();
+        for (const key of [
+          "rpmBook",
+          "rpmMinor",
+          "rpmType",
+          "rpmTitle",
+          "grade",
+          "unitSection",
+        ] as const)
+          expect(e[key], `${e.key} / ${key}`).toBe(approved![key]);
+        expect(e.rpmBook).toBe("textbook-20261125");
+        expect(catalog[e.rpmBook]).toBeUndefined();
+        continue;
+      }
       if (authoredKeys.has(e.key)) {
         const authored = authoredStems.find((s) => s.key === e.key);
         expect(authored, e.key).toBeDefined();

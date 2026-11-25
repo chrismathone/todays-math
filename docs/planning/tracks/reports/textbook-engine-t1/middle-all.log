@@ -1,0 +1,191 @@
+
+ RUN  v4.1.11 /Volumes/새 볼륨/today-worktrees/textbook-engine-t1
+
+ ✓ src/__tests__/unit/middleJosaAll.test.ts (1551 tests) 8824ms
+ ✓ src/__tests__/unit/middleNotationAll.test.ts (1561 tests) 9703ms
+ ✓ src/__tests__/unit/middleM3Func.test.ts (649 tests) 6924ms
+     ✓ 넓은 씨앗(60×3)에서도 42유형 전량이 던지지 않고 검산을 통과한다  538ms
+       ✓ 그림 유형의 figureSpec 이 전부 그려진다 — 곡선 밖 mark 면 엔진이 던진다  4891ms
+ ✓ src/__tests__/unit/middleM1Top5e.test.ts (102 tests) 7821ms
+       ✓ 지면이 깨끗하다 — 렌더·냄새·조사·맨 숫자·그림 지시  347ms
+     ✓ 84X — 변형 $0$..11 이 서로 다르다  1315ms
+     ✓ `84X` — 살아남는 구간의 **모임**이 세 가지로 갈린다  379ms
+     ✓ `84X` — 구간마다 «왜 살고 죽는지»가 그래프와 맞는다 (660판)  482ms
+     ✓ 🔴 네 유형 전부 660판에서 700px 미만이다  670ms
+     ✓ 84X — 최빈 정답이 660판의 $12$% 미만이다  387ms
+     ✓ 🔴 지면 수 조합이 답과 부딪히지 않는다 — 그리고 **널 모형**과 견준다 (660판)  488ms
+     ✓ 81X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  432ms
+     ✓ 네 유형 모두 — 660판 전량에 그 문장들이 있다  494ms
+ ✓ src/__tests__/unit/middleM2Quad.test.ts (103 tests) 4850ms
+     ✓ 02 평행사변형의 성질⑴  385ms
+     ✓ 03 평행사변형의 성질⑵  371ms
+     ✓ 04 평행사변형의 성질의 응용 대변의 길이  385ms
+     ✓ 05 평행사변형의 성질의 응용 대각의 크기  461ms
+     ✓ 06 평행사변형의 성질의 응용 대각선의 성질  432ms
+     ✓ 07 평행사변형이 되는 조건⑴  350ms
+     ✓ 08 평행사변형이 되는 조건 ⑵  429ms
+     ✓ 09 평행사변형이 되는 조건의 응용⑴  432ms
+     ✓ 10 평행사변형과 넓이 대각선에 의해 나누어지는 경우  389ms
+     ✓ 11 평행사변형과 넓이 내부의 한 점이 주어지는 경우  396ms
+     ✓ 12 평행사변형의 성질의 응용 두 내각의 이등분선이 주어진 경우  376ms
+     ✓ 13 평행사변형이 되는 조건의 응용 ⑵  386ms
+ ✓ src/__tests__/unit/middleM1Geo3.test.ts (106 tests) 5529ms
+     ✓ 02 중심각의 크기와 호의 길이  488ms
+     ✓ 04 보조선을 그어 호의 길이 구하기  300ms
+     ✓ 05 중심각의 크기와 부채꼴의 넓이  478ms
+     ✓ 06 중심각의 크기와 현의 길이  332ms
+     ✓ 11 부채꼴에서 색칠한 부분의 둘레의 길이와 넓이  415ms
+     ✓ 12 색칠한 부분의 둘레의 길이  556ms
+     ✓ 13 색칠한 부분의 넓이 (1)  554ms
+     ✓ 18 도형을 회전시켰을 때 움직인 거리  387ms
+ ✓ src/__tests__/unit/middleM3Top5a.test.ts (80 tests) 4285ms
+       ✓ 🔴 변형 폭 — 제품이 세트를 만드는 예산 안에서 12문항이 나온다 (220씨앗)  445ms
+ ✓ src/__tests__/unit/middleM1StatFig.test.ts (86 tests) 5210ms
+     ✓ 01 줄기와 잎 그림의 이해  416ms
+     ✓ 04 히스토그램의 이해  403ms
+     ✓ 05 히스토그램에서 직사각형의 넓이  411ms
+     ✓ 06 일부가 보이지 않는 히스토그램  383ms
+     ✓ 07 도수분포다각형의 이해  378ms
+     ✓ 08 도수분포다각형의 넓이  372ms
+     ✓ 10 두 도수분포다각형의 비교  375ms
+     ✓ 12 상대도수 구하기  368ms
+     ✓ 13 상대도수의 분포표의 이해  381ms
+     ✓ 14 일부가 보이지 않는 상대도수의 분포표  371ms
+     ✓ 17 상대도수의 분포를 나타낸 그래프  370ms
+     ✓ 18 일부가 보이지 않는 상대도수의 분포를 나타낸 그래프  365ms
+     ✓ 19 도수의 총합이 다른 두 집단의 비교  367ms
+ ✓ src/__tests__/unit/middleFigureRenderable.test.ts (6 tests) 32611ms
+     ✓ 양성 대조 — 엔진이 살아 있다 (아래 0건이 「못 그림」이 아님을 가른다)  378ms
+     ✓ 활용 08·09·10 은 값까지 훑어 제품 경로로 그린다  22598ms
+     ✓ 활용 10 표 6행 전량이 그려진다 (한 씨앗의 일부만 보면 표가 샌다)  2576ms
+     ✓ 좁아서 치수를 못 놓으면 **그 치수만 빠지고 그림은 나온다** (원장님 확정 2026-08-29)  315ms
+     ✓ 그림 지시 13유형은 스펙을 싣고 제품 경로로 그린다  6742ms
+ ✓ src/__tests__/unit/middleM1Top5c.test.ts (113 tests) 5295ms
+       ✓ 🔴 ㉴ 정답 쏠림 — 씨앗 블록 셋에서 최빈 정답이 모두 12% 미만이다  322ms
+     ✓ 🔴 네 유형 전부 660판에서 700px 미만이다  432ms
+     ✓ 73X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  497ms
+     ✓ 네 유형 모두 — 660판 전량에 그 문장들이 있다  343ms
+ ✓ src/__tests__/unit/middleBankFixChoices.test.ts (3 tests) 4806ms
+     ✓ all registered middle types: direct choices are distinct, seeds 0..99  4631ms
+ ✓ src/__tests__/unit/middleM1Degenerate.test.ts (291 tests) 2645ms
+ ✓ src/__tests__/unit/middleM2Top5a.test.ts (96 tests) 1957ms
+ ✓ src/__tests__/unit/middleM2Top5e.test.ts (102 tests) 2437ms
+       ✓ 🔴 변형 폭과 정답 쏠림 (씨앗 블록 4 × 800판)  526ms
+ ✓ src/__tests__/unit/middleM1Solid.test.ts (363 tests) 4028ms
+     ✓ 씨앗을 넓게 훑어도 던지지 않는다 (attempt 소진 없음)  394ms
+     ✓ 모든 갈래가 실제로 나온다 — 죽은 갈래가 없다  315ms
+ ✓ src/__tests__/unit/middleM2Top5j.test.ts (99 tests) 2413ms
+       ✓ 지면이 깨끗하다 — 렌더·냄새·조사·(으)로·맨 숫자·그림 지시·굵게 표시  313ms
+ ✓ src/__tests__/unit/middleM2Top5g.test.ts (102 tests) 1789ms
+ ✓ src/__tests__/unit/middleM2Top5b.test.ts (119 tests) 1735ms
+       ✓ 지면이 깨끗하다 — 렌더·냄새·조사·(으)로·맨 숫자·그림 지시  335ms
+ ✓ src/__tests__/unit/middleM1Top5f.test.ts (94 tests) 2297ms
+     ✓ 🔴 네 유형 전부 660판에서 700px 미만이다  352ms
+ ✓ src/__tests__/unit/middleM2Top5i.test.ts (87 tests) 1771ms
+       ✓ 지면이 깨끗하다 — 렌더·냄새·조사·(으)로·맨 숫자·그림 지시·상한 선언  313ms
+ ✓ src/__tests__/unit/middleFloatingLength.test.ts (3 tests) 1821ms
+     ✓ v2 그림은 `labels` 에 길이 글자를 두지 않는다 (elem-1 은 아래 검사)  1143ms
+     ✓ elem-1 그림에 길이 글자가 있으면 그 그림은 치수선을 **그린다**  655ms
+ ✓ src/__tests__/unit/middleM1Top5a.test.ts (86 tests) 3249ms
+     ✓ 65X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  465ms
+ ✓ src/__tests__/unit/middleM1Prop.test.ts (154 tests) 2628ms
+ ✓ src/__tests__/unit/middleM2Top5f.test.ts (113 tests) 3028ms
+       ✓ 지면을 제품 렌더러로 그려도 붉지 않다  318ms
+       ✓ 지면이 깨끗하다 — 냄새·조사·(으)로·맨 숫자·그림·상한·기약·되풀이·산술·말 (블록 넷 × 800판)  337ms
+       ✓ 지면이 깨끗하다 — 냄새·조사·(으)로·맨 숫자·그림·상한·기약·되풀이·산술·말 (블록 넷 × 800판)  332ms
+     ✓ 🔴 «가드처럼 적혔지만 아무것도 안 자르는» 다섯을 못 박는다 (넓히면 빨개진다)  304ms
+ ✓ src/__tests__/unit/middleM1Top5h.test.ts (99 tests) 2981ms
+     ✓ 93X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  467ms
+ ✓ src/__tests__/unit/middleM2Top5d.test.ts (88 tests) 1577ms
+ ✓ src/__tests__/unit/middleM2Top5c.test.ts (107 tests) 3089ms
+     ✓ `111X` — 기약 가드만 **487,630** · 지름길까지 **421,735** (창 **62**)  1675ms
+ ✓ src/__tests__/unit/middleM1Geo2.test.ts (198 tests) 1623ms
+     ✓ 02 길이가 같은 선분의 작도  322ms
+ ✓ src/__tests__/unit/middleM1Top5d.test.ts (90 tests) 2835ms
+     ✓ 🔴 네 유형 전부 660판에서 700px 미만이다  346ms
+     ✓ 77X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  440ms
+ ✓ src/__tests__/unit/middleM1Top5b.test.ts (105 tests) 2817ms
+     ✓ 69X — 형제 중 가장 닮은 것이 기준선을 넘지 않는다  447ms
+ ✓ src/__tests__/unit/middleM1Top4.test.ts (94 tests) 2541ms
+     ✓ 61W — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  479ms
+ ✓ src/__tests__/unit/middleM1Top5i.test.ts (79 tests) 2798ms
+     ✓ 97X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  417ms
+ ✓ src/__tests__/unit/middleM2Top4.test.ts (106 tests) 1451ms
+ ✓ src/__tests__/unit/middleM1Top3.test.ts (99 tests) 2653ms
+     ✓ `52V` — 경계 두 줄이 실제로 끝점을 지나게 하는 $a$ 다  850ms
+     ✓ 51V — 형제 중 가장 닮은 것이 실측값보다 안 닮았다  467ms
+ ✓ src/__tests__/unit/middleM3Stat2.test.ts (83 tests) 2485ms
+     ✓ 🔴 **스펙을 실은 유형은 전부 제품 경로가 그린다** — 손 목록 없이  1172ms
+ ✓ src/__tests__/unit/middleM1Top5g.test.ts (91 tests) 2463ms
+     ✓ 89X — 형제 중 가장 닮은 것이 기준선 최댓값보다 안 닮았다  467ms
+ ✓ src/__tests__/unit/middleM1Num.test.ts (493 tests) 1752ms
+       ✓ 씨앗별 독립 검산 — 발문 수치·구조를 다시 계산한다  1032ms
+ ✓ src/__tests__/unit/middleM1Geo1.test.ts (211 tests) 1317ms
+ ✓ src/__tests__/unit/middleM3Top4.test.ts (67 tests) 1365ms
+ ✓ src/__tests__/unit/middleFigureReference.test.ts (3 tests) 1190ms
+     ✓ 🔴 **그림이 없는 문항은 그림을 가리키지 않는다** — 전 유형  1166ms
+ ✓ src/__tests__/unit/middleM2Top2.test.ts (61 tests) 1093ms
+       ✓ 지면이 깨끗하다 — 렌더·냄새·조사·맨 숫자·그림 지시  412ms
+ ✓ src/__tests__/unit/middleRealScene.test.ts (44 tests) 1121ms
+       ✓ 5유형 전부가 실제로 그려진다  773ms
+ ✓ src/__tests__/unit/middleM2Top3.test.ts (72 tests) 1061ms
+ ✓ src/__tests__/unit/middleM3Poly.test.ts (537 tests) 901ms
+ ✓ src/__tests__/unit/middleM2NumProb.test.ts (205 tests) 993ms
+       ✓ 실제로 나가는 그림이 모두 그려지고 지면 등급이 하나다  703ms
+ ✓ src/__tests__/unit/middleM2System.test.ts (158 tests) 934ms
+ ✓ src/__tests__/unit/middleTextbookIntegration.test.ts (6 tests) 685ms
+     ✓ preserves all 1517 existing keys at three frozen seeds  603ms
+ ✓ src/__tests__/unit/middleM3Trig.test.ts (439 tests) 909ms
+     ✓ 넓은 씨앗(300×4)에서도 35유형 전량이 검산을 통과한다  394ms
+ ✓ src/__tests__/unit/middleM2Line.test.ts (141 tests) 946ms
+         ✓ 그림 유형 넷의 figureSpec 이 실제로 그려진다 — 직선 밖 mark 면 엔진이 던진다  597ms
+ ✓ src/__tests__/unit/middleM1Top.test.ts (44 tests) 595ms
+     ✓ 🔴 중등에 `심화중`·`심화상` 이 실제로 생겼다 (D-116 ⑴)  460ms
+ ✓ src/__tests__/unit/middleM3Top3.test.ts (64 tests) 847ms
+     ✓ 🔴 판정기 모집단에 3차 물결 넷이 들어 있다 — 등록 전에도 «아무도 안 쟀다»가 안 되게  374ms
+ ✓ src/__tests__/unit/middleTierYeonsan.test.ts (7 tests) 599ms
+     ✓ 873유형에서 연산으로 판정되는 집합이 실측 그대로다  514ms
+ ✓ src/__tests__/unit/middleM3Top5b.test.ts (65 tests) 653ms
+ ✓ src/__tests__/unit/middleM2Top5h.test.ts (100 tests) 840ms
+ ✓ src/__tests__/unit/middleRestDegenerate.test.ts (30 tests) 552ms
+ ✓ src/__tests__/unit/middleTextbookOrder.test.ts (15 tests) 499ms
+ ✓ src/__tests__/unit/middleM2Func.test.ts (82 tests) 511ms
+         ✓ 그림 유형 셋의 figureSpec 이 실제로 그려진다 — 직선 밖 mark 면 엔진이 던진다  451ms
+ ✓ src/__tests__/unit/middleBankFixSampling.test.ts (4 tests) 533ms
+     ✓ 2-2|평행선 사이의 선분의 길이의 비|09: 2000 seeds × 3 variants, unchanged successful output  405ms
+ ✓ src/__tests__/unit/middleM3Quad.test.ts (303 tests) 482ms
+ ✓ src/__tests__/unit/middleM1Top2.test.ts (67 tests) 312ms
+ ✓ src/__tests__/unit/middleM1Extra.test.ts (566 tests | 128 skipped) 349ms
+ ✓ src/__tests__/unit/middleM1Stat.test.ts (89 tests) 352ms
+ ✓ src/__tests__/unit/middleM2Mono.test.ts (127 tests) 327ms
+ ✓ src/__tests__/unit/middleTextbookCalc.test.ts (13 tests) 313ms
+ ✓ src/__tests__/unit/middleM3Tangent.test.ts (86 tests) 297ms
+ ✓ src/__tests__/unit/middleM3AngleApply.test.ts (121 tests) 278ms
+ ✓ src/__tests__/unit/middleTextbookLedger.test.ts (2 tests) 237ms
+ ✓ src/__tests__/unit/middleM3Top2.test.ts (36 tests) 235ms
+ ✓ src/__tests__/unit/middleM1Expr.test.ts (241 tests) 256ms
+ ✓ src/__tests__/unit/middleM1Calc.test.ts (224 tests) 181ms
+ ✓ src/__tests__/unit/middleLinearApply.test.ts (402 tests) 203ms
+ ✓ src/__tests__/unit/middleTextbookNumber.test.ts (14 tests) 164ms
+ ✓ src/__tests__/unit/middleTextbookFactor.test.ts (23 tests) 143ms
+ ✓ src/__tests__/unit/middleM3Top.test.ts (19 tests) 144ms
+ ✓ src/__tests__/unit/middleM1Types10.test.ts (70 tests) 143ms
+ ✓ src/__tests__/unit/middleM3Root.test.ts (396 tests) 155ms
+ ✓ src/__tests__/unit/middleM2Geo.test.ts (340 tests) 131ms
+ ✓ src/__tests__/unit/middleTopM2.test.ts (13 tests) 60ms
+ ✓ src/__tests__/unit/middleBankFixPremises.test.ts (7 tests) 111ms
+ ✓ src/__tests__/unit/middleTop5XPageLock.test.ts (67 tests) 71ms
+ ✓ src/__tests__/unit/middleM3.test.ts (85 tests) 56ms
+ ✓ src/__tests__/unit/middleTypeCoverage.test.ts (3 tests) 57ms
+ ✓ src/__tests__/unit/middleM2.test.ts (150 tests) 70ms
+ ✓ src/__tests__/unit/middleM2Center.test.ts (172 tests) 78ms
+ ✓ src/__tests__/unit/middleM2Pytha.test.ts (84 tests) 60ms
+ ✓ src/__tests__/unit/middleCombo.test.ts (25 tests) 46ms
+ ✓ src/__tests__/unit/middleGenListing.test.ts (10 tests) 23ms
+
+ Test Files  87 passed (87)
+      Tests  13783 passed | 128 skipped (13911)
+   Start at  20:48:34
+   Duration  79.92s (transform 4.47s, setup 13.82s, import 18.76s, tests 182.20s, environment 19.16s)
+
+JSON report written to /Volumes/새 볼륨/today-worktrees/textbook-engine-t1/docs/planning/tracks/reports/textbook-engine-t1/middle-all.json
