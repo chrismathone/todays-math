@@ -59,9 +59,7 @@ export function issuedPaperPages(input: {
               width={76}
               height={76}
             />
-            <span>
-              답안 촬영 · {i + 1}/{pages.length}
-            </span>
+            {/* 쪽 번호는 지면 아래(p. N · 코드 줄)에 이미 있다 — QR 밑 글은 두지 않는다(원장님 2026-11-25). */}
           </div>
         </div>,
         ...body,

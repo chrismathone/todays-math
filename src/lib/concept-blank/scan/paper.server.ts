@@ -104,7 +104,7 @@ export function scanPublicationEdition(
   return createHash("sha256")
     .update(
       JSON.stringify([
-        "scan-paper-v3",
+        "scan-paper-v4",
         createScanSnapshot(selection, bank),
         scanPaperCss(),
         scanFontFingerprint(),
