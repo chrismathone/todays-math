@@ -1,0 +1,2032 @@
+{
+  "reviewer": "/root/m2_rules (Codex)",
+  "method": "direct visual read of every selected row and all its ordered files",
+  "families": {
+    "v-m2g-sim-nested-rectangle": {
+      "name": "회전 대응하는 내부 닮은 직사각형",
+      "grade": "중2",
+      "section": "닮은 도형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "바깥 직사각형의 두 변·회전 대응·미지 변",
+      "answer_method": "회전 대응의 닮음비 b/a를 구하여 내부 짧은 변 b²/a를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-sim-scale": {
+      "name": "닮은 다각형의 대응 길이·각·둘레",
+      "grade": "중2",
+      "section": "닮은 도형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "유효한 기본 도형·닮음비·대응 길이·각·목표",
+      "answer_method": "대응 순서를 고정하고 길이는 닮음비로, 각은 동일하게 옮긴 뒤 요구 둘레를 합산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-similar-solids-volume": {
+      "name": "닮은 원기둥의 높이비와 부피",
+      "grade": "중2",
+      "section": "닮은 도형의 넓이의 비와 부피의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "두 높이·한 반지름",
+      "answer_method": "높이비로 미지 반지름을 구한 뒤 πr²h를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-cone-volume-ratio": {
+      "name": "평행 절단 원뿔과 물의 부피",
+      "grade": "중2",
+      "section": "닮은 도형의 넓이의 비와 부피의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "전체·부분 높이비·전체 또는 부분 부피·추가량 목표",
+      "answer_method": "높이비 r의 세제곱이 부피비임을 적용하고 전체 또는 남은 부피를 역산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-triangle-area-ratio": {
+      "name": "평행 등분선으로 자른 삼각형의 띠 넓이",
+      "grade": "중2",
+      "section": "닮은 도형의 넓이의 비와 부피의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "변의 등분 수·절단 위치·띠 또는 전체 넓이",
+      "answer_method": "꼭짓점에서의 길이비 r에 대해 작은 넓이비 r²와 띠 넓이비 1−r²를 적용한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-concentric-area": {
+      "name": "같은 간격 동심원의 넓이",
+      "grade": "중2",
+      "section": "닮은 도형의 넓이의 비와 부피의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "동심원 수·같은 반지름 간격·기준 원 넓이",
+      "answer_method": "동일 길이 구간의 개수로 반지름비를 구하고 그 제곱으로 넓이를 환산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-isosceles-trapezoid-metric": {
+      "name": "등변사다리꼴의 밑각·다리·대각선 길이",
+      "grade": "중2",
+      "section": "등변사다리꼴, 여러 가지 사각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "두 밑변·높이·밑각·길이 일차식·질문 위치",
+      "answer_method": "같은 다리·대각선과 대칭 분할 길이를 같게 두고 밑각 동등·이웃각 합 180°로 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-isosceles-trapezoid-angle": {
+      "name": "정삼각형을 만들 수 있는 등변사다리꼴의 대각선 각",
+      "grade": "중2",
+      "section": "등변사다리꼴, 여러 가지 사각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "등변·밑변 배수 구성을 유지한 크기·방향·목표각",
+      "answer_method": "밑변 중점으로 정삼각형을 구성하여 60°와 등변삼각형의 밑각 관계로 목표각을 계산한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다. 각 조건을 고정한 유형은 축척·방향·목표각 위주여서 변형 폭이 좁다."
+    },
+    "v-m2g-tri-parallel-single": {
+      "name": "삼각형 한 평행 단면의 길이비",
+      "grade": "중2",
+      "section": "삼각형에서 평행선 사이의 선분의 길이의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형·평행 절단 비·꼭짓점발 추가 선분·알려진 길이",
+      "answer_method": "꼭짓점과 평행 단면이 만드는 닮음비를 각 대응 구간에 적용하여 미지 길이를 구한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-tri-parallel-chain": {
+      "name": "여러 평행 보조선의 닮음비 연쇄",
+      "grade": "중2",
+      "section": "삼각형에서 평행선 사이의 선분의 길이의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "교차/내부 도형 배치·평행선 비·양의 길이",
+      "answer_method": "각 평행 조건의 닮음 비례식을 연결하고 전체와 부분 길이의 합을 반영하여 순서대로 푼다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-tri-parallel-multi": {
+      "name": "삼각형 절단과 평행 횡단선의 복합 소문항",
+      "grade": "중2",
+      "section": "삼각형에서 평행선 사이의 선분의 길이의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "두 독립 그림의 대응 길이·평행선 간격·목표",
+      "answer_method": "각 그림의 대응 선분 비례식을 따로 풀어 삼각형 부분길이와 횡단선 길이를 산출한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-bisector-parallel-length": {
+      "name": "각 이등분선과 평행 보조선의 길이",
+      "grade": "중2",
+      "section": "삼각형의 각의 이등분선",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "유효 삼각형의 변·밑변 분할·내부/외부 평행 배치",
+      "answer_method": "각 이등분선 정리 BD/DC=AB/AC와 보조 평행선의 닮음비를 연쇄 적용한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-bisector-area": {
+      "name": "각 이등분선으로 나뉜 삼각형 넓이",
+      "grade": "중2",
+      "section": "삼각형의 각의 이등분선",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "꼭지각 양쪽 변 길이·한쪽 넓이",
+      "answer_method": "각 이등분선 정리로 구한 밑변비를 같은 높이 두 삼각형의 넓이비로 적용한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-inradius-area": {
+      "name": "삼각형 넓이·둘레와 내접원 음영",
+      "grade": "중2",
+      "section": "삼각형의 내심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반둘레·삼각형 넓이·음영 선택",
+      "answer_method": "내접반지름 r=2S/P를 구하고 원 넓이 πr²를 전체에서 빼거나 더한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-nested-incenter-angle": {
+      "name": "삼각형 안의 연속 내심각",
+      "grade": "중2",
+      "section": "삼각형의 내심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "꼭짓점 각·내심 반복 단계·목표 중심각",
+      "answer_method": "첫 내심각 90°+A/2를 구한 뒤 같은 식을 다음 내심에 반복 적용한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-incenter-angle": {
+      "name": "내심 이등분선의 내각·연장각",
+      "grade": "중2",
+      "section": "삼각형의 내심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 각·반각·이등분선 연장 배치·목표각",
+      "answer_method": "각 이등분 관계와 삼각형 내각 합·일직선 보각을 일차식으로 연결해 푼다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-incenter-angle-distance": {
+      "name": "내심 반각과 변까지의 거리 복합 계산",
+      "grade": "중2",
+      "section": "삼각형의 내심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 각·내접반지름·수선 위치·소문항",
+      "answer_method": "내심은 각을 이등분하고 모든 변까지 수직거리가 같다는 두 관계로 수치 답을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-right-altitude-similarity": {
+      "name": "직각삼각형 빗변 높이의 닮음 계산",
+      "grade": "중2",
+      "section": "삼각형의 닮음 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "피타고라스 수 또는 유리수 높이·빗변 분할·목표",
+      "answer_method": "높이²=빗변 분할 두 길이의 곱, 직각변²=빗변×사영을 적용하고 필요하면 넓이를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-shadow-similarity": {
+      "name": "공통 그림자 끝으로 높이 구하기",
+      "grade": "중2",
+      "section": "삼각형의 닮음 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "사람 높이·사람과 물체 사이 거리·그림자 길이",
+      "answer_method": "평행한 수직 높이를 갖는 두 직각삼각형의 높이/그림자 비를 같게 두어 물체 높이를 구한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-sas-nested-similarity": {
+      "name": "공통각과 두 변 비로 내부 선분 구하기",
+      "grade": "중2",
+      "section": "삼각형의 닮음 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "공통각·닮음비·삼각형 변·변 위 분할점",
+      "answer_method": "공통각 양쪽 두 변의 비가 같도록 씨앗을 만들고 SAS 닮음의 대응변 비로 미지 선분을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-equilateral-fold": {
+      "name": "정삼각형 꼭짓점을 밑변으로 접은 길이",
+      "grade": "중2",
+      "section": "삼각형의 닮음 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정삼각형 한 변·접힌 밑변 위치·접는 선의 교점",
+      "answer_method": "접는 선 위 점의 두 꼭짓점까지 등거리를 이용해 양변과의 교점을 구하고 닮음/등거리로 목표 길이를 계산한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-midpoint-perimeter": {
+      "name": "변 중점을 이은 도형의 둘레",
+      "grade": "중2",
+      "section": "삼각형의 두 변의 중점을 연결한 선분",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 변 또는 사각형 대각선·중점 위치·목표",
+      "answer_method": "중점 연결선은 해당 원변 또는 대각선의 절반이므로 필요한 길이를 더해 둘레를 구한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-trapezoid-diagonal-midpoints": {
+      "name": "사다리꼴 대각선 중점 사이 길이",
+      "grade": "중2",
+      "section": "삼각형의 두 변의 중점을 연결한 선분",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행 밑변 두 길이·대각선 중점·역산 목표",
+      "answer_method": "대각선 중점 사이 길이=두 밑변 길이 차의 절반을 적용하거나 역산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-trapezoid-midpoint-area": {
+      "name": "사다리꼴 중간선과 대각선이 만든 넓이",
+      "grade": "중2",
+      "section": "삼각형의 두 변의 중점을 연결한 선분",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑변·높이·중간선 길이·목표 삼각형",
+      "answer_method": "중점연결정리로 중간선의 각 구간을 구하고 높이의 절반을 써서 삼각형 넓이를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-midsegment-chain": {
+      "name": "중점과 평행선의 연속 선분 계산",
+      "grade": "중2",
+      "section": "삼각형의 두 변의 중점을 연결한 선분",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "중선 중점·밑변 중점·평행 위치·기준 길이",
+      "answer_method": "중점이 정한 길이비와 평행선의 닮음비를 연결하여 목표 선분을 계산한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-centroid-length": {
+      "name": "무게중심의 중선·밑변 길이",
+      "grade": "중2",
+      "section": "삼각형의 무게중심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "중선 전체/부분 길이·밑변 길이·질문 위치",
+      "answer_method": "중선을 꼭짓점 쪽 2:1로 나누고 밑변 중점을 이등분하여 요구 길이와 합을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-nested-centroid": {
+      "name": "같은 밑변을 둔 연속 무게중심",
+      "grade": "중2",
+      "section": "삼각형의 무게중심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "기준 중선 길이·무게중심 단계·목표 구간",
+      "answer_method": "각 단계 중선의 2:1 분할을 반복해 전체와 부분 길이를 복원한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-centroid-parallel-area": {
+      "name": "무게중심을 지나는 평행선의 넓이",
+      "grade": "중2",
+      "section": "삼각형의 무게중심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 전체 넓이·무게중심 평행 절단·목표 삼각형",
+      "answer_method": "중선비 2:1로 평행 절단비를 정하고 밑변비·높이비로 목표 넓이를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-centroid-rolling": {
+      "name": "굴러가는 정삼각형 무게중심의 이동거리",
+      "grade": "중2",
+      "section": "삼각형의 무게중심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "중선 길이·꼭짓점 회전 횟수·방향",
+      "answer_method": "무게중심과 꼭짓점 거리인 중선의 2/3을 반지름으로 하고 회전각마다 원호 길이를 합한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-circumcenter-angle": {
+      "name": "외심의 등거리와 등변삼각형 각 연쇄",
+      "grade": "중2",
+      "section": "삼각형의 외심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 각·각비·추가 같은 길이·목표각",
+      "answer_method": "외심의 세 반지름 동등과 추가 등변 조건으로 밑각을 같게 놓고 내각 합·각비의 일차식을 푼다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-circumcenter-length": {
+      "name": "외심의 반지름·수직이등분선 길이",
+      "grade": "중2",
+      "section": "삼각형의 외심",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반지름·변의 반쪽 길이·목표 변 또는 둘레",
+      "answer_method": "외심 반지름은 같고 변에 내린 수선은 변을 이등분하므로 해당 길이를 복원하고 합산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-isosceles-angle-chain": {
+      "name": "등변·합동 삼각형의 각 연쇄",
+      "grade": "중2",
+      "section": "이등변삼각형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "꼭지각·등변 길이 대응·외각 이등분 배치",
+      "answer_method": "등변의 밑각, 표시된 변과 끼인각의 합동, 외각·보각 관계를 연결하여 목표각을 계산한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-isosceles-altitude-area": {
+      "name": "등변삼각형의 꼭지각 이등분선과 넓이",
+      "grade": "중2",
+      "section": "이등변삼각형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "높이·반쪽 넓이 또는 밑변·목표",
+      "answer_method": "꼭지각 이등분선이 밑변을 수직이등분하므로 반쪽 넓이=밑변 반쪽×높이/2를 역산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-equal-angles-length": {
+      "name": "내각·외각으로 찾는 같은 대변 길이",
+      "grade": "중2",
+      "section": "이등변삼각형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 밑각·외각·한 변 길이·질문 위치",
+      "answer_method": "외각을 내각으로 바꾸고 내각 합으로 같은 각을 확인한 뒤 대변 길이를 같게 놓는다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-rectangle-bisector-length": {
+      "name": "직사각형의 이등분선이 만드는 등변 길이",
+      "grade": "중2",
+      "section": "이등변삼각형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직사각형 비·대각선 이등분 조건·교점 길이",
+      "answer_method": "평행선과 각 이등분으로 두 밑각이 같은 삼각형을 찾고 대응 변 길이를 적용한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-right-congruent-bisector": {
+      "name": "각 이등분선의 두 직각삼각형 수치",
+      "grade": "중2",
+      "section": "직각삼각형의 합동",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "각·수선거리·기준 선분·소문항 종류",
+      "answer_method": "공통 빗변과 예각 또는 한 직각변의 합동을 적용하여 대응 길이·여각을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-right-bisector-perimeter": {
+      "name": "직각삼각형 각 이등분선과 수선의 둘레",
+      "grade": "중2",
+      "section": "직각삼각형의 합동",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "피타고라스 삼변·각 이등분선·수선발",
+      "answer_method": "각 이등분선에서 두 변까지 같은 수선거리와 합동 대응길이를 이용해 필요한 구간을 빼고 둘레를 합한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-rotated-right-congruence": {
+      "name": "직교하는 같은 변과 수선발의 합동",
+      "grade": "중2",
+      "section": "직각삼각형의 합동",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 빗변의 두 직각삼각형·기준 길이·합/차·목표",
+      "answer_method": "두 직각삼각형의 대응 직각변을 맞추어 합·차의 일차식을 풀고 필요하면 외곽 사다리꼴 넓이를 계산한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-special-quad-diagonal": {
+      "name": "마름모·정사각형의 대각선 길이와 각",
+      "grade": "중2",
+      "section": "직사각형, 마름모, 정사각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "도형 종류·대각선 길이·반각·질문 위치",
+      "answer_method": "대각선의 수직이등분과 정사각형의 같은 대각선 조건으로 길이·90°·45° 또는 여각을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-square-equilateral-angle": {
+      "name": "정사각형 내부 정삼각형의 각",
+      "grade": "중2",
+      "section": "직사각형, 마름모, 정사각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "도형 크기·반사 방향·목표각 또는 합차",
+      "answer_method": "정사각형 90°와 정삼각형 60°를 기준으로 남은 등변삼각형 밑각을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다. 각 조건을 고정한 유형은 축척·방향·목표각 위주여서 변형 폭이 좁다."
+    },
+    "v-m2g-rectangle-rhombus-bisector": {
+      "name": "직사각형 이등분선으로 만든 마름모의 각",
+      "grade": "중2",
+      "section": "직사각형, 마름모, 정사각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "성립하는 직사각형 비·축척·반사·목표각",
+      "answer_method": "직사각형 평행·직각, 각 이등분, 마름모 대각선의 이등분각 관계를 일차식으로 연립한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다. 각 조건을 고정한 유형은 축척·방향·목표각 위주여서 변형 폭이 좁다."
+    },
+    "v-m2g-parallelogram-diagonal-length": {
+      "name": "평행사변형 대각선 전체·부분 길이",
+      "grade": "중2",
+      "section": "평행사변형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "대각선 길이·교점 기준 알려진 구간·목표",
+      "answer_method": "두 대각선이 서로를 이등분하므로 전체와 반쪽 길이를 변환한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-in-isosceles": {
+      "name": "등변삼각형 내부 평행사변형의 둘레",
+      "grade": "중2",
+      "section": "평행사변형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "등변 길이·한 변 분할·내부 평행사변형 배치",
+      "answer_method": "평행선이 만든 등변삼각형의 대응 길이를 구하고 평행사변형의 인접 두 변 합을 두 배 한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-angle": {
+      "name": "평행사변형 이등분선·수선의 각",
+      "grade": "중2",
+      "section": "평행사변형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행사변형 각·대각선 각·수선/이등분선 배치",
+      "answer_method": "맞각 동등·이웃각 합 180°·반각·직각 관계를 연결해 목표각을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-diagonal-area": {
+      "name": "평행사변형 대각선 음영 넓이",
+      "grade": "중2",
+      "section": "평행사변형의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "전체 넓이·대각선으로 나눈 음영 삼각형 수",
+      "answer_method": "대각선이 만드는 네 삼각형의 넓이가 같으므로 전체 넓이에 선택된 영역 수/4를 곱한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-count": {
+      "name": "연장·교차 선분에서 평행사변형 개수",
+      "grade": "중2",
+      "section": "평행사변형이 되는 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행사변형 기저벡터·연장 배수·그을 선분 집합",
+      "answer_method": "교점 네 개를 순환 순서로 놓고 면적이 양수인 비공선 조합만 취한다. 대각선 중점이 같으며 네 변 모두 그어진 선분에 포함되는 도형을 중복 없이 센다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-condition-inverse": {
+      "name": "평행사변형이 되는 길이 일차식",
+      "grade": "중2",
+      "section": "평행사변형이 되는 조건",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "대변의 일차식 계수·평행 표지·목표 길이",
+      "answer_method": "평행사변형 조건에 필요한 대변 길이를 같게 놓아 일차방정식을 풀고 목표 변에 대입한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallel-transversal": {
+      "name": "여러 평행선 사이 횡단선의 길이",
+      "grade": "중2",
+      "section": "평행선 사이의 선분의 길이의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행선 수·구간 간격·두 횡단선 길이·목표",
+      "answer_method": "두 횡단선의 모든 대응 구간이 같은 비율임을 적용하고 전체 구간은 부분 합으로 처리한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-crossed-parallel-segment": {
+      "name": "교차 대각선 사이 내부 평행선",
+      "grade": "중2",
+      "section": "평행선 사이의 선분의 길이의 비",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행 양 끝 길이·밑선 길이·교점발 선분",
+      "answer_method": "두 끝 길이 a,b에 대해 내부 평행선 ab/(a+b)를 구하고 밑변 분할도 a:b의 닮음비로 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-triangle-base-height-area": {
+      "name": "삼각형 밑변·높이 분할의 넓이",
+      "grade": "중2",
+      "section": "평행선과 삼각형의 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑변 분할비·꼭짓점발 선분 분할비·전체 넓이",
+      "answer_method": "목표 삼각형의 밑변비와 높이비를 전체 넓이에 곱한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-trapezoid-intersection-area": {
+      "name": "사다리꼴 대각선 교점의 삼각형 넓이",
+      "grade": "중2",
+      "section": "평행선과 삼각형의 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑변비·대각선 분할비·주어진 삼각형 넓이",
+      "answer_method": "같은 높이의 넓이비와 평행 밑변의 닮음비를 적용하고 겹치는 영역의 차를 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallelogram-inner-area": {
+      "name": "평행사변형 대각선 분할점의 내부 넓이",
+      "grade": "중2",
+      "section": "평행선과 삼각형의 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "전체 넓이·대각선 양쪽 분할비·내부 꼭짓점",
+      "answer_method": "대각선으로 나눈 삼각형의 같은 높이와 밑변비를 적용해 내부 사각형의 넓이를 합산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-parallel-area-subtraction": {
+      "name": "평행 보조선의 등넓이 교환과 차",
+      "grade": "중2",
+      "section": "평행선과 삼각형의 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "기본 사각형·평행 보조선·겹치는 영역 넓이",
+      "answer_method": "같은 밑변과 평행선 사이 높이를 공유하는 삼각형의 넓이를 교환한 뒤 알려진 영역 넓이를 뺀다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-pythagorean-single": {
+      "name": "직각삼각형 한 번의 피타고라스 계산",
+      "grade": "중2",
+      "section": "피타고라스 정리",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직각변·빗변·미지 변 위치·소문항",
+      "answer_method": "빗변²=두 직각변 제곱합에서 미지 변을 구한다. 정수 또는 기약 유리수 답의 씨앗을 우선 사용한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-pythagorean-chain": {
+      "name": "공유 높이의 연속 피타고라스 계산",
+      "grade": "중2",
+      "section": "피타고라스 정리",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직각삼각형 연결 배치·공유 변·알려진 길이",
+      "answer_method": "첫 직각삼각형의 제곱합/차로 공유 변을 구한 뒤 다음 삼각형에 적용한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-orthodiagonal-squares": {
+      "name": "직교 대각선 사각형의 변 제곱",
+      "grade": "중2",
+      "section": "피타고라스 정리",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "대각선 분할 길이·세 변 제곱·목표 변",
+      "answer_method": "네 직각삼각형의 제곱식을 합쳐 대변 제곱합의 등식 AB²+CD²=BC²+AD²을 적용한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-pythagorean-projection": {
+      "name": "빗변 사영과 수선발 사이 거리",
+      "grade": "중2",
+      "section": "피타고라스 정리",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "빗변 분할 또는 직사각형 변·목표 길이 합/차",
+      "answer_method": "직각변²=빗변×사영으로 각 구간을 구하고 사각형에서는 두 수선발의 사영 위치 차를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-pythagorean-square-area": {
+      "name": "빗변 정사각형과 높이 연장선의 넓이",
+      "grade": "중2",
+      "section": "피타고라스 정리의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "빗변·직각변·붙인 정사각형·음영 선택",
+      "answer_method": "직각변의 빗변 사영을 구하고 정사각형 한 변을 높이로 사용해 음영 삼각형 넓이를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-cuboid-surface-shortest": {
+      "name": "지정 모서리를 지나는 직육면체 최단거리",
+      "grade": "중2",
+      "section": "피타고라스 정리의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직육면체 세 변·시작/끝 꼭짓점·통과 모서리 순서",
+      "answer_method": "지정 면들을 평면으로 펼쳐 직선 거리를 구하되 그 선이 지정 모서리를 올바른 순서와 내부 구간에서 지나는 씨앗만 허용한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-cone-pythagorean-volume": {
+      "name": "원뿔 모선으로 높이와 부피 구하기",
+      "grade": "중2",
+      "section": "피타고라스 정리의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반지름·모선·양의 높이 조건",
+      "answer_method": "높이 h=√(모선²−반지름²)를 구하여 πr²h/3을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-isosceles-pythagorean-area": {
+      "name": "등변삼각형 두 변과 밑변의 넓이",
+      "grade": "중2",
+      "section": "피타고라스 정리의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "등변 길이·밑변·삼각형 부등식",
+      "answer_method": "높이 h=√(등변²−밑변²/4)를 구한 뒤 밑변×h/2를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    },
+    "v-m2g-congruent-right-composite-area": {
+      "name": "합동 직각삼각형 두 개의 외곽 넓이",
+      "grade": "중2",
+      "section": "피타고라스 정리의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "한 직각변·중앙 직각이등변삼각형 넓이·회전 배치",
+      "answer_method": "중앙 넓이로 같은 빗변의 제곱을 구하고 피타고라스로 다른 직각변을 계산한 뒤 세 영역의 넓이를 합한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원문과 모든 첨부 그림을 직접 보고 수치 구성·연결관계를 확인했다. 양의 길이·유효 도형 조건을 씨앗 제약으로 유지한다. 기존 handler의 동일 구성 지원은 확정하지 않았으므로 B 제안이며 미관찰 행으로 확대하지 않는다."
+    }
+  },
+  "rows": [
+    {
+      "id": "fabc2b98-4856-40b1-ba6a-80c2d2dd609a",
+      "problem_code": "J20601-A41-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/f727df389c3b1e8b/tb-f727df389c3b1e8b-0-2-1.png"
+      ],
+      "note": "대응관계의 개념 참거짓과 수치 판단이 섞인 선택형이므로 보수적으로 C 유지."
+    },
+    {
+      "id": "21334afd-493b-4f73-8274-87b9d27cee03",
+      "problem_code": "J20601-A46-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "B",
+      "family": "v-m2g-sim-nested-rectangle",
+      "viewed_urls": [
+        "/figures/tb/712f8902c730586b/tb-712f8902c730586b-0-18-1.png"
+      ],
+      "note": "회전 대응하는 두 직사각형의 변 대응과 내분선이 그림에 확인됨."
+    },
+    {
+      "id": "20a74f6c-1496-4e63-9a50-d2cf9b59a603",
+      "problem_code": "J20601-A60-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "B",
+      "family": "v-m2g-sim-scale",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-2-1.png"
+      ],
+      "note": "두 평행사변형의 대응 변과 닮음비로 둘레를 정하는 수치 구조 확인."
+    },
+    {
+      "id": "154ed5d9-7202-433c-9e04-8565749e1624",
+      "problem_code": "J20601-A68-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/6cf030f0ec4f1867/tb-6cf030f0ec4f1867-0-3-1.png",
+        "/figures/tb/6cf030f0ec4f1867/tb-6cf030f0ec4f1867-0-3-2.png"
+      ],
+      "note": "입체도형의 대응 면 명칭을 쓰는 개념 소문항이 포함되어 C 유지."
+    },
+    {
+      "id": "d4023a28-a61c-408d-843f-debc403c079c",
+      "problem_code": "J20601-A35-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "B",
+      "family": "v-m2g-sim-scale",
+      "viewed_urls": [
+        "/figures/tb/72a3ed6f4fdf180c/tb-72a3ed6f4fdf180c-0-2-1.jpg"
+      ],
+      "note": "대응하는 삼각형의 변·각 표지가 모두 있어 길이비와 대응각을 계산 가능."
+    },
+    {
+      "id": "ccea0739-67c9-44bf-920c-4a4374c071ef",
+      "problem_code": "J20601-A21-001",
+      "cohort": "visual-m2-c1ac0418",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/f3a6e229eec1d0f7/tb-f3a6e229eec1d0f7-0-1-1.png"
+      ],
+      "note": "대응점·대응변·대응각의 성질을 묻는 개념 선택형으로 C 유지."
+    },
+    {
+      "id": "bfd613b8-d809-497b-b5e4-bf4ad28111c3",
+      "problem_code": "J20706-A57-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-similar-solids-volume",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-4-1.png"
+      ],
+      "note": "원기둥 높이비와 한 반지름이 표기되어 닮음비·부피 공식을 결합할 수 있음."
+    },
+    {
+      "id": "9d4f3422-21b1-413e-ae4d-34b7242d5c1e",
+      "problem_code": "J20706-A58-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-cone-volume-ratio",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-19-1.png"
+      ],
+      "note": "높이 등분 위치와 밑면 평행 절단이 명확하여 작은 원뿔과 전체의 부피비 계산 가능."
+    },
+    {
+      "id": "8a8d3c46-ac32-4aab-bd39-6a66f4b3bf89",
+      "problem_code": "J20706-A42-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-triangle-area-ratio",
+      "viewed_urls": [
+        "/figures/tb/b002042a78952d17/tb-b002042a78952d17-0-10-1.png"
+      ],
+      "note": "대응 변의 삼등분 표지와 평행 단면이 있어 띠의 넓이에서 전체 넓이 역산 가능."
+    },
+    {
+      "id": "e9bb54e7-f99a-4da0-8700-39b7c48c97c2",
+      "problem_code": "J20706-A21-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-cone-volume-ratio",
+      "viewed_urls": [
+        "/figures/tb/f3a6e229eec1d0f7/tb-f3a6e229eec1d0f7-0-4-1.png"
+      ],
+      "note": "꼭짓점이 아래인 원뿔 그릇과 수면이 확인되어 높이비의 세제곱으로 추가 물의 양 계산 가능."
+    },
+    {
+      "id": "25970c1d-2152-4205-93a7-bcd4cdf1903a",
+      "problem_code": "J20706-A25-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-concentric-area",
+      "viewed_urls": [
+        "/figures/tb/f9013e134069edb1/tb-f9013e134069edb1-0-7-1.png"
+      ],
+      "note": "동심원의 반지름을 이루는 동일 길이 구간 표지가 명확하여 반지름비의 제곱 적용 가능."
+    },
+    {
+      "id": "e2c54c42-5a88-4656-8108-5b80a8aa893a",
+      "problem_code": "J20706-A51-001",
+      "cohort": "visual-m2-5055d506",
+      "category": "B",
+      "family": "v-m2g-cone-volume-ratio",
+      "viewed_urls": [
+        "/figures/tb/367e902fd9cbdc1d/tb-367e902fd9cbdc1d-0-4-1.png"
+      ],
+      "note": "전체 높이와 수면 높이의 기준점이 같으며 물이 닮은 작은 원뿔을 이루는 구조 확인."
+    },
+    {
+      "id": "503cd40a-8d9d-45bb-b237-a2fa0facbf8c",
+      "problem_code": "J20508-A27-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "B",
+      "family": "v-m2g-isosceles-trapezoid-metric",
+      "viewed_urls": [
+        "/figures/tb/945b79ce7ac91b75/tb-945b79ce7ac91b75-0-2-1.png",
+        "/figures/tb/945b79ce7ac91b75/tb-945b79ce7ac91b75-0-2-2.png"
+      ],
+      "note": "평행 밑변과 등변 조건에서 다리·대각선 대응 길이를 읽어 계산하는 두 수치 그림 확인."
+    },
+    {
+      "id": "2e8670ff-463c-4ac2-af22-0d20fe6c1843",
+      "problem_code": "J20508-A22-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "B",
+      "family": "v-m2g-isosceles-trapezoid-metric",
+      "viewed_urls": [
+        "/figures/tb/5ee25d999a32f1c5/tb-5ee25d999a32f1c5-0-4-1.png",
+        "/figures/tb/5ee25d999a32f1c5/tb-5ee25d999a32f1c5-0-4-2.png"
+      ],
+      "note": "등변사다리꼴의 밑각·보각 및 대각선 대칭 구간 표지가 명확함."
+    },
+    {
+      "id": "0071d9b4-4280-4eae-9ab9-57fbcc589049",
+      "problem_code": "J20508-A17-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "B",
+      "family": "v-m2g-isosceles-trapezoid-metric",
+      "viewed_urls": [
+        "/figures/tb/1f3328c0b5ddc8cc/tb-1f3328c0b5ddc8cc-0-3-1.png"
+      ],
+      "note": "두 대각선에 일차식 길이가 붙어 있어 대각선 동등식으로 미지수와 다리 길이 계산 가능."
+    },
+    {
+      "id": "0a7c43c2-7cc6-4add-bc1a-ba8aa60d6aa7",
+      "problem_code": "J20508-A21-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "B",
+      "family": "v-m2g-isosceles-trapezoid-metric",
+      "viewed_urls": [
+        "/figures/tb/945b79ce7ac91b75/tb-945b79ce7ac91b75-0-1-1.png"
+      ],
+      "note": "한 밑각과 다리 길이로 나머지 밑각·보각·대응 다리를 계산하는 구조 확인."
+    },
+    {
+      "id": "ca8b3c31-01ff-4b1a-aaa0-e7dd8442c8b5",
+      "problem_code": "J20508-A24-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/16580563493c2ac3/tb-16580563493c2ac3-0-3-1.png"
+      ],
+      "note": "사각형 종류 간 조건 추가 과정을 묻는 개념 분류형으로 C 유지."
+    },
+    {
+      "id": "202cb880-8866-4a46-8808-45807a52ad50",
+      "problem_code": "J20508-A18-001",
+      "cohort": "visual-m2-beb98459",
+      "category": "B",
+      "family": "v-m2g-isosceles-trapezoid-angle",
+      "viewed_urls": [
+        "/figures/tb/8c7d38f928826094/tb-8c7d38f928826094-0-13-1.png"
+      ],
+      "note": "같은 길이 표지와 밑변 배수 조건으로 정삼각형을 보조 구성해 대각선 각을 계산 가능."
+    },
+    {
+      "id": "0f626be9-df93-4948-9d7d-dd46758bf179",
+      "problem_code": "J20701-A27-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-single",
+      "viewed_urls": [
+        "/figures/tb/c1c16a906f5fdd7d/tb-c1c16a906f5fdd7d-0-5-1.jpg"
+      ],
+      "note": "한 평행 단면이 여러 꼭짓점발 선분을 자르는 대응 구간 비례가 그림에 명확함."
+    },
+    {
+      "id": "7b4a7dc7-24e4-4765-9466-b45b46f41506",
+      "problem_code": "J20701-A37-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-chain",
+      "viewed_urls": [
+        "/figures/tb/bf48547e445fbc8d/tb-bf48547e445fbc8d-0-3-1.png"
+      ],
+      "note": "교차하는 두 직선과 세 평행 선분의 비례를 차례로 적용하는 구조 확인."
+    },
+    {
+      "id": "3086e2bc-62b1-486a-abf1-b4a7f7c2df25",
+      "problem_code": "J20701-A22-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-chain",
+      "viewed_urls": [
+        "/figures/tb/90c8f3d45f8bf859/tb-90c8f3d45f8bf859-0-9-1.jpg"
+      ],
+      "note": "대각 교차부의 닮음과 내부 평행선의 닮음을 연쇄 적용할 수 있는 연결관계 확인."
+    },
+    {
+      "id": "6d6dbb06-daa7-4e37-a9a9-dc7213d7ba8c",
+      "problem_code": "J20701-A21-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-single",
+      "viewed_urls": [
+        "/figures/tb/90c8f3d45f8bf859/tb-90c8f3d45f8bf859-0-8-1.jpg"
+      ],
+      "note": "평행 단면 양쪽의 부분길이와 전체길이 대응을 확인하여 단일 비례식으로 계산 가능."
+    },
+    {
+      "id": "df01e2d3-73ee-40dc-b0a7-5f57c72e2b64",
+      "problem_code": "J20701-A43-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-chain",
+      "viewed_urls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-2-3-1.png"
+      ],
+      "note": "서로 다른 두 평행 조건이 만드는 닮음비를 연쇄로 이용하는 구조 확인."
+    },
+    {
+      "id": "4a9866cf-a4c1-41a5-acf6-df7d7e879d34",
+      "problem_code": "J20701-A19-001",
+      "cohort": "visual-m2-532bb71e",
+      "category": "B",
+      "family": "v-m2g-tri-parallel-multi",
+      "viewed_urls": [
+        "/figures/tb/5b0a42105596dcad/tb-5b0a42105596dcad-0-10-1.png",
+        "/figures/tb/5b0a42105596dcad/tb-5b0a42105596dcad-0-10-2.png"
+      ],
+      "note": "삼각형 평행 절단과 세 평행선의 횡단선 길이 그림을 각각 확인; 두 독립 비례식 소문항 구성."
+    },
+    {
+      "id": "bb26e56d-2ab9-433b-9f6e-375a8c7d2703",
+      "problem_code": "J20702-A13-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "B",
+      "family": "v-m2g-bisector-parallel-length",
+      "viewed_urls": [
+        "/figures/tb/a1409d380793e12f/tb-a1409d380793e12f-0-10-1.png"
+      ],
+      "note": "각 이등분선과 외부 평행 보조선, 알려진 변 길이와 분할 길이가 그림에 모두 확인됨."
+    },
+    {
+      "id": "7cff9b79-a4b8-457f-a5fc-444d6cec7ca5",
+      "problem_code": "J20702-A12-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "B",
+      "family": "v-m2g-bisector-parallel-length",
+      "viewed_urls": [
+        "/figures/tb/f3a6e229eec1d0f7/tb-f3a6e229eec1d0f7-0-10-1.png"
+      ],
+      "note": "각 이등분선과 외부 평행 보조선의 변 대응을 직접 확인하여 길이비 연쇄 계산 가능."
+    },
+    {
+      "id": "95f19e90-09de-4bef-a465-954a5c31543f",
+      "problem_code": "J20702-A15-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/5cf86c0254ced1b0/tb-5cf86c0254ced1b0-0-2-1.png"
+      ],
+      "note": "변비·닮음의 성립 여부와 수치 주장을 섞은 개념 선택형으로 C 유지."
+    },
+    {
+      "id": "a54cc278-9e13-49fc-9c88-1acf90dd6881",
+      "problem_code": "J20702-A17-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "B",
+      "family": "v-m2g-bisector-parallel-length",
+      "viewed_urls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-1-4-1.png"
+      ],
+      "note": "내부 이등분선과 한 변에 평행한 선분으로 비례식을 구성할 수 있음."
+    },
+    {
+      "id": "65a36b27-728e-4af1-842c-b9326e717268",
+      "problem_code": "J20702-A16-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "B",
+      "family": "v-m2g-bisector-area",
+      "viewed_urls": [
+        "/figures/tb/8c7b2a2241fb7a52/tb-8c7b2a2241fb7a52-0-2-1.png"
+      ],
+      "note": "각 이등분선으로 생긴 두 삼각형의 높이가 같아 변비를 넓이비로 변환 가능."
+    },
+    {
+      "id": "e83377d2-ef8f-4478-82ee-004577147813",
+      "problem_code": "J20702-A14-001",
+      "cohort": "visual-m2-c0aad751",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/c56e34d3df35f284/tb-c56e34d3df35f284-3-2-1.png"
+      ],
+      "note": "닮음·변비의 개념 참거짓을 중심으로 한 혼합 선택형으로 C 유지."
+    },
+    {
+      "id": "9f56b693-7ff2-4668-9395-02a95e3f8721",
+      "problem_code": "J20504-A44-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-inradius-area",
+      "viewed_urls": [
+        "/figures/tb/12508dc62caf9c74/tb-12508dc62caf9c74-0-14-1.png"
+      ],
+      "note": "삼각형 내부에서 내접원을 제외한 음영이 확인되어 둘레·넓이로 반지름을 구한 뒤 원 넓이를 뺄 수 있음."
+    },
+    {
+      "id": "ea23b998-d088-4fd3-8e87-e70e48d70dff",
+      "problem_code": "J20504-A20-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-nested-incenter-angle",
+      "viewed_urls": [
+        "/figures/tb/65455dfaaa4c24a8/tb-65455dfaaa4c24a8-0-8-1.jpg"
+      ],
+      "note": "두 단계 내심과 목표각의 꼭짓점을 확인하여 내심각 공식을 두 번 적용 가능."
+    },
+    {
+      "id": "8905563d-0c26-4643-83de-a06f91b3851f",
+      "problem_code": "J20504-A87-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-incenter-angle",
+      "viewed_urls": [
+        "/figures/tb/03d665583002de54/tb-03d665583002de54-0-2-1.png"
+      ],
+      "note": "내심에서 꼭짓점으로 이은 선분과 반각 표지가 명확하여 삼각형 각의 합 계산 가능."
+    },
+    {
+      "id": "99f4f8a0-637e-49a2-bf33-4267fb29ff64",
+      "problem_code": "J20504-A86-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-incenter-angle-distance",
+      "viewed_urls": [
+        "/figures/tb/03d665583002de54/tb-03d665583002de54-0-1-1.png",
+        "/figures/tb/03d665583002de54/tb-03d665583002de54-0-1-2.png"
+      ],
+      "note": "두 그림 각각 내심의 반각과 변까지의 수직거리 표지가 명확하여 각·거리를 계산 가능."
+    },
+    {
+      "id": "4f27bda4-ab25-4317-ad6f-d92bb91cbcf1",
+      "problem_code": "J20504-A82-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-incenter-angle",
+      "viewed_urls": [
+        "/figures/tb/03411dc4ca477bea/tb-03411dc4ca477bea-0-6-1.png"
+      ],
+      "note": "두 밑각의 절반이 주어지고 꼭짓점 전체각이 목표인 구조 확인."
+    },
+    {
+      "id": "2d28f205-3d65-4456-b848-34c17f245681",
+      "problem_code": "J20504-A38-001",
+      "cohort": "visual-m2-13d46731",
+      "category": "B",
+      "family": "v-m2g-incenter-angle",
+      "viewed_urls": [
+        "/figures/tb/4036452f0179bf9b/tb-4036452f0179bf9b-3-3-1.png"
+      ],
+      "note": "두 이등분선의 연장 교점과 목표 외측각이 명확하여 반각·삼각형 각의 합을 연쇄 적용 가능."
+    },
+    {
+      "id": "ce709591-3c0d-44a2-b4c7-303cdf197fd7",
+      "problem_code": "J20602-A85-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "B",
+      "family": "v-m2g-right-altitude-similarity",
+      "viewed_urls": [
+        "/figures/tb/ada9546260b1b4d2/tb-ada9546260b1b4d2-1-4-1.png"
+      ],
+      "note": "직각 꼭짓점에서 빗변으로 내린 높이와 빗변 분할이 명확하여 기하평균 비례식과 넓이 계산 가능."
+    },
+    {
+      "id": "075d6265-62ec-4424-896e-c8b2c48198ef",
+      "problem_code": "J20602-B06-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "B",
+      "family": "v-m2g-shadow-similarity",
+      "viewed_urls": [
+        "/figures/tb/aa3f96d36e9c72dd/tb-aa3f96d36e9c72dd-0-5-1.png"
+      ],
+      "note": "공통 그림자 끝·두 수직 높이·지면 분할 길이가 명확하여 닮음 비례식으로 높이 계산 가능."
+    },
+    {
+      "id": "c09479c4-534e-431e-b53f-8d9538e8f6ef",
+      "problem_code": "J20602-A19-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "B",
+      "family": "v-m2g-right-altitude-similarity",
+      "viewed_urls": [
+        "/figures/tb/a1409d380793e12f/tb-a1409d380793e12f-0-16-1.png"
+      ],
+      "note": "두 직각변과 빗변 수선의 발이 명확하여 빗변 길이와 사영 길이를 계산 가능."
+    },
+    {
+      "id": "b075d4c3-e914-462d-849c-fb5ec41ccbf5",
+      "problem_code": "J20602-A94-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/8c046b3370e68877/tb-8c046b3370e68877-0-2-1.png"
+      ],
+      "note": "닮은 삼각형을 식별하고 닮음 조건을 설명하는 개념형으로 C 유지."
+    },
+    {
+      "id": "5afb8feb-e381-4330-9340-3f34a7157f11",
+      "problem_code": "J20602-A96-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "B",
+      "family": "v-m2g-sas-nested-similarity",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-5-1.png"
+      ],
+      "note": "공통각을 갖는 두 삼각형의 두 변 비가 맞는 수치 구성으로 SAS 닮음과 대응변 계산 가능."
+    },
+    {
+      "id": "0fb1c3cd-794e-493a-8a60-08edb6685f1a",
+      "problem_code": "J20602-B01-001",
+      "cohort": "visual-m2-34ab6695",
+      "category": "B",
+      "family": "v-m2g-equilateral-fold",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-20-1.png"
+      ],
+      "note": "접힌 꼭짓점과 접는 선의 교점, 밑변 분할이 명확하여 접힘 등거리와 닮음으로 길이 계산 가능."
+    },
+    {
+      "id": "6068f89c-382f-447b-a956-45c277308719",
+      "problem_code": "J20704-A29-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-midpoint-perimeter",
+      "viewed_urls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-4-17-1.png"
+      ],
+      "note": "등변사다리꼴의 네 변 중점과 대각선 길이를 확인하여 중점연결 사각형 둘레 계산 가능."
+    },
+    {
+      "id": "1115e094-4b98-4ea0-92d4-a29f4208c99c",
+      "problem_code": "J20704-A26-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-midpoint-perimeter",
+      "viewed_urls": [
+        "/figures/tb/b29a8dbd75bff869/tb-b29a8dbd75bff869-0-4-1.png"
+      ],
+      "note": "세 변의 중점 표지가 있어 중점삼각형의 둘레를 원삼각형 둘레의 절반으로 계산 가능."
+    },
+    {
+      "id": "0d40faee-5a54-49b4-9ce2-bc7af1882c9c",
+      "problem_code": "J20704-A38-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-trapezoid-diagonal-midpoints",
+      "viewed_urls": [
+        "/figures/tb/8ec8607d5d471db9/tb-8ec8607d5d471db9-0-21-1.png"
+      ],
+      "note": "두 대각선 중점을 잇는 선분과 양 밑변이 평행하여 밑변 차의 절반 관계 적용 가능."
+    },
+    {
+      "id": "a6aae07d-0c2c-410f-b849-ce3861498add",
+      "problem_code": "J20704-A25-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-trapezoid-midpoint-area",
+      "viewed_urls": [
+        "/figures/tb/5cf86c0254ced1b0/tb-5cf86c0254ced1b0-0-4-1.png"
+      ],
+      "note": "중점 높이·평행 중간선·대각선 교점이 명확하여 작은 삼각형의 밑변과 높이 계산 가능."
+    },
+    {
+      "id": "e52b81bf-d724-4741-a16e-d04486a69ace",
+      "problem_code": "J20704-A39-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-midsegment-chain",
+      "viewed_urls": [
+        "/figures/tb/baef7a326c5f913c/tb-baef7a326c5f913c-0-3-1.png"
+      ],
+      "note": "중점 두 개와 평행 선분의 위치가 명확하여 연속 닮음비로 선분 길이 계산 가능."
+    },
+    {
+      "id": "94f1330b-5d99-4082-855b-11cf3d1945cc",
+      "problem_code": "J20704-A30-001",
+      "cohort": "visual-m2-2670d6e6",
+      "category": "B",
+      "family": "v-m2g-trapezoid-diagonal-midpoints",
+      "viewed_urls": [
+        "/figures/tb/e07b6dbebddb2e1f/tb-e07b6dbebddb2e1f-1-2-1.png"
+      ],
+      "note": "중간선 위 대각선 교점 사이 구간을 확인하여 밑변 차의 절반 관계를 역산 가능."
+    },
+    {
+      "id": "3e1ea070-ba20-4d8f-853e-ea9ec7e13e08",
+      "problem_code": "J20705-A23-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-centroid-length",
+      "viewed_urls": [
+        "/figures/tb/0bf5aafc03d31fb9/tb-0bf5aafc03d31fb9-0-1-1.jpg",
+        "/figures/tb/0bf5aafc03d31fb9/tb-0bf5aafc03d31fb9-0-1-2.jpg"
+      ],
+      "note": "중선과 변의 중점, 목표 구간의 양 끝이 두 그림에 명확하여 2:1 분할과 이등분 적용 가능."
+    },
+    {
+      "id": "ec9b81a6-df53-4ea7-98f1-acc5eb881300",
+      "problem_code": "J20705-A53-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-nested-centroid",
+      "viewed_urls": [
+        "/figures/tb/9f59e35640dafd86/tb-9f59e35640dafd86-0-2-1.png"
+      ],
+      "note": "같은 밑변을 둔 두 단계 무게중심과 중점이 확인되어 중선의 3분할을 연쇄 적용 가능."
+    },
+    {
+      "id": "181a1872-ac4d-4c4d-b88c-3bb2c463d2da",
+      "problem_code": "J20705-A92-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-centroid-parallel-area",
+      "viewed_urls": [
+        "/figures/tb/821aa63225fdf789/tb-821aa63225fdf789-0-5-1.png"
+      ],
+      "note": "무게중심을 지나는 평행 절단과 밑변 중점으로 생긴 삼각형을 확인하여 넓이비 계산 가능."
+    },
+    {
+      "id": "54d698e6-cc4c-4a7e-b739-c9d87d088b38",
+      "problem_code": "J20705-A62-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-centroid-length",
+      "viewed_urls": [
+        "/figures/tb/59ce566c925814da/tb-59ce566c925814da-0-1-1.png",
+        "/figures/tb/59ce566c925814da/tb-59ce566c925814da-0-1-2.png"
+      ],
+      "note": "중선 전체·일부 길이와 밑변 중점이 두 그림에 명확히 표시됨."
+    },
+    {
+      "id": "7725dd95-6c62-4f6e-ab61-a4d1aa9a1e87",
+      "problem_code": "J20705-A32-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-centroid-length",
+      "viewed_urls": [
+        "/figures/tb/821aa63225fdf789/tb-821aa63225fdf789-0-1-1.png"
+      ],
+      "note": "중선 분할 길이와 밑변 중점의 목표 구간이 명확하여 두 길이의 합 계산 가능."
+    },
+    {
+      "id": "3ded0331-cf22-47a8-b84c-8ced63b7e27a",
+      "problem_code": "J20705-A59-001",
+      "cohort": "visual-m2-cfa82cc4",
+      "category": "B",
+      "family": "v-m2g-centroid-rolling",
+      "viewed_urls": [
+        "/figures/tb/1cc0bf5973262373/tb-1cc0bf5973262373-0-2-1.png"
+      ],
+      "note": "정삼각형이 세 번 꼭짓점을 축으로 회전하는 순서가 확인되어 무게중심의 원호 이동거리 계산 가능."
+    },
+    {
+      "id": "49e23f92-2f64-42ac-8319-4bfc6fd1cf4d",
+      "problem_code": "J20503-A22-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-angle",
+      "viewed_urls": [
+        "/figures/tb/e4dfdbe35d55b608/tb-e4dfdbe35d55b608-1-2-1.jpg"
+      ],
+      "note": "외심 연결선과 추가 등변 표지가 확인되어 같은 반지름·같은 변의 밑각을 연쇄 계산 가능."
+    },
+    {
+      "id": "fa25e6fa-643b-4978-a5f8-cfa7412a127c",
+      "problem_code": "J20503-A39-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-angle",
+      "viewed_urls": [
+        "/figures/tb/dad842d270ca92eb/tb-dad842d270ca92eb-0-9-1.png"
+      ],
+      "note": "외심에서 세 꼭짓점으로 이은 선분과 각비 조건이 있어 등변삼각형 각의 합으로 목표 중심각 계산 가능."
+    },
+    {
+      "id": "a9e3e9ca-c1de-4efc-ba87-30f7e78354d4",
+      "problem_code": "J20503-A47-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-angle",
+      "viewed_urls": [
+        "/figures/tb/20702bcd4428d290/tb-20702bcd4428d290-0-5-1.png"
+      ],
+      "note": "외심 반지름 연장선과 같은 길이 표지가 명확하여 등변삼각형 각을 연쇄 계산 가능."
+    },
+    {
+      "id": "6058e858-d843-4556-9067-3e5489745d79",
+      "problem_code": "J20503-A91-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-length",
+      "viewed_urls": [
+        "/figures/tb/c1d643b930364a09/tb-c1d643b930364a09-0-1-1.png"
+      ],
+      "note": "외심에서 세 변에 내린 수선의 발이 명확하여 각 변을 두 배로 복원한 뒤 둘레 계산 가능."
+    },
+    {
+      "id": "0c779511-c1db-4d42-91b7-b116215965f0",
+      "problem_code": "J20503-A17-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-length",
+      "viewed_urls": [
+        "/figures/tb/15dc48473c85b357/tb-15dc48473c85b357-0-3-1.jpg",
+        "/figures/tb/15dc48473c85b357/tb-15dc48473c85b357-0-3-2.jpg"
+      ],
+      "note": "수직이등분선의 발과 같은 반지름 길이를 각각 묻는 두 그림의 라벨 확인."
+    },
+    {
+      "id": "4a48e528-6920-4281-97a4-ab8b542ccc25",
+      "problem_code": "J20503-A75-001",
+      "cohort": "visual-m2-75a94e83",
+      "category": "B",
+      "family": "v-m2g-circumcenter-angle",
+      "viewed_urls": [
+        "/figures/tb/cc9e96fad72fc908/tb-cc9e96fad72fc908-0-20-1.png"
+      ],
+      "note": "두 수직이등분선과 외심 연결선이 확인되어 같은 반지름의 밑각과 삼각형 각의 합 적용 가능."
+    },
+    {
+      "id": "c7fafe43-0a48-401e-a928-62e99a505538",
+      "problem_code": "J20501-A50-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "B",
+      "family": "v-m2g-isosceles-angle-chain",
+      "viewed_urls": [
+        "/figures/tb/e27e985a72b9bdd1/tb-e27e985a72b9bdd1-0-9-1.png"
+      ],
+      "note": "두 등변 조건과 외각 이등분 위치가 확인되어 밑각·외각 관계로 목표각 계산 가능."
+    },
+    {
+      "id": "b628d0c8-c929-4aef-a343-9bdeafafd9fd",
+      "problem_code": "J20501-A88-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "B",
+      "family": "v-m2g-isosceles-angle-chain",
+      "viewed_urls": [
+        "/figures/tb/01bc38892baf93ef/tb-01bc38892baf93ef-0-6-1.jpg"
+      ],
+      "note": "등변 삼각형의 밑각과 교차 대응변의 등길이 표지가 있어 작은 삼각형의 합동·등변 관계로 목표각 계산 가능."
+    },
+    {
+      "id": "1307a83f-b20b-4a70-92ed-63b37d639e9b",
+      "problem_code": "J20501-A30-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "B",
+      "family": "v-m2g-isosceles-altitude-area",
+      "viewed_urls": [
+        "/figures/tb/3e45e9a5d1f3be88/tb-3e45e9a5d1f3be88-0-3-1.png"
+      ],
+      "note": "꼭지각 이등분선이 밑변의 수직이등분선임을 써서 반쪽 넓이와 높이로 밑변 분할 길이 계산 가능."
+    },
+    {
+      "id": "ccb23686-1703-4738-b722-ffa17ba48748",
+      "problem_code": "J20501-A93-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/77eaa7777c8ecd35/tb-77eaa7777c8ecd35-0-2-1.png",
+        "/figures/tb/77eaa7777c8ecd35/tb-77eaa7777c8ecd35-0-2-2.png"
+      ],
+      "note": "그림과 보기는 읽히지만 등변삼각형의 성질 참거짓을 고르는 개념형으로 C 유지."
+    },
+    {
+      "id": "4e75358f-cae8-42de-b6e4-2593a0180acd",
+      "problem_code": "J20501-A15-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "B",
+      "family": "v-m2g-equal-angles-length",
+      "viewed_urls": [
+        "/figures/tb/73e6f158072d327c/tb-73e6f158072d327c-0-4-1.jpg",
+        "/figures/tb/73e6f158072d327c/tb-73e6f158072d327c-0-4-2.jpg",
+        "/figures/tb/73e6f158072d327c/tb-73e6f158072d327c-0-4-3.jpg",
+        "/figures/tb/73e6f158072d327c/tb-73e6f158072d327c-0-4-4.jpg"
+      ],
+      "note": "네 그림의 내각·외각 표지를 각각 확인하여 같은 각의 대변 길이를 계산 가능."
+    },
+    {
+      "id": "2d4d244f-dc64-42de-afab-b18523067ae7",
+      "problem_code": "J20501-A26-001",
+      "cohort": "visual-m2-4cfcb933",
+      "category": "B",
+      "family": "v-m2g-rectangle-bisector-length",
+      "viewed_urls": [
+        "/figures/tb/12508dc62caf9c74/tb-12508dc62caf9c74-0-2-1.png"
+      ],
+      "note": "직사각형 대각선과 각 이등분선의 교점·각 표지가 명확하여 생기는 등변삼각형의 길이 계산 가능."
+    },
+    {
+      "id": "203fc101-ec6e-48c9-84e6-9fad9dcaf302",
+      "problem_code": "J20502-A12-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "B",
+      "family": "v-m2g-right-congruent-bisector",
+      "viewed_urls": [
+        "/figures/tb/db73ba55aed68ea2/tb-db73ba55aed68ea2-0-3-1.jpg",
+        "/figures/tb/db73ba55aed68ea2/tb-db73ba55aed68ea2-0-3-2.jpg",
+        "/figures/tb/db73ba55aed68ea2/tb-db73ba55aed68ea2-0-3-3.jpg",
+        "/figures/tb/db73ba55aed68ea2/tb-db73ba55aed68ea2-0-3-4.jpg"
+      ],
+      "note": "네 그림에서 빗변 공유·직각·이등분 또는 같은 수선거리 표지를 확인하여 대응 길이와 예각 계산 가능."
+    },
+    {
+      "id": "bb834aa8-b06b-4a63-a798-e2cb134de0c7",
+      "problem_code": "J20502-A15-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/65455dfaaa4c24a8/tb-65455dfaaa4c24a8-0-4-1.jpg"
+      ],
+      "note": "각 이등분선과 수선으로 만든 두 삼각형의 성질 참거짓을 고르는 개념형으로 C 유지."
+    },
+    {
+      "id": "da64a349-9815-4472-a39e-276c57c0feeb",
+      "problem_code": "J20502-A70-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "B",
+      "family": "v-m2g-right-bisector-perimeter",
+      "viewed_urls": [
+        "/figures/tb/8c7b2a2241fb7a52/tb-8c7b2a2241fb7a52-0-1-1.png"
+      ],
+      "note": "각 이등분선에서 두 변으로 내린 수선의 합동 관계와 세 변 길이가 확인되어 부분 삼각형 둘레 계산 가능."
+    },
+    {
+      "id": "540aef91-e194-4960-a32a-597e41c7e0d4",
+      "problem_code": "J20502-A29-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "B",
+      "family": "v-m2g-rotated-right-congruence",
+      "viewed_urls": [
+        "/figures/tb/12508dc62caf9c74/tb-12508dc62caf9c74-0-7-1.png"
+      ],
+      "note": "직각을 이룬 같은 빗변과 평행한 수선발의 합동 관계가 명확하여 전체·차 조건의 일차식 계산 가능."
+    },
+    {
+      "id": "63847e97-498c-4fd0-9a5a-466099bf38d1",
+      "problem_code": "J20502-A18-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/96d06bebf972e380/tb-96d06bebf972e380-0-1-1.jpg"
+      ],
+      "note": "직각삼각형의 합동 조건을 고르는 개념 선택형으로 C 유지."
+    },
+    {
+      "id": "92c6ee86-06b0-48ed-9e38-43d8627b3b1a",
+      "problem_code": "J20502-A47-001",
+      "cohort": "visual-m2-2d538bc6",
+      "category": "B",
+      "family": "v-m2g-rotated-right-congruence",
+      "viewed_urls": [
+        "/figures/tb/f29774e0b2acd641/tb-f29774e0b2acd641-0-4-1.png"
+      ],
+      "note": "직각이등변삼각형과 평행한 두 수선발을 확인하여 대응 길이를 복원하고 사다리꼴 넓이 계산 가능."
+    },
+    {
+      "id": "89d6ee02-594a-4020-a3ea-29e177e7c8ad",
+      "problem_code": "J20507-A85-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "B",
+      "family": "v-m2g-special-quad-diagonal",
+      "viewed_urls": [
+        "/figures/tb/4175e8677623bcee/tb-4175e8677623bcee-0-2-1.png"
+      ],
+      "note": "마름모 대각선의 수직·이등분 관계와 각 라벨을 확인하여 길이·각을 계산 가능."
+    },
+    {
+      "id": "8398950f-3bc2-46fd-9f99-4170ca72dac3",
+      "problem_code": "J20507-A67-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "B",
+      "family": "v-m2g-square-equilateral-angle",
+      "viewed_urls": [
+        "/figures/tb/57117e83c28db05c/tb-57117e83c28db05c-0-2-1.png"
+      ],
+      "note": "정사각형 내부 정삼각형과 연결선 목표각이 명확하여 등변삼각형 각 관계로 계산 가능."
+    },
+    {
+      "id": "c31421ac-2c94-4069-89fc-4dc6df85420d",
+      "problem_code": "J20507-A80-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/5ee25d999a32f1c5/tb-5ee25d999a32f1c5-0-5-1.png"
+      ],
+      "note": "평행사변형에 조건을 더할 때의 사각형 종류를 판정하는 개념형으로 C 유지."
+    },
+    {
+      "id": "76bc8ed3-cbfb-4ad5-8bec-a0d83f80ee5c",
+      "problem_code": "J20507-A47-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "B",
+      "family": "v-m2g-rectangle-rhombus-bisector",
+      "viewed_urls": [
+        "/figures/tb/ee30ce1221331ec6/tb-ee30ce1221331ec6-0-4-1.png"
+      ],
+      "note": "직사각형의 각 이등분선으로 구성된 마름모와 목표각 위치가 확인되어 각 조건을 연립 가능."
+    },
+    {
+      "id": "213de69a-b576-47ee-9fd7-5572fe26ab7d",
+      "problem_code": "J20507-A97-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "B",
+      "family": "v-m2g-rectangle-rhombus-bisector",
+      "viewed_urls": [
+        "/figures/tb/cc9e96fad72fc908/tb-cc9e96fad72fc908-0-23-1.png"
+      ],
+      "note": "직사각형 대각선 양 끝 이등분선과 마름모 조건이 확인되어 대응 각을 연립해 계산 가능."
+    },
+    {
+      "id": "954975e3-9903-4886-a9de-f87638657bf4",
+      "problem_code": "J20507-A76-001",
+      "cohort": "visual-m2-83b9b47f",
+      "category": "B",
+      "family": "v-m2g-special-quad-diagonal",
+      "viewed_urls": [
+        "/figures/tb/04f8c8a1815b7d58/tb-04f8c8a1815b7d58-0-1-1.png"
+      ],
+      "note": "정사각형 대각선의 교점과 반쪽 대각선 길이가 표기되어 길이·각 소문항 계산 가능."
+    },
+    {
+      "id": "1f3c0d2f-efe5-4ce0-b198-ca7478525cda",
+      "problem_code": "J20505-A15-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-diagonal-length",
+      "viewed_urls": [
+        "/figures/tb/fb3f48e4f56b326d/tb-fb3f48e4f56b326d-0-2-1.jpg",
+        "/figures/tb/fb3f48e4f56b326d/tb-fb3f48e4f56b326d-0-2-2.jpg"
+      ],
+      "note": "대각선 교점과 전체·부분 길이 라벨이 두 그림에 명확하여 이등분 관계로 계산 가능."
+    },
+    {
+      "id": "7c9875f2-bb94-43d2-8d25-fba042c12ffb",
+      "problem_code": "J20505-A54-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-in-isosceles",
+      "viewed_urls": [
+        "/figures/tb/89b2665ccaf12438/tb-89b2665ccaf12438-0-5-1.png"
+      ],
+      "note": "등변삼각형 안의 평행사변형과 한 변의 분할이 확인되어 평행·등변 관계로 둘레 계산 가능."
+    },
+    {
+      "id": "5021da72-608d-401a-90bf-6e791b9dcba3",
+      "problem_code": "J20505-A45-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-angle",
+      "viewed_urls": [
+        "/figures/tb/8c7d38f928826094/tb-8c7d38f928826094-0-7-1.png"
+      ],
+      "note": "평행사변형의 대각 이등분선과 목표각이 명확하여 대각·이웃각·반각 관계 적용 가능."
+    },
+    {
+      "id": "2ff8fb3e-8bde-4da2-ad96-722818da768d",
+      "problem_code": "J20505-B27-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-diagonal-area",
+      "viewed_urls": [
+        "/figures/tb/efdd453d558e3552/tb-efdd453d558e3552-0-3-1.png"
+      ],
+      "note": "대각선 교점 기준 네 삼각형 가운데 음영 두 영역이 명확하여 등넓이 분할로 계산 가능."
+    },
+    {
+      "id": "9173071b-1cda-4f83-9ac3-80b2a0cf930a",
+      "problem_code": "J20505-A39-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-angle",
+      "viewed_urls": [
+        "/figures/tb/c342922b39f0480a/tb-c342922b39f0480a-0-4-1.png"
+      ],
+      "note": "대각선에 내린 수선과 주어진 두 각의 위치가 확인되어 평행각과 직각의 여각 계산 가능."
+    },
+    {
+      "id": "191e1d50-0d35-479e-ad19-09e725f48d13",
+      "problem_code": "J20505-A61-001",
+      "cohort": "visual-m2-c0e1e0db",
+      "category": "B",
+      "family": "v-m2g-parallelogram-angle",
+      "viewed_urls": [
+        "/figures/tb/9bb9f5131c0ae0cb/tb-9bb9f5131c0ae0cb-1-2-1.png"
+      ],
+      "note": "각 이등분선에 내린 수선과 목표각이 명확하여 이웃각·반각·직각 관계로 계산 가능."
+    },
+    {
+      "id": "bbd1f203-995f-4be5-b981-f8f9010b13b7",
+      "problem_code": "J20506-A25-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-8-1.png"
+      ],
+      "note": "중점 연결 도형이 평행사변형인 이유에 해당하는 조건을 고르는 개념형으로 C 유지."
+    },
+    {
+      "id": "07ba74a5-5153-4df4-a0ab-7d94ea429276",
+      "problem_code": "J20506-A23-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-6-1.png",
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-6-2.png",
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-6-3.png",
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-6-4.png",
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-6-5.png"
+      ],
+      "note": "다섯 그림의 수치·각 표지는 읽히지만 평행사변형의 성립 조건 판별이 중심인 개념형으로 C 유지."
+    },
+    {
+      "id": "eaca37db-6dc5-4662-bbba-6c1e0c6c0e4a",
+      "problem_code": "J20506-A32-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/385f698517975df0/tb-385f698517975df0-0-1-1.png",
+        "/figures/tb/385f698517975df0/tb-385f698517975df0-0-1-2.png",
+        "/figures/tb/385f698517975df0/tb-385f698517975df0-0-1-3.png",
+        "/figures/tb/385f698517975df0/tb-385f698517975df0-0-1-4.png",
+        "/figures/tb/385f698517975df0/tb-385f698517975df0-0-1-5.png"
+      ],
+      "note": "다섯 그림의 평행사변형 성립 여부를 판단하는 개념형으로 C 유지."
+    },
+    {
+      "id": "972072d4-ec23-42ed-8741-59d6a66cc413",
+      "problem_code": "J20506-A36-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "B",
+      "family": "v-m2g-parallelogram-count",
+      "viewed_urls": [
+        "/figures/tb/712f8902c730586b/tb-712f8902c730586b-3-14-1.png"
+      ],
+      "note": "연장점·등분 표지와 실제 그어진 선분들이 명확하여 꼭짓점 조합과 대각선 중점 조건으로 도형 개수 계산 가능."
+    },
+    {
+      "id": "1b6860c6-e81e-40f6-8301-012daa90c2e7",
+      "problem_code": "J20506-A30-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "B",
+      "family": "v-m2g-parallelogram-condition-inverse",
+      "viewed_urls": [
+        "/figures/tb/0232bb48c06f0f27/tb-0232bb48c06f0f27-0-1-1.png"
+      ],
+      "note": "대변에 일차식 길이가 주어져 대변 동등식을 풀고 다른 대변 길이 계산 가능."
+    },
+    {
+      "id": "ad90eb52-b540-4bd5-b882-15798b201532",
+      "problem_code": "J20506-A24-001",
+      "cohort": "visual-m2-7672d72a",
+      "category": "B",
+      "family": "v-m2g-parallelogram-condition-inverse",
+      "viewed_urls": [
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-7-1.png"
+      ],
+      "note": "한 쌍의 대변의 평행 표지와 일차식 길이가 확인되어 길이 동등식으로 미지수 계산 가능."
+    },
+    {
+      "id": "cc57f720-29a8-4bfb-af83-48c005ca8985",
+      "problem_code": "J20703-A30-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-parallel-transversal",
+      "viewed_urls": [
+        "/figures/tb/b29a8dbd75bff869/tb-b29a8dbd75bff869-0-3-1.png"
+      ],
+      "note": "세 평행선과 두 횡단선의 전체·부분 길이 표지가 확인되어 대응 구간 비례 계산 가능."
+    },
+    {
+      "id": "14a8a93e-9cdc-4c1c-817f-926ae3fc4c87",
+      "problem_code": "J20703-A44-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-parallel-transversal",
+      "viewed_urls": [
+        "/figures/tb/baef7a326c5f913c/tb-baef7a326c5f913c-0-4-1.png"
+      ],
+      "note": "네 평행선의 연속 구간 길이가 두 횡단선에 표시되어 같은 비례상수로 두 미지 길이 계산 가능."
+    },
+    {
+      "id": "8941605a-e62d-425b-aad5-5adf21f4a5db",
+      "problem_code": "J20703-A16-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-crossed-parallel-segment",
+      "viewed_urls": [
+        "/figures/tb/8ca0feebff5f1931/tb-8ca0feebff5f1931-0-12-1.png"
+      ],
+      "note": "평행한 양 끝 선분과 교차 대각선에서 밑선으로 내린 평행선이 명확하여 두 닮음비를 결합 가능."
+    },
+    {
+      "id": "35bc7fcc-25c6-4e26-8efa-61a08c2a373c",
+      "problem_code": "J20703-A39-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-crossed-parallel-segment",
+      "viewed_urls": [
+        "/figures/tb/1a5ea8acdfea66b8/tb-1a5ea8acdfea66b8-0-11-1.png"
+      ],
+      "note": "평행한 두 변과 대각선 교점에서 밑선으로 이은 평행 선분이 확인되어 길이 계산 가능."
+    },
+    {
+      "id": "b8971968-b01d-4851-8eb9-51ef405697b4",
+      "problem_code": "J20703-A48-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-crossed-parallel-segment",
+      "viewed_urls": [
+        "/figures/tb/c56e34d3df35f284/tb-c56e34d3df35f284-1-6-1.png"
+      ],
+      "note": "교차 대각선의 닮음비와 밑변 전체 길이가 있어 내부 평행 선분 및 밑변 분할 길이 계산 가능."
+    },
+    {
+      "id": "30c3c47e-61dd-4ba0-9f50-73e1985244ad",
+      "problem_code": "J20703-A38-001",
+      "cohort": "visual-m2-a55f9223",
+      "category": "B",
+      "family": "v-m2g-parallel-transversal",
+      "viewed_urls": [
+        "/figures/tb/1a5ea8acdfea66b8/tb-1a5ea8acdfea66b8-0-8-1.png"
+      ],
+      "note": "네 평행선 사이 대응 구간의 비례 관계와 목표 합이 명확함."
+    },
+    {
+      "id": "618cd0eb-c67d-426a-8b24-c7f6badace34",
+      "problem_code": "J20509-A19-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-triangle-base-height-area",
+      "viewed_urls": [
+        "/figures/tb/712f8902c730586b/tb-712f8902c730586b-0-11-1.png"
+      ],
+      "note": "밑변과 중선 위 분할비, 음영 삼각형의 꼭짓점이 확인되어 밑변비·높이비의 곱으로 넓이 계산 가능."
+    },
+    {
+      "id": "6e6d9357-7b59-4417-a5d9-dcfd7d0a2012",
+      "problem_code": "J20509-A27-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-trapezoid-intersection-area",
+      "viewed_urls": [
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-18-1.png"
+      ],
+      "note": "같은 평행 밑변을 가진 삼각형들의 넓이와 대각선 교점이 명확하여 등넓이·차의 관계 적용 가능."
+    },
+    {
+      "id": "bc40f475-5485-46fd-9463-034f5b465e05",
+      "problem_code": "J20509-A26-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-triangle-base-height-area",
+      "viewed_urls": [
+        "/figures/tb/1deff7ee53af56bf/tb-1deff7ee53af56bf-0-11-1.png"
+      ],
+      "note": "밑변의 중점과 꼭짓점발 선분의 분할비가 있어 목표 삼각형의 밑변비·높이비 계산 가능."
+    },
+    {
+      "id": "b19cf727-04b6-4e2b-93b4-7b4d96ea7501",
+      "problem_code": "J20509-A14-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-parallelogram-inner-area",
+      "viewed_urls": [
+        "/figures/tb/1deff7ee53af56bf/tb-1deff7ee53af56bf-0-8-1.png"
+      ],
+      "note": "대각선 양쪽의 분할점과 내부 사각형을 확인하여 같은 높이의 삼각형 넓이를 더해 계산 가능."
+    },
+    {
+      "id": "a66ebb62-23d8-4aef-ac55-e003be77c045",
+      "problem_code": "J20509-A18-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-parallel-area-subtraction",
+      "viewed_urls": [
+        "/figures/tb/8c7d38f928826094/tb-8c7d38f928826094-0-10-1.png"
+      ],
+      "note": "대각선과 평행한 외부 보조선, 겹치는 사각형 영역이 명확하여 등넓이 교환과 차로 음영 넓이 계산 가능."
+    },
+    {
+      "id": "0d96434c-3cc6-45fe-98c1-89b2d134515d",
+      "problem_code": "J20509-A16-001",
+      "cohort": "visual-m2-5f94067d",
+      "category": "B",
+      "family": "v-m2g-trapezoid-intersection-area",
+      "viewed_urls": [
+        "/figures/tb/c342922b39f0480a/tb-c342922b39f0480a-0-9-1.png"
+      ],
+      "note": "평행 밑변과 대각선 교점의 분할비가 있어 같은 높이 삼각형의 밑변비로 넓이 변환 가능."
+    },
+    {
+      "id": "2f4fafce-080b-4fec-8e8f-b82574f1b261",
+      "problem_code": "J20801-A84-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-pythagorean-single",
+      "viewed_urls": [
+        "/figures/tb/5f2cb1986c012bfd/tb-5f2cb1986c012bfd-0-1-1.png"
+      ],
+      "note": "직각 표지와 두 변·미지 변의 위치가 두 소문항에 명확하여 제곱합 또는 제곱차 계산 가능."
+    },
+    {
+      "id": "9bb2d0d0-ee00-4f79-b306-3936ca51eeaf",
+      "problem_code": "J20801-A86-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-pythagorean-chain",
+      "viewed_urls": [
+        "/figures/tb/ce6d04d63565f0fb/tb-ce6d04d63565f0fb-0-2-1.png",
+        "/figures/tb/ce6d04d63565f0fb/tb-ce6d04d63565f0fb-0-2-2.png"
+      ],
+      "note": "공유하는 직각변 또는 높이를 두 삼각형에 차례로 적용하는 수치 구조 확인."
+    },
+    {
+      "id": "a03f8c2c-19f1-4c32-b14b-d30244cf137a",
+      "problem_code": "J20801-A73-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-pythagorean-chain",
+      "viewed_urls": [
+        "/figures/tb/43e1cc8e2c665f4d/tb-43e1cc8e2c665f4d-0-2-1.png",
+        "/figures/tb/43e1cc8e2c665f4d/tb-43e1cc8e2c665f4d-0-2-2.png"
+      ],
+      "note": "단일 직각삼각형과 높이를 공유한 두 직각삼각형의 길이 소문항을 모두 확인."
+    },
+    {
+      "id": "c6b0965e-e9e8-463a-ab66-83e1e375c48b",
+      "problem_code": "J20801-A22-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-orthodiagonal-squares",
+      "viewed_urls": [
+        "/figures/tb/f3a6e229eec1d0f7/tb-f3a6e229eec1d0f7-0-19-1.png"
+      ],
+      "note": "대각선이 직교하는 사각형으로 확인되며 네 직각삼각형의 제곱식을 더하고 빼는 계산·풀이 과정을 결정적으로 만들 수 있음."
+    },
+    {
+      "id": "d5459ff6-e9a8-4326-9b03-6d161ab3ebd2",
+      "problem_code": "J20801-A53-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-pythagorean-projection",
+      "viewed_urls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-2-19-1.png"
+      ],
+      "note": "빗변을 나눈 두 구간과 수선발이 명확하여 각 직각변의 사영 공식을 적용한 수치 답과 정해진 계산 과정 생성 가능."
+    },
+    {
+      "id": "800b0c40-393f-4412-8699-6a062053dc71",
+      "problem_code": "J20801-A65-001",
+      "cohort": "visual-m2-a0bf8487",
+      "category": "B",
+      "family": "v-m2g-pythagorean-projection",
+      "viewed_urls": [
+        "/figures/tb/9d92aef424ea50eb/tb-9d92aef424ea50eb-0-4-1.png"
+      ],
+      "note": "직사각형 대각선 위 두 수선발과 변 길이를 확인하여 사영 길이의 차로 두 발 사이 거리 계산 가능."
+    },
+    {
+      "id": "5a895dca-b3ac-4f17-a066-ef7131eedb38",
+      "problem_code": "J20802-A35-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-pythagorean-square-area",
+      "viewed_urls": [
+        "/figures/tb/4a9835b0ae5c5f16/tb-4a9835b0ae5c5f16-0-18-1.png"
+      ],
+      "note": "빗변에 붙인 정사각형과 높이의 연장선·음영 삼각형이 명확하여 사영 길이와 넓이 계산 가능."
+    },
+    {
+      "id": "c53aa845-081b-4129-997d-4d5249f51b6c",
+      "problem_code": "J20802-A39-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-cuboid-surface-shortest",
+      "viewed_urls": [
+        "/figures/tb/c46f7cf87cc68a82/tb-c46f7cf87cc68a82-0-3-1.png"
+      ],
+      "note": "시작·끝 꼭짓점과 반드시 거칠 모서리가 그림에서 확인되어 해당 면 전개도의 직선 거리 계산 가능."
+    },
+    {
+      "id": "a5f11337-c0af-4bb8-a54f-894f5b78f8cc",
+      "problem_code": "J20802-A40-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-cuboid-surface-shortest",
+      "viewed_urls": [
+        "/figures/tb/8c046b3370e68877/tb-8c046b3370e68877-0-8-1.png"
+      ],
+      "note": "지정된 두 모서리를 차례로 지나가는 겉면 경로가 확인되어 면 전개 후 피타고라스 거리 계산 가능."
+    },
+    {
+      "id": "2de6c1bb-3c54-49ae-a692-471c8eaf5beb",
+      "problem_code": "J20802-A30-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-cone-pythagorean-volume",
+      "viewed_urls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-2-7-1.png"
+      ],
+      "note": "원뿔의 반지름·모선 라벨이 명확하여 높이를 제곱차로 구한 뒤 부피 계산 가능."
+    },
+    {
+      "id": "68191d78-678f-4e00-861e-c64e2d340174",
+      "problem_code": "J20802-A15-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-isosceles-pythagorean-area",
+      "viewed_urls": [
+        "/figures/tb/f8e591017e1f809a/tb-f8e591017e1f809a-3-3-1.png"
+      ],
+      "note": "같은 두 변과 밑변 길이가 주어져 높이의 제곱차로 삼각형 넓이 계산 가능."
+    },
+    {
+      "id": "2b2f0bc7-2260-4fe4-8c69-4dc01c308c0e",
+      "problem_code": "J20802-A20-001",
+      "cohort": "visual-m2-2fa9dc1b",
+      "category": "B",
+      "family": "v-m2g-congruent-right-composite-area",
+      "viewed_urls": [
+        "/figures/tb/f8e591017e1f809a/tb-f8e591017e1f809a-4-4-1.png"
+      ],
+      "note": "합동 직각삼각형 두 개와 중앙 삼각형의 넓이, 알려진 직각변을 확인하여 다른 직각변과 외곽 넓이 계산 가능."
+    }
+  ]
+}

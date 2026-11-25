@@ -1,0 +1,2224 @@
+{
+  "reviewer": "/root/m1_rules (Codex)",
+  "method": "direct visual read of every selected row and all its ordered files",
+  "families": {
+    "v-m1-angle-lines": {
+      "name": "교차 직선·직각의 미지각 계산",
+      "grade": "중1",
+      "section": "각",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직선 교차의 고정 배치, 직각 표시, 알려진 각 및 문자식 계수. 모든 부분각은 양수이며 평각·직각 조건과 일치하도록 정답 각에서 역생성한다.",
+      "answer_method": "맞꼭지각의 같음, 평각 180도, 직각 90도를 일차식으로 세워 미지각 또는 그 합차를 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-capacity": {
+      "name": "원뿔 용기로 반구 채우기",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "원뿔의 반지름 r·높이 h와 반구 반지름 R. 부피 비가 양의 정수인 조합을 고른다.",
+      "answer_method": "(2πR³/3)÷(πr²h/3)을 계산하여 필요한 횟수를 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-cylinder-union": {
+      "name": "반원과 직사각형 회전의 합성 부피",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "회전축에 붙은 직사각형의 폭 r·높이 h와 같은 반지름 반원의 고정 결합 배치. h≥r로 원기둥 위쪽 포함 관계를 유지한다.",
+      "answer_method": "회전 입체를 원기둥과 겹치지 않는 반구로 분해하여 πr²h+2πr³/3을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-displacement": {
+      "name": "구를 꺼낸 원기둥의 물 높이",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반지름 r인 구 n개가 원기둥에 빈틈없이 세로로 들어가는 고정 배치. 원기둥 반지름 r·높이 2nr, 가득 채운 뒤 구만 제거하는 조건.",
+      "answer_method": "남은 물 부피 (2nr)πr²−n(4πr³/3)를 πr²로 나누어 높이를 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-cut-surface": {
+      "name": "구를 평면으로 자른 입체의 겉넓이",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반지름 및 지름, 구의 절반 또는 사분의 일을 제거하는 두 고정 절단 배치. 절단면 개수와 넓이를 명시한다.",
+      "answer_method": "남은 구면의 비율×4πr²에 새로 드러난 평면 원·반원의 넓이를 더한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-direct": {
+      "name": "그림의 반지름·지름으로 구의 겉넓이",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "구의 크기와 반지름 또는 지름 표기 방식. 지름 제시는 정수 반지름으로 환산되도록 선택한다.",
+      "answer_method": "지름이면 절반을 반지름 r로 삼고 4πr²를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sphere-rotation-difference": {
+      "name": "겹친 반원 회전의 구 부피 차",
+      "grade": "중1",
+      "section": "구의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "공통 지름 축을 갖는 중첩 반원의 작은 반지름 r와 양의 반지름 증가량 d. 배치와 회전축은 고정한다.",
+      "answer_method": "큰 반지름 R=r+d를 구하고 4π(R³−r³)/3을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-prism-surface": {
+      "name": "각기둥·원기둥의 겉넓이와 역산",
+      "grade": "중1",
+      "section": "기둥의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각기둥의 유효한 밑변·높이·둘레 또는 원기둥의 반지름과 높이. 겉넓이를 주고 높이를 역산할 수도 있으며 삼각형은 넓이 계산에 필요한 높이를 명시한다.",
+      "answer_method": "밑넓이 B, 밑둘레 P에 대해 S=2B+Ph를 계산하거나 h=(S−2B)/P로 역산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-prism-quadrilateral-volume": {
+      "name": "대각선으로 나눈 사각기둥의 부피",
+      "grade": "중1",
+      "section": "기둥의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑면 대각선 d, 그 양쪽 꼭짓점에서 내린 수선 높이 h₁,h₂, 기둥 높이 H. 수선 관계를 그림에 보존한다.",
+      "answer_method": "밑면을 두 삼각형으로 나눠 B=d(h₁+h₂)/2를 구하고 BH를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-prism-hole-surface": {
+      "name": "정사각 구멍을 뚫은 기둥의 겉넓이",
+      "grade": "중1",
+      "section": "기둥의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "외곽 정사각기둥 밑변 a·높이 H와 내부 관통 정사각 구멍 변 s. 0<s<a이며 구멍이 밑면 내부에 있도록 한다.",
+      "answer_method": "외곽 겉넓이 2a²+4aH에서 두 구멍 2s²를 빼고 안쪽 벽 4sH를 더한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-cylinder-volume-height": {
+      "name": "부피에서 원기둥 높이 역산",
+      "grade": "중1",
+      "section": "기둥의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반지름 r과 부피의 π 계수. 양의 정수 또는 간단한 유리수 높이가 나오도록 역생성한다.",
+      "answer_method": "h=V/(πr²)를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-polygon-one-exterior": {
+      "name": "다각형 한 꼭짓점의 외각",
+      "grade": "중1",
+      "section": "다각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "다각형의 꼭짓점 수와 회전 방향, 한 내각 α. 0<α<180도로 볼록한 해당 꼭짓점을 유지한다.",
+      "answer_method": "외각=180도−내각을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-regular-parallel-angle": {
+      "name": "평행선 사이 정오각형의 방향각",
+      "grade": "중1",
+      "section": "다각형의 내각과 외각",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정오각형의 두 꼭짓점이 각각 두 평행선에 놓이는 고정 배치와 표시 각 x:kx의 정수 비 k≥3. x=36/(k−1)이 간단한 유리수가 되게 k를 선택하고 회전 배치를 생성한다.",
+      "answer_method": "정오각형의 대각선으로 생기는 각을 이용하여 x+72=kx+36을 세우고 x=36/(k−1)을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-regular-angle-combination": {
+      "name": "정다각형 내각·외각의 합차",
+      "grade": "중1",
+      "section": "다각형의 내각과 외각",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정n각형의 n, 내각·외각 표시 및 요청하는 합차. 각이 간단한 수가 되도록 360/n을 제한한다.",
+      "answer_method": "외각 e=360/n, 내각 i=180−e를 계산하고 요청한 합차를 구한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-polygon-angle-equation": {
+      "name": "다각형 내각·외각 합의 일차식",
+      "grade": "중1",
+      "section": "다각형의 내각과 외각",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "삼각형 이상 볼록다각형의 고정 배치, 일부 내각·외각 및 문자식 계수. 유효한 각 배열에서 표시를 역생성하여 해를 유일하게 한다.",
+      "answer_method": "외각을 보각으로 바꿔 내각 합 180(n−2)를 쓰거나 외각 합 360을 적용하여 일차식을 푼다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frustum-counts": {
+      "name": "각뿔대의 면·모서리·꼭짓점 수",
+      "grade": "중1",
+      "section": "다면체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑면의 변 수 n≥3와 같은 조합구조의 각뿔대 그림, 묻는 개수. 숨은 모서리도 함께 표시한다.",
+      "answer_method": "면 F=n+2, 모서리 E=3n, 꼭짓점 V=2n을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-stat-table-summary": {
+      "name": "수치 자료표의 평균·중앙값·최빈값",
+      "grade": "중1",
+      "section": "대푯값",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "하나 또는 두 집단의 유한 수치 배열과 선택적인 이름 열, 자료 수와 질의 종류. 최빈값 유일성·동점 처리와 중앙값 짝수 규칙을 명시한다.",
+      "answer_method": "평균은 합/개수, 중앙값은 정렬 중앙값, 최빈값은 빈도 최댓값으로 구하고 필요하면 집단 비교 또는 평균 미만 자료를 필터링한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frequency-polygon-aggregate": {
+      "name": "도수분포다각형의 구간 도수 계산",
+      "grade": "중1",
+      "section": "도수분포다각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 폭의 계급 시작점·폭·도수 배열, 목표 구간과 수치 진술. 다각형 양끝의 보조 영점은 계급 수에 포함하지 않는다.",
+      "answer_method": "도수 배열의 총합·구간합·최대최소 및 구간합/총합×100을 계산해 응답 또는 수치 진술의 참거짓을 결정한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frequency-polygon-rank": {
+      "name": "도수분포다각형의 순위 계급",
+      "grade": "중1",
+      "section": "도수분포다각형",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 폭의 계급과 양의 도수, 유효한 오름·내림 순위 k. 경계 순위 포함 규칙을 고정한다.",
+      "answer_method": "도수를 순서대로 누적하여 k가 처음 포함되는 계급과 그 도수를 찾는다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frequency-table-aggregate": {
+      "name": "도수분포표의 구간·비율 계산",
+      "grade": "중1",
+      "section": "도수분포표",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "계급 경계와 도수 배열, 전체 합 및 구간 조건. 한 빈칸이 있으면 총합으로 유일하게 복원되도록 하고 계급 경계 포함 여부를 명시한다.",
+      "answer_method": "필요한 빈 도수는 전체−나머지합으로 구한 뒤 계급 수·폭·최대최소·구간합·백분율을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frequency-table-missing": {
+      "name": "조건이 있는 도수분포표 빈칸",
+      "grade": "중1",
+      "section": "도수분포표",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "총합, 누락 도수 한 개 또는 여러 개의 정수 비·차 조건. 양의 정수 해에서 조건을 역생성하고 구간 질의를 정한다.",
+      "answer_method": "전체 합과 비·차의 일차식을 풀어 도수 배열을 복원한 다음 순위 또는 범위 합과 백분율을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-frequency-table-rebin": {
+      "name": "다른 계급폭의 두 도수표 비교",
+      "grade": "중1",
+      "section": "도수분포표",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 원자료 집계에서 만든 두 계급폭의 표, 일부 누락값, 총합. 두 표의 공통 경계 누적합으로 미지수를 유일하게 정할 수 있는 배치만 사용한다.",
+      "answer_method": "공통 경계의 누적 도수 일치와 전체 합을 연립해 빈칸을 구한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-regular-lines-count": {
+      "name": "정다각형의 변을 연장한 직선 교점 관계 수",
+      "grade": "중1",
+      "section": "두 직선의 위치 관계",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정n각형의 n≥3와 기준 변. 각 변을 포함하는 서로 다른 직선을 대상으로 하며 일치하는 기준선은 제외한다.",
+      "answer_method": "홀수 n이면 n−1개, 짝수 n이면 맞은편 평행선도 제외하여 n−2개가 기준선과 만난다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-sector-lens-area": {
+      "name": "정사각형 안 두 사분원의 겹친 넓이",
+      "grade": "중1",
+      "section": "부채꼴의 호의 길이와 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정사각형 변 s와 맞은편 꼭짓점을 중심으로 한 반지름 s의 두 사분원. 겹친 부분의 고정 배치를 유지한다.",
+      "answer_method": "두 사분원 넓이의 합에서 정사각형 넓이를 빼서 (π/2−1)s²를 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-equal-circles-rope": {
+      "name": "서로 접한 같은 원 세 개의 둘레 감싸기",
+      "grade": "중1",
+      "section": "부채꼴의 호의 길이와 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "서로 외접하는 같은 원 세 개를 정삼각형으로 배치하고 반지름 r만 바꾼다. 팽팽한 줄은 원들의 볼록껍질 경계를 따른다.",
+      "answer_method": "중심 정삼각형 둘레 6r와 합이 한 원인 접촉 호 2πr를 더한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-semicircle-rotation-area": {
+      "name": "지름 끝점 회전의 반원 넓이 차",
+      "grade": "중1",
+      "section": "부채꼴의 호의 길이와 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "반원 반지름 r과 지름 끝점을 중심으로 한 회전각 θ. 동일한 겹침 배치를 유지하는 작은 양의 각 범위에서 선택한다.",
+      "answer_method": "같은 반원의 넓이가 상쇄되는 배치를 이용해 반지름 2r인 부채꼴 넓이 π(2r)²θ/360을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-square-arc-perimeter": {
+      "name": "정사각형과 원호의 색칠 경계 길이",
+      "grade": "중1",
+      "section": "부채꼴의 호의 길이와 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정사각형 변 s와 사분원 또는 반원을 포함하는 두 고정 색칠 배치. 선택된 경계 호와 선분의 연결관계를 보존한다.",
+      "answer_method": "색칠 영역 경계의 직선 길이를 합하고 각 호의 2πrθ/360을 더한다. 검토한 두 배치의 경계식은 각각 4s+πs 및 3s+πs이다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-rope-rectangle-area": {
+      "name": "직사각형 모서리에 묶은 줄의 이동 넓이",
+      "grade": "중1",
+      "section": "부채꼴의 호의 길이와 넓이",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직사각형 변 w,h와 줄 길이 L. max(w,h)<L<w+h로 두 인접 모서리만 추가로 돌고 뒤쪽 재접촉은 생기지 않게 한다.",
+      "answer_method": "최초 모서리의 사분의 삼원과 인접 두 모서리의 사분원을 합하여 π[3L²+(L−w)²+(L−h)²]/4를 구한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-folded-square-tetra-volume": {
+      "name": "중점을 이용한 정사각형 접기 사면체 부피",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정사각형 변 s와 인접 두 변의 중점, 반대쪽 꼭짓점을 잇는 고정 접기선. 세 바깥 꼭짓점이 한 꼭짓점으로 합쳐지는 접기 위상을 유지한다.",
+      "answer_method": "접은 사면체에서 한 꼭짓점의 세 수직 모서리 s,s/2,s/2를 사용하여 V=s(s/2)(s/2)/6=s³/24를 구한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-cone-chord-cut-volume": {
+      "name": "직각 중심각의 현으로 자른 원뿔 부피",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "원뿔 반지름 r·높이 h, 밑면에서 직각을 이루는 두 반지름의 끝점과 꼭짓점을 지나는 절단면. 큰 쪽을 남기는 배치를 고정한다.",
+      "answer_method": "남은 밑면 넓이 3πr²/4+r²/2에 h/3을 곱한다.",
+      "figure": "required",
+      "difficulty": "hard",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-double-cone-volume": {
+      "name": "공통 밑면을 갖는 두 원뿔의 부피",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "공통 밑면 반지름 r와 양쪽 높이 h₁,h₂. 두 원뿔의 내부가 겹치지 않는 밑면 접합 배치를 유지한다.",
+      "answer_method": "πr²(h₁+h₂)/3을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-cone-frustum-surface": {
+      "name": "원뿔대의 두 밑면과 옆면 넓이",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "두 반지름 0<r<R과 원뿔대 모선 s>R−r. 작은 원뿔 모선이 함께 표시되면 닮음 비 r:R과 일치시킨다.",
+      "answer_method": "S=πr²+πR²+π(R+r)s를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-cone-frustum-volume": {
+      "name": "원뿔대의 부피",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "두 반지름 0<r<R과 원뿔대 높이 H. 제거된 작은 원뿔 높이를 보이면 h=Hr/(R−r)로 일관되게 생성한다.",
+      "answer_method": "큰 원뿔 부피에서 작은 원뿔을 빼거나 πH(R²+Rr+r²)/3을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-square-pyramid-surface": {
+      "name": "정사각뿔의 겉넓이",
+      "grade": "중1",
+      "section": "뿔의 겉넓이와 부피",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정사각 밑면 변 s와 합동인 옆면 삼각형의 높이 l>s/2. 옆면의 높이와 입체의 높이를 구분하여 표시한다.",
+      "answer_method": "밑넓이 s²와 네 옆면 넓이 4(sl/2)를 합한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-triangle-angle-equation": {
+      "name": "삼각형 내각·외각의 미지각 계산",
+      "grade": "중1",
+      "section": "삼각형의 내각과 외각",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직각·교차·각 이등분·이등변 조건이 표시된 검토된 고정 배치 중 하나와 주어진 각·문자 계수. 양의 각을 만족하는 유일해에서 조건을 역생성한다.",
+      "answer_method": "내각 합 180도, 외각의 두 내각 합, 맞꼭지각과 같은 변의 밑각 및 이등분 관계를 일차식으로 연립하여 목표각을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-relative-frequency-table": {
+      "name": "도수·상대도수 표의 누락값",
+      "grade": "중1",
+      "section": "상대도수",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "도수 정수 배열과 총합 N, 상대도수 f/N. 적어도 한 쌍의 도수·상대도수를 공개해 총합을 유일하게 결정하며 소수 표시는 정확하게 맞춘다.",
+      "answer_method": "N=f/r로 총합을 구한 뒤 누락 도수 Nr, 누락 상대도수 f/N와 구간 백분율을 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-relative-frequency-graph": {
+      "name": "상대도수 그래프의 인원·순위 계산",
+      "grade": "중1",
+      "section": "상대도수",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 폭의 계급, 총합이 1인 정확한 상대도수, 전체 인원 또는 한 구간의 인원. 모든 도수가 정수가 되게 N을 선택한다.",
+      "answer_method": "필요하면 N=주어진 구간 인원/그 구간 상대도수 합을 구하고 도수 Nr, 구간합, 누적 순위를 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-relative-frequency-missing": {
+      "name": "일부 가린 상대도수의 비 조건",
+      "grade": "중1",
+      "section": "상대도수",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "상대도수 두 개를 가리는 고정 그래프, 그 두 도수의 양의 비, 보이는 구간의 인원. 비와 총합에서 유일한 양의 해가 나오도록 역생성한다.",
+      "answer_method": "남은 상대도수 합 1−보이는 합을 주어진 비로 나누고, 기준 구간으로 구한 전체 인원을 곱한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-circle-arc-ratio": {
+      "name": "중심각과 호의 길이 비",
+      "grade": "중1",
+      "section": "원과 부채꼴",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 원의 기준 중심각·호 길이와 목표각, 또는 지름·평행 현이 있는 검토된 고정 배치. 모든 호의 중심각이 올바른 작은 호 범위에 있도록 제한한다.",
+      "answer_method": "평행선 및 같은 반지름의 각 관계로 목표 중심각 β를 먼저 구한 뒤 기준 호 길이 L에 β/α를 곱한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-circle-point-lines": {
+      "name": "원 위의 점 두 개를 잇는 직선 수",
+      "grade": "중1",
+      "section": "점, 선, 면",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "원 위의 서로 다른 점 n개, n≥3. 겹치는 점은 없고 원 위 배치로 세 점의 공선 가능성을 배제한다.",
+      "answer_method": "두 점의 순서 없는 쌍 수 n(n−1)/2를 구한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-pyramid-incidence-count": {
+      "name": "각뿔의 교점·교선 수",
+      "grade": "중1",
+      "section": "점, 선, 면",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "밑면 n각형인 각뿔의 그림과 n≥3. 꼭짓점과 모서리를 교점·교선으로 세는 범위를 유지한다.",
+      "answer_method": "꼭짓점 n+1개와 모서리 2n개를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-segment-midpoints": {
+      "name": "일직선 위 중점 사이의 거리",
+      "grade": "중1",
+      "section": "점, 선, 면",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "일직선의 점 순서, 인접 선분 길이 또는 중점으로 생긴 길이와 중점 관계. 양의 길이로 중점 순서를 보존한다.",
+      "answer_method": "기준점을 좌표 0에 놓고 각 중점 좌표를 양끝 평균으로 구한 뒤 요청한 두 좌표 차의 절댓값을 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-regular-solid-counts": {
+      "name": "정다면체 전개도의 연결 수",
+      "grade": "중1",
+      "section": "정다면체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "검증된 정다면체 전개도와 선택한 정다면체 종류, 요청하는 모서리·꼭짓점·꼭짓점당 면 수. 면 수 F, 면당 변 p, 꼭짓점당 면 q가 일치하는 다섯 경우만 사용한다.",
+      "answer_method": "모서리 E=pF/2, 꼭짓점 V=pF/q와 지정 q를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-octa-net-opposite-sum": {
+      "name": "정팔면체의 마주 보는 면 수의 합",
+      "grade": "중1",
+      "section": "정다면체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "검토한 고정 정팔면체 전개도의 마주 보는 면 쌍, 공통 합 T와 공개 숫자. 한 완전한 쌍으로 T가 결정되며 미지수 쌍의 다른 면은 공개한다.",
+      "answer_method": "고정 전개도의 반대 면 대응표를 따라 T를 구하고 각 미지수는 T−마주 보는 수로 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-cube-facecenter-octa-volume": {
+      "name": "정육면체 면 중심의 정팔면체 부피",
+      "grade": "중1",
+      "section": "정다면체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "정육면체 모서리 s, 각 면 중심을 꼭짓점으로 잇는 고정 정팔면체. 크기만 바꿔 같은 포함 관계를 보존한다.",
+      "answer_method": "가운데 정사각 단면의 넓이 s²/2와 양쪽 높이 합 s를 이용하여 V=(s²/2)s/3=s³/6을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-stemleaf-aggregate": {
+      "name": "줄기와 잎 그림의 개수·순위·범위",
+      "grade": "중1",
+      "section": "줄기와 잎 그림",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "한 집단 또는 양쪽 두 집단의 정수 자료, 십진 줄기·잎 단위, 범위나 순위 질의. 잎을 정렬하고 중복값은 중복 관측으로 보존한다.",
+      "answer_method": "각 값을 10×줄기+잎으로 복원해 개수, 최솟값·최댓값, 정렬 순위, 조건에 맞는 값의 개수를 계산한다.",
+      "figure": "required",
+      "difficulty": "easy",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-parallel-angle-equation": {
+      "name": "평행선과 꺾인 선의 미지각",
+      "grade": "중1",
+      "section": "평행선",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "평행한 두 직선과 한 횡단선·두 횡단선·지그재그 선의 검토된 고정 배치, 양의 각과 문자 조건. 교차 순서와 각 위치를 보존한다.",
+      "answer_method": "동위각·엇각의 같음 및 평각을 이용해 방향각의 합차 또는 일차방정식으로 목표각을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-parallel-fold-angle": {
+      "name": "직사각형 접기의 미지각",
+      "grade": "중1",
+      "section": "평행선",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직사각형 종이 또는 띠의 검토된 한 번 접기 배치와 접힌 각. 반사 후 선분 위치와 양의 각 조건이 유지되는 범위만 사용한다.",
+      "answer_method": "접힘선에 대한 반사로 두 각이 같음을 적용하고 직각·평각·평행선 각 관계를 연립해 미지각을 구한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-right-triangle-rotation-section": {
+      "name": "빗변 회전 입체의 단면",
+      "grade": "중1",
+      "section": "회전체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직각삼각형의 두 직각변 a,b와 빗변 c, 빗변을 회전축으로 하는 배치. 피타고라스 수의 배수 등 일관된 세 변을 제공한다.",
+      "answer_method": "축을 포함하는 단면 넓이는 ab, 축에 수직인 최대 원의 반지름은 빗변에 대한 높이 ab/c이다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-right-triangle-rotation-volume-ratio": {
+      "name": "직각삼각형의 두 회전축 부피 비",
+      "grade": "중1",
+      "section": "회전체",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "직각삼각형의 양의 직각변 a,b와 각 변을 회전축으로 하는 두 경우. 묻는 부피 순서를 고정한다.",
+      "answer_method": "높이 a·반지름 b인 원뿔과 높이 b·반지름 a인 원뿔의 부피 비 πb²a:πa²b=b:a를 최대공약수로 약분한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    },
+    "v-m1-histogram-aggregate": {
+      "name": "히스토그램의 도수·범위·순위 계산",
+      "grade": "중1",
+      "section": "히스토그램",
+      "category": "B",
+      "engine_keys": [],
+      "variables": "같은 폭의 계급 경계, 정수 도수와 총합, 범위·순위·막대 넓이 질의. 가리는 경우 막대 하나만 가리고 총합으로 유일하게 복원되게 한다.",
+      "answer_method": "막대 높이의 총합·구간합·최대최소·백분율과 누적 순위를 구한다. 빈 도수는 전체−나머지합, 막대 넓이 합은 계급폭×전체도수로 계산한다.",
+      "figure": "required",
+      "difficulty": "mid",
+      "rationale": "선정된 원본의 본문과 모든 그림을 직접 읽어 조건과 목표를 확인했다. 동일한 고정 배치에서 유효한 수치를 씨앗으로 바꾸고 결정적 계산을 구현할 수 있는 새 유형 또는 기존 유형 확장 후보이며, 기존 엔진과의 동일 생성 구조는 입증하지 않았다."
+    }
+  },
+  "rows": [
+    {
+      "id": "72e289c7-dc42-4220-8e83-a69f969d1313",
+      "problem_code": "J10502-A63-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/6ada26f475bc521e/tb-6ada26f475bc521e-0-4-1.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "b989f80b-5189-48dd-aabe-b2087c6d809f",
+      "problem_code": "J10502-A32-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/368a5eb6cc361dbb/tb-368a5eb6cc361dbb-0-5-1.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "582d4f49-256b-4328-bda0-8475a5f9abe0",
+      "problem_code": "J10502-A22-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/95213c5b0aa958bc/tb-95213c5b0aa958bc-0-3-1.png",
+        "/figures/tb/95213c5b0aa958bc/tb-95213c5b0aa958bc-0-3-2.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "2564fd1f-5200-4ab1-aa10-87b93fe9db36",
+      "problem_code": "J10502-A69-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-3-1.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "84eb7fc9-a7de-4f4a-9166-a59cf4803a45",
+      "problem_code": "J10502-A27-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/95213c5b0aa958bc/tb-95213c5b0aa958bc-1-4-1.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "016e8b10-afde-4f3b-a34a-5161a0c26749",
+      "problem_code": "J10502-A28-001",
+      "cohort": "visual-m1-45ec909f",
+      "category": "B",
+      "family": "v-m1-angle-lines",
+      "viewed_urls": [
+        "/figures/tb/95213c5b0aa958bc/tb-95213c5b0aa958bc-1-5-1.png",
+        "/figures/tb/95213c5b0aa958bc/tb-95213c5b0aa958bc-1-5-2.png"
+      ],
+      "note": "교차 직선과 직각·평각 표지가 확인된다. 맞꼭지각 및 보각 관계를 선형식으로 풀 수 있다."
+    },
+    {
+      "id": "39ea6a36-35a9-4283-9e91-98f6809a2f03",
+      "problem_code": "J10504-A35-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/d62c8b4f4d87f3d5/tb-d62c8b4f4d87f3d5-0-4-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "c47e471e-fe97-4e55-a1a6-390116a39c41",
+      "problem_code": "J10504-A24-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/b72f5aa9c9699a3e/tb-b72f5aa9c9699a3e-0-7-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "31f99f51-a2e7-4f2b-b544-f1d1d3e4f02c",
+      "problem_code": "J10504-A23-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/b72f5aa9c9699a3e/tb-b72f5aa9c9699a3e-0-6-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "13685da4-3beb-49ab-97f6-fa1ea8ac47fe",
+      "problem_code": "J10504-A32-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/cae071242a224e46/tb-cae071242a224e46-0-3-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "1aa869cf-7cb5-41da-9623-27814e16dbda",
+      "problem_code": "J10504-A27-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e36f25dc18df8a7e/tb-e36f25dc18df8a7e-0-5-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "4f3005cf-3d10-48d5-8e53-d6b79a42a1b4",
+      "problem_code": "J10504-A31-001",
+      "cohort": "visual-m1-f38135db",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/fe9b3d22cbbb6494/tb-fe9b3d22cbbb6494-0-11-1.png"
+      ],
+      "note": "입체의 면·모서리 또는 전개도 관계를 묻는 개념 판별이다. 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "8e48d1b3-5e9a-447d-9083-2027525beacf",
+      "problem_code": "J10706-A71-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-capacity",
+      "viewed_urls": [
+        "/figures/tb/10a315e8050cbe05/tb-10a315e8050cbe05-1-15-1.png",
+        "/figures/tb/10a315e8050cbe05/tb-10a315e8050cbe05-1-15-2.png"
+      ],
+      "note": "원뿔과 반구의 반지름·높이가 표시되어 용적 비를 계산할 수 있다."
+    },
+    {
+      "id": "e9d211fa-dd63-4aac-a8dd-7bb1525e3014",
+      "problem_code": "J10706-A69-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-cylinder-union",
+      "viewed_urls": [
+        "/figures/tb/abf4d09cbc320ae2/tb-abf4d09cbc320ae2-1-6-1.png"
+      ],
+      "note": "회전축과 반원·직사각형의 배치가 확인된다. 겹치는 부분을 한 번만 세어 기둥과 반구 부피를 합한다."
+    },
+    {
+      "id": "f06f711b-81b4-4fe4-82c1-21e021745605",
+      "problem_code": "J10706-A65-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-displacement",
+      "viewed_urls": [
+        "/figures/tb/b69fce1351d40f8e/tb-b69fce1351d40f8e-0-5-1.png"
+      ],
+      "note": "구 두 개가 꼭 맞는 원기둥 구조가 확인된다. 남은 물의 부피를 밑넓이로 나눌 수 있다."
+    },
+    {
+      "id": "b7a78ab9-8115-4ed2-873a-e421e4fbca6f",
+      "problem_code": "J10706-A73-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-cut-surface",
+      "viewed_urls": [
+        "/figures/tb/bef370cfce6d48e7/tb-bef370cfce6d48e7-0-3-1.png"
+      ],
+      "note": "반구와 구의 일부를 제거한 입체의 절단면이 식별된다. 남은 곡면과 새 평면의 넓이를 합한다."
+    },
+    {
+      "id": "8c4b644b-2da8-4bff-bde7-75694a050595",
+      "problem_code": "J10706-A74-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-direct",
+      "viewed_urls": [
+        "/figures/tb/2618ea8d2e1e8eeb/tb-2618ea8d2e1e8eeb-0-1-1.png"
+      ],
+      "note": "반지름과 지름으로 주어진 구가 각각 식별되므로 반지름 환산 후 표면적을 계산한다."
+    },
+    {
+      "id": "89eaee14-bcee-48de-9b35-c57bc9220dad",
+      "problem_code": "J10706-A80-001",
+      "cohort": "visual-m1-52792af9",
+      "category": "B",
+      "family": "v-m1-sphere-rotation-difference",
+      "viewed_urls": [
+        "/figures/tb/701a452ecd2eb429/tb-701a452ecd2eb429-0-3-1.png"
+      ],
+      "note": "동심 반원의 반지름 및 차이가 확인된다. 회전 후 두 구의 부피 차를 계산한다."
+    },
+    {
+      "id": "633891d5-915f-46c9-a97d-b0a3ecfc5b89",
+      "problem_code": "J10704-A46-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-prism-surface",
+      "viewed_urls": [
+        "/figures/tb/b1f14cb8045407fc/tb-b1f14cb8045407fc-0-13-1.png"
+      ],
+      "note": "밑면 삼각형의 변과 높이 및 기둥 높이가 표시되어 겉넓이를 계산할 수 있다."
+    },
+    {
+      "id": "616bd035-7f44-46a0-b2a0-3ec1a6687f41",
+      "problem_code": "J10704-A25-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-prism-quadrilateral-volume",
+      "viewed_urls": [
+        "/figures/tb/10a315e8050cbe05/tb-10a315e8050cbe05-0-10-1.png"
+      ],
+      "note": "공통 대각선과 양쪽 삼각형의 높이가 표시된다. 밑넓이를 합성한 뒤 기둥 높이를 곱한다."
+    },
+    {
+      "id": "96f5183b-84e1-448b-afdb-ecaae0f59859",
+      "problem_code": "J10704-A20-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-prism-surface",
+      "viewed_urls": [
+        "/figures/tb/4f8944faa04efd38/tb-4f8944faa04efd38-0-4-1.png"
+      ],
+      "note": "직각삼각형 밑면의 세 변과 겉넓이가 주어져 기둥 높이를 역산할 수 있다."
+    },
+    {
+      "id": "00b2a77e-1b58-4dd3-93a4-3402e7b0c328",
+      "problem_code": "J10704-A63-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-prism-hole-surface",
+      "viewed_urls": [
+        "/figures/tb/c06cf626faf9dcbf/tb-c06cf626faf9dcbf-1-3-1.png"
+      ],
+      "note": "뚫린 부분이 정육면체라는 본문 조건과 외부 치수가 확인된다. 제거된 두 면과 안쪽 네 면을 구분한다."
+    },
+    {
+      "id": "7165d44d-9088-46c1-b52b-b84b2b262c6e",
+      "problem_code": "J10704-A60-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-cylinder-volume-height",
+      "viewed_urls": [
+        "/figures/tb/44dd99be25d5db07/tb-44dd99be25d5db07-1-2-1.png"
+      ],
+      "note": "원기둥의 반지름과 부피가 주어져 높이를 직접 역산할 수 있다."
+    },
+    {
+      "id": "661d3bc2-0497-4326-8904-4ec233e3a324",
+      "problem_code": "J10704-B09-001",
+      "cohort": "visual-m1-9613f384",
+      "category": "B",
+      "family": "v-m1-prism-surface",
+      "viewed_urls": [
+        "/figures/tb/d1dad10e29471bf7/tb-d1dad10e29471bf7-0-1-1.png"
+      ],
+      "note": "삼각기둥과 원기둥의 치수가 모두 읽힌다. 밑면 둘과 옆면을 더하는 계산을 소문항별 적용한다."
+    },
+    {
+      "id": "e47eb385-316a-4524-989d-af75e15e41d9",
+      "problem_code": "J10601-A82-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/50656d477fb0fd91/tb-50656d477fb0fd91-0-1-1.png"
+      ],
+      "note": "다각형의 정의 또는 정다각형의 성질을 고르는 개념 판별이므로 유지한다."
+    },
+    {
+      "id": "17bdcbe4-0fdc-454f-ad3a-24715c419789",
+      "problem_code": "J10601-A71-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "B",
+      "family": "v-m1-polygon-one-exterior",
+      "viewed_urls": [
+        "/figures/tb/173eb876caed43b5/tb-173eb876caed43b5-0-23-1.png"
+      ],
+      "note": "지정 꼭짓점의 내각 수치가 읽힌다. 평각에서 빼 외각을 계산한다."
+    },
+    {
+      "id": "781c852d-8c2a-4d6d-9c4d-a86299f8fd09",
+      "problem_code": "J10601-A79-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/b9a40fae0c555c17/tb-b9a40fae0c555c17-0-1-1.png"
+      ],
+      "note": "다각형의 정의 또는 정다각형의 성질을 고르는 개념 판별이므로 유지한다."
+    },
+    {
+      "id": "63a45be9-a817-42c0-a157-88e78129c1d7",
+      "problem_code": "J10601-A67-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "B",
+      "family": "v-m1-polygon-one-exterior",
+      "viewed_urls": [
+        "/figures/tb/7fb280f67267171d/tb-7fb280f67267171d-0-1-1.jpg"
+      ],
+      "note": "지정 꼭짓점의 내각 수치가 읽힌다. 평각에서 빼 외각을 계산한다."
+    },
+    {
+      "id": "985605d3-0020-409d-aa6a-301c48717eec",
+      "problem_code": "J10601-A69-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/81d10e320bad9a95/tb-81d10e320bad9a95-1-2-1.png"
+      ],
+      "note": "다각형의 정의 또는 정다각형의 성질을 고르는 개념 판별이므로 유지한다."
+    },
+    {
+      "id": "8cc7fafe-fff3-4126-9a61-962a735df028",
+      "problem_code": "J10601-A73-001",
+      "cohort": "visual-m1-b61df815",
+      "category": "B",
+      "family": "v-m1-polygon-one-exterior",
+      "viewed_urls": [
+        "/figures/tb/6aa1ba0f902ead09/tb-6aa1ba0f902ead09-0-1-1.png"
+      ],
+      "note": "지정 꼭짓점의 내각 수치가 읽힌다. 평각에서 빼 외각을 계산한다."
+    },
+    {
+      "id": "f7db1539-cde0-4759-9cc0-7c9f592fc5b8",
+      "problem_code": "J10603-B21-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-regular-parallel-angle",
+      "viewed_urls": [
+        "/figures/tb/433f1203eb30d8ea/tb-433f1203eb30d8ea-0-19-1.png"
+      ],
+      "note": "평행선 사이 정다각형의 표시각 비가 확인된다. 외각과 평행선의 방향 차 조건으로 미지각을 계산한다."
+    },
+    {
+      "id": "85ccbbb3-151e-45e8-8a56-64aa28c66c08",
+      "problem_code": "J10603-B01-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-polygon-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/2e59140b633a3745/tb-2e59140b633a3745-2-2-1.png"
+      ],
+      "note": "다각형의 꼭짓점과 내각·외각 표지가 모두 확인된다. 내각합 또는 외각합을 이용한 선형식으로 미지각을 구한다."
+    },
+    {
+      "id": "1c203403-7c12-44db-81b1-fc8fcae8b38b",
+      "problem_code": "J10603-A88-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-regular-angle-combination",
+      "viewed_urls": [
+        "/figures/tb/eb03fd9608c776bb/tb-eb03fd9608c776bb-0-4-1.png"
+      ],
+      "note": "정다각형의 내각과 외각이 명확히 지정된다. 변 수로 두 각을 구해 차를 계산한다."
+    },
+    {
+      "id": "95fd8f25-1d84-4ac9-b827-a0e496d872d9",
+      "problem_code": "J10603-A99-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-polygon-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/2e59140b633a3745/tb-2e59140b633a3745-2-1-1.png",
+        "/figures/tb/2e59140b633a3745/tb-2e59140b633a3745-2-1-2.png"
+      ],
+      "note": "다각형의 꼭짓점과 내각·외각 표지가 모두 확인된다. 내각합 또는 외각합을 이용한 선형식으로 미지각을 구한다."
+    },
+    {
+      "id": "81ee6ed0-e086-4129-a6fa-94d3b4d56714",
+      "problem_code": "J10603-B57-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-polygon-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/0f04db11ac3fd4e9/tb-0f04db11ac3fd4e9-0-4-1.png"
+      ],
+      "note": "다각형의 꼭짓점과 내각·외각 표지가 모두 확인된다. 내각합 또는 외각합을 이용한 선형식으로 미지각을 구한다."
+    },
+    {
+      "id": "b28d073c-354b-4008-8f6f-5a3fea0a0812",
+      "problem_code": "J10603-B26-001",
+      "cohort": "visual-m1-2b5467d1",
+      "category": "B",
+      "family": "v-m1-polygon-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/5424a6ede1c07e90/tb-5424a6ede1c07e90-0-3-1.png"
+      ],
+      "note": "다각형의 꼭짓점과 내각·외각 표지가 모두 확인된다. 내각합 또는 외각합을 이용한 선형식으로 미지각을 구한다."
+    },
+    {
+      "id": "70e22e16-aff3-494b-8539-18ba6f902f98",
+      "problem_code": "J10701-A56-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/4acb81a3176d30ef/tb-4acb81a3176d30ef-0-12-1.png"
+      ],
+      "note": "입체 종류·정의·일반 공식 또는 전개도의 개념을 고르는 문항이므로 보수적으로 유지한다."
+    },
+    {
+      "id": "eb5cee80-4ce9-4ca1-a9a7-5e05e40efaea",
+      "problem_code": "J10701-A64-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/eb53c7d62417abd1/tb-eb53c7d62417abd1-0-1-1.png"
+      ],
+      "note": "입체 종류·정의·일반 공식 또는 전개도의 개념을 고르는 문항이므로 보수적으로 유지한다."
+    },
+    {
+      "id": "38e18f56-7fbc-4215-88f4-7465a30db6e5",
+      "problem_code": "J10701-A55-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "B",
+      "family": "v-m1-frustum-counts",
+      "viewed_urls": [
+        "/figures/tb/cb9885a4c5ec80c1/tb-cb9885a4c5ec80c1-0-2-1.png"
+      ],
+      "note": "사각뿔대의 연결 구조와 가려진 모서리가 확인된다. 밑면의 변 수를 바꾸어 면·꼭짓점·모서리 개수를 계산할 수 있다."
+    },
+    {
+      "id": "4fd17d90-b3dc-4eb1-baa0-4b6cd909415b",
+      "problem_code": "J10701-A66-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e7f86d8bbd5c1a45/tb-e7f86d8bbd5c1a45-0-3-1.png"
+      ],
+      "note": "입체 종류·정의·일반 공식 또는 전개도의 개념을 고르는 문항이므로 보수적으로 유지한다."
+    },
+    {
+      "id": "a3fc822b-8464-464a-9faa-d480d9adf1e2",
+      "problem_code": "J10701-A65-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/0c6c96f3809392fe/tb-0c6c96f3809392fe-0-2-1.png"
+      ],
+      "note": "입체 종류·정의·일반 공식 또는 전개도의 개념을 고르는 문항이므로 보수적으로 유지한다."
+    },
+    {
+      "id": "df14012e-1ba4-4153-9280-118d966e72f3",
+      "problem_code": "J10701-A67-001",
+      "cohort": "visual-m1-44d5f707",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/650a4f27ef8c56b4/tb-650a4f27ef8c56b4-0-1-1.png"
+      ],
+      "note": "입체 종류·정의·일반 공식 또는 전개도의 개념을 고르는 문항이므로 보수적으로 유지한다."
+    },
+    {
+      "id": "ee613131-2777-4886-b7ad-3bf4491d379a",
+      "problem_code": "J10801-A86-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "B",
+      "family": "v-m1-stat-table-summary",
+      "viewed_urls": [
+        "/figures/tb/6cf05443b4747ef8/tb-6cf05443b4747ef8-0-5-1.png"
+      ],
+      "note": "표 또는 수 목록의 모든 값이 읽힌다. 평균·중앙값·최빈값을 계산하고 필요하면 크기나 평균 아래의 항목을 비교한다."
+    },
+    {
+      "id": "dc1cffed-8134-401e-9c30-31348c025ffd",
+      "problem_code": "J10801-A89-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "B",
+      "family": "v-m1-stat-table-summary",
+      "viewed_urls": [
+        "/figures/tb/57f4eaa71e5ff9e4/tb-57f4eaa71e5ff9e4-0-1-1.png"
+      ],
+      "note": "표 또는 수 목록의 모든 값이 읽힌다. 평균·중앙값·최빈값을 계산하고 필요하면 크기나 평균 아래의 항목을 비교한다."
+    },
+    {
+      "id": "4e191c4c-2c52-4d8a-baaf-cdc97b6fc5c6",
+      "problem_code": "J10801-A81-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "B",
+      "family": "v-m1-stat-table-summary",
+      "viewed_urls": [
+        "/figures/tb/dcf9cd01530781a9/tb-dcf9cd01530781a9-0-1-1.png"
+      ],
+      "note": "표 또는 수 목록의 모든 값이 읽힌다. 평균·중앙값·최빈값을 계산하고 필요하면 크기나 평균 아래의 항목을 비교한다."
+    },
+    {
+      "id": "6c34cd0e-3caa-4acf-a0e1-f52ade4474af",
+      "problem_code": "J10801-A77-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-2-1.png",
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-2-2.png"
+      ],
+      "note": "자료와 보기 모두 확인했다. 적절한 대푯값의 선택이 포함된 개념 판별로 유지한다."
+    },
+    {
+      "id": "f2c9ffd0-577e-464c-aba9-a4e99f59c65a",
+      "problem_code": "J10801-B03-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "B",
+      "family": "v-m1-stat-table-summary",
+      "viewed_urls": [
+        "/figures/tb/489a91013cdd3054/tb-489a91013cdd3054-0-3-1.png"
+      ],
+      "note": "표 또는 수 목록의 모든 값이 읽힌다. 평균·중앙값·최빈값을 계산하고 필요하면 크기나 평균 아래의 항목을 비교한다."
+    },
+    {
+      "id": "aa7ba647-ef71-423e-84da-04d0e1e25dc4",
+      "problem_code": "J10801-B02-001",
+      "cohort": "visual-m1-8552dc93",
+      "category": "B",
+      "family": "v-m1-stat-table-summary",
+      "viewed_urls": [
+        "/figures/tb/9267918c923b12d1/tb-9267918c923b12d1-0-2-1.png"
+      ],
+      "note": "표 또는 수 목록의 모든 값이 읽힌다. 평균·중앙값·최빈값을 계산하고 필요하면 크기나 평균 아래의 항목을 비교한다."
+    },
+    {
+      "id": "495418bf-37e3-4dd8-b082-82e37a36cada",
+      "problem_code": "J10805-A27-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "B",
+      "family": "v-m1-frequency-polygon-aggregate",
+      "viewed_urls": [
+        "/figures/tb/33ba64966414c9d5/tb-33ba64966414c9d5-0-2-1.png"
+      ],
+      "note": "계급 경계·도수 눈금이 읽힌다. 구간 합계·비율·최대최소 및 계급 관련 수치를 정수 자료에서 계산할 수 있다."
+    },
+    {
+      "id": "f71b5b78-b9ce-4279-b6ce-e0f1e6c5e66f",
+      "problem_code": "J10805-A20-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "B",
+      "family": "v-m1-frequency-polygon-aggregate",
+      "viewed_urls": [
+        "/figures/tb/6cf05443b4747ef8/tb-6cf05443b4747ef8-0-16-1.png"
+      ],
+      "note": "계급 경계·도수 눈금이 읽힌다. 구간 합계·비율·최대최소 및 계급 관련 수치를 정수 자료에서 계산할 수 있다."
+    },
+    {
+      "id": "67ad2a50-760c-4144-a889-d427591c67f2",
+      "problem_code": "J10805-A15-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "B",
+      "family": "v-m1-frequency-polygon-aggregate",
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-0-10-1.png"
+      ],
+      "note": "계급 경계·도수 눈금이 읽힌다. 구간 합계·비율·최대최소 및 계급 관련 수치를 정수 자료에서 계산할 수 있다."
+    },
+    {
+      "id": "63ac33d6-1b5c-4427-870a-f1731d1f7424",
+      "problem_code": "J10805-A25-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "B",
+      "family": "v-m1-frequency-polygon-aggregate",
+      "viewed_urls": [
+        "/figures/tb/21a84ae314b2a55c/tb-21a84ae314b2a55c-0-3-1.png"
+      ],
+      "note": "계급 경계·도수 눈금이 읽힌다. 구간 합계·비율·최대최소 및 계급 관련 수치를 정수 자료에서 계산할 수 있다."
+    },
+    {
+      "id": "ade22dcc-e4ff-4ca3-8d7e-bd6e70ad639e",
+      "problem_code": "J10805-A14-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "B",
+      "family": "v-m1-frequency-polygon-rank",
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-0-9-1.png"
+      ],
+      "note": "계급 경계와 도수가 확인된다. 누적도수로 지정 순위가 속하는 계급을 찾아 그 도수를 읽는다."
+    },
+    {
+      "id": "26f72674-2f07-412c-b81f-90e347509af0",
+      "problem_code": "J10805-A33-001",
+      "cohort": "visual-m1-ba65f2e6",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/5328764eecc19b24/tb-5328764eecc19b24-0-9-1.png"
+      ],
+      "note": "도수다각형과 보기가 모두 읽힌다. 개별 관측값을 알 수 있는지 판단하는 개념 진술이 섞여 있어 유지한다."
+    },
+    {
+      "id": "60380dab-9c36-46bf-9954-a40e35afaeda",
+      "problem_code": "J10803-A31-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-aggregate",
+      "viewed_urls": [
+        "/figures/tb/0d95e702e8c09f5a/tb-0d95e702e8c09f5a-0-2-1.png"
+      ],
+      "note": "계급과 도수의 모든 수치가 읽힌다. 계급 크기·최대최소·총합·구간 합을 계산해 진술을 판정한다."
+    },
+    {
+      "id": "f8e60232-3adf-4de1-b43a-2885a0704823",
+      "problem_code": "J10803-A16-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-missing",
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-7-1.png"
+      ],
+      "note": "총도수와 미지 도수의 비가 확인된다. 잔여 총합을 비례배분하고 지정 구간의 비율을 구한다."
+    },
+    {
+      "id": "6a63c080-8ee8-4102-8510-2f078ff75b47",
+      "problem_code": "J10803-A21-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-missing",
+      "viewed_urls": [
+        "/figures/tb/1aa3a89ba24f3f93/tb-1aa3a89ba24f3f93-0-2-1.png"
+      ],
+      "note": "총도수와 빈칸 하나가 확인된다. 차감으로 빈 도수를 복원한 후 순위와 구간 합을 계산한다."
+    },
+    {
+      "id": "93f58067-a04f-4f33-8eb2-0b4416c8aaae",
+      "problem_code": "J10803-A15-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-missing",
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-5-1.png"
+      ],
+      "note": "두 빈 도수의 차와 총합이 주어져 선형조건으로 복원한 뒤 비율을 계산한다."
+    },
+    {
+      "id": "dcaacc24-0b36-4e7b-827b-ded5263468ea",
+      "problem_code": "J10803-A17-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-rebin",
+      "viewed_urls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-17-1.png",
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-1-17-2.png"
+      ],
+      "note": "동일 자료의 서로 다른 계급 경계와 총합이 확인된다. 공통 구간의 합·차로 빈 도수를 복원한다."
+    },
+    {
+      "id": "d66603c6-578f-40eb-9716-47fb4e0e17bd",
+      "problem_code": "J10803-A29-001",
+      "cohort": "visual-m1-e99d2dff",
+      "category": "B",
+      "family": "v-m1-frequency-table-aggregate",
+      "viewed_urls": [
+        "/figures/tb/f2eb3519f295333f/tb-f2eb3519f295333f-0-2-1.png"
+      ],
+      "note": "빈 도수는 총합으로 복원 가능하다. 계급·최빈 구간·누적도수 진술을 수치와 경계 포함 여부로 판정한다."
+    },
+    {
+      "id": "a786f257-f0a2-419b-aef4-91370fb28d65",
+      "problem_code": "J10503-A14-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/3df53ffb2b24c0cd/tb-3df53ffb2b24c0cd-0-5-1.png"
+      ],
+      "note": "수선·꼬인 위치·전개도 접기 등 위치 관계의 개념 판별로 유지한다."
+    },
+    {
+      "id": "7d750466-86d3-43f4-80a3-870a15f34d0e",
+      "problem_code": "J10503-A43-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/643a12bde518d54a/tb-643a12bde518d54a-0-8-1.png"
+      ],
+      "note": "수선·꼬인 위치·전개도 접기 등 위치 관계의 개념 판별로 유지한다."
+    },
+    {
+      "id": "5c9d50d4-efcc-40eb-9473-a9c25764ec77",
+      "problem_code": "J10503-A45-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/643a12bde518d54a/tb-643a12bde518d54a-0-10-1.png"
+      ],
+      "note": "수선·꼬인 위치·전개도 접기 등 위치 관계의 개념 판별로 유지한다."
+    },
+    {
+      "id": "632dc1f4-5701-4bb9-bc1e-cf2d4126078a",
+      "problem_code": "J10503-A23-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/5af4286c87092b86/tb-5af4286c87092b86-0-2-1.png"
+      ],
+      "note": "수선·꼬인 위치·전개도 접기 등 위치 관계의 개념 판별로 유지한다."
+    },
+    {
+      "id": "67d981ff-798d-4fc4-b3a9-5a1ceb319a2d",
+      "problem_code": "J10503-A39-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e36f25dc18df8a7e/tb-e36f25dc18df8a7e-0-4-1.png"
+      ],
+      "note": "수선·꼬인 위치·전개도 접기 등 위치 관계의 개념 판별로 유지한다."
+    },
+    {
+      "id": "c6bfbe27-a066-4e9a-b147-d14906e30d12",
+      "problem_code": "J10503-A36-001",
+      "cohort": "visual-m1-5e5a30bb",
+      "category": "B",
+      "family": "v-m1-regular-lines-count",
+      "viewed_urls": [
+        "/figures/tb/1afb3148a473b295/tb-1afb3148a473b295-0-3-1.png"
+      ],
+      "note": "정다각형의 변을 연장한 직선들이 식별된다. 기준 변 자신과 평행한 변을 제외해 교차 직선 수를 센다."
+    },
+    {
+      "id": "5c2a265b-b1e6-458c-9e4b-aee723f85adf",
+      "problem_code": "J10605-A88-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-sector-lens-area",
+      "viewed_urls": [
+        "/figures/tb/12b420710bfe00bd/tb-12b420710bfe00bd-0-5-1.png"
+      ],
+      "note": "정사각형 안 두 사분원으로 생긴 겹침이 확인된다. 두 부채꼴 넓이에서 정사각형 넓이를 뺀다."
+    },
+    {
+      "id": "a29be3f4-eab5-4904-ba87-bfcec1d65ea2",
+      "problem_code": "J10605-A43-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-equal-circles-rope",
+      "viewed_urls": [
+        "/figures/tb/81d10e320bad9a95/tb-81d10e320bad9a95-1-20-1.png"
+      ],
+      "note": "같은 반지름의 세 원과 바깥 접선 배치가 확인된다. 직선 구간과 한 바퀴 원호의 길이를 더할 수 있다."
+    },
+    {
+      "id": "1a832e34-8bc6-4100-81ca-3e24d1d57891",
+      "problem_code": "J10605-A59-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-semicircle-rotation-area",
+      "viewed_urls": [
+        "/figures/tb/dea8846d9a4d214b/tb-dea8846d9a4d214b-0-13-1.png"
+      ],
+      "note": "회전 중심·각·반지름 및 색칠 범위가 확인된다. 반원 넓이의 상쇄로 지름을 반지름으로 하는 부채꼴 넓이를 계산한다."
+    },
+    {
+      "id": "cffb3f9d-d47e-4cf1-80c8-5e1a15a33547",
+      "problem_code": "J10605-A68-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-square-arc-perimeter",
+      "viewed_urls": [
+        "/figures/tb/433f1203eb30d8ea/tb-433f1203eb30d8ea-0-13-1.png"
+      ],
+      "note": "정사각형 안 원호와 색칠 경계가 식별된다. 외부 선분 및 원호 길이를 각각 한 번씩 합한다."
+    },
+    {
+      "id": "5c252e0c-3a9b-4c52-ad81-02497eae30c9",
+      "problem_code": "J10605-A69-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-square-arc-perimeter",
+      "viewed_urls": [
+        "/figures/tb/433f1203eb30d8ea/tb-433f1203eb30d8ea-0-14-1.png"
+      ],
+      "note": "사분원과 반원의 반지름·색칠 경계가 식별된다. 직선 경계와 각 원호의 길이를 합한다."
+    },
+    {
+      "id": "0456d27d-b9cc-4130-bf8f-1ce3b4af35d4",
+      "problem_code": "J10605-A75-001",
+      "cohort": "visual-m1-338d46bd",
+      "category": "B",
+      "family": "v-m1-rope-rectangle-area",
+      "viewed_urls": [
+        "/figures/tb/433f1203eb30d8ea/tb-433f1203eb30d8ea-0-22-1.png"
+      ],
+      "note": "직사각형 장애물과 고정점·끈 길이가 확인된다. 모서리를 돌아 남는 끈 길이로 부채꼴 영역들을 합한다."
+    },
+    {
+      "id": "989dcb71-a0f1-4cc6-857b-c0d0fb445ce1",
+      "problem_code": "J10705-A64-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-folded-square-tetra-volume",
+      "viewed_urls": [
+        "/figures/tb/52a01a1ba486ad7a/tb-52a01a1ba486ad7a-0-4-1.png"
+      ],
+      "note": "정사각형의 두 변 중점을 잇는 접기 도형을 직접 확인했다. 접은 뒤 서로 수직인 세 모서리를 갖는 사면체로 환원하여 부피를 계산하는 고정 접기 유형이다."
+    },
+    {
+      "id": "8ef89773-9b96-4eb1-8e15-28fbe22a3198",
+      "problem_code": "J10705-A53-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-cone-chord-cut-volume",
+      "viewed_urls": [
+        "/figures/tb/e4b7c08adf9b225e/tb-e4b7c08adf9b225e-0-15-1.png"
+      ],
+      "note": "원뿔의 꼭짓점과 밑면의 현을 지나는 절단면, 직각 중심각, 반지름과 높이를 확인했다. 남은 밑면의 부채꼴과 삼각형 넓이에 높이의 삼분의 일을 곱한다."
+    },
+    {
+      "id": "e3e474f7-20cd-479b-9e53-2636167c7ba1",
+      "problem_code": "J10705-A50-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-double-cone-volume",
+      "viewed_urls": [
+        "/figures/tb/2840a2730fe9ab00/tb-2840a2730fe9ab00-0-10-1.png"
+      ],
+      "note": "밑면을 공유하는 두 원뿔의 반지름과 각각의 높이가 모두 표시되어 있어 두 원뿔의 부피를 합산할 수 있다."
+    },
+    {
+      "id": "c483dc20-abbd-4490-87af-ff3250542627",
+      "problem_code": "J10705-A45-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-cone-frustum-surface",
+      "viewed_urls": [
+        "/figures/tb/b1f14cb8045407fc/tb-b1f14cb8045407fc-0-49-1.png"
+      ],
+      "note": "원뿔대의 두 밑면 반지름과 옆면 모선 길이를 식별했다. 두 원의 넓이와 펼친 옆면의 넓이를 합산하는 유형이다."
+    },
+    {
+      "id": "c58c1aef-64cd-46ce-807b-d7739b5f6d72",
+      "problem_code": "J10705-A92-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-cone-frustum-volume",
+      "viewed_urls": [
+        "/figures/tb/aab4106ac0c91f94/tb-aab4106ac0c91f94-0-4-1.png"
+      ],
+      "note": "원뿔대의 두 밑면 반지름과 높이 관계를 확인했다. 완전한 원뿔에서 작은 원뿔을 빼거나 원뿔대 부피식을 사용한다."
+    },
+    {
+      "id": "c94c82a7-efe5-450c-b83b-43f30ee9f755",
+      "problem_code": "J10705-A95-001",
+      "cohort": "visual-m1-cf1d3072",
+      "category": "B",
+      "family": "v-m1-square-pyramid-surface",
+      "viewed_urls": [
+        "/figures/tb/dcbf0fc164a2b303/tb-dcbf0fc164a2b303-0-1-1.jpg"
+      ],
+      "note": "정사각뿔의 밑변과 옆면 삼각형의 높이가 표시된 두 그림을 확인했다. 밑면과 네 합동 삼각형의 넓이를 합산한다."
+    },
+    {
+      "id": "2362156c-da17-40db-9218-6d02639b046f",
+      "problem_code": "J10602-A36-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/d9824538ae6f52f8/tb-d9824538ae6f52f8-1-2-1.png",
+        "/figures/tb/d9824538ae6f52f8/tb-d9824538ae6f52f8-1-2-2.png"
+      ],
+      "note": "두 삼각형의 내각 및 외각 표시를 모두 확인했다. 내각의 합과 보각 관계로 미지각을 결정한다."
+    },
+    {
+      "id": "a5fcd481-0952-426a-92d8-a18b9e5e1152",
+      "problem_code": "J10602-A71-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/601e1de8c0a63952/tb-601e1de8c0a63952-0-5-1.png"
+      ],
+      "note": "교차한 두 삼각형의 주어진 세 각과 두 미지각을 확인했다. 맞꼭지각과 삼각형 내각의 합을 연립한다."
+    },
+    {
+      "id": "4fcd60af-2b66-4a90-b08b-1664f07ba7bd",
+      "problem_code": "J10602-A56-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/173eb876caed43b5/tb-173eb876caed43b5-0-88-1.png"
+      ],
+      "note": "꼭짓점의 각 이등분 표시와 밑변 외각을 확인했다. 보각 및 이등분 조건을 적용하여 미지각을 계산한다."
+    },
+    {
+      "id": "c3b58af9-804c-430c-a376-83225f153c5b",
+      "problem_code": "J10602-A31-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/b6283e3ce6a78fcd/tb-b6283e3ce6a78fcd-0-5-1.png"
+      ],
+      "note": "서로 같은 세 선분과 일직선상 점의 순서를 확인했다. 두 이등변삼각형의 밑각과 외각 관계로 목표각을 결정한다."
+    },
+    {
+      "id": "07537bb3-9b5f-46b7-9b4f-032ba5593c14",
+      "problem_code": "J10602-A75-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/0b710b7d7865c80b/tb-0b710b7d7865c80b-0-1-1.png"
+      ],
+      "note": "한 외각과 두 문자식 내각이 완전하게 표시되어 있다. 외각 정리로 일차방정식을 구성한다."
+    },
+    {
+      "id": "4990f8f0-3084-43d5-bca8-577de8532893",
+      "problem_code": "J10602-A62-001",
+      "cohort": "visual-m1-1ac8e233",
+      "category": "B",
+      "family": "v-m1-triangle-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/6870a8ceb8110350/tb-6870a8ceb8110350-0-15-1.png"
+      ],
+      "note": "두 내각 이등분선의 교점과 그 사이의 각을 확인했다. 이등분된 두 각 및 삼각형 내각의 합으로 남은 꼭짓각을 계산한다."
+    },
+    {
+      "id": "bb081567-2ef2-4be2-8e1e-4afd5abf3127",
+      "problem_code": "J10806-A73-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "B",
+      "family": "v-m1-relative-frequency-table",
+      "viewed_urls": [
+        "/figures/tb/812f8eb31a5218f7/tb-812f8eb31a5218f7-0-1-1.png"
+      ],
+      "note": "도수와 상대도수가 함께 표시된 표의 누락값을 확인했다. 한 계급의 비율로 전체 인원을 구한 뒤 빈칸과 수치 진술을 계산할 수 있다."
+    },
+    {
+      "id": "7e4167bb-8cfc-47da-b2f8-c2953e5405ef",
+      "problem_code": "J10806-A40-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "B",
+      "family": "v-m1-relative-frequency-graph",
+      "viewed_urls": [
+        "/figures/tb/812f8eb31a5218f7/tb-812f8eb31a5218f7-0-2-1.png"
+      ],
+      "note": "축 눈금과 모든 점이 읽히며 특정 구간 인원이 주어져 있다. 구간 상대도수의 합으로 전체 인원을 구하고 최대 상대도수 계급의 인원을 계산한다."
+    },
+    {
+      "id": "7a6c0b4e-dab4-4079-ae9e-425cfa084507",
+      "problem_code": "J10806-A31-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "B",
+      "family": "v-m1-relative-frequency-graph",
+      "viewed_urls": [
+        "/figures/tb/dfa6628d7e065d1c/tb-dfa6628d7e065d1c-0-12-1.png"
+      ],
+      "note": "그래프의 상대도수와 기준 구간 인원을 확인했다. 전체 인원과 목표 구간의 상대도수 합을 곱하여 인원을 구한다."
+    },
+    {
+      "id": "66d61621-d3cd-4e66-a1d0-7c15500e38b6",
+      "problem_code": "J10806-A56-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "B",
+      "family": "v-m1-relative-frequency-missing",
+      "viewed_urls": [
+        "/figures/tb/5328764eecc19b24/tb-5328764eecc19b24-0-12-1.png"
+      ],
+      "note": "일부가 가려진 표현은 의도된 조건이며 보이는 상대도수와 본문의 비 조건으로 두 누락 계급을 결정할 수 있다. 필요한 모든 수치가 판독 가능하다."
+    },
+    {
+      "id": "e25b9049-aae6-4bba-9822-03374b13dd8a",
+      "problem_code": "J10806-A29-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "B",
+      "family": "v-m1-relative-frequency-graph",
+      "viewed_urls": [
+        "/figures/tb/a9dbce3eb5b3d4b8/tb-a9dbce3eb5b3d4b8-3-1-1.png"
+      ],
+      "note": "계급 경계와 상대도수 및 전체 인원을 확인했다. 계급 폭, 인원, 누적 순위에 관한 수치 진술을 계산해 판정한다."
+    },
+    {
+      "id": "29544e22-06ee-453e-a543-4294cb07e7bb",
+      "problem_code": "J10806-A50-001",
+      "cohort": "visual-m1-dbfdb5cd",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/200a2eb9d0a9ec12/tb-200a2eb9d0a9ec12-0-5-1.png"
+      ],
+      "note": "두 집단의 분포 그림은 읽히지만 마지막 소문항은 상대적으로 긴 집단이라는 분포 해석을 요구한다. 수치 소문항만 분리하여 전체 행을 승격하지 않고 C를 유지한다."
+    },
+    {
+      "id": "1e21a2e4-3545-4526-af36-b7d221775295",
+      "problem_code": "J10604-A51-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "B",
+      "family": "v-m1-circle-arc-ratio",
+      "viewed_urls": [
+        "/figures/tb/d2d8a2b745fc30f6/tb-d2d8a2b745fc30f6-0-1-1.png"
+      ],
+      "note": "같은 원에서 두 중심각과 한 호의 길이가 주어져 있다. 중심각 비와 호의 길이 비가 같다는 식으로 목표 길이를 계산한다."
+    },
+    {
+      "id": "8e858c1f-23af-4a7f-9367-f9a6386f1588",
+      "problem_code": "J10604-A42-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "B",
+      "family": "v-m1-circle-arc-ratio",
+      "viewed_urls": [
+        "/figures/tb/fcf088cab61f6ad5/tb-fcf088cab61f6ad5-0-6-1.png"
+      ],
+      "note": "지름과 평행한 현, 기준 중심각과 호 길이를 확인했다. 이등변삼각형과 평행선의 각 관계로 목표 중심각을 구한 뒤 호 길이 비를 적용한다."
+    },
+    {
+      "id": "33f19e55-4682-45da-8d8d-36e31bda241d",
+      "problem_code": "J10604-A47-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/4acb81a3176d30ef/tb-4acb81a3176d30ef-0-7-1.png"
+      ],
+      "note": "호·현·삼각형·부채꼴 사이의 일반적 비례 성질을 구별하는 개념 선택 문항이다. 그림을 읽었으나 수치 생성 후보로 승격하지 않았다."
+    },
+    {
+      "id": "7353f998-e705-4a55-bffa-ed4fed1ee7e3",
+      "problem_code": "J10604-A32-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "B",
+      "family": "v-m1-circle-arc-ratio",
+      "viewed_urls": [
+        "/figures/tb/dea8846d9a4d214b/tb-dea8846d9a4d214b-0-9-1.png"
+      ],
+      "note": "지름과 평행 표시가 있는 현의 배치를 확인했다. 같은 반지름과 평행 관계로 목표 중심각을 계산하고 기준 호와 비례시킨다."
+    },
+    {
+      "id": "bfecbb65-a6de-439a-947f-ef8b3f8b8f62",
+      "problem_code": "J10604-A48-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/ac040b36db05de18/tb-ac040b36db05de18-0-7-1.png"
+      ],
+      "note": "그림의 호·현 및 삼각형의 비례 성질을 구별하는 일반 개념 판별이다. 숫자 조건의 계산형으로 한정할 수 없어 C를 유지한다."
+    },
+    {
+      "id": "e2dc98de-d611-4180-82ee-cd0336e0dc54",
+      "problem_code": "J10604-A46-001",
+      "cohort": "visual-m1-04cad345",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/26fe7e1715b52283/tb-26fe7e1715b52283-0-1-1.png"
+      ],
+      "note": "중심각·호·현의 명칭을 기호로 쓰는 개념 문항이다. 수치 연산 유형으로 분류하지 않는다."
+    },
+    {
+      "id": "29597281-3fac-4ebb-8ce4-4ff152d852d8",
+      "problem_code": "J10506-A76-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/ddb9b742e91f0343/tb-ddb9b742e91f0343-0-4-1.png"
+      ],
+      "note": "평행선 작도의 보조 원호와 단계 표시를 확인했다. 작도 순서 및 성질의 개념 판별이므로 C를 유지한다."
+    },
+    {
+      "id": "c122e19b-3510-4292-8532-495c31ad26d7",
+      "problem_code": "J10506-A66-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/6dc1f94b99629fe0/tb-6dc1f94b99629fe0-0-4-1.png"
+      ],
+      "note": "변의 길이와 각 표시가 읽히지만 대각·대변의 대응 개념 확인이 중심이다. 수치가 있다는 이유만으로 계산형에 포함하지 않았다."
+    },
+    {
+      "id": "b14319f7-c123-4eef-91a2-d32566797d55",
+      "problem_code": "J10506-A52-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/7c132cc47c59ce1e/tb-7c132cc47c59ce1e-0-16-1.png"
+      ],
+      "note": "한 변과 두 각의 주어진 그림을 확인했다. 작도 순서의 타당성을 고르는 개념 문항이다."
+    },
+    {
+      "id": "84565a20-391e-4f2a-990f-272657a37152",
+      "problem_code": "J10506-A57-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/3df53ffb2b24c0cd/tb-3df53ffb2b24c0cd-0-8-1.png",
+        "/figures/tb/3df53ffb2b24c0cd/tb-3df53ffb2b24c0cd-0-8-2.png"
+      ],
+      "note": "주어진 각과 옮겨 그린 각의 보조 원호 그림 두 개를 모두 확인했다. 작도 단계 및 대응 성질의 일반 판별이므로 C이다."
+    },
+    {
+      "id": "7c7f60d8-e23a-4f73-be25-628df457c346",
+      "problem_code": "J10506-A60-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/2f2fcee56b7ebb65/tb-2f2fcee56b7ebb65-1-5-1.png"
+      ],
+      "note": "평행선 작도 과정의 보조 원호와 기호가 읽힌다. 작도 순서와 동위각·엇각 성질의 설명을 평가하는 문항이다."
+    },
+    {
+      "id": "a68c73bc-7cb0-4fa4-a50c-1e0931f050a7",
+      "problem_code": "J10506-A55-001",
+      "cohort": "visual-m1-3940dd4b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e620970eeb37bd4a/tb-e620970eeb37bd4a-0-12-1.png"
+      ],
+      "note": "주어진 선분과 각 그림을 확인했다. 삼각형이 유일하게 정해지는 조건의 일반 판별이므로 C를 유지한다."
+    },
+    {
+      "id": "1182dbbc-59c6-4fe2-be06-f8845c39814c",
+      "problem_code": "J10501-A36-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "B",
+      "family": "v-m1-circle-point-lines",
+      "viewed_urls": [
+        "/figures/tb/fe05b42e33112854/tb-fe05b42e33112854-1-3-1.png"
+      ],
+      "note": "원 위의 서로 다른 점들이 확인되어 세 점이 한 직선에 놓이지 않는다. 점 두 개의 조합 수로 서로 다른 직선 수를 계산할 수 있다."
+    },
+    {
+      "id": "3c62e0a6-79d8-4e03-97fd-29a67a88d643",
+      "problem_code": "J10501-A72-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "B",
+      "family": "v-m1-pyramid-incidence-count",
+      "viewed_urls": [
+        "/figures/tb/9bf7c341633f5341/tb-9bf7c341633f5341-0-1-1.png"
+      ],
+      "note": "밑면이 사각형인 각뿔의 보이는 모서리와 숨은 모서리를 확인했다. 각뿔의 밑면 변 수에 따른 꼭짓점과 모서리 수를 세는 유형이다."
+    },
+    {
+      "id": "03beb9c7-4136-4bc1-ad0d-2a41ba96dea4",
+      "problem_code": "J10501-A73-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "B",
+      "family": "v-m1-segment-midpoints",
+      "viewed_urls": [
+        "/figures/tb/9bf7c341633f5341/tb-9bf7c341633f5341-0-2-1.png"
+      ],
+      "note": "일직선상의 점 순서와 중점 관계가 완전하게 주어져 있다. 중점의 좌표를 반복 계산하고 두 점 사이 거리를 구한다."
+    },
+    {
+      "id": "74e15e9a-7005-4921-9914-dd1d1783d5d5",
+      "problem_code": "J10501-A85-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/53ff18ab26d6a460/tb-53ff18ab26d6a460-0-2-1.png"
+      ],
+      "note": "동일한 선분·반직선·직선의 표기를 구별하는 개념 문항이다. 점 순서 그림은 확인했지만 수치 생성형에 포함하지 않는다."
+    },
+    {
+      "id": "8ac1e78a-5f58-4b1c-8243-47f86d6d2d78",
+      "problem_code": "J10501-A67-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/3ea8c57942b946e6/tb-3ea8c57942b946e6-0-3-1.png",
+        "/figures/tb/3ea8c57942b946e6/tb-3ea8c57942b946e6-0-3-2.png",
+        "/figures/tb/3ea8c57942b946e6/tb-3ea8c57942b946e6-0-3-3.png",
+        "/figures/tb/3ea8c57942b946e6/tb-3ea8c57942b946e6-0-3-4.png"
+      ],
+      "note": "끝점과 연장 여부가 다른 네 그림을 모두 확인했다. 직선·반직선·선분의 기호 명명 문제이므로 C를 유지한다."
+    },
+    {
+      "id": "ea9e1faa-4256-49bd-ba67-698154b15aa8",
+      "problem_code": "J10501-A46-001",
+      "cohort": "visual-m1-f70a4f76",
+      "category": "B",
+      "family": "v-m1-segment-midpoints",
+      "viewed_urls": [
+        "/figures/tb/3df53ffb2b24c0cd/tb-3df53ffb2b24c0cd-0-1-1.png"
+      ],
+      "note": "인접한 두 선분과 각각의 중점 위치 및 길이가 확인된다. 선분의 절반 길이를 합하여 두 중점 사이 거리를 구한다."
+    },
+    {
+      "id": "32ffcd38-e605-4b5c-a3bd-8d614c1ffdb3",
+      "problem_code": "J10702-A39-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "B",
+      "family": "v-m1-regular-solid-counts",
+      "viewed_urls": [
+        "/figures/tb/cb9885a4c5ec80c1/tb-cb9885a4c5ec80c1-0-4-1.png"
+      ],
+      "note": "정삼각형 네 개의 전개도와 접힘선을 확인했다. 정다면체의 면·모서리·꼭짓점 연결 수를 고정 데이터 또는 면의 변 수로 계산하는 후보이다."
+    },
+    {
+      "id": "0ec5e184-b091-4f4f-ac92-8d83246e9148",
+      "problem_code": "J10702-A40-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/086c51fc121645de/tb-086c51fc121645de-0-3-1.png"
+      ],
+      "note": "정팔면체 전개도에서 접었을 때 겹치는 모서리를 식별하는 공간 대응 개념 문항이다. 이번 수치 생성 후보에서는 제외한다."
+    },
+    {
+      "id": "c85b80b1-c3fa-4c9d-82f7-372e0adeb0ee",
+      "problem_code": "J10702-A41-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "B",
+      "family": "v-m1-octa-net-opposite-sum",
+      "viewed_urls": [
+        "/figures/tb/f0bdb11c453e4c78/tb-f0bdb11c453e4c78-0-5-1.png"
+      ],
+      "note": "정팔면체 전개도에 적힌 수와 문자 위치를 확인했다. 이 고정 전개도의 마주 보는 면 대응을 이용해 공통 합과 누락 수를 결정한다."
+    },
+    {
+      "id": "89fa84ea-65c1-4146-9738-c65b225219f2",
+      "problem_code": "J10702-A35-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "B",
+      "family": "v-m1-cube-facecenter-octa-volume",
+      "viewed_urls": [
+        "/figures/tb/abf4d09cbc320ae2/tb-abf4d09cbc320ae2-1-4-1.png"
+      ],
+      "note": "정육면체 각 면 중심을 꼭짓점으로 하는 정팔면체를 확인했다. 중심 단면을 밑면으로 하는 두 각뿔로 나누어 부피를 계산한다."
+    },
+    {
+      "id": "f37440ef-bdc0-4cab-8b78-b82b6b89136e",
+      "problem_code": "J10702-A37-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e4b7c08adf9b225e/tb-e4b7c08adf9b225e-0-5-1.png"
+      ],
+      "note": "정육면체 전개도의 꼭짓점 합치기를 묻는 공간 대응 개념 문항이다. 모든 점 표시는 읽히지만 수치 계산형으로 승격하지 않는다."
+    },
+    {
+      "id": "aa3c3349-999d-401a-a5d9-952211a3d553",
+      "problem_code": "J10702-A36-001",
+      "cohort": "visual-m1-d5660fd3",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/ff26009803e89de4/tb-ff26009803e89de4-2-3-1.png"
+      ],
+      "note": "전개도로 정다면체의 명칭을 먼저 판별하는 복합 개념 문항이다. 수치 하위 문항만으로 전체 행을 B로 올리지 않는다."
+    },
+    {
+      "id": "c70f8914-6e09-44e5-b864-099381d9bd44",
+      "problem_code": "J10802-A17-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/7e644500fc9f3326/tb-7e644500fc9f3326-0-4-1.png"
+      ],
+      "note": "모든 줄기와 잎 및 단위 해석을 확인했다. 복원한 정렬 자료의 개수·최솟값·순위·구간 개수를 계산하여 수치 진술을 판정한다."
+    },
+    {
+      "id": "cce8914d-3b71-45c9-957d-936ef9a4b4f6",
+      "problem_code": "J10802-A30-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/6ae7c4a740a86955/tb-6ae7c4a740a86955-0-2-1.png"
+      ],
+      "note": "줄기와 잎의 각 숫자가 읽히며 기준값 이상의 자료 개수를 직접 셀 수 있다."
+    },
+    {
+      "id": "fc9ab4ec-4de9-45c3-a3aa-2ae01ad626af",
+      "problem_code": "J10802-A24-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/b0e694f5743033ac/tb-b0e694f5743033ac-1-2-1.png"
+      ],
+      "note": "단위 예시와 모든 잎을 확인했다. 전체 잎 수와 기준값을 초과하는 값의 개수를 계산한다."
+    },
+    {
+      "id": "342022e6-a3f0-4350-8af4-3a72309ef3da",
+      "problem_code": "J10802-A41-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/a06c26aafea333a3/tb-a06c26aafea333a3-0-2-1.png"
+      ],
+      "note": "줄기와 잎의 전체 자료가 판독된다. 기준 미만의 개수와 최댓값을 복원 자료에서 구한다."
+    },
+    {
+      "id": "397896e9-d898-43c2-96f7-3a64b6aa6f23",
+      "problem_code": "J10802-A27-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/6cf05443b4747ef8/tb-6cf05443b4747ef8-0-7-1.png"
+      ],
+      "note": "양쪽 집단의 잎과 공유 줄기를 모두 확인했다. 집단별 인원·최댓값·범위 인원을 계산하여 진술을 판정한다."
+    },
+    {
+      "id": "0fbebb33-8600-4a9c-8786-011e6949ed03",
+      "problem_code": "J10802-A39-001",
+      "cohort": "visual-m1-b78a0891",
+      "category": "B",
+      "family": "v-m1-stemleaf-aggregate",
+      "viewed_urls": [
+        "/figures/tb/b791957a17fa1fb2/tb-b791957a17fa1fb2-0-2-1.png"
+      ],
+      "note": "세 자리 수를 표현하는 줄기와 잎의 단위가 확인된다. 복원한 값 중 기준 이상에 해당하는 개수를 센다."
+    },
+    {
+      "id": "50737d2b-c8ba-448e-bed9-d962a1d524de",
+      "problem_code": "J10505-B24-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/e61cbf560671ddbd/tb-e61cbf560671ddbd-0-5-1.png"
+      ],
+      "note": "두 평행선 사이 꺾인 선분과 주어진 각이 확인된다. 평행 보조선의 동위각·엇각으로 미지각을 합산한다."
+    },
+    {
+      "id": "5c622174-80a8-4c80-bbc9-02ac32c09f42",
+      "problem_code": "J10505-A40-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/061aa49a8897b7a3/tb-061aa49a8897b7a3-0-20-1.png"
+      ],
+      "note": "평행선과 하나의 횡단선 및 동위 위치의 각을 확인했다. 대응 각의 같음을 이용해 미지각을 결정한다."
+    },
+    {
+      "id": "5acb2323-1537-4dc9-8d2e-25aff8a20a74",
+      "problem_code": "J10505-A98-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/3df53ffb2b24c0cd/tb-3df53ffb2b24c0cd-0-7-1.png"
+      ],
+      "note": "평행선 사이 지그재그 선분의 꺾임과 세 주어진 각을 확인했다. 수평 기준 방향각의 합차로 미지각을 계산한다."
+    },
+    {
+      "id": "89564120-28cf-4fbe-84ec-50cf40cde4f8",
+      "problem_code": "J10505-A51-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-angle-equation",
+      "viewed_urls": [
+        "/figures/tb/061aa49a8897b7a3/tb-061aa49a8897b7a3-0-33-1.png"
+      ],
+      "note": "두 횡단선이 평행선 위에서 만나는 배치와 세 각의 분할을 확인했다. 동위각과 평각의 합을 이용한다."
+    },
+    {
+      "id": "23a55122-da40-46b3-93c0-bf9ea510f263",
+      "problem_code": "J10505-A87-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-fold-angle",
+      "viewed_urls": [
+        "/figures/tb/061aa49a8897b7a3/tb-061aa49a8897b7a3-0-71-1.png"
+      ],
+      "note": "직사각형 모서리가 접힌 전후 위치와 주어진 각을 확인했다. 반사에 따른 각 보존과 평행한 변의 관계로 목표각을 계산한다."
+    },
+    {
+      "id": "55f19ac9-82b0-4fe4-8732-32529f7608a9",
+      "problem_code": "J10505-B44-001",
+      "cohort": "visual-m1-ffee56b4",
+      "category": "B",
+      "family": "v-m1-parallel-fold-angle",
+      "viewed_urls": [
+        "/figures/tb/272d1af2a1aea339/tb-272d1af2a1aea339-0-4-1.png"
+      ],
+      "note": "직사각형 띠의 접힘선과 접힌 변의 대응 및 주어진 각을 확인했다. 반사되는 두 각의 같음과 평각 조건으로 미지각을 계산한다."
+    },
+    {
+      "id": "031f6684-1efa-4e07-96bf-6b967db50f1f",
+      "problem_code": "J10507-A23-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/0398b650ab183147/tb-0398b650ab183147-0-4-1.png"
+      ],
+      "note": "두 삼각형의 같은 변과 각 표시를 확인했다. 합동을 보장하는 추가 조건의 타당성이라는 개념 문항이므로 C이다."
+    },
+    {
+      "id": "55e44bd1-9c51-436d-88cc-394b7436494d",
+      "problem_code": "J10507-A31-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-1.png",
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-2.png",
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-3.png",
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-4.png",
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-5.png",
+        "/figures/tb/ba42272e46c7974b/tb-ba42272e46c7974b-0-11-6.png"
+      ],
+      "note": "기준 그림과 다섯 선택지의 여섯 파일을 모두 확인했다. 각·변 배치에 따른 합동 조건 판별이므로 일반 개념 후보로 남긴다."
+    },
+    {
+      "id": "44f97bc7-a732-4579-ba0e-f8f91e3472d9",
+      "problem_code": "J10507-A62-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/b895b59a0f26d886/tb-b895b59a0f26d886-0-1-1.png"
+      ],
+      "note": "두 합동 사각형의 변 길이와 각 표시는 읽힌다. 대응 꼭짓점을 식별하여 주어진 각을 옮기는 개념 확인이 중심이므로 C를 유지한다."
+    },
+    {
+      "id": "45c688dd-8618-446e-972a-d846f64e40ac",
+      "problem_code": "J10507-A22-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/0398b650ab183147/tb-0398b650ab183147-0-2-1.png",
+        "/figures/tb/0398b650ab183147/tb-0398b650ab183147-0-2-2.png"
+      ],
+      "note": "기준 삼각형과 다섯 선택지가 함께 있는 그림을 모두 확인했다. 충분한 합동 조건 여부를 판단하는 문항으로 분류한다."
+    },
+    {
+      "id": "0f74a4ec-3341-4526-9310-04d36749051e",
+      "problem_code": "J10507-A68-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/6ada26f475bc521e/tb-6ada26f475bc521e-0-17-1.png"
+      ],
+      "note": "두 삼각형의 주어진 각과 문자 대응을 확인했다. 합동 조건의 필요·충분성을 고르는 개념 문항이다."
+    },
+    {
+      "id": "c8440fdf-b178-4702-a6f6-3cf17f586850",
+      "problem_code": "J10507-A42-001",
+      "cohort": "visual-m1-f2d0c40f",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/b72f5aa9c9699a3e/tb-b72f5aa9c9699a3e-0-12-1.png"
+      ],
+      "note": "이등변삼각형 내부의 교차 선분과 본문의 각 조건을 확인했다. 수치 목표 없이 합동 및 같은 선분·각의 성질을 판별하므로 C이다."
+    },
+    {
+      "id": "c8242133-48ef-42dc-92c4-7127d6fba741",
+      "problem_code": "J10703-A26-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-1.png",
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-2.png",
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-3.png"
+      ],
+      "note": "회전체의 바깥면과 내부 빈 부분 및 다섯 선택지의 평면도형을 세 파일 모두 확인했다. 회전 결과의 모양 식별이므로 C이다."
+    },
+    {
+      "id": "8200eb57-041c-49a6-bdea-ec68603d5061",
+      "problem_code": "J10703-A45-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "B",
+      "family": "v-m1-right-triangle-rotation-section",
+      "viewed_urls": [
+        "/figures/tb/086c51fc121645de/tb-086c51fc121645de-0-5-1.png"
+      ],
+      "note": "직각삼각형의 세 변과 빗변 회전축이 확인된다. 축을 포함하는 단면은 원삼각형 두 개이고 최대 반지름은 빗변에 대한 높이이다."
+    },
+    {
+      "id": "ccd24859-2691-4361-8a6e-2c932cbced64",
+      "problem_code": "J10703-A25-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/2fd4f43265218684/tb-2fd4f43265218684-0-3-1.png",
+        "/figures/tb/2fd4f43265218684/tb-2fd4f43265218684-0-3-2.png"
+      ],
+      "note": "빈 내부를 갖는 회전체와 다섯 평면도형 선택지를 모두 확인했다. 수치 목표 없이 회전 결과를 대응시키는 개념 문항이다."
+    },
+    {
+      "id": "be926a09-b14f-4fa0-9a06-2d09c6e57648",
+      "problem_code": "J10703-A54-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "B",
+      "family": "v-m1-right-triangle-rotation-volume-ratio",
+      "viewed_urls": [
+        "/figures/tb/10a315e8050cbe05/tb-10a315e8050cbe05-0-20-1.png"
+      ],
+      "note": "직각삼각형의 두 직각변 길이와 두 회전축을 확인했다. 각 변을 높이로 하는 원뿔 부피를 구해 정수 비로 약분하는 수치 유형이다."
+    },
+    {
+      "id": "0f3e45d6-3e2f-4f77-a6dc-9ac75819c44c",
+      "problem_code": "J10703-A33-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/39c9fefd46d20c45/tb-39c9fefd46d20c45-0-2-2.png"
+      ],
+      "note": "각 선택지의 회전축 위치와 평면도형을 확인했다. 원뿔이 되는 도형을 명명하는 개념 문항으로 남긴다."
+    },
+    {
+      "id": "034455da-f4db-4864-a921-395fc8d8375c",
+      "problem_code": "J10703-A47-001",
+      "cohort": "visual-m1-b98f141a",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/50656d477fb0fd91/tb-50656d477fb0fd91-0-14-1.png"
+      ],
+      "note": "직각삼각형과 한 변을 지나는 회전축이 확인된다. 회전체와 단면의 명칭 조합을 고르는 개념 문항이므로 C이다."
+    },
+    {
+      "id": "0f86de8d-defb-4f78-8105-292fba05dd92",
+      "problem_code": "J10804-A28-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/2b2e5ba0d44fa195/tb-2b2e5ba0d44fa195-0-1-1.png"
+      ],
+      "note": "모든 계급과 도수를 확인했다. 원자료의 정확한 최댓값 등 히스토그램으로 알 수 있는 정보의 범위를 판단하는 개념 문항이므로 C를 유지한다."
+    },
+    {
+      "id": "599f12b6-bd79-4b27-b7d6-c2bb8068cc98",
+      "problem_code": "J10804-A17-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "B",
+      "family": "v-m1-histogram-aggregate",
+      "viewed_urls": [
+        "/figures/tb/6cf05443b4747ef8/tb-6cf05443b4747ef8-0-13-1.png"
+      ],
+      "note": "계급 경계와 막대 높이가 모두 판독된다. 목표 구간 도수의 합을 전체 인원으로 나누어 백분율을 구한다."
+    },
+    {
+      "id": "8aa839cc-22d6-4bbf-ac54-292e61fd4da9",
+      "problem_code": "J10804-A25-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "B",
+      "family": "v-m1-histogram-aggregate",
+      "viewed_urls": [
+        "/figures/tb/21a84ae314b2a55c/tb-21a84ae314b2a55c-0-2-1.png"
+      ],
+      "note": "여섯 계급의 도수를 확인했다. 최대 도수·총합·범위 합·백분율을 같은 도수 배열에서 계산한다."
+    },
+    {
+      "id": "19c51e48-7621-4ccf-9633-7113c45ff844",
+      "problem_code": "J10804-A21-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "B",
+      "family": "v-m1-histogram-aggregate",
+      "viewed_urls": [
+        "/figures/tb/6e4690d9e8ab937e/tb-6e4690d9e8ab937e-0-15-1.png"
+      ],
+      "note": "의도적으로 가린 막대 하나는 전체 인원과 다른 막대의 도수로 복원 가능하다. 복원 도수의 누적 순위와 계급·비율 진술을 계산한다."
+    },
+    {
+      "id": "a04871da-b6c6-4869-a21f-b051578b98e4",
+      "problem_code": "J10804-A26-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "B",
+      "family": "v-m1-histogram-aggregate",
+      "viewed_urls": [
+        "/figures/tb/e79d8fd2d8c640f9/tb-e79d8fd2d8c640f9-0-1-1.png"
+      ],
+      "note": "본문의 수치 문장이 짧지만 그림에 계급 경계와 모든 막대 도수가 완전하다. 전체 합과 특정 계급의 도수를 계산할 수 있다."
+    },
+    {
+      "id": "269fb49b-8bf4-4335-bcc7-5b7e47c58cc9",
+      "problem_code": "J10804-A22-001",
+      "cohort": "visual-m1-6268248d",
+      "category": "B",
+      "family": "v-m1-histogram-aggregate",
+      "viewed_urls": [
+        "/figures/tb/8b34dce1c7ea61df/tb-8b34dce1c7ea61df-0-1-1.png"
+      ],
+      "note": "같은 폭의 계급들과 각 막대 높이를 확인했다. 폭·구간 도수·직사각형 넓이 합·누적 순위에 관한 수치 진술을 판정한다."
+    }
+  ]
+}

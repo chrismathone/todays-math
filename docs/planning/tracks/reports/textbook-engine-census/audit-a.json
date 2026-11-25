@@ -1,0 +1,1085 @@
+{
+  "reviewer": "/root/audit (Codex)",
+  "role": "independent type correspondence reread",
+  "rows": [
+    {
+      "id": "8cb37c08-8f58-4101-b638-c1606727f735",
+      "problem_code": "J10205-B43-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "65be167b-8ec4-426c-aba3-14ea6c7c4d30",
+      "problem_code": "J10203-B92-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "edd1fa9c-c8f0-43c8-a5c3-8ae6dce30144",
+      "problem_code": "J10103-A65-001",
+      "group": "m1-a-gcd2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "소인수의 곱으로 표시된 두 자연수의 최대공약수를 묻는다. 공통 소인수의 작은 지수를 택하는 02번 생성 갈래와 같다. 답의 숫자/곱 표기는 유형 차이로 세지 않았다.",
+      "engine_keys": [
+        "1-1|최대공약수와 최소공배수|02"
+      ]
+    },
+    {
+      "id": "8013a84e-a6e0-4bd1-8016-1e4f04d8f2ae",
+      "problem_code": "J10303-B92-001",
+      "group": "m1-a-scalar-linear",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "정수와 일차식의 곱 하나를 분배법칙으로 전개한다. 곱하는 수의 좌우 위치는 다를 수 있지만 11번의 스칼라×일차식 구조 및 계수·상수항 목표가 같다.",
+      "engine_keys": [
+        "1-1|문자의 사용과 식의 계산|11"
+      ]
+    },
+    {
+      "id": "45c61878-75f6-40b6-9dcf-1febe050ca56",
+      "problem_code": "J10203-B93-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "7715c80b-a533-4dfc-8463-5a6c810cde69",
+      "problem_code": "J10203-A86-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "aa5acdc3-30e0-455f-b401-24084347e4a9",
+      "problem_code": "J10204-B35-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "e60ecbf8-654d-499d-90d5-1621191241c2",
+      "problem_code": "J10204-B15-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "27c95105-0881-4f91-bda8-79056b0e67de",
+      "problem_code": "J10203-B04-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "1ab6edf7-c0fe-4b1a-bcd7-92f51265f748",
+      "problem_code": "J10203-C31-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "f895023a-3d16-48b2-a300-a9e932751446",
+      "problem_code": "J10602-A12-001",
+      "group": "m1-a-triangle-max",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "삼각형 세 내각의 비를 주고 최대 내각 하나를 묻는다. 내각합을 비례 배분하는 07번의 조건·목표가 같다.",
+      "engine_keys": [
+        "1-2|다각형|07"
+      ]
+    },
+    {
+      "id": "1b68a668-6978-4cc9-8df2-9f0303d2fc18",
+      "problem_code": "J10203-C43-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "a10e70cb-7aa0-4284-ae25-638d0afd59c3",
+      "problem_code": "J10204-B19-001",
+      "group": "m1-a-mul3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 정수를 곱한다. 곱의 부호와 절댓값을 계산하는 70번 생성기의 항 수·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|70"
+      ]
+    },
+    {
+      "id": "332c51ae-d809-4ee6-a673-2acba47be8b2",
+      "problem_code": "J10303-C09-001",
+      "group": "m1-a-scalar-linear",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "정수와 일차식의 곱 하나를 분배법칙으로 전개한다. 곱하는 수의 좌우 위치는 다를 수 있지만 11번의 스칼라×일차식 구조 및 계수·상수항 목표가 같다.",
+      "engine_keys": [
+        "1-1|문자의 사용과 식의 계산|11"
+      ]
+    },
+    {
+      "id": "868aeb09-d162-429a-8e66-d025ce627e9f",
+      "problem_code": "J10203-A93-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "361768e2-7638-45a6-a7a9-b51838a2c8c1",
+      "problem_code": "J10205-B31-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "e25effdc-304e-4391-85bf-e6d15085da43",
+      "problem_code": "J10203-B58-001",
+      "group": "m1-a-mixed4",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "네 수를 덧셈 한 번과 뺄셈 두 번으로 결합한 단일 계산이다. 04번 생성기의 네 항과 연산 순서가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|04"
+      ]
+    },
+    {
+      "id": "6bf7071d-5606-4917-b432-443913543e62",
+      "problem_code": "J10203-B89-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "a6182c56-c6cc-475c-af3f-3f87176f4ed1",
+      "problem_code": "J10203-B07-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "01e6c52a-e63f-4d31-aeac-a9f926bcd9c4",
+      "problem_code": "J10205-A88-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "f9f06f65-4f80-4a61-af4f-aac6fe1fe57e",
+      "problem_code": "J20101-A41-001",
+      "group": "m2-a-finite-choice-two",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "수치 분수 다섯 보기 중 유한소수 두 개를 선택한다. 약분 뒤 분모의 소인수를 검사하는 06번의 보기 수·정답 개수·목표가 같다.",
+      "engine_keys": [
+        "2-1|유리수와 순환소수|06"
+      ]
+    },
+    {
+      "id": "c6bb59d6-48d9-40ba-a62c-b6571b4f0f97",
+      "problem_code": "J10203-B25-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "c4732b38-65ef-4a94-83ae-866c602822fb",
+      "problem_code": "J10205-A70-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "a34d36a3-e845-4e4f-bdf2-dd664311a57b",
+      "problem_code": "J20101-A17-001",
+      "group": "m2-a-common-finite-multiplier",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 분수에 곱할 공통 자연수의 최솟값을 묻는다. 약분한 두 분모에서 2·5 이외 인수의 최소공배수를 구하는 08번 구조와 같다.",
+      "engine_keys": [
+        "2-1|유리수와 순환소수|08"
+      ]
+    },
+    {
+      "id": "097d2e77-b3bf-48aa-a0ce-2ab0d3304b4d",
+      "problem_code": "J10303-A91-001",
+      "group": "m1-a-scalar-linear",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "정수와 일차식의 곱 하나를 분배법칙으로 전개한다. 곱하는 수의 좌우 위치는 다를 수 있지만 11번의 스칼라×일차식 구조 및 계수·상수항 목표가 같다.",
+      "engine_keys": [
+        "1-1|문자의 사용과 식의 계산|11"
+      ]
+    },
+    {
+      "id": "9604503f-3273-4bc3-b06a-0bd8e1a8a77e",
+      "problem_code": "J10205-B29-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "1ee17868-0d05-4b6f-b3fb-4445143274f0",
+      "problem_code": "J10205-B46-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "4882b43a-a909-4809-9f5a-63d72668cdd5",
+      "problem_code": "J10205-A71-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "a0cfc86f-3a9d-4923-8573-12911a62eb1a",
+      "problem_code": "J10203-C47-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "9e1488c7-0816-41cf-bed5-90fdbb86aed2",
+      "problem_code": "J10203-A91-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "b36a6dc6-7c3c-431b-aa9a-27f9755918a0",
+      "problem_code": "J10203-C27-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "4089753e-119a-43cb-98f0-fa71b48e019d",
+      "problem_code": "J10204-B18-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "c4b022a0-2573-4757-a40e-ae407b5c13ed",
+      "problem_code": "J10203-B99-001",
+      "group": "m1-a-add3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 수를 더하는 단일 계산이다. 02번은 교환·결합법칙을 명시하지만 피연산자 수와 합을 묻는 학습 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|02"
+      ]
+    },
+    {
+      "id": "4603b0b8-ac7a-4a87-a322-bf6c7dda9d3e",
+      "problem_code": "J10203-B40-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "4c00d96e-a786-482e-8118-e67cbb55de91",
+      "problem_code": "J10203-B16-001",
+      "group": "m1-a-add3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 수를 더하는 단일 계산이다. 02번은 교환·결합법칙을 명시하지만 피연산자 수와 합을 묻는 학습 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|02"
+      ]
+    },
+    {
+      "id": "af5d4699-cc3b-4f4b-a440-33e49e54432e",
+      "problem_code": "J20101-B18-001",
+      "group": "m2-a-common-finite-multiplier",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 분수에 곱할 공통 자연수의 최솟값을 묻는다. 약분한 두 분모에서 2·5 이외 인수의 최소공배수를 구하는 08번 구조와 같다.",
+      "engine_keys": [
+        "2-1|유리수와 순환소수|08"
+      ]
+    },
+    {
+      "id": "bc444da9-1454-42a6-8743-f6ff6fc28035",
+      "problem_code": "J10205-B26-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "9bfc1260-a9e5-4ff6-928a-6250d11aa5b0",
+      "problem_code": "J10203-B41-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "cc586533-7df6-4ac3-ae89-9d2bcbf7ff9e",
+      "problem_code": "J10203-C18-001",
+      "group": "m1-a-add3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 수를 더하는 단일 계산이다. 02번은 교환·결합법칙을 명시하지만 피연산자 수와 합을 묻는 학습 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|02"
+      ]
+    },
+    {
+      "id": "21d8bb99-ab19-4a63-8f4e-3e5eff91af56",
+      "problem_code": "J10203-C19-001",
+      "group": "m1-a-add3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 수를 더하는 단일 계산이다. 02번은 교환·결합법칙을 명시하지만 피연산자 수와 합을 묻는 학습 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|02"
+      ]
+    },
+    {
+      "id": "139561ff-a073-4619-99bf-ab5eb98efe02",
+      "problem_code": "J10203-B08-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "c76e9df4-d1fe-46e2-9a2a-de64463cd073",
+      "problem_code": "J20101-A25-001",
+      "group": "m2-a-common-finite-multiplier",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 분수에 곱할 공통 자연수의 최솟값을 묻는다. 약분한 두 분모에서 2·5 이외 인수의 최소공배수를 구하는 08번 구조와 같다.",
+      "engine_keys": [
+        "2-1|유리수와 순환소수|08"
+      ]
+    },
+    {
+      "id": "652d5c2f-0f5a-4133-8e17-4b29cb874875",
+      "problem_code": "J10203-A90-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "0bb9d66d-5614-4dca-a8f5-ffd7082fb260",
+      "problem_code": "J10602-A15-001",
+      "group": "m1-a-triangle-max",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "삼각형 세 내각의 비를 주고 최대 내각 하나를 묻는다. 내각합을 비례 배분하는 07번의 조건·목표가 같다.",
+      "engine_keys": [
+        "1-2|다각형|07"
+      ]
+    },
+    {
+      "id": "cfe6c7fe-a029-45ea-884e-e72d6ee9a261",
+      "problem_code": "J10203-B22-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "b5b51033-f44f-4a66-89de-12c8b4e9d761",
+      "problem_code": "J10203-B26-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "6be71823-54e7-413f-89a2-b2a0d5606336",
+      "problem_code": "J10203-C10-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "d772e732-7bdb-450b-826f-bc9fa660e86d",
+      "problem_code": "J10102-B39-001",
+      "group": "m1-a-factor",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "자연수 하나를 소인수의 거듭제곱의 곱으로 바꾸는 직접 과제이다. 18번 생성기의 입력 개수와 답 형식이 같다.",
+      "engine_keys": [
+        "1-1|소인수분해|18"
+      ]
+    },
+    {
+      "id": "1a3b9523-05a3-4e87-ad0e-09b8d16bdab3",
+      "problem_code": "J10203-C08-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "f0f0f692-bffd-4e85-91d9-817b2f47db43",
+      "problem_code": "J10203-C17-001",
+      "group": "m1-a-add3",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 개의 부호 있는 수를 더하는 단일 계산이다. 02번은 교환·결합법칙을 명시하지만 피연산자 수와 합을 묻는 학습 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|02"
+      ]
+    },
+    {
+      "id": "45d3d5ae-1a23-46c0-8374-f0ca78dd1a5d",
+      "problem_code": "J10205-A75-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "b9d1fe30-907e-4c32-92ad-e79d3c16dbd9",
+      "problem_code": "J10203-C45-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "e91254b1-93c9-47a9-8be4-0b91be77cae2",
+      "problem_code": "J10203-A88-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "3d7175ba-5224-4bb3-a8e4-f92a63e1864b",
+      "problem_code": "J10303-C11-001",
+      "group": "m1-a-scalar-linear",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "정수와 일차식의 곱 하나를 분배법칙으로 전개한다. 곱하는 수의 좌우 위치는 다를 수 있지만 11번의 스칼라×일차식 구조 및 계수·상수항 목표가 같다.",
+      "engine_keys": [
+        "1-1|문자의 사용과 식의 계산|11"
+      ]
+    },
+    {
+      "id": "bcc8bdf9-6d0e-4cae-9987-7eb6b4549445",
+      "problem_code": "J10204-A60-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "c5018d87-e035-432d-8263-19e107e3d62e",
+      "problem_code": "J10204-A78-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "faeaa780-1af4-49b6-81f4-5d67ca620653",
+      "problem_code": "J10203-B44-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "3bb48099-7880-4c5e-a816-0601587f22c0",
+      "problem_code": "J10203-C28-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "26795757-9c4f-4347-a544-d2ee737c095c",
+      "problem_code": "J10203-C14-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "b3b017bc-71e4-45e7-a9b5-b7b0c79e6b17",
+      "problem_code": "J10203-B94-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "2bf4f953-0fc1-46ed-b6f1-d72ad4b1a563",
+      "problem_code": "J10204-B11-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "74ef31e3-0271-4a0b-a200-fe58eb51d128",
+      "problem_code": "J20903-A98-001",
+      "group": "m2-a-coin-complement",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "구별되는 동전 세 개의 동시 시행에서 앞면이 하나 이상인 사건이다. 전부 뒷면인 여사건을 빼는 05번의 시행·사건·요구 확률이 같다.",
+      "engine_keys": [
+        "2-2|확률|05"
+      ]
+    },
+    {
+      "id": "53f7e2b4-406e-450d-bdec-b2cb01cca83a",
+      "problem_code": "J10204-B31-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "873453d6-090a-4d30-87c0-c14eaa1ab1a1",
+      "problem_code": "J10602-A13-001",
+      "group": "m1-a-triangle-max",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "삼각형 세 내각의 비를 주고 최대 내각 하나를 묻는다. 내각합을 비례 배분하는 07번의 조건·목표가 같다.",
+      "engine_keys": [
+        "1-2|다각형|07"
+      ]
+    },
+    {
+      "id": "9bf710cb-1421-44ba-81dc-68eb608e6b68",
+      "problem_code": "J10205-A73-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "d72bfee0-e751-4b48-a8bd-d86e94447581",
+      "problem_code": "J10203-C46-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "afb4f544-d25c-4cae-905c-20c583a8054b",
+      "problem_code": "J10203-C12-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "240c4bb2-2fd6-4f53-8c6a-2787e3dfce33",
+      "problem_code": "J10204-A73-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "06799f6f-a3c0-428c-beea-843c29fe2ae6",
+      "problem_code": "J10203-A89-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "89818665-3425-48c3-ac06-b3d3bd69cb7f",
+      "problem_code": "J10205-A92-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "b64955a7-e335-46cc-9920-d87afa64c77d",
+      "problem_code": "J10203-B38-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "219ee93f-571e-45e6-8bff-6b0e030c32d0",
+      "problem_code": "J10205-A93-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "0b3793cd-0e51-4c68-8bb0-a8cfeaa2ed79",
+      "problem_code": "J10203-C29-001",
+      "group": "m1-a-sub2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 뺄셈이다. 빼는 수의 부호를 바꾼 합으로 계산하며 03번 생성기의 구조가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|03"
+      ]
+    },
+    {
+      "id": "2788874a-fab1-4550-9c72-f6056ebe57f2",
+      "problem_code": "J10205-B51-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "19b75a33-5b57-4ce8-bd74-236cfc186efa",
+      "problem_code": "J10203-C13-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "60c33626-1911-4fb6-ab1c-4c4c8b9a4a8f",
+      "problem_code": "J10204-B36-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "e88c29a6-fdf9-4739-a5e8-fef3c8996dbd",
+      "problem_code": "J10204-B34-001",
+      "group": "m1-a-mul2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "두 정수·분수의 단일 곱이다. 부호 결정과 교차 약분만 필요하여 12번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|12"
+      ]
+    },
+    {
+      "id": "6b55c13b-1bf9-4d46-bdb1-f8b03243509f",
+      "problem_code": "J10203-C09-001",
+      "group": "m1-a-add2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 덧셈이다. 통분과 부호 처리가 답을 정하며 01번 생성기의 조건·요구값이 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|01"
+      ]
+    },
+    {
+      "id": "bbc497d2-61b4-4a19-867e-196e15d3387d",
+      "problem_code": "J10103-A94-001",
+      "group": "m1-a-gcd2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "소인수의 곱으로 표시된 두 자연수의 최대공약수를 묻는다. 공통 소인수의 작은 지수를 택하는 02번 생성 갈래와 같다. 답의 숫자/곱 표기는 유형 차이로 세지 않았다.",
+      "engine_keys": [
+        "1-1|최대공약수와 최소공배수|02"
+      ]
+    },
+    {
+      "id": "570e1131-e3e2-4e3f-9937-47056e3aea66",
+      "problem_code": "J10205-A76-001",
+      "group": "m1-a-div2",
+      "category": "A",
+      "sample_kind": "random",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "부호가 있는 두 정수·분수의 단일 나눗셈이다. 역수 곱과 약분이 답을 정하며 19번 생성기의 피연산자 수·연산·목표가 같다.",
+      "engine_keys": [
+        "1-1|정수와 유리수의 계산|19"
+      ]
+    },
+    {
+      "id": "2c1f3185-3299-41c8-b8cd-5b4deaebce5f",
+      "problem_code": "J10103-A89-001",
+      "group": "m1-a-gcd3",
+      "category": "A",
+      "sample_kind": "supplementary",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "세 자연수의 최대공약수라는 조건·목표는 18번 생성기와 같다. 원본은 소인수분해를 지정하고 생성기 풀이는 공통인수·서로소 몫을 설명하므로 풀이 방법과 지면까지 같다는 인증은 아니다.",
+      "engine_keys": [
+        "1-1|최대공약수와 최소공배수|18"
+      ]
+    },
+    {
+      "id": "5f77fe56-715b-45b9-af67-29f7d985e64f",
+      "problem_code": "J20103-A20-001",
+      "group": "m2-a-repeat-prefix-frac",
+      "category": "A",
+      "sample_kind": "supplementary",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "비순환 한 자리와 순환 한 자리를 갖는 소수 하나를 분수로 바꾼다. 41번의 두 10의 거듭제곱 차를 쓰는 구조와 같고 순환점/윗줄은 표기 차이이다.",
+      "engine_keys": [
+        "2-1|유리수와 순환소수|41"
+      ]
+    },
+    {
+      "id": "e0b068b9-7f7c-4abe-81b6-4d866ea6f884",
+      "problem_code": "J20202-A62-001",
+      "group": "m2-a-linear-ineq",
+      "category": "A",
+      "sample_kind": "supplementary",
+      "verdict": "pass",
+      "expected_category": "A",
+      "note": "양변이 정수 계수의 일차식인 한 부등식의 해를 묻는다. 서로 다른 일차항 계수와 음수로 나눌 때의 방향 전환을 확인했으며 07번 구조와 같다. 보기는 답 표현의 파생이다.",
+      "engine_keys": [
+        "2-1|일차부등식|07"
+      ]
+    }
+  ]
+}

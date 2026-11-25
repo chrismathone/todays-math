@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-25",
+  "branch": "phase/textbook-engine-census",
+  "phase": "figure-reassessment",
+  "previous_commit": "9bb6619aa",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/qa/textbook-engine-census",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "output": "..................................\n----------------------------------------------------------------------\nRan 34 tests in 0.227s\n\nOK"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/qa/textbook-engine-census/verify.py",
+        "--input",
+        "/Volumes/새 볼륨/today-backups/textbook-mid-rows.jsonl"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"rows\": 8502,\n  \"replay_files\": 6,\n  \"reviewed\": 143,\n  \"random_reviewed\": 140,\n  \"supplementary_reviewed\": 3,\n  \"sample_corrections\": 11,\n  \"visual_reviewed_rows\": 522,\n  \"visual_viewed_files\": 610,\n  \"visual_promotions\": 437,\n  \"unviewed_promotions\": 0,\n  \"source_long_fragment_matches\": 0,\n  \"report_matches\": true\n}"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "verification": {
+    "rows": 8502,
+    "replay_files": 6,
+    "reviewed": 143,
+    "random_reviewed": 140,
+    "supplementary_reviewed": 3,
+    "sample_corrections": 11,
+    "visual_reviewed_rows": 522,
+    "visual_viewed_files": 610,
+    "visual_promotions": 437,
+    "unviewed_promotions": 0,
+    "source_long_fragment_matches": 0,
+    "report_matches": true
+  },
+  "python_tests": 34,
+  "engine_generation_samples": 3618,
+  "engine_generation_errors": 0,
+  "figure_reconciliation": {
+    "reference_rows": 3332,
+    "mapped_rows": 3327,
+    "unique_existing_files": 3936,
+    "missing_mapped_files": 0,
+    "unmapped_reference_rows": 5,
+    "unmapped_svg_flags": 3,
+    "unmapped_actual_reference": 1,
+    "term_only_reference": 1
+  },
+  "visual_review": {
+    "cohorts": 96,
+    "census_cohorts": 23,
+    "sampled_cohorts": 73,
+    "rows": 522,
+    "files": 610,
+    "promoted_B": 437,
+    "held_C": 85,
+    "unviewed_rows": 2805,
+    "unviewed_promotions": 0,
+    "reviewers": [
+      "/root (Codex)",
+      "/root/m1_rules (Codex)",
+      "/root/m2_rules (Codex)",
+      "/root/audit (Codex)"
+    ]
+  },
+  "categories_before": {
+    "A": 155,
+    "B": 2236,
+    "C": 6111
+  },
+  "categories_after": {
+    "A": 155,
+    "B": 2673,
+    "C": 5674
+  },
+  "production_build": false,
+  "database_connections": 0,
+  "database_writes": 0,
+  "paid_api_calls": 0,
+  "original_text_or_images_stored": false,
+  "push": false,
+  "merge_main": false,
+  "independent_review": {
+    "integration_reviewer": "/root/m2_rules (Codex)",
+    "integration_result": "그림 기준선은 이전 커밋과 같고 현재 규칙 적용도 일치. 기존 A/B 보존과 미열람 행 승격 금지를 확인. 단서 없는 미검토 mapped 행의 방어 조건을 추가하고 회귀 시험 통과.",
+    "artifact_reviewer": "/root/audit (Codex)",
+    "artifact_result": "행·단원·후보 합계, C→B437행만 변경, 96묶음의 전수/표본 범위, §3 기하·통계 후보와 §5 9트랙 합계를 교차 대조했다. 평행사변형 개수 계산법의 비공선·순환 순서 조건을 보완하고 재현 검증 통과."
+  },
+  "limits": [
+    "유형 대응과 결정적 생성 가능성의 검토이며 원본 정답 전수 검산 아님",
+    "파일 연결·해시는3936개 전수; 직접 시각 검토는522행610개 파일",
+    "23단원 묶음 전수·73단원 묶음 표본; 미검토2805행에 승격 비율을 적용하지 않음",
+    "C는 확정 AI 물량 아님; 미대응·개념·조건 부족·아직 읽지 않은 그림을 구분",
+    "후보437개는 구현할 새 키의 확정 수가 아님; 기존 확장과 동일 구조 통합은1단계에서 검토"
+  ],
+  "geometry_statistics_additions": {
+    "middle1_geometry": {
+      "rows": 65,
+      "candidates": 40
+    },
+    "middle2_geometry": {
+      "rows": 100,
+      "candidates": 62
+    },
+    "statistics": {
+      "rows": 32,
+      "candidates": 11
+    }
+  }
+}

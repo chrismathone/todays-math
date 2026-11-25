@@ -1,0 +1,71 @@
+{
+  "manifest": {
+    "sha256": "5b67f900fcd24b269cc5f1811ec275699a1e4c38049d12fa0f66a9acf4405245",
+    "bytes": 530431,
+    "rows": 3327,
+    "file_references": 3936,
+    "previous_commit": "9bb6619aa",
+    "origin": "리드가 figure_urls·figure_source를 읽기로 추출; has_figure는 figure_svg만 보았다고 정정",
+    "baseline_sha256": "f56ebe04333c01bb0fa81e37a2b3f028fbfe0485653562e06d5dea41a6035a6f",
+    "baseline_categories": {
+      "A": 155,
+      "B": 2236,
+      "C": 6111
+    }
+  },
+  "reference_rows": 3332,
+  "mapped_rows": 3327,
+  "mapped_without_reference": 0,
+  "unmapped_reference_rows": 5,
+  "files": 3936,
+  "unique_files": 3936,
+  "missing_files": 0,
+  "legacy_svg_unmapped": 3,
+  "gaps": [
+    {
+      "id": "936bf561-0278-436b-a12e-4ab6b53c4186",
+      "problem_code": "J10404-C33-001",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "legacy_svg_flag": true,
+      "reason": "svg-present-but-bytes-not-exported"
+    },
+    {
+      "id": "8308f291-b684-463f-b243-11b54b5824f2",
+      "problem_code": "J10604-A69-001",
+      "grade": "중1",
+      "section": "원과 부채꼴",
+      "legacy_svg_flag": false,
+      "reason": "text-reference-without-mapped-file"
+    },
+    {
+      "id": "94b76308-6ba9-4cc4-8e1f-d1915ca593f6",
+      "problem_code": "J10802-A21-001",
+      "grade": "중1",
+      "section": "줄기와 잎 그림",
+      "legacy_svg_flag": false,
+      "reason": "term-only-reference"
+    },
+    {
+      "id": "58626f78-7160-4f5d-8781-93eda3afcdbb",
+      "problem_code": "J20403-A31-001",
+      "grade": "중2",
+      "section": "일차함수의 그래프와 기울기",
+      "legacy_svg_flag": true,
+      "reason": "svg-present-but-bytes-not-exported"
+    },
+    {
+      "id": "412ca77c-5e80-4862-9e50-28661bd4f4a8",
+      "problem_code": "J20703-A34-001",
+      "grade": "중2",
+      "section": "평행선 사이의 선분의 길이의 비",
+      "legacy_svg_flag": true,
+      "reason": "svg-present-but-bytes-not-exported"
+    }
+  ],
+  "term_only_references": 1,
+  "grades": {
+    "중1": 1794,
+    "중2": 1533
+  }
+}
