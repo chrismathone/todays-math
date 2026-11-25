@@ -126,14 +126,13 @@ export function ScanNameCapture({
     });
   const waiting = busy || !!view?.job;
   return (
-    <section aria-label="이름으로 답안 촬영">
-      <p>
-        학생지 1쪽 이름 칸으로 답안 주인을 찾습니다. 이름이 하나로 정해지지
-        않으면 직접 고릅니다.
+    <section aria-label="1쪽 촬영">
+      <p className={s.notice}>
+        채점하기 전의 답안을 1쪽부터 찍어 주세요. QR과 네 모서리 표식이 모두
+        나오게 한 쪽 전체를 찍습니다. 1쪽의 이름을 읽어 학생을 찾습니다.
       </p>
       <p className={s.meta}>
-        읽기·채점을 위해 사진과 답안이 외부 AI 서비스 Claude로 전송됩니다(이름
-        칸 포함).
+        사진은 답과 이름을 읽고 채점하려고 외부 AI(Claude)로 보냅니다.
       </p>
       {error ? (
         <p role="alert" className={s.error}>
@@ -147,20 +146,20 @@ export function ScanNameCapture({
           disabled={waiting}
           onClick={() => camera.current?.click()}
         >
-          이름 칸부터 사진 찍기
+          1쪽 찍기
         </button>
         <button
           type="button"
           disabled={waiting}
           onClick={() => input.current?.click()}
         >
-          이름 칸 1쪽 파일 고르기
+          사진 파일 고르기
         </button>
       </div>
       <input
         className={s.hiddenInput}
         tabIndex={-1}
-        aria-label="이름 칸 카메라 사진"
+        aria-label="1쪽 카메라 사진"
         ref={camera}
         type="file"
         accept={SCAN_PHOTO_ACCEPT}
@@ -174,7 +173,7 @@ export function ScanNameCapture({
       <input
         className={s.hiddenInput}
         tabIndex={-1}
-        aria-label="이름 칸 1쪽 사진 파일"
+        aria-label="1쪽 사진 파일"
         ref={input}
         type="file"
         accept={SCAN_PHOTO_ACCEPT}
@@ -192,15 +191,15 @@ export function ScanNameCapture({
             void act(async () => receive(await source.nameGet(captureId)))
           }
         >
-          이름 읽기 상태 확인
+          다시 확인
         </button>
       ) : null}
       {view?.job ? (
         <p role="status">
           {view.job === "waiting"
-            ? "차례를 기다리는 중"
-            : "1쪽의 이름과 답을 읽고 있습니다."}{" "}
-          화면을 떠나도 처리를 이어갑니다.
+            ? "앞선 요청을 기다리고 있습니다."
+            : "1쪽에서 이름과 답을 읽고 있습니다."}{" "}
+          화면을 떠나도 계속됩니다.
         </p>
       ) : null}
       {view?.lastError ? (
@@ -216,19 +215,23 @@ export function ScanNameCapture({
               })
             }
           >
-            다시 시도 · 이름 읽기
+            다시 읽기
           </button>
         </>
       ) : null}
       {view?.writtenName && !view.submissionId ? (
         <>
           <p>
-            읽은 이름: {view.writtenName.text || "읽은 이름 없음"} ·{" "}
-            {view.writtenName.status === "uncertain"
-              ? "흐림"
-              : view.result === "ambiguous"
-                ? "같은 이름이 여럿"
-                : "학생 확인 필요"}
+            이름으로 학생을 정하지 못했습니다.{" "}
+            {view.writtenName.status === "blank"
+              ? "이름 칸이 비어 있습니다."
+              : view.writtenName.status === "read" && view.writtenName.text
+                ? `읽은 이름: ${view.writtenName.text} · ${
+                    view.result === "ambiguous"
+                      ? "같은 이름의 학생이 여럿입니다."
+                      : "명단에 같은 이름이 없습니다."
+                  }`
+                : "이름을 또렷하게 읽지 못했습니다."}
           </p>
           <button
             ref={opener}
@@ -236,47 +239,50 @@ export function ScanNameCapture({
             disabled={waiting}
             onClick={() => setPicker(true)}
           >
-            답안 주인 고르기
+            학생 고르기
           </button>
         </>
       ) : null}
       {picker && view ? (
         <PickerDialog
-          title="답안 주인 고르기"
+          title="학생 고르기"
           returnFocus={opener}
           onClose={() => setPicker(false)}
           size="fit"
         >
           <div className={s.pickerBody}>
-            <p>
-              읽은 이름: {view.writtenName?.text || "읽은 이름 없음"}. 같은 이름
-              후보를 먼저 표시합니다.
-            </p>
+            {view.writtenName?.text ? (
+              <p>
+                읽은 이름: {view.writtenName.text}. 이름이 같은 학생을 위에
+                두었습니다.
+              </p>
+            ) : null}
             <label>
-              학생·반 찾기
+              이름·반으로 찾기
               <input value={query} onChange={(e) => setQuery(e.target.value)} />
             </label>
             {error ? <p role="alert">{error}</p> : null}
             {view.students.map((student) => (
               <div className={s.rosterRow} key={student.id}>
                 <span>
-                  {student.candidate ? "이름 일치 후보 · " : ""}
+                  {student.candidate ? "이름 같음 · " : ""}
                   {student.name} · {student.className}
                 </span>
                 <button
                   type="button"
                   disabled={busy}
+                  aria-label={`${student.name} 고르기`}
                   onClick={() => choose(student.id)}
                 >
-                  선택 · {student.name}
+                  고르기
                 </button>
               </div>
             ))}
             {!view.students.length ? (
-              <p>일치하는 학생이 없습니다. 학생·반 검색으로 확인해 주세요.</p>
+              <p>찾는 학생이 없습니다. 이름이나 반으로 찾아 주세요.</p>
             ) : null}
             {view.hasMoreStudents ? (
-              <p>학생 이름이나 반을 입력해 범위를 좁혀 주세요.</p>
+              <p>더 있습니다. 이름이나 반을 입력해 좁혀 주세요.</p>
             ) : null}
           </div>
         </PickerDialog>

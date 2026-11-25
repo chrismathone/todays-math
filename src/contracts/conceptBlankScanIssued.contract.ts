@@ -33,31 +33,48 @@ export const scanLayoutPageSchema = z
           y: coordinate,
         }),
       )
-      .length(4),
-    qr: scanBoxSchema,
+      .length(4)
+      // 채점표 쪽은 촬영 대상이 아니라 QR · 표식이 없다(원장님 2026-11-25). 옛 발행 행의 채점표에는 있다.
+      .optional(),
+    qr: scanBoxSchema.optional(),
     slots: z.array(z.strictObject({ slotId, box: scanBoxSchema })).max(8000),
   })
   .superRefine((page, ctx) => {
     const contained = (box: z.infer<typeof scanBoxSchema>) =>
       box.x + box.width <= page.width + 0.001 &&
       box.y + box.height <= page.height + 0.001;
-    if (!contained(page.qr) || page.slots.some((s) => !contained(s.box)))
+    if (
+      page.part === "student" &&
+      (page.qr === undefined || page.markers === undefined)
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "학생지 쪽에는 QR · 모서리 표식이 있어야 합니다.",
+      });
+      return;
+    }
+    if (
+      (page.qr && !contained(page.qr)) ||
+      page.slots.some((s) => !contained(s.box))
+    )
       ctx.addIssue({
         code: "custom",
         message: "답 칸 또는 QR이 지면 밖입니다.",
       });
+    const markers = page.markers;
     if (
-      page.markers.some(
+      markers &&
+      (markers.some(
         (m, i) =>
           m.id !== SCAN_MARKER_IDS[i] ||
           m.x >= page.width ||
           m.y >= page.height,
       ) ||
-      new Set(page.markers.map((m) => `${m.x}:${m.y}`)).size !== 4 ||
-      page.markers[0].x >= page.markers[1].x ||
-      page.markers[3].x >= page.markers[2].x ||
-      page.markers[0].y >= page.markers[3].y ||
-      page.markers[1].y >= page.markers[2].y
+        new Set(markers.map((m) => `${m.x}:${m.y}`)).size !== 4 ||
+        markers[0].x >= markers[1].x ||
+        markers[3].x >= markers[2].x ||
+        markers[0].y >= markers[3].y ||
+        markers[1].y >= markers[2].y)
     )
       ctx.addIssue({
         code: "custom",

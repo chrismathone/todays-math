@@ -104,7 +104,7 @@ export function scanPublicationEdition(
   return createHash("sha256")
     .update(
       JSON.stringify([
-        "scan-paper-v2",
+        "scan-paper-v3",
         createScanSnapshot(selection, bank),
         scanPaperCss(),
         scanFontFingerprint(),
@@ -131,8 +131,9 @@ export async function renderScanPaper(input: {
       (sum, sheet) => sum + planSheet(sheet)[part].length,
       0,
     );
+    // 채점표에는 QR을 싣지 않는다(원장님 2026-11-25 — 촬영 대상이 아니다).
     const qr = await Promise.all(
-      Array.from({ length: count }, async (_, i) => {
+      Array.from({ length: part === "student" ? count : 0 }, async (_, i) => {
         const url = scanQrUrl(input.origin, {
           printedSheetId: input.id,
           page: i + 1,

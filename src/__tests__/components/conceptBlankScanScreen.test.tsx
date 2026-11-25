@@ -108,7 +108,9 @@ describe("scan confirmation and evidence UI", () => {
         source={appSource}
       />,
     );
-    expect(await screen.findByText(/차례를 기다리는 중/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/앞선 요청을 기다리고 있습니다/),
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "중단된 처리 이어가기" }),
     ).not.toBeInTheDocument();
@@ -136,27 +138,25 @@ describe("scan confirmation and evidence UI", () => {
         onDirty={onDirty}
       />,
     );
-    expect(screen.getByLabelText("내가 쓴 답")).not.toBeVisible();
+    expect(screen.getByLabelText("종이에 쓴 답")).not.toBeVisible();
     act(() => ref.current!.focus("s1"));
     await waitFor(() =>
-      expect(screen.getByLabelText("내가 쓴 답")).toHaveFocus(),
+      expect(screen.getByLabelText("종이에 쓴 답")).toHaveFocus(),
     );
-    fireEvent.change(screen.getByLabelText("내가 쓴 답"), {
+    fireEvent.change(screen.getByLabelText("종이에 쓴 답"), {
       target: { value: "고친 글" },
     });
-    fireEvent.click(screen.getByRole("button", { name: "쓴 답 저장" }));
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
     await screen.findByRole("alert");
     fireEvent.click(screen.getByRole("button", { name: "입력 되돌리기" }));
-    expect(screen.getByLabelText("내가 쓴 답")).toHaveValue("원래 읽은 글");
+    expect(screen.getByLabelText("종이에 쓴 답")).toHaveValue("원래 읽은 글");
     expect(onDirty).toHaveBeenLastCalledWith("s1", false);
     expect(save).toHaveBeenCalledTimes(1);
   });
   it("submits blank versus review without inventing text, and offers numerical input assistance", async () => {
     const save = vi.fn().mockResolvedValue(undefined);
     render(<ScanAnswers view={view} page={1} busy={false} save={save} />);
-    fireEvent.click(
-      screen.getByRole("button", { name: "종이에도 비워 뒀어요" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "종이에도 빈칸" }));
     expect(save).toHaveBeenLastCalledWith(
       expect.objectContaining({
         resolution: "blank",
@@ -164,9 +164,7 @@ describe("scan confirmation and evidence UI", () => {
         readId: view.readings[0].id,
       }),
     );
-    fireEvent.click(
-      screen.getByRole("button", { name: "지금 확인하기 어려워요" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "확인하기 어려움" }));
     expect(save).toHaveBeenLastCalledWith(
       expect.objectContaining({ resolution: "review", text: "" }),
     );
@@ -176,7 +174,7 @@ describe("scan confirmation and evidence UI", () => {
     fireEvent.change(screen.getByLabelText("분자"), { target: { value: "1" } });
     fireEvent.change(screen.getByLabelText("분모"), { target: { value: "2" } });
     fireEvent.click(screen.getByRole("button", { name: "답에 넣기" }));
-    fireEvent.click(screen.getByRole("button", { name: "쓴 답 저장" }));
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
     await waitFor(() =>
       expect(save).toHaveBeenLastCalledWith(
         expect.objectContaining({ resolution: "text", text: "1/2" }),
@@ -195,7 +193,7 @@ describe("scan confirmation and evidence UI", () => {
     );
     await screen.findByAltText("1쪽 답안 사진");
     expect(container.querySelector("[data-scan-overlay]")).toBeNull();
-    expect(screen.getByText(/번호 표시 없이/)).toBeInTheDocument();
+    expect(screen.getByText(/번호를 표시하지 않습니다/)).toBeInTheDocument();
   });
   it("publishes ordered marks and reasons without total scores or student correction controls", () => {
     const result = {
@@ -257,6 +255,6 @@ it("shows written-name mismatch and linkage method in teacher results", () => {
     />,
   );
   expect(screen.getByText(/김다른/)).toBeTruthy();
-  expect(screen.getByText(/연결 방식: 학생 계정/)).toBeTruthy();
-  expect(screen.getByText(/이름이 다릅니다/)).toBeTruthy();
+  expect(screen.getByText(/학생 계정으로 제출$/)).toBeTruthy();
+  expect(screen.getByText(/이 학생과 다릅니다/)).toBeTruthy();
 });

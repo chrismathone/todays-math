@@ -466,9 +466,9 @@ try {
     expect(overflow).toBeLessThanOrEqual(1);
   };
   await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
-  await page.getByRole("button", { name: "새 답안 촬영" }).click();
+  await page.getByRole("button", { name: "답안 촬영 시작" }).click();
   await expect(
-    page.getByRole("button", { name: "모든 쪽 촬영 완료 · 답 읽기" }),
+    page.getByRole("button", { name: "답 읽기" }),
   ).toBeDisabled();
   for (const [i, file] of photos.entries()) {
     await page.getByLabel("사진 파일", { exact: true }).setInputFiles(file);
@@ -478,7 +478,7 @@ try {
   }
   await capture("flow-capture-390");
   await page
-    .getByRole("button", { name: "모든 쪽 촬영 완료 · 답 읽기" })
+    .getByRole("button", { name: "답 읽기" })
     .click();
   await expect(
     page.getByRole("heading", { name: "읽은 답 확인", exact: true }),
@@ -495,32 +495,32 @@ try {
   await expect(
     page
       .getByRole("region", { name: "확인 번호 3", exact: true })
-      .getByLabel("내가 쓴 답"),
+      .getByLabel("종이에 쓴 답"),
   ).toBeFocused();
-  await page.getByLabel("전체 판독문 보기").uncheck();
+  await page.getByLabel("읽은 답 전체 보기").uncheck();
   await page
-    .getByRole("button", { name: "종이에도 비워 뒀어요", exact: true })
+    .getByRole("button", { name: "종이에도 빈칸", exact: true })
     .first()
     .click();
   await expect(
     page.getByText("종이에도 비워 둔 답으로 확인했습니다."),
   ).toBeVisible();
   await page
-    .getByLabel("내가 쓴 답")
+    .getByLabel("종이에 쓴 답")
     .nth(1)
     .fill("대응하는 변의 길이가 같습니다.");
   await expect(
-    page.getByRole("button", { name: "답 확인 완료 · 채점하기" }),
+    page.getByRole("button", { name: "확인 마침 · 채점하기" }),
   ).toBeDisabled();
   await page
-    .getByRole("button", { name: "쓴 답 저장", exact: true })
+    .getByRole("button", { name: "저장", exact: true })
     .nth(1)
     .click();
   await expect(
-    page.getByRole("button", { name: "답 확인 완료 · 채점하기" }),
+    page.getByRole("button", { name: "확인 마침 · 채점하기" }),
   ).toBeEnabled();
   await capture("flow-check-390");
-  await page.getByRole("button", { name: "답 확인 완료 · 채점하기" }).click();
+  await page.getByRole("button", { name: "확인 마침 · 채점하기" }).click();
   await expect(
     page.getByRole("heading", { name: "결과", exact: true }),
   ).toBeVisible({ timeout: 30000 });
@@ -553,7 +553,7 @@ try {
   await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "학생 고르기" }).click();
   await expect(
-    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+    page.getByRole("dialog", { name: "학생 고르기" }),
   ).toBeVisible();
   await capture("flow-teacher-picker-1440");
   const submissionId = new URL(studentUrl).searchParams.get("submission");
@@ -584,7 +584,7 @@ try {
   writtenName = { status: "read", text: "학생" };
   await expect(page.getByText(/이름 칸 포함/)).toBeVisible();
   await page
-    .getByLabel("이름 칸 1쪽 사진 파일", { exact: true })
+    .getByLabel("1쪽 사진 파일", { exact: true })
     .setInputFiles(photos[0]);
   await expect(page.getByText(/연결 방식: 이름 정확 일치/)).toBeVisible({
     timeout: 30000,
@@ -609,10 +609,10 @@ try {
   await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.setViewportSize({ width: 390, height: 844 });
   await page
-    .getByLabel("이름 칸 1쪽 사진 파일", { exact: true })
+    .getByLabel("1쪽 사진 파일", { exact: true })
     .setInputFiles(photos[0]);
   await expect(
-    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+    page.getByRole("dialog", { name: "학생 고르기" }),
   ).toBeVisible({ timeout: 30000 });
   await expect(page.getByText(/이름 일치 후보/)).toHaveCount(2);
   await capture("flow-name-ambiguous-picker-390");
@@ -626,20 +626,20 @@ try {
     name_match_result: "ambiguous",
   });
   await page
-    .getByRole("button", { name: "선택 · 학생", exact: true })
+    .getByRole("button", { name: "학생 고르기", exact: true })
     .first()
     .click();
   await expect(page.getByText(/연결 방식: 교사가 선택/)).toBeVisible();
-  await page.getByRole("button", { name: "바꾸기 · 답안 주인" }).click();
+  await page.getByRole("button", { name: "학생 바꾸기" }).click();
   await expect(
-    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+    page.getByRole("dialog", { name: "학생 고르기" }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "선택 · 학생", exact: true })
+    .getByRole("button", { name: "학생 고르기", exact: true })
     .last()
     .click();
   await expect(
-    page.getByRole("dialog", { name: "답안 주인 고르기" }),
+    page.getByRole("dialog", { name: "학생 고르기" }),
   ).toHaveCount(0);
   await capture("flow-name-teacher-changed-390");
   evidence.data = {

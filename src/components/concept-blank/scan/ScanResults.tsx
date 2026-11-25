@@ -83,7 +83,7 @@ export function ScanResults({
             });
           }}
         >
-          첫 확인 필요로 가기
+          확인 필요 첫 항목으로
         </button>
       </div>
       <div className={teacher ? s.resultSplit : undefined}>
@@ -210,7 +210,7 @@ export function ScanResults({
                         );
                       })}
                       <div>
-                        <dt>최초 자동 판정</dt>
+                        <dt>처음 자동 판정</dt>
                         <dd>
                           {automatic
                             ? `${SCAN_GRADE_MARKS[automatic.label]} · ${automatic.reason}`

@@ -53,7 +53,7 @@ export function ScanAnswers({
           checked={all}
           onChange={(e) => setAll(e.target.checked)}
         />
-        전체 판독문 보기
+        읽은 답 전체 보기
       </label>
       {view.snapshot.pages.map((p) => (
         <div hidden={p.number !== page} key={p.number}>
@@ -95,7 +95,7 @@ export function ScanAnswers({
         ),
       ) && !all ? (
         <p className={s.notice}>
-          이 쪽에는 못 읽은 답 칸이 없습니다. 전체 판독문도 펼쳐 확인할 수
+          이 쪽은 모든 답 칸을 읽었습니다. «읽은 답 전체 보기»에서 확인할 수
           있습니다.
         </p>
       ) : null}
@@ -176,13 +176,13 @@ function AnswerField({
               : "확인 필요"}
       </p>
       {correction?.resolution === "blank" ? (
-        <p>종이에도 비워 둔 답으로 확인했습니다.</p>
+        <p>종이에도 빈칸으로 확인했습니다.</p>
       ) : correction?.resolution === "review" ? (
         <p>교사 확인이 필요합니다.</p>
       ) : null}
       <fieldset disabled={busy}>
         <label htmlFor={`scan-answer-${read.slotId}`}>
-          내가 쓴 답
+          종이에 쓴 답
           <textarea
             id={`scan-answer-${read.slotId}`}
             value={text}
@@ -259,13 +259,13 @@ function AnswerField({
             disabled={!text.trim()}
             onClick={() => void submit("text")}
           >
-            쓴 답 저장
+            저장
           </button>
           <button type="button" onClick={() => void submit("blank")}>
-            종이에도 비워 뒀어요
+            종이에도 빈칸
           </button>
           <button type="button" onClick={() => void submit("review")}>
-            지금 확인하기 어려워요
+            확인하기 어려움
           </button>
           {dirty ? (
             <button

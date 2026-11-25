@@ -21,7 +21,7 @@ import {
   type ScanIdentity,
 } from "./issuance";
 import { inspectScanPhoto } from "./photo.server";
-import { registerScanPhoto } from "./registration";
+import { prepareScanPhoto } from "./flatten.server";
 import type { ScanPhotoStorage } from "./storage.server";
 import { toStudentScanSnapshot } from "./snapshot";
 
@@ -351,11 +351,8 @@ export async function addScanPhoto(
   const page = initial.issue.layout.pages.find(
     (p) => p.part === "student" && p.number === inspected.qr.page,
   )!;
-  const registration = registerScanPhoto(
-    inspected.pixels,
-    page,
-    inspected.geometry,
-  );
+  const prepared = await prepareScanPhoto(inspected, page);
+  const registration = prepared.registration;
   const photoId = randomUUID(),
     objectKey = `${initial.issue.userId}/${id}/${photoId}`;
   // Stage metadata BEFORE uploading, so a crashed/failed upload still has a deletion candidate.
@@ -377,10 +374,10 @@ export async function addScanPhoto(
           version.next,
           deps.storage.bucket,
           objectKey,
-          inspected.hash,
-          inspected.mime,
-          inspected.width,
-          inspected.height,
+          prepared.hash,
+          prepared.mime,
+          prepared.width,
+          prepared.height,
           JSON.stringify(registration),
           now.toISOString(),
           new Date(
@@ -395,7 +392,7 @@ export async function addScanPhoto(
       return row.revision + 1;
     })
     .catch(scanDatabaseError);
-  await deps.storage.upload(objectKey, inspected.bytes, inspected.mime);
+  await deps.storage.upload(objectKey, prepared.bytes, prepared.mime);
   await deps.db
     .transaction(async (tx) => {
       const { row } = await loadScanSubmission(actor, id, tx, true);

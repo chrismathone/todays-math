@@ -9,7 +9,7 @@ import {
   scanQrDataCorners,
 } from "@/lib/concept-blank/scan/registration";
 
-const layout: ScanLayoutPage = {
+const layout = {
   part: "student",
   number: 1,
   width: 210,
@@ -24,7 +24,7 @@ const layout: ScanLayoutPage = {
   slots: [
     { slotId: "p1.q1.answer", box: { x: 20, y: 240, width: 165, height: 20 } },
   ],
-};
+} satisfies ScanLayoutPage;
 const transform = [4, 0, 30, 0, 4, 30, 0, 0, 1];
 function picture(omit = -1, extra = false) {
   const width = 900,

@@ -206,7 +206,7 @@ export default function ScanApp({
         setNotice(
           [
             `${result.page}쪽 사진을 저장했습니다.`,
-            result.page !== page ? "사진의 QR에 맞는 쪽에 넣었습니다." : "",
+            result.page !== page ? "사진의 QR을 보고 그 쪽에 넣었습니다." : "",
             encoded.reducedTo ? aiImageReducedWarning(encoded.reducedTo) : "",
           ]
             .filter(Boolean)
@@ -287,46 +287,38 @@ export default function ScanApp({
           ) : !view ? (
             <>
               {issue.role === "teacher" ? (
+                // 원장님 2026-11-25: 이름 칸을 따로 찍지 않는다 — 1쪽 전체를 찍으면 이름을 읽어 학생을 찾는다.
                 <ScanNameCapture
                   issueId={issue.id}
                   source={source}
                   onLinked={open}
                 />
-              ) : null}
-              <div className={s.owner}>
-                <div>
-                  <b>답안 주인</b>
-                  <p>
-                    {student
-                      ? `${student.name} · ${student.className}`
-                      : "이름 칸부터 촬영하거나 학생을 먼저 고르세요."}
+              ) : (
+                <>
+                  <div className={s.owner}>
+                    <p>
+                      {student
+                        ? `${student.name} · ${student.className}`
+                        : "학생 정보를 불러오고 있습니다."}
+                    </p>
+                  </div>
+                  <p className={s.notice}>
+                    채점하기 전의 답안을 찍어 주세요. QR과 네 모서리 표식이 모두
+                    나오게 한 쪽 전체를 찍습니다.
                   </p>
-                </div>
-                {issue.role === "teacher" ? (
                   <button
-                    ref={pickerButton}
                     type="button"
-                    onClick={() => setPicker(true)}
+                    className={s.primary}
+                    disabled={busy || !student}
+                    onClick={() => void start()}
                   >
-                    학생 고르기
+                    답안 촬영 시작
                   </button>
-                ) : null}
-              </div>
-              <p className={s.notice}>
-                채점 전에 찍어 주세요. 채점 표시가 없는 답안을 QR과 네
-                모서리까지 한 쪽 전체가 나오게 찍습니다.
-              </p>
-              <button
-                type="button"
-                className={s.primary}
-                disabled={busy || !student}
-                onClick={() => void start()}
-              >
-                새 답안 촬영
-              </button>
+                </>
+              )}
               {issue.submissions.length ? (
                 <details>
-                  <summary>저장한 답안 이어 보기</summary>
+                  <summary>이전에 찍은 답안</summary>
                   <ul className={s.checklist}>
                     {issue.submissions.map((entry) => (
                       <li key={entry.id}>
@@ -367,7 +359,7 @@ export default function ScanApp({
                   disabled={locked}
                   onClick={() => setPicker(true)}
                 >
-                  바꾸기 · 답안 주인
+                  학생 바꾸기
                 </button>
               ) : null}
               {view.lastError ? (
@@ -379,18 +371,18 @@ export default function ScanApp({
                 <div className={s.notice} role="status">
                   <p>
                     {view.job.waiting
-                      ? "차례를 기다리는 중"
+                      ? "앞선 요청을 기다리고 있습니다."
                       : view.job.kind === "read"
                         ? "사진에서 답을 읽고 있습니다."
                         : "확인한 답을 채점하고 있습니다."}{" "}
-                    화면을 떠나도 처리를 이어갑니다.
+                    화면을 떠나도 계속됩니다.
                   </p>
                   <button
                     type="button"
                     disabled={busy}
                     onClick={() => void run(refresh)}
                   >
-                    처리 상태 다시 확인
+                    다시 확인
                   </button>
                   {canReclaim ? (
                     <button
@@ -398,7 +390,7 @@ export default function ScanApp({
                       disabled={busy}
                       onClick={() => void job(view.job!.kind)}
                     >
-                      중단된 처리 이어가기
+                      멈춘 처리 다시 시작
                     </button>
                   ) : null}
                 </div>
@@ -472,16 +464,16 @@ export default function ScanApp({
                         onClick={() => void job("grade")}
                       >
                         {view.lastError
-                          ? "다시 시도 · 채점하기"
-                          : "답 확인 완료 · 채점하기"}
+                          ? "다시 채점하기"
+                          : "확인 마침 · 채점하기"}
                       </button>
                     </>
                   ) : (
                     <div className={s.camera}>
-                      <h2>{page}쪽 전체 촬영</h2>
+                      <h2>{page}쪽 찍기</h2>
                       <p>
-                        채점 전에 찍어 주세요. QR과 네 모서리가 모두 보여야
-                        합니다.
+                        QR과 네 모서리 표식이 모두 나오게 한 쪽 전체를 찍습니다.
+                        기울어져도 반듯하게 펴서 저장합니다.
                       </p>
                       <div className={s.actions}>
                         <button
@@ -530,13 +522,13 @@ export default function ScanApp({
                     }}
                   />
                   <p className={s.meta}>
-                    읽기·채점을 위해 사진과 답안이 외부 AI 서비스 Claude로
-                    전송됩니다(이름 칸 포함).
+                    사진은 답과 이름을 읽고 채점하려고 외부 AI(Claude)로
+                    보냅니다.
                   </p>
                   {view.photos.length ? (
                     <PaperStrip
                       label="찍은 쪽"
-                      hint="사진을 눌러 전체 확인"
+                      hint="누르면 크게 봅니다"
                       maxScale={0.18}
                       pages={view.photos.map((image) => ({
                         key: image.id,
@@ -547,7 +539,7 @@ export default function ScanApp({
                             source={source}
                           />
                         ),
-                        caption: `${image.page}쪽 · ${image.available ? "촬영됨" : "만료·삭제"}`,
+                        caption: `${image.page}쪽 · ${image.available ? "촬영됨" : "지워짐"}`,
                         enlargeLabel: image.available
                           ? `${image.page}쪽 사진 확대`
                           : undefined,
@@ -578,8 +570,8 @@ export default function ScanApp({
                   </ul>
                   {missing.length ? (
                     <p className={s.notice}>
-                      {missing.join(" · ")}쪽이 빠졌습니다. 모든 쪽을 찍은 뒤
-                      진행합니다.
+                      {missing.join(" · ")}쪽이 빠졌습니다. 모든 쪽을 찍어야
+                      답을 읽습니다.
                     </p>
                   ) : null}
                   {view.state !== "checking" ? (
@@ -589,9 +581,7 @@ export default function ScanApp({
                       disabled={locked || !!missing.length}
                       onClick={() => void job("read")}
                     >
-                      {view.lastError
-                        ? "다시 시도 · 답 읽기"
-                        : "모든 쪽 촬영 완료 · 답 읽기"}
+                      {view.lastError ? "다시 읽기" : "답 읽기"}
                     </button>
                   ) : null}
                 </>
@@ -616,7 +606,7 @@ export default function ScanApp({
                   disabled={busy || !!dirty.size}
                   onClick={() => void run(refresh)}
                 >
-                  최신 답안 확인
+                  새로 불러오기
                 </button>
                 {view.role === "teacher" && photo?.available ? (
                   <button
@@ -733,14 +723,14 @@ function StudentPicker({
   }, [source, issue.id, query]);
   return (
     <PickerDialog
-      title="답안 주인 고르기"
+      title="학생 고르기"
       returnFocus={opener}
       onClose={close}
       size="fit"
     >
       <div className={s.pickerBody}>
         <label>
-          학생·반 찾기
+          이름·반으로 찾기
           <input
             value={query}
             onChange={(e) => {
@@ -755,8 +745,12 @@ function StudentPicker({
             <span>
               {student.name} · {student.className}
             </span>
-            <button type="button" onClick={() => choose(student)}>
-              선택 · {student.name}
+            <button
+              type="button"
+              aria-label={`${student.name} 고르기`}
+              onClick={() => choose(student)}
+            >
+              고르기
             </button>
           </div>
         ))}
@@ -764,7 +758,7 @@ function StudentPicker({
           <p>이 지면에 제출할 수 있는 학생이 없습니다.</p>
         ) : null}
         {result.hasMoreStudents ? (
-          <p>학생 이름이나 반을 입력해 범위를 좁혀 주세요.</p>
+          <p>더 있습니다. 이름이나 반을 입력해 좁혀 주세요.</p>
         ) : null}
       </div>
     </PickerDialog>

@@ -17,7 +17,7 @@ import {
 } from "./issuance";
 import { matchWrittenScanName, scanNameCandidates } from "./name";
 import { inspectScanPhoto } from "./photo.server";
-import { registerScanPhoto } from "./registration";
+import { prepareScanPhoto } from "./flatten.server";
 import { readScanPageWithName, SCAN_READ_PROMPT_VERSION } from "./read";
 import { scanConfig, type ScanConfig, type ScanModel } from "./model";
 import type { ScanPhotoStorage } from "./storage.server";
@@ -111,17 +111,18 @@ export async function startScanNameCapture(
   const page = issue.layout.pages.find(
     (p) => p.part === "student" && p.number === 1,
   )!;
+  const prepared = await prepareScanPhoto(image, page);
   const newId = randomUUID(),
     photoId = randomUUID();
   const photo = {
     id: photoId,
     bucket: deps.storage.bucket,
     key: `${issue.userId}/names/${newId}/${photoId}`,
-    hash: image.hash,
-    mime: image.mime,
-    width: image.width,
-    height: image.height,
-    registration: registerScanPhoto(image.pixels, page, image.geometry),
+    hash: prepared.hash,
+    mime: prepared.mime,
+    width: prepared.width,
+    height: prepared.height,
+    registration: prepared.registration,
   };
   const row = await deps.db.transaction(async (tx) => {
     await scanNameCandidates(actor, issue.id, tx);
@@ -148,8 +149,8 @@ export async function startScanNameCapture(
     return { id: row.id, jobId: null };
   await deps.storage.upload(
     photoSchema.parse(row.photo).key,
-    image.bytes,
-    image.mime,
+    prepared.bytes,
+    prepared.mime,
   );
   return retryScanNameCapture(actor, row.id, deps.db, true);
 }

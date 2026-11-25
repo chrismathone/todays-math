@@ -131,9 +131,38 @@ export function scanMarkerCandidates(
       (1 - alpha) * 255
     );
   };
+  // 밝기는 둘레 종이에 견준다(2026-11-25 실제 폰 사진: 그늘진 종이 155 · 책상 배경이 고정 문턱 110 을 넘나들었다).
+  const lum = new Float32Array(w * h),
+    integral = new Float64Array((w + 1) * (h + 1));
+  for (let y = 0; y < h; y++) {
+    let row = 0;
+    for (let x = 0; x < w; x++) {
+      const value = luminance(x + left, y + top);
+      lum[y * w + x] = value;
+      row += value;
+      integral[(y + 1) * (w + 1) + x + 1] = integral[y * (w + 1) + x + 1] + row;
+    }
+  }
+  const half = Math.max(4, Math.round(scale * 4));
+  const localMean = (x: number, y: number) => {
+    const x0 = Math.max(0, x - half),
+      y0 = Math.max(0, y - half),
+      x1 = Math.min(w, x + half + 1),
+      y1 = Math.min(h, y + half + 1);
+    return (
+      (integral[y1 * (w + 1) + x1] -
+        integral[y0 * (w + 1) + x1] -
+        integral[y1 * (w + 1) + x0] +
+        integral[y0 * (w + 1) + x0]) /
+      ((x1 - x0) * (y1 - y0))
+    );
+  };
   for (let y = 0; y < h; y++)
-    for (let x = 0; x < w; x++)
-      dark[y * w + x] = luminance(x + left, y + top) < 110 ? 1 : 0;
+    for (let x = 0; x < w; x++) {
+      const value = lum[y * w + x],
+        mean = localMean(x, y);
+      dark[y * w + x] = value < mean * 0.78 && value < mean - 24 ? 1 : 0;
+    }
   const candidates: ScanPoint[] = [];
   for (let index = 0; index < dark.length; index++) {
     if (!dark[index]) continue;
@@ -185,7 +214,10 @@ export function scanMarkerCandidates(
     )
       continue;
     const point = { x: left + (minX + maxX) / 2, y: top + (minY + maxY) / 2 };
-    if (luminance(Math.round(point.x), Math.round(point.y)) < 180) continue;
+    // 속이 빈 네모: 가운데는 둘레 종이만큼 밝아야 한다.
+    const cx = Math.round(point.x) - left,
+      cy = Math.round(point.y) - top;
+    if (lum[cy * w + cx] < localMean(cx, cy) * 0.9) continue;
     candidates.push(point);
   }
   return candidates;
@@ -211,7 +243,11 @@ export function registerScanPhoto(
     image.data.length !== image.width * image.height * 4
   )
     return uncertain("사진 크기를 확인할 수 없습니다. 다시 찍어 주세요.");
-  const sourceQr = scanQrDataCorners(layout.qr, qr.version);
+  // 채점표 쪽에는 QR · 표식이 없다 — 학생지 쪽만 맞춘다.
+  const { qr: layoutQr, markers } = layout;
+  if (!layoutQr || !markers)
+    return uncertain("이 쪽은 맞출 표식이 없습니다. 학생지를 찍어 주세요.");
+  const sourceQr = scanQrDataCorners(layoutQr, qr.version);
   // A projective fit to a small QR can explode far away from that QR. Use only an
   // affine search hint from its three near corners; the marks alone fit perspective.
   const [tl, tr, , bl] = qr.corners;
@@ -225,14 +261,14 @@ export function registerScanPhoto(
   ]);
   if (!estimate)
     return uncertain("QR의 위치를 확인할 수 없습니다. 다시 찍어 주세요.");
-  const padding = localScale(estimate, { x: layout.qr.x, y: layout.qr.y }) * 2;
+  const padding = localScale(estimate, { x: layoutQr.x, y: layoutQr.y }) * 2;
   const qrBounds = {
     left: Math.min(...qr.corners.map((p) => p.x)) - padding,
     right: Math.max(...qr.corners.map((p) => p.x)) + padding,
     top: Math.min(...qr.corners.map((p) => p.y)) - padding,
     bottom: Math.max(...qr.corners.map((p) => p.y)) + padding,
   };
-  const found = layout.markers.map((m) =>
+  const found = markers.map((m) =>
     scanMarkerCandidates(
       image,
       projectScanPoint(estimate, m),
@@ -259,7 +295,7 @@ export function registerScanPhoto(
       for (const point of found[centres.length]) visit([...centres, point]);
       return;
     }
-    const transform = fitScanHomography(layout.markers, centres);
+    const transform = fitScanHomography(markers, centres);
     if (!transform) return;
     const qrErrorMm = Math.max(
       ...sourceQr.map(

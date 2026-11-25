@@ -123,15 +123,15 @@ export function ScanPhoto(
           />
           {photo.registration.status === "uncertain" ? (
             <p className={s.notice}>
-              사진 맞춤을 확인하지 못했습니다. 번호 표시 없이 쪽·문항 목록으로
-              확인해 주세요.
+              사진에서 답 칸 자리를 찾지 못해 번호를 표시하지 않습니다. 아래
+              쪽·문항 목록으로 확인해 주세요.
             </p>
           ) : null}
           <button
             type="button"
             onClick={(event) => open("page", event.currentTarget)}
           >
-            사진·번호 크게 보기
+            크게 보기
           </button>
         </>
       ) : image.error ? (
@@ -179,7 +179,7 @@ export function ScanPhoto(
                       requestAnimationFrame(() => onField(selected.slotId));
                     }}
                   >
-                    같은 번호 입력 칸으로
+                    입력 칸으로 가기
                   </button>
                 ) : null}
               </>

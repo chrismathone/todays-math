@@ -65,12 +65,15 @@ export function measureScanPaper(snapshot: ScanSnapshot): {
           ];
         return { slotId: slot.id, box: box(elements) };
       }) ?? [];
-    const markers = (["tl", "tr", "br", "bl"] as const).map((id) => {
-      const b = box([
-        ...root.querySelectorAll(`[data-cb-registration="${id}"]`),
-      ]);
-      return { id, x: b.x + b.width / 2, y: b.y + b.height / 2 };
-    });
+    const markers =
+      part === "key"
+        ? undefined
+        : (["tl", "tr", "br", "bl"] as const).map((id) => {
+            const b = box([
+              ...root.querySelectorAll(`[data-cb-registration="${id}"]`),
+            ]);
+            return { id, x: b.x + b.width / 2, y: b.y + b.height / 2 };
+          });
     let excess = Math.max(0, sheet.scrollHeight - sheet.clientHeight);
     for (const area of root.querySelectorAll<HTMLElement>("[data-cb-fit]")) {
       const boundary = area.getBoundingClientRect();
@@ -93,7 +96,10 @@ export function measureScanPaper(snapshot: ScanSnapshot): {
       width: 210 as const,
       height: 297 as const,
       markers,
-      qr: box([...root.querySelectorAll("[data-cb-issued-qr]")]),
+      qr:
+        part === "key"
+          ? undefined
+          : box([...root.querySelectorAll("[data-cb-issued-qr]")]),
       slots,
     };
   });
