@@ -10,6 +10,8 @@ import {
 import { ScanAnswers } from "@/components/concept-blank/scan/ScanAnswers";
 import { ScanResults } from "@/components/concept-blank/scan/ScanResults";
 import { ScanPhoto } from "@/components/concept-blank/scan/ScanPhoto";
+import ScanApp from "@/components/concept-blank/scan/ScanApp";
+import { scanSource } from "@/components/concept-blank/scan/api";
 import type { ScanSubmissionView } from "@/contracts/conceptBlankScanApi.contract";
 const source = {
   photoUrl: vi.fn().mockResolvedValue("https://example.test/private-photo"),
@@ -70,6 +72,49 @@ const view: ScanSubmissionView = {
 };
 beforeEach(() => vi.clearAllMocks());
 describe("scan confirmation and evidence UI", () => {
+  it("shows persisted queue waiting without a busy error or automatic retry POST", async () => {
+    const job = vi.fn();
+    const queued = {
+      ...view,
+      state: "read" as const,
+      job: {
+        kind: "read" as const,
+        startedAt: "2026-11-25T00:00:00Z",
+        waiting: true,
+      },
+    };
+    const appSource = {
+      ...scanSource,
+      issue: vi.fn().mockResolvedValue({
+        id: view.printedSheetId,
+        role: "student",
+        title: "개념 백지",
+        pageCount: 1,
+        snapshot: view.snapshot,
+        students: [view.student],
+      }),
+      get: vi.fn().mockResolvedValue(queued),
+      photoUrl: source.photoUrl,
+      job,
+    };
+    render(
+      <ScanApp
+        destination={{
+          p: view.printedSheetId,
+          page: 1,
+          part: "student",
+          submission: view.id,
+        }}
+        source={appSource}
+      />,
+    );
+    expect(await screen.findByText(/차례를 기다리는 중/)).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "중단된 처리 이어가기" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(job).not.toHaveBeenCalled();
+  });
   it("opens a confidently read field from the photo and lets a failed draft be discarded", async () => {
     const ref = createRef<{ focus: (slotId: string) => void }>();
     const onDirty = vi.fn();

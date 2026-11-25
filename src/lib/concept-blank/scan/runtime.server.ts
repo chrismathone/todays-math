@@ -15,10 +15,14 @@ export function scanRuntime(request: Request) {
     ).origin,
     storage: scanPhotoStorage,
     config: scanConfig,
-    model: (requestKey: string, submissionId: string) =>
+    model: (requestKey: string, submissionId: string, attemptKey?: string) =>
       createScanModel({
-        store: createDatabaseScanUsageStore(scanDatabase, { submissionId }),
+        store: createDatabaseScanUsageStore(scanDatabase, {
+          submissionId,
+          jobId: attemptKey,
+        }),
         requestKey,
+        attemptKey,
       }),
     onError: async (error: unknown) => {
       await recordErrorLog({

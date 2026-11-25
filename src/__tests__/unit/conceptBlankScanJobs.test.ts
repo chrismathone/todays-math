@@ -12,6 +12,9 @@ import {
   correctScanAnswer,
 } from "@/lib/concept-blank/scan/submission";
 import { scanConfig, type ScanModel } from "@/lib/concept-blank/scan/model";
+import { createScanModel } from "@/lib/concept-blank/scan/model";
+import { createDatabaseScanUsageStore } from "@/lib/concept-blank/scan/usageDatabase";
+import { runQueuedScanJobs } from "@/lib/concept-blank/scan/queue";
 import type { ScanPhotoStorage } from "@/lib/concept-blank/scan/storage.server";
 let local: Awaited<ReturnType<typeof openScanTestDb>>,
   world: Awaited<ReturnType<typeof scanWorld>>;
@@ -83,6 +86,118 @@ const begin = async (id: string, kind: "read" | "grade") => {
   );
 };
 describe("durable reading, input freeze and immediate publication", () => {
+  it("keeps a fifth job waiting and finishes it without another student click", async () => {
+    const store = createDatabaseScanUsageStore(local.db);
+    const held = await Promise.all(
+      Array.from({ length: 4 }, () =>
+        store.begin(
+          "2026-11",
+          100e9,
+          {
+            requestKey: randomUUID(),
+            operation: "read",
+            model: config.model,
+            promptVersion: "test",
+            reservedNanoUsd: 100,
+          },
+          4,
+        ),
+      ),
+    );
+    const id = await captured(),
+      job = await begin(id, "read"),
+      read = fakeRead();
+    const model = (key: string, submissionId: string, attemptKey?: string) =>
+      createScanModel({
+        store: createDatabaseScanUsageStore(local.db, {
+          submissionId,
+          jobId: attemptKey,
+        }),
+        requestKey: key,
+        attemptKey,
+        transport: async (input) => {
+          input.onAnthropicUsage?.({
+            inputTokens: 5000,
+            outputTokens: 100,
+            cachedInputTokens: 0,
+            cacheCreationInputTokens: 0,
+          });
+          return read({
+            operation: "read",
+            prompt: input.prompt,
+            signal: input.signal!,
+          });
+        },
+      });
+    const deps = { db: local.db, storage, model, config };
+    await runScanJob(job, deps);
+    expect(await getScanSubmission(world.student, id, local.db)).toMatchObject({
+      job: { kind: "read", waiting: true },
+      lastError: null,
+    });
+    expect(read).not.toHaveBeenCalled();
+    await store.settle(held[0], 0);
+    await runQueuedScanJobs(deps);
+    expect(await getScanSubmission(world.student, id, local.db)).toMatchObject({
+      state: "checking",
+      job: null,
+      lastError: null,
+    });
+    expect(read).toHaveBeenCalledTimes(world.snapshot.pageCount);
+    for (const lease of held.slice(1)) await store.settle(lease, 0);
+  });
+
+  it("charges an unknown call once, never auto-repeats it, and allows an explicit retry", async () => {
+    const id = await captured(),
+      read = fakeRead();
+    let calls = 0;
+    const model = (key: string, submissionId: string, attemptKey?: string) =>
+      createScanModel({
+        store: createDatabaseScanUsageStore(local.db, {
+          submissionId,
+          jobId: attemptKey,
+        }),
+        requestKey: key,
+        attemptKey,
+        transport: async (input) => {
+          if (++calls === 1) throw new Error("connection lost");
+          input.onAnthropicUsage?.({
+            inputTokens: 1000,
+            outputTokens: 100,
+            cachedInputTokens: 0,
+            cacheCreationInputTokens: 0,
+          });
+          return read({
+            operation: "read",
+            prompt: input.prompt,
+            signal: input.signal!,
+          });
+        },
+      });
+    const deps = { db: local.db, storage, model, config };
+    await runScanJob(await begin(id, "read"), deps);
+    await runQueuedScanJobs(deps);
+    expect(calls).toBe(1);
+    expect(
+      (await getScanSubmission(world.student, id, local.db)).job,
+    ).toBeNull();
+    await runScanJob(await begin(id, "read"), deps);
+    expect(await getScanSubmission(world.student, id, local.db)).toMatchObject({
+      state: "checking",
+      job: null,
+    });
+    const rows = await local.db.query<{
+      result_key: string;
+      request_key: string;
+      settlement_reason: string;
+    }>(
+      `SELECT * FROM concept_blank_scan_usage_call WHERE submission_id=$1 ORDER BY queue_order`,
+      [id],
+    );
+    expect(rows[0].settlement_reason).toBe("usage-unknown");
+    expect(rows[0].result_key).toBe(rows[1].result_key);
+    expect(rows[0].request_key).not.toBe(rows[1].request_key);
+  });
   it("rejects missing pages before any job and locks captured input while reading", async () => {
     const a = await beginScanSubmission(
       world.student,
@@ -275,7 +390,7 @@ describe("durable reading, input freeze and immediate publication", () => {
       world.snapshot.pages[0].targets.length,
     );
   });
-  it("reclaims only an expired application job, never an unresolved paid call or a live job", async () => {
+  it("reclaims only an expired application job, never an active paid call or a live job", async () => {
     const id = await captured();
     await begin(id, "read");
     await expect(begin(id, "read")).rejects.toThrow(/진행|중/);
@@ -294,9 +409,9 @@ describe("durable reading, input freeze and immediate publication", () => {
       `INSERT INTO concept_blank_scan_usage_month(month) VALUES('2026-11') ON CONFLICT DO NOTHING`,
     );
     await local.db.query(
-      `INSERT INTO concept_blank_scan_usage_call(id,month,submission_id,request_key,operation,model,tariff_version,prompt_version,reserved_nano_usd,status) VALUES($1,'2026-11',$2,$3,'read','fake','2026-11-03','test',100,'unresolved')`,
+      `INSERT INTO concept_blank_scan_usage_call(id,month,submission_id,request_key,result_key,operation,model,tariff_version,prompt_version,reserved_nano_usd,status) VALUES($1,'2026-11',$2,$3,$3,'read','fake','2026-11-03','test',100,'running')`,
       [call, id, randomUUID()],
     );
-    await expect(begin(id, "read")).rejects.toThrow(/사용량/);
+    await expect(begin(id, "read")).rejects.toThrow(/마무리/);
   });
 });

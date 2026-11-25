@@ -237,7 +237,9 @@ export default function ScanApp({
       )
       .map((p) => p.number) ?? [];
   const canReclaim =
-    !!view?.job && observedAt - Date.parse(view.job.startedAt) >= 360_000;
+    !!view?.job &&
+    !view.job.waiting &&
+    observedAt - Date.parse(view.job.startedAt) >= 360_000;
   const stage = published
     ? "결과"
     : view?.state === "checking"
@@ -356,9 +358,11 @@ export default function ScanApp({
               {view.job ? (
                 <div className={s.notice} role="status">
                   <p>
-                    {view.job.kind === "read"
-                      ? "사진에서 답을 읽고 있습니다."
-                      : "확인한 답을 채점하고 있습니다."}{" "}
+                    {view.job.waiting
+                      ? "차례를 기다리는 중"
+                      : view.job.kind === "read"
+                        ? "사진에서 답을 읽고 있습니다."
+                        : "확인한 답을 채점하고 있습니다."}{" "}
                     화면을 떠나도 처리를 이어갑니다.
                   </p>
                   <button
@@ -447,7 +451,9 @@ export default function ScanApp({
                         disabled={locked || !!dirty.size || !!missing.length}
                         onClick={() => void job("grade")}
                       >
-                        답 확인 완료 · 채점하기
+                        {view.lastError
+                          ? "다시 시도 · 채점하기"
+                          : "답 확인 완료 · 채점하기"}
                       </button>
                     </>
                   ) : (
@@ -563,7 +569,9 @@ export default function ScanApp({
                       disabled={locked || !!missing.length}
                       onClick={() => void job("read")}
                     >
-                      모든 쪽 촬영 완료 · 답 읽기
+                      {view.lastError
+                        ? "다시 시도 · 답 읽기"
+                        : "모든 쪽 촬영 완료 · 답 읽기"}
                     </button>
                   ) : null}
                 </>

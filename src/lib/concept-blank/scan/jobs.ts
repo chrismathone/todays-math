@@ -10,6 +10,8 @@ import type {
   ScanTarget,
 } from "@/contracts/conceptBlankScan.contract";
 import { scanDatabaseError, type ScanDatabase, type ScanSql } from "./database";
+import { ScanQueuedError } from "./usage";
+import { cancelQueuedScanCalls } from "./usageMaintenance";
 import { ScanAccessError, type ScanIdentity } from "./issuance";
 import { gradeScanPage, SCAN_GRADE_PROMPT_VERSION } from "./grade";
 import { readScanPage, SCAN_READ_PROMPT_VERSION } from "./read";
@@ -25,7 +27,7 @@ import {
   type ScanSubmissionRow,
 } from "./submission";
 
-// This is an application-job lease only. Paid-call reservations never expire automatically.
+// A stale worker is conservatively charged at its bound before a fresh explicit retry.
 export const SCAN_JOB_RECLAIM_MS = 360_000;
 const RUN_BUDGET_MS = 240_000;
 export type ScanJob = {
@@ -128,6 +130,8 @@ export async function beginScanJob(
       if (scanPublished(row))
         throw new ScanAccessError("이미 공개한 답안입니다.", 409);
       if (row.job_id) {
+        if (row.job_waiting)
+          throw new ScanAccessError("차례를 기다리는 중입니다.", 409);
         if (
           !row.job_started_at ||
           now.getTime() - row.job_started_at.getTime() < SCAN_JOB_RECLAIM_MS
@@ -137,12 +141,12 @@ export async function beginScanJob(
             409,
           );
         const uncertain = await tx.query(
-          `SELECT id FROM concept_blank_scan_usage_call WHERE submission_id=$1 AND status IN ('running','unresolved') LIMIT 1`,
+          `SELECT id FROM concept_blank_scan_usage_call WHERE submission_id=$1 AND status IN ('running','queued') LIMIT 1`,
           [submissionId],
         );
         if (uncertain.length)
           throw new ScanAccessError(
-            "이전 호출의 사용량을 운영 담당자가 확인해야 합니다. 받아 둔 사진과 읽기는 유지됩니다.",
+            "이전 호출을 마무리하고 있습니다. 사진과 읽은 답은 유지됩니다. 잠시 뒤 다시 시도해 주세요.",
             503,
           );
       }
@@ -162,13 +166,14 @@ export async function beginScanJob(
           effectiveReadings(page, evidence);
       const id = randomUUID();
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET job_id=$2,job_kind=$3,job_started_at=$4,state=$5,revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET job_id=$2,job_kind=$3,job_started_at=$4,state=$5,job_waiting=false,job_actor=$6::jsonb,revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
         [
           submissionId,
           id,
           parsed.kind,
           now.toISOString(),
           parsed.kind === "read" ? "read" : "checking",
+          JSON.stringify(actor),
         ],
       );
       if (parsed.kind === "grade")
@@ -191,7 +196,7 @@ export function scanJobFailureMessage(error: unknown) {
   if (message.includes("진행 중인 사진 채점"))
     return "다른 답안을 처리하고 있습니다. 잠시 뒤 이어서 진행해 주세요. 이미 읽은 답은 다시 읽지 않습니다.";
   if (message.includes("사용량") || message.includes("이미 실행한 사진 채점"))
-    return "이전 호출의 사용량을 운영 담당자가 확인해야 합니다. 사진과 읽은 답은 유지됩니다.";
+    return "이전 처리를 마치지 못했습니다. 사진과 읽은 답은 유지됩니다. 다시 시도해 주세요.";
   if (message.includes("서버 키"))
     return "사진 채점 서버 설정을 확인해야 합니다. 사진과 읽은 답은 유지됩니다.";
   if (error instanceof ScanAccessError) return message;
@@ -204,14 +209,19 @@ export async function runScanJob(
   deps: {
     db: ScanDatabase;
     storage: ScanPhotoStorage;
-    model: (requestKey: string, submissionId: string) => ScanModel;
+    model: (
+      requestKey: string,
+      submissionId: string,
+      attemptKey?: string,
+    ) => ScanModel;
+    signal?: AbortSignal;
     config?: ScanConfig;
     now?: () => Date;
     onError?: (error: unknown) => Promise<void>;
   },
 ) {
   const config = deps.config ?? scanConfig(),
-    signal = AbortSignal.timeout(RUN_BUDGET_MS),
+    signal = deps.signal ?? AbortSignal.timeout(RUN_BUDGET_MS),
     now = () => deps.now?.() ?? new Date();
   const context = async (sql: ScanSql, lock = false) => {
     const value = await loadScanSubmission(
@@ -255,7 +265,11 @@ export async function runScanJob(
             imageDataUrl: `data:${photo.mime_type};base64,${bytes.toString("base64")}`,
             signal,
           },
-          deps.model(`read:${job.submissionId}:${photo.id}`, job.submissionId),
+          deps.model(
+            `read:${job.submissionId}:${photo.id}`,
+            job.submissionId,
+            job.id,
+          ),
         );
         await deps.db.transaction(async (tx) => {
           await context(tx, true);
@@ -296,6 +310,7 @@ export async function runScanJob(
           deps.model(
             `grade:${job.submissionId}:${page.number}:${identity}`,
             job.submissionId,
+            job.id,
           ),
         );
         await deps.db.transaction(async (tx) => {
@@ -345,15 +360,32 @@ export async function runScanJob(
           throw new Error("판정 근거가 모두 저장되지 않았습니다.");
       }
       await tx.query(
-        `UPDATE concept_blank_scan_submission SET state=$2,job_id=NULL,job_kind=NULL,job_started_at=NULL,revision=revision+1,last_error=NULL,graded_at=CASE WHEN $2='graded' THEN CURRENT_TIMESTAMP ELSE graded_at END,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
+        `UPDATE concept_blank_scan_submission SET state=$2,job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=NULL,graded_at=CASE WHEN $2='graded' THEN CURRENT_TIMESTAMP ELSE graded_at END,updated_at=CURRENT_TIMESTAMP WHERE id=$1`,
         [job.submissionId, job.kind === "read" ? "checking" : "graded"],
       );
     });
   } catch (error) {
+    const queued =
+      error instanceof ScanQueuedError ||
+      (signal.aborted &&
+        (
+          await deps.db.query(
+            `SELECT id FROM concept_blank_scan_usage_call WHERE job_id=$1 AND status='queued' LIMIT 1`,
+            [job.id],
+          )
+        ).length > 0);
+    if (queued) {
+      await deps.db.query(
+        `UPDATE concept_blank_scan_submission SET job_waiting=true,last_error=NULL WHERE id=$1 AND job_id=$2 AND state NOT IN ('graded','teacher-corrected')`,
+        [job.submissionId, job.id],
+      );
+      return;
+    }
+    await cancelQueuedScanCalls(deps.db, job.id);
     // CAS prevents an old worker (including a reclaimed lease) from touching newer/public state.
     await deps.db
       .query(
-        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,revision=revision+1,last_error=$3,updated_at=CURRENT_TIMESTAMP WHERE id=$1 AND job_id=$2 AND state NOT IN ('graded','teacher-corrected')`,
+        `UPDATE concept_blank_scan_submission SET job_id=NULL,job_kind=NULL,job_started_at=NULL,job_waiting=false,job_actor=NULL,revision=revision+1,last_error=$3,updated_at=CURRENT_TIMESTAMP WHERE id=$1 AND job_id=$2 AND state NOT IN ('graded','teacher-corrected')`,
         [job.submissionId, job.id, scanJobFailureMessage(error)],
       )
       .catch(scanDatabaseError);

@@ -107,6 +107,7 @@ export const scanSubmissionViewSchema = z.strictObject({
     .strictObject({
       kind: z.enum(["read", "grade"]),
       startedAt: z.iso.datetime(),
+      waiting: z.boolean().optional(),
     })
     .nullable(),
   lastError: z.string().nullable(),

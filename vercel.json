@@ -28,6 +28,10 @@
       "schedule": "30 18 * * *"
     },
     {
+      "path": "/api/concept-blank/scan/queue/cron",
+      "schedule": "* * * * *"
+    },
+    {
       "path": "/api/concept-blank/scan/purge/cron",
       "schedule": "45 18 * * *"
     }

@@ -36,6 +36,8 @@ export type ScanSubmissionRow = {
   job_id: string | null;
   job_kind: "read" | "grade" | null;
   job_started_at: Date | null;
+  job_waiting: boolean;
+  job_actor: ScanIdentity | null;
   last_error: string | null;
   graded_at: Date | null;
 };
@@ -229,7 +231,11 @@ export async function getScanSubmission(
         state: row.state,
         revision: row.revision,
         job: row.job_id
-          ? { kind: row.job_kind, startedAt: row.job_started_at!.toISOString() }
+          ? {
+              kind: row.job_kind,
+              startedAt: row.job_started_at!.toISOString(),
+              waiting: row.job_waiting,
+            }
           : null,
         lastError: row.last_error,
         snapshot: toStudentScanSnapshot(issue.snapshot),

@@ -171,6 +171,7 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
       "POST /submissions/x1/override",
       "DELETE /submissions/x1/photos/x1",
       "GET /purge/cron",
+      "GET /queue/cron",
     ]);
     const found: string[] = [];
     for (const file of walk(root)) {
@@ -197,7 +198,7 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
         ).toBe("forbidden");
       }
     }
-    expect(found).toHaveLength(11);
+    expect(found).toHaveLength(12);
     expect(anonymousLearnGate("GET", "/concept-blank/scan")).toEqual({
       kind: "allow",
     });

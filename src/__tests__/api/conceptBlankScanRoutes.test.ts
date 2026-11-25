@@ -42,6 +42,7 @@ import {
   DELETE as remove,
 } from "@/app/api/concept-blank/scan/submissions/[id]/photos/[photoId]/route";
 import { GET as purge } from "@/app/api/concept-blank/scan/purge/cron/route";
+import { GET as queue } from "@/app/api/concept-blank/scan/queue/cron/route";
 let local: Awaited<ReturnType<typeof openScanTestDb>>,
   world: Awaited<ReturnType<typeof scanWorld>>;
 const origin = "https://today.example.test",
@@ -116,6 +117,21 @@ async function flush() {
   while (mocks.tasks.length) await mocks.tasks.shift()!();
 }
 describe("authenticated scan HTTP routes with local PostgreSQL", () => {
+  it("requires the cron secret before touching the queue, even for a signed-in teacher", async () => {
+    vi.stubEnv("CRON_SECRET", "scan-queue-test-secret");
+    mocks.auth.mockResolvedValue(teacher());
+    mocks.runtime.mockClear();
+    try {
+      expect((await queue(req("/queue/cron"))).status).toBe(401);
+      expect(mocks.runtime).not.toHaveBeenCalled();
+      const request = req("/queue/cron");
+      request.headers.set("authorization", "Bearer scan-queue-test-secret");
+      expect((await queue(request)).status).toBe(200);
+      expect(model).not.toHaveBeenCalled();
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
   it("returns 401/403 before DB/storage and rejects cross-origin and forged actor fields", async () => {
     mocks.auth.mockResolvedValue(null);
     expect((await start(req("/submissions", "POST", payload()))).status).toBe(
