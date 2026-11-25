@@ -1,0 +1,15 @@
+.notice {
+  max-width: 210mm;
+  margin: 0 auto 20px;
+  padding: 16px;
+  background: #fff;
+  color: #3a3a40;
+  font:
+    14px/1.6 Pretendard,
+    sans-serif;
+}
+@media print {
+  .notice {
+    display: none;
+  }
+}

@@ -88,6 +88,7 @@ export async function readScanPage(
     throw new RangeError(STUDIO_AI_TOO_LARGE);
   const raw = await model({
     operation: "read",
+    promptVersion: SCAN_READ_PROMPT_VERSION,
     prompt,
     imageDataUrl: input.imageDataUrl,
     signal: input.signal ?? new AbortController().signal,

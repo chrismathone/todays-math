@@ -1,4 +1,5 @@
 import "server-only";
+import { createHash, randomUUID } from "node:crypto";
 import type { AnthropicUsage, runModelApi } from "@/lib/studio-ai/api";
 import {
   SCAN_TOKEN_PRICES_20261103,
@@ -11,6 +12,7 @@ export type ScanModel = (request: {
   operation: "read" | "grade";
   prompt: string;
   imageDataUrl?: string;
+  promptVersion?: string;
   signal: AbortSignal;
 }) => Promise<string>;
 export type ScanConfig = Readonly<{
@@ -20,6 +22,26 @@ export type ScanConfig = Readonly<{
   effort: "low" | "medium" | "high";
   monthlyUsdCap: number;
 }>;
+
+export const SCAN_MAX_OUTPUT_TOKENS = 16_000;
+/** 2026-11-25 official model overview: all three supported 5.5 models have a 1M
+ * context ceiling. Reserve the WHOLE input ceiling (including image/overhead),
+ * plus max output; do not infer a bound from a mean price or approximate token count.
+ * https://platform.claude.com/docs/en/models/overview
+ * This intentionally leaves a conservative unspendable tail in the monthly budget. */
+export function scanReservation(model: ScanPricedModel) {
+  const inputTokens = 1_000_000;
+  return {
+    inputTokens,
+    outputTokens: SCAN_MAX_OUTPUT_TOKENS,
+    reservedNanoUsd: scanTokenCostNanoUsd(model, {
+      inputTokens,
+      outputTokens: SCAN_MAX_OUTPUT_TOKENS,
+      cachedInputTokens: 0,
+      cacheCreationInputTokens: 0,
+    }),
+  };
+}
 
 export function scanConfig(
   env: Record<string, string | undefined> = process.env,
@@ -60,9 +82,32 @@ export function createScanModel(deps: {
   config?: ScanConfig;
   transport?: typeof runModelApi;
   now?: () => Date;
+  /** Trusted durable job identity (submission/photo/revision/operation), never a client answer. */
+  requestKey?: string;
 }): ScanModel {
   return async (request) => {
     const config = deps.config ?? scanConfig();
+    const model =
+      request.operation === "read" ? config.model : config.gradeModel;
+    const requestKey = deps.requestKey
+      ? createHash("sha256")
+          .update(
+            JSON.stringify([
+              deps.requestKey,
+              model,
+              config.effort,
+              request.operation,
+              request.promptVersion,
+              request.prompt,
+              request.imageDataUrl ?? null,
+            ]),
+          )
+          .digest("hex")
+      : randomUUID();
+    if (deps.requestKey) {
+      const prior = await deps.store.findResult(requestKey);
+      if (prior !== null) return prior;
+    }
     if (!config.enabled) throw new Error("사진 채점이 꺼져 있습니다.");
     request.signal.throwIfAborted();
     // Even an installed server key can never activate paid transport in a test process.
@@ -77,14 +122,20 @@ export function createScanModel(deps: {
       deps.transport ?? (await import("@/lib/studio-ai/api")).runModelApi;
     request.signal.throwIfAborted();
     const month = (deps.now?.() ?? new Date()).toISOString().slice(0, 7);
-    const model =
-      request.operation === "read" ? config.model : config.gradeModel;
     const lease = await deps.store.begin(
       month,
       Math.round(config.monthlyUsdCap * 1e9),
+      {
+        requestKey,
+        operation: request.operation,
+        model,
+        promptVersion: request.promptVersion ?? "injected-unversioned",
+        reservedNanoUsd: scanReservation(model).reservedNanoUsd,
+      },
     );
     const receipts: AnthropicUsage[] = [];
     let dispatched = false;
+    let completedOutput: string | undefined;
     try {
       request.signal.throwIfAborted();
       dispatched = true;
@@ -94,7 +145,7 @@ export function createScanModel(deps: {
         prompt: request.prompt,
         ...(request.imageDataUrl ? { imageDataUrl: request.imageDataUrl } : {}),
         effort: config.effort,
-        maxOutputTokens: 16_000,
+        maxOutputTokens: SCAN_MAX_OUTPUT_TOKENS,
         signal: request.signal,
         singleAttempt: true,
         suppressUpstreamDetails: true,
@@ -106,6 +157,7 @@ export function createScanModel(deps: {
         throw new Error("실제 토큰 사용량을 확인해야 합니다.");
       // Validate before exposing output; settlement below still fails closed on malformed evidence.
       for (const usage of receipts) scanTokenCostNanoUsd(model, usage);
+      completedOutput = output;
       return output;
     } finally {
       let cost: number | null = dispatched ? null : 0;
@@ -119,7 +171,10 @@ export function createScanModel(deps: {
           cost = null;
         }
       }
-      await deps.store.settle(lease, cost);
+      await deps.store.settle(lease, cost, {
+        usage: receipts,
+        output: completedOutput,
+      });
     }
   };
 }

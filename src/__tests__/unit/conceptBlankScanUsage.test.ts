@@ -61,6 +61,36 @@ describe("scan config, paid API boundary and usage", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
+  it("replays a durable job result without another dispatch and binds replay to its exact inputs", async () => {
+    const store = createMemoryScanUsageStore();
+    const transport = vi
+      .fn<typeof runModelApi>()
+      .mockImplementation(async (input) => {
+        input.onAnthropicUsage?.(usage);
+        return "saved result";
+      });
+    const deps = { store, transport, requestKey: "submission-photo-read-v1" };
+    expect(await createScanModel(deps)(request)).toBe("saved result");
+    expect(await createScanModel(deps)(request)).toBe("saved result");
+    expect(transport).toHaveBeenCalledTimes(1);
+    await createScanModel(deps)({
+      ...request,
+      prompt: "different page content",
+    });
+    expect(transport).toHaveBeenCalledTimes(2);
+  });
+
+  it("never dispatches when remaining money is below input-ceiling plus maximum-output reservation", async () => {
+    const transport = vi.fn<typeof runModelApi>();
+    const call = createScanModel({
+      store: createMemoryScanUsageStore(),
+      transport,
+      config: scanConfig({ CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: "4.319999999" }),
+    });
+    await expect(call(request)).rejects.toThrow(/예약액/);
+    expect(transport).not.toHaveBeenCalled();
+  });
+
   it("counts actual input/cache/output tokens without adding thinking twice", () => {
     expect(scanTokenCostNanoUsd("claude-opus-5-5", usage)).toBe(832_000);
     expect(() =>
@@ -96,6 +126,7 @@ describe("scan config, paid API boundary and usage", () => {
       else await expect(call(request)).rejects.toThrow();
       expect(await store.inspect("2026-11")).toEqual({
         spentNanoUsd: 832_000,
+        reservedNanoUsd: 0,
         busy: false,
         unresolved: false,
       });
@@ -131,15 +162,43 @@ describe("scan config, paid API boundary and usage", () => {
 
   it("settles the admission month at rollover, rejects double settlements and reopens a new month", async () => {
     const store = createMemoryScanUsageStore();
-    const nov = await store.begin("2026-11", 1);
-    const dec = await store.begin("2026-12", 1);
+    const nov = await store.begin("2026-11", 20, {
+      reservedNanoUsd: 20,
+      requestKey: "nov",
+      operation: "read",
+      model: "claude-opus-5-5",
+      promptVersion: "test",
+    });
+    const dec = await store.begin("2026-12", 20, {
+      reservedNanoUsd: 20,
+      requestKey: "dec",
+      operation: "read",
+      model: "claude-opus-5-5",
+      promptVersion: "test",
+    });
     await store.settle(nov, 20);
     await expect(store.settle(nov, 20)).rejects.toThrow();
     await store.settle(dec, 0);
     expect(await store.inspect("2026-11")).toMatchObject({ spentNanoUsd: 20 });
     expect(await store.inspect("2026-12")).toMatchObject({ spentNanoUsd: 0 });
-    await expect(store.begin("2026-11", 1)).rejects.toThrow(/상한/);
-    await expect(store.begin("2026-12", 1)).resolves.toHaveProperty("token");
+    await expect(
+      store.begin("2026-11", 20, {
+        reservedNanoUsd: 1,
+        requestKey: "nov-next",
+        operation: "read",
+        model: "claude-opus-5-5",
+        promptVersion: "test",
+      }),
+    ).rejects.toThrow(/상한/);
+    await expect(
+      store.begin("2026-12", 20, {
+        reservedNanoUsd: 1,
+        requestKey: "dec-next",
+        operation: "read",
+        model: "claude-opus-5-5",
+        promptVersion: "test",
+      }),
+    ).resolves.toHaveProperty("token");
   });
 
   it("serializes admission across model instances so concurrent requests cannot slip past the cap", async () => {
@@ -155,7 +214,7 @@ describe("scan config, paid API boundary and usage", () => {
         input.onAnthropicUsage?.(usage);
         return '{"slots":[]}';
       });
-    const config = scanConfig({ CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: "0.0008" });
+    const config = scanConfig({ CONCEPT_BLANK_SCAN_MONTHLY_USD_CAP: "4.3201" });
     const first = createScanModel({ store, now, config, transport });
     const second = createScanModel({ store, now, config, transport });
     const pending = first(request);
