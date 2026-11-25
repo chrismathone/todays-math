@@ -1,19 +1,7 @@
 import "server-only";
-import { createRequire } from "node:module";
+import qrCode from "qrcode";
 import type { RenderQr, TextbookRenderModel } from "./model";
 
-// Upstream qrcode v1 ships no declaration file. Keep its narrow used interface here.
-const qrCode = createRequire(import.meta.url)("qrcode") as {
-  toBuffer(
-    text: string,
-    options: {
-      type: "png";
-      errorCorrectionLevel: "M";
-      margin: number;
-      scale: number;
-    },
-  ): Promise<Buffer>;
-};
 export function modelQrTargets(model: TextbookRenderModel): RenderQr[] {
   return model.sections.flatMap((s) =>
     s.blocks.flatMap((b) =>

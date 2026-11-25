@@ -1,13 +1,12 @@
 import { readFile } from "node:fs/promises";
-import { createRequire } from "node:module";
+import { join } from "node:path";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 async function handleGet() {
   if (process.env.NODE_ENV !== "development")
     return new Response(null, { status: 404 });
-  const require = createRequire(`${process.cwd()}/package.json`);
   const worker = await readFile(
-    require.resolve("pdfjs-dist/build/pdf.worker.min.mjs"),
+    join(process.cwd(), "node_modules/pdfjs-dist/build/pdf.worker.min.mjs"),
     "utf8",
   );
   return new Response(worker, {

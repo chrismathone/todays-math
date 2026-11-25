@@ -1,6 +1,5 @@
 import "server-only";
 import { readFileSync } from "node:fs";
-import { createRequire } from "node:module";
 import path from "node:path";
 import { createElement } from "react";
 import {
@@ -17,21 +16,18 @@ import {
 import { EXAM_REPORT_PAPER_CSS } from "@/components/exam-report/paperStyles";
 import { PdfPayloadSchema, type PdfPayload } from "@/lib/export/pdfServer";
 
-const requireAsset = createRequire(import.meta.url);
 let mathCss: string | undefined;
 
 /** 실제 KaTeX CSS와 woff2를 함께 싣는다. CDN·Next의 가변 CSS 해시 주소에 의존하지 않는다. */
 export function selfHostedMathCss(): string {
   if (mathCss !== undefined) return mathCss;
-  // Turbopack 운영 빌드에서 `resolve` 가 문자열이 아닌 값을 낼 수 있다(2026-11-25 개념 백지 발행 장애) —
-  // 그때는 outputFileTracingIncludes 로 실린 cwd 의 node_modules 경로를 쓴다.
-  const resolved: unknown = requireAsset.resolve("katex/dist/katex.min.css");
-  const cssPath =
-    typeof resolved === "string" && resolved
-      ? resolved
-      : path.join(process.cwd(), "node_modules/katex/dist/katex.min.css");
+  // Read explicitly traced assets from cwd: Turbopack must never resolve runtime require.
+  const cssPath = path.join(
+    process.cwd(),
+    "node_modules/katex/dist/katex.min.css",
+  );
   mathCss = readFileSync(cssPath, "utf8").replace(
-    /src:([^;]+);/g,
+    /src:([^;}]+);?/g,
     (declaration, sources: string) => {
       const font = /url\(fonts\/([^()]+\.woff2)\)/.exec(sources);
       if (!font) return declaration;

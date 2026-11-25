@@ -1,5 +1,4 @@
 import { readFile, realpath } from "node:fs/promises";
-import { createRequire } from "node:module";
 import { dirname, extname, join } from "node:path";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -44,9 +43,8 @@ async function handleGet(
     return notFound();
   }
 
-  const require = createRequire(join(process.cwd(), "package.json"));
   const packageRoot = await realpath(
-    dirname(require.resolve("pdfjs-dist/package.json")),
+    join(process.cwd(), "node_modules/pdfjs-dist"),
   );
   const assetDirectory = join(packageRoot, kind);
 
