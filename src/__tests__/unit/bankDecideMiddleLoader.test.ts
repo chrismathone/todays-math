@@ -103,7 +103,10 @@ function capture(templates?: readonly string[]): Evidence {
               beforeDigitsHash: digest(
                 stable({
                   ...row,
-                  content: row.content.replace("까지의 숫자가", "까지의 자연수가"),
+                  content: row.content.replace(
+                    "까지의 숫자가",
+                    "까지의 자연수가",
+                  ),
                 }),
               ),
             }
@@ -154,10 +157,18 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
         "utf8",
       ),
     );
+    // 2026-11-25 교과서 엔진 T1 — 승인 목록(approved-types.json)의 30유형만 더 허용한다.
+    const textbook = JSON.parse(
+      readFileSync(
+        "docs/planning/tracks/reports/textbook-engine-t1/approved-types.json",
+        "utf8",
+      ),
+    ) as { types: { key: string }[] };
     expect(added).toEqual(
-      plans[1].targets
-        .flatMap((t: { typeKeys: string[] }) => t.typeKeys)
-        .sort(),
+      [
+        ...plans[1].targets.flatMap((t: { typeKeys: string[] }) => t.typeKeys),
+        ...textbook.types.map((t) => t.key),
+      ].sort(),
     );
     expect(before.templates.length).toBeGreaterThan(1000);
     expect(after.templates).toEqual(before.templates);
@@ -191,7 +202,10 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
     expect(
       changed
         .filter((row) => row.format !== "객관식")
-        .filter((row) => !boundaryChanges.includes(row) && !digitsChanges.includes(row))
+        .filter(
+          (row) =>
+            !boundaryChanges.includes(row) && !digitsChanges.includes(row),
+        )
         .map(({ id, family, format }) => ({ id, family, format })),
     ).toEqual([]);
   }, 60000);
