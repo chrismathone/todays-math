@@ -5,7 +5,7 @@ import { scanTokenCostNanoUsd, type ScanPricedModel } from "./usage";
 
 export const SCAN_MAX_OUTPUT_TOKENS = 16_000;
 // Policy allowance for the single-user-message envelope/control tokens. No tools,
-// system prompt, history, schema, URL/file images or provider fallback are sent.
+// system prompt, history, URL/file images or provider fallback are sent.
 export const SCAN_FRAMING_TOKENS = 1024;
 
 /** 2026-11-25 official rule: ceil(width/28) * ceil(height/28) visual tokens.
@@ -18,11 +18,19 @@ export const SCAN_FRAMING_TOKENS = 1024;
  */
 export async function scanReservation(
   model: ScanPricedModel,
-  request: { prompt: string; imageDataUrl?: string },
+  request: {
+    prompt: string;
+    imageDataUrl?: string;
+    jsonSchema?: Readonly<Record<string, unknown>>;
+  },
 ) {
   if (typeof request.prompt !== "string")
     throw new RangeError("글의 사용량 상계를 구할 수 없습니다.");
-  const textBytes = Buffer.byteLength(request.prompt, "utf8");
+  const textBytes =
+    Buffer.byteLength(request.prompt, "utf8") +
+    (request.jsonSchema === undefined
+      ? 0
+      : Buffer.byteLength(JSON.stringify(request.jsonSchema), "utf8"));
   let imageTokens = 0;
   let image: { width: number; height: number } | undefined;
   if (request.imageDataUrl !== undefined) {

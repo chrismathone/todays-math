@@ -4,6 +4,7 @@ import { scanDatabase } from "./database.server";
 import { createScanModel, scanConfig } from "./model";
 import { scanPhotoStorage } from "./storage.server";
 import { createDatabaseScanUsageStore } from "./usageDatabase";
+import { ScanOutputError } from "./output";
 import { scanJobFailureMessage } from "./jobs";
 
 /** Production dependencies are server-only. Test/UI harnesses inject these at the boundary, never via a public flag. */
@@ -35,7 +36,14 @@ export function scanRuntime(request: Request) {
         route: "/api/concept-blank/scan/submissions/[id]/jobs",
         method: "POST",
         action: "concept-blank-scan",
-        message: scanJobFailureMessage(error),
+        message:
+          error instanceof ScanOutputError
+            ? error.message
+            : scanJobFailureMessage(error),
+        context:
+          error instanceof ScanOutputError
+            ? { operation: error.operation, invalidFields: error.invalidFields }
+            : undefined,
       });
     },
   };
