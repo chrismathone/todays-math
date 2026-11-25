@@ -1,0 +1,426 @@
+<style>
+#mathstep-prototype {
+  --ms-bg: light-dark(#f3f5fa, #141b29);
+  --ms-paper: light-dark(#ffffff, #1c2636);
+  --ms-ink: light-dark(#172b4d, #e6edf8);
+  --ms-muted: light-dark(#596c86, #a8b8cf);
+  --ms-line: light-dark(#dce3ee, #36465d);
+  --ms-blue: light-dark(#3159df, #a2b7ff);
+  --ms-blue-fill: light-dark(#3159df, #3159df);
+  --ms-soft: light-dark(#edf2ff, #283757);
+  --ms-green: light-dark(#1d7550, #8bd9b1);
+  --ms-green-bg: light-dark(#edf8f1, #19382e);
+  --ms-amber: light-dark(#875510, #f0c17c);
+  --ms-amber-bg: light-dark(#fff5e4, #3b3021);
+  --ms-red: light-dark(#b42318, #ffb0a8);
+  --ms-text-size: 16px;
+  color: var(--ms-ink); font: 400 var(--ms-text-size)/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--ms-bg); border: 1px solid var(--ms-line); border-radius: 18px; overflow: clip; container-type: inline-size;
+}
+#mathstep-prototype * { box-sizing: border-box; }
+#mathstep-prototype [hidden] { display: none !important; }
+#mathstep-prototype button, #mathstep-prototype input { font: inherit; }
+#mathstep-prototype button { color: inherit; cursor: pointer; }
+#mathstep-prototype button:disabled { cursor: default; }
+#mathstep-prototype h1, #mathstep-prototype h2, #mathstep-prototype h3, #mathstep-prototype p { margin: 0; }
+#mathstep-prototype button:focus-visible, #mathstep-prototype input:focus-visible { outline: 3px solid var(--ms-blue); outline-offset: 3px; }
+#mathstep-prototype .ms-top { padding: 17px 110px 17px 24px; background: var(--ms-paper); display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--ms-line); flex-wrap: wrap; }
+#mathstep-prototype .ms-brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-weight: 650; }
+#mathstep-prototype .ms-brandmark { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 9px; background: var(--ms-soft); color: var(--ms-blue); }
+#mathstep-prototype .ms-proto { color: var(--ms-muted); font-size: 12px; font-weight: 500; border-left: 1px solid var(--ms-line); padding-left: 10px; }
+#mathstep-prototype .ms-switch { display: flex; background: var(--ms-bg); padding: 3px; border-radius: 9px; gap: 3px; }
+#mathstep-prototype .ms-switch button { border: 0; background: transparent; padding: 6px 11px; border-radius: 7px; font-size: 13px; white-space: nowrap; }
+#mathstep-prototype .ms-switch button[aria-pressed="true"] { background: var(--ms-paper); color: var(--ms-blue); font-weight: 650; box-shadow: 0 1px 4px light-dark(#172b4d14, #00000020); }
+#mathstep-prototype .ms-body { padding: 26px; }
+#mathstep-prototype .ms-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+#mathstep-prototype .ms-eyebrow { color: var(--ms-muted); font-size: 12px; margin-bottom: 4px; letter-spacing: .02em; }
+#mathstep-prototype h1 { font-size: 25px; line-height: 1.35; font-weight: 650; letter-spacing: -.04em; }
+#mathstep-prototype h2 { font-size: 19px; line-height: 1.5; font-weight: 650; letter-spacing: -.025em; }
+#mathstep-prototype h3 { font-size: 15px; font-weight: 650; }
+#mathstep-prototype .ms-small { font-size: 12px; color: var(--ms-muted); }
+#mathstep-prototype .ms-muted { color: var(--ms-muted); }
+#mathstep-prototype .ms-stages { display: flex; gap: 9px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; font-size: 12px; }
+#mathstep-prototype .ms-stage { display: flex; align-items: center; gap: 6px; color: var(--ms-muted); }
+#mathstep-prototype .ms-stage span { display: grid; place-items: center; width: 23px; height: 23px; background: var(--ms-paper); border-radius: 50%; }
+#mathstep-prototype .ms-stage.current { color: var(--ms-blue); font-weight: 650; }
+#mathstep-prototype .ms-stage.current span { background: var(--ms-blue-fill); color: #fff; }
+#mathstep-prototype .ms-stage.complete span { background: var(--ms-green-bg); color: var(--ms-green); }
+#mathstep-prototype .ms-stage-arrow { color: var(--ms-muted); }
+#mathstep-prototype .ms-workspace { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.32fr); gap: 22px; align-items: start; }
+#mathstep-prototype[data-layout="stacked"] .ms-workspace { grid-template-columns: minmax(0, 1fr); }
+#mathstep-prototype .ms-source { background: var(--ms-paper); border: 1px solid var(--ms-line); border-radius: 13px; padding: 21px; }
+#mathstep-prototype .ms-question { margin-top: 10px; font-size: calc(var(--ms-text-size) + 1px); line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+#mathstep-prototype .ms-label { font-size: 12px; font-weight: 650; color: var(--ms-blue); }
+#mathstep-prototype .ms-trail { margin-top: 22px; }
+#mathstep-prototype .ms-trail-title { display: flex; gap: 7px; align-items: center; margin-bottom: 12px; }
+#mathstep-prototype .ms-trail ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+#mathstep-prototype .ms-line-item { display: grid; grid-template-columns: 21px minmax(0, 1fr); gap: 10px; }
+#mathstep-prototype .ms-line-mark { color: var(--ms-green); font-size: 13px; padding-top: 2px; }
+#mathstep-prototype .ms-line-mark.help { color: var(--ms-amber); }
+#mathstep-prototype .ms-line-item p { font-size: 14px; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; }
+#mathstep-prototype .ms-empty { padding: 15px 0 12px 31px; font-size: 13px; color: var(--ms-muted); }
+#mathstep-prototype .ms-math { font-family: "Cambria Math", Cambria, Georgia, serif; font-size: 1.12em; font-variant-numeric: lining-nums; }
+#mathstep-prototype .ms-panel { background: var(--ms-paper); padding: 24px; border: 1px solid var(--ms-line); border-radius: 13px; min-width: 0; }
+#mathstep-prototype .ms-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 13px; }
+#mathstep-prototype .ms-step-count { font-size: 12px; color: var(--ms-muted); font-variant-numeric: tabular-nums; }
+#mathstep-prototype .ms-prompt { font-size: calc(var(--ms-text-size) + 2px); font-weight: 600; line-height: 1.65; margin-bottom: 18px; word-break: keep-all; }
+#mathstep-prototype .ms-choices { display: grid; gap: 10px; }
+#mathstep-prototype .ms-choice { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: var(--ms-paper); border: 1px solid var(--ms-line); border-radius: 10px; padding: 13px 15px; min-height: 59px; }
+#mathstep-prototype .ms-choice:not(:disabled):hover { background: var(--ms-soft); border-color: var(--ms-blue); }
+#mathstep-prototype .ms-choice.ms-wrong { background: var(--ms-amber-bg); border-color: var(--ms-amber); }
+#mathstep-prototype .ms-choice:disabled { color: var(--ms-muted); }
+#mathstep-prototype .ms-choice-number { display: grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; background: var(--ms-bg); border-radius: 7px; font-size: 12px; color: var(--ms-muted); font-variant-numeric: tabular-nums; }
+#mathstep-prototype .ms-choice-copy { min-width: 0; word-break: keep-all; overflow-wrap: anywhere; }
+#mathstep-prototype .ms-choice-explanation { display: block; font-size: 14px; margin-bottom: 4px; }
+#mathstep-prototype .ms-feedback { margin-top: 15px; padding: 12px 14px; background: var(--ms-amber-bg); color: var(--ms-amber); border-radius: 9px; font-size: 14px; }
+#mathstep-prototype .ms-reveal { padding: 17px; background: var(--ms-soft); border-radius: 10px; margin: 16px 0; display: grid; gap: 8px; }
+#mathstep-prototype .ms-action-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+#mathstep-prototype .ms-button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; border: 1px solid var(--ms-line); border-radius: 9px; background: var(--ms-paper); padding: 10px 16px; min-height: 44px; font-size: 14px; font-weight: 550; }
+#mathstep-prototype .ms-button:hover { background: var(--ms-soft); }
+#mathstep-prototype .ms-button.primary { color: #fff; background: var(--ms-blue-fill); border-color: var(--ms-blue-fill); }
+#mathstep-prototype .ms-button.primary:hover { background: #2448bd; }
+#mathstep-prototype .ms-button.quiet { border-color: transparent; background: transparent; color: var(--ms-muted); padding-left: 0; }
+#mathstep-prototype .ms-keys { display: flex; gap: 4px; align-items: center; font-size: 12px; color: var(--ms-muted); }
+#mathstep-prototype kbd { font: inherit; min-width: 20px; text-align: center; padding: 0 3px; border: 1px solid var(--ms-line); border-bottom-width: 2px; border-radius: 4px; background: var(--ms-paper); }
+#mathstep-prototype .ms-numeric-form { display: grid; gap: 15px; margin-top: 22px; }
+#mathstep-prototype .ms-number-label { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+#mathstep-prototype .ms-number-input { width: 100px; padding: 12px; border: 2px solid var(--ms-blue); border-radius: 10px; text-align: center; font-size: 22px; font-weight: 600; background: var(--ms-paper); color: var(--ms-ink); }
+#mathstep-prototype .ms-numeric-form .ms-button { justify-self: start; }
+#mathstep-prototype .ms-independent { max-width: 660px; margin: 0 auto; }
+#mathstep-prototype .ms-independent .ms-panel { padding: 30px; }
+#mathstep-prototype .ms-independent .ms-question { font-size: 20px; margin: 17px 0 5px; }
+#mathstep-prototype .ms-result { max-width: 700px; margin: 0 auto; }
+#mathstep-prototype .ms-result-banner { display: flex; align-items: start; gap: 15px; margin-bottom: 23px; }
+#mathstep-prototype .ms-result-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: var(--ms-green-bg); color: var(--ms-green); flex-shrink: 0; }
+#mathstep-prototype .ms-result-banner h2 { margin-bottom: 5px; }
+#mathstep-prototype .ms-evidence { display: grid; gap: 0; margin-top: 15px; }
+#mathstep-prototype .ms-evidence-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 15px 0; border-top: 1px solid var(--ms-line); align-items: center; }
+#mathstep-prototype .ms-evidence-row p { font-size: 13px; color: var(--ms-muted); margin-top: 4px; }
+#mathstep-prototype .ms-evidence-value { justify-self: end; text-align: right; font-size: 14px; }
+#mathstep-prototype .ms-tag { font-size: 12px; padding: 3px 8px; border-radius: 5px; display: inline-block; background: var(--ms-bg); color: var(--ms-muted); }
+#mathstep-prototype .ms-tag.good { background: var(--ms-green-bg); color: var(--ms-green); }
+#mathstep-prototype .ms-tag.help { background: var(--ms-amber-bg); color: var(--ms-amber); }
+#mathstep-prototype .ms-teacher-intro { display: flex; gap: 12px; align-items: center; padding: 16px 0 22px; }
+#mathstep-prototype .ms-avatar { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; color: var(--ms-blue); background: var(--ms-soft); font-size: 14px; font-weight: 650; }
+#mathstep-prototype .ms-records { display: grid; gap: 0; margin-top: 16px; }
+#mathstep-prototype .ms-record { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto; gap: 18px; padding: 17px 0; border-top: 1px solid var(--ms-line); align-items: start; }
+#mathstep-prototype .ms-record p { font-size: 13px; color: var(--ms-muted); }
+#mathstep-prototype .ms-record strong { font-size: 14px; font-weight: 650; }
+#mathstep-prototype .ms-concept-list { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0 20px; }
+#mathstep-prototype .ms-concept { padding: 10px 13px; background: var(--ms-bg); border-radius: 9px; flex: 1 1 140px; }
+#mathstep-prototype .ms-concept p { font-size: 12px; color: var(--ms-muted); margin-top: 4px; }
+#mathstep-prototype .ms-note { border-left: 3px solid var(--ms-blue); padding-left: 13px; margin-top: 20px; font-size: 13px; color: var(--ms-muted); }
+#mathstep-prototype .ms-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 26px; border-top: 1px solid var(--ms-line); font-size: 12px; color: var(--ms-muted); flex-wrap: wrap; }
+#mathstep-prototype .ms-bottom button { border: 0; background: none; font-size: 12px; color: var(--ms-muted); padding: 5px 0; min-height: 30px; }
+#mathstep-prototype .ms-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+#mathstep-prototype .ms-live-equation { margin: 0 0 20px; padding: 19px 0; border-block: 1px solid var(--ms-line); }
+#mathstep-prototype .ms-live-equation .ms-math { display: block; margin-top: 8px; font-size: 25px; line-height: 1.5; overflow-wrap: anywhere; }
+#mathstep-prototype .ms-model { display: flex; align-items: center; gap: 8px; margin-top: 18px; }
+#mathstep-prototype .ms-model span { flex: 1; text-align: center; padding: 9px 3px; background: var(--ms-soft); border-radius: 7px; }
+#mathstep-prototype .ms-model small { display: block; font-size: 11px; color: var(--ms-muted); }
+#mathstep-prototype .ms-step-list { display: grid; gap: 7px; list-style: none; padding: 0; margin: 16px 0 0; }
+#mathstep-prototype .ms-step-list li { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--ms-muted); }
+#mathstep-prototype .ms-step-list li[aria-current] { color: var(--ms-blue); font-weight: 650; }
+#mathstep-prototype .ms-bridge { margin-bottom: 20px; color: var(--ms-green); font-size: 13px; }
+#mathstep-prototype .ms-worked { margin-top: 20px; display: grid; gap: 12px; }
+#mathstep-prototype .ms-worked p { padding-bottom: 12px; border-bottom: 1px solid var(--ms-line); }
+#mathstep-prototype .ms-worked small { display: block; font-size: 12px; color: var(--ms-muted); }
+#mathstep-prototype .ms-selected-note { padding: 10px 12px; margin-bottom: 14px; border-radius: 8px; background: var(--ms-green-bg); color: var(--ms-green); font-size: 13px; }
+#mathstep-prototype .ms-choice-copy .ms-math { font-size: 19px; }
+#mathstep-prototype .ms-record-detail { overflow-wrap: anywhere; }
+#mathstep-prototype { --ms-bg: light-dark(#f5f4f0, #141b29); --ms-line: light-dark(#e1e4e9, #36465d); border-radius: 22px; }
+#mathstep-prototype .ms-body { padding: 32px; }
+#mathstep-prototype .ms-top { padding-top: 19px; padding-bottom: 19px; }
+#mathstep-prototype h1 { font-size: 32px; line-height: 1.32; letter-spacing: -.045em; }
+#mathstep-prototype .ms-heading { margin-bottom: 22px; }
+#mathstep-prototype .ms-heading .ms-eyebrow { margin-bottom: 10px; }
+#mathstep-prototype .ms-workspace { grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr); gap: 30px; }
+#mathstep-prototype .ms-source { border: 0; border-radius: 0; padding: 0 0 22px; background: transparent; }
+#mathstep-prototype .ms-panel { border-radius: 18px; padding: 27px; box-shadow: 0 5px 24px light-dark(#263c6110, #00000015); }
+#mathstep-prototype .ms-trail { border-top: 1px solid var(--ms-line); padding-top: 22px; }
+#mathstep-prototype .ms-trail-title { color: var(--ms-muted); }
+#mathstep-prototype .ms-trail ol { gap: 18px; }
+#mathstep-prototype .ms-line-item { padding-bottom: 13px; border-bottom: 1px solid var(--ms-line); }
+#mathstep-prototype .ms-trail .ms-empty { padding: 8px 0; line-height: 1.9; }
+#mathstep-prototype .ms-model span { background: var(--ms-paper); border: 1px solid var(--ms-line); font-size: 19px; }
+#mathstep-prototype .ms-live-equation { border: 0; background: var(--ms-soft); border-radius: 12px; padding: 16px 18px; }
+#mathstep-prototype .ms-live-equation .ms-math { font-size: 24px; }
+#mathstep-prototype .ms-choice { border-radius: 11px; padding: 12px 14px; transition: background .12s, border-color .12s; }
+#mathstep-prototype .ms-choice-explanation { color: var(--ms-muted); font-size: 13px; }
+#mathstep-prototype .ms-choice:not(:disabled):hover { box-shadow: 0 2px 8px light-dark(#3159df12, #00000015); }
+#mathstep-prototype .ms-choice-number { border-radius: 50%; width: 27px; height: 27px; }
+#mathstep-prototype .ms-selected-note { background: transparent; padding: 0; }
+#mathstep-prototype .ms-rail { display: flex; gap: 5px; margin-bottom: 22px; }
+#mathstep-prototype .ms-rail span { height: 4px; flex: 1; border-radius: 3px; background: var(--ms-bg); }
+#mathstep-prototype .ms-rail span.done { background: var(--ms-green); }
+#mathstep-prototype .ms-rail span.now { background: var(--ms-blue); }
+#mathstep-prototype .ms-caption { color: var(--ms-muted); font-size: 13px; margin-top: 10px; }
+#mathstep-prototype .ms-number-input { width: 130px; font-size: 30px; background: var(--ms-soft); border-color: var(--ms-line); }
+#mathstep-prototype .ms-independent { max-width: 640px; }
+#mathstep-prototype summary { cursor: pointer; }
+#mathstep-prototype .ms-trail-title { display: list-item; font-size: 14px; font-weight: 600; }
+#mathstep-prototype .ms-line-item:last-child { background: var(--ms-green-bg); padding: 10px; border: 0; border-radius: 8px; }
+@container (max-width: 650px) {
+  #mathstep-prototype .ms-model, #mathstep-prototype .ms-step-list { display: none; }
+  #mathstep-prototype .ms-source { padding-bottom: 0; }
+  #mathstep-prototype .ms-trail { padding-top: 12px; margin-top: 12px; }
+  #mathstep-prototype .ms-live-equation .ms-math { font-size: 21px; }
+  #mathstep-prototype .ms-top { padding: 16px; padding-right: 96px; gap: 12px; }
+  #mathstep-prototype .ms-body { padding: 18px; }
+  #mathstep-prototype .ms-workspace { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  #mathstep-prototype .ms-panel, #mathstep-prototype .ms-source, #mathstep-prototype .ms-independent .ms-panel { padding: 18px; }
+  #mathstep-prototype .ms-heading { margin-bottom: 16px; }
+  #mathstep-prototype h1 { font-size: 26px; }
+  #mathstep-prototype .ms-trail { margin-top: 16px; }
+  #mathstep-prototype .ms-trail ol { gap: 10px; }
+  #mathstep-prototype .ms-trail-title { margin-bottom: 8px; }
+  #mathstep-prototype .ms-empty { padding: 5px 0; }
+  #mathstep-prototype .ms-choice { padding: 12px; gap: 10px; }
+  #mathstep-prototype .ms-record { grid-template-columns: minmax(0, 1fr) auto; gap: 7px 12px; }
+  #mathstep-prototype .ms-record .ms-record-detail { grid-column: 1 / -1; grid-row: 2; }
+  #mathstep-prototype .ms-bottom { padding: 12px 18px; }
+  #mathstep-prototype .ms-keys { display: none; }
+  #mathstep-prototype .ms-source { padding: 0; }
+  #mathstep-prototype .ms-heading { margin-bottom: 12px; }
+  #mathstep-prototype .ms-heading .ms-caption { display: none; }
+  #mathstep-prototype .ms-stages { margin-bottom: 14px; }
+}
+@media (pointer: coarse) {
+  #mathstep-prototype .ms-switch button, #mathstep-prototype .ms-bottom button { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mathstep-prototype * { scroll-behavior: auto !important; transition: none !important; }
+}
+</style>
+<div id="mathstep-prototype" data-layout="split" aria-label="오늘 수학 단계별 풀이 시안">
+  <header class="ms-top">
+    <div class="ms-brand"><span class="ms-brandmark"><i data-lucide="book-open" aria-hidden="true"></i></span>오늘 수학 <span class="ms-proto">시안</span></div>
+    <div class="ms-switch" aria-label="시안 보기">
+      <button type="button" data-view="student" aria-pressed="true">학생 연습</button>
+      <button type="button" data-view="teacher" aria-pressed="false">선생님 보기</button>
+    </div>
+  </header>
+  <main class="ms-body" id="ms-main"></main>
+  <footer class="ms-bottom"><span>이 시안에서 푼 기록만 표시합니다.</span><button type="button" data-action="restart">처음부터 체험</button></footer>
+  <div class="ms-sr" id="ms-announcement" role="status" aria-live="polite"></div>
+</div>
+<script>
+(function () {
+  const root = document.getElementById("mathstep-prototype");
+  const main = root.querySelector("#ms-main");
+  const announcement = root.querySelector("#ms-announcement");
+  const steps = [
+    {
+      title: "세 수 표현하기", skill: "연속하는 수", prompt: "가장 작은 수를 x라 할 때, 세 자연수를 어떻게 나타낼까요?",
+      choices: ["x, x + 2, x + 4", "x, x + 1, x + 2", "x − 1, x, x + 1", "x, x, x"],
+      explanations: ["연속하는 수는 2씩 커지므로", "가장 작은 수에서 1씩 커지므로", "x를 가운데 수로 놓으면", "세 수를 모두 같은 수로 나타내면"],
+      correct: 1, line: "가장 작은 수를 x라 하면, 세 수는 x, x + 1, x + 2이다.",
+      why: "연속하는 자연수는 1씩 커져요. 가장 작은 수 x에서 시작해요.",
+      errors: ["간격을 2로 두었어요. 연속하는 자연수는 1씩 커져요.", "", "x는 가운데 수가 아니라 가장 작은 수로 정했어요.", "연속하는 세 수는 서로 다른 수예요."],
+      tags: ["수 사이의 간격", "", "미지수가 가리키는 수", "연속하는 수의 의미"]
+    },
+    {
+      title: "조건을 식으로", skill: "합을 식으로 표현", prompt: "세 수의 합이 18이라는 조건을 식으로 옮겨 보세요.",
+      choices: ["x(x + 1)(x + 2) = 18", "x + (x + 1) = 18", "3x = 18", "x + (x + 1) + (x + 2) = 18"],
+      explanations: ["세 수를 곱한 값이 18이므로", "처음 두 수의 합이 18이므로", "세 수가 각각 x이므로", "세 수를 모두 더한 값이 18이므로"],
+      correct: 3, line: "세 수의 합이 18이므로 x + (x + 1) + (x + 2) = 18이다.",
+      why: "세 수를 모두 더한 값이 18이 되도록 식을 세워요.",
+      errors: ["합을 구하는 조건이에요. 세 수를 곱하지 않아요.", "세 번째 수가 빠졌어요. 세 수를 모두 더해야 해요.", "세 수가 모두 x는 아니에요. 뒤의 두 수는 1, 2만큼 더 커요.", ""],
+      tags: ["합과 곱의 구분", "조건 일부 누락", "세 수를 같은 수로 처리", ""]
+    },
+    {
+      title: "동류항 정리", skill: "동류항 정리", prompt: "같은 뜻을 유지하면서 왼쪽을 간단히 하면?",
+      choices: ["3x + 3 = 18", "3x + 2 = 18", "x + 3 = 18", "3x + 3 = 15"],
+      explanations: ["x항끼리, 상수항끼리 각각 더하면", "x항 세 개와 상수항 2를 남기면", "x항을 하나만 남겨 정리하면", "왼쪽을 정리하고 오른쪽에서 3을 빼면"],
+      correct: 0, line: "x항과 상수항을 각각 모으면 3x + 3 = 18이다.",
+      why: "x가 세 개이므로 3x, 상수항은 1 + 2 = 3이에요. 오른쪽은 그대로예요.",
+      errors: ["", "상수항 1과 2를 모두 더해야 해요.", "x항이 세 개 있어요. x + x + x를 먼저 모아 보세요.", "지금은 왼쪽만 정리했어요. 오른쪽 18은 바뀌지 않아요."],
+      tags: ["", "상수항 합", "x항의 계수", "한쪽만 값 변경"]
+    },
+    {
+      title: "등식의 성질", skill: "양변에 같은 계산", prompt: "x가 있는 항만 왼쪽에 남기려면?",
+      choices: ["3x = 21", "x = 15", "3x = 15", "3x = 18"],
+      explanations: ["왼쪽에서 3을 빼고 오른쪽에 더하면", "상수항 3과 계수 3을 없애면", "양변에서 똑같이 3을 빼면", "왼쪽에서만 3을 빼면"],
+      correct: 2, line: "양변에서 3을 빼면 3x = 15이다.",
+      why: "왼쪽의 +3을 없애려면 양쪽에서 똑같이 3을 빼요.",
+      errors: ["오른쪽에서도 3을 빼야 해요. 더하지 않아요.", "상수항 3을 빼도 x의 계수 3은 남아요.", "", "왼쪽에서 3을 뺐으므로 오른쪽에서도 3을 빼야 해요."],
+      tags: ["빼기와 더하기", "계수와 상수항", "", "양변에 같은 계산"]
+    }
+  ];
+  const fresh = function () { return { version: 2, view: "student", phase: "guided", step: 0, records: steps.map(function () { return { attempts: [], revealed: false, done: false }; }), number: { attempts: [], revealed: false, done: false }, independent: { attempts: [], revealed: false, done: false } }; };
+  const safe = function (text) { return String(text).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  const valid = function (v) {
+    return v && v.version === 2 && ["student", "teacher"].includes(v.view) && ["guided", "blank", "independent", "summary"].includes(v.phase) && Number.isInteger(v.step) && v.step >= 0 && v.step < 4 && Array.isArray(v.records) && v.records.length === 4 && v.records.every(function (r) { return r && Array.isArray(r.attempts) && r.attempts.length <= 2 && r.attempts.every(function (n) { return Number.isInteger(n) && n >= 0 && n < 4; }) && typeof r.revealed === "boolean" && typeof r.done === "boolean"; }) && ["number", "independent"].every(function (k) { const r = v[k]; return r && Array.isArray(r.attempts) && r.attempts.length <= 2 && r.attempts.every(function (n) { return typeof n === "string" && /^\d{1,4}$/.test(n); }) && typeof r.revealed === "boolean" && typeof r.done === "boolean"; });
+  };
+  const fromHost = function (globals) { const v = globals && globals.privateContent && globals.privateContent.session; return valid(v) ? JSON.parse(JSON.stringify(v)) : null; };
+  let session = fromHost(window.openai && window.openai.widgetState) || fresh();
+  let feedback = "", inputValue = "", lastAction = 0, connected = "";
+  const design = { layout: "split", textSize: 16 };
+  function restoreDesign(saved) {
+    const d = saved && saved.privateContent && saved.privateContent.design;
+    if (!d) return;
+    if (["split", "stacked"].includes(d.layout)) design.layout = d.layout;
+    if (Number.isFinite(d.textSize) && d.textSize >= 15 && d.textSize <= 19) design.textSize = d.textSize;
+  }
+  restoreDesign(window.openai && window.openai.widgetState);
+  function persist() {
+    if (!window.openai || !window.openai.setWidgetState) return;
+    const modelContent = { prototype: "stepwise-math", view: session.view, phase: session.phase, completedSteps: session.records.filter(function (r) { return r.done; }).length, firstChoiceCorrect: session.records.filter(function (r, i) { return r.attempts[0] === steps[i].correct; }).length, independent: session.independent };
+    Promise.resolve(window.openai.setWidgetState({ modelContent: modelContent, privateContent: { session: session, design: design } })).catch(function () {});
+  }
+  function announce(text) { announcement.textContent = text; }
+  function stageBar() {
+    const active = ["guided", "blank", "independent", "summary"].indexOf(session.phase);
+    return '<div class="ms-stages" aria-label="학습 순서">' + ["풀이 연결", "일부 완성", "혼자 풀기"].map(function (label, i) { return (i ? '<span class="ms-stage-arrow" aria-hidden="true">›</span>' : "") + '<div class="ms-stage ' + (active === i ? "current" : active > i ? "complete" : "") + '"' + (active === i ? ' aria-current="step"' : "") + '><span>' + (active > i ? "✓" : i + 1) + '</span>' + label + '</div>'; }).join("") + '</div>';
+  }
+  function trail() {
+    const rows = session.records.map(function (r, i) {
+      if (!r.done) return "";
+      return '<li class="ms-line-item"><span class="ms-line-mark ' + (r.revealed ? "help" : "") + '" aria-hidden="true">' + (r.revealed ? "↳" : "✓") + '</span><div><p>' + steps[i].line + '</p>' + (r.revealed ? '<span class="ms-small">설명을 보고 연결했어요</span>' : "") + '</div></li>';
+    }).join("");
+    const numberLine = session.number.done ? '<li class="ms-line-item"><span class="ms-line-mark">✓</span><div><p>양변을 3으로 나누면 x = 5이다.<br>따라서 세 수는 <strong>5, 6, 7</strong>이다.</p></div></li>' : "";
+    return '<details class="ms-trail"' + (root.clientWidth > 650 ? ' open' : '') + '><summary class="ms-trail-title">풀이 노트 · ' + session.records.filter(function(r){return r.done;}).length + '줄</summary>' + (rows || numberLine ? '<ol>' + rows + numberLine + '</ol>' : '<p class="ms-empty">아직 첫 줄을 쓰기 전이에요.<br>풀이의 시작을 골라 보세요.</p>') + '</details>';
+  }
+  function source() { return '<aside><div class="ms-source"><span class="ms-label">함께 풀 문제</span><p class="ms-question">연속하는 세 자연수의 합이 <strong>18</strong>입니다.<br>세 수를 구하세요.</p><div class="ms-model" aria-label="연속하는 세 수"><span>?<small>첫 번째</small></span><span>?<small>두 번째</small></span><span>?<small>세 번째</small></span></div></div>' + '<ol class="ms-step-list">' + steps.map(function(t,i){ return '<li' + (i === session.step ? ' aria-current="step"' : '') + '><span>' + (i+1) + '　' + t.title + '</span><span>' + (session.records[i].done ? '✓' : i === session.step ? '진행 중' : '·') + '</span></li>'; }).join('') + '</ol>' + trail() + '</aside>'; }
+  function guided() {
+    const item = steps[session.step], r = session.records[session.step];
+    let body = '<div class="ms-panel-head"><span class="ms-label">' + item.title + '</span><span class="ms-step-count">' + (session.step + 1) + ' / 4 단계</span></div><h2 class="ms-prompt">' + item.prompt + '</h2>';
+    body = '<div class="ms-rail" aria-label="네 단계 중 ' + (session.step + 1) + '번째">' + steps.map(function(t,i){return '<span class="' + (i < session.step ? 'done' : i === session.step ? 'now' : '') + '"></span>';}).join('') + '</div>' + body;
+    body += (connected ? '<div class="ms-selected-note">✓ ' + '앞 단계 풀이를 노트에 연결했어요.' + '</div>' : '') + '<div class="ms-live-equation"><span class="ms-small">' + (session.step ? '지금까지 세운 식' : '가장 작은 수를 나타내는 문자') + '</span><span class="ms-math">' + ['x', 'x, x + 1, x + 2', 'x + (x + 1) + (x + 2) = 18', '3x + 3 = 18'][session.step] + '</span></div>';
+    if (r.revealed) {
+      body += '<div class="ms-reveal"><strong>이 단계의 풀이</strong><div class="ms-math">' + item.choices[item.correct] + '</div><p>' + item.why + '</p></div><button class="ms-button primary" type="button" data-action="understood">이해했어요 <i data-lucide="arrow-right" aria-hidden="true"></i></button>';
+    } else {
+      body += '<div class="ms-choices">' + item.choices.map(function (choice, i) {
+        const wrong = r.attempts.includes(i);
+        return '<button type="button" class="ms-choice' + (wrong ? " ms-wrong" : "") + '" data-choice="' + i + '"' + (wrong ? ' disabled aria-label="' + (i + 1) + '번 ' + safe(item.explanations[i] + " " + choice) + ', 앞에서 고른 오답"' : "") + '><span class="ms-choice-number">' + (i + 1) + '</span><span class="ms-choice-copy"><span class="ms-choice-explanation">' + item.explanations[i] + '</span><span class="ms-math">' + safe(choice) + '</span></span>' + (wrong ? '<span class="ms-small">다시</span>' : "") + '</button>';
+      }).join("") + '</div>' + (feedback ? '<div class="ms-feedback" role="status">' + feedback + '</div>' : "") + '<div class="ms-action-row"><button class="ms-button quiet" type="button" data-action="reveal">아직 모르겠어요</button><span class="ms-keys"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> 바로 선택</span></div>';
+    }
+    return '<div class="ms-workspace">' + source() + '<section class="ms-panel" aria-label="현재 풀이 단계">' + body + '</section></div>';
+  }
+  function numeric(independent) {
+    const r = independent ? session.independent : session.number;
+    let body = independent ? '<div class="ms-panel-head"><span class="ms-label">새 문제 · 도움 없이</span><i data-lucide="pencil-line" aria-hidden="true"></i></div><h2>이번에는 혼자 풀어 보세요.</h2><p class="ms-question">연속하는 세 자연수의 합이 <strong>27</strong>입니다.<br><strong>가장 큰 수</strong>는 얼마일까요?</p>' : '<div class="ms-panel-head"><span class="ms-label">도움을 조금 줄여서</span><span class="ms-step-count">새 문제 · 일부 풀이</span></div><p class="ms-bridge">앞 문제의 답은 5, 6, 7. 합은 18이에요.</p><h2 class="ms-prompt">연속하는 세 자연수의 합이 24입니다.</h2><p class="ms-muted">가장 작은 수 x를 구하는 풀이를 마저 완성해 보세요.</p><div class="ms-worked"><p><small>세 수의 합을 식으로</small><span class="ms-math">x + (x + 1) + (x + 2) = 24</span></p><p><small>왼쪽을 정리하고 양변에서 3을 빼면</small><span class="ms-math">3x + 3 = 24 → 3x = 21</span></p></div>';
+    if (r.revealed) {
+      body += '<div class="ms-reveal"><strong>풀이 확인</strong><p>' + (independent ? '가장 작은 수를 x라 하면<br><span class="ms-math">x + (x + 1) + (x + 2) = 27<br>3x + 3 = 27 → 3x = 24 → x = 8</span><br>세 수는 8, 9, 10이므로 가장 큰 수는 10이에요.' : '<span class="ms-math">x = 21 ÷ 3 = 7</span><br>세 수 7, 8, 9의 합은 24예요.') + '</p></div><button type="button" class="ms-button primary" data-action="numeric-understood">이해했어요 <i data-lucide="arrow-right" aria-hidden="true"></i></button>';
+    } else {
+      body += '<div class="ms-numeric-form" role="group" aria-label="숫자 답 입력"><label class="ms-number-label" for="ms-answer"><span>' + (independent ? "가장 큰 수" : "x =") + '</span><input class="ms-number-input" id="ms-answer" name="answer" type="text" inputmode="numeric" autocomplete="off" maxlength="4" aria-label="' + (independent ? "가장 큰 수" : "x의 값") + '" value="' + safe(inputValue) + '"></label>' + (feedback ? '<div class="ms-feedback" role="alert">' + feedback + '</div>' : "") + '<button type="button" data-action="submit-number" class="ms-button primary">답 확인 <span aria-hidden="true">↵</span></button></div><div class="ms-action-row"><button class="ms-button quiet" type="button" data-action="reveal">아직 모르겠어요</button><span class="ms-small">숫자를 입력하고 Enter</span></div>';
+    }
+    return '<div class="ms-independent"><section class="ms-panel">' + body + '</section></div>';
+  }
+  function independentLabel() {
+    const r = session.independent;
+    if (!r.done) return r.attempts.length ? "첫 시도 오답 · 확인 중" : "아직 확인 전";
+    if (r.revealed) return "해설로 확인";
+    return r.attempts.length === 1 ? "첫 시도 정답" : "재시도 정답";
+  }
+  function summary() {
+    const r = session.independent;
+    const clean = r.done && !r.revealed && r.attempts.length === 1;
+    const title = clean ? "새 문제도 혼자 풀었어요." : r.revealed ? "풀이를 확인하며 마쳤어요." : "다시 생각해서 답을 찾았어요.";
+    const initial = session.records.filter(function (rec, i) { return rec.attempts[0] === steps[i].correct; }).length;
+    return '<div class="ms-result"><section class="ms-panel"><div class="ms-result-banner"><span class="ms-result-icon"><i data-lucide="check" aria-hidden="true"></i></span><div><h2>' + title + '</h2><p class="ms-muted">오늘 연습한 내용과 혼자 푼 결과를 나눠 볼게요.</p></div></div><div class="ms-evidence"><div class="ms-evidence-row"><div><h3>풀이 따라가기</h3><p>네 단계의 해설을 연결했어요.</p></div><div class="ms-evidence-value">처음 선택에서 ' + initial + ' / 4</div></div><div class="ms-evidence-row"><div><h3>숫자 빈칸</h3><p>합이 24 · x = 7 · 세 수는 7, 8, 9</p></div><div class="ms-evidence-value">' + (session.number.revealed ? "설명을 보고 확인" : session.number.attempts.length === 1 ? "첫 입력 정답" : "다시 입력해 정답") + '</div></div><div class="ms-evidence-row"><div><h3>보기 없는 새 문제</h3><p>합이 27일 때 가장 큰 수: 10</p></div><div class="ms-evidence-value"><span class="ms-tag ' + (clean ? "good" : "help") + '">' + independentLabel() + '</span></div></div></div><p class="ms-note">다음 확인: 시간이 지난 뒤, 다른 숫자의 문제도 도움 없이 풀 수 있는지 살펴봐요.</p><div class="ms-action-row"><button class="ms-button primary" type="button" data-view="teacher">학습 기록 보기 <i data-lucide="arrow-right" aria-hidden="true"></i></button></div></section></div>';
+  }
+  function teacher() {
+    const rows = session.records.map(function (r, i) {
+      const item = steps[i], first = r.attempts[0];
+      const label = r.done ? (r.revealed ? "해설 확인" : first === item.correct ? "첫 선택 정답" : "재선택 정답") : r.attempts.length ? "재시도 중" : "아직 확인 전";
+      const detail = first === undefined ? (r.revealed ? "직접 선택하기 전에 해설을 열었어요." : "학생 연습에서 이 단계를 진행하면 기록이 생깁니다.") : '첫 선택: ' + (first + 1) + '번 · ' + item.explanations[first] + ' ' + item.choices[first] + (first !== item.correct ? '<br>확인할 단서: ' + item.tags[first] : "");
+      return '<div class="ms-record"><strong>' + (i + 1) + '. ' + item.title + '</strong><p class="ms-record-detail">' + detail + '</p><span class="ms-tag ' + (r.attempts.length || r.revealed ? first === item.correct ? "good" : "help" : "") + '">' + label + '</span></div>';
+    }).join("");
+    const probes = ['연속하는 세 자연수에서 가운데 수를 n이라 하면?', '세 수의 곱이 60이라는 조건은 어떤 식일까?', '2a + 1 + a + 4를 간단히 하면?', '4y + 5 = 17의 양변에서 5를 빼면?'];
+    const concepts = session.records.map(function (r, i) { const status = r.attempts[0] === steps[i].correct ? "보기에서 구별함" : r.attempts.length || r.revealed ? "다른 문제에서 확인 필요" : "아직 확인 전"; return '<div class="ms-concept"><h3>' + steps[i].skill + '</h3><p>' + status + '</p>' + (r.attempts.length && r.attempts[0] !== steps[i].correct || r.revealed ? '<p>' + probes[i] + '</p>' : '') + '</div>'; }).join("");
+    const r = session.independent;
+    return '<div class="ms-heading"><div><p class="ms-eyebrow">오늘의 기억 · 학습 관찰</p><h1>어디에서 멈췄는지 살펴보기</h1></div></div><div class="ms-teacher-intro"><div class="ms-avatar">체험</div><div><h3>체험 학생 · 일차방정식</h3><p class="ms-small">체험 중 남긴 응답 · 첫 선택과 도움 사용 기록</p></div></div><section class="ms-panel"><h2>단계별 첫 반응</h2><div class="ms-records">' + rows + '<div class="ms-record"><strong>독립 풀이</strong><p class="ms-record-detail">' + (r.attempts.length ? "첫 입력: " + safe(r.attempts[0]) + (r.attempts.length > 1 ? " · 두 번째 입력: " + safe(r.attempts[1]) : "") : "보기 없는 새 문제의 결과를 따로 확인합니다.") + '</p><span class="ms-tag ' + (r.done ? r.revealed || r.attempts.length > 1 ? "help" : "good" : "") + '">' + independentLabel() + '</span></div></div></section><section style="margin-top:24px"><h2>다음 수업에서 확인할 것</h2><div class="ms-concept-list">' + concepts + '</div><p class="ms-note">한 번의 선택은 원인을 확정하지 않습니다. 오답 단서가 나온 개념은 별도 문제로 확인하고, 독립 풀이와 간격을 둔 복습 결과를 함께 봅니다.</p></section>';
+  }
+  function render() {
+    root.dataset.layout = design.layout;
+    root.style.setProperty("--ms-text-size", design.textSize + "px");
+    root.querySelectorAll("[data-view]").forEach(function (b) { if (b.closest(".ms-switch")) b.setAttribute("aria-pressed", String(b.dataset.view === session.view)); });
+    if (session.view === "teacher") main.innerHTML = teacher();
+    else main.innerHTML = '<div class="ms-heading"><div><p class="ms-eyebrow">중학교 수학 · 일차방정식의 활용</p><h1>조건을 읽고, 풀이를 잇다.</h1><p class="ms-caption">풀이를 연결하고, 도움을 줄이며 직접 풀어봐요.</p></div></div>' + stageBar() + (session.phase === "guided" ? guided() : session.phase === "blank" ? numeric(false) : session.phase === "independent" ? numeric(true) : summary());
+    if (session.records[0].done) root.querySelectorAll('.ms-model span').forEach(function(el,i){ el.innerHTML = ['x','x + 1','x + 2'][i] + '<small>' + ['첫 번째','두 번째','세 번째'][i] + '</small>'; });
+    if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+  }
+  function commit(text, focusNumber) {
+    render(); persist(); announce(text);
+    if (focusNumber && session.view === "student") { const field = root.querySelector("#ms-answer"); if (field) field.focus({ preventScroll: true }); }
+  }
+  function nextStep() {
+    connected = steps[session.step].line;
+    session.records[session.step].done = true;
+    feedback = "";
+    if (session.step === 3) { session.phase = "blank"; commit("네 단계의 풀이를 완성했어요. 이번에는 합이 24인 새 문제의 풀이를 완성하세요.", true); }
+    else { session.step += 1; commit("풀이가 연결됐어요. " + steps[session.step].prompt); const choice = root.querySelector(".ms-choice"); if (choice) choice.focus({ preventScroll: true }); }
+  }
+  function choose(index) {
+    if (session.view !== "student" || session.phase !== "guided" || Date.now() - lastAction < 280) return;
+    const r = session.records[session.step], item = steps[session.step];
+    if (r.revealed || r.done || r.attempts.includes(index)) return;
+    lastAction = Date.now();
+    r.attempts.push(index);
+    if (index === item.correct) nextStep();
+    else { feedback = item.errors[index]; if (r.attempts.length >= 2) r.revealed = true; commit(r.revealed ? "이 단계의 풀이를 확인해 보세요." : feedback); }
+  }
+  function reveal() {
+    feedback = "";
+    if (session.phase === "guided") session.records[session.step].revealed = true;
+    else if (session.phase === "blank") session.number.revealed = true;
+    else if (session.phase === "independent") session.independent.revealed = true;
+    else return;
+    commit("풀이를 열었어요. 설명을 읽고 이해했어요를 누르세요.");
+  }
+  function finishNumber() {
+    const independent = session.phase === "independent";
+    session[independent ? "independent" : "number"].done = true;
+    session.phase = independent ? "summary" : "independent";
+    feedback = ""; inputValue = "";
+    commit(independent ? "오늘의 학습 기록을 확인하세요." : "이번에는 보기 없이 새로운 문제를 풀어 보세요.", !independent);
+  }
+  root.addEventListener("click", function (event) {
+    const b = event.target.closest("button");
+    if (!b || !root.contains(b) || b.disabled) return;
+    if (b.dataset.view) { session.view = b.dataset.view; feedback = ""; commit(session.view === "teacher" ? "선생님 보기로 전환했어요." : "학생 연습으로 돌아왔어요."); return; }
+    if (b.hasAttribute("data-choice")) { choose(Number(b.dataset.choice)); return; }
+    if (b.dataset.action === "submit-number") submitNumber();
+    if (b.dataset.action === "reveal") reveal();
+    if (b.dataset.action === "understood") nextStep();
+    if (b.dataset.action === "numeric-understood") finishNumber();
+    if (b.dataset.action === "restart") { session = fresh(); connected = ""; feedback = ""; inputValue = ""; lastAction = 0; commit("새 체험을 시작합니다."); }
+  });
+  root.addEventListener("input", function (event) { if (event.target.id === "ms-answer") inputValue = event.target.value; });
+  function submitNumber() {
+    if (session.view !== "student" || !["blank", "independent"].includes(session.phase)) return;
+    if (Date.now() - lastAction < 280) return;
+    const value = inputValue.trim().replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 65248); });
+    if (!/^\d{1,4}$/.test(value)) { feedback = "숫자로 답을 입력해 주세요."; render(); const field = root.querySelector("#ms-answer"); if (field) field.focus({ preventScroll: true }); return; }
+    lastAction = Date.now();
+    const independent = session.phase === "independent", r = independent ? session.independent : session.number;
+    if (r.done || r.revealed) return;
+    r.attempts.push(value);
+    if (Number(value) === (independent ? 10 : 7)) finishNumber();
+    else {
+      feedback = independent ? (Number(value) === 8 ? "8은 가장 작은 수예요. 이 문제에서 묻는 수를 다시 확인해 보세요." : "답이 달라요. 구한 세 수의 합과 문제에서 묻는 수를 다시 확인해 보세요.") : "3x는 x를 3번 더한 값이에요. 21을 똑같이 세 부분으로 나눠 보세요.";
+      if (r.attempts.length >= 2) r.revealed = true;
+      inputValue = "";
+      commit(r.revealed ? "풀이를 함께 확인해요." : feedback, !r.revealed);
+    }
+  }
+  document.addEventListener("keydown", function (event) {
+    if (event.repeat || event.defaultPrevented || event.isComposing || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.target.id === "ms-answer" && event.key === "Enter") { event.preventDefault(); submitNumber(); return; }
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
+    if (session.view === "student" && session.phase === "guided" && /^[1-4]$/.test(event.key)) { event.preventDefault(); choose(Number(event.key) - 1); }
+  });
+  window.addEventListener("openai:set_globals", function (event) {
+    if (!event.detail || !event.detail.globals || !("widgetState" in event.detail.globals)) return;
+    const restored = fromHost(event.detail.globals.widgetState);
+    if (restored) { session = restored; restoreDesign(event.detail.globals.widgetState); feedback = ""; inputValue = ""; render(); }
+  });
+  render();
+  if (globalThis.Tweak) {
+    const tweak = new Tweak({ container: root, onChange: function () { render(); persist(); } });
+    tweak.addSelect(design, "layout", { label: "풀이와 선택지 배치", options: [{ label: "나란히 보기", value: "split" }, { label: "해설을 위에 보기", value: "stacked" }] });
+    tweak.addSlider(design, "textSize", { label: "본문 크기", min: 15, max: 19, step: 1, unit: "px" });
+  }
+})();
+</script>
