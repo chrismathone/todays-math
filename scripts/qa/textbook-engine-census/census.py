@@ -21,6 +21,8 @@ REQUIRED = {'id', 'problem_code', 'grade', 'chapter', 'section', 'difficulty', '
             'question_type', 'content', 'answer', 'solution', 'has_figure', 'direct_use_allowed', 'source_title'}
 HOLD_NAMES = {
     'missing-figure': '그림·표 조건 미확인',
+    'figure-not-reviewed': '실제 그림 연결 확인·직접 판독 미실시',
+    'visual-review-hold': '그림 직접 판독 후 보류',
     'open-response': '설명·서술·구성 응답',
     'missing-math': '식·조건 누락 의심',
     'missing-answer': '정답 근거 누락',
@@ -142,7 +144,12 @@ def intent(row):
     return 'other'
 
 
-def classify_all(rows, row_hashes, engine):
+def classify_all(rows, row_hashes, engine, inventory=None, visual=None, plan=None, gaps=None):
+    inventory, visual = inventory or [], visual or {'families':{}, 'rows':[]}
+    mapped = {r['id']:r for r in inventory}
+    viewed = {r['id']:r for r in visual['rows']}
+    cohorts = {c['id']:c for c in (plan or {'cohorts':[]})['cohorts']}
+    term_only = {r['id'] for r in gaps or [] if r['reason']=='term-only-reference'}
     modules = {g:importlib.import_module('rules_m' + g[-1]) for g in ('중1','중2')}
     families = {}
     for module in modules.values():
@@ -150,6 +157,9 @@ def classify_all(rows, row_hashes, engine):
             if fid in families:
                 raise ValueError(f'duplicate family {fid}')
             families[fid] = f
+    if set(families) & set(visual['families']):
+        raise ValueError('Visual family collides with a rule family')
+    families.update(visual['families'])
     validate_families(families, engine)
     units = list(dict.fromkeys((r['grade'],r['section']) for r in rows))
     unit_ids = {u:f'm{u[0][-1]}-{i+1:03}' for i,u in enumerate(units)}
@@ -159,13 +169,26 @@ def classify_all(rows, row_hashes, engine):
     out, group_meta = [], {}
     for i, (r, digest) in enumerate(zip(rows, row_hashes), 1):
         reason = global_hold(r)
-        fid = None if reason else modules[r['grade']].classify(r)
+        review = viewed.get(r['id'])
+        if review:
+            if reason != 'missing-figure':
+                raise ValueError('Visual reassessment must start from a held figure row')
+            fid = review['family'] if review['category']=='B' else None
+            reason = 'visual-review-hold'
+        else:
+            fid = None if reason else modules[r['grade']].classify(r)
+            if r['id'] in mapped:
+                fid = None
+                reason = 'figure-not-reviewed'
+            elif r['id'] in term_only:
+                reason = 'concept-review'
         if fid is not None:
             f = families[fid]
             if (f['grade'], f['section']) != (r['grade'], r['section']):
                 raise ValueError(f'{r["problem_code"]}: family unit mismatch')
             category, keys = f['category'], f['engine_keys']
-            reason = 'same-generator-structure' if category == 'A' else 'deterministic-extension'
+            reason = ('visual-deterministic-extension' if review else
+                      'same-generator-structure' if category == 'A' else 'deterministic-extension')
             group_meta[fid] = f
         else:
             reason = reason or ('concept-review' if r['problem_type'] == '개념' else
@@ -176,7 +199,10 @@ def classify_all(rows, row_hashes, engine):
                                    engine_keys=[], reason=reason, intent=intent(r), provisional=True)
         out.append(dict(id=r['id'], problem_code=r['problem_code'], source_line=i, record_sha256=digest,
                         grade=r['grade'], section=r['section'], group=fid, category=category, engine_keys=keys,
-                        reason=reason, locked=not r['direct_use_allowed'], **figure_evidence(r)))
+                        reason=reason, locked=not r['direct_use_allowed'], **figure_evidence(r),
+                        figure_available=r['id'] in mapped, figure_file_count=len(mapped.get(r['id'],{}).get('files',[])),
+                        figure_reviewed=bool(review), figure_review_cohort=review['cohort'] if review else None,
+                        classification_basis='visual' if review else 'rule'))
     validate_conservation(rows, out)
     groups = []
     members = defaultdict(list)
@@ -184,9 +210,16 @@ def classify_all(rows, row_hashes, engine):
         members[r['group']].append(r)
     for fid, f in group_meta.items():
         group = members[fid]
+        reviewed_group = [r for r in group if r['figure_reviewed']]
+        cohort_ids = {r['figure_review_cohort'] for r in reviewed_group}
         groups.append(dict(id=fid, **f, count=len(group),
                            figure_count=sum(r['figure_flag'] or r['figure_reference'] for r in group),
                            locked_count=sum(r['locked'] for r in group),
+                           classification_basis='visual' if reviewed_group else 'rule',
+                           visual_reviewed_rows=len(reviewed_group),
+                           visual_viewed_files=sum(r['figure_file_count'] for r in reviewed_group),
+                           visual_methods=sorted({cohorts[c]['method'] for c in cohort_ids}),
+                           visual_population=sum(cohorts[c]['population'] for c in cohort_ids),
                            example_codes=[r['problem_code'] for r in sorted(group, key=lambda r: r['problem_code'])[:3]]))
     groups.sort(key=lambda g:(g['category'], -g['count'], g['id']))
     unit_rows = []
@@ -197,21 +230,64 @@ def classify_all(rows, row_hashes, engine):
                               figure_flag=sum(r['figure_flag'] for r in unit),
                               figure_marker=sum(r['figure_marker'] for r in unit),
                               figure_evidence=sum(r['figure_flag'] or r['figure_reference'] for r in unit),
+                              mapped_figure_rows=sum(r['figure_available'] for r in unit),
+                              figure_files=sum(r['figure_file_count'] for r in unit),
+                              visual_reviewed_rows=sum(r['figure_reviewed'] for r in unit),
                               locked=sum(r['locked'] for r in unit)))
     return out, groups, unit_rows
 
 
-def build_outputs(input_path):
+def summarize_visual(rows, inventory, plan, visual, manifest):
+    baseline_data = (DEFAULT_OUT/'figure-baseline.jsonl').read_bytes()
+    baseline = [json.loads(line) for line in baseline_data.splitlines()]
+    if (sha(baseline_data) != manifest['baseline_sha256'] or
+            dict(Counter(r['category'] for r in baseline)) != manifest['baseline_categories'] or
+            any(set(r) != {'id','category','group'} for r in baseline)):
+        raise ValueError('Pre-figure census baseline was replaced')
+    validate_conservation(rows, baseline)
+    before = {r['id']:r for r in baseline}
+    if any(before[r['id']]['category'] != 'C' for r in inventory):
+        raise ValueError('Figure reassessment population was not previously C')
+    by_id = {r['id']:r for r in visual['rows']}
+    cohorts = []
+    for cohort in plan['cohorts']:
+        rr = [by_id[rid] for rid in cohort['sample_ids']]
+        cohorts.append(dict(**{k:v for k,v in cohort.items() if k not in ('member_ids','sample_ids')},
+                            viewed_rows=len(rr),viewed_files=sum(len(r['viewed_urls']) for r in rr),
+                            B=sum(r['category']=='B' for r in rr),C=sum(r['category']=='C' for r in rr)))
+    return dict(cohorts=cohorts, reviewed_rows=len(visual['rows']),
+                viewed_files=sum(len(r['viewed_urls']) for r in visual['rows']),
+                promoted_rows=sum(r['category']=='B' for r in visual['rows']),
+                held_rows=sum(r['category']=='C' for r in visual['rows']),
+                unreviewed_rows=len(inventory)-len(visual['rows']),
+                cohort_methods=dict(Counter(c['method'] for c in cohorts)),
+                image_issues=[dict(id=r['id'],problem_code=r['problem_code'],issue=r['image_issue'],note=r['note'])
+                              for r in visual['rows'] if r.get('image_issue')],
+                baseline_categories=manifest['baseline_categories'],baseline_commit=manifest['previous_commit'],
+                method='Direct read of all ordered images of each selected row; no promotion of unviewed rows',
+                seed=plan['seed'])
+
+
+def build_outputs(input_path, figures_path=None):
+    import figures
     manifest = json.loads((HERE / 'input-manifest.json').read_text())
     rows, digests = read_input(input_path, manifest)
     # Same exported registry as the sample evidence: no handmade coverage list.
     result = subprocess.run([str(ROOT/'node_modules/.bin/tsx'), str(HERE/'export-engine.ts')],
                             cwd=ROOT, capture_output=True, check=True)
     engine = json.loads(result.stdout)
-    assigned, groups, units = classify_all(rows, digests, engine)
+    inventory = figures.read_mapping(figures_path or figures.DEFAULT_INPUT, rows)
+    plan = figures.make_plan(inventory)
+    visual = figures.load_reviews(rows, inventory, plan)
+    reconciliation = figures.reconcile(rows, inventory)
+    visual_summary = summarize_visual(rows, inventory, plan, visual, reconciliation['manifest'])
+    assigned, groups, units = classify_all(rows, digests, engine, inventory, visual, plan, reconciliation['gaps'])
     algorithm_files = sorted(p for p in HERE.iterdir() if p.suffix in ('.py', '.ts', '.json') and not p.name.startswith('._'))
     engine_files = sorted(p for p in (ROOT/'src/lib/middle').rglob('*.ts') if not p.name.startswith('._'))
     provenance = {str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in algorithm_files + engine_files}
+    evidence_files = [DEFAULT_OUT/('visual-'+owner+'.json') for owner in figures.OWNERS]
+    evidence_files += [DEFAULT_OUT/name for name in ('figure-inventory.json','figure-review-plan.json','figure-baseline.jsonl')]
+    provenance.update({str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in evidence_files})
     summary = dict(input=manifest, source_fields=sorted(REQUIRED), rows=len(assigned),
                    provenance=provenance,
                    categories=dict(Counter(r['category'] for r in assigned)),
@@ -225,20 +301,22 @@ def build_outputs(input_path):
                    figure_flag=sum(r['figure_flag'] for r in assigned),
                    figure_marker=sum(r['figure_marker'] for r in assigned),
                    figure_evidence=sum(r['figure_flag'] or r['figure_reference'] for r in assigned),
+                   figure_reconciliation=reconciliation, visual=visual_summary,
                    locked=sum(r['locked'] for r in assigned),
                    missing_solution=sum(not r['solution'] for r in rows),
                    production_writes=False, paid_api_calls=0,
-                   classification='deterministic full-population rule census; separate manual sample review')
+                   classification='full-population rule census plus individually viewed figure reassessment; no extrapolation')
     # Explicit projection is the privacy boundary: original rows never enter an output object.
     outputs = {'rows.jsonl':b''.join((json.dumps(r,ensure_ascii=False,separators=(',',':'))+'\n').encode() for r in assigned),
                'groups.json':encode(groups), 'units.json':encode(units), 'summary.json':encode(summary),
-               'engine-inventory.json':encode(engine)}
+               'engine-inventory.json':encode(engine), 'figure-reconciliation.json':encode(reconciliation)}
     return outputs, assigned
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', required=True, type=Path)
+    parser.add_argument('--figures', type=Path, help='External figure map; defaults to the reviewed backup path')
     parser.add_argument('--out', default=DEFAULT_OUT, type=Path)
     parser.add_argument('--check', action='store_true', help='Compare replay bytes without writing')
     parser.add_argument('--sample', action='store_true', help='Print reproducible current audit IDs (no source text)')
@@ -246,7 +324,7 @@ def main():
     out = args.out.resolve()
     if ROOT not in out.parents or out == args.input.resolve().parent:
         raise ValueError('Output must stay inside this worktree, separate from the input')
-    outputs, assigned = build_outputs(args.input)
+    outputs, assigned = build_outputs(args.input, args.figures)
     if args.sample:
         print(encode(dict(seed=SAMPLE_SEED, method='SHA256(seed:id) rank within A/B/C, quotas 80/40/20',
                           rows=draw_sample(assigned))).decode(), end='')

@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 import census
 import rules_m1
@@ -18,6 +19,24 @@ def row(**changes):
 
 
 class IntegrityTests(unittest.TestCase):
+    def test_unviewed_mapped_image_blocks_an_otherwise_matching_rule(self):
+        r = row(content='정수 $11$을 판정하시오.')
+        family = dict(name='가상 규칙',grade=r['grade'],section=r['section'],category='B',engine_keys=[],
+                      variables='정수',answer_method='정수 계산',figure='none',difficulty='easy',rationale='가상 검사')
+        module = SimpleNamespace(FAMILIES={'test':family}, classify=lambda _: 'test')
+        empty = SimpleNamespace(FAMILIES={}, classify=lambda _: None)
+        original_import = census.importlib.import_module
+        census.importlib.import_module = lambda name: module if name=='rules_m1' else empty
+        try:
+            assigned, _, _ = census.classify_all([r], ['0'*64],
+                {'entries':[dict(grade=r['grade'],section=r['section'],key='test',samples=[])]},
+                inventory=[dict(id=r['id'],files=[dict(url='/figures/tb/ab/test.png')])])
+        finally:
+            census.importlib.import_module = original_import
+        self.assertEqual(assigned[0]['category'], 'C')
+        self.assertEqual(assigned[0]['reason'], 'figure-not-reviewed')
+        self.assertFalse(assigned[0]['figure_reviewed'])
+
     def test_duplicate_ids_and_codes_are_errors(self):
         for rows in [[row(), row(problem_code='TEST-002')], [row(), row(id='two')]]:
             with self.assertRaises(ValueError):

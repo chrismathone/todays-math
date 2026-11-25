@@ -7,7 +7,8 @@ from pathlib import Path
 import census
 
 ROW_KEYS = {'id','problem_code','source_line','record_sha256','grade','section','group','category','engine_keys',
-            'reason','locked','figure_flag','figure_marker','figure_reference'}
+            'reason','locked','figure_flag','figure_marker','figure_reference',
+            'figure_available','figure_file_count','figure_reviewed','figure_review_cohort','classification_basis'}
 
 
 def string_values(value):
@@ -54,6 +55,17 @@ def verify(input_path):
         if (out/name).read_bytes() != data:
             raise ValueError('Stale census: ' + name)
     by_id = {r['id']:r for r in assigned}
+    visual_before = [json.loads(line) for line in (out/'figure-baseline.jsonl').read_text().splitlines()]
+    for previous in visual_before:
+        current = by_id[previous['id']]
+        if current['category'] != previous['category']:
+            if not (previous['category']=='C' and current['category']=='B' and current['figure_reviewed'] and
+                    current['reason']=='visual-deterministic-extension'):
+                raise ValueError('Unreviewed or out-of-scope visual promotion')
+        if previous['category'] in ('A','B') and current['group'] != previous['group']:
+            raise ValueError('Previously established rule group changed in figure reassessment')
+        if current['figure_available'] and not current['figure_reviewed'] and current['category']!='C':
+            raise ValueError('Unviewed mapped row was promoted')
     for r,h,s in zip(assigned, hashes, source):
         if set(r) != ROW_KEYS or r['record_sha256'] != h or r['problem_code'] != s['problem_code']:
             raise ValueError('Invalid projection or input binding')
@@ -96,7 +108,10 @@ def verify(input_path):
         if review['verdict'] not in ('pass','fail','uncertain') or len(review['note']) < 15:
             raise ValueError('Missing actual judgment/rationale')
         if by_id[r['id']]['category'] != review['expected_category']:
-            raise ValueError('Unresolved sample finding: ' + r['problem_code'])
+            current = by_id[r['id']]
+            if not (review['expected_category']=='C' and current['category']=='B' and current['figure_reviewed'] and
+                    current['reason']=='visual-deterministic-extension'):
+                raise ValueError('Unresolved sample finding: ' + r['problem_code'])
     baseline_summary = json.loads((out/'audit-baseline-summary.json').read_text())
     if dict(Counter(r['category'] for r in baseline)) != baseline_summary['categories']:
         raise ValueError('Wrong baseline totals')
@@ -111,9 +126,14 @@ def verify(input_path):
     report_path = census.ROOT/'docs/planning/tracks/reports/textbook-engine-census.md'
     if report_path.read_text() != render_report():
         raise ValueError('Report tables or review summary are stale')
+    visual_summary = json.loads(outputs['summary.json'])['visual']
     return dict(rows=len(assigned), replay_files=len(outputs), reviewed=len(reviews),
                 random_reviewed=len(sample['rows']), supplementary_reviewed=len(supp),
                 sample_corrections=sum(r['verdict']=='fail' for r in reviews),
+                visual_reviewed_rows=visual_summary['reviewed_rows'],
+                visual_viewed_files=visual_summary['viewed_files'],
+                visual_promotions=visual_summary['promoted_rows'],
+                unviewed_promotions=0,
                 source_long_fragment_matches=0, report_matches=True)
 
 

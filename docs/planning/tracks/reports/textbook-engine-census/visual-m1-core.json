@@ -1,0 +1,2445 @@
+{
+  "reviewer": "/root (Codex)",
+  "method": "direct visual read of every selected row and all its ordered files; conclusions apply only to the selected rows",
+  "families": {
+    "v-m1-core-lcm-pyramid-fd0d2676": {
+      "name": "최소공배수 피라미드",
+      "variables": "밑줄 정수·누락 칸·소인수 지수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "공배수와 최소공배수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "인접 칸의 소인수 지수 최댓값이 아래 칸으로 내려가는 세 층 표를 확인했다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 인접 칸의 소인수 지수 최댓값이 아래 칸으로 내려가는 세 층 표를 확인했다."
+    },
+    "v-m1-core-lcm-truth-fd0d2676": {
+      "name": "최소공배수 수치 명제",
+      "variables": "두 정수·후보 공배수·진술 참거짓",
+      "figure": "none",
+      "grade": "중1",
+      "section": "공배수와 최소공배수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "수치 소인수분해 두 식과 최소공배수·공배수 명제 두 개가 완전하게 보인다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 수치 소인수분해 두 식과 최소공배수·공배수 명제 두 개가 완전하게 보인다."
+    },
+    "v-m1-core-lcm-exponents-fd0d2676": {
+      "name": "소인수 지수 표의 공약수·공배수",
+      "variables": "소수 기저·최소/최대 지수·누락 지수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "공배수와 최소공배수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "소인수별 정렬 표와 최소공배수의 고정 지수에서 빈 지수를 역산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 소인수별 정렬 표와 최소공배수의 고정 지수에서 빈 지수를 역산한다."
+    },
+    "v-m1-core-gcd-truth-7d374912": {
+      "name": "최대공약수 수치 명제",
+      "variables": "정수 쌍·공약수 후보·진술 참거짓",
+      "figure": "none",
+      "grade": "중1",
+      "section": "공약수와 최대공약수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "소인수분해 두 식과 최대공약수·공약수 명제의 참거짓을 계산할 수 있다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 소인수분해 두 식과 최대공약수·공약수 명제의 참거짓을 계산할 수 있다."
+    },
+    "v-m1-core-coprime-numerators-7d374912": {
+      "name": "기약 진분수 분자 개수",
+      "variables": "양의 분모·분자 범위",
+      "figure": "none",
+      "grade": "중1",
+      "section": "공약수와 최대공약수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "분모가 명시된 빈 분자 도식을 확인했다. 진분수 범위에서 서로소인 분자를 센다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 분모가 명시된 빈 분자 도식을 확인했다. 진분수 범위에서 서로소인 분자를 센다."
+    },
+    "v-m1-core-common-divisor-denominator-7d374912": {
+      "name": "정수 몫이 되는 공통 분모",
+      "variables": "두 분자·분모 범위·공약수",
+      "figure": "none",
+      "grade": "중1",
+      "section": "공약수와 최대공약수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "두 분수의 공통 빈 분모가 보인다. 두 분자를 동시에 나누는 양의 정수를 열거한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 두 분수의 공통 빈 분모가 보인다. 두 분자를 동시에 나누는 양의 정수를 열거한다."
+    },
+    "v-m1-core-gcd-lcm-ladder-7d374912": {
+      "name": "공약수 나눗셈 사다리",
+      "variables": "공통 소인수·서로소 잔여 인수·누락 칸",
+      "figure": "required",
+      "grade": "중1",
+      "section": "공약수와 최대공약수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "공통 인수로 나누는 세로 계산표의 빈칸과 두 결과를 결정적으로 채울 수 있다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 공통 인수로 나누는 세로 계산표의 빈칸과 두 결과를 결정적으로 채울 수 있다."
+    },
+    "v-m1-core-single-peak-graph-4dcd4066": {
+      "name": "단일 봉우리 그래프의 수치 읽기",
+      "variables": "시간 구간·정점 높이·수준선·단조 구간",
+      "figure": "required",
+      "grade": "중1",
+      "section": "그래프의 이해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "시각별 단봉 곡선·눈금·임계 높이를 확인했다. 최대 시점과 구간 증감·높이 교차 수를 계산하는 그래프 후보다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 시각별 단봉 곡선·눈금·임계 높이를 확인했다. 최대 시점과 구간 증감·높이 교차 수를 계산하는 그래프 후보다."
+    },
+    "v-m1-core-periodic-graph-4dcd4066": {
+      "name": "반복 높이 그래프 읽기",
+      "variables": "양의 주기·최고 높이·질의 시각",
+      "figure": "required",
+      "grade": "중1",
+      "section": "그래프의 이해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "동일한 봉우리가 반복되고 주기·최댓값·영점 눈금이 명시되어 시간별 값과 주기 명제를 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 동일한 봉우리가 반복되고 주기·최댓값·영점 눈금이 명시되어 시간별 값과 주기 명제를 계산한다."
+    },
+    "v-m1-core-delayed-motion-graph-4dcd4066": {
+      "name": "출발 시각이 다른 두 이동 그래프",
+      "variables": "속도·출발 지연·교점",
+      "figure": "required",
+      "grade": "중1",
+      "section": "그래프의 이해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "시간차를 두고 출발한 두 직선의 교점과 늦은 출발 시점을 읽어 경과시간을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 시간차를 두고 출발한 두 직선의 교점과 늦은 출발 시점을 읽어 경과시간을 계산한다."
+    },
+    "v-m1-core-vessel-height-graph-4dcd4066": {
+      "name": "단면 변화와 물 높이 곡선",
+      "variables": "위로 넓어지는 원뿔대·유입량·곡선 선택지",
+      "figure": "required",
+      "grade": "중1",
+      "section": "그래프의 이해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "위로 넓어지는 원뿔대와 높이 그래프 보기 전부를 확인했다. 수평 단면적의 증가로 높이 증가율 감소를 판정한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 위로 넓어지는 원뿔대와 높이 그래프 보기 전부를 확인했다. 수평 단면적의 증가로 높이 증가율 감소를 판정한다."
+    },
+    "v-m1-core-piecewise-motion-choice-4dcd4066": {
+      "name": "이동·정지·귀환 그래프 선택",
+      "variables": "구간별 속도·정지 시간·반환 시점",
+      "figure": "required",
+      "grade": "중1",
+      "section": "그래프의 이해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "이동·정지·귀환 세 단계와 다섯 그래프를 모두 확인했다. 기울기 부호와 영점 복귀로 선택을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 이동·정지·귀환 세 단계와 다섯 그래프를 모두 확인했다. 기울기 부호와 영점 복귀로 선택을 계산한다."
+    },
+    "v-m1-core-picture-balance-9aea8011": {
+      "name": "그림 저울의 수량 비",
+      "variables": "양쪽 물건 개수·양의 단가/무게·동일량 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "등식의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "두 묶음의 동일 물건 수를 세어 같은 총가격의 일차 관계로 가격비를 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 두 묶음의 동일 물건 수를 세어 같은 총가격의 일차 관계로 가격비를 계산한다."
+    },
+    "v-m1-core-equality-transform-9aea8011": {
+      "name": "등식의 동치 변환 판정",
+      "variables": "영이 아닌 공통 배수·덧셈 상수·변환 종류",
+      "figure": "none",
+      "grade": "중1",
+      "section": "등식의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "동일한 두 수에 대한 네 선형 등식이 보인다. 주어진 관계를 대입한 항등식 여부로 판정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 동일한 두 수에 대한 네 선형 등식이 보인다. 주어진 관계를 대입한 항등식 여부로 판정한다."
+    },
+    "v-m1-core-equation-step-operation-9aea8011": {
+      "name": "저울 조작과 방정식 단계",
+      "variables": "동일 분할 수·단계별 일차식·조작 종류",
+      "figure": "required",
+      "grade": "중1",
+      "section": "등식의 성질",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "저울에서 같은 비율로 줄이는 도식과 풀이 단계 전체를 봤다. 식 나무의 변환 연산과 저울 연산 종류를 대응시킨다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 저울에서 같은 비율로 줄이는 도식과 풀이 단계 전체를 봤다. 식 나무의 변환 연산과 저울 연산 종류를 대응시킨다."
+    },
+    "v-m1-core-growing-grid-44e2a2a5": {
+      "name": "정사각 격자 점 개수",
+      "variables": "시작 한 변 점수·단계 증가량·질의 단계",
+      "figure": "required",
+      "grade": "중1",
+      "section": "문자의 사용과 식의 값",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정사각 격자의 행과 열이 단계에 따라 함께 늘어나는 배치를 확인했다. 행×열로 일반항과 값을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정사각 격자의 행과 열이 단계에 따라 함께 늘어나는 배치를 확인했다. 행×열로 일반항과 값을 계산한다."
+    },
+    "v-m1-core-shared-matchstick-chain-44e2a2a5": {
+      "name": "변 공유 도형의 성냥 개수",
+      "variables": "첫 도형 변수·추가 도형 수·공유 변수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "문자의 사용과 식의 값",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정삼각형을 한 변씩 공유해 연속 배치한 그림을 확인했다. 처음 변 수와 추가 변 수로 식과 특정 단계 값을 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정삼각형을 한 변씩 공유해 연속 배치한 그림을 확인했다. 처음 변 수와 추가 변 수로 식과 특정 단계 값을 구한다."
+    },
+    "v-m1-core-symbolic-partition-area-44e2a2a5": {
+      "name": "삼각형 분할 영역의 넓이식",
+      "variables": "양의 전체 밑변·높이·분할 길이·음영 위상",
+      "figure": "required",
+      "grade": "중1",
+      "section": "문자의 사용과 식의 값",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "직각삼각형의 밑변·높이 분할과 음영 두 조각이 모두 보인다. 전체와 빈 삼각형 넓이 차를 문자식으로 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 직각삼각형의 밑변·높이 분할과 음영 두 조각이 모두 보인다. 전체와 빈 삼각형 넓이 차를 문자식으로 계산한다."
+    },
+    "v-m1-core-overlap-strip-44e2a2a5": {
+      "name": "반복 겹침 직사각형",
+      "variables": "한 변 길이·반복 수·겹침 폭·양의 길이 제약",
+      "figure": "required",
+      "grade": "중1",
+      "section": "문자의 사용과 식의 값",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "같은 정사각형을 같은 폭만큼 겹치는 띠와 반복 횟수를 확인했다. 겹침 수를 빼서 길이·넓이·둘레를 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 같은 정사각형을 같은 폭만큼 겹치는 띠와 반복 횟수를 확인했다. 겹침 수를 빼서 길이·넓이·둘레를 계산한다."
+    },
+    "v-m1-core-symbol-product-truth-44e2a2a5": {
+      "name": "곱셈 기호 생략 표현의 동치",
+      "variables": "유리수 계수·문자 지수·곱/몫 AST",
+      "figure": "none",
+      "grade": "중1",
+      "section": "문자의 사용과 식의 값",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "곱·몫 식과 생략한 표현 두 쌍을 확인했다. 단항식 계수·지수 벡터의 일치로 판정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 곱·몫 식과 생략한 표현 두 쌍을 확인했다. 단항식 계수·지수 벡터의 일치로 판정한다."
+    },
+    "v-m1-core-reciprocal-table-1c0b07fa": {
+      "name": "반비례 표의 빈칸",
+      "variables": "영이 아닌 비례상수·좌표·누락 위치",
+      "figure": "required",
+      "grade": "중1",
+      "section": "반비례 관계 y=a/x의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "반비례 관계의 완전한 한 열과 빈 값들이 있는 표를 읽었다. 일정한 곱으로 빈 값을 복원한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 반비례 관계의 완전한 한 열과 빈 값들이 있는 표를 읽었다. 일정한 곱으로 빈 값을 복원한다."
+    },
+    "v-m1-core-reciprocal-area-1c0b07fa": {
+      "name": "반비례 곡선과 축 평행 넓이",
+      "variables": "양의 비례상수·곡선 위 점·직사각형",
+      "figure": "required",
+      "grade": "중1",
+      "section": "반비례 관계 y=a/x의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "반비례 곡선 위 점에서 축으로 내린 수선과 직사각형이 보인다. 넓이가 좌표 곱의 절댓값으로 결정된다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 반비례 곡선 위 점에서 축으로 내린 수선과 직사각형이 보인다. 넓이가 좌표 곱의 절댓값으로 결정된다."
+    },
+    "v-m1-core-proportion-quadrants-1c0b07fa": {
+      "name": "정비례·반비례식의 사분면",
+      "variables": "영이 아닌 비례상수·함수 종류·질의 사분면",
+      "figure": "none",
+      "grade": "중1",
+      "section": "반비례 관계 y=a/x의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정비례·반비례 수식 보기 전부가 보인다. 계수 부호와 함수 꼴로 지정 사분면 통과 여부를 센다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정비례·반비례 수식 보기 전부가 보인다. 계수 부호와 함수 꼴로 지정 사분면 통과 여부를 센다."
+    },
+    "v-m1-core-reciprocal-coordinates-1c0b07fa": {
+      "name": "반비례 곡선의 좌표",
+      "variables": "한 점 좌표·다른 점의 한 좌표·누락축",
+      "figure": "required",
+      "grade": "중1",
+      "section": "반비례 관계 y=a/x의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "완전한 좌표 한 점과 같은 곡선 위 다른 점의 빈 좌표를 확인했다. 곱 상수와 미지 좌표를 계산한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 완전한 좌표 한 점과 같은 곡선 위 다른 점의 빈 좌표를 확인했다. 곱 상수와 미지 좌표를 계산한다."
+    },
+    "v-m1-core-equality-kind-choice-eec1e7ef": {
+      "name": "등식과 식의 구별",
+      "variables": "등호·부등호·다항식 AST·후보 배치",
+      "figure": "none",
+      "grade": "중1",
+      "section": "방정식과 그 해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "보기의 등식·부등식·식이 모두 읽힌다. 등호가 양변의 식을 잇는 구조를 생성하여 분류한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 보기의 등식·부등식·식이 모두 읽힌다. 등호가 양변의 식을 잇는 구조를 생성하여 분류한다."
+    },
+    "v-m1-core-linear-equation-kind-eec1e7ef": {
+      "name": "정리 후 일차방정식 판별",
+      "variables": "양변 다항식·최고차항 소거·항등/불능 여부",
+      "figure": "none",
+      "grade": "중1",
+      "section": "방정식과 그 해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "식·등식 보기 전체를 확인했다. 양변 차의 일차항 계수가 영이 아닌지로 일차방정식을 고른다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 식·등식 보기 전체를 확인했다. 양변 차의 일차항 계수가 영이 아닌지로 일차방정식을 고른다."
+    },
+    "v-m1-core-prime-list-e30a5ede": {
+      "name": "수 목록의 소수 선택",
+      "variables": "범위 내 정수·소수/합성수 배치",
+      "figure": "none",
+      "grade": "중1",
+      "section": "소수와 거듭제곱",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "수 목록 전체가 선명하게 보인다. 각 자연수의 소수성을 검사해 해당 원소 수를 센다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 수 목록 전체가 선명하게 보인다. 각 자연수의 소수성을 검사해 해당 원소 수를 센다."
+    },
+    "v-m1-core-power-attributes-e30a5ede": {
+      "name": "거듭제곱의 밑과 지수",
+      "variables": "양의 밑·자연수 지수·암묵적 일 지수",
+      "figure": "none",
+      "grade": "중1",
+      "section": "소수와 거듭제곱",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "단일 수와 거듭제곱 목록을 확인했다. 지수 생략을 포함하여 수식 구문에서 밑·지수를 읽는다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 단일 수와 거듭제곱 목록을 확인했다. 지수 생략을 포함하여 수식 구문에서 밑·지수를 읽는다."
+    },
+    "v-m1-core-prime-stencil-e30a5ede": {
+      "name": "소수 칸 격자 모양",
+      "variables": "고정 문자 격자 마스크·소수/합성수 채움",
+      "figure": "required",
+      "grade": "중1",
+      "section": "소수와 거듭제곱",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "숫자 격자 전체와 칸 배열이 보인다. 정해진 자음 마스크에 소수·합성수를 배치하면 색칠 결과가 결정된다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 숫자 격자 전체와 칸 배열이 보인다. 정해진 자음 마스크에 소수·합성수를 배치하면 색칠 결과가 결정된다."
+    },
+    "v-m1-core-branching-power-e30a5ede": {
+      "name": "규칙적 분기 수",
+      "variables": "분기 수·단계 수·첫 개체 수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "소수와 거듭제곱",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "동일한 분기 수가 단계마다 반복되는 나무를 봤다. 시작 수와 분기수의 거듭제곱으로 특정 단계 수를 계산한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 동일한 분기 수가 단계마다 반복되는 나무를 봤다. 시작 수와 분기수의 거듭제곱으로 특정 단계 수를 계산한다."
+    },
+    "v-m1-core-divisor-product-table-a5ee0cca": {
+      "name": "소인수 거듭제곱 약수 표",
+      "variables": "두 소수·최대 지수·빈칸 위치",
+      "figure": "required",
+      "grade": "중1",
+      "section": "소인수분해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "서로 다른 소수의 거듭제곱을 행·열에 놓은 곱 표가 보인다. 지수 조합으로 약수 표와 목록을 생성한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 서로 다른 소수의 거듭제곱을 행·열에 놓은 곱 표가 보인다. 지수 조합으로 약수 표와 목록을 생성한다."
+    },
+    "v-m1-core-factor-ladder-a5ee0cca": {
+      "name": "소인수분해 나눗셈 사다리",
+      "variables": "소수 목록·지수·누락 위치",
+      "figure": "required",
+      "grade": "중1",
+      "section": "소인수분해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "차례로 나누는 소인수분해 도식과 별도 빈칸 식을 확인했다. 나눗셈과 소수 지수 집계로 답을 정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 차례로 나누는 소인수분해 도식과 별도 빈칸 식을 확인했다. 나눗셈과 소수 지수 집계로 답을 정한다."
+    },
+    "v-m1-core-factor-tree-prime-constraint-a5ee0cca": {
+      "name": "소수 조건 분해 트리",
+      "variables": "소수 상한·두 소수 합 관계·유일해 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "소인수분해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "세 소수 잎을 가진 인수 나무와 잎 사이 덧셈 제약을 확인했다. 유한 소수 후보를 열거해 가능한 뿌리 곱을 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 세 소수 잎을 가진 인수 나무와 잎 사이 덧셈 제약을 확인했다. 유한 소수 후보를 열거해 가능한 뿌리 곱을 구한다."
+    },
+    "v-m1-core-factorization-choice-a5ee0cca": {
+      "name": "소인수분해 선택지 검증",
+      "variables": "정수·후보 소수 인수·지수·오류 위치",
+      "figure": "none",
+      "grade": "중1",
+      "section": "소인수분해",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "원래 자연수와 소수 곱 표현이 모두 보인다. 소수 밑 조건 및 곱의 일치를 검사한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 원래 자연수와 소수 곱 표현이 모두 보인다. 소수 밑 조건 및 곱의 일치를 검사한다."
+    },
+    "v-m1-core-range-notation-c52f466b": {
+      "name": "범위 표현과 부등호",
+      "variables": "경곗값·포함 여부·상하한 방향",
+      "figure": "none",
+      "grade": "중1",
+      "section": "수의 대소관계",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "수의 상하한과 경계 포함 여부가 적힌 문장들이 모두 보인다. 비교 관계를 부등호와 연속 부등식으로 변환한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 수의 상하한과 경계 포함 여부가 적힌 문장들이 모두 보인다. 비교 관계를 부등호와 연속 부등식으로 변환한다."
+    },
+    "v-m1-core-absolute-values-c52f466b": {
+      "name": "유리수 절댓값 계산",
+      "variables": "부호 있는 유리수 목록",
+      "figure": "none",
+      "grade": "중1",
+      "section": "수의 대소관계",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "부호가 있는 수와 영의 목록을 확인했다. 각 유리수의 절댓값을 순서대로 낸다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 부호가 있는 수와 영의 목록을 확인했다. 각 유리수의 절댓값을 순서대로 낸다."
+    },
+    "v-m1-core-ordered-label-puzzle-c52f466b": {
+      "name": "수의 순서와 문자 연결",
+      "variables": "유일 순서를 정하는 비교 조건·기호 배치",
+      "figure": "required",
+      "grade": "중1",
+      "section": "수의 대소관계",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "세 문자와 음절의 연결도 및 수치 경계가 보인다. 제약이 유일하게 정한 순서대로 연결된 표지를 조합한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 세 문자와 음절의 연결도 및 수치 경계가 보인다. 제약이 유일하게 정한 순서대로 연결된 표지를 조합한다."
+    },
+    "v-m1-core-coordinate-read-c0d794f1": {
+      "name": "격자 좌표와 기본 속성",
+      "variables": "유리수 점 좌표·눈금 간격·속성 선택지",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(기본)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "눈금이 있는 좌표평면의 두 점을 직접 확인했다. 생성한 정수 좌표의 지정 합·곱을 계산하는 후보다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 눈금이 있는 좌표평면의 두 점을 직접 확인했다. 생성한 정수 좌표의 지정 합·곱을 계산하는 후보다."
+    },
+    "v-m1-core-numberline-read-c0d794f1": {
+      "name": "수직선 좌표와 계산",
+      "variables": "정수 기준점·구간별 등분 수·표시 위치·계수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(기본)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정수 눈금과 등분 수를 고정하여 표시점의 유리수 위치를 계산한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정수 눈금과 등분 수를 고정하여 표시점의 유리수 위치를 계산한다."
+    },
+    "v-m1-core-symbolic-quadrant-sign-51b404f8": {
+      "name": "문자 부호와 사분면",
+      "variables": "부호·순서 제약·상쇄 없는 곱/차/몫",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(응용)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "부호가 확정되는 차와 곱만 조합하여 점의 사분면 진술을 판정한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 부호가 확정되는 차와 곱만 조합하여 점의 사분면 진술을 판정한다."
+    },
+    "v-m1-core-coordinate-extreme-51b404f8": {
+      "name": "사각형 경계 일차식 극값",
+      "variables": "축 평행 사각형의 경계 좌표·일차식 계수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(응용)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "축 평행 사각형 경계에서 일차식의 최댓값은 네 꼭짓점 값으로 계산한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 축 평행 사각형 경계에서 일차식의 최댓값은 네 꼭짓점 값으로 계산한다."
+    },
+    "v-m1-core-coordinate-area-51b404f8": {
+      "name": "좌표 사각형 넓이",
+      "variables": "축 평행 사각형의 정수 좌표",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(응용)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "축 평행 사각형의 가로·세로 차로 넓이를 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 축 평행 사각형의 가로·세로 차로 넓이를 구한다."
+    },
+    "v-m1-core-coordinate-triangle-area-51b404f8": {
+      "name": "좌표 삼각형 넓이",
+      "variables": "비공선 정수 좌표 세 점",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(응용)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정수 좌표 삼각형의 넓이를 행렬식의 절댓값 절반으로 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정수 좌표 삼각형의 넓이를 행렬식의 절댓값 절반으로 계산한다."
+    },
+    "v-m1-core-coordinate-square-unknown-51b404f8": {
+      "name": "정사각형 문자 좌표",
+      "variables": "양의 변 길이·한 꼭짓점·미지수 일차 표현",
+      "figure": "required",
+      "grade": "중1",
+      "section": "순서쌍과 좌표평면(응용)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "축 평행 정사각형의 한 변과 좌표 일치 조건을 이용해 문자 좌표를 푼다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 축 평행 정사각형의 한 변과 좌표 일치 조건을 이용해 문자 좌표를 푼다."
+    },
+    "v-m1-core-card-product-extreme-dea229b9": {
+      "name": "유리수 카드 곱의 극값",
+      "variables": "서로 다른 카드 수·추출 개수·유리수 값",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 곱셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "유리수 카드의 서로 다른 부분집합 곱을 전수 계산하여 최대·최소를 구한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 유리수 카드의 서로 다른 부분집합 곱을 전수 계산하여 최대·최소를 구한다."
+    },
+    "v-m1-core-opposite-face-reciprocals-dea229b9": {
+      "name": "주사위 맞은편 수의 합",
+      "variables": "영이 아닌 세 면의 값·맞은편 곱 일 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 곱셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "보이는 세 면과 마주 보는 면의 수를 각각 역수로 정하고 합을 구한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 보이는 세 면과 마주 보는 면의 수를 각각 역수로 정하고 합을 구한다."
+    },
+    "v-m1-core-operation-law-label-dea229b9": {
+      "name": "곱셈 법칙과 계산 단계",
+      "variables": "유리수 인자·교환/결합 AST 변환",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 곱셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "곱셈식의 항 순서 교체·괄호 재배열을 AST 변환으로 생성하고 법칙명을 정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 곱셈식의 항 순서 교체·괄호 재배열을 AST 변환으로 생성하고 법칙명을 정한다."
+    },
+    "v-m1-core-rational-product-image-dea229b9": {
+      "name": "이미지 수식의 유리수 곱",
+      "variables": "유리수 인자·자연수 지수·계산 순서",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 곱셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "그림에만 있던 유리수 곱과 정수 지수식을 유리수 연산으로 계산한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 그림에만 있던 유리수 곱과 정수 지수식을 유리수 연산으로 계산한다."
+    },
+    "v-m1-core-product-pyramid-dea229b9": {
+      "name": "곱셈 피라미드 역산",
+      "variables": "영이 아닌 밑줄 값·빈칸·정수해 제약",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 곱셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "곱셈 피라미드의 알려진 최하단 값에서 역산하고 중간 칸을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 곱셈 피라미드의 알려진 최하단 값에서 역산하고 중간 칸을 계산한다."
+    },
+    "v-m1-core-rational-division-image-07779dd2": {
+      "name": "이미지 수식의 유리수 나눗셈",
+      "variables": "유리수 피제수·영이 아닌 제수",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 나눗셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "그림 안의 유리수 나눗셈을 영이 아닌 제수 조건 아래 분수로 계산한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 그림 안의 유리수 나눗셈을 영이 아닌 제수 조건 아래 분수로 계산한다."
+    },
+    "v-m1-core-numberline-span-quotient-07779dd2": {
+      "name": "수직선 거리와 좌표 몫",
+      "variables": "기준 좌표·양의 구간 길이·영이 아닌 분모 좌표",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 나눗셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "기준 좌표와 두 유향 길이로 표시점 좌표를 복원한 뒤 몫을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 기준 좌표와 두 유향 길이로 표시점 좌표를 복원한 뒤 몫을 계산한다."
+    },
+    "v-m1-core-operation-machine-07779dd2": {
+      "name": "연산 기계 합성",
+      "variables": "일차 유리수 연산 두 종류·적용 순서·입력값",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 나눗셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "도식의 순서대로 두 일차 유리수 연산을 합성한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 도식의 순서대로 두 일차 유리수 연산을 합성한다."
+    },
+    "v-m1-core-first-wrong-arithmetic-step-07779dd2": {
+      "name": "계산의 최초 오류 찾기",
+      "variables": "유리수 식·단계 수·한 오류 변환·영 제수 제외",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 나눗셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "오류 변환 한 곳을 삽입한 계산 단계에서 처음 등가성이 깨지는 위치와 원식의 값을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 오류 변환 한 곳을 삽입한 계산 단계에서 처음 등가성이 깨지는 위치와 원식의 값을 계산한다."
+    },
+    "v-m1-core-rational-reciprocal-image-07779dd2": {
+      "name": "이미지 수식의 역수",
+      "variables": "영이 아닌 유리수·표시 형식",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 나눗셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "영이 아닌 정수·유리수의 분자와 분모를 교환하고 기약분수로 출력한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 영이 아닌 정수·유리수의 분자와 분모를 교환하고 기약분수로 출력한다."
+    },
+    "v-m1-core-rational-sum-order-a12b391c": {
+      "name": "덧셈·뺄셈식 결과 정렬",
+      "variables": "유리수 식 목록·서로 다른 결과 조건",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "서로 다른 유리수 덧셈·뺄셈식의 값을 계산해 내림차순으로 정렬한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 서로 다른 유리수 덧셈·뺄셈식의 값을 계산해 내림차순으로 정렬한다."
+    },
+    "v-m1-core-table-range-max-a12b391c": {
+      "name": "표의 차와 최댓값",
+      "variables": "행별 두 유리수·유일 최대 차 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "표의 각 행에서 최댓값과 최솟값의 차를 계산하여 가장 큰 행을 고른다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 표의 각 행에서 최댓값과 최솟값의 차를 계산하여 가장 큰 행을 고른다."
+    },
+    "v-m1-core-sum-law-label-a12b391c": {
+      "name": "덧셈 법칙과 계산값",
+      "variables": "유리수 항·교환/결합 변환",
+      "figure": "none",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "덧셈 항의 교체와 괄호 재배열을 생성하고 법칙명 및 계산값을 연결한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 덧셈 항의 교체와 괄호 재배열을 생성하고 법칙명 및 계산값을 연결한다."
+    },
+    "v-m1-core-card-sum-game-a12b391c": {
+      "name": "남은 카드와 합의 절댓값",
+      "variables": "카드 목록·기선택 카드·부분합·승리 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "이미 뽑힌 카드를 제외하고 남은 카드별 합의 절댓값을 비교하여 모든 승리 카드를 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 이미 뽑힌 카드를 제외하고 남은 카드별 합의 절댓값을 비교하여 모든 승리 카드를 구한다."
+    },
+    "v-m1-core-neighbor-sum-sequence-a12b391c": {
+      "name": "양옆 합 점화 수열",
+      "variables": "첫 두 정수·양옆 합 규칙·질의 번호",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "중앙항이 양옆항 합이라는 점화식으로 수열을 생성하고 주기 또는 반복 계산으로 항을 찾는다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 중앙항이 양옆항 합이라는 점화식으로 수열을 생성하고 주기 또는 반복 계산으로 항을 찾는다."
+    },
+    "v-m1-core-height-difference-network-a12b391c": {
+      "name": "높이 차 네트워크",
+      "variables": "트리 위상·부호 있는 변의 차·기준 높이",
+      "figure": "required",
+      "grade": "중1",
+      "section": "유리수의 덧셈과 뺄셈",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "연결된 트리의 부호 있는 높이 차로 각 꼭짓점 높이를 복원하여 최댓값과 최솟값 차를 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 연결된 트리의 부호 있는 높이 차로 각 꼭짓점 높이를 복원하여 최댓값과 최솟값 차를 구한다."
+    },
+    "v-m1-core-segment-linear-equation-3af2eda7": {
+      "name": "선분 합의 일차방정식",
+      "variables": "두 부분 길이식·전체 길이·양의 해 길이",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 풀이",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "나뉜 두 선분의 일차식 합이 전체 길이라는 식을 세워 푼다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 나뉜 두 선분의 일차식 합이 전체 길이라는 식을 세워 푼다."
+    },
+    "v-m1-core-equation-first-wrong-step-3af2eda7": {
+      "name": "방정식 풀이의 최초 오류",
+      "variables": "유한소수 계수·정수해·한 비동치 변환",
+      "figure": "none",
+      "grade": "중1",
+      "section": "일차방정식의 풀이",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "소수 계수 방정식의 변환 단계에 한 가지 오류를 넣고 최초 오류와 올바른 해를 결정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 소수 계수 방정식의 변환 단계에 한 가지 오류를 넣고 최초 오류와 올바른 해를 결정한다."
+    },
+    "v-m1-core-equal-side-sum-3af2eda7": {
+      "name": "삼각형 가장자리 같은 합",
+      "variables": "변별 상수·미지수 위치·유일해 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 풀이",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "삼각형 가장자리 숫자합의 등식에서 두 미지수를 순차 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 삼각형 가장자리 숫자합의 등식에서 두 미지수를 순차 계산한다."
+    },
+    "v-m1-core-equal-equation-roots-3af2eda7": {
+      "name": "같은 해의 일차방정식 쌍",
+      "variables": "유리수 계수·일치하는 해 한 쌍",
+      "figure": "none",
+      "grade": "중1",
+      "section": "일차방정식의 풀이",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "서로 다른 일차방정식의 정확한 해를 비교하여 같은 해인 쌍을 선택한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 서로 다른 일차방정식의 정확한 해를 비교하여 같은 해인 쌍을 선택한다."
+    },
+    "v-m1-core-area-change-linear-8d167eb1": {
+      "name": "도형 넓이 변화 방정식",
+      "variables": "밑변·높이·변경량·양의 미지 길이",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(도형, 농도, 일)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "변경 전후 사다리꼴의 넓이 차를 일차식으로 만들고 변 길이 증가분을 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 변경 전후 사다리꼴의 넓이 차를 일차식으로 만들고 변 길이 증가분을 구한다."
+    },
+    "v-m1-core-trapezoid-area-inverse-8d167eb1": {
+      "name": "사다리꼴 넓이의 역산",
+      "variables": "높이·한 밑변·넓이·양의 나머지 밑변",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(도형, 농도, 일)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "높이·한 밑변·넓이로 나머지 밑변을 구하고 양수 조건을 검사한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 높이·한 밑변·넓이로 나머지 밑변을 구하고 양수 조건을 검사한다."
+    },
+    "v-m1-core-growing-boundary-pattern-71d53f43": {
+      "name": "테두리 점의 단계 규칙",
+      "variables": "첫 변 점수·단계 증가량·빈칸 번호",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(비율, 시계, 규칙)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "정사각형 테두리 점의 증가 규칙을 고정하고 단계별 개수와 빈칸 합을 계산한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 정사각형 테두리 점의 증가 규칙을 고정하고 단계별 개수와 빈칸 합을 계산한다."
+    },
+    "v-m1-core-growing-open-pattern-71d53f43": {
+      "name": "열린 세 변 점의 단계 역산",
+      "variables": "첫 변 길이·일정 증가량·목표 개수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(비율, 시계, 규칙)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "세 변으로 열린 점 배열의 팔 길이 증가 규칙을 고정하고 목표 개수로 단계를 역산한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 세 변으로 열린 점 배열의 팔 길이 증가 규칙을 고정하고 목표 개수로 단계를 역산한다."
+    },
+    "v-m1-core-growing-cross-pattern-71d53f43": {
+      "name": "십자 팔 배열과 단계",
+      "variables": "중앙 개수·팔 수·단계별 팔 길이·목표 개수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(비율, 시계, 규칙)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "중앙과 네 팔 정사각형 배열을 생성해 일차 개수식과 목표 개수의 단계를 구한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 중앙과 네 팔 정사각형 배열을 생성해 일차 개수식과 목표 개수의 단계를 구한다."
+    },
+    "v-m1-core-joined-block-pattern-71d53f43": {
+      "name": "공유 블록의 반복 모형",
+      "variables": "첫 모형 블록 수·공유 열·반복 수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(비율, 시계, 규칙)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "반복 블록 모형의 공유 열을 고정하고 추가 모형당 증가 블록 수로 역산한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 반복 블록 모형의 공유 열을 고정하고 추가 모형당 증가 블록 수로 역산한다."
+    },
+    "v-m1-core-ticket-ratio-total-99edbb2e": {
+      "name": "인원 비와 요금표 총액",
+      "variables": "인원 총수·무료 인원·유료 인원 비·단가",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차방정식의 활용(수)",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "무료 인원을 제외한 유료 인원을 비로 분할하여 요금표와 곱해 총액을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 무료 인원을 제외한 유료 인원을 비로 분할하여 요금표와 곱해 총액을 계산한다."
+    },
+    "v-m1-core-polynomial-attributes-04b6dd97": {
+      "name": "다항식 속성 명제",
+      "variables": "계수·지수 벡터·상수항·진술 참거짓",
+      "figure": "none",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅰ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "다항식의 항·차수·계수·상수항을 지수 사전으로 계산하여 진술을 검증한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 다항식의 항·차수·계수·상수항을 지수 사전으로 계산하여 진술을 검증한다."
+    },
+    "v-m1-core-linear-expression-choice-04b6dd97": {
+      "name": "일차식 선택",
+      "variables": "유리수 계수·총차수·분모 문자·영 계수",
+      "figure": "none",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅰ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "영 계수와 분모 문자까지 고려하여 다항식 여부 및 총차수 일 여부를 판정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 영 계수와 분모 문자까지 고려하여 다항식 여부 및 총차수 일 여부를 판정한다."
+    },
+    "v-m1-core-grid-poster-area-4e824157": {
+      "name": "격자 부착 면적식",
+      "variables": "전체 치수·행열 수·칸 사이 간격",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "전체 가로·세로에서 사이 간격을 제외하여 덮인 직사각형 총넓이를 다항식으로 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 전체 가로·세로에서 사이 간격을 제외하여 덮인 직사각형 총넓이를 다항식으로 계산한다."
+    },
+    "v-m1-core-rectilinear-perimeter-4e824157": {
+      "name": "직각 꺾인 도형 둘레식",
+      "variables": "전체 폭·높이·띠 폭의 일차식·양수 제약",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "직각으로 꺾인 외곽선의 빠진 변을 전체 폭·높이로 복원하여 둘레식을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 직각으로 꺾인 외곽선의 빠진 변을 전체 폭·높이로 복원하여 둘레식을 계산한다."
+    },
+    "v-m1-core-overlap-triangle-perimeter-4e824157": {
+      "name": "겹친 정삼각형 둘레식",
+      "variables": "변 길이·반복 수·같은 겹침 폭·위상 유지",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "같은 정삼각형의 반복 겹침 위상을 고정하고 내부로 사라지는 세 변 길이를 빼어 둘레식을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 같은 정삼각형의 반복 겹침 위상을 고정하고 내부로 사라지는 세 변 길이를 빼어 둘레식을 계산한다."
+    },
+    "v-m1-core-polynomial-magic-square-4e824157": {
+      "name": "다항식 마방진 빈칸",
+      "variables": "3×3 마방진·다항식 계수·유일 복원 빈칸",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "3×3 마방진의 행·열·대각선 합 제약을 계수별 선형식으로 풀어 빠진 다항식을 구한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 3×3 마방진의 행·열·대각선 합 제약을 계수별 선형식으로 풀어 빠진 다항식을 구한다."
+    },
+    "v-m1-core-polynomial-sum-pyramid-4e824157": {
+      "name": "다항식 합 피라미드",
+      "variables": "밑줄 다항식·누락 위치·이웃 합 규칙",
+      "figure": "required",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "이웃한 두 식의 합 규칙을 계수별 덧셈·뺄셈으로 역산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 이웃한 두 식의 합 규칙을 계수별 덧셈·뺄셈으로 역산한다."
+    },
+    "v-m1-core-like-terms-choice-4e824157": {
+      "name": "동류항 쌍 선택",
+      "variables": "계수·문자별 지수·상수항·분모 문자",
+      "figure": "none",
+      "grade": "중1",
+      "section": "일차식의 뜻Ⅱ",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "문자별 지수 벡터가 같은 항을 동류항으로 판정하고 상수항을 같은 벡터로 처리한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 문자별 지수 벡터가 같은 항을 동류항으로 판정하고 상수항을 같은 벡터로 처리한다."
+    },
+    "v-m1-core-direct-proportion-table-1edc0d10": {
+      "name": "정비례 표 빈칸",
+      "variables": "영이 아닌 비례상수·좌표·빈칸",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "표의 비례상수를 구한 뒤 누락된 좌표와 그 합을 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 표의 비례상수를 구한 뒤 누락된 좌표와 그 합을 계산한다."
+    },
+    "v-m1-core-two-rays-area-1edc0d10": {
+      "name": "두 원점 직선 사이 넓이",
+      "variables": "공통 가로 좌표·큰 기울기·넓이·양수 제약",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "같은 가로 좌표에서 두 원점 직선의 세로 차와 삼각형 넓이로 한 기울기를 역산한다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 같은 가로 좌표에서 두 원점 직선의 세로 차와 삼각형 넓이로 한 기울기를 역산한다."
+    },
+    "v-m1-core-direct-proportion-truth-1edc0d10": {
+      "name": "정비례 그래프 수치 명제",
+      "variables": "한 점 좌표·기울기·속성 진술",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "좌표 한 쌍에서 기울기와 단조성·점 통과·축 교점 진술을 판정한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 좌표 한 쌍에서 기울기와 단조성·점 통과·축 교점 진술을 판정한다."
+    },
+    "v-m1-core-direct-proportion-coordinate-1edc0d10": {
+      "name": "정비례 격자와 미지 좌표",
+      "variables": "격자 정수점·미지점 한 좌표·눈금 간격",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "격자에서 읽히는 정수점으로 기울기를 정하고 다른 점의 미지 좌표를 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 격자에서 읽히는 정수점으로 기울기를 정하고 다른 점의 미지 좌표를 계산한다."
+    },
+    "v-m1-core-ray-segment-slope-count-1edc0d10": {
+      "name": "선분을 만나는 정수 기울기",
+      "variables": "한 사분면의 두 끝점·닫힌 구간·양의 가로좌표",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정비례 관계 y=ax의 그래프",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "한 사분면의 두 점을 잇는 닫힌 선분을 만나는 원점 직선의 기울기 구간에서 정수를 센다.",
+      "difficulty": "hard",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 한 사분면의 두 점을 잇는 닫힌 선분을 만나는 원점 직선의 기울기 구간에서 정수를 센다."
+    },
+    "v-m1-core-numberline-read-91b10edc": {
+      "name": "수직선 좌표와 계산",
+      "variables": "정수 기준점·구간별 등분 수·표시 위치·계수",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정수와 유리수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "등분이 표시된 수직선의 유리수 좌표와 선택지를 비교한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 등분이 표시된 수직선의 유리수 좌표와 선택지를 비교한다."
+    },
+    "v-m1-core-numberline-attributes-91b10edc": {
+      "name": "수직선의 수 분류",
+      "variables": "표시 유리수·부호·정수 여부·절댓값",
+      "figure": "required",
+      "grade": "중1",
+      "section": "정수와 유리수",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "표시점의 유리수 좌표에서 정수 여부·부호·절댓값 진술을 판정한다.",
+      "difficulty": "easy",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 표시점의 유리수 좌표에서 정수 여부·부호·절댓값 진술을 판정한다."
+    },
+    "v-m1-core-fixed-position-period-38746a72": {
+      "name": "처음 위치 동시 복귀 주기",
+      "variables": "두 양의 정수 주기·시작 위치 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "최대공약수와 최소공배수의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "두 주기 운동이 각각 처음 위치에 동시에 돌아오는 최소 시간을 최소공배수로 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 두 주기 운동이 각각 처음 위치에 동시에 돌아오는 최소 시간을 최소공배수로 계산한다."
+    },
+    "v-m1-core-prime-venn-pairs-38746a72": {
+      "name": "소인수 벤 도식과 수 쌍",
+      "variables": "공통 인수·서로소 잔여 소수·대소 조건",
+      "figure": "required",
+      "grade": "중1",
+      "section": "최대공약수와 최소공배수의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "공통 소인수와 서로 겹치지 않는 소인수를 벤 도식에 배치하여 가능한 수 쌍을 구한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 공통 소인수와 서로 겹치지 않는 소인수를 벤 도식에 배치하여 가능한 수 쌍을 구한다."
+    },
+    "v-m1-core-largest-square-tiling-38746a72": {
+      "name": "가장 큰 정사각형 분할",
+      "variables": "직사각형 두 정수 변·빈틈 없는 분할",
+      "figure": "required",
+      "grade": "중1",
+      "section": "최대공약수와 최소공배수의 활용",
+      "category": "B",
+      "engine_keys": [],
+      "answer_method": "직사각형의 두 변을 모두 나누는 가장 큰 정사각형 변을 최대공약수로 계산한다.",
+      "difficulty": "mid",
+      "rationale": "대응표의 순서별 실물 이미지를 직접 확인한 행 한정 후보. 직사각형의 두 변을 모두 나누는 가장 큰 정사각형 변을 최대공약수로 계산한다."
+    }
+  },
+  "rows": [
+    {
+      "id": "ddc1fc35-839a-40f0-b6bf-79f37b4588f5",
+      "problem_code": "J10104-A80-001",
+      "cohort": "visual-m1-fd0d2676",
+      "category": "B",
+      "family": "v-m1-core-lcm-pyramid-fd0d2676",
+      "viewed_urls": [
+        "/figures/tb/b95d352a06c4a7d6/tb-b95d352a06c4a7d6-0-16-1.png",
+        "/figures/tb/b95d352a06c4a7d6/tb-b95d352a06c4a7d6-0-16-2.png"
+      ],
+      "note": "인접 칸의 소인수 지수 최댓값이 아래 칸으로 내려가는 세 층 표를 확인했다."
+    },
+    {
+      "id": "37d71120-380d-4d28-838d-f09262a7dad9",
+      "problem_code": "J10104-A81-001",
+      "cohort": "visual-m1-fd0d2676",
+      "category": "B",
+      "family": "v-m1-core-lcm-truth-fd0d2676",
+      "viewed_urls": [
+        "/figures/tb/d12b3ff1a50511d1/tb-d12b3ff1a50511d1-0-3-1.png"
+      ],
+      "note": "수치 소인수분해 두 식과 최소공배수·공배수 명제 두 개가 완전하게 보인다."
+    },
+    {
+      "id": "f936b739-4813-4ac1-ba9a-55e35dad6695",
+      "problem_code": "J10104-A83-001",
+      "cohort": "visual-m1-fd0d2676",
+      "category": "B",
+      "family": "v-m1-core-lcm-exponents-fd0d2676",
+      "viewed_urls": [
+        "/figures/tb/49913f0d15c9ea88/tb-49913f0d15c9ea88-0-1-1.png"
+      ],
+      "note": "소인수별 정렬 표와 최소공배수의 고정 지수에서 빈 지수를 역산한다."
+    },
+    {
+      "id": "ab4609d3-1f6b-4131-b486-0f269df35ef7",
+      "problem_code": "J10103-B08-001",
+      "cohort": "visual-m1-7d374912",
+      "category": "B",
+      "family": "v-m1-core-gcd-truth-7d374912",
+      "viewed_urls": [
+        "/figures/tb/355aef25d5cd2ac3/tb-355aef25d5cd2ac3-0-3-1.png"
+      ],
+      "note": "소인수분해 두 식과 최대공약수·공약수 명제의 참거짓을 계산할 수 있다."
+    },
+    {
+      "id": "7f79b1fe-2867-4cbb-af99-5c15ea296371",
+      "problem_code": "J10103-B07-001",
+      "cohort": "visual-m1-7d374912",
+      "category": "B",
+      "family": "v-m1-core-coprime-numerators-7d374912",
+      "viewed_urls": [
+        "/figures/tb/6c6533df4a4d0da2/tb-6c6533df4a4d0da2-1-8-1.png"
+      ],
+      "note": "분모가 명시된 빈 분자 도식을 확인했다. 진분수 범위에서 서로소인 분자를 센다."
+    },
+    {
+      "id": "4d63dcfc-09e4-447c-8a35-195a4a0b6812",
+      "problem_code": "J10103-B06-001",
+      "cohort": "visual-m1-7d374912",
+      "category": "B",
+      "family": "v-m1-core-common-divisor-denominator-7d374912",
+      "viewed_urls": [
+        "/figures/tb/6c6533df4a4d0da2/tb-6c6533df4a4d0da2-0-20-1.png",
+        "/figures/tb/6c6533df4a4d0da2/tb-6c6533df4a4d0da2-0-20-2.png"
+      ],
+      "note": "두 분수의 공통 빈 분모가 보인다. 두 분자를 동시에 나누는 양의 정수를 열거한다."
+    },
+    {
+      "id": "7b4d706d-1aeb-48ec-b248-9eb9c438475e",
+      "problem_code": "J10103-B05-001",
+      "cohort": "visual-m1-7d374912",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/45e76cff0c8afb8a/tb-45e76cff0c8afb8a-0-4-1.png"
+      ],
+      "note": "그림이 용어 정의와 수치 명제를 섞은 보기다. 정의 진술의 재저작 범위를 정하지 않아 C를 유지한다."
+    },
+    {
+      "id": "8ffa10e1-d508-424e-9614-961f3e5175b8",
+      "problem_code": "J10103-B04-001",
+      "cohort": "visual-m1-7d374912",
+      "category": "B",
+      "family": "v-m1-core-gcd-lcm-ladder-7d374912",
+      "viewed_urls": [
+        "/figures/tb/ec67273ab9dd0b25/tb-ec67273ab9dd0b25-0-4-1.png"
+      ],
+      "note": "공통 인수로 나누는 세로 계산표의 빈칸과 두 결과를 결정적으로 채울 수 있다."
+    },
+    {
+      "id": "ca2833f3-d021-4aee-a1a7-de5f7df4c8ab",
+      "problem_code": "J10403-A73-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "B",
+      "family": "v-m1-core-single-peak-graph-4dcd4066",
+      "viewed_urls": [
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-8-1.png"
+      ],
+      "note": "시각별 단봉 곡선·눈금·임계 높이를 확인했다. 최대 시점과 구간 증감·높이 교차 수를 계산하는 그래프 후보다."
+    },
+    {
+      "id": "dd062ee7-496d-4f71-a8f8-668dd001ad03",
+      "problem_code": "J10403-A85-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "B",
+      "family": "v-m1-core-periodic-graph-4dcd4066",
+      "viewed_urls": [
+        "/figures/tb/e4ea0e93be269e5f/tb-e4ea0e93be269e5f-0-4-1.png"
+      ],
+      "note": "동일한 봉우리가 반복되고 주기·최댓값·영점 눈금이 명시되어 시간별 값과 주기 명제를 계산한다."
+    },
+    {
+      "id": "47e799c9-8570-4ec2-bca2-c7a1780f55aa",
+      "problem_code": "J10403-A34-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "B",
+      "family": "v-m1-core-delayed-motion-graph-4dcd4066",
+      "viewed_urls": [
+        "/figures/tb/d1aa827c5878d6aa/tb-d1aa827c5878d6aa-0-3-1.png"
+      ],
+      "note": "시간차를 두고 출발한 두 직선의 교점과 늦은 출발 시점을 읽어 경과시간을 계산한다."
+    },
+    {
+      "id": "ac6c241e-805a-4ba2-b54d-0f526b91d2ca",
+      "problem_code": "J10403-A20-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "B",
+      "family": "v-m1-core-vessel-height-graph-4dcd4066",
+      "viewed_urls": [
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-1.png",
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-2.png",
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-3.png",
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-4.png",
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-5.png",
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-4-6.png"
+      ],
+      "note": "위로 넓어지는 원뿔대와 높이 그래프 보기 전부를 확인했다. 수평 단면적의 증가로 높이 증가율 감소를 판정한다."
+    },
+    {
+      "id": "3ae2df1b-cc74-4c85-9faf-cb650f4abb21",
+      "problem_code": "J10403-A74-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-9-1.png"
+      ],
+      "note": "월별 점 그래프는 읽히지만 본문과 그림 제목의 측정량 표현이 다르고 예측 가능성 명제를 함께 묻는다. 자료·진술 검토를 남긴다.",
+      "image_issue": "source-mismatch"
+    },
+    {
+      "id": "19db9afd-d8c8-46ad-90d1-f053e06d5a40",
+      "problem_code": "J10403-A45-001",
+      "cohort": "visual-m1-4dcd4066",
+      "category": "B",
+      "family": "v-m1-core-piecewise-motion-choice-4dcd4066",
+      "viewed_urls": [
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-8-1.png",
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-8-2.png",
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-8-3.png",
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-8-4.png",
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-8-5.png"
+      ],
+      "note": "이동·정지·귀환 세 단계와 다섯 그래프를 모두 확인했다. 기울기 부호와 영점 복귀로 선택을 계산한다."
+    },
+    {
+      "id": "e90ea35e-f0e3-4faa-82fe-1f1a67422cd2",
+      "problem_code": "J10305-A31-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-picture-balance-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/3ab9712a5daf992a/tb-3ab9712a5daf992a-0-5-1.png"
+      ],
+      "note": "두 묶음의 동일 물건 수를 세어 같은 총가격의 일차 관계로 가격비를 계산한다."
+    },
+    {
+      "id": "4c88cfa8-ac11-42a1-8b4c-f4a96fac52d8",
+      "problem_code": "J10305-A32-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-picture-balance-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/43bb39d2172f08c5/tb-43bb39d2172f08c5-3-6-1.png"
+      ],
+      "note": "양팔저울 양쪽의 공·추 개수를 확인했다. 같은 양을 소거하여 지정 개수의 무게를 계산한다."
+    },
+    {
+      "id": "f59bf67e-9b4a-436b-b76f-7e619fdd239e",
+      "problem_code": "J10305-A34-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-equality-transform-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/b6cbcf8dfbd3884e/tb-b6cbcf8dfbd3884e-0-2-1.png"
+      ],
+      "note": "동일한 두 수에 대한 네 선형 등식이 보인다. 주어진 관계를 대입한 항등식 여부로 판정한다."
+    },
+    {
+      "id": "c49d9d98-1268-4988-95a4-f2e58f8bcf69",
+      "problem_code": "J10305-A33-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-equality-transform-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/43bb39d2172f08c5/tb-43bb39d2172f08c5-2-4-1.png"
+      ],
+      "note": "두 문자 사이의 비례식과 네 선형 변형이 보인다. 계수 비교로 항상 성립하는 변형을 고른다."
+    },
+    {
+      "id": "41e51acb-6978-4f78-a9b8-3f9a94325991",
+      "problem_code": "J10305-A35-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-equality-transform-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/b6cbcf8dfbd3884e/tb-b6cbcf8dfbd3884e-0-3-1.png"
+      ],
+      "note": "각 선형 등식의 전제와 결과를 확인했다. 전제의 한 매개변수 표현을 대입하여 항등 여부를 비교한다."
+    },
+    {
+      "id": "33e865cf-6ba2-44ef-8547-7c72d342e7d3",
+      "problem_code": "J10305-A36-001",
+      "cohort": "visual-m1-9aea8011",
+      "category": "B",
+      "family": "v-m1-core-equation-step-operation-9aea8011",
+      "viewed_urls": [
+        "/figures/tb/c0e7be72a0436f10/tb-c0e7be72a0436f10-0-4-1.png",
+        "/figures/tb/c0e7be72a0436f10/tb-c0e7be72a0436f10-0-4-2.png"
+      ],
+      "note": "저울에서 같은 비율로 줄이는 도식과 풀이 단계 전체를 봤다. 식 나무의 변환 연산과 저울 연산 종류를 대응시킨다."
+    },
+    {
+      "id": "289fa57f-89d7-45fa-b991-af7e39e96a09",
+      "problem_code": "J10301-D06-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "B",
+      "family": "v-m1-core-growing-grid-44e2a2a5",
+      "viewed_urls": [
+        "/figures/tb/1ba82d158cc5c402/tb-1ba82d158cc5c402-2-5-1.png"
+      ],
+      "note": "정사각 격자의 행과 열이 단계에 따라 함께 늘어나는 배치를 확인했다. 행×열로 일반항과 값을 계산한다."
+    },
+    {
+      "id": "d6060b75-6afd-46a5-8b0d-807020cebe5c",
+      "problem_code": "J10301-D31-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/ef281c26257ecd15/tb-ef281c26257ecd15-0-1-1.png"
+      ],
+      "note": "빈 대응표의 값은 보이지만 생성 규칙의 허용 범위가 명시되지 않았다. 임의 관계를 추정해 승격하지 않는다."
+    },
+    {
+      "id": "b7a703ac-43d7-4d91-b144-58a4f9cdae92",
+      "problem_code": "J10301-D18-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "B",
+      "family": "v-m1-core-shared-matchstick-chain-44e2a2a5",
+      "viewed_urls": [
+        "/figures/tb/c335180e30a2ddab/tb-c335180e30a2ddab-0-6-1.png"
+      ],
+      "note": "정삼각형을 한 변씩 공유해 연속 배치한 그림을 확인했다. 처음 변 수와 추가 변 수로 식과 특정 단계 값을 구한다."
+    },
+    {
+      "id": "76cea3b4-3b4c-49b1-a3c2-58b9aecdd95b",
+      "problem_code": "J10301-D11-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "B",
+      "family": "v-m1-core-symbolic-partition-area-44e2a2a5",
+      "viewed_urls": [
+        "/figures/tb/57ccf3c5b4e9bdb1/tb-57ccf3c5b4e9bdb1-0-41-1.png"
+      ],
+      "note": "직각삼각형의 밑변·높이 분할과 음영 두 조각이 모두 보인다. 전체와 빈 삼각형 넓이 차를 문자식으로 계산한다."
+    },
+    {
+      "id": "8e870cae-937a-4f9c-b0f5-70031b0faa18",
+      "problem_code": "J10301-D29-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "B",
+      "family": "v-m1-core-overlap-strip-44e2a2a5",
+      "viewed_urls": [
+        "/figures/tb/40f8c741ec5d6a53/tb-40f8c741ec5d6a53-0-5-1.png"
+      ],
+      "note": "같은 정사각형을 같은 폭만큼 겹치는 띠와 반복 횟수를 확인했다. 겹침 수를 빼서 길이·넓이·둘레를 계산한다."
+    },
+    {
+      "id": "3a559ee9-341a-4e62-ba3f-2370c66cee87",
+      "problem_code": "J10301-D26-001",
+      "cohort": "visual-m1-44e2a2a5",
+      "category": "B",
+      "family": "v-m1-core-symbol-product-truth-44e2a2a5",
+      "viewed_urls": [
+        "/figures/tb/4f196338f5c6ac9f/tb-4f196338f5c6ac9f-0-5-1.png"
+      ],
+      "note": "곱·몫 식과 생략한 표현 두 쌍을 확인했다. 단항식 계수·지수 벡터의 일치로 판정한다."
+    },
+    {
+      "id": "415d0d59-ebd9-4293-ade4-f2d6d2994919",
+      "problem_code": "J10405-C64-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-reciprocal-table-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/419c3ecd4a615ab0/tb-419c3ecd4a615ab0-0-11-1.png"
+      ],
+      "note": "반비례 관계의 완전한 한 열과 빈 값들이 있는 표를 읽었다. 일정한 곱으로 빈 값을 복원한다."
+    },
+    {
+      "id": "b44ddd1f-db1c-4b10-88af-41f6f0d2f653",
+      "problem_code": "J10405-C15-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-reciprocal-area-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/74812ef7948089b0/tb-74812ef7948089b0-0-19-1.png"
+      ],
+      "note": "반비례 곡선 위 점에서 축으로 내린 수선과 직사각형이 보인다. 넓이가 좌표 곱의 절댓값으로 결정된다."
+    },
+    {
+      "id": "e7bfc456-161d-489b-9f26-2fdc760dc628",
+      "problem_code": "J10405-C49-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-proportion-quadrants-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/a7863bef4764f535/tb-a7863bef4764f535-0-11-1.png"
+      ],
+      "note": "정비례·반비례 수식 보기 전부가 보인다. 계수 부호와 함수 꼴로 지정 사분면 통과 여부를 센다."
+    },
+    {
+      "id": "71652a64-7211-4a56-9a1d-ae068659a875",
+      "problem_code": "J10405-C10-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-reciprocal-coordinates-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/d53f5f2082c972f9/tb-d53f5f2082c972f9-0-23-1.png"
+      ],
+      "note": "완전한 좌표 한 점과 같은 곡선 위 다른 점의 빈 좌표를 확인했다. 곱 상수와 미지 좌표를 계산한다."
+    },
+    {
+      "id": "c2043b7e-e358-4ac8-a301-2901b1176084",
+      "problem_code": "J10405-C65-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-reciprocal-table-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/735e6c93a44ae1cb/tb-735e6c93a44ae1cb-0-1-1.png"
+      ],
+      "note": "총 작업량과 처리속도별 빈 시간 표를 확인했다. 일정한 곱에서 값을 구하고 반비례식을 만든다."
+    },
+    {
+      "id": "3e36467b-4be7-47ef-8435-efa156091fa3",
+      "problem_code": "J10405-B92-001",
+      "cohort": "visual-m1-1c0b07fa",
+      "category": "B",
+      "family": "v-m1-core-reciprocal-area-1c0b07fa",
+      "viewed_urls": [
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-1-10-1.png"
+      ],
+      "note": "제일사분면 곡선에서 축으로 내린 직사각형 넓이가 주어진다. 넓이 불변량으로 양의 비례상수를 복원한다."
+    },
+    {
+      "id": "b48cf65b-5801-44f0-8ac6-ce6ddf791b2d",
+      "problem_code": "J10304-B38-001",
+      "cohort": "visual-m1-eec1e7ef",
+      "category": "B",
+      "family": "v-m1-core-equality-kind-choice-eec1e7ef",
+      "viewed_urls": [
+        "/figures/tb/3ab9712a5daf992a/tb-3ab9712a5daf992a-0-1-1.png"
+      ],
+      "note": "보기의 등식·부등식·식이 모두 읽힌다. 등호가 양변의 식을 잇는 구조를 생성하여 분류한다."
+    },
+    {
+      "id": "ca14c537-d26e-459c-b161-e1c40a6f0aff",
+      "problem_code": "J10304-B41-001",
+      "cohort": "visual-m1-eec1e7ef",
+      "category": "B",
+      "family": "v-m1-core-equality-kind-choice-eec1e7ef",
+      "viewed_urls": [
+        "/figures/tb/51887abc8ec46297/tb-51887abc8ec46297-0-1-1.png"
+      ],
+      "note": "수치 등식과 문자 등식, 부등식, 일반 식의 보기 전체를 확인했다. 수식 구문 종류를 판정한다."
+    },
+    {
+      "id": "c66a3851-19c9-4152-8cfa-5abedd7b2908",
+      "problem_code": "J10304-B40-001",
+      "cohort": "visual-m1-eec1e7ef",
+      "category": "B",
+      "family": "v-m1-core-linear-equation-kind-eec1e7ef",
+      "viewed_urls": [
+        "/figures/tb/adc94c15a94b4ec7/tb-adc94c15a94b4ec7-0-13-1.png"
+      ],
+      "note": "식·등식 보기 전체를 확인했다. 양변 차의 일차항 계수가 영이 아닌지로 일차방정식을 고른다."
+    },
+    {
+      "id": "fa4456ad-880b-4ea1-b8e4-844b85788bac",
+      "problem_code": "J10304-B36-001",
+      "cohort": "visual-m1-eec1e7ef",
+      "category": "B",
+      "family": "v-m1-core-linear-equation-kind-eec1e7ef",
+      "viewed_urls": [
+        "/figures/tb/4ece502413dec9b1/tb-4ece502413dec9b1-0-5-1.png"
+      ],
+      "note": "이차항이 소거되는 보기와 일차항이 소거되는 보기를 확인했다. 정리 후 차수와 계수로 개수를 계산한다."
+    },
+    {
+      "id": "4db5b2a1-e4a2-4793-a493-0cbae429d9a4",
+      "problem_code": "J10304-B39-001",
+      "cohort": "visual-m1-eec1e7ef",
+      "category": "B",
+      "family": "v-m1-core-linear-equation-kind-eec1e7ef",
+      "viewed_urls": [
+        "/figures/tb/45d100b37f4e92e0/tb-45d100b37f4e92e0-0-2-1.png"
+      ],
+      "note": "등식들이 모두 읽히며 항등식·모순식·이차식이 섞여 있다. 양변 차의 차수로 일차식 개수를 센다."
+    },
+    {
+      "id": "54ee472a-81c4-4064-b668-c270ca146a01",
+      "problem_code": "J10101-B17-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/7b5ec49be2d1c1c3/tb-7b5ec49be2d1c1c3-0-1-1.png"
+      ],
+      "note": "소수의 보편 성질과 수치 계산이 함께 있는 개념 OX다. 수치만 바꿔 동일한 개념 묶음을 생성할 규격은 미확정이다."
+    },
+    {
+      "id": "5e0e0875-5aa9-44dc-be64-82ca5d04d02f",
+      "problem_code": "J10101-B18-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "B",
+      "family": "v-m1-core-prime-list-e30a5ede",
+      "viewed_urls": [
+        "/figures/tb/cd4c564522ee11d3/tb-cd4c564522ee11d3-0-1-1.png"
+      ],
+      "note": "수 목록 전체가 선명하게 보인다. 각 자연수의 소수성을 검사해 해당 원소 수를 센다."
+    },
+    {
+      "id": "9f39a2c3-5d5c-4fb7-8a8d-b8d462deb0d7",
+      "problem_code": "J10101-B16-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "B",
+      "family": "v-m1-core-power-attributes-e30a5ede",
+      "viewed_urls": [
+        "/figures/tb/cea73d888f81a114/tb-cea73d888f81a114-0-4-1.png"
+      ],
+      "note": "단일 수와 거듭제곱 목록을 확인했다. 지수 생략을 포함하여 수식 구문에서 밑·지수를 읽는다."
+    },
+    {
+      "id": "079e4551-435a-46ee-a027-bd65f344252d",
+      "problem_code": "J10101-B15-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "B",
+      "family": "v-m1-core-prime-stencil-e30a5ede",
+      "viewed_urls": [
+        "/figures/tb/99c7038f9c9ddeb1/tb-99c7038f9c9ddeb1-1-2-1.png"
+      ],
+      "note": "숫자 격자 전체와 칸 배열이 보인다. 정해진 자음 마스크에 소수·합성수를 배치하면 색칠 결과가 결정된다."
+    },
+    {
+      "id": "aaff3111-a9df-481d-bc66-4219f01a5e52",
+      "problem_code": "J10101-B14-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "B",
+      "family": "v-m1-core-branching-power-e30a5ede",
+      "viewed_urls": [
+        "/figures/tb/b86ef4005b66d7be/tb-b86ef4005b66d7be-1-1-1.png"
+      ],
+      "note": "동일한 분기 수가 단계마다 반복되는 나무를 봤다. 시작 수와 분기수의 거듭제곱으로 특정 단계 수를 계산한다."
+    },
+    {
+      "id": "9c022d79-86fd-4c3c-9385-ee0e3ccde730",
+      "problem_code": "J10101-B19-001",
+      "cohort": "visual-m1-e30a5ede",
+      "category": "B",
+      "family": "v-m1-core-prime-list-e30a5ede",
+      "viewed_urls": [
+        "/figures/tb/d1bf1b0d5359120b/tb-d1bf1b0d5359120b-0-5-1.png"
+      ],
+      "note": "레이블이 있는 숫자 목록 전부를 확인했다. 소수성 검사로 레이블 집합과 선택지를 결정한다."
+    },
+    {
+      "id": "16f6b607-6db3-4618-8855-fa5daf80c976",
+      "problem_code": "J10102-B59-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-divisor-product-table-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/1ac11c63887986b5/tb-1ac11c63887986b5-0-5-1.png"
+      ],
+      "note": "서로 다른 소수의 거듭제곱을 행·열에 놓은 곱 표가 보인다. 지수 조합으로 약수 표와 목록을 생성한다."
+    },
+    {
+      "id": "1e298ead-0b73-4d60-b943-86ad3cca35de",
+      "problem_code": "J10102-B56-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-factor-ladder-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/5f1e86c0b6fe76c4/tb-5f1e86c0b6fe76c4-0-1-1.png"
+      ],
+      "note": "차례로 나누는 소인수분해 도식과 별도 빈칸 식을 확인했다. 나눗셈과 소수 지수 집계로 답을 정한다."
+    },
+    {
+      "id": "a7d35040-4a44-4f36-b19d-8b23d6516bc8",
+      "problem_code": "J10102-B54-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-factor-tree-prime-constraint-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/770999bb76ed85cf/tb-770999bb76ed85cf-0-2-1.png"
+      ],
+      "note": "세 소수 잎을 가진 인수 나무와 잎 사이 덧셈 제약을 확인했다. 유한 소수 후보를 열거해 가능한 뿌리 곱을 구한다."
+    },
+    {
+      "id": "38ec9504-e28e-41ac-a9ac-1f2c246c526b",
+      "problem_code": "J10102-B60-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-factorization-choice-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/7f56af6cec435b5b/tb-7f56af6cec435b5b-0-5-1.png"
+      ],
+      "note": "원래 자연수와 소수 곱 표현이 모두 보인다. 소수 밑 조건 및 곱의 일치를 검사한다."
+    },
+    {
+      "id": "cc8ed866-d16d-458f-bc20-d5e0e61b995c",
+      "problem_code": "J10102-B57-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-divisor-product-table-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/5f1e86c0b6fe76c4/tb-5f1e86c0b6fe76c4-0-4-1.png"
+      ],
+      "note": "두 소수 지수의 격자 곱 표 전체를 확인했다. 행·열 머리의 곱과 중복 없는 약수 목록을 계산한다."
+    },
+    {
+      "id": "d4529226-f3f8-47a9-9cd9-90720593c029",
+      "problem_code": "J10102-B55-001",
+      "cohort": "visual-m1-a5ee0cca",
+      "category": "B",
+      "family": "v-m1-core-divisor-product-table-a5ee0cca",
+      "viewed_urls": [
+        "/figures/tb/6c6533df4a4d0da2/tb-6c6533df4a4d0da2-0-8-1.png"
+      ],
+      "note": "약수 곱 표의 표시 칸과 수치 명제들을 확인했다. 칸 값·소인수·약수 개수를 계산해 진위를 정한다."
+    },
+    {
+      "id": "e03b302b-d367-42e1-b714-e75b34d34731",
+      "problem_code": "J10202-B31-001",
+      "cohort": "visual-m1-c52f466b",
+      "category": "B",
+      "family": "v-m1-core-range-notation-c52f466b",
+      "viewed_urls": [
+        "/figures/tb/0df9b1da2657d66b/tb-0df9b1da2657d66b-0-2-1.png"
+      ],
+      "note": "수의 상하한과 경계 포함 여부가 적힌 문장들이 모두 보인다. 비교 관계를 부등호와 연속 부등식으로 변환한다."
+    },
+    {
+      "id": "ba7cca5b-e4ec-4c9c-9385-2bf87dc1fddc",
+      "problem_code": "J10202-B28-001",
+      "cohort": "visual-m1-c52f466b",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/e82ed86aa8a1304e/tb-e82ed86aa8a1304e-3-1-1.png"
+      ],
+      "note": "절댓값의 보편 진술과 특수 사례가 섞인 개념 보기다. 수치 생성만으로 보편 명제의 범위를 대체하지 않는다."
+    },
+    {
+      "id": "31e7adb9-46b2-44ba-a0d3-604367d6b8b0",
+      "problem_code": "J10202-B29-001",
+      "cohort": "visual-m1-c52f466b",
+      "category": "B",
+      "family": "v-m1-core-absolute-values-c52f466b",
+      "viewed_urls": [
+        "/figures/tb/d0821df3f1a0a971/tb-d0821df3f1a0a971-0-4-1.png"
+      ],
+      "note": "부호가 있는 수와 영의 목록을 확인했다. 각 유리수의 절댓값을 순서대로 낸다."
+    },
+    {
+      "id": "21e39316-d464-4255-bd96-1f7f634d8960",
+      "problem_code": "J10202-B27-001",
+      "cohort": "visual-m1-c52f466b",
+      "category": "B",
+      "family": "v-m1-core-ordered-label-puzzle-c52f466b",
+      "viewed_urls": [
+        "/figures/tb/0c297563e5d7ef60/tb-0c297563e5d7ef60-0-5-1.png"
+      ],
+      "note": "세 문자와 음절의 연결도 및 수치 경계가 보인다. 제약이 유일하게 정한 순서대로 연결된 표지를 조합한다."
+    },
+    {
+      "id": "08e70561-7c9e-4bab-b88c-e277258ebac8",
+      "problem_code": "J10401-B04-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-coordinate-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-1-1.png"
+      ],
+      "note": "눈금이 있는 좌표평면의 두 점을 직접 확인했다. 생성한 정수 좌표의 지정 합·곱을 계산하는 후보다."
+    },
+    {
+      "id": "98b6275f-35fd-414c-8a9d-a8d943988cbc",
+      "problem_code": "J10401-B09-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-coordinate-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/464bd60d9c982cfd/tb-464bd60d9c982cfd-0-2-1.png"
+      ],
+      "note": "격자점 좌표와 선택지의 대응을 유리수 좌표로 검증할 수 있다."
+    },
+    {
+      "id": "0d3be0df-f051-48a9-8cb6-14ef2364923a",
+      "problem_code": "J10401-B05-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-coordinate-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-7-1.png"
+      ],
+      "note": "격자점의 좌표·사분면·축까지의 거리를 좌표의 부호와 절댓값으로 판정한다."
+    },
+    {
+      "id": "db3dbb46-736c-4d17-96e2-74000e50f465",
+      "problem_code": "J10401-B12-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/466da18b0a9d3a23/tb-466da18b0a9d3a23-3-1-1.png"
+      ],
+      "note": "정수 눈금과 등분 수를 고정하여 표시점의 유리수 위치를 계산한다."
+    },
+    {
+      "id": "57ef2a04-1e91-492a-8dc2-3d06cd8471e0",
+      "problem_code": "J10401-A99-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-coordinate-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/8684a1798e01927f/tb-8684a1798e01927f-0-2-1.png"
+      ],
+      "note": "다섯 표시점의 좌표를 읽고 좌표 선택지를 검증한다."
+    },
+    {
+      "id": "58442a8d-8c91-4265-8c85-8c024260f988",
+      "problem_code": "J10401-A90-001",
+      "cohort": "visual-m1-c0d794f1",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-c0d794f1",
+      "viewed_urls": [
+        "/figures/tb/142d3fb20ecb547e/tb-142d3fb20ecb547e-0-1-1.png"
+      ],
+      "note": "서로 다른 정수 구간의 등분 수를 명시하여 표시점 좌표를 계산한다."
+    },
+    {
+      "id": "b561966f-b09a-4d82-950d-560dcddc8b92",
+      "problem_code": "J10402-A83-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-symbolic-quadrant-sign-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/a02194fabc97e9ef/tb-a02194fabc97e9ef-0-5-1.png"
+      ],
+      "note": "부호가 확정되는 차와 곱만 조합하여 점의 사분면 진술을 판정한다."
+    },
+    {
+      "id": "c0b5a129-e97b-4e09-bf70-cf6bb534c4b9",
+      "problem_code": "J10402-A82-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-symbolic-quadrant-sign-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/cf73c8d3644d414b/tb-cf73c8d3644d414b-0-1-1.png"
+      ],
+      "note": "수직선 순서와 부호로 차·곱·몫의 부호가 확정되는 좌표만 생성한다."
+    },
+    {
+      "id": "47498728-1b11-4693-be76-f6179cbd61ab",
+      "problem_code": "J10402-A78-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-coordinate-extreme-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/466da18b0a9d3a23/tb-466da18b0a9d3a23-4-6-1.png"
+      ],
+      "note": "축 평행 사각형 경계에서 일차식의 최댓값은 네 꼭짓점 값으로 계산한다."
+    },
+    {
+      "id": "ed66a89a-a5f8-4738-be12-d0e2b87b2db5",
+      "problem_code": "J10402-A80-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-coordinate-area-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/d53f5f2082c972f9/tb-d53f5f2082c972f9-0-28-1.png"
+      ],
+      "note": "축 평행 사각형의 가로·세로 차로 넓이를 구한다."
+    },
+    {
+      "id": "839fe951-c515-4284-b09d-b2be36840f64",
+      "problem_code": "J10402-A81-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-coordinate-triangle-area-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/74812ef7948089b0/tb-74812ef7948089b0-0-14-1.png"
+      ],
+      "note": "정수 좌표 삼각형의 넓이를 행렬식의 절댓값 절반으로 계산한다."
+    },
+    {
+      "id": "8d87631d-5bb5-4411-a0b2-a3f4afeca908",
+      "problem_code": "J10402-A77-001",
+      "cohort": "visual-m1-51b404f8",
+      "category": "B",
+      "family": "v-m1-core-coordinate-square-unknown-51b404f8",
+      "viewed_urls": [
+        "/figures/tb/fc660191f802d43b/tb-fc660191f802d43b-1-1-1.png"
+      ],
+      "note": "축 평행 정사각형의 한 변과 좌표 일치 조건을 이용해 문자 좌표를 푼다."
+    },
+    {
+      "id": "13d36901-e3ca-4e5b-95f2-f677287df5e2",
+      "problem_code": "J10204-B83-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-card-product-extreme-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/591f704ca241627d/tb-591f704ca241627d-0-5-1.png"
+      ],
+      "note": "유리수 카드의 서로 다른 부분집합 곱을 전수 계산하여 최대·최소를 구한다."
+    },
+    {
+      "id": "b4b97f9e-7ebc-41cd-8b16-423a6332d6a3",
+      "problem_code": "J10204-B84-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-opposite-face-reciprocals-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/7f56af6cec435b5b/tb-7f56af6cec435b5b-0-19-1.png"
+      ],
+      "note": "보이는 세 면과 마주 보는 면의 수를 각각 역수로 정하고 합을 구한다."
+    },
+    {
+      "id": "e8444f48-6701-4569-8b1a-493201c115e1",
+      "problem_code": "J10204-B82-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-operation-law-label-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/235312520b6ca31b/tb-235312520b6ca31b-0-3-1.png"
+      ],
+      "note": "곱셈식의 항 순서 교체·괄호 재배열을 AST 변환으로 생성하고 법칙명을 정한다."
+    },
+    {
+      "id": "a196fae3-9be8-4dcb-8081-05cf830dce00",
+      "problem_code": "J10204-B90-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-rational-product-image-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/c3741ab1e5ee0e94/tb-c3741ab1e5ee0e94-0-3-1.png"
+      ],
+      "note": "그림에만 있던 유리수 곱과 정수 지수식을 유리수 연산으로 계산한다."
+    },
+    {
+      "id": "b6ac486a-61c8-46a9-8be6-4184506ef1c9",
+      "problem_code": "J10204-B89-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-rational-product-image-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/c3741ab1e5ee0e94/tb-c3741ab1e5ee0e94-0-1-1.png"
+      ],
+      "note": "여러 유리수의 곱을 정확한 분수 연산으로 계산하고 순서·결합 변환 과정을 생성한다."
+    },
+    {
+      "id": "d77b9edb-b7c5-4bcc-9d19-8e1cbe7cb9c0",
+      "problem_code": "J10204-B87-001",
+      "cohort": "visual-m1-dea229b9",
+      "category": "B",
+      "family": "v-m1-core-product-pyramid-dea229b9",
+      "viewed_urls": [
+        "/figures/tb/e9cecbc2c9369174/tb-e9cecbc2c9369174-0-20-1.png"
+      ],
+      "note": "곱셈 피라미드의 알려진 최하단 값에서 역산하고 중간 칸을 계산한다."
+    },
+    {
+      "id": "97a90345-9e71-42d5-88b0-7842c80673e5",
+      "problem_code": "J10205-C14-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-rational-division-image-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-3-1.png"
+      ],
+      "note": "그림 안의 유리수 나눗셈을 영이 아닌 제수 조건 아래 분수로 계산한다."
+    },
+    {
+      "id": "a0a6fa4d-4c5c-4891-ab96-fa02edc66b54",
+      "problem_code": "J10205-C17-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-numberline-span-quotient-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/f6387f57205cc609/tb-f6387f57205cc609-0-5-1.png"
+      ],
+      "note": "기준 좌표와 두 유향 길이로 표시점 좌표를 복원한 뒤 몫을 계산한다."
+    },
+    {
+      "id": "0aa1f5aa-b76d-415b-8a5b-55478c2fc5b1",
+      "problem_code": "J10205-C08-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-operation-machine-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/e9cecbc2c9369174/tb-e9cecbc2c9369174-0-15-1.png"
+      ],
+      "note": "도식의 순서대로 두 일차 유리수 연산을 합성한다."
+    },
+    {
+      "id": "ed65414d-551b-4d22-ab61-c7b46af1c12b",
+      "problem_code": "J10205-C06-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-first-wrong-arithmetic-step-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/32e26067a5518d8b/tb-32e26067a5518d8b-0-20-1.png"
+      ],
+      "note": "오류 변환 한 곳을 삽입한 계산 단계에서 처음 등가성이 깨지는 위치와 원식의 값을 계산한다."
+    },
+    {
+      "id": "930ea512-a637-45b1-8ce1-4870e12fe7d6",
+      "problem_code": "J10205-C13-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-rational-reciprocal-image-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-2-1.png"
+      ],
+      "note": "영이 아닌 정수·유리수의 분자와 분모를 교환하고 기약분수로 출력한다."
+    },
+    {
+      "id": "17393cc7-d647-42a8-9ec6-fae4ec449176",
+      "problem_code": "J10205-C12-001",
+      "cohort": "visual-m1-07779dd2",
+      "category": "B",
+      "family": "v-m1-core-rational-division-image-07779dd2",
+      "viewed_urls": [
+        "/figures/tb/8fb74b95f77f0b21/tb-8fb74b95f77f0b21-0-1-1.png"
+      ],
+      "note": "정수와 유한소수 나눗셈을 정확한 유리수로 계산한다."
+    },
+    {
+      "id": "cba5045c-98b6-44cb-a5ea-03cb0d59093b",
+      "problem_code": "J10203-D30-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-rational-sum-order-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/3bebba72eae325c3/tb-3bebba72eae325c3-4-2-1.png"
+      ],
+      "note": "서로 다른 유리수 덧셈·뺄셈식의 값을 계산해 내림차순으로 정렬한다."
+    },
+    {
+      "id": "19eb8453-0b56-429c-a82f-4c183fc640f5",
+      "problem_code": "J10203-D33-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-table-range-max-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/32e26067a5518d8b/tb-32e26067a5518d8b-0-30-1.png"
+      ],
+      "note": "표의 각 행에서 최댓값과 최솟값의 차를 계산하여 가장 큰 행을 고른다."
+    },
+    {
+      "id": "a030e0b3-be10-4b36-a66b-478a10a1fadd",
+      "problem_code": "J10203-D21-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-sum-law-label-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/a4b9083e5ffa9e27/tb-a4b9083e5ffa9e27-0-4-1.png"
+      ],
+      "note": "덧셈 항의 교체와 괄호 재배열을 생성하고 법칙명 및 계산값을 연결한다."
+    },
+    {
+      "id": "ef7d889c-a7ee-432d-88c9-c7e61d4b05bf",
+      "problem_code": "J10203-D20-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-card-sum-game-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/55dbaa53d19993e4/tb-55dbaa53d19993e4-0-5-1.png"
+      ],
+      "note": "이미 뽑힌 카드를 제외하고 남은 카드별 합의 절댓값을 비교하여 모든 승리 카드를 구한다."
+    },
+    {
+      "id": "22603ccd-a912-4c94-8135-db9f8ec83b08",
+      "problem_code": "J10203-D27-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-neighbor-sum-sequence-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/3bebba72eae325c3/tb-3bebba72eae325c3-2-6-1.png"
+      ],
+      "note": "중앙항이 양옆항 합이라는 점화식으로 수열을 생성하고 주기 또는 반복 계산으로 항을 찾는다."
+    },
+    {
+      "id": "fa52f3e0-1945-4ab1-91f5-c9f04ead97e2",
+      "problem_code": "J10203-D07-001",
+      "cohort": "visual-m1-a12b391c",
+      "category": "B",
+      "family": "v-m1-core-height-difference-network-a12b391c",
+      "viewed_urls": [
+        "/figures/tb/e9cecbc2c9369174/tb-e9cecbc2c9369174-0-16-1.png"
+      ],
+      "note": "연결된 트리의 부호 있는 높이 차로 각 꼭짓점 높이를 복원하여 최댓값과 최솟값 차를 구한다."
+    },
+    {
+      "id": "27d915fd-6a36-4c0f-9b2c-6ab5b9819938",
+      "problem_code": "J10306-A56-001",
+      "cohort": "visual-m1-3af2eda7",
+      "category": "B",
+      "family": "v-m1-core-segment-linear-equation-3af2eda7",
+      "viewed_urls": [
+        "/figures/tb/df40015b56b82583/tb-df40015b56b82583-0-15-1.png"
+      ],
+      "note": "나뉜 두 선분의 일차식 합이 전체 길이라는 식을 세워 푼다."
+    },
+    {
+      "id": "e8b3d638-0e93-42e9-8558-025d75349b2a",
+      "problem_code": "J10306-A58-001",
+      "cohort": "visual-m1-3af2eda7",
+      "category": "B",
+      "family": "v-m1-core-equation-first-wrong-step-3af2eda7",
+      "viewed_urls": [
+        "/figures/tb/bee4f6cb7d36eaba/tb-bee4f6cb7d36eaba-0-6-1.png"
+      ],
+      "note": "소수 계수 방정식의 변환 단계에 한 가지 오류를 넣고 최초 오류와 올바른 해를 결정한다."
+    },
+    {
+      "id": "fee50a2d-3b00-47e1-b816-3545539fe46d",
+      "problem_code": "J10306-A57-001",
+      "cohort": "visual-m1-3af2eda7",
+      "category": "B",
+      "family": "v-m1-core-equal-side-sum-3af2eda7",
+      "viewed_urls": [
+        "/figures/tb/1c5464369da222bf/tb-1c5464369da222bf-0-5-1.png"
+      ],
+      "note": "삼각형 가장자리 숫자합의 등식에서 두 미지수를 순차 계산한다."
+    },
+    {
+      "id": "a80a7012-87e9-44b3-9e69-4d96269cbd92",
+      "problem_code": "J10306-A59-001",
+      "cohort": "visual-m1-3af2eda7",
+      "category": "B",
+      "family": "v-m1-core-equal-equation-roots-3af2eda7",
+      "viewed_urls": [
+        "/figures/tb/1f16dd9fae3981f8/tb-1f16dd9fae3981f8-0-13-1.png"
+      ],
+      "note": "서로 다른 일차방정식의 정확한 해를 비교하여 같은 해인 쌍을 선택한다."
+    },
+    {
+      "id": "489a53e2-c7e6-4382-a5b5-ea2f302606ea",
+      "problem_code": "J10312-A24-001",
+      "cohort": "visual-m1-8d167eb1",
+      "category": "B",
+      "family": "v-m1-core-area-change-linear-8d167eb1",
+      "viewed_urls": [
+        "/figures/tb/f8a8379640d4e77e/tb-f8a8379640d4e77e-0-6-1.png"
+      ],
+      "note": "변경 전후 사다리꼴의 넓이 차를 일차식으로 만들고 변 길이 증가분을 구한다."
+    },
+    {
+      "id": "5e814eed-6721-460b-acf8-2365185c5f63",
+      "problem_code": "J10312-A12-001",
+      "cohort": "visual-m1-8d167eb1",
+      "category": "B",
+      "family": "v-m1-core-area-change-linear-8d167eb1",
+      "viewed_urls": [
+        "/figures/tb/c335180e30a2ddab/tb-c335180e30a2ddab-0-14-1.png"
+      ],
+      "note": "밑변과 높이를 바꾼 삼각형의 넓이 차로 한 미지 길이를 계산한다."
+    },
+    {
+      "id": "e8b95fc9-8a4d-42c5-bb4a-9f87eca86e28",
+      "problem_code": "J10312-A23-001",
+      "cohort": "visual-m1-8d167eb1",
+      "category": "B",
+      "family": "v-m1-core-trapezoid-area-inverse-8d167eb1",
+      "viewed_urls": [
+        "/figures/tb/57ccf3c5b4e9bdb1/tb-57ccf3c5b4e9bdb1-0-35-1.png"
+      ],
+      "note": "높이·한 밑변·넓이로 나머지 밑변을 구하고 양수 조건을 검사한다."
+    },
+    {
+      "id": "f43365f1-9533-4aa6-8a39-3b1cbb02dfae",
+      "problem_code": "J10313-A18-001",
+      "cohort": "visual-m1-71d53f43",
+      "category": "B",
+      "family": "v-m1-core-growing-boundary-pattern-71d53f43",
+      "viewed_urls": [
+        "/figures/tb/cf0417c1a111c7e9/tb-cf0417c1a111c7e9-0-7-1.png",
+        "/figures/tb/cf0417c1a111c7e9/tb-cf0417c1a111c7e9-0-7-2.png"
+      ],
+      "note": "정사각형 테두리 점의 증가 규칙을 고정하고 단계별 개수와 빈칸 합을 계산한다."
+    },
+    {
+      "id": "2dc43464-77f2-44a8-9a1f-e2c03c9edb59",
+      "problem_code": "J10313-A15-001",
+      "cohort": "visual-m1-71d53f43",
+      "category": "B",
+      "family": "v-m1-core-growing-open-pattern-71d53f43",
+      "viewed_urls": [
+        "/figures/tb/791262437b628f6c/tb-791262437b628f6c-1-6-1.png"
+      ],
+      "note": "세 변으로 열린 점 배열의 팔 길이 증가 규칙을 고정하고 목표 개수로 단계를 역산한다."
+    },
+    {
+      "id": "2a0ce3bb-7986-462d-9397-1c49e4e5ba67",
+      "problem_code": "J10313-A17-001",
+      "cohort": "visual-m1-71d53f43",
+      "category": "B",
+      "family": "v-m1-core-growing-cross-pattern-71d53f43",
+      "viewed_urls": [
+        "/figures/tb/adc94c15a94b4ec7/tb-adc94c15a94b4ec7-0-18-1.png"
+      ],
+      "note": "중앙과 네 팔 정사각형 배열을 생성해 일차 개수식과 목표 개수의 단계를 구한다."
+    },
+    {
+      "id": "95d63da8-ae2c-486b-8de0-e8f129a76ac6",
+      "problem_code": "J10313-A16-001",
+      "cohort": "visual-m1-71d53f43",
+      "category": "B",
+      "family": "v-m1-core-joined-block-pattern-71d53f43",
+      "viewed_urls": [
+        "/figures/tb/f6ef4035d6e40b4c/tb-f6ef4035d6e40b4c-0-4-1.png"
+      ],
+      "note": "반복 블록 모형의 공유 열을 고정하고 추가 모형당 증가 블록 수로 역산한다."
+    },
+    {
+      "id": "82cf8788-eb5f-4fbf-bea0-94293155b011",
+      "problem_code": "J10308-A31-001",
+      "cohort": "visual-m1-99edbb2e",
+      "category": "B",
+      "family": "v-m1-core-ticket-ratio-total-99edbb2e",
+      "viewed_urls": [
+        "/figures/tb/1f16dd9fae3981f8/tb-1f16dd9fae3981f8-0-17-1.png"
+      ],
+      "note": "무료 인원을 제외한 유료 인원을 비로 분할하여 요금표와 곱해 총액을 계산한다."
+    },
+    {
+      "id": "0a8cd2a2-97b7-4d43-be63-6cf15e648643",
+      "problem_code": "J10308-A29-001",
+      "cohort": "visual-m1-99edbb2e",
+      "category": "C",
+      "family": null,
+      "viewed_urls": [
+        "/figures/tb/7d4e68b21a08ff24/tb-7d4e68b21a08ff24-1-4-1.png"
+      ],
+      "note": "달력에는 날짜만 있고 본문이 참조하는 다섯 칸의 선택 모양이 없다. 대칭 모양을 임의로 가정하지 않는다.",
+      "image_issue": "source-mismatch"
+    },
+    {
+      "id": "fc367324-ce0f-429d-bd84-5a5b3435f7b5",
+      "problem_code": "J10302-B27-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-polynomial-attributes-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/adc94c15a94b4ec7/tb-adc94c15a94b4ec7-0-9-1.png"
+      ],
+      "note": "다항식의 항·차수·계수·상수항을 지수 사전으로 계산하여 진술을 검증한다."
+    },
+    {
+      "id": "4c0a8e01-4641-4242-84e0-5b9476750426",
+      "problem_code": "J10302-B28-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-polynomial-attributes-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/1f16dd9fae3981f8/tb-1f16dd9fae3981f8-0-9-1.png"
+      ],
+      "note": "다항식의 항·차수·계수·상수항 진술을 정확히 판정한다."
+    },
+    {
+      "id": "4e7ca5c0-39e7-496a-9108-8099d8200776",
+      "problem_code": "J10302-B25-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-linear-expression-choice-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/9e8d6c118ac5a769/tb-9e8d6c118ac5a769-0-5-1.png"
+      ],
+      "note": "영 계수와 분모 문자까지 고려하여 다항식 여부 및 총차수 일 여부를 판정한다."
+    },
+    {
+      "id": "eec6990e-53ee-458a-8a22-550d521aaab4",
+      "problem_code": "J10302-B29-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-polynomial-attributes-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/f456f27399cdcec4/tb-f456f27399cdcec4-0-5-1.png"
+      ],
+      "note": "여러 다항식의 항수·차수·상수항 존재 여부를 집계한다."
+    },
+    {
+      "id": "feac16b8-6e33-4409-a830-75425c0438a9",
+      "problem_code": "J10302-B24-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-polynomial-attributes-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/50c4cd70faf0de1c/tb-50c4cd70faf0de1c-0-4-1.png"
+      ],
+      "note": "각 다항식에 대한 계수·상수항·항수 진술의 참거짓을 계산한다."
+    },
+    {
+      "id": "5d070ee9-10bb-494e-be14-f2fcfedbc1f3",
+      "problem_code": "J10302-B26-001",
+      "cohort": "visual-m1-04b6dd97",
+      "category": "B",
+      "family": "v-m1-core-linear-expression-choice-04b6dd97",
+      "viewed_urls": [
+        "/figures/tb/db26633492b1c4b0/tb-db26633492b1c4b0-0-3-1.png"
+      ],
+      "note": "일변수·다변수 다항식의 총차수로 일차식 선택지를 판정한다."
+    },
+    {
+      "id": "8a4b5088-19e8-4676-b852-b574d18427a1",
+      "problem_code": "J10303-C80-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-grid-poster-area-4e824157",
+      "viewed_urls": [
+        "/figures/tb/4ece502413dec9b1/tb-4ece502413dec9b1-0-16-1.png"
+      ],
+      "note": "전체 가로·세로에서 사이 간격을 제외하여 덮인 직사각형 총넓이를 다항식으로 계산한다."
+    },
+    {
+      "id": "4e46e975-9ce4-4a56-8b22-3afbaadd7cf8",
+      "problem_code": "J10303-C94-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-rectilinear-perimeter-4e824157",
+      "viewed_urls": [
+        "/figures/tb/a656fc29ab64ba51/tb-a656fc29ab64ba51-0-5-1.png"
+      ],
+      "note": "직각으로 꺾인 외곽선의 빠진 변을 전체 폭·높이로 복원하여 둘레식을 계산한다."
+    },
+    {
+      "id": "531a6d1b-cee2-4c8e-b763-dbeef19f77a9",
+      "problem_code": "J10303-C96-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-overlap-triangle-perimeter-4e824157",
+      "viewed_urls": [
+        "/figures/tb/929988bbab5c8050/tb-929988bbab5c8050-0-5-1.png"
+      ],
+      "note": "같은 정삼각형의 반복 겹침 위상을 고정하고 내부로 사라지는 세 변 길이를 빼어 둘레식을 계산한다."
+    },
+    {
+      "id": "eb2d69d1-6afd-4905-9fed-f3add963ff55",
+      "problem_code": "J10303-C90-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-polynomial-magic-square-4e824157",
+      "viewed_urls": [
+        "/figures/tb/9f87dc532f6034a8/tb-9f87dc532f6034a8-0-15-1.png"
+      ],
+      "note": "3×3 마방진의 행·열·대각선 합 제약을 계수별 선형식으로 풀어 빠진 다항식을 구한다."
+    },
+    {
+      "id": "87078f6b-0611-4f80-b2a0-c19eb3256441",
+      "problem_code": "J10303-C79-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-polynomial-sum-pyramid-4e824157",
+      "viewed_urls": [
+        "/figures/tb/2c852521e38f893e/tb-2c852521e38f893e-0-6-1.png"
+      ],
+      "note": "이웃한 두 식의 합 규칙을 계수별 덧셈·뺄셈으로 역산한다."
+    },
+    {
+      "id": "f875ba71-36b7-4df1-a45e-836838075a27",
+      "problem_code": "J10303-C89-001",
+      "cohort": "visual-m1-4e824157",
+      "category": "B",
+      "family": "v-m1-core-like-terms-choice-4e824157",
+      "viewed_urls": [
+        "/figures/tb/85075d32cb760995/tb-85075d32cb760995-1-1-1.png"
+      ],
+      "note": "문자별 지수 벡터가 같은 항을 동류항으로 판정하고 상수항을 같은 벡터로 처리한다."
+    },
+    {
+      "id": "fc47fc5e-8c02-43d0-8b36-090de91f57bd",
+      "problem_code": "J10404-C77-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-direct-proportion-table-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/fc798d5c3a9f3d62/tb-fc798d5c3a9f3d62-0-9-1.png"
+      ],
+      "note": "표의 비례상수를 구한 뒤 누락된 좌표와 그 합을 계산한다."
+    },
+    {
+      "id": "d31c1151-a063-4b44-a468-da65a695cbc6",
+      "problem_code": "J10404-C47-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-two-rays-area-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-17-1.png"
+      ],
+      "note": "같은 가로 좌표에서 두 원점 직선의 세로 차와 삼각형 넓이로 한 기울기를 역산한다."
+    },
+    {
+      "id": "5c6c696d-8433-49be-9466-88366d91df7d",
+      "problem_code": "J10404-C79-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-direct-proportion-table-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/56c994e134d5f6fb/tb-56c994e134d5f6fb-0-2-1.png"
+      ],
+      "note": "단위량을 비례상수로 하여 표와 관계식을 생성한다."
+    },
+    {
+      "id": "ecc68e93-ac47-4f06-87fa-ac5dc57397d2",
+      "problem_code": "J10404-B97-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-direct-proportion-truth-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/8fb655250802755a/tb-8fb655250802755a-0-11-1.png"
+      ],
+      "note": "좌표 한 쌍에서 기울기와 단조성·점 통과·축 교점 진술을 판정한다."
+    },
+    {
+      "id": "4a7ad634-840b-4a14-9c50-386924e2d79a",
+      "problem_code": "J10404-C35-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-direct-proportion-coordinate-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/38adf6825484b4c9/tb-38adf6825484b4c9-0-13-1.png"
+      ],
+      "note": "격자에서 읽히는 정수점으로 기울기를 정하고 다른 점의 미지 좌표를 계산한다."
+    },
+    {
+      "id": "b511c713-76d9-4dac-877c-43efb910793c",
+      "problem_code": "J10404-C19-001",
+      "cohort": "visual-m1-1edc0d10",
+      "category": "B",
+      "family": "v-m1-core-ray-segment-slope-count-1edc0d10",
+      "viewed_urls": [
+        "/figures/tb/1d3fdb1a9b67c476/tb-1d3fdb1a9b67c476-0-4-1.png"
+      ],
+      "note": "한 사분면의 두 점을 잇는 닫힌 선분을 만나는 원점 직선의 기울기 구간에서 정수를 센다."
+    },
+    {
+      "id": "1f834033-e24a-49a4-8659-3146e6871e8f",
+      "problem_code": "J10201-B13-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/9f900d943f4f6bdc/tb-9f900d943f4f6bdc-0-10-1.png"
+      ],
+      "note": "등분이 표시된 수직선의 유리수 좌표와 선택지를 비교한다."
+    },
+    {
+      "id": "0887bd0a-9fde-4d79-bf3f-ad6b518e64a2",
+      "problem_code": "J10201-B36-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/a677502963c8e0d1/tb-a677502963c8e0d1-0-3-1.png"
+      ],
+      "note": "큰 눈금과 부분 구간 등분에 따라 유리수 좌표를 복원한다."
+    },
+    {
+      "id": "2d87b118-30a3-4f20-b155-d717b3b0c9b0",
+      "problem_code": "J10201-B31-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/bdf5df7367bc9551/tb-bdf5df7367bc9551-0-5-1.png"
+      ],
+      "note": "서로 다른 등분 구간의 좌표를 복원한 후 합을 계산한다."
+    },
+    {
+      "id": "9eba5b18-3e85-4da8-bc8e-af776c44c373",
+      "problem_code": "J10201-B33-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-read-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-1-1.png"
+      ],
+      "note": "표시점 좌표를 읽고 정수 계수 일차 결합값을 계산한다."
+    },
+    {
+      "id": "6f0db4a5-9688-4065-888b-ab03a7426fef",
+      "problem_code": "J10201-B27-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-attributes-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/141d01a93b233be5/tb-141d01a93b233be5-0-7-1.png"
+      ],
+      "note": "표시점의 유리수 좌표에서 정수 여부·부호·절댓값 진술을 판정한다."
+    },
+    {
+      "id": "068cc01d-6420-44a3-a8df-a8c5af001409",
+      "problem_code": "J10201-B43-001",
+      "cohort": "visual-m1-91b10edc",
+      "category": "B",
+      "family": "v-m1-core-numberline-attributes-91b10edc",
+      "viewed_urls": [
+        "/figures/tb/7f56af6cec435b5b/tb-7f56af6cec435b5b-0-10-1.png",
+        "/figures/tb/7f56af6cec435b5b/tb-7f56af6cec435b5b-0-10-2.png"
+      ],
+      "note": "수직선과 진술 이미지 둘을 함께 읽어 좌표·부호·정수 개수를 계산한다."
+    },
+    {
+      "id": "9dc18287-3de2-48a9-b19c-848910e2befc",
+      "problem_code": "J10105-A63-001",
+      "cohort": "visual-m1-38746a72",
+      "category": "B",
+      "family": "v-m1-core-fixed-position-period-38746a72",
+      "viewed_urls": [
+        "/figures/tb/7fe045bb7acedfe9/tb-7fe045bb7acedfe9-0-5-1.png"
+      ],
+      "note": "두 주기 운동이 각각 처음 위치에 동시에 돌아오는 최소 시간을 최소공배수로 계산한다."
+    },
+    {
+      "id": "bc0ac41a-fc1a-4d9a-be40-4ad383db7e21",
+      "problem_code": "J10105-A61-001",
+      "cohort": "visual-m1-38746a72",
+      "category": "B",
+      "family": "v-m1-core-prime-venn-pairs-38746a72",
+      "viewed_urls": [
+        "/figures/tb/49913f0d15c9ea88/tb-49913f0d15c9ea88-0-2-1.png"
+      ],
+      "note": "공통 소인수와 서로 겹치지 않는 소인수를 벤 도식에 배치하여 가능한 수 쌍을 구한다."
+    },
+    {
+      "id": "22333df7-efc7-450c-85e5-f75007fb16f9",
+      "problem_code": "J10105-A60-001",
+      "cohort": "visual-m1-38746a72",
+      "category": "B",
+      "family": "v-m1-core-largest-square-tiling-38746a72",
+      "viewed_urls": [
+        "/figures/tb/e3c4487be3ed59e9/tb-e3c4487be3ed59e9-0-4-1.png"
+      ],
+      "note": "직사각형의 두 변을 모두 나누는 가장 큰 정사각형 변을 최대공약수로 계산한다."
+    }
+  ]
+}
