@@ -126,7 +126,11 @@ it("bounds the bytes and actual uploaded pixels above the measured ~5k input whi
     },
     FIXTURE_BANK,
   );
-  let captured!: { prompt: string; imageDataUrl?: string };
+  let captured!: {
+    prompt: string;
+    imageDataUrl?: string;
+    jsonSchema?: Readonly<Record<string, unknown>>;
+  };
   await readScanPage(
     {
       page: snapshot.pages[0],
@@ -139,7 +143,10 @@ it("bounds the bytes and actual uploaded pixels above the measured ~5k input whi
   );
   const bound = await scanReservation("claude-opus-5-5", captured);
   expect(bound.imageTokens).toBe(Math.ceil(1786 / 28) * Math.ceil(2526 / 28));
-  expect(bound.textBytes).toBe(Buffer.byteLength(captured.prompt, "utf8"));
+  expect(bound.textBytes).toBe(
+    Buffer.byteLength(captured.prompt, "utf8") +
+      Buffer.byteLength(JSON.stringify(captured.jsonSchema), "utf8"),
+  );
   // cb-scan-read.md: Opus high whole-page 2526, input 2 + cache read 5072.5.
   expect(bound.inputTokens).toBeGreaterThan(5074.5);
   expect(bound.outputTokens).toBe(16_000);

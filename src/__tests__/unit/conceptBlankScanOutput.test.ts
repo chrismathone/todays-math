@@ -14,6 +14,31 @@ import {
 } from "@/lib/concept-blank/scan/model";
 import { createMemoryScanUsageStore } from "@/lib/concept-blank/scan/usage";
 import type { runModelApi } from "@/lib/studio-ai/api";
+vi.mock("@/lib/concept-blank/scan/database.server", () => ({
+  scanDatabase: {},
+}));
+vi.mock("@/lib/concept-blank/scan/storage.server", () => ({
+  scanPhotoStorage: vi.fn(),
+}));
+vi.mock("@/lib/errorLog/record", () => ({
+  recordErrorLog: vi.fn().mockResolvedValue(undefined),
+}));
+import { recordErrorLog } from "@/lib/errorLog/record";
+import { scanRuntime } from "@/lib/concept-blank/scan/runtime.server";
+import { ScanOutputError } from "@/lib/concept-blank/scan/output";
+
+it("connects malformed-output diagnostics to the production error_log writer", async () => {
+  await scanRuntime(
+    new Request("https://math.example/api/concept-blank/scan/queue/cron"),
+  ).onError(new ScanOutputError("read", 3));
+  expect(recordErrorLog).toHaveBeenCalledWith(
+    expect.objectContaining({
+      kind: "ai-rejected",
+      message: expect.stringContaining("응답 형식 오류"),
+      context: { operation: "read", invalidFields: 3 },
+    }),
+  );
+});
 
 const page = createScanSnapshot(
   {
