@@ -291,3 +291,61 @@ SQL 수정 최종 검증: 관련 `conceptBlankScan` **21파일·130시험 통과
 별도 전역 `errorLogRouteCoverage` 검사는 **2시험 실패**했다. 기존 `/api/math-ontology/{assist,catalog,coverage,publish/stage,query,validate}`와 `/api/students/[id]/math-ontology/evidence`의 7메서드가 withErrorLog 밖에 있는 문제이며, `git diff 347844c9c --` 해당 경로 결과는 0줄이었다. 이번 스캔 경로는 그 실패 목록에 없다. 범위 밖 라우트를 고치거나 검사를 완화하지 않았다. 전체 Vitest·운영 빌드는 실행하지 않았다.
 
 이름 연결 커밋: `c82e0d229`(추가 DB·판독·범위 일치·대기/정리·권한 시험), `38de2e026`(촬영·후보 선택·결과 증거·확장 E2E), 이어지는 `docs(concept-blank): document written-name linkage and release checks`(이 절·26 §13·CLAUDE 색인). 두 구현 커밋의 lint/prettier/affordance 훅은 통과했다. 기존 지시서·협의 문서는 미추적 상태 그대로 남기고 커밋하지 않았다.
+
+
+## 적대적 검토 반영 (2026-11-25)
+
+리드의 `main f1d4cb9fc`를 받은 같은 `phase/cb-scan-core` 가지에서 처리했다. 기준은 원장님의 «끝까지 적대적 리뷰 · 자꾸 재배포하지 말 것». 이 묶음을 리드가 한 번 배포하며, 여기서는 **push·공유 DB 적용·실제 AI 호출·운영 빌드 없이** 로컬 시험과 커밋까지만 한다. 기존 지시서·협의 파일은 수정하거나 커밋하지 않았다.
+
+### 고친 것
+
+1. **모델 응답:** 기존 studio-ai의 `jsonSchema`를 읽기·채점에 연결했다. 읽기는 `cb-scan-whole-20261125-v3-json`, 채점은 `cb-scan-semantic-20261125-v2-json`이다. [Anthropic 구조화 출력 문서](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)의 `output_config.format`을 사용하는 기존 배관이며, 새 SDK나 모델로 바꾸지 않았다. 파서는 울타리·서문·꼬리글을 허용하되 첫 JSON 객체/배열만 읽고, 인용 문자열의 괄호·이스케이프를 구별한다. 깨진 첫 값 뒤의 두 번째 답으로 대체하지 않는다. 누락·중복·형식 오류는 못 읽음/확인 필요로 저장하고 `error_log`에 작업 종류와 잘못된 항목 수를 남긴다. 원본 답·이름·사진은 이 진단에 싣지 않는다. 실제 런타임 기록 함수까지 시험했다. 스키마도 예약 상계의 UTF-8 바이트와 캐시 지문에 포함했다.
+2. **호출 시간:** 스캔의 `timeoutMs`만 240,000ms로 지정했다. worker의 공유 240초 신호가 여러 쪽에 걸쳐 남은 시간을 제한하고, 읽기/채점 route의 300초 안에서 정산한다. 다른 기능의 110초 기본값, 16k 출력 상한, 자동 재호출 금지는 유지한다. 비스트리밍 배관에 이미 호출별 제한이 있어 별도 스트리밍 구현은 하지 않았다. 시간 값의 근거는 `model.ts`·`jobs.ts`·`httpHandlers.ts`와 해당 route 설정이며 실제 Opus 응답 시간 측정이 아니다.
+3. **발행 크기와 재인쇄:** 저장 산출물은 글꼴 없는 CSS·글꼴 판 SHA-256·지면 HTML이다. 격리 Chromium에서 측정/PDF를 만들 때만 같은 글꼴 바이트를 다시 내장한다. 브라우저는 기존 `/fonts/`의 한글 두 벌과 `public/fonts/katex/`의 설치본과 바이트가 같은 woff2 20개(총 259,792바이트, 로컬 파일 크기 합)를 쓴다. KaTeX는 앱 CSS의 가변 빌드 주소와 별개인 고정 공개 주소가 없어 파일·LICENSE를 함께 두었다. 요청 URL에 각 글꼴 지문을 붙이고 tracing 목록과 공개 자산 관문도 맞췄다. KaTeX의 마지막 `src`에 세미콜론이 없는 경우도 내장한다.
+   - `?p=`는 CSS를 요소/RSC에 싣지 않고 같은 ownerScope를 확인하는 `?format=css&view=…` 주소를 연결한다. 자동 인쇄는 스타일과 글꼴을 기다리고, 로딩 실패는 화면에 표시한다. 프리뷰는 인쇄 창을 열지 않는다.
+   - 옛 내장형 산출물은 저장 바이트/해시를 바꾸지 않고 읽은 뒤 검증·축소해 제공한다. 알려진 글꼴 판과 다르면 조용히 대체하지 않는다. 앞으로 글꼴 파일을 바꿀 때는 이전 판을 보존해 읽는 절차가 필요하다.
+   - 같은 교사·소속·고르기·문항/지면/글꼴 판·QR 출처의 발행을 재사용한다. 렌더 밖에서 먼저 조회하고, 렌더 뒤 짧은 advisory lock 안에서 다시 조회해 동시 요청도 한 행으로 모은다. Chromium을 기다리는 동안 DB 잠금을 잡지 않는다. 문항/렌더 판이 바뀌면 새 발행이며, 저장된 `?p=`는 기존 지면을 유지한다. 새 스키마 마이그레이션이나 기존 행 수정은 없다.
+4. **동시 인쇄:** 즉시 거절하던 전역 boolean을 프로세스 안의 FIFO 대기로 바꿨다. Chromium 대기+작업 예산은 90초, 발행 route는 기존 120초다. 기다리다 만료된 작업은 브라우저를 시작하지 않는다. 실행 중 만료는 요청에 먼저 실패를 돌려주고 브라우저를 닫으며, 늦은 정리가 끝나야 다음 작업을 시작한다. 대기·실패 뒤 재개·실행 중 만료·늦은 정리를 모두 시험했다. 여러 서버 인스턴스를 하나의 Chromium 큐로 묶었다는 뜻은 아니다.
+5. **QR 없는 인쇄 이유:** 본문 넘침 `>1px` 기준은 유지했다. 최대 넘침 수치와 문항 수를 줄이라는 이유를 안전한 503으로 보내고, 원래 렌더 오류는 `noteErrorLog`로 HTTP 오류 한 줄에 함께 남긴다. 글꼴 판 계산 단계의 파일 오류도 포함한다. 교사는 `QR 없이 인쇄됨 · 까닭`을 본다. 네트워크 실패·비 JSON 504도 JSON 파서 예외 대신 이해할 수 있는 사유를 표시한다.
+6. **HEIC:** 파일 선택기에 HEIC/HEIF를 추가했다. 브라우저 디코더가 읽으면 EXIF 없는 JPEG로 재인코딩하고 기존 픽셀/본문 예산을 지킨다. 브라우저가 읽지 못할 때만 JPEG 변환 안내를 보낸다. 작은 파일·빈 MIME 확장자·큰 파일의 JPEG 사다리·디코딩 실패·조용한 PNG fallback 거절을 시험했다. 실제 iPhone/Whale의 HEIC 지원 범위를 측정한 것은 아니다.
+7. **듣기 잠금:** `storageMigration.ts`의 `SELECT pg_advisory_xact_lock`를 `SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtextextended(…::text,0))`로 바꿨다. 그 파일의 실제 SQL 템플릿을 추출해 Prisma 형 PGlite 어댑터로 실행하며, 이전 void 결과는 RED이고 새 결과는 `{locked:1}`이다. 듣기 자료나 DB를 이관하지 않았다.
+8. **Turbopack 경로:** 아래 표의 서버 경로 여섯 곳을 수정하고 `src` 전체를 다시 검색했다. 동적 경로 해석이 필요한 CLI/시험은 남겼으며 운영 번들 성공을 로컬 단위 시험만으로 주장하지 않는다.
+
+| 점검 경로 | 판단과 반영 |
+| --- | --- |
+| `scan/paperCss.server.ts` | 리드가 이미 cwd 경로로 바꿨다. 실행 중 `createRequire` 없음. 남은 검색 hit는 장애 설명 주석이다. |
+| `examReport/paperHtml.ts` | `createRequire(import.meta.url).resolve` fallback 앞에서 실패할 수 있어 제거. tracing된 cwd KaTeX 파일을 직접 읽는다. |
+| `textbook/render/qr.server.ts` | 런타임 `createRequire(import.meta.url)("qrcode")`를 정적 `qrcode` import로 변경. |
+| `api/studio/pdf-worker`, `api/studio/pdf-assets/[kind]/[filename]` | cwd에 tracing된 pdfjs 파일을 직접 읽는다. 파일명 허용 목록·realpath 경계 검사는 유지. 함수 묶음 파일만 복사하는 기존 자산 시험도 통과. |
+| `api/dev/unified/pdf-worker`, `api/dev/unified/pdf-assets/[kind]/[filename]` | 개발 route도 서버 번들에 들어가므로 같은 수정. 개발 전용 관문 유지. |
+| `textbook/scripts/sourceLedger.ts` (60·610), `textbook/scripts/materialize.ts` (423·478) | CLI 입력 디렉터리·진입점 확인의 `import.meta.url`이다. 서버 route import가 없어 유지. |
+| `src/lint/check-affordance.mjs:7` | lint CLI 자신의 경로 계산이므로 유지. |
+| `src/__tests__/**` | 시험 fixture/설치본/임시 함수 묶음 경로이므로 유지. 운영 코드와 구분했다. |
+
+검색식은 `createRequire|require\.resolve|import\.meta\.url|__dirname`이다. 추가로 `import.meta|__filename|require(`도 확인했다. `arithmetic-v2/presentation/angles.ts`의 고정 JSON `require("./angles.assets.json")`는 번들러가 정적으로 해석하는 자산 import여서 바꾸지 않았다. 최종 비시험 검색 증거는 `/tmp/cb-scan-adversarial-20261125/server-path-audit.txt`다.
+
+### RED → GREEN과 검증
+
+증거 루트는 `/tmp/cb-scan-adversarial-20261125/`다. `output-red.log`(10실패), `paper-red.log`(4시험 실패+새 모듈 부재), `assets-red.log`(12실패), `font-loading-red.log`(2실패), `failure-reason-red.log`(2실패), `render-deadline-red.log`(1실패)가 수정 전 재현이다. 깨진 JSON 뒤 정상 JSON·두 번째 답·이름·중복 id·스키마 예약·요청별 시간·동시 발행·늦은 브라우저 정리·권한 있는 CSS 읽기를 관련 회귀에 포함했다.
+
+- 최종 관련 시험 **34파일·299시험 통과** (`tests-verified.log`, Vitest `--maxWorkers=3`). 스캔·인쇄 진입·결과 화면·사용량/PGlite·공개 글꼴 관문·PDF 자산·성적표 HTML·교재 렌더 범위다. type-check 통과(`type-check-verified.log`), 변경 TS/TSX **43파일 ESLint**와 수정 TSX 범위 affordance 통과(`lint-final.log`, `affordance-final.log`). 수정 E2E 스크립트 ESLint도 통과했다(`lint-e2e.log`). 마지막 큐 만료 보강의 세 시험도 별도 통과했다. 전체 시험·이전의 범위 밖 ontology 오류 검사는 다시 실행하지 않았다.
+- **E2E 최종:** `e2e-verified/flow-evidence.json`에서 HTTP **47요청**, 모의 모델 **8회**, **390/1440px 화면 10개·가로 넘침 모두 0px**, 오류/외부 요청 0건. 구조화 출력 요청에 울타리·서문·꼬리글을 붙인 모의 응답으로 읽기→수정→채점→교사 확인, 이름 단일 일치·동명이인·계정 mismatch·교사 변경을 통과했다. 동시에 시작한 첫 발행 2건과 이후 새 요청 ID 재인쇄 모두 같은 ID이며 **해당 발행 행 1개**다.
+- **크기 실측:** 같은 E2E의 `paperBytes`에서 발행 JSON 응답 **54바이트**, 저장 산출물(JSON 직렬화) **150,678바이트**, 재인쇄 HTML **150,781바이트**, 별도 CSS **76,321바이트**다. 학생 3쪽+채점표 2쪽 표본이며 각각 1,000,000바이트 미만을 시험으로 묶었다. URL 글꼴 네 family 적재 성공, 다섯 실제 글꼴 요청 HTTP 200, 내장 글꼴 측정과 재인쇄의 답 칸 좌표 **일치**, 본문 넘침 0px. 초회 확장 E2E의 `e2e/reprint-fonts.png`에서 한글·수식·QR·쪽 끝을 직접 확인했다. 크기는 UUID에 따른 QR PNG 바이트에 따라 조금 달라진다.
+- **RSC 범위:** 위 HTML은 로컬 서비스의 완성 HTML로, 배포된 Next HTML 전체를 재었다는 뜻이 아니다. 별도 `conceptBlankPrintPage` 시험은 옛 5.6MB CSS를 읽어도 반환 요소에 CSS가 없고, SSR markup+직렬화 요소의 합이 1MB 미만임을 검사한다. 배포 후 실제 Next/Vercel/Whale 확인은 리드의 한 번 배포 뒤에 남는다.
+- **PDF·QR·정합:** `print/issued-render-evidence.json`의 single/multi/all은 학생/채점표 **1+1, 3+2, 6+5쪽**, 기존 쪽 수와 같고 **18쪽 모두 넘침 0px**다. `raster.log`는 300dpi **QR 18/18 성공**. `print/registration-evidence.json`은 합성 원근/회전 **30경우·735점**, 최대 오차 **1.1029 사진 px / 0.2662 지면 mm**(원값 1.1028709777px / 0.2661136721mm). 실제 폰·종이 휨·손글씨 정확도는 이 시험의 결론이 아니다. Poppler의 기존 Type 3 glyph 경고는 남지만 렌더·QR·좌표 검사는 통과했다.
+
+### 인계
+
+이번에는 DB 스키마 변경/적용이 없다. `render_artifact`의 선택 필드 `fontFingerprint`·`publicationKey`를 읽고 쓰므로, 새 발행 행이 생긴 뒤 이 필드를 모르는 strict reader로 코드를 되돌리면 읽지 못한다. **이 묶음을 새 발행물의 reader floor로 유지**한다. 기존 큰 발행 행은 삭제/갱신하지 않았고, 글꼴 판이 달라질 때 옛 판 보존은 별도 변경에서 함께 다룬다.
+
+실제 AI 호출 지연/모델 JSON 준수율, 실기기 HEIC, 배포된 Turbopack 함수의 동작은 이 로컬 실행으로 측정하지 않았다. 리드가 공유 DB 작업·push·배포를 담당한다. 이번 작업은 로컬 커밋으로 끝낸다.
+
+뜻 단위 커밋은 다음과 같다.
+
+- `d80cbea68` — 구조화 출력·첫 JSON 파싱·스캔 호출 시간.
+- `4236ddd48` — 듣기 advisory lock void 결과 제거.
+- `4bf29eeb6` — 서버 자산 경로의 런타임 require 제거·KaTeX 내장 치환.
+- `75dd88779` — 작은 발행 산출물·같은 발행 재사용·동시 렌더 대기·실패 이유.
+- `61915f8eb` — HEIC 디코딩 후 JPEG 업로드.
+- `3ac6554cb` — 운영 오류 기록 배선·스키마 바이트 예약 회귀 보강.
+- 이어지는 `test(concept-blank): record adversarial review and full-flow evidence` — 확장 E2E·QA 안내·이 보고서.
