@@ -29,7 +29,7 @@
     },
     {
       "path": "/api/concept-blank/scan/queue/cron",
-      "schedule": "* * * * *"
+      "schedule": "50 18 * * *"
     },
     {
       "path": "/api/concept-blank/scan/purge/cron",
