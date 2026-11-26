@@ -96,3 +96,18 @@ export const SCAN_GRADE_OUTPUT_SCHEMA = object({
     }),
   },
 });
+/** 첨삭을 함께 묻는 판(계획 §6.2 4 · 5). 판정 칸은 위와 같고 notes 는 따로 검증한다. */
+export const SCAN_GRADE_MARKUP_OUTPUT_SCHEMA = object({
+  grades: SCAN_GRADE_OUTPUT_SCHEMA.properties.grades,
+  notes: {
+    type: "array",
+    items: object({
+      targetId: string,
+      slotId: string,
+      kind: { type: "string", enum: ["wrong", "missing", "example"] },
+      quote: string,
+      say: string,
+      fix: string,
+    }),
+  },
+});
