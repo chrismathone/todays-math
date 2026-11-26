@@ -1,0 +1,206 @@
+<title>사진 위 첨삭 Hi-fi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* 레이아웃: 위에 안 고르기와 보기 조건, 아래에 제품 지면(펴진 사진과 같은 A4) 두 쪽. 오른쪽에 이 안의 규칙. */
+:root{
+  --bg:#f2f0eb; --surface:#fbfaf6; --fg:#22201b; --muted:#6c675d; --line:#d9d4c8; --gold:#8a6a1f;
+  --ui:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1916;--surface:#23211d;--fg:#ebe7de;--muted:#a49e92;--line:#3a372f;--gold:#d3ad5e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1916;--surface:#23211d;--fg:#ebe7de;--muted:#a49e92;--line:#3a372f;--gold:#d3ad5e;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.55}
+.wrap{max-width:1280px;margin:0 auto;padding-block:26px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+h1{font-size:21px;font-weight:600;margin:0}
+.lead{margin:4px 0 0;color:var(--muted);font-size:13.5px;max-width:78ch}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.seg button{font:inherit;font-size:13.5px;border:0;background:transparent;color:var(--fg);padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid #c8141c;outline-offset:-2px}
+.lbl{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+@media (max-width:980px){.main{grid-template-columns:1fr}}
+.pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pages.one{grid-template-columns:1fr;max-width:920px}
+.pages.one figure[hidden]{display:none}
+.pages.phone{grid-template-columns:1fr;justify-items:center}
+@media (max-width:760px){.pages{grid-template-columns:1fr}}
+.sheet{position:relative;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 6px 18px rgba(0,0,0,.08);width:100%}
+.phone .sheet{width:358px;max-width:100%}
+.sheet img{display:block;width:100%;height:auto}
+.sheet svg{position:absolute;inset:0;width:100%;height:100%}
+.cap{font-size:12.5px;color:var(--muted);margin-top:6px}
+aside{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+aside h2{font-size:16px;margin:0}
+aside ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
+aside .note{font-size:12.5px;color:var(--muted)}
+.phonebar{display:none}
+.phone-frame .phonebar{display:block}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>사진 위 첨삭 · Hi-fi 네 안</h1>
+    <p class="lead">고르신 A안(종이에 바로, 빨간 손글씨) 안에서 표식 모양만 다르게 한 네 안입니다. 지면은 <b>제품 조판 그대로</b>(B ○× · C 빈칸과 적용 · D 질문)이고, 사진 맞춤에 성공하면 이렇게 반듯이 펴진 사진이 보입니다. 학생 답과 첨삭은 예시입니다. 합의대로 첫 출시는 <b>낱말 밑줄 없이</b> 칸 · 줄 끝 표식과 그 아래 빨간 글만 씁니다.</p>
+  </header>
+
+  <div class="controls">
+    <span class="lbl">안</span>
+    <div class="seg" role="group" aria-label="안 고르기" id="v-seg"></div>
+    <span class="lbl">누가 보나</span>
+    <div class="seg" role="group" aria-label="보는 사람" id="r-seg">
+      <button data-r="student" aria-pressed="true">학생 · 공개 뒤</button>
+      <button data-r="teacher" aria-pressed="false">교사 · 공개 전 초안</button>
+    </div>
+    <span class="lbl">쪽</span>
+    <div class="seg" role="group" aria-label="쪽" id="p-seg">
+      <button data-p="both" aria-pressed="true">두 쪽</button>
+      <button data-p="c" aria-pressed="false">C 크게</button>
+      <button data-p="db" aria-pressed="false">D·B 크게</button>
+    </div>
+    <span class="lbl">폭</span>
+    <div class="seg" role="group" aria-label="화면 폭" id="w-seg">
+      <button data-w="pc" aria-pressed="true">PC</button>
+      <button data-w="phone" aria-pressed="false">폰 390px</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="pages" id="pages">
+      <figure style="margin:0" id="fig-c"><div class="sheet"><img src="paper-c.jpg" alt="개념 백지 학생지 — 빈칸과 적용" width="1202" height="1700"><svg viewBox="0 0 1000 1414" id="svg-c" aria-hidden="true"></svg></div><figcaption class="cap">C 빈칸 · 적용 (3쪽)</figcaption></figure>
+      <figure style="margin:0" id="fig-db"><div class="sheet"><img src="paper-db.jpg" alt="개념 백지 학생지 — 질문과 ○×" width="1202" height="1700"><svg viewBox="0 0 1000 1414" id="svg-db" aria-hidden="true"></svg></div><figcaption class="cap">D 질문 · B ○× (2쪽)</figcaption></figure>
+    </div>
+    <aside id="rules"></aside>
+  </div>
+</div>
+
+<script>
+(() => {
+const RED="#c8141c", INK="#1f2027";
+const V={
+  H1:{name:"H1 빨간 펜",desc:"선생님이 펜으로 채점한 종이 그대로입니다.",rules:["문항 번호 위에 손으로 그린 ○ · △ · ×","틀린 빈칸은 펜 동그라미, 서술은 줄 끝에 ∧","번호는 빨간 원 안의 숫자","설명은 손글씨체, 흰 테두리로 사진 위에서도 또렷하게"]},
+  H2:{name:"H2 꼬리표",desc:"번호를 네모 꼬리표로 달아, 설명과 짝을 찾기 쉽게 합니다.",rules:["판정은 왼쪽 여백에 크게","틀린 자리에 네모 꼬리표 [1]","설명 앞에도 같은 꼬리표","동그라미는 쓰지 않고 꼬리표만"]},
+  H3:{name:"H3 형광펜",desc:"틀린 칸을 연한 빨강 형광으로 칠하고 설명은 펜으로 씁니다.",rules:["틀린 빈칸 · 줄 끝 자리에 연한 빨강 띠","판정은 번호 옆 작은 펜 표시","번호 없이 형광 띠와 설명을 같은 줄 높이로 맞춤","설명 글은 조금 더 크게"]},
+  H4:{name:"H4 최소 표식",desc:"표식을 줄이고 설명만 남깁니다. 설명이 바로 그 문항 아래에 있어 번호가 없습니다.",rules:["판정은 번호 위 ○ · △ · ×","틀린 자리에는 짧은 빨간 밑금 하나(빈칸 자체)","번호 · 꼬리표 없음","설명은 그 문항 칸 안 빈 줄에만"]},
+};
+let ver="H1", role="student", width="pc";
+
+/* 제품 DOM 에서 잰 좌표 (지면 폭 = 1000) */
+const C={
+  verdict:[[1,80,243,"o"],[2,80,306,"x"],[3,80,369,"tri"],[4,80,432,"tri"],[5,101,592,"tri"]],
+  blanks:[ // [x,y,w,글, 틀림번호]
+    [473,232,83,"겹치는"],[625,232,118,"선대칭도형"],
+    [597,295,83,"접는 선",1],
+    [304,357,66,"길이"],[512,357,66,"넓이",2],
+    [546,420,66,"수직"],[122,458,66,"짧은",3]],
+  lines:[[100,655,"정사각형은 대각선으로 접어도 완전히 겹친다.",4],[100,708,"그래서 대칭축이 2개 더 있다."]],
+  answer:[180,1290,"2개 더 많다"],
+  notes:[ // [번호, x, baseline, 글] — 같은 칸 안 빈자리
+    [1,612,333,"이 선의 이름을 물었어요."],
+    [2,600,393,"각에서 같은 것은 넓이가 아니에요."],
+    [3,420,478,"양쪽 거리를 견줘 보세요."],
+    [4,118,775,"대각선으로 접으면 왜 겹치는지가 빠졌어요."],
+    [null,118,815,"직사각형과 다른 점을 써 보세요."]],
+};
+const D={
+  verdict:[[1,82,193,"o"],[2,82,387,"x"],[3,82,581,"tri"],[4,82,841,"o"],[5,82,1131,"x"]],
+  lines:[
+    [80,239,"한 직선을 따라 접었을 때 완전히 겹치는 도형이다.",null,"ok"],
+    [80,433,"도형의 가운데에 있는 선이다.",1],
+    [80,655,"대응변의 길이와 대응각의 크기가 같다.",2],
+    [80,915,"대칭축과 수직으로 만나고 똑같이 둘로 나눈다.",null,"ok"],
+    [245,1191,"세 변의 길이가 모두 같아서",3]],
+  ox:{o:[81,1176],x:[134,1176]},
+  notes:[
+    [1,100,472,"가운데에 있다고 다 대칭축은 아니에요."],
+    [null,100,509,"접었을 때 어떻게 되는 선인지 써 보세요."],
+    [2,100,694,"같은 까닭이 빠졌어요."],
+    [null,100,731,"접으면 무엇과 무엇이 겹치는지 써 보세요."],
+    [3,240,1228,"꼭짓점마다 접어 보세요. 몇 번 겹치나요?"]],
+};
+
+const NS="http://www.w3.org/2000/svg";
+function el(p,tag,a){const n=document.createElementNS(NS,tag);for(const k in a)n.setAttribute(k,a[k]);p.appendChild(n);return n}
+function text(p,x,y,s,o){const t=el(p,"text",{x,y,...o});t.textContent=s;return t}
+const halo={stroke:"rgba(255,255,255,.85)","stroke-width":4,"paint-order":"stroke","stroke-linejoin":"round"};
+const pen={fill:"none",stroke:RED,"stroke-width":2.6,"stroke-linecap":"round","stroke-linejoin":"round"};
+
+function draft(g){ if(role==="teacher"){g.setAttribute("opacity",".55");} }
+
+function verdict(s,[n,x,y,k]){
+  if(ver==="H2"){ x=34; }
+  const g=el(s,"g",{});
+  const big=ver==="H3"?0.6:1;
+  if(ver==="H3"){x=30;}
+  if(k==="o") el(g,"ellipse",{cx:x,cy:y,rx:24*big,ry:22*big,...pen,transform:`rotate(-8 ${x} ${y})`});
+  if(k==="tri") el(g,"path",{d:`M${x} ${y-25*big} L${x+24*big} ${y+17*big} L${x-24*big} ${y+17*big} Z`,...pen});
+  if(k==="x") el(g,"path",{d:`M${x-20*big} ${y-20*big} L${x+20*big} ${y+20*big} M${x+21*big} ${y-19*big} L${x-19*big} ${y+21*big}`,...pen});
+}
+function tag(s,x,y,n){
+  if(n==null) return;
+  if(ver==="H1"){el(s,"circle",{cx:x,cy:y,r:10,fill:RED});text(s,x,y+4.6,n,{"text-anchor":"middle","font-family":"IBM Plex Sans KR, sans-serif","font-size":13,"font-weight":600,fill:"#fff"});}
+  if(ver==="H2"){el(s,"rect",{x:x-10,y:y-10,width:20,height:20,rx:2,fill:"#fff",stroke:RED,"stroke-width":1.6});text(s,x,y+5,n,{"text-anchor":"middle","font-family":"IBM Plex Sans KR, sans-serif","font-size":13.5,"font-weight":600,fill:RED});}
+}
+function wrongBlank(s,[x,y,w],n){
+  const g=el(s,"g",{});draft(g);
+  if(ver==="H1"){el(g,"ellipse",{cx:x+w/2,cy:y+9,rx:w/2+10,ry:18,...pen,"stroke-width":2.2,transform:`rotate(-3 ${x+w/2} ${y+9})`});tag(g,x+w+14,y-10,n)}
+  if(ver==="H2"){tag(g,x+w+12,y-8,n)}
+  if(ver==="H3"){el(g,"rect",{x:x-4,y:y-4,width:w+8,height:30,rx:4,fill:"rgba(200,20,28,.16)"})}
+  if(ver==="H4"){el(g,"path",{d:`M${x} ${y+27} L${x+w} ${y+25}`,...pen,"stroke-width":2.4})}
+}
+function lineEnd(s,x,y,n,len){
+  const g=el(s,"g",{});draft(g);
+  const e=x+len+8;
+  if(ver==="H1"){el(g,"path",{d:`M${e} ${y+4} l7 -14 l7 14`,...pen,"stroke-width":2.2});tag(g,e+26,y-14,n)}
+  if(ver==="H2"){tag(g,e+12,y-10,n)}
+  if(ver==="H3"){el(g,"rect",{x:e-2,y:y-24,width:22,height:32,rx:4,fill:"rgba(200,20,28,.16)"});el(g,"path",{d:`M${e+3} ${y+2} l6 -12 l6 12`,...pen,"stroke-width":2})}
+  if(ver==="H4"){el(g,"path",{d:`M${e} ${y+4} l7 -14 l7 14`,...pen,"stroke-width":2.2})}
+}
+function check(s,x,y){el(s,"path",{d:`M${x} ${y-8} l7 8 l14 -20`,...pen,"stroke-width":2.4})}
+function note(s,[n,x,y,str]){
+  const g=el(s,"g",{});draft(g);
+  const size=ver==="H3"?25:23;
+  let tx=x;
+  if(n!=null&&ver==="H1"){tag(g,x+9,y-8,n);tx=x+26}
+  if(n!=null&&ver==="H2"){tag(g,x+10,y-8,n);tx=x+28}
+  if(n==null&&(ver==="H1"||ver==="H2")) tx=x+(ver==="H1"?26:28);
+  text(g,tx,y,str,{"font-family":"Gaegu, cursive","font-weight":700,"font-size":size,fill:RED,...halo});
+  if(role==="teacher"&&n!=null){const t=text(g,tx,y-26,"공개 전",{"font-family":"IBM Plex Sans KR, sans-serif","font-size":11,fill:RED,"letter-spacing":".05em"});g.setAttribute("opacity",".6");}
+}
+function student(s,x,y,str,size=31){const t=text(s,x,y,str,{"font-family":"Nanum Pen Script, cursive","font-size":size,fill:INK,stroke:INK,"stroke-width":.5});return t.getComputedTextLength()}
+
+function drawC(){
+  const s=document.getElementById("svg-c");s.innerHTML="";
+  for(const b of C.blanks){const[x,y,w,str]=b;const t=text(s,0,0,str,{"font-family":"Nanum Pen Script, cursive","font-size":28});const l=t.getComputedTextLength();t.remove();student(s,x+(w-l)/2,y+16,str,28)}
+  const ends=C.lines.map(([x,y,str])=>student(s,x,y,str));
+  student(s,...C.answer);
+  for(const v of C.verdict) verdict(s,v);
+  for(const b of C.blanks) if(b[4]) wrongBlank(s,b,b[4]);
+  C.lines.forEach(([x,y,,n],i)=>{if(n)lineEnd(s,x,y,n,ends[i])});
+  for(const n of C.notes) note(s,n);
+}
+function drawD(){
+  const s=document.getElementById("svg-db");s.innerHTML="";
+  const ends=D.lines.map(([x,y,str])=>student(s,x,y,str));
+  el(s,"ellipse",{cx:D.ox.o[0],cy:D.ox.o[1],rx:24,ry:22,fill:"none",stroke:INK,"stroke-width":2,opacity:.85,transform:`rotate(-10 ${D.ox.o[0]} ${D.ox.o[1]})`});
+  for(const v of D.verdict) verdict(s,v);
+  D.lines.forEach(([x,y,,n,ok],i)=>{if(n)lineEnd(s,x,y,n,ends[i]); if(ok&&ver!=="H4")check(s,x+ends[i]+14,y-2)});
+  for(const n of D.notes) note(s,n);
+}
+function rules(){
+  const v=V[ver];
+  document.getElementById("rules").innerHTML=`<h2>${v.name}</h2><p style="margin:0">${v.desc}</p><ul>${v.rules.map(r=>`<li>${r}</li>`).join("")}</ul>
+  <p class="note">모든 안에 같은 것: 빨강은 화면 테마와 상관없는 고정색, 흰 테두리, 손글씨체. 설명은 그 문항 칸 안의 빈자리에만 쓰고, 자리가 없으면 번호만 남기고 결과 목록으로 보냅니다.</p>
+  <p class="note">${role==="teacher"?"교사 화면: × · △ 첨삭은 «공개» 전까지 흐리게 보이고 학생에게는 안 보입니다.":"학생 화면: 교사가 공개한 첨삭만 보입니다. ○ · △ · × 판정은 처음부터 보입니다."}</p>`;
+}
+function draw(){drawC();drawD();rules()}
+
+const vseg=document.getElementById("v-seg");
+for(const k of Object.keys(V)){const b=document.createElement("button");b.textContent=V[k].name;b.dataset.v=k;b.setAttribute("aria-pressed",String(k===ver));b.onclick=()=>{ver=k;vseg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v===ver)));draw()};vseg.appendChild(b)}
+document.querySelectorAll("#r-seg button").forEach(b=>b.onclick=()=>{role=b.dataset.r;document.querySelectorAll("#r-seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));draw()});
+document.querySelectorAll("#w-seg button").forEach(b=>b.onclick=()=>{width=b.dataset.w;document.querySelectorAll("#w-seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));document.getElementById("pages").classList.toggle("phone",width==="phone")});
+document.querySelectorAll("#p-seg button").forEach(b=>b.onclick=()=>{const v=b.dataset.p;document.querySelectorAll("#p-seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));const pg=document.getElementById("pages");pg.classList.toggle("one",v!=="both");document.getElementById("fig-c").hidden=v==="db";document.getElementById("fig-db").hidden=v==="c"});
+Promise.all(["31px 'Nanum Pen Script'","700 23px Gaegu"].map(f=>document.fonts.load(f,"가나다"))).catch(()=>{}).finally(draw);
+})();
+</script>

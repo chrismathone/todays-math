@@ -1,0 +1,256 @@
+<title>개념 백지 첨삭 시안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* 레이아웃: 왼쪽은 학생이 찍은 사진(첨삭이 얹힘), 오른쪽은 «왜 틀렸나» 목록. 폰에서는 위아래로. */
+:root{
+  --bg:#f3f1ec; --surface:#fbfaf7; --fg:#22201c; --muted:#6b665d; --line:#dcd7cc;
+  --pen:#d0281e; --pen-soft:rgba(208,40,30,.12); --ok:#2f6b3a; --gold:#8a6a2c;
+  --ui:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --hand:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --teacher:"Gaegu","Nanum Pen Script",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1b1a17; --surface:#24221e; --fg:#ece8df; --muted:#a59f93; --line:#3a372f;
+  --pen:#ff6a5c; --pen-soft:rgba(255,106,92,.16); --ok:#7fc08a; --gold:#d2ad62; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1a17; --surface:#24221e; --fg:#ece8df; --muted:#a59f93; --line:#3a372f;
+  --pen:#ff6a5c; --pen-soft:rgba(255,106,92,.16); --ok:#7fc08a; --gold:#d2ad62; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.55}
+.wrap{max-width:1240px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+header h1{font-size:22px;font-weight:600;margin:0;text-wrap:balance}
+header p{margin:4px 0 0;color:var(--muted);font-size:13.5px;max-width:70ch}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.seg button{font:inherit;font-size:13.5px;border:0;background:transparent;color:var(--fg);padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--pen);outline-offset:-2px}
+.chip{font-size:12.5px;color:var(--muted);border:1px dashed var(--line);border-radius:4px;padding:4px 8px}
+.main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}}
+.photo{position:relative;background:#111;border-radius:4px;overflow:hidden;box-shadow:0 1px 0 var(--line)}
+.photo img{display:block;width:100%;height:auto}
+.photo svg{position:absolute;inset:0;width:100%;height:100%}
+aside{display:grid;gap:14px;min-width:0}
+.q{display:grid;gap:8px}
+.q h2{font-size:14.5px;font-weight:600;margin:0;display:flex;gap:8px;align-items:baseline}
+.mark{font-family:var(--teacher);color:var(--pen);font-size:22px;line-height:1;width:22px;text-align:center}
+.mark.ok{color:var(--pen)}
+.note{font:inherit;text-align:left;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px 11px;display:grid;gap:5px;cursor:pointer;width:100%}
+.note:focus-visible{outline:2px solid var(--pen);outline-offset:1px}
+.note.on{border-color:var(--pen);box-shadow:0 0 0 3px var(--pen-soft)}
+.note .k{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.num{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--pen);color:#fff;font-size:11px;font-weight:600}
+.quote{font-family:var(--hand);font-size:22px;line-height:1.15;background:linear-gradient(transparent 62%,var(--pen-soft) 62%);justify-self:start}
+.why{font-size:14px}
+.ref{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
+.ref b{color:var(--gold);font-weight:500}
+.fine{font-size:12.5px;color:var(--muted);max-width:75ch}
+.photo{container-type:inline-size}
+.bubbles{position:absolute;inset:0;pointer-events:none}
+.bubble{--b-bg:#ffffff;--b-fg:#23211d;--b-mut:#6f6a60;--b-red:#d0281e;
+  position:absolute;pointer-events:auto;background:var(--b-bg);color:var(--b-fg);
+  border:1px solid rgba(0,0,0,.09);border-radius:7px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.12);
+  padding:.55em .7em .6em;font-size:clamp(11px,2.05cqw,16px);line-height:1.42;display:grid;grid-template-columns:auto 1fr;gap:.15em .5em;
+  font-family:var(--ui);transition:box-shadow .2s}
+.bubble::before{content:"";position:absolute;top:-5px;left:var(--tail,20px);width:9px;height:9px;background:var(--b-bg);
+  border-left:1px solid rgba(0,0,0,.09);border-top:1px solid rgba(0,0,0,.09);transform:translateX(-50%) rotate(45deg)}
+.bubble .n{grid-row:span 2;width:1.45em;height:1.45em;border-radius:50%;background:var(--b-red);color:#fff;display:grid;place-items:center;font-size:.85em;font-weight:600;margin-top:.05em}
+.bubble .t{font-weight:500}
+.bubble .s{color:var(--b-mut);font-variant-numeric:tabular-nums}
+.bubble.on{box-shadow:0 0 0 2px var(--b-red),0 4px 14px rgba(0,0,0,.14)}
+@container (max-width:520px){.bubble{display:none}.narrow-tip{display:block!important}}
+.narrow-tip{display:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.flash{animation:pulse .5s ease-in-out 3}
+@media (prefers-reduced-motion:reduce){.flash{animation:none}}
+</style>
+
+<div class="wrap" id="app">
+  <header>
+    <h1>개념 백지 · 사진 위 첨삭 시안</h1>
+    <p>11월 25일 운영에 실제로 올라온 학생지 사진 한 장(답이 비어 있음) 위에 <b>예시 답</b>과 <b>첨삭</b>을 얹었습니다. 손글씨와 판정은 모두 가상입니다. 칸 위치는 사진의 네 모서리 표식과 인쇄 때 저장한 답 칸 좌표로 맞췄습니다.</p>
+  </header>
+
+  <div class="bar">    <span class="chip">AI 첨삭 · 교사 확인 전</span>
+  </div>
+
+  <div class="main">
+    <div class="photo" id="photo">
+      <img src="photo.jpg" alt="학생이 촬영한 개념 백지 학생지 사진" width="1499" height="2000">
+      <svg id="ov" viewBox="0 0 1499 2000" aria-hidden="true"></svg>
+      <div class="bubbles" id="bubbles"></div>
+    </div>
+    <aside id="side"></aside>
+  </div>
+
+  <p class="fine">틀린 자리에 물결 밑줄과 번호를 달고, 선생님이 빨간 펜으로 쓰듯 그 아래 빈 줄에 까닭을 적습니다. 오른쪽 카드를 누르면 사진에서 그 자리가 깜빡입니다. 기준 문장은 이 학생지를 인쇄할 때 저장된 채점 기준에서 그대로 가져왔습니다.</p>
+</div>
+
+<script>
+(() => {
+const H=[[6.59445688,-0.247438451,101.686715],[0.213464439,6.29510489,9.685932],[0.000114498357,-0.000197060379,1]];
+const P=(x,y)=>{const w=H[2][0]*x+H[2][1]*y+1;return[(H[0][0]*x+H[0][1]*y+H[0][2])/w,(H[1][0]*x+H[1][1]*y+H[1][2])/w]};
+const M=(x,y)=>{const e=.01,o=P(x,y),dx=P(x+e,y),dy=P(x,y+e);return `matrix(${(dx[0]-o[0])/e} ${(dx[1]-o[1])/e} ${(dy[0]-o[0])/e} ${(dy[1]-o[1])/e} ${o[0]} ${o[1]})`};
+const SLOT={1:57.696,2:134.396,3:211.101};
+const LINE=(q,k)=>SLOT[q]+8.25+k*8.27;
+const NS="http://www.w3.org/2000/svg";
+const ov=document.getElementById("ov");
+const el=(tag,attrs,parent)=>{const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);(parent||ov).appendChild(n);return n};
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+/* 학생 답(가상): [문항, 줄, 글, 밑줄 칠 부분, 첨삭 번호] */
+const LINES=[
+  [1,0,"덧셈과 뺄셈이 섞여 있는 식은 덧셈을 먼저 계산한다.","덧셈을 먼저",1],
+  [1,1,"괄호가 있으면 괄호 안을 먼저 계산한다.",null,"ok"],
+  [1,2,"곱셈과 나눗셈만 있으면 앞에서부터 차례로 계산한다.",null,"ok"],
+  [2,0,"곱셈이 있으면 곱셈을 먼저 하고 덧셈, 뺄셈은 나중에 한다.",null,"ok"],
+  [2,1,"괄호가 있으면 괄호 안부터 계산한다.",null,"ok"],
+  [3,0,"곱셈을 먼저 하고 그다음 나눗셈을 한다.","곱셈을 먼저 하고",3],
+  [3,1,"그리고 덧셈 뺄셈을 한다.",null,null,5],
+];
+/* 예 칸: [문항, 칸 안 y(mm), 글, 동그라미, 첨삭 번호] */
+const EX=[
+  [1,14,"20 − 5 + 3"],[1,22.5,"= 20 − 8",true,2],[1,31,"= 12"],
+  [2,14,"3 + 4 × 2"],[2,22.5,"= 3 + 8"],[2,31,"= 11"],
+  [3,14,"24 ÷ 4 × 2"],[3,22.5,"= 24 ÷ 8",true,4],[3,31,"= 3"],
+];
+const VERDICT={1:"tri",2:"o",3:"x"};
+/* 종이 여백에 쓰는 선생님 글(A안) */
+const PEN=[
+  [1,3.6,"① 덧셈이 먼저가 아니에요."],
+  [1,4.6,"    괄호가 없으면 앞에서부터 차례로."],
+  [1,5.6,"    20 − 5 + 3 → 15 + 3 = 18"],
+  [3,2.6,"③ 곱셈, 나눗셈은 정해진 차례가 없어요."],
+  [3,3.6,"    앞에 나온 것부터 계산해요."],
+  [3,4.8,"⑤ 덧셈·뺄셈과 섞이면?"],
+  [3,5.8,"    곱셈·나눗셈보다 나중이라고 써 주세요."],
+];
+const EXPEN=[[1,42,"20−5=15"],[1,50,"15+3=18"],[3,42,"24÷4=6"],[3,50,"6×2=12"]];
+
+const NOTES=[
+  {n:1,q:1,quote:"덧셈을 먼저 계산한다",kind:"틀린 말",why:"덧셈과 뺄셈 사이에는 정해진 차례가 없습니다. 덧셈부터 하면 20 − 5 + 3이 12가 되어 값이 달라집니다.",ref:"괄호가 없는 식에서 덧셈과 뺄셈 사이에는 무엇을 먼저 한다는 정해진 차례가 없어, 식에 나온 순서대로 계산한다."},
+  {n:2,q:1,quote:"= 20 − 8",kind:"예에서 같은 실수",why:"5 + 3을 먼저 묶었습니다. ①과 같은 생각입니다. 앞에서부터 하면 20 − 5 = 15, 15 + 3 = 18입니다.",ref:"덧셈·뺄셈만 있고 괄호가 없으면 왼쪽의 계산부터 차례로 한다."},
+  {n:3,q:3,quote:"곱셈을 먼저 하고",kind:"틀린 말",why:"곱셈과 나눗셈 사이에도 정해진 차례가 없습니다. 식에 먼저 나온 계산부터 합니다.",ref:"우선순위가 같은 곱셈·나눗셈은 왼쪽부터 하며, 기호의 순서를 바꾸지 않는다."},
+  {n:4,q:3,quote:"= 24 ÷ 8",kind:"예에서 같은 실수",why:"4 × 2를 먼저 해서 나누는 수가 커졌습니다. 24 ÷ 4 = 6, 6 × 2 = 12입니다.",ref:"괄호 없이 곱셈과 나눗셈이 이어져 있으면 그 둘끼리는 앞에서부터 계산한다."},
+  {n:5,q:3,quote:"그리고 덧셈 뺄셈을 한다",kind:"근거가 빠짐",why:"순서는 맞지만 «무엇보다» 나중인지가 없습니다. 곱셈·나눗셈을 덧셈·뺄셈보다 먼저 한다는 것을 문장에 넣어야 합니다.",ref:"괄호 없이 네 가지 계산이 섞인 식은 곱셈과 나눗셈을 덧셈과 뺄셈보다 먼저 한다."},
+];
+const QTITLE={1:"① 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",2:"② 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",3:"③ 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식"};
+const QSUM={1:"△ 일부 맞음",2:"○ 맞음",3:"× 다시"};
+
+let mode="paper";
+const anchors={}, mm={};
+
+function wavy(g,x0,x1,y){let d=`M${x0} ${y}`;for(let x=x0;x<x1;x+=1.2){d+=` q0.6 ${(Math.round((x-x0)/1.2)%2?1:-1)*0.7} 1.2 0`}el("path",{d,fill:"none",stroke:"#c8141c","stroke-width":.45,"stroke-linecap":"round"},g)}
+function badge(g,x,y,n){el("circle",{cx:x,cy:y,r:2.1,fill:"#c8141c"},g);const t=el("text",{x,y:y+.95,"text-anchor":"middle","font-family":"IBM Plex Sans KR, sans-serif","font-size":2.7,"font-weight":600,fill:"#fff"},g);t.textContent=n}
+
+function draw(){
+  ov.innerHTML="";
+  const ink="#1d1d26", pen="#c8141c";
+  const showMarks=mode!=="raw", showPen=mode==="paper";
+  for(const [q,k,txt,bad,tag,miss] of LINES){
+    const y=LINE(q,k)-1.1, g=el("g",{transform:M(14,y)});
+    const t=el("text",{x:0,y:0,"font-family":"Nanum Pen Script, cursive","font-size":7.6,fill:ink,stroke:ink,"stroke-width":.12},g);
+    t.textContent=txt;
+    const len=t.getComputedTextLength();
+    if(!showMarks) continue;
+    if(bad){
+      const i=txt.indexOf(bad);
+      const a=t.getSubStringLength(0,i), w=t.getSubStringLength(i,bad.length);
+      wavy(g,a,a+w,1.4);
+      badge(g,a+w+0.5,-7.4,tag);
+      anchors[tag]=g; mm[tag]=[14+a+w/2,y+2.6];
+    }else if(tag==="ok"){
+      const c=el("path",{d:`M${len+2} -2.2 l1.6 2 l3.6 -5`,fill:"none",stroke:pen,"stroke-width":.6,"stroke-linecap":"round","stroke-linejoin":"round"},g);
+    }
+    if(miss){
+      el("path",{d:`M${len+1.2} 1.6 l1.6 -3 l1.6 3`,fill:"none",stroke:pen,"stroke-width":.55,"stroke-linecap":"round"},g);
+      badge(g,len+6.6,-3.2,miss);
+      anchors[miss]=g; mm[miss]=[14+len+2.8,y+2.4];
+    }
+  }
+  for(const [q,dy,txt,circ,n] of EX){
+    const g=el("g",{transform:M(157,SLOT[q]+dy)});
+    const t=el("text",{x:0,y:0,"font-family":"Nanum Pen Script, cursive","font-size":7.8,fill:ink,stroke:ink,"stroke-width":.12},g);
+    t.textContent=txt;
+    if(showMarks&&circ){
+      const w=t.getComputedTextLength();
+      el("ellipse",{cx:w/2,cy:-2,rx:w/2+2.2,ry:4.6,fill:"none",stroke:pen,"stroke-width":.5,transform:`rotate(-3 ${w/2} -2)`},g);
+      badge(g,w+4.4,-6.2,n);
+      anchors[n]=g; mm[n]=[157+w/2,SLOT[q]+dy+2.8];
+    }
+  }
+  if(showMarks){
+    for(const q of [1,2,3]){
+      const g=el("g",{transform:M(12.6,SLOT[q]-5.4)}), v=VERDICT[q], s={fill:"none",stroke:pen,"stroke-width":.75,"stroke-linecap":"round","stroke-linejoin":"round"};
+      if(v==="o") el("circle",{cx:0,cy:0,r:6.2,...s},g);
+      if(v==="tri") el("path",{d:"M0 -7.2 L6.6 4.6 L-6.6 4.6 Z",...s},g);
+      if(v==="x") el("path",{d:"M-5.6 -5.6 L5.6 5.6 M5.6 -5.6 L-5.6 5.6",...s},g);
+    }
+  }
+  if(showPen){
+    for(const [q,k,txt] of PEN){
+      const g=el("g",{"xml:space":"preserve",transform:M(17,LINE(q,k)-1.3)});
+      const t=el("text",{x:0,y:0,"font-family":"Gaegu, cursive","font-weight":700,"font-size":5.6,style:"white-space:pre",fill:pen,stroke:"rgba(255,255,255,.75)","stroke-width":.9,"paint-order":"stroke","stroke-linejoin":"round"},g);t.textContent=txt;
+    }
+    for(const [q,dy,txt] of EXPEN){
+      const g=el("g",{transform:M(159,SLOT[q]+dy)});
+      const t=el("text",{x:0,y:0,"font-family":"Gaegu, cursive","font-weight":700,"font-size":6.4,fill:pen,stroke:"rgba(255,255,255,.75)","stroke-width":.9,"paint-order":"stroke","stroke-linejoin":"round"},g);t.textContent=txt;
+    }
+  }
+}
+
+/* 말풍선: [번호, 왼쪽 x(mm), 위 y(mm), 너비(mm), 글, 보조 글] */
+const BUB=[
+  [1,14,LINE(1,2)+3.6,112,"덧셈이 먼저가 아니에요. 괄호가 없으면 앞에서부터 차례로 계산해요.","20 − 5 + 3 → 15 + 3 = 18"],
+  [2,133,SLOT[1]+37,64,"5 + 3을 먼저 했어요.","20 − 5 = 15, 15 + 3 = 18"],
+  [3,14,LINE(3,1)+3.6,66,"곱셈과 나눗셈은 정해진 차례가 없어요. 앞에 나온 것부터 해요.",""],
+  [5,82,LINE(3,1)+3.6,48,"무엇보다 나중인지 빠졌어요.","«곱셈·나눗셈보다 나중»까지 써 주세요."],
+  [4,134,SLOT[3]+37,63,"4 × 2를 먼저 했어요.","24 ÷ 4 = 6, 6 × 2 = 12"],
+];
+function bubbles(show){
+  const box=document.getElementById("bubbles");box.innerHTML="";
+  if(!show)return;
+  for(const [n,x,y,w,t,s] of BUB){
+    const tl=P(x,y), tr=P(x+w,y), a=P(...mm[n]);
+    const left=tl[0]/1499*100, top=tl[1]/2000*100, width=(tr[0]-tl[0])/1499*100;
+    const tail=Math.min(Math.max((a[0]-tl[0])/(tr[0]-tl[0])*100,8),92);
+    const d=document.createElement("div");d.className="bubble";d.dataset.n=n;
+    d.style.cssText=`left:${left}%;top:${top}%;width:${width}%;--tail:${tail}%`;
+    d.innerHTML=`<span class="n">${n}</span><span class="t">${t}</span>${s?`<span class="s">${s}</span>`:""}`;
+    box.appendChild(d);
+  }
+}
+
+function side(){
+  const s=document.getElementById("side");s.innerHTML="";
+  if(mode==="raw"){s.innerHTML=`<p class="fine">첨삭 없이 학생이 쓴 것만 보입니다. 위 단추로 A·B안을 견줘 보세요.</p>`;return}
+  for(const q of [1,2,3]){
+    const box=document.createElement("section");box.className="q";
+    box.innerHTML=`<h2><span class="mark">${QSUM[q][0]}</span><span>${QTITLE[q]} <span style="color:var(--muted);font-weight:400">· ${QSUM[q].slice(2)}</span></span></h2>`;
+    const list=NOTES.filter(n=>n.q===q);
+    if(!list.length){const p=document.createElement("p");p.className="fine";p.textContent="세 가지 계산의 차례와 괄호를 모두 썼습니다.";box.appendChild(p)}
+    for(const n of list){
+      const b=document.createElement("button");b.className="note";b.type="button";
+      b.innerHTML=`<span class="k"><span class="num">${n.n}</span>${n.kind}</span>
+        <span class="quote">${n.quote}</span>
+        <span class="why">${n.why}</span>
+        <span class="ref"><b>채점 기준</b> · ${n.ref}</span>`;
+      b.addEventListener("click",()=>{
+        document.querySelectorAll(".note.on").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+        document.querySelectorAll(".bubble").forEach(x=>x.classList.toggle("on",x.dataset.n==String(n.n)));
+        const a=anchors[n.n];if(!a)return;a.classList.remove("flash");void a.getBBox();a.classList.add("flash");
+        const r=document.getElementById("photo").getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)a.scrollIntoView({block:"center",behavior:"smooth"});
+      });
+      box.appendChild(b);
+    }
+    s.appendChild(box);
+  }
+}
+
+function setMode(m){mode=m;draw();side()}
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",draw);
+Promise.all(["24px 'Nanum Pen Script'","700 24px Gaegu"].map(f=>document.fonts.load(f,"가나다")))
+  .catch(()=>{}).finally(()=>setMode("paper"));
+})();
+</script>
