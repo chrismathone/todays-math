@@ -1,0 +1,966 @@
+{
+ "version": 1,
+ "purpose": "사진 위 첨삭 M1 — B(질문 · ○×) · C(빈칸 · 적용) 합성 학생지. 지면은 2026-11-26 e5 은행으로 만든 스냅숏을 얼렸다.",
+ "pages": {
+  "2-3-1": [
+   {
+    "number": 1,
+    "form": "term",
+    "questions": [
+     {
+      "id": "p1.q1",
+      "number": 1,
+      "sourceId": "e5-2-3-1-c1",
+      "prompt": "두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오."
+     },
+     {
+      "id": "p1.q2",
+      "number": 2,
+      "sourceId": "e5-2-3-1-c3",
+      "prompt": "넓이가 같은 두 도형은 항상 합동인지 쓰고, 가로 $6\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 예로 들어 그 까닭을 설명하시오."
+     },
+     {
+      "id": "p1.q3",
+      "number": 3,
+      "sourceId": "e5-2-3-1-o1",
+      "prompt": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $5\\,\\mathrm{cm}$인 정사각형은 합동이다."
+     }
+    ],
+    "slots": [
+     {
+      "id": "p1.q1.answer",
+      "questionId": "p1.q1",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q2.answer",
+      "questionId": "p1.q2",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q3.mark",
+      "questionId": "p1.q3",
+      "kind": "ox-mark",
+      "label": "○× 표시"
+     },
+     {
+      "id": "p1.q3.reason",
+      "questionId": "p1.q3",
+      "kind": "ox-reason",
+      "label": "까닭 줄 전체"
+     }
+    ],
+    "targets": [
+     {
+      "id": "p1.q1.grade-answer",
+      "questionId": "p1.q1",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q1.answer"
+      ],
+      "referenceAnswer": "두 도형의 모양과 크기가 같아서 포개었을 때 완전히 겹친다는 뜻이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "포개었을 때 완전히 겹친다",
+         "모양과 크기가 모두 같다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q2.grade-answer",
+      "questionId": "p1.q2",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q2.answer"
+      ],
+      "referenceAnswer": "항상 합동인 것은 아니다. 두 직사각형은 넓이가 모두 $12\\,\\mathrm{cm} ^2$이지만 변의 길이가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "항상 합동인 것은 아니다",
+         "합동이 아닐 수 있다"
+        ]
+       },
+       {
+        "anyOf": [
+         "두 직사각형은 변의 길이가 서로 다르다",
+         "포개어도 완전히 겹치지 않는다",
+         "넓이는 같지만 모양이 다르다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q3.grade-ox",
+      "questionId": "p1.q3",
+      "kind": "ox",
+      "slotIds": [
+       "p1.q3.mark",
+       "p1.q3.reason"
+      ],
+      "referenceAnswer": "× · 모양은 같아도 크기가 달라 포갤 수 없다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "×"
+        ]
+       },
+       {
+        "anyOf": [
+         "모양은 같아도 크기가 달라 포갤 수 없다."
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "number": 2,
+    "form": "cloze",
+    "questions": [
+     {
+      "id": "p2.q1",
+      "number": 1,
+      "sourceId": "e5-2-3-1-c1",
+      "prompt": "모양과 크기가 같아서 포개었을 때 완전히 □ 두 도형을 서로 □이라고 한다."
+     },
+     {
+      "id": "p2.q2",
+      "number": 2,
+      "sourceId": "e5-2-3-1-c2",
+      "prompt": "합동인 두 도형은 모양뿐 아니라 □도 같아야 한다."
+     },
+     {
+      "id": "p2.q3",
+      "number": 3,
+      "sourceId": "e5-2-3-1-c3",
+      "prompt": "가로 $6\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 서로 □. 그러나 포개어도 완전히 겹치지 않으므로 두 직사각형은 합동이 □."
+     },
+     {
+      "id": "p2.q4",
+      "number": 4,
+      "sourceId": "e5-2-3-1-a1",
+      "prompt": "한 도형을 크기 변화 없이 뒤집어 얻은 도형과 원래 도형의 관계를 쓰고 까닭을 설명하시오."
+     }
+    ],
+    "slots": [
+     {
+      "id": "p2.q1.b1",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q1.b2",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 2"
+     },
+     {
+      "id": "p2.q2.b1",
+      "questionId": "p2.q2",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q3.b1",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q3.b2",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 2"
+     },
+     {
+      "id": "p2.q4.answer",
+      "questionId": "p2.q4",
+      "kind": "answer",
+      "label": "최종 답 줄 전체"
+     }
+    ],
+    "targets": [
+     {
+      "id": "p2.q1.grade-b1",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q1.b1"
+      ],
+      "referenceAnswer": "겹치는",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "겹치는",
+         "포개어지는"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q1.grade-b2",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q1.b2"
+      ],
+      "referenceAnswer": "합동",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "합동"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q2.grade-b1",
+      "questionId": "p2.q2",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q2.b1"
+      ],
+      "referenceAnswer": "크기",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "크기"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q3.grade-b1",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q3.b1"
+      ],
+      "referenceAnswer": "같다",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "같다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q3.grade-b2",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q3.b2"
+      ],
+      "referenceAnswer": "아니다",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "아니다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q4.grade-answer",
+      "questionId": "p2.q4",
+      "kind": "apply",
+      "slotIds": [
+       "p2.q4.answer"
+      ],
+      "referenceAnswer": "합동 — 뒤집어도 모양과 크기가 그대로라 원래 도형에 꼭 맞게 포개어지기 때문이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "합동 — 뒤집어도 모양과 크기가 그대로라 원래 도형에 꼭 맞게 포개어지기 때문이다."
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "2-3-2": [
+   {
+    "number": 1,
+    "form": "term",
+    "questions": [
+     {
+      "id": "p1.q1",
+      "number": 1,
+      "sourceId": "e5-2-3-2-c1",
+      "prompt": "서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오."
+     },
+     {
+      "id": "p1.q2",
+      "number": 2,
+      "sourceId": "e5-2-3-2-c2",
+      "prompt": "서로 합동인 두 도형에서 대응변은 어떤 변을 말하는지 설명하시오."
+     },
+     {
+      "id": "p1.q3",
+      "number": 3,
+      "sourceId": "e5-2-3-2-c3",
+      "prompt": "서로 합동인 두 도형에서 대응각은 어떤 각을 말하는지 설명하시오."
+     },
+     {
+      "id": "p1.q4",
+      "number": 4,
+      "sourceId": "e5-2-3-2-c4",
+      "prompt": "서로 합동인 두 도형에서 대응변의 길이끼리, 대응각의 크기끼리는 각각 어떤 관계인지 쓰시오."
+     },
+     {
+      "id": "p1.q5",
+      "number": 5,
+      "sourceId": "e5-2-3-2-c5",
+      "prompt": "서로 합동인 두 도형 중 하나가 돌아가 있을 때, 놓인 위치만 보고 짝을 정하면 틀릴 수 있다. 무엇을 비교하거나 어떻게 포개어서 대응하는 부분을 찾을 수 있는지 설명하시오."
+     },
+     {
+      "id": "p1.q6",
+      "number": 6,
+      "sourceId": "e5-2-3-2-o1",
+      "prompt": "두 삼각형이 합동이면 짝이 되는 각의 크기도 일치한다."
+     }
+    ],
+    "slots": [
+     {
+      "id": "p1.q1.answer",
+      "questionId": "p1.q1",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q2.answer",
+      "questionId": "p1.q2",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q3.answer",
+      "questionId": "p1.q3",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q4.answer",
+      "questionId": "p1.q4",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q5.answer",
+      "questionId": "p1.q5",
+      "kind": "answer",
+      "label": "답 줄 전체"
+     },
+     {
+      "id": "p1.q6.mark",
+      "questionId": "p1.q6",
+      "kind": "ox-mark",
+      "label": "○× 표시"
+     },
+     {
+      "id": "p1.q6.reason",
+      "questionId": "p1.q6",
+      "kind": "ox-reason",
+      "label": "까닭 줄 전체"
+     }
+    ],
+    "targets": [
+     {
+      "id": "p1.q1.grade-answer",
+      "questionId": "p1.q1",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q1.answer"
+      ],
+      "referenceAnswer": "서로 합동인 두 도형을 완전히 포개었을 때 서로 겹치는 두 점이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "두 도형을 완전히 포개었을 때 서로 겹치는 두 점"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q2.grade-answer",
+      "questionId": "p1.q2",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q2.answer"
+      ],
+      "referenceAnswer": "두 도형을 완전히 포개었을 때 서로 겹치는 변이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "완전히 포개었을 때 겹치는 변",
+         "포개면 서로 맞닿아 겹쳐지는 변"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q3.grade-answer",
+      "questionId": "p1.q3",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q3.answer"
+      ],
+      "referenceAnswer": "두 도형을 완전히 포개었을 때 서로 겹치는 각이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "완전히 포개었을 때 겹치는 각",
+         "포개면 서로 겹쳐지는 각"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q4.grade-answer",
+      "questionId": "p1.q4",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q4.answer"
+      ],
+      "referenceAnswer": "대응변의 길이는 서로 같고, 대응각의 크기도 서로 같다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "대응변의 길이가 서로 같다"
+        ]
+       },
+       {
+        "anyOf": [
+         "대응각의 크기가 서로 같다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q5.grade-answer",
+      "questionId": "p1.q5",
+      "kind": "concept",
+      "slotIds": [
+       "p1.q5.answer"
+      ],
+      "referenceAnswer": "변의 길이와 각의 크기가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다. 한 도형을 돌려 다른 도형과 완전히 포갠 뒤 겹치는 부분을 찾아도 된다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "변의 길이와 각의 크기를 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다",
+         "한 도형을 돌려 완전히 포개고 그때 서로 겹치는 부분을 찾는다"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p1.q6.grade-ox",
+      "questionId": "p1.q6",
+      "kind": "ox",
+      "slotIds": [
+       "p1.q6.mark",
+       "p1.q6.reason"
+      ],
+      "referenceAnswer": "○ · 포개지는 각이므로 벌어진 정도도 같다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "○"
+        ]
+       },
+       {
+        "anyOf": [
+         "포개지는 각이므로 벌어진 정도도 같다."
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "number": 2,
+    "form": "cloze",
+    "questions": [
+     {
+      "id": "p2.q1",
+      "number": 1,
+      "sourceId": "e5-2-3-2-c1",
+      "prompt": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 꼭짓점을 □이라고 한다."
+     },
+     {
+      "id": "p2.q2",
+      "number": 2,
+      "sourceId": "e5-2-3-2-c2",
+      "prompt": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 변을 □이라고 한다."
+     },
+     {
+      "id": "p2.q3",
+      "number": 3,
+      "sourceId": "e5-2-3-2-c3",
+      "prompt": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 각을 □이라고 한다."
+     },
+     {
+      "id": "p2.q4",
+      "number": 4,
+      "sourceId": "e5-2-3-2-c4",
+      "prompt": "합동이면 대응변들의 □와 대응각들의 □가 각각 일치한다."
+     },
+     {
+      "id": "p2.q5",
+      "number": 5,
+      "sourceId": "e5-2-3-2-c5",
+      "prompt": "합동인 두 도형 중 하나가 돌아가 있으면, 변의 □와 각의 □가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다."
+     },
+     {
+      "id": "p2.q6",
+      "number": 6,
+      "sourceId": "e5-2-3-2-a1",
+      "prompt": "합동인 두 삼각형에서 변 ㄱㄴ의 대응변이 변 ㄹㅁ일 때, 변 ㄹㅁ을 재지 않고도 길이를 알 수 있는 까닭을 쓰시오."
+     }
+    ],
+    "slots": [
+     {
+      "id": "p2.q1.b1",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q2.b1",
+      "questionId": "p2.q2",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q3.b1",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q4.b1",
+      "questionId": "p2.q4",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q4.b2",
+      "questionId": "p2.q4",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 2"
+     },
+     {
+      "id": "p2.q5.b1",
+      "questionId": "p2.q5",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 1"
+     },
+     {
+      "id": "p2.q5.b2",
+      "questionId": "p2.q5",
+      "kind": "cloze",
+      "label": "왼쪽→오른쪽/위→아래 빈칸 2"
+     },
+     {
+      "id": "p2.q6.answer",
+      "questionId": "p2.q6",
+      "kind": "answer",
+      "label": "최종 답 줄 전체"
+     }
+    ],
+    "targets": [
+     {
+      "id": "p2.q1.grade-b1",
+      "questionId": "p2.q1",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q1.b1"
+      ],
+      "referenceAnswer": "대응점",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "대응점"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q2.grade-b1",
+      "questionId": "p2.q2",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q2.b1"
+      ],
+      "referenceAnswer": "대응변",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "대응변"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q3.grade-b1",
+      "questionId": "p2.q3",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q3.b1"
+      ],
+      "referenceAnswer": "대응각",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "대응각"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q4.grade-b1",
+      "questionId": "p2.q4",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q4.b1"
+      ],
+      "referenceAnswer": "길이",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "길이"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q4.grade-b2",
+      "questionId": "p2.q4",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q4.b2"
+      ],
+      "referenceAnswer": "크기",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "크기"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q5.grade-b1",
+      "questionId": "p2.q5",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q5.b1"
+      ],
+      "referenceAnswer": "길이",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "길이"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q5.grade-b2",
+      "questionId": "p2.q5",
+      "kind": "cloze",
+      "slotIds": [
+       "p2.q5.b2"
+      ],
+      "referenceAnswer": "크기",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "크기"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "p2.q6.grade-answer",
+      "questionId": "p2.q6",
+      "kind": "apply",
+      "slotIds": [
+       "p2.q6.answer"
+      ],
+      "referenceAnswer": "합동이면 포갤 때 대응변끼리 꼭 겹쳐 길이가 같기 때문이다.",
+      "requiredIdeas": [
+       {
+        "anyOf": [
+         "합동이면 포갤 때 대응변끼리 꼭 겹쳐 길이가 같기 때문이다."
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "sheets": [
+  {
+   "section": "2-3-1",
+   "page": 1,
+   "name": "S1",
+   "answers": {
+    "p1.q1.answer": "모양과 크기가 같아서 포개면 완전히 겹치는 것",
+    "p1.q2.answer": "항상 합동은 아니다. 두 직사각형은 넓이가 12로 같지만 가로 세로 길이가 달라서 포개어도 겹치지 않는다.",
+    "p1.q3.mark": "×",
+    "p1.q3.reason": "크기가 달라서 포개어도 겹치지 않는다"
+   },
+   "expected": {
+    "p1.q1.grade-answer": "correct",
+    "p1.q2.grade-answer": "correct",
+    "p1.q3.grade-ox": "correct"
+   }
+  },
+  {
+   "section": "2-3-1",
+   "page": 1,
+   "name": "S2",
+   "answers": {
+    "p1.q1.answer": "모양이 같은 두 도형",
+    "p1.q2.answer": "넓이가 같으면 항상 합동이다.",
+    "p1.q3.mark": "○",
+    "p1.q3.reason": "둘 다 정사각형이라서"
+   },
+   "expected": {
+    "p1.q1.grade-answer": "incorrect",
+    "p1.q2.grade-answer": "incorrect",
+    "p1.q3.grade-ox": "incorrect"
+   }
+  },
+  {
+   "section": "2-3-1",
+   "page": 1,
+   "name": "S3",
+   "answers": {
+    "p1.q1.answer": "포개었을 때 완전히 겹치는 두 도형",
+    "p1.q2.answer": "항상 합동은 아니다.",
+    "p1.q3.mark": "×",
+    "p1.q3.reason": null
+   },
+   "expected": {
+    "p1.q1.grade-answer": "correct",
+    "p1.q2.grade-answer": "partial",
+    "p1.q3.grade-ox": "partial|incorrect"
+   }
+  },
+  {
+   "section": "2-3-1",
+   "page": 2,
+   "name": "S1",
+   "answers": {
+    "p2.q1.b1": "겹치는",
+    "p2.q1.b2": "합동",
+    "p2.q2.b1": "크기",
+    "p2.q3.b1": "같다",
+    "p2.q3.b2": "아니다",
+    "p2.q4.answer": "합동이다. 뒤집어도 모양과 크기가 변하지 않아서 꼭 맞게 포개어진다."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "correct",
+    "p2.q1.grade-b2": "correct",
+    "p2.q2.grade-b1": "correct",
+    "p2.q3.grade-b1": "correct",
+    "p2.q3.grade-b2": "correct",
+    "p2.q4.grade-answer": "correct"
+   }
+  },
+  {
+   "section": "2-3-1",
+   "page": 2,
+   "name": "S2",
+   "answers": {
+    "p2.q1.b1": "포개어지는",
+    "p2.q1.b2": "닮음",
+    "p2.q2.b1": "모양",
+    "p2.q3.b1": "같다",
+    "p2.q3.b2": "이다",
+    "p2.q4.answer": "합동이 아니다. 뒤집으면 모양이 바뀌기 때문이다."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "correct",
+    "p2.q1.grade-b2": "incorrect",
+    "p2.q2.grade-b1": "incorrect",
+    "p2.q3.grade-b1": "correct",
+    "p2.q3.grade-b2": "incorrect",
+    "p2.q4.grade-answer": "incorrect"
+   }
+  },
+  {
+   "section": "2-3-1",
+   "page": 2,
+   "name": "S3",
+   "answers": {
+    "p2.q1.b1": "같은",
+    "p2.q1.b2": "합동",
+    "p2.q2.b1": "넓이",
+    "p2.q3.b1": "같다",
+    "p2.q3.b2": "아니다",
+    "p2.q4.answer": "합동이다."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "incorrect",
+    "p2.q1.grade-b2": "correct",
+    "p2.q2.grade-b1": "incorrect",
+    "p2.q3.grade-b1": "correct",
+    "p2.q3.grade-b2": "correct",
+    "p2.q4.grade-answer": "partial"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 1,
+   "name": "S1",
+   "answers": {
+    "p1.q1.answer": "두 도형을 완전히 포갰을 때 겹치는 두 점",
+    "p1.q2.answer": "포개면 서로 겹치는 변",
+    "p1.q3.answer": "포갰을 때 겹치는 각",
+    "p1.q4.answer": "대응변의 길이가 같고 대응각의 크기도 같다.",
+    "p1.q5.answer": "변의 길이와 각의 크기를 비교하고 꼭짓점 순서대로 짝짓는다.",
+    "p1.q6.mark": "○",
+    "p1.q6.reason": "포개면 겹치는 각이라 크기가 같다"
+   },
+   "expected": {
+    "p1.q1.grade-answer": "correct",
+    "p1.q2.grade-answer": "correct",
+    "p1.q3.grade-answer": "correct",
+    "p1.q4.grade-answer": "correct",
+    "p1.q5.grade-answer": "correct",
+    "p1.q6.grade-ox": "correct"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 1,
+   "name": "S2",
+   "answers": {
+    "p1.q1.answer": "같은 위치에 있는 점",
+    "p1.q2.answer": "길이가 같은 변",
+    "p1.q3.answer": "포갰을 때 겹치는 각",
+    "p1.q4.answer": "대응변의 길이가 같다.",
+    "p1.q5.answer": "놓인 위치가 같은 것끼리 짝짓는다.",
+    "p1.q6.mark": "×",
+    "p1.q6.reason": "삼각형마다 각이 다르다"
+   },
+   "expected": {
+    "p1.q1.grade-answer": "incorrect",
+    "p1.q2.grade-answer": "incorrect",
+    "p1.q3.grade-answer": "correct",
+    "p1.q4.grade-answer": "partial",
+    "p1.q5.grade-answer": "incorrect",
+    "p1.q6.grade-ox": "incorrect"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 1,
+   "name": "S3",
+   "answers": {
+    "p1.q1.answer": "포개었을 때 겹치는 점",
+    "p1.q2.answer": "마주 보는 변",
+    "p1.q3.answer": "크기가 같은 각",
+    "p1.q4.answer": "대응변의 길이와 대응각의 크기가 각각 다르다",
+    "p1.q5.answer": "돌려서 포개 본다.",
+    "p1.q6.mark": "○",
+    "p1.q6.reason": null
+   },
+   "expected": {
+    "p1.q1.grade-answer": "correct",
+    "p1.q2.grade-answer": "incorrect",
+    "p1.q3.grade-answer": "incorrect",
+    "p1.q4.grade-answer": "incorrect",
+    "p1.q5.grade-answer": "partial",
+    "p1.q6.grade-ox": "partial|incorrect"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 2,
+   "name": "S1",
+   "answers": {
+    "p2.q1.b1": "대응점",
+    "p2.q2.b1": "대응변",
+    "p2.q3.b1": "대응각",
+    "p2.q4.b1": "길이",
+    "p2.q4.b2": "크기",
+    "p2.q5.b1": "길이",
+    "p2.q5.b2": "크기",
+    "p2.q6.answer": "합동이면 대응변의 길이가 같으니까 변 ㄱㄴ의 길이와 같다."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "correct",
+    "p2.q2.grade-b1": "correct",
+    "p2.q3.grade-b1": "correct",
+    "p2.q4.grade-b1": "correct",
+    "p2.q4.grade-b2": "correct",
+    "p2.q5.grade-b1": "correct",
+    "p2.q5.grade-b2": "correct",
+    "p2.q6.grade-answer": "correct"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 2,
+   "name": "S2",
+   "answers": {
+    "p2.q1.b1": "꼭짓점",
+    "p2.q2.b1": "대응변",
+    "p2.q3.b1": "대응각",
+    "p2.q4.b1": "넓이",
+    "p2.q4.b2": "크기",
+    "p2.q5.b1": "위치",
+    "p2.q5.b2": "크기",
+    "p2.q6.answer": "변 ㄹㅁ은 변 ㄱㄴ보다 길기 때문이다."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "incorrect",
+    "p2.q2.grade-b1": "correct",
+    "p2.q3.grade-b1": "correct",
+    "p2.q4.grade-b1": "incorrect",
+    "p2.q4.grade-b2": "correct",
+    "p2.q5.grade-b1": "incorrect",
+    "p2.q5.grade-b2": "correct",
+    "p2.q6.grade-answer": "incorrect"
+   }
+  },
+  {
+   "section": "2-3-2",
+   "page": 2,
+   "name": "S3",
+   "answers": {
+    "p2.q1.b1": "대응점",
+    "p2.q2.b1": "짝변",
+    "p2.q3.b1": "대응각",
+    "p2.q4.b1": "길이",
+    "p2.q4.b2": "모양",
+    "p2.q5.b1": "길이",
+    "p2.q5.b2": "크기",
+    "p2.q6.answer": "대응변이라서."
+   },
+   "expected": {
+    "p2.q1.grade-b1": "correct",
+    "p2.q2.grade-b1": "incorrect",
+    "p2.q3.grade-b1": "correct",
+    "p2.q4.grade-b1": "correct",
+    "p2.q4.grade-b2": "incorrect",
+    "p2.q5.grade-b1": "correct",
+    "p2.q5.grade-b2": "correct",
+    "p2.q6.grade-answer": "partial"
+   }
+  }
+ ]
+}

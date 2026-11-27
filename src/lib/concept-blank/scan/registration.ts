@@ -97,6 +97,8 @@ function localScale(h: number[], p: ScanPoint) {
   );
 }
 
+const ISOLATION_MAX_INK = 0.04;
+
 /** Version 1 marks are 3mm hollow squares, .6mm stroke, centred at the frozen locations. */
 export function scanMarkerCandidates(
   image: ScanPixels,
@@ -163,6 +165,32 @@ export function scanMarkerCandidates(
         mean = localMean(x, y);
       dark[y * w + x] = value < mean * 0.78 && value < mean - 24 ? 1 : 0;
     }
+  const ink = dark.slice();
+  /** 둘레 띠의 잉크 비율 — 표식은 빈 여백에 홀로 찍힌다. */
+  const ringInk = (x0: number, y0: number, x1: number, y1: number) => {
+    const side = Math.max(x1 - x0, y1 - y0) + 1,
+      inner = Math.max(2, Math.round(side * 0.15)),
+      outer = Math.round(side * 0.8);
+    let inked = 0,
+      total = 0;
+    for (let y = Math.max(0, y0 - outer); y <= Math.min(h - 1, y1 + outer); y++)
+      for (
+        let x = Math.max(0, x0 - outer);
+        x <= Math.min(w - 1, x1 + outer);
+        x++
+      ) {
+        if (
+          x >= x0 - inner &&
+          x <= x1 + inner &&
+          y >= y0 - inner &&
+          y <= y1 + inner
+        )
+          continue;
+        total++;
+        inked += ink[y * w + x];
+      }
+    return total ? inked / total : 1;
+  };
   const candidates: ScanPoint[] = [];
   for (let index = 0; index < dark.length; index++) {
     if (!dark[index]) continue;
@@ -218,6 +246,8 @@ export function scanMarkerCandidates(
     const cx = Math.round(point.x) - left,
       cy = Math.round(point.y) - top;
     if (lum[cy * w + cx] < localMean(cx, cy) * 0.9) continue;
+    // 인쇄 글자 «ㅁ» 도 속이 빈 네모다 — 이웃 글자가 둘레에 잉크를 남긴다(2026-11-27 가상 정면 사진).
+    if (ringInk(minX, minY, maxX, maxY) > ISOLATION_MAX_INK) continue;
     candidates.push(point);
   }
   return candidates;

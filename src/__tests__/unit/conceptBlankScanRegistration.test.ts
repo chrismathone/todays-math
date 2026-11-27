@@ -26,7 +26,7 @@ const layout = {
   ],
 } satisfies ScanLayoutPage;
 const transform = [4, 0, 30, 0, 4, 30, 0, 0, 1];
-function picture(omit = -1, extra = false) {
+function picture(omit = -1, extra = false, glyph = false) {
   const width = 900,
     height = 1250;
   const data = new Uint8ClampedArray(width * height * 4).fill(255);
@@ -45,6 +45,20 @@ function picture(omit = -1, extra = false) {
     }
   });
   if (extra) ring(80, 56);
+  if (glyph) {
+    // 인쇄 글자 «ㅁ» 처럼 속이 빈 네모가 글줄 안에 있다 — 둘레에 이웃 글자의 잉크가 있다.
+    ring(80, 56);
+    for (const [x0, y0, x1, y1] of [
+      [90, 50, 93, 62],
+      [96, 52, 104, 55],
+      [74, 66, 87, 68],
+    ])
+      for (let py = y0; py < y1; py++)
+        for (let px = x0; px < x1; px++) {
+          const index = (py * width + px) * 4;
+          data[index] = data[index + 1] = data[index + 2] = 0;
+        }
+  }
   const corners = scanQrDataCorners(layout.qr, 6).map((p) =>
     projectScanPoint(transform, p),
   );
@@ -94,6 +108,13 @@ describe("trusted paper to photo registration", () => {
       expect(result).not.toHaveProperty("slots");
       expect(result).not.toHaveProperty("transform");
     }
+  });
+  it("ignores a hollow printed glyph inside a text line next to a corner mark", () => {
+    const { image, qr } = picture(-1, false, true);
+    const result = registerScanPhoto(image, layout, qr);
+    expect(result.status).toBe("matched");
+    if (result.status !== "matched") throw new Error(result.reason);
+    expect(result.slots[0].points[0].x * image.width).toBeCloseTo(109.5, 1);
   });
   it("does not extrapolate small QR corner noise into distant answer positions", () => {
     const { image, qr } = picture();

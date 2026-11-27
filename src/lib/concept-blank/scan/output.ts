@@ -83,6 +83,26 @@ export const SCAN_READ_OUTPUT_SCHEMA = object({
   },
   written_name: { anyOf: [object({ status, text: string }), { type: "null" }] },
 });
+/** v4 — 칸마다 사진의 물리 글줄(위→아래). 첨삭 밑줄을 글줄에 맞추려고만 쓴다(M2). */
+export const SCAN_READ_LINES_OUTPUT_SCHEMA = object({
+  slots: {
+    type: "array",
+    items: object({
+      id: string,
+      status,
+      text: string,
+      lines: { type: "array", items: string },
+      tags: {
+        type: "array",
+        items: {
+          type: "string",
+          enum: ["clear", "faint", "erased", "outside", "red-overlap", "blank"],
+        },
+      },
+    }),
+  },
+  written_name: { anyOf: [object({ status, text: string }), { type: "null" }] },
+});
 export const SCAN_GRADE_OUTPUT_SCHEMA = object({
   grades: {
     type: "array",
@@ -93,6 +113,21 @@ export const SCAN_GRADE_OUTPUT_SCHEMA = object({
         enum: ["correct", "partial", "incorrect", "review"],
       },
       reason: string,
+    }),
+  },
+});
+/** 첨삭을 함께 묻는 판(계획 §6.2 4 · 5). 판정 칸은 위와 같고 notes 는 따로 검증한다. */
+export const SCAN_GRADE_MARKUP_OUTPUT_SCHEMA = object({
+  grades: SCAN_GRADE_OUTPUT_SCHEMA.properties.grades,
+  notes: {
+    type: "array",
+    items: object({
+      targetId: string,
+      slotId: string,
+      kind: { type: "string", enum: ["wrong", "missing", "example"] },
+      quote: string,
+      say: string,
+      fix: string,
     }),
   },
 });
