@@ -1,4 +1,8 @@
 import {
+  scanMarkupViewSchema,
+  type ScanMarkupAction,
+} from "@/contracts/conceptBlankScanMarkup.contract";
+import {
   scanNameCaptureViewSchema,
   type scanNameCaptureInputSchema,
   type scanNameCaptureActionSchema,
@@ -114,6 +118,21 @@ export const scanSource = {
     ),
   override: (submissionId: string, input: ScanOverrideInput) =>
     request(`/submissions/${submissionId}/override`, revision, "POST", input),
+  markup: (submissionId: string, signal?: AbortSignal) =>
+    request(
+      `/submissions/${submissionId}/markup`,
+      scanMarkupViewSchema,
+      "GET",
+      undefined,
+      signal,
+    ),
+  changeMarkup: (submissionId: string, input: ScanMarkupAction) =>
+    request(
+      `/submissions/${submissionId}/markup`,
+      z.object({ saved: z.literal(true) }),
+      "POST",
+      input,
+    ),
   photoUrl: async (submissionId: string, photoId: string) =>
     (
       await request(

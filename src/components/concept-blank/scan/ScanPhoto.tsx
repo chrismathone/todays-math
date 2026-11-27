@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import type { ScanSubmissionView } from "@/contracts/conceptBlankScanApi.contract";
+import { ScanPhotoInk, type ScanPhotoMark } from "./ScanPhotoInk";
 import type { ScanSource } from "./api";
 import s from "./scan.module.css";
 
@@ -52,16 +53,23 @@ function usePhoto({ photo, submissionId, source }: Props) {
 }
 
 /** Actual submitted pixels, also usable inside the common PaperStrip at its supplied scale. */
-export function ScanPhotoPreview(props: Props) {
+export function ScanPhotoPreview(
+  props: Props & {
+    ink?: { grades: ScanSubmissionView["grades"]; marks: ScanPhotoMark[] };
+  },
+) {
   const image = usePhoto(props);
   return (
     <div className={s.stripPhoto}>
       {image.url ? (
-        <img
-          src={image.url}
-          alt={`${props.photo.page}쪽 촬영 사진`}
-          onError={image.failed}
-        />
+        <>
+          <img
+            src={image.url}
+            alt={`${props.photo.page}쪽 촬영 사진`}
+            onError={image.failed}
+          />
+          {props.ink && <ScanPhotoInk photo={props.photo} {...props.ink} />}
+        </>
       ) : (
         <p>
           {props.photo.available

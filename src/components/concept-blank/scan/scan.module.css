@@ -392,3 +392,88 @@
     position: static;
   }
 }
+
+@font-face {
+  font-family: Gaegu;
+  src: url("/fonts/Gaegu-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+.resultPhotos {
+  margin-block: 16px;
+}
+.stripPhoto {
+  position: relative;
+}
+.markupOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.redPen {
+  fill: none;
+  stroke: #c8141c;
+  stroke-width: 0.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.35px white);
+}
+.redBadge {
+  fill: #c8141c;
+  stroke: white;
+  stroke-width: 0.45;
+}
+.badgeText {
+  fill: white;
+  font-size: 4px;
+  font-weight: 600;
+}
+.placedMarkup,
+.markupSay {
+  font-family: Gaegu, cursive;
+  font-weight: 700;
+  paint-order: stroke;
+  -webkit-text-stroke: 2px white;
+}
+.placedMarkup {
+  fill: #c8141c;
+  font-size: 6px;
+  stroke: white;
+  stroke-width: 0.55;
+  -webkit-text-stroke: unset;
+}
+.markupNotes ul {
+  list-style: none;
+  padding: 0;
+}
+.markupSay {
+  color: #c8141c;
+  font-size: 23px;
+  overflow-wrap: anywhere;
+}
+.markupSay[data-draft="true"],
+.markupOverlay [data-draft="true"] {
+  opacity: 0.6;
+}
+.markupStatus {
+  font-size: 11px;
+  color: #c8141c;
+}
+.markupNumber {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-inline-end: 8px;
+  padding-inline: 3px;
+  border-radius: 999px;
+  background: #c8141c;
+  color: white;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 13px;
+  -webkit-text-stroke: 0;
+}

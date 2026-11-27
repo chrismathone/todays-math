@@ -17,6 +17,8 @@ delete process.env.DIRECT_URL;
 const root = fileURLToPath(new URL("../../..", import.meta.url));
 const dir = fileURLToPath(new URL(".", import.meta.url));
 const out = process.env.CB_SCAN_QA_OUTPUT ?? "/tmp/cb-scan-ship-20261125";
+process.env.CONCEPT_BLANK_SCAN_MARKUP = "on";
+const markupSay = "대응하는 각도 살펴보세요.";
 const base = "http://127.0.0.1:4250";
 const originalFetch = globalThis.fetch;
 globalThis.fetch = (input, init) => {
@@ -152,19 +154,23 @@ const server = await createServer({
               const name =
                 action === "student"
                   ? "assignStudent"
-                  : action === "photos"
-                    ? photoId
-                      ? req.method === "DELETE"
-                        ? "remove"
-                        : "sign"
-                      : "photo"
-                    : action === "answers"
-                      ? "answer"
-                      : action === "jobs"
-                        ? "job"
-                        : action === "override"
-                          ? "override"
-                          : "get";
+                  : action === "markup"
+                    ? req.method === "POST"
+                      ? "markupPost"
+                      : "markupGet"
+                    : action === "photos"
+                      ? photoId
+                        ? req.method === "DELETE"
+                          ? "remove"
+                          : "sign"
+                        : "photo"
+                      : action === "answers"
+                        ? "answer"
+                        : action === "jobs"
+                          ? "job"
+                          : action === "override"
+                            ? "override"
+                            : "get";
               response = await handlers[name](request, context);
             }
             evidence.requests.push({
@@ -208,7 +214,7 @@ try {
   const { createScanHttpHandlers } = await server.ssrLoadModule(
     `${root}/src/lib/concept-blank/scan/httpHandlers.ts`,
   );
-  const { scanConfig } = await server.ssrLoadModule(
+  const { scanConfig, scanReservation } = await server.ssrLoadModule(
     `${root}/src/lib/concept-blank/scan/model.ts`,
   );
   ({ issueScanPaper: issuePaper, readIssuedScanPaper: readPaper } =
@@ -252,6 +258,20 @@ try {
       promptVersion: request.promptVersion,
       structured: !!request.jsonSchema,
     });
+    const versionCosts =
+      request.recover &&
+      (await Promise.all(
+        [request.recover, request].map((input) =>
+          scanReservation(scanConfig({}).gradeModel, input),
+        ),
+      ));
+    if (versionCosts) {
+      const [v2, v3] = versionCosts;
+      evidence.modelCalls.at(-1).inputTokenDelta =
+        v3.inputTokens - v2.inputTokens;
+      evidence.modelCalls.at(-1).reservedNanoUsdDelta =
+        v3.reservedNanoUsd - v2.reservedNanoUsd;
+    }
     const input = JSON.parse(request.prompt.split("\n").at(-1));
     if (request.operation === "read")
       return (
@@ -271,12 +291,24 @@ try {
       JSON.stringify({
         grades: input.map((target, i) => ({
           id: target.id,
-          label: i % 2 ? "partial" : "correct",
+          label: i % 2 === 0 ? "partial" : "correct",
           reason:
-            i % 2
+            i % 2 === 0
               ? "대응하는 각에 대한 설명이 더 필요합니다."
               : "요구한 뜻을 설명했습니다.",
         })),
+        notes: input.length
+          ? [
+              {
+                targetId: input[0].id,
+                slotId: input[0].studentAnswer[0].slot,
+                kind: "missing",
+                quote: "변의 길이",
+                say: markupSay,
+                fix: "대응하는 각의 크기가 같습니다.",
+              },
+            ]
+          : [],
       }) +
       "\n확인을 마쳤습니다."
     );
@@ -394,7 +426,9 @@ try {
   expect(qr?.data).toBe(
     `${base}/concept-blank/scan?p=${issued.id}&page=1&part=student`,
   );
-  browser = await chromium.launch();
+  browser = await chromium.launch({
+    executablePath: process.env.CB_SCAN_QA_CHROME,
+  });
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
   });
@@ -467,9 +501,7 @@ try {
   };
   await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.getByRole("button", { name: "답안 촬영 시작" }).click();
-  await expect(
-    page.getByRole("button", { name: "답 읽기" }),
-  ).toBeDisabled();
+  await expect(page.getByRole("button", { name: "답 읽기" })).toBeDisabled();
   for (const [i, file] of photos.entries()) {
     await page.getByLabel("사진 파일", { exact: true }).setInputFiles(file);
     await expect(
@@ -477,56 +509,26 @@ try {
     ).toBeVisible({ timeout: 30000 });
   }
   await capture("flow-capture-390");
-  await page
-    .getByRole("button", { name: "답 읽기" })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "읽은 답 확인", exact: true }),
-  ).toBeVisible({ timeout: 30000 });
-  await page.getByLabel("현재 쪽").selectOption("1");
-  await page
-    .getByRole("button", { name: "확인 번호 3 답 칸 확대", exact: true })
-    .click();
-  await expect(
-    page.getByRole("dialog", { name: "확인 번호 3 · 1쪽 답 칸" }),
-  ).toBeVisible();
-  await capture("flow-answer-zoom-390");
-  await page.getByRole("button", { name: "같은 번호 입력 칸으로" }).click();
-  await expect(
-    page
-      .getByRole("region", { name: "확인 번호 3", exact: true })
-      .getByLabel("종이에 쓴 답"),
-  ).toBeFocused();
-  await page.getByLabel("읽은 답 전체 보기").uncheck();
-  await page
-    .getByRole("button", { name: "종이에도 빈칸", exact: true })
-    .first()
-    .click();
-  await expect(
-    page.getByText("종이에도 비워 둔 답으로 확인했습니다."),
-  ).toBeVisible();
-  await page
-    .getByLabel("종이에 쓴 답")
-    .nth(1)
-    .fill("대응하는 변의 길이가 같습니다.");
-  await expect(
-    page.getByRole("button", { name: "확인 마침 · 채점하기" }),
-  ).toBeDisabled();
-  await page
-    .getByRole("button", { name: "저장", exact: true })
-    .nth(1)
-    .click();
-  await expect(
-    page.getByRole("button", { name: "확인 마침 · 채점하기" }),
-  ).toBeEnabled();
-  await capture("flow-check-390");
-  await page.getByRole("button", { name: "확인 마침 · 채점하기" }).click();
+  await page.getByRole("button", { name: "답 읽기" }).click();
   await expect(
     page.getByRole("heading", { name: "결과", exact: true }),
   ).toBeVisible({ timeout: 30000 });
   await expect(
     page.getByRole("button", { name: "판정 고치기", exact: true }),
   ).toHaveCount(0);
+  await page
+    .getByRole("button", { name: /사진 대조/ })
+    .first()
+    .click();
+  await page
+    .getByRole("button", { name: "1쪽 사진 확대", exact: true })
+    .click();
+  await expect(
+    page.getByRole("dialog", { name: "지면 확대 보기" }),
+  ).toBeVisible();
+  await expect(page.locator("[data-markup-badge]")).toHaveCount(0);
+  await expect(page.getByText(markupSay, { exact: true })).toHaveCount(0);
+  await page.getByRole("button", { name: "닫기", exact: true }).click();
   await capture("flow-student-result-390");
   await page.getByLabel("확인 필요만 보기").check();
   await capture("flow-review-filter-390");
@@ -536,6 +538,70 @@ try {
   ]);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto(studentUrl);
+  const publish = page
+    .getByRole("button", { name: "첨삭 공개", exact: true })
+    .first();
+  await expect(publish).toBeVisible();
+  await expect(
+    page.getByText("공개 전", { exact: true }).first(),
+  ).toBeVisible();
+  const font = await page.evaluate(async () => {
+    const faces = await document.fonts.load("700 23px Gaegu", "대응하는 각도");
+    return faces.map(({ family, status }) => ({ family, status }));
+  });
+  expect(font).toEqual([{ family: "Gaegu", status: "loaded" }]);
+  await capture("markup-teacher-draft-1440");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await capture("markup-teacher-draft-390");
+  await publish.click();
+  await expect(
+    page.locator('[data-markup-badge][data-draft="false"]').first(),
+  ).toBeVisible();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await context.clearCookies({ name: "scan-qa-role" });
+  await page.goto(studentUrl);
+  await expect(
+    page.getByText(markupSay, { exact: false }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByText("대응하는 각의 크기가 같습니다.", { exact: false }),
+  ).toHaveCount(0);
+  await capture("markup-student-published-1440");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await capture("markup-student-published-390");
+  const feedback = page.getByRole("region", { name: "사진 첨삭" }).first();
+  const gradedRow = feedback.locator("..");
+  await gradedRow.getByRole("button", { name: /사진 대조/ }).click();
+  const pageNumber = (await gradedRow.getByRole("heading").textContent()).match(
+    /(\d+)쪽/,
+  )[1];
+  await page
+    .getByRole("button", { name: `${pageNumber}쪽 사진 확대`, exact: true })
+    .click();
+  const expanded = page.getByRole("dialog", { name: "지면 확대 보기" });
+  const badge = expanded.locator("[data-markup-badge] circle").first();
+  await expect(badge).toBeVisible();
+  expect(
+    await badge.evaluate((circle) => {
+      const r = circle.getBoundingClientRect();
+      const top = document.elementFromPoint(
+        r.x + r.width / 2,
+        r.y + r.height / 2,
+      );
+      return (
+        top instanceof HTMLImageElement &&
+        top.closest("dialog") !== null &&
+        top.naturalWidth > 0
+      );
+    }),
+  ).toBe(true);
+  await capture("markup-student-photo-390");
+  await context.addCookies([
+    { name: "scan-qa-role", value: "teacher", url: base },
+  ]);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(studentUrl);
+
   await page
     .getByRole("button", { name: "판정 고치기", exact: true })
     .first()
@@ -547,15 +613,10 @@ try {
   await page.getByRole("button", { name: "판정 저장", exact: true }).click();
   await expect(page.getByText(/교사 수정 ·/).first()).toBeVisible();
   await expect(
-    page.getByText(/이름 칸과 연결한 학생의 이름이 다릅니다/),
+    page.getByText(/종이의 이름이 이 학생과 다릅니다/),
   ).toBeVisible();
   await capture("flow-teacher-result-1440");
   await page.goto(qr.data, { waitUntil: "domcontentloaded", timeout: 90_000 });
-  await page.getByRole("button", { name: "학생 고르기" }).click();
-  await expect(
-    page.getByRole("dialog", { name: "학생 고르기" }),
-  ).toBeVisible();
-  await capture("flow-teacher-picker-1440");
   const submissionId = new URL(studentUrl).searchParams.get("submission");
   const [submission] = await local.db.query(
     "SELECT state,revision,written_name,name_match_result,name_match_method FROM concept_blank_scan_submission WHERE id=$1::uuid",
@@ -580,13 +641,12 @@ try {
   );
   expect(submission.name_match_result).toBe("mismatch");
   expect(submission.name_match_method).toBe("student-account");
-  await page.keyboard.press("Escape");
   writtenName = { status: "read", text: "학생" };
-  await expect(page.getByText(/이름 칸 포함/)).toBeVisible();
+  await expect(page.getByRole("region", { name: "1쪽 촬영" })).toBeVisible();
   await page
     .getByLabel("1쪽 사진 파일", { exact: true })
     .setInputFiles(photos[0]);
-  await expect(page.getByText(/연결 방식: 이름 정확 일치/)).toBeVisible({
+  await expect(page.getByText(/이름으로 찾음/)).toBeVisible({
     timeout: 30000,
   });
   await capture("flow-name-matched-1440");
@@ -611,10 +671,10 @@ try {
   await page
     .getByLabel("1쪽 사진 파일", { exact: true })
     .setInputFiles(photos[0]);
-  await expect(
-    page.getByRole("dialog", { name: "학생 고르기" }),
-  ).toBeVisible({ timeout: 30000 });
-  await expect(page.getByText(/이름 일치 후보/)).toHaveCount(2);
+  await expect(page.getByRole("dialog", { name: "학생 고르기" })).toBeVisible({
+    timeout: 30000,
+  });
+  await expect(page.getByText(/이름 같음 ·/)).toHaveCount(2);
   await capture("flow-name-ambiguous-picker-390");
   const pendingId = new URL(page.url()).searchParams.get("nameCapture");
   const [pending] = await local.db.query(
@@ -626,21 +686,21 @@ try {
     name_match_result: "ambiguous",
   });
   await page
+    .getByRole("dialog", { name: "학생 고르기" })
     .getByRole("button", { name: "학생 고르기", exact: true })
     .first()
     .click();
-  await expect(page.getByText(/연결 방식: 교사가 선택/)).toBeVisible();
+  await expect(page.getByText(/교사가 고름/)).toBeVisible();
   await page.getByRole("button", { name: "학생 바꾸기" }).click();
-  await expect(
-    page.getByRole("dialog", { name: "학생 고르기" }),
-  ).toBeVisible();
+  await expect(page.getByRole("dialog", { name: "학생 고르기" })).toBeVisible();
   await page
+    .getByRole("dialog", { name: "학생 고르기" })
     .getByRole("button", { name: "학생 고르기", exact: true })
     .last()
     .click();
-  await expect(
-    page.getByRole("dialog", { name: "학생 고르기" }),
-  ).toHaveCount(0);
+  await expect(page.getByRole("dialog", { name: "학생 고르기" })).toHaveCount(
+    0,
+  );
   await capture("flow-name-teacher-changed-390");
   evidence.data = {
     matchedName: matched,

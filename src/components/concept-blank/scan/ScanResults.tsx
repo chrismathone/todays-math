@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PaperText } from "@/components/concept-blank/paper/PaperParts";
 import { SCAN_GRADE_MARKS } from "@/contracts/conceptBlankScan.contract";
 import type {
@@ -7,7 +7,14 @@ import type {
   ScanSubmissionView,
 } from "@/contracts/conceptBlankScanApi.contract";
 import { ScanWrittenName } from "./ScanWrittenName";
-import { ScanPhoto } from "./ScanPhoto";
+import { ScanPhoto, ScanPhotoPreview } from "./ScanPhoto";
+import { ScanMarkupNotes } from "./ScanMarkupNotes";
+import { PaperStrip } from "@/components/paper-strip/PaperStrip";
+import type {
+  ScanMarkupAction,
+  ScanMarkupTarget,
+} from "@/contracts/conceptBlankScanMarkup.contract";
+import type { ScanPhotoMark } from "./ScanPhotoInk";
 import type { ScanSource } from "./api";
 import { latestScanGrades, scanNumbers } from "./view";
 import s from "./scan.module.css";
@@ -21,7 +28,8 @@ export function ScanResults({
 }: {
   view: ScanSubmissionView;
   busy: boolean;
-  source: Pick<ScanSource, "photoUrl">;
+  source: Pick<ScanSource, "photoUrl"> &
+    Partial<Pick<ScanSource, "markup" | "changeMarkup">>;
   save: (input: ScanOverrideInput) => Promise<void>;
   onPage: (page: number) => void;
 }) {
@@ -37,8 +45,59 @@ export function ScanResults({
   const numbers = scanNumbers(view);
   const photo = view.photos.find((p) => p.page === photoPage);
   const teacher = view.role === "teacher";
+  const { id, revision, role } = view;
+  const [markup, setMarkup] = useState<{
+    id: string;
+    role: typeof role;
+    targets: ScanMarkupTarget[];
+  }>();
+  const [scrollNonce, setScrollNonce] = useState(0);
+  useEffect(() => {
+    const controller = new AbortController();
+    void source.markup?.(id, controller.signal).then(
+      ({ targets }) => {
+        if (!controller.signal.aborted) setMarkup({ id, role, targets });
+      },
+      () => {
+        if (!controller.signal.aborted) setMarkup(undefined);
+      },
+    );
+    return () => controller.abort();
+  }, [id, role, revision, source]);
+  const currentMarkup =
+    markup?.id === id && markup.role === role ? markup.targets : undefined;
+  const targets = new Map(
+    currentMarkup
+      ?.filter((target) => teacher || !("sequence" in target))
+      .map((target) => [target.gradeId, target]),
+  );
+  const changeMarkup = async (input: ScanMarkupAction) => {
+    if (!source.changeMarkup || !source.markup) return;
+    try {
+      await source.changeMarkup(id, input);
+    } finally {
+      const { targets } = await source.markup(id);
+      setMarkup({ id, role, targets });
+    }
+  };
+  const marksForPage = (page: number) => {
+    const marks = new Map<string, ScanPhotoMark>();
+    for (const grade of grades.filter((item) => item.page === page)) {
+      for (const note of targets.get(grade.id)?.notes ?? []) {
+        const draft = "published" in note && !note.published;
+        const previous = marks.get(note.slotId);
+        marks.set(note.slotId, {
+          slotId: note.slotId,
+          number: numbers.get(note.slotId)!,
+          draft: draft && (previous?.draft ?? true),
+        });
+      }
+    }
+    return [...marks.values()];
+  };
   const showPage = (page: number) => {
     setPhotoPage(page);
+    setScrollNonce((nonce) => nonce + 1);
     setStudentPhoto(true);
     onPage(page);
   };
@@ -86,8 +145,41 @@ export function ScanResults({
           확인 필요 첫 항목으로
         </button>
       </div>
-      <div className={teacher ? s.resultSplit : undefined}>
-        {photo && (teacher || studentPhoto) ? (
+      {currentMarkup && view.photos.length > 0 && (teacher || studentPhoto) ? (
+        <div className={s.resultPhotos}>
+          <PaperStrip
+            label="답안 사진"
+            hint="사진을 누르면 크게 봅니다."
+            maxScale={0.32}
+            scrollTo={photo ? { key: photo.id, nonce: scrollNonce } : undefined}
+            pages={view.photos.map((image) => ({
+              key: image.id,
+              node: (
+                <ScanPhotoPreview
+                  photo={image}
+                  submissionId={id}
+                  source={source}
+                  ink={{
+                    grades: grades.filter((item) => item.page === image.page),
+                    marks: marksForPage(image.page),
+                  }}
+                />
+              ),
+              caption: `${image.page}쪽 · ${image.available ? "촬영됨" : "사진 만료·삭제"}`,
+              enlargeLabel: image.available
+                ? `${image.page}쪽 사진 확대`
+                : undefined,
+            }))}
+          />
+          {!teacher ? (
+            <button type="button" onClick={() => setStudentPhoto(false)}>
+              사진 접기
+            </button>
+          ) : null}
+        </div>
+      ) : null}
+      <div className={teacher && !currentMarkup ? s.resultSplit : undefined}>
+        {!currentMarkup && photo && (teacher || studentPhoto) ? (
           <aside className={s.evidencePhoto}>
             <label>
               대조할 쪽
@@ -129,6 +221,7 @@ export function ScanResults({
             const history = view.grades.filter(
               (g) => g.targetId === grade.targetId,
             );
+            const markupTarget = targets.get(grade.id);
             const automatic = history.find((g) => g.origin !== "teacher");
             return (
               <article
@@ -164,6 +257,14 @@ export function ScanResults({
                 >
                   {grade.reason}
                 </p>
+                {markupTarget ? (
+                  <ScanMarkupNotes
+                    target={markupTarget}
+                    numbers={numbers}
+                    save={changeMarkup}
+                    busy={busy}
+                  />
+                ) : null}
                 {grade.directlyEntered ? (
                   <p className={s.tag}>직접 입력한 답 포함</p>
                 ) : null}
