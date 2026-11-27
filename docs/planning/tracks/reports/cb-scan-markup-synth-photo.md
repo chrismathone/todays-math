@@ -98,3 +98,22 @@ H1의 오지목과 글 가림, 물리 줄 수와 판독 줄 수 일치율은 사
 - [B 그늘·여러 줄 JPEG](/tmp/cb-synth-photo-20261127/2-3-1-B-left-shadow.jpg) · [정답표](/tmp/cb-synth-photo-20261127/2-3-1-B-left-shadow.json) · [참조 비교](/tmp/cb-synth-photo-20261127/compare-B-left-shadow.jpg)
 - [C 정면·빈칸 JPEG](/tmp/cb-synth-photo-20261127/2-3-1-C-flat-warm.jpg) · [정답표](/tmp/cb-synth-photo-20261127/2-3-1-C-flat-warm.json) · [참조 비교](/tmp/cb-synth-photo-20261127/compare-C-flat-warm.jpg)
 - [D 원근·휨 JPEG](/tmp/cb-synth-photo-20261127/2-3-1-D-right-bend.jpg) · [정답표](/tmp/cb-synth-photo-20261127/2-3-1-D-right-bend.json)
+
+## 고침 — 정면 사진의 표식 오인 (리드, 2026-11-27)
+
+- **원인:** 인쇄 글자 «ㅁ» 등 속이 빈 네모 획이 표식 후보로 잡혔다. 참 표식과 섞은 조합도 QR 검산 1.25mm 안에 들어 조합이 둘이 되어 보류됐다.
+  - 진단 도구: `scripts/qa/concept-photo-bench/synth-photo/diag-markers.mjs <산출 폴더> [이름 조각]`
+- **고침:** `scanMarkerCandidates` 에 «홀로 찍혔나» 검사를 더했다. 후보 상자 둘레 띠(한 변의 0.15 ~ 0.8배 바깥)의 잉크 비율이 4% 를 넘으면 버린다. 표식은 빈 여백에 홀로 찍히고, 글자는 이웃 글자가 둘레에 잉크를 남긴다.
+  - 검산 문턱(1.25mm)과 «조합이 둘이면 보류»는 그대로 둔다.
+- **결과(같은 32장):**
+
+| 조건 | 고치기 전 matched | 고친 뒤 matched |
+|---|---:|---:|
+| `flat-warm` | 2 / 8 | **8 / 8** |
+| `left-shadow` | 8 / 8 | 8 / 8 |
+| `right-bend` | 8 / 8 | 8 / 8 |
+| `tilted-bend` | 0 / 8 | 0 / 8 |
+
+  - 고친 뒤 24장 모두 네 표식 후보가 참 표식 하나씩만 남았다(참 위치에서 ±3px 안). 큰 휨 8장의 보류는 표식이 아니라 «한 평면으로 못 편다»는 QR 검산 탓이며, 막는 것이 맞다.
+  - 원장님 실제 사진(11-25)의 학생지 1쪽은 고치기 전후 모두 matched, QR 오차 0.46mm 로 같다.
+- **시험:** `conceptBlankScanRegistration.test.ts` 에 «글줄 안의 빈 네모 글자 옆 표식» 시험을 더했다. 고치기 전 코드에서는 빨갛다. `conceptBlankScan*` 24파일 156개가 통과한다.

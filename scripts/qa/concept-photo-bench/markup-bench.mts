@@ -11,18 +11,28 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 type GradeModule = typeof import("@/lib/concept-blank/scan/grade");
 // tsx 는 .ts 를 cjs 로 옮겨 이름 내보내기가 default 아래에 있을 수 있다.
-const gradeModule = (await import("@/lib/concept-blank/scan/grade")) as GradeModule & { default?: GradeModule };
-const gradeScanPage = gradeModule.gradeScanPage ?? gradeModule.default!.gradeScanPage;
+const gradeModule =
+  (await import("@/lib/concept-blank/scan/grade")) as GradeModule & {
+    default?: GradeModule;
+  };
+const gradeScanPage =
+  gradeModule.gradeScanPage ?? gradeModule.default!.gradeScanPage;
 import type { ScanModel } from "@/lib/concept-blank/scan/model";
 import type { ScanPage, ScanRead } from "@/contracts/conceptBlankScan.contract";
 import type { ScanMarkupResult } from "@/contracts/conceptBlankScanMarkup.contract";
-// @ts-expect-error — 측정 도구의 mjs
-import { callClaude, requireSubscription, externalDirectory } from "./scan-cli.mjs";
+import {
+  callClaude,
+  requireSubscription,
+  externalDirectory,
+} from "./scan-cli.mjs";
 
 type Variant = [category: string, answer: string, expected: string];
 const here = import.meta.dirname;
-const suite = JSON.parse(readFileSync(path.join(here, "semantic-cases.json"), "utf8"))
-  .currentBankSuite as { groups: { grade: string; bankId: string; variants: Variant[] }[] };
+const suite = JSON.parse(
+  readFileSync(path.join(here, "semantic-cases.json"), "utf8"),
+).currentBankSuite as {
+  groups: { grade: string; bankId: string; variants: Variant[] }[];
+};
 
 const root = externalDirectory(process.argv[2]);
 const model = process.argv[3] ?? "claude-opus-5-5";
@@ -32,7 +42,10 @@ mkdirSync(root, { recursive: true });
 
 function pageFor(g: (typeof suite.groups)[number]) {
   const raw = readFileSync(
-    path.resolve(here, `../../../src/lib/concept-blank/bank/assessments/${g.grade}.json`),
+    path.resolve(
+      here,
+      `../../../src/lib/concept-blank/bank/assessments/${g.grade}.json`,
+    ),
     "utf8",
   );
   const q = JSON.parse(raw)[g.bankId].bQuestion;
@@ -62,7 +75,11 @@ function pageFor(g: (typeof suite.groups)[number]) {
   };
   const readings: ScanRead[] = g.variants.map(([category, answer], i) => ({
     id: `q${i + 1}.answer`,
-    status: !answer ? "blank" : category === "unreadable" ? "unreadable" : "read",
+    status: !answer
+      ? "blank"
+      : category === "unreadable"
+        ? "unreadable"
+        : "read",
     text: !answer || category === "unreadable" ? "" : answer,
   }));
   return { page, readings, ideas: q.requiredIdeas as { anyOf: string[] }[] };
@@ -87,13 +104,19 @@ async function main() {
           prompt: request.prompt,
           cwd: root,
           logFile: path.join(root, `${g.bankId}.r${round}.call.json`),
+          timeoutMs: 600_000,
         });
         raw = c.text;
         return c.text;
       };
       let markup: ScanMarkupResult = { notes: [], dropped: [] };
       const grades = await gradeScanPage(
-        { page, readings, corrections: [], markup: { onNotes: (r) => void (markup = r) } },
+        {
+          page,
+          readings,
+          corrections: [],
+          markup: { onNotes: (r) => void (markup = r) },
+        },
         invoke,
       );
       const record = {
@@ -114,8 +137,16 @@ async function main() {
       };
       writeFileSync(file, JSON.stringify(record, null, 1));
       rows.push(record);
-      console.log(`${g.bankId} r${round}: notes ${markup.notes.length}, dropped ${markup.dropped.length}`);
+      console.log(
+        `${g.bankId} r${round}: notes ${markup.notes.length}, dropped ${markup.dropped.length}`,
+      );
     }
-  writeFileSync(path.join(root, "summary-input.json"), JSON.stringify({ auth, model, effort, rounds, rows }, null, 1));
+  writeFileSync(
+    path.join(root, "summary-input.json"),
+    JSON.stringify({ auth, model, effort, rounds, rows }, null, 1),
+  );
 }
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

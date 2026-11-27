@@ -11,15 +11,20 @@ import path from "node:path";
 import type { ScanModel } from "@/lib/concept-blank/scan/model";
 import type { ScanPage, ScanRead } from "@/contracts/conceptBlankScan.contract";
 import type { ScanMarkupResult } from "@/contracts/conceptBlankScanMarkup.contract";
-// @ts-expect-error — 측정 도구의 mjs
-import { callClaude, requireSubscription, externalDirectory } from "./scan-cli.mjs";
+import {
+  callClaude,
+  requireSubscription,
+  externalDirectory,
+} from "./scan-cli.mjs";
 
 type GradeModule = typeof import("@/lib/concept-blank/scan/grade");
 // tsx 는 .ts 를 cjs 로 옮겨 이름 내보내기가 default 아래에 있을 수 있다.
-const gradeModule = (await import("@/lib/concept-blank/scan/grade")) as GradeModule & {
-  default?: GradeModule;
-};
-const gradeScanPage = gradeModule.gradeScanPage ?? gradeModule.default!.gradeScanPage;
+const gradeModule =
+  (await import("@/lib/concept-blank/scan/grade")) as GradeModule & {
+    default?: GradeModule;
+  };
+const gradeScanPage =
+  gradeModule.gradeScanPage ?? gradeModule.default!.gradeScanPage;
 
 type Sheet = {
   section: string;
@@ -48,7 +53,9 @@ for (let round = 1; round <= rounds; round++)
       rows.push(JSON.parse(readFileSync(file, "utf8")));
       continue;
     }
-    const page = cases.pages[sheet.section]!.find((p) => p.number === sheet.page)!;
+    const page = cases.pages[sheet.section]!.find(
+      (p) => p.number === sheet.page,
+    )!;
     const readings: ScanRead[] = page.slots.map((s) => {
       const text = sheet.answers[s.id];
       return text
@@ -63,13 +70,19 @@ for (let round = 1; round <= rounds; round++)
         prompt: request.prompt,
         cwd: root,
         logFile: path.join(root, `${key}.call.json`),
+        timeoutMs: 600_000,
       });
       raw = c.text;
       return c.text;
     };
     let markup: ScanMarkupResult = { notes: [], dropped: [] };
     const grades = await gradeScanPage(
-      { page, readings, corrections: [], markup: { onNotes: (r) => void (markup = r) } },
+      {
+        page,
+        readings,
+        corrections: [],
+        markup: { onNotes: (r) => void (markup = r) },
+      },
       invoke,
     );
     const record = {
@@ -90,7 +103,9 @@ for (let round = 1; round <= rounds; round++)
     };
     writeFileSync(file, JSON.stringify(record, null, 1));
     rows.push(record);
-    console.log(`${key}: notes ${markup.notes.length}, dropped ${markup.dropped.length}`);
+    console.log(
+      `${key}: notes ${markup.notes.length}, dropped ${markup.dropped.length}`,
+    );
   }
 writeFileSync(
   path.join(root, "summary-input.json"),
