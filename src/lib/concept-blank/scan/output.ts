@@ -83,6 +83,26 @@ export const SCAN_READ_OUTPUT_SCHEMA = object({
   },
   written_name: { anyOf: [object({ status, text: string }), { type: "null" }] },
 });
+/** v4 — 칸마다 사진의 물리 글줄(위→아래). 첨삭 밑줄을 글줄에 맞추려고만 쓴다(M2). */
+export const SCAN_READ_LINES_OUTPUT_SCHEMA = object({
+  slots: {
+    type: "array",
+    items: object({
+      id: string,
+      status,
+      text: string,
+      lines: { type: "array", items: string },
+      tags: {
+        type: "array",
+        items: {
+          type: "string",
+          enum: ["clear", "faint", "erased", "outside", "red-overlap", "blank"],
+        },
+      },
+    }),
+  },
+  written_name: { anyOf: [object({ status, text: string }), { type: "null" }] },
+});
 export const SCAN_GRADE_OUTPUT_SCHEMA = object({
   grades: {
     type: "array",
