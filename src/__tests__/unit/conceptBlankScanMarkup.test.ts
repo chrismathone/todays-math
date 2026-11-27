@@ -1,4 +1,5 @@
 // @vitest-environment node
+import { createHash } from "node:crypto";
 import { describe, expect, it, vi } from "vitest";
 import {
   CONCEPT_BLANK_FORMS,
@@ -97,7 +98,11 @@ describe("validateScanMarkupNotes — the code decides what may be drawn", () =>
     });
     expect(dropped).toEqual([]);
     expect(notes).toEqual([
-      expect.objectContaining({ targetId: target.id, slotId, quote: "접는 선" }),
+      expect.objectContaining({
+        targetId: target.id,
+        slotId,
+        quote: "접는 선",
+      }),
     ]);
   });
 
@@ -177,7 +182,9 @@ describe("validateScanMarkupNotes — the code decides what may be drawn", () =>
       modelTargets: [target.id],
       rows: [note({ targetId: target.id, slotId })],
     });
-    expect(uncertain.dropped.map((d) => d.reason)).toEqual(["reading-not-read"]);
+    expect(uncertain.dropped.map((d) => d.reason)).toEqual([
+      "reading-not-read",
+    ]);
   });
 
   it("only marks targets the model graded, at most three per target, no duplicates", () => {
@@ -220,7 +227,23 @@ describe("gradeScanPage with markup", () => {
     const request = model.mock.calls[0]![0];
     expect(request.promptVersion).toBe(SCAN_GRADE_PROMPT_VERSION);
     expect(request.jsonSchema).toBe(SCAN_GRADE_OUTPUT_SCHEMA);
-    expect(request.prompt).not.toContain("notes");
+    expect(Object.keys(request).sort()).toEqual([
+      "jsonSchema",
+      "operation",
+      "prompt",
+      "promptVersion",
+      "signal",
+    ]);
+    expect(
+      createHash("sha256")
+        .update(
+          JSON.stringify({
+            prompt: request.prompt,
+            jsonSchema: request.jsonSchema,
+          }),
+        )
+        .digest("hex"),
+    ).toBe("a178686d0237e5daf06ad5950d6f94e77c48e775018534da29ec051845a625c3");
   });
 
   it("asks for notes under its own version and hands back only validated ones", async () => {
@@ -235,7 +258,10 @@ describe("gradeScanPage with markup", () => {
         grades,
         notes: [
           note({ targetId: target.id, slotId }),
-          note({ targetId: page.targets[1]!.id, slotId: page.targets[1]!.slotIds[0] }),
+          note({
+            targetId: page.targets[1]!.id,
+            slotId: page.targets[1]!.slotIds[0],
+          }),
         ],
       }),
     );

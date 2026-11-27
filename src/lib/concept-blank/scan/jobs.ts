@@ -14,7 +14,13 @@ import { scanDatabaseError, type ScanDatabase, type ScanSql } from "./database";
 import { ScanQueuedError } from "./usage";
 import { cancelQueuedScanCalls } from "./usageMaintenance";
 import { ScanAccessError, type ScanIdentity } from "./issuance";
-import { gradeScanPage, SCAN_GRADE_PROMPT_VERSION } from "./grade";
+import {
+  gradeScanPage,
+  SCAN_GRADE_PROMPT_VERSION,
+  SCAN_GRADE_MARKUP_PROMPT_VERSION,
+} from "./grade";
+import type { ScanMarkupResult } from "@/contracts/conceptBlankScanMarkup.contract";
+import { saveScanMarkupSnapshot } from "./markupStore";
 import { readScanPageWithName, SCAN_READ_PROMPT_VERSION } from "./read";
 import { scanConfig, type ScanConfig, type ScanModel } from "./model";
 import type { ScanPhotoStorage } from "./storage.server";
@@ -165,6 +171,17 @@ export async function beginScanJob(
       if (parsed.kind === "grade")
         for (const page of issue.snapshot.pages)
           effectiveReadings(page, evidence);
+      const wantsMarkup = row.job_id
+        ? row.job_actor?.markup === true
+        : process.env.CONCEPT_BLANK_SCAN_MARKUP === "on";
+      const markup =
+        parsed.kind === "grade" &&
+        wantsMarkup &&
+        (
+          await tx.query<{ available: boolean }>(
+            "SELECT to_regclass('concept_blank_scan_markup') IS NOT NULL AS available",
+          )
+        )[0]?.available;
       const id = randomUUID();
       await tx.query(
         `UPDATE concept_blank_scan_submission SET job_id=$2::uuid,job_kind=$3::text,job_started_at=$4::timestamptz,state=$5::text,job_waiting=false,job_actor=$6::jsonb,revision=revision+1,last_error=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=$1::uuid`,
@@ -174,7 +191,7 @@ export async function beginScanJob(
           parsed.kind,
           now.toISOString(),
           parsed.kind === "read" ? "read" : "checking",
-          JSON.stringify(actor),
+          JSON.stringify(markup ? { ...actor, markup: true } : actor),
         ],
       );
       if (parsed.kind === "grade")
@@ -235,7 +252,8 @@ export async function runScanJob(
     return value;
   };
   try {
-    const { issue } = await context(deps.db);
+    const { issue, row } = await context(deps.db);
+    const markupEnabled = row.job_actor?.markup === true;
     for (const page of issue.snapshot.pages) {
       signal.throwIfAborted();
       await context(deps.db);
@@ -299,8 +317,10 @@ export async function runScanJob(
         });
       } else {
         if (page.targets.every((t) => savedTarget(t, evidence))) continue;
-        const readings = effectiveReadings(page, evidence),
-          modelTargets = new Set<string>();
+        const readings = effectiveReadings(page, evidence);
+        let markup: ScanMarkupResult | undefined;
+        let recoveredLegacy = false;
+        const modelTargets = new Set<string>();
         const identity = createHash("sha256")
           .update(
             JSON.stringify(
@@ -313,6 +333,26 @@ export async function runScanJob(
             page,
             readings,
             corrections: [],
+            ...(markupEnabled
+              ? {
+                  markup: {
+                    originalReadings: evidence.readings.map((read) => ({
+                      id: read.slot_id,
+                      status: read.status,
+                      text: read.text,
+                    })),
+                    correctedSlotIds: evidence.corrections.map(
+                      ({ slot_id }) => slot_id,
+                    ),
+                    onRecovered: () => {
+                      recoveredLegacy = true;
+                    },
+                    onNotes: (result: ScanMarkupResult) => {
+                      markup = result;
+                    },
+                  },
+                }
+              : {}),
             signal,
             onMalformedOutput: deps.onError,
             onModelTargets: (ids) => ids.forEach((id) => modelTargets.add(id)),
@@ -325,22 +365,30 @@ export async function runScanJob(
         );
         await deps.db.transaction(async (tx) => {
           await context(tx, true);
+          const persisted = await scanEvidence(tx, job.submissionId);
           for (const grade of grades) {
             const target = page.targets.find((t) => t.id === grade.id)!;
-            if (savedTarget(target, evidence)) continue;
+            if (savedTarget(target, persisted)) continue;
             const proof = targetEvidence(target, evidence),
               sequence =
                 1 +
                 Math.max(
                   0,
-                  ...evidence.grades
+                  ...persisted.grades
                     .filter((g) => g.target_id === target.id)
                     .map((g) => g.sequence),
                 );
+            const gradeId = randomUUID();
+            const promptVersion = modelTargets.has(target.id)
+              ? markupEnabled && !recoveredLegacy
+                ? SCAN_GRADE_MARKUP_PROMPT_VERSION
+                : SCAN_GRADE_PROMPT_VERSION
+              : null;
+            const model = promptVersion ? config.gradeModel : null;
             await tx.query(
               `INSERT INTO concept_blank_scan_grade(id,submission_id,target_id,sequence,label,reason,directly_entered,evidence,origin,prompt_version,requested_model) VALUES($1::uuid,$2::uuid,$3::text,$4::int,$5::text,$6::text,$7::boolean,$8::jsonb,$9::text,$10::text,$11::text)`,
               [
-                randomUUID(),
+                gradeId,
                 job.submissionId,
                 target.id,
                 sequence,
@@ -349,10 +397,31 @@ export async function runScanJob(
                 proof.correctionIds.length > 0,
                 JSON.stringify(proof),
                 modelTargets.has(target.id) ? "model" : "rule",
-                modelTargets.has(target.id) ? SCAN_GRADE_PROMPT_VERSION : null,
-                modelTargets.has(target.id) ? config.gradeModel : null,
+                promptVersion,
+                model,
               ],
             );
+            if (markupEnabled) {
+              const photo = evidence.photos.find(
+                (photo) => photo.page_number === page.number,
+              )!;
+              await saveScanMarkupSnapshot(tx, {
+                submissionId: job.submissionId,
+                gradeId,
+                photoId: photo.id,
+                promptVersion,
+                model,
+                notes:
+                  markup?.notes.filter((note) => note.targetId === target.id) ??
+                  [],
+                failed:
+                  !!promptVersion &&
+                  !!markup?.dropped.some(
+                    (entry) =>
+                      entry.index === -1 || entry.targetId === target.id,
+                  ),
+              });
+            }
           }
         });
       }

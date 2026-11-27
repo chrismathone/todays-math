@@ -114,6 +114,11 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "본인의 답안 상태·공개된 결과",
   },
   {
+    methods: ["GET"],
+    path: "/api/concept-blank/scan/submissions/{id}/markup",
+    why: "본인의 공개된 첨삭",
+  },
+  {
     methods: ["POST"],
     path: "/api/concept-blank/scan/submissions/{id}/photos",
     why: "본인의 공개 전 답안 사진",

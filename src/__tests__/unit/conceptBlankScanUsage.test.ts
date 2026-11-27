@@ -28,6 +28,38 @@ const usage = {
 };
 
 describe("scan config, paid API boundary and usage", () => {
+  it("recovers a durable v2 grade before dispatching the corresponding v3 job", async () => {
+    const store = createMemoryScanUsageStore();
+    const transport = vi
+      .fn<typeof runModelApi>()
+      .mockImplementation(async (options) => {
+        options.onAnthropicUsage?.(usage);
+        return "cached v2 grade";
+      });
+    const model = createScanModel({
+      store,
+      transport,
+      requestKey: "same-original-grade-evidence",
+    });
+    const v2 = {
+      ...request,
+      operation: "grade" as const,
+      promptVersion: "v2",
+      jsonSchema: { type: "object" },
+    };
+    expect(await model(v2)).toBe("cached v2 grade");
+    const onRecovered = vi.fn();
+    expect(
+      await model({
+        ...v2,
+        prompt: "v3 request",
+        promptVersion: "v3",
+        recover: { ...v2, onRecovered },
+      }),
+    ).toBe("cached v2 grade");
+    expect(onRecovered).toHaveBeenCalledOnce();
+    expect(transport).toHaveBeenCalledOnce();
+  });
   it("defaults to Opus high, allows separate grade model, and fails closed for invalid settings", () => {
     expect(scanConfig({})).toMatchObject({
       model: "claude-opus-5-5",

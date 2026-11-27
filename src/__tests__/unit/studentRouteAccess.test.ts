@@ -66,6 +66,7 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET /api/concept-blank/scan/issued/{id}",
       "POST /api/concept-blank/scan/submissions",
       "GET /api/concept-blank/scan/submissions/{id}",
+      "GET /api/concept-blank/scan/submissions/{id}/markup",
       "POST /api/concept-blank/scan/submissions/{id}/photos",
       "GET /api/concept-blank/scan/submissions/{id}/photos/{id}",
       "POST /api/concept-blank/scan/submissions/{id}/answers",
@@ -173,6 +174,7 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
       "POST /name-captures/x1",
       "POST /submissions/x1/student",
       "POST /submissions/x1/override",
+      "POST /submissions/x1/markup",
       "DELETE /submissions/x1/photos/x1",
       "GET /purge/cron",
       "GET /queue/cron",
@@ -202,7 +204,7 @@ describe("개념 백지 학생 관문 — 실제 새 라우트에서 역방향 �
         ).toBe("forbidden");
       }
     }
-    expect(found).toHaveLength(16);
+    expect(found).toHaveLength(18);
     expect(anonymousLearnGate("GET", "/concept-blank/scan")).toEqual({
       kind: "allow",
     });

@@ -18,7 +18,11 @@ const MARKED_LABELS = new Set<ScanGrade["label"]>(["partial", "incorrect"]);
 const norm = (s: string) => s.normalize("NFC").replace(/\s+/g, " ").trim();
 function occurrences(haystack: string, needle: string) {
   let count = 0;
-  for (let i = haystack.indexOf(needle); i >= 0; i = haystack.indexOf(needle, i + 1))
+  for (
+    let i = haystack.indexOf(needle);
+    i >= 0;
+    i = haystack.indexOf(needle, i + 1)
+  )
     count++;
   return count;
 }
@@ -47,8 +51,16 @@ export function validateScanMarkupNotes(input: {
   const perTarget = new Map<string, number>();
 
   input.rows.forEach((row, index) => {
+    const targetId =
+      row &&
+      typeof row === "object" &&
+      "targetId" in row &&
+      typeof row.targetId === "string" &&
+      targets.has(row.targetId)
+        ? row.targetId
+        : undefined;
     const drop = (reason: ScanMarkupResult["dropped"][number]["reason"]) =>
-      dropped.push({ index, reason });
+      dropped.push({ index, reason, ...(targetId ? { targetId } : {}) });
     const parsed = scanMarkupNoteSchema.safeParse(row);
     if (!parsed.success) return drop("malformed");
     const n = parsed.data;

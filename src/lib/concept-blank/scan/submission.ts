@@ -41,7 +41,7 @@ export type ScanSubmissionRow = {
   job_kind: "read" | "grade" | null;
   job_started_at: Date | null;
   job_waiting: boolean;
-  job_actor: ScanIdentity | null;
+  job_actor: (ScanIdentity & { markup?: boolean }) | null;
   last_error: string | null;
   graded_at: Date | null;
 };

@@ -8,14 +8,22 @@ import {
   type ScanUsageStore,
 } from "./usage";
 
-export type ScanModel = (request: {
+type ScanModelRequest = {
   operation: "read" | "grade";
   prompt: string;
   imageDataUrl?: string;
   jsonSchema?: Readonly<Record<string, unknown>>;
   promptVersion?: string;
   signal: AbortSignal;
-}) => Promise<string>;
+};
+export type ScanModel = (
+  request: ScanModelRequest & {
+    recover?: Pick<
+      ScanModelRequest,
+      "prompt" | "promptVersion" | "jsonSchema"
+    > & { onRecovered: () => void };
+  },
+) => Promise<string>;
 export type ScanConfig = Readonly<{
   enabled: boolean;
   model: ScanPricedModel;
@@ -81,25 +89,34 @@ export function createScanModel(deps: {
     const config = deps.config ?? scanConfig();
     const model =
       request.operation === "read" ? config.model : config.gradeModel;
-    const requestKey = deps.requestKey
-      ? createHash("sha256")
-          .update(
-            JSON.stringify([
-              deps.requestKey,
-              model,
-              config.effort,
-              request.operation,
-              request.promptVersion,
-              request.prompt,
-              request.imageDataUrl ?? null,
-              request.jsonSchema ?? null,
-            ]),
-          )
-          .digest("hex")
-      : randomUUID();
+    const durableKey = (input: ScanModelRequest) =>
+      createHash("sha256")
+        .update(
+          JSON.stringify([
+            deps.requestKey,
+            model,
+            config.effort,
+            input.operation,
+            input.promptVersion,
+            input.prompt,
+            input.imageDataUrl ?? null,
+            input.jsonSchema ?? null,
+          ]),
+        )
+        .digest("hex");
+    const requestKey = deps.requestKey ? durableKey(request) : randomUUID();
     if (deps.requestKey) {
       const prior = await deps.store.findResult(requestKey);
       if (prior !== null) return prior;
+      if (request.recover) {
+        const older = await deps.store.findResult(
+          durableKey({ ...request, ...request.recover }),
+        );
+        if (older !== null) {
+          request.recover.onRecovered();
+          return older;
+        }
+      }
     }
     if (!config.enabled) throw new Error("사진 채점이 꺼져 있습니다.");
     request.signal.throwIfAborted();

@@ -43,5 +43,50 @@ export const SCAN_MARKUP_DROP_REASONS = [
 export type ScanMarkupDropReason = (typeof SCAN_MARKUP_DROP_REASONS)[number];
 export type ScanMarkupResult = {
   notes: ScanMarkupNote[];
-  dropped: { index: number; reason: ScanMarkupDropReason }[];
+  dropped: { index: number; reason: ScanMarkupDropReason; targetId?: string }[];
 };
+
+export type ScanMarkupEntry = { id: string; note: ScanMarkupNote };
+
+const actionBase = {
+  gradeId: z.uuid(),
+  requestId: z.uuid(),
+  sequence: z.number().int().nonnegative(),
+};
+export const scanMarkupActionSchema = z.discriminatedUnion("action", [
+  z.strictObject({ ...actionBase, action: z.literal("publish") }),
+  z.strictObject({
+    ...actionBase,
+    action: z.literal("remove"),
+    noteId: z.uuid(),
+  }),
+  z.strictObject({
+    ...actionBase,
+    action: z.literal("edit"),
+    noteId: z.uuid(),
+    ...scanMarkupNoteSchema.pick({ kind: true, say: true, fix: true }).shape,
+  }),
+]);
+export type ScanMarkupAction = z.infer<typeof scanMarkupActionSchema>;
+
+const publicNote = z.strictObject({
+  id: z.uuid(),
+  slotId: scanMarkupNoteSchema.shape.slotId,
+  say: scanMarkupNoteSchema.shape.say,
+});
+const studentTarget = z.strictObject({
+  gradeId: z.uuid(),
+  notes: z.array(publicNote),
+});
+const teacherTarget = z.strictObject({
+  gradeId: z.uuid(),
+  sequence: z.number().int().nonnegative(),
+  notes: z.array(
+    scanMarkupNoteSchema.extend({ id: z.uuid(), published: z.boolean() }),
+  ),
+});
+const markupTarget = z.union([studentTarget, teacherTarget]);
+export const scanMarkupViewSchema = z.strictObject({
+  targets: z.array(markupTarget),
+});
+export type ScanMarkupTarget = z.infer<typeof markupTarget>;

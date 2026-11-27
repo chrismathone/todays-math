@@ -417,6 +417,130 @@ describe("durable reading, input freeze and immediate publication", () => {
       world.snapshot.pages[0].targets.length,
     );
   });
+  it("keeps v2 requests and writes no markup when the flag is unset or the migration is absent", async () => {
+    const normal: ScanModel = async (request) => {
+      expect(request.promptVersion).toBe("cb-scan-semantic-20261125-v2-json");
+      expect(request).not.toHaveProperty("recover");
+      return JSON.stringify({
+        grades: JSON.parse(request.prompt.split("\n").at(-1)!).map(
+          ({ id }: { id: string }) => ({
+            id,
+            label: "partial",
+            reason: "뜻의 일부가 빠졌습니다.",
+          }),
+        ),
+      });
+    };
+    for (const migrationMissing of [false, true]) {
+      vi.stubEnv(
+        "CONCEPT_BLANK_SCAN_MARKUP",
+        migrationMissing ? "on" : undefined,
+      );
+      if (migrationMissing)
+        await local.db.query(
+          "ALTER TABLE concept_blank_scan_markup RENAME TO markup_migration_missing",
+        );
+      try {
+        const id = await captured();
+        const grade = vi.fn(normal);
+        await runScanJob(await begin(id, "read"), {
+          db: local.db,
+          storage,
+          config,
+          model: () => fakeRead(),
+        });
+        await runScanJob(await begin(id, "grade"), {
+          db: local.db,
+          storage,
+          config,
+          model: () => grade,
+        });
+        expect(grade).toHaveBeenCalledTimes(2);
+        expect(
+          (await getScanSubmission(world.student, id, local.db)).state,
+        ).toBe("graded");
+        if (!migrationMissing) {
+          const rows = await local.db.query(
+            "SELECT id FROM concept_blank_scan_markup WHERE submission_id=$1::uuid",
+            [id],
+          );
+          expect(rows).toEqual([]);
+        }
+      } finally {
+        if (migrationMissing)
+          await local.db.query(
+            "ALTER TABLE markup_migration_missing RENAME TO concept_blank_scan_markup",
+          );
+        vi.unstubAllEnvs();
+      }
+    }
+  });
+
+  it("commits markup snapshots alongside grades, including empty and malformed model notes, before resuming", async () => {
+    vi.stubEnv("CONCEPT_BLANK_SCAN_MARKUP", "on");
+    try {
+      const id = await captured();
+      await runScanJob(await begin(id, "read"), {
+        db: local.db,
+        storage,
+        config,
+        model: () => fakeRead(),
+      });
+      const normal: ScanModel = async (request) => {
+        expect(request.promptVersion).toContain("v3-markup");
+        return JSON.stringify({
+          grades: JSON.parse(request.prompt.split("\n").at(-1)!).map(
+            ({ id }: { id: string }) => ({
+              id,
+              label: "partial",
+              reason: "필수 뜻 일부가 빠졌습니다.",
+            }),
+          ),
+          notes: [],
+        });
+      };
+      let count = 0;
+      await runScanJob(await begin(id, "grade"), {
+        db: local.db,
+        storage,
+        config,
+        model: () => async (request) => {
+          if (++count === 2) throw new Error("Local interrupted grade");
+          const result = JSON.parse(await normal(request));
+          return JSON.stringify({ ...result, notes: null });
+        },
+      });
+      const snapshots = () =>
+        local.db.query<{ grade_id: string; status: string }>(
+          "SELECT grade_id,status FROM concept_blank_scan_markup WHERE submission_id=$1::uuid ORDER BY grade_id",
+          [id],
+        );
+      const before = await snapshots();
+      expect(before).toHaveLength(world.snapshot.pages[0].targets.length);
+      expect(before.every(({ status }) => status === "failed")).toBe(true);
+      expect(
+        (await getScanSubmission(world.student, id, local.db)).grades,
+      ).toEqual([]);
+
+      const resumed = vi.fn(normal);
+      await runScanJob(await begin(id, "grade"), {
+        db: local.db,
+        storage,
+        config,
+        model: () => resumed,
+      });
+      const view = await getScanSubmission(world.student, id, local.db);
+      expect(view.state).toBe("graded");
+      expect(resumed).toHaveBeenCalledTimes(1);
+      const after = await snapshots();
+      expect(after).toHaveLength(view.grades.length);
+      expect(after).toEqual(expect.arrayContaining(before));
+      expect(after.some(({ status }) => status === "empty")).toBe(true);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
   it("reclaims only an expired application job, never an active paid call or a live job", async () => {
     const id = await captured();
     await begin(id, "read");

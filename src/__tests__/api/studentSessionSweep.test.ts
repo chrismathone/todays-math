@@ -176,6 +176,7 @@ const STUDENT_SCAN_METHODS = new Set([
   "GET src/app/api/concept-blank/scan/submissions/[id]/photos/[photoId]/route.ts",
   "POST src/app/api/concept-blank/scan/submissions/[id]/answers/route.ts",
   "POST src/app/api/concept-blank/scan/submissions/[id]/jobs/route.ts",
+  "GET src/app/api/concept-blank/scan/submissions/[id]/markup/route.ts",
 ]);
 
 const SRC_FILES = walk(path.join(ROOT, "src")).filter(

@@ -379,6 +379,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         `GET /api/concept-blank/scan/submissions/${UUID}/photos/${UUID}`,
         `POST /api/concept-blank/scan/submissions/${UUID}/answers`,
         `POST /api/concept-blank/scan/submissions/${UUID}/jobs`,
+        `GET /api/concept-blank/scan/submissions/${UUID}/markup`,
         `GET /api/learn/textbook/q/${UUID}/assets/${UUID}`,
         `HEAD /api/learn/textbook/q/${UUID}/assets/${UUID}`,
         `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}`,

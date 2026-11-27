@@ -41,6 +41,9 @@ import { signScanPhoto, deleteScanPhoto, purgeScanPhotos } from "./retention";
 import { readScanJson, scanHttp, scanNoStore, scanRequestActor } from "./http";
 import type { scanRuntime } from "./runtime.server";
 
+import { changeScanMarkup, getScanMarkup } from "./markupStore";
+import { scanMarkupActionSchema } from "@/contracts/conceptBlankScanMarkup.contract";
+
 export type ScanRouteContext = { params: Promise<{ id: string }> };
 export type ScanPhotoRouteContext = {
   params: Promise<{ id: string; photoId: string }>;
@@ -225,6 +228,23 @@ export function createScanHttpHandlers(deps: {
           );
         return json(
           await correctScanAnswer(who, id, input, deps.runtime(request).db),
+        );
+      }),
+    markupGet: (request: Request, context: ScanRouteContext) =>
+      scanHttp(async () => {
+        const who = await actor(request),
+          { id } = await context.params;
+        return json(await getScanMarkup(who, id, deps.runtime(request).db));
+      }),
+    markupPost: (request: Request, context: ScanRouteContext) =>
+      scanHttp(async () => {
+        const who = await actor(request, true),
+          { id } = await context.params;
+        const input = scanMarkupActionSchema.parse(
+          await readScanJson(request, 2000),
+        );
+        return json(
+          await changeScanMarkup(who, id, input, deps.runtime(request).db),
         );
       }),
     override: (request: Request, context: ScanRouteContext) =>
