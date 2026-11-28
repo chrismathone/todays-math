@@ -52,8 +52,17 @@ describe("작업실 SRS 문과 탭", () => {
     await screen.findByRole("heading", { name: "이도윤" });
     expect(getDashboard).toHaveBeenCalledTimes(1);
   });
-  it("미리 보기를 누를 때만 인증된 데이터 경계에 요청한다", async () => {
-    const fetcher = vi.fn(async () => Response.json(previewData));
+  it("미리 보기를 누를 때만 인증된 데이터 경계에 조각마다 요청해 이어 붙인다", async () => {
+    // 한 응답은 Vercel 함수 응답 한도를 넘는다 — 서버가 조각을 내고 화면이 붙인다.
+    const fetcher = vi.fn(async (url: string) => {
+      const shard = Number(new URL(url, "http://x").searchParams.get("shard"));
+      return Response.json({
+        ...previewData,
+        cards: true,
+        shard,
+        shards: 2,
+      });
+    });
     vi.stubGlobal("fetch", fetcher);
     render(
       <SrsWorkspaceView
@@ -67,9 +76,11 @@ describe("작업실 SRS 문과 탭", () => {
     expect(fetcher).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: "미리 보기" }));
     await screen.findByText("학생 미리 보기 표본");
-    expect(fetcher).toHaveBeenCalledExactlyOnceWith(
-      `/api/math-srs/fading/preview?today=${fixture.dashboard.today}`,
-      { cache: "no-store" },
+    expect(fetcher.mock.calls).toEqual(
+      [0, 1].map((shard) => [
+        `/api/math-srs/fading/preview?today=${fixture.dashboard.today}&shard=${shard}`,
+        { cache: "no-store" },
+      ]),
     );
   });
   it("off는 기존 내용만 그대로 그리며 새 요청·탭·은행 적재가 없다", () => {

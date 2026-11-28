@@ -11,6 +11,10 @@ import {
   type ReactNode,
 } from "react";
 import type { FadingGate } from "@/lib/fading/enabled";
+import {
+  joinFadingPreviewShards,
+  type FadingPreviewShard,
+} from "@/lib/fading/previewShards";
 import WorkProgress from "@/components/unified/WorkProgress";
 import tabs from "@/components/unified/TeachingView.module.css";
 import { createTeacherFadingApiSource } from "./apiSource";
@@ -22,14 +26,25 @@ const TeacherFadingStatus = lazy(() =>
     default: module.TeacherFadingStatus,
   })),
 );
+// One response would exceed the 4.5 MiB function limit, so the server sends the
+// preview in shards: read shard 0 for the count, then the rest at once, and join.
 const loadPreview: TeacherFadingPreviewSource = async (today) => {
-  const response = await fetch(
-    `/api/math-srs/fading/preview?today=${encodeURIComponent(today)}`,
-    { cache: "no-store" },
+  const shard = async (index: number): Promise<FadingPreviewShard> => {
+    const response = await fetch(
+      `/api/math-srs/fading/preview?today=${encodeURIComponent(today)}&shard=${index}`,
+      { cache: "no-store" },
+    );
+    if (!response.ok)
+      throw new Error(`Fading preview request failed: ${response.status}`);
+    return response.json();
+  };
+  const first = await shard(0);
+  const rest = await Promise.all(
+    Array.from({ length: Math.max(0, first.shards - 1) }, (_, i) =>
+      shard(i + 1),
+    ),
   );
-  if (!response.ok)
-    throw new Error(`Fading preview request failed: ${response.status}`);
-  return response.json();
+  return joinFadingPreviewShards([first, ...rest]);
 };
 const TABS = [
   { id: "legacy", label: "기존 SRS 현황" },

@@ -5,6 +5,10 @@ import { GET as getPreview } from "@/app/api/math-srs/fading/preview/route";
 import { conceptBlankBankSchema } from "@/contracts/conceptBlank.contract";
 import { BANK_PARTS } from "@/lib/concept-blank/bank";
 import { joinBanks } from "@/lib/concept-blank/bank/plus";
+import {
+  createWorkspaceFadingPreview,
+  joinFadingPreviewShards,
+} from "@/lib/fading/workspacePreview";
 
 const { auth } = vi.hoisted(() => ({ auth: vi.fn() }));
 vi.mock("@/lib/auth", () => ({ auth }));
@@ -21,7 +25,7 @@ const teacher = {
 };
 const grade = (query = "grade=초5") =>
   new Request(`https://test.example/api/concept-blank/bank?${query}`);
-const preview = (query = "today=2026-11-28") =>
+const preview = (query = "today=2026-11-28&shard=0") =>
   new Request(`https://test.example/api/math-srs/fading/preview?${query}`);
 
 beforeEach(() => {
@@ -59,9 +63,38 @@ describe("teacher-only concept bank data", () => {
     expect((await getBank(grade("grade=constructor"))).status).toBe(400);
   });
 
+  it("splits the preview into shards below the function response limit that join back exactly", async () => {
+    // 한 번에 내리면 4,744,895 B — Vercel 함수 응답 한도 4.5 MiB 를 넘어 운영에서 500 이었다
+    // (2026-11-28 적대적 리뷰). 여유를 두고 3.5 MB 아래로 자른다.
+    const first = await (await getPreview(preview())).json();
+    expect(first.shards).toBeGreaterThan(1);
+    const shards = [];
+    for (let shard = 0; shard < first.shards; shard++) {
+      const response = await getPreview(
+        preview(`today=2026-11-28&shard=${shard}`),
+      );
+      expect(response.status).toBe(200);
+      const body = await response.text();
+      expect(
+        new TextEncoder().encode(body).length,
+        `shard ${shard}`,
+      ).toBeLessThan(3_500_000);
+      shards.push(JSON.parse(body));
+    }
+    const joined = joinFadingPreviewShards(shards);
+    expect(joined).toEqual(
+      JSON.parse(JSON.stringify(createWorkspaceFadingPreview("2026-11-28"))),
+    );
+    for (const query of ["shard=-1", `shard=${first.shards}`, "shard=x", ""])
+      expect(
+        (await getPreview(preview(`today=2026-11-28&${query}`))).status,
+        query,
+      ).toBe(400);
+  });
+
   it("serves only local preview content regardless of branch query", async () => {
     const response = await getPreview(
-      preview("today=2026-11-28&branchId=branch-b"),
+      preview("today=2026-11-28&shard=0&branchId=branch-b"),
     );
     expect(response.status).toBe(200);
     expect(response.headers.get("cache-control")).toContain("no-store");
@@ -70,6 +103,8 @@ describe("teacher-only concept bank data", () => {
       "cards",
       "concepts",
       "figures",
+      "shard",
+      "shards",
       "today",
       "traps",
     ]);
@@ -80,7 +115,9 @@ describe("teacher-only concept bank data", () => {
       ),
     ).toBe(true);
     expect(payload).toEqual(await (await getPreview(preview())).json());
-    expect((await getPreview(preview("today=2026-02-30"))).status).toBe(400);
+    expect((await getPreview(preview("today=2026-02-30&shard=0"))).status).toBe(
+      400,
+    );
     vi.stubEnv("MATH_FADING", "off");
     expect((await getPreview(preview())).status).toBe(404);
   });
