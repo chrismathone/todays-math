@@ -1,11 +1,15 @@
 import { inflateSync, strFromU8 } from "fflate";
-import assets from "./engine-figures-v1.json";
-import inlineAssets from "./engine-inline-v1.json";
+import {
+  decodeArithmeticPack,
+  enginePackMatch,
+  hasPackFamily,
+  readArithmeticPack,
+  type InlineReference,
+} from "./packAssets";
 import type { ArithmeticV2Prompt } from "../types";
 
 type Row = readonly [canonical: string, display: string, lines: string[]];
 type Family = Record<string, Row>;
-const packs: Readonly<Record<string, string>> = assets.families;
 const cache = new Map<string, Family>();
 type InlineRow = readonly [
   canonical: string,
@@ -13,15 +17,6 @@ type InlineRow = readonly [
   numbers: string[],
   lines: string[],
 ];
-type InlineReference = readonly [chunk: number, start: number, end: number];
-type InlinePack = {
-  index: Record<string, InlineReference | InlineReference[]>;
-  chunks: string[];
-  templates: string[][];
-};
-const inlinePacks = inlineAssets.families as unknown as Readonly<
-  Record<string, InlinePack>
->;
 const inlineCache = new Map<string, string>();
 const inlineRows = new Map<string, InlineRow>();
 
@@ -37,13 +32,15 @@ function bytesOf(encoded: string): Uint8Array {
  * FigureScene engine. No record writer, renderer, network or browser dependency.
  * The existing saved v1/v2 packs continue to validate their exact frozen bytes. */
 function row(id: string): Row | undefined {
-  const match = /^(?:gt1|gm)-(m[23]-[a-z-]+)-\d+(?:-\d+)*$/.exec(id);
-  if (!match || !Object.hasOwn(packs, match[1])) return undefined;
+  const match = enginePackMatch(id);
+  if (!match || !hasPackFamily("engine", match[1])) return undefined;
   const family = match[1];
   let decoded = cache.get(family);
   if (!decoded) {
-    const bytes = bytesOf(packs[family]);
-    decoded = JSON.parse(strFromU8(inflateSync(bytes))) as Family;
+    decoded = decodeArithmeticPack("engine", family, () => {
+      const bytes = bytesOf(readArithmeticPack("engine", family));
+      return JSON.parse(strFromU8(inflateSync(bytes))) as Family;
+    });
   }
   cache.delete(family);
   cache.set(family, decoded);
@@ -60,7 +57,7 @@ export function hasArithmeticEngineFigure(id: string): boolean {
 /** A new/changed variant of an engine-owned family must never silently return
  * to the old clamped/custom drawing. The consumer can retain complete prose. */
 export function arithmeticEngineOwnsType(typeId: string): boolean {
-  return Object.hasOwn(packs, typeId) || Object.hasOwn(inlinePacks, typeId);
+  return hasPackFamily("engine", typeId) || hasPackFamily("inline", typeId);
 }
 
 /** Full original-string gating, after the consumer's snapshot validation. */
@@ -109,7 +106,7 @@ function inlineRow(
   typeId: string,
   prompt: ArithmeticV2Prompt,
 ): InlineRow | undefined {
-  if (!Object.hasOwn(inlinePacks, typeId)) return undefined;
+  if (!hasPackFamily("inline", typeId)) return undefined;
   const canonical = promptIdentity(prompt);
   const rowKey = `${typeId}:${canonical}`;
   const previous = inlineRows.get(rowKey);
@@ -118,7 +115,7 @@ function inlineRow(
   for (let i = 0; i < canonical.length; i++) {
     hash = Math.imul(hash ^ canonical.charCodeAt(i), 0x01000193) >>> 0;
   }
-  const pack = inlinePacks[typeId],
+  const pack = readArithmeticPack("inline", typeId),
     index = pack.index[hash.toString(16)];
   if (index === undefined) return undefined;
   // Sixty-four rows per chunk, eight cached chunks: neither opening one preview
@@ -132,8 +129,9 @@ function inlineRow(
     const key = `${typeId}:${chunk}`;
     let decoded = inlineCache.get(key);
     if (!decoded) {
-      const bytes = bytesOf(pack.chunks[chunk]);
-      decoded = strFromU8(inflateSync(bytes));
+      decoded = decodeArithmeticPack("inline", typeId, () =>
+        strFromU8(inflateSync(bytesOf(pack.chunks[chunk]))),
+      );
     }
     inlineCache.delete(key);
     inlineCache.set(key, decoded);
@@ -141,7 +139,11 @@ function inlineRow(
       inlineCache.delete(inlineCache.keys().next().value!);
     // Parse only the requested row; parsing 64 numeric arrays for each random
     // worksheet item creates avoidable transient client allocation pressure.
-    const found = JSON.parse(decoded.slice(start, end)) as InlineRow;
+    const found = decodeArithmeticPack(
+      "inline",
+      typeId,
+      () => JSON.parse(decoded.slice(start, end)) as InlineRow,
+    );
     if (found[0] === canonical) {
       if (inlineRows.size >= 256)
         inlineRows.delete(inlineRows.keys().next().value!);
@@ -160,7 +162,7 @@ export function arithmeticEngineInlineSvg(
   if (!row) return undefined;
   // Lossless engine-byte decompression only. These literals and numeric strings
   // come from complete sanitized engine output; no geometry/placement is run.
-  const literals = inlinePacks[typeId].templates[row[1]],
+  const literals = readArithmeticPack("inline", typeId).templates[row[1]],
     numbers = row[2];
   return literals.map((literal, i) => literal + (numbers[i] ?? "")).join("");
 }

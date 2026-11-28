@@ -1,4 +1,5 @@
 /** Real final production projection, compared with the captured original display. */
+import "../init-arithmetic-packs";
 import { writeFileSync, readFileSync } from "node:fs";
 import { getArithmeticV2Definition } from "../../../src/lib/arithmetic-v2/registry";
 import { arithmeticGeometryCatalogSvg } from "../../../src/lib/arithmetic-v2/geometry";

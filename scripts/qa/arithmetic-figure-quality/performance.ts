@@ -1,5 +1,6 @@
 /** Raw production decoder only; browser benchmark separately includes actual
  * typography/image decoding. Each workload runs in its own fresh Node process. */
+import "../init-arithmetic-packs";
 import { performance } from "node:perf_hooks";
 import { readFileSync, writeFileSync } from "node:fs";
 import type { ArithmeticV2Prompt } from "../../../src/lib/arithmetic-v2/types";

@@ -1,10 +1,13 @@
 "use client";
 
+import { useMemo } from "react";
 import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
 import { listArithmeticV2PrintItems } from "@/lib/arithmetic-v2";
 import { gradeArithmeticPaperPages } from "@/components/arithmetic/GradeArithmeticPaper";
 import { arithmeticPaperPages } from "@/components/arithmetic/ArithmeticPaper";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
+import { arithmeticSheetPacks } from "@/lib/arithmetic-v2/presentation/preparePacks";
+import { useArithmeticPackPreparation } from "@/components/arithmetic/useArithmeticPackPreparation";
 import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import { accountDate } from "./AccountReview";
 import type { DocumentDetail } from "./documentTypes";
@@ -15,9 +18,33 @@ export default function AdminArithmeticPreview({
 }: {
   document: DocumentDetail;
 }) {
+  const sheet = useMemo(() => {
+    try {
+      return reopenAnyArithmeticSheet(document.payload);
+    } catch {
+      return undefined;
+    }
+  }, [document.payload]);
+  const requests = useMemo(
+    () => (sheet ? arithmeticSheetPacks(sheet) : []),
+    [sheet],
+  );
+  const { ready, failed, retry } = useArithmeticPackPreparation(requests);
+  if (!sheet)
+    return <p role="alert">저장된 연산 명세와 정답을 확인할 수 없습니다.</p>;
+  if (!ready)
+    return failed ? (
+      <div>
+        <p role="alert">연산 그림 자료를 불러오지 못했습니다.</p>
+        <button type="button" onClick={retry}>
+          다시 시도
+        </button>
+      </div>
+    ) : (
+      <p role="status">연산 그림 자료를 불러오는 중입니다.</p>
+    );
   let pages;
   try {
-    const sheet = reopenAnyArithmeticSheet(document.payload);
     const items =
       sheet.payloadVersion === 2 ? listArithmeticV2PrintItems(sheet) : [];
     pages =

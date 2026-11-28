@@ -146,6 +146,11 @@ const nextConfig: NextConfig = {
     "/api/students/*/math-ontology/**": ontologyTraceExcludes,
   },
   outputFileTracingIncludes: {
+    "/api/arithmetic/v2/packs": ["./src/lib/arithmetic-v2/presentation/*.json"],
+    "/dev/arithmetic/packs": ["./src/lib/arithmetic-v2/presentation/*.json"],
+    "/dev/arithmetic/grade-print": [
+      "./src/lib/arithmetic-v2/presentation/*.json",
+    ],
     "/api/concept-blank/scan/**": [
       "./src/components/concept-blank/paper/paper.module.css",
       "./src/components/concept-blank/issuedPaper.module.css",

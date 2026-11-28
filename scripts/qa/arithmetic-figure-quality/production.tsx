@@ -1,5 +1,6 @@
 /** Renders genuine catalog and GradeArithmeticPaper/NativeProblem components.
  * The local in-memory sheet is reopened normally; no saved sheet/DB is touched. */
+import "../init-arithmetic-packs";
 import { writeFileSync, readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import {

@@ -1,3 +1,4 @@
+import "./init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";

@@ -41,6 +41,7 @@ export type ArithmeticWorkflowProps = {
   setTitle: (title: string) => void;
   academyName?: string;
   busy: boolean;
+  preview?: boolean;
   canOutput: boolean;
   canSave: boolean;
   canRegenerate: boolean;
@@ -96,7 +97,11 @@ export function ArithmeticWorkflowView({
   problems,
   showAnswers,
   onToggleAnswers,
-}: ArithmeticWorkflowViewProps & { problems: StudioProblem[] }) {
+  preparation,
+}: ArithmeticWorkflowViewProps & {
+  problems: StudioProblem[];
+  preparation?: ReactNode;
+}) {
   const root = useRef<HTMLDivElement>(null);
   const defaults = useMemo(
     () => defaultArithmeticPresentation(academyName),
@@ -147,7 +152,7 @@ export function ArithmeticWorkflowView({
   );
   return (
     <div ref={root} className={s.workflow} data-arithmetic-step={step}>
-      {step !== "output" && (
+      {(step !== "output" || preparation) && (
         <StudioStepBar
           headerTitle="연산대장"
           step={step === "scope" ? "upload" : "review"}
@@ -162,6 +167,8 @@ export function ArithmeticWorkflowView({
       )}
       {step === "scope" ? (
         children
+      ) : preparation ? (
+        preparation
       ) : step === "review" && sheet ? (
         <section className={s.review} aria-label="생성한 문항 검토">
           <div className={s.reviewToolbar}>

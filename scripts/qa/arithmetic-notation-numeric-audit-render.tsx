@@ -2,6 +2,7 @@
  * --baseline permits known defects; default fails if any are left. Not a formatter clone.
  * Use build.mjs [checkout] to verify root's current display code without shared writes.
  */
+import "./init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";

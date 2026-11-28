@@ -230,9 +230,11 @@ function placement(anchor: DOMRect, height = 0): CSSProperties {
 export function ArithmeticTypePreview({
   state,
   types,
+  preview,
 }: {
   state: ArithmeticTypePreviewState;
   types: readonly ArithmeticV2CatalogEntry[];
+  preview?: boolean;
 }) {
   const tooltip = useRef<HTMLDivElement>(null);
   const type = state ? types.find((entry) => entry.id === state.typeId) : null;
@@ -333,7 +335,11 @@ export function ArithmeticTypePreview({
             <Suspense
               fallback={<span role="status">예시를 불러오는 중입니다.</span>}
             >
-              <PreviewExpression prompt={type.example} typeId={type.id} />
+              <PreviewExpression
+                prompt={type.example}
+                typeId={type.id}
+                preview={preview}
+              />
             </Suspense>
           )}
         </div>

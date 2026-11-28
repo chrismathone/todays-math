@@ -229,6 +229,11 @@ describe("canonical middle geometry segment display", () => {
   });
   it("imports lazily, reuses hits and evicts beyond four inflated families", async () => {
     vi.resetModules();
+    const { installArithmeticPackReader } =
+      await import("@/lib/arithmetic-v2/presentation/packAssets");
+    const { readNodeArithmeticPack } =
+      await import("@/lib/arithmetic-v2/presentation/packAssets.node");
+    installArithmeticPackReader(readNodeArithmeticPack);
     const { presentArithmeticSegmentSvg: isolated } =
       await import("../../lib/arithmetic-v2/presentation/segments");
     const { inflateSync: inflate } = await import("fflate");

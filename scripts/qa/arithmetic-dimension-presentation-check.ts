@@ -1,4 +1,5 @@
 /** Full changed-domain browser evidence at the actual longest-extent sizes. */
+import "./init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";

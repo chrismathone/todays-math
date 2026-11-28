@@ -1,6 +1,7 @@
 /** Hand-authored expectations, independent of formatter/parser implementation.
  * Source examples were read from the frozen registry census before fixes.
  */
+import "./init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";

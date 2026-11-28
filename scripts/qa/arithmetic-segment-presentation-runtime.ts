@@ -7,6 +7,7 @@ import { gzipSync } from "node:zlib";
 import { build, normalizePath } from "vite";
 import { chromium } from "playwright";
 import type { SegmentPlan } from "./arithmetic-segment-presentation-model";
+import { readNodeArithmeticPack } from "../../src/lib/arithmetic-v2/presentation/packAssets.node";
 
 async function main() {
   const out = path.resolve("tmp/arithmetic-segment-presentation"),
@@ -21,14 +22,27 @@ async function main() {
       {
         name: "segment-existing-browser-dependency",
         enforce: "pre",
-        resolveId: (id) => (id === "fflate" ? browserDependency : undefined),
+        resolveId(id) {
+          if (id === "fflate") return browserDependency;
+          if (id === "arithmetic-segment-browser-fixture") return "\0" + id;
+        },
+        load(id) {
+          if (id !== "\0arithmetic-segment-browser-fixture") return;
+          const directory = normalizePath(
+            path.resolve("src/lib/arithmetic-v2/presentation"),
+          );
+          return [
+            `export { presentArithmeticSegmentSvg } from ${JSON.stringify(directory + "/segments.ts")};`,
+            `export { acceptArithmeticPack } from ${JSON.stringify(directory + "/packAssets.ts")};`,
+          ].join("\n");
+        },
       },
     ],
     build: {
       write: false,
       minify: true,
       lib: {
-        entry: path.resolve("src/lib/arithmetic-v2/presentation/segments.ts"),
+        entry: "arithmetic-segment-browser-fixture",
         name: "ArithmeticSegments",
         formats: ["iife"],
       },
@@ -59,6 +73,28 @@ async function main() {
     page.on("pageerror", (e) => errors.push(e.message));
     await page.setContent("<html><body></body></html>");
     await page.addScriptTag({ content: code });
+    const families = [...new Set(plans.map(({ family }) => family))];
+    await page.evaluate(
+      (packs) => {
+        const browserAdapter = window as unknown as {
+          ArithmeticSegments: {
+            acceptArithmeticPack(
+              request: { pack: "segments"; family: string },
+              data: string,
+            ): void;
+          };
+        };
+        for (const [family, data] of packs)
+          browserAdapter.ArithmeticSegments.acceptArithmeticPack(
+            { pack: "segments", family },
+            data,
+          );
+      },
+      families.map((family) => [
+        family,
+        readNodeArithmeticPack("segments", family),
+      ]),
+    );
     for (let i = 0; i < plans.length; i += 80) {
       const batch = plans
         .slice(i, i + 80)

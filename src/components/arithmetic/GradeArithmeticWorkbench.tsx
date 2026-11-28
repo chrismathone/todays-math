@@ -576,6 +576,7 @@ function GradeArithmeticEditor({
       )}
       <ArithmeticWorkflow
         step={step}
+        preview={preview}
         setStep={changeStep}
         presentation={presentation}
         onPresentationChange={setPresentation}
@@ -743,7 +744,11 @@ function GradeArithmeticEditor({
             {!filtered.length && (
               <p role="status">조건에 맞는 유형이 없습니다.</p>
             )}
-            <ArithmeticTypePreview state={typePreview.state} types={catalog} />
+            <ArithmeticTypePreview
+              state={typePreview.state}
+              types={catalog}
+              preview={preview}
+            />
             <div className={s.pagination} aria-label="연산 유형 페이지">
               <button
                 disabled={currentPage === 1}
