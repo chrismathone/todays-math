@@ -8,6 +8,7 @@ import { joinBanks } from "@/lib/concept-blank/bank/plus";
 import {
   createWorkspaceFadingPreview,
   joinFadingPreviewShards,
+  type FadingPreviewShard,
 } from "@/lib/fading/workspacePreview";
 
 const { auth } = vi.hoisted(() => ({ auth: vi.fn() }));
@@ -68,7 +69,7 @@ describe("teacher-only concept bank data", () => {
     // (2026-11-28 적대적 리뷰). 여유를 두고 3.5 MB 아래로 자른다.
     const first = await (await getPreview(preview())).json();
     expect(first.shards).toBeGreaterThan(1);
-    const shards = [];
+    const shards: FadingPreviewShard[] = [];
     for (let shard = 0; shard < first.shards; shard++) {
       const response = await getPreview(
         preview(`today=2026-11-28&shard=${shard}`),
@@ -81,11 +82,29 @@ describe("teacher-only concept bank data", () => {
       ).toBeLessThan(3_500_000);
       shards.push(JSON.parse(body));
     }
+    // 미리 보기 도중 배포가 바뀌면 다른 판의 조각이 섞인다 — 조용히 붙이지 않는다.
+    expect(() =>
+      joinFadingPreviewShards([
+        shards[0],
+        { ...shards[1], revision: "other" },
+        ...shards.slice(2),
+      ]),
+    ).toThrow();
     const joined = joinFadingPreviewShards(shards);
     expect(joined).toEqual(
       JSON.parse(JSON.stringify(createWorkspaceFadingPreview("2026-11-28"))),
     );
-    for (const query of ["shard=-1", `shard=${first.shards}`, "shard=x", ""])
+    for (const query of [
+      "shard=-1",
+      `shard=${first.shards}`,
+      "shard=x",
+      "",
+      "shard=",
+      "shard=%20",
+      "shard=0x1",
+      "shard=1e0",
+      "shard=1.0",
+    ])
       expect(
         (await getPreview(preview(`today=2026-11-28&${query}`))).status,
         query,
@@ -103,6 +122,7 @@ describe("teacher-only concept bank data", () => {
       "cards",
       "concepts",
       "figures",
+      "revision",
       "shard",
       "shards",
       "today",

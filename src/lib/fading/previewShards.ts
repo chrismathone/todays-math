@@ -11,6 +11,8 @@ export type FadingPreviewShard = {
   today: string;
   shard: number;
   shards: number;
+  /** 조각을 만든 내용의 지문 — 다른 판의 조각은 붙이지 않는다. */
+  revision: string;
 };
 
 export function joinFadingPreviewShards(parts: readonly FadingPreviewShard[]) {
@@ -18,7 +20,10 @@ export function joinFadingPreviewShards(parts: readonly FadingPreviewShard[]) {
   if (
     ordered.length === 0 ||
     ordered.some(
-      (part, index) => part.shard !== index || part.shards !== ordered.length,
+      (part, index) =>
+        part.shard !== index ||
+        part.shards !== ordered.length ||
+        part.revision !== ordered[0]!.revision,
     )
   )
     throw new Error("Fading preview shards are incomplete");

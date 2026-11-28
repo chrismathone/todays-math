@@ -1,4 +1,5 @@
 import "server-only";
+import { createHash } from "node:crypto";
 import { getConceptBlankBank } from "@/lib/concept-blank/bank/runtime";
 import { fadingCatalog } from "./catalog";
 import { fadingTrapMap } from "./traps";
@@ -20,9 +21,12 @@ export {
  */
 export const FADING_PREVIEW_SHARDS = 3;
 
-type Preview = Omit<FadingPreviewShard, "today" | "shard" | "shards">;
+type Preview = Omit<
+  FadingPreviewShard,
+  "today" | "shard" | "shards" | "revision"
+>;
 
-let shards: Preview[] | undefined;
+let built: { shards: Preview[]; revision: string } | undefined;
 
 function buildShards(): Preview[] {
   const concepts = fadingCatalog();
@@ -43,9 +47,23 @@ export function createWorkspaceFadingPreviewShard(
   today: string,
   shard: number,
 ): FadingPreviewShard {
-  const part = (shards ??= buildShards())[shard];
+  built ??= (() => {
+    const shards = buildShards();
+    const revision = createHash("sha256")
+      .update(JSON.stringify(shards))
+      .digest("hex")
+      .slice(0, 16);
+    return { shards, revision };
+  })();
+  const part = built.shards[shard];
   if (!part) throw new RangeError(`preview shard ${shard}`);
-  return { ...part, today, shard, shards: FADING_PREVIEW_SHARDS };
+  return {
+    ...part,
+    today,
+    shard,
+    shards: FADING_PREVIEW_SHARDS,
+    revision: built.revision,
+  };
 }
 
 /** 한 번에 만든 표본 — 시험의 대조 기준. 운영 응답에는 쓰지 않는다(한도를 넘는다). */

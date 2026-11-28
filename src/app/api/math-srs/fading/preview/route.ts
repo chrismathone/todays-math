@@ -19,11 +19,17 @@ export const GET = withErrorLog(
     const query = z
       .object({
         today: z.iso.date(),
-        shard: z.coerce
-          .number()
-          .int()
-          .min(0)
-          .max(FADING_PREVIEW_SHARDS - 1),
+        // Plain digits only: z.coerce would take "", " ", "0x1" and "1e0".
+        shard: z
+          .string()
+          .regex(/^[0-9]+$/)
+          .transform(Number)
+          .pipe(
+            z
+              .number()
+              .int()
+              .max(FADING_PREVIEW_SHARDS - 1),
+          ),
       })
       .safeParse({
         today: params.get("today"),
