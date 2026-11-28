@@ -14,7 +14,10 @@ import type { FigureLoader } from "../snapshotFromProblem";
 /** 그림 한 장의 상한 — 넘으면 못 읽은 것으로 친다(담기가 사유와 함께 뺀다) */
 export const FIGURE_MAX_BYTES = 16 * 1024 * 1024;
 
-const PUBLIC_DIR = path.join(process.cwd(), "public");
+const PUBLIC_DIR = path.join(
+  /* turbopackIgnore: true */ process.cwd(),
+  "public",
+);
 
 /**
  * 은행 문항의 그림 주소(`/figures/…` · `/figures-svg/…`)에서 바이트를 읽는다.
@@ -51,7 +54,7 @@ export function createFigureLoader(): FigureLoader {
     )
       return null;
 
-    const file = path.join(PUBLIC_DIR, ...segments);
+    const file = path.join(/* turbopackIgnore: true */ PUBLIC_DIR, ...segments);
     if (file.startsWith(PUBLIC_DIR + path.sep)) {
       try {
         const bytes = await readFile(file);
