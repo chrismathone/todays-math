@@ -51,7 +51,7 @@ import {
   wantsConceptFamily,
 } from "./quickCreate/conceptRecall";
 import {
-  conceptIndex,
+  getConceptIndex,
   DEFAULT_QUICK_CREATE_CAST,
   gradeLabel,
   keyOf,
@@ -132,7 +132,7 @@ export async function listQuickCreateUnits(
       section: unit.section,
       label: `${unit.chapter} · ${unit.section}`,
       problemCount: unit.problemCount,
-      conceptCount: conceptIndex.get(keyOf(unit))?.length ?? 0,
+      conceptCount: getConceptIndex(unit.grade).get(keyOf(unit))?.length ?? 0,
       availability: availability.get(unit.id),
     })),
   };

@@ -5,7 +5,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 import { canonicalJson } from "../../../src/lib/textbook/canonical";
-import { TEXTBOOK_CORE_BANK } from "../../../src/lib/textbook/coreConceptBank";
+import { BANK_PARTS, PLUS_OF } from "../../../src/lib/concept-blank/bank";
 import { MISSING_ANSWER } from "../../../src/lib/missingAnswer";
 import { DEFAULT_PROBLEM_POOL } from "../../../src/lib/problemPool";
 
@@ -101,7 +101,9 @@ async function main() {
       sourceSections: Array.isArray(result.sources) ? result.sources.length : 0,
       sources: result.sources,
       types: result.types,
-      coreConcepts: TEXTBOOK_CORE_BANK.concepts.length,
+      coreConcepts: Object.entries(BANK_PARTS)
+        .filter(([part]) => !PLUS_OF[part])
+        .reduce((count, [, bank]) => count + bank.concepts.length, 0),
       baselineSha256: createHash("sha256").update(bytes).digest("hex"),
       publishedFound: result.published.length,
       publishedEditionId: result.published[0]?.id ?? null,

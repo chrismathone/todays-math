@@ -77,15 +77,18 @@ async function problemCountOf(
   if (kind === "conceptBlank") {
     const document = conceptBlankDocumentSchema.safeParse(payload);
     if (!document.success) return null;
-    const [{ composeSheets, sheetItemCount }, { CONCEPT_BLANK_BANK }] =
-      await Promise.all([
-        import("@/lib/concept-blank/compose"),
-        import("@/lib/concept-blank/bank"),
-      ]);
-    return composeSheets(document.data.selection, CONCEPT_BLANK_BANK).reduce(
-      (n, sheet) => n + sheetItemCount(sheet),
-      0,
-    );
+    const [
+      { composeSheets, sheetItemCount },
+      { getConceptBlankBankForSections },
+    ] = await Promise.all([
+      import("@/lib/concept-blank/compose"),
+      import("@/lib/concept-blank/bank/runtime"),
+    ]);
+    const { selection } = document.data;
+    return composeSheets(
+      selection,
+      getConceptBlankBankForSections(selection.sections),
+    ).reduce((n, sheet) => n + sheetItemCount(sheet), 0);
   }
   const list =
     kind === "draft"

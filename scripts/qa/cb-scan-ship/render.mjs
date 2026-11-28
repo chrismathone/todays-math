@@ -25,7 +25,7 @@ try {
     "/src/app/dev/concept-blank-scan-wire/samples.ts",
   );
   const { loadGradeBank } = await server.ssrLoadModule(
-    "/src/lib/concept-blank/bank/load.ts",
+    "/src/lib/concept-blank/bank/loadAuthored.ts",
   );
   const { renderScanPaper, scanPaperPdf } = await server.ssrLoadModule(
     "/src/lib/concept-blank/scan/paper.server.ts",

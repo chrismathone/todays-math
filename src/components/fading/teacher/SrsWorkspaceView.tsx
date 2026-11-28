@@ -22,8 +22,15 @@ const TeacherFadingStatus = lazy(() =>
     default: module.TeacherFadingStatus,
   })),
 );
-const loadPreview: TeacherFadingPreviewSource = async (today) =>
-  (await import("./previewData")).createWorkspaceFadingPreview(today);
+const loadPreview: TeacherFadingPreviewSource = async (today) => {
+  const response = await fetch(
+    `/api/math-srs/fading/preview?today=${encodeURIComponent(today)}`,
+    { cache: "no-store" },
+  );
+  if (!response.ok)
+    throw new Error(`Fading preview request failed: ${response.status}`);
+  return response.json();
+};
 const TABS = [
   { id: "legacy", label: "기존 SRS 현황" },
   { id: "fading", label: "오늘의 기억" },

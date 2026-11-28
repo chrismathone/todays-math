@@ -5,7 +5,7 @@ import {
   selectedLearningGuide,
   writingActivity,
 } from "../quickCreateRecovery";
-import { conceptIndex, keyOf, type QuickCreateAssembly } from "./context";
+import { getConceptIndex, keyOf, type QuickCreateAssembly } from "./context";
 import { reviewedQuestionMode } from "@/lib/concept-blank/questions";
 import { invalid } from "../errors";
 import { wantsConceptFamily } from "./conceptRecall";
@@ -16,7 +16,7 @@ export function appendFrontMatter(ctx: QuickCreateAssembly): void {
   const questionModes = new Set(
     wantsConceptFamily(components)
       ? units.flatMap((unit) => {
-          const entries = conceptIndex.get(keyOf(unit)) ?? [];
+          const entries = getConceptIndex(unit.grade).get(keyOf(unit)) ?? [];
           return entries.length ? [reviewedQuestionMode(entries)] : [];
         })
       : [],

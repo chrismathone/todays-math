@@ -1,6 +1,6 @@
 /**
  * GET /api/textbook/concepts/catalog — 실제 개념 백지 은행의 항목 찾기(학년 · 소단원 · 검색어 · 이어 읽기).
- * 은행은 코드 데이터다 — DB 를 읽지 않는다.
+ * 은행은 배포 파일에서 읽고 인증은 교재 라우트의 공통 관문을 따른다.
  */
 import { textbookConceptCatalogSchema } from "@/contracts/textbook.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";

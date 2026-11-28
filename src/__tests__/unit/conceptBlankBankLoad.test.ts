@@ -9,7 +9,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
-import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+import { getConceptBlankGradeBank as loadGradeBank } from "@/lib/concept-blank/bank/runtime";
 import {
   CONCEPT_BLANK_GRADES,
   getBlankSection,

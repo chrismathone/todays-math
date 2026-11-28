@@ -14,8 +14,7 @@ import type {
   QuickCreateComponents,
   QuickCreateScope,
 } from "@/contracts/textbookQuickCreate.contract";
-import { TEXTBOOK_CORE_BANK } from "../../coreConceptBank";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { getTextbookCoreGradeBank } from "../../coreConceptBank";
 import { sectionKeyOf } from "@/lib/concept-blank/sections";
 import type { TextbookActor } from "../../access";
 import type {
@@ -85,19 +84,19 @@ export const gradeLabel = (scope: QuickCreateScope) =>
   `${scope.schoolLevel === "elementary" ? "초" : "중"}${scope.grade}`;
 export const keyOf = (unit: Pick<UnitRow, "grade" | "chapter" | "section">) =>
   sectionKeyOf(unit.grade, unit.chapter, unit.section);
-export const conceptIndex = new Map<string, ConceptEntry[]>();
-const currentConceptById = new Map(
-  CONCEPT_BLANK_BANK.concepts.map((entry) => [entry.id, entry]),
-);
-// Core IDs and their order define the lesson. Question-bearing snapshots must use
-// the same current payload as freezeTextbookConcept, rather than the raw source shard.
-for (const source of TEXTBOOK_CORE_BANK.concepts) {
-  const entry = currentConceptById.get(source.id);
-  if (!entry || entry.section !== source.section)
-    throw new Error(`교재의 핵심 개념을 찾을 수 없습니다: ${source.id}`);
-  const entries = conceptIndex.get(entry.section) ?? [];
-  entries.push(entry);
-  conceptIndex.set(entry.section, entries);
+const conceptIndexes = new Map<string, Map<string, ConceptEntry[]>>();
+export function getConceptIndex(grade: string) {
+  const cached = conceptIndexes.get(grade);
+  if (cached) return cached;
+  const index = new Map<string, ConceptEntry[]>();
+  // Core parts already contain the current assessment overlays for their IDs.
+  for (const entry of getTextbookCoreGradeBank(grade).concepts) {
+    const entries = index.get(entry.section) ?? [];
+    entries.push(entry);
+    index.set(entry.section, entries);
+  }
+  conceptIndexes.set(grade, index);
+  return index;
 }
 export const text = (markdown: string): ManuscriptBlock => ({
   blockId: randomUUID(),

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { StrictMode } from "react";
 import { SrsWorkspaceView } from "@/components/fading/teacher/SrsWorkspaceView";
 import { fadingCatalog } from "@/lib/fading/catalog";
@@ -10,11 +10,7 @@ import { TeacherFadingStatus } from "@/components/fading/teacher/TeacherFadingSt
 vi.mock("@/components/fading/FadingPreview", () => ({
   FadingPreview: () => <p>학생 미리 보기 표본</p>,
 }));
-const previewModule = vi.hoisted(() => ({ loaded: vi.fn(), create: vi.fn() }));
-vi.mock("@/components/fading/teacher/previewData", () => {
-  previewModule.loaded();
-  return { createWorkspaceFadingPreview: previewModule.create };
-});
+afterEach(() => vi.unstubAllGlobals());
 const fixture = buildTeacherWireFixture(fadingCatalog());
 const previewData = {
   concepts: [],
@@ -56,8 +52,9 @@ describe("작업실 SRS 문과 탭", () => {
     await screen.findByRole("heading", { name: "이도윤" });
     expect(getDashboard).toHaveBeenCalledTimes(1);
   });
-  it("기본 은행 모듈도 미리 보기 전에는 import하지 않는다", async () => {
-    previewModule.create.mockReturnValue(previewData);
+  it("미리 보기를 누를 때만 인증된 데이터 경계에 요청한다", async () => {
+    const fetcher = vi.fn(async () => Response.json(previewData));
+    vi.stubGlobal("fetch", fetcher);
     render(
       <SrsWorkspaceView
         fadingGate="on"
@@ -67,12 +64,13 @@ describe("작업실 SRS 문과 탭", () => {
     );
     fireEvent.click(screen.getByRole("tab", { name: "오늘의 기억" }));
     await screen.findByRole("heading", { name: "이도윤" });
-    expect(previewModule.loaded).not.toHaveBeenCalled();
-    expect(previewModule.create).not.toHaveBeenCalled();
+    expect(fetcher).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: "미리 보기" }));
     await screen.findByText("학생 미리 보기 표본");
-    expect(previewModule.loaded).toHaveBeenCalledTimes(1);
-    expect(previewModule.create).toHaveBeenCalledWith(fixture.dashboard.today);
+    expect(fetcher).toHaveBeenCalledExactlyOnceWith(
+      `/api/math-srs/fading/preview?today=${fixture.dashboard.today}`,
+      { cache: "no-store" },
+    );
   });
   it("off는 기존 내용만 그대로 그리며 새 요청·탭·은행 적재가 없다", () => {
     const { container, getDashboard, preview } = setup("off");

@@ -12,6 +12,7 @@ import {
   type QuickCreateCatalog,
   type QuickCreateScope,
 } from "../../../src/contracts/textbookQuickCreate.contract";
+import { BANK_PARTS, PLUS_OF } from "../../../src/lib/concept-blank/bank";
 import { DEFAULT_PROBLEM_POOL } from "../../../src/lib/problemPool";
 import { MISSING_ANSWER } from "../../../src/lib/missingAnswer";
 import { classifyFormat } from "../../../src/lib/problem/provenance";
@@ -20,7 +21,6 @@ import {
   quickCreateSemester,
 } from "../../../src/lib/textbook/server/quickCreate";
 import {
-  conceptIndex,
   gradeLabel,
   keyOf,
   QUICK_CREATE_DIFFICULTIES,
@@ -30,6 +30,13 @@ import {
   type TextbookSql,
   uuidList,
 } from "../../../src/lib/textbook/server/sql";
+
+const conceptCounts = new Map<string, number>();
+for (const [part, bank] of Object.entries(BANK_PARTS)) {
+  if (PLUS_OF[part]) continue;
+  for (const { section } of bank.concepts)
+    conceptCounts.set(section, (conceptCounts.get(section) ?? 0) + 1);
+}
 
 /** Frozen pre-sweep reader. Keep its SELECT and first-seen loop unchanged so
  * measurements and API parity tests compare against the original behavior. */
@@ -110,7 +117,7 @@ export async function listQuickCreateUnitsBefore(
       section: unit.section,
       label: `${unit.chapter} · ${unit.section}`,
       problemCount: unit.problemCount,
-      conceptCount: conceptIndex.get(keyOf(unit))?.length ?? 0,
+      conceptCount: conceptCounts.get(keyOf(unit)) ?? 0,
       availability: availability.get(unit.id),
     })),
   };

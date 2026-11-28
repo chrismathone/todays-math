@@ -107,7 +107,7 @@ import {
   type FadingState,
 } from "@/contracts/fadingApi.contract";
 import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
-import { fadingCatalog } from "@/lib/fading/catalog";
+import { fadingCatalog, fadingConceptMap } from "@/lib/fading/catalog";
 import { chipFits, chipTray } from "@/lib/fading/chips";
 import type { FadingConcept } from "@/lib/fading/concepts";
 import {
@@ -1050,6 +1050,36 @@ describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 
     });
     expect(next.session!.step).toBe(2);
     expect(storedSession()!.id).toBe(raw);
+  });
+
+  it("a one-sentence edit rejects the old screen token with 409 and preserves the open session", async () => {
+    world();
+    const conceptId = Object.keys(FADING_TRAPS)[0]!;
+    const view = await state(await postRaw({ action: "open", conceptId }));
+    const previous = storedSession();
+    const writes = f.writes;
+    const card = fadingConceptMap().get(conceptId)!.propositions[0]!;
+    const pieces = card.pieces;
+    card.pieces = [...pieces, { kind: "text", text: " 다시 확인합니다." }];
+    try {
+      const response = await postRaw({
+        action: "read",
+        conceptId,
+        sessionId: view.session!.id,
+      });
+      expect(response.status).toBe(409);
+      expect((await response.json()).error.message).toBe(
+        FADING_CONTENT_CHANGED,
+      );
+      expect(f.writes).toBe(writes);
+      expect(storedSession()).toEqual(previous);
+
+      const refreshed = await state(await read());
+      expect(refreshed.session!.id).not.toBe(view.session!.id);
+      expect(refreshed.session!.seed).toBe(view.session!.seed);
+    } finally {
+      card.pieces = pieces;
+    }
   });
 
   it("함정이 있는 개념 — 내용에 함정이 내려가고, 함정을 넣은 «넣기»를 양쪽이 같은 칩으로 읽는다", async () => {

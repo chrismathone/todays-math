@@ -1,5 +1,5 @@
 import "server-only";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { getConceptBlankBank } from "@/lib/concept-blank/bank/runtime";
 import { buildFadingConcepts, type FadingConcept } from "./concepts";
 import { fadingFigureFor, type FadingFigure } from "./figures";
 import { FADING_GROUPS } from "./groups";
@@ -14,7 +14,7 @@ let cache: { list: FadingConcept[]; byId: Map<string, FadingConcept> } | null =
 function load() {
   if (!cache) {
     const list = buildFadingConcepts(
-      CONCEPT_BLANK_BANK.concepts,
+      getConceptBlankBank().concepts,
       FADING_GROUPS,
     );
     cache = { list, byId: new Map(list.map((c) => [c.id, c])) };
@@ -34,5 +34,5 @@ export function fadingConceptMap(): ReadonlyMap<string, FadingConcept> {
 
 /** 그 개념의 그림 판에 그릴 그림 — 은행의 그림 문항에서(소단원에 그림이 없으면 `null`). */
 export function fadingFigureOf(concept: FadingConcept): FadingFigure | null {
-  return fadingFigureFor(concept, CONCEPT_BLANK_BANK.figures);
+  return fadingFigureFor(concept, getConceptBlankBank().figures);
 }
