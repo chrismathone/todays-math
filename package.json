@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "check:build-budget": "node scripts/deploy/check-build-budget.mjs",
     "build": "prisma generate && node scripts/deploy/prepare-shared-figures.mjs && node scripts/deploy/build-next.mjs",
     "start": "next start",
     "lint": "eslint",

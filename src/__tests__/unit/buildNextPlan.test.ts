@@ -22,13 +22,19 @@ describe("production build plan", () => {
   });
 
   it("type-checks the shipped code before next build, in its own process", () => {
-    expect(steps).toHaveLength(2);
+    expect(steps).toHaveLength(3);
     expect(steps[0]!.args.join(" ")).toContain("typescript/bin/tsc");
     expect(steps[0]!.args).toEqual(
       expect.arrayContaining(["--noEmit", "--project", "tsconfig.build.json"]),
     );
     expect(steps[1]!.args.join(" ")).toContain(
       "next/dist/bin/next build --debug",
+    );
+  });
+
+  it("checks the artifact budget after next build", () => {
+    expect(steps[2]!.args.join(" ")).toContain(
+      "scripts/deploy/check-build-budget.mjs",
     );
   });
 

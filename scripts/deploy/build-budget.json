@@ -1,0 +1,20 @@
+{
+  "note": "P3a — docs/planning/build-memory-plan-20261128.md. baseline: 141a7d065 local clean build (Turbopack, maps off). Raise a limit only on purpose, in its own commit.",
+  "limits": {
+    "serverJsBytes": 110000000,
+    "serverMaxChunkBytes": 6000000,
+    "serverMaps": 0,
+    "staticJsBytes": 40000000,
+    "staticMaxChunkBytes": 3000000,
+    "largeChunkBytes": 3000000,
+    "largeServerChunks": 2
+  },
+  "baseline": {
+    "serverJsBytes": 80896724,
+    "serverMaxChunkBytes": 4615092,
+    "staticJsBytes": 26302578,
+    "staticMaxChunkBytes": 1807791,
+    "largeServerChunks": 2
+  },
+  "warnGrowth": 0.1
+}
